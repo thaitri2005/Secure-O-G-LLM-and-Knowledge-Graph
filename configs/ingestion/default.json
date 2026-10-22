@@ -1,0 +1,24 @@
+{
+  "max_chars": 1500,
+  "do_ocr": false,
+  "do_table_structure": true,
+  "table_mode": "accurate",
+  "do_cell_matching": true,
+  "device": "cpu",
+  "margin_band": 0.08,
+  "frequency": 0.5,
+  "spot_checks": [
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 2,
+      "section": "Executive Summary",
+      "contains": [
+        "1,955",
+        "27 days"
+      ]
+    }
+  ],
+  "running_block_max_gap_lines": 1.0,
+  "running_block_alignment_lines": 0.5,
+  "running_line_fragment_gap_lines": 3.0
+}

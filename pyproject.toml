@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools==84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graph-builder"
+version = "0.1.0"
+description = "Page-level PDF ingestion for a domain-agnostic Knowledge Graph Builder"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = ["docling==2.141.0", "pypdf==6.1.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

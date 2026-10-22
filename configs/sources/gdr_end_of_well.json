@@ -1,0 +1,44 @@
+[
+  {
+    "doc_id": "gdr882_ak3_eowr",
+    "url": "https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf",
+    "title": "Akutan AK-3 End of Well Report (2016)",
+    "well": "AK-3",
+    "gdr_submission": 882,
+    "landing_page": "https://gdr.openei.org/submissions/882",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+    "bytes": 2083928
+  },
+  {
+    "doc_id": "gdr1295_56-32_eowr",
+    "url": "https://gdr.openei.org/files/1295/56-32%20EOWR%20-%20Final%2022%20July%202021.pdf",
+    "title": "Utah FORGE well 56-32 End of Well Report (2021)",
+    "well": "56-32",
+    "gdr_submission": 1295,
+    "landing_page": "https://gdr.openei.org/submissions/1295",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+    "bytes": 4826997
+  },
+  {
+    "doc_id": "gdr1153_68-32_eowr",
+    "url": "https://gdr.openei.org/files/1153/Monitoring%20Well%2068-32%20-%20EOWR.pdf",
+    "title": "Utah FORGE seismic monitoring well 68-32 End of Well Report",
+    "well": "68-32",
+    "gdr_submission": 1153,
+    "landing_page": "https://gdr.openei.org/submissions/1153",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+    "bytes": 4008256
+  }
+]
