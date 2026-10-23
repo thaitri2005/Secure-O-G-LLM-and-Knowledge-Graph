@@ -1,10 +1,26 @@
-# Graph Builder
+# Secure LLM and Knowledge Graph Platform
 
-A domain-agnostic Knowledge Graph Builder. The current ingestion stage turns PDF reports into passage chunks with source provenance.
+An on-premise platform that turns technical documents into a knowledge graph and, later, answers questions over it. It is designed so that documents never leave the deployment: parsing runs locally today, and extraction and model inference are planned to use locally served models. The only network access is downloading pinned packages, models and public source PDFs.
+
+The platform is domain-agnostic. Users bring their own ontology, and every node and edge in the graph links back to the source passage it came from. The current development corpus is public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org); the same pipeline accepts other technical PDFs through a new source registry.
+
+## Components
+
+| Component | Purpose | Status |
+|---|---|---|
+| Ingestion | PDF to passage chunks with document, page, region and character-offset provenance | Implemented (`graph_builder.ingestion`) |
+| Ontology | User-supplied ontology (YAML/JSON) that guides extraction | Planned |
+| Graph construction | Extract entities and relations by the ontology, link names to reference lists, merge duplicates | Planned |
+| Graph control | Confidence threshold, basic checks, review queue | Planned |
+| Graph storage | Graph database in which every fact keeps its source | Planned |
+| Admin application | Uploads, review queue, node merging and deletion, re-runs | Planned |
+| Question answering | Natural-language questions translated into graph queries | Planned |
+
+The `graph_builder` package holds the stages that build the graph. Ingestion is the first one.
 
 ## Setup
 
-Use Python 3.12. The lock file captures the complete Windows CPU environment, including the optional OCR trial dependencies. Base installation requires only pinned Docling and pypdf; EasyOCR and its explicit pins are available through `pip install -e ".[ocr]"`. OCR remains disabled in published outputs.
+Use Python 3.12. The lock file captures the complete Windows CPU environment, including the optional OCR trial dependencies. The base installation needs only pinned Docling and pypdf; EasyOCR and its pins are available through `pip install -e ".[ocr]"`. OCR is disabled in published outputs.
 
 ```powershell
 py -3.12 -m venv .venv
@@ -15,21 +31,51 @@ py -3.12 -m venv .venv
 
 Bash equivalent: `python3.12 -m venv .venv && .venv/bin/python -m pip install -r requirements.lock.txt && .venv/bin/python -m pip install -e . --no-deps && source .venv/bin/activate` (the supplied lock includes Windows-specific packages).
 
-## Reproduce
+## Reproduce the ingestion output
 
 ```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well.json --config configs/ingestion/default.json
 ```
 
-The first run downloads and verifies the three source PDFs and downloads Docling models. Allow about seven minutes on a CPU, including the initial model download; hardware and network speed affect this estimate. Optional model prefetch: `docling-tools models download layout tableformer` (supported by the pinned version's CLI). Once models are cached, use `$env:HF_HUB_OFFLINE = "1"` for offline model reuse; in bash, `export HF_HUB_OFFLINE=1`. Source PDFs must also be present for a fully offline run.
+This command downloads and verifies the three source PDFs, downloads the Docling models, converts and chunks the reports, and validates the result. Allow about ten minutes on a CPU for the first run. Because the main bundle is published, an unnamed run only succeeds if it reproduces the committed files byte for byte. If anything differs, it fails without changing them. Use a named run (below) to experiment.
 
-Expected SHA256 of `data/processed/gdr_chunks.json`: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`.
+Optional model prefetch: `docling-tools models download layout tableformer`. Once the models and PDFs are cached, set `$env:HF_HUB_OFFLINE = "1"` (bash: `export HF_HUB_OFFLINE=1`) to run offline.
 
-The `fetch`, `convert`, `chunk`, and `validate` commands expose the individual stages with the same `--sources` and `--config` arguments. `convert` reads local verified PDFs; `chunk` uses the complete document cache. Downloads live in ignored `data/raw/`; complete Docling JSON/Markdown and per-document chunks live in a per-parser-settings subdirectory of `data/interim/docling/`; timings and filter statistics live in ignored `data/interim/run_log.json`.
+Expected SHA256 of `data/processed/gdr_chunks.json`: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`. `data/processed/SHA256SUMS` lists the digest of every published main artifact.
 
-## Experiments and provenance
+The `fetch`, `convert`, `chunk` and `validate` commands run the individual stages with the same `--sources` and `--config` arguments. Other locations:
+- downloaded PDFs: ignored `data/raw/`;
+- Docling JSON/Markdown caches (ignored): a per-parser-settings subdirectory of `data/interim/docling/`;
+- timings and filter statistics: ignored `data/interim/run_log.json`.
 
-The measured default uses paragraph continuation, a 1,500-character budget and fast TableFormer. [Evaluation results](docs/ingestion-evaluation.md) report fidelity, gold scores, remaining errors and the selection criteria.
+## Output
+
+The main bundle in `data/processed/` is the input for graph construction:
+
+| File | Content |
+|---|---|
+| `gdr_chunks.json` | Array of chunks: `doc_id`, `page`, `chunk_id`, `type`, `text`, `section` |
+| `gdr_chunks_full.jsonl` | One record per chunk, in the same order: `content_id`, canonical character offsets, source item/page character spans, regions (PDF points, top-left origin), section path, table reference |
+| `gdr_tables.jsonl` | Each table once: cells with spans and header flags, and row-oriented text |
+| `documents/<doc_id>.json`, `.txt` | Source metadata and physical-page geometry; canonical text (chunks joined by two newlines) that the offsets index |
+| `SHA256SUMS` | Digests of the files above |
+
+Chunk fields:
+
+| Field | Value |
+|---|---|
+| `doc_id` | Stable identifier from the source registry |
+| `page` | Physical PDF page, numbered from 1 |
+| `chunk_id` | Unique `{doc_id}#c0000` identifier, numbered continuously per document |
+| `type` | `text` or `table` |
+| `text` | Nonempty extracted text or Markdown table |
+| `section` | Nearest preceding section heading, or `null` |
+
+`content_id` stays stable when a re-run renumbers chunks, so links to source passages survive re-processing. The four JSON schemas in `schemas/` describe these records. All text artifacts are UTF-8 with LF line endings, and geometry is rounded to 0.01 PDF point.
+
+## Experiments
+
+The default configuration (`configs/ingestion/default.json`) uses paragraph chunking, a 1,500-character budget and fast TableFormer. It was selected by measurement. [Evaluation results](docs/ingestion-evaluation.md) report fidelity, gold scores, remaining errors and the commands that reproduce every number.
 
 ```powershell
 python -m graph_builder.ingestion run --run-name paragraph_1500_fast
@@ -38,31 +84,20 @@ python -m graph_builder.ingestion compare --old page_1500_accurate --new paragra
 python -m graph_builder.ingestion publish --run paragraph_1500_fast
 ```
 
-Named runs use verified conversion caches and isolate results in `data/interim/runs/`; `run` without a name performs a fresh conversion. Overrides such as `--set max_chars=2000` require a named run. Evaluate the run before publication. Comparison requires two locally generated named runs; `page_1500_accurate` is generated with `--set table_mode=accurate --set chunking.strategy=page`. Publication validates the current artifacts and selects the destination from the explicit `--sources` registry (the main registry by default). Commands that consume saved runs reject `--set`; configure overrides when creating the run.
+How named runs work:
+- Named runs reuse the verified conversion caches and write to ignored `data/interim/runs/<name>/`.
+- Overrides such as `--set max_chars=2000` are only allowed on a named run. `page_1500_accurate` is created with `--set table_mode=accurate --set chunking.strategy=page`.
+- Commands that read a saved run (`evaluate`, `compare`, `publish`, `ocr`) reject `--set`.
+- `publish` revalidates the run and copies it to the bundle of the `--sources` registry. The default is the main registry.
 
-The six-field array remains the compatibility output. `gdr_chunks_full.jsonl` adds stable content IDs, canonical character offsets, source item/page character spans, regions, section paths and table references. `gdr_tables.jsonl` stores each table's cells and row-oriented text once. `documents/<doc_id>.json` records source metadata and physical-page geometry; the matching `.txt` is canonical chunk text joined by two newlines. Four JSON schemas describe these records.
-
-All three registries use the same `configs/ingestion/default.json`: paragraph chunking, 1,500 characters and fast TableFormer. Reproduce the additional bundles with the same command, changing only the source registry:
+Two more registries use the same configuration: `configs/sources/gdr_end_of_well_extended.json` (two further reports) and `configs/sources/gdr_ak3_appendices.json` (the AK-3 appendix portfolio, split into 44 PDFs). Their bundles are regenerated locally into ignored `data/processed/local/<registry_name>/`:
 
 ```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well_extended.json --config configs/ingestion/default.json
 python -m graph_builder.ingestion run --sources configs/sources/gdr_ak3_appendices.json --config configs/ingestion/default.json
 ```
 
-These write `gdr_chunks.json`, matching provenance/table sidecars and `documents/` under the ignored directories `data/processed/local/gdr_end_of_well_extended/` and `data/processed/local/gdr_ak3_appendices/`, respectively. No overrides are needed. Portfolio children are deduplicated by SHA and retain their parent document ID. [Published bundle checks](docs/ingestion-evaluation.md#published-bundle-checks) list the expected digests for all three registries.
-
-## Chunk format
-
-The deliverable is a UTF-8 JSON array in source registry and document reading order, with LF line endings and a final newline. All generated text artifacts use LF; publication normalizes CRLF inputs to LF. Artifact geometry is rounded to two decimals without changing chunk text. `data/processed/SHA256SUMS` records only the nine tracked main artifacts, sorted by relative path. Each secondary directory has its own manifest. Direct output and publication refresh only the destination bundle's manifest.
-
-| Field | Value |
-|---|---|
-| `doc_id` | Stable identifier from the source registry. |
-| `page` | Physical PDF page, numbered from 1. |
-| `chunk_id` | Unique `{doc_id}#c0000` identifier, numbered continuously per document. |
-| `type` | `text` or `table`. |
-| `text` | Nonempty extracted text or Markdown table. |
-| `section` | Nearest preceding section heading, or `null`. |
+[Published bundle checks](docs/ingestion-evaluation.md#published-bundle-checks) list their expected digests. [Ingestion details](docs/ingestion.md) describe filtering, chunking, validation and known limitations.
 
 ## Tests
 
@@ -70,16 +105,16 @@ The deliverable is a UTF-8 JSON array in source registry and document reading or
 python -m unittest discover -s tests
 ```
 
-Tests use small synthetic documents. The cache regression test also runs when all document caches are available. See [ingestion details](docs/ingestion.md) for filtering, validation, results, and extraction limitations.
+Tests use small synthetic documents. The regression test also re-chunks the cached reports and checks the published SHA256 when all document caches are present.
 
 ## Data attribution
 
-All reports were authored by **Geothermal Resource Group** and are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The chunks are derived text: extracted, filtered, and split from these reports, with tables represented as Markdown.
+The reports were authored by **Geothermal Resource Group, Inc.** and are published in the DOE Geothermal Data Repository under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The chunks are derived text: extracted, filtered and split from these reports, with tables represented as Markdown.
 
 | Report | Source |
 |---|---|
-| Akutan AK-3 End of Well Report (2016) | [GDR submission 882](https://gdr.openei.org/submissions/882) |
-| Utah FORGE well 56-32 End of Well Report (2021) | [GDR submission 1295](https://gdr.openei.org/submissions/1295) |
-| Utah FORGE seismic monitoring well 68-32 End of Well Report | [GDR submission 1153](https://gdr.openei.org/submissions/1153) |
+| Akutan Geothermal Project, Well AK-3 End of Well Report (2016) | [GDR submission 882](https://gdr.openei.org/submissions/882) |
+| Utah FORGE Seismic Monitoring Well 56-32 End of Well Report (2021) | [GDR submission 1295](https://gdr.openei.org/submissions/1295) |
+| Utah FORGE Seismic Monitoring Well 68-32 End of Well Report | [GDR submission 1153](https://gdr.openei.org/submissions/1153) |
 
-The [source registry](configs/sources/gdr_end_of_well.json) records the PDF URLs, license URLs, byte sizes, and SHA256 digests used to verify the inputs.
+The [source registry](configs/sources/gdr_end_of_well.json) records the PDF URLs, license URLs, byte sizes and SHA256 digests used to verify the inputs.

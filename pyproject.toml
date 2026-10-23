@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "graph-builder"
 version = "0.1.0"
-description = "PDF ingestion into passage chunks with source provenance for a Knowledge Graph Builder"
+description = "Knowledge graph construction stages for a secure, on-premise LLM and knowledge graph platform, starting with PDF ingestion into passage chunks with source provenance"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = ["docling==2.141.0", "pypdf==6.1.1"]

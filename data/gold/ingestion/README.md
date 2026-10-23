@@ -25,5 +25,3 @@ The five files under `pages/` list the parser items found on a page (`items`) an
 - Each item's `section` is the nearest preceding printed section heading, or `null` if there is none.
 - Items with several boxes appear once, at their first position.
 - Source text the parser missed is recorded in `notes`.
-
-Review used rendered source pages.
