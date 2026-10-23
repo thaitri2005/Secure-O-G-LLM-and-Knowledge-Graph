@@ -1,8 +1,16 @@
 {
   "max_chars": 1500,
+  "chunking": {
+    "strategy": "paragraph"
+  },
+  "tables": {
+    "compact": false,
+    "merge_pages": false,
+    "rotation_retry": false
+  },
   "do_ocr": false,
   "do_table_structure": true,
-  "table_mode": "accurate",
+  "table_mode": "fast",
   "do_cell_matching": true,
   "device": "cpu",
   "margin_band": 0.08,

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "akutan_abbreviations",
+    "doc_id": "gdr882_ak3_eowr",
+    "page": 4,
+    "source_ref": "#/tables/1",
+    "csv": "data/gold/ingestion/tables/akutan_abbreviations.csv",
+    "crop": "data/interim/figures/gold/akutan_abbreviations.png",
+    "bbox": [
+      71.35454923346614,
+      87.82768329057535,
+      549.0471620066209,
+      609.7843564600903
+    ],
+    "header_rows": 0,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22"
+  },
+  {
+    "id": "forge_directional_survey",
+    "doc_id": "gdr1295_56-32_eowr",
+    "page": 22,
+    "source_ref": "#/tables/17",
+    "csv": "data/gold/ingestion/tables/forge_directional_survey.csv",
+    "crop": "data/interim/figures/gold/forge_directional_survey.png",
+    "bbox": [
+      71.81355285644531,
+      180.09605407714844,
+      586.26513671875,
+      705.4414672851562
+    ],
+    "header_rows": 2,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22"
+  },
+  {
+    "id": "forge_fluid_parameters",
+    "doc_id": "gdr1295_56-32_eowr",
+    "page": 33,
+    "source_ref": "#/tables/29",
+    "csv": "data/gold/ingestion/tables/forge_fluid_parameters.csv",
+    "crop": "data/interim/figures/gold/forge_fluid_parameters.png",
+    "bbox": [
+      134.89459228515625,
+      217.95045471191406,
+      476.63592529296875,
+      442.7486877441406
+    ],
+    "header_rows": 0,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Source uses en dashes in '8.6 – 9.2' and 'NA – Vertical Hole'."
+  },
+  {
+    "id": "forge_daily_report",
+    "doc_id": "gdr1153_68-32_eowr",
+    "page": 17,
+    "source_ref": "#/tables/7",
+    "csv": "data/gold/ingestion/tables/forge_daily_report.csv",
+    "crop": "data/interim/figures/gold/forge_daily_report.png",
+    "bbox": [
+      33.56480026245118,
+      34.492759704589844,
+      749.9544677734376,
+      576.6166381835936
+    ],
+    "header_rows": 1,
+    "status": "corrected",
+    "format": "form_fields",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Rotated full-page form made of several sub-forms, not a single grid. Annotated as form fields (block, field, value) with non-empty values only; score by value recall on the page, not by cell position."
+  },
+  {
+    "id": "akutan_directional_survey",
+    "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+    "page": 1,
+    "source_ref": "#/tables/0",
+    "csv": "data/gold/ingestion/tables/akutan_directional_survey.csv",
+    "crop": "data/interim/figures/gold/akutan_directional_survey.png",
+    "bbox": [
+      72.2988052368164,
+      117.67802429199219,
+      540.2017211914062,
+      359.68511962890625
+    ],
+    "header_rows": 2,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Header row 1 holds 'Coordinates' spanning N-S/E-W. The full-width band row is one merged cell placed in column 1. Rendered 'TOTCC' is clipped; the text layer reads 'TOTCO'."
+  },
+  {
+    "id": "akutan_daily_operations",
+    "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+    "page": 1,
+    "source_ref": "#/tables/0",
+    "csv": "data/gold/ingestion/tables/akutan_daily_operations.csv",
+    "crop": "data/interim/figures/gold/akutan_daily_operations.png",
+    "bbox": [
+      37.282073974609375,
+      268.2668762207031,
+      576.3217163085938,
+      332.44146728515625
+    ],
+    "header_rows": 1,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22"
+  },
+  {
+    "id": "akutan_bit_summary",
+    "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+    "page": 1,
+    "source_ref": "#/tables/0",
+    "csv": "data/gold/ingestion/tables/akutan_bit_summary.csv",
+    "crop": "data/interim/figures/gold/akutan_bit_summary.png",
+    "bbox": [
+      36.535858154296875,
+      80.51927947998047,
+      756.012939453125,
+      209.661865234375
+    ],
+    "header_rows": 2,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Header labels are clipped in the source itself ('Ru n', 'Ou', 'Hole Mad', 'Gradin', 'Flo') and are kept as printed. Column 23 is an unlabeled IADC grading column between 'Loc' and 'Gg'. The 'Well ID / Well Name' band is one merged cell placed in column 1."
+  },
+  {
+    "id": "akutan_casing",
+    "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+    "page": 1,
+    "source_ref": "#/tables/1",
+    "csv": "data/gold/ingestion/tables/akutan_casing.csv",
+    "crop": "data/interim/figures/gold/akutan_casing.png",
+    "bbox": [
+      72.23983764648438,
+      296.39923095703125,
+      539.6070556640625,
+      335.69818115234375
+    ],
+    "header_rows": 1,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22"
+  },
+  {
+    "id": "akutan_cement",
+    "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+    "page": 1,
+    "source_ref": "#/tables/0",
+    "csv": "data/gold/ingestion/tables/akutan_cement.csv",
+    "crop": "data/interim/figures/gold/akutan_cement.png",
+    "bbox": [
+      71.72803497314453,
+      120.42285919189453,
+      540.1629638671875,
+      293.23809814453125
+    ],
+    "header_rows": 1,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Band rows 'Cement Job Information' and 'Secondary Job Details' are merged cells placed in column 1."
+  },
+  {
+    "id": "akutan_mud",
+    "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+    "page": 1,
+    "source_ref": "#/tables/0",
+    "csv": "data/gold/ingestion/tables/akutan_mud.csv",
+    "crop": "data/interim/figures/gold/akutan_mud.png",
+    "bbox": [
+      71.8614730834961,
+      115.94926452636719,
+      539.6935424804688,
+      440.74285888671875
+    ],
+    "header_rows": 0,
+    "status": "corrected",
+    "format": "grid",
+    "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+    "reviewed": "2026-10-22",
+    "notes": "Two label/value column pairs; 'Comments:' is a full-width row."
+  }
+]

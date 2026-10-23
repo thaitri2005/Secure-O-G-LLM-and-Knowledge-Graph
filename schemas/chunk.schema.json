@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "doc_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+#c[0-9]{4}$"
+    },
+    "type": {
+      "enum": [
+        "text",
+        "table"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "section": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "doc_id",
+    "page",
+    "chunk_id",
+    "type",
+    "text",
+    "section"
+  ],
+  "additionalProperties": false
+}

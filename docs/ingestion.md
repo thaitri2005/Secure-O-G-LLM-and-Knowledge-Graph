@@ -2,9 +2,9 @@
 
 ## Stages and configuration
 
-`fetch` downloads source PDFs or verifies existing files against the registry's SHA256 and byte size. A mismatch fails the command. `convert` runs Docling locally and stores complete, unfiltered JSON and Markdown documents. `chunk` filters a copy of each cached document and writes the merged chunks in registry and reading order. `validate` checks those chunks against the original PDFs and cached documents. `run` performs all four stages and fails if validation fails.
+`fetch` downloads source PDFs or verifies existing files against the registry's SHA256 and byte size. A mismatch fails the command. `convert` runs Docling locally and stores complete, unfiltered JSON and Markdown documents in a per-parser-settings subdirectory of `data/interim/docling/`. Accurate TableFormer settings use the base directory; other settings, including the default, use a hashed subdirectory. `chunk` filters a copy of each cached document and writes the merged chunks in registry and reading order. `validate` checks those chunks against the original PDFs and cached documents. `run` performs all four stages and fails if validation fails.
 
-[Pipeline options](../configs/ingestion/default.json) explicitly set a 1,500-character budget, CPU execution, OCR off, table structure on, accurate TableFormer, and cell matching on. Remote services and Hugging Face telemetry are disabled. Dependencies are Python 3.12.10, docling 2.141.0, docling-core 2.103.1, torch 2.14.1+cpu, and pypdf 6.1.1. The full Windows CPU dependency set is frozen in `requirements.lock.txt`.
+[Pipeline options](../configs/ingestion/default.json) explicitly set a 1,500-character budget, CPU execution, OCR off, table structure on, fast TableFormer, and cell matching on. Remote services and Hugging Face telemetry are disabled. Dependencies are Python 3.12.10, docling 2.141.0, docling-core 2.103.1, torch 2.14.1+cpu, and pypdf 6.1.1. The full Windows CPU dependency set is frozen in `requirements.lock.txt`.
 
 ## Filters
 
@@ -23,40 +23,58 @@ Docling sometimes splits a line across table cells. Fragments with aligned verti
 | Page footer | 28 | 86 | 12 |
 | Picture | 46 | 226 | 54 |
 | Empty table | 0 | 1 | 1 |
-| Running-line occurrence | 28 | 342 | 0 |
+| Running-line occurrence | 28 | 276 | 0 |
 
-Running-line counts include matches already labelled as page headers or footers; categories overlap. AK-3's 28 running-line matches are already excluded page footers, so its chunks are unchanged. The 68-32 chunks are also unchanged. The 56-32 version/date/reference metadata is absent from the output.
+Running-line counts include matches already labelled as headers or footers, so categories overlap. Counts reflect the selected fast parser configuration. The source cache remains complete.
 
 ## Chunking and validation
 
-Text is grouped by physical PDF page and nearest preceding section, then packed by sentence. Long sentences split at whitespace, or at the character budget when no whitespace exists. Headings end the current text buffer and set the section; they do not create standalone chunks. A text item spanning pages is divided using its provenance character spans. Existing text within figures remains available.
+Text is grouped by the nearest preceding section and packed by sentence. Paragraph continuation may join the final unfinished paragraph of a page to a lowercase- or digit-starting paragraph on the next page; headings prevent continuation. The `page` strategy remains available. Long sentences split at whitespace, or at the character budget when no whitespace exists. Headings end the current text buffer and set the section; they do not create standalone chunks. A text item spanning pages is divided using its provenance character spans. Existing text within figures remains available.
 
-Tables become Markdown. Long tables split only at row boundaries and repeat their caption and header. Markdown separator padding is compacted. A single oversized row remains intact and produces a validation warning. A multi-page table uses its first provenance page and is counted; none occurred in these inputs. Identifiers use `{doc_id}#c{index:04d}` with continuous indexes from zero per document.
+Tables become Markdown. Long tables split only at row boundaries and repeat their caption and header. Markdown separator padding is compacted. The full header plus exactly one body row remains intact when over budget and produces a validation warning. A multi-page table uses its first provenance page and is counted; none occurred in these inputs. Identifiers use `{doc_id}#c{index:04d}` with continuous indexes from zero per document.
 
 Validation checks the JSON array and fields, identifiers and continuity, registry order, physical page range, nonempty text, allowed types, section type, character limits and table-row exceptions. Configured content checks verify selected phrases and page/section provenance. A document without table chunks warns. Each PDF page with more than 200 pypdf characters must have a chunk unless it is a computed index-only page.
 
 Exemptions come from every item in the complete Docling cache, including figure children and orphaned items. A page is exempt when all items are structural exclusions, or when a detected index page contains only those exclusions, filtered running metadata, and index headings. Index headings are explicit contents/figures/tables headings or headings matching labelled running-header text within the same normalized vertical region. Substantive paragraphs, captions, ordinary headings and empty tables prevent exemption. No page numbers are hard-coded and no TOC chunks are created. Current exempt pages: AK-3 `[3]`, 56-32 `[3, 4, 5, 7]`, 68-32 `[]`; missing substantive pages: none.
 
+## Validation rules
+
+The indivisible table unit is the complete repeated header plus exactly one body row. A table part may exceed `max_chars` only when it contains exactly one body row, with or without a header; validation emits a warning. A lone row rendered above a Markdown separator represents a headerless single-row table. Oversized parts with two or more body rows fail. Text chunks retain the hard character limit. Separator padding does not qualify for an exception. The splitter fills each part until adding the next body row would exceed the budget and repeats the complete header.
+
+Validation also checks the JSON schemas, canonical offsets, stable IDs, geometry and table references. The shared table file stores `cells` and `rows_text` once per `table_id`. Each table part references a zero-based half-open `[row_start, row_end)` range in the original grid; leading rendered header rows are stored in the table record and repeated in chunk text. Combining the header with contiguous part ranges reconstructs the original table. `regions` use PDF points with a top-left origin. Source spans index the emitted chunk and identify its physical source pages; table row provenance survives page merging.
+
 ## Results
 
-Approximate reference times: Windows laptop, CPU only, cached models.
+| Document | Pages | Text chunks | Table chunks | Characters |
+|---|---:|---:|---:|---:|
+| gdr882_ak3_eowr | 29 | 54 | 6 | 43073 |
+| gdr1295_56-32_eowr | 86 | 131 | 69 | 68028 |
+| gdr1153_68-32_eowr | 40 | 52 | 60 | 111158 |
 
-| doc_id | Pages | Text chunks | Table chunks | Characters | CPU seconds |
-|---|---:|---:|---:|---:|---:|
-| gdr882_ak3_eowr | 29 | 57 | 6 | 43,064 | 30 |
-| gdr1295_56-32_eowr | 86 | 132 | 69 | 66,825 | 125 |
-| gdr1153_68-32_eowr | 40 | 60 | 36 | 77,669 | 200 |
-| Total | 155 | 249 | 111 | 187,558 | 355 |
+SHA256: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`
 
-SHA256: `70a27d3a4109d00a2c46ba4bca7ee22315b6adb6a71b99b71396d23b19dfbe18`
+The main deliverable has 372 chunks and 20 indivisible-table warnings, with no validation errors. Text, IDs and JSON formatting are deterministic under the locked Windows CPU environment. Comparison against `page_1500_accurate`: 241 kept, 42 changed, 89 added and 77 removed. `content_id` is the first 16 hexadecimal characters of SHA1 over `doc_id|type|text`, with text whitespace collapsed. Comparison first matches these IDs one-to-one, then matches remaining chunks within a document/type by token Jaccard similarity at least 0.9.
 
-The deliverable uses UTF-8, unescaped Unicode, two-space indentation, LF endings and a trailing newline. It contains no run timings or timestamps. Complete offline PDF conversions produce identical chunk bytes when dependencies, cached models, inputs and options are unchanged.
+[Evaluation](ingestion-evaluation.md) includes the tested configurations, source-page attribution, gold accuracy, timings measured once on the reference machine, and error examples. Timings are not reproducible.
 
 ## Known limitations
 
-- Rotated daily-report tables in 68-32 have collapsed cell structure; `gdr1153_68-32_eowr#c0035` on page 17 is an example. TableFormer also reports unmatched cells. These forms need further extraction review.
-- Seventeen 68-32 chunks contain an unsplittable row exceeding 1,500 characters: `c0035`, `c0041`, `c0043`, `c0045`, `c0047`, `c0049`, `c0059`, `c0061`, `c0063`, `c0065`, `c0067`, `c0068`, `c0069`, `c0070`, `c0071`, `c0072`, `c0073`.
-- Two empty tables are skipped: 56-32 page 34 (`#/tables/31`) and 68-32 page 10 (`#/tables/6`). Other text still covers these pages.
-- OCR is disabled. All three source PDFs have a text layer; no page has fewer than 50 pypdf characters. Appendices and more complex table handling remain future ingestion work.
+Rotated forms remain difficult: the selected parser retains 51/60 annotated values on 68-32 page 17. Wide appendix tables and stacked headers still contain cell errors. Twenty table parts exceed the character limit under the documented single-body-row rule. OCR is disabled; 67 appendix pages need it. The optional trial and its dependency extra do not change published chunks. Gold is single-annotator and AI-assisted; see the evaluation report for scoring conventions and limitations.
 
-Source titles, authorship, submission links and licenses are listed in the [README](../README.md#data-attribution).
+## Commands and artifacts
+
+`run --run-name <name>` isolates chunks, table structures, documents, resolved configuration and metrics under the ignored runs directory. Parser settings select separate conversion caches; chunking settings reuse them. `evaluate --run <name>` checks automatic metrics and corrected gold available in matching parser caches. Appendix annotations are reported when those source caches are present; score counts expose partial gold coverage. `compare --old <name> --new <name>` reports one-to-one kept/changed/added/removed counts. `publish --run <name> --sources <registry>` revalidates artifacts, requires the saved sources to match that registry, and copies the bundle to its destination. The main registry is the default target. `compare`, `evaluate`, `publish` and `ocr` reject `--set`; overrides belong on run creation.
+
+Unnamed main chunking stages the complete bundle and compares every artifact before changing published files. A changed bundle requires a named run followed by publication. Source and schema document IDs share `^[a-z0-9][a-z0-9_-]{0,63}$`, allowing at most 64 characters.
+
+The main bundle is `gdr_chunks.json`, `gdr_chunks_full.jsonl`, `gdr_tables.jsonl` and `documents/`. Extended and portfolio bundles use the same filenames inside ignored `data/processed/local/<registry_name>/` directories. Every registry uses the same default configuration without overrides. `chunk.schema.json`, `chunk_full.schema.json`, `table.schema.json` and `document.schema.json` are under `schemas/`. Canonical `.txt` files join chunk text in reading order using two newlines. Offset ranges are half-open Python Unicode character indexes, not UTF-8 byte indexes. All generated text uses UTF-8 with LF line endings, and publication normalizes CRLF inputs to LF.
+
+Geometry is rounded to two decimals at artifact serialization, including region and cell coordinates when present, page sizes and floating character spans. Integer offsets and chunk text are not rounded. Raw conversion caches keep full precision. Direct processed output and publication refresh `SHA256SUMS`, listing only that registry's chunk JSON, two sidecars and document pairs in relative POSIX path order with LF line endings. The main manifest has nine entries and excludes all local bundles.
+
+Source titles, submission links and licenses are listed in the README and document records.
+
+## Design debt
+
+Core modules import shared helpers from `evaluation.py`; these helpers should eventually live in a shared module.
+
+The private APIs `_count_header_rows` and `pypdf._text_extraction.mult` depend on the versions pinned by the lock file.

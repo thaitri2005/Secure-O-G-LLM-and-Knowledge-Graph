@@ -1,0 +1,1168 @@
+{
+  "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+  "page": 1,
+  "status": "corrected",
+  "image": "data/interim/figures/gold/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309_p1.png",
+  "reading_order": [
+    "#/texts/0",
+    "#/texts/3",
+    "#/texts/1",
+    "#/texts/4",
+    "#/texts/5",
+    "#/texts/6",
+    "#/texts/67",
+    "#/texts/7",
+    "#/texts/16",
+    "#/texts/25",
+    "#/texts/27",
+    "#/texts/68",
+    "#/texts/69",
+    "#/texts/8",
+    "#/texts/17",
+    "#/texts/26",
+    "#/texts/28",
+    "#/texts/70",
+    "#/texts/71",
+    "#/texts/9",
+    "#/texts/18",
+    "#/texts/29",
+    "#/texts/63",
+    "#/texts/72",
+    "#/texts/77",
+    "#/texts/80",
+    "#/texts/10",
+    "#/texts/19",
+    "#/texts/30",
+    "#/texts/73",
+    "#/texts/78",
+    "#/texts/81",
+    "#/texts/11",
+    "#/texts/20",
+    "#/texts/74",
+    "#/texts/79",
+    "#/texts/82",
+    "#/texts/12",
+    "#/texts/21",
+    "#/texts/23",
+    "#/texts/31",
+    "#/texts/75",
+    "#/texts/83",
+    "#/texts/13",
+    "#/texts/14",
+    "#/texts/22",
+    "#/texts/24",
+    "#/texts/32",
+    "#/texts/62",
+    "#/texts/64",
+    "#/texts/76",
+    "#/texts/85",
+    "#/texts/84",
+    "#/texts/15",
+    "#/texts/33",
+    "#/texts/34",
+    "#/texts/35",
+    "#/texts/36",
+    "#/texts/37",
+    "#/texts/38",
+    "#/texts/39",
+    "#/texts/40",
+    "#/tables/0",
+    "#/texts/41",
+    "#/texts/42",
+    "#/texts/43",
+    "#/texts/48",
+    "#/texts/44",
+    "#/texts/49",
+    "#/texts/45",
+    "#/texts/46",
+    "#/texts/47",
+    "#/texts/86",
+    "#/texts/50",
+    "#/texts/51",
+    "#/texts/58",
+    "#/texts/52",
+    "#/texts/55",
+    "#/texts/59",
+    "#/texts/65",
+    "#/texts/53",
+    "#/texts/56",
+    "#/texts/60",
+    "#/texts/54",
+    "#/texts/57",
+    "#/texts/61",
+    "#/texts/66"
+  ],
+  "items": [
+    {
+      "id": "#/texts/0",
+      "type": "section_header",
+      "text": "Daily Drilling Report Well ID: AK-3",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        104.5,
+        51.58000000000004,
+        219.71200000000005,
+        71.39417127071829
+      ]
+    },
+    {
+      "id": "#/texts/1",
+      "type": "text",
+      "text": "Field: Hot Springs Bay Valley",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        104.5,
+        78.80499999999995,
+        220.9509999999999,
+        84.35417127071821
+      ]
+    },
+    {
+      "id": "#/texts/3",
+      "type": "text",
+      "text": "Well Name: AK-3",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        498.5228,
+        65.84500000000003,
+        570.4868000000004,
+        71.39417127071829
+      ]
+    },
+    {
+      "id": "#/texts/4",
+      "type": "text",
+      "text": "Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        300.3954,
+        78.80499999999995,
+        570.2334000000009,
+        84.35417127071821
+      ]
+    },
+    {
+      "id": "#/texts/5",
+      "type": "text",
+      "text": "Report No:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        41.536,
+        92.64440000000002,
+        87.994,
+        98.19357127071828
+      ]
+    },
+    {
+      "id": "#/texts/6",
+      "type": "text",
+      "text": "1",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        95.536,
+        93.09500000000003,
+        100.54,
+        98.64417127071829
+      ]
+    },
+    {
+      "id": "#/texts/7",
+      "type": "text",
+      "text": "Operator:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        104.50440000000003,
+        75.42399999999999,
+        109.43699668508293
+      ]
+    },
+    {
+      "id": "#/texts/8",
+      "type": "text",
+      "text": "Measured Depth (ft):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        116.54039999999998,
+        116.728,
+        121.47299668508288
+      ]
+    },
+    {
+      "id": "#/texts/9",
+      "type": "text",
+      "text": "Vertical Depth (ft):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        128.55240000000003,
+        108.27999999999999,
+        133.48499668508293
+      ]
+    },
+    {
+      "id": "#/texts/10",
+      "type": "text",
+      "text": "Proposed TD (ft):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        140.58839999999998,
+        104.26400000000001,
+        145.52099668508288
+      ]
+    },
+    {
+      "id": "#/texts/11",
+      "type": "text",
+      "text": "Hole Made (ft) / Hrs:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        152.61239999999998,
+        114.49599999999997,
+        157.54499668508288
+      ]
+    },
+    {
+      "id": "#/texts/12",
+      "type": "text",
+      "text": "Average ROP (ft/hr):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        164.63639999999998,
+        115.83999999999997,
+        169.56899668508288
+      ]
+    },
+    {
+      "id": "#/texts/13",
+      "type": "text",
+      "text": "Pers/Hrs:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        176.66039999999998,
+        74.552,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/14",
+      "type": "text",
+      "text": "Operator:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        89.4,
+        176.66039999999998,
+        125.82399999999998,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/15",
+      "type": "text",
+      "text": "SafetySummary:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        190.18439999999998,
+        102.104,
+        195.11699668508288
+      ]
+    },
+    {
+      "id": "#/texts/16",
+      "type": "text",
+      "text": "Rig: City of Akutan Major LF90",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        128.9992,
+        104.51639999999998,
+        200.336,
+        109.44899668508288
+      ]
+    },
+    {
+      "id": "#/texts/16",
+      "type": "text",
+      "text": "Rig: City of Akutan Major LF90",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        253.179,
+        104.50440000000003,
+        293.6189999999999,
+        109.43699668508293
+      ]
+    },
+    {
+      "id": "#/texts/17",
+      "type": "checkbox_unselected",
+      "text": "0 Drilling Days (act.):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        173.87054443359375,
+        113.85774230957031,
+        257.63200000000006,
+        122.73416900634766
+      ]
+    },
+    {
+      "id": "#/texts/18",
+      "type": "checkbox_unselected",
+      "text": "Drilling Days (plan): 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        173.6931915283203,
+        125.86553955078125,
+        260.2800000000001,
+        134.62229919433594
+      ]
+    },
+    {
+      "id": "#/texts/19",
+      "type": "text",
+      "text": "Days On Location: 1700",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        161.0031,
+        140.57640000000004,
+        255.40800000000004,
+        145.52099668508288
+      ]
+    },
+    {
+      "id": "#/texts/20",
+      "type": "text",
+      "text": "Last Casing: 0 / 0.0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        156.5617,
+        152.61239999999998,
+        232.76800000000003,
+        157.54499668508288
+      ]
+    },
+    {
+      "id": "#/texts/21",
+      "type": "text",
+      "text": "Next Casing:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        184.8,
+        164.63639999999998,
+        233.66400000000004,
+        169.56899668508288
+      ]
+    },
+    {
+      "id": "#/texts/22",
+      "type": "list_item",
+      "text": "2 / 0 Contractor:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        152.4336,
+        176.66039999999998,
+        217.52799999999996,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/23",
+      "type": "checkbox_selected",
+      "text": "5.500 at 220",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        248.75582885742188,
+        162.06964111328125,
+        293.6735534667969,
+        169.56899668508288
+      ]
+    },
+    {
+      "id": "#/texts/24",
+      "type": "text",
+      "text": "7 / 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        253.2336,
+        176.66039999999998,
+        268.7776,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/25",
+      "type": "text",
+      "text": "Spud Date:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        299.64,
+        104.51639999999998,
+        341.8239999999999,
+        109.44899668508288
+      ]
+    },
+    {
+      "id": "#/texts/26",
+      "type": "checkbox_unselected",
+      "text": "Well Bore: 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        288.7412414550781,
+        113.76339721679688,
+        339.15999999999997,
+        121.47299668508288
+      ]
+    },
+    {
+      "id": "#/texts/27",
+      "type": "text",
+      "text": "18-Aug-16",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        378.1046,
+        104.51639999999998,
+        415.44859999999983,
+        109.44899668508288
+      ]
+    },
+    {
+      "id": "#/texts/28",
+      "type": "text",
+      "text": "Original Well Bore",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        352.9992,
+        116.52840000000003,
+        417.41519999999986,
+        121.46099668508293
+      ]
+    },
+    {
+      "id": "#/texts/29",
+      "type": "text",
+      "text": "RKB Elevation (ft): 30",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        284.7415,
+        128.56439999999998,
+        370.2479999999999,
+        133.49699668508288
+      ]
+    },
+    {
+      "id": "#/texts/30",
+      "type": "text",
+      "text": "Last BOP Test: 1",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        289.1907,
+        140.58839999999998,
+        356.93599999999986,
+        145.52099668508288
+      ]
+    },
+    {
+      "id": "#/texts/31",
+      "type": "text",
+      "text": "Working Interest:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        299.64,
+        164.62440000000004,
+        365.3599999999999,
+        169.55699668508294
+      ]
+    },
+    {
+      "id": "#/texts/32",
+      "type": "text",
+      "text": "Service:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        274.8,
+        176.66039999999998,
+        305.9119999999999,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/33",
+      "type": "text",
+      "text": "No incidents or events reported. 1 day since LTI.",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        111.088,
+        190.19640000000004,
+        283.0480000000001,
+        195.12899668508294
+      ]
+    },
+    {
+      "id": "#/texts/34",
+      "type": "text",
+      "text": "Current Operations: Bob, Monty, Kevin and Joe, fly to site locate hole position, fly mini excavator to site begin construction of drill pad, fly camp crew to site",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        204.75400000000002,
+        567.1119999999996,
+        218.88579668508294
+      ]
+    },
+    {
+      "id": "#/texts/35",
+      "type": "text",
+      "text": "Planned Operations: Construct drill pad, dig and install cellar to collar the hole. Build man camp, sort and fly loads to valley.",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.07201,
+        225.15239999999994,
+        493.00799999999987,
+        230.48549668508292
+      ]
+    },
+    {
+      "id": "#/texts/36",
+      "type": "text",
+      "text": "Toolpusher:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        237.60080000000005,
+        85.16800000000002,
+        242.53339668508295
+      ]
+    },
+    {
+      "id": "#/texts/37",
+      "type": "text",
+      "text": "Brian Walker",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        132.6,
+        237.20039999999995,
+        178.36000000000004,
+        242.13299668508284
+      ]
+    },
+    {
+      "id": "#/texts/38",
+      "type": "text",
+      "text": "Wellsite Supervisors: MKeown Tel No.:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        39.0,
+        249.62480000000005,
+        163.71200000000002,
+        254.5693966850829
+      ]
+    },
+    {
+      "id": "#/texts/38",
+      "type": "text",
+      "text": "Wellsite Supervisors: MKeown Tel No.:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        425.64,
+        249.6368,
+        454.936,
+        254.5693966850829
+      ]
+    },
+    {
+      "id": "#/texts/39",
+      "type": "text",
+      "text": "907-273-0057",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        462.216,
+        249.6368,
+        512.0239999999998,
+        254.5693966850829
+      ]
+    },
+    {
+      "id": "#/tables/0",
+      "type": "table",
+      "text": "| From   | To    |   Elapsed |   End MD(ft) | Code   | Operations Description                                         | Non-Prod   |\n|--------|-------|-----------|--------------|--------|----------------------------------------------------------------|------------|\n| 0:00   | 8:00  |      8.00 |            0 | WOD    | personnel at lodge and town on Akutan                          |            |\n| 8:00   | 9:30  |      1.50 |            0 | MOB    | Meeting to discuss project fly to Valley to site hole location |            |\n| 9:30   | 19:00 |      9.50 |            0 | MOB    | Fly loads to site , begin construction of camp and drill pad.  |            |\n| 19:00  | 0:00  |      5.00 |            0 | WOD    | Crews down for evening                                         |            |",
+      "section": "Operations Summary",
+      "bbox": [
+        37.282073974609375,
+        268.2668762207031,
+        576.3217163085938,
+        332.44146728515625
+      ]
+    },
+    {
+      "id": "#/texts/40",
+      "type": "section_header",
+      "text": "Operations Summary",
+      "section": "Operations Summary",
+      "bbox": [
+        260.5219,
+        262.99490000000003,
+        351.4759000000001,
+        268.5440712707183
+      ]
+    },
+    {
+      "id": "#/texts/41",
+      "type": "section_header",
+      "text": "Management Summary",
+      "section": "Management Summary",
+      "bbox": [
+        256.4111,
+        335.3669,
+        354.8801000000001,
+        340.9160712707182
+      ]
+    },
+    {
+      "id": "#/texts/42",
+      "type": "text",
+      "text": "Stage personnel at container location to pull and sort loads. Fly city representative to location, stake hole. Fly materials and personnel to Valley to begin construction of camp.",
+      "section": "Management Summary",
+      "bbox": [
+        41.5,
+        347.4144,
+        555.6039999999997,
+        361.5462966850829
+      ]
+    },
+    {
+      "id": "#/texts/43",
+      "type": "section_header",
+      "text": "Comments",
+      "section": "Comments",
+      "bbox": [
+        282.4223,
+        369.2373,
+        328.9073,
+        374.7864712707182
+      ]
+    },
+    {
+      "id": "#/texts/44",
+      "type": "section_header",
+      "text": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        260.6602,
+        396.7197,
+        351.2361999999999,
+        402.83847127071823
+      ]
+    },
+    {
+      "id": "#/texts/45",
+      "type": "text",
+      "text": "Medical Treatments:",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        170.536,
+        409.8672,
+        247.84,
+        414.7997966850829
+      ]
+    },
+    {
+      "id": "#/texts/46",
+      "type": "text",
+      "text": "Lost Time Incidents:",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        305.5359,
+        409.8672,
+        383.2398999999999,
+        414.7997966850829
+      ]
+    },
+    {
+      "id": "#/texts/47",
+      "type": "text",
+      "text": "Days Since LTI:",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        440.536,
+        409.8672,
+        500.0479999999999,
+        414.7997966850829
+      ]
+    },
+    {
+      "id": "#/texts/48",
+      "type": "text",
+      "text": "Helicopter AS 350 flight time 3.5hrs.",
+      "section": "Comments",
+      "bbox": [
+        41.5,
+        381.2849,
+        169.00400000000002,
+        386.2174966850829
+      ]
+    },
+    {
+      "id": "#/texts/49",
+      "type": "text",
+      "text": "First Aid Treatments:",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        41.536,
+        409.8672,
+        121.92799999999998,
+        414.7997966850829
+      ]
+    },
+    {
+      "id": "#/texts/50",
+      "type": "checkbox_unselected",
+      "text": "BOP Test",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        40.28994369506836,
+        418.1183166503906,
+        90.78809356689453,
+        427.6690979003906
+      ]
+    },
+    {
+      "id": "#/texts/51",
+      "type": "checkbox_unselected",
+      "text": "Crownamatic Check",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        126.48207092285156,
+        417.8678283691406,
+        216.79940795898438,
+        427.8789978027344
+      ]
+    },
+    {
+      "id": "#/texts/52",
+      "type": "text",
+      "text": "Sky Condition:",
+      "section": "Weather Information",
+      "bbox": [
+        41.5,
+        446.7073,
+        97.87599999999998,
+        451.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/53",
+      "type": "text",
+      "text": "Air Temperature:",
+      "section": "Weather Information",
+      "bbox": [
+        41.5,
+        458.7073,
+        105.91599999999998,
+        463.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/54",
+      "type": "text",
+      "text": "Wind Speed/Dir:",
+      "section": "Weather Information",
+      "bbox": [
+        41.536,
+        470.7553,
+        103.23999999999998,
+        475.6878966850829
+      ]
+    },
+    {
+      "id": "#/texts/55",
+      "type": "text",
+      "text": "Overcast / broken",
+      "section": "Weather Information",
+      "bbox": [
+        113.5,
+        446.7073,
+        176.59600000000003,
+        451.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/56",
+      "type": "text",
+      "text": "58 degF",
+      "section": "Weather Information",
+      "bbox": [
+        113.5,
+        458.7073,
+        142.836,
+        463.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/57",
+      "type": "text",
+      "text": "12 / W",
+      "section": "Weather Information",
+      "bbox": [
+        113.5,
+        470.7553,
+        136.58800000000002,
+        475.6878966850829
+      ]
+    },
+    {
+      "id": "#/texts/58",
+      "type": "section_header",
+      "text": "Weather Information",
+      "section": "Weather Information",
+      "bbox": [
+        261.132,
+        434.2253,
+        348.5580000000001,
+        439.7744712707182
+      ]
+    },
+    {
+      "id": "#/texts/59",
+      "type": "text",
+      "text": "Visibility:",
+      "section": "Weather Information",
+      "bbox": [
+        309.25,
+        446.7073,
+        344.76199999999994,
+        451.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/60",
+      "type": "text",
+      "text": "Bar. Pressure:",
+      "section": "Weather Information",
+      "bbox": [
+        309.49,
+        458.7073,
+        364.14599999999996,
+        463.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/61",
+      "type": "text",
+      "text": "Wind Gusts:",
+      "section": "Weather Information",
+      "bbox": [
+        309.52,
+        470.7553,
+        356.5759999999999,
+        475.6878966850829
+      ]
+    },
+    {
+      "id": "#/texts/62",
+      "type": "text",
+      "text": "8 / 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        354.0336,
+        176.66039999999998,
+        369.57759999999996,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/63",
+      "type": "text",
+      "text": "0.00",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        399.8938,
+        128.56439999999998,
+        415.45379999999994,
+        133.49699668508288
+      ]
+    },
+    {
+      "id": "#/texts/64",
+      "type": "text",
+      "text": "Other:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        375.6,
+        176.66039999999998,
+        399.584,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/65",
+      "type": "text",
+      "text": "6",
+      "section": "Weather Information",
+      "bbox": [
+        404.0508,
+        446.7073,
+        408.49879999999996,
+        451.6398966850829
+      ]
+    },
+    {
+      "id": "#/texts/66",
+      "type": "text",
+      "text": "16",
+      "section": "Weather Information",
+      "bbox": [
+        399.6016,
+        470.7553,
+        408.4976,
+        475.6878966850829
+      ]
+    },
+    {
+      "id": "#/texts/67",
+      "type": "section_header",
+      "text": "Report For 12-Aug-16",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        478.5277,
+        92.64440000000002,
+        570.4627,
+        98.19357127071828
+      ]
+    },
+    {
+      "id": "#/texts/68",
+      "type": "text",
+      "text": "Daily Cost / Mud ($):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        104.50440000000003,
+        498.2799999999999,
+        109.43699668508293
+      ]
+    },
+    {
+      "id": "#/texts/69",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        564.9359,
+        104.50440000000003,
+        572.9278999999999,
+        109.43699668508293
+      ]
+    },
+    {
+      "id": "#/texts/70",
+      "type": "text",
+      "text": "AFE No.",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        116.52840000000003,
+        452.536,
+        121.46099668508293
+      ]
+    },
+    {
+      "id": "#/texts/71",
+      "type": "text",
+      "text": "AFE ($) Actual ($)",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        489.568,
+        116.52840000000003,
+        570.0073999999998,
+        121.46099668508293
+      ]
+    },
+    {
+      "id": "#/texts/72",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        128.55240000000003,
+        429.45599999999996,
+        133.48499668508293
+      ]
+    },
+    {
+      "id": "#/texts/73",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        140.57640000000004,
+        429.45599999999996,
+        145.50899668508293
+      ]
+    },
+    {
+      "id": "#/texts/74",
+      "type": "text",
+      "text": "Totals:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        152.60040000000004,
+        447.66399999999993,
+        157.53299668508294
+      ]
+    },
+    {
+      "id": "#/texts/75",
+      "type": "text",
+      "text": "Well Cost ($):",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        421.464,
+        164.62440000000004,
+        472.5279999999999,
+        169.55699668508294
+      ]
+    },
+    {
+      "id": "#/texts/76",
+      "type": "text",
+      "text": "2 / 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        454.8336,
+        176.66039999999998,
+        470.3776,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/77",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        516.6959,
+        128.55240000000003,
+        524.6879,
+        133.48499668508293
+      ]
+    },
+    {
+      "id": "#/texts/78",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        516.6957,
+        140.57640000000004,
+        524.6877,
+        145.50899668508293
+      ]
+    },
+    {
+      "id": "#/texts/79",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        516.6958,
+        152.60040000000004,
+        524.6877999999999,
+        157.53299668508294
+      ]
+    },
+    {
+      "id": "#/texts/80",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        564.9358,
+        128.55240000000003,
+        572.9277999999999,
+        133.48499668508293
+      ]
+    },
+    {
+      "id": "#/texts/81",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        564.9358,
+        140.57640000000004,
+        572.9277999999999,
+        145.50899668508293
+      ]
+    },
+    {
+      "id": "#/texts/82",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        564.9358,
+        152.60040000000004,
+        572.9277999999999,
+        157.53299668508294
+      ]
+    },
+    {
+      "id": "#/texts/83",
+      "type": "text",
+      "text": "---",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        564.9359,
+        164.62440000000004,
+        572.9278999999999,
+        169.55699668508294
+      ]
+    },
+    {
+      "id": "#/texts/84",
+      "type": "text",
+      "text": "19 / 0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        552.9124,
+        176.66039999999998,
+        572.9044,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/85",
+      "type": "text",
+      "text": "Total:",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "bbox": [
+        476.4,
+        176.66039999999998,
+        498.15199999999993,
+        181.59299668508288
+      ]
+    },
+    {
+      "id": "#/texts/86",
+      "type": "text",
+      "text": "1",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "bbox": [
+        563.0868,
+        409.8672,
+        567.5348,
+        414.7997966850829
+      ]
+    }
+  ],
+  "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+  "reviewed": "2026-10-22",
+  "notes": "Form read row by row, left to right. #/texts/16 and #/texts/38 have two boxes each; each ID is listed once at its first position. Sections follow the printed band headings; 'Report For 12-Aug-16' is a header field, not a section. Missing from the items: 'Geothermal Resource Group' (top right). Several items join a value with the next label (for example '0 Drilling Days (act.):'); item texts are left unchanged."
+}

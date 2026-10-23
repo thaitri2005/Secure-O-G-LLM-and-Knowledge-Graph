@@ -1,0 +1,732 @@
+Seismic Monitoring Wells
+
+Prepared by:
+Geothermal Resource Group, Inc.
+for
+
+| Final Page 2 of 16 - Monitoring Well 68-32 - by: Seismic by: - Verified - Prepared | 29 2019 - April - Issued: - by: - Approved |
+| --- | --- |
+
+| Vice President - Operations (GRG) | Project Geologist (GRG) | Senior Drilling Engineer (GRG) | President (GRG) | |
+| --- | --- | --- | --- | --- |
+| Sam Abraham | Mary Mann | Ernesto Rivas | W. M. Rickard | |
+| Prepared By: | | Reviewed By: | | Approved By: |
+
+Page 3 of 16
+Final
+Seismic Monitoring Well
+Prepared by: GRG
+Issued: 29 April 2019
+68-32
+Verified by:
+Approved by:
+
+Well 68-32, drilled vertically to a depth of 1,000 ft., is the shallow seismic monitoring well of the exploration program in the Utah Frontier Observatory for Research in Geothermal Energy (FORGE) Enhanced Geothermal System (EGS) prospect area (FORGE Deep Well Site). The project is administered by the U.S. Department of Energy and managed by the University of Utah (U of U). As part of the activities for the FORGE project and based on discussions with DOE and others, the University of Utah drilled 68-32 (one of 2) seismic monitoring hole to host seismic monitoring instruments to collect data during injection in Well 58-32.
+Achieved Well Objectives The achieved objectives for the shallow monitoring hole 68-32 were:
+· Drilled and completed the seismic monitoring well to 1,000 ft MD GL.
+Installed geophones · Wellbore and surface equipment prepared to monitor the seismic signatures during testing
+and injection.
+· The shallow monitoring hole (68-32) was drilled towards the western portion of the FORGE footprint (Figure 1)
+· Geophones were run and sanded in place with the bottom of tool string at 924'
+· Geophones were tested with a check shot in the barefoot section of Well 58-32 prior to the beginning of the planned injection program
+· Two different geophone types were installed in the hole for comparison.
+
+Health and Safety Program The health and safety of all personal, and maintaining a clean, non-hazardous work environment (HSE), were the top priority during drilling and testing operations. The objective was to comply with the safety and environmental standards of the U of U.
+On location, the project HSE plan was implemented, including:
+· Daily safety meetings were held prior to each shift, addressing the importance of proper and safety conscious crew behavior
+Operation specific safety meetings with all personnel involved to identify safety risks and relevant precautions prior to specific tasks such as casing running, cementing, and
+logging
+Clear identification of muster areas at the location and clear lines communication for all
+personnel No LTIs were reported during operations, no environmental hazards or any environmental impact were observed and there were no major or catastrophic service quality incidents.
+
+Page 5 of 16
+Final
+Seismic Monitoring Well
+Prepared by: GRG
+Issued: 29 April 2019
+68-32
+Verified by:
+Approved by:
+Figure 1: Drilling locations, well 68-32 and well 78-32
+
+| Final Page 6 of 16 | 29 April 2019 - Issued: |
+| --- | --- |
+| Seismic Monitoring Well | 68-32 |
+| by: GRG by: | by: |
+| Verified | |
+| Prepared | Approved |
+
+All depth measurements are referred to the rotary Kelly bushing (RKB), which is 5.70 ft above ground level, unless otherwise stated.
+
+| University of Utah T200XD # 10031 68-32 UTM E 335781.1, N 4262993.8 Elevation: 5456.25 ft ASL WGS84 UTM Zone 11 | Milford, Utah FORGE, Utah Hydro Resources Schramm | Geothermal Resource Group | Shallow Monitoring Well | Lat/Long: 38.501591, -112.886654 5.70 ft above GL. 1,000 ft. | |
+| --- | --- | --- | --- | --- | --- |
+| | | Manager | | | |
+| | | | | Location: | Table Height |
+| Operator: | | Project | | | |
+| Rig: Reference System: | | | | Depth (ft): | |
+| | | | Type: | | |
+| Drilling | Area: Field: | | | Rotary Total | |
+| | | Well Name: | | | |
+| | | | Well | | |
+| | | Drilling | | | |
+| | | | | Wellhead | |
+| Coordinate | | | | | |
+
+Installed Casing Properties The casing program for the shallow hole are shown in Table 1 and well profile is shown in Figure
+2.
+
+| Setting Depth (ft) Remarks | (") | drilled top of | to surface, not out, | 68.7 Pre-set, with a dry hole digger and cemented in place | Cemented in place | 981 cement at float | collar/wiper plug 932' |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Specifications Nominal ID / Drift ID / Coupling | OD | | 13.25 6.050 | | 5.00/ 4.767/ | 17#, K-55, | |
+| Casing Size | (") | | 14 | Welded | | 5.5 BTC | |
+| Hole Size | (") | | | 24 | | 8.5 | |
+| Section | | | | | | | |
+| | | | Conductor | | | Surface | |
+
+Prepared by: GRG
+Seismic Monitoring Well
+68-32
+Verified by:
+Final
+Page 7 of 16
+Approved by:
+Issued: 29 April 2019
+
+Drilling Summary University of Utah had obtained the necessary permit from Utah Division of Water Rights for drilling and rig mobilization and demobilization, and the necessary environmental clearance for drilling of 68-32. Operations were conducted in daylight hours only.
+
+The road to the rig was graded by Rollins Construction and two 500 bbl baker tanks were spotted on location. The conductor drilling rig was contracted by University of Utah, arriving on location at 19:00 hours on 4 March 2019. The conductor was set at 63 ft (from GL) in a 24" hole drilled with conductor drilling rig on 5 March 2019 and cemented in place using a tremie pipe and concrete pump truck to surface with 6.5 cubic yards with 50% excess volume.
+
+Hydro Resources Rig # 10031 (model: Schramm T200xd Portable Top Head drilling rig) was contracted by the University of Utah, on a turn-key contract to drill and complete the 1000 ft well. The rig) was mobilized, rigged-up on 68-32 pad and accepted on day rate at 6:00 hours on 9 March
+2019.
+
+A pre-spud meeting was held on 9 March 2019 at 12:30 hours and drilling began at 13:00 hours on 9 March. The 8-3/4" hole was drilled to 1000 ft in one day with one 8-3/4" bit run and full returns using a fresh water, low solids, non-dispersed mud system. At the planned hole total depth of 1000 ft, the well a wiper trip was completed to clean and condition the hole. The hole was circulated clean, with full returns, and the drill string was pulled out of the hole. A safety meeting was held prior to the running of the 5-1/2" casing to 978 ft. The cementing was done by Propetro after rig up and a safety meeting. The primary cement job was as follows: pumped 20 bbls of cement flush with green dye, cemented with 81.6 bbls of 15.8 ppg of Portland cement slurry with 2% calcium chloride and ¼#/sack of Flocele. The cement was displaced with 21.6 barrels of water, with full returns at surface. After waiting on cement, the top of cement was found 30 ft RKB.
+The 5-1/2" casing was cut off above the rotating head and prepared for wellhead installation. Installed weld on well head and 2" outlet valve on the 5-1/2" casing (Figure 3). Ran wireline in the well, tagged up at 928 ft RKB. Installed well head cap and 2" valve and secured the well. Following this on 12 March, the rig was rigged down and moved to the pad for the planned second seismic monitoring hole.
+
+On 26 March operations commenced to prepare for running instruments on wireline into hole. First 1.5" PVC with wiper plug were run in the hole and used to blow 5-1/2" casing dry. A 50 lb sack of swimming pool sand was dumped in the dry well and twoseismic instruments were run in the well using the provided deploying spools. When the instrument tagged bottom, one 50 lb bag of swimming pool sand, the cables were secured together with zip ties every 50 ft as they were removed them from the spools and a waterproof cap assembly was installed with cables threaded through the supply line. Telemetry construction completed at 68-32 monitoring well on March 27 at 8:00 hours, after the signal tower was installed at site (Figure 3).
+
+Page 9 of 16
+Final
+Seismic Monitoring Well
+Prepared by: GRG
+Issued: 29 April 2019
+68-32
+Verified by:
+Approved by:
+Figure 3: Surface completion of seismic monitoring well 68-32.
+
+Ryan Gall from the Utah Geologic Survey collected the cutting samples every 10 ft and prepared the final lithologic log for the well 68-32 shown in the following pages.
+
+| Page 10 of 16 - Seismic Monitoring Well 68-32 Final - by: by: - Verified - Prepared | 2019 - 29 April - Issued: - by: - Approved |
+| --- | --- |
+
+10 | P a g e
+
+Page 11 of 16
+Final
+
+Prepared by: GRG
+Issued: 29 April 2019
+68-32
+Verified by:
+Approved by:
+11 | P a g e
+
+Prepared by: GRG
+
+Verified by:
+
+Approved by:
+
+12 | P a g e
+
+13 | P a g e
+
+Verified by:
+
+14 | P a g e
+
+15 | P a g e
+
+Page 16 of 16
+Final
+Seismic Monitoring Well
+Prepared by: GRG
+Issued: 29 April 2019
+68-32
+Verified by:
+Approved by:
+
+1. Daily Drilling Reports
+2. Operations Activity Detail Report
+3. Operations Time Graph
+4. Bit report
+5. Casing report
+6. Surveys
+7. Instrument Installation Procedure provided by VLF
+
+| Report For 01-Mar-19 GRG Well Name: 68-32 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- | 1 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 0/0 | Tel No.: | Non-Prod Unloaded 45 joints of | | JIF HHP P.Drp J.Vel Press Flow | Gels Temp In/Out Ca CaCl | Mud Log Conn Trip Pore Pres. this report. acre-ft 0.000 | 0 1 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sect: 26 Town: Job ID: Original Original Wellbore: RKB Elevation (ft): Spud Date: 14.000 at 60 #10031 Next Casing: Last Casing: Rig: 0 0 of Utah 1000 Working Interest: | equipment. and remainder of loads for rig up. Last BOP Test: 0/0 Flat Days (act./plan): 0 / 0.0 0/0 Next BOP Test: Total Days (act./plan): | Randy Baldwin | Operations Summary Operations Description graded road to rig. Spotted 2 each 500 bbl baker tanks. 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. on day ligth | | Bit/BHA Information MudWt Torq RPM WOB ROP Hrs Dist Jets 1-4 | Mud Reports Cl Sand Oil Water Solids pH LGS | Press. Depth Gas:Back Max No Mud Log Information for Safety Information Days Since: Environment Cum. Water Hauled: | 1st Aid: Accident Description: Oper: Total Personnel: 2 Hours: 1 0 Cont: 0 Serv: Othr: Rig/Weather Information | for this report. |
+
+| Report For 01-Mar-19 GRG Well Name: 68-32 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- | 1 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 0/0 | Tel No.: | Non-Prod Unloaded 45 joints of | | JIF HHP P.Drp J.Vel Press Flow | Gels Temp In/Out Ca CaCl | Mud Log Conn Trip Pore Pres. this report. acre-ft 0.000 | 0 1 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 Report No: Daily Drilling Report Well ID: Forge 68-32 Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): Operator: University Proposed TD (ft): Drilling Days (act./plan): <!-- image --> | unloading Waiting on daylight Current Ops: | 3 loads of the rig arrived on Feb 28. Supervisors: Continue Comments: Toolpusher: Planned Ops: | From To Elapsed End MD(ft) Code 6:00 18:00 12.00 0 1-39 Rollins 5-1/2" 18:00 0:00 Waiting | 6.00 0 2-99 | Diam Model No/Run Make No Bit Information for this report. | BHA - None YP PV Cake Filt. Vis. Dens. Date/Time No Mud Records for this report. Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow AV:DC AV:DP Records for this report. | No Drilling Parameters Med: LTI: Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. | No Rig Information for this report. Information Printed: 20:02 29-Apr-19 RIMBase 7.4.89.0 | No Weather |
+
+1 Report No: Daily Drilling Report Well ID: Forge 68-32 Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): Operator: University Proposed TD (ft): Drilling Days (act./plan):
+
+| Report For 02-Mar-19 Cost / Mud ($): --- AFE ($) Actual ($) --- --- --- --- --- --- --- | 2 On Location: | Tel No.: | Non-Prod | GRG Well Name: 68-32 9W County: Beaver State: UT | JIF HHP P.Drp J.Vel | Gels Temp In/Out | Log Conn Trip Pore Pres. report. | Environment acre-ft 0.000 | | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Original Wellbore Wellbore: Last BOP Test: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 14.000 at 60 Next Casing: Last Casing: 0.0 0 0 Working Interest: Daily AFE No. --- --- Totals: Cost ($): | 0/0 Days Well 0/0 Total Days (act./plan): | Randy Baldwin | Operations Summary Operations Description Waiting on day light Received and unloaded 4 more loads of the rig Waiting on daylight. | Sect: 26 Town: 26S Rng: Job ID: Original | Bit/BHA Information Press MudWt Torq RPM WOB ROP Hrs Dist Flow | Mud Reports Cl Sand Oil Water Solids pH Cake Ca LGS CaCl | Press. AV:DC AV:DP Mud Depth Gas:Back Max No Mud Log Information for this | Safety Information 1st Aid: LTI: Days Since: 1 Hours: 0 0 0 Serv: 0 Othr: Cum. Water Hauled: | Med: Accident Description: Oper: Total Personnel: 1 Cont: Rig/Weather Information | RIMBase 7.4.89.0 |
+
+| Report For 02-Mar-19 Cost / Mud ($): --- AFE ($) Actual ($) --- --- --- --- --- --- --- | 2 On Location: | Tel No.: | Non-Prod | GRG Well Name: 68-32 9W County: Beaver State: UT | JIF HHP P.Drp J.Vel | Gels Temp In/Out | Log Conn Trip Pore Pres. report. | Environment acre-ft 0.000 | | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2 Report No: Waiting on daylight. Planned Ops: Current Ops: #10031 Flat Days (act./plan): Rig: 0 / Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): Operator: University of Utah 1000 Proposed TD (ft): Drilling Days (act./plan): 0/0 Next BOP Test: | Supervisors: Continue moving rig to location. | Comments: Toolpusher: | From To Elapsed End MD(ft) Code 0:00 6:00 6.00 0 2-99 6:00 18:00 12.00 0 1-39 18:00 0:00 6.00 0 2-99 | Daily Drilling Report Well ID: Forge 68-32 | Jets 1-4 Diam Model No/Run Make No Bit Information for this report. | BHA - None YP PV Filt. Vis. Dens. Date/Time No Mud Records for this report. | Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow No Drilling Parameters Records for this report. | Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. | No Rig Information for this report. No | Weather Information for this report. Printed: 20:02 29-Apr-19 |
+
+| For 03-Mar-19 GRG Well Name: 68-32 Beaver State: UT --- --- | AFE ($) Actual ($) --- --- --- --- --- | 3 On Location: ($): --- | Tel No.: | Non-Prod | | JIF HHP P.Drp J.Vel Press | Gels Temp In/Out | Mud Log Max Conn Trip Pore Pres. for this report. | Environment Hauled: acre-ft 0.000 | | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Report Sect: 26 Town: 26S Rng: 9W County: Job ID: Original 09-Mar-19 Spud Date: #10031 Daily Cost / Mud ($): | Original Wellbore Wellbore: Test: 0.00 RKB Elevation (ft): 14.000 at 60 AFE No. --- --- Totals: Cost | 0/0 Days Well 0/0 Total Days (act./plan): | Randy Baldwin | Operations Summary Operations Description Waiting on daylight. on rest of the rig from Colorado. Waiting on daylight. | | Bit/BHA Information MudWt Torq RPM WOB ROP Hrs Flow | Mud Reports Cl Sand Oil Water Solids pH Cake Filt. Ca LGS CaCl | Press. AV:DP Depth Gas:Back No Mud Log Information | Safety Information 1st Aid: Days Since: 0 0 Serv: 0 Othr: Cum. Water | Accident Description: Oper: Total Personnel: 1 Hours: 0 1 Cont: Rig/Weather Information | RIMBase 7.4.89.0 |
+
+| For 03-Mar-19 GRG Well Name: 68-32 Beaver State: UT --- --- | AFE ($) Actual ($) --- --- --- --- --- | 3 On Location: ($): --- | Tel No.: | Non-Prod | | JIF HHP P.Drp J.Vel Press | Gels Temp In/Out | Mud Log Max Conn Trip Pore Pres. for this report. | Environment Hauled: acre-ft 0.000 | | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 3 Report No: Well ID: Forge 68-32 Continue moving rig and begin to set up. Waiting on daylight. Toolpusher: Planned Ops: Current Ops: Last BOP Next Casing: Last Casing: Flat Days (act./plan): Rig: 0 / 0.0 0 Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): 0 Operator: University of Utah 1000 Proposed TD (ft): Working Interest: Drilling Days (act./plan): 0/0 Next BOP Test: | | Supervisors: | Comments: | From To Elapsed End MD(ft) Code 0:00 6:00 6.00 0 2-99 6:00 18:00 12.00 0 1-39 Waiting 18:00 0:00 6.00 0 2-99 | Daily Drilling Report | Dist Jets 1-4 Diam Model No/Run Make No Bit Information for this report. | BHA - None YP PV Vis. Dens. Date/Time No Mud Records for this report. | Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow AV:DC No Drilling Parameters Records for this report. | Med: LTI: Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. | No Rig Information for this report. No Weather Information for this report. | Printed: 20:02 29-Apr-19 |
+
+| Report For 04-Mar-19 GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore 0.00 09-Mar-19 Elevation (ft): Spud Date: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- --- | 4 Days On Location: --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Tel No.: | Non-Prod an | JIF HHP P.Drp J.Vel Press MudWt Torq Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Environment | acre-ft 0.000 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Sect: Job ID: Original Wellbore: Last BOP Test: RKB 14.000 at 60 0/0 Next Casing: Last Casing: Flat Days (act./plan): 0 / 0.0 0 0 1000 Working Interest: 0/0 Next BOP Test: | Run and cement 60 ft of 14" conductor on both | Randy Baldwin Supervisors: pads. | Operations Summary MD(ft) Code Operations Description 0 2-99 Waiting on daylight. 0 1-39 3 Hydroresource hands arrived. Rollins graded dirt road. Received and unloaded additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker tanks on each location. Conductor drilling rig arrived on location at 19:00 hrs. 0 2-99 Waiting on daylight. | Bit/BHA Information RPM WOB ROP Hrs Dist pH Cake | Mud Reports Sand Oil Water Solids YP Filt. Press. AV:DC AV:DP Safety Information | 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 4 Hours: 0 1 3 Cont: 0 Serv: 0 Othr: Item Used Invent. Item Used Invent. No Inventory Records for this report. Cum. Water Hauled: Rig/Weather Information No Rig Information for this report. | No Weather Information for this report. RIMBase 7.4.89.0 |
+
+| Report For 04-Mar-19 GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore 0.00 09-Mar-19 Elevation (ft): Spud Date: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- --- | 4 Days On Location: --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Tel No.: | Non-Prod an | JIF HHP P.Drp J.Vel Press MudWt Torq Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Environment | acre-ft 0.000 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Drilling Well ID: Forge #10031 ROP (ft/hr): (ft) / Hrs: Depth (ft): Depth (ft): TD (ft): Days (act./plan): | | | | Diam Model for this report. | Vis. Dens. for this report. Drilling Parameters Av/Mx WOB RPM Torque Flow Parameters Records for this report. Inventory | | |
+| Report 68-32 Drill conductor holes. Waiting on Daylight Comments: Toolpusher: Planned Ops: Current Ops: Rig: Average Hole Made Vertical Measured Operator: University of Utah Proposed Drilling From To Elapsed End <!-- image --> | | 0:00 6:00 6.00 6:00 19:00 13.00 | 0:00 5.00 | Jets 1-4 | PV Depth ROP | | |
+| 4 Report No: | | | | Make Information - None | Date/Time Mud Records Drilling | | Printed: 20:02 29-Apr-19 |
+| | | | 19:00 | No/Run Bit BHA | No | | |
+| | | | | No | No | | |
+
+Report 68-32 Drill conductor holes. Waiting on Daylight Comments: Toolpusher: Planned Ops: Current Ops: Rig: Average Hole Made Vertical Measured Operator: University of Utah Proposed Drilling From To Elapsed End
+
+| Report For 05-Mar-19 GRG Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 69 69 Utah 1000 Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- | 5 Days On Location: --- --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Should be here Wednesday or Thursday depending on weather. Randy Baldwin Supervisors: Tel No.: Operations Summary Description Non-Prod | Drilled 24" hole to 63 ft ground level on both pads. casing to 63 ft ground level. 70 ft KB. Cement with pump truck to surface with 6.5 cu yards on both pads. | Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB Flow | | Gels Temp In/Out Cl Sand Ca LGS CaCl Press. Depth | Mud Log Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Since: Environment Cum. Water Hauled: acre-ft 0.000 | 7 Hours: 0 3 0 Serv: 3 Othr: | Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Report Job ID: Original BOP Test: 0/0 Days (act./plan): BOP Test: | | Still need mud pits and mud pump. To Elapsed End MD(ft) Code Operations 6:00 6.00 0 2-99 Waiting on daylight. 18:00 12.00 69 1-39 Received 4 more rig loads. Installed 14",3/8" wall thickness | tremie pipe and concrete 69 2-99 Waiting on daylight. | Bit/BHA ROP Hrs Dist 1-4 for this report. | Mud Reports Oil Solids pH | Water YP Cake Filt. Flow AV:DC AV:DP | Safety Information LTI: Days | 1st Aid: Med: Accident Description: Oper: Total Personnel: 1 Cont: Inventory Records for this report. Rig/Weather Information Rig Information for this report. | No Weather Information for this report. RIMBase |
+
+| Report For 05-Mar-19 GRG Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 69 69 Utah 1000 Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- | 5 Days On Location: --- --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Should be here Wednesday or Thursday depending on weather. Randy Baldwin Supervisors: Tel No.: Operations Summary Description Non-Prod | Drilled 24" hole to 63 ft ground level on both pads. casing to 63 ft ground level. 70 ft KB. Cement with pump truck to surface with 6.5 cu yards on both pads. | Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB Flow | | Gels Temp In/Out Cl Sand Ca LGS CaCl Press. Depth | Mud Log Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Since: Environment Cum. Water Hauled: acre-ft 0.000 | 7 Hours: 0 3 0 Serv: 3 Othr: | Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Drilling ID: Forge 68-32 Last Flat 69 / 0.0 (ft/hr): / Hrs: (ft): (ft): University of (ft): (act./plan): 0/0 Next | Start rigging up. Waiting on daylight. Ops: Ops: | | | Jets Diam | PV | Drilling Parameters Av/Mx WOB RPM Torque Records for this report. | Inventory Item Used Invent. | | |
+
+| Report For 05-Mar-19 GRG Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 69 69 Utah 1000 Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- | 5 Days On Location: --- --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Should be here Wednesday or Thursday depending on weather. Randy Baldwin Supervisors: Tel No.: Operations Summary Description Non-Prod | Drilled 24" hole to 63 ft ground level on both pads. casing to 63 ft ground level. 70 ft KB. Cement with pump truck to surface with 6.5 cu yards on both pads. | Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB Flow | | Gels Temp In/Out Cl Sand Ca LGS CaCl Press. Depth | Mud Log Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Since: Environment Cum. Water Hauled: acre-ft 0.000 | 7 Hours: 0 3 0 Serv: 3 Othr: | Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Well Average ROP Hole Made (ft) Vertical Depth Measured Depth Operator: Proposed TD <!-- image --> | Planned Current Drilling Days | | 0:00 6.00 | Model | Vis. this report. | Dens. for ROP Parameters | Item Used Invent. No | | Printed: 20:02 29-Apr-19 |
+| 5 Report No: | | | 18:00 | Make Bit Information | - None | Date/Time No Mud Records | | No | |
+
+| Report For 05-Mar-19 GRG Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 69 69 Utah 1000 Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- | 5 Days On Location: --- --- --- Totals: Well Cost ($): --- 0/0 Total Days (act./plan): | Should be here Wednesday or Thursday depending on weather. Randy Baldwin Supervisors: Tel No.: Operations Summary Description Non-Prod | Drilled 24" hole to 63 ft ground level on both pads. casing to 63 ft ground level. 70 ft KB. Cement with pump truck to surface with 6.5 cu yards on both pads. | Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB Flow | | Gels Temp In/Out Cl Sand Ca LGS CaCl Press. Depth | Mud Log Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Since: Environment Cum. Water Hauled: acre-ft 0.000 | 7 Hours: 0 3 0 Serv: 3 Othr: | Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | Comments: Toolpusher: From 0:00 6:00 | | No | BHA | | Depth No Drilling | | |
+| | | | | No/Run | | | | | |
+
+Daily Well Average ROP Hole Made (ft) Vertical Depth Measured Depth Operator: Proposed TD
+
+| Report For 06-Mar-19 GRG Well Name: 68-32 Town: 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- | 6 AFE No. AFE ($) Actual ($) --- --- --- --- --- --- --- --- (act./plan): | Days On Location: --- Totals: Well Cost ($): 0/0 | of 8 to rig up. Will be 2 each 3 men crews while Tel No.: Non-Prod | well. Backed up rig onto sub base. Raised rig legs. Raised generator house, storage connex, fuel tank, light plants | JIF HHP P.Drp J.Vel Press Flow | Gels Temp Cl Sand LGS | In/Out Ca CaCl Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. | Since: Environment Cum. Water Hauled: acre-ft 0.000 | 0 0 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 6 Report No: Report Sect: 26 Job ID: Original Original Wellbore: Last BOP Test: RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 0 / 0.0 69 Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): 69 Operator: University of Utah 1000 Proposed TD (ft): Working Interest: <!-- image --> | 0/0 Total Days | showed up Randy Baldwin on Daylight. | will be here Thursday. 5 additional personnel today for a total Operations Summary End MD(ft) Code Operations Description 6.00 69 2-99 Waiting 12.00 69 1-39 Spotted rig sub base over derrick. Spotted dog house, and mud pits. 6.00 69 2-99 Waiting on daylight. | Bit/BHA Information MudWt Torq RPM WOB ROP Hrs Dist Jets 1-4 | | Mud Reports Oil Water Solids pH Cake Filt. | Flow Press. AV:DC AV:DP | Safety Information LTI: Days | 1st Aid: Med: Accident Description: Oper: Total Personnel: 9 Hours: 1 8 Cont: 0 Serv: Othr: No Inventory Records for this report. Rig/Weather Information No Rig Information for this report. | Weather Information for this report. RIMBase 7.4.89.0 |
+
+| Report For 06-Mar-19 GRG Well Name: 68-32 Town: 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- | 6 AFE No. AFE ($) Actual ($) --- --- --- --- --- --- --- --- (act./plan): | Days On Location: --- Totals: Well Cost ($): 0/0 | of 8 to rig up. Will be 2 each 3 men crews while Tel No.: Non-Prod | well. Backed up rig onto sub base. Raised rig legs. Raised generator house, storage connex, fuel tank, light plants | JIF HHP P.Drp J.Vel Press Flow | Gels Temp Cl Sand LGS | In/Out Ca CaCl Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. | Since: Environment Cum. Water Hauled: acre-ft 0.000 | 0 0 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Drilling ID: Forge 68-32 Mud pump Supervisors: Tyler Curtis Continue to rig up. Waiting on daylight. Flat Days (act./plan): (ft/hr): (act./plan): 0/0 Next BOP Test: To Elapsed 6:00 18:00 | Current Ops: Average ROP Drilling Days | | | | | YP PV | Drilling Parameters WOB RPM Torque for this report. | Item Used Invent. | | No |
+| Daily Well | Comments: Toolpusher: Planned Ops: From 0:00 6:00 | | 0:00 | Diam Model Make Bit Information for this report. | | Vis. Dens. for this report. | Depth ROP Av/Mx Drilling Parameters Records | Inventory Item Used Invent. | | 29-Apr-19 |
+| | | | 18:00 | No/Run No | BHA - None | Date/Time | No Mud Records No | | | Printed: 20:02 |
+
+6 Report No: Report Sect: 26 Job ID: Original Original Wellbore: Last BOP Test: RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 0 / 0.0 69 Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): 69 Operator: University of Utah 1000 Proposed TD (ft): Working Interest:
+
+| Report For 07-Mar-19 GRG Well Name: 68-32 Town: 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- --- | Tel No.: 7 Days On Location: --- --- Totals: Well Cost ($): --- 0/0 | Description Non-Prod head. Installed shaker and gas buster. Spotted | Installed rotating and pipe handler. Rigged up rig floor. Received 2 loads of water. daylight. | JIF HHP P.Drp J.Vel Press MudWt Torq Flow | Gels Temp In/Out Cl Ca LGS CaCl | Mud Log Depth Gas:Back Max Conn Trip Pore Pres. Mud Log Information for this report. | Environment Cum. Water Hauled: acre-ft 0.000 | 0 0 Othr: | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sect: 26 Job ID: Original Original Wellbore: Last BOP Test: RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 0 / 0.0 69 69 of Utah 1000 Working Interest: | Randy Baldwin 0/0 Days (act./plan): Total Days (act./plan): | Operations Summary MD(ft) Code Operations 69 2-99 Waiting on daylight. 69 1-39 Weld on well head. mud pump 2-99 Waiting on | Bit/BHA Information RPM WOB ROP Hrs Dist Jets 1-4 | | Mud Reports Sand Oil Water Solids pH Cake | Press. AV:DC AV:DP No | Safety Information 1st Aid: LTI: Days Since: 1 8 Cont: 1 Serv: | Med: Accident Description: Oper: Total Personnel: 10 Hours: Rig/Weather Information | Weather Information for this report. RIMBase 7.4.89.0 |
+
+| Report For 07-Mar-19 GRG Well Name: 68-32 Town: 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- --- | Tel No.: 7 Days On Location: --- --- Totals: Well Cost ($): --- 0/0 | Description Non-Prod head. Installed shaker and gas buster. Spotted | Installed rotating and pipe handler. Rigged up rig floor. Received 2 loads of water. daylight. | JIF HHP P.Drp J.Vel Press MudWt Torq Flow | Gels Temp In/Out Cl Ca LGS CaCl | Mud Log Depth Gas:Back Max Conn Trip Pore Pres. Mud Log Information for this report. | Environment Cum. Water Hauled: acre-ft 0.000 | 0 0 Othr: | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Well Flat University 0/0 Next BOP Test: | up. | | | | YP Filt. | Drilling Parameters ROP Av/Mx WOB RPM Torque Flow Records for this report. | Item Used Invent. report. | Information for this report. | No |
+| 7 Drilling Report ID: Forge 68-32 Tyler Curtis Continue rigging Waiting on daylight. (ft/hr): / Hrs: (ft): (ft): (ft): (act./plan): | Supervisors: Toolpusher: Planned Ops: | To Elapsed End 6:00 6.00 18:00 12.00 6.00 69 | No/Run Make | Diam Model for this report. | PV Vis. Dens. for this report. | Depth No Drilling Parameters | Inventory Invent. Records for this | | |
+
+| Report For 07-Mar-19 GRG Well Name: 68-32 Town: 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- --- --- --- | Tel No.: 7 Days On Location: --- --- Totals: Well Cost ($): --- 0/0 | Description Non-Prod head. Installed shaker and gas buster. Spotted | Installed rotating and pipe handler. Rigged up rig floor. Received 2 loads of water. daylight. | JIF HHP P.Drp J.Vel Press MudWt Torq Flow | Gels Temp In/Out Cl Ca LGS CaCl | Mud Log Depth Gas:Back Max Conn Trip Pore Pres. Mud Log Information for this report. | Environment Cum. Water Hauled: acre-ft 0.000 | 0 0 Othr: | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Current Ops: Average ROP Hole Made (ft) Vertical Depth Measured Depth Operator: Proposed TD Drilling Days | Comments: | 0:00 | | Information | | Records | Item Used Inventory | Rig | Printed: 20:02 29-Apr-19 |
+| Report No: | | 0:00 6:00 18:00 | | | | No Mud | | | |
+| | | From | | No Bit | BHA - None | Date/Time | No | No | |
+
+| For 08-Mar-19 GRG Well Name: 68-32 Beaver State: UT ($): --- | Report / Mud AFE ($) Actual ($) --- --- --- --- --- --- Totals: Well Cost ($): --- | Tel No.: 8 Days On Location: 0/0 Non-Prod | | | JIF HHP P.Drp J.Vel Press | | Gels Temp In/Out CaCl | Conn Trip Pore Pres. report. | Environment acre-ft 0.000 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sect: 26 Town: 26S Rng: 9W County: Job ID: Original | 8 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 1,000 14.000 at 69 #10031 Next Casing: Last Casing: Rig: 69 (ft): 69 University of Utah 1000 Working Interest: Daily Cost AFE No. --- --- | Randy Baldwin spud mud. Start drilling 8-3/4" hole. 0/0 Total Days (act./plan): | Operations Summary Operations Description on daylight. | 69 2-99 Waiting 69 1-39 Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. 69 2-99 Waiting on daylight. | Bit/BHA Information MudWt Torq RPM WOB ROP Hrs Dist Flow | | Mud Reports Cl Sand Oil Water Solids pH Cake Ca LGS | Press. AV:DC AV:DP Mud Log Depth Gas:Back Max No Mud Log Information for this | Safety Information 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 10 Hours: 0 1 8 Cont: 0 Serv: 1 Othr: Used Invent. Cum. Water Hauled: Rig/Weather Information light plant generator = 1.5 hrs | Condition: Status: Weather Information for this report. RIMBase 7.4.89.0 |
+
+| For 08-Mar-19 GRG Well Name: 68-32 Beaver State: UT ($): --- | Report / Mud AFE ($) Actual ($) --- --- --- --- --- --- Totals: Well Cost ($): --- | Tel No.: 8 Days On Location: 0/0 Non-Prod | | | JIF HHP P.Drp J.Vel Press | | Gels Temp In/Out CaCl | Conn Trip Pore Pres. report. | Environment acre-ft 0.000 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Report 68-32 | Waiting on daylight. Last BOP Test: Flat Days (act./plan): 0 / 0.0 ROP (ft/hr): (ft) / Hrs: (ft): Depth TD (ft): (act./plan): 0/0 Next BOP Test: | Supervisors: Have pre-spud meeting. Mix MD(ft) Code | | | 1-4 | | YP Filt. | Drilling Parameters WOB RPM Torque Flow for this report. | 3-09 Repair Problems: | |
+| Daily Drilling Well ID: Forge | Ops: Depth Days | Tyler Curtis Finish rigging up. Comments: Toolpusher: Planned Ops: From To Elapsed End 0:00 6:00 6.00 | | | Jets | | PV | ROP Av/Mx Parameters Records | | Transport No |
+| | Made | 6:00 18:00 12.00 | 0:00 | 6.00 | Diam Model Make Information for this report. | | Vis. Dens. Records for this report. | Depth No Drilling | Inventory Item Used Invent. Item No Inventory Records for this report. | Equipment Location 29-Apr-19 |
+| Report No: | Vertical Measured Operator: Proposed | Current Drilling | | | Bit | | Date/Time No Mud | | | 20:02 |
+| | | Average Hole | | | | BHA - None | | | | Printed: |
+| | | | | 18:00 | No/Run No | | | | | |
+
+Non-Prod
+Operations Description
+From To Elapsed End MD(ft) Code Bit/BHA Information BHA - No. 1 - BIT, BS, 15 DC, XO = 454.00
+
+| | | | | | | | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| GRG Well Name: 68-32 | Rng: 9W County: Beaver State: UT | Report For 09-Mar-19 ($): --- | AFE ($) Actual ($) --- | 9 --- | --- --- --- | --- --- | ($): | Location: | | | Tel No.: |
+| | 26S | 09-Mar-19 Daily Cost / Mud | AFE No. | --- | | Totals: | Well Cost | Days On 1/0 | | | Almond |
+| | Sect: 26 Town: | | Wellbore | 5.70 | --- | | | | | | Roger |
+| Original | | Spud Date: #10031 | Original Wellbore: RKB Elevation (ft): | 14.000 at 69 | 5.500 at 1,000 Casing: | Test: | | 0/0 Total Days (act./plan): | | morning. Randy point at 1,000 ft. Wait on cementers. Operations Summary | Baldwin, |
+| Job ID: | | | Working Interest: | Last Casing: | Next Test: | Last BOP | Next BOP | Days (act./plan): | to 680 ft. | here until Tuesday | Supervisors: |
+| Report | | Rig: | | | | | | | | be | |
+| 68-32 | | of Utah | | | | | | | | casing | |
+| Drilling | | | | | | | | | | to | |
+| | | | | | | 9.5 | | | | Tyler Curtis | |
+| | | 9 No: | | | | | | | | | |
+| ID: | | University | | | | | | Flat | | | |
+| Daily Well | | | | | | | | | | | |
+| Forge | | | | | | | | | | | |
+| | | | 636 636 | | | | | | | | |
+| | | Report | | | | | | | | | |
+| | | | | | | / | | 1/0 | | | Cementers won't |
+| | | | Vertical Depth Measured Proposed | | | | | Average ROP (ft/hr): Drilling Days | | Comments: | |
+| | | | (ft): (ft): | 567 | 1000 | Hole Made (ft) / Hrs: | | | Continue | | |
+
+| | | | | | | | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | Operator: | | | time | | 59.72 | | drilling | | Timed drill. |
+| | | | Planned Ops: Depth TD (ft): | Toolpusher: | | | | (act./plan): | Current Ops: | Drill ahead | |
+
+| | | | WOB= | X | returns. ROP=60 ft/hr. WOB= | |
+| --- | --- | --- | --- | --- | --- | --- |
+| | to spud. | meeting. | hole from 69 ft to 537 ft with full returns. ROP=60 ft/hr. | 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. | 636 ft with full | hole from 537 ft to SPP=500 psi. GPM=420. |
+| 2-99 Waiting on daylight. | 1-01 Rigged up. Prepared | 4-98 Held Pre-Spud safety | 3-2-1 Rotary drilled 8-3/4" | | 8-8 | 3-2-1 Rotary drilled 8-3/4" 1k. RPM=65. SPM=60. |
+| 69 | 69 | 69 | 537 | 537 | | 636 |
+| 6.00 | 6.50 | 0.50 | 7.00 | | 1.50 | 2.50 |
+| 6:00 | 12:30 | 13:00 | 20:00 | | 21:30 | 0:00 |
+| 0:00 | 6:00 | | | | | |
+| | | 12:30 | 13:00 | | 20:00 | 21:30 |
+
+| JIF | 138 |
+| --- | --- |
+| | TD |
+| HHP | 10 Pull: |
+| P.Drp | 42 1 |
+| J.Vel | 73 Gauge: |
+| Press | 550 N |
+| Flow | 420 |
+| | Brgs: |
+| MudWt | 8.70 A |
+| Torq | |
+| | WearLoc: |
+| RPM | 60 |
+| WOB ROP | 66.9 1,000 WT/NO |
+| | 1 DepthOut: |
+| No/Run | 1 |
+| Dist | 20 20 636 1/1 |
+| Hrs | 9.5 Dull:Maj/Oth: |
+| Jets 1-4 | 20 20 Cutter:Inner/Outer: |
+| Diam | AC1 8.750 |
+| Model | |
+| Make | |
+| | BAKERDS616M 1,000 |
+
+Mud Reports Gels Temp In/Out CaCl Ca Cl LGS
+Sand
+Oil Water
+Solids
+pH
+Cake
+Filt.
+YP
+PV
+Vis.
+Dens.
+Date/Time
+/
+/ /
+36
+09-Mar-19 18:00 8.70
+Mud Log
+Drilling Parameters Depth Gas:Back Max Conn Trip Pore Pres.
+Press.
+AV:DC AV:DP
+ROP Av/Mx WOB RPM Torque Flow
+Depth No Mud Log Information for this report.
+600
+420 199.6 182.8
+/ 100.0 1,000 60
+60.0
+69-636
+Environment acre-ft
+0.000
+Cum. Water Hauled:
+Surveys MD Inc. Azim. TVD NS EW
+0.2
+140
+0.6
+290
+0.7
+490
+Safety Information Days Since:
+LTI:
+1st Aid:
+Med:
+Accident Description:
+2
+Othr:
+0
+Serv:
+8
+Cont:
+2
+Oper:
+0
+Total Personnel: 12 Hours:
+Inventory Item Used Invent.
+Item Used Invent.
+No Inventory Records for this report.
+Rig/Weather Information Equipment Problems:
+Location Condition:
+Transport Status:
+10
+Gusts:
+7
+Wind:
+29.91
+Pressure:
+39
+Temp:
+9
+Vis.:
+Partly Cloudy
+Sky:
+Page: 1 of 1
+RIMBase 7.4.89.0
+Printed: 20:02 29-Apr-19
+
+| GRG Well Name: 68-32 | Report For 10-Mar-19 County: Beaver State: UT | Daily Cost / Mud ($): --- | AFE ($) Actual ($) | --- --- | --- --- | --- --- | 10 Location: Well Cost ($): --- | out of hole. | | Tel No.: |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | Sect: 26 Town: 26S Rng: 9W | | Original AFE No. | 5.70 (ft): --- | --- | Totals: | Days On 2/0 (act./plan): | hole for casing. Pulled | cement. Wait on cement. | Roger Almond |
+| Report Job ID: Original | | 09-Mar-19 Spud Date: #10031 | Wellbore Wellbore: Interest: | RKB Elevation 14.000 at 69 | 5.500 at 1,000 | Test: | 0/0 (act./plan): Test: Total Days | and cleaned out 4' of fill. Circulated to clean | of hole. Rig up run 5-1/2" casing. Rig and pump | Randy Baldwin, Supervisors: Operations Summary |
+| | | | | | Next | Last 15.0 | Flat | Washed | | Kollins. |
+| | | Rig: | Working | Last | | | 24.27 Next | hole. | out and | |
+| | 10 | Utah | 1000 | Casing: 1000 | Casing: 1000 | BOP | Days 2/0 BOP | | | |
+| Drilling Forge 68-32 | | of | | | | 364 / | | into | pulling | |
+| ID: | | University | | | | | | Tripped | | Curtis, |
+| Daily Well | | | (ft): | | | | (act./plan): | | Finish | Tyler |
+| | Report No: | Operator: | Measured Depth | Vertical Depth (ft): | Proposed TD (ft): | Hole Made (ft) / Hrs: | Average ROP (ft/hr): Drilling Days | Current Ops: | Planned Ops: | Comments: Toolpusher: |
+
+Non-Prod
+Operations Description
+From To Elapsed End MD(ft) Code Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k.
+RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*.
+1,000 3-2-1
+15.00
+0:00 15:00
+Circulated hole. Dug displacement ditch for cement job.
+1,000 4-5-1
+5.00
+15:00 20:00
+1,000 4-27 Wiper trip to 600'. No tight or over pull spots on trip.
+1.00
+20:00 21:00
+Circulated while load casing on trailer.
+1,000 4-5-1
+3.00
+0:00
+21:00
+
+| Bit/BHA Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB ROP Flow 65 500 450 8.80 161 | 78 48 13 WearLoc: Brgs: Gauge: A N TD | Pull: 1 | Gels Temp In/Out Cl Ca LGS CaCl | / / | / | Mud Log Depth Pore Pres. | Gas:Back Max Conn Trip | No Mud Log Information for this report. | Safety Information Environment | Days Since: Cum. Water Hauled: acre-ft 0.000 | 1st Aid: Item Used Invent. report. | 8 0 Serv: 0 Othr: | 10 Hours: 0 | Equipment | Location Condition: | Transport Status: Partly Cloudy 29.15 11 15 Sky: Wind: Gusts: Page: 1 of 1 RIMBase 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Hrs Dist 1,000 24.5 40.8 | 1,000 | Dull:Maj/Oth: WT/NO | Mud Reports | Sand Oil Water Solids pH Cake Filt. | | Press. AV:DP | 450 213.9 195.9 500 | | | | LTI: | Med: Accident Description: Oper: Total 2 Cont: Rig/Weather | Personnel: Information | | | 10 49 Vis.: Temp: Pressure: |
+| Jets 1-4 Diam Model No/Run Make 1 1 BAKERDS616M AC1 8.750 20 20 20 20 | DepthOut: Cutter:Inner/Outer: 1,000 1/1 | BHA - No. 1 - BIT, BS, 15 DC, XO = 454.00 | | YP PV Vis. Dens. Date/Time | 10-Mar-19 18:00 8.80 37 | Drilling Parameters Depth ROP | Av/Mx WOB RPM Torque Flow AV:DC 100.0 1,000 65 | 24.0 636-1000 / | Inventory | Item Used Invent. | No Inventory this | Records for | Problems: | | | Printed: 20:02 29-Apr-19 |
+
+| Report For 11-Mar-19 GRG Well Name: 68-32 Beaver State: UT / Mud ($): --- AFE ($) Actual ($) | was found at 30' from RKB at midnight moving out rig and begin rigging up on 78-32 well site. Rig is 80% moved at 6am. ... ... Tel No.: 11 Days On Location: --- --- --- --- --- --- --- Totals: Well Cost ($): --- 3/0 | Non-Prod fill and ... lay down. and DCs. Set in casing trailer. JIF 161 Brgs: Gauge: Pull: N 1 TD | up cementing lines. 8.33 ppg @ 4.0 bpm cement flush ... Cement at 30' from RKB. ... | HHP P.Drp J.Vel 78 48 13 | Gels Temp In/Out Mud Log Gas:Back Max Conn Trip Pore Pres. Information for this report. | Environment acre-ft 0.000 | Page: 1 of 1 | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 68-32 Sect: 26 Town: 26S Rng: 9W County: Job ID: Original | down rig and moved out equipment. Top of cement Randy Baldwin, Roger Almond Supervisors: inside 5-1/2" casing and check with wire line. Finish tag cement at 24' from ground level. Moving rig to Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 0/0 #10031 Daily Cost AFE No. --- Total Days (act./plan): | Operations Summary Code Operations Description 10-5-1 Circulated while load 5-1/2" casing on trailer. 11-6-3 RIH with drill pipe to 996'. 11-5-1 Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft 10-6-4 Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and crossovers subs and Prepare rig floor to run casing. Move out drill pipe Held safety meeting to run 5-1/2" casing to 978' . Dull:Maj/Oth: WearLoc: WT/NO A | 4-12-1 Drifted and ran 5-1/2" casing to 978'. 4-56 Rig up to cement casing. Held safety meeting. Rigged CMTP Performed primary cement job. Pumped 20 bbls of 6-13 Waited on cement. Check top of cement @ 20:00 hrs. Bit/BHA Information Press MudWt Torq RPM WOB ROP Hrs Dist Flow 20 20 1,000 24.5 34.0 1,000 65 700 450 8.80 | Mud Reports | Cl Sand Oil Water Solids pH Cake Ca LGS CaCl Flow Press. AV:DC AV:DP Depth No Mud Log | Safety Information 1st Aid: Med: LTI: Accident Description: Days Since: Oper: 2 8 Cont: 9 Serv: 0 Othr: Cum. Water Hauled: | Total Personnel: 19 Hours: 0 Rig/Weather Information 30.01 9 12 Wind: Gusts: RIMBase 7.4.89.0 | |
+
+| Report For 11-Mar-19 GRG Well Name: 68-32 Beaver State: UT / Mud ($): --- AFE ($) Actual ($) | was found at 30' from RKB at midnight moving out rig and begin rigging up on 78-32 well site. Rig is 80% moved at 6am. ... ... Tel No.: 11 Days On Location: --- --- --- --- --- --- --- Totals: Well Cost ($): --- 3/0 | Non-Prod fill and ... lay down. and DCs. Set in casing trailer. JIF 161 Brgs: Gauge: Pull: N 1 TD | up cementing lines. 8.33 ppg @ 4.0 bpm cement flush ... Cement at 30' from RKB. ... | HHP P.Drp J.Vel 78 48 13 | Gels Temp In/Out Mud Log Gas:Back Max Conn Trip Pore Pres. Information for this report. | Environment acre-ft 0.000 | Page: 1 of 1 | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Drilling Report Well ID: Forge | wait on Curtis, on well Last BOP Test: Next Casing: Last Casing: Rig: 0.0 0 / 1.5 1000 (ft/hr): / Hrs: (ft): (ft): 1000 University of Utah 1000 (ft): Working Interest: Next BOP Test: | Elapsed End MD(ft) 1.00 1,000 1.00 1,000 3.00 1,000 1.00 1,000 1.50 1,000 3-6-2 1.50 1,000 4-12-1 0.25 1,000 4-98 3.25 1,000 0.50 1,000 | 13:00 15:00 2.00 1,000 0:00 9.00 1,000 Jets 1-4 Diam Model Make AC1 8.750 20 20 | 454.00 | this Drilling Parameters ROP Av/Mx WOB RPM Torque Parameters Records for this report. | Inventory Invent. Item Used Invent. for this report. | Equipment Problems: Location Condition: | Transport Status: Partly Cloudy 10 45 Sky: Vis.: Temp: Pressure: |
+
+| Report For 11-Mar-19 GRG Well Name: 68-32 Beaver State: UT / Mud ($): --- AFE ($) Actual ($) | was found at 30' from RKB at midnight moving out rig and begin rigging up on 78-32 well site. Rig is 80% moved at 6am. ... ... Tel No.: 11 Days On Location: --- --- --- --- --- --- --- Totals: Well Cost ($): --- 3/0 | Non-Prod fill and ... lay down. and DCs. Set in casing trailer. JIF 161 Brgs: Gauge: Pull: N 1 TD | up cementing lines. 8.33 ppg @ 4.0 bpm cement flush ... Cement at 30' from RKB. ... | HHP P.Drp J.Vel 78 48 13 | Gels Temp In/Out Mud Log Gas:Back Max Conn Trip Pore Pres. Information for this report. | Environment acre-ft 0.000 | Page: 1 of 1 | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | cement rig crews rigged Kollins. head and test. Dump sand off 5-1/2" casing. Ran wire line to Flat Days (act./plan): ROP Made (ft) Depth Depth TD Days (act./plan): 3/0 | 1:00 2:00 5:00 6:00 7:30 9:00 9:15 12:30 | BAKERDS616M Cutter:Inner/Outer: 1/1 | - BIT, BS, 15 DC, XO = | YP PV Filt. Vis. report. | | | Printed: 20:02 29-Apr-19 |
+| | 11 Report No: While Tyler Weld Cut Ops: | | 15:00 No/Run 1 1 DepthOut: 1,000 | BHA - No. 1 | Dens. Date/Time for | | | |
+| | Average Hole Vertical Measured Operator: Proposed | 0:00 1:00 2:00 5:00 6:00 7:30 | | | No Mud Records | Depth Drilling | | |
+| | Drilling | | | | | Item | | |
+| | | | | | | No | | |
+| | | | | | | | No Inventory | |
+| | | | | | | | Used | |
+| | | | | | | | Records | |
+| | Current | | | | | | | |
+
+| Report For 11-Mar-19 GRG Well Name: 68-32 Beaver State: UT / Mud ($): --- AFE ($) Actual ($) | was found at 30' from RKB at midnight moving out rig and begin rigging up on 78-32 well site. Rig is 80% moved at 6am. ... ... Tel No.: 11 Days On Location: --- --- --- --- --- --- --- Totals: Well Cost ($): --- 3/0 | Non-Prod fill and ... lay down. and DCs. Set in casing trailer. JIF 161 Brgs: Gauge: Pull: N 1 TD | up cementing lines. 8.33 ppg @ 4.0 bpm cement flush ... Cement at 30' from RKB. ... | HHP P.Drp J.Vel 78 48 13 | Gels Temp In/Out Mud Log Gas:Back Max Conn Trip Pore Pres. Information for this report. | Environment acre-ft 0.000 | Page: 1 of 1 | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | 9:00 9:15 | 12:30 13:00 | | | | | |
+| | | | Comments: Toolpusher: Planned Ops: From To | | | | | |
+
+| GRG Well Name: 68-32 Rng: 9W County: Beaver State: UT | Report For 12-Mar-19 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Casing: Rig: Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- well head and 2" side outlet valve. | Rigging up on 78-32 well site. 12 0/0 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 4/0 Total Days (act./plan): | with displaced mud were left. Still need to top off 24 ft of 5-1/2" X Baldwin, Roger Almond ... Tel No.: Summary Non-Prod | at above rotating head. Laid down cut off section. lay over mast. Rig down and load out rig floor. Jack down mast out. head. Ran wire line and found top of | to secure well. 78-32 well site. Set in mud pits, water tank, spot Information Environment | Set in floor section. Doghouse/parts house in mud pump. Rig up hoses and flow lines. Truck pits. | JIF HHP P.Drp J.Vel Press MudWt Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Gas:Back Max Conn Trip Pore Pres. Log Information for this report. | 0 acre-ft 0.000 18 Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Drilling Report Well ID: Forge 68-32 Sect: 26 Town: 26S Job ID: Original | Last 1000 (ft): (ft): 1000 University of Utah Working | Rig was 95% cleared off location at 18:00 hrs. The two frac-tanks Randy Supervisors: Tyler Curtis, Kollins. Move rig to 78-32 well site and rig up. Comments: Toolpusher: Planned Ops: Operations From To Elapsed End MD(ft) Code Operations Description 0:00 0:30 0.50 1,000 6-35 Cutoff 5-1/2" casing 0:30 2:30 2.00 1,000 1-01 Ready mast and | section and move | 1,000 6-35 Cut off conductor pipe and remove rotating cement at 24' from ground level. 2.50 1,000 1-01 Clean up location with back hoe. | 3.00 Prepared 5-1/2" casing for well head. Weld on 1.00 1,000 3-58 Run wire line to 928' tagged up. 0.50 1,000 6-35 Install well head cap and 2" valve 13.50 1,000 1-01 Continue to move rig equipment to mask section jack up and raise mast. combo house. Set in light plant. Set over mud from Baker tanks to mud Bit/BHA Information Torq RPM WOB ROP Hrs Dist Jets 1-4 Diam Model Safety | this report. | Mud Reports Sand Oil Water Solids pH YP PV Cake Filt. Vis. Dens. for this report. | Torque Flow Press. AV:DC AV:DP Depth No Mud | 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 11 Hours: 2 8 Cont: 0 Serv: 1 Othr: Invent. Item Used Invent. for this report. Cum. Water Hauled: Rig/Weather Information 10 55 29.52 14 Vis.: Temp: Pressure: Wind: Gusts: RIMBase |
+
+| GRG Well Name: 68-32 Rng: 9W County: Beaver State: UT | Report For 12-Mar-19 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Casing: Rig: Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- well head and 2" side outlet valve. | Rigging up on 78-32 well site. 12 0/0 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 4/0 Total Days (act./plan): | with displaced mud were left. Still need to top off 24 ft of 5-1/2" X Baldwin, Roger Almond ... Tel No.: Summary Non-Prod | at above rotating head. Laid down cut off section. lay over mast. Rig down and load out rig floor. Jack down mast out. head. Ran wire line and found top of | to secure well. 78-32 well site. Set in mud pits, water tank, spot Information Environment | Set in floor section. Doghouse/parts house in mud pump. Rig up hoses and flow lines. Truck pits. | JIF HHP P.Drp J.Vel Press MudWt Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Gas:Back Max Conn Trip Pore Pres. Log Information for this report. | 0 acre-ft 0.000 18 Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | Last BOP Test: Next Casing: 0 / 0.0 (ft) / Hrs: 1000 TD (ft): Next BOP Test: | FINAL REPORT FOR 68-32: RIG RELEASED for Flat Days (act./plan): (ft/hr): (act./plan): 4/0 | | | 1,000 6-35 Inventory | | | Drilling Parameters ROP Av/Mx WOB RPM Parameters Records for this report. | Location Condition: Transport Status: Cloudy Sky: |
+
+| GRG Well Name: 68-32 Rng: 9W County: Beaver State: UT | Report For 12-Mar-19 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Casing: Rig: Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- well head and 2" side outlet valve. | Rigging up on 78-32 well site. 12 0/0 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 4/0 Total Days (act./plan): | with displaced mud were left. Still need to top off 24 ft of 5-1/2" X Baldwin, Roger Almond ... Tel No.: Summary Non-Prod | at above rotating head. Laid down cut off section. lay over mast. Rig down and load out rig floor. Jack down mast out. head. Ran wire line and found top of | to secure well. 78-32 well site. Set in mud pits, water tank, spot Information Environment | Set in floor section. Doghouse/parts house in mud pump. Rig up hoses and flow lines. Truck pits. | JIF HHP P.Drp J.Vel Press MudWt Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Gas:Back Max Conn Trip Pore Pres. Log Information for this report. | 0 acre-ft 0.000 18 Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | 1.00 | | for | | Depth No Drilling | Records Equipment Problems: 29-Apr-19 |
+| | Current Ops: Average ROP Hole Made Vertical Depth Measured Depth Proposed Drilling Days 6:00 | | | | 6:00 9:00 9:00 10:00 | | | | |
+| | 12 Report No: Operator: | 2:30 3:30 | | | | Bit Information | Date/Time Mud Records | | 20:02 |
+
+| GRG Well Name: 68-32 Rng: 9W County: Beaver State: UT | Report For 12-Mar-19 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Casing: Rig: Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- well head and 2" side outlet valve. | Rigging up on 78-32 well site. 12 0/0 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 4/0 Total Days (act./plan): | with displaced mud were left. Still need to top off 24 ft of 5-1/2" X Baldwin, Roger Almond ... Tel No.: Summary Non-Prod | at above rotating head. Laid down cut off section. lay over mast. Rig down and load out rig floor. Jack down mast out. head. Ran wire line and found top of | to secure well. 78-32 well site. Set in mud pits, water tank, spot Information Environment | Set in floor section. Doghouse/parts house in mud pump. Rig up hoses and flow lines. Truck pits. | JIF HHP P.Drp J.Vel Press MudWt Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Gas:Back Max Conn Trip Pore Pres. Log Information for this report. | 0 acre-ft 0.000 18 Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | | 10:00 | | | | |
+| | | 3:30 | | | 10:30 | | | | |
+| | | | | | | No/Run No | | | |
+| | | | | | Make | | | | |
+| | | | | | | - None | | | |
+| | | | | Item | | | | | |
+| | | | | | 0:00 | | | | |
+| | | | | | 10:30 | | | | |
+| | | | | | | | No | | |
+| | | | | | | | BHA | | |
+| | | | | Used Inventory | | | | | |
+
+| GRG Well Name: 68-32 Rng: 9W County: Beaver State: UT | Report For 12-Mar-19 Original Wellbore Wellbore: 5.70 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Casing: Rig: Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- well head and 2" side outlet valve. | Rigging up on 78-32 well site. 12 0/0 Days On Location: --- --- --- --- --- Totals: Well Cost ($): --- 4/0 Total Days (act./plan): | with displaced mud were left. Still need to top off 24 ft of 5-1/2" X Baldwin, Roger Almond ... Tel No.: Summary Non-Prod | at above rotating head. Laid down cut off section. lay over mast. Rig down and load out rig floor. Jack down mast out. head. Ran wire line and found top of | to secure well. 78-32 well site. Set in mud pits, water tank, spot Information Environment | Set in floor section. Doghouse/parts house in mud pump. Rig up hoses and flow lines. Truck pits. | JIF HHP P.Drp J.Vel Press MudWt Flow | Gels Temp In/Out Cl Ca LGS CaCl Mud Log Gas:Back Max Conn Trip Pore Pres. Log Information for this report. | 0 acre-ft 0.000 18 Page: 1 of 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | | | | No | | | | | Printed: |
+
+| Report For 26-Mar-19 GRG Well Name: 68-32 9W County: Beaver State: UT Cost / Mud ($): --- | 5.70 AFE ($) Actual ($) --- --- --- --- --- --- --- --- Totals: | 12 Days On Location: Well Cost ($): --- 4/0 | shows Top of float collar @ 933.22 from ... Tel No.: | Operations Description Non-Prod 1.5" PVC to wiper plug and blew 5.5" dry pool sand in dry well, changed instrument instrument in well using deploying spools sent to project, dump 1 each 50# bag of swimming pool sand, removed them from spools, installed water proof cap through supply line NOTE: installed zip ties every 50' | JIF HHP P.Drp J.Vel Press Flow | Gels Temp In/Out Cl Ca CaCl | Mud Log Max Conn Trip Pore Pres. for this report. | Environment Water Hauled: acre-ft 0.000 | 0 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Well ID: Forge 68-32 Sect: 26 Town: 26S Rng: Job ID: Original | 13 Original Wellbore Wellbore: 09-Mar-19 RKB Elevation (ft): Spud Date: 5.500 at 981 #10031 Last Casing: Rig: 1000 (ft): (ft): 1000 University of Utah Working Interest: Daily AFE No. | 0/0 Total Days (act./plan): | 1.5" PVC to wiper plug and blew 5.5" dry NOTE; Casing tally Randy Baldwin, Roger Almond Supervisors: Operations Summary | SEPTRT Prior to 3/26 operation ran SEPTRT Dump 1 each 50# sack of swimming springs due to tight fit, Ran once instrument tagged bottom relaxed cables in well bore, assembly with cables threaded | Bit/BHA Information MudWt Torq RPM WOB ROP Hrs Dist | Mud Reports Sand Oil Water Solids pH Cake LGS Flow Press. AV:DC AV:DP Depth Gas:Back No Mud Log Information | Safety Information 1st Aid: Med: LTI: Days Since: Cum. | Accident Description: Total Personnel: 1 Hours: 0 Rig/Weather Information | Oper: 1 0 Cont: 0 Serv: Othr: Location Condition: Transport Status: No Weather Information for this report. 29-Apr-19 RIMBase 7.4.89.0 | Oper: 1 0 Cont: 0 Serv: Othr: Location Condition: Transport Status: No Weather Information for this report. 29-Apr-19 RIMBase 7.4.89.0 |
+
+| Report For 26-Mar-19 GRG Well Name: 68-32 9W County: Beaver State: UT Cost / Mud ($): --- | 5.70 AFE ($) Actual ($) --- --- --- --- --- --- --- --- Totals: | 12 Days On Location: Well Cost ($): --- 4/0 | shows Top of float collar @ 933.22 from ... Tel No.: | Operations Description Non-Prod 1.5" PVC to wiper plug and blew 5.5" dry pool sand in dry well, changed instrument instrument in well using deploying spools sent to project, dump 1 each 50# bag of swimming pool sand, removed them from spools, installed water proof cap through supply line NOTE: installed zip ties every 50' | JIF HHP P.Drp J.Vel Press Flow | Gels Temp In/Out Cl Ca CaCl | Mud Log Max Conn Trip Pore Pres. for this report. | Environment Water Hauled: acre-ft 0.000 | 0 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Daily Drilling Report | Prior to 3/26 operation ran Tyler Curtis, Kollins. Hook up surface receivers Project completed Last BOP Test: Next Casing: Flat Days (act./plan): 0 / 0.0 (ft/hr): (ft) / Hrs: Depth 1000 TD (ft): (act./plan): 4/0 Next BOP Test: | Ops: To Elapsed End MD(ft) Code 8:00 8.00 1,000 | Comments: Toolpusher: Planned From | | Jets 1-4 Diam Model for this report. | YP PV Vis. Dens. for this report. | Drilling ROP Av/Mx WOB RPM Parameters Records for this report. Inventory | Invent. for this | | |
+| | | | 0:00 8:00 16:00 8.00 1,000 | | | Filt. Parameters Torque | | Item Used Invent. report. | | |
+
+| Report For 26-Mar-19 GRG Well Name: 68-32 9W County: Beaver State: UT Cost / Mud ($): --- | 5.70 AFE ($) Actual ($) --- --- --- --- --- --- --- --- Totals: | 12 Days On Location: Well Cost ($): --- 4/0 | shows Top of float collar @ 933.22 from ... Tel No.: | Operations Description Non-Prod 1.5" PVC to wiper plug and blew 5.5" dry pool sand in dry well, changed instrument instrument in well using deploying spools sent to project, dump 1 each 50# bag of swimming pool sand, removed them from spools, installed water proof cap through supply line NOTE: installed zip ties every 50' | JIF HHP P.Drp J.Vel Press Flow | Gels Temp In/Out Cl Ca CaCl | Mud Log Max Conn Trip Pore Pres. for this report. | Environment Water Hauled: acre-ft 0.000 | 0 | Page: 1 of 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| No: | Average ROP Hole Made Vertical Depth Measured Operator: Proposed | | | | Make Information | Date/Time No Mud Records | Depth Drilling | Used Records | Equipment Problems: | Equipment Problems: |
+| | Report Drilling Days | | | | Bit | | No | | Printed: 20:02 | Printed: 20:02 |
+| | | | | | | | | Item | | |
+| | | | | | | | | No | | |
+| | | | | | No/Run No | | | | | |
+| | | Current | | | | | | | | |
+| | | Ops: | | | | | | | | |
+| | | | | | BHA - None | | | | | |
+| | | | | | | | | Inventory | | |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Code MD End Ops Detail Sect: | 1-39 0 | 2-99 0 2-99 0 1-39 | 2-99 0 2-99 0 1-39 0 2-99 0 2-99 0 1-39 0 | 2-99 0 | 2-99 1-39 | 2-99 2-99 1-39 | 2-99 68.7 2-99 68.7 1-39 68.7 2-99 68.7 2-99 68.7 | 1-39 12 68.7 2-99 6 68.7 2-99 6 68.7 | 1-01 4-98 3-2-1 | 8-8 537 | 3-2-1 636 RIMBase |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Hrs Activity | 12 | 6 6 12 | 0 6 6 12 6 | 6 13 | 5 6 0 12 68.7 | 6 68.7 6 68.7 12 68.7 | 6 6 12 6 6 | 6.5 68.7 | 68.7 537 | 1.5 | 2.5 |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 68-32 | | 00:00 06:00 18:00 | 00:00 06:00 18:00 | 06:00 19:00 | 06:00 18:00 | 06:00 18:00 | 00:00 06:00 00:00 06:00 | 18:00 | 0.5 7 | | |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| To Time Operations | 18:00 | | 00:00 | | 00:00 | 00:00 | 18:00 | 00:00 06:00 12:30 13:00 | 20:00 | 21:30 | 00:00 |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Well ID: Forge | 06:00 | 18:00 02-Mar-19 00:00 06:00 | 18:00 00:00 06:00 18:00 | 00:00 06:00 | 19:00 00:00 06:00 | 18:00 00:00 06:00 | 18:00 00:00 06:00 18:00 08-Mar-19 00:00 | 06:00 18:00 00:00 06:00 12:30 13:00 | | 20:00 | 21:30 29-Apr-19 |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Date | 1 01-Mar-19 | 2 | 03-Mar-19 | 04-Mar-19 | 05-Mar-19 | 06-Mar-19 | 07-Mar-19 | 09-Mar-19 | | | 20:00 |
+
+| Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2" 17# casing and 21 joints of 9-5/8" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod. | Waiting on day light Received and unloaded 4 more loads of the rig | Waiting on daylight. Waiting on daylight. Waiting on rest of the rig from Colorado. Waiting on daylight. Waiting on daylight. 3 Hydroresource hands arrived. Rollins graded | dirt road. Received and unloaded an additional 45 joints of 5-1/2" 17# casing. Total of approx 4,000 ft of 5-1/2" and approx 800 ft 9-5/8" casings. Received and unloaded 120 ft of 14" 0.375" thick conductor pipe. Rollins put 160 bbls of water in each of the baker on each location. Conductor drilling rig arrived location at 19:00 hrs. | tanks on Waiting on daylight. Waiting on daylight. Received 4 more rig loads. Drilled 24" hole to 63 ft ground level on both pads. Installed 14",3/8" wall | thickness casing to 63 ft ground level. 70 ft KB. Cement with tremie pipe and concrete pump truck to surface with 6.5 cu yards on both pads. Waiting on daylight. Waiting on Daylight. | Spotted rig sub base over well. Backed up rig onto sub base. Raised rig legs. Raised derrick. Spotted dog house, generator house, storage connex, fuel tank, light plants and mud pits. Waiting on daylight. Waiting on daylight. Weld on well head. Installed rotating head. Installed shaker and gas buster. Spotted mud pump and pipe handler. Rigged up rig floor. Received 2 loads of water. Waiting on daylight. Waiting on daylight. | Spotted mud pit. Fabricated new pump discharge and suction lines. Rigged up lights, hand rails, fuel lines, and electrical lines. Filled pit with water. Waiting on daylight. Waiting on daylight. Rigged up. Prepared to spud. | Held Pre-Spud safety meeting. Rotary drilled 8-3/4" hole from 69 ft to 537 ft with | full returns. ROP=60 ft/hr. WOB= 1k. RPM=60. SPM=60. SPP=500 psi. GPM=420 Worked on light plant generator. Light plant overheated and shut down. X | Rotary drilled 8-3/4" hole from 537 ft to 636 ft with full returns. ROP=60 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Page: 1 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| No. Rpt. | | | 3 | 4 | 5 | 6 | 7 8 | 9 | | | Printed: |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sect: | 3-2-1 Ops | 4-5-1 | 4-27 4-5-1 10-5-1 11-6-3 11-5-1 | 10-6-4 3-6-2 | 4-12-1 | 4-98 4-12-1 4-56 | 6-13 | 6-35 | 1-01 6-35 | 1-01 6-35 | 3-58 6-35 1-01 | SEPTRT | SEPTRT RIMBase |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Activity Detail | 1000 MD End | 1000 | 1000 1000 1000 1000 1000 | 1000 1000 | 1000 | 1000 1000 1000 | 1000 1000 | 1000 | 1000 1000 | 1000 1000 | 1000 1000 1000 | 1000 | 1000 |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 68-32 | 15 Hrs | 5 | 1 3 1 1 3 | 1 1.5 | 1.5 | 0.25 3.25 0.5 | 2 | 9 0.5 | 2 1 | 2.5 3 | 1 0.5 13.5 | 8 | 8 |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Operations Forge | 15:00 To | 20:00 | 21:00 00:00 01:00 02:00 05:00 | 06:00 07:30 | 09:00 | 09:15 12:30 13:00 | 15:00 00:00 | 00:30 | 02:30 03:30 | 06:00 09:00 | 10:00 10:30 00:00 | 08:00 | 16:00 |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Well ID: | 00:00 Time | 15:00 | 20:00 21:00 00:00 01:00 02:00 | 05:00 06:00 | 07:30 | 09:00 09:15 | 13:00 | 15:00 00:00 | 02:30 | 03:30 06:00 | 09:00 10:00 10:30 | 00:00 | 08:00 29-Apr-19 |
+
+| GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | Time drilled 8-3/4" hole from 636' to 1,000' with full returns. ROP=28 ft/hr. WOB= 1k. RPM=65. SPM=60. SPP=500 psi. GPM=420. Survey @ 776' Inc 0.6*, 986', Inc 1.8*. Circulated hole. Dug displacement ditch for cement Activity Description Code Prod. Non- | job. Wiper trip to 600'. No tight or over pull spots on trip. Circulated while load casing on trailer. Circulated while load 5-1/2" casing on trailer. RIH with drill pipe to 996'. Circulated hole clean for 5-1/2" casing. Washed and clean out 4' of soft fill and circulated hole with full returns. | Pulled out of the hole with drill pipe. Pulled of the hole with the BHA, break out bit and | crossovers subs and lay down. Prepare rig floor to run casing. Move out drill pipe and DCs. Set in casing trailer. | Held safety meeting to run 5-1/2" casing to 978' . Drifted and ran 5-1/2" casing to 978'. Rig up to cement casing. Held safety meeting. Rigged | up cementing lines. Performed primary cement job. Pumped 20 bbls of 8.33 ppg @ 4.0 bpm cement flush with green dye. Pumped 81.6 bbls of 15.8 ppg Portland cement @ 3.5 bpm. Cleared cement from cement line with 8.33 ppg fresh water. Pumped displacement water and casing wiper plug with 21.6 bbls of 8.33 ppg fresh water@ 3.0 bpm. Bumped plug with 1,400 psi. Float held and release psi. CIP @ 14:40 hrs. Rigged down CMTP | cementers. Waited on cement. Check top of cement @ 20:00 hrs. Cement at 30' from RKB. Moved pipe handling equipment, mud pits, water tank. Cutoff 5-1/2" casing at above rotating head. Laid down | cut off section. Ready mast and lay over mast. Rig down and load out rig floor. Jack down mast section and move out. Cut off conductor pipe and remove rotating head. Ran wire line and found top of cement at 24' from ground | level. Clean up location with back hoe. Prepared 5-1/2" casing for well head. Weld on well | head and 2" side outlet valve. Run wire line to 928' tagged up. Install well head cap and 2" valve to secure well. Continue to move rig equipment to 78-32 well site. Set in mud pits, water tank, spot mask section jack up and raise mast. Set in floor section. Doghouse/parts house combo house. Set in light plant. Set in mud pump. up hoses and flow lines. Truck over mud from Baker | Rig tanks to mud pits. Prior to 3/26 operation ran 1.5" PVC to wiper plug and | blew 5.5" dry Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to Page: 2 of 3 7.4.89.0 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | 10 10-Mar-19 No. Date Rpt. | | 11 11-Mar-19 | | | 12:30 | | 12 12-Mar-19 | 00:30 | | | 13 26-Mar-19 | Printed: 20:00 |
+
+project, once instrument tagged bottom dump 1 each
+50# bag of swimming pool sand, relaxed cables in well bore, removed them from spools, installed water proof cap assembly with cables threaded through supply line NOTE: installed zip ties every 50'
+
+No.
+Activity Description
+To Hrs
+Code
+Date
+Prod.
+MD
+Time
+Rpt.
+End Ops
+Non-
+
+GRG
+Well Name: 68-32
+Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT
+Dump 1 each 50# sack of swimming pool sand in dry
+well, changed instrument springs due to tight fit, Ran
+instrument in well using deploying spools sent to
+project, once instrument tagged bottom dump 1 each
+50# bag of swimming pool sand, relaxed cables in
+well bore, removed them from spools, installed water
+proof cap assembly with cables threaded through
+supply line NOTE: installed zip ties every 50'
+298
+Total Hours:
+Printed: 20:00 29-Apr-19
+Page: 3 of 3
+RIMBase 7.4.89.0
+
+| GRG Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT | Activity Description Code Prod. Ops Non- Dump 1 each 50# sack of swimming pool sand in dry well, changed instrument springs due to tight fit, Ran instrument in well using deploying spools sent to project, once instrument tagged bottom dump 1 each 50# bag of swimming pool sand, relaxed cables in well bore, removed them from spools, installed water proof cap assembly with cables threaded through supply line NOTE: installed zip ties every 50' | Page: 3 of 3 RIMBase 7.4.89.0 |
+| --- | --- | --- |
+| MD End Detail | | |
+| Activity 68-32 | Hrs | 298 |
+| To Operations Well ID: Forge | Time | Total Hours: 20:00 29-Apr-19 |
+| | No. Date Rpt. | |
+
+Operations Analysis Type: Analysis by Group Totals
+Description
+Time (hrs)
+%
+Operations Time Details
+MOVE-OFF
+121.50
+40.8%
+MOVE-DAY
+111.00
+37.2%
+DRILL
+27.00
+9.1%
+CASING
+15.00
+5.0%
+BOPWELLH
+14.00
+4.7%
+FORMEV-T
+4.00
+1.3%
+CEMENT
+2.00
+0.7%
+FORMEV-D
+2.00
+0.7%
+REPAIR-R
+1.50
+0.5%
+
+GRG
+Well Name: 68-32
+Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT
+Total Time:
+298.00 hrs
+Printed: 20:08 29-Apr-19
+Page: 1 of 1
+RIMBase 7.4.89.0
+
+| 48.4 | P. Drop: | 78.4 | Jet Vel: | 8.80 | 450 | 65 | 1000 | | 34.0 | | 11-Mar-19 | 11 Date: | Report No: | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 48.4 | P. Drop: | 78.4 | Jet Vel: | 8.80 | 450 | 65 | 1000 | 40.8 | | 364 15.0 | 10-Mar-19 | 10 Date: | Report No: | | | |
+| 41.7 | P. Drop: | 73.2 | Jet Vel: | 8.70 | 420 | 60 | 1000 | 66.9 | | 636 9.5 | 09-Mar-19 | 9 Date: | Report No: | | | |
+| | | | | | | | | | | | | | | bit | Run Comments: New PDC | Bit |
+| TD | 1 NO | A N | 1 WT | 1 | 8.80 | 450 | 65 | 1000 | 34.0 | 1000 24.5 931 | 69 | 1.841 09-Mar-19 11:00 | 20 20 20 20 20 20 | DS616M AC1A220225 | 8.750 BAKER 1 | 1 |
+
+Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT
+Well Name: 68-32 Well Name: 68-32
+Pull Gge Oth
+GRG
+In Out Major Loc Brg
+Grading
+Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT
+Well Name: 68-32
+GRG
+Forge 68-32
+Well ID:
+Well ID:
+Forge 68-32
+Diam Manuf. Model Serial No No Run
+Bit Summary Report
+Bit Summary Report Well ID: Forge 68-32
+Flow MWt RPM
+WOB
+Hrs ROP
+Made
+Hole Out In Depth - ft Date/Time In TFA
+Nozzles - 1/32 in No
+
+GRG
+Well Name: 68-32
+Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT
+
+| | FULL | 2.00 | 981.00 | 4.892 | (ins): 8.800 | Bows | | | | | Grade Connection Torque (ft lbs) | BUTT | BUTT | BUTT | BUTT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Casing Information 11-Mar-19 12:30 | INT1 String Type: Leak | 2.00 String Top TVD (ft): | Casing Shoe TVD (ft): | 5.500 String Nominal ID (ins): | Avg. Open Hole Diam. | 12 Manufacturer/Type: | 88,178, 266, 355, 444, 533, 622, 710, 799, 888, 933, 973 | Manufacturer: | Tally Detail on 11-Mar-19 03:05 | Component Details | I.D. (ins) Weight (lbs) | 6.000 4.892 | 5.500 4.892 17.0 K-55 | 4.892 | 4.892 17.0 K-55 |
+| Run Date/Time: | | Top MD (ft): | 980.85 | | 8.750 | | Depths: | Hanger Type: | Transferred from Casing | String | Length (ft) O.D.(ins) | 2.00 | 44.58 | 1.05 6.000 | 980.85 |
+| | Well Section: | String | Casing Shoe MD (ft): | String Nominal OD (ins): | Bit Diameter (ins): | Centralizers: No: | | | Comments: | | No. Items Item Type | 1 SHOE | 1 JOINT | 1 FLOAT | 21 933.22 5.500 JOINT 24 Total Items: |
+
+Calculations using Minimum Curvature Method RIMBase 7.4.89.0
+
+| GRG Well Name: 68-32 | Rng: 9W County: Beaver State: UT | Dog Leg Severity Vertical Section (ft) (ft) (deg/100) | | 0.0 | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | Sect: 26 Town: 26S | Closure E-W (ft) | 0 | 0.0 | | | | |
+| Report | | N-S Coordinates (ft) | Vertical Section: | 0.0 | | | | |
+| | | TVD (ft) | Plane of | 0 0.0 | | | | |
+| Survey | | Azimuth (deg) | | | | | | |
+| Directional ID: Forge 68-32 | | Inc. (deg) | Wellbore | 0.00 | 0.20 0.60 | 0.70 | 0.50 | 1.80 |
+| | | Depth Meas. (ft) | Original | 0.0 | 140.0 290.0 | 490.0 | 776.0 | 986.0 |
+| | Well | | | | | | | |
+| | | Type Survey | Wellbore: | TieIn ** | MSS MSS | MSS | MMS | MMS |
+
+Printed: 20:05 29-Apr-19
+
+Borehole Installation Process VLF Designs
+1621 Bella Vista Dr Jackson, mo. 63755
+573-204-1286
+
+All of the necessary parts for the installation have been provided in the crate or previous shipment of cable takeout parts. The crate can be easily opened by removing all the green screws around the bottom of the crate that secure the crate to the pallet. Once the screws have been removed, lift the crate top off the pallet.
+The wire rolls and other parts have been secured to the pallet with various types of fasteners. Remove the sensor first by cutting the green wire ties at either end. Do not remove the black cable tie around the sensor. Lift the sensor free of the pallet and set aside. Then remove the casing top pulley system by removing the wood screws holding it to the pallet. Set it aside for now. Remove the screws holding the cable rolls down. The winch drum and cable weighs about 140 pounds . you will need 2 people to lift it off the pallett. The geophone cable spool weighs about 50 pounds and may be lifted by one person. Transport all the materials to the well site. Place the two cable spools 6-8ft from the observation well casing in opposite directions. Orient the reels so that the cable will spool from the top of the rolls toward the well. Using the 12 " nails, spike the rolls to the ground. Note: On the winch spool it may be necessary to place a 2X8 between the well casing and the winch spool. Secure the spool to the 2x8 with the wood screws provided. Cut a 5-1/2" semicircle radius out of the end of the 2x8 that will be against the well.
+
+This will keep it from sliding off the casing.
+Clamp the pulley system lightly to the casing so that the top u-bolt is almost even with the top of the casing.(This is a temporary position for the pulley assembly so that the guides can be lowered.) Orient the pulley system so that the cables from the rolls will be approximately centered on the pulleys. Remove the 2) 3/8" x 8" top carriage bolts from the cable guide assemblies (red arrows). This will allow the cable guides to pivot out of the way. Remove the aluminum keeper plates from the top of the threaded rods. This will allow the cables to slide between the guide rollers.
+Carry the sensor toward the casing. You will need two people for this portion of the project. One will hold the cable to prevent the sensor from sliding down the hole. The other will cut the black cable tie while holding the spring loaded push rod against the sensor. The spring loaded rod will attempt to push free of the sensor. The springs that are in the spring loaded rod push out with about 10 pounds of pressure. Gently lower the sensor into the hole and allow the spring loaded rod to expand against the side of the hole. Verify that the sensor will easily slide down the hole. If necessary remove the sensor and replace both springs with the shorter springs in the spare parts kit, and retry. Once the sensor is in the hole a few feet below the end of the
+casing, pivot the cable guides back up and replace the carriage bolts in the main clamp assembly.
+
+Once the cable is in place replace the keeper bar and tighten the nuts that hold it in place. The guide roller elevations can be adjusted by moving the nuts on the threaded rod. Do not overtighten the nuts, as this will cause the guide rollers to bind. Do the same procedure for the other pulley. When the cables are in position, loosen the u bolts and slide the pulley assembly down on the casing so that the casing is even with the top of the side boards on the pulley assembly. (the bottom of the pullies will be 6-8" above the end of the casing.) Before engaging the winch, make sure that all of the hardware on the pulley assembly and u-bolt clamps have been tightened.
+The winch requires 120VAC at a maximum of 11 amps. It will draw considerably less while lowering the sensor. The winch has a load brake which will keep the cable from free spooling into the well. After you have lowered approximately 50 ft of cable in to the well cable tie the 2 sensor cables together with 2 cable ties approximately 2" apart. Do this about every fifty feet. Continue to lower the sensor and cables until the cable goes slack. Check the temperature of the winch motor occasionally and allow it to cool down if necessary. It has a circuit breaker to protect against overload.
+Once the sensor has reached the bottom of the hole allow excess cable to spiral into the casing until no more cable is accepted. Remove the fixed end of the cable from the wooden reels.
+
+Fish it through the neoprene bushing the 4" elbows and the reducing fittings. Slide the neoprene bushing over the well casing and tighten the hose clamps. If the casing is too large and prying the bushing on to it does not work, cut 4 small ¾" cuts in the bottom bead of the bushing under the hose clamp, so that it will slip more easily over the end of the pipe. You can cement the pipe parts together or simply push them together until refusal. Cut a small length off the flexible conduit to connect the tee to the reducer. Feed the ground wire and the 2 signal cables through the reducer and tee assembly. The ground wire exits the tee assembly through the cord seal. Leave enough ground wire to reach the ground clamp. Feed the signal cables and ground wire through the flexible conduit after cutting the conduit to the desired length. A male adapter has been provided for the other end of the flex conduit. The flex conduit should be glued into the male adapter for a watertight connection.
+Attach the ground clamp to the well and the ground wire to one of the lugs on the clamp. The other lug is for the antenna mast for the solar panel and antenna. Once the wires are inside the vault, cut to length leaving 5-6 ft of slack cable and strip back about 2-3 inches of wire and remove approx. ¼" of insulation from each wire. The geophone cable has three pairs and the accelerometer cable has three pairs and three additional wires.
+
+The ground wire from the casing is attached to the lug on the side where the sensor cables attach. If the recorder has a ground lug, attach a short piece of wire between the lug on the recorder and the other copper lug on the preamp box. Make the connections according to the wiring diagram provided. Note that the shields on the geophone cable should be terminated as shown. On the accelerometer cable, twist all of the shield drain wires and the white single conductor together and tie down under the analog gnd position on the terminal block. Follow the color coding on the drawing attached to the back inside of the preamp box in order to have proper polarity signals that will match those of the geophones.
+If you accidentally reverse polarity of the power , the circuit is protected with a self resetting poly fuse. Once activated it takes a couple of minutes to reset, (once the misconnection
+is fixed!). Plug the umbilical cables into the recorder and you should begin recording data in about 30 seconds. (The accelerometer goes through a self calibration cycle which can last up to 30 seconds before data will appear on the output.) The gain switches for the geophone have been set in the 0dB (all open) position. If you need additional gain, close the switches for the desired
+
+(PS: Ch1=Z, Ch2 =N-S and CH3 = E-W on both sensors in case you forgot!) a positive voltage= ground motion up, toward the North and toward the East. Of course it goes without saying that the orientation of the horizontal components is not known at the bottom of the well. It will need to be determined from teleseisms or other sources.
+Once the sensor is operating, pour about ½ bag of dry clean pool sand into the hole. this will fill the annulus between the sensor and the casing and help to couple high frequency signals to the sensors.

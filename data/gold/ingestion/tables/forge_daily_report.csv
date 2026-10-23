@@ -1,0 +1,61 @@
+block,field,value
+Header,Report No:,1
+Header,Report For,01-Mar-19
+Header,Well ID:,Forge 68-32
+Header,Well Name:,68-32
+Header,Job ID:,Original
+Header,Sect:,26
+Header,Town:,26S
+Header,Rng:,9W
+Header,County:,Beaver
+Header,State:,UT
+Well,Operator:,University of Utah
+Well,Rig:,#10031
+Well,Spud Date:,09-Mar-19
+Well,Measured Depth (ft):,0
+Well,Wellbore:,Original Wellbore
+Well,Vertical Depth (ft):,0
+Well,RKB Elevation (ft):,0.00
+Well,Proposed TD (ft):,1000
+Well,Next Casing:,14.000 at 60
+Well,Hole Made (ft) / Hrs:,0 / 0.0
+Well,Drilling Days (act./plan):,0/0
+Well,Flat Days (act./plan):,0/0
+Well,Total Days (act./plan):,0/0
+Well,Days On Location:,1
+Well,Current Ops:,Waiting on daylight and remainder of loads for rig up.
+Well,Planned Ops:,Continue unloading equipment.
+Well,Supervisors:,Randy Baldwin
+Well,Comments:,3 loads of the rig arrived on Feb 28.
+Cost,Daily Cost / Mud ($):,---
+Cost,AFE No.,---
+Cost,AFE ($),---
+Cost,Actual ($),---
+Cost,Well Cost ($):,---
+Operations Summary,From,6:00
+Operations Summary,To,18:00
+Operations Summary,Elapsed,12.00
+Operations Summary,End MD(ft),0
+Operations Summary,Code,1-39
+Operations Summary,Operations Description,"Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2"" 17# casing and 21 joints of 9-5/8"" 36# casing on 58 pad."
+Operations Summary,From,18:00
+Operations Summary,To,0:00
+Operations Summary,Elapsed,6.00
+Operations Summary,End MD(ft),0
+Operations Summary,Code,2-99
+Operations Summary,Operations Description,Waiting on day ligth
+Bit/BHA Information,,No Bit Information for this report.
+Bit/BHA Information,BHA,None
+Mud Reports,,No Mud Records for this report.
+Drilling Parameters,,No Drilling Parameters Records for this report.
+Mud Log,,No Mud Log Information for this report.
+Inventory,,No Inventory Records for this report.
+Safety Information,Oper:,1
+Safety Information,Cont:,0
+Safety Information,Serv:,0
+Safety Information,Othr:,1
+Safety Information,Total Personnel:,2
+Safety Information,Hours:,0
+Environment,Cum. Water Hauled:,0.000 acre-ft
+Rig/Weather Information,,No Rig Information for this report.
+Rig/Weather Information,,No Weather Information for this report.

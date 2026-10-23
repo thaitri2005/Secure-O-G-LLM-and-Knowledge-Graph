@@ -1,0 +1,256 @@
+Geothermal Resource Group, Inc. 77530 Enfield Ln Bldg E Palm Desert, CA 92211-7261
+
+Geothermal Resource Group, Inc.
+October 14, 2016
+
+Akutan Well AK-3 well was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days, including rig-up and rig-down time. The well was completed with blank and perforated liner from 755 feet to 1,955 feet. The well was planned as a continuous core well, and designed to intersect the resource so that it could be flowed for resource characterization. Three pressure and temperature surveys were conducted, with a maximum measured temperature of 329°F at about 500 feet. Horner calculations based on thermal recovery indicate a maximum formation temperature of 340°F at 400 feet, 334°F at 850 feet, and 310°F at the bottom of the hole. A flow test is planned for summer 2017.
+
+| ADEC | Alaska Department of Environmental Conservation |
+| --- | --- |
+| ADF&G | Alaska Department of Fish and Game |
+| ADNR | Alaska Department of Natural Resources |
+| AEA | Alaska Energy Authority |
+| AOGCC | Alaska Oil and Gas Conservation Commission |
+| BOPE | Blowout Prevention Equipment |
+| DOE | Department of Energy |
+| GOCAD | Geologic Object Computer Aided Drawing, geologic modeling software |
+| gpm | gallons per minute |
+| GRG | Geothermal Resource Group |
+| HSBV | Hot Springs Bay Valley |
+| HWT | Particular core rod thread design |
+| LOT | Leak-off test |
+| m | meters |
+| MRT | Maximum Reading Thermometer |
+| NEPA | National Environmental Policy Act |
+| ppf | pounds per foot |
+| ppg | pounds per gallon |
+| PT | Pressure, temperature, normally in reference to a downhole survey or tool |
+| SHPO | State Historic Preservation Office |
+| TD | Total Depth or Termination Depth |
+| TMT | Technical Monitoring Team |
+| TOTCO | Common trade name in use for single-shot inclination-only survey tool, mechanical inclination indicator |
+| VFJ | Valley Flush Joint casing connection |
+| | Waiting on Cement |
+| WOC | |
+
+The City of Akutan is continuing efforts to develop a geothermal power system on Akutan Island in the eastern Aleutians under Alaska Energy Authority (AEA) Grant Number 7040050, and U.S. Department of Energy (DOE) Grant Number DE-EE 0000329/0005. As a continuation of the project, the City planned and drilled a 1,955' confirmation well in the Hot Springs Bay Valley (HSBV) area of Akutan Island during August-September in 2016 (Figure 1).
+Figure 1: AK-3 location.
+The Hot Springs Bay Valley geothermal resource area, adjacent to Mt. Akutan volcano on Akutan Island, Alaska, is one of the most researched prospects for geothermal power production in the State of Alaska. Two sites within the prospect area have been extensively studied, including geophysical surveys, geological mapping, geochemical studies, and the drilling of two thermal gradient wells. The first area, generally referred to as the Hot Springs site, is a moderate enthalpy resource located in HSBV. The second, generally referred to as the Fumarole site, is a high enthalpy resource at approximately 1500' elevation in the western part of the field. The Fumarole site was previously
+determined to not be a financially justifiable development target to serve the City of Akutan at this time.
+Two wells, TG-2 and TG-4, were drilled in 2010 at the Hot Springs site. Hot Springs well TG-2 was drilled to 833' in 2010.
+
+It flowed unassisted, and temperatures favorable for electricity generation were measured in the flowing and static well. A rigorous flow test was never conducted, so temperature and flow estimates were made with limited information. The second well, TG-4, located about a mile from TG-2, on the opposite side of the valley, was a hot, but dry hole drilled to a total depth of 1,500'.
+Site selection for the new well was based on data collected since 2009, including the data from the 2010 drilling campaign. Through reexamination of the data and reports, including reprocessing of the 2012 gravity survey data and building a 3D visualization in GOCAD ® software, the target site was selected close to the hot springs in lower HSBV, 450' southwest of TG-2.
+The purpose of drilling the AK-3 well was to a confirm the resource at the Hot Springs area and locate the hottest and most productive part of the reservoir. Drilling a confirmation well at the Hot Springs site was a necessary step in determining the potential for a scalable, sustainable power output utilizing the resource, and for clarifying potential limitations.
+Drilling of AK-3 was coordinated by the City of Akutan. The City directly procured the shipping from the consolidation point in Tacoma, Washington, helicopter support, site preparation, on-site management and camp services. All drilling- and testing-related consulting services were provided by Geothermal Resource Group, Inc. (GRG).
+
+GRG also procured some of the tangible equipment, including casing, cement, and wellhead equipment. Major Drilling was contracted by the City of Akutan to provide the heli-portable core drilling rig LF-90, drilling tools, part of the ancillary equipment, personnel, and other support services.
+At this time, the primary access to HSBV is by helicopter. There are no roads into the valley, the boat access to the mouth of the bay is out of the way from the City of Akutan, and access by foot is strenuous. Therefore, all equipment and personnel was transported by helicopter, limiting the rig size and capability. The available budget for the project did not allow mobilization of more capable equipment to the site. The scope of the drilling was similarly constrained by the physical limits of the equipment.
+
+Well site targeting for AK-3 was completed in March 2015, and the results were presented to a joint AEA-DOE Technical Monitoring Team (TMT) on 31 March 2015. After TMT review, the City was authorized to proceed with the "Permits and Property Rights" task, as defined in the grant agreements. The City obtained the following permits and permissions, and presented the results to the AEA and DOE in a memorandum on 2 October 2015:
+NEPA Environmental Review - A NEPA Categorical Exclusion was processed and issued by DOE, with a finding of no significant impact on endangered species and critical habitat. The finding is on file.
+Wetlands Determination - The U.S. Army Corps of Engineers determined that no classified wetlands would be affected by the project, and that no further action was required.
+
+Archaeological and Historic Properties Review - The Alaska State Historic Preservation Office (SHPO) issued a finding on 20 May 2015, that no significant archaeological or historic properties would be adversely affected by the project, and that no further action was required.
+Fish Habitat and Water Discharge - The Alaska Department of Fish and Game (ADF&G) issued Fish Habitat Permit 15-11-082, which sets conditions for water withdrawal and discharge in or near anadromous (i.e., salmon bearing) streams located in the project area.
+Hydrostatic and Aquifer Pump Testing - The Alaska Department of Environmental Conservation (ADEC) issued General Permit Number AKG003008 for discharge of fluids from drilling operations into the impoundment structure identified in the drilling plan.
+Water Withdrawal - The Alaska Department of Natural Resources (ADNR) concurred with the water withdrawals required to support drilling and campsite operations. By policy, ADNR will generally withhold issuance of the withdrawal permit until immediately prior to the withdrawal in 2016. However, ADNR provided a letter of explanation of the permitting process, and general concurrence with the withdrawal plan. The was be issued in May 2016.
+Drilling Permit - Well design and technical specifications were submitted to the Alaska Oil and Gas Conservation Commission (AOGCC) in June 2015. On 13 August 2015, AOGCC issued Permit Number 215-080, API Number 50-295-20005-00-00, which authorized drilling of AK-3.
+
+Permit conditions were specified in the permit Letter of Transmittal. The City accepted the conditions, as stated.
+Supplemental Information - As requested by the TMT, additional geophysical data interpretation was completed, the results of which were set forth in a report from GRG (Appendix 1-Targeting Report). The City also acquired all property rights necessary for drilling operations. Copies of the exploration agreements were provided to AEA and DOE.
+
+The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:
+ WGS-84 UTM Zone 3, 443969 E, 6000805 N,
+ Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.
+These coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,
+Well AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-½" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75º at 1,500' and 1º at 1,700'. A comparison of planned versus actual days versus depth is shown in Figure 2.
+While drilling, two steam kicks occurred. The first kick was observed at 150' and was controlled by pumping cold water to cool the well (as planned). The second kick occurred at 170'.
+
+Control was complicated by a plugged core inner barrel, and took almost three days and two cement plugs to
+resolve. The planned and actual completions are tabulated in Table 1 and 2 below. The actual completion is displayed graphically in Figure 3.
+
+Table 1: Planned AK-3 well configuration.
+| Hole (inches) | Casing (inches) | Weight (ppf) | Grade | Connection | Depth (feet) |
+| --- | --- | --- | --- | --- | --- |
+| 10-3/4 | 8-5/8 (8" line pipe 0.332 wall) | 28.55 | A53B | WELD (ERW) | ± 40 |
+| 7-1/2 | 5-1/2 | 15.5 | K55 | VFJ | ± 220 |
+| PQ (4.834) | 4-1/2 | 11.6 | K55 | VFJ | ± 800 |
+| HQ (3.789) | 3-1/2 | 7.7 | HQ Rod or NW casing (blank and perforated) | Q rod or WT | ±700 - ±1,700 (100' blank liner lap) |
+
+Table 2: Actual AK-3 well configuration.
+| Hole (inches) | Casing (inches) | Weight (ppf) | Grade | Connection | Depth (feet) |
+| --- | --- | --- | --- | --- | --- |
+| 10-3/4 | 8-5/8 (8" line pipe .332 wall) | 28.55 | A53B | WELD (ERW) | 40 |
+| 7-1/2 | 5-1/2 | 15.5 | K55 | VFJ | 221.7 |
+| PQ (4.85) | 4-1/2 | 11.6 | K55 | VFJ | 800 |
+| HQ (3.825) | 3-1/2 | 7.7 | HQ Rod (blank and perforated) | HRQ | 1,955´ (45' blank liner lap) |
+
+Note: Actual depths relative to Kelly Bushing (6´)
+The well is equipped with a permanent wellhead assembly consisting of, from top to bottom (Figures 4-5):
+ 2" top valve for logging tool access
+ 2" x 6" shooting flange
+ 6" x 6" x 4" flow tee with 4" flanged side outlet and 4" valve
+ 6", 600# valve with hammer union connections on the top and bottom
+ 5-½", 600# casing head equipped with two, 2" side outlets with gate valves
+During well construction, City of Akutan personnel constructed a pond to be used to contain fluids from a planned flow test in 2017 (Figure 6). This pond is unlined and equipped with several drains to prevent it from filling with runoff during the winter season.
+
+Figure 2: Drilling days vs. depth for AK-3, starting with initial move from staging area at Akutan Harbor to HSBV on 12 August 2016.
+
+Figure 3: AK-3 as-drilled well sketch.
+
+Figure 4: AK-3 planned and as-built wellhead stack.
+
+Figure 5: Completed AK-3 wellhead, 7 September 2016.
+Figure 6: Test sump under construction 5 September 2016.
+
+The drilling rig and all drilling materials and equipment were consolidated at the shipping yard of Alaska Logistics in Tacoma, Washington and shipped mid-July 2016. The load, including the camp materials, were transferred to a landing craft in Cold Bay, Alaska on 5 August and arrived in Akutan Harbor on 6 August. The harbor served as the staging area for the remainder of the project. The support helicopter arrived on 10 August. The GRG supervisor, Major Drilling management personnel (tool pusher and supervisor) and the drilling crews (2 drillers, 4 helpers) arrived over the next couple of days, with slight delays waiting for luggage in Dutch Harbor. City personnel built the tent platforms in Hot Springs Bay Valley on 8-10 August. Loads were brought into the Valley starting 11 August. All materials and personnel were transported by helicopter from the barge to the well pad. Drill pad construction began on 12 August. Rig up began on 14 August. The camp was ready for occupancy on 17 August. Weather prevented operations on 13 August. The satellite Internet connection was not operational until 22 August, which hampered communications. The Internet connection was the primary means of communication with the site, as there is no cellular phone service in HSBV and the satellite phone reliability at this latitude is poor. The camp services provided VOIP phone along with satellite Internet access.
+
+The VOIP phone e-mail, and WhatsApp messaging, were the most reliable modes of communication during operations.
+
+The site preparation and rig-up occurred simultaneously, starting on the 14 August, when 52 loads, including the rig systems, were flown into the rig site. Rig-up continued during daylight hours. The helicopter assisted with assembly of the rig by lifting the components into place. At the same time, the camp was being assembled. Rain was heavy on 17 August; despite this, the rig and equipment was in place to spud by the end of the day (Figure 7).
+
+The well was spud at 12:00 h (Alaska Standard Time) on 18 August 2016. The surface section was cored with PQ size (~4.84") to 49', then reamed with a 10 3/4" hole opener to 42' from ground surface. The temperature of core recovered from 35' was 105.5º F, as measured with laser heat gun at the surface. The hole was cased with 8-5/8" (8" ID) A53 Grade B casing from surface to 40'. The relatively unconsolidated formation at 25-28' and 38-42' caused some difficulty in maintaining an open hole during casing installation. Casing was cemented in place with neat Portland cement. The cement job was successful, with full returns to surface. After 12-hours, a top job was performed to bring cement from 3' to surface. No mud losses occurred in the conductor section.
+
+Cement was tagged at 28', the shoe track was cleaned out with PQ drilling rod from 28' to 40' and coring ahead continued. At 99', a TOTCO survey indicated 0.5º inclination (Table 3) and a maximum reading thermometer (MRT) indicated 190ºF. At 130', the TOTCO indicated 0.5º and the MRT read 145ºF. Additionally, a downhole logging probe provided by the mudlogger measured 140ºF, corroborating the reading from the MRT. At 149', a steam kick was taken at the surface. The hole was cooled with cold, fresh water from the adjacent stream to kill the well. The inner barrel was retrieved and laid down, and then water was pumped down the core pipe for 90 minutes, after which coring recommenced. Coring continued to 176' where the core pipe became stuck. While trying to free the pipe, hot water came up the annulus between the pipe and the hole wall, as the inner barrel was plugged. The pipe was worked free and a pack-off was rigged up to seal the 8-5/8" conductor
+on a HWT core rod string, and circulation continued to cool the wellbore. At about 00:00 on 21 August, the foot clamp on the rig slipped while pulling the core barrel and the string was dropped in the hole, with the top at about 2' below the foot clamp. Fishing tools were flown in from the staging area. The inside grapple fishing tool was run in on a new HWT core rod and successfully recovered the fish after a period of 8 hours. During this time, the well was flowing at the highest rate estimated of 66 gpm (Figure 8).
+
+After the fishing operation was complete, the hole was cooled again by circulation of cold water, the pack-off assembly was reinstalled, and control of the well was restored. The hole was cooled further by pumping cold water into well bore below the pack-off.
+
+Figure 7: Major LF-90 rigged up at AK-3 site.
+
+Figure 8: AK-3 flowing from about 169'.
+On 22 August, a 10 sack cement drift plug was pumped with enough volume to reach from 176' to 88' to seal the loss zones. While waiting on cement, the hole began flowing again, increasing over 10 hours to about 11 gpm and 186ºF. The hole was circulated again, cooling the discharge to 86ºF. The top of cement was tagged at 172', so a nine-sack balanced cement plug was mixed and pumped from 88'. After six hours of waiting on cement, with no flow at the surface, the 7-1/2" hole opener was picked up and the hole was opened from 40' to 90', with no indication of cement in cuttings. After another six hours, opening commenced again, all the way to 225', using salt-weighted water and bentonite gel. Mud temperatures increased to as high as 165ºF. The 5-1/2", 15.5 ppf, K-55, VFJ (Valley Flush Joint) casing was set and cemented at 220' below ground surface with 62 sacks of 13.5 ppg Thermolite HT cement (pre-blended with 30% silica flour and cenospheres) with good returns to surface. The annulus was kept full with Portland cement for the first two hours after the initial cement job. The cement was allowed to cure for a total of 12 hours.
+
+On 25 August, the wellhead was prepared for drilling of the next hole section. First the 8-5/8" riser was cut and laid down. Then, a poor boy pack-off was installed on the on 8-5/8" by 5-1/2" annulus. The master valve had to be modified by the removal of the hammer union, and the rig had to be raised 4" inches to fit the wellhead stack under the rig floor. Two side outlets were installed with 21/16" valves.
+
+On 26 August, nipple-up of the annular bag was completed (Figure 9). A BOPE test was performed with a low pressure (200 psi) and high pressure (750 psi) held for 5 minutes each. Subsequently, the shoe track and cement were cleaned out from 218' to 225' using PQ rod. A leak-off test (LOT) was performed at 225'. Actual leak-off occurred at 118 psi, indicating a 0.95 psi/ft gradient. Coring the PQ (~4.84") section continued to 805'. Other than minimal fluid losses between 270' and 400', the core and mud recovery was close to 100% to 805'. Mud temperature returns were between 121ºF and 132ºF through this hole section.
+The 805' TD for 4-1/2" casing was reached on 30 August, and the hole was circulated and conditioned for casing. The 4-1/2", 11.6 ppf, K-55, VFJ casing was run and cemented to 800' below ground surface. The casing was cemented in place with 28 sacks of 13.5 ppg Thermolite HT (preblended with 30% silica flour and cenospheres) cement. There were no circulation losses observed, but no cement returns were seen at the surface. A 14-sack top job was performed after six hours, with good cement to surface. We then waited on cement for an additional 10 hours.
+Figure 9: Wellhead configuration for the PQ section.
+
+Table 3: Depth and inclination measurements with TOTCO type, single-shot drift survey while drilling AK-3.
+| Depth (feet) | Inclination (degree) |
+| --- | --- |
+| 100 | 0.5 |
+| 129 | 0.5 |
+| 200 | 0.75 |
+| 300 | 0.25 |
+| 400 | 0.25 |
+| 500 | 0.25 |
+| 600 | 1 |
+| 700 | 1 |
+| 800 | 1 |
+| 900 | 0.75 |
+| 1100 | 1 |
+| 1300 | 1 |
+| 1500 | 1.75 |
+| 1700 | 1 |
+| 1900 | 2 |
+
+On August 30, the BOP annular element was changed from PQ to HQ (~3.8") size rod. This new element and the side outlet valves were tested with for 5 minutes at low and high pressure (200 psi and 700 psi). The 4-1/2" shoe track and cement were cleaned out from 580' to 805' with HQ rod. A LOT was conducted with results indicating a gradient greater than 1.0 psi/ft , with no leak off. Coring continued to 1300' with no mud losses and a trip was made for a new bit. Mud temperatures during the bit trip were 185ºF, so the hole was circulated cool while staging in. Coring continued from 1,300' to 1,705', the maximum planned TD of the hole. Lost circulation was not encountered to this depth, so additional pipe was flown in from the harbor staging area and the City yard (left over from 2010 drilling) to continue drilling. There were slight delays getting the remaining pipe into the valley because of high winds. There was enough HQ core rod on Akutan to reach to 1955' and it was decided to continue drilling to that depth, barring loss of returns or problems that would extend the drilling period beyond the planned schedule. Minor losses were observed at 1,878', but other than that there we no mud losses while coring HQ from 1705'to 1919'. At 1,919' coring continued with a new HQ bit to 1955' (TD). Mud was then circulated hole until 19:50 on 4 September. The first of three pressure temperature surveys started at 02:20 on 5 September.
+
+On 5 September, the completion liner was picked up and run with 950' of perforated and 250' of blank HRQ rods (Figure 10). The rig was released at 15:30 on 5 September.
+
+Figure 10: AK-3 perforations detail.
+
+The second PT survey was conducted on 6 September at 02:00. Subsequently, all drilling equipment was removed from the site, the flow tee was installed on the wellhead, and the site was prepared for demobilization of all project equipment and facilities.
+On at 09:45 on 7 September, the third PT was conducted to 1955'. Crews continued the disassembly of the camp, including the operations tent and core tent, a drain line was installed from the cellar to a discharge point away from the well pad, and the mud sump and retention pond were fenced with barbed wire. The containers in the staging area were loaded with equipment. Camp services completed the camp disassembly on 8 September. The rig down and move of all equipment back to the Akutan Harbor staging area was completed on 8 September.
+All core was boxed and labeled, and stored in a shelter in HSBV for retrieval next season, if feasible. Return shipment of the rig and equipment, including the rock chip samples from the entire length of the core, is expected to travel from Akutan to Tacoma mid-October 2016.
+
+The bulk of non-productive time was due to well control issues and weather. This accounts for about 18% of the total drilling time (Table 4).
+There was a loss of 24 hours due to weather during the move to the well site on 13 August. Overnight from 16-17 August (14 hours) was counted as non-productive time because the crews had to leave the site to accommodations provided by the City of Akutan because the camp generator was not yet operational. With better preparation they could have continued working and would likely have been ready to spud earlier.
+The time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.
+Weather did not stop operations directly, but through the course of the drilling, 8.5 hours were required to wait for the weather to improve to allow the helicopter to deliver equipment or personnel from the harbor to the well site. After the initial pressure and temperature survey on 5 September, 2.5 hours were recorded as non-productive time for interpretation of data and developing the plan to run the liner. A pie chart showing the breakdown of activity by hours is shown in Figure 11. Drilling was completed 3 days ahead of schedule (from spud to TD) at 255' below planned depth, despite the 2.75-day well kill and fishing operation.
+
+The drilling operation went smoothly, and the equipment shipped to the site for well AK-3 was adequate and functioned well. This can be credited to adequate and careful planning and is a testament to the field personnel's diligence. Planning and executing a drilling operation in this remote location required support from all stakeholders.
+
+Figure 11: Pie chart of drilling time by activity.
+
+Table 4: Productive vs. non-productive time.
+| Description | Time (hours) | Time (%) |
+| --- | --- | --- |
+| Total Productive Time | 532.5 | 82 |
+| Total Non-Productive time | 115.0 | 18 |
+| Total Rig Time | 647.50 | 100 |
+
+AK-3 was completed with one recordable safety incident. On 21 August 2016, during the setting of the core joint to secure the top of the core pipe to shut off steam flow, hot water sprayed under the rain jacket of the Major toolpusher. He sustained 2 nd degree burns to the lower back just above his belt line. First aid was administered to cool and the cover the affected area. He returned to work after changing work clothes. An incident report was prepared. The driller refused additional care at the medical facility at the City of Akutan. The well flow incident was handled well by the drilling crew and appropriate measures were taken to kill the well as soon as the incident occurred.
+AK-3 was completed with one recordable environmental incident. The well flowed uncontrolled from a permeable zone at about 176 feet, beginning on 20 August 2016. The containment at the rig site was not sufficient to contain all of the fluids that were discharged from the well during the
+incident, and approximately 129,600 gallons of hot water was discharged into the floor of HSBV. A notification of non-compliance was delivered to the Alaska Department of Environmental Conservation, and the Alaska Department of Fish and Game was notified. The City of Akutan environmental consultant reported that the agencies were satisfied that the spill did not harm fish or habitat in the stream adjacent to drill site.
+
+Prospect Geotech geologist Blake Bundy was the core logger on site during the drilling project, providing a daily report, mud log and images when possible. All of this information was reviewed by GRG geologist Mary Mann and Dr. Pete Stelling, who is an expert in Akutan geology and has worked on the geothermal project since 2008. Stelling provided several interpretive reports during drilling and assisted Bundy in mineral and rock identification based on his familiarity with Akutan geology. The following comments on lithology, alteration and permeability are primarily from Stelling's final report (Appendix 13 Geologic Reports). These observations are based on the available photographs and descriptions given by Bundy, and comparisons to the previous wells in HSBV, including TG-2 (~500' northwest of AK-3, 833' depth) and TG-4 (~1.4 miles southwest of AK-3, 1500' depth).
+
+Overall, the lithologies encountered are very similar to those observed in TG-2 and TG-4. There are three generalized lithologies present in the Akutan core (lava, tuff, and mass wasting deposits), all of which are expected based on the tectonic setting. All igneous samples contain some amount of plagioclase and groundmass glass; other primary constituents (e.g., pyroxene and olivine) appear to be less common. Basalt and andesite lava flow deposits make up 50-66% of the lithology of the core. There is significantly higher recovery from the shallow portions of this well compared to TG-2 (~500' northwest of AK-3). Shallow recovery of scoria at 5' and 7-8' is the first occurrence of scoria in any of the HSBV wells. The clay-rich sections in the top 20' are likely glacial and from increased rock breakdown as a result of the modern swampy conditions at the surface (although clay composition cannot be determined without further analysis).
+
+Basalt and andesite lava flows 1 appear to be subareally deposited, but some flows may have a submarine origin (although no pillow basalts have been observed) and some may be peperitic (flowing from land into the sea, burrowing beneath unconsolidated marine sediment as it advances into the water). The lava-water interaction appears to be more likely below ~760' depth, based on the crystalline structure of the deposits. The composition of these rocks varies from a microcrystalline lava flow deposit with plagioclase and clinopyroxene pheonocrysts to sparsely phyric, plagioclase-bearing lavas.
+Plagioclase phenocrysts seem ubiquitous, and phenocrysts of mafic minerals (presumably clinopyroxene and olivine) are much less common, and possibly absent in the andesite. The tops of individual flows are identified by larger vug size and abundance. As a result of the increased porosity
+near the flow tops, they tend to be more altered and more readily brecciated than the main body of the flow. Contacts tend to be highly irregular and undulating, possibly reflecting rubbly flow tops.
+
+1 The distinction between basalt and andesite in the field is largely based on lighter colored groundmass in andesite, which is not necessarily a valid compositional indicator. Mineralogically, these lithologies are very similar, with the mafic minerals generally more common in basalts. For the purpose of this report, and due to the ambiguity between basalt and andesite in field observation, they have been grouped together in this discussion.
+
+Ash tuffs are very fine-grained rocks that generally lack prominent phenocrysts of any type. Groundmass phases are plagioclase microlites, glass, and alteration minerals. Tuff ranges from darker gray (interpreted to be relatively mafic) to light gray (interpreted to be andesitic or dacitic). Basal contacts are typically sharp and irregular, and all contacts appear to be more altered. The groundmass tends to be variably reactive to hydrochloric acid (HCl), suggesting pervasive alteration due to matrix flow throughout most units. Tuff units are commonly veined with 0.5-2 mm-wide calcite-dominated veins. In AK-3, tuff units range from 0.5' thick to ~64' thick, generally thicker than those observed in TG-2 cores and comparable to those observed in TG-4. Thinner units may be clasts contained within mass wasting deposits.
+
+A variety of mass wasting deposits are observed in this core, as they are in the core from TG-2 and TG-4. These units are variably termed lahar, mass wasting, debris flow or lithic basalt. The latter term was derived during the drilling of TG-2 and TG-4, when a mass wasting deposit apparently had basaltic lava as the matrix. This has been debunked, and these deposits likely represent mass wasting with abundant microgranular basaltic sediment in the matrix. Deposits can be clast-supported or matrix-supported, angular, rounded or sub-rounded clasts, heterolithologic or homolithologic. Clast sizes can vary from silt-sized particles to >3'm intermediate diameter.
+
+Direct lithologic correlation between any of the three HSBV wells is difficult. This is due to several factors: (1) these are largely surficial volcanic (lava flows) and volcaniclastic (mass wasting) deposits that are likely to have restricted horizontal distribution so the likelihood of encountering the same deposit in two different wells is low; (2) none of these deposits have unique characteristics, making them nearly impossible to distinguish from other similar units in the stratigraphic sequence; and (3) until it is possible to directly compare the rocks from physical samples, interpretations of different lithologies based on descriptions from a different field geologist are subject to uncertainty. That said, the lithologies encountered in AK-3 are very similar to those in TG-2 and TG-4. Alteration in shallow portions of AK-3 is very similar to that observed in TG-2, with the exception of a narrow zone of what appears to be intense alteration along a fracture network at 168-170'. This is likely the depth that produced the uncontrolled flow during drilling. Well TG-2 encountered a broad fracture zone at 588-590', with significant mud losses and permeability. A similar zone at this depth was not encountered in AK-3. Thus, the flow zone may only occur on one side of the fault presumed to exist between these wells.
+
+The matrix permeability of lithologies encountered in well AK-3 are likely to be low, based on the similarity with lithologies in the other two wells. In wells TG-2 and TG-4, the permeability of lava flows is low, with tuffs and mass wasting deposits having slightly greater matrix permeability. Secondary mineralization along clast margins in some mass wasting deposits indicates that fluid flow through this lithology has been directed around clast boundaries in the past. Higher permeability appears to be generally restricted to the upper 900' of AK-3.
+
+Between ~50' and ~170', fractures are relatively common and show a diversity of secondary mineralization and alteration. Open fractures are present at 142' and at 169' (Figure 12), both of which may have been the permeable zones that caused well kicks during drilling. Both of these fracture zones are within mass wasting deposits.
+Figure 12: Core from about 168' showing an apparent flowing fracture in AK-3.
+Fractures in andesite at 308', in tuff at 499', and in andesite at 550' appear to be sealed with secondary mineralization, suggesting these were fluid pathways in the past but do not appear to have significant permeability now. Low angle fractures encountered in andesite at 374-377' were losing an estimated 7 gpm during drilling, suggesting some permeability. There is a large open fracture at about 383' (Figure 13) that is lined with calcite, but no losses were reported at this fracture.
+Figure 13: AK-3 core showing calcite filled fracture at 383'.
+
+There is a long vertical fracture from 431 to 432', with trace indications of slickensides horizontal to the fracture, which is lined with a thin layer of gouge. Another large open fracture present in andesite at 470-471.5' that is oriented approximately 70 o from horizontal is lined with calcite, zeolite (likely laumontite) and epidote mineralization. The well site geologist suggested that this might be a fault, and further commented that the core was solid above and below this zone. No losses, well kicks, or increase in mud temperatures was observed in this zone.
+A wide zone of fractures is present between 780-785', with chlorite-dominated alteration pervasive above and below this zone. Calcite and anhydrite are also observed here. The well site geologist suggested this is likely a fault zone. Just below this zone, the mud temperature spiked up, but no fluid losses were observed in this zone.
+The rock is fairly broken up in a basalt unit from 868' to 872' (Figure 14). There is some alteration of the open fractures, and full sealing of mineralized fractures in basalt from 1287 to 1294' and from` 1880' to 1882' at a basalt/tuff contact. The fractured zone from 1880-1882' is intriguing but it is relatively unlikely to host useful permeability, given the seeming lack of additional hydrothermal flow indicators, though small losses were reported around this depth.
+Figure 14: Broken and fractured basalt between 868' and 876.5'.
+
+As in the TG-2 core, surficial valley-filling deposits (lahars, clays, till, etc.) dominate the upper 50' of the core. Below this, based on the well logs and a discontinuous series of core photos, alteration in well AK-3 appears to be generally weak- to moderate-intensity propylitic. Chlorite, a common indicator of propylitic alteration, is ubiquitous in low to moderate levels from ~370' to 870', and from 1100' to 1955' TD. Epidote, also an important indicator of propylitic alteration, was first encountered at 73', and is present in low to moderate amounts from ~230' to ~700', from 900'to ~1180', and sporadically below 1180' to ~1400'. Zeolites were not separated into individual species
+in the core logs, and were likely underreported based on the abundance of zeolites (especially chabazite and laumontite) in core from wells TG-2 and TG-4. As with the other wells, calcite is common throughout the core. In the other wells, calcite is among the latest forming phases, and it is anticipated that this will also be the case in the AK-3 core.
+The presence of clays is an important aspect of geothermal systems, with smectite clays helping to form a low-permeability clay cap, and high-permeability illite and chlorite clays forming regions of higher permeability.
+
+The core logs mentioned clays only a few times, abundantly present in the shallowest 50' or so (presumably due to glaciation), commonly occurring along fractures between ~90' and ~110', and occurring as a thin veneer along a small vertical crack at 431'. It is likely that a greater abundance of clay will be found after a more detailed investigation of the core, but smectite clays are not common in either TG-2 or TG-4 cores, and thus the minimal observation of clay is not surprising. A strongly altered zone occurs between 168-170' with what appears to be argillic alteration associated with a strong fracture network. Argillic alteration suggests possible smectite or kaolinite clays, but these cannot be identified without laboratory analyses. This zone of strong alteration at this depth was not observed in TG-2.
+
+The lack of abundant clay alteration, suggests that permeability at depth in the HSBV system is less than excellent, as the circulation of hot fluids would produce more clay alteration at the top of the system. In order for a geothermal system to exist under HSBV, it would need to have a fairly robust seal that includes abundant clays. This interpretation is consistent with previous drilling results.
+The first occurrence of epidote at 73' is much shallower than in TG-2, and significantly shallower than the modern system could support. Thus, much of the propylitic alteration observed in AK-3 may not reflect the modern hydrothermal system but rather an older, hotter system under greater pressure. This may positively impact conditions in the well, as propylitic alteration tends to promote permeability due to the brittle nature of chlorite and illite clays regardless if these minerals were formed recently or in the past. The ubiquitous presence of calcite may be the result of recharge fluids moving through the system. A fluid inclusion study of the thermal history of this shallow calcite may be diagnostic.
+Fracture permeability in AK-3 is critical, and is concentrated in the shallowest ~900' of the well, with the deeper portions of the well being exhibiting lower permeability. The casing, cemented to a depth of only 800', will allow access to the fracture networks at 840'-880'. As with well TG-2, permeability is going to be the controlling factor.
+
+If sufficient permeability exists below 800', this well may be productive. The fluid flow seen shallower than 300' in this well is inconsequential to geothermal development.
+
+Wireline temperature and pressure runs were conducted about 6, 30, and 62 hours after the last circulation of drilling fluids (Figure 15). The pressure profiles do not appear to show significant variation from hydrostatic pressure. Temperatures show substantial thermal recovery in the middle 1000' of the well. The third temperature run shows some thermal stratification, with a 10ºF rollover between 150' and 260', with a peak temperature of 270ºF occurring at ~190'. This is consistent with higher temperature fluids occurring at and below fracture zones observed at ~140' and 169'.
+A broad ~25ºF rollover is observed between 350' and 1500', with temperatures ranging from ~305° to 330ºF. A peak temperature of ~330ºF is observed at 520' and 1000' in the last temperature run,
+and this broad rollover is becoming hotter slightly deeper and slightly narrower through time as the system recovers from the thermal impacts of drilling. Presumably, this trend will continue as the well equilibrates. This is promising, as permeability appears to be concentrated shallower than ~900', which is in the upper portions of the broad thermal rollover.
+TG-2, after equilibration, showed an ~14 o F rollover from 380' to 720'. In well AK-3 the top of the rollover is similarly shallow (~350' in AK-3), but looks to extend much deeper (to 1000'), has a more pronounced thermal rollover (25 o F), and is generally ~25ºF hotter than the rollover in equilibrated temperatures in TG-2.
+
+The trend of the three temperature runs in AK-3 suggests these temperatures will increase slightly through time and the hotter temperatures may occur deeper in the rollover zone.
+The maximum measured temperature in AK-3 is 329°F at about 500'. Horner calculations of formation temperatures based on thermal recovery indicate a maximum temperature for the hole to be 340°F at 400', 334°F at 850', and 310°F at the bottom of the hole (Table 5).
+
+Table 5: Heat up temperatures for three PT runs in AK-3 with calculated estimates for the final equilibrium temperature.
+| Depth | Temp 1 (°F) | Temp 2 (°F) | Temp 3 (°F) | Projected Equilibrium Temp (°F) |
+| --- | --- | --- | --- | --- |
+| 400 | 266.2 | 308 | 325 | 340 |
+| 850 | 299 | 318 | 328.85 | 334 |
+| 1955 | 305 | 308 | 309.32 | 310 |
+
+Figure 15: PT surveys after drilling AK-3.
+
+The remaining items in the Statement of Project Objectives (SOPO), Goal 3, of drilling and testing AK-3 are to collect well test data, analyze geological information, temperature, flow data and water chemistry. The well test is planned for the 2017 season. The measured temperatures indicate that it is unlikely that the well will flow without assistance, at least initially. In order to actually determine if AK-3 will self-flow, which would alter the planning for the flow test, the static wellhead pressure
+of AK-3 should be measured. This can easily be done by a technician in the field equipped with a pressure gauge and a wrench. A pressure gauge was left on the wellhead, and a data logger recorded data until 8 September, but the data retrieved indicates that there was no wellhead pressure at that time. The well was not heated fully when the drilling crew and rig left the site. Positive wellhead pressure indicates either that the fluid level is at the wellhead and would flow if the valve were opened, or that there is significant gas pressure generated to cause pressure to register at the wellhead. When this pressure is released it could have compressed the column enough that the release would allow the well to self-flow. It would be helpful if a pair of technicians could visit the site, measure the wellhead pressure, and open the well to surface to see if gas or fluid flows from the well. This will help significantly with well test planning.
+
+The results of the wellhead pressure observations could significantly alter the recommended equipment needed for a well test. A well test planning meeting is tentatively scheduled for November 2016. It is essential to have the wellhead pressure data available for this meeting.
+
+AK-3 Targeting Report
+AK-3 Drilling Plan
+Permits
+Well Schematics
+Well Summary Information
+Drilling Daily Reports
+Bit and BHA Information
+Casing and Cementing
+Drilling Fluids
+TOTCO Surveys
+Well Costs
+Mud Log
+Geologic Reports
+PT Logging
+Flow Incident Environmental Report

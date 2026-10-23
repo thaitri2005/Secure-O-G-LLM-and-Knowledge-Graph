@@ -1,0 +1,39 @@
+{
+  "doc_id": "gdr1295_56-32_eowr",
+  "page": 31,
+  "status": "corrected",
+  "image": "data/interim/figures/gold/gdr1295_56-32_eowr_p31.png",
+  "reading_order": [
+    "#/texts/223",
+    "#/tables/27"
+  ],
+  "items": [
+    {
+      "id": "#/tables/27",
+      "type": "table",
+      "text": "Table 6: Basic drilling parameters for 17-1/2 in. section\n\n| Bit #/Run   |   Hole made (ft) |   Bit Size (in.) | IADC Code   |   Ave. WOB (klbs) |   Ave. RPM | Jet Size (32nd)   |   Ave. flow rate (gpm) |   Ave. ROP (fph) |\n|-------------|------------------|------------------|-------------|-------------------|------------|-------------------|------------------------|------------------|\n| 1/1         |              252 |             17.5 | S422        |                12 |         50 | 20-20-20- 20-20   |                    800 |              206 |",
+      "section": "6.2.4. 17-1/2 in. Bit, Hydraulics Program and BHA",
+      "bbox": [
+        54.64848327636719,
+        124.75361633300781,
+        557.1921997070312,
+        210.1426239013672
+      ]
+    },
+    {
+      "id": "#/texts/223",
+      "type": "caption",
+      "text": "Table 6: Basic drilling parameters for 17-1/2 in. section",
+      "section": "6.2.4. 17-1/2 in. Bit, Hydraulics Program and BHA",
+      "bbox": [
+        72.0,
+        109.21151999999995,
+        330.97852800000004,
+        118.79005818181815
+      ]
+    }
+  ],
+  "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+  "reviewed": "2026-10-22",
+  "notes": "Caption precedes the table on the page. Running header block (Ref. GRG-10230 / Ver. Final Page 31 of 86 / Issued) and footer excluded."
+}

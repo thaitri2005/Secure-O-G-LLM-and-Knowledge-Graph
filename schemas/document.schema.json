@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "doc_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "landing_page": {
+      "type": "string"
+    },
+    "license": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "parser": {
+      "type": "string"
+    },
+    "config_hash": {
+      "type": "string"
+    },
+    "sha256": {
+      "type": "string"
+    },
+    "gdr_submission": {
+      "type": "integer"
+    },
+    "bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "parent_doc_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "pages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "rotation": {
+            "type": "integer"
+          },
+          "needs_ocr": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "width",
+          "height",
+          "rotation",
+          "needs_ocr"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "original_filename": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "doc_id",
+    "title",
+    "source_url",
+    "landing_page",
+    "license",
+    "parser",
+    "config_hash",
+    "sha256",
+    "gdr_submission",
+    "bytes",
+    "page_count",
+    "parent_doc_id",
+    "pages"
+  ],
+  "additionalProperties": false
+}

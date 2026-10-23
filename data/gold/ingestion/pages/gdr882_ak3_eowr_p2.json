@@ -1,0 +1,39 @@
+{
+  "doc_id": "gdr882_ak3_eowr",
+  "page": 2,
+  "status": "corrected",
+  "image": "data/interim/figures/gold/gdr882_ak3_eowr_p2.png",
+  "reading_order": [
+    "#/texts/5",
+    "#/texts/6"
+  ],
+  "items": [
+    {
+      "id": "#/texts/5",
+      "type": "section_header",
+      "text": "Executive Summary",
+      "section": "Executive Summary",
+      "bbox": [
+        72.024,
+        74.41687999999999,
+        199.10003999999998,
+        87.89256067368422
+      ]
+    },
+    {
+      "id": "#/texts/6",
+      "type": "text",
+      "text": "Akutan Well AK-3 well was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days, including rig-up and rig-down time. The well was completed with blank and perforated liner from 755 feet to 1,955 feet. The well was planned as a continuous core well, and designed to intersect the resource so that it could be flowed for resource characterization. Three pressure and temperature surveys were conducted, with a maximum measured temperature of 329°F at about 500 feet. Horner calculations based on thermal recovery indicate a maximum formation temperature of 340°F at 400 feet, 334°F at 850 feet, and 310°F at the bottom of the hole. A flow test is planned for summer 2017.",
+      "section": "Executive Summary",
+      "bbox": [
+        72.024,
+        90.94399999999996,
+        549.112,
+        197.87599999999998
+      ]
+    }
+  ],
+  "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+  "reviewed": "2026-10-22",
+  "notes": "Order and sections confirmed. Page number '2' and the footer logo are excluded running metadata."
+}

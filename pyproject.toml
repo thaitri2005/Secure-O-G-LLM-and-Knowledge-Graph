@@ -5,10 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "graph-builder"
 version = "0.1.0"
-description = "Page-level PDF ingestion for a domain-agnostic Knowledge Graph Builder"
+description = "PDF ingestion into passage chunks with source provenance for a Knowledge Graph Builder"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = ["docling==2.141.0", "pypdf==6.1.1"]
+
+[project.optional-dependencies]
+ocr = ["easyocr==1.7.2", "ImageIO==2.38.1", "lazy-loader==0.6",
+       "ninja==1.13.2", "python-bidi==0.6.12", "scikit-image==0.26.0",
+       "tifffile==2026.10.15"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

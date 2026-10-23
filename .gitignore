@@ -1,6 +1,7 @@
 .venv/
 data/raw/
 data/interim/
+data/processed/local/
 __pycache__/
 *.pyc
 *.egg-info/

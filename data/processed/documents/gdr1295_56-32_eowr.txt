@@ -1,0 +1,1007 @@
+Geothermal Resource Group, Inc. 77530 Enfield Lane, Building E Palm Desert, CA 92211
+
+Prepared by: Geothermal Resource Group, Inc. for University of Utah (UofU)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| | Ernesto Rivas |
+| --- | --- |
+| | Prepared by Sr. Drilling Engineer |
+| | Sami Atalay |
+| | Sr. Drilling Engineer |
+| Reviewed by | Mary Mann |
+| Reviewed by | Sr. Geoscientist |
+| Reviewed by | W. M. Rickard |
+| Reviewed by | President |
+| Approved by | Joseph Moore |
+| Approved by | Project Manager |
+
+All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the owner, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+Department of Energy FORGE initiative Phase 3B Well 56-32 was drilled to a depth of 9,145 ft. to be used as a closed monitoring well. Well 56-32 encountered the top of the granite at about 3,110 ft. The use of new PDC cutters and MSE allowed for an improvement in rate of penetration of more than 60% compared to well 16A-32 and 180% when compared to the first well drilled in the Utah FORGE project (58-32).
+The well was cased with 5-1/2-inch casing to a depth of 9,105 ft. A suite of geophysical logs, pressure and temperature surveys, and image logs were run to obtain data. The drilling and testing of 56-32 well was completed deeper than planned, ahead of schedule and under budget.
+
+The abbreviations and acronyms in Table 1 are used throughout the document, many of them are common acronyms and terms used in the drilling industry and may appear without explanation in the text. The reader is urged to refer to this table to become familiar with the terms as they are employed within the report. Table 2 contains the units of measure that were used during drilling and the abbreviations or symbols may occur through this report.
+Important Note: All depths in this program are measured depths from the rotary Kelly bushing (RKB) level of 30.40 ft. above ground level, unless stated otherwise
+
+Table 1 Abbreviations and Acronyms
+| Abbreviation or Acronyms | Description |
+| --- | --- |
+| ACP | annulus casing packer |
+| AD | Alternative (special) drift |
+| AFE | authorization for expenditure |
+| API | American Petroleum Institute |
+| ASL | above sea level |
+| BGL | below ground level |
+| BHA | bottom-hole assembly |
+| BHST | bottom hole static temperature |
+| BOP | blowout preventer |
+| BOPE | blowout prevention equipment |
+| BTC | buttress threaded and coupled |
+| CO2 | carbon dioxide |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Abbreviation or Acronyms | Description |
+| --- | --- |
+| DC | drill collar |
+| DP | drill pipe |
+| DSV | drilling supervisor |
+| EOWR | end-of-well report |
+| EMW | equivalent mud weight |
+| FC | float collar |
+| FG | fracture gradient |
+| FIT | formation integrity test |
+| FOSV | full opening safety valve |
+| FS | float shoe |
+| GL | ground level |
+| GRG | Geothermal Resource Group, Inc. |
+| H2S | Hydrogen sulfide |
+| HSE | health, safety, and environmental |
+| HWDP | heavy weight drill pipe |
+| N/U | nipple up |
+| IADC ID | International Association of Drilling Contractors inner diameter |
+| JSA jt | job safety analysis Joint (casing, drill pipe) |
+| Ksi | Kilopounds per Square |
+| | Inch |
+| KPI | key performance indicators |
+| LCM | lost circulation material |
+| LGS LOT | low gravity solids leak off test |
+| LSR | Life-saving rules |
+| LSND | low solids non-dispersed (drilling mud) |
+| M/U | make up |
+| MD | measured |
+| | depth |
+| MI/RU | move in and rig up |
+| MSDS | material safety data sheet |
+| MW | mud weight |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Abbreviation or Acronyms | Description |
+| --- | --- |
+| N/D | nipple down |
+| NMDC | non-magnetic drill collar |
+| NPT | national pipe thread |
+| OD | outer diameter |
+| P/U | pick up |
+| PDC | polycrystalline diamond compact (bit) |
+| PLC | partial loss of circulation |
+| POH | pull out of hole |
+| PoH | probability of hazard occurrence |
+| PPB | pounds per barrel |
+| PPF | pounds per foot |
+| PPG | pounds per gallon |
+| P/T or PT | pressure and temperature |
+| PTS | pressure, temperature, and spinner logging / survey |
+| PVT | pit volume totalizer |
+| RD/MO | rig down and move off |
+| ROP | Rate of Penetration |
+| RMG | rig manager |
+| sFIT | step-rate formation integrity test |
+| TD | Total Depth or Termination Depth of hole or section |
+| UofU | University of Utah |
+| xLOT | extended leak off test |
+
+Table 2: Table of units and their symbols used during drilling of 56-32
+| Unit Category | Description | Symbol |
+| --- | --- | --- |
+| Cost | Currency - daily cost and AFE amounts | $ |
+| Size/Diameter-1 | Small diameter - bit nozzle diameter | 1/32 in |
+| Size/Diameter-2 | Larger diameter - bit diameter, pipe OD | in or (") |
+| Dog Leg | Dog leg severity (DLS) | o /100 |
+| Drilling Rate | Rate of penetration -- feet per hour | fph |
+| FlowRate-1 | Moderate flow rate - pump flow | gpm |
+| FlowRate-2 | Large flow rates - gas flow rate | scfm |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Unit Category | Description | Symbol |
+| --- | --- | --- |
+| FlowRate-3 | Large flow rate - cement, mud/water loss | bpm |
+| Fluid Density | Fluid density - mud weight/density | ppg |
+| Gas | Gas concentrations - trip and connection gas | units |
+| Length-1 | Moderate length - depth | ft or (') |
+| Length-2 | Long lengths - visibility | mile |
+| Pressure | Pressure - pump pressure | psi |
+| Resistivity | Resistivity - geophysical survey | ohm.m |
+| Temperature | Temperature - mud temperature | o F |
+| Torque | Torque | ft-lb |
+| Viscosity-1 | Viscosity - funnel viscosity | sec /qt |
+| Viscosity-2 | Viscosity - plastic viscosity | cp |
+| Volume-1 | Small to moderate volume | gal |
+| Volume-2 | Large volume - mud/water/cement volume | bbl |
+| Weight | Weight - WOB, hook load | lb |
+| Weight per Length | Weight per unit of length - tubular | ppf |
+| Yield Point | Yield point | lb /100 sqft |
+
+Well 56-32, drilled vertically and completed to a depth of 9,105 ft. in a location that is advantageous for monitoring in relation to the final determined bottom hole location of the deep scientific well 16A-32, drilled in 2020. Well 56-32 is the 5 th well drilled in the Milford area Utah Frontier Observatory for Research in Geothermal Energy (FORGE) Enhanced Geothermal System (EGS) site (Utah FORGE). The project is administered by the U.S. Department of Energy and managed by the University of Utah (U of U).
+Specific objectives of 56-32 were to:
+Complete a closed monitoring well to 9,000 ft., with fiber optic seismic cable to 7,500 ft. cemented behind casing
+Evaluate mud hammer technologies in the bottom section of the hole (7,500 ft. to 9,000 ft.)
+Use of Mechanical Specific Energy (MSE) calculation to evaluate PDC bits performance in hard rock
+The first two objectives were partially achieved:
+The fiber optic seismic cable was run to 7,500 ft, but the Silixa fiber optic cable failed in tension during the cementing of the 5-1/2 in. casing and does not function
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+After drilling the 8-3/4 in. hole to 7,500ft. there were two attempts to use the mud hammer, but it failed to engage and drill the hole. Under these circumstances, the decision was made to complete the 8-3/4 in. hole with PDC bits
+The third objective was successfully completed. By close monitoring MSE and adjusting drilling parameters as required, to keep the MSE value around 70Ksi, the well performance of the PDC bits was the best performance in any well drilled in this project.
+The health and safety of all personal, and maintaining a clean, non-hazardous work environment (HSE), were the top priority during drilling and testing operations.
+The safety and environmental standards of the U of U were implemented, achieving the following goals:
+No LTIs (lost time injuries or incidents)
+No environmental hazards and minimum environmental impact
+No major or catastrophic service quality incident
+On location, the project HSE plan was implemented, including:
+The COVID-19 guidelines were implemented and followed. No cases were detected while drilling the well
+Daily safety meetings were held prior to each shift, addressing the importance of proper and safety conscious crew behavior
+Operation specific safety meetings with all personnel involved to identify safety risks and relevant precautions prior to specific tasks such as casing running, cementing, and logging
+
+Clear identification of muster areas at the location and clear lines communication for all personnel
+Safety drills were performed on a periodic basis
+All detailed information including reports from service providers, daily drilling reports, BHAs, casing and cementing reports, mud log, geologic reports, drilling fluids reports, and other relevant documentation of operations are included as appendices to this report.
+
+The 58-32 well site is located within the 1.9 square-mile Utah FORGE deep drilling site, west of the Mineral Mountains, 217 miles south of Salt Lake City and 10 miles north-northeast of the town of Milford, Utah (Figure 1). The site is located in the Milford Energy Corridor in eastern Beaver County. The site is 10 miles north of Milford, the closest town, and 217 miles south of Salt Lake City. The project area is rural and covers approximately 15.5 miles 2 . Figure 2 shows an aerial view of the surface locations for the Utah FORGE wells, drilled and planned. Table 3 contains the basic planned well information for well 56-32. All depth measurements in this report are referred to the rotary Kelly Bushing (RKB), unless otherwise noted.
+
+| Ref. GRG-10230 Ver. Final | Page 13 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 1: Utah FORGE project location.
+
+Figure 2: Aerial view of surface locations of Utah FORGE Wells. Drilled wells are shown in white, planned in yellow.
+
+Table 3: 56-32 Well Information
+| Country/Area: | USA / Milford, UT |
+| --- | --- |
+| Field: | FORGE UTAH |
+| Operator: | University of Utah (UofU) |
+| Drilling Project Manager | Geothermal Resource Group (GRG) |
+| Drilling Contractor (PM): | Frontier |
+| Drilling Rig: | Rig-16 |
+| Well Name: | 56-32 |
+| Well Type: | Mid-size, vertical, deep monitoring and testing well, well of opportunity |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Well Location: | Utah FORGE, 56 Pad Northing: 335,511.095 Easting: 4,263,429.148 |
+| --- | --- |
+| Coordinate Reference System: | NAD83, UTM Zone 12 |
+| Rotary Table Height: | 30.40 ft. from ground level |
+| Ground Level (GL): | 5,451.71 ft. ASL |
+| Rotary Table Elevation | 5,482.11 ft. ASL |
+| Planned Depth: | 9,000 ft. (within 4° inclination from vertical at TD) |
+| Actual Depth: | 9,105 ft. (2.99° inclination at TD) |
+
+Well 56-32 was planned as a mid-size, vertical, EGS monitoring and testing well to a total depth of 9,000 ft. (Figure 3). A 20 in. conductor casing was to be set at 128 ft., a 17-1/2 in. surface hole with cemented 13-3/8 in. casing was planned to 350 ft., the intermediate 12-1/4 in. hole with cemented 9-5/8 in. casing was planned to 3,500 ft., below this an 8-3/4 in. hole to 9,000 ft. with cemented 5-1/2 in. casing to total depth.
+Time to drill was estimated based on drilling performance of well 16A-32. The days versus depth plots were calculated prior to drilling and is shown in Figure 4. The estimated time was 38 days for drilling and testing. Actual drilling and testing were completed in 28 days from commencement of drilling and to a deeper TD of 9,105 ft.
+
+Figure 3: Planned well construction for 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 17 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 4: Planned days versus depth for well 56-32
+
+Table 4 Shows the casing specifications and depths for actual construction of the 56-32 wellbore.
+
+Table 4: 56-32-hole sections, as constructed
+| Section - Conductor | Hole Size (in.) - n/a | Casing Size (in.) - 20 | Specifications - 94 ppf, J-55, Welded | Nominal ID/ Drift ID/ Coupling OD (in.) - 19.124 18.936 n/a | Actual Depth (ft.) - 120.5 | Remarks - Preset |
+| --- | --- | --- | --- | --- | --- | --- |
+| Surface | 17-1/2 | 13-3/8 | 54.5 ppf, J-55, BTC | 12.615 12.459 14.375 | 381 | Cemented well control string. Set in 100% alluvium |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Section | Hole Size (in.) | Casing Size (in.) | Specifications | Nominal ID/ Drift ID/ Coupling OD (in.) | Actual Depth (ft.) | Remarks |
+| --- | --- | --- | --- | --- | --- | --- |
+| Intermediate | 12-1/4 | 9-5/8 | 36 ppf, J-55, LTC | 8.835 8.765 10.625 | 3,494 | Cemented intermediate string. Set in 100% granite |
+| Production | 8-3/4 | 5-1/2 | 17 ppf, L-80, BTC | 4.892 4.767 6.3 | 9,135 | Cemented. Set in 100% granite |
+
+Figure 5: 56-32 well schematic, as built
+
+Prior to rig mobilization, the well pad was constructed including setting of the cellar and drilling of mouse and rat holes. Additionally, the 20 in. conductor pipe was cemented with the casing shoe at 128.5 ft. on 13 January 2021. The Frontier Rig started mobilization from the 16A pad on 3 February 2021 and completed mobilization and rig up. Drilling commenced on 8 February 2021. The 17-1/2 in. hole was drilled to 381 ft. and 13 3/8 in. casing was cemented to 381 ft., on the same day. Drilling of the 12-1/4 in. hole commenced on 9 February and continued to 10 February, when the casing point of 3,500 ft. was reached. The 9-5/8 in. casing was set and cemented at 3,494 ft measured depth on the same day. The drilling of the 8 -3/4 in. hole commenced on 12 February, and total depth of 7,625 ft. was reached on 22 February.
+The well was conditioned and the PDC pulled out of the hole. A mud hammer with 8-3/4 in. bit was run in the hole and reamed hole to 7,620 ft. Attempted to mud hammer drill rotating and drilling 8-3/4 in. hole from 7,620 ft. to 7,627 ft. but mud hammer did not fire. It was suspected that the wellbore needed to be reamed with 2x8-3/4 in. roller reamer to allow the mud hammer to engage. This reaming was performed on 22 to 23 February. The second mud hammer was run and attempted to drilled 8-3/4 in. from 7,627 to 7,662 ft., but hammer failed to engage again.
+
+It was decided then to continue drilling the 8-3/4 in. hole with PDC bits while taking apart the mud hammers and attempt to trouble shoot them. By taking apart the mud hammers, it was noticed they were not fit to be used with current drilling mud.
+Drilling continued with 8-3/4 in. PDC to 9,145 ft. and a Triple Combo and Gyro was run at total depth. A lateral core was attempted but failed to be cut, because the core bits were not able to cut into the formation that is hard granite.
+The hole was conditioned and the 5-1/2 in. casing with Silixa optic cable was run from 9,145 ft. back to surface. Cementing of the 5-1/2 in. casing started on 2 March 2021 without cement returns back to surface. During the cement job it was suspected that there was a bridge in the hole-by-casing annulus and the 5-1/2 in. casing string was reciprocated with hopes of regaining circulation, which it was not. It was later discovered that this action caused the Silixa to part in tension. The annulus-by-annulus casing was flushed with water to perform a top squeeze and top fill. The cement inside the 5-1/2 in. couldn't be displaced and it set, requiring it to be drilled after completing the cementing of the outside of the casing.
+
+This early setting of the cement has been investigated and determined that the mistake was not in the cement blend (though silica additive may have been a factor), but the actual mixing of the blend, a miscounting of actual sacks of product going into the hopper at the cement shop was the root cause. It is recommended that a physical count be documented by cement service company on future jobs. Cement was cleaned out in one run with 4-3/4 in. PDC bit to 9,032 ft. depth (7,325 ft.) in 35.5 hours with an instantaneous ROP of just over 300 fph.
+The rig was released on 9 March 2021.
+
+Well 56-32 was drilled to a total depth of 9,145 ft., 145 ft. deeper than the planned depth of 9,000 ft. and in less time than anticipated (Figure 6). The expected rate of penetration (ROP) was based on the PDC
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+performance of well 16A-32. Improvements in the use of MSE allowed for 56-32 to be drilled 60% faster than anticipated. Several types of PDC bits were tested within the granitic section, which led to improved performance. Removing the shock sub from the BHA allowed improved the life of the mud motors, allowing them to stay in the hole over 20 hours and in turn meant that each bit was able to drill more footage. Two of the last used 8-3/4 in. PDC bits drilled more than 1,000 ft. each (1,089 and 1,234 ft., respectively), which has never been achieved in this hard formation in any other drilling operation that we have heard of. The well reached TD 13 days ahead of plan. The failure while cementing the 5-1/2 in. casing added about 6 days to the completion activities for the well, and the well was completed in a total of 28 days compared to the planned 38 days.
+Figure 6: Planned (red) versus actual (black) drilling days plot for 56-32.
+
+Well 56-32 was designed as a vertical well. Directional MWD surveys were taken frequently along the wellbore with correctional sliding drilling performed as needed to maintain verticality. Close monitoring was possible, as the well was completely drilled with mud motor and MWD. The survey results from
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+surface to TD are shown in Table 5 the final Total Measured Depth 9,145 ft. and True Vertical Depth is 9,138.3 ft., as calculated by the directional drilling services provider. The final plot is shown in Figure 7.
+
+Table 5: Survey data for 56-32
+| Survey | | | | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Type | Measured Depth | Inc (deg) | Azimuth (deg) | TVD (ft) | N-S (ft) | E-W (ft) | (ft) | (ft) | Severity |
+| **TieIn | 0.0 | 0.00 | 0 | 0.0 | 0.0 | 0.0 | | 0.0 | |
+| MWD | 201.0 | 0.22 | 63.64 | 201.0 | 0.2 | 0.3 | 0.4 | 0.2 | 0.109 |
+| MWD | 292.0 | 0.43 | 44.92 | 292.0 | 0.5 | 0.7 | 0.9 | 0.5 | 0.256 |
+| MWD | 401.0 | 0.70 | 31.38 | 401.0 | 1.3 | 1.4 | 1.9 | 1.3 | 0.275 |
+| MWD | 493.0 | 0.70 | 352.1 | 493.0 | 2.4 | 1.6 | 2.9 | 2.4 | 0.511 |
+| MWD | 585.0 | 1.14 | 358.25 | 585.0 | 3.9 | 1.5 | 4.1 | 3.9 | 0.489 |
+| MWD | 676.0 | 1.05 | 258.25 | 676.0 | 4.6 | 0.6 | 4.6 | 4.6 | 1.845 |
+| MWD | 767.0 | 1.36 | 355 | 767.0 | 5.5 | -0.3 | 5.5 | 5.5 | 1.992 |
+| MWD | 858.0 | 1.54 | 7.21 | 857.9 | 7.8 | -0.2 | 7.8 | 7.8 | 0.392 |
+| MWD | 949.0 | 1.41 | 6.33 | 948.9 | 10.1 | 0.1 | 10.1 | 10.1 | 0.145 |
+| MWD | 1,040.0 | 1.54 | 10.46 | 1,039.9 | 12.4 | 0.4 | 12.4 | 12.4 | 0.184 |
+| MWD | 1,135.0 | 1.71 | 5.63 | 1,134.8 | 15.1 | 0.8 | 15.1 | 15.1 | 0.230 |
+| MWD | 1,230.0 | 1.85 | 13.45 | 1,229.8 | 18.0 | 1.3 | 18.0 | 18.0 | 0.295 |
+| MWD | 1,325.0 | 1.85 | 16.88 | 1,324.7 | 21.0 | 2.1 | 21.1 | 21.0 | 0.117 |
+| MWD | 1,419.0 | 2.02 | 16.7 | 1,418.7 | 24.0 | 3.0 | 24.2 | 24.0 | 0.181 |
+| MWD | 1,514.0 | 1.36 | 30.5 | 1,513.6 | 26.6 | 4.1 | 26.9 | 26.6 | 0.811 |
+
+Table 5: Survey data for 56-32
+| Survey | | | | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MWD | 1,608.0 | 1.54 | 37.53 | 1,607.6 | 28.5 | 5.4 | 29.0 | 28.5 | 0.269 |
+| MWD | 1,703.0 | 1.71 | 43.6 | 1,702.6 | 30.6 | 7.1 | 31.4 | 30.6 | 0.254 |
+| MWD | 1,798.0 | 1.98 | 49.14 | 1,797.5 | 32.7 | 9.4 | 34.0 | 32.7 | 0.340 |
+
+End of Well Report
+Utah FORGE
+Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 23 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Type | Depth | Inc (deg) | (deg) | TVD (ft) | N-S (ft) | E-W (ft) | (ft) | (ft) | Severity |
+| MWD | 1,892.0 | 1.36 | 55.82 | 1,891.5 | 34.4 | 11.5 | 36.2 | 34.4 | 0.690 |
+| MWD | 1,986.0 | 1.27 | 71.72 | 1,985.5 | 35.3 | 13.4 | 37.8 | 35.3 | 0.398 |
+| MWD | 2,081.0 | 1.45 | 63.02 | 2,080.4 | 36.2 | 15.5 | 39.4 | 36.2 | 0.288 |
+| MWD | 2,175.0 | 1.23 | 72.43 | 2,174.4 | 37.0 | 17.5 | 41.0 | 37.0 | 0.330 |
+| MWD | 2,270.0 | 1.49 | 60.74 | 2,269.4 | 37.9 | 19.6 | 42.7 | 37.9 | 0.399 |
+| MWD | 2,365.0 | 1.36 | 74.27 | 2,364.3 | 38.9 | 21.7 | 44.5 | 38.9 | 0.379 |
+| MWD | 2,458.0 | 1.32 | 71.2 | 2,457.3 | 39.5 | 23.8 | 46.1 | 39.5 | 0.088 |
+| MWD | 2,551.0 | 1.67 | 73.66 | 2,550.3 | 40.2 | 26.1 | 48.0 | 40.2 | 0.383 |
+| MWD | 2,648.0 | 2.02 | 78.93 | 2,647.2 | 40.9 | 29.2 | 50.3 | 40.9 | 0.401 |
+| MWD | 2,743.0 | 2.02 | 85.26 | 2,742.2 | 41.4 | 32.5 | 52.6 | 41.4 | 0.235 |
+| MWD | 2,839.0 | 1.54 | 70.32 | 2,838.1 | 42.0 | 35.4 | 54.9 | 42.0 | 0.691 |
+| MWD | 2,934.0 | 1.27 | 61.7 | 2,933.1 | 42.9 | 37.5 | 57.0 | 42.9 | 0.360 |
+| MWD | 3,029.0 | 1.80 | 66.01 | 3,028.1 | 44.0 | 39.8 | 59.3 | 44.0 | 0.571 |
+| MWD | 3,124.0 | 0.97 | 100.38 | 3,123.0 | 44.5 | 41.9 | 61.1 | 44.5 | 1.199 |
+| MWD | 3,219.0 | 0.70 | 92.55 | 3,218.0 | 44.3 | 43.3 | 62.0 | 44.3 | 0.308 |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MWD | 3,314.0 | 1.41 | 113.56 | 3,313.0 | 43.8 | 45.0 | 62.8 | 43.8 | 0.839 |
+| MWD | 3,410.0 | 1.49 | 110.57 | 3,409.0 | 42.9 | 47.2 | 63.8 | 42.9 | 0.115 |
+| MWD | 3,447.0 | 1.45 | 119.54 | 3,446.0 | 42.5 | 48.1 | 64.2 | 42.5 | 0.631 |
+| MWD | 3,497.0 | 1.45 | 119.71 | 3,496.0 | 41.9 | 49.2 | 64.6 | 41.9 | 0.009 |
+| MWD | 3,592.0 | 0.09 | 235.73 | 3,590.9 | 41.2 | 50.2 | 64.9 | 41.2 | 1.570 |
+| MWD | 3,687.0 | 1.19 | 275.81 | 3,685.9 | 41.3 | 49.1 | 64.2 | 41.3 | 1.182 |
+| MWD | 3,792.0 | 1.14 | 257.35 | 3,790.9 | 41.2 | 47.0 | 62.5 | 41.2 | 0.359 |
+
+End of Well Report
+Utah FORGE
+Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final Page 24 of 86 |
+| --- |
+| 22 July 2021 |
+| Issued: |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Type | Depth | Inc (deg) | (deg) | TVD (ft) | N-S (ft) | E-W (ft) | (ft) | (ft) | Severity |
+| MWD | 3,877.0 | 1.71 | 259.02 | 3,875.9 | 40.8 | 44.9 | 60.7 | 40.8 | 0.672 |
+| MWD | 3,972.0 | 2.37 | 239.68 | 3,970.8 | 39.5 | 41.9 | 57.5 | 39.5 | 0.995 |
+| MWD | 4,067.0 | 0.88 | 14.51 | 4,065.8 | 39.2 | 40.3 | 56.3 | 39.2 | 3.216 |
+| MWD | 4,163.0 | 0.70 | 68.65 | 4,161.8 | 40.1 | 41.1 | 57.4 | 40.1 | 0.767 |
+| MWD | 4,258.0 | 1.14 | 248.47 | 4,256.8 | 40.0 | 40.7 | 57.1 | 40.0 | 1.937 |
+| MWD | 4,353.0 | 1.89 | 253.31 | 4,351.8 | 39.2 | 38.4 | 54.8 | 39.2 | 0.800 |
+| MWD | 4,448.0 | 1.19 | 338.56 | 4,446.7 | 39.7 | 36.5 | 53.9 | 39.7 | 2.261 |
+| MWD | 4,544.0 | 3.34 | 310.96 | 4,542.7 | 42.4 | 34.0 | 54.4 | 42.4 | 2.449 |
+| MWD | 4,640.0 | 2.02 | 246.1 | 4,638.6 | 43.6 | 30.4 | 53.1 | 43.6 | 3.211 |
+| MWD | 4,734.0 | 1.27 | 30.85 | 4,732.6 | 43.8 | 29.4 | 52.7 | 43.8 | 3.344 |
+| MWD | 4,829.0 | 0.70 | 7.29 | 4,827.5 | 45.3 | 30.0 | 54.3 | 45.3 | 0.724 |
+| MWD | 4,924.0 | 0.84 | 3.61 | 4,922.5 | 46.6 | 30.1 | 55.4 | 46.6 | 0.156 |
+| MWD | 5,018.0 | 0.75 | 295.93 | 5,016.5 | 47.5 | 29.6 | 56.0 | 47.5 | 0.945 |
+| MWD | 5,113.0 | 1.85 | 211.03 | 5,111.5 | 46.5 | 28.2 | 54.4 | 46.5 | 2.035 |
+| MWD | 5,208.0 | 2.42 | 23.91 | 5,206.5 | 47.0 | 28.3 | 54.8 | 47.0 | 4.486 |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MWD | 5,302.0 | 2.68 | 273.61 | 5,300.4 | 48.9 | 26.9 | 55.8 | 48.9 | 4.455 |
+| MWD | 5,397.0 | 1.96 | 289.22 | 5,395.3 | 49.6 | 23.1 | 54.7 | 49.6 | 1.002 |
+| MWD | 5,492.0 | 3.92 | 267.35 | 5,490.2 | 50.0 | 18.3 | 53.3 | 50.0 | 2.341 |
+| MWD | 5,587.0 | 6.34 | 263.45 | 5,584.8 | 49.3 | 9.9 | 50.2 | | 2.572 |
+| MWD | 5,681.0 | 5.97 | 255.77 | 5,678.3 | 47.5 | -0.0 | 47.5 | 49.3 | 0.959 |
+| MWD | 5,776.0 | 4.04 | 248.12 | 5,772.9 | 45.0 | | 45.7 | 47.5 45.0 | 2.145 |
+| MWD | 5,871.0 | 4.02 | 254.32 | | | -7.9 | 45.1 | 42.9 | 0.459 |
+| | | | | 5,867.7 | 42.9 | -14.2 | | | |
+
+End of Well Report
+Utah FORGE
+Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 25 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Type | Depth | Inc (deg) | (deg) | TVD (ft) | N-S (ft) | E-W (ft) | (ft) | (ft) | Severity |
+| MWD | 5,954.0 | 4.02 | 231.45 | 5,950.5 | 40.3 | -19.3 | 44.6 | 40.3 | 1.919 |
+| MWD | 6,049.0 | 3.45 | 191.93 | 6,045.3 | 35.4 | -22.5 | 41.9 | 35.4 | 2.716 |
+| MWD | 6,144.0 | 2.73 | 190.1 | 6,140.2 | 30.4 | -23.5 | 38.4 | 30.4 | 0.765 |
+| MWD | 6,238.0 | 0.77 | 198.5 | 6,234.1 | 27.6 | -24.1 | 36.6 | 27.6 | 2.097 |
+| MWD | 6,333.0 | 1.45 | 232.32 | 6,329.1 | 26.2 | -25.2 | 36.4 | 26.2 | 0.965 |
+| MWD | 6,428.0 | 2.80 | 243.67 | 6,424.0 | 24.4 | -28.2 | 37.4 | 24.4 | 1.482 |
+| MWD | 6,523.0 | 2.49 | 239.04 | 6,518.9 | 22.4 | -32.1 | 39.1 | 22.4 | 0.396 |
+| MWD | 6,619.0 | 2.03 | 255.21 | 6,614.9 | 20.8 | -35.5 | 41.2 | 20.8 | 0.814 |
+| MWD | 6,713.0 | 0.71 | 244.52 | 6,708.8 | 20.2 | -37.7 | 42.7 | 20.2 | 1.424 |
+| MWD | 6,808.0 | 1.51 | 223.95 | 6,803.8 | 19.0 | -39.1 | 43.4 | 19.0 | 0.928 |
+| MWD | 6,902.0 | 2.28 | 225.96 | 6,897.8 | 16.8 | -41.3 | 44.6 | 16.8 | 0.822 |
+| MWD | 6,998.0 | 2.12 | 223.09 | 6,993.7 | 14.2 | -43.9 | 46.1 | 14.2 | 0.202 |
+| MWD | 7,093.0 | 1.58 | 233.46 | 7,088.6 | 12.1 | -46.1 | 47.7 | 12.1 | 0.667 |
+| MWD | 7,187.0 | 1.11 | 207.96 | 7,182.6 | 10.6 | -47.6 | 48.7 | 10.6 | 0.798 |
+| MWD | 7,281.0 | 1.49 | 226.8 | 7,276.6 | 8.9 | -48.9 | 49.7 | 8.9 | 0.603 |
+
+| Survey | Measured | | Azimuth | | Coordinates | Coordinates | Closure | Vertical Section | Dogleg |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MWD | 7,471.0 | 1.80 | 195.54 | 7,466.5 | 4.4 | -51.5 | 51.7 | 4.4 | 0.492 |
+| MWD | 7,566.0 | 2.35 | 198.56 | 7,561.5 | 1.1 | -52.5 | 52.5 | 1.1 | 0.590 |
+| MWD | 7,693.0 | 3.78 | 209.82 | 7,688.3 | -5.0 | -55.4 | 55.7 | -5.0 | 1.216 |
+| MWD | 7,788.0 | 2.83 | 205.09 | 7,783.1 | -9.9 | -58.0 | 58.8 | -9.9 | 1.040 |
+| MWD | 7,883.0 | 2.40 | 187.52 | 7,878.0 | -14.0 | -59.2 | 60.9 | -14.0 | 0.952 |
+| MWD | 7,977.0 | 3.49 | 215.53 | 7,971.9 | -18.2 | -61.2 | 63.8 | -18.2 | 1.888 |
+| MWD | 8,071.0 | 1.86 | 235.78 | | -21.4 | -64.1 | 67.6 | -21.4 | 1.979 |
+| | | | | 8,065.8 | | | | | |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final Page 26 of 86 |
+| --- |
+| 22 July 2021 |
+| Issued: |
+
+| Measured | Inc | Azimuth | | TVD | Coordinates | Closure Vertical | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Survey Type | Depth | (deg) | (deg) (ft) | | N-S (ft) E-W (ft) | (ft) (ft) | Section Dogleg Severity | |
+| 8,166.0 | 0.75 | 258.68 | 8,160.8 | -22.4 | -66.0 | 69.7 -22.4 | 1.268 | MWD |
+| 8,260.0 | 1.39 | 294.03 | 8,254.7 | -22.1 | -67.6 | 71.1 -22.1 | 0.948 | MWD |
+| 8,355.0 | 2.45 | 290.59 | 8,349.7 | -20.9 | -70.6 | 73.6 -20.9 | 1.122 | MWD |
+| 8,450.0 | 1.75 | 310.26 | 8,444.6 | -19.2 | -73.6 | 76.0 -19.2 | 1.047 | MWD |
+| 8,545.0 | 5.06 | 292.8 | 8,539.5 | -16.7 | -78.5 | 80.3 -16.7 | 3.612 | MWD |
+| 8,640.0 | 5.84 | 284.86 | 8,634.0 | -13.8 | -87.1 | 88.2 -13.8 | 1.140 | MWD |
+| 8,735.0 | 4.18 | 281.32 | 8,728.7 | -11.9 | -95.1 | 95.9 | -11.9 1.777 | MWD |
+| 8,831.0 | 2.49 | 148.99 | 8,824.6 | -13.0 | -97.5 | 98.4 -13.0 | 6.395 | MWD |
+| 8,927.0 | 2.44 | 260.67 | 8,920.5 | | -15.1 -98.4 | 99.6 -15.1 | 4.249 | MWD |
+| 9,021.0 | 1.84 | 230.13 | 9,014.5 | -16.4 | -101.6 | 102.9 -16.4 | 1.348 | MWD |
+| 9,093.0 | 2.99 | 239.87 | 9,086.4 | -18.1 | -104.1 | 105.6 | -18.1 1.690 | MWD |
+| MWD 9,145.0 | 2.99 | 239.87 | 9,138.3 | -19.5 | -106.4 | 108.2 | -19.5 | 0.000 |
+
+Figure 7: Final directional survey plot
+
+Cellar was constructed on January 12 by Peter Martin drilling company by installing a 10 ft. diameter cellar and by setting and cementing a 20 in. conductor pipe to 101 ft. below ground level on the next day (Figure 8 to Figure 11)
+Figure 8: 56-32 cellar construction
+Figure 9: 20 in. conductor pipe
+Mouse hole was drilled to 75 ft. below ground level and a 14 in. pipe was installed and cemented to surface and a 1 ft. cement bottom was poured (Figure 10 and Figure 11)
+
+Figure 10: Conductor and mouse hole
+
+| Ref. GRG-10230 Ver. Final | Page 29 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 11: Cellar with conductor and mouse hole in cemented cellar
+
+Drilling objectives for the 17-1/2 in. hole section of the well were:
+Drill 17-1/2 in. section from 20 in. conductor shoe at 128.5 to the 13-3/8 in. casing shoe depth at 350ft. in a single bit run
+Case-off shallow unconsolidated formations, gas zones, and loss zones, if encountered
+Drill to sufficient casing depth to install the BOPE
+Maintain vertical well bore within 1.2° and stabilize wellbore hazards
+
+Drilling of the 17-1/2 in. hole began on 8 February from the bottom of the 20 in. conductor casing at 128.5 ft. Drilling to the casing point at 380.5 ft. was accomplished the same day without incident. The 133/8 in. 54.5#, J-55, BTC casing was run to 380.5 ft. No circulation losses were found in this section and the wellbore inclination was within 0.5° at TD of section.
+
+The 17-1/2 in. section was drilled using a flowline directly from a 20 in. riser welded to the conductor. No additional blow out prevention equipment (BOPE) was required for this section of the well.
+Figure 12: 20 in. Conductor stack, used for drilling 17-1/2 in. hole.
+
+A new 17-1/2 in. 5-blade PDC bit was used to drill the 17-1/2 in. section from 128.5 ft. to 380.5 ft. The bit parameters and basic drilling parameters shown in Table 6 were used. Bit selection was based on drilling performance of the previous wells (58-32 and 16A-32). The bottom hole assembly consisted of the bit, positive displacement mud motor, a near bit stabilizer, a shock sub, an UBHO sub, a nonmagnetic drill collar, three drill collars, a cross-over sub and a heavy weight drill pipe for a total length of 380 ft. (Figure 13).
+
+Table 6: Basic drilling parameters for 17-1/2 in. section
+| Bit #/Run | Hole made (ft) | Bit Size (in.) | IADC Code | Ave. WOB (klbs) | Ave. RPM | Jet Size (32nd) Ave. flow rate (gpm) | Ave. ROP (fph) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1/1 | 252 | 17.5 | S422 | 12 | 50 | 20-20-20- 20-20 800 | 206 |
+
+| Ref. GRG-10230 Ver. Final | Page 31 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 13: BHA # 1, used bit # 1
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+Planned basic drilling parameters and the design of the mud system for the 17-1/2 in. drilling sections are shown in Table 7 and the average parameters used are shown in Table 8. The spud mud was designed as a pre-hydrated gel mud blended with 3% (4 ppb) fine micronized cellulose. The accepted mud program included the maintenance of 3% micronized cellulose.
+
+Table 7: Fluid parameters planned for 17-1/2 in. section
+| Hole Size | 17-1/2 in. |
+| --- | --- |
+| Casing Size | 13-3/8 in. |
+| Mud Type | Lime/Gel/Water System |
+| Mud Weight (ppg) | 8.6 - 9.2 |
+| Viscosity (sec) | 50-60+ |
+| Filtrate (ML) | < 20 |
+| Total Mud Volume | 400 bbls (300 bbls surface volume) |
+| Directional Program | NA - Vertical Hole |
+| Formations | Surface Alluvium |
+| Interval BHT | < 100ºF |
+
+Drill 17-1/2 in. with flocculated Clay-based mud system; add Gel and Soda Ash/Caustic Soda as needed to maintain adequate viscosity for good hole cleaning (PV alap, YP 25+). Use Bentonite/Sawdust/Polyvis (PHPA) to sweep and stabilize hole as needed; thin mud with Desco CF/water. If encountered, control lost circulation with conventional LCM pills. Run and cement 13-3/8 in. casing
+
+Table 8: Average fluid properties for 17-1/2 in. section.
+| Fluid Parameters (spud) | Unit | Min | Max | Ave |
+| --- | --- | --- | --- | --- |
+| Mud Weight | ppg | 8.7 | 8.7 | 8.7 |
+| pH | | 8 | 10 | 8.75 |
+| API Fluid Loss (Filtrate) | cc/30 sec. | 13.3 | 18.2 | 15.75 |
+| Plastic Viscosity | cP | 12 | 22 | 17 |
+| Yield Point | lb/100ft 2 | 10 | 21 | 15.5 |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+The 13-3/8 in., 54.5 ppf, J-55 casing was set at 380.5 ft., and cemented with centralizers at 370 ft., 225ft., 110 ft., and 60 ft. The cement report is shown in (Table 9). Good cement returns held at surface and after 5.5 hours waiting on cement (WOC), the 13-5/8 in. 3M x 5M Sliplok wellhead (w/ 2 ea. 2-1/16 in. x 5M side outlets) was installed and tested.
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 35 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 14: 13-3/8 in. surface casing cement pressure chart
+
+The drilling objectives for the 12-1/4 in. section were:
+Drill the cement inside the 13-3/8 in. shoe track (±40 ft) and ~2,750 ft. of new hole from the 13-3/8 in. casing shoe depth of 3,500 ft. (13-3/8 in. casing shoe depth) in a single bit run
+Maintain verticality within 4° and stabilize wellbore hazards
+Drill fast to reduce the wellbore exposure to the drilling fluid
+All these objectives were achieved.
+
+After 6.5 hours waiting on cement, the 13-5/8 in. clamp-on well head was installed and tested. After the BOPE was installed and tested, cement and float shoe were drilled to 380 ft. and new hole was drilled to 390 ft. A Formation Integrity Test (FIT) gave a maximum allowable mud weight of 16 ppg for the next drilling section. The 12-1/4 in. vertical hole was drilled to 3,500 ft. between 9 and 11 February. The 9-5/8 in. casing was set at 3,494 ft. and cemented. No circulation losses, reactive clays or kicks were found in this section. The wellbore deviation was 1.45° at section TD.
+
+The BOPE used for the 12-3/4 in. drilling section is shown in (Figure 15), consisting of a 13-5/8 in. 5M double gate preventer and a 13-5/8 in. 5M annular preventer as the main elements. The equipment was function tested and pressure charts were sent to a Utah Department of Natural Resources representative on 12 February.
+Figure 15 : BOPE 13-5/8 in. for drilling 12-1/4 in. hole.
+
+Three bits were used to drill 12-1/4 in. hole section and Table 10 indicates some of the bit parameters.
+
+| Ref. GRG-10230 Ver. Final Page 36 of 86 |
+| --- |
+| Issued: 22 July 2021 |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final Page 37 of 86 |
+| --- |
+| Issued: 22 July 2021 |
+
+| Bit #/Run | Hole made (ft) | Bit Size (in.) | IADC Code | Ave. WOB (klb.) | Ave. RPM | Jet Size (32nd) | Ave. flow rate (gpm) | Ave. ROP (fph) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2/1 | 10 | 12-1/4 in. | 111 | 12 | 153 | 16 16 16 | 403 | 90 |
+| 3/1 | 2,919 | 12-1/4 in. | M423 | 32 | 270 | 22 22 22 22 22 22 22 11 | 830 | 301 |
+| 4/1 | 191 | 12-1/4 in. | M433 | 35 | 290 | 22 22 22 22 22 22 11 11 | 830 | 73.5 |
+
+BHAs used in 12-1/4 in. hole section is listed below (Table 11).
+
+Table 11: BHAs used to drill 12-1/4 in. hole section
+| BHA # | Depth In (ft) | Depth Out (ft) | Drilled Distance (ft.) | BHA Length (ft) | Remarks |
+| --- | --- | --- | --- | --- | --- |
+| 2 | 380 | 390 | 10 | 389.5 | Drilled out cement, float shoe and 10 ft on new hole. |
+| 3 | 390 | 3,309 | 2,919 | 1,092 | Bit cored. |
+| 4 | 3,309 | 3,500 | 191 | 1,079 | - |
+
+Figure 16: BHA # 2 used with bit # 2
+
+Figure 17: BHA # 3 used with bit # 3
+
+Seismic Monitoring Well 56-32
+Figure 18: BHA # 4 used with bit # 4
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+Planned basic drilling parameters and the design of the mud system for the 12-1/4 in. drilling section are shown in Table 12 and the average parameters used are shown in Table 13. The mud system was designed as a lightly dispersed clay-based mud system with a weight between 8.6 and 9.5 ppg, adding gel as needed to maintain adequate viscosity for good hole cleaning.
+
+Table 12: Planned fluids parameters for 12-1/4 in. hole section
+| Hole Size | 12-1/4 in. |
+| --- | --- |
+| Casing Size | 9-5/8 in. |
+| Mud Type | HT treated Gel/Water/Polymer System |
+| Mud Weight (ppg) | 8.6 - 9.5 |
+| Viscosity (sec) | 45-60 |
+| Filtrate (ML) | < 12 |
+| Total Mud Volume | 1,000 bbls (500 bbls surface volume) |
+| Directional Program | NA - Vertical Hole |
+| Formations | Surface Alluvium, Tuff, Top of Granite |
+| Interval BHT | < 200ºF |
+
+Lightly dispersed Clay-based mud HT system; drill 12-1/4 in. hole, adding Gel as needed to maintain adequate viscosity for good hole cleaning (YP 15-25). Use Bentonite/LCM pills and Polyvis (PHPA) to sweep hole; thin mud with Desco CF/HT Thin as needed. Maintain mud weight to control any artesian influx, if encountered, and add 2ppb Micro C for Wellbore Strengthening. Use DMA/PAC Polymer for desired fluid loss control, and TORKease/Walnut to reduce torque and drag; maintain pH of 9.5-10.5 with Caustic Soda/Lime. If encountered, control lost circulation with conventional LCM pills and drill cuttings. Run and cement 9 5/8 in. casing
+
+Table 13: Average fluid properties for 12-1/4 in. section
+| Fluid Parameters (spud) | Unit | Min | Max | Ave |
+| --- | --- | --- | --- | --- |
+| Mud Weight | ppg | 8.6 | 8.9 | 8.8 |
+
+| End of Well Report | | |
+| --- | --- | --- |
+| Utah FORGE | | |
+| Seismic Monitoring Well 56-32 | | |
+
+| pH | | 8 | 10 | 10 |
+| --- | --- | --- | --- | --- |
+| API Fluid Loss (Filtrate) | cc/30 sec. | 7 | 7.2 | 7.2 |
+| Plastic Viscosity | cP | 15 | 15 | 15 |
+| Yield Point | lb/100ft 2 | 16 | 16 | 16 |
+
+The 9-5/8 in., 36 ppf, J-55 casing was run on 11 February, with the shoe set at 3,494 ft. and cemented. The cement report is shown in Table 14 and pump schedule in Figure 19. No top jobs were needed. After 6 hours waiting on cement, preparations for drilling the next drilling section were made.
+Table 14: Cement job report for 9-5/8 in. casing.
+
+| Ref. GRG-10230 Ver. Final | Page 43 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 19: 9-5/8 in. intermediate casing cement pressure chart
+
+The drilling objectives for the 12-1/4 in. section were:
+Drill the cement inside the 9-5/8 in. shoe track (±80 ft) and 5,900 ft of new hole from the 95/8 in. casing shoe to 7,500 ft. with 6 ea. bit trips
+Continue drilling 8-3/4 in. hole to ±9,000 ft. using a mud hammer
+Maintain verticality within 2° and stabilize wellbore hazards
+Penetrate the reservoir test section
+Drill fast to reduce wellbore exposure to the drilling fluid
+Install fiber optic cable on the OD of the casing from 7,500 ft. back to surface
+All of these objectives were achieved, though in the cementing of the 5-1/2 in. with fiber optic casing, the string was broken, so it is not able to serve its desired function, discussed later.
+
+The drilling of the 8-3/4 in. hole commenced on 12 February, and total depth of 9,145 ft. was reached on 27 February. Twelve 8-3/4 in. bits were required due to the hardness of the formation on bit life. In some sections of the well, the inclination was as high as 6°, particularly around 5,600 ft., but it was corrected by using directional tools and at TD, the final inclination was 3°. Geophysical open hole logs were run by Schlumberger in the 8-3/4 in. section, 5-1/2 in. blank casing was cemented to 9,105 ft, discussed in a separate section.
+
+The 9-5/8 in. casing was cut off and the 8-3/4 in. surface BOPE equipment used was the same as used for the 12-1/4 in. section, using a 13-5/8 in. 5M x 3M Sliplock Casing Head, for fast assembly (Figure 20). The annular preventer and pipe rams were tested prior to running in the hole. A FIT was performed after drilling 5 ft. of new formation, giving a maximum allowable mud weight of 19.23 ppg.
+Figure 20: BOPE stack for drilling 8-3/4 in. hole
+
+End of Well Report
+Utah FORGE
+Seismic Monitoring Well 56-32
+
+In the 8-3/4 in. section, the primary formation was granodiorite, and a selection of bits were used through the section to test their performance. After the 5-1/2 in. casing was run, a 4-3/4 in. bit was run to clean out the cement inside casing. The bits used in this section is captured in Table 15.
+
+Table 15: Bits used in drilling 8-3/4 in. hole section
+| Bit #/Run | Hole made (ft) | Bit Size (in.) | IADC Code | Ave. WOB (klb.) | Ave. RPM | Jet Size (32nd) | Ave. flow rate (gpm) | Ave. ROP (fph) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 5/1 | 6 | 8.75 | 117 | 32 | 155 | 20 20 20 | 409 | 7.5 |
+| 6/1 | 1,089 | 8.75 | M433 | 40 | 227 | 14 14 14 14 13 13 13 | 700 | 37.7 |
+| 7/1 | 548 | 8.75 | 627 | 50 | 205 | 20 20 20 | 680 | 20.9 |
+| 8/1 | 467 | 8.75 | M333 | 50 | 205 | 14 14 14 14 14 14 | 700 | 30.1 |
+| 9/1 | 389 | 8.75 | M333 | 50 | 200 | 14 14 14 13 13 13 | 687 | 26.3 |
+| 10/1 | 1,209 | 8.75 | M433 | 46 | 198 | 13 13 13 13 12 12 12 | 677 | 23.2 |
+| 11/1 | 412 | 8.75 | M333 | 46 | 202 | 13 13 13 13 14 14 14 | 685 | 85.8 |
+| 11/2 | 35 | 8.75 | M333 | 46 | 194 | 14 14 14 13 13 13 | 577 | 31.8 |
+| 12/1 | 8 | 8.75 | Hammer E6 Bit | 20 | 153 | - | 500 | 10 |
+| 12/2 | 4 | 8.75 | Hammer E6 Bit | 32 | 164 | - | 553 | 5 |
+| 13/1 | 1,233 | 8.75 | M333 | 50 | 190 | 14 14 14 13 13 13 | 667 | 33.3 |
+| 14/1 | 245 | 8.75 | M433 | 45 | 183 | 14 14 14 14 11 11 11 11 | 644 | 76.7 |
+
+BHAs used in 8-3/4 in. hole section can be seen in Figure 21 to Figure 31.
+
+Figure 21: 8-3/4 in. BHA #5 used with bit #5
+
+Figure 22: 8-3/4 in. BHA #6 used with bit #6
+
+Figure 23: 8-3/4 in. BHA #7 used with bit #7
+
+Figure 24: 8-3/4 in. BHA #8 used with bit #8
+
+Figure 25: 8-3/4 in. BHA #9 used with bit #9
+
+Seismic Monitoring Well 56-32
+Figure 26: 8-3/4 in. BHA #10 used with bit #10
+
+End of Well Report
+Utah FORGE
+Seismic Monitoring Well 56-32
+Figure 27: 8-3/4 in. BHA #11 used with bit #11
+
+Seismic Monitoring Well 56-32
+Figure 28: 8-3/4 in. BHA #12 used with bit #12
+
+Figure 29: 8-3/4 in. BHA #13 used with bit #11
+
+Figure 30: 8-3/4 in. BHA #14 used with bit #13
+
+Figure 31: 8-3/4 in. BHA #15 used with bit #14
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+Planned basic drilling parameters and the design of the mud system for the 8-3/4 in. drilling sections are shown in Table 16 and the average parameters used are shown in Table 17. The mud system was designed as a lightly dispersed clay-based mud system with a weight between 8.6 and 9.5 ppg, adding gel as needed to maintain adequate viscosity for good hole cleaning.
+
+Table 16: Fluid parameters planned for 8-3/4 in.
+| Hole Size | 17-1/2 in. |
+| --- | --- |
+| Casing Size | 13-3/8 in. |
+| Mud Type | Lime/Gel/Water System |
+| Mud Weight (ppg) | 8.6 - 9.2 |
+| Viscosity (sec) | 50-60+ |
+| Filtrate (ML) | < 20 |
+| Total Mud Volume | 1,200 bbls (500 bbls surface volume) |
+| Directional Program | NA - Vertical Hole |
+| Formations | Granite-Gneiss |
+| Interval BHT | ~ 365ºF |
+
+Continue drilling 8-3/4 in. hole. Use viscous polymer sweeps consisting of Xanthan Gum/Polyvis and SinSweep regularly, to clean and stabilize the wellbore. IF severe lost circulation is encountered, consider drilling blind and/or using temperature degradable LCMs such as Micro C, Sawdust, Cottonseed Hulls, and AltaVert 102. Maintain pH of 11.0 with Caustic Soda, and TORKease to reduce torque and drag. Monitor corrosion rates onsite and treat any unacceptable rates with corrosion additives. Pump cold water as needed to control well and consider use of weighted brines for additional pressure control, if needed. Run and cement 5 ½ in. casing to 9,000
+
+Table 17: Average fluid properties for 8-3/4 in. section
+| Fluid Parameters (spud) | Unit | Min | Max | Ave |
+| --- | --- | --- | --- | --- |
+| Mud Weight | ppg | 8.7 | 8.7 | 8.7 |
+| pH | | 8 | 10 | 8.75 |
+| API Fluid Loss (Filtrate) | cc/30 sec. | 13.3 | 18.2 | 15.75 |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Fluid Parameters (spud) | Unit | Min | Max | Ave |
+| --- | --- | --- | --- | --- |
+| Plastic Viscosity | cP | 12 | 22 | 17 |
+| Yield Point | lb/100ft 2 | 10 | 21 | 15.5 |
+
+Upon reaching hole TD and cleaning hole, a side wall core was attempted (no recovery), and a suite of geophysical logs was run including a Triple Combo and gyro using through bit logging method, discussed in later section. The wellhead was prepped for casing running and the 5-1/2 in. 17 ppf L-80 casing was run with the Silixa fiber optic cable strapped to outside, setting the shoe at 9,105 ft.ft. in 21.5 hours (including 3 hours for circulation and cooling) on 1-2 March.
+Cementing of 5-1/2 in. commenced on 13:00 h on 2 March. After pumping 537 bbls of cement, pressure started increasing rapidly from 500 psi to 1,800 psi. Continued to pump cement and shut down at a total volume of 620 bbl. of cement then shutdown, pump 2 bbls of water then drop top plug, to displace with displacement fluid while the casing was reciprocated. Only 27 bbls of displacement fluid were able to be pumped and displacement was shut down due to high pressure of approximately 6,200 psi that were at the limit of the casing capacity.
+After finding that it would not be possible to displace cement out of the casing, it was decided to pump 160 bbls of fresh water into annular to clear any spacers to previous shoe and have the opportunity to pump a top squeeze to place cement between casings.
+Primary and remedial cementing report are provided in Table 18 and Table 19 and Pump Schedules in Figure 32 and Figure 33. An investigation of the incident was made by a third party led by Dr.
+
+Glen Benge with the cementing service contractor. Their reports and conclusions are provided in Appendix 6.
+
+Table 18: Primary cement job report for 5-1/2 in. casing
+Table 19: Secondary cement job for 5-1/2 in. casing
+
+| Ref. GRG-10230 Ver. Final | Page 60 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 32: 5-1/2 in. Production casing cement pressure chart (primary job)
+Figure 33: 5-1/2 in. Production casing cement pressure chart (secondary job)
+
+The final wellhead was installed after secondary cement was set, as can be seen on Figure 34. A 4-3/4 in. bit, 4 in. PDM, cross-over and 6 joints of 4 in. drill collars (Figure 35) were used to clean out cement to
+
+| Ref. GRG-10230 Ver. Final | Page 61 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+TD. Following this, another clean-out run was performed with a casing scraper added to the BHA. At 9,034 ft., mud was displaced with 266 barrels of Biocide water.
+Figure 34: Permanent final wellhead
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+Figure 35: 4-3/4 in. BHA #16 to clean-out cement inside 5-1/2 in. casing
+
+A sidewall core was attempted 6,999 ft. (after reaching was TD of 8-3/4 in. hole) using a wireline rotary system, but the core barrel failed to break the formation and recover the core, as it exceeded the tool limits, hard formation was a factor. No other coring was planned for this well.
+
+For all section of the well cutting samples we retrieved, washed and described onsite, packaged and labeled for further analyses by the mug logging company on-site. A daily mud log and geology report was
+provided as well. In addition to lithology and alteration the mud log captured drilling parameters ROP, WOB, Mud temperature in and out, CO2 gas shows, and other well and drilling information. MSE was calculated within the drilling data systems and available in real time from data system. Final Mud Log is shown in Appendix 2.
+
+A Thru-Bit triple combo and Gyro were run on 27 February from 9,145 ft. to 3,493 ft. After reviewing the recovered the data it was noticed that there was a premature density closure. The caliper was open downhole during the system check. The caliper then closed automatically after seeing high readings from the induction resistivity tool (is designed so the caliper is made to close once the logging tool is back inside casing). So there was not full data recovery on the run.
+Figure 36: Wireline logging tool used in 56-32
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+The use of new PDC cutters and MSE allowed for an improvement in rate of penetration of more than 60% compared to well 16A-32 and 180% when compared to the first well drilled in the Utah FORGE project (58-32). The MSE formula used is described in Figure 37:
+Figure 37: MSE Formulas (Harold Vance Department of Petroleum Engineering. Texas A&M University)
+Drilling of the 17-1/2 in. and 12-1/4 ft. sections were very fast, and no noticeable trend was noticed on the MSE. Several drills off tests were carried out while drilling the 8-3/4 in. hole section and it was observed the limiting factor was the life of mud motors as they didn't last more than 20 to 25 hours before needing to pull out and change out motors; the bits were still in good drilling condition. After internal discussion it was decided to lay down the shock sub absorber and then it was discovered that mud motor life increased to an average of almost 50 hours per run.
+Drilling continued attempting to improve ROP by keeping MSE Total was kept around 70Ksi, after performing several drill off tests.
+
+Figure 38: MSE monitored parameters while drilling the 17-1/2 in. hole section (Bit # 1)
+
+| Ref. GRG-10230 Ver. Final | Page 66 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 39: MSE monitored parameters while drilling the 12-1/4 in. hole section (Bit # 3)
+
+| End of Well Report | | |
+| --- | --- | --- |
+| Utah FORGE | | |
+| Seismic Monitoring Well 56-32 | | |
+
+Figure 40: MSE monitored parameters while drilling the 12-1/4 in. hole section (Bit # 4)
+
+| Ref. GRG-10230 Ver. Final | Page 68 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 41: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 6)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 69 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 42: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 7)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 70 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 43: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 8)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 71 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 44: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 9)
+
+| Ref. GRG-10230 Ver. Final | Page 72 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 45: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 10)
+
+| Ref. GRG-10230 Ver. Final | Page 73 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 46: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 11)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 74 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 47: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 13)
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Ref. GRG-10230 Ver. Final | Page 75 of 86 |
+| --- | --- |
+| Issued: 22 July | 2021 |
+
+Figure 48: MSE monitored parameters while drilling the 8-3/4 in. hole section (Bit # 14)
+
+The following expectations, developed by the U.S. Department of Energy (Department of Energy, 1999), are intended to provide high-level guidance for developing, communicating, and using lessons learned. Due to the relatively limited size of the drilling management team, we have concentrated on a number of elements from the broader selection of DOE's lessons learned program to facilitate a meaningful lesson gathering per the size of our operation.
+
+Lessons learned provide a powerful method of sharing innovative ideas for improving work processes, equipment design and operation, quality, safety, and cost effectiveness. If an organization focuses only on failures or non-compliance issues, their overall lessons learned program's effectiveness will be reduced and they will miss opportunities to improve all their processes. Lessons learned should draw on both positive experiences-innovative ideas that prevent accidents or save money, and negative experienceslessons learned only after an undesirable outcome has already occurred. The relationships of lessons learned, and other management information sources should be clear and understood. Lessons learned should communicate only lessons and should not duplicate nor replace other management information functions like self-assessment or event investigation and corrective action systems.
+
+Performance measures should focus on how well a lessons-learned program uses opportunities to develop lessons, the quality of the lessons the program creates, and how well business and operating practices integrate lessons into improvements. The lessons learned infrastructure should use existing systems where possible. Lessons learned should be part of everyone's job, but clearly defined ownership should be established for maintaining the infrastructure and support for lessons learned development, communication, and use. Lessons from any level of the organization and any location can be instructive. Local sites should evaluate outside lessons for local application and dissemination.
+
+The mechanisms for identifying a potential lesson learned should be simple (in terms of volume, type of information, and input mechanisms). Lessons should be context driven (information defined in terms of environment in which learned and significance). The potential types of work or subject matter should be defined (in terms of information warranting inclusion). There should be no stigma or blame assigned for individuals identifying a lesson learned.
+
+The objective of the lessons learned programs is to provide a means of communicating experiences which can potentially reduce risk, improve efficiency, and enhance the cost effectiveness of processes and operations.
+
+Each local organization is responsible for making personnel aware of how to access and use the local lessons learned mechanisms to identify, share and use lessons learned. Personnel such as lessons learned
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+coordinators or subject matter experts who manage, administer, or otherwise have specific responsibilities for local lessons learned programs should possess a broad knowledge of their local organization(s), certain specialized knowledge and skills, and the ability to engage with staff to bring about the best outcomes for the program.
+Examples of the broad knowledge desirable include general technical knowledge of the work performed by the organization and hazards or vulnerabilities associated with that work, the overall organizational structure and management systems, familiarity with their operator or contractor counterpart organizations, general familiarity with the regulatory environment in which the work is performed, and a general awareness of stakeholder interests. Examples of desirable prior work-related experience for lessons learned personnel include evaluation or assessment, event analysis, accident investigation, operations, team leadership or facilitation, training, change control, or similar experience that requires analysis and synthesis of information in order to determine and implement corrective or improvement actions.
+
+Lessons learned should be disseminated with an assigned priority descriptor, which denotes the risk, immediacy, and urgency of the lessons learned content. Priority descriptors that define the categories of lessons learned are listed below and summarized in Table 4:
+Red
+Blue
+>35K USD (1-day burn rate)
+= 5-35K USD
+Green
+<5K USD
+Yellow
+"Good Practice"
+The lessons learned priority descriptor is established by lessons learned originator. Recipients of the lesson learned may revise the priority descriptor for internal use based on the urgency and relevancy of the lesson to their organization. Red/Urgent lessons require timely dissemination, review, documentation, and tracking of actions performed. As appropriate, organizations should document and track required response actions to ensure completion and closure in accordance with the organization's corrective action and change control processes.
+We have used both actual and estimated financial gains and losses, without differentiating the actual from the estimated, significantly.
+>$35K
+$5K- $35K
+<$5K
+Good
+Practice
+
+Lessons learned documents for local use may be tailored as appropriate for local needs, but they should include enough metadata so that they can be identified and determined relevant for use within the company and within departments. Table 20 is the template for documenting lessons learned information in preparation for dissemination.
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+The MU-ESW1 lessons learned program was arranged by drilling project phases, from the pre-drilling and planning phase, including conductor and move in, surface, intermediate, production sections, testing, and move off phase.
+
+Title:
+Date:
+Identifier:
+Lesson Learned Statement:
+Discussion of Activities:
+Recommended Actions:
+Estimated Savings or Cost Avoidance:
+Priority Descriptor:
+Work / Function(s):
+Originator:
+Contact:
+Keywords:
+
+Title: Title of the lesson learned.
+Date: Date the lesson learned was issued.
+Identifier: Unique identification number to assist in referencing a lesson learned that includes calendar year, operations office identifier, organization or field/area office/contractor identifier, and a sequential number (e.g., 1995-CH-BNL-0019; 1995-ID-LITCO-0118).
+Lessons Learned Statement: Statement that summarizes the lesson(s) that was learned from the activity.
+Discussion of Activities:
+Brief description of the facts which resulted in the initiation of the lesson
+learned.
+Recommended Actions: A brief description of management-approved actions which were taken, or will be taken, in association with the lesson learned.
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+Estimated Savings/Cost Avoidance: If the lesson learned is implemented, an estimate of the savings from the application of a good work practice or the costs avoided from the prevention of a similar event.
+Priority Descriptor: A descriptive code that assigns a level of significance to the lesson.
+Work/Function(s): The work or function(s) to which the lesson applies. Enter all that apply.
+Originator: Name of the originating department or contractor.
+Contact: Name and phone number of individual to contact for additional information.
+Keywords: Word(s) used to convey related concepts or topics stated in the lesson.
+
+The lessons learned registry for 56-32 is arranged by drilling phases, from the pre-drilling and planning phase, including conductor and move in, surface, intermediate and production sections, logging and move off. A color scheme is used for ranking of potential finance risk of each lesson, this is conceptual only, for the most part, as a rigorous financial analysis was not completed.
+
+10.2.1. Pre-Drilling
+| Title: | Mud motor endurance |
+| --- | --- |
+| 25-May-2021 | Date: |
+| 2021-PD-GRG-EGS-0001 | Identifier: |
+| Mud motors should have only new components or use only new mud motors Given the hard and abrasive drilling conditions, the mud motor is exposed to extremely loads. It was | Lesson Learned Statement: |
+| Discussion of Activities: noticed that after taking it apart, some components needed to be replaced. When build sheets were acquire it was found that not one motor ran had been assembled with any new parts except for the lower bearings. This limited the number of hours that the mud motor can be run each time. 70% of our bit trips were due to lower bearing and housing failure which also causes | |
+| uncontrollable MSE due to higher torque and less differential. During the bid process, ensure that each mud motor is brand new, or if rebuilt, only new components are used | Recommended Actions: |
+| Estimated Savings or Cost Avoidance: Half a day of rig burn rate, plus mud motor repair or replacement. >$35K | |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+Priority Descriptor:
+Work / Function(s):
+Drilling, planning-bid specification
+Originator:
+Geothermal Resource Group, Inc.
+Contact:
+erivas@geothermalresourcegroup.com
+Keywords:
+Drilling, geothermal, planning
+
+| Title: | Mud motor testing |
+| --- | --- |
+| Date: | 25-May-2021 |
+| | Identifier: 2021-Drilling-GRG-EGS-0001 |
+| Lesson Learned Statement: | Test mud motor without bit installed inside casing |
+| All mud motors must be tested without the bit installed. Only then can the motor be lifted and bit installed. NEVER test a motor with bit inside casing. Never circulate inside casing with a PDC. This could cause damage. The cooling of the well can be done outside the casing shoe | Discussion of Activities: |
+| Recommended Actions: mud motor without bit installed | Test |
+| Estimated Savings or Cost Avoidance: damage to the casing by testing motor with bit casing and ensuring that mud motor is in working conditions to avoid unnecessary trips | Avoid inside |
+| Priority Descriptor: | |
+| Drilling, planning | Work / Function(s): |
+| Geothermal Resource Group, Inc. | Originator: |
+| erivas@geothermalresourcegroup.com | Contact: |
+| Keywords: Drilling, geothermal, planning | |
+
+| Title: | Reaming of directional drilled section |
+| --- | --- |
+| 25-May-2021 | Date: |
+| Identifier: | 2021-Drilling-GRG-EGS-0002 |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+
+| Lesson Learned Statement: | Ream drilled section or every 2,000 ft to 3,000 ft of directional work. |
+| --- | --- |
+| Mud Hammer was ran and 4 deg dogleg or less was recommended. Although we were fighting a severe formation dip and sliding to avoid this we ended up with 2 each 4 deg doglegs back-to-back. While running in the hole with the mud hammer and 2 roller reamers we got stuck for several hours and finally worked loose. We next ran the mud hammer with a slick assembly which resulted in a failed hammer run which was indicated for the reason for the hammer failure. We eventually had to run a conventional locked assembly and reamed out the slides. Running the hammer, the 3rd time also resulted in a failed run. | Discussion of Activities: |
+| Ream the slides twice with rotary after making them and every 2000-3000ft. of directional work that includes several slides a conventional locked assembly should be run in the hole to smooth out any directional work | Recommended Actions: |
+| Half a day of rig burn rate ~$20K | Estimated Savings or Cost Avoidance: |
+| | Priority Descriptor: |
+| Drilling, planning | Work / Function(s): |
+| Geothermal Resource Group, Inc. | Originator: |
+| erivas@geothermalresourcegroup.com | Contact: |
+| Drilling, geothermal, planning | Keywords: |
+
+| Title: | Use of Can Rig |
+| --- | --- |
+| Date: | 25-May-2021 |
+| Identifier: | 2021-Drilling-GRG-EGS-0003 |
+| Lesson Learned Statement: | Apply constant WOB |
+| Discussion of Activities: | When sliding for correctional runs and to increase ROP, the CanRig system was used. This however, created discrepancies on the measurement of MSE and it seemed to interfere with directional work to keep hole vertical |
+
+| End of Well Report | | |
+| --- | --- | --- |
+| Utah FORGE | | |
+| Seismic Monitoring Well 56-32 | | |
+
+| Recommended Actions: | Do not use CanRig surface oscillator to improve ROP while sliding |
+| --- | --- |
+| Estimated Savings or Cost Avoidance: | Maintain hole verticality and ensure proper MSE reading |
+| Priority Descriptor: | |
+| Work / Function(s): | Drilling, planning |
+| Originator: | Geothermal Resource Group, Inc. |
+| Contact: | erivas@geothermalresourcegroup.com |
+| Keywords: | Drilling, geothermal, planning |
+
+| Title: | Use of Sodium Silicate |
+| --- | --- |
+| 25-May-2021 | Date: |
+| 2021-Cementing-GRG-EGS-0001 | Identifier: |
+| If there are no losses detected while drilling, do not use Sodium Silicate in cement slurry as it could lead to premature set of the cement slurry | Lesson Learned Statement: |
+| The role of the sodium silicate is to act as an adhesive in many applications and has been tried for wellbore strengthening. However, seems like a good idea to leave it out recognizing the apparent low fluid loss to the formation. It seems that the gelation would be accelerated by static conditions - in particular reduced convective heat transfer in the casing | Discussion of Activities: |
+| If no losses, do not use Sodium Silicate | Recommended Actions: |
+| >$100K. If cement set before being displaced off the casing and before filling the annulus space, it would require costly remedial cementing jobs. | Estimated Savings or Cost Avoidance: |
+| Priority Descriptor: | |
+| Drilling, cementing operations, planning | Work / Function(s): |
+| Geothermal Resource Group, Inc. | Originator: |
+| erivas@geothermalresourcegroup.com | Contact: |
+| Drilling, geothermal, planning | Keywords: |
+
+| Use of Silixa cable to determine bottom hole temperature | Title: |
+| --- | --- |
+| 25-May-2021 | Date: |
+| 2021-Cementing-GRG-EGS-0002 | Identifier: |
+| Obtain proper bottom hole temperature prior to cement casing | Lesson Learned Statement: |
+| After pumping 537 bbls of cement, pressure start increasing rapidly from 500 psi to 1,800 psi. Continue to pump cement and shut down at a total volume of 620 bbl. of cement then shutdown, pump 2 bbls of water | Discussion of Activities: |
+
+| End of Well Report | | |
+| --- | --- | --- |
+| Utah FORGE | | |
+| Seismic Monitoring Well 56-32 | | |
+
+| End of Well Report | | |
+| --- | --- | --- |
+| Utah FORGE | | |
+| Seismic Monitoring Well 56-32 | | |
+
+| then drop top plug, to displace with displacement fluid while the casing was reciprocated. Only 27 bbls of displacement fluid were able to be pumped and displacement was shut down due to high pressure ~ 6,200 psi that were at the limit of the casing Capacity. When a Silixa cable is installed, and you have continuity on bottom Silixa has the ability to stay on site and monitor the temperatures in the entire wellbore during circulating and cementing procedures |
+| --- |
+| Recommended Actions: After setting casing, circulate bottoms up until no drop in return temperature is noticed, or if Silixa cable is available, request to have an updated temperature profile. Adjust cement slurry accordingly |
+| Estimated Savings or Cost Avoidance: >$100K |
+| Priority Descriptor: |
+| Work / Function(s): Drilling, planning, Cementing Operations |
+| Originator: Geothermal Resource Group, Inc. |
+| Contact: erivas@geothermalresourcegroup.com |
+| Keywords: Drilling, geothermal, planning |
+
+| Title: | Reciprocation of casing |
+| --- | --- |
+| Date: 25-May-2021 | |
+| Identifier: 2021-Cementing-GRG-EGS-0003 | |
+| If optic cable is installed, do not reciprocate casing Cementing of the 5-1/2 in. casing started on 2 March | Lesson Learned Statement: |
+| 2021 without cement returns back to surface, it was suspected at the time that there was a bridge in the hole-casing annulus and the 5-1/2 in. was reciprocated to regain circulation (this action caused the Silixa to | Discussion of Activities: |
+| part in tension, as it was later discovered). Actions: Never reciprocate casing if fiber cable is installed on the OD of the casing | Recommended |
+| Estimated Savings or Cost Avoidance: >$100K | |
+
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32
+Priority Descriptor:
+Work / Function(s):
+Cementing operations
+Originator:
+Geothermal Resource Group, Inc.
+Contact:
+erivas@geothermalresourcegroup.com
+Keywords:
+Drilling, geothermal, planning
+
+Daily Drilling Reports
+Final Mud Log
+Casing Run Reports
+Bit Performance Reports
+BHA Reports
+Caliper Log
+5-1/2 in. casing-cement incident analysis report
+End of Well Report Utah FORGE Seismic Monitoring Well 56-32

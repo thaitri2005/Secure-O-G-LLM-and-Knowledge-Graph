@@ -14,17 +14,17 @@ def _trim(text: str, start: int, end: int) -> tuple[int, int]:
     return start, end
 
 
-def split_sentences(text: str, base: int = 0) -> list[tuple[int, int]]:
-    """Return nonempty, trimmed sentence offsets relative to a document."""
+def split_sentences(text: str) -> list[tuple[int, int]]:
+    """Return nonempty, trimmed sentence offsets in the input text."""
     spans, start = [], 0
     for match in SENT_SPLIT.finditer(text):
         left, right = _trim(text, start, match.start())
         if left < right:
-            spans.append((base + left, base + right))
+            spans.append((left, right))
         start = match.end()
     left, right = _trim(text, start, len(text))
     if left < right:
-        spans.append((base + left, base + right))
+        spans.append((left, right))
     return spans
 
 

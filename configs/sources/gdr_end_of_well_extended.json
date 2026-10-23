@@ -1,0 +1,30 @@
+[
+  {
+    "doc_id": "gdr1153_78-32_eowr",
+    "title": "Utah FORGE monitoring well 78-32 End of Well Report",
+    "well": "78-32",
+    "gdr_submission": 1153,
+    "url": "https://gdr.openei.org/files/1153/Monitoring%20Wells%20%2078-32%20-%20EOWR.pdf",
+    "landing_page": "https://gdr.openei.org/submissions/1153",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "7dc4d3e9ab9ba396039105c4b89475c9f34fb00525cd49fbe652317add3efa46",
+    "bytes": 16746906
+  },
+  {
+    "doc_id": "gdr1296_16a78-32_drilling_summary",
+    "title": "Utah FORGE Well 16A(78)-32 Drilling Summary",
+    "well": "16A(78)-32",
+    "gdr_submission": 1296,
+    "url": "https://gdr.openei.org/files/1296/Drilling%20Summary%20Well%2016A(78)-32.pdf",
+    "landing_page": "https://gdr.openei.org/submissions/1296",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+    "bytes": 10992572
+  }
+]

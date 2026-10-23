@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "table_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+#t[0-9]{3}$"
+    },
+    "doc_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "source_ref": {
+      "type": "string"
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          }
+        },
+        "required": [
+          "page",
+          "bbox"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "num_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "num_cols": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "header_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rendered_header_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "r": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "c": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "row_span": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "col_span": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string"
+          },
+          "is_header": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "r",
+          "c",
+          "row_span",
+          "col_span",
+          "text",
+          "is_header"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rows_text": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "table_id",
+    "doc_id",
+    "source_ref",
+    "regions",
+    "num_rows",
+    "num_cols",
+    "header_rows",
+    "rendered_header_rows",
+    "cells",
+    "rows_text"
+  ],
+  "additionalProperties": false
+}

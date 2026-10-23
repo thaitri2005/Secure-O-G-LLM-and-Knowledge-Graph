@@ -24,8 +24,8 @@ class TextPackingTests(unittest.TestCase):
         text = "Alpha. Beta. Gamma."
         self.assertEqual([text[a:b] for a, b in chunk_spans(text, 12)], ["Alpha. Beta.", "Gamma."])
 
-    def test_sentence_base_offset(self) -> None:
-        self.assertEqual(split_sentences(" Alpha. Beta. ", base=10), [(11, 17), (18, 23)])
+    def test_trimmed_sentence_offsets(self) -> None:
+        self.assertEqual(split_sentences(" Alpha. Beta. "), [(1, 7), (8, 13)])
 
     def test_rejects_nonpositive_limit(self) -> None:
         for limit in (0, -1):

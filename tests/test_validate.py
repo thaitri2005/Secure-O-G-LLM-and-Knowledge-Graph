@@ -35,6 +35,27 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual((errors, warnings), ([], []))
         self.assertEqual(summary[0]["total"], 2)
 
+    def test_full_header_plus_one_body_row_warns(self):
+        self.options["max_chars"] = 30
+        self.records[1]["text"] = "| Header text |\n| --- |\n| Body row text |"
+        errors, warnings, _ = self.validate()
+        self.assertFalse(errors)
+        self.assertEqual(len(warnings), 1)
+
+    def test_full_header_plus_two_body_rows_fails(self):
+        self.options["max_chars"] = 30
+        self.records[1]["text"] = "| Header text |\n| --- |\n| First body row |\n| Second body row |"
+        self.assertTrue(self.validate()[0])
+
+    def test_headerless_single_body_row_warns(self):
+        self.options["max_chars"] = 30
+        self.records[1]["text"] = "| A single body row longer than the budget |"
+        errors, warnings, _ = self.validate()
+        self.assertFalse(errors)
+        self.assertEqual(len(warnings), 1)
+        self.records[1]["type"] = "text"
+        self.assertTrue(self.validate()[0])
+
     def test_top_level_empty_and_nonobject(self) -> None:
         for value in ({}, [], ["record"]):
             with self.subTest(value=value):

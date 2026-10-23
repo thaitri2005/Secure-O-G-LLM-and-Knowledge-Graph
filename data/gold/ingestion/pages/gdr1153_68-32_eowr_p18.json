@@ -1,0 +1,39 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "page": 18,
+  "status": "corrected",
+  "image": "data/interim/figures/gold/gdr1153_68-32_eowr_p18.png",
+  "reading_order": [
+    "#/texts/172",
+    "#/tables/8"
+  ],
+  "items": [
+    {
+      "id": "#/tables/8",
+      "type": "table",
+      "text": "| Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Job ID: Original   | Report For 02-Mar-19 2 Report No: Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT  <!-- image -->   |\n|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|",
+      "section": "APPENDICES",
+      "bbox": [
+        33.53734970092774,
+        34.462867736816406,
+        750.1010742187501,
+        576.4591674804686
+      ]
+    },
+    {
+      "id": "#/texts/172",
+      "type": "text",
+      "text": "Report For 02-Mar-19 2 Report No: Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT",
+      "section": "APPENDICES",
+      "bbox": [
+        0.0,
+        35.38866126537323,
+        88.72840118408203,
+        568.3233215808868
+      ]
+    }
+  ],
+  "annotator": "AI-assisted transcription from the rendered source page, cross-checked against the PDF text layer",
+  "reviewed": "2026-10-22",
+  "notes": "Page is rotated 90 degrees. Docling detects the whole daily-report form as one table; #/texts/172 duplicates the form's top strip (Report No / Report For / location line) and precedes it in upright reading order. Field-level reading order inside the form is not annotated."
+}

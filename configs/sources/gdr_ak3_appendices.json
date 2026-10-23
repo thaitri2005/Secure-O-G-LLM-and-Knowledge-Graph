@@ -1,0 +1,17 @@
+[
+  {
+    "doc_id": "gdr882_ak3_appendices",
+    "portfolio": true,
+    "title": "Akutan AK-3 End of Well Appendices",
+    "well": "AK-3",
+    "gdr_submission": 882,
+    "url": "https://gdr.openei.org/files/882/AK-3EOWAppendices.pdf",
+    "landing_page": "https://gdr.openei.org/submissions/882",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "06d28fceb8b570a0cca237a8b4f5b70776ae8b2ea24385d6e5bff309f3ef2a1b",
+    "bytes": 24776627
+  }
+]

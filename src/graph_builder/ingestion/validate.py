@@ -24,12 +24,13 @@ class Source:
     page_chars: list[int]
 
 
-def load_sources(config: list[dict[str, Any]], root: Path) -> dict[str, Source]:
+def load_sources(config: list[dict[str, Any]], root: Path, cache: Path | None = None) -> dict[str, Source]:
     sources = {}
+    cache = cache or root / "data" / "interim" / "docling"
     for entry in config:
         doc_id = entry["doc_id"]
         document = DoclingDocument.model_validate_json(
-            (root / "data" / "interim" / "docling" / f"{doc_id}.json").read_text(encoding="utf-8")
+            (cache / f"{doc_id}.json").read_text(encoding="utf-8")
         )
         reader = PdfReader(root / "data" / "raw" / f"{doc_id}.pdf")
         sources[doc_id] = Source(document, [len((page.extract_text() or "").strip()) for page in reader.pages])
@@ -88,16 +89,18 @@ def exempt_pages(document: DoclingDocument, options: dict[str, Any]) -> list[int
 
 
 def single_oversized_row(text: str, max_chars: int) -> bool:
-    """Allow an unsplittable header or single body row, not Markdown padding."""
+    """Allow exactly one body row, including its full repeated header."""
     grid = [line.strip() for line in text.splitlines() if line.strip().startswith("|")]
-    if len(grid) < 2 or len(grid) > 3:
-        return False
-    if not re.fullmatch(r"\|[\s:|\-]+\|", grid[1]):
-        return False
-    return any(len(row) > max_chars for row in [grid[0], *grid[2:]])
+    if len(grid) == 1:
+        return bool(re.fullmatch(r"\|.*\|", grid[0]))
+    # A lone rendered row above a separator is a headerless one-row table.
+    return (len(grid) in {2, 3} and len(grid[1]) <= max_chars
+            and bool(re.fullmatch(r"\|[\s:|\-]+\|", grid[1]))
+            and all(row.endswith("|") for row in grid))
 
 
-def validate_records(chunks: Any, doc_ids: list[str], sources: dict[str, Source], options: dict[str, Any]) -> tuple[list[str], list[str], list[dict[str, Any]]]:
+def validate_records(chunks: Any, doc_ids: list[str], sources: dict[str, Source], options: dict[str, Any],
+                     provenance: list[dict] | None = None) -> tuple[list[str], list[str], list[dict[str, Any]]]:
     errors: list[str] = []
     warnings: list[str] = []
     summary: list[dict] = []
@@ -158,7 +161,7 @@ def validate_records(chunks: Any, doc_ids: list[str], sources: dict[str, Source]
             errors.append(f"{prefix}: text must be a nonempty string")
         elif len(text) > max_chars:
             if kind == "table" and single_oversized_row(text, max_chars):
-                warnings.append(f"{chunk_id}: {len(text)} characters; unsplittable table row exceeds {max_chars}")
+                warnings.append(f"{chunk_id}: {len(text)} characters; indivisible single body row with full header exceeds {max_chars}")
             else:
                 errors.append(f"{prefix} ({chunk_id}): {len(text)} characters exceeds {max_chars}")
     for doc_id in doc_ids:
@@ -166,6 +169,7 @@ def validate_records(chunks: Any, doc_ids: list[str], sources: dict[str, Source]
         source = sources[doc_id]
         exempt = exempt_pages(source.document, options)
         covered = {c["page"] for c in rows if type(c.get("page")) is int}
+        covered.update(region["page"] for c in provenance or [] if c["doc_id"] == doc_id for region in c["regions"])
         missing_pages = [page for page, chars in enumerate(source.page_chars, 1)
                          if chars > 200 and page not in covered and page not in exempt]
         if not rows:

@@ -1,0 +1,535 @@
+{
+  "doc_id": "gdr1295_56-32_eowr",
+  "title": "Utah FORGE well 56-32 End of Well Report (2021)",
+  "landing_page": "https://gdr.openei.org/submissions/1295",
+  "gdr_submission": 1295,
+  "license": {
+    "id": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+  "bytes": 4826997,
+  "parent_doc_id": null,
+  "source_url": "https://gdr.openei.org/files/1295/56-32%20EOWR%20-%20Final%2022%20July%202021.pdf",
+  "page_count": 86,
+  "pages": {
+    "1": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "2": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "3": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "4": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "5": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "6": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "7": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "8": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "9": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "10": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "11": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "12": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "13": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "14": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "15": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "16": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "17": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "18": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "19": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "20": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "21": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "22": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "23": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "24": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "25": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "26": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "27": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "28": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "29": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "30": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "31": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "32": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "33": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "34": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "35": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "36": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "37": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "38": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "39": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "40": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "41": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "42": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "43": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "44": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "45": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "46": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "47": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "48": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "49": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "50": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "51": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "52": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "53": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "54": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "55": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "56": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "57": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "58": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "59": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "60": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "61": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "62": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "63": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "64": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "65": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "66": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "67": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "68": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "69": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "70": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "71": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "72": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "73": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "74": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "75": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "76": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "77": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "78": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "79": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "80": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "81": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "82": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "83": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "84": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "85": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    },
+    "86": {
+      "width": 612.0,
+      "height": 792.0,
+      "rotation": 0,
+      "needs_ocr": false
+    }
+  },
+  "parser": "docling 2.141.0",
+  "config_hash": "7913a7a76ea97285d2205ddc8759bc4b6ff95f470717d6a99fa92e12238c302a"
+}

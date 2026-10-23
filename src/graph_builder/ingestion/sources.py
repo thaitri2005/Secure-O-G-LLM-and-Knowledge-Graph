@@ -12,13 +12,18 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from pypdf import PdfReader
 
-DOC_ID = re.compile(r"^[A-Za-z0-9_.\-]{1,64}$")
+DOC_ID = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
 USER_AGENT = "graph-builder-ingestion/0.1 (+https://github.com/thaitri2005/Secure-O-G-LLM-and-Knowledge-Graph)"
 
 
-def write_json(path: Path, value: Any) -> None:
+def write_text(path: Path, text: str) -> None:
+    """Write portable UTF-8 text, including when the input already uses CRLF."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    path.write_text(text.replace("\r\n", "\n").replace("\r", "\n"), encoding="utf-8", newline="\n")
+
+
+def write_json(path: Path, value: Any) -> None:
+    write_text(path, json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
 def sha256(path: Path) -> str:
@@ -27,6 +32,15 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def write_checksums(directory: Path, doc_ids: list[str]) -> None:
+    """Hash exactly one registry's deliverable, excluding other local bundles."""
+    manifest = directory / "SHA256SUMS"
+    paths = [directory / name for name in ("gdr_chunks.json", "gdr_chunks_full.jsonl", "gdr_tables.jsonl")]
+    paths.extend(directory / "documents" / f"{doc_id}{suffix}" for doc_id in doc_ids for suffix in (".json", ".txt"))
+    paths.sort(key=lambda path: path.relative_to(directory).as_posix())
+    write_text(manifest, "".join(f"{sha256(path)}  {path.relative_to(directory).as_posix()}\n" for path in paths))
 
 
 def check_url(url: str) -> None:
@@ -70,10 +84,27 @@ def load_registry(path: Path) -> list[dict[str, Any]]:
     return registry
 
 
-def load_options(path: Path) -> dict[str, Any]:
+def load_options(path: Path, overrides: list[str] | None = None) -> dict[str, Any]:
     options = json.loads(path.read_text(encoding="utf-8"))
+    for override in overrides or []:
+        key, separator, value = override.partition("=")
+        if not separator:
+            raise ValueError("Overrides must use key=value")
+        target = options
+        parts = key.split(".")
+        for part in parts[:-1]:
+            if part not in target or not isinstance(target[part], dict):
+                raise ValueError(f"Unknown option: {key}")
+            target = target[part]
+        if parts[-1] not in target:
+            raise ValueError(f"Unknown option: {key}")
+        try:
+            target[parts[-1]] = json.loads(value)
+        except json.JSONDecodeError:
+            target[parts[-1]] = value
     required = {"max_chars", "do_ocr", "do_table_structure", "table_mode", "do_cell_matching", "device", "margin_band", "frequency", "spot_checks",
-                "running_block_max_gap_lines", "running_block_alignment_lines", "running_line_fragment_gap_lines"}
+                "running_block_max_gap_lines", "running_block_alignment_lines", "running_line_fragment_gap_lines",
+                "chunking", "tables"}
     if not isinstance(options, dict) or set(options) != required:
         raise ValueError(f"Pipeline options must contain exactly {sorted(required)}")
     if type(options["max_chars"]) is not int or options["max_chars"] < 1:
@@ -85,6 +116,12 @@ def load_options(path: Path) -> dict[str, Any]:
         raise ValueError("This pipeline supports CPU conversion without OCR")
     if options["table_mode"] not in {"accurate", "fast"}:
         raise ValueError("table_mode must be accurate or fast")
+    if options["chunking"] not in ({"strategy": name} for name in ("page", "paragraph", "hybrid", "pypdf")):
+        raise ValueError("chunking.strategy must be page, paragraph, hybrid or pypdf")
+    if (not isinstance(options["tables"], dict)
+            or set(options["tables"]) != {"compact", "merge_pages", "rotation_retry"}
+            or any(type(value) is not bool for value in options["tables"].values())):
+        raise ValueError("tables must contain boolean compact, merge_pages and rotation_retry options")
     for key, limit in (("margin_band", 0.5), ("frequency", 1)):
         if type(options[key]) not in (int, float) or not 0 < options[key] <= limit:
             raise ValueError(f"{key} must be between 0 (exclusive) and {limit}")
