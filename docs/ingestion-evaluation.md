@@ -1,5 +1,7 @@
 # Ingestion evaluation
 
+These measurements evaluate the **ingestion subsystem**, not future graph extraction or question answering. The [project design](PROJECT_DESIGN.md#12-quality-and-acceptance) defines the separate acceptance gates needed for those stages; the [development plan](DEVELOPMENT_PLAN.md) schedules them.
+
 ## Method and default selection
 
 Evaluation uses spatially filtered pypdf text as an imperfect reference. Emitted character spans are attributed to source items and physical pages, including Docling provenance character spans. Serializer tokens are aligned to their source items; unmatched serializer tokens remain in the precision denominator. Merged table rows retain their physical source pages, while repeated headers retain the original header page. Substantive pages contain more than 200 retained reference characters. Word scores use distinct alphanumeric tokens; quantity recall uses normalized drilling numbers and units.

@@ -1,0 +1,706 @@
+# Secure LLM and Knowledge Graph Platform
+
+## Project description and system design
+
+**Document version:** 1.0 · **Baseline date:** 23 October 2026<br>
+**Target:** an internal production service for one team, delivered by three students<br>
+**Status:** proposed implementation baseline; the ingestion subsystem already exists<br>
+**Companion:** [Development plan, estimates, ownership, and release gates](DEVELOPMENT_PLAN.md)
+
+This is the canonical reference for what the project is meant to do and how its parts should work together. It describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
+
+The user has confirmed the internal production target, a three-student team, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. The exact machine, availability, budget, deadline, institutional identity service, and operating owner remain unconfirmed. The design deliberately works from the smaller GPU option.
+
+### Reading guide
+
+| If you need to understand… | Start here |
+|---|---|
+| Why the project exists and what the first release includes | [1. Product](#1-product-purpose-and-scope), [2. Users](#2-users-and-workflows) |
+| What is actually implemented | [3. Current baseline](#3-current-implementation-and-evidence) |
+| How the whole system works | [4. Architecture](#4-target-architecture), [5. Processing](#5-document-to-graph-processing) |
+| What the graph and evidence mean | [6. Ontology](#6-ontology-and-domain-adaptation), [7. Data model](#7-data-model-and-contracts) |
+| How answers are produced safely | [8. Question answering](#8-question-answering) |
+| Why each technology is needed | [9. Technology choices](#9-technology-choices-and-alternatives) |
+| How it is secured, hosted, and maintained | [10. Security](#10-security-and-data-boundaries), [11. Operations](#11-deployment-capacity-and-operations) |
+| How completion will be measured | [12. Acceptance](#12-quality-and-acceptance), [13. Decisions](#13-decisions-assumptions-and-change-control), [Development plan](DEVELOPMENT_PLAN.md) |
+
+All architecture diagrams describe the **target** unless explicitly labelled **current**. Diagrams are provided as SVG images with expandable Mermaid source, so they display without a Mermaid-enabled viewer. Open an SVG directly to zoom into the larger architecture/data diagrams. The prose and tables explain the same component responsibilities.
+
+## 1. Product purpose and scope
+
+### 1.1 Problem and intended value
+
+Technical knowledge is scattered across long reports, tables, and appendices. Finding a fact can require opening several PDFs, matching different names for the same object, interpreting units, and checking which report supports a statement. A fluent answer alone does not resolve these problems: a user needs to inspect the underlying evidence and know when reports disagree.
+
+The platform converts approved technical PDFs into a structured, reviewable knowledge graph, then answers a defined set of questions using accepted facts and their source passages. An ontology specifies which kinds of things and relationships matter. A local language model proposes extractions; deterministic checks and human review decide what becomes available to ordinary users.
+
+The intended benefits are less repeated document searching, consistent terminology, explicit handling of conflicting information, and answers that can be traced back to a physical PDF page. These benefits must be measured in a user pilot; the repository does not yet establish time savings or answer accuracy.
+
+### 1.2 Meaning of “secure” and “internal production”
+
+For this project, secure means document content and model inference stay inside an approved deployment boundary; users have authenticated, authorized access; changes and processing runs are auditable; and recoverable backups exist. Local inference is one part of this requirement. It does not itself provide access control, protection from malicious PDFs, or reliable recovery.
+
+Internal production means a small team can use a maintained service with documented limits, a named operator, tested recovery, and a support route. The proposed first release is a **single-host, single-workspace service** with scheduled maintenance. It does not promise continuous availability during a host failure. A shared research machine qualifies only if IT permits service hosting and can provide persistent storage and an operating arrangement.
+
+### 1.3 First-release boundaries
+
+| Included in the first production release | Deferred until there is evidence of need |
+|---|---|
+| English technical PDFs with an extractable text layer | General Office/email ingestion, handwriting, image understanding |
+| GDR reports as the initial evaluation domain | Broad claims of accuracy in unrelated domains |
+| Versioned ontology and reference lists | Full OWL reasoning, arbitrary ontology languages, ontology marketplace |
+| Local extraction of entities, relations, and supported quantities | Autonomous agents, internet browsing, tools controlled by the model |
+| Evidence viewer, approval/rejection, correction, merge review | Fully automatic acceptance of all extracted facts |
+| Graph browsing and a bounded question catalogue | Arbitrary questions guaranteed to work, unrestricted generated Cypher |
+| Local PDF upload and the existing GDR import adapter | Arbitrary URL fetching or many external connectors |
+| One team sharing one document security boundary | Multiple tenants or different document permissions within one graph |
+| Authentication, roles, audit, backup/restore, monitoring | High availability, multi-region operation, 24/7 service commitments |
+| Explicit detection and reporting of unsupported/scanned pages | Production OCR for all scans; integrate only after a separate quality gate |
+
+The single-workspace access rule is deliberate: all authorized readers can see all published material in that workspace. A requirement to hide particular documents from some readers changes retrieval, entity resolution, graph access, caching, and audit design; it must be addressed before admitting those documents.
+
+### 1.4 Proposed business success measures
+
+Before the pilot, collect a small baseline in which intended users answer representative questions using the PDFs directly. During the pilot, measure task completion time, correct answers, successful source inspection, and corrections requested. Provisional targets are at least 30% lower median task time and at least 80% successful completion of the supported question tasks without developer assistance. These are targets to negotiate and test, not observed results. Incorrect answers with plausible citations count as failures.
+
+## 2. Users and workflows
+
+### 2.1 Roles
+
+| Role | Responsibilities and permissions |
+|---|---|
+| Reader / domain user | Ask supported questions, browse accepted facts, inspect evidence, report a problem; cannot publish or edit facts |
+| Reviewer / domain expert | Inspect candidates and source pages, approve/reject/correct, resolve ambiguous entity matches and conflicts |
+| Administrator | Manage membership and role assignments, activate ontology versions, start runs, publish validated releases, retire documents |
+| Operator | Maintain the host, model runtime, secrets, logs, backups, restores, and capacity; access to content follows institutional policy |
+
+One person can hold multiple roles, but actions still record which identity performed them. A student should not self-certify the whole release: another student reviews implementation changes, and the designated domain/product owner accepts the pilot results. Named people remain to be assigned.
+
+### 2.2 Primary journeys
+
+**Add knowledge.** An administrator uploads a PDF and records title, source, permission to use it, and intended ontology. The service validates and stores it, runs ingestion, and shows page coverage, warnings, and processing status. Extraction produces candidates. A reviewer sees each candidate beside its evidence, accepts or corrects it, and resolves ambiguous names. The administrator publishes a validated graph revision. Readers can then find those facts.
+
+**Ask a question.** A reader asks “Which reports describe well AK-3?” The system recognizes a supported intent, resolves AK-3 to an approved entity, executes an authorized graph query, and displays the result with report/page references. If there are several matching entities, it asks the reader to choose. If the question requires an unsupported relation or unpublished information, it says what is missing.
+
+**Correct knowledge.** A reviewer identifies an incorrect value or merge, opens its evidence and extraction history, and records a correction with a reason. The old assertion remains in history. A new graph revision replaces it for current use. A report being withdrawn is immediately excluded from answers while projection cleanup runs.
+
+**Reprocess a report.** An administrator selects a new parser, model, prompt, or ontology version. A new run produces a comparison: unchanged, added, changed, removed, and newly conflicted facts. Existing accepted facts remain available until the new revision passes checks. Changed evidence does not silently inherit an old approval.
+
+### 2.3 Functional requirements
+
+IDs connect implementation work to the acceptance and delivery plan. “Must” applies to the first internal production release; “Later” is outside its baseline.
+
+| ID | Priority | Requirement | Observable outcome |
+|---|---|---|---|
+| FR-01 | Must | Register and verify source documents | Source hash, metadata, permission record, status, and immutable version available |
+| FR-02 | Must | Parse PDFs with source provenance | Every emitted chunk resolves to its stored document version and physical page(s) |
+| FR-03 | Must | Validate versioned domain ontologies | Invalid types, relation endpoints, and unit rules rejected before extraction |
+| FR-04 | Must | Extract locally into typed candidates | Every candidate passes schema checks or receives an explicit error/review reason |
+| FR-05 | Must | Resolve entity names conservatively | Ambiguous aliases produce review tasks; merges retain their history |
+| FR-06 | Must | Review and publish accepted claims | Pending or rejected candidates cannot appear as accepted answers |
+| FR-07 | Must | Browse graph facts and original evidence | Clicking a citation opens the correct PDF version and physical page |
+| FR-08 | Must | Answer a bounded question catalogue | Supported questions return scoped results and citations; others abstain or clarify |
+| FR-09 | Must | Re-run, compare, and roll back | New processing does not overwrite the currently served graph revision |
+| FR-10 | Must | Enforce roles and audit changes | Direct API attempts receive the same authorization checks as UI actions |
+| FR-11 | Must | Retire/delete documents and derived knowledge | Withdrawn evidence is excluded immediately; retention/purge status is visible |
+| FR-12 | Must | Operate and recover the service | Job recovery, backup restoration, and a documented handover are demonstrated |
+| FR-13 | Must | Report unsupported input honestly | Scans, failed pages, and truncated processing are visible and affect release eligibility |
+| FR-14 | Later | Integrate OCR and additional document/domain adapters | Separate evaluation demonstrates usefulness before inclusion in production |
+
+## 3. Current implementation and evidence
+
+### 3.1 What exists
+
+The package is currently an ingestion CLI. There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. The fact that libraries appear transitively in the lock file does not mean these application features exist.
+
+![Current ingestion pipeline](diagrams/01-current-ingestion.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+flowchart TB
+    subgraph INPUT["1. Acquire and parse"]
+        direction LR
+        R["GDR registry<br/>URL, size, SHA256"] --> F["fetch<br/>Verify PDFs"]
+        F --> C["convert<br/>Local Docling on CPU"]
+    end
+    subgraph PREPARE["2. Preserve and prepare"]
+        direction LR
+        K["Complete parser cache<br/>JSON and Markdown"] --> H["chunk<br/>Filter and split content"]
+        H --> B["Chunk bundle<br/>Text, tables, provenance"]
+    end
+    subgraph RELEASE["3. Validate and publish artifacts"]
+        direction LR
+        V["validate / evaluate<br/>Contracts and quality"] --> P["publish named run<br/>Validated file bundle"]
+    end
+    INPUT --> PREPARE --> RELEASE
+```
+
+</details>
+
+**Figure 1 — Current implementation.** Publication here means copying an evaluated ingestion bundle into its artifact directory. It does not mean publishing reviewed knowledge into a graph or making a service available.
+
+| Responsibility | Current code / contract |
+|---|---|
+| CLI orchestration | [`__main__.py`](../src/graph_builder/ingestion/__main__.py) |
+| GDR URL restrictions, registry validation, download verification | [`sources.py`](../src/graph_builder/ingestion/sources.py) |
+| CPU parsing, table extraction, remote-service disablement | [`convert.py`](../src/graph_builder/ingestion/convert.py) |
+| Filters, text packing, chunking, tables | [`filters.py`](../src/graph_builder/ingestion/filters.py), [`chunking.py`](../src/graph_builder/ingestion/chunking.py), [`tables.py`](../src/graph_builder/ingestion/tables.py) |
+| Canonical offsets and PDF geometry | [`provenance.py`](../src/graph_builder/ingestion/provenance.py) |
+| Run isolation, comparisons, artifact publication | [`runs.py`](../src/graph_builder/ingestion/runs.py) |
+| Structural validation and quality evaluation | [`schema_validation.py`](../src/graph_builder/ingestion/schema_validation.py), [`validate.py`](../src/graph_builder/ingestion/validate.py), [`evaluation.py`](../src/graph_builder/ingestion/evaluation.py) |
+
+The configured baseline is Python 3.12, Docling 2.141.0, pypdf 6.1.1, paragraph chunking with a 1,500-character budget, fast TableFormer, CPU execution, and OCR disabled. Versions come from [`pyproject.toml`](../pyproject.toml), [`requirements.lock.txt`](../requirements.lock.txt), and [`default.json`](../configs/ingestion/default.json); they are repository pins, not a claim that these are the latest releases.
+
+### 3.2 Evidence and limits
+
+The committed main bundle contains **3 documents, 155 physical pages, and 372 chunks: 237 text and 135 table chunks**. The recorded evaluation reports zero validation errors and 20 allowed over-budget table parts, plus known semantic extraction weaknesses. See [the ingestion evaluation](ingestion-evaluation.md) for the original measurements and method. A valid artifact structure does not establish correct interpretation of every number or table.
+
+The recorded extended and appendix evaluations cover a further 2 reports/170 pages and 44 attachment PDFs/463 pages. Those bundles are ignored local outputs, not guaranteed to exist in a fresh checkout. The evaluation reports 67 scanned appendix pages; production chunks do not include the experimental OCR output. Gold annotations are a small, single-annotator, AI-assisted sample. No graph-extraction or QA benchmark exists yet.
+
+### 3.3 Gaps the architecture must close
+
+1. **Domain portability is an intention.** The current registry accepts only `https://gdr.openei.org`, requires `well` and `gdr_submission`, and the document schema requires a GDR submission. A general upload path and a versioned domain-neutral metadata envelope are required.
+2. **Content IDs are matching aids.** The current `content_id` is a truncated SHA1 over document ID, chunk type, and whitespace-normalized text. Repeated passages can share it; changed text changes it. It is not a unique evidence identifier or a security digest.
+3. **Publication is not a multi-file transaction.** Current publication validates before writing, but copies artifacts file by file. A server must not expose that directory as an atomic, versioned release.
+4. **Cache settings do not fully identify the build.** The current conversion-cache key includes selected parser settings, not a complete source/model/package fingerprint. Production reuse must check source hash, parser/model versions, and configuration.
+5. **Some schema identifiers have finite widths.** Current chunk IDs require four index digits and table IDs three. A larger corpus needs explicit per-document limits or a versioned migration, not silent format changes.
+6. **Security controls are incomplete.** Local parsing and disabled remote services are present. Authentication, authorization, resource isolation, firewall enforcement, audit, and recovery are future work.
+
+These are design inputs and backlog items, not claims that the existing ingestion milestone has failed.
+
+## 4. Target architecture
+
+### 4.1 Component and trust boundaries
+
+Use a modular Python application with a separate worker process, a browser UI, and a local model server. Keep the modules in one repository. Separate processes isolate slow parsing/model jobs from interactive requests without introducing a large distributed-service system.
+
+![Target architecture and deployment boundary](diagrams/02-target-architecture.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+flowchart TB
+    U["Team users"] -->|HTTPS| G["Reverse proxy<br/>TLS and limits"]
+    subgraph Z["Approved school / internal deployment boundary"]
+        G --> UI["Web UI<br/>Review and answers"]
+        UI --> API["FastAPI<br/>Auth and workflows"]
+        IDP["School identity<br/>provider"] -->|Identity / roles| API
+        API --> PG[("PostgreSQL<br/>Jobs, claims, audit")]
+        API --> FS[("Artifact volume<br/>PDFs and run bundles")]
+        API -->|Bounded queries| NG[("Neo4j<br/>Published graph")]
+        W["Python worker<br/>Ingest and extract"] -->|Lease jobs| PG
+        W --> FS
+        W -->|Publish projections| NG
+        W --> LM["Local model<br/>llama.cpp"]
+        API -->|Intent / grounded wording| LM
+        W --> D["Docling<br/>CPU parsing"]
+        BK["Backup / health jobs"] --> PG
+        BK --> FS
+    end
+    ST["Controlled downloads<br/>Public PDFs, packages, models"] -. "Verified offline transfer" .-> FS
+```
+
+</details>
+
+**Figure 2 — Target containers.** Browser users never connect directly to either database or the model server. External downloads belong to a controlled acquisition process. The application content path stays inside the approved boundary. The identity provider must also be institutionally approved.
+
+### 4.2 Which store is authoritative?
+
+| Store | Owns | Recovery and consistency rule |
+|---|---|---|
+| Artifact volume | Original PDF versions, canonical text, chunks, table structures, immutable run manifests, model/config fingerprints | Append new versions; verify hashes; back up original evidence and accepted-run artifacts |
+| PostgreSQL | Membership/roles, document lifecycle, ontology versions, jobs, candidate/accepted claim revisions, review decisions, merge history, publication pointers, audit, outbox events | System of record for workflow and accepted knowledge; transactions protect state changes |
+| Neo4j | Queryable projection of accepted entities, claims, evidence references, and graph relationships for a named generation | Rebuildable from accepted revisions and manifests; never the sole copy of review history |
+| Local model cache | Approved weights, tokenizer and runtime configuration | Reacquire from a verified internal package or retain offline; record exact checksums and license |
+
+An **outbox** is a table of committed work to perform after a database transaction. For example, accepting a claim records the review and a projection event together in PostgreSQL. A worker later applies that event to Neo4j and records completion. This avoids pretending that writes to two different databases form a single transaction.
+
+### 4.3 Build and publication boundaries
+
+Each graph build has a `generation_id`. All its projected entities, claims, and evidence links belong to that generation. A worker creates the new generation, checks record counts, referential integrity, evidence availability, ontology compatibility, and a manifest digest, then writes a completion marker. Only then may a PostgreSQL transaction change `active_generation_id`.
+
+A query first reads the active generation and pins it for the whole answer. It must match a completed graph marker and manifest. If either is absent, the API returns “knowledge revision unavailable” instead of mixing generations. Existing readers may finish against the prior generation, subject to a final authorization and document-withdrawal check. Retain the previous validated generation for rollback; collect older ones only under retention policy.
+
+This is application-level consistency, not a distributed transaction. A crash after Neo4j completion but before pointer activation leaves an unused generation that can be reconciled safely. A crash after activation is handled by checking the persisted marker. Direct database writes outside the projection worker are prohibited operationally.
+
+## 5. Document-to-graph processing
+
+### 5.1 Stages, inputs, and outputs
+
+| Stage | Input | Processing | Output / failure behavior |
+|---|---|---|---|
+| 1. Register | Uploaded PDF or approved GDR adapter result | Validate file signature, size/page limits, permission metadata, duplicate hash; assign a version | Immutable source record; encrypted/corrupt/unsupported files quarantined with a reason |
+| 2. Ingest | Source version + parser settings | Local Docling conversion, filtering, chunking, table serialization, page coverage checks | Versioned chunk bundle; missing or scanned pages explicitly recorded |
+| 3. Prepare | Bundle + active ontology/reference versions | Assemble bounded context, preserve table headers and row identity, calculate token budget | Extraction requests with complete run fingerprints |
+| 4. Extract | Request + local model | Produce typed entity mentions and claim candidates with cited spans | Candidate records; malformed output receives at most one repair attempt, then a failure record |
+| 5. Validate | Candidates + ontology + source | Check types, relation direction, values/units, exact evidence spans, page/table references | Eligible candidates or specific rejection/review reasons |
+| 6. Resolve | Entity mentions + reference lists | Exact IDs first, scoped aliases second, similarity suggestions last | Canonical-entity links or ambiguity tasks |
+| 7. Review | Eligible candidates and source view | Accept, reject, correct, resolve conflicts and merges | Immutable review decisions and accepted claim revisions |
+| 8. Project | Accepted revisions + manifests | Build and validate a new Neo4j generation | Completed graph marker; failure leaves active generation unchanged |
+| 9. Activate | Completed generation | Administrator checks summary and switches the publication pointer | Readers see the new accepted knowledge revision |
+
+### 5.2 Review lifecycle
+
+![Claim review and publication lifecycle](diagrams/03-claim-lifecycle.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+stateDiagram-v2
+    [*] --> Candidate
+    Candidate --> Invalid: Contract or evidence failure
+    Candidate --> PendingReview: Checks passed
+    PendingReview --> Rejected: Reviewer decision
+    PendingReview --> Accepted: Reviewer decision
+    PendingReview --> Candidate: Corrected new revision
+    Accepted --> Published: Validated generation activated
+    Published --> Superseded: Replacement approved and activated
+    Published --> Withdrawn: Source withdrawn or claim invalidated
+    Invalid --> [*]
+    Rejected --> [*]
+    Superseded --> [*]
+    Withdrawn --> [*]
+```
+
+</details>
+
+**Figure 3 — Claim lifecycle.** The diagram shows logical states. Corrections create revisions and audit events; they do not erase the original candidate. An accepted claim is not visible to readers until included in an activated generation. Withdrawal blocks serving immediately, even before the graph projection is rebuilt.
+
+### 5.3 Extraction controls
+
+The model receives only the ontology subset, source context, output schema, and task instructions needed for that request. PDF text is untrusted input and may contain instructions; it cannot select tools, change the schema, execute a query, or grant access. The model has no filesystem or network tools.
+
+For quantities, retain the literal source value, source unit, normalized value/unit if conversion is defined, measurement kind, and relevant conditions. “Measured depth” and “true vertical depth” are different properties. Preserve negation, uncertainty, date/interval, and whether a statement is a plan, observation, or estimate. Missing values remain missing; the model must not complete them from background knowledge.
+
+Current chunks use a character budget. Model requests require a **token** budget calculated with the selected tokenizer. Reserve space for instructions, ontology, and output. A table containing one oversized row must be handled explicitly, for example by a table-aware field extraction request, or marked unsupported. Never silently truncate a row or assume 1,500 characters equals 1,500 tokens.
+
+Use constrained JSON generation when supported, then validate independently. Valid JSON says nothing about factual correctness. Store model-reported confidence separately, if collected; do not interpret it as calibrated probability. For the first release, every published claim requires human approval. Confidence and evidence checks prioritize the queue rather than bypassing review.
+
+### 5.4 Entity resolution and conflicts
+
+Resolve an entity by a stable domain identifier when available. Otherwise compare a normalized name with approved aliases inside its type and scope, such as well name plus project. A string such as “AK-3” alone is not assumed globally unique. Fuzzy matches are suggestions for review. Store the original mention and evidence even after linking it to a canonical entity.
+
+Merges produce a revisioned mapping from old entity IDs to a canonical ID and preserve a reason, reviewer, and affected claims. Undoing a merge rebuilds the affected projection; it must not rely on recovering deleted graph nodes. Different values for the same subject/property/context remain distinct claims with their own evidence. Reviewers can mark them compatible, superseded, or unresolved. An answer surfaces unresolved conflicts instead of averaging values or selecting the last imported report.
+
+### 5.5 Jobs, retries, and reprocessing
+
+Workers lease queued PostgreSQL jobs with a short transaction, then do expensive work outside that transaction. The lease has a deadline, heartbeat, attempt count, and fencing token so an expired worker cannot commit after another worker takes ownership. Use bounded retries for transient errors, and terminal failure for invalid input. Limit active inference requests separately from CPU parsing jobs.
+
+Delivery is **at least once**: a crashed job may run again. Idempotent stage outputs make this safe. A stage key includes source hash, input-bundle hash, ontology/reference hashes, parser/model/tokenizer/runtime fingerprints, prompt/schema versions, and configuration. A deliberate new experiment has a new run ID; repeated execution of the same job uses its stage keys and does not duplicate accepted claims.
+
+For the first release, allow one graph build/publication per workspace at a time. Extraction can proceed independently, but publication takes a workspace lock and an optimistic revision check. Two reviewers editing the same candidate receive a conflict response instead of overwriting each other's decision.
+
+### 5.6 Worked example using an existing passage
+
+The committed AK-3 report chunk `gdr882_ak3_eowr#c0002`, on physical page 2 under “Executive Summary,” begins:
+
+> Akutan Well AK-3 well was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days, including rig-up and rig-down time.
+
+The passage is available in the [committed canonical document](../data/processed/documents/gdr882_ak3_eowr.txt). This text exists today; the processing below describes the proposed next stages.
+
+1. The application pins that chunk's ingestion bundle and the report's source SHA256. It constructs an evidence record for the exact sentence and its physical page/region.
+2. Extraction proposes separate candidates for **actual vertical depth = 1,955 ft**, **planned vertical depth = 1,700 ft**, **actual duration = 27 days**, and **planned duration = 30 days**. The scope of “including rig-up and rig-down time” needs careful review; it must not be silently applied to the wrong duration.
+3. The ontology must define the relevant depth/duration properties and actual/planned qualifiers. A rule for measured depth alone is insufficient: the source specifically says vertical depth. AK-3 is resolved within the Akutan project.
+4. A reviewer checks the original page, approves supported claims, and leaves any unclear qualifier unresolved. The accepted claim revisions enter the next validated graph generation.
+5. “What vertical depth did AK-3 reach?” maps to a property lookup with the **actual** qualifier. A deterministic answer returns “1,955 ft,” the report name, physical page 2, and the evidence link. It does not substitute the planned 1,700 ft or describe the value as measured depth.
+
+This example illustrates why the graph needs context and claim-level evidence: extracting all four numbers correctly is not enough if the system assigns them the wrong meanings.
+
+## 6. Ontology and domain adaptation
+
+An ontology is the project's explicit vocabulary: the entity types, relation types, properties, and rules that the extractor is allowed to use. A reference list contains known instances and aliases. Both are versioned inputs. The first release uses a small YAML/JSON application schema; it does not claim compatibility with OWL or implement automatic logical inference.
+
+The following is an **illustrative future configuration**, not a file accepted by the current CLI:
+
+```yaml
+ontology_id: geothermal_reports
+version: 0.1.0
+entity_types:
+  Well:
+    identity_fields: [project_id, well_name]
+  Report:
+    identity_fields: [document_version_id]
+relation_types:
+  DESCRIBES:
+    subject_type: Report
+    object_type: Well
+    evidence_required: true
+quantity_types:
+  measured_depth:
+    subject_type: Well
+    canonical_unit: m
+    permitted_source_units: [m, ft]
+    context_required: [measurement_kind]
+    evidence_required: true
+```
+
+Validation must reject duplicate names, references to unknown types, incompatible endpoint types, unsupported units, missing evidence requirements, unsafe YAML tags, and excessively large/deep files. Conversion factors belong to reviewed deterministic code/configuration, not to model-generated instructions. Define whether quantities use exact decimal strings and how display rounding works before the first extraction milestone.
+
+Ontology changes have three categories: additive changes, rule changes requiring revalidation, and breaking changes requiring re-extraction/migration. Each run pins one immutable ontology version. Activating a new ontology does not relabel old graph data in place. Maintain explicit mappings where renamed types are equivalent and keep old runs readable.
+
+To support another domain, supply a new ontology, reference list, examples, and evaluation set; verify parser coverage on its documents; then repeat the extraction and QA gates. Generalizing metadata and upload support is necessary but is not evidence of domain-independent accuracy.
+
+## 7. Data model and contracts
+
+### 7.1 Source-to-answer model
+
+Represent a factual assertion as a **Claim** rather than storing only a bare edge. A claim can carry a value, conditions, review status, and several evidence references. This makes disagreement and provenance explicit. Convenience graph edges may be materialized for queries, but must reference their originating claim IDs.
+
+![Logical data model](diagrams/04-data-model.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+erDiagram
+    direction LR
+    DOCUMENT_VERSION ||--o{ CHUNK : contains
+    INGESTION_RUN ||--o{ CHUNK : emits
+    CHUNK ||--o{ EVIDENCE : anchors
+    ENTITY ||--o{ CLAIM : subject_of
+    ENTITY o|--o{ CLAIM : optional_object_of
+    CLAIM }o--|{ EVIDENCE : supported_by
+    ONTOLOGY_VERSION ||--o{ CLAIM : constrains
+    EXTRACTION_RUN ||--o{ CLAIM : proposes
+    CLAIM ||--o{ REVIEW_DECISION : reviewed_by
+    GRAPH_GENERATION }o--o{ CLAIM : includes
+    ANSWER }o--o{ EVIDENCE : cites
+```
+
+</details>
+
+**Figure 4 — Logical model.** A relation claim has a subject and object entity. A quantity claim has a subject and a typed literal instead. Many-to-many links are implemented using association records, including claim-evidence, generation-claim, and answer-citation records. System records such as jobs and ontology definitions have configuration/audit provenance; they are not presented as facts asserted by a PDF.
+
+### 7.2 Existing artifact contract
+
+| Artifact | Existing semantics |
+|---|---|
+| `gdr_chunks.json` | Ordered array: document ID, physical page, sequential chunk ID, type, text, nearest section |
+| `gdr_chunks_full.jsonl` | Matching ordered records with content ID, canonical offsets, page regions, section path, table references, and available source spans |
+| `gdr_tables.jsonl` | Shared table structures with row/column spans, headers, cell text, and row-oriented text |
+| `documents/<doc_id>.json` | Source metadata, parser/configuration information, source SHA256, physical page geometry |
+| `documents/<doc_id>.txt` | Canonical emitted text, constructed by joining chunk texts with two newlines |
+| `SHA256SUMS` | Digests of the bundle's files; excludes itself |
+
+Canonical text is a derived representation, not a verbatim transcription of every PDF element. `char_start` and `char_end` are half-open Python Unicode character indexes into this text. Source-span indexes address emitted chunk text and parser source items. Regions use PDF points and a top-left origin; physical pages start at 1. A multi-page chunk's single `page` field is not a complete citation: inspect its regions/source spans.
+
+A browser uses UTF-16 string indexes, which differ from Python character indexes for some characters. The API must send an exact evidence quote and a tested offset mapping or handle substring extraction server-side. The PDF viewer must transform coordinates for scale and rotation; a stored box is not already a browser pixel rectangle.
+
+### 7.3 Proposed versioned application envelope
+
+Preserve the existing v1 bundles as inputs. Add a v2 envelope and adapters rather than editing published records in place. Domain-specific metadata moves under a namespaced `source_metadata` object; source type can be `gdr` or `local_upload`. A local upload records its uploader and permission basis instead of fabricating a public URL or license.
+
+| Record | Required fields and invariants |
+|---|---|
+| Document version | `schema_version`, `workspace_id`, `document_id`, `document_version_id`, SHA256, size, media type, storage key, source metadata, lifecycle status; source bytes immutable |
+| Run manifest | Run ID, stage/input hashes, code revision, dependency/runtime/model fingerprints, ontology/prompt/reference versions, resolved config, timestamps, status, output hashes, warning/error counts |
+| Evidence | Evidence ID, document version, ingestion run, chunk ID, bundle hash, quote, local start/end, physical page(s), regions, optional table/row/cell context; quote must match stored text |
+| Entity | Stable ID, type, canonical display name, scoped identifiers, aliases, reference-list version, merge revision/history; name is not identity |
+| Claim revision | ID/revision, subject, predicate, object entity **or** typed literal, original/normalized units, context/qualifiers, evidence IDs, extraction run, ontology version, review state/reason |
+| Review decision | Actor, time, candidate/claim revision, expected previous revision, action, reason, replacement values/evidence if any; append-only history |
+| Graph generation | Generation ID, included claim revisions, ontology version, manifest digest, counts, completion marker, activation and retirement history |
+| Answer | Request ID, user/workspace, generation, supported intent, query-template version, structured result, sentence-to-claim/evidence citations, limitations, model fingerprint if used |
+
+Use opaque application IDs for entities, documents, and events. Derive evidence identity from the immutable bundle/run/chunk/span combination, with a full hash if content-addressed. Never use the existing 16-hex content ID as a database uniqueness key for evidence. Cross-version matching is an explicit comparison process, with duplicates and changed spans handled conservatively.
+
+### 7.4 Evidence and approval rules
+
+Every published claim has at least one valid evidence reference and a review decision. Every source-derived entity name/alias and materialized relation is explainable through accepted claims or a versioned reference-list record. A citation must resolve to the exact PDF version, not whichever file currently has the same name.
+
+Automatic evidence checks establish that the quoted text exists at the stated location. They do not prove that it entails the claim. Reviewer and benchmark checks assess that semantic relationship. Table claims need header and row context as well as the value; citing an unrelated number on the same page is a failure.
+
+### 7.5 Proposed HTTP contract
+
+These are design endpoints, not current commands. Generate the formal OpenAPI contract during the application milestone.
+
+| Endpoint | Main behavior |
+|---|---|
+| `POST /v1/documents` | Authorized multipart upload with metadata and idempotency key; returns document version and queued job |
+| `POST /v1/documents/{id}/runs` | Starts processing against immutable config/ontology versions; returns `202` and job ID |
+| `GET /v1/jobs/{id}` | Stage, progress counts, warnings, retry/failure information; no raw sensitive stack traces |
+| `GET /v1/review-items` | Paginated, filtered candidates with evidence and expected revision |
+| `POST /v1/review-items/{id}/decisions` | Authorized accept/reject/correct action; stale expected revision returns `409` |
+| `POST /v1/publications` | Administrator requests validated generation activation; idempotent, serialized per workspace |
+| `GET /v1/entities/{id}` | Accepted facts and evidence from the selected completed generation |
+| `POST /v1/questions` | Validates supported intent and scope; returns answer/clarification/abstention with citations |
+| `GET /v1/evidence/{id}` | Authorized quote, page/geometry, and PDF-view reference; authorization checked again on PDF access |
+| `POST /v1/documents/{id}/retire` | Immediately suppresses source and derived claims, queues cleanup, records audit |
+
+Use a consistent error envelope: `code`, user-readable `message`, `request_id`, and safe field errors. Examples include `UNSUPPORTED_DOCUMENT`, `MODEL_UNAVAILABLE`, `REVISION_CONFLICT`, and `EVIDENCE_UNAVAILABLE`. Apply request-size limits, pagination, timeouts, CSRF/session protection as appropriate, and role checks on the server.
+
+## 8. Question answering
+
+### 8.1 Supported capabilities
+
+Begin with approximately 10 reviewed intents: find an entity by name/alias; list reports about it; retrieve a supported property; list related entities for an allowed relation; compare the same quantity across entities; show conflicting claims; identify which report supports a fact; filter by approved date/project fields; show knowledge added in a publication; and report coverage for a document/entity.
+
+Each intent has a typed parameter schema and a developer-written Cypher template. Template definitions include permitted traversals, aggregation semantics, result limits, and evidence collection. User values are bound parameters; labels, properties, and query structure come from the trusted template catalogue. Unknown intents are rejected or clarified. This still translates natural-language questions into graph queries, but gives the first release a testable boundary.
+
+### 8.2 Answer sequence
+
+![Question-answering sequence](diagrams/05-question-answering.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+sequenceDiagram
+    actor Reader
+    participant API as Application
+    participant Model as Local model
+    participant Meta as PostgreSQL
+    participant Graph as Neo4j
+    participant Evidence as Evidence service
+    Reader->>API: Question
+    API->>Meta: Authenticate, authorize, pin active generation
+    API->>Model: Classify supported intent and typed parameters
+    Model-->>API: Proposed structured query plan
+    API->>API: Validate plan, resolve entities, apply limits
+    alt Unknown intent or ambiguous entity
+        API-->>Reader: Abstain or request clarification
+    else Valid plan
+        API->>Graph: Parameterized template for pinned generation
+        Graph-->>API: Accepted claims and evidence IDs
+        API->>Evidence: Resolve evidence, check withdrawal and access
+        Evidence-->>API: Verified quotes and PDF references
+        API->>API: Build factual response and citation mapping
+        opt Grounded wording enabled
+            API->>Model: Format bounded evidence-backed results
+            Model-->>API: Proposed answer with claim references
+            API->>API: Validate references and values, fall back if invalid
+        end
+        API-->>Reader: Answer, citations, revision, and limitations
+    end
+```
+
+</details>
+
+**Figure 5 — Target QA flow.** The model proposes an intent and optional wording. The application controls authorization, query construction, evidence resolution, and the final result.
+
+### 8.3 Answer rules and failure modes
+
+The default response uses deterministic templates or structured tables, especially for numbers, comparisons, and conflicts. Optional generated wording cannot introduce new values or claim IDs; validate its structured fields and citations against the query result. Where semantic correctness cannot be checked reliably, fall back to the deterministic response. An entailment model alone is not a release guarantee.
+
+If no accepted facts match, distinguish “no matching accepted knowledge” from a factual claim that something does not exist. An unavailable database or model is a service error, not an empty search result. Show the publication revision and data coverage. If the model is unavailable, structured search and graph browsing should still work.
+
+Proposed bounds are a two-hop traversal catalogue, 100 returned rows by default, bounded server-side aggregation, a 5-second graph-query timeout, and a maximum of one active generative request on the 16 GB GPU baseline. Exact settings are benchmarked. Caching, if introduced, keys on workspace/access policy, active generation, intent/parameters, and model/template versions; retirement invalidates affected cached answers.
+
+## 9. Technology choices and alternatives
+
+Everything marked proposed is an architectural recommendation. Select exact future versions, licenses, and image digests during implementation and pin them in a separate deployment lock. Do not silently add the entire future stack to the current ingestion lock.
+
+| Technology | Status and role | Why it fits / limitation |
+|---|---|---|
+| Python 3.12 | Existing pipeline; proposed application/worker language | Reuses ingestion and evaluation code; keeps three students in one backend language |
+| Docling + pypdf | Existing parser and independent PDF-text/structure checks | Already evaluated locally; known difficult forms/tables remain quality risks |
+| JSON/JSONL + JSON Schema; YAML for authored ontology | Existing artifact formats; proposed versioned contracts | Inspectable and easy to diff; schema validation must be supplemented by semantic checks |
+| FastAPI + Pydantic | Proposed API and typed request/response layer | Fits the Python codebase and explicit contracts; heavy work runs in a worker process |
+| PostgreSQL | Proposed metadata, accepted-claim, audit, and job store | Transactions suit review decisions and workflow state; operationally one additional database |
+| Neo4j Community initially | Proposed accepted-knowledge graph projection | Cypher supports explicit relation queries; application validators provide checks unavailable in the selected edition |
+| llama.cpp server | Proposed local inference baseline | Supports local model serving and schema-constrained output; actual model quality and throughput require a benchmark |
+| Small instruction-tuned open-weight model | Model family/checkpoint undecided | Benchmark a 7–8B model in 4-bit quantization first; validate license, tokenizer, schema compliance, and numerical accuracy |
+| React + TypeScript | Proposed browser UI | Reusable document/review/answer screens; use a small UI surface and avoid a complex graph canvas in the first milestone |
+| [PDF.js](https://mozilla.github.io/pdf.js/) or institution-approved equivalent | Proposed PDF evidence viewer | Page/rotation/geometry alignment must be tested against the stored provenance contract |
+| Docker Compose on a supported Linux host | Proposed service packaging | A small set of containers, persistent volumes, health checks, and reproducible configuration; no clustering assumption |
+| Institutional OIDC identity provider | Proposed login | Avoids maintaining student-built password storage; provider and group/role mapping must be confirmed |
+| Existing reverse proxy + TLS; structured logs and health metrics | Proposed operational layer | Reuse school infrastructure where available; expose only the application endpoint |
+
+The worker decision follows FastAPI's distinction between small in-process background work and heavy computation. A PostgreSQL job table is this project's proposed small-team implementation, not a built-in FastAPI queue. PostgreSQL explicitly documents `SKIP LOCKED` for queue-like consumers; leases, fencing, retries, fairness, and monitoring still need implementation. [FastAPI background work](https://fastapi.tiangolo.com/tutorial/background-tasks/), [PostgreSQL locking clauses](https://www.postgresql.org/docs/current/sql-select.html).
+
+Neo4j's current documentation identifies existence, type, and key constraints as Enterprise features. The initial design therefore validates these rules in the application and uses available uniqueness constraints; it does not assume paid capabilities or fine-grained database authorization. Restrict database network access and keep all user access behind the application. Reassess licensing and operational needs before deployment. [Neo4j constraints](https://neo4j.com/docs/cypher-manual/current/schema/constraints/).
+
+The llama.cpp server documents local serving and JSON-schema constraints. That supports testing it as the baseline runtime, but does not establish which model will meet the project quality gates. [llama.cpp server](https://github.com/ggml-org/llama.cpp/tree/master/tools/server). React and Compose provide the proposed UI and service-packaging primitives. [React documentation](https://react.dev/learn), [Compose application model](https://docs.docker.com/compose/intro/compose-application-model/).
+
+**Alternatives and triggers.** Use a higher-throughput runtime such as vLLM only if measured concurrency justifies it and the selected GPU/runtime combination is supported. Add a dedicated queue only when job volume or scheduling needs outgrow the PostgreSQL design. Add embeddings/vector retrieval only if the approved question set cannot be served adequately by graph templates and lexical entity search; evaluate a passage-search baseline before claiming graph benefit. RDF/SHACL becomes relevant if formal semantic interoperability is a requirement. Kubernetes, streaming infrastructure, fine-tuning, and multi-GPU inference are outside the first-release baseline.
+
+## 10. Security and data boundaries
+
+### 10.1 Deployment and cloud policy
+
+The production content path is local to an institutionally approved host/network. Prefetch and verify packages and model files through a controlled acquisition process. Then test the application with outbound internet access blocked, including DNS and telemetry paths. `HF_HUB_OFFLINE` and application settings are helpful but are not substitutes for a network policy.
+
+Cloud credits or Colab can support experiments on the existing public GDR corpus or synthetic fixtures. Private team PDFs, extracts, prompts, graph facts, backups, and logs must stay in the approved boundary unless the data owner and institution explicitly authorize an alternative deployment. This separation is a project design constraint; public-data experiments do not demonstrate a secure private-data deployment.
+
+### 10.2 Threats and required controls
+
+| Threat / failure | First-release control | Verification |
+|---|---|---|
+| Malicious or oversized PDF | Signature/size/page limits; parser subprocess/container with resource/time limits and restricted mounts/network; quarantine failure | Corrupt, encrypted, oversized, and slow-file fixtures terminate safely |
+| Prompt injection inside a report | Documents treated as data; model has no tools; constrained outputs independently validated | Adversarial passages cannot change queries, permissions, or publication state |
+| Generated query injection | Approved templates, bound parameters, no arbitrary model query execution | Malicious identifiers/inputs cannot add clauses, execute procedures, or bypass generation scope |
+| Unauthorized viewing or editing | OIDC, server-side role checks on every route, private database/model ports, secure sessions | Reader cannot approve/publish; anonymous access denied; PDF/evidence routes checked directly |
+| Sensitive data in diagnostics | Content-free operational logs by default; restricted diagnostic artifacts with retention | Logs/errors contain IDs and safe reasons, not document text, tokens, or credentials |
+| Tampered source/model/package | Hash verification, approved artifact inventory, pinned versions, controlled import | Mismatches prevent execution; unreviewed remote model code is not enabled |
+| Lost or partial publication | Immutable generations, completeness checks, atomic pointer activation, outbox replay | Injected crashes cannot expose a partial graph or lose review decisions |
+| Resource exhaustion | Upload quotas, job queue, per-user rate limits, token/result/time budgets, single GPU admission queue | Load tests stay inside host memory and return explicit busy/retry responses |
+| Improper deletion | Immediate retirement, source-to-derived dependency tracking, cache invalidation, scheduled purge | Withdrawn source contributes no answer; retention status and restore suppression are tested |
+
+Use separate service identities for API reads, worker writes, and backups where the chosen software edition allows it. Otherwise compensate with private interfaces, isolated processes/configuration, trusted templates, and tightly restricted credentials; document the residual risk. Secrets come from operator-managed files or an existing secret service, never from Git or browser JavaScript. Use encrypted disks/backups and TLS on user-facing traffic under school policy.
+
+### 10.3 Retention and audit
+
+Proposed defaults for a small internal deployment are 30 days for failed-run diagnostics, 30 days for ordinary application logs, 90 days for rolling backups, and retention of accepted-run manifests/evidence while their knowledge is active. Audit retention is set with the institution; do not assume logs must contain document text. These durations are planning placeholders, not legal advice or agreed policy.
+
+Retirement removes knowledge from serving immediately. Hard purge removes the source and derived artifacts after the approved retention period; a minimal tombstone can retain IDs, hashes, and reasons without keeping content. Backups expire on schedule. A restore reapplies retirement/purge tombstones before the service opens to users, so restoration cannot resurrect withdrawn content.
+
+## 11. Deployment, capacity, and operations
+
+### 11.1 Hardware baseline
+
+The reported options are approximately an RTX 4080 SUPER or an A100. Verify the actual device, VRAM, host RAM, free disk, OS, driver, access schedule, and whether the GPU is shared before choosing a model. The standard RTX 4080 SUPER has 16 GB VRAM; A100 capacity varies by variant. Neither the presence of an A100 nor a dedicated allocation is assumed.
+
+| Profile | Reasonable starting allocation | Purpose and limitation |
+|---|---|---|
+| Student development | Existing laptop/desktop, ideally 16–32 GB RAM and 50–100 GB free SSD | Unit tests, fixture processing, UI/API, small data; use fake model responses for most tests |
+| Production baseline on research host | RTX 4080 SUPER-class 16 GB GPU, 8+ CPU cores, 32 GB RAM minimum / 64 GB preferred, 250 GB free SSD initially | One local 7–8B quantized model, one active inference request, modest ingestion queue; benchmark before admitting users |
+| Optional A100 allocation | Actual available A100 variant; same application architecture | Larger context/model or faster experiments only after measurement; first release must still pass on the smaller agreed baseline |
+| Backup location | Separate institutional disk/server with access controls and enough space for the chosen retention | A second directory on the application disk is not an independent backup |
+
+For a rough model-weight estimate, 8 billion parameters at 4 bits require about 4 GB before quantization metadata, runtime buffers, and the context/key-value cache. Actual VRAM use is model- and runtime-dependent. Start with a 4K-token total context budget and one request, then benchmark 8K; the limit includes instructions, source context, and generated output. Do not infer that all remaining GPU memory is available for concurrent users. Load only one baseline model at a time, and schedule extraction around interactive use.
+
+The hardware facts above should be checked against [NVIDIA's RTX 4080 family specifications](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4080-family/) and [A100 specifications](https://www.nvidia.com/en-us/data-center/a100-gpu/). The RAM/disk allocations and model sizing are this project's estimates, not vendor performance guarantees.
+
+### 11.2 Workload and service targets
+
+The proposed release envelope is **10–20 registered users, up to 5 concurrent browser users, at most 2 simultaneous answer requests admitted to the queue, 100 documents, and 5,000 total pages**, with an initial upload limit of 50 MB and 300 pages per file. These are scope limits to test, not measured capacity. Larger reports require an explicit operator override or a later increase after a representative benchmark.
+
+Provisional targets on the agreed reference host are: normal metadata pages within 2 seconds at the 95th percentile; graph lookup within 5 seconds; and a warm end-to-end answer within 30 seconds at the 95th percentile with two concurrent requests. Queue waiting is included in that answer target. Set a 60-second overall request deadline and expose “busy” instead of allowing an unbounded queue. Cold model startup is reported separately. If targets fail, reduce context/concurrency or use deterministic answers before increasing infrastructure.
+
+Plan for ingestion as asynchronous batch work. Measure pages/minute separately for text, complex tables, and rejected scans. Do not use the existing once-measured parser timings as a production SLA. Track model requests/second, tokens/second, peak VRAM/RAM, accepted claims per page, review minutes per document, and graph-build time.
+
+Storage planning uses measured pilot sizes: `original PDFs + parser caches + retained run bundles + database snapshots + model files + backups`. As an initial allowance, reserve 5–10 times source-PDF size for working artifacts, plus 20–50 GB for model/runtime assets, then measure and revise. Keep at least 20% disk free; alert earlier. The multiplier is an estimate and can be exceeded by images/caches. Do not purchase hardware on this estimate alone.
+
+### 11.3 Environments and deployment
+
+![Deployment and recovery flow](diagrams/06-deployment-recovery.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+flowchart TB
+    subgraph BUILD["Build and validate"]
+        direction LR
+        DEV["Student development<br/>Fixtures and public data"] --> CI["Local / CI checks<br/>Unit and integration"]
+        CI --> STAGE["School-host staging<br/>Runtime and recovery tests"]
+    end
+    subgraph OPERATE["Accept and operate"]
+        direction LR
+        GATE["Release gate<br/>Quality and operator acceptance"] --> PROD["Internal production<br/>Pinned service and volumes"]
+        PROD --> BACK["Independent<br/>institutional backup"]
+    end
+    BUILD --> OPERATE
+    OPERATE -. "From independent backup" .-> RESTORE["Isolated restore drill<br/>Verify knowledge, evidence, and withdrawals"]
+    CLOUD["Optional cloud / Colab<br/>Public-data experiments"] -. "Reviewed experiment results" .-> BUILD
+```
+
+</details>
+
+**Figure 6 — Delivery and recovery.** Staging can reuse the host at separate times if resources are limited, but it uses different volumes and credentials. Never run destructive integration tests against production stores.
+
+Compose services are the reverse proxy/UI, application, worker, PostgreSQL, Neo4j, and model server. Keep database/model ports private. Persist data outside disposable containers. Pin images and verify GPU passthrough on the selected Linux host; current ingestion reproducibility is documented for a Windows CPU environment, so Linux output equivalence must be evaluated rather than assumed.
+
+### 11.4 Operational runbooks required before launch
+
+| Runbook | Required content / acceptance |
+|---|---|
+| Install and start | Verified offline artifacts, secrets, migrations, GPU/runtime checks, health checks, first admin, test document |
+| Backup and restore | PostgreSQL backup plus matching immutable artifacts/manifests; restore in isolation, rebuild Neo4j, verify citations and tombstones |
+| Failed jobs / model outage | Diagnose safe reason codes, requeue expired leases, pause inference, retain graph browsing, escalate to named operator |
+| Release and rollback | Versioned images/config, migration compatibility, completed generation checks, previous application and graph revision |
+| Disk/GPU pressure | Alert thresholds, queue limits, stop new ingestion, safe cache/old-generation cleanup, never delete active evidence |
+| Source withdrawal / incident | Immediate serving block, audit, credential containment where needed, dependency cleanup, communication owner |
+| Semester handover | Host ownership, maintenance access, backup location, support channel, renewal/license checks, final restore demonstration |
+
+Proposed recovery objectives are **RPO 24 hours** (at most one day's accepted changes lost under the backup schedule) and **RTO one working day** during agreed support hours. They are targets, not guarantees; measure a full restore. Back up daily and before upgrades, check backup completion automatically, and perform at least one restore drill before release and each semester. Preserve a consistent PostgreSQL snapshot and all artifact hashes it references; files are immutable and must not be purged during backup capture. Neo4j may be backed up for speed, but must also be reconstructible.
+
+Operational metrics include queue age, job failures/retries, model availability, GPU/host memory, disk space, projection lag, active generation, backup age, evidence-resolution errors, and QA abstentions. Assign actionable alerts to an operator. There is no meaningful production service without someone responsible after the student project ends.
+
+## 12. Quality and acceptance
+
+### 12.1 Separate the quality layers
+
+| Layer | What it proves | What it does not prove |
+|---|---|---|
+| Artifact/hash validation | Files match their manifest and schema; offsets/links resolve | Every PDF fact was captured correctly |
+| Ingestion evaluation | Coverage and table/text fidelity on evaluated examples | Correct entities, relations, units, or answers |
+| Extraction/resolution evaluation | Typed facts and identity links match human labels | Every generated answer is correct |
+| QA/user evaluation | Supported questions produce correct, supported results | Arbitrary questions or new domains will work |
+| Operational/security tests | Specific access, failure, recovery, and offline controls work | Universal security or high availability |
+
+### 12.2 Proposed release gates
+
+Freeze the evaluation split before tuning. Keep a development set for prompts/thresholds and a held-out test set for acceptance. Split by document, deduplicate overlapping reports/appendices, and disclose any overlap with parser-selection data. Have a second person independently label a subset and adjudicate disagreements. Use per-type and per-document results alongside aggregate scores; missing classes cannot quietly disappear from the denominator.
+
+| Gate | Proposed minimum evidence |
+|---|---|
+| G1: Contracts and provenance | 100% valid published schemas, resolvable evidence, exact quote/offset checks, and valid source versions; no unknown schema version accepted |
+| G2: Ingestion suitability | No silently missing substantive pages; known OCR/form/table limitations surfaced; published scope excludes unsupported pages or includes reviewed corrections |
+| G3: Extraction utility | At least 200 held-out labelled claims across at least 10 documents; candidate precision ≥90% and recall ≥75%, reported by claim type; every production claim still reviewed |
+| G4: Identity safety | At least 50 labelled alias/identity cases including ambiguity; no incorrect automatic merge in the held-out set; fuzzy/uncertain cases require review |
+| G5: QA correctness | At least 60 held-out questions covering supported intents, conflicts, unsupported/unanswerable cases; ≥90% correct supported answers; ≥95% correct abstention/clarification on designated negative cases |
+| G6: Answer evidence | 100% of factual answer items have resolvable citations; ≥95% human-judged citation support; zero fabricated numeric values in the release test set |
+| G7: Access and failure safety | All role/route tests pass; prompt-injection/query-injection cases cannot mutate or bypass access; crash/retry/withdrawal tests pass |
+| G8: Operations | Measured load meets the agreed envelope, internet-blocked workflow succeeds, independent backup restores within agreed objectives, named operator accepts handover |
+| G9: User value | At least 3 intended users complete the pilot tasks; completion/time targets assessed against the PDF baseline and failures recorded |
+
+These sample sizes and thresholds are proposed feasibility gates for a student project. Report denominators and uncertainty; zero errors in a finite sample is not a zero-error guarantee. If a gate is infeasible or missed, narrow the supported scope and obtain a recorded product decision; do not relabel the target as achieved. Sensitive-data launch remains blocked by failed access, evidence, or recovery gates.
+
+For extraction, a true positive requires matching subject, predicate, object/value, unit/context where applicable, and supporting evidence under a written matching rubric. Precision is correct predictions divided by all predictions; recall is recovered reference claims divided by all reference claims. Evaluate review effort separately: a model with good precision but excessive candidate volume may be impractical.
+
+### 12.3 Documentation and implementation traceability
+
+| Requirement group | Design coverage | Delivery milestone | Verification |
+|---|---|---|---|
+| FR-01/02/13 | Sections 3, 5, 7 | M1 | G1/G2; source/version and unsupported-page fixtures |
+| FR-03/04/05 | Sections 5–7 | M2/M3 | G3/G4; frozen ontology and claim/identity benchmark |
+| FR-06/07/09 | Sections 4, 5, 7 | M3/M4 | G1/G7; review conflicts, generation failure, rollback |
+| FR-08 | Section 8 | M5 | G5/G6; intent catalogue and evidence-linked answer set |
+| FR-10/11 | Sections 7, 10 | M1/M4/M6 | G7; direct endpoint authorization and deletion propagation |
+| FR-12 | Section 11 | M6/M7 | G8/G9; restore, load, offline, pilot, handover |
+| FR-14 | Sections 1, 6, 9 | Later | New evaluation and scope approval before production use |
+
+The existing ingestion documents remain the detailed reference for implemented parser behavior. This document provides a complete design baseline, but a baseline document does not mean implementation, operational validation, or stakeholder acceptance is complete.
+
+## 13. Decisions, assumptions, and change control
+
+### 13.1 Decision register
+
+| ID | Decision / assumption | Status | Revisit trigger |
+|---|---|---|---|
+| D-01 | Target an internal production service for one team | User confirmed | Different operating audience or availability requirements |
+| D-02 | Three student developers; school hardware and limited cloud credits | User confirmed | Staffing/access changes |
+| D-03 | Size for a 4080 SUPER-class GPU; A100 optional | User supplied options; baseline proposed | Actual hardware inventory and benchmark |
+| D-04 | Single shared document-access boundary | Proposed scope | Any per-document restrictions or multiple organizations |
+| D-05 | Modular Python application, separate worker, no distributed platform | Proposed | Measured throughput or isolation requirements |
+| D-06 | PostgreSQL authoritative workflow; Neo4j derived graph | Proposed | Team cannot operate two stores or graph value fails evaluation |
+| D-07 | Human approval for all published claims | Proposed release policy | Calibrated evaluation and explicit approval for automation |
+| D-08 | Template-based graph queries and deterministic factual answers | Proposed | Supported-intent catalogue demonstrably insufficient |
+| D-09 | Generalize metadata/upload through versioned adapters | Required to achieve stated portability | Approved replacement ingestion interface |
+| D-10 | Private content stays inside the approved deployment | Derived from project purpose; policy confirmation needed | Institution authorizes another boundary |
+| D-11 | Exact model and future package versions selected by benchmark | Open | M2 benchmark complete |
+| D-12 | Operator, host allocation, IdP, budget ceiling, retention, support hours | Open | Must resolve before internal production launch |
+
+### 13.2 Change process
+
+The product owner prioritizes user-visible scope. A technical lead records architecture changes and migration effects. Each change states its reason, affected requirement IDs, effort/capacity impact, test changes, and rollout/rollback path. Rebaseline the development plan if scope or resources change. Keep decisions in this register and detailed follow-up records under `docs/decisions/` when implemented; that directory is a proposed convention.
+
+Update this document when interfaces, data ownership, deployment boundaries, or release gates change. Update the current-state section only after code and verification evidence exist. Keep implementation-specific metrics in the ingestion/evaluation documents to avoid competing sources of truth.
+
+### 13.3 Glossary
+
+| Term | Meaning here |
+|---|---|
+| Ontology | Allowed domain types, relations, properties, and validation rules |
+| Knowledge graph | Entities and their supported relationships/claims |
+| Provenance / evidence | The exact source version, passage, page, and processing history supporting a claim |
+| Canonical entity | The stable internal identity to which names and aliases are linked |
+| Claim | One asserted relation or value, with context, evidence, and review state |
+| Projection / generation | A rebuildable, versioned graph representation of accepted knowledge |
+| Idempotent | Repeating the same operation does not duplicate its effect |
+| RPO / RTO | Acceptable data-loss window / target time to restore service |
+| Abstention | An explicit statement that the system lacks enough supported information to answer |

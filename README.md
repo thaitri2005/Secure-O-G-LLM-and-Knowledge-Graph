@@ -1,8 +1,16 @@
 # Secure LLM and Knowledge Graph Platform
 
-An on-premise platform that turns technical documents into a knowledge graph and, later, answers questions over it. It is designed so that documents never leave the deployment: parsing runs locally today, and extraction and model inference are planned to use locally served models. The only network access is downloading pinned packages, models and public source PDFs.
+An on-premise platform under development that will turn technical documents into a reviewed knowledge graph and answer questions with source evidence. Parsing runs locally today; ontology-guided extraction, local model inference, graph storage, review, and question answering are planned. The target is an internal production service for a small team, built by three students using a school research machine.
 
-The platform is domain-agnostic. Users bring their own ontology, and every node and edge in the graph links back to the source passage it came from. The current development corpus is public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org); the same pipeline accepts other technical PDFs through a new source registry.
+The intended design supports user-supplied ontologies and evidence-linked facts. The current implementation uses public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org). Its downloader and metadata contracts still require GDR inputs; general local uploads and domain-neutral metadata need the adapters described in the project design. Package/model/source acquisition may use the network; enforcing and verifying the production network boundary remains planned work.
+
+## Project documentation
+
+Start with the **[Project description and system design](docs/PROJECT_DESIGN.md)** for the complete product and architecture reference. It covers scope, users, requirements, six architecture/workflow/data diagrams, technology choices, evidence contracts, extraction and review, question answering, security, deployment, hardware estimates, and acceptance criteria. Existing behavior and proposed components are explicitly distinguished.
+
+The **[Development and delivery plan](docs/DEVELOPMENT_PLAN.md)** maps that design to milestones, dependencies, responsibilities for three students, effort estimates, hardware/cloud cost controls, risks, release gates, and the first implementation backlog. Its 20-week example depends on an assumed 12 hours per student per week; it is not an agreed deadline.
+
+For the current subsystem, use [Ingestion details](docs/ingestion.md) and [Ingestion evaluation](docs/ingestion-evaluation.md). The [documentation audit](docs/DOCUMENTATION_AUDIT.md) records what was missing, what these documents now cover, and which checks were performed.
 
 ## Components
 
@@ -71,7 +79,7 @@ Chunk fields:
 | `text` | Nonempty extracted text or Markdown table |
 | `section` | Nearest preceding section heading, or `null` |
 
-`content_id` stays stable when a re-run renumbers chunks, so links to source passages survive re-processing. The four JSON schemas in `schemas/` describe these records. All text artifacts are UTF-8 with LF line endings, and geometry is rounded to 0.01 PDF point.
+`content_id` stays stable when document ID, type and whitespace-normalized text are unchanged, even if chunks are renumbered. Identical repeated passages can share it, and changed content produces a new ID; it is a comparison aid, not a unique evidence key. The planned evidence contract also pins the document version, immutable run/bundle and span. The four JSON schemas in `schemas/` describe the current records. All text artifacts are UTF-8 with LF line endings, and geometry is rounded to 0.01 PDF point.
 
 ## Experiments
 
