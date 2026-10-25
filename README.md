@@ -2,7 +2,7 @@
 
 An on-premise platform under development that will turn technical documents into a reviewed knowledge graph and answer questions with source evidence. Parsing runs locally today; ontology-guided extraction, local model inference, graph storage, review, and question answering are planned. The target is an internal production service for a small team, built by three students using a school research machine.
 
-The intended design supports user-supplied ontologies and evidence-linked facts. The current implementation uses public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org). Its downloader and metadata contracts still require GDR inputs; general local uploads and domain-neutral metadata need the adapters described in the project design. Package/model/source acquisition may use the network; enforcing and verifying the production network boundary remains planned work.
+The intended design supports user-supplied ontologies and evidence-linked facts. The reference corpus uses public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org). Local PDFs can also be registered with checksums and processed using an opt-in Vietnamese–English OCR profile; see [OCR ingestion](docs/ocr-ingestion.md). A web upload service and the complete domain-neutral application envelope remain planned. Package/model/source acquisition may use the network; enforcing and verifying the production network boundary remains planned work.
 
 ## Project documentation
 
@@ -41,13 +41,15 @@ Bash equivalent: `python3.12 -m venv .venv && .venv/bin/python -m pip install -r
 
 ## Reproduce the ingestion output
 
+For local PDFs and Vietnamese/mixed-language scans, see [OCR ingestion](docs/ocr-ingestion.md). The commands below reproduce the existing OCR-disabled GDR baseline.
+
 ```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well.json --config configs/ingestion/default.json
 ```
 
 This command downloads and verifies the three source PDFs, downloads the Docling models, converts and chunks the reports, and validates the result. Allow about ten minutes on a CPU for the first run. Because the main bundle is published, an unnamed run only succeeds if it reproduces the committed files byte for byte. If anything differs, it fails without changing them. Use a named run (below) to experiment.
 
-Optional model prefetch: `docling-tools models download layout tableformer`. Once the models and PDFs are cached, set `$env:HF_HUB_OFFLINE = "1"` (bash: `export HF_HUB_OFFLINE=1`) to run offline.
+Optional model prefetch: `docling-tools models download layout tableformer`. Once the models and PDFs are cached, set `$env:HF_HUB_OFFLINE = "1"` (bash: `export HF_HUB_OFFLINE=1`) to run offline. Also set `DOCLING_ARTIFACTS_PATH` to the directory printed by the model download command (on Windows, normally `$env:USERPROFILE/.cache/docling/models`); see the OCR guide for a complete example.
 
 Expected SHA256 of `data/processed/gdr_chunks.json`: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`. `data/processed/SHA256SUMS` lists the digest of every published main artifact.
 

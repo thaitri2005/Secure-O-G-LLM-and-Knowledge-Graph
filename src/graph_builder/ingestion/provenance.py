@@ -115,6 +115,21 @@ def write_document(root: Path, directory: Path, source: dict, chunks: list[dict]
                   config_hash=hashlib.sha256(json.dumps(options, sort_keys=True, separators=(",", ":")).encode()).hexdigest())
     if "original_filename" in source:
         record["original_filename"] = source["original_filename"]
+    if options.get("do_ocr"):
+        from .ocr_settings import ocr_settings
+        counts = defaultdict(int)
+        for chunk, extra in zip(chunks, metadata):
+            spans = extra.get("source_spans", [])
+            if spans:
+                for span in spans:
+                    counts[span["page"]] += len(chunk["text"][span["start"]:span["end"]].strip())
+            else:
+                counts[chunk["page"]] += len(chunk["text"].strip())
+        record["ocr"] = {"settings": ocr_settings(options), "pages": [
+            {"page": int(number), "attributed_characters": counts[int(number)],
+             "status": ("missing" if counts[int(number)] == 0 else "review")
+                       if page["needs_ocr"] and counts[int(number)] < 40 else "covered"}
+            for number, page in pages.items()]}
     write_json(directory / "documents" / f"{doc_id}.json", rounded_geometry(record))
     canonical, full = canonical_records(chunks, metadata, source.get("parent_doc_id"))
     write_text(directory / "documents" / f"{doc_id}.txt", canonical)

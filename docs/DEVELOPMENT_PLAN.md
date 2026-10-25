@@ -6,6 +6,8 @@
 
 This plan translates the design into deliverable work, dependencies, ownership, estimates, and release gates. The implementation currently stops at PDF ingestion. Future milestone names do not imply that their features are already present.
 
+**Implementation update, 25 October 2026:** local PDF registration, opt-in Vietnamese-English OCR, source-aware conversion-cache checks, and scanned-page coverage checks are implemented. See [OCR workflow and measured limitations](ocr-ingestion.md). M1 remains open: web upload, the v2 envelope, authentication, and immutable release activation are still planned. The schedule below is a planning baseline, not a record of completed milestones.
+
 ## 1. Planning basis
 
 The user confirmed a three-student team, an internal production target, limited school/cloud resources, and possible access to an RTX 4080 SUPER-class GPU or an A100. No deadline, weekly availability, spending ceiling, or permanently allocated host has been confirmed.

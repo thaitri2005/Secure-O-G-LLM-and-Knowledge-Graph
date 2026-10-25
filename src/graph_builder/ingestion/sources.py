@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 from typing import Any, BinaryIO
 from urllib.parse import urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -44,6 +45,8 @@ def write_checksums(directory: Path, doc_ids: list[str]) -> None:
 
 
 def check_url(url: str) -> None:
+    if not isinstance(url, str):
+        raise ValueError("Source URL must be a string")
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.netloc != "gdr.openei.org":
         raise ValueError(f"Only https://gdr.openei.org downloads are supported: {url}")
@@ -65,27 +68,45 @@ def load_registry(path: Path) -> list[dict[str, Any]]:
     if not isinstance(registry, list) or not registry:
         raise ValueError("Source registry must be a nonempty array")
     seen = set()
-    required = {"doc_id", "title", "well", "gdr_submission", "url", "landing_page", "license", "sha256", "bytes"}
     for source in registry:
+        local = isinstance(source, dict) and "path" in source
+        required = {"doc_id", "title", "license", "sha256", "bytes"}
+        required |= {"path"} if local else {"well", "gdr_submission", "url", "landing_page"}
         if not isinstance(source, dict) or required - source.keys():
             raise ValueError("Source registry entry has missing fields")
         doc_id = source["doc_id"]
         if not isinstance(doc_id, str) or not DOC_ID.fullmatch(doc_id) or doc_id in seen:
             raise ValueError(f"Invalid or duplicate doc_id: {doc_id!r}")
         seen.add(doc_id)
-        check_url(source["url"])
-        check_url(source["landing_page"])
-        if type(source["gdr_submission"]) is not int or source["gdr_submission"] < 1:
-            raise ValueError("gdr_submission must be a positive integer")
-        if type(source["bytes"]) is not int or source["bytes"] < 1 or not re.fullmatch(r"[a-f0-9]{64}", source["sha256"]):
+        if local:
+            if not isinstance(source["path"], str) or not source["path"].strip():
+                raise ValueError("Local source path must be a nonempty string")
+            if source.get("portfolio") or "url" in source:
+                raise ValueError("Local sources cannot specify URL or portfolio")
+            source["path"] = str((path.resolve().parent / source["path"]).resolve())
+            source.update(url="", landing_page="", gdr_submission=None)
+        else:
+            check_url(source["url"])
+            check_url(source["landing_page"])
+            if type(source["gdr_submission"]) is not int or source["gdr_submission"] < 1:
+                raise ValueError("gdr_submission must be a positive integer")
+        if not isinstance(source["title"], str) or not source["title"].strip():
+            raise ValueError("Source title must be a nonempty string")
+        if (type(source["bytes"]) is not int or source["bytes"] < 1
+                or not isinstance(source["sha256"], str) or not re.fullmatch(r"[a-f0-9]{64}", source["sha256"])):
             raise ValueError("Source must pin positive bytes and a SHA256 digest")
         if not isinstance(source["license"], dict) or set(source["license"]) != {"id", "url"}:
             raise ValueError("License must have an id and URL")
+        if (not isinstance(source["license"]["id"], str) or not source["license"]["id"].strip()
+                or not isinstance(source["license"]["url"], str)):
+            raise ValueError("License id must be nonempty text and URL must be text")
     return registry
 
 
 def load_options(path: Path, overrides: list[str] | None = None) -> dict[str, Any]:
     options = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(options, dict):
+        raise ValueError("Pipeline options must be an object")
     for override in overrides or []:
         key, separator, value = override.partition("=")
         if not separator:
@@ -105,19 +126,23 @@ def load_options(path: Path, overrides: list[str] | None = None) -> dict[str, An
     required = {"max_chars", "do_ocr", "do_table_structure", "table_mode", "do_cell_matching", "device", "margin_band", "frequency", "spot_checks",
                 "running_block_max_gap_lines", "running_block_alignment_lines", "running_line_fragment_gap_lines",
                 "chunking", "tables"}
-    if not isinstance(options, dict) or set(options) != required:
+    if set(options) - {"ocr"} != required:
         raise ValueError(f"Pipeline options must contain exactly {sorted(required)}")
+    from .ocr_settings import ocr_settings
+    ocr_settings(options)
     if type(options["max_chars"]) is not int or options["max_chars"] < 1:
         raise ValueError("max_chars must be a positive integer")
     for key in ("do_ocr", "do_table_structure", "do_cell_matching"):
         if type(options[key]) is not bool:
             raise ValueError(f"{key} must be a boolean")
-    if options["do_ocr"] or options["device"] != "cpu":
-        raise ValueError("This pipeline supports CPU conversion without OCR")
+    if options["device"] != "cpu":
+        raise ValueError("This pipeline supports CPU conversion only")
     if options["table_mode"] not in {"accurate", "fast"}:
         raise ValueError("table_mode must be accurate or fast")
     if options["chunking"] not in ({"strategy": name} for name in ("page", "paragraph", "hybrid", "pypdf")):
         raise ValueError("chunking.strategy must be page, paragraph, hybrid or pypdf")
+    if options["do_ocr"] and options["chunking"]["strategy"] == "pypdf":
+        raise ValueError("OCR cannot use the pypdf text-layer-only chunking strategy")
     if (not isinstance(options["tables"], dict)
             or set(options["tables"]) != {"compact", "merge_pages", "rotation_retry"}
             or any(type(value) is not bool for value in options["tables"].values())):
@@ -167,9 +192,12 @@ def fetch_sources(registry: list[dict[str, Any]], root: Path) -> list[dict[str, 
         else:
             partial = path.with_suffix(".pdf.part")
             try:
-                with open_gdr(source["url"]) as response, partial.open("wb") as stream:
-                    for block in iter(lambda: response.read(1024 * 1024), b""):
-                        stream.write(block)
+                if "path" in source:
+                    shutil.copyfile(source["path"], partial)
+                else:
+                    with open_gdr(source["url"]) as response, partial.open("wb") as stream:
+                        for block in iter(lambda: response.read(1024 * 1024), b""):
+                            stream.write(block)
                 verify_file(partial, source)
                 PdfReader(partial)
                 partial.replace(path)

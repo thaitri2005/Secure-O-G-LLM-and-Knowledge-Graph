@@ -35,6 +35,9 @@ def validate_artifacts(path: Path) -> list[str]:
         documents[doc_id] = json.loads((path.parent / "documents" / f"{doc_id}.json").read_text(encoding="utf-8"))
         canonical[doc_id] = (path.parent / "documents" / f"{doc_id}.txt").read_text(encoding="utf-8")
         check("document", documents[doc_id])
+        for page in documents[doc_id].get("ocr", {}).get("pages", []):
+            if page["status"] == "missing":
+                errors.append(f"{doc_id}: scanned page {page['page']} has no attributed OCR content; review required")
     ranges = defaultdict(list)
     for chunk, record in zip(chunks, full):
         check("chunk", chunk)

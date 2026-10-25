@@ -13,6 +13,9 @@ from .sources import write_checksums, write_json, write_text
 def conversion_cache(root: Path, options: dict[str, Any]) -> Path:
     keys = ("do_ocr", "do_table_structure", "table_mode", "do_cell_matching", "device")
     settings = {key: options[key] for key in keys}
+    if options["do_ocr"]:
+        from .ocr_settings import ocr_settings
+        settings["ocr"] = ocr_settings(options)
     base_settings = dict(zip(keys, (False, True, "accurate", True, "cpu")))
     base = root / "data" / "interim" / "docling"
     if settings == base_settings:

@@ -1,0 +1,30 @@
+{
+  "max_chars": 1500,
+  "chunking": {
+    "strategy": "paragraph"
+  },
+  "tables": {
+    "compact": false,
+    "merge_pages": false,
+    "rotation_retry": false
+  },
+  "do_ocr": true,
+  "do_table_structure": true,
+  "table_mode": "fast",
+  "do_cell_matching": true,
+  "device": "cpu",
+  "margin_band": 0.08,
+  "frequency": 0.5,
+  "spot_checks": [],
+  "running_block_max_gap_lines": 1.0,
+  "running_block_alignment_lines": 0.5,
+  "running_line_fragment_gap_lines": 3.0,
+  "ocr": {
+    "languages": [
+      "vi",
+      "en"
+    ],
+    "mode": "auto",
+    "confidence_threshold": 0.5
+  }
+}

@@ -9,6 +9,8 @@
 
 This is the canonical reference for what the project is meant to do and how its parts should work together. It describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
 
+**Implementation update, 24 October 2026:** local PDF registration and opt-in Vietnamese–English OCR are implemented in the ingestion CLI; see [the OCR workflow](ocr-ingestion.md). The baseline assessment below predates these changes. The full v2 application envelope, web upload service, and production OCR quality gates remain distinct work.
+
 The user has confirmed the internal production target, a three-student team, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. The exact machine, availability, budget, deadline, institutional identity service, and operating owner remain unconfirmed. The design deliberately works from the smaller GPU option.
 
 ### Reading guide
@@ -161,10 +163,10 @@ The recorded extended and appendix evaluations cover a further 2 reports/170 pag
 
 ### 3.3 Gaps the architecture must close
 
-1. **Domain portability is an intention.** The current registry accepts only `https://gdr.openei.org`, requires `well` and `gdr_submission`, and the document schema requires a GDR submission. A general upload path and a versioned domain-neutral metadata envelope are required.
+1. **Domain portability is partially implemented.** Remote downloads remain restricted to `https://gdr.openei.org`. Local PDF registration now accepts non-GDR sources, and the document schema allows a null GDR submission. A web upload service and a versioned domain-neutral metadata envelope remain required.
 2. **Content IDs are matching aids.** The current `content_id` is a truncated SHA1 over document ID, chunk type, and whitespace-normalized text. Repeated passages can share it; changed text changes it. It is not a unique evidence identifier or a security digest.
 3. **Publication is not a multi-file transaction.** Current publication validates before writing, but copies artifacts file by file. A server must not expose that directory as an atomic, versioned release.
-4. **Cache settings do not fully identify the build.** The current conversion-cache key includes selected parser settings, not a complete source/model/package fingerprint. Production reuse must check source hash, parser/model versions, and configuration.
+4. **Cache checks are improved but not a full deployment manifest.** Conversion now verifies source SHA256, Docling/core versions, parser settings, output hashes, and EasyOCR version/model hashes when enabled. Production still needs a complete runtime and model inventory, including layout/table models, and immutable release storage.
 5. **Some schema identifiers have finite widths.** Current chunk IDs require four index digits and table IDs three. A larger corpus needs explicit per-document limits or a versioned migration, not silent format changes.
 6. **Security controls are incomplete.** Local parsing and disabled remote services are present. Authentication, authorization, resource isolation, firewall enforcement, audit, and recovery are future work.
 

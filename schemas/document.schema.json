@@ -42,7 +42,10 @@
       "type": "string"
     },
     "gdr_submission": {
-      "type": "integer"
+      "type": [
+        "integer",
+        "null"
+      ]
     },
     "bytes": {
       "type": "integer",
@@ -91,6 +94,76 @@
     },
     "original_filename": {
       "type": "string"
+    },
+    "ocr": {
+      "type": "object",
+      "required": [
+        "settings",
+        "pages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "settings": {
+          "type": "object",
+          "required": [
+            "languages",
+            "mode",
+            "confidence_threshold"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "languages": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z]{2,3}(_[a-z]+)?$"
+              }
+            },
+            "mode": {
+              "enum": [
+                "auto",
+                "full_page"
+              ]
+            },
+            "confidence_threshold": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "page",
+              "attributed_characters",
+              "status"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "page": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "attributed_characters": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "status": {
+                "enum": [
+                  "missing",
+                  "review",
+                  "covered"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   },
   "required": [

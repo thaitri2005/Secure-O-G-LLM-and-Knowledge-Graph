@@ -2,6 +2,8 @@
 
 This document describes the **implemented ingestion subsystem**. For the full intended product, technology choices, graph and QA architecture, and production requirements, see the [project design](PROJECT_DESIGN.md) and [development plan](DEVELOPMENT_PLAN.md).
 
+The baseline details and historical results below describe OCR-disabled GDR processing. The new [multilingual OCR and local-PDF workflow](ocr-ingestion.md) adds a separate Vietnamese–English profile, named-run protection, model-aware cache checks, and page coverage diagnostics.
+
 ## Stages and configuration
 
 `fetch` downloads source PDFs or verifies existing files against the registry's SHA256 and byte size. A mismatch fails the command. `convert` runs Docling locally and stores complete, unfiltered JSON and Markdown documents in a per-parser-settings subdirectory of `data/interim/docling/`. Accurate TableFormer settings use the base directory; other settings, including the default, use a hashed subdirectory. `chunk` filters a copy of each cached document and writes the merged chunks in registry and reading order. `validate` checks those chunks against the original PDFs and cached documents. `run` performs all four stages and fails if validation fails.

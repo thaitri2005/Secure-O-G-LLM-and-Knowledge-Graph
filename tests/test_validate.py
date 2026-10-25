@@ -182,7 +182,7 @@ class SourceValidationTests(unittest.TestCase):
                 write_json(path, invalid)
                 with self.subTest(key=key), self.assertRaises(ValueError):
                     load_registry(path)
-            for key, value in (("max_chars", 0), ("frequency", 0), ("margin_band", .9), ("do_ocr", True), ("device", "cuda")):
+            for key, value in (("max_chars", 0), ("frequency", 0), ("margin_band", .9), ("do_ocr", "true"), ("device", "cuda")):
                 invalid = dict(options, **{key: value})
                 write_json(path, invalid)
                 with self.subTest(key=key), self.assertRaises(ValueError):

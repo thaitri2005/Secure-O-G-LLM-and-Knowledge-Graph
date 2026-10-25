@@ -100,7 +100,7 @@ def fidelity(reference: str, extracted: str) -> dict:
     intersection = expected & actual
     expected_q, actual_q = quantities(reference), quantities(extracted)
     return {"word_recall": len(intersection) / len(expected) if expected else None,
-            "word_precision": len(intersection) / len(actual) if actual else (0.0 if expected else None),
+            "word_precision": (len(intersection) / len(actual) if actual else 0.0) if expected else None,
             "reference_words": len(expected), "extracted_words": len(actual),
             "quantity_count": len(expected_q), "quantity_matches": len(expected_q & actual_q),
             "missed_quantities": sorted(expected_q - actual_q), "missed_words": sorted(expected - actual)}

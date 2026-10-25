@@ -46,6 +46,7 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(measured["word_precision"], .6)
         self.assertEqual(measured["missed_quantities"], ["10ft"])
         self.assertIsNone(fidelity("", "")["word_recall"])
+        self.assertIsNone(fidelity("", "Recognized scan text")["word_precision"])
 
     def test_regions_and_frequency(self):
         doc = make_document()

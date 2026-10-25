@@ -69,6 +69,8 @@ def main() -> int:
             return 0
         if args.set and not args.run_name:
             raise ValueError("Overrides require --run-name")
+        if options["do_ocr"] and args.command in {"convert", "chunk", "run", "validate"} and not args.run_name:
+            raise ValueError("OCR processing requires --run-name; evaluate the named run before explicit publication")
         if args.command in {"fetch", "run"}:
             for source in fetch_sources(registry, root):
                 print(f"{source['doc_id']}: {'verified cached' if source['cached'] else 'downloaded and verified'}; bytes={source['bytes']}; sha256={source['sha256']}", flush=True)

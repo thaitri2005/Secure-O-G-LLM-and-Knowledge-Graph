@@ -22,7 +22,9 @@ def trial_ocr(root: Path, source: dict, marked: list[int], options: dict, conver
             writer.write(pdf)
             if converter is None:
                 from .convert import make_converter
-                converter = make_converter({**options, "do_ocr": True}, root / "data/interim/ocr_models")
+                converter = make_converter({**options, "do_ocr": True,
+                                            "ocr": options.get("ocr", {"languages": ["en"]})},
+                                           root / "data/interim/ocr_models")
             result = converter.convert(pdf)
             if result.status.value != "success":
                 raise RuntimeError(f"OCR trial conversion failed for page {number}")
