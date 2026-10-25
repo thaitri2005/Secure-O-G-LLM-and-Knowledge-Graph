@@ -17,6 +17,10 @@ This plan translates the design into deliverable work, dependencies, ownership, 
 | PDF ingestion with page/region/offset provenance, evaluation and publication | Pre-M1 baseline | [PDF ingestion](ingestion.md) |
 | Local PDF registration, opt-in Vietnamese–English OCR, source-aware cache checks, scanned-page coverage checks | M1 (partial) | [OCR ingestion](ocr-ingestion.md) |
 | BSEE well-data adapter: verified snapshot, typed records with row provenance, well grouping, schema validation | M1 (partial; FR-15) | [BSEE ingestion](bsee-ingestion.md) |
+| BSEE linked graph within the source (wellbores, wells, operators, leases, blocks, fields), every edge citing its row | M3 groundwork | [BSEE ingestion](bsee-ingestion.md#linked-graph) |
+| Architecture prototype (test build): AK-3 extraction, validation, review queue, Neo4j generations, cited QA | Evidence for M2/M3/M5 design | [Prototype](../prototype/README.md), [test log](../prototype/LOG.md) |
+
+**Architecture spike (25 October 2026).** A test build of the target stack ran the M2/M3/M5 flow on 15 AK-3 chunks: llama.cpp extraction, validation, review queue, Neo4j generations with activation, and cited QA. Extraction precision was 0.97 and recall 0.68 before review. With review, QA was correct on 31/31 questions given what was in the graph, and 19/31 end to end; all misses were facts extraction did not produce. Details and caveats: [prototype test log](../prototype/LOG.md). It is evidence for the design, not a completed milestone.
 
 **Still open in M1:** web upload, the v2 envelope, input-limit enforcement in a service, the access skeleton, immutable release activation, and snapshot comparison for BSEE.
 
@@ -117,13 +121,13 @@ Retain the current GDR v1 bundle and its hashes as a regression fixture. Build a
 
 Add source hash and parser/model/package/configuration fingerprints to production cache eligibility. Stage each run in an immutable output location and activate a bundle only after full validation. Define scan/partial-document behavior: the UI must show gaps, and claims from unsupported pages cannot be presented as extracted knowledge. Begin identity integration and deny-by-default API access here; auth is not a final-week addition.
 
-The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies snapshots and emits typed records with row provenance. Still to do: a snapshot comparison (added, changed, and removed boreholes) to support the snapshot-level review proposed in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-cross-source-linking).
+The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies snapshots and emits typed records with row provenance. Still to do: a snapshot comparison (added, changed, and removed boreholes) to support the snapshot-level review proposed in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data).
 
 **Exit demo:** process one supported public PDF (AK-3), locate a chunk in the exact PDF version, reject an unsupported file, and prove that reprocessing cannot silently replace the accepted bundle. Import a BSEE snapshot, show a borehole with its row citation, and show that a tampered snapshot is rejected.
 
 ### M2: smallest complete extraction example
 
-Use the current focus sources ([data sources](DATA_SOURCES.md)). Draft ontology v0.1 from the AK-3 section map and the BSEE fields. Use `wells.jsonl` as the first reference list for entity resolution. The extraction slice is AK-3's executive summary plus one table (casing or PT logging). Because AK-3 is not a BSEE well, test linking separately on an overlapping set (FORGE reports and FORGE well data, or Gulf boreholes with BSEE end-of-operations reports).
+Use the current focus sources ([data sources](DATA_SOURCES.md)) as two separate tracks. Draft ontology v0.1 from the AK-3 section map; the BSEE track keeps its own record-based model. The extraction slice is AK-3. The architecture prototype already ran this flow on 15 AK-3 chunks ([test log](../prototype/LOG.md)): its main lesson is that prose extraction recall, not the stack, is the bottleneck.
 
 Before building a broad pipeline, use one short report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, qualifiers, and an exact evidence span. Include a deliberately ambiguous alias and a misleading embedded instruction. Compare model output with deterministic checks and a manual reference.
 
@@ -219,7 +223,6 @@ Likelihood/impact are initial qualitative estimates. Review weekly and after eac
 | R-12 | Student turnover leaves an unmaintained service | High / High | No successor named by M6 | Shared runbooks, operator training, restore exercise, explicit end-of-project ownership | C / product owner |
 | R-13 | Cloud credits expire or costs exceed expectations | Medium / Medium | Credit balance drops or idle compute persists | Hard cap, auto-shutdown, school-host baseline; cloud remains optional | C |
 | R-14 | Gold sample is biased or leaks into tuning | Medium / High | Duplicate documents, repeated test-set prompt changes | Freeze split, document-level separation, second annotation subset, disclose uncertainty | A |
-| R-15 | Focus sources do not overlap (AK-3 is not a BSEE well), so linking cannot be tested on them | Certain / Medium | Linking work has no shared wells to evaluate on | Use FORGE well data with the FORGE reports, or Gulf boreholes with their BSEE end-of-operations reports; evaluate linking separately from AK-3 extraction | A / B |
 | R-16 | BSEE files change between snapshots, or redistribution terms forbid sharing derived data | Medium / Medium | New `Last-Modified`, changed digests, unclear license | Recorded snapshots and optional pins; freeze evaluation snapshots; keep BSEE data out of Git until terms are confirmed | B |
 | R-17 | Supervisor focus changes again | Medium / Medium | New sources requested before M2 closes | Keep adapters source-specific and contracts source-neutral; record each change as a decision (design D-13) | Product owner |
 
@@ -248,20 +251,20 @@ All Must requirements (FR-01 through FR-13, and FR-15) have accepted evidence; g
 
 ## 7. Next implementation backlog
 
-Revised 25 October 2026 for the AK-3 and BSEE focus. Complete the small evidence-to-claim path before expanding infrastructure. Items 2 and 3 are partly done.
+Revised 25 October 2026 for the AK-3 and BSEE tracks and the prototype results. Complete the small evidence-to-claim path before expanding infrastructure. Items marked partly done have prototype evidence; production versions remain.
 
 | Order | Task | Acceptance artifact | Status |
 |---|---|---|---|
 | 1 | Name the product/domain reviewer and prospective operator; inspect the actual host | Decision record with GPU/VRAM, RAM/disk, sharing, access, identity, and service-hosting status | Open |
 | 2 | Recreate the pinned environment and verify both ingestion paths | Setup log; unit tests; nine matching PDF manifest entries; a validated BSEE bundle with its snapshot digests | Tests and BSEE run verified 25 Oct 2026; PDF fresh conversion not rerun |
 | 3 | Define versioned source, run, and evidence envelopes covering PDFs **and** dataset snapshots | JSON schemas and fixtures covering GDR, local PDF, a BSEE row, duplicate text, multi-page chunks, Unicode, and tables | BSEE record schemas exist; v2 envelope open |
-| 4 | Draft well ontology v0.1 and 10 intended questions from the AK-3 section map and BSEE fields; compare with the published well-engineering ontology ([related work](references.md)) | Reviewed ontology draft with scoped identities (API10/API12; project + name), quantity/unit/qualifier rules, and unsupported examples | Open |
-| 5 | Build the well reference index from `wells.jsonl` and API changes | Lookup by API number (10/12 digits, previous numbers) and by scoped name; tests for repeated names, renamed sidetracks, and zero-padded blocks | Open |
-| 6 | Label the AK-3 development slice and freeze the evaluation strategy | About 30 reference claims (executive summary, casing, PT logging) with evidence; document-separated test inventory | Open |
-| 7 | Run the one-section local extraction experiment on the actual GPU | Versioned AK-3 candidates, exact-evidence validation, quality/latency/VRAM report | Open |
+| 4 | Review the prototype ontology v0.1 (14 properties) with a domain reviewer and add 10 intended questions; compare with the published well-engineering ontology ([related work](references.md)) | Reviewed ontology with quantity/unit/qualifier rules and unsupported examples | Prototype draft exists |
+| 5 | Improve prose extraction (the prototype's weak point: recall 0.68) | Sentence-level passages, a second pass on summaries, or a 7–8B model; recall on the same slice reported against run 5 of the test log | Open |
+| 6 | Enlarge the AK-3 gold set and freeze a held-out split | Second annotator on a subset; held-out chunks never used for prompt changes | 41 development facts exist (single annotator) |
+| 7 | Run the extraction experiment on the school GPU | Versioned candidates, validation, quality/latency/VRAM report for 3B and 7–8B models | CPU run done in the prototype |
 | 8 | Map BSEE fields to dataset claims and add snapshot comparison | Versioned mapping; claims citing snapshot and row; added/changed/removed report between two snapshots | Open |
-| 9 | Assemble an overlap test set for cross-source linking | FORGE general well data plus the 56-32 and 68-32 reports (or Gulf boreholes with BSEE end-of-operations reports), with expected links | Open |
-| 10 | Finalize relational/graph contracts from the tested slice | Accepted claim revisions from both sources projected into a tiny graph and queried with evidence | Open |
+| 9 | Replace the stand-in reviewer with a person and a minimal review screen | Review time per claim and reviewer agreement on the AK-3 slice | Review API exists in the prototype |
+| 10 | Finalize relational/graph contracts from the tested slice | Prototype schema promoted into the application with migrations; BSEE graph loaded into Neo4j | Prototype schema exists |
 
 The main [README](../README.md) remains the setup/CLI entry point. Do not rerun `publish` simply to check documentation: it writes the selected bundle. Fresh `run` requires PDF/model acquisition and can take time; first inspect existing artifacts and use an isolated named run for experiments.
 

@@ -1,0 +1,111 @@
+{
+  "run_id": 2,
+  "chunks": 15,
+  "gold_facts_in_scope": 41,
+  "model_outputs_parsed": "some outputs unparseable",
+  "candidates": 24,
+  "passed_validation": 15,
+  "rejection_reasons": {
+    "missing depth": 2,
+    "unit does not match property": 1,
+    "value not in quote": 2,
+    "quote not found verbatim in chunk": 3,
+    "date not supported by quote": 1
+  },
+  "precision_strict": 0.667,
+  "recall": 0.171,
+  "gold_found": 7,
+  "gold_missed": [
+    "g02",
+    "g03",
+    "g04",
+    "g06",
+    "g07",
+    "g10",
+    "g11",
+    "g12",
+    "g13",
+    "g14",
+    "g15",
+    "g16",
+    "g17",
+    "g18",
+    "g19",
+    "g21",
+    "g22",
+    "g24",
+    "g25",
+    "g26",
+    "g27",
+    "g28",
+    "g29",
+    "g30",
+    "g31",
+    "g32",
+    "g33",
+    "g34",
+    "g35",
+    "g36",
+    "g37",
+    "g38",
+    "g40",
+    "g41"
+  ],
+  "false_positives": [
+    {
+      "chunk": "c0005",
+      "well": "AK-3",
+      "property": "total_depth",
+      "qualifier": "actual",
+      "value": "1,500'.",
+      "casing_size_in": "not applicable",
+      "depth_ft": 1500.0
+    },
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "qualifier": "actual",
+      "value": "19",
+      "casing_size_in": null,
+      "depth_ft": null
+    },
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "total_rig_time",
+      "qualifier": "actual",
+      "value": "27",
+      "casing_size_in": null,
+      "depth_ft": null
+    },
+    {
+      "chunk": "c0013",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "value": "10-3/4 | 8-5/8 (8\" line pipe .332 wall) | 28.55 | A53B | WELD (ERW) | 40",
+      "casing_size_in": "8-5/8",
+      "depth_ft": 40.00000000000001
+    },
+    {
+      "chunk": "c0029",
+      "well": "AK-3",
+      "property": "inclination",
+      "qualifier": "actual",
+      "value": "| 1500 | 1.75 |",
+      "casing_size_in": null,
+      "depth_ft": 1500
+    }
+  ],
+  "latency_s_per_chunk": {
+    "median": 22.2,
+    "max": 164.0,
+    "total": 547.4
+  },
+  "graph": {
+    "claims": 15,
+    "evidence_links": 15,
+    "claims_without_evidence": 0
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "run_id": 1,
+  "chunks": 8,
+  "gold_facts_in_scope": 38,
+  "model_outputs_parsed": "8/8",
+  "candidates": 17,
+  "passed_validation": 11,
+  "rejection_reasons": {
+    "missing depth": 3,
+    "date not supported by quote": 1,
+    "quote not found verbatim in chunk": 2
+  },
+  "precision_strict": 0.636,
+  "recall": 0.158,
+  "gold_found": 6,
+  "gold_missed": [
+    "g02",
+    "g06",
+    "g07",
+    "g08",
+    "g09",
+    "g11",
+    "g12",
+    "g13",
+    "g14",
+    "g15",
+    "g17",
+    "g18",
+    "g19",
+    "g22",
+    "g23",
+    "g24",
+    "g25",
+    "g26",
+    "g27",
+    "g28",
+    "g29",
+    "g30",
+    "g31",
+    "g32",
+    "g33",
+    "g34",
+    "g35",
+    "g37",
+    "g38",
+    "g39",
+    "g40",
+    "g41"
+  ],
+  "false_positives": [
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "qualifier": "actual",
+      "value": "19",
+      "casing_size_in": null,
+      "depth_ft": null
+    },
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "value": "755",
+      "casing_size_in": "3-\u00bd",
+      "depth_ft": null
+    },
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "value": "1,955",
+      "casing_size_in": "3-\u00bd",
+      "depth_ft": null
+    },
+    {
+      "chunk": "c0037",
+      "well": "Table 4",
+      "property": "productive_time",
+      "qualifier": "actual",
+      "value": "532.5",
+      "casing_size_in": null,
+      "depth_ft": null
+    }
+  ],
+  "latency_s_per_chunk": {
+    "median": 30.2,
+    "max": 87.1,
+    "total": 290.2
+  },
+  "graph": {
+    "claims": 11,
+    "evidence_links": 11,
+    "claims_without_evidence": 0
+  }
+}

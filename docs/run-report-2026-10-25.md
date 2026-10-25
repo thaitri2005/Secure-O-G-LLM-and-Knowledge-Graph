@@ -44,6 +44,15 @@ Known weak spots are unchanged: dense directional-survey pages in 56-32 (pages 2
 | Wells spanning several surface blocks | 2 |
 | Parse time / validation time | about 15 s / about 1 min |
 
+## BSEE linked graph (single source)
+
+113,384 nodes and 398,263 edges, each edge citing its BSEE row, built in about 10 seconds with 0 missing endpoints:
+
+- 57,453 Wellbore and 39,518 Well nodes, plus 8,742 Lease, 5,679 Block, 1,521 Field and 471 Operator nodes;
+- 175 `RENUMBERED_FROM` links between boreholes.
+
+Example finding: on lease G01608, 515 wellbores start on the lease but only 233 end in it, so many are drilled to neighbouring leases. The graph links records within BSEE.
+
 ## Not covered by this run
 
 - The extended (2 reports) and AK-3 appendix (44 PDFs) registries were not rerun.

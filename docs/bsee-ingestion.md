@@ -1,6 +1,6 @@
 # BSEE well-data ingestion
 
-This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Development focus and data sources](DATA_SOURCES.md). How its records will become graph knowledge is in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-cross-source-linking).
+This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Development focus and data sources](DATA_SOURCES.md). How its records will become graph knowledge is in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data).
 
 The adapter uses only the Python standard library plus `jsonschema` for output validation. It adds no dependencies to the lock file.
 
@@ -82,6 +82,28 @@ Every borehole and API-change record carries:
 | Warning | Spud date after total-depth date | 0 |
 | Warning | API change refers to an unknown borehole | 0 |
 
+## Linked graph
+
+`python -m graph_builder.graph.bsee build` turns the bundle into a property graph in ignored `data/processed/local/bsee_graph/`: `nodes.jsonl`, `edges.jsonl` and `summary.json`. Every edge carries `evidence`: the record ID, file, file SHA256 and row it came from. `show <node-id>` lists a node's properties and its links in both directions:
+
+```powershell
+python -m graph_builder.graph.bsee build
+python -m graph_builder.graph.bsee show well:1772140041      # also wellbore:…, lease:G01608, block:SP-60, operator:00276, field:SP060
+```
+
+| Edge | From → to | Count (18 Oct 2026 snapshot) |
+|---|---|---:|
+| `HAS_WELLBORE` | Well → Wellbore | 57,453 |
+| `OPERATED_BY` | Wellbore → Operator (number only) | 57,453 |
+| `SURFACE_ON_LEASE` / `BOTTOM_ON_LEASE` | Wellbore → Lease | 57,411 / 57,447 |
+| `SURFACE_IN_BLOCK` / `BOTTOM_IN_BLOCK` | Wellbore → Block (zero padding removed) | 57,453 / 57,453 |
+| `BOTTOM_IN_FIELD` | Wellbore → Field code | 53,418 |
+| `RENUMBERED_FROM` | Wellbore → its former Wellbore record (API change) | 175 |
+
+Nodes: 57,453 Wellbore, 39,518 Well, 8,742 Lease, 5,679 Block, 1,521 Field, 471 Operator. Placeholders are not linked: `NOLEASE` (48 links skipped), and the field code `WILD`, read as a wildcat outside a named field (4,035 skipped). Reading `WILD` as wildcat is BSEE convention rather than a published code table. Former API numbers that match no borehole are kept as `former_api_numbers` on the wellbore. The build checks that every edge endpoint exists and every wellbore has exactly one well; it takes about 10 seconds.
+
+These links stay within BSEE, by design ([design §5.7](PROJECT_DESIGN.md#57-structured-well-data)).
+
 ## Performance
 
 On the development laptop, verifying the snapshot and parsing about 58,000 rows takes about 15 seconds. Schema validation of the roughly 97,000 output records takes about one minute. The download is about 4 MB, and the bundle is about 100 MB, so it is not committed.
@@ -100,6 +122,6 @@ Directional-survey ZIPs are 100–140 MB per region. Filter them by API number w
 ## Limitations
 
 - Code meanings, operator names and field names are not resolved; they need BSEE lookup tables that are not ingested yet.
-- The adapter keeps one snapshot. Comparing two snapshots (added, changed and removed boreholes) is planned work for the review step ([design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-cross-source-linking)).
+- The adapter keeps one snapshot. Comparing two snapshots (added, changed and removed boreholes) is planned work for the review step ([design §5.7](PROJECT_DESIGN.md#57-structured-well-data)).
 - It is a CLI, not a service. The upload, authorization and job-queue requirements of the target design still apply.
 - BSEE's terms are a disclaimer rather than an open license. Do not commit raw or derived files without confirming redistribution terms.

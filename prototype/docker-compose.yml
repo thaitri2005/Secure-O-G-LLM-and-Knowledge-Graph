@@ -1,0 +1,40 @@
+# Prototype services only: local test build, ports bound to 127.0.0.1, throwaway credentials.
+# Not the production deployment described in docs/PROJECT_DESIGN.md §11.
+name: kg-prototype
+
+services:
+  neo4j:
+    image: neo4j:5.26-community@sha256:adaa077a3ab023015143b8f73f7076a7d053f12985f5b06f4c6a128c3a2f7240
+    environment:
+      NEO4J_AUTH: neo4j/prototype-only
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512M
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - neo4j-data:/data
+
+  postgres:
+    image: postgres:16-alpine@sha256:f4610795587492cd4fb887c2dc3de301b813278bb6f616992061141b5f15ac36
+    environment:
+      POSTGRES_USER: kg
+      POSTGRES_PASSWORD: prototype-only
+      POSTGRES_DB: kg
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  llama:
+    image: ghcr.io/ggml-org/llama.cpp:server@sha256:1fa7f8f0ca663fdcf3203dc125a7e0b5c9e49c9ed054b049599666cd7e300eb0
+    command: ["-m", "/models/qwen2.5-3b-instruct-q4_k_m.gguf", "--host", "0.0.0.0", "--port", "8080",
+              "-c", "8192", "-t", "8", "--parallel", "1", "--jinja"]
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ../data/interim/models:/models:ro
+
+volumes:
+  neo4j-data:
+  postgres-data:

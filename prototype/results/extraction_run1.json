@@ -1,0 +1,49 @@
+{
+  "run_id": 1,
+  "chunks": 15,
+  "gold_facts_in_scope": 41,
+  "model_outputs_parsed": "39/39",
+  "candidates": 43,
+  "passed_validation": 29,
+  "rejection_reasons": {
+    "quote not found verbatim in chunk": 5,
+    "unit does not match property": 1,
+    "value not in quote": 2,
+    "date year not in passage": 2,
+    "missing depth": 4
+  },
+  "precision_strict": 0.966,
+  "recall": 0.683,
+  "gold_found": 28,
+  "gold_missed": [
+    "g01",
+    "g02",
+    "g03",
+    "g04",
+    "g05",
+    "g06",
+    "g07",
+    "g10",
+    "g11",
+    "g20",
+    "g26",
+    "g27",
+    "g31"
+  ],
+  "false_positives": [
+    {
+      "chunk": "c0010",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "qualifier": "actual",
+      "value": "19",
+      "casing_size_in": null,
+      "depth_ft": null
+    }
+  ],
+  "latency_s_per_chunk": {
+    "median": 14.6,
+    "max": 71.4,
+    "total": 596.5
+  }
+}

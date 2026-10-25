@@ -29,7 +29,7 @@ The user has confirmed the internal production target, a three-student team, and
 | Which data the team builds on now | [Development focus and data sources](DATA_SOURCES.md) |
 | What is actually implemented | [3. Current baseline](#3-current-implementation-and-evidence) |
 | How the whole system works | [4. Architecture](#4-target-architecture), [5. Processing](#5-document-to-graph-processing) |
-| How BSEE well data and reports meet in the graph | [5.7 Structured well data](#57-structured-well-data-and-cross-source-linking) |
+| How BSEE well data is used in the graph | [5.7 Structured well data](#57-structured-well-data) |
 | What the graph and evidence mean | [6. Ontology](#6-ontology-and-domain-adaptation), [7. Data model](#7-data-model-and-contracts) |
 | How answers are produced safely | [8. Question answering](#8-question-answering) |
 | Why each technology is needed | [9. Technology choices](#9-technology-choices-and-alternatives) |
@@ -132,7 +132,7 @@ The package currently provides two ingestion CLIs:
 - a PDF pipeline for GDR reports and registered local PDFs;
 - a structured-data adapter for the BSEE well files.
 
-There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
+A third command, `graph_builder.graph.bsee`, links the BSEE records within that source: wellbores to wells, operators, leases, blocks, fields and renumbered predecessors. Every edge carries row evidence, and the output is a JSONL property graph. Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build. There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
 
 ![Current ingestion paths](diagrams/01-current-ingestion.svg)
 
@@ -265,7 +265,7 @@ This is application-level consistency, not a distributed transaction. A crash af
 | 8. Project | Accepted revisions + manifests | Build and validate a new Neo4j generation | Completed graph marker; failure leaves active generation unchanged |
 | 9. Activate | Completed generation | Administrator checks summary and switches the publication pointer | Readers see the new accepted knowledge revision |
 
-Dataset records do not pass through stages 3–4. A deterministic, versioned field mapping turns them into claim candidates with dataset evidence, which enter at stage 5 ([§5.7](#57-structured-well-data-and-cross-source-linking)).
+Dataset records do not pass through stages 3–4. A deterministic, versioned field mapping turns them into claim candidates with dataset evidence, which enter at stage 5 ([§5.7](#57-structured-well-data)).
 
 ### 5.2 Review lifecycle
 
@@ -335,13 +335,13 @@ The passage is available in the [committed canonical document](../data/processed
 
 This example illustrates why the graph needs context and claim-level evidence: extracting all four numbers correctly is not enough if the system assigns them the wrong meanings.
 
-### 5.7 Structured well data and cross-source linking
+### 5.7 Structured well data
 
-Reports describe what happened to a well. A regulator's dataset says which well it is and records its official attributes. The graph combines the two through a shared well identity. [Development focus and data sources](DATA_SOURCES.md) describes the sources; this section defines how they are used.
+A regulator's dataset says which wells exist and records their official attributes. This section defines how BSEE records are used inside the graph. The report track (§5.1–§5.6) is developed separately, and linking the two sources is not a current goal. [Development focus and data sources](DATA_SOURCES.md) describes both tracks.
 
-![How the sources reach the graph](diagrams/08-source-integration.svg)
+![Two development tracks](diagrams/08-source-integration.svg)
 
-**Figure 8 — Source integration.** The Mermaid source is in [DATA_SOURCES.md](DATA_SOURCES.md). Only the two ingestion paths are implemented.
+**Figure 8 — Development tracks.** The Mermaid source is in [DATA_SOURCES.md](DATA_SOURCES.md).
 
 **Two roles for dataset records.**
 
@@ -350,20 +350,9 @@ Reports describe what happened to a well. A regulator's dataset says which well 
 
 **Review policy (proposed, D-14).** A dataset snapshot is reviewed as a unit. The reviewer approves its validation summary and its comparison with the active snapshot: added, changed, and removed boreholes, and changed values by field. Approval accepts all mapped claims from that snapshot. Claims whose values changed are superseded, not deleted. Reviewing about 57,000 boreholes claim by claim would be infeasible and add little, because the values are the regulator's records rather than model interpretations. This is a deliberate, narrow exception to per-claim approval (§5.3). It applies only to deterministic mappings from allow-listed datasets; claims extracted from reports always need per-claim review.
 
-**Linking report mentions to wells.** Rules apply in this order:
-
-1. An exact API number (10 or 12 digits; dashes and spaces removed) with exactly one match links automatically.
-2. A previous API number from the change file links to the current borehole, recording the alias used.
-3. A well name scoped by lease, area/block, or project becomes a **suggestion** for review.
-4. A name alone is never linked automatically. BSEE names repeat across leases and change between sidetracks of one hole.
-
-Block numbers are compared without leading zeros (`0827` = `827`); stored values keep their source form.
-
-**Conflicts.** A report may give a total depth that differs from BSEE's measured depth, for example after a later sidetrack or with a different depth reference. BSEE depths are measured from the rig kelly bushing. Both values remain separate claims with their own evidence and qualifiers. Answers show both, and the system never chooses silently.
+**Identity within BSEE.** The 12-digit API number identifies a wellbore and the first 10 digits a well; both are exact keys. Previous API numbers from the change file are aliases of the current wellbore. Well names are never identities: they repeat across leases and change between sidetracks of one hole, so a name is only meaningful together with its lease or area/block. Block numbers are compared without leading zeros (`0827` = `827`); stored values keep their source form. The implemented linked graph (`graph_builder.graph.bsee`) follows these rules.
 
 **Units, datums, and codes.** Depths keep their source unit (feet); normalized values come only from reviewed conversion rules. Coordinates keep their datum: NAD27 in the Gulf, NAD83 in the Pacific and Alaska. Any conversion for mapping is a recorded, deterministic transform. Status, type, and class codes stay verbatim until a verified code table is added as a versioned reference list.
-
-**Overlap for evaluation.** AK-3 is not a BSEE well. Cross-source linking is therefore evaluated on wells that appear in both kinds of source: FORGE well data with the FORGE end-of-well reports, or Gulf boreholes with their BSEE end-of-operations reports.
 
 **Worked dataset example.** Borehole `012032016500` is the first row of the Gulf borehole file. It has measured depth 21,678 ft, TVD 21,675 ft, status `COM`, spud date 1984-09-24, and surface location MO 0827 at 30.18845, −87.95863 (NAD27). The mapped claim "total measured depth = 21,678 ft, referenced to the rig kelly bushing" cites `borehole_gulf` row 1 of the snapshot with SHA256 `1bf9abb7…`. "What is the total depth of 012032016500?" returns that value with the row citation. If a later approved snapshot changes the value, the earlier claim becomes superseded, and the answer cites the new snapshot.
 
@@ -776,7 +765,7 @@ The existing ingestion documents remain the detailed reference for implemented p
 | D-10 | Private content stays inside the approved deployment | Derived from project purpose; policy confirmation needed | Institution authorizes another boundary |
 | D-11 | Exact model and future package versions selected by benchmark | Open | M2 benchmark complete |
 | D-12 | Operator, host allocation, IdP, budget ceiling, retention, support hours | Open | Must resolve before internal production launch |
-| D-13 | Develop against BSEE well data and end-of-well reports, AK-3 first | Supervisor direction, relayed 25 Oct 2026 | Supervisor changes the focus, or an overlapping evaluation set requires other sources |
+| D-13 | Develop against BSEE well data and end-of-well reports, AK-3 first | Supervisor direction, relayed 25 Oct 2026 | Supervisor changes the focus |
 | D-14 | Review allow-listed datasets per snapshot (summary and diff), not per claim; report claims stay per-claim | Proposed | Reviewer or product owner requires row-level review, or a dataset proves unreliable |
 | D-15 | Keep BSEE raw and derived files out of Git; reproduce them from recorded snapshot digests | Proposed (size and unclear redistribution terms) | BSEE terms confirmed as open, and a small frozen fixture is needed in the repository |
 

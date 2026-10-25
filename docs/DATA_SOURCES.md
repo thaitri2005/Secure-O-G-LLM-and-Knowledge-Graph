@@ -9,49 +9,39 @@
 >
 > The next milestone (M2 in the [development plan](DEVELOPMENT_PLAN.md)) builds its ontology, labels and first extraction experiment from these two sources. Other corpora stay in the repository as regression and evaluation material, but new features should be demonstrated on AK-3 and BSEE first.
 
-The two sources play different roles. BSEE provides authoritative identifiers and attributes for tens of thousands of boreholes: what a well **is**. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables: what **happened** to it. The knowledge graph needs both. [Design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-cross-source-linking) describes how they meet.
+The two sources are separate tracks, each developed and tested on its own. BSEE provides authoritative identifiers and attributes for tens of thousands of boreholes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. Linking the two sources is not a goal of the current work.
 
-![How the sources reach the graph](diagrams/08-source-integration.svg)
+![Two development tracks](diagrams/08-source-integration.svg)
 
 <details>
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
-flowchart LR
-    subgraph SRC["Sources"]
-        direction TB
-        B["BSEE well files<br/>Boreholes, API changes"]
-        R["End-of-well reports<br/>AK-3 first; FORGE 56-32, 68-32"]
-        F["Utah FORGE well data<br/>Same wells as FORGE reports"]
+flowchart TB
+    subgraph T1["Track 1: structured well data (BSEE)"]
+        direction LR
+        B1["BSEE well files<br/>Boreholes, API changes"] --> B2["BSEE adapter<br/>Typed rows, row provenance"]
+        B2 --> B3["Linked graph<br/>Wellbore, Well, Lease, Block, Operator, Field"]
     end
-    subgraph ING["Ingestion: implemented"]
-        direction TB
-        BI["BSEE adapter<br/>Typed rows, row provenance"]
-        PI["PDF pipeline<br/>Chunks, page provenance"]
+    subgraph T2["Track 2: end-of-well reports (AK-3)"]
+        direction LR
+        R1["PDF pipeline<br/>Chunks, page provenance"] --> R2["Local LLM extraction<br/>Claims with quotes"]
+        R2 --> R3["Validation and review"]
+        R3 --> R4["Neo4j generation<br/>Cited question answering"]
     end
-    subgraph KG["Graph construction: planned"]
-        direction TB
-        REF["Well reference list<br/>API numbers, scoped names"]
-        MAP["Field mapping<br/>Dataset claims"]
-        EX["Local LLM extraction<br/>Report claims"]
-        ER["Entity resolution<br/>API first, then scoped names"]
-    end
-    B --> BI
-    BI --> REF
-    BI --> MAP
-    R --> PI --> EX
-    F -. "adapter not built" .-> BI
-    REF --> ER
-    MAP --> ER
-    EX --> ER
-    ER --> G[("Reviewed graph<br/>Well, Wellbore, Report, Claim")]
+    T1 ~~~ T2
 ```
 
 </details>
 
-**Figure 8: Source integration.** Implemented today: both ingestion paths. Planned: everything in the graph-construction group. The FORGE well-data adapter does not exist yet.
+**Figure 8: Two development tracks.** Track 1 is implemented end to end: [ingestion](bsee-ingestion.md) and the [linked graph](bsee-ingestion.md#linked-graph). Track 2 has production ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks.
 
-> **Important: the two focus sources do not describe the same wells.** AK-3 is an onshore geothermal well on Akutan Island, Alaska. BSEE covers wells on the federal Outer Continental Shelf (OCS) only. Linking report mentions to BSEE wells therefore cannot be tested with AK-3. Use AK-3 to design document extraction and BSEE to design identity and reference data. Test cross-source linking on an overlapping set; see [Utah FORGE overlap test set](#3-utah-forge-overlap-test-set-for-cross-source-linking).
+## Where the work stands (25 October 2026)
+
+| Track | Done | Measured | Next |
+|---|---|---|---|
+| BSEE | Verified snapshot ingestion; linked graph of 113,384 nodes and 398,263 edges, each edge citing its source row | 0 malformed rows, 0 duplicate API numbers; build is byte-reproducible | Snapshot comparison; resolve operator and code meanings; load into Neo4j in the real application |
+| AK-3 | PDF ingestion; prototype of extraction → validation → review → Neo4j generation → cited QA | Extraction precision 0.97 and recall 0.68 before review. QA correct on 31/31 questions given what is in the graph, 19/31 end to end. See the [test log](../prototype/LOG.md) | Better prose extraction; larger gold set with a held-out split; 7–8B model on GPU; real reviewer and review UI |
 
 ## 1. BSEE Data Center – Wells Information
 
@@ -105,7 +95,7 @@ Borehole status codes: PA 30,731 · ST 17,169 · COM 3,656 · TA 2,923 · CNL 99
 | Directional surveys (points and azimuth, 100–140 MB ZIPs per region) | Survey stations for the same API numbers; comparable to report survey tables |
 | Company/operator file | Resolves `operator_number` to names |
 | eWell End of Operations Reports, Well Activity Reports, APD/APM | The closest oil-and-gas equivalents of end-of-well and daily drilling reports, for wells that **are** in the borehole table |
-| Well completion and well test PDF reports; scanned well files | Documents that could provide a BSEE-native overlap set |
+| Well completion and well test PDF reports; scanned well files | Further document types for BSEE wells |
 
 ## 2. Akutan AK-3 End of Well Report: the document exemplar
 
@@ -154,13 +144,9 @@ This map guides the first ontology draft and the development labels. "Target" me
 - **Scanned appendix pages.** 67 pages need OCR, which is disabled in published bundles.
 - **Offset wells.** TG-2 and TG-4 are named only within the Akutan project, so names must be scoped by project.
 
-## 3. Utah FORGE: overlap test set for cross-source linking
+## 3. Utah FORGE: reference material
 
-The [Utah FORGE project data dashboard](https://utahforge.com/project-data-dashboard/) lists seven drilled wells: deep vertical well 58-32, injection well 16A(78)-32, production well 16B(78)-32, and several seismic monitoring wells, 56-32 and 68-32 among them. It also offers a downloadable general well dataset. (This summary comes from a search-indexed copy of the page; check the live page.) FORGE data is published on the GDR. The corpus already contains the **56-32 and 68-32 end-of-well reports**, so FORGE well data plus those reports form a small set in which the same wells appear in both structured data and documents.
-
-Status: the dashboard could not be read by our automated tooling because its TLS certificate chain failed verification. A team member should download the general well dataset manually, record its URL and checksum, and decide whether it merits an adapter. Until then, cross-source linking is designed but not testable.
-
-An alternative overlap set is BSEE-native: choose a few Gulf boreholes and obtain their End of Operations Reports or well files from BSEE.
+The [Utah FORGE project data dashboard](https://utahforge.com/project-data-dashboard/) lists seven drilled wells: deep vertical well 58-32, injection well 16A(78)-32, production well 16B(78)-32, and several seismic monitoring wells, 56-32 and 68-32 among them. It also offers a downloadable general well dataset. (This summary comes from a search-indexed copy of the page; check the live page.) The corpus already contains the 56-32 and 68-32 end-of-well reports, which can serve as further documents for the report track. The dashboard could not be read by our tooling (TLS certificate verification failed), and its well dataset is not ingested.
 
 ## 4. Literature and reference material
 

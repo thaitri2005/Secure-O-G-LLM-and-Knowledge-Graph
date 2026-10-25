@@ -4,13 +4,14 @@ Start with the first row, then read the others as needed. Each document says at 
 
 | Document | Read it for | Kind |
 |---|---|---|
-| [Development focus and data sources](DATA_SOURCES.md) | **What the team is building on now**: BSEE well data, the AK-3 end-of-well report, the FORGE overlap set | Current guidance |
+| [Development focus and data sources](DATA_SOURCES.md) | **What the team is building on now**: the BSEE track, the AK-3 report track, and where each stands | Current guidance |
 | [Project description and system design](PROJECT_DESIGN.md) | Scope, users, architecture, data model, extraction, QA, security, operations, acceptance gates | Design baseline |
 | [Development and delivery plan](DEVELOPMENT_PLAN.md) | Milestones, ownership, estimates, risks, and the next backlog | Plan |
 | [BSEE well-data ingestion](bsee-ingestion.md) | Commands, outputs, value conventions and checks of the structured-data adapter | Implemented |
 | [PDF ingestion](ingestion.md) | Commands, output contract and processing rules of the PDF pipeline | Implemented |
 | [Ingestion evaluation](ingestion-evaluation.md) | How the PDF configuration was chosen, measured quality, reproduction commands | Measurements |
 | [OCR ingestion](ocr-ingestion.md) | Local PDF registration and the opt-in Vietnamese–English OCR profile | Implemented, experimental |
+| [Architecture prototype](../prototype/README.md) and [test log](../prototype/LOG.md) | A small test build of the target stack (Neo4j, PostgreSQL, llama.cpp, FastAPI) on 15 AK-3 chunks: extraction, review, generations, cited QA, and how each was evaluated | Test build, not the system |
 | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways | Reference |
 | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them | Assets |
 | [Archive](archive/) | Superseded records, kept for history | Historical |

@@ -7,7 +7,7 @@ An on-premise platform, under development, that turns oil-and-gas well data and 
 > - **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. Ingestion is implemented.
 > - **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from. It is already ingested.
 >
-> Read **[Development focus and data sources](docs/DATA_SOURCES.md)** before starting new work.
+> The two sources are developed as separate tracks. Read **[Development focus and data sources](docs/DATA_SOURCES.md)** before starting new work.
 
 ## Status
 
@@ -15,10 +15,11 @@ An on-premise platform, under development, that turns oil-and-gas well data and 
 |---|---|---|
 | PDF ingestion | PDF to passage chunks with page, region and character-offset provenance; optional OCR | Implemented ([details](docs/ingestion.md)) |
 | BSEE well-data ingestion | BSEE well files to typed borehole, well and API-change records with row provenance | Implemented ([details](docs/bsee-ingestion.md)) |
-| Ontology | Versioned well-domain vocabulary that guides extraction | Planned; first draft from AK-3 and BSEE |
-| Graph construction | Extract claims, link them to wells by API number and scoped names, merge duplicates | Planned |
-| Review and graph storage | Review queue; graph in which every fact keeps its evidence | Planned |
-| Question answering | Supported questions translated into graph queries, with citations | Planned |
+| Ontology | Versioned well-domain vocabulary that guides extraction | Prototype v0.1 (14 properties, from AK-3); review planned |
+| BSEE linked graph | Wellbores linked to wells, operators, leases, blocks, fields and former records; every edge cites its BSEE row | Implemented ([details](docs/bsee-ingestion.md#linked-graph)) |
+| Report knowledge (AK-3) | LLM extraction with quotes, validation, review, graph generations, cited QA | Prototype on 15 AK-3 chunks ([prototype](prototype/README.md), [test log](prototype/LOG.md)); production version planned |
+| Review and graph storage | Review queue; graph in which every fact keeps its evidence | Prototype; production version planned |
+| Question answering | Supported questions translated into graph queries, with citations | Prototype; production version planned |
 
 ## Quick start
 
@@ -29,7 +30,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
-python -m unittest discover -s tests          # about 100 tests, under a minute
+python -m unittest discover -s tests          # 108 tests, under a minute
 ```
 
 On Linux or macOS: `python3.12 -m venv .venv && source .venv/bin/activate`, then the same `pip` commands. The lock file includes Windows-only packages (for example `pywin32`); install the rest manually if needed. The OCR extra is optional: `pip install -e ".[ocr]"` ([OCR guide](docs/ocr-ingestion.md)).
@@ -64,6 +65,8 @@ docs/             design, plan, data sources, subsystem guides; start at docs/RE
 schemas/          JSON Schemas for every published record type
 scripts/          one-off utilities (OCR smoke test)
 src/graph_builder/ingestion/   PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
+src/graph_builder/graph/       BSEE linked graph (python -m graph_builder.graph.bsee)
+prototype/        test build of the target stack on AK-3 (Neo4j, PostgreSQL, llama.cpp, FastAPI); not the system
 tests/            unit and regression tests (unittest)
 ```
 
