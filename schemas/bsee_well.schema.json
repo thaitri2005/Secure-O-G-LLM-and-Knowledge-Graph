@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^bsee:well:\\d{10}$"
+    },
+    "table": {
+      "const": "well"
+    },
+    "well_api10": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z_]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "surface_locations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "area_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "block_number": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          }
+        },
+        "required": [
+          "area_code",
+          "block_number"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "boreholes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "api_well_number": {
+            "type": "string",
+            "pattern": "^\\d{12}$"
+          },
+          "well_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "well_name_suffix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "surface_lease_number": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "status_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          }
+        },
+        "required": [
+          "api_well_number",
+          "well_name",
+          "well_name_suffix",
+          "surface_lease_number",
+          "status_code"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "previous_api_numbers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source_record_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^bsee:borehole:\\d{12}$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "record_id",
+    "table",
+    "well_api10",
+    "regions",
+    "surface_locations",
+    "boreholes",
+    "previous_api_numbers",
+    "source_record_ids"
+  ],
+  "additionalProperties": false
+}

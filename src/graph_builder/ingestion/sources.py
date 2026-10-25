@@ -44,23 +44,33 @@ def write_checksums(directory: Path, doc_ids: list[str]) -> None:
     write_text(manifest, "".join(f"{sha256(path)}  {path.relative_to(directory).as_posix()}\n" for path in paths))
 
 
-def check_url(url: str) -> None:
+def check_url(url: str, host: str = "gdr.openei.org") -> None:
     if not isinstance(url, str):
         raise ValueError("Source URL must be a string")
     parsed = urlparse(url)
-    if parsed.scheme != "https" or parsed.netloc != "gdr.openei.org":
-        raise ValueError(f"Only https://gdr.openei.org downloads are supported: {url}")
+    if parsed.scheme != "https" or parsed.netloc != host:
+        raise ValueError(f"Only https://{host} downloads are supported: {url}")
 
 
-class GdrRedirects(HTTPRedirectHandler):
+class HostRedirects(HTTPRedirectHandler):
+    """Follow redirects only while they stay on the one allowed HTTPS host."""
+
+    def __init__(self, host: str) -> None:
+        super().__init__()
+        self.host = host
+
     def redirect_request(self, req: Any, fp: Any, code: int, msg: str, headers: Any, newurl: str) -> Any:
-        check_url(newurl)
+        check_url(newurl, self.host)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
+def open_https(url: str, host: str) -> BinaryIO:
+    check_url(url, host)
+    return build_opener(HostRedirects(host)).open(Request(url, headers={"User-Agent": USER_AGENT}), timeout=120)
+
+
 def open_gdr(url: str) -> BinaryIO:
-    check_url(url)
-    return build_opener(GdrRedirects()).open(Request(url, headers={"User-Agent": USER_AGENT}), timeout=120)
+    return open_https(url, "gdr.openei.org")
 
 
 def load_registry(path: Path) -> list[dict[str, Any]]:

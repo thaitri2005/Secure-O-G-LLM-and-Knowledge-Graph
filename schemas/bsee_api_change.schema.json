@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^bsee:[a-z0-9][a-z0-9_-]{0,63}:\\d+$"
+    },
+    "table": {
+      "const": "api_change"
+    },
+    "region": {
+      "type": "string",
+      "pattern": "^[a-z][a-z_]*$"
+    },
+    "api_well_number": {
+      "type": "string",
+      "pattern": "^\\d{12}$"
+    },
+    "activity_type_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "previous_api_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "activity_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "well_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "well_name_suffix": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_lease_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_area_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_block_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "spud_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "bottom_lease_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_area_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_block_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bh_total_md_ft": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "withheld": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "api_well_number",
+          "activity_type_code",
+          "previous_api_number",
+          "activity_date",
+          "well_name",
+          "well_name_suffix",
+          "surface_lease_number",
+          "surface_area_code",
+          "surface_block_number",
+          "spud_date",
+          "bottom_lease_number",
+          "bottom_area_code",
+          "bottom_block_number",
+          "bh_total_md_ft"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+        },
+        "file_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://www\\.data\\.bsee\\.gov/"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "row": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "dataset_id",
+        "file_id",
+        "url",
+        "sha256",
+        "member",
+        "row"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "record_id",
+    "table",
+    "region",
+    "api_well_number",
+    "activity_type_code",
+    "previous_api_number",
+    "activity_date",
+    "well_name",
+    "well_name_suffix",
+    "surface_lease_number",
+    "surface_area_code",
+    "surface_block_number",
+    "spud_date",
+    "bottom_lease_number",
+    "bottom_area_code",
+    "bottom_block_number",
+    "bh_total_md_ft",
+    "withheld",
+    "source"
+  ],
+  "additionalProperties": false
+}

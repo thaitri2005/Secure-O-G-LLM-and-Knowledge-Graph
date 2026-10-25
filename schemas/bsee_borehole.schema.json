@@ -1,0 +1,401 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^bsee:borehole:\\d{12}$"
+    },
+    "table": {
+      "const": "borehole"
+    },
+    "region": {
+      "type": "string",
+      "pattern": "^[a-z][a-z_]*$"
+    },
+    "api_well_number": {
+      "type": "string",
+      "pattern": "^\\d{12}$"
+    },
+    "well_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "well_name_suffix": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "operator_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_field_name_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "spud_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "bottom_lease_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "rkb_elevation_ft": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bh_total_md_ft": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tvd_ft": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "surface_ns_distance": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "surface_ns_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_ew_distance": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "surface_ew_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_area_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "surface_block_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_ns_distance": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bottom_ns_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_ew_distance": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "bottom_ew_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_area_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "bottom_block_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "total_depth_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "status_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "type_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "district_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "status_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "water_depth_ft": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "surface_longitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "surface_latitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "bottom_longitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "bottom_latitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "surface_lease_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "complex_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "structure_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "update_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "well_class_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "well_api10": {
+      "type": "string",
+      "pattern": "^\\d{10}$"
+    },
+    "coordinate_datum": {
+      "enum": [
+        "NAD27",
+        "NAD83"
+      ]
+    },
+    "withheld": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "api_well_number",
+          "well_name",
+          "well_name_suffix",
+          "operator_number",
+          "bottom_field_name_code",
+          "spud_date",
+          "bottom_lease_number",
+          "rkb_elevation_ft",
+          "bh_total_md_ft",
+          "tvd_ft",
+          "surface_ns_distance",
+          "surface_ns_code",
+          "surface_ew_distance",
+          "surface_ew_code",
+          "surface_area_code",
+          "surface_block_number",
+          "bottom_ns_distance",
+          "bottom_ns_code",
+          "bottom_ew_distance",
+          "bottom_ew_code",
+          "bottom_area_code",
+          "bottom_block_number",
+          "total_depth_date",
+          "status_date",
+          "type_code",
+          "district_code",
+          "status_code",
+          "water_depth_ft",
+          "surface_longitude",
+          "surface_latitude",
+          "bottom_longitude",
+          "bottom_latitude",
+          "surface_lease_number",
+          "complex_id",
+          "structure_number",
+          "update_date",
+          "well_class_code"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+        },
+        "file_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://www\\.data\\.bsee\\.gov/"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "row": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "dataset_id",
+        "file_id",
+        "url",
+        "sha256",
+        "member",
+        "row"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "record_id",
+    "table",
+    "region",
+    "api_well_number",
+    "well_name",
+    "well_name_suffix",
+    "operator_number",
+    "bottom_field_name_code",
+    "spud_date",
+    "bottom_lease_number",
+    "rkb_elevation_ft",
+    "bh_total_md_ft",
+    "tvd_ft",
+    "surface_ns_distance",
+    "surface_ns_code",
+    "surface_ew_distance",
+    "surface_ew_code",
+    "surface_area_code",
+    "surface_block_number",
+    "bottom_ns_distance",
+    "bottom_ns_code",
+    "bottom_ew_distance",
+    "bottom_ew_code",
+    "bottom_area_code",
+    "bottom_block_number",
+    "total_depth_date",
+    "status_date",
+    "type_code",
+    "district_code",
+    "status_code",
+    "water_depth_ft",
+    "surface_longitude",
+    "surface_latitude",
+    "bottom_longitude",
+    "bottom_latitude",
+    "surface_lease_number",
+    "complex_id",
+    "structure_number",
+    "update_date",
+    "well_class_code",
+    "well_api10",
+    "coordinate_datum",
+    "withheld",
+    "source"
+  ],
+  "additionalProperties": false
+}

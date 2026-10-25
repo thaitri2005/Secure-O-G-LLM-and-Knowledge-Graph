@@ -1,5 +1,7 @@
 # Documentation completeness and verification
 
+> **Historical record.** This audit describes the documentation update of 23 October 2026 and is kept unchanged apart from link paths. It is not maintained. For current status, see the [documentation index](../README.md).
+
 **Review date:** 23 October 2026<br>
 **Implementation reviewed:** repository baseline `af7e0ae`, before this documentation update<br>
 **Scope:** project description, architecture, technology choices, development planning, and consistency with the implementation
@@ -8,7 +10,7 @@
 
 The original README and ingestion documents were useful subsystem documentation, but did not describe a complete end-to-end product. They documented PDF processing and its evaluation; ontology design, model extraction, graph persistence, review, QA, production operations, and a delivery plan were largely future component names.
 
-The [project design](PROJECT_DESIGN.md) and [development plan](DEVELOPMENT_PLAN.md) now provide a comprehensive planning and implementation baseline for the user's confirmed target: an internal production service, delivered by three students with modest school hardware. This is **documentation coverage**, not a claim that the future platform is implemented, benchmarked, or approved for production.
+The [project design](../PROJECT_DESIGN.md) and [development plan](../DEVELOPMENT_PLAN.md) now provide a comprehensive planning and implementation baseline for the user's confirmed target: an internal production service, delivered by three students with modest school hardware. This is **documentation coverage**, not a claim that the future platform is implemented, benchmarked, or approved for production.
 
 ## Coverage matrix
 
@@ -55,7 +57,7 @@ Seven diagrams are provided as checked-in SVGs and editable Mermaid source: curr
 | Plan arithmetic | Milestone estimates sum to **576 hours**; **144 hours** contingency gives **720 hours**, equal to 3 students × 12 hours × 20 weeks |
 | Change scope | Documentation and diagram assets only; application source, schemas, configurations, published data, and dependency locks unchanged |
 
-These checks do **not** constitute a fresh PDF conversion or reproduction of every historical evaluation metric. This checkout has no raw-PDF/Docling conversion cache, and Docling is not installed in the available Python environment. The full ingestion unit suite and fresh conversion were therefore not rerun for this documentation-only change. Existing detailed conversion/evaluation results remain attributed to [the ingestion evaluation report](ingestion-evaluation.md).
+These checks do **not** constitute a fresh PDF conversion or reproduction of every historical evaluation metric. This checkout has no raw-PDF/Docling conversion cache, and Docling is not installed in the available Python environment. The full ingestion unit suite and fresh conversion were therefore not rerun for this documentation-only change. Existing detailed conversion/evaluation results remain attributed to [the ingestion evaluation report](../ingestion-evaluation.md).
 
 No LLM, graph service, login integration, production host, or cloud deployment was installed as part of this update. Temporary diagram-rendering tools were used outside the project dependency environment; their dependencies are not added to the application lock.
 

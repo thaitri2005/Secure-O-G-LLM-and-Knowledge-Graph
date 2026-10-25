@@ -2,14 +2,22 @@
 
 ## Project description and system design
 
-**Document version:** 1.0 · **Baseline date:** 23 October 2026<br>
+**Document version:** 1.1 · **Baseline date:** 23 October 2026 · **Last revised:** 25 October 2026<br>
 **Target:** an internal production service for one team, delivered by three students<br>
-**Status:** proposed implementation baseline; the ingestion subsystem already exists<br>
-**Companion:** [Development plan, estimates, ownership, and release gates](DEVELOPMENT_PLAN.md)
+**Status:** proposed implementation baseline; the PDF and BSEE ingestion subsystems exist<br>
+**Companions:** [Development focus and data sources](DATA_SOURCES.md) · [Development plan](DEVELOPMENT_PLAN.md)
 
 This is the canonical reference for what the project is meant to do and how its parts should work together. It describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
 
-**Implementation update, 24 October 2026:** local PDF registration and opt-in Vietnamese–English OCR are implemented in the ingestion CLI; see [the OCR workflow](ocr-ingestion.md). The baseline assessment below predates these changes. The full v2 application envelope, web upload service, and production OCR quality gates remain distinct work.
+**Current focus (25 October 2026).** The supervisor directed development toward oil-and-gas well data: the [BSEE Data Center well files](https://catalog.data.gov/dataset/bsee-data-center-wells-information) as the structured source, and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf), as the document source. Version 1.1 adds the structured-data path (§3, §5.7), dataset evidence (§7), a well-domain ontology example (§6) and decisions D-13 to D-15. [Development focus and data sources](DATA_SOURCES.md) describes both sources in detail.
+
+**Implemented since the baseline:**
+
+- local PDF registration and opt-in Vietnamese–English OCR ([OCR workflow](ocr-ingestion.md));
+- source-aware conversion-cache checks;
+- the BSEE well-data adapter ([BSEE ingestion](bsee-ingestion.md)).
+
+The full v2 application envelope, web upload service, and production OCR quality gates remain distinct work.
 
 The user has confirmed the internal production target, a three-student team, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. The exact machine, availability, budget, deadline, institutional identity service, and operating owner remain unconfirmed. The design deliberately works from the smaller GPU option.
 
@@ -18,8 +26,10 @@ The user has confirmed the internal production target, a three-student team, and
 | If you need to understand… | Start here |
 |---|---|
 | Why the project exists and what the first release includes | [1. Product](#1-product-purpose-and-scope), [2. Users](#2-users-and-workflows) |
+| Which data the team builds on now | [Development focus and data sources](DATA_SOURCES.md) |
 | What is actually implemented | [3. Current baseline](#3-current-implementation-and-evidence) |
 | How the whole system works | [4. Architecture](#4-target-architecture), [5. Processing](#5-document-to-graph-processing) |
+| How BSEE well data and reports meet in the graph | [5.7 Structured well data](#57-structured-well-data-and-cross-source-linking) |
 | What the graph and evidence mean | [6. Ontology](#6-ontology-and-domain-adaptation), [7. Data model](#7-data-model-and-contracts) |
 | How answers are produced safely | [8. Question answering](#8-question-answering) |
 | Why each technology is needed | [9. Technology choices](#9-technology-choices-and-alternatives) |
@@ -34,7 +44,7 @@ All architecture diagrams describe the **target** unless explicitly labelled **c
 
 Technical knowledge is scattered across long reports, tables, and appendices. Finding a fact can require opening several PDFs, matching different names for the same object, interpreting units, and checking which report supports a statement. A fluent answer alone does not resolve these problems: a user needs to inspect the underlying evidence and know when reports disagree.
 
-The platform converts approved technical PDFs into a structured, reviewable knowledge graph, then answers a defined set of questions using accepted facts and their source passages. An ontology specifies which kinds of things and relationships matter. A local language model proposes extractions; deterministic checks and human review decide what becomes available to ordinary users.
+The platform converts approved technical PDFs and structured well datasets into a reviewable knowledge graph, then answers a defined set of questions using accepted facts and their sources (report passages or dataset rows). An ontology specifies which kinds of things and relationships matter. A local language model proposes extractions; deterministic checks and human review decide what becomes available to ordinary users.
 
 The intended benefits are less repeated document searching, consistent terminology, explicit handling of conflicting information, and answers that can be traced back to a physical PDF page. These benefits must be measured in a user pilot; the repository does not yet establish time savings or answer accuracy.
 
@@ -49,12 +59,13 @@ Internal production means a small team can use a maintained service with documen
 | Included in the first production release | Deferred until there is evidence of need |
 |---|---|
 | English technical PDFs with an extractable text layer | General Office/email ingestion, handwriting, image understanding |
-| GDR reports as the initial evaluation domain | Broad claims of accuracy in unrelated domains |
+| Well domain as the initial evaluation domain: BSEE well records and end-of-well reports, AK-3 first | Broad claims of accuracy in unrelated domains |
+| Versioned public well datasets through adapters (BSEE borehole and API-change files) | Further BSEE tables (directional surveys, company file, eWell reports) until a question needs them |
 | Versioned ontology and reference lists | Full OWL reasoning, arbitrary ontology languages, ontology marketplace |
 | Local extraction of entities, relations, and supported quantities | Autonomous agents, internet browsing, tools controlled by the model |
 | Evidence viewer, approval/rejection, correction, merge review | Fully automatic acceptance of all extracted facts |
 | Graph browsing and a bounded question catalogue | Arbitrary questions guaranteed to work, unrestricted generated Cypher |
-| Local PDF upload and the existing GDR import adapter | Arbitrary URL fetching or many external connectors |
+| Local PDF upload, the existing GDR import adapter and the BSEE dataset adapter | Arbitrary URL fetching or many external connectors |
 | One team sharing one document security boundary | Multiple tenants or different document permissions within one graph |
 | Authentication, roles, audit, backup/restore, monitoring | High availability, multi-region operation, 24/7 service commitments |
 | Explicit detection and reporting of unsupported/scanned pages | Production OCR for all scans; integrate only after a separate quality gate |
@@ -82,7 +93,9 @@ One person can hold multiple roles, but actions still record which identity perf
 
 **Add knowledge.** An administrator uploads a PDF and records title, source, permission to use it, and intended ontology. The service validates and stores it, runs ingestion, and shows page coverage, warnings, and processing status. Extraction produces candidates. A reviewer sees each candidate beside its evidence, accepts or corrects it, and resolves ambiguous names. The administrator publishes a validated graph revision. Readers can then find those facts.
 
-**Ask a question.** A reader asks “Which reports describe well AK-3?” The system recognizes a supported intent, resolves AK-3 to an approved entity, executes an authorized graph query, and displays the result with report/page references. If there are several matching entities, it asks the reader to choose. If the question requires an unsupported relation or unpublished information, it says what is missing.
+**Import a dataset snapshot.** An administrator fetches a new BSEE snapshot. The adapter verifies and parses it, and the service shows counts, warnings, and a comparison with the active snapshot (added, changed, and removed boreholes). A reviewer approves the snapshot as a whole (§5.7). Its records then update the well reference list and the dataset-sourced claims in the next graph revision.
+
+**Ask a question.** A reader asks “Which reports describe well AK-3?” or “What are the status and total depth of borehole 177214004100?” The system recognizes a supported intent, resolves the well to an approved entity, executes an authorized graph query, and displays the result with references to the report page or dataset row. If there are several matching entities, it asks the reader to choose. If the question requires an unsupported relation or unpublished information, it says what is missing.
 
 **Correct knowledge.** A reviewer identifies an incorrect value or merge, opens its evidence and extraction history, and records a correction with a reason. The old assertion remains in history. A new graph revision replaces it for current use. A report being withdrawn is immediately excluded from answers while projection cleanup runs.
 
@@ -108,52 +121,58 @@ IDs connect implementation work to the acceptance and delivery plan. “Must” 
 | FR-12 | Must | Operate and recover the service | Job recovery, backup restoration, and a documented handover are demonstrated |
 | FR-13 | Must | Report unsupported input honestly | Scans, failed pages, and truncated processing are visible and affect release eligibility |
 | FR-14 | Later | Integrate OCR and additional document/domain adapters | Separate evaluation demonstrates usefulness before inclusion in production |
+| FR-15 | Must | Import versioned structured well datasets with row provenance | Each record resolves to its dataset snapshot (URL, SHA256, retrieval time), file member, and row; malformed rows block the import; withheld values stay distinct from blank ones |
 
 ## 3. Current implementation and evidence
 
 ### 3.1 What exists
 
-The package is currently an ingestion CLI. There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. The fact that libraries appear transitively in the lock file does not mean these application features exist.
+The package currently provides two ingestion CLIs:
 
-![Current ingestion pipeline](diagrams/01-current-ingestion.svg)
+- a PDF pipeline for GDR reports and registered local PDFs;
+- a structured-data adapter for the BSEE well files.
+
+There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
+
+![Current ingestion paths](diagrams/01-current-ingestion.svg)
 
 <details>
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
-flowchart TB
-    subgraph INPUT["1. Acquire and parse"]
+flowchart LR
+    subgraph PDF["PDF documents: GDR reports and local PDFs"]
         direction LR
-        R["GDR registry<br/>URL, size, SHA256"] --> F["fetch<br/>Verify PDFs"]
-        F --> C["convert<br/>Local Docling on CPU"]
+        R["fetch<br/>Verify size and SHA256"] --> C["convert<br/>Local Docling on CPU"]
+        C --> H["chunk<br/>Filter and split content"]
+        H --> V["validate / publish<br/>Chunk bundle"]
     end
-    subgraph PREPARE["2. Preserve and prepare"]
+    subgraph DATA["Structured well data: BSEE files"]
         direction LR
-        K["Complete parser cache<br/>JSON and Markdown"] --> H["chunk<br/>Filter and split content"]
-        H --> B["Chunk bundle<br/>Text, tables, provenance"]
+        DF["fetch<br/>Snapshot with SHA256"] --> DP["parse<br/>Published record layouts"]
+        DP --> DC["check<br/>Cross-record rules"]
+        DC --> DB["validate<br/>Record bundle"]
     end
-    subgraph RELEASE["3. Validate and publish artifacts"]
-        direction LR
-        V["validate / evaluate<br/>Contracts and quality"] --> P["publish named run<br/>Validated file bundle"]
-    end
-    INPUT --> PREPARE --> RELEASE
+    PDF --> OUT[("Ingestion outputs<br/>Chunks with page provenance<br/>Records with row provenance")]
+    DATA --> OUT
 ```
 
 </details>
 
-**Figure 1 — Current implementation.** Publication here means copying an evaluated ingestion bundle into its artifact directory. It does not mean publishing reviewed knowledge into a graph or making a service available.
+**Figure 1 — Current implementation.** Both paths verify their inputs by SHA256 and produce validated, byte-reproducible file bundles. "Publish" means copying an evaluated PDF bundle into its artifact directory. It does not mean publishing reviewed knowledge into a graph or making a service available.
 
 | Responsibility | Current code / contract |
 |---|---|
 | CLI orchestration | [`__main__.py`](../src/graph_builder/ingestion/__main__.py) |
-| GDR URL restrictions, registry validation, download verification | [`sources.py`](../src/graph_builder/ingestion/sources.py) |
+| HTTPS host allow-list, registry validation, download verification | [`sources.py`](../src/graph_builder/ingestion/sources.py) |
 | CPU parsing, table extraction, remote-service disablement | [`convert.py`](../src/graph_builder/ingestion/convert.py) |
 | Filters, text packing, chunking, tables | [`filters.py`](../src/graph_builder/ingestion/filters.py), [`chunking.py`](../src/graph_builder/ingestion/chunking.py), [`tables.py`](../src/graph_builder/ingestion/tables.py) |
 | Canonical offsets and PDF geometry | [`provenance.py`](../src/graph_builder/ingestion/provenance.py) |
 | Run isolation, comparisons, artifact publication | [`runs.py`](../src/graph_builder/ingestion/runs.py) |
 | Structural validation and quality evaluation | [`schema_validation.py`](../src/graph_builder/ingestion/schema_validation.py), [`validate.py`](../src/graph_builder/ingestion/validate.py), [`evaluation.py`](../src/graph_builder/ingestion/evaluation.py) |
+| BSEE snapshot fetch, parsing, cross-record checks, well grouping, bundle validation | [`bsee.py`](../src/graph_builder/ingestion/bsee.py), [`bsee_layouts.py`](../src/graph_builder/ingestion/bsee_layouts.py), [`bsee_wells.json`](../configs/datasets/bsee_wells.json) |
 
-The configured baseline is Python 3.12, Docling 2.141.0, pypdf 6.1.1, paragraph chunking with a 1,500-character budget, fast TableFormer, CPU execution, and OCR disabled. Versions come from [`pyproject.toml`](../pyproject.toml), [`requirements.lock.txt`](../requirements.lock.txt), and [`default.json`](../configs/ingestion/default.json); they are repository pins, not a claim that these are the latest releases.
+The configured PDF baseline is Python 3.12, Docling 2.141.0, pypdf 6.1.1, paragraph chunking with a 1,500-character budget, fast TableFormer, CPU execution, and OCR disabled. Versions come from [`pyproject.toml`](../pyproject.toml), [`requirements.lock.txt`](../requirements.lock.txt), and [`default.json`](../configs/ingestion/default.json); they are repository pins, not a claim that these are the latest releases.
 
 ### 3.2 Evidence and limits
 
@@ -161,9 +180,11 @@ The committed main bundle contains **3 documents, 155 physical pages, and 372 ch
 
 The recorded extended and appendix evaluations cover a further 2 reports/170 pages and 44 attachment PDFs/463 pages. Those bundles are ignored local outputs, not guaranteed to exist in a fresh checkout. The evaluation reports 67 scanned appendix pages; production chunks do not include the experimental OCR output. Gold annotations are a small, single-annotator, AI-assisted sample. No graph-extraction or QA benchmark exists yet.
 
+The BSEE snapshot of 18 October 2026 (retrieved 25 October) parses into **57,453 boreholes, 39,518 surface wells and 587 API-number changes**. It has zero errors and two warning kinds: 445 boreholes with withheld fields, and two wells spanning several surface blocks. Rebuilding from the snapshot is byte-identical. The bundle is a local, ignored output; [BSEE ingestion](bsee-ingestion.md#checks) lists the checks. Valid records do not mean that BSEE's values are correct; they are the regulator's records, cited as such.
+
 ### 3.3 Gaps the architecture must close
 
-1. **Domain portability is partially implemented.** Remote downloads remain restricted to `https://gdr.openei.org`. Local PDF registration now accepts non-GDR sources, and the document schema allows a null GDR submission. A web upload service and a versioned domain-neutral metadata envelope remain required.
+1. **Domain portability is partially implemented.** Remote downloads are restricted to an allow-list: `https://gdr.openei.org` for PDFs and `https://www.data.bsee.gov` for datasets. Local PDF registration accepts non-GDR sources, and the document schema allows a null GDR submission. A web upload service and a versioned domain-neutral metadata envelope remain required.
 2. **Content IDs are matching aids.** The current `content_id` is a truncated SHA1 over document ID, chunk type, and whitespace-normalized text. Repeated passages can share it; changed text changes it. It is not a unique evidence identifier or a security digest.
 3. **Publication is not a multi-file transaction.** Current publication validates before writing, but copies artifacts file by file. A server must not expose that directory as an atomic, versioned release.
 4. **Cache checks are improved but not a full deployment manifest.** Conversion now verifies source SHA256, Docling/core versions, parser settings, output hashes, and EasyOCR version/model hashes when enabled. Production still needs a complete runtime and model inventory, including layout/table models, and immutable release storage.
@@ -191,9 +212,9 @@ flowchart TB
         UI --> API["FastAPI<br/>Auth and workflows"]
         IDP["School identity<br/>provider"] -->|Identity / roles| API
         API --> PG[("PostgreSQL<br/>Jobs, claims, audit")]
-        API --> FS[("Artifact volume<br/>PDFs and run bundles")]
+        API --> FS[("Artifact volume<br/>PDFs, dataset snapshots, bundles")]
         API -->|Bounded queries| NG[("Neo4j<br/>Published graph")]
-        W["Python worker<br/>Ingest and extract"] -->|Lease jobs| PG
+        W["Python worker<br/>Ingest, import, extract"] -->|Lease jobs| PG
         W --> FS
         W -->|Publish projections| NG
         W --> LM["Local model<br/>llama.cpp"]
@@ -202,7 +223,7 @@ flowchart TB
         BK["Backup / health jobs"] --> PG
         BK --> FS
     end
-    ST["Controlled downloads<br/>Public PDFs, packages, models"] -. "Verified offline transfer" .-> FS
+    ST["Controlled downloads<br/>PDFs, BSEE files, packages, models"] -. "Verified offline transfer" .-> FS
 ```
 
 </details>
@@ -213,7 +234,7 @@ flowchart TB
 
 | Store | Owns | Recovery and consistency rule |
 |---|---|---|
-| Artifact volume | Original PDF versions, canonical text, chunks, table structures, immutable run manifests, model/config fingerprints | Append new versions; verify hashes; back up original evidence and accepted-run artifacts |
+| Artifact volume | Original PDF versions, dataset snapshots (original ZIPs plus snapshot manifest), canonical text, chunks, table structures, normalized dataset records, immutable run manifests, model/config fingerprints | Append new versions; verify hashes; back up original evidence and accepted-run artifacts |
 | PostgreSQL | Membership/roles, document lifecycle, ontology versions, jobs, candidate/accepted claim revisions, review decisions, merge history, publication pointers, audit, outbox events | System of record for workflow and accepted knowledge; transactions protect state changes |
 | Neo4j | Queryable projection of accepted entities, claims, evidence references, and graph relationships for a named generation | Rebuildable from accepted revisions and manifests; never the sole copy of review history |
 | Local model cache | Approved weights, tokenizer and runtime configuration | Reacquire from a verified internal package or retain offline; record exact checksums and license |
@@ -234,8 +255,8 @@ This is application-level consistency, not a distributed transaction. A crash af
 
 | Stage | Input | Processing | Output / failure behavior |
 |---|---|---|---|
-| 1. Register | Uploaded PDF or approved GDR adapter result | Validate file signature, size/page limits, permission metadata, duplicate hash; assign a version | Immutable source record; encrypted/corrupt/unsupported files quarantined with a reason |
-| 2. Ingest | Source version + parser settings | Local Docling conversion, filtering, chunking, table serialization, page coverage checks | Versioned chunk bundle; missing or scanned pages explicitly recorded |
+| 1. Register | Uploaded PDF, approved GDR adapter result, or dataset snapshot | Validate file signature, size/page or archive-member limits, permission metadata, duplicate hash; assign a version | Immutable source record; encrypted/corrupt/unsupported files quarantined with a reason |
+| 2. Ingest | Source version + parser settings or record layout | PDF: local Docling conversion, filtering, chunking, table serialization, page coverage checks. Dataset: layout parsing, typed values, withheld-versus-blank distinction, cross-record checks | Versioned chunk bundle or record bundle; missing or scanned pages and withheld fields explicitly recorded |
 | 3. Prepare | Bundle + active ontology/reference versions | Assemble bounded context, preserve table headers and row identity, calculate token budget | Extraction requests with complete run fingerprints |
 | 4. Extract | Request + local model | Produce typed entity mentions and claim candidates with cited spans | Candidate records; malformed output receives at most one repair attempt, then a failure record |
 | 5. Validate | Candidates + ontology + source | Check types, relation direction, values/units, exact evidence spans, page/table references | Eligible candidates or specific rejection/review reasons |
@@ -243,6 +264,8 @@ This is application-level consistency, not a distributed transaction. A crash af
 | 7. Review | Eligible candidates and source view | Accept, reject, correct, resolve conflicts and merges | Immutable review decisions and accepted claim revisions |
 | 8. Project | Accepted revisions + manifests | Build and validate a new Neo4j generation | Completed graph marker; failure leaves active generation unchanged |
 | 9. Activate | Completed generation | Administrator checks summary and switches the publication pointer | Readers see the new accepted knowledge revision |
+
+Dataset records do not pass through stages 3–4. A deterministic, versioned field mapping turns them into claim candidates with dataset evidence, which enter at stage 5 ([§5.7](#57-structured-well-data-and-cross-source-linking)).
 
 ### 5.2 Review lifecycle
 
@@ -280,7 +303,7 @@ For quantities, retain the literal source value, source unit, normalized value/u
 
 Current chunks use a character budget. Model requests require a **token** budget calculated with the selected tokenizer. Reserve space for instructions, ontology, and output. A table containing one oversized row must be handled explicitly, for example by a table-aware field extraction request, or marked unsupported. Never silently truncate a row or assume 1,500 characters equals 1,500 tokens.
 
-Use constrained JSON generation when supported, then validate independently. Valid JSON says nothing about factual correctness. Store model-reported confidence separately, if collected; do not interpret it as calibrated probability. For the first release, every published claim requires human approval. Confidence and evidence checks prioritize the queue rather than bypassing review.
+Use constrained JSON generation when supported, then validate independently. Valid JSON says nothing about factual correctness. Store model-reported confidence separately, if collected; do not interpret it as calibrated probability. For the first release, every published claim requires human approval. Confidence and evidence checks prioritize the queue rather than bypassing review. The only proposed exception is deterministic dataset claims, which are approved per snapshot (§5.7, D-14).
 
 ### 5.4 Entity resolution and conflicts
 
@@ -312,32 +335,81 @@ The passage is available in the [committed canonical document](../data/processed
 
 This example illustrates why the graph needs context and claim-level evidence: extracting all four numbers correctly is not enough if the system assigns them the wrong meanings.
 
+### 5.7 Structured well data and cross-source linking
+
+Reports describe what happened to a well. A regulator's dataset says which well it is and records its official attributes. The graph combines the two through a shared well identity. [Development focus and data sources](DATA_SOURCES.md) describes the sources; this section defines how they are used.
+
+![How the sources reach the graph](diagrams/08-source-integration.svg)
+
+**Figure 8 — Source integration.** The Mermaid source is in [DATA_SOURCES.md](DATA_SOURCES.md). Only the two ingestion paths are implemented.
+
+**Two roles for dataset records.**
+
+1. **Reference list.** Each BSEE borehole defines a canonical *Wellbore* keyed by its 12-digit API number. Each group sharing the first 10 digits defines a *Well* (the surface hole and its sidetracks). Well names with suffixes, leases, area/blocks, and previous API numbers from the change file become scoped aliases. `wells.jsonl` from the adapter is the current form of this list.
+2. **Dataset claims.** A versioned field mapping turns selected fields into claim candidates: spud and total-depth dates, measured and true vertical depth, RKB elevation, water depth, status code and date, surface and bottom location with datum, operator number, and lease. Each claim's evidence is the dataset record: snapshot SHA256, file, row, and field. The mapping is reviewed code or configuration, not model output.
+
+**Review policy (proposed, D-14).** A dataset snapshot is reviewed as a unit. The reviewer approves its validation summary and its comparison with the active snapshot: added, changed, and removed boreholes, and changed values by field. Approval accepts all mapped claims from that snapshot. Claims whose values changed are superseded, not deleted. Reviewing about 57,000 boreholes claim by claim would be infeasible and add little, because the values are the regulator's records rather than model interpretations. This is a deliberate, narrow exception to per-claim approval (§5.3). It applies only to deterministic mappings from allow-listed datasets; claims extracted from reports always need per-claim review.
+
+**Linking report mentions to wells.** Rules apply in this order:
+
+1. An exact API number (10 or 12 digits; dashes and spaces removed) with exactly one match links automatically.
+2. A previous API number from the change file links to the current borehole, recording the alias used.
+3. A well name scoped by lease, area/block, or project becomes a **suggestion** for review.
+4. A name alone is never linked automatically. BSEE names repeat across leases and change between sidetracks of one hole.
+
+Block numbers are compared without leading zeros (`0827` = `827`); stored values keep their source form.
+
+**Conflicts.** A report may give a total depth that differs from BSEE's measured depth, for example after a later sidetrack or with a different depth reference. BSEE depths are measured from the rig kelly bushing. Both values remain separate claims with their own evidence and qualifiers. Answers show both, and the system never chooses silently.
+
+**Units, datums, and codes.** Depths keep their source unit (feet); normalized values come only from reviewed conversion rules. Coordinates keep their datum: NAD27 in the Gulf, NAD83 in the Pacific and Alaska. Any conversion for mapping is a recorded, deterministic transform. Status, type, and class codes stay verbatim until a verified code table is added as a versioned reference list.
+
+**Overlap for evaluation.** AK-3 is not a BSEE well. Cross-source linking is therefore evaluated on wells that appear in both kinds of source: FORGE well data with the FORGE end-of-well reports, or Gulf boreholes with their BSEE end-of-operations reports.
+
+**Worked dataset example.** Borehole `012032016500` is the first row of the Gulf borehole file. It has measured depth 21,678 ft, TVD 21,675 ft, status `COM`, spud date 1984-09-24, and surface location MO 0827 at 30.18845, −87.95863 (NAD27). The mapped claim "total measured depth = 21,678 ft, referenced to the rig kelly bushing" cites `borehole_gulf` row 1 of the snapshot with SHA256 `1bf9abb7…`. "What is the total depth of 012032016500?" returns that value with the row citation. If a later approved snapshot changes the value, the earlier claim becomes superseded, and the answer cites the new snapshot.
+
 ## 6. Ontology and domain adaptation
 
 An ontology is the project's explicit vocabulary: the entity types, relation types, properties, and rules that the extractor is allowed to use. A reference list contains known instances and aliases. Both are versioned inputs. The first release uses a small YAML/JSON application schema; it does not claim compatibility with OWL or implement automatic logical inference.
 
-The following is an **illustrative future configuration**, not a file accepted by the current CLI:
+The following is an **illustrative future configuration** for the current focus, not a file accepted by the current CLI. Entity and property names come from the AK-3 section map and the BSEE fields in [Development focus and data sources](DATA_SOURCES.md):
 
 ```yaml
-ontology_id: geothermal_reports
+ontology_id: well_reports
 version: 0.1.0
 entity_types:
-  Well:
-    identity_fields: [project_id, well_name]
+  Well:                      # surface hole; BSEE: first 10 API digits
+    identity_fields: [api10]
+    fallback_identity: [project_id, well_name]   # wells outside BSEE, e.g. AK-3 within the Akutan project
+  Wellbore:                  # original hole, sidetrack or bypass; BSEE: 12-digit API number
+    identity_fields: [api12]
   Report:
     identity_fields: [document_version_id]
+  CasingString:
+    identity_fields: [wellbore_id, casing_od_in, setting_depth]
 relation_types:
-  DESCRIBES:
-    subject_type: Report
-    object_type: Well
-    evidence_required: true
+  HAS_WELLBORE: {subject_type: Well, object_type: Wellbore}
+  DESCRIBES: {subject_type: Report, object_type: Well, evidence_required: true}
+  HAS_CASING: {subject_type: Wellbore, object_type: CasingString, evidence_required: true}
 quantity_types:
-  measured_depth:
-    subject_type: Well
-    canonical_unit: m
-    permitted_source_units: [m, ft]
-    context_required: [measurement_kind]
+  total_measured_depth:
+    subject_type: Wellbore
+    canonical_unit: ft
+    permitted_source_units: [ft, m]
+    context_required: [depth_reference, status]   # e.g. rig kelly bushing; actual or planned
     evidence_required: true
+  vertical_depth:
+    subject_type: Well
+    canonical_unit: ft
+    permitted_source_units: [ft, m]
+    context_required: [depth_reference, status]
+    evidence_required: true
+  formation_temperature:
+    subject_type: Well
+    canonical_unit: degF
+    permitted_source_units: [degF, degC]
+    context_required: [depth, measurement_kind]    # measured or projected equilibrium
+    evidence_required: true
+external_mappings: {}        # optional links to a published well-engineering ontology (see references.md)
 ```
 
 Validation must reject duplicate names, references to unknown types, incompatible endpoint types, unsupported units, missing evidence requirements, unsafe YAML tags, and excessively large/deep files. Conversion factors belong to reviewed deterministic code/configuration, not to model-generated instructions. Define whether quantities use exact decimal strings and how display rounding works before the first extraction milestone.
@@ -362,7 +434,10 @@ erDiagram
     direction LR
     DOCUMENT_VERSION ||--o{ CHUNK : contains
     INGESTION_RUN ||--o{ CHUNK : emits
+    DATASET_SNAPSHOT ||--o{ DATASET_RECORD : contains
     CHUNK ||--o{ EVIDENCE : anchors
+    DATASET_RECORD ||--o{ EVIDENCE : anchors
+    DATASET_RECORD }o--o{ ENTITY : identifies
     ENTITY ||--o{ CLAIM : subject_of
     ENTITY o|--o{ CLAIM : optional_object_of
     CLAIM }o--|{ EVIDENCE : supported_by
@@ -375,9 +450,11 @@ erDiagram
 
 </details>
 
-**Figure 4 — Logical model.** A relation claim has a subject and object entity. A quantity claim has a subject and a typed literal instead. Many-to-many links are implemented using association records, including claim-evidence, generation-claim, and answer-citation records. System records such as jobs and ontology definitions have configuration/audit provenance; they are not presented as facts asserted by a PDF.
+**Figure 4 — Logical model.** A relation claim has a subject and object entity. A quantity claim has a subject and a typed literal instead. Evidence is anchored either in a document chunk or in a dataset record. A dataset record can also identify canonical entities: a BSEE borehole row defines a Wellbore and contributes to its Well. Many-to-many links are implemented using association records, including claim-evidence, generation-claim, and answer-citation records. System records such as jobs and ontology definitions have configuration/audit provenance; they are not presented as facts asserted by a source.
 
-### 7.2 Existing artifact contract
+### 7.2 Existing artifact contracts
+
+PDF bundle (`data/processed/` and `data/processed/local/<registry>/`):
 
 | Artifact | Existing semantics |
 |---|---|
@@ -388,19 +465,29 @@ erDiagram
 | `documents/<doc_id>.txt` | Canonical emitted text, constructed by joining chunk texts with two newlines |
 | `SHA256SUMS` | Digests of the bundle's files; excludes itself |
 
+BSEE bundle (`data/processed/local/bsee_wells/`; details in [BSEE ingestion](bsee-ingestion.md#output-bundle)):
+
+| Artifact | Existing semantics |
+|---|---|
+| `boreholes.jsonl` | One typed record per 12-digit API number, with coordinate datum, withheld-field list, and `source` (snapshot SHA256, file, member, row) |
+| `api_changes.jsonl` | One record per API-number change row, with the same `source` provenance |
+| `wells.jsonl` | One record per 10-digit API prefix: boreholes, surface area/blocks, previous API numbers, source record IDs |
+| `summary.json`, `SHA256SUMS` | Snapshot description, counts, code distributions, warnings; digests |
+
 Canonical text is a derived representation, not a verbatim transcription of every PDF element. `char_start` and `char_end` are half-open Python Unicode character indexes into this text. Source-span indexes address emitted chunk text and parser source items. Regions use PDF points and a top-left origin; physical pages start at 1. A multi-page chunk's single `page` field is not a complete citation: inspect its regions/source spans.
 
 A browser uses UTF-16 string indexes, which differ from Python character indexes for some characters. The API must send an exact evidence quote and a tested offset mapping or handle substring extraction server-side. The PDF viewer must transform coordinates for scale and rotation; a stored box is not already a browser pixel rectangle.
 
 ### 7.3 Proposed versioned application envelope
 
-Preserve the existing v1 bundles as inputs. Add a v2 envelope and adapters rather than editing published records in place. Domain-specific metadata moves under a namespaced `source_metadata` object; source type can be `gdr` or `local_upload`. A local upload records its uploader and permission basis instead of fabricating a public URL or license.
+Preserve the existing v1 bundles as inputs. Add a v2 envelope and adapters rather than editing published records in place. Domain-specific metadata moves under a namespaced `source_metadata` object; source type can be `gdr`, `local_upload` or `dataset`. A local upload records its uploader and permission basis instead of fabricating a public URL or license.
 
 | Record | Required fields and invariants |
 |---|---|
 | Document version | `schema_version`, `workspace_id`, `document_id`, `document_version_id`, SHA256, size, media type, storage key, source metadata, lifecycle status; source bytes immutable |
+| Dataset snapshot | `dataset_id`, snapshot ID, and per-file URL, SHA256, size, publisher `Last-Modified`, retrieval time, record layout version, review/activation status; files immutable |
 | Run manifest | Run ID, stage/input hashes, code revision, dependency/runtime/model fingerprints, ontology/prompt/reference versions, resolved config, timestamps, status, output hashes, warning/error counts |
-| Evidence | Evidence ID, document version, ingestion run, chunk ID, bundle hash, quote, local start/end, physical page(s), regions, optional table/row/cell context; quote must match stored text |
+| Evidence | Evidence ID plus **either** document version, ingestion run, chunk ID, bundle hash, quote, local start/end, physical page(s), regions, and optional table/row/cell context (the quote must match stored text), **or** dataset snapshot, file, row, field name, and the source value as printed |
 | Entity | Stable ID, type, canonical display name, scoped identifiers, aliases, reference-list version, merge revision/history; name is not identity |
 | Claim revision | ID/revision, subject, predicate, object entity **or** typed literal, original/normalized units, context/qualifiers, evidence IDs, extraction run, ontology version, review state/reason |
 | Review decision | Actor, time, candidate/claim revision, expected previous revision, action, reason, replacement values/evidence if any; append-only history |
@@ -500,6 +587,7 @@ Everything marked proposed is an architectural recommendation. Select exact futu
 | Python 3.12 | Existing pipeline; proposed application/worker language | Reuses ingestion and evaluation code; keeps three students in one backend language |
 | Docling + pypdf | Existing parser and independent PDF-text/structure checks | Already evaluated locally; known difficult forms/tables remain quality risks |
 | JSON/JSONL + JSON Schema; YAML for authored ontology | Existing artifact formats; proposed versioned contracts | Inspectable and easy to diff; schema validation must be supplemented by semantic checks |
+| Python standard library (`csv`, `zipfile`, `urllib`) | Existing BSEE adapter | No new dependency for structured datasets; streaming keeps memory low. Revisit (for example Parquet or DuckDB) only if directional surveys or larger tables make JSONL impractical |
 | FastAPI + Pydantic | Proposed API and typed request/response layer | Fits the Python codebase and explicit contracts; heavy work runs in a worker process |
 | PostgreSQL | Proposed metadata, accepted-claim, audit, and job store | Transactions suit review decisions and workflow state; operationally one additional database |
 | Neo4j Community initially | Proposed accepted-knowledge graph projection | Cypher supports explicit relation queries; application validators provide checks unavailable in the selected edition |
@@ -525,13 +613,14 @@ The llama.cpp server documents local serving and JSON-schema constraints. That s
 
 The production content path is local to an institutionally approved host/network. Prefetch and verify packages and model files through a controlled acquisition process. Then test the application with outbound internet access blocked, including DNS and telemetry paths. `HF_HUB_OFFLINE` and application settings are helpful but are not substitutes for a network policy.
 
-Cloud credits or Colab can support experiments on the existing public GDR corpus or synthetic fixtures. Private team PDFs, extracts, prompts, graph facts, backups, and logs must stay in the approved boundary unless the data owner and institution explicitly authorize an alternative deployment. This separation is a project design constraint; public-data experiments do not demonstrate a secure private-data deployment.
+Cloud credits or Colab can support experiments on the public GDR reports, public BSEE data, or synthetic fixtures. Private team PDFs, extracts, prompts, graph facts, backups, and logs must stay in the approved boundary unless the data owner and institution explicitly authorize an alternative deployment. This separation is a project design constraint; public-data experiments do not demonstrate a secure private-data deployment.
 
 ### 10.2 Threats and required controls
 
 | Threat / failure | First-release control | Verification |
 |---|---|---|
 | Malicious or oversized PDF | Signature/size/page limits; parser subprocess/container with resource/time limits and restricted mounts/network; quarantine failure | Corrupt, encrypted, oversized, and slow-file fixtures terminate safely |
+| Altered or malformed dataset archive | HTTPS host allow-list including redirects, recorded snapshot digests, optional pins, exact ZIP member name and size limit, strict layout parsing that fails on any mismatch | Tampered snapshot, wrong host, missing member, and malformed-row fixtures fail without writing output (implemented in `tests/test_bsee.py`) |
 | Prompt injection inside a report | Documents treated as data; model has no tools; constrained outputs independently validated | Adversarial passages cannot change queries, permissions, or publication state |
 | Generated query injection | Approved templates, bound parameters, no arbitrary model query execution | Malicious identifiers/inputs cannot add clauses, execute procedures, or bypass generation scope |
 | Unauthorized viewing or editing | OIDC, server-side role checks on every route, private database/model ports, secure sessions | Reader cannot approve/publish; anonymous access denied; PDF/evidence routes checked directly |
@@ -659,6 +748,7 @@ For extraction, a true positive requires matching subject, predicate, object/val
 | Requirement group | Design coverage | Delivery milestone | Verification |
 |---|---|---|---|
 | FR-01/02/13 | Sections 3, 5, 7 | M1 | G1/G2; source/version and unsupported-page fixtures |
+| FR-15 | Sections 3, 5.7, 7 | M1 (adapter, done); M3 (snapshot review and claims) | G1; snapshot, malformed-row and withheld-field fixtures; snapshot-diff review demo |
 | FR-03/04/05 | Sections 5–7 | M2/M3 | G3/G4; frozen ontology and claim/identity benchmark |
 | FR-06/07/09 | Sections 4, 5, 7 | M3/M4 | G1/G7; review conflicts, generation failure, rollback |
 | FR-08 | Section 8 | M5 | G5/G6; intent catalogue and evidence-linked answer set |
@@ -680,12 +770,15 @@ The existing ingestion documents remain the detailed reference for implemented p
 | D-04 | Single shared document-access boundary | Proposed scope | Any per-document restrictions or multiple organizations |
 | D-05 | Modular Python application, separate worker, no distributed platform | Proposed | Measured throughput or isolation requirements |
 | D-06 | PostgreSQL authoritative workflow; Neo4j derived graph | Proposed | Team cannot operate two stores or graph value fails evaluation |
-| D-07 | Human approval for all published claims | Proposed release policy | Calibrated evaluation and explicit approval for automation |
+| D-07 | Human approval for all published claims (dataset claims per snapshot, D-14) | Proposed release policy | Calibrated evaluation and explicit approval for automation |
 | D-08 | Template-based graph queries and deterministic factual answers | Proposed | Supported-intent catalogue demonstrably insufficient |
 | D-09 | Generalize metadata/upload through versioned adapters | Required to achieve stated portability | Approved replacement ingestion interface |
 | D-10 | Private content stays inside the approved deployment | Derived from project purpose; policy confirmation needed | Institution authorizes another boundary |
 | D-11 | Exact model and future package versions selected by benchmark | Open | M2 benchmark complete |
 | D-12 | Operator, host allocation, IdP, budget ceiling, retention, support hours | Open | Must resolve before internal production launch |
+| D-13 | Develop against BSEE well data and end-of-well reports, AK-3 first | Supervisor direction, relayed 25 Oct 2026 | Supervisor changes the focus, or an overlapping evaluation set requires other sources |
+| D-14 | Review allow-listed datasets per snapshot (summary and diff), not per claim; report claims stay per-claim | Proposed | Reviewer or product owner requires row-level review, or a dataset proves unreliable |
+| D-15 | Keep BSEE raw and derived files out of Git; reproduce them from recorded snapshot digests | Proposed (size and unclear redistribution terms) | BSEE terms confirmed as open, and a small frozen fixture is needed in the repository |
 
 ### 13.2 Change process
 
@@ -706,3 +799,9 @@ Update this document when interfaces, data ownership, deployment boundaries, or 
 | Idempotent | Repeating the same operation does not duplicate its effect |
 | RPO / RTO | Acceptable data-loss window / target time to restore service |
 | Abstention | An explicit statement that the system lacks enough supported information to answer |
+| API well number | U.S. well identifier: 2-digit state code (an offshore pseudo-code for the OCS), 3-digit county, 5-digit well, optional 2-digit sidetrack code. BSEE uses 12 digits per borehole |
+| Well / wellbore (borehole) | The surface hole (first 10 API digits) versus each original hole, sidetrack, or bypass drilled from it (12 digits) |
+| BSEE / OCS | Bureau of Safety and Environmental Enforcement, which regulates wells on the federal Outer Continental Shelf |
+| End-of-well (EOW) report | Operator or consultant report written after drilling: summary, hole sections, casing, cementing, surveys, time breakdown, geology, testing |
+| Dataset snapshot | One retrieved set of dataset files, identified by their SHA256 digests and retrieval time |
+| Withheld value | A field BSEE masks (for example until total depth or lease expiry); stored as `null` and listed separately from blank values |

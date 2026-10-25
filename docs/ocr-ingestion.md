@@ -30,6 +30,8 @@ $env:HF_HUB_OFFLINE = "1"
 .\.venv\Scripts\python -m graph_builder.ingestion evaluate --sources data/interim/local_sources.json --run vietnamese_v1
 ```
 
+For offline runs, `DOCLING_ARTIFACTS_PATH` must point to the directory printed by `docling-tools models download`. Prefetching alone did not make the default Hugging Face snapshot lookup work on the development machine. The example above uses the default Windows download location.
+
 Outputs are under `data/interim/runs/vietnamese_v1/`. Inspect chunks, shared tables, canonical documents, and the `ocr` section in each document JSON. This section records effective OCR settings and page-level attributed-character counts. Scanned pages with no attributed content fail artifact validation; scanned pages with fewer than 40 attributed characters are marked `review`. These are coverage heuristics, not recognition-accuracy or confidence measurements. A genuinely blank scanned page may require manual investigation. `needs_ocr` describes the original PDF's scan characteristics, not whether the completed OCR run failed.
 
 OCR requires a named run, including when enabled directly in a configuration file. Publishing remains an explicit action after evaluation; do not replace the main GDR publication with an unrelated source registry.
@@ -62,17 +64,17 @@ This creates an image-only PDF, ingests it through the normal pipeline, and writ
 
 The historical `ocr --run ...` command remains an appendix-only comparison experiment. Normal OCR ingestion uses `run` with the OCR profile above.
 
-
-### Verified development check (24 October 2026)
-
-The local test suite passed 96 tests, with one existing cached-corpus regression skipped because its fixture was unavailable. A real CPU run of the image-only Vietnamese fixture completed conversion in 51.635 seconds and passed artifact validation (one expected warning: no tables). Against the complete reference, the final canonical text scored CER 10.5% (21/200 characters) and WER 19.51% (8/41 words). This is an end-to-end extraction measurement, including filtering: the title was retained in chunk section metadata rather than canonical body text, the degree symbol was misread, and some punctuation was lost. It establishes working OCR integration, not production-quality Vietnamese recognition. Review these errors on representative documents before setting an acceptance threshold.
-
-For offline runs, set `DOCLING_ARTIFACTS_PATH` to the directory printed by `docling-tools models download`; prefetching alone did not make the default Hugging Face snapshot lookup work in this environment. The PowerShell example above uses the default Windows download location.
-
-### Review follow-up (25 October 2026)
-
-Headings intentionally become section metadata in the current chunker. The synthetic end-to-end CER/WER includes that representation difference; it must not be described as a pure OCR recognition score. Inspect section metadata alongside canonical text. The general evaluator compares against the PDF text layer, so scans without reference text now report undefined precision as well as recall, rather than a misleading zero precision. Use human references and `score_ocr` to measure scan accuracy.
+Headings intentionally become section metadata in the current chunker, so an end-to-end CER/WER against a full-page reference includes that representation difference. It must not be described as a pure OCR recognition score; inspect section metadata alongside canonical text. The general evaluator compares against the PDF text layer, so scans without reference text report undefined precision and recall rather than a misleading zero. Use human references and `score_ocr` to measure scan accuracy.
 
 OCR rejects the `pypdf` chunking strategy because it reads only the original text layer. Invalid registry values fail with validation errors, and malformed cache manifests are rebuilt. This CLI is not a concurrent upload service; authentication, process isolation, transactional publication and a representative Vietnamese quality benchmark remain future work.
 
-Verification after review: 99 tests passed, one cached-GDR regression skipped because its conversion fixtures were absent. All nine published baseline artifact hashes and schemas passed verification. Re-evaluating the saved real OCR output passed validation, with exact canonical offsets, valid bounding boxes and deterministic repeated chunking. No new model-accuracy benchmark was run during this review.
+## Verification record
+
+| Date | Check | Result |
+|---|---|---|
+| 24 October 2026 | Unit tests | 96 passed; one cached-corpus regression skipped (fixture absent) |
+| 24 October 2026 | Real CPU run of the image-only Vietnamese fixture | Conversion 51.635 s; artifact validation passed (one expected warning: no tables); end-to-end CER 10.5% (21/200 characters), WER 19.51% (8/41 words) |
+| 25 October 2026 | Unit tests after review | 99 passed; one cached-GDR regression skipped (conversion fixtures absent) |
+| 25 October 2026 | Published baseline and saved OCR output | All nine baseline artifact hashes and schemas verified. The saved OCR output re-validated with exact canonical offsets, valid bounding boxes and deterministic repeated chunking. No new accuracy benchmark was run. |
+
+The CER/WER above includes filtering: the title went to section metadata rather than body text, the degree symbol was misread, and some punctuation was lost. It shows that OCR integration works; it is not evidence of production-quality Vietnamese recognition. Review these errors on representative documents before setting an acceptance threshold.

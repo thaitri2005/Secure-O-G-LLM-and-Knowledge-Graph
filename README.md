@@ -1,125 +1,94 @@
 # Secure LLM and Knowledge Graph Platform
 
-An on-premise platform under development that will turn technical documents into a reviewed knowledge graph and answer questions with source evidence. Parsing runs locally today; ontology-guided extraction, local model inference, graph storage, review, and question answering are planned. The target is an internal production service for a small team, built by three students using a school research machine.
+An on-premise platform, under development, that turns oil-and-gas well data and technical well reports into a reviewed knowledge graph, and answers questions with source evidence. Ingestion runs locally today. Ontology-guided extraction with a local model, graph storage, review and question answering are planned. The target is an internal service for a small team, built by three students on a school research machine.
 
-The intended design supports user-supplied ontologies and evidence-linked facts. The reference corpus uses public end-of-well reports from the U.S. DOE [Geothermal Data Repository (GDR)](https://gdr.openei.org). Local PDFs can also be registered with checksums and processed using an opt-in Vietnamese–English OCR profile; see [OCR ingestion](docs/ocr-ingestion.md). A web upload service and the complete domain-neutral application envelope remain planned. Package/model/source acquisition may use the network; enforcing and verifying the production network boundary remains planned work.
+> **Current development focus (25 October 2026).** Following the supervisor's guidance, development targets two sources:
+>
+> - **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. Ingestion is implemented.
+> - **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from. It is already ingested.
+>
+> Read **[Development focus and data sources](docs/DATA_SOURCES.md)** before starting new work.
 
-## Project documentation
-
-Start with the **[Project description and system design](docs/PROJECT_DESIGN.md)** for the complete product and architecture reference. It covers scope, users, requirements, six architecture/workflow/data diagrams, technology choices, evidence contracts, extraction and review, question answering, security, deployment, hardware estimates, and acceptance criteria. Existing behavior and proposed components are explicitly distinguished.
-
-The **[Development and delivery plan](docs/DEVELOPMENT_PLAN.md)** maps that design to milestones, dependencies, responsibilities for three students, effort estimates, hardware/cloud cost controls, risks, release gates, and the first implementation backlog. Its 20-week example depends on an assumed 12 hours per student per week; it is not an agreed deadline.
-
-For the current subsystem, use [Ingestion details](docs/ingestion.md) and [Ingestion evaluation](docs/ingestion-evaluation.md). The [documentation audit](docs/DOCUMENTATION_AUDIT.md) records what was missing, what these documents now cover, and which checks were performed.
-
-## Components
+## Status
 
 | Component | Purpose | Status |
 |---|---|---|
-| Ingestion | PDF to passage chunks with document, page, region and character-offset provenance | Implemented (`graph_builder.ingestion`) |
-| Ontology | User-supplied ontology (YAML/JSON) that guides extraction | Planned |
-| Graph construction | Extract entities and relations by the ontology, link names to reference lists, merge duplicates | Planned |
-| Graph control | Confidence threshold, basic checks, review queue | Planned |
-| Graph storage | Graph database in which every fact keeps its source | Planned |
-| Admin application | Uploads, review queue, node merging and deletion, re-runs | Planned |
-| Question answering | Natural-language questions translated into graph queries | Planned |
+| PDF ingestion | PDF to passage chunks with page, region and character-offset provenance; optional OCR | Implemented ([details](docs/ingestion.md)) |
+| BSEE well-data ingestion | BSEE well files to typed borehole, well and API-change records with row provenance | Implemented ([details](docs/bsee-ingestion.md)) |
+| Ontology | Versioned well-domain vocabulary that guides extraction | Planned; first draft from AK-3 and BSEE |
+| Graph construction | Extract claims, link them to wells by API number and scoped names, merge duplicates | Planned |
+| Review and graph storage | Review queue; graph in which every fact keeps its evidence | Planned |
+| Question answering | Supported questions translated into graph queries, with citations | Planned |
 
-The `graph_builder` package holds the stages that build the graph. Ingestion is the first one.
+## Quick start
 
-## Setup
-
-Use Python 3.12. The lock file captures the complete Windows CPU environment, including the optional OCR trial dependencies. The base installation needs only pinned Docling and pypdf; EasyOCR and its pins are available through `pip install -e ".[ocr]"`. OCR is disabled in published outputs.
+Use Python 3.12. The lock file pins the complete Windows CPU environment.
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
+python -m unittest discover -s tests          # about 100 tests, under a minute
 ```
 
-Bash equivalent: `python3.12 -m venv .venv && .venv/bin/python -m pip install -r requirements.lock.txt && .venv/bin/python -m pip install -e . --no-deps && source .venv/bin/activate` (the supplied lock includes Windows-specific packages).
+On Linux or macOS: `python3.12 -m venv .venv && source .venv/bin/activate`, then the same `pip` commands. The lock file includes Windows-only packages (for example `pywin32`); install the rest manually if needed. The OCR extra is optional: `pip install -e ".[ocr]"` ([OCR guide](docs/ocr-ingestion.md)).
 
-## Reproduce the ingestion output
+**Ingest the BSEE well data** (downloads about 4 MB; takes about two minutes including validation):
 
-For local PDFs and Vietnamese/mixed-language scans, see [OCR ingestion](docs/ocr-ingestion.md). The commands below reproduce the existing OCR-disabled GDR baseline.
+```powershell
+python -m graph_builder.ingestion.bsee run
+python -m graph_builder.ingestion.bsee show --api 1772140041
+```
+
+**Reproduce the published PDF bundle** (downloads three PDFs and the Docling models; about ten minutes on a CPU the first time):
 
 ```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well.json --config configs/ingestion/default.json
 ```
 
-This command downloads and verifies the three source PDFs, downloads the Docling models, converts and chunks the reports, and validates the result. Allow about ten minutes on a CPU for the first run. Because the main bundle is published, an unnamed run only succeeds if it reproduces the committed files byte for byte. If anything differs, it fails without changing them. Use a named run (below) to experiment.
+An unnamed run succeeds only if it reproduces `data/processed/` byte for byte. Use `--run-name <name>` to experiment; see [PDF ingestion](docs/ingestion.md#usage).
 
-Optional model prefetch: `docling-tools models download layout tableformer`. Once the models and PDFs are cached, set `$env:HF_HUB_OFFLINE = "1"` (bash: `export HF_HUB_OFFLINE=1`) to run offline. Also set `DOCLING_ARTIFACTS_PATH` to the directory printed by the model download command (on Windows, normally `$env:USERPROFILE/.cache/docling/models`); see the OCR guide for a complete example.
+## Repository layout
 
-Expected SHA256 of `data/processed/gdr_chunks.json`: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`. `data/processed/SHA256SUMS` lists the digest of every published main artifact.
-
-The `fetch`, `convert`, `chunk` and `validate` commands run the individual stages with the same `--sources` and `--config` arguments. Other locations:
-- downloaded PDFs: ignored `data/raw/`;
-- Docling JSON/Markdown caches (ignored): a per-parser-settings subdirectory of `data/interim/docling/`;
-- timings and filter statistics: ignored `data/interim/run_log.json`.
-
-## Output
-
-The main bundle in `data/processed/` is the input for graph construction:
-
-| File | Content |
-|---|---|
-| `gdr_chunks.json` | Array of chunks: `doc_id`, `page`, `chunk_id`, `type`, `text`, `section` |
-| `gdr_chunks_full.jsonl` | One record per chunk, in the same order: `content_id`, canonical character offsets, source item/page character spans, regions (PDF points, top-left origin), section path, table reference |
-| `gdr_tables.jsonl` | Each table once: cells with spans and header flags, and row-oriented text |
-| `documents/<doc_id>.json`, `.txt` | Source metadata and physical-page geometry; canonical text (chunks joined by two newlines) that the offsets index |
-| `SHA256SUMS` | Digests of the files above |
-
-Chunk fields:
-
-| Field | Value |
-|---|---|
-| `doc_id` | Stable identifier from the source registry |
-| `page` | Physical PDF page, numbered from 1 |
-| `chunk_id` | Unique `{doc_id}#c0000` identifier, numbered continuously per document |
-| `type` | `text` or `table` |
-| `text` | Nonempty extracted text or Markdown table |
-| `section` | Nearest preceding section heading, or `null` |
-
-`content_id` stays stable when document ID, type and whitespace-normalized text are unchanged, even if chunks are renumbered. Identical repeated passages can share it, and changed content produces a new ID; it is a comparison aid, not a unique evidence key. The planned evidence contract also pins the document version, immutable run/bundle and span. The four JSON schemas in `schemas/` describe the current records. All text artifacts are UTF-8 with LF line endings, and geometry is rounded to 0.01 PDF point.
-
-## Experiments
-
-The default configuration (`configs/ingestion/default.json`) uses paragraph chunking, a 1,500-character budget and fast TableFormer. It was selected by measurement. [Evaluation results](docs/ingestion-evaluation.md) report fidelity, gold scores, remaining errors and the commands that reproduce every number.
-
-```powershell
-python -m graph_builder.ingestion run --run-name paragraph_1500_fast
-python -m graph_builder.ingestion evaluate --run paragraph_1500_fast
-python -m graph_builder.ingestion compare --old page_1500_accurate --new paragraph_1500_fast
-python -m graph_builder.ingestion publish --run paragraph_1500_fast
+```text
+configs/
+  datasets/       structured-data configurations (BSEE)
+  ingestion/      PDF pipeline options (default, Vietnamese OCR)
+  sources/        PDF source registries with pinned SHA256 digests
+data/
+  gold/           frozen reference annotations for ingestion evaluation
+  processed/      published PDF bundle (committed); local/ holds regenerated bundles (ignored)
+  raw/, interim/  downloads, caches and named runs (ignored)
+docs/             design, plan, data sources, subsystem guides; start at docs/README.md
+schemas/          JSON Schemas for every published record type
+scripts/          one-off utilities (OCR smoke test)
+src/graph_builder/ingestion/   PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
+tests/            unit and regression tests (unittest)
 ```
 
-How named runs work:
-- Named runs reuse the verified conversion caches and write to ignored `data/interim/runs/<name>/`.
-- Overrides such as `--set max_chars=2000` are only allowed on a named run. `page_1500_accurate` is created with `--set table_mode=accurate --set chunking.strategy=page`.
-- Commands that read a saved run (`evaluate`, `compare`, `publish`, `ocr`) reject `--set`.
-- `publish` revalidates the run and copies it to the bundle of the `--sources` registry. The default is the main registry.
+Docling caches live in a per-parser-settings subdirectory of `data/interim/docling/`. BSEE snapshots live in `data/raw/bsee_wells/`, and their bundle in `data/processed/local/bsee_wells/`.
 
-Two more registries use the same configuration: `configs/sources/gdr_end_of_well_extended.json` (two further reports) and `configs/sources/gdr_ak3_appendices.json` (the AK-3 appendix portfolio, split into 44 PDFs). Their bundles are regenerated locally into ignored `data/processed/local/<registry_name>/`:
+## Documentation
 
-```powershell
-python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well_extended.json --config configs/ingestion/default.json
-python -m graph_builder.ingestion run --sources configs/sources/gdr_ak3_appendices.json --config configs/ingestion/default.json
-```
+The [documentation index](docs/README.md) gives the reading order. The main documents are:
 
-[Published bundle checks](docs/ingestion-evaluation.md#published-bundle-checks) list their expected digests. [Ingestion details](docs/ingestion.md) describe filtering, chunking, validation and known limitations.
+- [Development focus and data sources](docs/DATA_SOURCES.md): what we build on now, and why.
+- [Project description and system design](docs/PROJECT_DESIGN.md): architecture, data model, extraction, QA, security, operations, acceptance gates.
+- [Development and delivery plan](docs/DEVELOPMENT_PLAN.md): milestones, responsibilities, risks, next backlog.
+- [Related work](docs/references.md): papers and resources from the supervisor.
 
-## Tests
+## Development workflow
 
-```powershell
-python -m unittest discover -s tests
-```
-
-Tests use small synthetic documents. The regression test also re-chunks the cached reports and checks the published SHA256 when all document caches are present.
+- Work on a branch and get a review from another student before merging to `main`.
+- Run `python -m unittest discover -s tests` before pushing. Tests use small synthetic fixtures; the PDF regression test also runs when the conversion caches are present.
+- Text files use UTF-8 and LF line endings (`.gitattributes`, `.editorconfig`). Generated artifacts must stay byte-reproducible.
+- Never commit downloads, caches or BSEE files. They are ignored and regenerable, and BSEE's terms are not an open license.
+- When behavior changes, update the subsystem document and design §3 in the same change.
 
 ## Data attribution
 
-The reports were authored by **Geothermal Resource Group, Inc.** and are published in the DOE Geothermal Data Repository under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The chunks are derived text: extracted, filtered and split from these reports, with tables represented as Markdown.
+The end-of-well reports were authored by **Geothermal Resource Group, Inc.** and are published in the U.S. DOE [Geothermal Data Repository](https://gdr.openei.org) under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The committed chunks are derived text: extracted, filtered and split from these reports, with tables represented as Markdown.
 
 | Report | Source |
 |---|---|
@@ -127,4 +96,6 @@ The reports were authored by **Geothermal Resource Group, Inc.** and are publish
 | Utah FORGE Seismic Monitoring Well 56-32 End of Well Report (2021) | [GDR submission 1295](https://gdr.openei.org/submissions/1295) |
 | Utah FORGE Seismic Monitoring Well 68-32 End of Well Report | [GDR submission 1153](https://gdr.openei.org/submissions/1153) |
 
-The [source registry](configs/sources/gdr_end_of_well.json) records the PDF URLs, license URLs, byte sizes and SHA256 digests used to verify the inputs.
+The [source registry](configs/sources/gdr_end_of_well.json) records the PDF URLs, licenses, byte sizes and SHA256 digests used to verify the inputs.
+
+Well data comes from the [BSEE Data Center](https://www.data.bsee.gov/Main/Well.aspx) (U.S. Department of the Interior), subject to the [BSEE disclaimer](https://www.bsee.gov/bsee.gov/privacy-disclaimer). It is downloaded locally and not redistributed in this repository.

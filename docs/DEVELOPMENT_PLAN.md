@@ -1,12 +1,24 @@
 # Development and delivery plan
 
-**Version:** 1.0 · **Baseline date:** 23 October 2026<br>
+**Version:** 1.1 · **Baseline date:** 23 October 2026 · **Last revised:** 25 October 2026<br>
 **Product target:** a maintained internal service for one small team<br>
-**Team:** three students · **Architecture:** [Project description and system design](PROJECT_DESIGN.md)
+**Team:** three students · **Architecture:** [Project description and system design](PROJECT_DESIGN.md) · **Focus:** [Development focus and data sources](DATA_SOURCES.md)
 
-This plan translates the design into deliverable work, dependencies, ownership, estimates, and release gates. The implementation currently stops at PDF ingestion. Future milestone names do not imply that their features are already present.
+This plan translates the design into deliverable work, dependencies, ownership, estimates, and release gates. The implementation currently stops at ingestion. Future milestone names do not imply that their features are already present. The schedule is a planning baseline, not a record of completed milestones.
 
-**Implementation update, 25 October 2026:** local PDF registration, opt-in Vietnamese-English OCR, source-aware conversion-cache checks, and scanned-page coverage checks are implemented. See [OCR workflow and measured limitations](ocr-ingestion.md). M1 remains open: web upload, the v2 envelope, authentication, and immutable release activation are still planned. The schedule below is a planning baseline, not a record of completed milestones.
+## Current status and focus
+
+**Focus (supervisor direction, 25 October 2026).** Develop against [BSEE well data](https://catalog.data.gov/dataset/bsee-data-center-wells-information) and end-of-well reports, starting with the [AK-3 report](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf). M2 builds its ontology draft, labels and first extraction experiment from these two sources. Demonstrate new features on them first. Keep the other GDR registries as regression and evaluation material.
+
+**Implemented** (code, tests and a verification record exist):
+
+| Item | Milestone | Reference |
+|---|---|---|
+| PDF ingestion with page/region/offset provenance, evaluation and publication | Pre-M1 baseline | [PDF ingestion](ingestion.md) |
+| Local PDF registration, opt-in Vietnamese–English OCR, source-aware cache checks, scanned-page coverage checks | M1 (partial) | [OCR ingestion](ocr-ingestion.md) |
+| BSEE well-data adapter: verified snapshot, typed records with row provenance, well grouping, schema validation | M1 (partial; FR-15) | [BSEE ingestion](bsee-ingestion.md) |
+
+**Still open in M1:** web upload, the v2 envelope, input-limit enforcement in a service, the access skeleton, immutable release activation, and snapshot comparison for BSEE.
 
 ## 1. Planning basis
 
@@ -105,9 +117,13 @@ Retain the current GDR v1 bundle and its hashes as a regression fixture. Build a
 
 Add source hash and parser/model/package/configuration fingerprints to production cache eligibility. Stage each run in an immutable output location and activate a bundle only after full validation. Define scan/partial-document behavior: the UI must show gaps, and claims from unsupported pages cannot be presented as extracted knowledge. Begin identity integration and deny-by-default API access here; auth is not a final-week addition.
 
-**Exit demo:** process one supported public PDF, locate a chunk in the exact PDF version, reject an unsupported file, and prove that reprocessing cannot silently replace the accepted bundle.
+The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies snapshots and emits typed records with row provenance. Still to do: a snapshot comparison (added, changed, and removed boreholes) to support the snapshot-level review proposed in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-cross-source-linking).
+
+**Exit demo:** process one supported public PDF (AK-3), locate a chunk in the exact PDF version, reject an unsupported file, and prove that reprocessing cannot silently replace the accepted bundle. Import a BSEE snapshot, show a borehole with its row citation, and show that a tampered snapshot is rejected.
 
 ### M2: smallest complete extraction example
+
+Use the current focus sources ([data sources](DATA_SOURCES.md)). Draft ontology v0.1 from the AK-3 section map and the BSEE fields. Use `wells.jsonl` as the first reference list for entity resolution. The extraction slice is AK-3's executive summary plus one table (casing or PT logging). Because AK-3 is not a BSEE well, test linking separately on an overlapping set (FORGE reports and FORGE well data, or Gulf boreholes with BSEE end-of-operations reports).
 
 Before building a broad pipeline, use one short report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, qualifiers, and an exact evidence span. Include a deliberately ambiguous alias and a misleading embedded instruction. Compare model output with deterministic checks and a manual reference.
 
@@ -203,6 +219,9 @@ Likelihood/impact are initial qualitative estimates. Review weekly and after eac
 | R-12 | Student turnover leaves an unmaintained service | High / High | No successor named by M6 | Shared runbooks, operator training, restore exercise, explicit end-of-project ownership | C / product owner |
 | R-13 | Cloud credits expire or costs exceed expectations | Medium / Medium | Credit balance drops or idle compute persists | Hard cap, auto-shutdown, school-host baseline; cloud remains optional | C |
 | R-14 | Gold sample is biased or leaks into tuning | Medium / High | Duplicate documents, repeated test-set prompt changes | Freeze split, document-level separation, second annotation subset, disclose uncertainty | A |
+| R-15 | Focus sources do not overlap (AK-3 is not a BSEE well), so linking cannot be tested on them | Certain / Medium | Linking work has no shared wells to evaluate on | Use FORGE well data with the FORGE reports, or Gulf boreholes with their BSEE end-of-operations reports; evaluate linking separately from AK-3 extraction | A / B |
+| R-16 | BSEE files change between snapshots, or redistribution terms forbid sharing derived data | Medium / Medium | New `Last-Modified`, changed digests, unclear license | Recorded snapshots and optional pins; freeze evaluation snapshots; keep BSEE data out of Git until terms are confirmed | B |
+| R-17 | Supervisor focus changes again | Medium / Medium | New sources requested before M2 closes | Keep adapters source-specific and contracts source-neutral; record each change as a decision (design D-13) | Product owner |
 
 External dependencies are host allocation, institutional access/identity/TLS, backup storage, domain review, and model-use permissions. Record who is expected to supply each item and by which milestone. Lack of a reply is not approval.
 
@@ -225,21 +244,24 @@ Each change receives peer review. Implement tests for meaningful contracts and f
 
 ### Definition of release complete
 
-All Must requirements FR-01 through FR-13 have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
+All Must requirements (FR-01 through FR-13, and FR-15) have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
 
-## 7. First implementation backlog
+## 7. Next implementation backlog
 
-These are the next concrete tasks after the documentation baseline. Complete the small evidence-to-claim path before expanding infrastructure.
+Revised 25 October 2026 for the AK-3 and BSEE focus. Complete the small evidence-to-claim path before expanding infrastructure. Items 2 and 3 are partly done.
 
-| Order | Task | Acceptance artifact |
-|---|---|---|
-| 1 | Name the product/domain reviewer and prospective operator; inspect actual host | Decision record with GPU/VRAM, RAM/disk, sharing, access, identity, and service-hosting status |
-| 2 | Recreate the pinned ingestion environment and verify the committed bundle | Setup log, test results, nine matching manifest entries; clearly separate cached checks from fresh conversion |
-| 3 | Define versioned source/run/evidence envelopes and a local-upload adapter | JSON schemas and fixtures covering GDR, local PDF, duplicate text, multi-page chunks, Unicode, and tables |
-| 4 | Define a small initial ontology and 10 intended question examples | Reviewed ontology draft, scoped aliases, quantity/unit rules, unsupported examples |
-| 5 | Label a small development slice and freeze the evaluation strategy | Candidate reference claims with evidence and a document-separated test inventory |
-| 6 | Run the one-section local extraction experiment on the actual GPU | Versioned candidates, exact-evidence validation, quality/latency/VRAM report |
-| 7 | Finalize relational/graph contracts from the tested slice | Accepted claim revisions projected into a tiny graph and queried with evidence |
+| Order | Task | Acceptance artifact | Status |
+|---|---|---|---|
+| 1 | Name the product/domain reviewer and prospective operator; inspect the actual host | Decision record with GPU/VRAM, RAM/disk, sharing, access, identity, and service-hosting status | Open |
+| 2 | Recreate the pinned environment and verify both ingestion paths | Setup log; unit tests; nine matching PDF manifest entries; a validated BSEE bundle with its snapshot digests | Tests and BSEE run verified 25 Oct 2026; PDF fresh conversion not rerun |
+| 3 | Define versioned source, run, and evidence envelopes covering PDFs **and** dataset snapshots | JSON schemas and fixtures covering GDR, local PDF, a BSEE row, duplicate text, multi-page chunks, Unicode, and tables | BSEE record schemas exist; v2 envelope open |
+| 4 | Draft well ontology v0.1 and 10 intended questions from the AK-3 section map and BSEE fields; compare with the published well-engineering ontology ([related work](references.md)) | Reviewed ontology draft with scoped identities (API10/API12; project + name), quantity/unit/qualifier rules, and unsupported examples | Open |
+| 5 | Build the well reference index from `wells.jsonl` and API changes | Lookup by API number (10/12 digits, previous numbers) and by scoped name; tests for repeated names, renamed sidetracks, and zero-padded blocks | Open |
+| 6 | Label the AK-3 development slice and freeze the evaluation strategy | About 30 reference claims (executive summary, casing, PT logging) with evidence; document-separated test inventory | Open |
+| 7 | Run the one-section local extraction experiment on the actual GPU | Versioned AK-3 candidates, exact-evidence validation, quality/latency/VRAM report | Open |
+| 8 | Map BSEE fields to dataset claims and add snapshot comparison | Versioned mapping; claims citing snapshot and row; added/changed/removed report between two snapshots | Open |
+| 9 | Assemble an overlap test set for cross-source linking | FORGE general well data plus the 56-32 and 68-32 reports (or Gulf boreholes with BSEE end-of-operations reports), with expected links | Open |
+| 10 | Finalize relational/graph contracts from the tested slice | Accepted claim revisions from both sources projected into a tiny graph and queried with evidence | Open |
 
 The main [README](../README.md) remains the setup/CLI entry point. Do not rerun `publish` simply to check documentation: it writes the selected bundle. Fresh `run` requires PDF/model acquisition and can take time; first inspect existing artifacts and use an isolated named run for experiments.
 
@@ -255,5 +277,9 @@ The main [README](../README.md) remains the setup/CLI entry point. Do not rerun 
 | Model/checkpoint/license and measured context/concurrency | M2 | Determines quality, memory use, and actual hardware fit |
 | Spending ceiling and cloud-account owner | Before paid use | Prevents accidental reliance on unbounded cloud resources |
 | Retention, support hours, operating owner | Before M7 acceptance | Makes the internal service maintainable after handover |
+| Scope of the domain: oil and gas only, or also geothermal reports such as AK-3 and FORGE | M2 | Determines the ontology's breadth and which reports enter the acceptance set |
+| BSEE redistribution terms | Before committing any BSEE-derived fixture or sharing bundles | The listed terms are a disclaimer, not an open license |
+| Snapshot-level review of datasets (design D-14) | M3 | Determines the review workload and how dataset claims enter the graph |
+| Identity of the two papers the supervisor shared ([related work](references.md)) | M2 ontology draft | One is probably a published well-engineering ontology that the draft should align with |
 
 The current documentation request does not require these choices to be invented. The design and plan remain usable with clearly labelled assumptions; production implementation must close the relevant decisions at their stated gates.

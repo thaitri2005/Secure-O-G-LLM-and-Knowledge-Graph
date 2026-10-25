@@ -1,0 +1,64 @@
+{
+  "dataset_id": "bsee_wells",
+  "title": "BSEE Data Center - Wells Information",
+  "publisher": "Bureau of Safety and Environmental Enforcement (BSEE), U.S. Department of the Interior",
+  "catalog_page": "https://catalog.data.gov/dataset/bsee-data-center-wells-information",
+  "landing_page": "https://www.data.bsee.gov/Main/Well.aspx",
+  "license": {
+    "id": "BSEE-disclaimer",
+    "url": "https://www.bsee.gov/bsee.gov/privacy-disclaimer"
+  },
+  "files": [
+    {
+      "file_id": "borehole_gulf",
+      "table": "borehole",
+      "region": "gulf_of_america",
+      "datum": "NAD27",
+      "url": "https://www.data.bsee.gov/Well/Files/5010delimit.zip",
+      "member": "5010.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=borehole"
+    },
+    {
+      "file_id": "borehole_pacific",
+      "table": "borehole",
+      "region": "pacific",
+      "datum": "NAD83",
+      "url": "https://www.data.bsee.gov/Well/Files/5010pacdelimit.zip",
+      "member": "5010.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=pacborehole"
+    },
+    {
+      "file_id": "borehole_alaska",
+      "table": "borehole",
+      "region": "alaska",
+      "datum": "NAD83",
+      "url": "https://www.data.bsee.gov/Well/Files/5010akdelimit.zip",
+      "member": "5010.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=akborehole"
+    },
+    {
+      "file_id": "api_changes_gulf",
+      "table": "api_change",
+      "region": "gulf_of_america",
+      "url": "https://www.data.bsee.gov/Well/Files/apichgdelimit.zip",
+      "member": "apichgdelimit.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=apiChanges"
+    },
+    {
+      "file_id": "api_changes_pacific",
+      "table": "api_change",
+      "region": "pacific",
+      "url": "https://www.data.bsee.gov/Well/Files/apichgpacdelimit.zip",
+      "member": "apichgpacdelimit.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=pacapiChanges"
+    },
+    {
+      "file_id": "api_changes_alaska",
+      "table": "api_change",
+      "region": "alaska",
+      "url": "https://www.data.bsee.gov/Well/Files/apichgakdelimit.zip",
+      "member": "apichgakdelimit.txt",
+      "layout": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=akapiChanges"
+    }
+  ]
+}
