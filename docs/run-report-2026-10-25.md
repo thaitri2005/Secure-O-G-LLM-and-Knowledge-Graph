@@ -57,4 +57,4 @@ Example finding: on lease G01608, 515 wellbores start on the lease but only 233 
 
 - The extended (2 reports) and AK-3 appendix (44 PDFs) registries were not rerun.
 - No OCR run.
-- No extraction, graph or question-answering evaluation exists yet; those milestones are M2 onward in the [development plan](DEVELOPMENT_PLAN.md).
+- Extraction, review and QA were evaluated only in the [architecture prototype](../prototype/LOG.md) (15 AK-3 chunks, test build); production versions are M2 onward in the [development plan](DEVELOPMENT_PLAN.md).
