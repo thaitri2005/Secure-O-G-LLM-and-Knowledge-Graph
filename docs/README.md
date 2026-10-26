@@ -1,24 +1,27 @@
 # Documentation
 
-Start with the first row, then read the others as needed. Each document says at the top whether it describes implemented behavior or the proposed design.
+## Document hierarchy
 
-| Document | Read it for | Kind |
+The [project specification](PROJECT_DESIGN.md) is the **single source of truth**. Every other document is an input to it, derived from it, or supports it, and it wins any disagreement.
+
+| Kind | Document | Read it for |
 |---|---|---|
-| [Development focus and data sources](DATA_SOURCES.md) | **What the team is building on now**: the BSEE track, the AK-3 report track, and where each stands | Current guidance |
-| [Project description and system design](PROJECT_DESIGN.md) | Scope, users, architecture, data model, extraction, QA, security, operations, acceptance gates | Design baseline |
-| [Development and delivery plan](DEVELOPMENT_PLAN.md) | Milestones, ownership, estimates, risks, and the next backlog | Plan |
-| [BSEE well-data ingestion](bsee-ingestion.md) | Commands, outputs, value conventions and checks of the structured-data adapter | Implemented |
-| [PDF ingestion](ingestion.md) | Commands, output contract and processing rules of the PDF pipeline | Implemented |
-| [Ingestion evaluation](ingestion-evaluation.md) | How the PDF configuration was chosen, measured quality, reproduction commands | Measurements |
-| [OCR ingestion](ocr-ingestion.md) | Local PDF registration and the opt-in Vietnamese–English OCR profile | Implemented, experimental |
-| [Architecture prototype](../prototype/README.md) and [test log](../prototype/LOG.md) | A small test build of the target stack (Neo4j, PostgreSQL, llama.cpp, FastAPI) on 15 AK-3 chunks: extraction, review, generations, cited QA, and how each was evaluated | Test build, not the system |
-| [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways | Reference |
-| [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them | Assets |
-| [Archive](archive/) | Superseded records, kept for history | Historical |
+| **Inputs** | [Stakeholder requirements](requirements/README.md) | What VPI asked for: digest of the capstone proposal and the KGinEP document, requirement IDs SR-01 to SR-18 |
+| **Source of truth** | [Project specification and system design](PROJECT_DESIGN.md) | Scope, the three-layer target, requirement decisions, architecture, data model, extraction, QA, security, operations, acceptance gates, decisions, open questions |
+| **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, milestones, ownership, estimates, risks, next backlog |
+| Supporting | [Data sources](DATA_SOURCES.md) | The public proxy data (BSEE well files, AK-3 and other end-of-well reports): content, terms, quality findings, refresh |
+| Supporting | [Components](components/) | How each implemented subsystem works and is run: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion and linked graph](components/bsee-ingestion.md) |
+| Supporting | [Experiments](experiments/README.md) | Every measurement, one record per experiment (E1–E4) |
+| Supporting | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways |
+| Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
+
+Reading order for a new team member: the specification's §1, the development plan's current status, data sources, then the component guide for the area you work on.
 
 ## Conventions
 
 - **Implemented** means code, tests and a verification record exist in this repository. **Proposed** or **planned** means design intent only.
-- Measurements state their date, input and configuration. Don't copy numbers between documents; link to the document that owns them.
-- When behavior changes, update the subsystem document and the "Current implementation" section of the design ([§3](PROJECT_DESIGN.md#3-current-implementation-and-evidence)) in the same change.
+- Change the specification first, then the plan. A plan or guide must not introduce scope the specification does not contain.
+- Measurements live in experiment records. Don't copy numbers between documents; link to the experiment that owns them.
+- When behavior changes, update the component guide and specification §3 in the same change.
+- Supervisor feedback that changes scope is recorded as a decision (specification §13.1); unanswered questions stay in §13.2.
 - Diagram sources are the Mermaid blocks in the documents; the SVGs are generated from them ([how](diagrams/README.md)).

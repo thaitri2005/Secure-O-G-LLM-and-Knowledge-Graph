@@ -1,6 +1,16 @@
-# Ingestion evaluation
+# E1: PDF ingestion configuration and quality
 
-These measurements evaluate the **ingestion subsystem**, not future graph extraction or question answering. The [project design](PROJECT_DESIGN.md#12-quality-and-acceptance) defines the separate acceptance gates needed for those stages; the [development plan](DEVELOPMENT_PLAN.md) schedules them.
+| | |
+|---|---|
+| **Date** | Before 23 October 2026 (configuration selection); published bundle hashes as listed below |
+| **Question** | Which parser and chunking configuration should the PDF pipeline publish, and how faithful is its output? |
+| **Requirement** | SR-02, FR-02, FR-13; specification gates G1–G2 |
+| **Input** | Main GDR registry (AK-3, FORGE 56-32 and 68-32: 3 reports, 155 pages); extended registry (2 reports, 170 pages); AK-3 appendix portfolio (44 PDFs, 463 pages) |
+| **Gold** | [`data/gold/ingestion/`](../../data/gold/ingestion/README.md): 10 tables and 5 pages, single annotator, AI-assisted |
+| **Outputs** | Published main bundle in `data/processed/`; other runs under ignored `data/interim/runs/<name>/` |
+| **Status** | Concluded: paragraph chunking, 1,500 characters, fast TableFormer, OCR off. Reproduced by [E3](E3-reproduction-run-2026-10-25.md) |
+
+These measurements evaluate the **ingestion subsystem**, not graph extraction or question answering. The [specification](../PROJECT_DESIGN.md#12-quality-and-acceptance) defines the separate acceptance gates for those stages. How to run the pipeline is in the [PDF ingestion guide](../components/pdf-ingestion.md).
 
 ## Method and default selection
 

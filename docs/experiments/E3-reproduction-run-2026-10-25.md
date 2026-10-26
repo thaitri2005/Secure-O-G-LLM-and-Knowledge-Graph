@@ -1,6 +1,15 @@
-# Run report: 25 October 2026
+# E3: Reproduction run of both ingestion paths, 25 October 2026
 
-A full run of both ingestion paths on the development laptop (Windows, CPU, locked environment), recorded for progress reporting. The metric definitions are in [Ingestion evaluation](ingestion-evaluation.md) and [BSEE ingestion](bsee-ingestion.md).
+| | |
+|---|---|
+| **Date** | 25 October 2026 |
+| **Question** | Do the published PDF bundle and the BSEE ingestion reproduce from scratch, and does the BSEE linked graph build cleanly? |
+| **Requirement** | FR-02, FR-15, FR-16 (registry seed); specification gate G1 |
+| **Input** | Main GDR registry, re-downloaded; BSEE snapshot of files dated 18 October 2026 |
+| **Outputs** | Ignored, local: `data/interim/runs/eval_2026_10_25/`, `data/processed/local/bsee_wells/`, `data/processed/local/bsee_graph/` |
+| **Status** | Passed |
+
+A full run of both ingestion paths on the development laptop (Windows, CPU, locked environment). The metric definitions are in [E1](E1-pdf-ingestion-configuration.md) and [BSEE ingestion](../components/bsee-ingestion.md).
 
 ## Summary
 
@@ -28,7 +37,7 @@ Evaluation of named run `eval_2026_10_25`, using the default configuration on th
 | Short text chunks / chunks ending mid-sentence (of 237 text chunks) | 116 / 116 |
 | Scanned pages | 0 |
 
-**Comparison with published results.** The quantity and substantive-recall figures equal those in the [evaluation report](ingestion-evaluation.md), so the published results are reproduced. Gold cell accuracy here (0.9885) is higher than the published 0.7037 because only the main-report gold table was scored: the AK-3 appendix conversion caches, which hold the other six gold tables, were not present for this run. Do not compare the two values directly.
+**Comparison with published results.** The quantity and substantive-recall figures equal those in [E1](E1-pdf-ingestion-configuration.md), so the published results are reproduced. Gold cell accuracy here (0.9885) is higher than the published 0.7037 because only the main-report gold table was scored: the AK-3 appendix conversion caches, which hold the other six gold tables, were not present for this run. Do not compare the two values directly.
 
 Known weak spots are unchanged: dense directional-survey pages in 56-32 (pages 23–25) and the rotated daily form on 68-32 page 17.
 
@@ -57,4 +66,4 @@ Example finding: on lease G01608, 515 wellbores start on the lease but only 233 
 
 - The extended (2 reports) and AK-3 appendix (44 PDFs) registries were not rerun.
 - No OCR run.
-- Extraction, review and QA were evaluated only in the [architecture prototype](../prototype/LOG.md) (15 AK-3 chunks, test build); production versions are M2 onward in the [development plan](DEVELOPMENT_PLAN.md).
+- Extraction, review and QA were evaluated only in the architecture prototype ([E4](E4-ak3-architecture-prototype.md); 15 AK-3 chunks, test build); production versions are M2 onward in the [development plan](../DEVELOPMENT_PLAN.md).

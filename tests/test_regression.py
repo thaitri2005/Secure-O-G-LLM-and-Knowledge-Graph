@@ -32,7 +32,7 @@ class RegressionTests(unittest.TestCase):
                                               strategy=options["chunking"]["strategy"], table_options=options["tables"])
             records.extend(result)
         payload = (json.dumps(records, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-        expected = re.search(r"SHA256:\s*`([a-f0-9]{64})`", (ROOT / "docs/ingestion.md").read_text(encoding="utf-8"))
+        expected = re.search(r"SHA256:\s*`([a-f0-9]{64})`", (ROOT / "docs/components/pdf-ingestion.md").read_text(encoding="utf-8"))
         self.assertIsNotNone(expected)
         self.assertEqual(expected.group(1), "b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b")
         self.assertEqual(hashlib.sha256(payload).hexdigest(), expected.group(1))

@@ -1,6 +1,17 @@
-# Prototype test log
+# E4: Architecture prototype on AK-3
 
-> **Test build, not the real system.** This log records experiments with the target stack on a small slice of one source. Results are evidence for or against design choices. They are not acceptance results (design §12), and they must not be quoted as system performance: the slice is small, the gold set is single-annotator, and the prompt was revised on the same slice (no held-out test).
+| | |
+|---|---|
+| **Date** | 25 October 2026 |
+| **Question** | Do the target components (llama.cpp, PostgreSQL, Neo4j, FastAPI) fit together for extraction → validation → review → graph generation → cited QA, and where do errors come from? |
+| **Requirement** | SR-02, SR-04, SR-16; specification §4–§8 |
+| **Input** | 15 of 60 chunks of the AK-3 report (`gdr882_ak3_eowr`) from the published bundle |
+| **Code** | [`prototype/`](../../prototype/README.md), with its own environment and Docker services |
+| **Gold** | [`prototype/gold/`](../../prototype/gold/): 41 facts, 31 questions; single annotator, AI-assisted |
+| **Outputs** | [`prototype/results/`](../../prototype/results/): current scores; `history/` for earlier runs (file map below) |
+| **Status** | Concluded for the stack; follow-up on prose extraction recall is backlog item 6 of the [plan](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog) |
+
+> **Test build, not the real system.** Results are evidence for or against design choices. They are not acceptance results (specification §12), and they must not be quoted as system performance: the slice is small, the gold set is single-annotator, and the prompt was revised on the same slice (no held-out test). The prototype predates the VPI requirements: it has one module, no entity registry, and no interpretation claims.
 
 ## Setup (25 October 2026)
 
@@ -37,11 +48,15 @@
 
 \* Run 3 was first reported as 0.89 because the scorer compared dates with a 0.5% numeric tolerance ("2022-08-26" matched "2016-08-18"). Fixed and covered by `test_ontology.py`; history files keep the corrected value.
 
+Result files: runs 1–4 are `prototype/results/history/run<N>_extraction_*.json` (run 3 also has its model log, `run3_extraction.log`). Run 5 is `prototype/results/extraction_run1.json`: the scorer names files by database run ID, and the database was reset before run 5. An early QA pass with accept-all review, before run 5 and before the QA scoring was revised, is `history/pre_run5_qa_accept_all.json` (17/31 correct).
+
 Run 5 took 10 minutes on CPU (39 model calls; median 15 s, maximum 71 s). Its only false positive: the 19 days from spud to rig release filed as `drilling_days`. Its misses are mostly **prose facts**: total depth, planned depth and duration, maximum measured temperature (all in the executive summary), the TG-2 and TG-4 depths, the API number, and the ground elevation. Survey and casing rows are now mostly correct.
 
 What the validator caught (errors that never reached review): invented years for dates written without a year; survey rows proposed as casing depths; whole table rows put in `value`; a mud temperature proposed as the maximum measured temperature without a depth; paraphrased quotes.
 
 ## Review, generations and QA (run 5)
+
+Result files: `prototype/results/qa_reviewed.json` (generation 1) and `qa_no_review.json` (generation 2).
 
 | | Generation 1: reviewed (oracle) | Generation 2: no review (accept-all) |
 |---|---:|---:|

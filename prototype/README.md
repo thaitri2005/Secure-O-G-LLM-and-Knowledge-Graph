@@ -1,6 +1,6 @@
 # Architecture prototype (test build)
 
-> **This is a test of the target architecture, not the system.** It runs a small version of the design (docs/PROJECT_DESIGN.md §4–§8) on 15 chunks of **one** report (AK-3), to check that the pieces fit together and to measure where errors come from. It has no authentication, no UI, and throwaway credentials. Its numbers are development-set results. Findings and every run are recorded in [LOG.md](LOG.md).
+> **This is experiment E4, a test of the target architecture, not the system.** It runs a small version of the specification ([docs/PROJECT_DESIGN.md](../docs/PROJECT_DESIGN.md) §4–§8) on 15 chunks of **one** report (AK-3), to check that the pieces fit together and to measure where errors come from. It has no authentication, no UI, and throwaway credentials. Its numbers are development-set results. Findings and every run are recorded in the [E4 experiment record](../docs/experiments/E4-ak3-architecture-prototype.md).
 
 ## What it contains
 
@@ -49,5 +49,4 @@ The model's downloaded file should have SHA256 `626b4a6678b86442240e33df819e0013
 |---|---|
 | `gold/ak3_facts.json` | 41 hand-labelled facts (AI-assisted, single annotator) |
 | `gold/questions.json` | 31 questions: answerable, paraphrased, not stated, unsupported, prompt injection |
-| `results/` | Scores of the current runs; `results/history/` holds earlier runs referenced in the log |
-| `LOG.md` | What was run, what changed between runs, and what was learned |
+| `results/` | Scores written by the evaluation scripts for the latest runs; `results/history/` holds earlier runs (`run<N>_…`), mapped to the runs in the [E4 record](../docs/experiments/E4-ak3-architecture-prototype.md) |

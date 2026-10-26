@@ -1,6 +1,6 @@
 # PDF ingestion
 
-This document describes the **implemented PDF ingestion subsystem**: commands, output contract, processing rules and measured results. The structured-data path is described in [BSEE well-data ingestion](bsee-ingestion.md), and local PDFs and Vietnamese/mixed-language scans in [OCR ingestion](ocr-ingestion.md). For the full intended product, see the [project design](PROJECT_DESIGN.md) and [development plan](DEVELOPMENT_PLAN.md).
+This document describes the **implemented PDF ingestion subsystem**: commands, output contract, processing rules and measured results. The structured-data path is described in [BSEE well-data ingestion](bsee-ingestion.md), and local PDFs and Vietnamese/mixed-language scans in [OCR ingestion](ocr-ingestion.md). For the full intended product, see the [project specification](../PROJECT_DESIGN.md) and [development plan](../DEVELOPMENT_PLAN.md).
 
 The baseline details and historical results below describe OCR-disabled processing of the GDR end-of-well reports.
 
@@ -30,7 +30,7 @@ Optional model prefetch: `docling-tools models download layout tableformer`. Onc
 
 ### Named runs and experiments
 
-The default configuration (paragraph chunking, a 1,500-character budget, fast TableFormer) was selected by measurement; see [Ingestion evaluation](ingestion-evaluation.md).
+The default configuration (paragraph chunking, a 1,500-character budget, fast TableFormer) was selected by measurement; see [experiment E1](../experiments/E1-pdf-ingestion-configuration.md).
 
 ```powershell
 python -m graph_builder.ingestion run --run-name paragraph_1500_fast
@@ -53,7 +53,7 @@ python -m graph_builder.ingestion run --sources configs/sources/gdr_end_of_well_
 python -m graph_builder.ingestion run --sources configs/sources/gdr_ak3_appendices.json --config configs/ingestion/default.json
 ```
 
-[Published bundle checks](ingestion-evaluation.md#published-bundle-checks) list their expected digests.
+[Published bundle checks](../experiments/E1-pdf-ingestion-configuration.md#published-bundle-checks) list their expected digests.
 
 ## Output contract
 
@@ -82,7 +82,7 @@ The main bundle in `data/processed/` is the input for graph construction. Output
 
 `fetch` downloads source PDFs, or verifies existing files against the registry's SHA256 and byte size; a mismatch fails the command. Remote downloads are restricted to `https://gdr.openei.org`, and local PDFs are copied from their registered path. `convert` runs Docling locally and stores complete, unfiltered JSON and Markdown documents in a per-parser-settings subdirectory of `data/interim/docling/`. Accurate TableFormer settings use the base directory; other settings, including the default, use a hashed subdirectory. `chunk` filters a copy of each cached document and writes the merged chunks in registry and reading order. `validate` checks those chunks against the original PDFs and cached documents. `run` performs all four stages and fails if validation fails.
 
-[Pipeline options](../configs/ingestion/default.json) explicitly set a 1,500-character budget, CPU execution, OCR off, table structure on, fast TableFormer, and cell matching on. Remote services and Hugging Face telemetry are disabled. Dependencies are Python 3.12, docling 2.141.0, docling-core 2.103.1, torch 2.14.1+cpu, and pypdf 6.1.1. The full Windows CPU dependency set is frozen in `requirements.lock.txt`.
+[Pipeline options](../../configs/ingestion/default.json) explicitly set a 1,500-character budget, CPU execution, OCR off, table structure on, fast TableFormer, and cell matching on. Remote services and Hugging Face telemetry are disabled. Dependencies are Python 3.12, docling 2.141.0, docling-core 2.103.1, torch 2.14.1+cpu, and pypdf 6.1.1. The full Windows CPU dependency set is frozen in `requirements.lock.txt`.
 
 ## Filters
 
@@ -133,11 +133,11 @@ SHA256: `b3256ef6d83c709ddc4ba3f3262ad0b56e6273551b49694a3b72f0b880037b9b`
 
 The main deliverable has 372 chunks and 20 indivisible-table warnings, with no validation errors. Text, IDs and JSON formatting are deterministic under the locked Windows CPU environment. Comparison against `page_1500_accurate`: 241 kept, 42 changed, 89 added and 77 removed. `content_id` is the first 16 hexadecimal characters of SHA1 over `doc_id|type|text`, with text whitespace collapsed. Comparison first matches these IDs one-to-one, then matches remaining chunks within a document/type by token Jaccard similarity of at least 0.9.
 
-The [evaluation](ingestion-evaluation.md) covers the tested configurations, source-page attribution, gold accuracy, timings measured once on the reference machine, and error examples. Timings are not reproducible.
+[Experiment E1](../experiments/E1-pdf-ingestion-configuration.md) covers the tested configurations, source-page attribution, gold accuracy, timings measured once on the reference machine, and error examples. Timings are not reproducible.
 
 ## Known limitations
 
-Rotated forms remain difficult: the selected parser retains 51/60 annotated values on 68-32 page 17. Wide appendix tables and stacked headers still contain cell errors. Twenty table parts exceed the character limit under the documented single-body-row rule. OCR is disabled in published bundles; 67 appendix pages need it. The optional OCR trial and its dependency extra do not change published chunks. Gold is single-annotator and AI-assisted; see the evaluation report for scoring conventions and limitations.
+Rotated forms remain difficult: the selected parser retains 51/60 annotated values on 68-32 page 17. Wide appendix tables and stacked headers still contain cell errors. Twenty table parts exceed the character limit under the documented single-body-row rule. OCR is disabled in published bundles; 67 appendix pages need it. The optional OCR trial and its dependency extra do not change published chunks. Gold is single-annotator and AI-assisted; see [E1](../experiments/E1-pdf-ingestion-configuration.md) for scoring conventions and limitations.
 
 ## Command and artifact details
 

@@ -1,15 +1,13 @@
-# Development focus and data sources
+# Data sources
 
-**Updated:** 25 October 2026 · **Applies to:** current development, until the supervisor changes the focus
+**Updated:** 27 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
-> **Current focus.** The project supervisor asked the team to develop against two sources for now:
->
-> 1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**, the structured well data. An ingestion adapter is implemented: [BSEE well-data ingestion](bsee-ingestion.md).
-> 2. **End-of-well reports, starting with the [Akutan AK-3 End of Well Report](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**, the document type to extract knowledge from. It is already in the PDF corpus as `gdr882_ak3_eowr`.
->
-> The next milestone (M2 in the [development plan](DEVELOPMENT_PLAN.md)) builds its ontology, labels and first extraction experiment from these two sources. Other corpora stay in the repository as regression and evaluation material, but new features should be demonstrated on AK-3 and BSEE first.
+This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. Until VPI supplies its own documents (specification D-18), development uses public proxies chosen by the supervisor (D-13):
 
-The two sources are separate tracks, each developed and tested on its own. BSEE provides authoritative identifiers and attributes for tens of thousands of boreholes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. Linking the two sources is not a goal of the current work.
+1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. They seed the entity registry and the wells-and-drilling module. Ingestion: [BSEE well-data ingestion](components/bsee-ingestion.md).
+2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from, for both domain modules. It is in the PDF corpus as `gdr882_ak3_eowr`.
+
+Other corpora (Utah FORGE reports, AK-3 appendices) stay in the repository as regression and evaluation material. BSEE provides authoritative identifiers and attributes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. AK-3 is not a BSEE well, so the two sources are developed as separate tracks for now.
 
 ![Two development tracks](diagrams/08-source-integration.svg)
 
@@ -34,14 +32,7 @@ flowchart TB
 
 </details>
 
-**Figure 8: Two development tracks.** Track 1 is implemented end to end: [ingestion](bsee-ingestion.md) and the [linked graph](bsee-ingestion.md#linked-graph). Track 2 has production ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks.
-
-## Where the work stands (25 October 2026)
-
-| Track | Done | Measured | Next |
-|---|---|---|---|
-| BSEE | Verified snapshot ingestion; linked graph of 113,384 nodes and 398,263 edges, each edge citing its source row | 0 malformed rows, 0 duplicate API numbers; build is byte-reproducible | Snapshot comparison; resolve operator and code meanings; load into Neo4j in the real application |
-| AK-3 | PDF ingestion; prototype of extraction → validation → review → Neo4j generation → cited QA | Extraction precision 0.97 and recall 0.68 before review. QA correct on 31/31 questions given what is in the graph, 19/31 end to end. See the [test log](../prototype/LOG.md) | Better prose extraction; larger gold set with a held-out split; 7–8B model on GPU; real reviewer and review UI |
+**Figure 8: Two development tracks.** Track 1 is implemented end to end: [ingestion](components/bsee-ingestion.md) and the [linked graph](components/bsee-ingestion.md#linked-graph). Track 2 has production ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks ([experiment E4](experiments/E4-ak3-architecture-prototype.md)).
 
 ## 1. BSEE Data Center – Wells Information
 

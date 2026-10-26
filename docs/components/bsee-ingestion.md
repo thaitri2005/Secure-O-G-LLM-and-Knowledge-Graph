@@ -1,6 +1,6 @@
 # BSEE well-data ingestion
 
-This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Development focus and data sources](DATA_SOURCES.md). How its records will become graph knowledge is in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data).
+This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Data sources](../DATA_SOURCES.md). How its records will become graph knowledge is in [specification §5.7](../PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry).
 
 The adapter uses only the Python standard library plus `jsonschema` for output validation. It adds no dependencies to the lock file.
 
@@ -26,7 +26,7 @@ Exit code 0 means the bundle was written and validated. Any malformed row or fai
 ## Stages
 
 1. **fetch.** Downloads each configured ZIP over HTTPS from `www.data.bsee.gov` only; redirects to other hosts are refused. The file is written to `.part` first. The adapter checks that the expected member exists and is below 200 MiB, then moves the file into `data/raw/<dataset_id>/<file_id>.zip`. `snapshot.json` records the URL, size, SHA256, `Last-Modified` and retrieval time. Later runs verify the local file against the snapshot instead of downloading again, so a tampered or truncated file fails. If a file entry in the configuration pins `sha256` (and optionally `bytes`), a download that differs fails.
-2. **parse.** Streams the CSV member. The files are quoted and header-less, and values keep their fixed-width padding. Each row is mapped through the published record layout in [`bsee_layouts.py`](../src/graph_builder/ingestion/bsee_layouts.py) and converted to typed values. Any column-count, API-number, integer, decimal or date mismatch is an error.
+2. **parse.** Streams the CSV member. The files are quoted and header-less, and values keep their fixed-width padding. Each row is mapped through the published record layout in [`bsee_layouts.py`](../../src/graph_builder/ingestion/bsee_layouts.py) and converted to typed values. Any column-count, API-number, integer, decimal or date mismatch is an error.
 3. **check.** Cross-record rules (below). Errors stop the run before anything is written; warnings are counted, and five examples of each are kept in `summary.json`.
 4. **write.** Stages the full bundle in `<output>.partial/`, then replaces the previous bundle. It refuses to replace a directory that is not a BSEE bundle, meaning one without `summary.json`.
 5. **validate.** Checks every output line against its JSON schema, compares digests with `SHA256SUMS`, checks record IDs for uniqueness, and confirms that `wells.jsonl` covers every borehole exactly once.
@@ -41,7 +41,7 @@ Exit code 0 means the bundle was written and validated. Any malformed row or fai
 | `summary.json` | Bundle | Snapshot (URLs, SHA256, dates), counts per region, code distributions, withheld-field counts, warnings with examples, output digests |
 | `SHA256SUMS` | Bundle | Digests of the four files above |
 
-Schemas: [`bsee_borehole`](../schemas/bsee_borehole.schema.json), [`bsee_api_change`](../schemas/bsee_api_change.schema.json), [`bsee_well`](../schemas/bsee_well.schema.json). Rebuilding from the same snapshot produces byte-identical files. All text is UTF-8 with LF line endings.
+Schemas: [`bsee_borehole`](../../schemas/bsee_borehole.schema.json), [`bsee_api_change`](../../schemas/bsee_api_change.schema.json), [`bsee_well`](../../schemas/bsee_well.schema.json). Rebuilding from the same snapshot produces byte-identical files. All text is UTF-8 with LF line endings.
 
 ### Provenance
 
@@ -102,7 +102,7 @@ python -m graph_builder.graph.bsee show well:1772140041      # also wellbore:…
 
 Nodes: 57,453 Wellbore, 39,518 Well, 8,742 Lease, 5,679 Block, 1,521 Field, 471 Operator. Placeholders are not linked: `NOLEASE` (48 links skipped), and the field code `WILD`, read as a wildcat outside a named field (4,035 skipped). Reading `WILD` as wildcat is BSEE convention rather than a published code table. Former API numbers that match no borehole are kept as `former_api_numbers` on the wellbore. The build checks that every edge endpoint exists and every wellbore has exactly one well; it takes about 10 seconds.
 
-These links stay within BSEE, by design ([design §5.7](PROJECT_DESIGN.md#57-structured-well-data)).
+These links stay within BSEE, by design ([design §5.7](../PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry)).
 
 ## Performance
 
@@ -122,6 +122,6 @@ Directional-survey ZIPs are 100–140 MB per region. Filter them by API number w
 ## Limitations
 
 - Code meanings, operator names and field names are not resolved; they need BSEE lookup tables that are not ingested yet.
-- The adapter keeps one snapshot. Comparing two snapshots (added, changed and removed boreholes) is planned work for the review step ([design §5.7](PROJECT_DESIGN.md#57-structured-well-data)).
+- The adapter keeps one snapshot. Comparing two snapshots (added, changed and removed boreholes) is planned work for the review step ([design §5.7](../PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry)).
 - It is a CLI, not a service. The upload, authorization and job-queue requirements of the target design still apply.
 - BSEE's terms are a disclaimer rather than an open license. Do not commit raw or derived files without confirming redistribution terms.

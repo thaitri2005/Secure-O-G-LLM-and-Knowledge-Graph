@@ -31,7 +31,7 @@ class ContractTests(unittest.TestCase):
                     self.assertEqual(properties[key]["maxLength"], 64)
 
     def test_cache_documentation_describes_parser_settings(self):
-        for path in (Path("README.md"), Path("docs/ingestion.md")):
+        for path in (Path("README.md"), Path("docs/components/pdf-ingestion.md")):
             self.assertIn("a per-parser-settings subdirectory of `data/interim/docling/`", path.read_text(encoding="utf-8"))
 
     def test_package_describes_passages_with_provenance(self):

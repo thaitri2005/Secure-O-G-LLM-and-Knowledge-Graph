@@ -54,13 +54,7 @@ Use human-transcribed reference text to compute character error rate (CER) and w
 
 Evaluate clean scans, degraded scans, mixed text/image pages, tables, and numerical units separately. Synthetic examples establish integration behavior only; a real Vietnamese corpus is required before claiming production accuracy. Handwriting, severe skew, poor resolution, complex reading order, and merged table cells remain limitations. The pipeline does not use an LLM to silently repair recognized text, because that could alter evidence.
 
-After prefetching models, run the synthetic printed-Vietnamese check:
-
-```powershell
-.\.venv\Scripts\python scripts/ocr_smoke.py --run
-```
-
-This creates an image-only PDF, ingests it through the normal pipeline, and writes the reference and CER/WER report to ignored `data/interim/ocr_smoke/`. On non-Windows hosts pass `--font` with a font supporting Vietnamese. This fixture measures a clean printed page, not handwriting or a representative document corpus.
+After prefetching models, `scripts/ocr_smoke.py --run` creates an image-only Vietnamese PDF, ingests it through the normal pipeline, and writes the CER/WER report to ignored `data/interim/ocr_smoke/`. Its method and results are recorded as [experiment E2](../experiments/E2-vietnamese-ocr-smoke.md).
 
 The historical `ocr --run ...` command remains an appendix-only comparison experiment. Normal OCR ingestion uses `run` with the OCR profile above.
 
@@ -68,13 +62,4 @@ Headings intentionally become section metadata in the current chunker, so an end
 
 OCR rejects the `pypdf` chunking strategy because it reads only the original text layer. Invalid registry values fail with validation errors, and malformed cache manifests are rebuilt. This CLI is not a concurrent upload service; authentication, process isolation, transactional publication and a representative Vietnamese quality benchmark remain future work.
 
-## Verification record
-
-| Date | Check | Result |
-|---|---|---|
-| 24 October 2026 | Unit tests | 96 passed; one cached-corpus regression skipped (fixture absent) |
-| 24 October 2026 | Real CPU run of the image-only Vietnamese fixture | Conversion 51.635 s; artifact validation passed (one expected warning: no tables); end-to-end CER 10.5% (21/200 characters), WER 19.51% (8/41 words) |
-| 25 October 2026 | Unit tests after review | 99 passed; one cached-GDR regression skipped (conversion fixtures absent) |
-| 25 October 2026 | Published baseline and saved OCR output | All nine baseline artifact hashes and schemas verified. The saved OCR output re-validated with exact canonical offsets, valid bounding boxes and deterministic repeated chunking. No new accuracy benchmark was run. |
-
-The CER/WER above includes filtering: the title went to section metadata rather than body text, the degree symbol was misread, and some punctuation was lost. It shows that OCR integration works; it is not evidence of production-quality Vietnamese recognition. Review these errors on representative documents before setting an acceptance threshold.
+Measurements: [experiment E2](../experiments/E2-vietnamese-ocr-smoke.md).

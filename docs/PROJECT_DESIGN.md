@@ -1,36 +1,31 @@
 # Secure LLM and Knowledge Graph Platform
 
-## Project description and system design
+## Project specification and system design
 
-**Document version:** 1.1 · **Baseline date:** 23 October 2026 · **Last revised:** 25 October 2026<br>
-**Target:** an internal production service for one team, delivered by three students<br>
+**Document version:** 2.0 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
+**Project:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** proposed implementation baseline; the PDF and BSEE ingestion subsystems exist<br>
-**Companions:** [Development focus and data sources](DATA_SOURCES.md) · [Development plan](DEVELOPMENT_PLAN.md)
+**Inputs:** [Stakeholder requirements](requirements/README.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
 
-This is the canonical reference for what the project is meant to do and how its parts should work together. It describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
+> **This document is the project's single source of truth.** It decides what the project builds, for whom, how the parts fit together, and how completion is judged. The [stakeholder requirements](requirements/README.md) are inputs: §1.2 states how each one is met, narrowed or deferred. The [development plan](DEVELOPMENT_PLAN.md) schedules this specification and must not add scope of its own. Component guides describe implemented behavior in detail, and experiment records hold measurements. If any of them disagrees with this document, this document wins until it is changed. Items still to be settled with the supervisors are listed in [§13.2](#132-open-questions-for-supervisor-meetings).
 
-**Current focus (25 October 2026).** The supervisor directed development toward oil-and-gas well data: the [BSEE Data Center well files](https://catalog.data.gov/dataset/bsee-data-center-wells-information) as the structured source, and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf), as the document source. Version 1.1 adds the structured-data path (§3, §5.7), dataset evidence (§7), a well-domain ontology example (§6) and decisions D-13 to D-15. [Development focus and data sources](DATA_SOURCES.md) describes both sources in detail.
+This document describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
 
-**Implemented since the baseline:**
+**Version 2.0 (27 October 2026)** aligns the specification with VPI's two requirement documents: the three-layer target and what the capstone delivers in each layer (§1.3), requirement traceability (§1.2), the shared entity registry (§5.7), competing interpretations and expert knowledge (§5.8), domain modules and relation categories (§6), new requirements FR-16 to FR-18, decisions D-16 to D-20, and open questions for supervisor meetings (§13.2).
 
-- local PDF registration and opt-in Vietnamese–English OCR ([OCR workflow](ocr-ingestion.md));
-- source-aware conversion-cache checks;
-- the BSEE well-data adapter ([BSEE ingestion](bsee-ingestion.md)).
-
-The full v2 application envelope, web upload service, and production OCR quality gates remain distinct work.
-
-The user has confirmed the internal production target, a three-student team, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. The exact machine, availability, budget, deadline, institutional identity service, and operating owner remain unconfirmed. The design deliberately works from the smaller GPU option.
+Confirmed so far: a three-student team, an internal service as the target, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. Still unconfirmed: the exact machine, availability, budget, deadline, identity service, operating owner, and the VPI documents. The design deliberately works from the smaller GPU option.
 
 ### Reading guide
 
 | If you need to understand… | Start here |
 |---|---|
-| Why the project exists and what the first release includes | [1. Product](#1-product-purpose-and-scope), [2. Users](#2-users-and-workflows) |
-| Which data the team builds on now | [Development focus and data sources](DATA_SOURCES.md) |
+| Why the project exists, what VPI asked for, and what the capstone delivers | [1. Product](#1-product-purpose-and-scope), [2. Users](#2-users-and-workflows) |
+| Which data the team builds on now | [Data sources](DATA_SOURCES.md) |
 | What is actually implemented | [3. Current baseline](#3-current-implementation-and-evidence) |
 | How the whole system works | [4. Architecture](#4-target-architecture), [5. Processing](#5-document-to-graph-processing) |
-| How BSEE well data is used in the graph | [5.7 Structured well data](#57-structured-well-data) |
-| What the graph and evidence mean | [6. Ontology](#6-ontology-and-domain-adaptation), [7. Data model](#7-data-model-and-contracts) |
+| How well identities are shared across sources and domains | [5.7 Entity registry](#57-structured-well-data-and-the-entity-registry) |
+| How the graph holds competing interpretations and expert knowledge | [5.8 Interpretations](#58-interpretations-competing-hypotheses-and-expert-knowledge) |
+| What the graph and evidence mean | [6. Ontology](#6-ontology-layer-and-domain-modules), [7. Data model](#7-data-model-and-contracts) |
 | How answers are produced safely | [8. Question answering](#8-question-answering) |
 | Why each technology is needed | [9. Technology choices](#9-technology-choices-and-alternatives) |
 | How it is secured, hosted, and maintained | [10. Security](#10-security-and-data-boundaries), [11. Operations](#11-deployment-capacity-and-operations) |
@@ -42,24 +37,96 @@ All architecture diagrams describe the **target** unless explicitly labelled **c
 
 ### 1.1 Problem and intended value
 
-Technical knowledge is scattered across long reports, tables, and appendices. Finding a fact can require opening several PDFs, matching different names for the same object, interpreting units, and checking which report supports a statement. A fluent answer alone does not resolve these problems: a user needs to inspect the underlying evidence and know when reports disagree.
+The project is a capstone for the Vietnam Petroleum Institute (VPI), supervised by Dr. Le Duy Dung and MSc. Nguyen Anh Tuan. Its aim, from the [proposal](requirements/README.md#capstone-proposal-digest), is a pilot of an in-house, secure AI platform that extracts, organizes and reasons over PetroVietnam's (PVN's) technical knowledge. Generic or commercial LLM services see limited use in oil and gas because the data is technically complex, operational documents are sensitive, and security requirements are strict.
 
-The platform converts approved technical PDFs and structured well datasets into a reviewable knowledge graph, then answers a defined set of questions using accepted facts and their sources (report passages or dataset rows). An ontology specifies which kinds of things and relationships matter. A local language model proposes extractions; deterministic checks and human review decide what becomes available to ordinary users.
+Technical knowledge is scattered across long reports, tables, appendices, databases and the experience of individual experts. Finding a fact can require opening several documents, matching different names for the same object, interpreting units, and checking which source supports a statement. In upstream work, sources often disagree legitimately: the same observation supports several interpretations. Knowledge that is never written down is lost when experts retire or move. A fluent answer alone does not resolve these problems: a user needs to inspect the underlying evidence and see when sources disagree.
 
-The intended benefits are less repeated document searching, consistent terminology, explicit handling of conflicting information, and answers that can be traced back to a physical PDF page. These benefits must be measured in a user pilot; the repository does not yet establish time savings or answer accuracy.
+The platform converts approved technical documents and structured datasets into a reviewable knowledge graph, organized as domain modules over a shared entity registry (§1.3). It then answers a defined set of questions using accepted knowledge and its sources (report passages, dataset rows or attributed expert notes). An ontology specifies which kinds of things and relationships matter. A local language model proposes extractions; deterministic checks and human review decide what becomes available to ordinary users.
 
-### 1.2 Meaning of “secure” and “internal production”
+The intended benefits are less repeated document searching, consistent terminology across units and languages, explicit handling of conflicting information and competing interpretations, and answers that can be traced back to a physical page or dataset row. These benefits must be measured in a user pilot; the repository does not yet establish time savings or answer accuracy.
+
+### 1.2 Stakeholder requirements and how they are met
+
+VPI's [requirement documents](requirements/README.md) define 18 stakeholder requirements (SR-01 to SR-18). This table is the authoritative decision on each. **Covered** = in the first-release scope; **Partial** = part in scope, the rest deferred; **Later** = the architecture leaves room, no delivery committed; **Open** = depends on a decision in §13.2.
+
+| ID | Requirement (short) | Decision | Where |
+|---|---|---|---|
+| SR-01 | Secure on-premise or private-cloud deployment; data owner keeps control | Covered | §1.4, §10, §11 |
+| SR-02 | Automated extraction of structured knowledge from unstructured documents | Covered | §5.1–§5.6 |
+| SR-03 | A domain-specific oil-and-gas knowledge graph | Covered: wells-and-drilling and subsurface-interpretation modules | §1.3, §6 |
+| SR-04 | Customized LLM-based reasoning and question answering | Covered: local model, ontology-guided extraction and intent planning; no fine-tuning in the baseline | §8, §9 |
+| SR-05 | Long-term technological independence | Covered: open-weight models, open-source stack, runbooks and handover | §9, §11.4 |
+| SR-06 | Separate domain knowledge graphs, not one monolithic graph | Partial: any number of domain modules; two delivered | §1.3, §6 |
+| SR-07 | Unified entity identification and shared ontology across domains | Covered for wells, wellbores, organizations, fields, leases and documents; other shared types later | §5.7, §6.1 |
+| SR-08 | Several hypotheses with supporting and opposing evidence | Covered | §5.8 |
+| SR-09 | Deterministic system structure (equipment, systems, flows) for midstream, downstream and operations | Later: no such module in the capstone; §6.3 reserves its relation categories | §1.3, §6.3 |
+| SR-10 | Rich relations: cause, dependency, condition, correlation, evidence, hypothesis, contradiction, inheritance | Partial: all categories defined; evidence, hypothesis, contradiction, dependency and condition implemented first | §6.3 |
+| SR-11 | Synonyms and context-dependent terms | Covered: scoped aliases, glossary, review of ambiguous matches | §5.4, §6.4 |
+| SR-12 | Vietnamese, English and Russian material | Partial: language-tagged names and aliases in every module; Vietnamese documents through evaluated OCR; Russian later | §1.5, §6.4 |
+| SR-13 | Diverse source types | Partial: PDF reports, structured datasets and expert notes; other types through adapters later | §1.5, §5.8 |
+| SR-14 | Continuous growth | Covered: versioned runs, snapshots, graph generations and comparisons | §4.3, §5.5 |
+| SR-15 | Preserve expert knowledge; link theory, data and experience | Partial: attributed expert notes and lessons as reviewed claims; interview capture later | §5.8 |
+| SR-16 | Retrieval by relationship, not only keyword | Covered | §8 |
+| SR-17 | Application layer: RAG, Graph RAG, expert assistant, technical QA, decision support | Partial: graph-grounded, cited technical QA and browsing; a passage-retrieval baseline for comparison; assistant and decision support later | §8 |
+| SR-18 | The knowledge is PVN's | Open: development uses public proxy data until VPI supplies documents | D-18, §13.2 |
+
+### 1.3 Three-layer target and what the capstone delivers
+
+VPI's target is a knowledge ecosystem that is split by discipline but connected at the entity level. The platform is built to that shape from the start, so that further domains are added as modules rather than by redesign. The capstone delivers a thin, complete slice through all three layers.
+
+![Three-layer target and the capstone slice](diagrams/09-three-layers.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+flowchart BT
+    subgraph L1["Layer 1: domain knowledge graphs"]
+        D1["Wells and drilling<br/>(capstone)"]
+        D2["Subsurface interpretation<br/>(capstone)"]
+        D3["Production, equipment, refining ...<br/>(later)"]
+    end
+    subgraph L2["Layer 2: unified entities and ontology"]
+        REG["Entity registry<br/>Well, Wellbore, Organization,<br/>Field, Lease, Document"]
+        CORE["Core ontology<br/>Shared types, relation categories,<br/>language-tagged names"]
+    end
+    subgraph L3["Layer 3: knowledge applications"]
+        QA["Cited technical QA<br/>(capstone)"]
+        BR["Graph and evidence browsing<br/>(capstone)"]
+        AS["Expert assistant, decision support<br/>(later)"]
+    end
+    D1 & D2 & D3 -->|"registry IDs"| REG
+    D1 & D2 & D3 -.->|"import"| CORE
+    REG --> QA & BR & AS
+```
+
+</details>
+
+**Figure 9 — Three-layer target.** Domain modules hold their own types and claims but refer to shared entities by registry ID. Applications query across modules through those IDs.
+
+| Layer | Capstone delivers | Deferred |
+|---|---|---|
+| 1. Domain knowledge graphs | **Wells and drilling** (well identity and status, wellbores, hole sections, casing, depths, surveys, time breakdown) from BSEE well data and end-of-well reports. **Subsurface interpretation** (lithology intervals, temperature measurements and projections, interpretations and their evidence) from the geology and testing sections of the same reports | Production operations, equipment and maintenance, refining, safety, commerce. VPI chooses the next module (§13.2) |
+| 2. Unified entities and ontology | Entity registry with exact identifiers and scoped aliases (§5.7); core ontology with relation categories and language-tagged labels (§6) | Shared types for equipment, facilities and products |
+| 3. Applications | Bounded, graph-grounded technical QA with citations; browsing of entities, claims, conflicts and interpretations (§8) | Free-form expert assistant, decision support, domain model fine-tuning |
+
+**Development data.** Until VPI supplies documents (D-18), development uses public proxies chosen by the supervisor (D-13): the [BSEE well files](https://catalog.data.gov/dataset/bsee-data-center-wells-information) and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf). [Data sources](DATA_SOURCES.md) describes them. AK-3 is a geothermal well outside BSEE, so the two sources currently share no wells: they are developed as two tracks and meet only in the registry's design. Demonstrating one well known to both a dataset and a report needs an oil-and-gas report for a BSEE well, such as a BSEE End of Operations Report (§13.2).
+
+### 1.4 Meaning of “secure” and “internal production”
 
 For this project, secure means document content and model inference stay inside an approved deployment boundary; users have authenticated, authorized access; changes and processing runs are auditable; and recoverable backups exist. Local inference is one part of this requirement. It does not itself provide access control, protection from malicious PDFs, or reliable recovery.
 
-Internal production means a small team can use a maintained service with documented limits, a named operator, tested recovery, and a support route. The proposed first release is a **single-host, single-workspace service** with scheduled maintenance. It does not promise continuous availability during a host failure. A shared research machine qualifies only if IT permits service hosting and can provide persistent storage and an operating arrangement.
+Internal production means a small team can use a maintained service with documented limits, a named operator, tested recovery, and a support route. This is how the proposal's "pilot" is made concrete. The proposed first release is a **single-host, single-workspace service** with scheduled maintenance. It does not promise continuous availability during a host failure. A shared research machine qualifies only if IT permits service hosting and can provide persistent storage and an operating arrangement. On-premise and private-cloud deployment are both allowed by the proposal; the design assumes on-premise school hardware and treats a private cloud as an equivalent boundary only if the data owner approves it (§10.1).
 
-### 1.3 First-release boundaries
+### 1.5 First-release boundaries
 
 | Included in the first production release | Deferred until there is evidence of need |
 |---|---|
-| English technical PDFs with an extractable text layer | General Office/email ingestion, handwriting, image understanding |
-| Well domain as the initial evaluation domain: BSEE well records and end-of-well reports, AK-3 first | Broad claims of accuracy in unrelated domains |
+| English technical PDFs with an extractable text layer; Vietnamese and mixed Vietnamese–English PDFs through opt-in OCR once it passes its quality gate | General Office/email ingestion, handwriting, image understanding; Russian documents |
+| Language-tagged entity names and aliases (Vietnamese, English, Russian) | Machine translation of source text |
+| Two domain modules over one entity registry: wells and drilling; subsurface interpretation (§1.3) | Further modules; broad claims of accuracy in unrelated domains |
+| Development on public proxies: BSEE well records and end-of-well reports, AK-3 first; VPI documents once supplied | |
+| Competing interpretations with support and contradiction links; attributed expert notes entered through the review application | Recorded interviews, automatic transcription, expert-network features |
 | Versioned public well datasets through adapters (BSEE borehole and API-change files) | Further BSEE tables (directional surveys, company file, eWell reports) until a question needs them |
 | Versioned ontology and reference lists | Full OWL reasoning, arbitrary ontology languages, ontology marketplace |
 | Local extraction of entities, relations, and supported quantities | Autonomous agents, internet browsing, tools controlled by the model |
@@ -72,7 +139,7 @@ Internal production means a small team can use a maintained service with documen
 
 The single-workspace access rule is deliberate: all authorized readers can see all published material in that workspace. A requirement to hide particular documents from some readers changes retrieval, entity resolution, graph access, caching, and audit design; it must be addressed before admitting those documents.
 
-### 1.4 Proposed business success measures
+### 1.6 Proposed business success measures
 
 Before the pilot, collect a small baseline in which intended users answer representative questions using the PDFs directly. During the pilot, measure task completion time, correct answers, successful source inspection, and corrections requested. Provisional targets are at least 30% lower median task time and at least 80% successful completion of the supported question tasks without developer assistance. These are targets to negotiate and test, not observed results. Incorrect answers with plausible citations count as failures.
 
@@ -83,7 +150,7 @@ Before the pilot, collect a small baseline in which intended users answer repres
 | Role | Responsibilities and permissions |
 |---|---|
 | Reader / domain user | Ask supported questions, browse accepted facts, inspect evidence, report a problem; cannot publish or edit facts |
-| Reviewer / domain expert | Inspect candidates and source pages, approve/reject/correct, resolve ambiguous entity matches and conflicts |
+| Reviewer / domain expert | Inspect candidates and source pages, approve/reject/correct, resolve ambiguous entity matches and conflicts, link interpretations, record attributed expert notes (reviewed by another expert) |
 | Administrator | Manage membership and role assignments, activate ontology versions, start runs, publish validated releases, retire documents |
 | Operator | Maintain the host, model runtime, secrets, logs, backups, restores, and capacity; access to content follows institutional policy |
 
@@ -98,6 +165,8 @@ One person can hold multiple roles, but actions still record which identity perf
 **Ask a question.** A reader asks “Which reports describe well AK-3?” or “What are the status and total depth of borehole 177214004100?” The system recognizes a supported intent, resolves the well to an approved entity, executes an authorized graph query, and displays the result with references to the report page or dataset row. If there are several matching entities, it asks the reader to choose. If the question requires an unsupported relation or unpublished information, it says what is missing.
 
 **Correct knowledge.** A reviewer identifies an incorrect value or merge, opens its evidence and extraction history, and records a correction with a reason. The old assertion remains in history. A new graph revision replaces it for current use. A report being withdrawn is immediately excluded from answers while projection cleanup runs.
+
+**Record an interpretation or expert note.** A domain expert opens an entity or claim, for example a temperature interval of a well, and adds an interpretation or lesson in their own words, in Vietnamese or English. They link it to the claims it relies on and to any interpretation it supports or contradicts. A second expert reviews it before publication. Readers then see it attributed to its author and date, next to competing views and their evidence (§5.8).
 
 **Reprocess a report.** An administrator selects a new parser, model, prompt, or ontology version. A new run produces a comparison: unchanged, added, changed, removed, and newly conflicted facts. Existing accepted facts remain available until the new revision passes checks. Changed evidence does not silently inherit an old approval.
 
@@ -122,6 +191,9 @@ IDs connect implementation work to the acceptance and delivery plan. “Must” 
 | FR-13 | Must | Report unsupported input honestly | Scans, failed pages, and truncated processing are visible and affect release eligibility |
 | FR-14 | Later | Integrate OCR and additional document/domain adapters | Separate evaluation demonstrates usefulness before inclusion in production |
 | FR-15 | Must | Import versioned structured well datasets with row provenance | Each record resolves to its dataset snapshot (URL, SHA256, retrieval time), file member, and row; malformed rows block the import; withheld values stay distinct from blank ones |
+| FR-16 | Must | Maintain a shared entity registry used by every domain module | A well, wellbore, organization, field, lease or document has one registry ID in every module; module claims refer to it; merges and splits keep history (SR-07) |
+| FR-17 | Must | Represent competing interpretations and attributed expert knowledge | Interpretation claims carry author/source and date; `supports`/`contradicts`/`alternative_to` links between claims are reviewed; answers show all accepted views with their evidence and never pick one silently (SR-08, SR-15) |
+| FR-18 | Must | Store language-tagged names and aliases | Entity names and aliases carry a language tag; a Vietnamese or English alias resolves to the same entity; ambiguous matches go to review (SR-11, SR-12) |
 
 ## 3. Current implementation and evidence
 
@@ -132,7 +204,7 @@ The package currently provides two ingestion CLIs:
 - a PDF pipeline for GDR reports and registered local PDFs;
 - a structured-data adapter for the BSEE well files.
 
-A third command, `graph_builder.graph.bsee`, links the BSEE records within that source: wellbores to wells, operators, leases, blocks, fields and renumbered predecessors. Every edge carries row evidence, and the output is a JSONL property graph. Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build. There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
+A third command, `graph_builder.graph.bsee`, links the BSEE records within that source: wellbores to wells, operators, leases, blocks, fields and renumbered predecessors. Every edge carries row evidence, and the output is a JSONL property graph. It is the seed of the entity registry (§5.7). Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build ([experiment E4](experiments/E4-ak3-architecture-prototype.md)). There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
 
 ![Current ingestion paths](diagrams/01-current-ingestion.svg)
 
@@ -176,11 +248,11 @@ The configured PDF baseline is Python 3.12, Docling 2.141.0, pypdf 6.1.1, paragr
 
 ### 3.2 Evidence and limits
 
-The committed main bundle contains **3 documents, 155 physical pages, and 372 chunks: 237 text and 135 table chunks**. The recorded evaluation reports zero validation errors and 20 allowed over-budget table parts, plus known semantic extraction weaknesses. See [the ingestion evaluation](ingestion-evaluation.md) for the original measurements and method. A valid artifact structure does not establish correct interpretation of every number or table.
+The committed main bundle contains **3 documents, 155 physical pages, and 372 chunks: 237 text and 135 table chunks**. The recorded evaluation reports zero validation errors and 20 allowed over-budget table parts, plus known semantic extraction weaknesses. See [experiment E1](experiments/E1-pdf-ingestion-configuration.md) for the original measurements and method. A valid artifact structure does not establish correct interpretation of every number or table.
 
 The recorded extended and appendix evaluations cover a further 2 reports/170 pages and 44 attachment PDFs/463 pages. Those bundles are ignored local outputs, not guaranteed to exist in a fresh checkout. The evaluation reports 67 scanned appendix pages; production chunks do not include the experimental OCR output. Gold annotations are a small, single-annotator, AI-assisted sample. No graph-extraction or QA benchmark exists yet.
 
-The BSEE snapshot of 18 October 2026 (retrieved 25 October) parses into **57,453 boreholes, 39,518 surface wells and 587 API-number changes**. It has zero errors and two warning kinds: 445 boreholes with withheld fields, and two wells spanning several surface blocks. Rebuilding from the snapshot is byte-identical. The bundle is a local, ignored output; [BSEE ingestion](bsee-ingestion.md#checks) lists the checks. Valid records do not mean that BSEE's values are correct; they are the regulator's records, cited as such.
+The BSEE snapshot of 18 October 2026 (retrieved 25 October) parses into **57,453 boreholes, 39,518 surface wells and 587 API-number changes**. It has zero errors and two warning kinds: 445 boreholes with withheld fields, and two wells spanning several surface blocks. Rebuilding from the snapshot is byte-identical. The bundle is a local, ignored output; [BSEE ingestion](components/bsee-ingestion.md#checks) lists the checks. Valid records do not mean that BSEE's values are correct; they are the regulator's records, cited as such.
 
 ### 3.3 Gaps the architecture must close
 
@@ -265,7 +337,7 @@ This is application-level consistency, not a distributed transaction. A crash af
 | 8. Project | Accepted revisions + manifests | Build and validate a new Neo4j generation | Completed graph marker; failure leaves active generation unchanged |
 | 9. Activate | Completed generation | Administrator checks summary and switches the publication pointer | Readers see the new accepted knowledge revision |
 
-Dataset records do not pass through stages 3–4. A deterministic, versioned field mapping turns them into claim candidates with dataset evidence, which enter at stage 5 ([§5.7](#57-structured-well-data)).
+Dataset records do not pass through stages 3–4. A deterministic, versioned field mapping turns them into claim candidates with dataset evidence, which enter at stage 5 ([§5.7](#57-structured-well-data-and-the-entity-registry)).
 
 ### 5.2 Review lifecycle
 
@@ -335,17 +407,17 @@ The passage is available in the [committed canonical document](../data/processed
 
 This example illustrates why the graph needs context and claim-level evidence: extracting all four numbers correctly is not enough if the system assigns them the wrong meanings.
 
-### 5.7 Structured well data
+### 5.7 Structured well data and the entity registry
 
-A regulator's dataset says which wells exist and records their official attributes. This section defines how BSEE records are used inside the graph. The report track (§5.1–§5.6) is developed separately, and linking the two sources is not a current goal. [Development focus and data sources](DATA_SOURCES.md) describes both tracks.
+The **entity registry** is layer 2 of §1.3: the one place where shared entities get their identity. Every domain module refers to a well, wellbore, organization, field, lease or document by its registry ID, never by a name. A registry entry holds the entity's type, exact identifiers (with their issuing scheme, such as the API number), language-tagged names and scoped aliases, the source of each identifier, and its merge history. Entries come from authoritative datasets where available, and otherwise from reviewed report mentions. A regulator's dataset is the natural seed, because it says which wells exist and records their official identifiers. This section defines how BSEE records are used; a VPI dataset would follow the same pattern with its own identifier scheme.
 
 ![Two development tracks](diagrams/08-source-integration.svg)
 
-**Figure 8 — Development tracks.** The Mermaid source is in [DATA_SOURCES.md](DATA_SOURCES.md).
+**Figure 8 — Current development tracks.** The Mermaid source is in [DATA_SOURCES.md](DATA_SOURCES.md). The tracks share no wells today (§1.3), so the registry's cross-source linking is specified here but not yet demonstrated.
 
 **Two roles for dataset records.**
 
-1. **Reference list.** Each BSEE borehole defines a canonical *Wellbore* keyed by its 12-digit API number. Each group sharing the first 10 digits defines a *Well* (the surface hole and its sidetracks). Well names with suffixes, leases, area/blocks, and previous API numbers from the change file become scoped aliases. `wells.jsonl` from the adapter is the current form of this list.
+1. **Registry entries.** Each BSEE borehole defines a canonical *Wellbore* keyed by its 12-digit API number. Each group sharing the first 10 digits defines a *Well* (the surface hole and its sidetracks). Well names with suffixes, leases, area/blocks, and previous API numbers from the change file become scoped aliases. `wells.jsonl` and the linked graph from the adapter are the current form of this list. A report mention links to an entry only through an exact identifier or a reviewed scoped alias (§5.4); wells outside the dataset, such as AK-3, get entries from reviewed report mentions, scoped by project.
 2. **Dataset claims.** A versioned field mapping turns selected fields into claim candidates: spud and total-depth dates, measured and true vertical depth, RKB elevation, water depth, status code and date, surface and bottom location with datum, operator number, and lease. Each claim's evidence is the dataset record: snapshot SHA256, file, row, and field. The mapping is reviewed code or configuration, not model output.
 
 **Review policy (proposed, D-14).** A dataset snapshot is reviewed as a unit. The reviewer approves its validation summary and its comparison with the active snapshot: added, changed, and removed boreholes, and changed values by field. Approval accepts all mapped claims from that snapshot. Claims whose values changed are superseded, not deleted. Reviewing about 57,000 boreholes claim by claim would be infeasible and add little, because the values are the regulator's records rather than model interpretations. This is a deliberate, narrow exception to per-claim approval (§5.3). It applies only to deterministic mappings from allow-listed datasets; claims extracted from reports always need per-claim review.
@@ -356,29 +428,63 @@ A regulator's dataset says which wells exist and records their official attribut
 
 **Worked dataset example.** Borehole `012032016500` is the first row of the Gulf borehole file. It has measured depth 21,678 ft, TVD 21,675 ft, status `COM`, spud date 1984-09-24, and surface location MO 0827 at 30.18845, −87.95863 (NAD27). The mapped claim "total measured depth = 21,678 ft, referenced to the rig kelly bushing" cites `borehole_gulf` row 1 of the snapshot with SHA256 `1bf9abb7…`. "What is the total depth of 012032016500?" returns that value with the row citation. If a later approved snapshot changes the value, the earlier claim becomes superseded, and the answer cites the new snapshot.
 
-## 6. Ontology and domain adaptation
+### 5.8 Interpretations, competing hypotheses and expert knowledge
+
+Upstream knowledge is often uncertain: one set of observations can support several explanations, each valid under its own data and assumptions (SR-08). The graph therefore stores interpretations as claims in their own right and records how they relate, instead of keeping only one "true" value.
+
+**Claim kinds.** Every claim has a `kind`:
+
+| Kind | Meaning | Example from AK-3 |
+|---|---|---|
+| Observation | Measured or recorded, with method and conditions | Temperature surveyed at 400 ft on a given date |
+| Plan | Intended, not yet done | "A flow test is planned for summer 2017" |
+| Derived | Computed by a stated method from other claims | Projected equilibrium temperature of 340 °F at 400 ft |
+| Interpretation | An explanation or conclusion that its author holds | A lithology correlation between AK-3 and offset well TG-2 |
+
+Interpretations carry their author or source, date, and optionally assumptions or a school of thought. Report-derived interpretations cite the passage as usual. **Expert notes** are a source type of their own: text written in the review application, attributed to the expert and dated, and published only after a second expert reviews it (SR-15). They make tacit knowledge and lessons learned citable without pretending they came from a document.
+
+**Relations between claims.** Reviewed links connect claims:
+
+| Link | Meaning |
+|---|---|
+| `supports` / `contradicts` | One claim is evidence for or against another |
+| `alternative_to` | Two interpretations explain the same observations differently; neither replaces the other |
+| `depends_on` | An interpretation or derived value relies on a claim or assumption |
+| `refines` | A later claim narrows an earlier one without contradicting it |
+
+The model may propose links from report text; a reviewer accepts them like any other candidate. `contradicts` differs from a value conflict (§5.4): a conflict is two values for the same property and context, often a data error, while a contradiction is a reasoned disagreement that stays in the graph.
+
+**Answers.** When a question touches an interpreted topic, the answer lists every accepted interpretation with its author, date, evidence and links, and says that they compete. The system never chooses a winner. Retiring a source withdraws its claims, and the answer flags any remaining interpretation whose `depends_on` target was withdrawn.
+
+## 6. Ontology layer and domain modules
 
 An ontology is the project's explicit vocabulary: the entity types, relation types, properties, and rules that the extractor is allowed to use. A reference list contains known instances and aliases. Both are versioned inputs. The first release uses a small YAML/JSON application schema; it does not claim compatibility with OWL or implement automatic logical inference.
 
-The following is an **illustrative future configuration** for the current focus, not a file accepted by the current CLI. Entity and property names come from the AK-3 section map and the BSEE fields in [Development focus and data sources](DATA_SOURCES.md):
+### 6.1 Core ontology and domain modules
+
+The ontology is split the same way as the graph (§1.3). The **core ontology** defines the shared entity types held in the registry (Well, Wellbore, Organization, Field, Lease, Block, Document, Person), the claim kinds and claim-to-claim links of §5.8, and the relation categories of §6.3. Each **domain module** imports the core and adds its own types, properties and units: the capstone has `drilling_and_wells` and `subsurface_interpretation`. A module may refer to core types but not to another module's types. Cross-domain questions therefore join through registry IDs, which keeps each module small enough for its own experts to maintain. Each module is versioned separately; a run pins the core and module versions it used.
+
+### 6.2 Example module configuration
+
+The following is an **illustrative future configuration**, not a file accepted by the current CLI. Entity and property names come from the AK-3 section map and the BSEE fields in [Data sources](DATA_SOURCES.md). The architecture prototype's ontology v0.1 (14 properties, [experiment E4](experiments/E4-ak3-architecture-prototype.md)) is the first tested subset:
 
 ```yaml
-ontology_id: well_reports
+module: drilling_and_wells
 version: 0.1.0
+imports: {core: 0.1.0}
+labels: {en: Drilling and wells, vi: Khoan và giếng}
+uses_core_types: [Well, Wellbore, Organization, Lease, Document]   # identity defined by the registry (§5.7)
 entity_types:
-  Well:                      # surface hole; BSEE: first 10 API digits
-    identity_fields: [api10]
-    fallback_identity: [project_id, well_name]   # wells outside BSEE, e.g. AK-3 within the Akutan project
-  Wellbore:                  # original hole, sidetrack or bypass; BSEE: 12-digit API number
-    identity_fields: [api12]
-  Report:
-    identity_fields: [document_version_id]
+  HoleSection:
+    identity_fields: [wellbore_id, hole_size_in, top_depth]
+    labels: {en: Hole section, vi: Đoạn thân giếng}
   CasingString:
     identity_fields: [wellbore_id, casing_od_in, setting_depth]
+    labels: {en: Casing string, vi: Cột ống chống}
 relation_types:
-  HAS_WELLBORE: {subject_type: Well, object_type: Wellbore}
-  DESCRIBES: {subject_type: Report, object_type: Well, evidence_required: true}
-  HAS_CASING: {subject_type: Wellbore, object_type: CasingString, evidence_required: true}
+  DESCRIBES: {category: structural, subject_type: Document, object_type: Well, evidence_required: true}
+  HAS_SECTION: {category: structural, subject_type: Wellbore, object_type: HoleSection, evidence_required: true}
+  HAS_CASING: {category: structural, subject_type: Wellbore, object_type: CasingString, evidence_required: true}
 quantity_types:
   total_measured_depth:
     subject_type: Wellbore
@@ -392,20 +498,39 @@ quantity_types:
     permitted_source_units: [ft, m]
     context_required: [depth_reference, status]
     evidence_required: true
-  formation_temperature:
-    subject_type: Well
-    canonical_unit: degF
-    permitted_source_units: [degF, degC]
-    context_required: [depth, measurement_kind]    # measured or projected equilibrium
-    evidence_required: true
 external_mappings: {}        # optional links to a published well-engineering ontology (see references.md)
 ```
 
+The `subsurface_interpretation` module follows the same pattern with types such as `LithologyInterval` and `TemperatureInterval`, the quantity `formation_temperature` (context: depth and claim kind, observation or derived), and interpretation claims linked as in §5.8.
+
 Validation must reject duplicate names, references to unknown types, incompatible endpoint types, unsupported units, missing evidence requirements, unsafe YAML tags, and excessively large/deep files. Conversion factors belong to reviewed deterministic code/configuration, not to model-generated instructions. Define whether quantities use exact decimal strings and how display rounding works before the first extraction milestone.
+
+### 6.3 Relation categories
+
+Every relation type in a module declares one category, so that applications can traverse "all causes" or "all evidence" across modules without knowing each module's names (SR-10).
+
+| Category | Meaning | Capstone status |
+|---|---|---|
+| Structural | Part of, located in, has component, flows to | Used (well, wellbore, section, casing; registry links) |
+| Evidential | Supports, contradicts (§5.8) | Used |
+| Hypothesis | Alternative to, depends on (§5.8) | Used |
+| Condition | Holds only under stated conditions (stored as claim context) | Used |
+| Dependency | Requires, depends on (between entities or activities) | Used where a module needs it |
+| Causal | Causes, results in | Defined; used only with explicit source support |
+| Correlation | Correlates with (for example a lithology correlation between wells) | Defined; first use in subsurface interpretation |
+| Inheritance | Subtype of, between ontology types | Ontology level only; no logical inference in the first release |
+
+Deterministic system structure for production and plant operations (SR-09) uses the structural category (equipment part of system, unit feeds unit) when such a module is added.
+
+### 6.4 Terms, synonyms and languages
+
+The same object can have several names across units, projects and languages, and one term can mean different things in different disciplines (SR-11, SR-12). Every type, property, entity name and alias therefore carries a language tag (`vi`, `en`, `ru`), and every alias carries its scope (project, lease, module). A module glossary, starting with tables such as the AK-3 abbreviation list, supplies reviewed aliases and expansions. The same surface term in two modules is two glossary entries. Resolution never merges entities across languages or modules on string similarity alone; it proposes the match for review (§5.4). Source text is kept in its original language; translation, if added, is a display aid and never the evidence.
+
+### 6.5 Changes and new domains
 
 Ontology changes have three categories: additive changes, rule changes requiring revalidation, and breaking changes requiring re-extraction/migration. Each run pins one immutable ontology version. Activating a new ontology does not relabel old graph data in place. Maintain explicit mappings where renamed types are equivalent and keep old runs readable.
 
-To support another domain, supply a new ontology, reference list, examples, and evaluation set; verify parser coverage on its documents; then repeat the extraction and QA gates. Generalizing metadata and upload support is necessary but is not evidence of domain-independent accuracy.
+To add a domain module, supply its ontology, glossary, examples, and evaluation set; register any new shared types in the core; verify parser coverage on its documents; then repeat the extraction and QA gates. Generalizing metadata and upload support is necessary but is not evidence of domain-independent accuracy.
 
 ## 7. Data model and contracts
 
@@ -426,10 +551,13 @@ erDiagram
     DATASET_SNAPSHOT ||--o{ DATASET_RECORD : contains
     CHUNK ||--o{ EVIDENCE : anchors
     DATASET_RECORD ||--o{ EVIDENCE : anchors
+    EXPERT_NOTE ||--o{ EVIDENCE : anchors
     DATASET_RECORD }o--o{ ENTITY : identifies
     ENTITY ||--o{ CLAIM : subject_of
     ENTITY o|--o{ CLAIM : optional_object_of
     CLAIM }o--|{ EVIDENCE : supported_by
+    CLAIM ||--o{ CLAIM_LINK : links_from
+    CLAIM ||--o{ CLAIM_LINK : links_to
     ONTOLOGY_VERSION ||--o{ CLAIM : constrains
     EXTRACTION_RUN ||--o{ CLAIM : proposes
     CLAIM ||--o{ REVIEW_DECISION : reviewed_by
@@ -439,7 +567,7 @@ erDiagram
 
 </details>
 
-**Figure 4 — Logical model.** A relation claim has a subject and object entity. A quantity claim has a subject and a typed literal instead. Evidence is anchored either in a document chunk or in a dataset record. A dataset record can also identify canonical entities: a BSEE borehole row defines a Wellbore and contributes to its Well. Many-to-many links are implemented using association records, including claim-evidence, generation-claim, and answer-citation records. System records such as jobs and ontology definitions have configuration/audit provenance; they are not presented as facts asserted by a source.
+**Figure 4 — Logical model.** A relation claim has a subject and object entity. A quantity claim has a subject and a typed literal instead. Evidence is anchored in a document chunk, a dataset record, or an attributed expert note. A dataset record can also identify canonical entities: a BSEE borehole row defines a Wellbore and contributes to its Well. Entities are registry entries (§5.7). A claim link records a reviewed `supports`, `contradicts`, `alternative_to`, `depends_on` or `refines` relation between two claims (§5.8). Many-to-many links are implemented using association records, including claim-evidence, generation-claim, and answer-citation records. System records such as jobs and ontology definitions have configuration/audit provenance; they are not presented as facts asserted by a source.
 
 ### 7.2 Existing artifact contracts
 
@@ -454,7 +582,7 @@ PDF bundle (`data/processed/` and `data/processed/local/<registry>/`):
 | `documents/<doc_id>.txt` | Canonical emitted text, constructed by joining chunk texts with two newlines |
 | `SHA256SUMS` | Digests of the bundle's files; excludes itself |
 
-BSEE bundle (`data/processed/local/bsee_wells/`; details in [BSEE ingestion](bsee-ingestion.md#output-bundle)):
+BSEE bundle (`data/processed/local/bsee_wells/`; details in [BSEE ingestion](components/bsee-ingestion.md#output-bundle)):
 
 | Artifact | Existing semantics |
 |---|---|
@@ -476,9 +604,11 @@ Preserve the existing v1 bundles as inputs. Add a v2 envelope and adapters rathe
 | Document version | `schema_version`, `workspace_id`, `document_id`, `document_version_id`, SHA256, size, media type, storage key, source metadata, lifecycle status; source bytes immutable |
 | Dataset snapshot | `dataset_id`, snapshot ID, and per-file URL, SHA256, size, publisher `Last-Modified`, retrieval time, record layout version, review/activation status; files immutable |
 | Run manifest | Run ID, stage/input hashes, code revision, dependency/runtime/model fingerprints, ontology/prompt/reference versions, resolved config, timestamps, status, output hashes, warning/error counts |
-| Evidence | Evidence ID plus **either** document version, ingestion run, chunk ID, bundle hash, quote, local start/end, physical page(s), regions, and optional table/row/cell context (the quote must match stored text), **or** dataset snapshot, file, row, field name, and the source value as printed |
-| Entity | Stable ID, type, canonical display name, scoped identifiers, aliases, reference-list version, merge revision/history; name is not identity |
-| Claim revision | ID/revision, subject, predicate, object entity **or** typed literal, original/normalized units, context/qualifiers, evidence IDs, extraction run, ontology version, review state/reason |
+| Evidence | Evidence ID plus **either** document version, ingestion run, chunk ID, bundle hash, quote, local start/end, physical page(s), regions, and optional table/row/cell context (the quote must match stored text), **or** dataset snapshot, file, row, field name, and the source value as printed, **or** expert note ID, author, date and the quoted note text |
+| Entity (registry entry) | Stable ID, core type, canonical display name, scoped identifiers with issuing scheme, language-tagged names and aliases, reference-list version, merge revision/history; name is not identity |
+| Claim revision | ID/revision, domain module, kind (observation, plan, derived, interpretation), subject, predicate, object entity **or** typed literal, original/normalized units, context/qualifiers, author/date for interpretations, evidence IDs, extraction run, ontology version, review state/reason |
+| Claim link | Link ID, type (`supports`, `contradicts`, `alternative_to`, `depends_on`, `refines`), from/to claim revisions, evidence or reviewer rationale, review state |
+| Expert note | Note ID, author, date, language, text, related entities/claims, reviewing expert, review state; immutable once reviewed (corrections create a new note) |
 | Review decision | Actor, time, candidate/claim revision, expected previous revision, action, reason, replacement values/evidence if any; append-only history |
 | Graph generation | Generation ID, included claim revisions, ontology version, manifest digest, counts, completion marker, activation and retirement history |
 | Answer | Request ID, user/workspace, generation, supported intent, query-template version, structured result, sentence-to-claim/evidence citations, limitations, model fingerprint if used |
@@ -514,9 +644,11 @@ Use a consistent error envelope: `code`, user-readable `message`, `request_id`, 
 
 ### 8.1 Supported capabilities
 
-Begin with approximately 10 reviewed intents: find an entity by name/alias; list reports about it; retrieve a supported property; list related entities for an allowed relation; compare the same quantity across entities; show conflicting claims; identify which report supports a fact; filter by approved date/project fields; show knowledge added in a publication; and report coverage for a document/entity.
+Begin with approximately 10 reviewed intents: find an entity by name/alias; list reports about it; retrieve a supported property; list related entities for an allowed relation; compare the same quantity across entities; show conflicting claims and competing interpretations with their evidence (§5.8); identify which report supports a fact; filter by approved date/project fields; show knowledge added in a publication; and report coverage for a document/entity.
 
 Each intent has a typed parameter schema and a developer-written Cypher template. Template definitions include permitted traversals, aggregation semantics, result limits, and evidence collection. User values are bound parameters; labels, properties, and query structure come from the trusted template catalogue. Unknown intents are rejected or clarified. This still translates natural-language questions into graph queries, but gives the first release a testable boundary.
+
+Templates may traverse more than one domain module, joining only through registry IDs (§6.1). This is the project's form of Graph RAG: retrieval follows typed relationships, and the model words results only from retrieved, accepted claims. A plain passage-retrieval (RAG) baseline over the same chunks is evaluated alongside it (M5), so the graph's added value is measured rather than assumed (SR-16, SR-17).
 
 ### 8.2 Answer sequence
 
@@ -739,13 +871,15 @@ For extraction, a true positive requires matching subject, predicate, object/val
 | FR-01/02/13 | Sections 3, 5, 7 | M1 | G1/G2; source/version and unsupported-page fixtures |
 | FR-15 | Sections 3, 5.7, 7 | M1 (adapter, done); M3 (snapshot review and claims) | G1; snapshot, malformed-row and withheld-field fixtures; snapshot-diff review demo |
 | FR-03/04/05 | Sections 5–7 | M2/M3 | G3/G4; frozen ontology and claim/identity benchmark |
+| FR-16/18 | Sections 5.4, 5.7, 6.1, 6.4 | M2 (core ontology, registry contract); M3 (registry in the store) | G4, with Vietnamese and English aliases among the identity cases; one entity referenced from both modules |
+| FR-17 | Sections 5.8, 7, 8 | M3 (claim kinds, links); M4 (expert notes in the review app); M5 (answers) | G5, with questions on interpreted topics that must return every accepted view; G6 citations for notes |
 | FR-06/07/09 | Sections 4, 5, 7 | M3/M4 | G1/G7; review conflicts, generation failure, rollback |
 | FR-08 | Section 8 | M5 | G5/G6; intent catalogue and evidence-linked answer set |
 | FR-10/11 | Sections 7, 10 | M1/M4/M6 | G7; direct endpoint authorization and deletion propagation |
 | FR-12 | Section 11 | M6/M7 | G8/G9; restore, load, offline, pilot, handover |
 | FR-14 | Sections 1, 6, 9 | Later | New evaluation and scope approval before production use |
 
-The existing ingestion documents remain the detailed reference for implemented parser behavior. This document provides a complete design baseline, but a baseline document does not mean implementation, operational validation, or stakeholder acceptance is complete.
+The [component guides](components/) remain the detailed reference for implemented behavior. This document provides a complete design baseline, but a baseline document does not mean implementation, operational validation, or stakeholder acceptance is complete.
 
 ## 13. Decisions, assumptions, and change control
 
@@ -768,14 +902,35 @@ The existing ingestion documents remain the detailed reference for implemented p
 | D-13 | Develop against BSEE well data and end-of-well reports, AK-3 first | Supervisor direction, relayed 25 Oct 2026 | Supervisor changes the focus |
 | D-14 | Review allow-listed datasets per snapshot (summary and diff), not per claim; report claims stay per-claim | Proposed | Reviewer or product owner requires row-level review, or a dataset proves unreliable |
 | D-15 | Keep BSEE raw and derived files out of Git; reproduce them from recorded snapshot digests | Proposed (size and unclear redistribution terms) | BSEE terms confirmed as open, and a small frozen fixture is needed in the repository |
+| D-16 | Three-layer architecture: domain modules over a shared entity registry and core ontology, with applications on top | Adopted from VPI's KGinEP document (27 Oct 2026) | VPI revises its target |
+| D-17 | The capstone delivers two domain modules: wells and drilling; subsurface interpretation | Proposed; to confirm with supervisors | Supervisors prefer another second module (§13.2) |
+| D-18 | Develop on public proxy data (BSEE, GDR end-of-well reports) until VPI supplies documents; VPI documents then enter through the same adapters and gates | Proposed | VPI documents arrive, or VPI restricts where they may be processed |
+| D-19 | Language tags on all names and aliases from the start; Vietnamese documents through OCR after its quality gate; Russian deferred | Proposed | VPI supplies Russian material that a first-release question needs |
+| D-20 | Store competing interpretations and their links; never select a single answer for an interpreted topic | Adopted from VPI's KGinEP document | Product owner changes the policy for a specific module |
 
-### 13.2 Change process
+### 13.2 Open questions for supervisor meetings
 
-The product owner prioritizes user-visible scope. A technical lead records architecture changes and migration effects. Each change states its reason, affected requirement IDs, effort/capacity impact, test changes, and rollout/rollback path. Rebaseline the development plan if scope or resources change. Keep decisions in this register and detailed follow-up records under `docs/decisions/` when implemented; that directory is a proposed convention.
+These items affect scope or priorities and need a decision from the supervisors or VPI. Until they are answered, the design uses the stated assumption. Record each answer as a decision in §13.1 and update the affected sections.
 
-Update this document when interfaces, data ownership, deployment boundaries, or release gates change. Update the current-state section only after code and verification evidence exist. Keep implementation-specific metrics in the ingestion/evaluation documents to avoid competing sources of truth.
+| # | Question | Current assumption | Affects |
+|---|---|---|---|
+| Q1 | Which VPI/PVN documents and datasets will the team receive, when, and may they leave VPI premises or be processed on school hardware? | Public proxies only (D-18); private documents stay within an approved boundary | SR-18, §10, M2 corpus |
+| Q2 | Is wells-and-drilling plus subsurface interpretation the right pair of domain modules, or should the second be another discipline (for example production or equipment)? | Wells and drilling; subsurface interpretation (D-17) | §1.3, §6, M2–M3 scope |
+| Q3 | Is a pilot-grade internal service the expected end state, or a demonstrated prototype with a handover package? | Internal service for one team (D-01) | M6–M7 effort, §11 |
+| Q4 | Which languages must the first release handle in documents, not only names? Is Russian needed? | Names in vi/en/ru; documents in English, Vietnamese after the OCR gate (D-19) | §1.5, §6.4, OCR work |
+| Q5 | Should the team add an oil-and-gas report for a BSEE well (for example a BSEE End of Operations Report) to demonstrate one entity shared by a dataset and a report? | Recommended for M3 | §1.3, §5.7, FR-16 evidence |
+| Q6 | Do geothermal reports (AK-3, FORGE) remain acceptable development material for an oil-and-gas platform? | Yes, as proxies for end-of-well reports | M2 acceptance set |
+| Q7 | Who are the domain reviewers and expert contributors, and how much time can they give? | One reviewer named at M0 | R-06, FR-17, G3–G5 |
+| Q8 | May the two VPI requirement documents be published in this public repository? | No; kept out of Git | `docs/requirements/` |
+| Q9 | Which papers did the supervisor intend (OnePetro 642469, EarthDoc DOI)? | Queiroz et al. ontology, unconfirmed | §6, [related work](references.md) |
 
-### 13.3 Glossary
+### 13.3 Change process
+
+The product owner prioritizes user-visible scope. A technical lead records architecture changes and migration effects. Each change states its reason, affected requirement IDs, effort/capacity impact, test changes, and rollout/rollback path. Rebaseline the development plan if scope or resources change. Keep decisions in this register.
+
+Update this document first when scope, interfaces, data ownership, deployment boundaries, or release gates change, then the plan. Update the current-state section only after code and verification evidence exist. Measurements live in [experiment records](experiments/README.md) and implemented behavior in [component guides](components/); link to them rather than copying numbers.
+
+### 13.4 Glossary
 
 | Term | Meaning here |
 |---|---|
@@ -794,3 +949,8 @@ Update this document when interfaces, data ownership, deployment boundaries, or 
 | End-of-well (EOW) report | Operator or consultant report written after drilling: summary, hole sections, casing, cementing, surveys, time breakdown, geology, testing |
 | Dataset snapshot | One retrieved set of dataset files, identified by their SHA256 digests and retrieval time |
 | Withheld value | A field BSEE masks (for example until total depth or lease expiry); stored as `null` and listed separately from blank values |
+| Domain module | One discipline's part of the graph: its ontology module, glossary, claims and evaluation set (layer 1) |
+| Entity registry | The shared list of entities with stable IDs, identifiers and aliases that all modules refer to (layer 2) |
+| Interpretation | A claim that explains or concludes rather than records; stored with its author and links to competing views |
+| Expert note | Knowledge written directly by an attributed expert in the application, reviewed by a second expert |
+| VPI / PVN | Vietnam Petroleum Institute, the project's stakeholder / PetroVietnam, its parent group |
