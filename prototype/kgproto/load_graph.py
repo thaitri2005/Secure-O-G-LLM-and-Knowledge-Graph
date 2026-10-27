@@ -8,6 +8,7 @@ import time
 from neo4j import GraphDatabase
 
 from .config import BSEE_GRAPH, NEO4J_AUTH, NEO4J_URI, PDF_BUNDLE, REPORT_DOC
+from .ontology import PROFILE
 
 LABELS = {"well": "Well", "wellbore": "Wellbore", "lease": "Lease", "block": "Block", "operator": "Operator",
           "field": "Field"}
@@ -29,7 +30,7 @@ def reset(session) -> None:
 
 
 def load_bsee(session) -> dict:
-    for label in [*LABELS.values(), "Document", "Chunk", "ReportWell", "Claim"]:
+    for label in [*LABELS.values(), "Document", "Chunk", PROFILE.subject["graph_label"], "Claim"]:
         session.run(f"CREATE CONSTRAINT IF NOT EXISTS FOR (n:{label}) REQUIRE n.id IS UNIQUE")
     nodes = defaultdict(list)
     with (BSEE_GRAPH / "nodes.jsonl").open(encoding="utf-8") as stream:
@@ -75,7 +76,7 @@ def main() -> None:
     started = time.perf_counter()
     with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver, driver.session() as session:
         reset(session)
-        for label in ("Document", "Chunk", "ReportWell", "Claim"):
+        for label in ("Document", "Chunk", PROFILE.subject["graph_label"], "Claim"):
             session.run(f"CREATE CONSTRAINT IF NOT EXISTS FOR (n:{label}) REQUIRE n.id IS UNIQUE")
         counts = {"report_chunks": load_report(session)}
     counts["seconds"] = round(time.perf_counter() - started, 1)

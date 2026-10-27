@@ -3,21 +3,24 @@
 **Báo cáo tiến độ và kết quả nghiên cứu thực nghiệm**
 
 Kỳ báo cáo: 20–27 October 2026 · Cập nhật kỹ thuật: 27 October 2026  
-Application scope: oil wells · Ngôn ngữ triển khai trước mắt: English · Case study: BSEE, End-of-Well reports và AK-3 · Môi trường: local/on-prem
+Sản phẩm: Knowledge Graph Builder (pipeline + admin application, ontology do người dùng cung cấp) · Use case: oil wells (drilling, production) · Ngôn ngữ giai đoạn đầu: English · Case study: BSEE, End-of-Well reports và AK-3 · Môi trường: local/on-prem · Định hướng: buổi họp với anh Tuấn ngày 07/10
 
 [Bản PDF](../../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf)
 
 ## 1. Tóm tắt tiến độ
 
-Dự án hướng tới platform chuyển tài liệu kỹ thuật và structured data thành Knowledge Graph (KG) có evidence traceability, vận hành với local LLM. Nhóm thống nhất core theo hướng domain-agnostic; application triển khai và đánh giá trước mắt tập trung vào oil wells, với tài liệu, extraction, QA và evaluation bằng English. Trong kỳ báo cáo, ingestion, graph từ structured data và prototype extraction–review–QA đã chạy được; đồng thời nhóm khảo sát các phương pháp KG construction và kiểm chứng theo từng thành phần những hướng cải thiện độ chính xác, reproducibility và đánh giá.
+Theo định hướng ở buổi họp ngày 07/10, sản phẩm là một **Knowledge Graph Builder**. Đó là pipeline kèm admin application, chuyển tài liệu kỹ thuật và structured data thành Knowledge Graph (KG) có evidence traceability, chạy bằng local LLM. Ontology là input do người dùng cung cấp; nhóm xây pipeline và application, không tự xây ontology chuyên ngành. Dầu khí là use case: giếng khoan (drilling, production), không đi vào geology/geophysics. Thứ tự thực hiện: graph builder trước, gồm extraction, entity identity, kiểm soát liên kết, human-in-the-loop review và curation; question answering sau; phân quyền để sau admin layer. Giai đoạn đầu dùng English.
+
+Trong kỳ báo cáo, ingestion, graph từ structured data và prototype extraction–review–QA đã chạy được. Nhóm đã làm literature review và khảo sát open-source theo yêu cầu, rồi kiểm chứng từng thành phần. Sau khi đối chiếu với buổi họp, prototype đã chuyển ontology từ code sang file profile: cùng code chạy được với một ontology khác.
 
 | Hạng mục | Tiến độ nổi bật và trạng thái |
 |---|---|
 | PDF/OCR ingestion | 3 technical reports, 155 trang, 372 chunk; tái chạy toàn bộ PDF ingestion trên CPU cho kết quả byte-identical. EasyOCR đã chạy trên scan Việt–Anh. Pipeline hiện tại bổ sung VietOCR/PP-OCRv6, per-page OCR và quality flags; đã xử lý 44 PDF phụ lục AK-3, 463 trang. |
 | BSEE graph | Ingestion dữ liệu 3 vùng, có source tracking. Source-linked graph: 113.384 nodes / 398.263 edges. Expanded graph đã được nạp vào Neo4j, gồm 336.265 nodes kể cả metadata / 551.254 edges. Generic importer đã đối chiếu cùng record và graph counts với adapter. |
 | Extraction và QA | Prototype AK-3 trên 15 chunk: precision 0.97, recall 0.68; QA end-to-end đúng 19/31 câu. Thử nghiệm canonicalization trên WebNLG-10 tăng strict F1 từ 0.736 lên 0.843. |
-| Nghiên cứu và đánh giá | 27 papers và code 13 repos được nghiên cứu; đã có ablation, đối chứng text RAG, quy trình AI-gold hai annotator và thử nghiệm extraction trên 49 đoạn EOR BSEE. Method suite có 354 tests pass; ingestion/application có 128 main tests và 4 prototype ontology tests pass. |
-| Điểm nghẽn | Missed facts (recall), chất lượng OCR, expert validation cho gold và held-out evaluation cho prototype AK-3. Integration tiếp theo tập trung vào shared contracts, human review và publication chịu interruption. |
+| Nghiên cứu và đánh giá | 27 papers và code 13 repos được nghiên cứu; đã có ablation, đối chứng text RAG, quy trình AI-gold hai annotator và thử nghiệm extraction trên 49 đoạn EOR BSEE. Method suite có 354 tests pass; ingestion/application có 128 main tests và 10 prototype tests pass. |
+| Builder theo buổi họp ngày 07.10 | Ontology chuyển thành file profile có validation (`oil_wells` 14 properties); synthetic ontology thứ hai chạy cùng code, không sửa code. Thêm reference rule ("it", "the well"), duplicate search và chặn impossible dates. Lượt chạy lại với model đang thực hiện; kết quả sẽ cập nhật ở mục 3.2. |
+| Điểm nghẽn | Missed facts (recall), chất lượng OCR, expert validation cho gold và held-out evaluation cho prototype AK-3. Bước tiếp theo là builder slice: ontology management, identity/curation, human review và publication chịu interruption. |
 
 Các số liệu ở trên đến từ những dataset, configuration và graph scope khác nhau. Đây là tiến độ của các hạng mục nghiên cứu và phát triển trong cùng một dự án; mỗi thí nghiệm giữ metric và artifact tương ứng. Các thành phần đang được nối qua source–claim–review–graph contract.
 
@@ -25,7 +28,12 @@ Các số liệu ở trên đến từ những dataset, configuration và graph 
 
 ### 2.1 Phạm vi và processing flow
 
-Luồng thiết kế đã thống nhất: PDF ingestion → text/table extraction → chunking/source tracking → entity/relation extraction theo ontology → validation và human review → Knowledge Graph → evidence-based QA. Hai nguồn trọng tâm là BSEE Wells Information và English End-of-Well reports; AK-3 là geothermal development proxy đã dùng. Cross-source linking cần report về giếng thuộc BSEE. Well/wellbore là đối tượng chính; operator, lease, block và field hỗ trợ identity và context của giếng.
+Luồng thiết kế đã thống nhất gồm hai nửa.
+
+- **Nửa đầu, graph builder:** ontology (người dùng upload/chỉnh, có thể nhờ AI soạn nháp) → PDF ingestion → text/table extraction → chunking/source tracking → entity/relation extraction theo ontology → validation → entity identity và curation → human-in-the-loop review → Knowledge Graph.
+- **Nửa sau, question answering:** LLM đọc câu hỏi cùng schema của ontology, tạo query plan; hệ thống kiểm tra plan rồi trả lời có citation.
+
+Admin application bao quanh pipeline để kiểm soát từng bước. VPI không cung cấp dataset vì quy chế bảo mật, nên nhóm dùng public data: BSEE Wells Information và English End-of-Well reports, với AK-3 là development proxy (geothermal). Hai nguồn được phát triển độc lập. Well/wellbore là đối tượng chính; operator, lease, block và field hỗ trợ identity và context của giếng.
 
 ![Hình 1. Hai source paths và bước integration](figures/01-current-paths.svg)
 
@@ -45,13 +53,24 @@ Stack dự kiến và đang thử nghiệm: Docling, VietOCR/PP-OCRv6, EasyOCR, 
 
 ### 2.3 Kiến trúc và phạm vi integration tiếp theo
 
-Giữ modular Python application, worker riêng và local model server trên approved host. Core quản lý source, evidence, entity, claim, review, publication và bounded query execution. PostgreSQL giữ authoritative state; artifact store giữ originals/evidence; Neo4j là rebuildable projection; SQLite của corpus giữ processing state cục bộ. Versioned `oil_wells` profile chứa ontology, BSEE identifier rules, units, MD/TVD và planned/actual context, extraction examples và trusted query catalogue. Ingestion đã domain-neutral; bước tiếp theo tách các well-specific assumptions trong prototype qua profile contracts.
+Giữ modular Python application, worker riêng và local model server trên approved host. Core quản lý source, evidence, entity, claim, review, curation, publication và bounded query execution. PostgreSQL giữ authoritative state; artifact store giữ originals/evidence; Neo4j là rebuildable projection; SQLite của corpus giữ processing state cục bộ.
+
+Ontology là file profile có version: người dùng upload, chỉnh trong admin application, activate, rồi chạy lại extraction. `oil_wells` là test profile của use case, gồm entity/relation types, units, MD/TVD và planned/actual context, extraction rules và query templates. Ingestion đã domain-neutral; extraction và validation trong prototype nay cũng đọc ontology từ file.
+
+Các vấn đề builder được nêu ở buổi họp và cách thiết kế xử lý:
+
+- **Một thực thể, một node:** normalize tên (khoảng trắng, hoa/thường, dấu câu) trước khi resolve. Duplicate search liệt kê các cặp nghi trùng để người duyệt merge hoặc giữ riêng.
+- **Ba loại mention:** tên có trong danh mục người dùng cung cấp (ví dụ file Excel tên giếng); tên riêng khác; đại từ và cụm chỉ định ("it", "the well") phải resolve về tên trong cùng tài liệu.
+- **Chỉ nối khi có căn cứ:** relation phải có trong ontology, có định nghĩa, có evidence và được chấp nhận. Không nối theo co-occurrence hay "bạn của bạn".
+- **Human in the loop:** review queue sắp theo confidence. Auto-accept theo threshold chỉ bật cho từng claim type sau khi calibration trên held-out data đạt precision target, và không áp dụng cho entity merge.
 
 ![Hình 2. Target evidence-to-answer architecture](figures/02-target-architecture.svg)
 
 *Hình 2. Target architecture cho integration. Publication activate sau khi exact accepted set và evidence được kiểm đủ.*
 
-Workload ban đầu gồm 5–10 English well reports; triển khai 3 question intents trước và thống nhất 5–8 intents. Scope hiện tại gồm một oil-well profile; kiểm tra khả năng đổi cấu hình bằng synthetic profile fixture. Subsurface interpretation, expert-note workflows, domain khác và Vietnamese/Russian rollout chuyển sang giai đoạn sau. Kết quả Vietnamese OCR đã làm được giữ trong phần thực nghiệm. Private-data pilot cần authentication/roles, approved data boundary, independent backup/restore và operator.
+Workload ban đầu gồm 5–10 English well reports; triển khai 3 question intents trước và thống nhất 5–8 intents. Kiểm tra portability trước bằng synthetic ontology; sau khi luồng oil-well chạy ổn, thử builder trên 1–2 public datasets thuộc domain khác. Subsurface interpretation, expert-note workflows và Vietnamese/Russian rollout chuyển sang giai đoạn sau. Kết quả Vietnamese OCR đã làm được giữ trong phần thực nghiệm.
+
+Theo kỳ vọng của anh Tuấn, kỳ này hoàn thành builder, admin application và English QA; kỳ sau cải thiện từng hạng mục. Authentication/roles được làm sau admin layer. Trước đó hệ thống chỉ chạy localhost và không nạp dữ liệu riêng. Private-data pilot vẫn cần authentication/roles, approved data boundary, independent backup/restore và operator.
 
 ## 3. Kết quả ingestion, OCR và prototype AK-3
 
@@ -62,7 +81,7 @@ Workload ban đầu gồm 5–10 English well reports; triển khai 3 question i
 | Bộ tài liệu | 3 public technical reports: tổng 155 trang, 372 chunk (237 text, 135 table). |
 | BSEE snapshot | 57.453 boreholes / 39.518 wells; 587 API number change records. |
 | BSEE linked graph | 113.384 nodes / 398.263 edges; mỗi edge có row-level provenance. |
-| Automated tests | 128 main tests pass và 4 prototype ontology tests pass. Cached PDF regression pass; lượt review chạy main suite trong 17.191 giây, lượt kiểm sau cập nhật tài liệu trong 13.703 giây. |
+| Automated tests | 128 main tests pass và 10 prototype tests pass (profile, validator, duplicate search). Cached PDF regression pass; lượt review chạy main suite trong 17.191 giây, lượt kiểm sau cập nhật tài liệu trong 13.703 giây. |
 | PDF rerun | Khoảng 13,5 phút trên CPU; output byte-identical với bộ đã publish. |
 | Quantity recall | 334/335 = 0.997 đối với drilling value kèm units. |
 | Word-level quality | Recall median 0.954, min 0.442 (dense directional survey tables); precision 1.0 trong phạm vi phép chấm. |
@@ -79,6 +98,8 @@ Prototype dùng 15 chunk / 41 gold facts / 31 câu hỏi. Sau extraction, precis
 *Hình 3. Development slice của E4: recovered gold facts, correct validated claims và QA dùng denominator tương ứng. QA-layer rubric chấp nhận honest no-answer khi graph thiếu fact.*
 
 Vai trò của review: accept-all review để lọt một wrong value vào câu trả lời; oracle reviewer dựa trên gold set loại được trường hợp đó. Prompt đã chỉnh trên chính 15 chunk dùng để chấm, nên đây là in-sample evaluation. Human review và document-level held-out evaluation là bước tiếp theo. Tốc độ CPU khoảng 15 giây mỗi extraction passage và 4–6 giây mỗi câu hỏi trong môi trường thử nghiệm.
+
+Sau buổi họp 07/10, prototype được chỉnh để ontology là input (E10). 14 properties chuyển sang file `profiles/oil_wells.json`, có validation. Prompt, output schema, validator và gold matcher được sinh từ file đó; synthetic ontology thứ hai chạy cùng code mà không sửa code. Prompt thay đổi (`extract-v5`), nên số liệu E4 ở trên không áp dụng trực tiếp. Lượt chạy lại trên cùng 15 chunk đang thực hiện và sẽ được so sánh với E4.
 
 ### 3.3 OCR trang scan Việt–Anh (24–27/10)
 
@@ -102,7 +123,7 @@ Run 1 dừng chủ động ở 40/44: 35 done, 5 validation errors và 4 pending
 
 ### 4.1 Literature review và câu hỏi kỹ thuật
 
-Đã đọc 27 papers, kiểm tra code của 13 repos mã nguồn mở, đồng thời khảo sát bổ sung các thư viện liên quan. Mục tiêu là kiểm tra: (i) mức phụ thuộc của extractor vào ontology; (ii) tác động của entity merging và relation canonicalization; (iii) evidence, temporal context và review status của fact; (iv) hiệu quả KG QA so với text retrieval; (v) khả năng chạy hoàn toàn local.
+Theo yêu cầu ở buổi họp 07/10 (làm literature review và chạy thử các open-source implementations trước khi tự xây), nhóm đã đọc 27 papers, kiểm tra code của 13 repos mã nguồn mở và khảo sát bổ sung các thư viện liên quan. Mục tiêu là kiểm tra: (i) mức phụ thuộc của extractor vào ontology; (ii) tác động của entity merging và relation canonicalization; (iii) evidence, temporal context và review status của fact; (iv) hiệu quả KG QA so với text retrieval; (v) khả năng chạy hoàn toàn local.
 
 | Vấn đề | Phương pháp đã tìm hiểu | Kết luận thực nghiệm / thiết kế |
 |---|---|---|
@@ -115,7 +136,7 @@ Run 1 dừng chủ động ở 40/44: 35 done, 5 validation errors và 4 pending
 
 ### 4.2 Cấu hình thí nghiệm và phương pháp đánh giá
 
-Các thí nghiệm phương pháp dùng local LLM Qwen3.6-35B-A3B (quantized MoE) trên CPU, kết hợp KGGen và EDC với các bước tự viết: provenance, temporal, normalization, validator, graph export và QA. Ablation bật dần thành phần: A0 baseline extractor; A1 thêm entity resolution; A2 thêm relation canonicalization; A3 thêm temporal; A4 thêm flag-based validation; A5 thêm LLM judge. Configuration, dữ liệu và model responses được lưu để offline replay và so sánh trên cùng input. SHA256, locator và model/ontology version được lưu theo run; replay 589/589 recorded calls cho cùng graph output. Method-evaluation suite có 354 tests pass, 0 skip; ingestion/application suite có 128 main và 4 prototype ontology tests pass.
+Các thí nghiệm phương pháp dùng local LLM Qwen3.6-35B-A3B (quantized MoE) trên CPU, kết hợp KGGen và EDC với các bước tự viết: provenance, temporal, normalization, validator, graph export và QA. Ablation bật dần thành phần: A0 baseline extractor; A1 thêm entity resolution; A2 thêm relation canonicalization; A3 thêm temporal; A4 thêm flag-based validation; A5 thêm LLM judge. Configuration, dữ liệu và model responses được lưu để offline replay và so sánh trên cùng input. SHA256, locator và model/ontology version được lưu theo run; replay 589/589 recorded calls cho cùng graph output. Method-evaluation suite có 354 tests pass, 0 skip. Code của các thí nghiệm phương pháp (WebNLG-10, 2Wiki-10, ablation, BSEE EOR, expanded graph) hiện nằm ở repository riêng của Khải và sẽ được đưa vào thư mục `experiments/` của repo chung, kèm config, script tải data, scorer và kết quả từng lượt chạy. Ingestion/application suite có 128 main tests và 10 prototype tests pass.
 
 Các bộ đánh giá: WebNLG-10 (triples có ontology), 2Wiki-10 (multi-hop QA), showcase nhỏ (alias, temporal, provenance), BSEE EOR (văn bản giếng khoan thực) và structured BSEE data. WebNLG-10/2Wiki-10 là mẫu nhỏ, có yếu tố in-sample; EOR dùng AI-gold và held-out test set. Mỗi bộ giữ metric và matching rubric riêng.
 
@@ -157,18 +178,37 @@ Trong thí nghiệm liên kết statements với bảng, có 61 links matched, 0
 |---|---|---|
 | Recall / evaluation | AK-3 bỏ sót depth/temperature facts; prompt tune trên 15 chunks. WebNLG/2Wiki là mẫu nhỏ; EOR dùng AI-gold. | P0: freeze held-out split, expert adjudication; trace false negatives từ extraction đến validation; đối chứng text RAG. |
 | OCR | Dense forms, directional survey tables và symbols còn lỗi. E5 dùng synthetic scans; E8 có visual checks qua hai runs. | Gold transcription trên English well-report scans và low-quality pages; benchmark RapidOCR/VietOCR theo loại trang. |
-| Identity / ontology | Tên giếng trùng lease/sidetrack; ontology AK-3 và 21 EOR relations cần thống nhất. | P1: `oil_wells` profile/version contract; API–lease–sidetrack matching và MD/TVD/planned/actual rules qua profile/adapters. |
-| Publication / validation | Two-rename interruption làm mất published path; validation sau installation; duplicate headers/IDs, invalid dates và cache/generation checks cần sửa. | P0: staging + immutable release pointer; exact accepted set, idempotent retry và source withdrawal. |
-| Review / security | Human review, authentication, parser isolation và independent recovery đang chờ integration. | P1: source viewer, server-derived actor/roles, egress/log policy và restore test; ba cited question intents trước. |
+| Ontology do người dùng cung cấp | Prototype đã đọc ontology từ file profile có validation. Chưa có ontology editor, activation diff hay AI-assisted draft; ontology AK-3 và 21 EOR relations cần thống nhất. | P0: thống nhất profile format, gộp EOR relations vào `oil_wells`; P1: editor + re-run trong admin application; ontology assistant nếu kịp. |
+| Identity / curation | Tên giếng trùng lease/sidetrack; đại từ chưa được resolve có kiểm chứng; duplicate search mới ở dạng CLI. | P0: normalization, reference resolution có test cases, duplicate search trong admin console; API–lease–sidetrack matching qua profile/adapters. |
+| Publication / validation | Two-rename interruption làm mất published path; validation sau installation; duplicate headers/IDs và cache/generation checks cần sửa. Invalid dates trong prototype đã sửa. | P0: staging + immutable release pointer; exact accepted set, idempotent retry và source withdrawal. |
+| Review / security | Human review và admin console chưa có. Authentication, parser isolation và independent recovery làm sau admin layer, theo định hướng 07/10. | P1: confidence-routed review queue với source viewer; ba cited question intents. Sau đó server-derived actor/roles, egress/log policy và restore test. |
 | Compute / cost | E4 chạy CPU trên i5-1340P, 16 GB RAM. EOR 50 đoạn mất 117.5 phút CPU. GPU allocation, VRAM/RAM/disk và spending ceiling cần xác nhận. | Benchmark 3B/7–8B trên host thực; đo latency/memory/storage và reviewer time; ưu tiên school allocation. |
 
 Review workload minh họa: 5.000 pages × 3 candidates/page × 30 seconds/candidate = **125 reviewer-hours** trước corrections. Capacity cũ là 720 person-hours (576 delivery + 144 reserve); cần re-estimate phần còn lại theo một English oil-well profile, core interfaces và workload review.
 
 ![Hình 6. Thứ tự integration và next milestone](figures/06-next-milestone.svg)
 
-*Hình 6. Evaluation → evidence → human review → cited QA; kiểm interruption và source withdrawal cùng luồng.*
+*Hình 6. Builder slice: ontology file → extraction có evidence → identity và human review → publication và cited QA; kiểm interruption và source withdrawal cùng luồng.*
 
-**Cần thầy và anh xác nhận:** VPI documents/quyền xử lý, paper OnePetro/EarthDoc, GPU và budget, expert reviewer, English oil-well question catalogue và operator nhận handover.
+**Đã rõ sau buổi họp 07/10:**
+
+- Sản phẩm là graph builder; dầu khí là use case.
+- Ontology do người dùng cung cấp.
+- Thứ tự: builder trước, QA sau, phân quyền sau admin layer.
+- Không có dataset từ VPI; dùng public data; anh có thể cung cấp một tài liệu dầu khí để cùng đánh giá cuối kỳ.
+- Phạm vi là giếng khoan, bỏ geology/geophysics.
+- English trước.
+- Báo cáo hằng tuần.
+
+**Cần thầy và anh xác nhận thêm:**
+
+- Ontology assistant (AI soạn ontology) có cần nằm trong sản phẩm kỳ này không.
+- Ai duyệt auto-accept threshold.
+- Domain nào dùng cho portability runs.
+- Paper OnePetro/EarthDoc.
+- GPU và budget.
+- Expert reviewer.
+- English oil-well question catalogue.
 
 ## 7. Đề xuất quy trình nghiệm thu bước tiếp theo
 
@@ -178,7 +218,8 @@ Review workload minh họa: 5.000 pages × 3 candidates/page × 30 seconds/candi
 |---|---|---|
 | PDF/OCR | Phân tầng text PDF, scanned page, dense tables; kiểm word/quantity recall và source locator; báo số pages chấm | Original file và hash, text/chunk, locator, reference, error log |
 | Extraction | Ontology đã duyệt; freeze gold/dev/test trước tuning, second annotator và expert review; chấm depth, temperature, casing, status cùng subject, units và context | Gold/annotation guide, raw output, agreement, P/R/F1, stage-level errors |
-| Identity/claims | Giữ riêng khác API/lease/sidetrack; fact có quote và review status; rerun idempotent | Test cases, identity mapping, review decisions, graph counts |
+| Identity/claims | Giữ riêng khác API/lease/sidetrack; biến thể khoảng trắng/hoa thường và đại từ; seeded duplicates cho duplicate search; fact có quote và review status; rerun idempotent | Test cases, identity mapping, review decisions, duplicate-search recall, graph counts |
+| Ontology/portability | Cùng code chạy với `oil_wells`, synthetic ontology và 1–2 public datasets domain khác; ontology lỗi bị từ chối trước extraction | Profile files, validation errors, per-domain report những gì chạy không cần sửa code |
 | Question answering | Cùng gold Q&A/model: text RAG, graph QA, hybrid; kiểm EM/F1, wrong answers, abstention và citation/quote | EM/F1, Recall@k, citation audit, runtime |
 | Reproducibility | Freeze dataset/ontology bằng SHA256; lưu model/config và replay; deterministic output comparison | Manifest, fixture record/replay, test results, delta giữa hai runs |
 | Publication/security | Exact graph membership, completion marker, direct-route roles; crash/retry, withdrawal và independent restore | Expected IDs, fault tests, role checks, active-generation record, restore log và tombstones |
@@ -187,4 +228,4 @@ Release gates dùng English oil-well workload: 200 held-out claims trên ít nh�
 
 ## 8. Tài liệu tham chiếu
 
-Tài liệu dự án: `docs/PROJECT_DESIGN.md`, `docs/DEVELOPMENT_PLAN.md`, experiment register E1–E9, component guides và repository review. E1–E3 ghi ingestion/reproduction; E4 ghi AK-3 prototype; E5 ghi OCR benchmark; E6 ghi generic importer; E7/E8 ghi corpus pipeline; E9 ghi local verification và reproduced defects. Method evaluation gồm WebNLG-10, 2Wiki-10, BSEE EOR, ablation, graph import và record/replay.
+Tài liệu dự án: `docs/requirements/supervisor-meeting-2026-10-07.md` (tóm tắt buổi họp 07/10), `docs/PROJECT_DESIGN.md` (v2.4, D-28 đến D-35), `docs/DEVELOPMENT_PLAN.md`, experiment register E1–E10, component guides và repository review. E1–E3 ghi ingestion/reproduction; E4 ghi AK-3 prototype; E5 ghi OCR benchmark; E6 ghi generic importer; E7/E8 ghi corpus pipeline; E9 ghi local verification và reproduced defects; E10 ghi prototype chạy từ ontology file. Method evaluation gồm WebNLG-10, 2Wiki-10, BSEE EOR, ablation, graph import và record/replay.

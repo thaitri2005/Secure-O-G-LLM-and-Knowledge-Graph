@@ -1,6 +1,6 @@
 # Architecture prototype (test build)
 
-**Promotion direction:** a domain-agnostic core with one English `oil_wells` profile. This prototype still hardcodes well/property assumptions; externalize those through profile contracts during integration. Interpretation/expert-note workflows, other domains and multilingual rollout are later scope.
+**Promotion direction:** a knowledge-graph builder whose ontology is a user-supplied file (specification D-28/D-29). Since [E10](../docs/experiments/E10-profile-driven-prototype.md), the ontology, output schema, validator and gold matcher come from a profile file (`profiles/oil_wells.json`), and a synthetic second profile runs the same code. Still oil-well specific: the question-answering templates in `api.py` and the AK-3 slice and document context in `extract.py`.
 
 > **This is experiment E4, a test of the target architecture, not the system.** It runs a small version of the specification ([docs/PROJECT_DESIGN.md](../docs/PROJECT_DESIGN.md) §4–§8) on 15 chunks of **one** report (AK-3), to check that the pieces fit together and to measure where errors come from. It has no authentication, no UI, and throwaway credentials. Its numbers are development-set results. Findings and every run are recorded in the [E4 experiment record](../docs/experiments/E4-ak3-architecture-prototype.md).
 
@@ -10,7 +10,9 @@
 |---|---|
 | Local model server (llama.cpp) | Container, CPU, Qwen2.5-3B-Instruct Q4_K_M, JSON-schema-constrained output |
 | Extraction with evidence | `kgproto/extract.py`: text chunks whole, tables one row at a time; each claim carries a verbatim quote (the row, for tables) |
-| Deterministic validation | `kgproto/ontology.py`: ontology v0.1 (14 properties), quote, value, unit, qualifier and context checks |
+| Ontology as input | `profiles/oil_wells.json` (14 properties, profile `oil_wells@0.2`) loaded and validated by `kgproto/profile.py`; `KG_PROFILE` selects another file. `profiles/synthetic_library.json` checks that a different ontology needs no code change |
+| Deterministic validation | `kgproto/profile.py`: quote, value, unit, qualifier, context and calendar-date checks driven by the profile |
+| Duplicate search | `kgproto/curate.py <run>`: subject names grouped by the profile's match key, plus look-alike pairs for a person to decide (suggestions only) |
 | PostgreSQL as system of record | Runs, candidates, review decisions, generations, publication pointer, question log (`kgproto/db.py`) |
 | Review queue | `GET /review-items`, `POST /review-items/{id}/decisions` (a second decision returns 409). The reviewer is a **stand-in**: an oracle built from the gold facts, or accept-all as a no-review baseline (`kgproto/review.py`) |
 | Graph generations | Accepted claims projected into Neo4j as a numbered generation, checked (every claim has evidence), then activated through the publication pointer |
@@ -21,7 +23,7 @@ Out of scope: BSEE (developed as its own track), authentication and roles, UI, m
 
 ## Current limits after the 27 October review
 
-The four ontology tests pass, but temporary probes found that impossible dates can pass and an invalid month can raise `IndexError`. Generation validation checks that existing claims have evidence and that nonempty accepted input produces a nonempty graph; it does not compare the exact expected accepted set. A partial projection can therefore pass. Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization. These shortcuts remain unfixed ([E9](../docs/experiments/E9-repository-review.md)).
+The impossible-date and invalid-month defects found by E9 are fixed and covered by tests (10 prototype tests). Generation validation checks that existing claims have evidence and that nonempty accepted input produces a nonempty graph; it does not compare the exact expected accepted set. A partial projection can therefore pass. Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization. These shortcuts remain unfixed ([E9](../docs/experiments/E9-repository-review.md)).
 
 Before promotion, use migrations and managed connections, server-derived review identity, independent output validation, exact generation membership/completion checks and source withdrawal. Freeze a document-level held-out split before further prompt/model changes; E4's scores remain development results with a simulated reviewer. The generic corpus/importer paths are not yet integrated into this prototype.
 
@@ -46,6 +48,8 @@ Start-Process prototype/.venv/Scripts/python -ArgumentList "-m uvicorn prototype
 prototype/.venv/Scripts/python -m prototype.kgproto.review 1 oracle       # work through the review queue
 prototype/.venv/Scripts/python -c "from prototype.kgproto.extract import project, activate; activate(project(1, 'reviewed'))"
 prototype/.venv/Scripts/python -m prototype.kgproto.evaluate_qa reviewed  # 31 questions, about 3 minutes
+prototype/.venv/Scripts/python -m prototype.kgproto.curate 1          # duplicate-name suggestions for run 1
+prototype/.venv/Scripts/python -m prototype.kgproto.profile prototype/profiles/*.json  # validate ontology files
 prototype/.venv/Scripts/python -m unittest prototype.test_ontology
 ```
 
@@ -55,6 +59,7 @@ The model's downloaded file should have SHA256 `626b4a6678b86442240e33df819e0013
 
 | Path | Content |
 |---|---|
+| `profiles/` | Ontology files: `oil_wells.json` (the use case's test ontology), `synthetic_library.json` (portability check) |
 | `gold/ak3_facts.json` | 41 hand-labelled facts (AI-assisted, single annotator) |
 | `gold/questions.json` | 31 questions: answerable, paraphrased, not stated, unsupported, prompt injection |
 | `results/` | Scores written by the evaluation scripts for the latest runs; `results/history/` holds earlier runs (`run<N>_…`), mapped to the runs in the [E4 record](../docs/experiments/E4-ak3-architecture-prototype.md) |

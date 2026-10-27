@@ -38,8 +38,8 @@
 			<path d="M 291,79 L 322,79 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="322 79, 317.6699 81.5, 317.6699 76.5" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
 			<rect x="0" y="3" width="509" height="38" rx="4" ry="4" style="stroke: rgb(67%,44%,19%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(100%,97%,93%); fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
-			<text x="139.4599609375" y="25.0" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,50) scale(1,-1)">PLANNED: shared source / evidence / claim contracts</text>
-			<text x="120.42504882812497" y="13.0" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,26) scale(1,-1)">Authenticated review + validated publication + cross-source identity</text>
+			<text x="73.48046874999997" y="25.0" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,50) scale(1,-1)">PLANNED: graph builder — ontology file → extraction → identity / curation → review</text>
+			<text x="76.02929687499997" y="13.0" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,26) scale(1,-1)">Admin console + validated publication; cited QA next; access control after the admin layer</text>
 			<text x="0" y="166" style="font-family: Arial-Bold; font-size: 8px;fill: rgb(15%,46%,41%); stroke:none;" transform="translate(0,332) scale(1,-1)">IMPLEMENTED INGESTION</text>
 		</g>
 	</g>

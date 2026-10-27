@@ -1,8 +1,11 @@
 """Prototype connection settings. Credentials are throwaway values for localhost-only containers."""
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PROTOTYPE = ROOT / "prototype"
+# The ontology is an input file (design §6, D-29); KG_PROFILE selects another one without code changes.
+PROFILE_PATH = Path(os.environ.get("KG_PROFILE", PROTOTYPE / "profiles/oil_wells.json"))
 RESULTS = PROTOTYPE / "results"
 BSEE_BUNDLE = ROOT / "data/processed/local/bsee_wells"
 BSEE_GRAPH = ROOT / "data/processed/local/bsee_graph"

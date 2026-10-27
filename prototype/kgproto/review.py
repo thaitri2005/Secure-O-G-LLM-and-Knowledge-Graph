@@ -14,7 +14,7 @@ import sys
 import httpx
 
 from .config import PROTOTYPE
-from .ontology import matches_gold
+from .ontology import PROFILE
 
 API = "http://127.0.0.1:8000"
 
@@ -25,7 +25,7 @@ def main(run_id: int, mode: str) -> dict:
     tally = {"pending": len(items), "accept": 0, "reject": 0, "conflicts": 0}
     for item in items:
         claim = item["claim"]
-        action = "accept" if mode == "accept-all" or any(matches_gold(claim, fact) for fact in gold) else "reject"
+        action = "accept" if mode == "accept-all" or any(PROFILE.matches_gold(claim, fact) for fact in gold) else "reject"
         response = httpx.post(f"{API}/review-items/{item['id']}/decisions",
                               json={"action": action, "actor": f"reviewer-{mode}"}, timeout=60)
         if response.status_code == 409:

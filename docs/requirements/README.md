@@ -1,8 +1,10 @@
 # Stakeholder requirements
 
-**Updated:** 27 October 2026 · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
+**Updated:** 27 October 2026 (7 October meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
 
 This folder holds the two VPI documents that define what the project is asked to do, and an English digest of them with requirement IDs (SR-xx). They are inputs, and many details are still to be adjusted in supervisor meetings. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or deferred ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to be agreed ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new or revised document, update this digest first, then the specification.
+
+The supervisor's direction from the [7 October meeting](supervisor-meeting-2026-10-07.md) is the third input: the product is a **knowledge-graph builder** whose ontology is supplied by its users, applied to oil-and-gas wells as the use case; the builder and its admin application come first, question answering second, permissions later (specification D-28 to D-35).
 
 The team agreement relayed on 27 October narrows delivery to one **English-first oil-well application**, while the platform core stays domain-agnostic (specification D-26/D-27). The original stakeholder inputs below are preserved; interpretation/expert-note workflows, extra domains and multilingual delivery are deferred in the specification. Public-data demonstration and private-data pilot acceptance remain distinct (§1.6).
 
@@ -12,6 +14,8 @@ The team agreement relayed on 27 October narrows delivery to one **English-first
 |---|---|---|
 | `originals/capstone-proposal-vpi.pdf` | Capstone project proposal, Vietnam Petroleum Institute (VPI) | Title, supervisors, company, one-page project description, team size |
 | `originals/KGinEP-vi.docx` | "Xây dựng Đồ thị tri thức cho tài liệu chuyên ngành lĩnh vực Dầu khí" (Building knowledge graphs for oil-and-gas technical documents), in Vietnamese | VPI's view of why oil-and-gas knowledge needs knowledge graphs, the main difficulties, and the intended three-layer approach |
+
+| [`supervisor-meeting-2026-10-07.md`](supervisor-meeting-2026-10-07.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 7 October 2026 (digest of the Teams transcript) | Graph builder first, user-supplied ontology, builder difficulties, admin application, data and domain, schedule |
 
 The originals are **not committed**: the repository is public, and `originals/` is in `.gitignore` until VPI agrees to publication. Share them through the team drive. The digest below paraphrases them.
 

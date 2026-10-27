@@ -1,8 +1,14 @@
-"""Regression tests for the prototype validator and gold matcher (no services needed)."""
+"""Regression tests for profiles, the validator, the gold matcher and duplicate search (no services needed)."""
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
-from prototype.kgproto.ontology import casing_key, matches_gold, same_value, validate_claim
+from prototype.kgproto.profile import ProfileError, fraction_size, load_profile, same_value
 
+PROFILES = Path(__file__).parent / "profiles"
+OIL = load_profile(PROFILES / "oil_wells.json")
+LIBRARY = load_profile(PROFILES / "synthetic_library.json")
 ROW = "| 1500 | 1.75 |"
 TEXT = "Well AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days."
 
@@ -13,18 +19,32 @@ def claim(**values):
     return {**base, **values}
 
 
+def with_changes(path, **changes):
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data.update(changes)
+    return data
+
+
 class OntologyTests(unittest.TestCase):
     def test_validator_rules(self):
-        self.assertIsNone(validate_claim(claim(), ROW))
-        self.assertEqual(validate_claim(claim(value=ROW), ROW), "value must be a single number")
-        self.assertEqual(validate_claim(claim(depth_ft=None), ROW), "missing depth")
-        self.assertEqual(validate_claim(claim(quote="| 1500 | 2 |"), ROW), "quote not found verbatim in chunk")
-        self.assertEqual(validate_claim(claim(value="2"), ROW), "value not in quote")
+        self.assertIsNone(OIL.validate_claim(claim(), ROW))
+        self.assertEqual(OIL.validate_claim(claim(value=ROW), ROW), "value must be a single number")
+        self.assertEqual(OIL.validate_claim(claim(depth_ft=None), ROW), "missing depth")
+        self.assertEqual(OIL.validate_claim(claim(quote="| 1500 | 2 |"), ROW), "quote not found verbatim in chunk")
+        self.assertEqual(OIL.validate_claim(claim(value="2"), ROW), "value not in quote")
+        self.assertEqual(OIL.validate_claim(claim(well=" "), ROW), "missing well")
 
     def test_dates_need_their_year_in_the_passage(self):
         spud = claim(property="spud_date", unit="date", value="2016-08-18", depth_ft=None, quote="spud on 18 August")
-        self.assertIsNone(validate_claim(spud, TEXT))
-        self.assertEqual(validate_claim({**spud, "value": "2022-08-18"}, TEXT), "date year not in passage")
+        self.assertIsNone(OIL.validate_claim(spud, TEXT))
+        self.assertEqual(OIL.validate_claim({**spud, "value": "2022-08-18"}, TEXT), "date year not in passage")
+
+    def test_impossible_dates_are_rejected_not_raised(self):
+        text = "The rig was released 31 February 2016."
+        bad = claim(property="rig_release_date", unit="date", value="2016-02-31", depth_ft=None,
+                    quote="31 February 2016")
+        self.assertEqual(OIL.validate_claim(bad, text), "not a calendar date")
+        self.assertEqual(OIL.validate_claim({**bad, "value": "2016-13-01"}, text), "not a calendar date")
 
     def test_matcher_compares_dates_exactly(self):
         self.assertFalse(same_value("2022-08-26", "2016-08-18"))  # once matched within 0.5%
@@ -33,11 +53,68 @@ class OntologyTests(unittest.TestCase):
 
     def test_casing_sizes_normalize(self):
         for size in ("3-½", "3-1/2", "3 1/2", '3-1/2"'):
-            self.assertEqual(casing_key(size), "3-1/2")
+            self.assertEqual(fraction_size(size), "3-1/2")
         fact = {"well": "AK-3", "property": "casing_depth", "qualifier": "actual", "casing_size_in": "3-1/2",
                 "value": 1955}
-        self.assertTrue(matches_gold(claim(property="casing_depth", unit="ft", value="1,955", casing_size_in="3-½",
-                                           depth_ft=None), fact))
+        self.assertTrue(OIL.matches_gold(claim(property="casing_depth", unit="ft", value="1,955", casing_size_in="3-½",
+                                               depth_ft=None), fact))
+
+
+class ProfileTests(unittest.TestCase):
+    def test_oil_profile_keeps_the_v01_ontology(self):
+        self.assertEqual(OIL.id, "oil_wells@0.2")
+        self.assertEqual(len(OIL.properties), 14)
+        schema = OIL.extraction_schema()["properties"]["claims"]["items"]
+        self.assertEqual(schema["required"], ["well", "property", "qualifier", "value", "unit", "casing_size_in",
+                                              "depth_ft", "quote"])
+
+    def test_another_profile_runs_the_same_code(self):
+        prompt = LIBRARY.extraction_prompt()
+        for word in ("well", "drilling", "casing", "AK-3"):
+            self.assertNotIn(word, prompt)
+        self.assertIn("chapter_pages claims always need chapter.", prompt)
+        page = "Chapter 3 of The Quiet Shore runs to 42 pages."
+        good = {"book": "The Quiet Shore", "property": "chapter_pages", "qualifier": "first_edition", "value": "42",
+                "unit": "pages", "chapter": 3, "quote": page}
+        self.assertIsNone(LIBRARY.validate_claim(good, page))
+        self.assertEqual(LIBRARY.validate_claim({**good, "chapter": None}, page), "missing chapter")
+        fact = {"book": "Quiet Shore", "property": "chapter_pages", "qualifier": "first_edition", "chapter": 3,
+                "value": 42}
+        self.assertTrue(LIBRARY.matches_gold(good, fact))
+
+    def test_invalid_profiles_are_rejected_with_every_problem(self):
+        bad_property = {"unit": "parsecs", "qualifiers": ["guessed"], "context": "nowhere", "description": ""}
+        data = with_changes(PROFILES / "oil_wells.json", properties={"Bad Name": bad_property})
+        with self.assertRaises(ProfileError) as caught:
+            from prototype.kgproto.profile import Profile
+            Profile(data)
+        problems = " | ".join(caught.exception.problems)
+        for expected in ("lower_snake_case", "unknown unit", "qualifiers must be", "unknown context field",
+                         "needs a description"):
+            self.assertIn(expected, problems)
+
+    def test_profile_files_reject_duplicate_keys_and_unknown_normalizers(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "p.json"
+            path.write_text('{"profile": "a", "profile": "b"}', encoding="utf-8")
+            with self.assertRaises(ProfileError):
+                load_profile(path)
+            data = with_changes(PROFILES / "oil_wells.json",
+                                context_fields={"depth_ft": {"type": "number", "normalizer": "eval"}})
+            path.write_text(json.dumps(data), encoding="utf-8")
+            with self.assertRaises(ProfileError) as caught:
+                load_profile(path)
+            self.assertIn("unknown normalizer", str(caught.exception))
+
+
+class DuplicateSearchTests(unittest.TestCase):
+    def test_variants_share_a_key_and_lookalikes_are_suggested(self):
+        pairs = OIL.duplicate_pairs(["AK-3", "Akutan Well AK-3", "ak 3", "AK-31", "TG-2", "TG-4"])
+        same = [p for p in pairs if p["kind"] == "same_key"]
+        self.assertEqual(same, [{"kind": "same_key", "key": "AK3", "names": ["AK-3", "Akutan Well AK-3", "ak 3"]}])
+        similar = {tuple(p["keys"]) for p in pairs if p["kind"] == "similar"}
+        self.assertIn(("AK3", "AK31"), similar)
+        self.assertNotIn(("TG2", "TG4"), similar)  # a different well, not a spelling variant
 
 
 if __name__ == "__main__":

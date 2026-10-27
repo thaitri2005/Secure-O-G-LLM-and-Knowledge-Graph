@@ -1,6 +1,6 @@
 # Documentation
 
-**Current direction:** domain-agnostic platform; one English-first oil-well application. [Specification §4.4](PROJECT_DESIGN.md#44-core-and-domain-profile-boundary) defines the core/profile boundary; D-26/D-27 record the team/user decisions.
+**Current direction:** a knowledge-graph builder (domain-agnostic pipeline and admin application, user-supplied ontology), with one English oil-well use case. Builder first, QA second, access control later. The [7 October supervisor meeting](requirements/supervisor-meeting-2026-10-07.md) is the basis (specification D-28 to D-35); [§4.4](PROJECT_DESIGN.md#44-core-and-domain-profile-boundary) defines the core/profile boundary and D-26/D-27 the team's scope.
 
 ## Document hierarchy
 
@@ -8,7 +8,7 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 
 | Kind | Document | Read it for |
 |---|---|---|
-| **Inputs** | [Stakeholder requirements](requirements/README.md) | What VPI asked for: digest of the capstone proposal and the KGinEP document, requirement IDs SR-01 to SR-18 |
+| **Inputs** | [Stakeholder requirements](requirements/README.md) | What VPI asked for: digest of the capstone proposal and the KGinEP document, requirement IDs SR-01 to SR-18; the supervisor's [7 October direction](requirements/supervisor-meeting-2026-10-07.md) |
 | **Source of truth** | [Project specification and system design](PROJECT_DESIGN.md) | Scope, the three-layer target, requirement decisions, architecture, data model, extraction, QA, security, operations, acceptance gates, decisions, open questions |
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, milestones, ownership, estimates, risks, next backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public proxy data (BSEE well files, AK-3 and other end-of-well reports): content, terms, quality findings, refresh |
@@ -19,7 +19,7 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | Supporting | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
 
-Reading order for a new team member: the specification's §1, the development plan's current status, data sources, then the component guide for the area you work on.
+Reading order for a new team member: the 7 October meeting digest, the specification's §1, the development plan's current status, data sources, then the component guide for the area you work on.
 
 ## Conventions
 

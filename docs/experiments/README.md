@@ -1,6 +1,6 @@
 # Experiment register
 
-**Current delivery scope:** reusable core plus one English oil-well application. Historical experiments retain their original data, languages and results. Existing Vietnamese OCR remains completed work; second-domain and multilingual rollout are later scope.
+**Current delivery scope:** a knowledge-graph builder with a user-supplied ontology, applied to one English oil-well use case (specification D-28/D-29). Historical experiments retain their original data, languages and results. Existing Vietnamese OCR remains completed work; second-domain and multilingual rollout are later scope.
 
 Every measurement the project relies on comes from one experiment, recorded in one file here. Experiments are numbered in the order they were run and never renumbered. Each record starts with the same header: date, question, requirement, input, gold data, outputs and status. Other documents link to an experiment instead of copying its numbers.
 
@@ -15,6 +15,7 @@ Every measurement the project relies on comes from one experiment, recorded in o
 | [E7](E7-corpus-pipeline-smoke.md) | Corpus pipeline smoke test | 27 Oct 2026 | Reports | `graph_builder.corpus` | Scan, PDF and Markdown processed, resumed and exported (one worker) |
 | [E8](E8-ak3-appendices-corpus-run.md) | AK-3 appendix portfolio through the document pipeline | 27 Oct 2026 | Reports | `scripts/run_ak3_appendices.py`, `graph_builder.corpus` | 44 PDFs, 463 pages (104 OCR'd), 1,778 chunks exported with two workers; validation caught two defects, since fixed; 5 pages flagged, hand-checked |
 | [E9](E9-repository-review.md) | Repository review and local verification | 27 Oct 2026 | Integration readiness | Main/prototype tests; temporary fault/input probes | 128 + 4 tests passed; export interruption, duplicate header/ID and calendar-date defects reproduced; fixes open |
+| [E10](E10-profile-driven-prototype.md) | Prototype driven by an ontology file | 27 Oct 2026 | Reports | `prototype/profiles/`, `prototype/kgproto/profile.py` | Ontology loaded from a validated file; a synthetic second ontology runs unchanged; date defects fixed; 10 prototype tests pass. Model rerun in progress |
 
 ## Adding an experiment
 
@@ -26,4 +27,4 @@ Every measurement the project relies on comes from one experiment, recorded in o
 
 ## Method-evaluation and graph-construction workstreams
 
-The unified [project progress report](../reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers WebNLG/2Wiki/EOR evaluation, the expanded BSEE graph and replay alongside E1–E9. Preserve the dataset, model/configuration, scorer version and manifest for each run. The method suite has 354 tests; the ingestion/application checks have 128 main and four prototype ontology tests. Assign experiment IDs when consolidating these run records into the register.
+The unified [project progress report](../reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers WebNLG/2Wiki/EOR evaluation, the expanded BSEE graph and replay alongside E1–E10. Preserve the dataset, model/configuration, scorer version and manifest for each run. The method suite has 354 tests; the ingestion/application checks have 128 main and 10 prototype tests. Assign experiment IDs when consolidating these run records into the register. **The code for these method evaluations (and the 354-test suite) is not yet in this repository**: it is in a team member's separate repository. It is to be added under `experiments/` with configs, data scripts, scorers and per-run results ([plan backlog](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog) item 2). Until then, those numbers cannot be rerun from this repository.

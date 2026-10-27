@@ -1,0 +1,62 @@
+{
+  "profile": "oil_wells",
+  "version": "0.2",
+  "primary_language": "en",
+  "description": "Test ontology for the oil-well use case: the 14 well properties of prototype ontology v0.1, moved out of code. Built from the public AK-3 report with AI assistance; not a VPI ontology.",
+  "subject": {
+    "field": "well",
+    "entity_type": "Well",
+    "noun": "well",
+    "graph_label": "ReportWell",
+    "ignore_words": ["WELL", "AKUTAN"]
+  },
+  "units": {
+    "ft": "number",
+    "days": "number",
+    "date": "date",
+    "id": "identifier",
+    "degF": "number",
+    "deg": "number",
+    "hours": "number"
+  },
+  "qualifiers": ["actual", "planned", "projected", "none"],
+  "context_fields": {
+    "casing_size_in": {"type": "string", "label": "casing size", "normalizer": "fraction_size"},
+    "depth_ft": {"type": "number", "label": "depth", "match_tolerance": 1}
+  },
+  "properties": {
+    "total_depth": {"unit": "ft", "qualifiers": ["actual", "planned"], "context": null,
+                    "description": "final drilled depth of a well (actual) or the depth it was planned to reach (planned)"},
+    "drilling_days": {"unit": "days", "qualifiers": ["actual", "planned"], "context": null,
+                      "description": "total days of the drilling project including rig-up and rig-down"},
+    "spud_to_release_days": {"unit": "days", "qualifiers": ["actual"], "context": null,
+                             "description": "days from spud to rig release"},
+    "spud_date": {"unit": "date", "qualifiers": ["actual"], "context": null, "description": "date drilling started (YYYY-MM-DD)"},
+    "rig_release_date": {"unit": "date", "qualifiers": ["actual"], "context": null, "description": "date the rig was released (YYYY-MM-DD)"},
+    "api_number": {"unit": "id", "qualifiers": ["none"], "context": null, "description": "API well number exactly as written"},
+    "ground_elevation": {"unit": "ft", "qualifiers": ["actual"], "context": null, "description": "ground elevation above sea level"},
+    "casing_depth": {"unit": "ft", "qualifiers": ["actual", "planned"], "context": "casing_size_in",
+                     "description": "setting depth of one casing or liner string; casing_size_in is its outer diameter like 8-5/8"},
+    "max_measured_temperature": {"unit": "degF", "qualifiers": ["actual"], "context": "depth_ft",
+                                 "description": "the maximum temperature measured in the well, with its depth"},
+    "projected_formation_temperature": {"unit": "degF", "qualifiers": ["projected"], "context": "depth_ft",
+                                        "description": "calculated or projected equilibrium formation temperature at a depth"},
+    "inclination": {"unit": "deg", "qualifiers": ["actual"], "context": "depth_ft",
+                    "description": "survey inclination in degrees at a measured depth"},
+    "productive_time": {"unit": "hours", "qualifiers": ["actual"], "context": null, "description": "total productive rig time"},
+    "non_productive_time": {"unit": "hours", "qualifiers": ["actual"], "context": null, "description": "total non-productive rig time"},
+    "total_rig_time": {"unit": "hours", "qualifiers": ["actual"], "context": null, "description": "total rig time"}
+  },
+  "extraction": {
+    "task": "You extract facts from a drilling end-of-well report into JSON.",
+    "rules": [
+      "One claim per value. \"well\" is a well name, never a table or figure name. Check which well each number belongs to.",
+      "A table caption saying \"Planned\" means qualifier \"planned\"; \"Actual\" means \"actual\". Distinguish actual from planned values."
+    ],
+    "example": {
+      "passage": "Table 7: Planned XY-1 casing.\n| Hole (inches) | Casing (inches) | Depth (feet) |\n| --- | --- | --- |\n| 12-1/4 | 9-5/8 | 350 |",
+      "output": {"claims": [{"well": "XY-1", "property": "casing_depth", "qualifier": "planned", "value": "350", "unit": "ft",
+                             "casing_size_in": "9-5/8", "depth_ft": null, "quote": "| 12-1/4 | 9-5/8 | 350 |"}]}
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "profile": "synthetic_library",
+  "version": "0.1",
+  "primary_language": "en",
+  "description": "Synthetic non-well ontology. It checks that the builder loads, prompts, validates and matches under another ontology without code changes; it is not a delivered domain.",
+  "subject": {
+    "field": "book",
+    "entity_type": "Book",
+    "noun": "book",
+    "graph_label": "Book",
+    "ignore_words": ["THE"]
+  },
+  "units": {
+    "year": "number",
+    "pages": "number",
+    "isbn": "identifier",
+    "date": "date"
+  },
+  "qualifiers": ["first_edition", "reprint"],
+  "context_fields": {
+    "chapter": {"type": "number", "label": "chapter", "match_tolerance": 0}
+  },
+  "properties": {
+    "publication_year": {"unit": "year", "qualifiers": ["first_edition", "reprint"], "context": null,
+                         "description": "year the edition was published"},
+    "page_count": {"unit": "pages", "qualifiers": ["first_edition", "reprint"], "context": null,
+                   "description": "number of pages in the edition"},
+    "isbn": {"unit": "isbn", "qualifiers": ["first_edition", "reprint"], "context": null, "description": "ISBN exactly as written"},
+    "release_date": {"unit": "date", "qualifiers": ["first_edition"], "context": null, "description": "date the book went on sale (YYYY-MM-DD)"},
+    "chapter_pages": {"unit": "pages", "qualifiers": ["first_edition"], "context": "chapter",
+                      "description": "number of pages in one chapter; chapter is its number"}
+  },
+  "extraction": {
+    "task": "You extract facts from a library catalogue page into JSON.",
+    "rules": ["One claim per value. \"book\" is a book title, never a series or publisher name."]
+  }
+}

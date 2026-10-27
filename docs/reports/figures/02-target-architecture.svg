@@ -11,15 +11,16 @@
 	<g id="group" transform="scale(1,-1) translate(0,-197)" style="clip-path: url(#clip)">
 		<g transform="">
 			<rect x="0" y="155" width="112" height="35" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
-			<text x="14.482666015624993" y="169.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,339) scale(1,-1)">Browser / review UI</text>
+			<text x="23.746337890624993" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">Admin console</text>
+			<text x="2.472412109374993" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">ontology / review / curation</text>
 			<rect x="183" y="155" width="190" height="35" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
 			<text x="261.245849609375" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">FastAPI</text>
-			<text x="213.705810546875" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">auth / profiles / bounded queries</text>
+			<text x="202.710693359375" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">workflows / profiles / bounded queries</text>
 			<path d="M 112,172 L 183,172 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="183 172, 178.6699 174.5, 178.6699 169.5" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
 			<rect x="390" y="155" width="119" height="35" rx="4" ry="4" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
-			<text x="415.7412109375" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">oil_wells profile</text>
-			<text x="405.227294921875" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">English rules / queries</text>
+			<text x="408.24853515625" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">Ontology file (user)</text>
+			<text x="406.60498046875" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">oil_wells = test profile</text>
 			<path d="M 390,172 L 373,172 Z" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 1;"/>
 			<polygon points="373 172, 377.3301 169.5, 377.3301 174.5" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
 			<rect x="0" y="78" width="151" height="43" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>

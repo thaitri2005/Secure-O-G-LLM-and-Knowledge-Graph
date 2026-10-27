@@ -1,6 +1,6 @@
 # Development and delivery plan
 
-**Version:** 2.2 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
+**Version:** 2.3 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026 (7 October supervisor direction applied)<br>
 **Product target:** a maintained internal service for one small team<br>
 **Team:** three students · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Data:** [Data sources](DATA_SOURCES.md)
 
@@ -8,7 +8,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md): deliverable work, de
 
 ## Current status
 
-**Focus.** Build a domain-agnostic platform and deliver one **oil-well** application profile, initially in **English** (specification D-26/D-27). Develop on [BSEE well data](DATA_SOURCES.md#1-bsee-data-center--wells-information) and English end-of-well reports, with [AK-3](DATA_SOURCES.md#2-akutan-ak-3-end-of-well-report-the-document-exemplar) as an existing development proxy. Oil terminology belongs in profile/adapters, while source/evidence/review/publication contracts remain reusable. Additional domains, interpretation/expert-note workflows and multilingual delivery are later scope.
+**Focus.** Build a **knowledge-graph builder**: a domain-agnostic pipeline and an admin application, driven by an ontology its users supply (specification D-28/D-29, from the [7 October supervisor meeting](requirements/supervisor-meeting-2026-10-07.md)). Builder first, QA second, access control after the admin layer (D-30). The use case is one **oil-well** profile, in **English** (D-26/D-27, D-34). Develop on [BSEE well data](DATA_SOURCES.md#1-bsee-data-center--wells-information) and English end-of-well reports, with [AK-3](DATA_SOURCES.md#2-akutan-ak-3-end-of-well-report-the-document-exemplar) as an existing development proxy. Oil terminology belongs in profile/adapters, while source/evidence/review/publication contracts remain reusable. Additional domains, interpretation/expert-note workflows and multilingual delivery are later scope.
 
 **Implemented** (code, tests and a verification record exist):
 
@@ -21,12 +21,20 @@ This plan schedules the [specification](PROJECT_DESIGN.md): deliverable work, de
 | BSEE well-data adapter: verified snapshot, typed records with row provenance, well grouping, schema validation | M1 (partial; FR-15) | [BSEE ingestion](components/bsee-ingestion.md) | [E3](experiments/E3-reproduction-run-2026-10-25.md) |
 | BSEE linked graph within the source (wellbores, wells, operators, leases, blocks, fields), every edge citing its row | M3 groundwork (seed of the entity registry, FR-16) | [BSEE ingestion](components/bsee-ingestion.md#linked-graph) | [E3](experiments/E3-reproduction-run-2026-10-25.md) |
 | Architecture prototype (test build): AK-3 extraction, validation, review queue, Neo4j generations, cited QA | Evidence for the M2/M3/M5 design, not a completed milestone | [Prototype](../prototype/README.md) | [E4](experiments/E4-ak3-architecture-prototype.md) |
+| Prototype ontology as a validated profile file; synthetic second profile on the same code; duplicate-name search; calendar-date fix | M2 groundwork (FR-19 core, FR-21 seed) | [Prototype](../prototype/README.md) | [E10](experiments/E10-profile-driven-prototype.md) |
 
-The [experiment register](experiments/README.md) holds repository measurements. E4 demonstrates laptop integration and weak prose recall on a development slice; it does not establish architecture reliability under failure or independent QA quality. The [27 October review](REPOSITORY_REVIEW_2026-10-27.md) reproduced publication, dataset and date-validation defects ([E9](experiments/E9-repository-review.md)); they remain unfixed. All 128 main tests and four prototype ontology tests passed. The unified [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) brings together ingestion, WebNLG/2Wiki/EOR method evaluation, graph construction and prototype QA. The next slice integrates these workstreams through shared evidence/claim contracts.
+The [experiment register](experiments/README.md) holds repository measurements. E4 demonstrates laptop integration and weak prose recall on a development slice; it does not establish architecture reliability under failure or independent QA quality. The [27 October review](REPOSITORY_REVIEW_2026-10-27.md) reproduced publication, dataset and date-validation defects ([E9](experiments/E9-repository-review.md)); they remain unfixed. All 128 main tests and four prototype ontology tests passed then; after E10 the prototype suite has 10 tests, all passing. The unified [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) brings together ingestion, WebNLG/2Wiki/EOR method evaluation, graph construction and prototype QA. The next slice integrates these workstreams through shared evidence/claim contracts.
 
-**Next milestone.** A real reviewer accepts a versioned oil-well claim; three English question intents return cited knowledge; interrupted replacement preserves accepted data; withdrawal immediately blocks serving. Freeze the English oil-well evaluation split before prompt tuning. Extract the profile boundary from the existing well-specific prototype and check it with a small synthetic configuration fixture.
+**Next milestone: the builder slice.**
 
-**Not yet started for the first delivery:** generic registry/profile contracts (FR-16), reusable extraction and query dispatch, language-tagged/scoped English aliases (FR-18). **Still open in M1:** representative English scan/table quality checks, web upload on the catalog, access skeleton and dataset snapshot comparison. Existing Vietnamese OCR and AK-3 corpus runs remain completed evidence; FR-17 and multilingual rollout move to later scope.
+1. The prototype's hardcoded ontology becomes an ontology file that the builder loads and validates (FR-19 contract). **Done in the prototype** ([E10](experiments/E10-profile-driven-prototype.md)); relations between entities and identifier schemes are still to be added to the file format.
+2. Extraction runs from that file on English well reports, resolving in-document references (FR-22).
+3. Names are normalized and a duplicate search lists likely duplicate nodes (FR-21).
+4. A real reviewer accepts a versioned claim into a validated graph generation; interrupted replacement preserves accepted data.
+
+Freeze the English oil-well evaluation split before prompt tuning. A second, synthetic ontology must run through the same code unchanged. Cited QA follows on the built graph.
+
+**Not yet started for the first delivery:** ontology loading/editing/activation (FR-19), ontology assistant (FR-20), duplicate search and curation (FR-21), reference resolution (FR-22), confidence routing (FR-23), generic registry/profile contracts (FR-16), reusable extraction and query dispatch, language-tagged/scoped English aliases (FR-18). **Still open in M1:** representative English scan/table quality checks, web upload on the catalog and dataset snapshot comparison. The access skeleton moves to M6 (D-30); until then the services bind to localhost only. Existing Vietnamese OCR and AK-3 corpus runs remain completed evidence; FR-17 and multilingual rollout move to later scope.
 
 ## 1. Planning basis
 
@@ -36,7 +44,9 @@ Use **20 working weeks as an illustrative baseline**, assuming each student cont
 
 At 8 hours/student/week, the same 720-hour capacity would take about 30 working weeks; at 15 hours it would take about 16. Exams, holidays, hardware queues, and institutional approvals can extend elapsed calendar time without adding engineering hours. Re-estimate after M1 and M2 using actual delivery speed.
 
-The baseline delivers one English oil-well profile on a reusable core, one shared document-access boundary, a small question catalogue, a simple review interface and single-host deployment. Start integration on 5–10 representative English reports, implement three intents first and agree 5–8 for the initial workload. These are workload limits; held-out acceptance sizes remain unchanged. Defer second-domain delivery, subsurface interpretation, expert-note capture, Vietnamese/Russian rollout, fine-tuning, multi-GPU inference, high availability, multi-tenancy and an elaborate graph editor.
+The baseline delivers a knowledge-graph builder with one English oil-well test ontology on a reusable core: an admin application for ontology, runs, review and curation, then a small question catalogue, one shared document-access boundary and single-host deployment. Start integration on 5–10 representative English reports, implement three intents first and agree 5–8 for the initial workload. These are workload limits; held-out acceptance sizes remain unchanged. Defer second-domain delivery, subsurface interpretation, expert-note capture, Vietnamese/Russian rollout, fine-tuning, multi-GPU inference, high availability, multi-tenancy and an elaborate graph editor.
+
+**Semesters (D-35).** The supervisor expects the builder, its admin application and English QA within the first semester (M0–M5), with AI coding support. The second semester hardens and improves selected areas (M6–M7, portability runs, possibly another language). The 20-week illustration below spans both; map it onto the actual semester calendar at M0 (specification Q13).
 
 The 720-hour capacity model below remains a historical planning illustration. Re-estimate remaining work for one English oil-well profile, explicit generic-core interfaces, reliability fixes, annotation/review and deployment using actual weekly availability. Removed second-domain/expert-note/multilingual work reduces breadth; it does not establish a new delivery date or automatic cost saving. Measure review effort and preserve contingency.
 
@@ -78,16 +88,16 @@ Effort is combined team effort, including peer review, milestone tests, and rele
 | Milestone | Indicative window | Effort | Lead | Dependencies | Reviewable deliverable and exit condition |
 |---|---|---:|---|---|---|
 | M0 — Scope and host feasibility | Week 1 | 12 h | C, with product owner | None | Supervisor meeting on the open questions Q1–Q9; confirm service audience, one-workspace policy, host access, operator path, workload, question shortlist, and spending control; record decisions |
-| M1 — Reproducible ingestion boundary | Weeks 1–2 | 44 h | A | M0 | Clean setup, independent bundle verification, source-neutral v2 envelope/local upload adapter, input limits, baseline access skeleton, immutable run manifest; G1/G2 cases defined |
-| M2 — Ontology and local extraction slice | Weeks 3–5 | 80 h | A | M1 | Generic registry/profile contracts (FR-16/18), one `oil_wells` ontology; English PDF → typed candidates → evidence; externalize prototype rules; synthetic profile fixture; frozen English evaluation split; initial G3 |
-| M3 — Accepted knowledge and graph publication | Weeks 6–8 | 72 h | B | M2 contracts | Claims/reviews in PostgreSQL; profile-driven registry seeded from BSEE; Neo4j exact-set projection, activation, retry/rollback; G1/G4 and crash cases |
-| M4 — Team application and review workflow | Weeks 6–11 | 104 h | C | M1 API/auth; M3 before closure | Login/roles, uploads/jobs, claim/evidence review, conflicting values and identity merges, publication/retirement UI; unauthorized direct requests denied |
-| M5 — Bounded question answering | Weeks 12–14 | 84 h | B | M3/M4; frozen English question catalogue | Profile-selected oil-well intents and trusted parameterized queries, deterministic answers, citations and abstention; English passage-retrieval baseline; G5/G6 |
-| M6 — Production hardening | Weeks 15–17 | 88 h | C | M3–M5 | Pinned deployment, actual-host load/VRAM tests, offline test, fault tests, backup/restore, retirement propagation, runbooks; G7/G8 evidence |
-| M7 — Pilot, corrections, and handover | Weeks 18–20 | 92 h | C, with product owner | M6 technical gates | At least 3 intended users, task/time comparison, defects resolved, release checklist, operator training and acceptance; G9 and all release gates signed off |
+| M1 — Reproducible ingestion boundary | Weeks 1–2 | 44 h | A | M0 | Clean setup, independent bundle verification, source-neutral v2 envelope/local upload adapter, input limits, localhost-only binding, immutable run manifest; G1/G2 cases defined |
+| M2 — Ontology input and local extraction slice | Weeks 3–5 | 80 h | A | M1 | Ontology file contract and loader with validation (FR-19 core); generic registry/profile contracts (FR-16/18); one `oil_wells` test ontology; English PDF → typed candidates with in-document reference resolution (FR-22) → evidence; synthetic second ontology runs unchanged; frozen English evaluation split; initial G3 |
+| M3 — Identity, curation and graph publication | Weeks 6–8 | 72 h | B | M2 contracts | Claims/reviews in PostgreSQL; name normalization, registry seeded from BSEE and reference lists; connection policy; duplicate search and merge/known-distinct decisions (FR-21); Neo4j exact-set projection, activation, retry/rollback; G1/G4 and crash cases |
+| M4 — Admin application for the builder | Weeks 6–11 | 104 h | C | M2 API; M3 before closure | Ontology editor with diff, activation and re-run (FR-19); ontology assistant if capacity allows (FR-20); uploads/jobs; confidence-routed claim/evidence review (FR-23); duplicate and redundant-link curation; publication/retirement UI |
+| M5 — Bounded question answering | Weeks 12–14 | 84 h | B | M3/M4; frozen English question catalogue | Model-produced query plans over the active ontology, generic and oil-well intents, parameterized queries, deterministic answers, citations and abstention; English passage-retrieval baseline; G5/G6 |
+| M6 — Access control and production hardening | Weeks 15–17 | 88 h | C | M3–M5 | Login/roles, server-derived actors, direct-route checks; pinned deployment, actual-host load/VRAM tests, offline test, fault tests, backup/restore, retirement propagation, runbooks; G7/G8 evidence |
+| M7 — Pilot, portability and handover | Weeks 18–20 | 92 h | C, with product owner | M6 technical gates | At least 3 intended users, task/time comparison; joint evaluation on the supervisor's petroleum document if supplied; one or two portability runs on other public domains; defects resolved, release checklist, operator training and acceptance; G9 and all release gates signed off |
 | **Total planned delivery** | **20-week illustration** | **576 h** | | | **Plus 144 h reserved capacity; total 720 h** |
 
-The milestone table retains the earlier 576-hour allocation for comparison. Re-estimate the narrowed English oil-well scope and remaining core/profile work, reliability fixes, annotation and integration before committing dates. Authentication/direct-route checks begin in M1/M4, publication crash cases in M3, and withdrawal/restore in the first complete slice; M6 repeats them on the agreed host.
+The milestone table retains the earlier 576-hour allocation for comparison. Re-estimate the narrowed English oil-well scope and remaining core/profile work, reliability fixes, annotation and integration before committing dates. Publication crash cases come in M3 and withdrawal/restore in the first complete slice; M6 repeats them on the agreed host. Authentication and direct-route checks move to M6 (D-30). Until then every service binds to localhost, no private data is loaded, and nothing is shared beyond the team's machines. M1–M5 are the first-semester target (D-35).
 
 ![Milestone dependencies](diagrams/07-milestone-dependencies.svg)
 
@@ -97,19 +107,19 @@ The milestone table retains the earlier 576-hour allocation for comparison. Re-e
 ```mermaid
 flowchart TB
     M0["M0<br/>Scope and host"] --> M1["M1<br/>Ingestion contracts"]
-    M1 --> M2["M2<br/>Ontology and extraction"]
-    M2 --> M3["M3<br/>Reviewed graph publication"]
-    M1 --> M4["M4<br/>Application and review"]
+    M1 --> M2["M2<br/>Ontology input and extraction"]
+    M2 --> M3["M3<br/>Identity, curation, publication"]
+    M2 --> M4["M4<br/>Admin application"]
     M3 --> M4
     M3 --> M5["M5<br/>Bounded QA"]
     M4 --> M5
-    M5 --> M6["M6<br/>Hardening and recovery"]
-    M6 --> M7["M7<br/>Pilot and handover"]
+    M5 --> M6["M6<br/>Access control and hardening"]
+    M6 --> M7["M7<br/>Pilot, portability, handover"]
 ```
 
 </details>
 
-**Figure 7 — Milestone dependencies.** UI foundations can begin before graph publication is complete, using agreed fixtures/contracts. The working review journey depends on M3. The likely critical path is ingestion contracts → extraction quality → reviewed graph → cited QA → recovery/security validation → pilot acceptance.
+**Figure 7 — Milestone dependencies.** The admin application can begin from the M2 ontology and candidate contracts, using fixtures, before graph publication is complete. The working review and curation journey depends on M3. The likely critical path is ontology contract → extraction quality → identity and reviewed graph → cited QA → access control and recovery → pilot acceptance.
 
 ### M0: decisions before the team commits a calendar
 
@@ -118,6 +128,7 @@ flowchart TB
 - Confirm the institutional login, network/TLS route, backup destination, data classification, and expected support hours.
 - Agree 5–8 initial question intents, implement three first, and identify a domain reviewer. Decide whether all team readers may view all published documents.
 - Agree weekly availability and a currency-denominated spending ceiling. Record the owner of any cloud account and its shutdown/budget controls.
+- Map M1–M5 onto the first semester and M6–M7 onto the second (D-35); start weekly written reports to the supervisor.
 - Take specification §13.2 to supervisors: approved English oil-well sources, well-property/question catalogue, reviewers, host/data boundary and expected end state. Record answers in §13.1; the team’s one-profile, English-first direction is already recorded as D-26/D-27.
 
 **Output:** a one-page decision record, confirmed backlog priorities, and a revised milestone calendar if needed. Do not buy hardware or reserve paid instances merely because the estimates mention them.
@@ -126,7 +137,7 @@ flowchart TB
 
 Retain the current GDR v1 bundle and its hashes as a regression fixture. Build adapters around its contract. Move GDR-specific source fields into an adapter/metadata namespace for the v2 application envelope, define the local-upload permission record, and validate unknown schema versions explicitly. Decide per-document ID limits before large-file support.
 
-Add source hash and parser/model/package/configuration fingerprints to production cache eligibility. Stage each run in an immutable output location and activate a bundle only after full validation. Define scan/partial-document behavior: the UI must show gaps, and claims from unsupported pages cannot be presented as extracted knowledge. Begin identity integration and deny-by-default API access here; auth is not a final-week addition.
+Add source hash and parser/model/package/configuration fingerprints to production cache eligibility. Stage each run in an immutable output location and activate a bundle only after full validation. Define scan/partial-document behavior: the UI must show gaps, and claims from unsupported pages cannot be presented as extracted knowledge. Bind every service to localhost and keep private data out until M6 adds authentication (D-30). Keep actor fields in the review contracts so that login can be added without changing them.
 
 The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies snapshots and emits typed records with row provenance. Still to do: a snapshot comparison (added, changed, and removed boreholes) to support the snapshot-level review proposed in [design §5.7](PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry).
 
@@ -134,37 +145,53 @@ The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies
 
 ### M2: smallest complete extraction example
 
-Work on the two [data source](DATA_SOURCES.md) tracks within one oil-well application. Define generic source/evidence/claim/entity contracts and a versioned `oil_wells` profile: Well/Wellbore types, identifier schemes, scoped English aliases, properties, units, MD/TVD and planned/actual context. Start from the prototype’s 14 properties and move hardcoded assumptions into profile assets or registered rules. Seed identity using the BSEE adapter. Freeze English development/test documents and questions; keep existing AK-3 results as the baseline. A small synthetic non-well profile fixture verifies configuration loading, validation and dispatch without adding a second delivered domain.
+Work on the two [data source](DATA_SOURCES.md) tracks within one oil-well application. First define the **ontology file contract**: entity types, relation names with definitions and endpoint types, properties, units, reference lists and glossary. Then write a loader that validates any such file (specification §6.2, FR-19). Nothing in the extraction code may name a well type. Define generic source/evidence/claim/entity contracts and a versioned `oil_wells` test ontology, built from the public reports with AI assistance and checked against them (D-29): Well/Wellbore types, identifier schemes, scoped English aliases, properties, units, MD/TVD and planned/actual context. Start from the prototype’s 14 properties and move hardcoded assumptions into profile assets or registered rules. Seed identity using the BSEE adapter. Freeze English development/test documents and questions; keep existing AK-3 results as the baseline. A small synthetic non-well profile fixture verifies configuration loading, validation and dispatch without adding a second delivered domain.
 
-Before building a broad pipeline, use one short English well-report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, planned/actual qualifiers and an exact evidence span. Include ambiguous English aliases, conflicting reported values, MD/TVD distinctions and a misleading embedded instruction. Compare model output with deterministic checks and a manual reference.
+Before building a broad pipeline, use one short English well-report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, planned/actual qualifiers and an exact evidence span. Include ambiguous English aliases, references such as "the well" and "it" (FR-22), spacing and case variants of one name, conflicting reported values, MD/TVD distinctions and a misleading embedded instruction. Before writing new extraction code, check the surveyed open-source builders for the stage (D-32) and reuse what measures better. Compare model output with deterministic checks and a manual reference.
 
 Benchmark two or three eligible small instruction models, starting around 7–8B parameters with 4-bit weights. Record checkpoint/license, weight/tokenizer hashes, runtime version, prompt/schema, context budget, GPU allocation, peak VRAM/RAM, latency, schema-valid output rate, factual precision/recall, and numerical/citation errors. A public-data cloud run may screen candidates, but final acceptance uses the agreed school-host profile.
 
 Create development/test documents and label at least the initial portion of the 200-claim acceptance set. Add a second annotation pass for a subset and a disagreement log. Selection weighs factual correctness, evidence fidelity, and review effort before speed. Do not choose a larger model solely because an A100 happens to be available.
 
-**Exit demo:** a local command takes versioned chunks and ontology and writes reviewable candidates with evidence; invalid output is bounded and visible. No automatic graph publication yet.
+**Exit demo:** a local command takes versioned chunks and an ontology file and writes reviewable candidates with evidence; invalid output is bounded and visible. The same command with the synthetic ontology runs without code changes. No automatic graph publication yet.
 
 Freeze the held-out document split and matching rubric before the next E4 prompt or model comparison. Use E4's 15 chunks only for development. Add full claim/answer context checks and report missed-fact coverage separately from correct abstention. Measure a real reviewer's time and corrections before sizing a large extraction run.
 
 ### M3: durable knowledge and reproducible graph
 
-Implement relational migrations for document/run metadata, the generic entity registry, profile versions, candidate/claim revisions, review decisions, jobs, outbox and graph-generation pointers. Load BSEE wells and wellbores through the oil-well adapter/profile. Test duplicate names, scoped English aliases, external identifiers, merges and reversal. Build claim/evidence nodes using canonical registry IDs and a generation marker. Claim-to-claim interpretation links remain later scope.
+Implement relational migrations for document/run metadata, the generic entity registry, profile versions, candidate/claim revisions, review decisions, jobs, outbox and graph-generation pointers. Load BSEE wells and wellbores, and any user reference list, through the oil-well adapter/profile. Implement name normalization, the connection policy (edges only for declared, evidenced, accepted relations) and the duplicate search with merge, keep-apart and known-distinct decisions (specification §5.9). Test duplicate names, spacing/case variants, scoped English aliases, external identifiers, merges and reversal; seed known duplicates to measure the search. Build claim/evidence nodes using canonical registry IDs and a generation marker. Claim-to-claim interpretation links remain later scope.
 
 Inject failures before and after outbox processing and generation activation. A job retry must not duplicate effects. A missing projection marker must fail closed. Restore a graph from accepted records without rerunning the language model. Demonstrate that conflicting reported well values remain independently inspectable.
 
 **Exit demo:** a reviewed oil-well claim becomes queryable with its source; one registry entity links dataset and report claims; a failed replacement preserves the old graph; rollback selects a validated generation. Prefer an approved English report for a BSEE well; otherwise label a synthetic linking fixture explicitly.
 
-### M4: a usable review application
+### M4: the admin application for the builder
 
-Implement document list/upload and coverage, job detail, claim/evidence review, entity identity/conflicting values, publication summary and minimal administration. Keep labels and question examples in English. Interpretation links and expert-note entry remain later extensions. Prefer a clear fact table and relationship list before force-directed visualization.
+This is the first phase of the application: the console for the person who ingests data and builds the graph (D-30). Implement the following:
+
+- **Ontology:** an editor with validation, a diff against the active version, the impact on accepted claims, activation, and a re-run of the affected documents (FR-19).
+- **Ontology assistant:** draft an ontology from sample documents, if capacity allows (FR-20).
+- **Documents and runs:** document list/upload and coverage, job detail.
+- **Review:** claim/evidence review routed by confidence and self-check warnings (FR-23).
+- **Curation:** duplicate-node search and merge, redundant-link review (FR-21), entity identity and conflicting values.
+- **Publication:** publication summary and retirement.
+
+An end-to-end architecture covering readers and administrators is drawn in this milestone, for integration with M5/M6. Keep labels and question examples in English. Interpretation links and expert-note entry remain later extensions. Prefer a clear fact table and relationship list before force-directed visualization.
 
 The review view must show exact text, physical page, highlighted region where reliable, table headers for numeric cells, ontology rule, and validation issues. Never force a reviewer to approve a claim without access to its source. Correcting a claim creates a revision and requires a reason. Test stale edits from two reviewers and retired-source behavior.
 
-**Exit demo:** someone outside the developer who built the screen uploads a report, understands warnings, reviews candidates, publishes accepted facts, and withdraws the source. Reader-role attempts to perform those changes fail at the API.
+**Exit demo:** someone other than the developer who built the screens does the following without help:
+
+1. adds a relation to the ontology, activates it and re-runs one report;
+2. reviews the new candidates and merges a seeded duplicate;
+3. publishes the accepted facts;
+4. withdraws the source.
+
+Role enforcement is demonstrated in M6.
 
 ### M5: reliable answers within a defined scope
 
-Implement the supported-intent schema and versioned query catalogue. Start with direct structured search and deterministic answer formatting, then add natural-language intent classification. Optional generated wording comes last and retains a deterministic fallback.
+Implement the supported-intent schema and versioned query catalogue. Generic intents (entity, property, neighbors by relation, bounded path) are parameterized by the active ontology, so any loaded profile gets them; oil-well templates add detail (specification §8). Start with direct structured search and deterministic answer formatting, then add the model's question-to-plan step over the ontology schema. Optional generated wording comes last and retains a deterministic fallback.
 
 Create at least 60 held-out English oil-well questions covering supported intents, missing information, ambiguous identity, conflicting values, planned/actual and MD/TVD distinctions, cross-source links, withdrawn evidence and adversarial instructions. Measure results before/after optional model wording, and compare against direct PDF search and a simple English passage-retrieval baseline on the same questions.
 
@@ -172,7 +199,7 @@ Create at least 60 held-out English oil-well questions covering supported intent
 
 ### M6: operate the system on the actual host
 
-Package the application, worker, stores, and model runtime with pinned versions. Benchmark the 16 GB-class baseline first unless a different device is the only confirmed resource. Record GPU sharing and cold/warm behavior. Verify Linux ingestion output against the Windows reference instead of assuming byte equality.
+Add institutional login, roles and server-derived review actors; deny unauthenticated and reader-role changes at the API, including direct requests. Package the application, worker, stores, and model runtime with pinned versions. Benchmark the 16 GB-class baseline first unless a different device is the only confirmed resource. Record GPU sharing and cold/warm behavior. Verify Linux ingestion output against the Windows reference instead of assuming byte equality.
 
 Exercise restart during each stage, database/model outages, resource limits, full-disk prevention, rejected uploads, unauthorized routes, prompt/query injection, immediate withdrawal, and backup restore. Run the complete cached workflow with internet access blocked. Capture enough evidence to repeat each check, without putting private data into ordinary logs.
 
@@ -180,7 +207,7 @@ Exercise restart during each stage, database/model outages, resource limits, ful
 
 ### M7: pilot and handover
 
-Run a limited pilot with the agreed corpus and at least three intended users. Record task success, time, citation inspection, corrections, review time, and support issues. Triage failures into release blockers, scope restrictions, and later improvements. The product owner accepts the supported scope; the operator accepts the maintenance responsibilities.
+If the supervisor supplies a petroleum document (D-33), run it through the builder with the supervisor and record the results as an experiment. Run the builder on one or two public datasets from other domains with their own ontologies, and report what worked without code changes (D-29). Run a limited pilot with the agreed corpus and at least three intended users. Record task success, time, citation inspection, corrections, review time, and support issues. Triage failures into release blockers, scope restrictions, and later improvements. The product owner accepts the supported scope; the operator accepts the maintenance responsibilities.
 
 **Exit package:** tagged release and changelog, pinned configuration/model inventory, deployment instructions, completed acceptance matrix, known limitations, backup/restore evidence, user guide, operator guide, and named support/ownership arrangements. A demo video can supplement these artifacts but does not replace recovery or access-control evidence.
 
@@ -237,7 +264,10 @@ Likelihood/impact are initial qualitative estimates. Review weekly and after eac
 | R-16 | BSEE files change between snapshots, or redistribution terms forbid sharing derived data | Medium / Medium | New `Last-Modified`, changed digests, unclear license | Recorded snapshots and optional pins; freeze evaluation snapshots; keep BSEE data out of Git until terms are confirmed | B |
 | R-17 | Supervisor focus changes again | Medium / Medium | New sources requested before M2 closes | Keep adapters source-specific and contracts source-neutral; record each change as a decision (specification D-13) | Product owner |
 | R-18 | VPI documents arrive late, or may not leave VPI premises | High / High | No documents by M2; processing restricted | Keep public proxies (D-18); keep the stack installable on a VPI-controlled host; report proxy results as such | Product owner |
-| R-19 | Oil-specific hardcoding blocks reuse, or abstraction work expands beyond capacity | Medium / High | Core branches on well types, or a second real profile enters backlog | One oil-well profile; narrow generic contracts and registered rules; synthetic portability fixture; defer extra domains/languages | A / product owner |
+| R-19 | Oil-specific hardcoding blocks reuse, or abstraction work expands beyond capacity | Medium / High | Core branches on well types, or a second real profile enters backlog | One oil-well profile; narrow generic contracts and registered rules; synthetic portability fixture; portability runs only after M5; defer extra languages | A / product owner |
+| R-20 | Threshold auto-acceptance publishes wrong facts | Medium / High | Calibration sample small, audit finds errors | Off by default; per claim type only after held-out calibration; label and sample auto-accepted claims; never for merges (D-31) | A / product owner |
+| R-21 | User-supplied or assistant-drafted ontologies are vague or inconsistent, and extraction quality drops | High / Medium | Relations without definitions, overlapping types, low precision after an ontology change | Validation and diff on activation; definitions required for every relation; re-run produces a comparison before publication; keep the oil-well test ontology as the measured baseline | A |
+| R-22 | Admin features (editor, assistant, curation) crowd out the first-semester QA target | Medium / Medium | M4 consumes M5 hours | Editor before assistant; assistant is Should (FR-20); keep generic QA intents small | B / C |
 
 External dependencies are host allocation, institutional access/identity/TLS, backup storage, domain review, and model-use permissions. Record who is expected to supply each item and by which milestone. Lack of a reply is not approval.
 
@@ -245,7 +275,7 @@ External dependencies are host allocation, institutional access/identity/TLS, ba
 
 Use one shared board with Backlog, Ready, In Progress, Review, Validate, and Done. A ready item has a requirement ID, owner, acceptance examples, dependencies, and a small estimate. Split work until most items can be completed and reviewed in one or two student work sessions. Limit each student to one major work item at a time.
 
-Meet briefly each week to demo working behavior, review the critical path, inspect risks/remaining hours, and record scope decisions. Re-estimate unfinished work from evidence rather than marking a milestone “90% complete” repeatedly. Track accepted requirement coverage, failing release gates, review backlog, and forecast hours; commit counts are not a progress measure.
+Meet briefly each week to demo working behavior, review the critical path, inspect risks/remaining hours, and record scope decisions. Send the supervisor a short written report every week, without waiting for the two-weekly meeting (D-35): what was done, the evidence, decisions needed, next week's plan. Re-estimate unfinished work from evidence rather than marking a milestone “90% complete” repeatedly. Track accepted requirement coverage, failing release gates, review backlog, and forecast hours; commit counts are not a progress measure.
 
 Each change receives peer review. Implement tests for meaningful contracts and failure modes, with a small deterministic suite for everyday work and a separate host/GPU integration suite. Keep real-model benchmarks versioned but outside the fast test loop. Every milestone updates the relevant design/current-state sections and stores its verification commands and results.
 
@@ -260,25 +290,28 @@ Each change receives peer review. Implement tests for meaningful contracts and f
 
 ### Definition of release complete
 
-All Must requirements (FR-01 through FR-13, FR-15, FR-16 and FR-18) have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
+All Must requirements (FR-01 through FR-13, FR-15, FR-16, FR-18, FR-19, FR-21 and FR-22) have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
 
 ## 7. Next implementation backlog
 
-Revised after the 27 October repository review. Complete one reviewed evidence-to-answer path before expanding formats, domains or infrastructure. All fixes below are open unless explicitly marked otherwise. Preserve E1–E8 as historical measurements; E9 records the review checks.
+Revised on 27 October after the repository review and the [7 October supervisor direction](requirements/supervisor-meeting-2026-10-07.md): builder first, QA second, access control later (D-30). Complete one reviewed document-to-graph path before expanding formats, domains or infrastructure. All fixes below are open unless explicitly marked otherwise. Preserve E1–E8 as historical measurements; E9 records the review checks.
 
 | Order | Task | Acceptance artifact | Status |
 |---|---|---|---|
-| 1 | Resolve specification §13.2 and agree the initial questions, reviewer, host/data boundary, capacity and spending ceiling | One decision record; demonstrator versus internal-pilot acceptance named; one English oil-well profile, core/profile boundary and remaining estimate recorded | Open |
-| 2 | Freeze an independent document-level split, gold revision and full matching rubric before tuning | Dataset/gold/scorer manifest, second annotation subset, leakage check; review-time protocol | E4 has 41 development facts; held-out work open |
-| 3 | Fix staging/activation, duplicate headers/record IDs and date validation | Invalid replacement cannot displace accepted data; interrupted swap preserves current release; malformed model dates reject cleanly | Reproduced in E9; fixes open |
-| 4 | Define shared source/bundle/evidence, registry and claim-revision contracts | One corpus document and synthetic dataset row; scoped identifiers, language tags, MD/TVD, planned/actual, original units and versioned evidence | Ingestion schemas exist; application contracts open |
-| 5 | Add deterministic CI and installation/cache checks | 128 main + 4 prototype checks in explicit suites; targeted behavior regressions; configuration-aware cache tests; installed wheel/schema check | Local suites passed in E9; CI/fixes open |
-| 6 | Build authenticated review with a minimal source viewer | Server-derived actor, direct-route role checks, real reviewer acceptance/correction, source navigation and measured minutes/claim | Prototype API only |
-| 7 | Promote durable jobs, review revisions and exact generation-set validation | Migrations, idempotent leased job, frozen accepted set, completion marker, crash/retry and generation-pinning demo | Prototype generation mechanism exists; production contracts open |
-| 8 | Deliver three cited question intents and source withdrawal | Correct answer with exact evidence; unsupported/missing cases; immediate retirement block and restore tombstones | E4 development QA only |
-| 9 | Demonstrate oil-well cross-source identity and profile portability | One well linked to dataset/report evidence; small synthetic profile fixture loads/validates/dispatches without core edits | Open; AK-3 is not a BSEE well |
-| 10 | Compare extraction/model/OCR and retrieval approaches on frozen inputs | False-negative trace by stage; passage/claim/graph baseline; full-context scoring, latency/memory and review cost | E4/E5 development results; independent comparison open |
-| 11 | Run host pilot, blocked-network workflow and independent restore | Approved data boundary, workload results, access/failure gates, known limits, named operator and handover | Open |
+| 1 | Resolve specification §13.2 (including Q10–Q13) and agree the initial questions, reviewer, semester calendar, capacity and spending ceiling | One decision record; the builder-first order and one English oil-well test ontology recorded; remaining estimate per semester | 7 October direction recorded (D-28 to D-35); rest open |
+| 2 | Bring the method-evaluation code (WebNLG-10, 2Wiki-10, ablation A0–A5, BSEE EOR, expanded graph, 354-test suite) into the repository | `experiments/` with code, configs, data scripts, scorer and per-run results; experiment IDs in the register | Results in the progress report; code held in a team member's separate repository |
+| 3 | Define the ontology file contract and loader; turn the prototype's 14 properties into the `oil_wells` test ontology; add a synthetic second ontology | Invalid files rejected; both ontologies load; extraction code names no well type (FR-19 core) | Done in the prototype ([E10](experiments/E10-profile-driven-prototype.md)); entity relations, identifier schemes and the 21 EOR relations still to merge into the format |
+| 4 | Freeze an independent document-level split, gold revision and full matching rubric before tuning | Dataset/gold/scorer manifest, second annotation subset, leakage check, reference and duplicate-variant cases; review-time protocol | E4 has 41 development facts; held-out work open |
+| 5 | Ontology-driven extraction with in-document reference resolution and optional self-check warnings; reuse surveyed open-source steps where better (D-32) | Candidates with evidence from either ontology unchanged; reference cases scored; false-negative trace by stage | E4 prototype extraction only |
+| 6 | Fix staging/activation, duplicate headers/record IDs and date validation | Invalid replacement cannot displace accepted data; interrupted swap preserves current release; malformed model dates reject cleanly | Date validation fixed (E10); staging/activation and duplicate headers/IDs open |
+| 7 | Define shared source/bundle/evidence, registry and claim-revision contracts; name normalization, connection policy and duplicate search (FR-21) | One corpus document and synthetic dataset row; scoped identifiers, language tags, MD/TVD, planned/actual, original units and versioned evidence; seeded duplicates found | Ingestion schemas exist; name normalization and a duplicate-name search exist in the prototype (E10); application contracts open |
+| 8 | Promote durable jobs, review revisions and exact generation-set validation | Migrations, idempotent leased job, frozen accepted set, completion marker, crash/retry and generation-pinning demo | Prototype generation mechanism exists; production contracts open |
+| 9 | Build the admin console: ontology editor and re-run, confidence-routed review with a minimal source viewer, curation, publication | M4 exit demo by a non-author; measured reviewer minutes/claim | Prototype API only |
+| 10 | Deliver three cited question intents (generic over the ontology, plus oil-well detail) and source withdrawal | Correct answer with exact evidence; unsupported/missing cases; immediate retirement block and restore tombstones; passage-retrieval baseline | E4 development QA only |
+| 11 | Add deterministic CI and installation/cache checks | 128 main + 10 prototype checks in explicit suites; targeted behavior regressions; configuration-aware cache tests; installed wheel/schema check | Local suites passed in E9; CI/fixes open |
+| 12 | Access control: login, roles, server-derived actors, direct-route checks | Reader cannot change anything at the API; anonymous access denied | Moved after the admin layer (D-30) |
+| 13 | Portability and joint evaluation: synthetic fixture, one or two public datasets from other domains, the supervisor's petroleum document if supplied | Per-domain report of what ran unchanged; joint evaluation recorded as an experiment | Open |
+| 14 | Run host pilot, blocked-network workflow and independent restore | Approved data boundary, workload results, access/failure gates, known limits, named operator and handover | Open; second semester |
 
 The main [README](../README.md) remains the setup/CLI entry point. Do not rerun `publish` simply to check documentation: it writes the selected bundle. Fresh `run` requires PDF/model acquisition and can take time; first inspect existing artifacts and use an isolated named run for experiments.
 

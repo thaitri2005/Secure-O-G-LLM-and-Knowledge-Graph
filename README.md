@@ -1,12 +1,12 @@
 # Secure LLM and Knowledge Graph Platform
 
-A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise knowledge-graph platform with a domain-agnostic core. The first application focuses on **oil wells**, initially using **English** documents and questions. Well terminology, identifiers, units and query rules belong in a versioned domain profile. Ingestion runs locally; extraction, review, graph storage and cited QA run as a well-specific prototype. Three students are building it on school hardware.
+A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise **knowledge-graph builder**. It is a domain-agnostic pipeline and admin application that turns documents and datasets into a reviewed knowledge graph, guided by an ontology its users supply. The use case is **oil wells** (drilling and production), initially using **English** documents and questions; well terminology, identifiers, units and query rules belong in a versioned domain profile. The builder comes first, question answering second ([supervisor direction, 7 October](docs/requirements/supervisor-meeting-2026-10-07.md)). Ingestion runs locally; extraction, review, graph storage and cited QA run as a well-specific prototype. Three students are building it on school hardware.
 
 **Start here:** the [project specification](docs/PROJECT_DESIGN.md) is the single source of truth for scope and design. The [documentation index](docs/README.md) lists everything else. Until VPI supplies its own documents, development uses public proxies: [BSEE well data](https://catalog.data.gov/dataset/bsee-data-center-wells-information) and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf) ([data sources](docs/DATA_SOURCES.md)).
 
 ## Status
 
-**27 October review:** document ingestion, structured-data import and the AK-3 prototype exist as separate paths; their integration into an authenticated application remains open. The next milestone is a real review → cited answer → interrupted replacement → source withdrawal demonstration. Publication, validation and cache issues identified in the [repository assessment](docs/REPOSITORY_REVIEW_2026-10-27.md) remain unfixed; this documentation update changes no runtime behavior. See the updated [development plan](docs/DEVELOPMENT_PLAN.md#7-next-implementation-backlog) and [progress report](docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md).
+**27 October review:** document ingestion, structured-data import and the AK-3 prototype exist as separate paths; their integration remains open. The next milestone is the builder slice: an ontology loaded from a file rather than code, extraction with reference resolution, duplicate search, and a real reviewer publishing into a validated graph generation. Cited QA follows, then access control. Publication, validation and cache issues identified in the [repository assessment](docs/REPOSITORY_REVIEW_2026-10-27.md) remain unfixed; this documentation update changes no runtime behavior. See the updated [development plan](docs/DEVELOPMENT_PLAN.md#7-next-implementation-backlog) and [progress report](docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md).
 
 | Component | Purpose | Status |
 |---|---|---|
@@ -16,6 +16,7 @@ A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premi
 | Published GDR PDF bundle | Byte-reproducible chunks of three end-of-well reports, used by experiments E1–E4 | Implemented ([details](docs/components/pdf-ingestion.md)) |
 | Core schema and entity registry | Generic entities, opaque IDs and evidence/claim contracts; profile-declared types and scoped English aliases | Specified ([§5.7, §6](docs/PROJECT_DESIGN.md#6-ontology-layer-and-domain-modules)); not started |
 | Domain profiles | One `oil_wells` application; reusable core/profile contracts | Prototype ontology v0.1 (14 properties); well-specific extraction/QA still to externalize. Other domains, interpretation/expert-note workflows and multilingual rollout later |
+| Ontology management and graph curation | Load, edit, version and AI-draft the ontology in an admin application; reference resolution; duplicate-node search and merge; confidence-routed review | Specified ([§5.9, §6.5](docs/PROJECT_DESIGN.md#59-builder-controls-nodes-connections-and-curation)); not started |
 | Report knowledge (AK-3) | LLM extraction with quotes, validation, review, graph generations, cited QA | Prototype on 15 AK-3 chunks ([experiment E4](docs/experiments/E4-ak3-architecture-prototype.md)); production version planned |
 | Review, graph storage, question answering | Review queue; graph in which every fact keeps its evidence; supported questions answered from graph queries with citations | Prototype; production version planned |
 
@@ -29,7 +30,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
 python -m unittest discover -s tests          # 128 tests, under a minute
-python -m unittest prototype.test_ontology    # 4 prototype ontology tests
+python -m unittest prototype.test_ontology    # 10 prototype tests (profiles, validator, duplicate search)
 ```
 
 The lock file is the verified Windows CPU environment. A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment.
@@ -77,7 +78,7 @@ docs/
   PROJECT_DESIGN.md     project specification: the single source of truth
   DEVELOPMENT_PLAN.md   status, milestones, risks, backlog (derived from the specification)
   DATA_SOURCES.md       the public proxy data
-  requirements/         VPI's requirement documents: digest (originals kept out of Git)
+  requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests
   components/           guides to implemented subsystems
   experiments/          one record per experiment (E1–E9) and the register
   reports/              updated Vietnamese progress report (editable Markdown)
@@ -98,7 +99,7 @@ For the earlier PDF pipeline, Docling caches live in a per-parser-settings subdi
 
 - Work on a branch and get a review from another student before merging to `main`.
 - Run `python -m unittest discover -s tests` before pushing. Tests use small synthetic fixtures; the PDF regression test also runs when the conversion caches are present.
-- Also run `python -m unittest prototype.test_ontology` until the prototype validation is promoted. On 27 October, 128 main tests and 4 prototype ontology tests passed; these checks do not validate live services, GPU performance or private-data readiness ([E9](docs/experiments/E9-repository-review.md)). CI remains planned.
+- Also run `python -m unittest prototype.test_ontology` until the prototype validation is promoted. On 27 October, 128 main tests and 10 prototype tests passed; these checks do not validate live services, GPU performance or private-data readiness ([E9](docs/experiments/E9-repository-review.md)). CI remains planned.
 - Text files use UTF-8 and LF line endings (`.gitattributes`, `.editorconfig`). Generated artifacts must stay byte-reproducible.
 - Never commit downloads, caches or BSEE files. They are ignored and regenerable, and BSEE's terms are not an open license.
 - When behavior changes, update the component guide and specification §3 in the same change. Scope changes go into the specification first ([conventions](docs/README.md#conventions)).

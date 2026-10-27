@@ -70,15 +70,15 @@ node(d,0,60,103,38,['BSEE files','3 regions'])
 node(d,132,60,159,38,['Mapping-driven import','typed records + row evidence'])
 node(d,322,60,187,38,['Source-linked graph','Well / Wellbore / Operator / …'])
 arrow(d,103,79,132,79);arrow(d,291,79,322,79)
-node(d,0,3,509,38,['PLANNED: shared source / evidence / claim contracts','Authenticated review + validated publication + cross-source identity'],fill='#fff8ee',stroke=AMBER,dashed=True)
+node(d,0,3,509,38,['PLANNED: graph builder — ontology file → extraction → identity / curation → review','Admin console + validated publication; cited QA next; access control after the admin layer'],fill='#fff8ee',stroke=AMBER,dashed=True)
 label(d,0,166,'IMPLEMENTED INGESTION',8,True,fill=GREEN)
 figures['01-current-paths']=d
 
 d=Drawing(W,197)
-node(d,0,155,112,35,['Browser / review UI'])
-node(d,183,155,190,35,['FastAPI','auth / profiles / bounded queries'])
+node(d,0,155,112,35,['Admin console','ontology / review / curation'])
+node(d,183,155,190,35,['FastAPI','workflows / profiles / bounded queries'])
 arrow(d,112,172,183,172)
-node(d,390,155,119,35,['oil_wells profile','English rules / queries'],fill='#eaf4f0',stroke=GREEN)
+node(d,390,155,119,35,['Ontology file (user)','oil_wells = test profile'],fill='#eaf4f0',stroke=GREEN)
 arrow(d,390,172,373,172,GREEN)
 node(d,0,78,151,43,['PostgreSQL','entities / revisions / reviews'])
 node(d,179,78,151,43,['Artifact store','originals / versioned evidence'])
@@ -143,13 +143,13 @@ d.add(Line(252,6,252,139,strokeColor=color(GRAY),strokeWidth=1))
 figures['05-research-comparisons']=d
 
 d=Drawing(W,101)
-steps=[['1  Scope + freeze','oil wells / split / gold'],['2  Stable evidence','staging / contracts'],['3  Human review','login / roles / source'],['4  Cited QA','exact graph / revision']]
+steps=[['1  Ontology file','loader / validation'],['2  Extraction','references / evidence'],['3  Identity + review','duplicates / HITL'],['4  Publish + QA','exact graph / citations']]
 for i,lines in enumerate(steps):
     x=i*131
     node(d,x,45,116,49,lines,fill=PALE)
     if i<3:arrow(d,x+116,69,x+131,69)
-label(d,0,24,'NEXT MILESTONE — reviewed claim → cited answer',9,True)
-label(d,0,7,'Exact evidence  •  interruption-safe replacement  •  source withdrawal',9)
+label(d,0,24,'NEXT MILESTONE — builder slice: ontology file → reviewed graph → cited answer',9,True)
+label(d,0,7,'Ontology loader done in the prototype (E10)  •  interruption-safe replacement  •  source withdrawal',9)
 figures['06-next-milestone']=d
 
 for name,drawing in figures.items():

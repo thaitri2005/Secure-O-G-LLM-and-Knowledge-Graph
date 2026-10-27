@@ -10,7 +10,9 @@ import httpx
 from neo4j import GraphDatabase
 
 from .config import NEO4J_AUTH, NEO4J_URI, PROTOTYPE, RESULTS
-from .ontology import matches_gold, same_value, squash
+from .ontology import PROFILE, same_value, squash
+
+matches_gold = PROFILE.matches_gold
 
 API = "http://127.0.0.1:8000"
 
@@ -32,8 +34,9 @@ def main() -> None:
     with driver.session() as session:
         before = graph_fingerprint(session)
         chunk_text = {r["id"]: r["text"] for r in session.run("MATCH (c:Chunk) RETURN c.id AS id, c.text AS text")}
-        claims = [dict(r["c"], well=r["well"]) for r in session.run(
-            "MATCH (c:Claim {generation: $g})-[:ABOUT]->(w:ReportWell) RETURN c, w.name AS well", g=generation)]
+        claims = [dict(r["c"], **{PROFILE.subject_field: r["subject"]}) for r in session.run(
+            f"MATCH (c:Claim {{generation: $g}})-[:ABOUT]->(w:{PROFILE.subject['graph_label']}) "
+            "RETURN c, w.name AS subject", g=generation)]
     in_graph = {fid for fid, fact in gold.items() if any(matches_gold(c, fact) for c in claims)}
     rows = []
     for q in questions:

@@ -1,6 +1,6 @@
 # Progress report
 
-**Current direction:** reusable platform core, one oil-well application, English-first technical delivery. The unified report keeps its Vietnamese narrative and completed research results.
+**Current direction:** a knowledge-graph builder with a user-supplied ontology, one oil-well use case, English-first; builder first, QA second ([7 October meeting](../requirements/supervisor-meeting-2026-10-07.md)). The report was revised on 27 October to include that direction and the profile-driven prototype run (E10); it keeps its Vietnamese narrative and completed research results.
 
 [Vietnamese report](KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) · [PDF](../../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf)
 

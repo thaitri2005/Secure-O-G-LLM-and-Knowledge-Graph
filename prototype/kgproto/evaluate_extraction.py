@@ -8,7 +8,9 @@ from collections import Counter
 
 from .config import PROTOTYPE, RESULTS
 from .db import connect
-from .ontology import matches_gold
+from .ontology import PROFILE
+
+matches_gold = PROFILE.matches_gold
 
 
 def evaluate(run_id: int) -> dict:
