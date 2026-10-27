@@ -1,6 +1,6 @@
 # Architecture prototype (test build)
 
-**Promotion direction:** a knowledge-graph builder whose ontology is a user-supplied file (specification D-28/D-29). Since [E10](../docs/experiments/E10-profile-driven-prototype.md), the ontology, output schema, validator and gold matcher come from a profile file (`profiles/oil_wells.json`), and a synthetic second profile runs the same code. Still oil-well specific: the question-answering templates in `api.py` and the AK-3 slice and document context in `extract.py`.
+**Promotion direction:** a knowledge-graph builder whose ontology is a user-supplied file (specification D-28/D-29). Since [E10](../docs/experiments/E10-profile-driven-prototype.md), the ontology, output schema, validator and gold matcher come from a profile file (`profiles/oil_wells.json`), and a synthetic second profile runs the same code. The profile also carries the extraction prompt as a template (the measured E4 wording; a generic assembly lost precision in E10). Still oil-well specific: the question-answering templates in `api.py`, and the AK-3 slice and document context in `extract.py`. QA refuses questions that ask to change data or override instructions before planning.
 
 > **This is experiment E4, a test of the target architecture, not the system.** It runs a small version of the specification ([docs/PROJECT_DESIGN.md](../docs/PROJECT_DESIGN.md) §4–§8) on 15 chunks of **one** report (AK-3), to check that the pieces fit together and to measure where errors come from. It has no authentication, no UI, and throwaway credentials. Its numbers are development-set results. Findings and every run are recorded in the [E4 experiment record](../docs/experiments/E4-ak3-architecture-prototype.md).
 
@@ -23,7 +23,7 @@ Out of scope: BSEE (developed as its own track), authentication and roles, UI, m
 
 ## Current limits after the 27 October review
 
-The impossible-date and invalid-month defects found by E9 are fixed and covered by tests (10 prototype tests). Generation checks now compare the projection with the frozen set of accepted (claim, evidence) pairs exactly; a partial projection fails and cannot be activated ([E11](../docs/experiments/E11-publication-and-import-fixes.md)). Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization; these shortcuts remain ([E9](../docs/experiments/E9-repository-review.md)).
+The impossible-date and invalid-month defects found by E9 are fixed and covered by tests (14 prototype tests). Generation checks now compare the projection with the frozen set of accepted (claim, evidence) pairs exactly; a partial projection fails and cannot be activated ([E11](../docs/experiments/E11-publication-and-import-fixes.md)). Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization; these shortcuts remain ([E9](../docs/experiments/E9-repository-review.md)).
 
 Before promotion, use migrations and managed connections, server-derived review identity, independent output validation, exact generation membership/completion checks and source withdrawal. Freeze a document-level held-out split before further prompt/model changes; E4's scores remain development results with a simulated reviewer. The generic corpus/importer paths are not yet integrated into this prototype.
 

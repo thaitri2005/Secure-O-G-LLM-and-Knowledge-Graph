@@ -18,8 +18,8 @@ Trong kỳ báo cáo, ingestion, graph từ structured data và prototype extrac
 | PDF/OCR ingestion | 3 technical reports, 155 trang, 372 chunk; tái chạy toàn bộ PDF ingestion trên CPU cho kết quả byte-identical. EasyOCR đã chạy trên scan Việt–Anh. Pipeline hiện tại bổ sung VietOCR/PP-OCRv6, per-page OCR và quality flags; đã xử lý 44 PDF phụ lục AK-3, 463 trang. |
 | BSEE graph | Ingestion dữ liệu 3 vùng, có source tracking. Source-linked graph: 113.384 nodes / 398.263 edges. Expanded graph đã được nạp vào Neo4j, gồm 336.265 nodes kể cả metadata / 551.254 edges. Generic importer đã đối chiếu cùng record và graph counts với adapter. |
 | Extraction và QA | Prototype AK-3 trên 15 chunk: precision 0.97, recall 0.68; QA end-to-end đúng 19/31 câu. Thử nghiệm canonicalization trên WebNLG-10 tăng strict F1 từ 0.736 lên 0.843. |
-| Nghiên cứu và đánh giá | 27 papers và code 13 repos được nghiên cứu; đã có ablation, đối chứng text RAG, quy trình AI-gold hai annotator và thử nghiệm extraction trên 49 đoạn EOR BSEE. Method suite có 354 tests pass; ingestion/application có 136 main tests và 11 prototype tests pass. |
-| Builder theo buổi họp ngày 07.10 | Ontology chuyển thành file profile có validation (`oil_wells` 14 properties); synthetic ontology thứ hai chạy cùng code, không sửa code. Thêm reference rule ("it", "the well"), duplicate search và chặn impossible dates. Lượt chạy lại với model đang thực hiện; kết quả sẽ cập nhật ở mục 3.2. |
+| Nghiên cứu và đánh giá | 27 papers và code 13 repos được nghiên cứu; đã có ablation, đối chứng text RAG, quy trình AI-gold hai annotator và thử nghiệm extraction trên 49 đoạn EOR BSEE. Method suite có 354 tests pass; ingestion/application có 136 main tests và 14 prototype tests pass. |
+| Builder theo buổi họp ngày 07.10 | Ontology chuyển thành file profile có validation (`oil_wells` 14 properties); synthetic ontology thứ hai chạy cùng code, không sửa code. Thêm reference rule ("it", "the well"), duplicate search và chặn impossible dates. Chạy lại: extraction 0.968 / 0.732, end-to-end 23/31 (E4: 19/31), không có câu trả lời sai giá trị (mục 3.2). |
 | Điểm nghẽn | Missed facts (recall), chất lượng OCR, expert validation cho gold và held-out evaluation cho prototype AK-3. Bước tiếp theo là builder slice: ontology management, identity/curation, human review và publication chịu interruption. |
 
 Các số liệu ở trên đến từ những dataset, configuration và graph scope khác nhau. Đây là tiến độ của các hạng mục nghiên cứu và phát triển trong cùng một dự án; mỗi thí nghiệm giữ metric và artifact tương ứng. Các thành phần đang được nối qua source–claim–review–graph contract.
@@ -81,7 +81,7 @@ Theo kỳ vọng của anh Tuấn, kỳ này hoàn thành builder, admin applica
 | Bộ tài liệu | 3 public technical reports: tổng 155 trang, 372 chunk (237 text, 135 table). |
 | BSEE snapshot | 57.453 boreholes / 39.518 wells; 587 API number change records. |
 | BSEE linked graph | 113.384 nodes / 398.263 edges; mỗi edge có row-level provenance. |
-| Automated tests | 136 main tests pass và 11 prototype tests pass (gồm regression tests cho các lỗi E9, xem E11). Cached PDF regression pass; lượt review chạy main suite trong 17.191 giây, lượt kiểm sau cập nhật tài liệu trong 13.703 giây. |
+| Automated tests | 136 main tests pass và 14 prototype tests pass (gồm regression tests cho các lỗi E9, xem E11). Cached PDF regression pass; lượt review chạy main suite trong 17.191 giây, lượt kiểm sau cập nhật tài liệu trong 13.703 giây. |
 | PDF rerun | Khoảng 13,5 phút trên CPU; output byte-identical với bộ đã publish. |
 | Quantity recall | 334/335 = 0.997 đối với drilling value kèm units. |
 | Word-level quality | Recall median 0.954, min 0.442 (dense directional survey tables); precision 1.0 trong phạm vi phép chấm. |
@@ -99,7 +99,16 @@ Prototype dùng 15 chunk / 41 gold facts / 31 câu hỏi. Sau extraction, precis
 
 Vai trò của review: accept-all review để lọt một wrong value vào câu trả lời; oracle reviewer dựa trên gold set loại được trường hợp đó. Prompt đã chỉnh trên chính 15 chunk dùng để chấm, nên đây là in-sample evaluation. Human review và document-level held-out evaluation là bước tiếp theo. Tốc độ CPU khoảng 15 giây mỗi extraction passage và 4–6 giây mỗi câu hỏi trong môi trường thử nghiệm.
 
-Sau buổi họp 07/10, prototype được chỉnh để ontology là input (E10). 14 properties chuyển sang file `profiles/oil_wells.json`, có validation. Prompt, output schema, validator và gold matcher được sinh từ file đó; synthetic ontology thứ hai chạy cùng code mà không sửa code. Prompt thay đổi (`extract-v5`), nên số liệu E4 ở trên không áp dụng trực tiếp. Lượt chạy lại trên cùng 15 chunk đang thực hiện và sẽ được so sánh với E4.
+Sau buổi họp 07/10, prototype được chỉnh để ontology là input (E10). 14 properties chuyển sang file `profiles/oil_wells.json`, có validation. Prompt, output schema, validator và gold matcher được sinh từ file đó; synthetic ontology thứ hai chạy cùng code mà không sửa code. Kết quả chạy lại trên cùng 15 chunk:
+
+- Prompt ghép tự động từ file (v5) giảm precision từ 0.97 xuống 0.87.
+- Chạy lại đúng nguyên văn prompt v4 qua code mới cho precision 0.968, recall 0.732. Như vậy đưa ontology ra file không làm giảm chất lượng; nguyên nhân là cách diễn đạt prompt.
+- Profile `oil_wells` giữ nguyên văn prompt v4 dưới dạng template; test kiểm tra từng byte.
+- Sau oracle review, graph có 30/41 facts. End-to-end đúng 23/31 câu (E4: 19/31); QA-layer 31/31; 15/15 câu trả lời có citation, không có giá trị sai.
+- Thêm bước kiểm tra deterministic từ chối câu hỏi yêu cầu sửa/xóa dữ liệu, sau khi câu injection q30 bị planner biến thành lookup. Kết quả này là in-sample.
+- Generation mới qua exact-set check (30 claims, 30 evidence links).
+
+Chi tiết ở E10.
 
 ### 3.3 OCR trang scan Việt–Anh (24–27/10)
 
@@ -136,7 +145,7 @@ Theo yêu cầu ở buổi họp 07/10 (làm literature review và chạy thử 
 
 ### 4.2 Cấu hình thí nghiệm và phương pháp đánh giá
 
-Các thí nghiệm phương pháp dùng local LLM Qwen3.6-35B-A3B (quantized MoE) trên CPU, kết hợp KGGen và EDC với các bước tự viết: provenance, temporal, normalization, validator, graph export và QA. Ablation bật dần thành phần: A0 baseline extractor; A1 thêm entity resolution; A2 thêm relation canonicalization; A3 thêm temporal; A4 thêm flag-based validation; A5 thêm LLM judge. Configuration, dữ liệu và model responses được lưu để offline replay và so sánh trên cùng input. SHA256, locator và model/ontology version được lưu theo run; replay 589/589 recorded calls cho cùng graph output. Method-evaluation suite có 354 tests pass, 0 skip. Code của các thí nghiệm phương pháp (WebNLG-10, 2Wiki-10, ablation, BSEE EOR, expanded graph) hiện nằm ở repository riêng của Khải và sẽ được đưa vào thư mục `experiments/` của repo chung, kèm config, script tải data, scorer và kết quả từng lượt chạy. Ingestion/application suite có 136 main tests và 11 prototype tests pass.
+Các thí nghiệm phương pháp dùng local LLM Qwen3.6-35B-A3B (quantized MoE) trên CPU, kết hợp KGGen và EDC với các bước tự viết: provenance, temporal, normalization, validator, graph export và QA. Ablation bật dần thành phần: A0 baseline extractor; A1 thêm entity resolution; A2 thêm relation canonicalization; A3 thêm temporal; A4 thêm flag-based validation; A5 thêm LLM judge. Configuration, dữ liệu và model responses được lưu để offline replay và so sánh trên cùng input. SHA256, locator và model/ontology version được lưu theo run; replay 589/589 recorded calls cho cùng graph output. Method-evaluation suite có 354 tests pass, 0 skip. Code của các thí nghiệm phương pháp (WebNLG-10, 2Wiki-10, ablation, BSEE EOR, expanded graph) hiện nằm ở repository riêng của Khải và sẽ được đưa vào thư mục `experiments/` của repo chung, kèm config, script tải data, scorer và kết quả từng lượt chạy. Ingestion/application suite có 136 main tests và 14 prototype tests pass.
 
 Các bộ đánh giá: WebNLG-10 (triples có ontology), 2Wiki-10 (multi-hop QA), showcase nhỏ (alias, temporal, provenance), BSEE EOR (văn bản giếng khoan thực) và structured BSEE data. WebNLG-10/2Wiki-10 là mẫu nhỏ, có yếu tố in-sample; EOR dùng AI-gold và held-out test set. Mỗi bộ giữ metric và matching rubric riêng.
 
@@ -182,7 +191,7 @@ Trong thí nghiệm liên kết statements với bảng, có 61 links matched, 0
 | Identity / curation | Entity registry dựng từ BSEE bằng config (E13): 57.453 wellbores, 39.518 wells. Chỉ tên + lease xác định được 53% wellbores vì sidetracks trùng tên; thêm sidetrack suffix thì được 98,6%, phần còn lại chuyển review, 0 trường hợp resolve nhầm. Đại từ chưa được resolve có kiểm chứng; duplicate search mới ở dạng CLI. | P0: normalization, reference resolution có test cases, duplicate search trong admin console; API–lease–sidetrack matching qua profile/adapters. |
 | Publication / validation | Đã sửa (E11): export/dataset publish thành immutable release sau validation, pointer chuyển atomic nên interruption không làm mất bản đang dùng; duplicate record IDs và duplicate headers bị chặn; generation kiểm exact accepted set; invalid dates đã sửa (E10). Còn mở: cache identity và redirect checks. | P0: idempotent retry và source withdrawal; P1: cache identity đầy đủ. |
 | Review / security | Human review và admin console chưa có. Authentication, parser isolation và independent recovery làm sau admin layer, theo định hướng 07/10. | P1: confidence-routed review queue với source viewer; ba cited question intents. Sau đó server-derived actor/roles, egress/log policy và restore test. |
-| Compute / cost | E4 chạy CPU trên i5-1340P, 16 GB RAM. EOR 50 đoạn mất 117.5 phút CPU. GPU allocation, VRAM/RAM/disk và spending ceiling cần xác nhận. | Benchmark 3B/7–8B trên host thực; đo latency/memory/storage và reviewer time; ưu tiên school allocation. |
+| Compute / máy | Toàn bộ thử nghiệm chạy trên một laptop cá nhân: i5-1340P, 16 GB RAM, không có GPU dùng được; Docker chỉ có 8 GB. Vì vậy chỉ chạy được model 3B (Qwen2.5-3B, 4-bit). Lượt E10 mất 21 phút cho 15 chunks (39 model calls, trung vị 22 giây/call); mỗi câu hỏi mất khoảng 9 giây. EOR 50 đoạn mất 117.5 phút CPU. Ước tính thô theo tốc độ E10: extraction toàn bộ 1.778 chunks phụ lục AK-3 sẽ mất khoảng 40 giờ. Tốc độ còn dao động theo tải máy: cùng model có lúc chậm gấp 10 lần do cách Docker đọc file model, đã khắc phục. Model 7–8B, held-out evaluation đủ lớn và việc chạy lặp để so sánh cấu hình hầu như không khả thi trên máy này. | Đề xuất được dùng máy lớn hơn: GPU của trường (RTX 4080 SUPER hoặc A100) hoặc một máy có GPU ≥16 GB VRAM, 32–64 GB RAM. Khi có máy: benchmark 3B và 7–8B, đo latency/memory/storage và reviewer time. |
 
 Review workload minh họa: 5.000 pages × 3 candidates/page × 30 seconds/candidate = **125 reviewer-hours** trước corrections. Capacity cũ là 720 person-hours (576 delivery + 144 reserve); cần re-estimate phần còn lại theo một English oil-well profile, core interfaces và workload review.
 
@@ -206,7 +215,8 @@ Review workload minh họa: 5.000 pages × 3 candidates/page × 30 seconds/candi
 - Ai duyệt auto-accept threshold.
 - Domain nào dùng cho portability runs.
 - Paper OnePetro/EarthDoc.
-- GPU và budget.
+- **Có thể cho nhóm dùng máy lớn hơn không** (GPU của trường RTX 4080 SUPER/A100, hoặc máy có GPU ≥16 GB VRAM)? Hiện mọi thử nghiệm chạy trên laptop không GPU nên chỉ dùng được model 3B và mỗi lượt đánh giá mất hàng chục phút (xem bảng trên).
+- Budget.
 - Expert reviewer.
 - English oil-well question catalogue.
 

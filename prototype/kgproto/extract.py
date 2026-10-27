@@ -21,16 +21,20 @@ from .db import connect
 from .llm import structured
 from .ontology import PROFILE
 
-# v1 pilot; v2 table/well/depth rules; v3 row-by-row tables; v4 row evidence + example;
-# v5 prompt assembled from the profile file (domain rules), the run (document context) and core rules.
-PROMPT_VERSION = "extract-v5"
+# v1 pilot; v2 table/well/depth rules; v3 row-by-row tables; v4 row evidence + example (E4).
+# v5 assembled the prompt generically and lost precision (E10); the oil_wells profile now carries the v4 text
+# as its template, filled from the run's document context, so the version is v4 again.
+PROMPT_VERSION = "extract-v4"
 # Evaluation slice: the 8 pilot chunks (executive summary, drilling summary, casing tables, survey
 # table, rig-time table, temperatures) plus the 7 other chunks that state the same gold facts.
 SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
          "c0004", "c0005", "c0008", "c0022", "c0026", "c0028", "c0031"]
 # What this run's document is about. It belongs to the document, not to the ontology.
-DOCUMENT_CONTEXT = ("The report is about well AK-3 of the Akutan geothermal project; it also mentions older wells "
-                    "TG-2 and TG-4. Tables and unnamed statements in this report are about AK-3.")
+DOCUMENT_CONTEXT = {
+    "context": "The report is about well AK-3 of the Akutan geothermal project; it also mentions older wells TG-2 and TG-4.",
+    "subject_examples": "AK-3, TG-2 or TG-4",
+    "default_subject": "AK-3",
+}
 SYSTEM = PROFILE.extraction_prompt(DOCUMENT_CONTEXT)
 SCHEMA = PROFILE.extraction_schema()
 

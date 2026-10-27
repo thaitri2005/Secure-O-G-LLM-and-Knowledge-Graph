@@ -154,6 +154,7 @@ figures['06-next-milestone']=d
 
 for name,drawing in figures.items():
     renderSVG.drawToFile(drawing,str(ASSETS/f'{name}.svg'))
+    svg=ASSETS/f'{name}.svg'; svg.write_bytes(svg.read_bytes().replace(b'\r\n',b'\n'))  # repository text is LF
     renderPDF.drawToFile(drawing,str(QA/f'{name}.pdf'))
     with pdfium.PdfDocument(QA/f'{name}.pdf') as pdf:
         pdf[0].render(scale=2).to_pil().save(QA/f'{name}.png')
