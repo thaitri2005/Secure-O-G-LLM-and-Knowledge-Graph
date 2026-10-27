@@ -1,5 +1,7 @@
 # Vietnamese and multilingual PDF ingestion
 
+> **Superseded for new work.** The [document ingestion](corpus-ingestion.md) pipeline decides OCR per page and uses a measured Vietnamese engine (VietOCR; [E5](../experiments/E5-ocr-engine-benchmark.md)) instead of EasyOCR. This guide describes the opt-in OCR of the earlier PDF pipeline, kept for experiment E2.
+
 The normal ingestion pipeline now supports opt-in OCR, including Vietnamese and mixed Vietnamese–English PDFs. Text, tables, chunk offsets, and PDF regions continue through the existing provenance and validation stages. The original English GDR configuration and published data remain unchanged.
 
 ## Setup and model acquisition

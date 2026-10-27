@@ -1,5 +1,7 @@
 # PDF ingestion
 
+> **Kept for the published GDR bundle.** New documents of any format go through the [document ingestion](corpus-ingestion.md) pipeline, which reuses this pipeline's filters, table views and provenance code. This pipeline remains the byte-reproducible source of `data/processed/` and experiments E1–E4.
+
 This document describes the **implemented PDF ingestion subsystem**: commands, output contract, processing rules and measured results. The structured-data path is described in [BSEE well-data ingestion](bsee-ingestion.md), and local PDFs and Vietnamese/mixed-language scans in [OCR ingestion](ocr-ingestion.md). For the full intended product, see the [project specification](../PROJECT_DESIGN.md) and [development plan](../DEVELOPMENT_PLAN.md).
 
 The baseline details and historical results below describe OCR-disabled processing of the GDR end-of-well reports.

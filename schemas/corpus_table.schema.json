@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "corpus_table.schema.json",
+  "title": "Corpus table",
+  "description": "Full cell structure of one table found by graph_builder.corpus; table chunks reference it by table_id and row range.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["table_id", "doc_id", "source_ref", "regions", "num_rows", "num_cols", "header_rows", "cells", "rows_text"],
+  "properties": {
+    "table_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,79}#t[0-9]{4,}$"},
+    "doc_id": {"type": "string"},
+    "source_ref": {"type": "string"},
+    "regions": {"type": "array"},
+    "num_rows": {"type": "integer", "minimum": 0},
+    "num_cols": {"type": "integer", "minimum": 0},
+    "header_rows": {"type": "integer", "minimum": 0},
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["r", "c", "row_span", "col_span", "text", "is_header"],
+        "properties": {
+          "r": {"type": "integer", "minimum": 0},
+          "c": {"type": "integer", "minimum": 0},
+          "row_span": {"type": "integer", "minimum": 1},
+          "col_span": {"type": "integer", "minimum": 1},
+          "text": {"type": "string"},
+          "is_header": {"type": "boolean"}
+        }
+      }
+    },
+    "rows_text": {"type": "array", "items": {"type": "string"}}
+  }
+}

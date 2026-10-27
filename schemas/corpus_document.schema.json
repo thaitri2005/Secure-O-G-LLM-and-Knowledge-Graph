@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "corpus_document.schema.json",
+  "title": "Corpus document",
+  "description": "Source identity, page analysis and quality, and processing record of one document processed by graph_builder.corpus.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["doc_id", "sha256", "bytes", "format", "media_type", "original_name", "title", "source",
+               "license_id", "license_url", "metadata", "page_count", "pages", "processing", "statistics",
+               "chunk_count", "table_count", "review_pages", "missing_pages", "text_sha256"],
+  "properties": {
+    "doc_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "bytes": {"type": "integer", "minimum": 1},
+    "format": {"enum": ["pdf", "image", "docx", "pptx", "xlsx", "html", "markdown", "text"]},
+    "media_type": {"type": "string"},
+    "original_name": {"type": "string"},
+    "title": {"type": "string"},
+    "source": {"type": "string"},
+    "license_id": {"type": "string"},
+    "license_url": {"type": "string"},
+    "metadata": {"type": "object"},
+    "page_count": {"type": ["integer", "null"], "minimum": 1},
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["page", "mode", "reasons", "status", "extracted_characters", "extracted_profile", "confidence", "ocr_engine"],
+        "properties": {
+          "page": {"type": "integer", "minimum": 1},
+          "mode": {"enum": ["text", "hybrid", "ocr"]},
+          "reasons": {"type": "array", "items": {"type": "string"}},
+          "status": {"enum": ["ok", "review", "missing"]},
+          "extracted_characters": {"type": "integer", "minimum": 0},
+          "extracted_profile": {"type": "object"},
+          "confidence": {"type": "object"},
+          "ocr_engine": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "processing": {"type": "object", "required": ["fingerprint", "pipeline", "ocr", "segments", "seconds"]},
+    "statistics": {"type": "object"},
+    "chunk_count": {"type": "integer", "minimum": 0},
+    "table_count": {"type": "integer", "minimum": 0},
+    "review_pages": {"type": "array", "items": {"type": "integer"}},
+    "missing_pages": {"type": "array", "items": {"type": "integer"}},
+    "text_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

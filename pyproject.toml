@@ -5,15 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "graph-builder"
 version = "0.1.0"
-description = "Knowledge graph construction stages for a secure, on-premise LLM and knowledge graph platform: PDF ingestion into passage chunks with source provenance, and BSEE well-data ingestion into typed records with row provenance"
+description = "Knowledge graph construction stages for a secure, on-premise LLM and knowledge graph platform: document ingestion into passage chunks with source provenance (PDF, Office, HTML, scans with Vietnamese OCR), and mapping-driven structured-data import into typed records and a linked graph with row provenance"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 # Direct imports only; requirements.lock.txt pins the complete environment.
 dependencies = ["docling==2.141.0", "docling-core==2.103.1", "jsonschema==4.26.0",
-                "pypdf==6.1.1", "pypdfium2==5.14.0"]
+                "pypdf==6.1.1", "pypdfium2==5.14.0", "rapidfuzz==3.14.6"]
 
 [project.optional-dependencies]
-ocr = ["easyocr==1.7.2", "ImageIO==2.38.1", "lazy-loader==0.6",
+# VietOCR itself is installed separately: pip install --no-deps vietocr==0.3.13 (its metadata pins old packages).
+ocr = ["onnxruntime==1.31.1", "einops==0.8.2", "easyocr==1.7.2", "ImageIO==2.38.1", "lazy-loader==0.6",
        "ninja==1.13.2", "python-bidi==0.6.12", "scikit-image==0.26.0",
        "tifffile==2026.10.15"]
 

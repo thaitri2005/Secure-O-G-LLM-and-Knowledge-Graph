@@ -1,0 +1,34 @@
+{
+  "chunking": {
+    "max_chars": 1500,
+    "strategy": "paragraph"
+  },
+  "filters": {
+    "margin_band": 0.08,
+    "frequency": 0.5,
+    "running_block_max_gap_lines": 1.0,
+    "running_block_alignment_lines": 0.5,
+    "running_line_fragment_gap_lines": 3.0
+  },
+  "table_mode": "fast",
+  "ocr": {
+    "engine": "vietocr",
+    "languages": ["vi", "en"],
+    "model_size": "small",
+    "scale": 2.5,
+    "confidence_threshold": 0.5
+  },
+  "analysis": {},
+  "quality": {
+    "review_invalid_vietnamese_rate": 0.08,
+    "review_foreign_letter_rate": 0.05,
+    "min_ocr_page_chars": 40
+  },
+  "segment_pages": 40,
+  "limits": {
+    "max_bytes": 209715200,
+    "max_pages": 3000
+  },
+  "allowed_hosts": [],
+  "document_timeout": 3600
+}

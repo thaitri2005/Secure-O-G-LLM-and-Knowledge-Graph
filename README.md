@@ -1,6 +1,6 @@
 # Secure LLM and Knowledge Graph Platform
 
-A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise platform, under development, that turns oil-and-gas technical documents and well data into reviewed, domain-specific knowledge graphs over a shared entity registry, and answers questions with source evidence. Ingestion runs locally today. Ontology-guided extraction with a local model, graph storage, review and question answering run as a prototype. Three students build it on a school research machine.
+A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise platform, under development, that turns oil-and-gas technical documents and well data into reviewed, domain-specific knowledge graphs over a shared entity registry, and answers questions with source evidence. Ingestion runs locally today. Ontology-guided extraction with a local model, graph storage, review and question answering run as a prototype. Three students is building it on a school machine.
 
 **Start here:** the [project specification](docs/PROJECT_DESIGN.md) is the single source of truth for scope and design. The [documentation index](docs/README.md) lists everything else. Until VPI supplies its own documents, development uses public proxies: [BSEE well data](https://catalog.data.gov/dataset/bsee-data-center-wells-information) and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf) ([data sources](docs/DATA_SOURCES.md)).
 
@@ -8,9 +8,10 @@ A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premi
 
 | Component | Purpose | Status |
 |---|---|---|
-| PDF ingestion | PDF to passage chunks with page, region and character-offset provenance; optional OCR | Implemented ([details](docs/components/pdf-ingestion.md)) |
-| BSEE well-data ingestion | BSEE well files to typed borehole, well and API-change records with row provenance | Implemented ([details](docs/components/bsee-ingestion.md)) |
-| BSEE linked graph | Wellbores linked to wells, operators, leases, blocks, fields and former records; every edge cites its BSEE row. Seed of the entity registry | Implemented ([details](docs/components/bsee-ingestion.md#linked-graph)) |
+| Document ingestion | PDF, scans, images, DOCX, PPTX, XLSX, HTML and Markdown to passage and table chunks with page, region and section provenance; per-page OCR decision; Vietnamese OCR (VietOCR); quality flags; resumable, parallel, exportable | Implemented ([guide](docs/components/corpus-ingestion.md), [E5](docs/experiments/E5-ocr-engine-benchmark.md), [E7](docs/experiments/E7-corpus-pipeline-smoke.md)) |
+| Structured-data import | CSV, Excel and JSON-lines files (also inside ZIPs) to typed records and a linked graph, described by one mapping file; every record and edge cites its file, digest and row | Implemented ([guide](docs/components/dataset-import.md)); BSEE reproduced exactly ([E6](docs/experiments/E6-generic-import-bsee.md)) |
+| BSEE well data and linked graph | Wellbores linked to wells, operators, leases, blocks, fields and former records. Seed of the entity registry | Implemented as a mapping ([mapping](configs/datasets/bsee_wells.mapping.json)); earlier [dedicated adapter](docs/components/bsee-ingestion.md) kept |
+| Published GDR PDF bundle | Byte-reproducible chunks of three end-of-well reports, used by experiments E1–E4 | Implemented ([details](docs/components/pdf-ingestion.md)) |
 | Core ontology and entity registry | Shared entity types and identifiers, language-tagged names, relation categories | Specified ([§5.7, §6](docs/PROJECT_DESIGN.md#6-ontology-layer-and-domain-modules)); not started |
 | Domain modules | Wells and drilling; subsurface interpretation (competing interpretations, expert notes) | Wells and drilling: prototype ontology v0.1 (14 properties). Subsurface interpretation: specified ([§5.8](docs/PROJECT_DESIGN.md#58-interpretations-competing-hypotheses-and-expert-knowledge)) |
 | Report knowledge (AK-3) | LLM extraction with quotes, validation, review, graph generations, cited QA | Prototype on 15 AK-3 chunks ([experiment E4](docs/experiments/E4-ak3-architecture-prototype.md)); production version planned |
@@ -25,16 +26,27 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
-python -m unittest discover -s tests          # 108 tests, under a minute
+python -m unittest discover -s tests          # 128 tests, under a minute
 ```
 
-On Linux or macOS: `python3.12 -m venv .venv && source .venv/bin/activate`, then the same `pip` commands. The lock file includes Windows-only packages (for example `pywin32`); install the rest manually if needed. The OCR extra is optional: `pip install -e ".[ocr]"` ([OCR guide](docs/components/ocr-ingestion.md)).
+On Linux or macOS: `python3.12 -m venv .venv && source .venv/bin/activate`, then the same `pip` commands. The lock file includes Windows-only packages (for example `pywin32`); install the rest manually if needed.
 
-**Ingest the BSEE well data** (downloads about 4 MB; takes about two minutes including validation):
+**Ingest documents** (any mix of PDFs, scans and Office files; OCR needs the extra and a one-time model download):
 
 ```powershell
-python -m graph_builder.ingestion.bsee run
-python -m graph_builder.ingestion.bsee show --api 1772140041
+python -m pip install -e ".[ocr]"; python -m pip install --no-deps vietocr==0.3.13
+python -m graph_builder.corpus models
+python -m graph_builder.corpus init data/corpora/demo
+python -m graph_builder.corpus add data/corpora/demo D:\docs --recursive
+python -m graph_builder.corpus process data/corpora/demo
+python -m graph_builder.corpus export data/corpora/demo --name v1
+```
+
+**Import structured data** (the BSEE well files: downloads about 4 MB):
+
+```powershell
+python -m graph_builder.datasets run --mapping configs/datasets/bsee_wells.mapping.json
+python -m graph_builder.datasets infer my_table.xlsx      # draft a mapping for your own data
 ```
 
 **Reproduce the published PDF bundle** (downloads three PDFs and the Docling models; about ten minutes on a CPU the first time):
@@ -49,8 +61,9 @@ An unnamed run succeeds only if it reproduces `data/processed/` byte for byte. U
 
 ```text
 configs/
-  datasets/       structured-data configurations (BSEE)
-  ingestion/      PDF pipeline options (default, Vietnamese OCR)
+  corpus/         document pipeline settings (OCR engine, page analysis, chunking, limits)
+  datasets/       structured-data mappings (bsee_wells.mapping.json) and the earlier BSEE adapter config
+  ingestion/      earlier PDF pipeline options (default, Vietnamese OCR)
   sources/        PDF source registries with pinned SHA256 digests
 data/
   gold/ingestion/ frozen reference annotations for experiment E1
@@ -62,17 +75,19 @@ docs/
   DATA_SOURCES.md       the public proxy data
   requirements/         VPI's requirement documents: digest (originals kept out of Git)
   components/           guides to implemented subsystems
-  experiments/          one record per experiment (E1–E4) and the register
+  experiments/          one record per experiment (E1–E7) and the register
   diagrams/             SVG exports of the Mermaid diagrams
-schemas/          JSON Schemas for every published record type
-scripts/          experiment utilities (E2 OCR smoke test)
-src/graph_builder/ingestion/   PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
-src/graph_builder/graph/       BSEE linked graph (python -m graph_builder.graph.bsee)
+schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline)
+scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark)
+src/graph_builder/corpus/      document pipeline (python -m graph_builder.corpus)
+src/graph_builder/datasets/    structured-data importer (python -m graph_builder.datasets)
+src/graph_builder/ingestion/   earlier PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
+src/graph_builder/graph/       earlier BSEE linked graph (python -m graph_builder.graph.bsee)
 prototype/        experiment E4: test build of the target stack on AK-3 (Neo4j, PostgreSQL, llama.cpp, FastAPI); not the system
 tests/            unit and regression tests (unittest)
 ```
 
-Docling caches live in a per-parser-settings subdirectory of `data/interim/docling/`. BSEE snapshots live in `data/raw/bsee_wells/`, and their bundle in `data/processed/local/bsee_wells/`.
+For the earlier PDF pipeline, Docling caches live in a per-parser-settings subdirectory of `data/interim/docling/`. A document corpus keeps everything in its own directory (catalog, stored originals, per-document outputs, exports); OCR models live in `data/interim/ocr_models/`. BSEE snapshots live in `data/raw/bsee_wells/`, and the imported bundle in `data/processed/local/datasets/bsee_wells/`.
 
 ## Development workflow
 

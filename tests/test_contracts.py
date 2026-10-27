@@ -23,7 +23,8 @@ class ContractTests(unittest.TestCase):
                         load_registry(path)
             write_json(path, [{**source, "doc_id": "a" * 64}])
             self.assertEqual(load_registry(path)[0]["doc_id"], "a" * 64)
-        for path in Path("schemas").glob("*.json"):
+        # corpus_* schemas belong to graph_builder.corpus, which allows 80-character document IDs.
+        for path in (p for p in Path("schemas").glob("*.json") if not p.name.startswith("corpus_")):
             properties = json.loads(path.read_text(encoding="utf-8"))["properties"]
             for key in ("doc_id", "parent_doc_id"):
                 if key in properties:

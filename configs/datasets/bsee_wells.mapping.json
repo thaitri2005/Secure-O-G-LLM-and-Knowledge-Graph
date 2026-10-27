@@ -1,0 +1,150 @@
+{
+  "dataset_id": "bsee_wells",
+  "title": "BSEE Data Center - Wells Information",
+  "publisher": "Bureau of Safety and Environmental Enforcement (BSEE), U.S. Department of the Interior",
+  "landing_page": "https://www.data.bsee.gov/Main/Well.aspx",
+  "license": {"id": "BSEE-disclaimer", "url": "https://www.bsee.gov/bsee.gov/privacy-disclaimer"},
+  "allowed_hosts": ["www.data.bsee.gov"],
+  "sources": [
+    {"source_id": "borehole_gulf", "table": "borehole", "url": "https://www.data.bsee.gov/Well/Files/5010delimit.zip",
+     "member": "5010.txt", "constants": {"region": "gulf_of_america", "coordinate_datum": "NAD27"}},
+    {"source_id": "borehole_pacific", "table": "borehole", "url": "https://www.data.bsee.gov/Well/Files/5010pacdelimit.zip",
+     "member": "5010.txt", "constants": {"region": "pacific", "coordinate_datum": "NAD83"}},
+    {"source_id": "borehole_alaska", "table": "borehole", "url": "https://www.data.bsee.gov/Well/Files/5010akdelimit.zip",
+     "member": "5010.txt", "constants": {"region": "alaska", "coordinate_datum": "NAD83"}},
+    {"source_id": "api_changes_gulf", "table": "api_change", "url": "https://www.data.bsee.gov/Well/Files/apichgdelimit.zip",
+     "member": "apichgdelimit.txt", "constants": {"region": "gulf_of_america"}},
+    {"source_id": "api_changes_pacific", "table": "api_change", "url": "https://www.data.bsee.gov/Well/Files/apichgpacdelimit.zip",
+     "member": "apichgpacdelimit.txt", "constants": {"region": "pacific"}},
+    {"source_id": "api_changes_alaska", "table": "api_change", "url": "https://www.data.bsee.gov/Well/Files/apichgakdelimit.zip",
+     "member": "apichgakdelimit.txt", "constants": {"region": "alaska"}}
+  ],
+  "tables": {
+    "borehole": {
+      "layout": {"type": "csv", "header": false, "encoding": "utf-8"},
+      "withheld_chars": ["#", "*"],
+      "warn_withheld": true,
+      "id": "bsee:borehole:{api_well_number}",
+      "key": ["api_well_number"],
+      "columns": [
+        {"name": "api_well_number", "type": "string", "pattern": "^\\d{12}$", "required": true},
+        {"name": "well_name", "type": "string"},
+        {"name": "well_name_suffix", "type": "string"},
+        {"name": "operator_number", "type": "string"},
+        {"name": "bottom_field_name_code", "type": "string"},
+        {"name": "spud_date", "type": "date", "formats": ["%Y%m%d"]},
+        {"name": "bottom_lease_number", "type": "string"},
+        {"name": "rkb_elevation_ft", "type": "integer"},
+        {"name": "bh_total_md_ft", "type": "integer"},
+        {"name": "tvd_ft", "type": "integer"},
+        {"split": [{"name": "surface_ns_distance", "width": 5, "type": "integer"},
+                   {"name": "surface_ns_code", "width": 1, "type": "string"},
+                   {"name": "surface_ew_distance", "width": 5, "type": "integer"},
+                   {"name": "surface_ew_code", "width": 1, "type": "string"}]},
+        {"split": [{"name": "surface_area_code", "width": 2, "type": "string"},
+                   {"name": "surface_block_number", "width": 6, "type": "string"}]},
+        {"split": [{"name": "bottom_ns_distance", "width": 5, "type": "integer"},
+                   {"name": "bottom_ns_code", "width": 1, "type": "string"},
+                   {"name": "bottom_ew_distance", "width": 5, "type": "integer"},
+                   {"name": "bottom_ew_code", "width": 1, "type": "string"}]},
+        {"split": [{"name": "bottom_area_code", "width": 2, "type": "string"},
+                   {"name": "bottom_block_number", "width": 6, "type": "string"}]},
+        {"name": "total_depth_date", "type": "date", "formats": ["%Y%m%d"]},
+        {"name": "status_date", "type": "date", "formats": ["%Y%m%d"]},
+        {"name": "type_code", "type": "string"},
+        {"name": "district_code", "type": "string"},
+        {"name": "status_code", "type": "string"},
+        {"name": "water_depth_ft", "type": "integer"},
+        {"name": "surface_longitude", "type": "decimal"},
+        {"name": "surface_latitude", "type": "decimal"},
+        {"name": "bottom_longitude", "type": "decimal"},
+        {"name": "bottom_latitude", "type": "decimal"},
+        {"name": "surface_lease_number", "type": "string"},
+        {"name": "complex_id", "type": "string"},
+        {"name": "structure_number", "type": "string"},
+        {"name": "update_date", "type": "date", "formats": ["%Y%m%d"]},
+        {"name": "well_class_code", "type": "string"}
+      ],
+      "derived": {
+        "well_api10": {"op": "slice", "from": "api_well_number", "start": 0, "end": 10},
+        "surface_block_key": {"op": "strip_leading_zeros", "from": "surface_block_number"},
+        "bottom_block_key": {"op": "strip_leading_zeros", "from": "bottom_block_number"}
+      },
+      "checks": [
+        {"check": "range", "name": "coordinate_out_of_range", "severity": "error",
+         "fields": ["surface_latitude", "bottom_latitude"], "min": -90, "max": 90},
+        {"check": "range", "name": "coordinate_out_of_range", "severity": "error",
+         "fields": ["surface_longitude", "bottom_longitude"], "min": -180, "max": 180},
+        {"check": "compare", "name": "tvd_exceeds_md", "severity": "warning", "left": "tvd_ft", "op": "<=", "right": "bh_total_md_ft"},
+        {"check": "compare", "name": "spud_after_total_depth_date", "severity": "warning",
+         "left": "spud_date", "op": "<=", "right": "total_depth_date"}
+      ]
+    },
+    "api_change": {
+      "layout": {"type": "csv", "header": false, "encoding": "utf-8"},
+      "withheld_chars": ["#", "*"],
+      "id": "bsee:{_source_id}:{_row}",
+      "columns": [
+        {"name": "api_well_number", "type": "string", "pattern": "^\\d{12}$", "required": true},
+        {"name": "activity_type_code", "type": "string"},
+        {"name": "previous_api_number", "type": "string"},
+        {"name": "activity_date", "type": "date", "formats": ["%m/%d/%Y"]},
+        {"name": "well_name", "type": "string"},
+        {"name": "well_name_suffix", "type": "string"},
+        {"name": "surface_lease_number", "type": "string"},
+        {"name": "surface_area_code", "type": "string"},
+        {"name": "surface_block_number", "type": "string"},
+        {"name": "spud_date", "type": "date", "formats": ["%m/%d/%Y"]},
+        {"name": "bottom_lease_number", "type": "string"},
+        {"name": "bottom_area_code", "type": "string"},
+        {"name": "bottom_block_number", "type": "string"},
+        {"name": "bh_total_md_ft", "type": "integer"}
+      ],
+      "derived": {
+        "previous_api_digits": {"op": "digits", "from": "previous_api_number"}
+      },
+      "checks": [
+        {"check": "reference", "name": "api_change_unknown_borehole", "severity": "warning",
+         "field": "api_well_number", "table": "borehole"}
+      ]
+    }
+  },
+  "graph": {
+    "nodes": [
+      {"label": "Wellbore", "table": "borehole", "id": "wellbore:{api_well_number}",
+       "properties": ["api_well_number", "well_name", "well_name_suffix", "region", "status_code", "status_date",
+                      "type_code", "well_class_code", "spud_date", "total_depth_date", "bh_total_md_ft", "tvd_ft",
+                      "rkb_elevation_ft", "water_depth_ft", "surface_latitude", "surface_longitude",
+                      "coordinate_datum", "withheld"]},
+      {"label": "Well", "table": "borehole", "id": "well:{well_api10}", "properties": {"api10": "well_api10"}},
+      {"label": "Operator", "table": "borehole", "id": "operator:{operator_number}", "properties": ["operator_number"]},
+      {"label": "Lease", "table": "borehole", "id": "lease:{surface_lease_number}",
+       "properties": {"lease_number": "surface_lease_number"}, "skip_values": {"surface_lease_number": ["NOLEASE"]}},
+      {"label": "Lease", "table": "borehole", "id": "lease:{bottom_lease_number}",
+       "properties": {"lease_number": "bottom_lease_number"}, "skip_values": {"bottom_lease_number": ["NOLEASE"]}},
+      {"label": "Block", "table": "borehole", "id": "block:{surface_area_code}-{surface_block_key}",
+       "properties": {"area_code": "surface_area_code", "block_number": "surface_block_key"}},
+      {"label": "Block", "table": "borehole", "id": "block:{bottom_area_code}-{bottom_block_key}",
+       "properties": {"area_code": "bottom_area_code", "block_number": "bottom_block_key"}},
+      {"label": "Field", "table": "borehole", "id": "field:{bottom_field_name_code}",
+       "properties": {"field_code": "bottom_field_name_code"}, "skip_values": {"bottom_field_name_code": ["WILD"]}}
+    ],
+    "edges": [
+      {"type": "HAS_WELLBORE", "table": "borehole", "from": "well:{well_api10}", "to": "wellbore:{api_well_number}"},
+      {"type": "OPERATED_BY", "table": "borehole", "from": "wellbore:{api_well_number}", "to": "operator:{operator_number}"},
+      {"type": "SURFACE_ON_LEASE", "table": "borehole", "from": "wellbore:{api_well_number}",
+       "to": "lease:{surface_lease_number}", "skip_values": {"surface_lease_number": ["NOLEASE"]}},
+      {"type": "BOTTOM_ON_LEASE", "table": "borehole", "from": "wellbore:{api_well_number}",
+       "to": "lease:{bottom_lease_number}", "skip_values": {"bottom_lease_number": ["NOLEASE"]}},
+      {"type": "SURFACE_IN_BLOCK", "table": "borehole", "from": "wellbore:{api_well_number}",
+       "to": "block:{surface_area_code}-{surface_block_key}"},
+      {"type": "BOTTOM_IN_BLOCK", "table": "borehole", "from": "wellbore:{api_well_number}",
+       "to": "block:{bottom_area_code}-{bottom_block_key}"},
+      {"type": "BOTTOM_IN_FIELD", "table": "borehole", "from": "wellbore:{api_well_number}",
+       "to": "field:{bottom_field_name_code}", "skip_values": {"bottom_field_name_code": ["WILD"]}},
+      {"type": "RENUMBERED_FROM", "table": "api_change", "from": "wellbore:{api_well_number}",
+       "to": "wellbore:{previous_api_digits}", "require_existing": true, "not_self": true}
+    ]
+  },
+  "error_policy": {"max_errors": 0}
+}

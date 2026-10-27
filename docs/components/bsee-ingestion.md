@@ -1,5 +1,7 @@
 # BSEE well-data ingestion
 
+> **Superseded for new work.** BSEE is now imported by the generic [structured-data importer](dataset-import.md) with [`bsee_wells.mapping.json`](../../configs/datasets/bsee_wells.mapping.json), which reproduces this adapter's records and graph exactly ([E6](../experiments/E6-generic-import-bsee.md)). This adapter is kept because experiment E3 references it.
+
 This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Data sources](../DATA_SOURCES.md). How its records will become graph knowledge is in [specification §5.7](../PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry).
 
 The adapter uses only the Python standard library plus `jsonschema` for output validation. It adds no dependencies to the lock file.

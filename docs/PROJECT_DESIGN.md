@@ -2,7 +2,7 @@
 
 ## Project specification and system design
 
-**Document version:** 2.0 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
+**Document version:** 2.1 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
 **Project:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** proposed implementation baseline; the PDF and BSEE ingestion subsystems exist<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
@@ -11,7 +11,7 @@
 
 This document describes the intended product, its current implementation, the proposed architecture, data contracts, operating requirements, and the evidence needed before release. “Proposed” means a design recommendation, not an installed component or an approved purchase.
 
-**Version 2.0 (27 October 2026)** aligns the specification with VPI's two requirement documents: the three-layer target and what the capstone delivers in each layer (§1.3), requirement traceability (§1.2), the shared entity registry (§5.7), competing interpretations and expert knowledge (§5.8), domain modules and relation categories (§6), new requirements FR-16 to FR-18, decisions D-16 to D-20, and open questions for supervisor meetings (§13.2).
+**Version 2.0 (27 October 2026)** aligns the specification with VPI's two requirement documents: the three-layer target and what the capstone delivers in each layer (§1.3), requirement traceability (§1.2), the shared entity registry (§5.7), competing interpretations and expert knowledge (§5.8), domain modules and relation categories (§6), new requirements FR-16 to FR-18, decisions D-16 to D-20, and open questions for supervisor meetings (§13.2). **Version 2.1** records the domain-neutral ingestion layer: document pipeline, structured-data importer and default OCR engine (§3.1, §9, D-21, D-22).
 
 Confirmed so far: a three-student team, an internal service as the target, and possible access to a school machine with an RTX 4080 SUPER-class GPU or an A100. Still unconfirmed: the exact machine, availability, budget, deadline, identity service, operating owner, and the VPI documents. The design deliberately works from the smaller GPU option.
 
@@ -199,12 +199,12 @@ IDs connect implementation work to the acceptance and delivery plan. “Must” 
 
 ### 3.1 What exists
 
-The package currently provides two ingestion CLIs:
+The ingestion layer (stages 1–2 of §5.1, and the dataset path of §5.7) is implemented as two domain-neutral pipelines:
 
-- a PDF pipeline for GDR reports and registered local PDFs;
-- a structured-data adapter for the BSEE well files.
+- **Document ingestion** ([`graph_builder.corpus`](components/corpus-ingestion.md)). It registers files of any supported format (PDF, scans, images, DOCX, PPTX, XLSX, HTML, Markdown) into a content-addressed store with a SQLite catalog, decides per page whether to use the text layer or OCR, and reads Vietnamese and English scans with a local OCR engine ([E5](experiments/E5-ocr-engine-benchmark.md)). It produces chunks with page, region and section provenance and flags pages whose text looks wrong. Processing is per document, resumable, and can run in several worker processes; exports are atomic bundles ([E7](experiments/E7-corpus-pipeline-smoke.md)).
+- **Structured-data import** ([`graph_builder.datasets`](components/dataset-import.md)). One mapping file turns CSV, Excel or JSON-lines files into typed records and a property graph whose every record and edge cites its file, digest and row. BSEE well data is one such mapping; it reproduces the earlier dedicated adapter and graph builder exactly ([E6](experiments/E6-generic-import-bsee.md)). The linked BSEE graph (wellbores to wells, operators, leases, blocks, fields and renumbered predecessors) is the seed of the entity registry (§5.7).
 
-A third command, `graph_builder.graph.bsee`, links the BSEE records within that source: wellbores to wells, operators, leases, blocks, fields and renumbered predecessors. Every edge carries row evidence, and the output is a JSONL property graph. It is the seed of the entity registry (§5.7). Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build ([experiment E4](experiments/E4-ak3-architecture-prototype.md)). There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
+The earlier source-specific commands remain for reproducing experiments E1–E4: the GDR PDF pipeline (`graph_builder.ingestion`), the BSEE adapter (`graph_builder.ingestion.bsee`) and the BSEE graph builder (`graph_builder.graph.bsee`). Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build ([experiment E4](experiments/E4-ak3-architecture-prototype.md)). There is no implemented ontology service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
 
 ![Current ingestion paths](diagrams/01-current-ingestion.svg)
 
@@ -708,7 +708,8 @@ Everything marked proposed is an architectural recommendation. Select exact futu
 | Python 3.12 | Existing pipeline; proposed application/worker language | Reuses ingestion and evaluation code; keeps three students in one backend language |
 | Docling + pypdf | Existing parser and independent PDF-text/structure checks | Already evaluated locally; known difficult forms/tables remain quality risks |
 | JSON/JSONL + JSON Schema; YAML for authored ontology | Existing artifact formats; proposed versioned contracts | Inspectable and easy to diff; schema validation must be supplemented by semantic checks |
-| Python standard library (`csv`, `zipfile`, `urllib`) | Existing BSEE adapter | No new dependency for structured datasets; streaming keeps memory low. Revisit (for example Parquet or DuckDB) only if directional surveys or larger tables make JSONL impractical |
+| Python standard library (`csv`, `zipfile`, `sqlite3`, `urllib`) and openpyxl | Existing structured-data importer and corpus catalog | No server for ingestion state; rows stream file to file, with keys and nodes in SQLite, so memory stays flat. Revisit (for example Parquet or DuckDB) only if tables reach a size where JSONL is impractical |
+| PP-OCRv6 detection (RapidOCR, ONNX) + VietOCR recognition | Existing default OCR engine in the document pipeline | Reads Vietnamese tone marks and English on CPU; about 180 MB of models; PP-OCR recognition and EasyOCR measured worse for Vietnamese ([E5](experiments/E5-ocr-engine-benchmark.md)). 25–50 s per scanned page on a laptop CPU; a GPU or more workers shorten large scan batches |
 | FastAPI + Pydantic | Proposed API and typed request/response layer | Fits the Python codebase and explicit contracts; heavy work runs in a worker process |
 | PostgreSQL | Proposed metadata, accepted-claim, audit, and job store | Transactions suit review decisions and workflow state; operationally one additional database |
 | Neo4j Community initially | Proposed accepted-knowledge graph projection | Cypher supports explicit relation queries; application validators provide checks unavailable in the selected edition |
@@ -907,6 +908,8 @@ The [component guides](components/) remain the detailed reference for implemente
 | D-18 | Develop on public proxy data (BSEE, GDR end-of-well reports) until VPI supplies documents; VPI documents then enter through the same adapters and gates | Proposed | VPI documents arrive, or VPI restricts where they may be processed |
 | D-19 | Language tags on all names and aliases from the start; Vietnamese documents through OCR after its quality gate; Russian deferred | Proposed | VPI supplies Russian material that a first-release question needs |
 | D-20 | Store competing interpretations and their links; never select a single answer for an interpreted topic | Adopted from VPI's KGinEP document | Product owner changes the policy for a specific module |
+| D-21 | Ingestion is domain-neutral: one document pipeline for every format and one mapping-driven importer for every table; sources are added by configuration, not code | Implemented 27 Oct 2026 ([E6](experiments/E6-generic-import-bsee.md), [E7](experiments/E7-corpus-pipeline-smoke.md)) | A source that cannot be expressed as a mapping or a supported document format |
+| D-22 | VietOCR recognition with PP-OCRv6 detection is the default OCR engine; pages are flagged for review by a Vietnamese spelling check, not silently corrected | Measured ([E5](experiments/E5-ocr-engine-benchmark.md)) | A real VPI scan benchmark shows another engine reads them better |
 
 ### 13.2 Open questions for supervisor meetings
 
