@@ -6,7 +6,6 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import re
-import shutil
 import sqlite3
 import tempfile
 from typing import Any, Iterator
@@ -211,14 +210,3 @@ def iter_files(paths: list[Path], recursive: bool) -> Iterator[Path]:
         else:
             raise ValueError(f"No such file or directory: {path}")
 
-
-def copy_tree_atomic(source: Path, destination: Path) -> None:
-    """Replace a directory so readers never see a half-written export."""
-    staging = destination.with_name(destination.name + ".old")
-    if staging.exists():
-        shutil.rmtree(staging)
-    if destination.exists():
-        destination.rename(staging)
-    source.rename(destination)
-    if staging.exists():
-        shutil.rmtree(staging)

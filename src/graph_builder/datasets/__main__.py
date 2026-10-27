@@ -52,8 +52,9 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"WARNING {kind}: {finding['count']} (e.g. {finding['examples'][0]})")
             for kind, finding in summary["errors"].items():
                 print(f"ERROR {kind}: {finding['count']} (e.g. {finding['examples'][0]})")
+            # run_import validated the bundle before publishing it; this re-checks the published release.
             problems = validate_bundle(output)
-            args.output = output
+            args.output = summary["release"]
         for problem in problems[:20]:
             print(f"ERROR {problem}")
         print(f"{'FAIL' if problems else 'PASS'}: {args.output}; {len(problems)} problems")

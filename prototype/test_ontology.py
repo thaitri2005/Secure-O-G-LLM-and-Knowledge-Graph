@@ -117,5 +117,16 @@ class DuplicateSearchTests(unittest.TestCase):
         self.assertNotIn(("TG2", "TG4"), similar)  # a different well, not a spelling variant
 
 
+class GenerationCheckTests(unittest.TestCase):
+    def test_partial_projection_fails_the_exact_set_check(self):
+        from prototype.kgproto.extract import generation_problems
+        expected = {("a", "doc#c1"), ("b", "doc#c2")}
+        self.assertEqual(generation_problems(expected, [("a", "doc#c1"), ("b", "doc#c2")]), [])
+        # One claim's chunk failed to MATCH: the other still projected, so counts were nonzero (E9 finding).
+        self.assertEqual(generation_problems(expected, [("a", "doc#c1")]), ["missing b <- doc#c2"])
+        self.assertEqual(generation_problems(expected, [("a", "doc#c1"), ("b", "doc#c2"), ("x", None)]),
+                         ["claim without evidence x"])
+
+
 if __name__ == "__main__":
     unittest.main()

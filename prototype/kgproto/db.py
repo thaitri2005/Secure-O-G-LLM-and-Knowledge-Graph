@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS review_decisions (
 CREATE TABLE IF NOT EXISTS generations (
     id serial PRIMARY KEY, run_id int REFERENCES extraction_runs, label text, claims int, evidence int,
     checks_passed boolean, created_at timestamptz DEFAULT now(), activated_at timestamptz);
+ALTER TABLE generations ADD COLUMN IF NOT EXISTS expected_digest text;
+ALTER TABLE generations ADD COLUMN IF NOT EXISTS problems jsonb;
 CREATE TABLE IF NOT EXISTS publication (
     workspace text PRIMARY KEY, active_generation int REFERENCES generations);
 CREATE TABLE IF NOT EXISTS questions_log (

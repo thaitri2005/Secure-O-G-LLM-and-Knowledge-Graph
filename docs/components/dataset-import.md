@@ -42,8 +42,10 @@ python -m graph_builder.datasets validate --output data/processed/local/datasets
 
 - **Snapshots:** downloads go to `data/raw/<dataset_id>/` and are recorded in `snapshot.json` (URL, bytes, SHA256, `Last-Modified`, time). A cached file is reused only if its digest matches. A pinned `sha256` that no longer matches stops the import, so a publisher's new version is never taken silently.
 - **Encodings:** `auto` tries UTF-8 (with or without BOM), UTF-16, Windows-1258 (Vietnamese) and Windows-1252. Text is normalized to NFC, so tone marks stored as combining characters compare equal to precomposed ones.
-- **Scale:** record processing uses streaming and temporary SQLite keys/nodes. XLSX ZIP members may be read fully into memory; this is not a bound on all input memory. Output is staged, then installed after import-level error checks. The CLI's full bundle validation runs afterwards; validation-before-publication remains an open fix.
-- **Outputs**, in `data/processed/local/datasets/<dataset_id>/` by default:
+- **Scale:** record processing uses streaming and temporary SQLite keys/nodes. XLSX ZIP members may be read fully into memory; this is not a bound on all input memory. Output is staged; the full bundle validation (digests, record schemas, unique record IDs, edge endpoints) runs on the staged bundle, which is published only if it passes.
+- **Identity:** generated `record_id` values must be unique even when a table declares no natural `key`; a repeat is a `duplicate_record_id` error. Duplicate column names in a CSV or XLSX header stop the import (one value would overwrite the other); blank header cells are named `_column<N>` by position.
+- **Publication:** the bundle becomes an immutable release, `<output>/releases/<UTC time>-<digest>/`, and `<output>/CURRENT.json` is switched to it by one atomic file replacement. A failed or interrupted import leaves the previous release current; the previous release is kept and older ones are pruned ([`publication.py`](../../src/graph_builder/publication.py)). `validate --output <output>` checks the current release; a bundle written before this change (flat files in `<output>`) is still read.
+- **Outputs**, in the current release under `data/processed/local/datasets/<dataset_id>/` by default:
   - `records/<table>.jsonl`;
   - `nodes.jsonl` (nodes carry their first record's evidence) and `edges.jsonl` (one per row, with evidence);
   - `schemas/<table>.schema.json`, generated from the mapping;
@@ -53,9 +55,7 @@ python -m graph_builder.datasets validate --output data/processed/local/datasets
 
 ## Limitations
 
-- Replacing a bundle uses two renames and can leave the published path absent on interruption. Use a fresh output directory while the immutable-release/pointer fix remains open.
-- Optional natural `key` checks do not independently enforce unique generated `record_id` values during import. A duplicate-ID bundle can be installed before post-import validation reports it ([E9](../experiments/E9-repository-review.md)).
-- Duplicate/empty CSV or XLSX header names are not rejected; duplicate names can silently discard a value. Inspect headers before importing until this is fixed.
+- The E9 replacement, duplicate-ID and duplicate-header defects are fixed and covered by `tests/test_datasets.py` and `tests/test_publication.py`. Pointer switching is atomic on one local volume; network file systems were not tested.
 - Download size caps, pre-request redirect checks and enforced parser CPU/RAM/disk budgets remain planned. The ZIP-member size check alone does not provide these guarantees.
 
 - One sheet per table for Excel. Formulas are read as their cached values.

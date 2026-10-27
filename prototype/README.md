@@ -23,7 +23,7 @@ Out of scope: BSEE (developed as its own track), authentication and roles, UI, m
 
 ## Current limits after the 27 October review
 
-The impossible-date and invalid-month defects found by E9 are fixed and covered by tests (10 prototype tests). Generation validation checks that existing claims have evidence and that nonempty accepted input produces a nonempty graph; it does not compare the exact expected accepted set. A partial projection can therefore pass. Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization. These shortcuts remain unfixed ([E9](../docs/experiments/E9-repository-review.md)).
+The impossible-date and invalid-month defects found by E9 are fixed and covered by tests (10 prototype tests). Generation checks now compare the projection with the frozen set of accepted (claim, evidence) pairs exactly; a partial projection fails and cannot be activated ([E11](../docs/experiments/E11-publication-and-import-fixes.md)). Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization; these shortcuts remain ([E9](../docs/experiments/E9-repository-review.md)).
 
 Before promotion, use migrations and managed connections, server-derived review identity, independent output validation, exact generation membership/completion checks and source withdrawal. Freeze a document-level held-out split before further prompt/model changes; E4's scores remain development results with a simulated reviewer. The generic corpus/importer paths are not yet integrated into this prototype.
 

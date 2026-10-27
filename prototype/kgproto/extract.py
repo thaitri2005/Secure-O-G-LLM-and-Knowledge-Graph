@@ -96,12 +96,15 @@ def project(run_id: int, label: str) -> int:
     rows = db.execute("SELECT c.chunk_id, c.claim FROM candidates c JOIN review_decisions r ON r.candidate_id = c.id "
                       "WHERE c.run_id = %s AND r.action = 'accept'", (run_id,)).fetchall()
     label, field = PROFILE.subject["graph_label"], PROFILE.subject_field
+    expected: set[tuple[str, str]] = set()  # the frozen accepted set: (claim ID, evidence chunk ID)
     with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver, driver.session() as session:
         for chunk_id, claim in rows:
             subject = PROFILE.subject_key(claim[field])
             context = {name: PROFILE.context_key(name, claim.get(name)) for name in PROFILE.context_fields}
             key = json.dumps([generation, subject, claim["property"], claim["qualifier"],
                               *context.values(), claim["value"]])
+            claim_id = hashlib.sha1(key.encode()).hexdigest()[:16]
+            expected.add((claim_id, f"{REPORT_DOC}#{chunk_id}"))
             # The label comes from the validated profile (a trusted asset), never from model output.
             session.run(
                 "MATCH (d:Document {id: $doc}) MATCH (ch:Chunk {id: $chunk}) "
@@ -114,16 +117,29 @@ def project(run_id: int, label: str) -> int:
                 "MERGE (c)-[s:SUPPORTED_BY]->(ch) ON CREATE SET s.quote = $quote",
                 doc=REPORT_DOC, chunk=f"{REPORT_DOC}#{chunk_id}",
                 subject_id=f"{label.lower()}:{REPORT_DOC}:{subject}", name=claim[field],
-                claim_id=hashlib.sha1(key.encode()).hexdigest()[:16], generation=generation,
+                claim_id=claim_id, generation=generation,
                 property=claim["property"], qualifier=claim["qualifier"], value=claim["value"], unit=claim["unit"],
                 run=run_id, profile=PROFILE.id, context=context, quote=claim["quote"])
-        check = session.run("MATCH (c:Claim {generation: $g}) OPTIONAL MATCH (c)-[s:SUPPORTED_BY]->(:Chunk) "
-                            "WITH c, count(s) AS n RETURN count(c) AS claims, sum(n) AS evidence, "
-                            "sum(CASE WHEN n = 0 THEN 1 ELSE 0 END) AS unsupported", g=generation).single()
-    passed = check["unsupported"] == 0 and (check["claims"] > 0) == bool(rows)
-    db.execute("UPDATE generations SET claims = %s, evidence = %s, checks_passed = %s WHERE id = %s",
-               (check["claims"], check["evidence"], passed, generation))
+        projected = [(r["claim"], r["chunk"]) for r in session.run(
+            "MATCH (c:Claim {generation: $g}) OPTIONAL MATCH (c)-[:SUPPORTED_BY]->(ch:Chunk) "
+            "RETURN c.id AS claim, ch.id AS chunk", g=generation)]
+    problems = generation_problems(expected, projected)
+    digest = hashlib.sha256(json.dumps(sorted(expected)).encode()).hexdigest()
+    db.execute("UPDATE generations SET claims = %s, evidence = %s, checks_passed = %s, expected_digest = %s, "
+               "problems = %s WHERE id = %s",
+               (len({c for c, _ in projected}), sum(1 for _, ch in projected if ch), not problems, digest,
+                Jsonb(problems), generation))
     return generation
+
+
+def generation_problems(expected: set[tuple[str, str]], projected: list[tuple[str, str | None]]) -> list[str]:
+    """Compare the projected generation with the frozen accepted set, exactly (E9: counts alone let a partial
+    projection pass). Every expected claim and evidence link must be present, and nothing else."""
+    actual = {(claim, chunk) for claim, chunk in projected if chunk}
+    problems = [f"missing {claim} <- {chunk}" for claim, chunk in sorted(expected - actual)]
+    problems += [f"unexpected {claim} <- {chunk}" for claim, chunk in sorted(actual - expected)]
+    problems += [f"claim without evidence {claim}" for claim, chunk in projected if not chunk]
+    return problems
 
 
 def activate(generation: int) -> None:

@@ -13,3 +13,6 @@ prototype/results/*.log
 # Original VPI documents: the repository is public. Remove this rule only once VPI agrees to publication.
 docs/requirements/originals/
 data/corpora/
+
+# Report renderer dependencies and preview images (scripts/render_progress_report.py)
+tmp/

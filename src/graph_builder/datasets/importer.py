@@ -1,8 +1,9 @@
 """Fetch, parse, check and link a mapped dataset into a versioned bundle of typed records and a property graph.
 
 Rows stream from disk to disk; keys, nodes and cross-table references live in a temporary SQLite database,
-so memory use does not grow with the number of rows. The bundle is staged and swapped in only when the
-import stays within its error budget.
+so memory use does not grow with the number of rows. The bundle is staged, validated, and published as an
+immutable release behind an atomically switched pointer (publication.py) only when the import stays within
+its error budget and validation passes; the previous release stays current otherwise.
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from ..corpus.store import atomic_write_json, atomic_write_text, file_sha256
+from ..publication import current_release, publish
 from .mapping import column_names
 from .readers import iter_rows
 from .values import ValueProblem, derive, parse_value, render
@@ -205,6 +207,7 @@ def run_import(mapping: dict[str, Any], root: Path, output: Path, refresh: bool 
         database = sqlite3.connect(staging / "work.sqlite")
         database.execute("CREATE TABLE keys (tbl TEXT, key TEXT, record_id TEXT, PRIMARY KEY (tbl, key))")
         database.execute("CREATE TABLE nodes (id TEXT PRIMARY KEY, label TEXT, body TEXT)")
+        database.execute("CREATE TABLE record_ids (record_id TEXT PRIMARY KEY)")
         counts: Counter[str] = Counter()
         field_stats: dict[str, dict[str, Counter]] = defaultdict(lambda: {"null": Counter(), "withheld": Counter()})
         (staging / "records").mkdir()
@@ -240,12 +243,20 @@ def run_import(mapping: dict[str, Any], root: Path, output: Path, refresh: bool 
                         continue
                     record = {"record_id": record_id, "table": table_name, **record}
                     failures = row_checks(table_name, table, record, where)
+                    duplicate_key = False
                     if table.get("key"):
                         key = "|".join(str(record[field]) for field in table["key"])
                         try:
                             database.execute("INSERT INTO keys VALUES (?, ?, ?)", (table_name, key, record_id))
                         except sqlite3.IntegrityError:
+                            duplicate_key = True
                             failures.append(("error", "duplicate_key", f"{where}: {table['key']}={key}"))
+                    # Record IDs must be unique whether or not the table declares a natural key.
+                    if not duplicate_key:
+                        try:
+                            database.execute("INSERT INTO record_ids VALUES (?)", (record_id,))
+                        except sqlite3.IntegrityError:
+                            failures.append(("error", "duplicate_record_id", f"{where}: {record_id}"))
                     if table.get("warn_withheld") and withheld:
                         failures.append(("warning", "withheld_fields", f"{where}: {', '.join(withheld)}"))
                     hard = [failure for failure in failures if failure[0] == "error"]
@@ -338,17 +349,9 @@ def run_import(mapping: dict[str, Any], root: Path, output: Path, refresh: bool 
         atomic_write_json(staging / "summary.json", summary)
         atomic_write_text(staging / "SHA256SUMS", "".join(f"{file_sha256(staging / name)}  {name}\n"
                                                           for name in sorted([*names, "summary.json"])))
-        if output.exists():
-            if not (output / "summary.json").exists():
-                raise ValueError(f"Refusing to replace {output}: it is not a dataset bundle")
-            old = output.with_name(output.name + ".old")
-            shutil.rmtree(old, ignore_errors=True)
-            output.rename(old)
-            staging.rename(output)
-            shutil.rmtree(old, ignore_errors=True)
-        else:
-            staging.rename(output)
-        return summary
+        release = publish(staging, output, marker="summary.json", digest=file_sha256(staging / "SHA256SUMS"),
+                          validate=validate_bundle)
+        return {**summary, "release": str(release)}
     except BaseException:
         if database is not None:
             database.close()
@@ -383,8 +386,12 @@ def write_schemas(mapping: dict[str, Any], directory: Path) -> None:
 
 
 def validate_bundle(output: Path) -> list[str]:
-    """Check digests, record schemas, unique record IDs and that every edge endpoint is a node."""
+    """Check digests, record schemas, unique record IDs and that every edge endpoint is a node.
+
+    ``output`` is a staged bundle, a release, or a publication root (its current release is checked).
+    """
     from jsonschema import Draft202012Validator
+    output = current_release(output)
     problems = []
     for line in (output / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
         digest, name = line.split("  ", 1)

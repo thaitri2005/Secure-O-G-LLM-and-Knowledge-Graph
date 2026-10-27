@@ -6,7 +6,7 @@ A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premi
 
 ## Status
 
-**27 October review:** document ingestion, structured-data import and the AK-3 prototype exist as separate paths; their integration remains open. The next milestone is the builder slice: an ontology loaded from a file rather than code, extraction with reference resolution, duplicate search, and a real reviewer publishing into a validated graph generation. Cited QA follows, then access control. Publication, validation and cache issues identified in the [repository assessment](docs/REPOSITORY_REVIEW_2026-10-27.md) remain unfixed; this documentation update changes no runtime behavior. See the updated [development plan](docs/DEVELOPMENT_PLAN.md#7-next-implementation-backlog) and [progress report](docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md).
+**27 October review:** document ingestion, structured-data import and the AK-3 prototype exist as separate paths; their integration remains open. The next milestone is the builder slice: an ontology loaded from a file rather than code, extraction with reference resolution, duplicate search, and a real reviewer publishing into a validated graph generation. Cited QA follows, then access control. The publication, dataset-identity, header and generation-check defects from the [repository assessment](docs/REPOSITORY_REVIEW_2026-10-27.md) are fixed and covered by tests ([E11](docs/experiments/E11-publication-and-import-fixes.md)); cache-identity and redirect-check findings remain open. See the updated [development plan](docs/DEVELOPMENT_PLAN.md#7-next-implementation-backlog) and [progress report](docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md).
 
 | Component | Purpose | Status |
 |---|---|---|
@@ -29,8 +29,8 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
-python -m unittest discover -s tests          # 128 tests, under a minute
-python -m unittest prototype.test_ontology    # 10 prototype tests (profiles, validator, duplicate search)
+python -m unittest discover -s tests          # 136 tests, a few minutes with the cached PDF regression
+python -m unittest prototype.test_ontology    # 11 prototype tests (profiles, validator, duplicate search, generation check)
 ```
 
 The lock file is the verified Windows CPU environment. A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment.
@@ -99,7 +99,7 @@ For the earlier PDF pipeline, Docling caches live in a per-parser-settings subdi
 
 - Work on a branch and get a review from another student before merging to `main`.
 - Run `python -m unittest discover -s tests` before pushing. Tests use small synthetic fixtures; the PDF regression test also runs when the conversion caches are present.
-- Also run `python -m unittest prototype.test_ontology` until the prototype validation is promoted. On 27 October, 128 main tests and 10 prototype tests passed; these checks do not validate live services, GPU performance or private-data readiness ([E9](docs/experiments/E9-repository-review.md)). CI remains planned.
+- Also run `python -m unittest prototype.test_ontology` until the prototype validation is promoted. On 27 October, 136 main tests and 11 prototype tests passed; these checks do not validate live services, GPU performance or private-data readiness ([E9](docs/experiments/E9-repository-review.md)). CI remains planned.
 - Text files use UTF-8 and LF line endings (`.gitattributes`, `.editorconfig`). Generated artifacts must stay byte-reproducible.
 - Never commit downloads, caches or BSEE files. They are ignored and regenerable, and BSEE's terms are not an open license.
 - When behavior changes, update the component guide and specification §3 in the same change. Scope changes go into the specification first ([conventions](docs/README.md#conventions)).

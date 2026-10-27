@@ -48,6 +48,15 @@ def detect_encoding(path: Path, member: str | None) -> str:
     return "latin-1"
 
 
+def checked_header(names: list[str]) -> list[str]:
+    """Refuse duplicate column names (one value would silently overwrite the other); name blank columns by position."""
+    filled = [name or f"_column{index}" for index, name in enumerate(names, 1)]
+    duplicates = sorted({name for name in filled if filled.count(name) > 1})
+    if duplicates:
+        raise ValueError(f"duplicate column names {duplicates}; rename them or set header: false and map by position")
+    return filled
+
+
 def iter_rows(path: Path, member: str | None, layout: dict[str, Any]) -> Iterator[tuple[int, dict[str, Any] | list[Any]]]:
     """Yield (row number in the file, row). Rows are dicts when the file has a header, otherwise lists.
 
@@ -64,7 +73,7 @@ def iter_rows(path: Path, member: str | None, layout: dict[str, Any]) -> Iterato
                 text.readline()
             reader = csv.reader(text, delimiter=layout.get("delimiter", ","), quotechar=layout.get("quote", '"'),
                                 strict=True)
-            header = [name.strip() for name in next(reader, [])] if layout.get("header", True) else None
+            header = checked_header([name.strip() for name in next(reader, [])]) if layout.get("header", True) else None
             for number, row in enumerate(reader, 1):
                 if not any(cell.strip() for cell in row) and layout.get("skip_blank", True):
                     continue
@@ -86,7 +95,7 @@ def iter_rows(path: Path, member: str | None, layout: dict[str, Any]) -> Iterato
                 next(rows, None)
             header = None
             if layout.get("header", True):
-                header = [str(cell).strip() if cell is not None else "" for cell in next(rows, ())]
+                header = checked_header([str(cell).strip() if cell is not None else "" for cell in next(rows, ())])
             for number, row in enumerate(rows, 1):
                 cells = [cell.strip() if isinstance(cell, str) else cell for cell in row]
                 if all(cell is None or cell == "" for cell in cells):

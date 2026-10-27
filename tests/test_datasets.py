@@ -6,6 +6,8 @@ import unittest
 import zipfile
 
 from graph_builder.datasets.importer import run_import, validate_bundle
+from graph_builder.datasets.readers import iter_rows
+from graph_builder.publication import current_release
 from graph_builder.datasets.infer import infer_mapping
 from graph_builder.datasets.mapping import validate_mapping
 from graph_builder.datasets.values import ValueProblem, parse_value
@@ -86,7 +88,9 @@ class DatasetImportTest(unittest.TestCase):
         self.assertEqual(summary["nodes"], {"Block": 3, "Field": 1, "Well": 3})
         self.assertEqual(summary["edges"], {"IN_BLOCK": 3, "IN_FIELD": 2, "TESTED": 1})
         self.assertEqual(summary["warnings"]["unknown_well"]["count"], 1)
-        wells = [json.loads(line) for line in (output / "records/well.jsonl").read_text(encoding="utf-8").splitlines()]
+        release = current_release(output)
+        self.assertEqual(str(release), summary["release"])
+        wells = [json.loads(line) for line in (release / "records/well.jsonl").read_text(encoding="utf-8").splitlines()]
         self.assertEqual(wells[0]["name"], "Giếng Một")  # cp1258 decoded
         self.assertEqual((wells[0]["spud_date"], wells[0]["block_key"], wells[0]["region"]), ("2016-10-24", "827", "vn"))
         self.assertEqual((wells[1]["depth_m"], wells[1]["withheld"]), (None, ["depth_m"]))
@@ -101,7 +105,39 @@ class DatasetImportTest(unittest.TestCase):
         self.assertFalse(output.exists())
         summary = run_import(mapping(self.base, max_errors=1), self.base, output)
         self.assertEqual(summary["errors"]["duplicate_key"]["count"], 1)
-        self.assertEqual(len((output / "rejects.jsonl").read_text(encoding="utf-8").splitlines()), 1)
+        self.assertEqual(len((current_release(output) / "rejects.jsonl").read_text(encoding="utf-8").splitlines()), 1)
+
+    def test_failed_reimport_keeps_the_current_release(self):
+        output = self.base / "out"
+        first = run_import(mapping(self.base), self.base, output)["release"]
+        (self.base / "wells.csv").write_text(WELLS + "G001;Trùng;10;01/01/2020;X;AB0001\n", encoding="utf-8")
+        with self.assertRaises(ValueError):
+            run_import(mapping(self.base), self.base, output)
+        self.assertEqual(str(current_release(output)), first)
+        self.assertEqual(validate_bundle(output), [])
+        self.assertEqual([p.name for p in self.base.iterdir() if p.name.startswith(".out-")], [])  # staging removed
+
+    def test_duplicate_record_ids_fail_without_a_natural_key(self):
+        """E9 probe: two identical generated IDs used to import, then fail validation after replacing the bundle."""
+        (self.base / "codes.csv").write_text("code\nA\nA\n", encoding="utf-8")
+        value = {"dataset_id": "d", "title": "d", "license": {"id": "t", "url": ""},
+                 "sources": [{"source_id": "c", "table": "c", "path": "codes.csv"}],
+                 "tables": {"c": {"layout": {"type": "csv"}, "id": "d:{code}",
+                                  "columns": [{"name": "code", "type": "string"}]}},
+                 "_base": str(self.base)}
+        validate_mapping(value)
+        with self.assertRaisesRegex(ValueError, "duplicate_record_id"):
+            run_import(value, self.base, self.base / "codes")
+        self.assertFalse((self.base / "codes").exists())
+
+    def test_duplicate_headers_are_refused(self):
+        """E9 probe: code,depth,depth with A,100,999 used to keep only depth=999."""
+        (self.base / "dup.csv").write_text("code,depth,depth\nA,100,999\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "duplicate column names"):
+            list(iter_rows(self.base / "dup.csv", None, {"type": "csv"}))
+        (self.base / "blank.csv").write_text("code,,\nA,1,2\n", encoding="utf-8")
+        self.assertEqual(list(iter_rows(self.base / "blank.csv", None, {"type": "csv"})),
+                         [(1, {"code": "A", "_column2": "1", "_column3": "2"})])
 
     def test_pinned_digest_mismatch_fails(self):
         value = mapping(self.base)
