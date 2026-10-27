@@ -11,18 +11,24 @@ Sản phẩm: Knowledge Graph Builder (pipeline + admin application, ontology do
 
 Theo định hướng ở buổi họp ngày 07/10, sản phẩm là một **Knowledge Graph Builder**. Đó là pipeline kèm admin application, chuyển tài liệu kỹ thuật và structured data thành Knowledge Graph (KG) có evidence traceability, chạy bằng local LLM. Ontology là input do người dùng cung cấp; nhóm xây pipeline và application, không tự xây ontology chuyên ngành. Dầu khí là use case: giếng khoan (drilling, production), không đi vào geology/geophysics. Thứ tự thực hiện: graph builder trước, gồm extraction, entity identity, kiểm soát liên kết, human-in-the-loop review và curation; question answering sau; phân quyền để sau admin layer. Giai đoạn đầu dùng English.
 
-Trong kỳ báo cáo, ingestion, graph từ structured data và prototype extraction–review–QA đã chạy được. Nhóm đã làm literature review và khảo sát open-source theo yêu cầu, rồi kiểm chứng từng thành phần. Sau khi đối chiếu với buổi họp, prototype đã chuyển ontology từ code sang file profile: cùng code chạy được với một ontology khác.
+Trong kỳ báo cáo, ingestion, graph từ structured data và prototype extraction–review–QA đã chạy được. Nhóm đã làm literature review và khảo sát open-source theo yêu cầu, rồi kiểm chứng từng thành phần. Sau khi đối chiếu với buổi họp, nhóm đã:
+
+- chuyển ontology của prototype từ code sang file profile (cùng code chạy được với một ontology khác);
+- sửa các lỗi publication/validation mà repository review phát hiện;
+- thống nhất evidence/claim/entity contract cho cả tài liệu lẫn structured data;
+- dựng entity registry từ BSEE.
 
 | Hạng mục | Tiến độ nổi bật và trạng thái |
 |---|---|
 | PDF/OCR ingestion | 3 technical reports, 155 trang, 372 chunk; tái chạy toàn bộ PDF ingestion trên CPU cho kết quả byte-identical. EasyOCR đã chạy trên scan Việt–Anh. Pipeline hiện tại bổ sung VietOCR/PP-OCRv6, per-page OCR và quality flags; đã xử lý 44 PDF phụ lục AK-3, 463 trang. |
 | BSEE graph | Ingestion dữ liệu 3 vùng, có source tracking. Source-linked graph: 113.384 nodes / 398.263 edges. Expanded graph đã được nạp vào Neo4j, gồm 336.265 nodes kể cả metadata / 551.254 edges. Generic importer đã đối chiếu cùng record và graph counts với adapter. |
-| Extraction và QA | Prototype AK-3 trên 15 chunk: precision 0.97, recall 0.68; QA end-to-end đúng 19/31 câu. Thử nghiệm canonicalization trên WebNLG-10 tăng strict F1 từ 0.736 lên 0.843. |
+| Extraction và QA | Prototype AK-3 trên 15 chunk, chạy từ ontology file (E10): precision 0.968, recall 0.732; QA end-to-end đúng 23/31 câu (E4: 0.97 / 0.68, 19/31). Thử nghiệm canonicalization trên WebNLG-10 tăng strict F1 từ 0.736 lên 0.843. |
 | Nghiên cứu và đánh giá | 27 papers và code 13 repos được nghiên cứu; đã có ablation, đối chứng text RAG, quy trình AI-gold hai annotator và thử nghiệm extraction trên 49 đoạn EOR BSEE. Method suite có 354 tests pass; ingestion/application có 136 main tests và 14 prototype tests pass. |
-| Builder theo buổi họp ngày 07.10 | Ontology chuyển thành file profile có validation (`oil_wells` 14 properties); synthetic ontology thứ hai chạy cùng code, không sửa code. Thêm reference rule ("it", "the well"), duplicate search và chặn impossible dates. Chạy lại: extraction 0.968 / 0.732, end-to-end 23/31 (E4: 19/31), không có câu trả lời sai giá trị (mục 3.2). |
-| Điểm nghẽn | Missed facts (recall), chất lượng OCR, expert validation cho gold và held-out evaluation cho prototype AK-3. Bước tiếp theo là builder slice: ontology management, identity/curation, human review và publication chịu interruption. |
+| Builder theo buổi họp ngày 07.10 | Ontology chuyển thành file profile có validation (`oil_wells` 14 properties); synthetic ontology thứ hai chạy cùng code, không sửa code. Thêm duplicate search, read-only check cho QA và chặn impossible dates. Reference rule ("it", "the well") đã thử nhưng chưa dùng, vì prompt ghép lại làm giảm precision; cần đo riêng trên held-out set. Chạy lại: extraction 0.968 / 0.732, end-to-end 23/31 (E4: 19/31), không có câu trả lời sai giá trị (mục 3.2). |
+| Identity và contracts | Entity registry từ BSEE bằng config (E13): 57.453 wellbores, 39.518 wells; tên + sidetrack suffix + lease xác định 98,6% wellbores, 0 trường hợp nhầm. Evidence/claim/entity contract áp dụng được cho toàn bộ 1.778 chunks và 58.040 BSEE records (E12). Export/import publish thành immutable release, pointer chuyển atomic (E11). |
+| Điểm nghẽn | Missed facts (recall), chất lượng OCR, expert validation cho gold, held-out evaluation, và **máy**: laptop không GPU chỉ chạy được model 3B, mỗi lượt đánh giá mất khoảng 20 phút (mục 6). Bước tiếp theo là builder slice: admin console cho ontology, review và curation; prototype đọc corpus releases và shared contracts. |
 
-Các số liệu ở trên đến từ những dataset, configuration và graph scope khác nhau. Đây là tiến độ của các hạng mục nghiên cứu và phát triển trong cùng một dự án; mỗi thí nghiệm giữ metric và artifact tương ứng. Các thành phần đang được nối qua source–claim–review–graph contract.
+Các số liệu ở trên đến từ những dataset, configuration và graph scope khác nhau. Đây là tiến độ của các hạng mục nghiên cứu và phát triển trong cùng một dự án; mỗi thí nghiệm giữ metric và artifact tương ứng. Các thành phần được nối qua evidence/claim/entity contract (E12); prototype chưa dùng contract này.
 
 ## 2. Mục tiêu, dữ liệu và kiến trúc hệ thống
 
@@ -37,7 +43,7 @@ Admin application bao quanh pipeline để kiểm soát từng bước. VPI khô
 
 ![Hình 1. Hai source paths và bước integration](figures/01-current-paths.svg)
 
-*Hình 1. Document ingestion và structured-data import là hai source paths của dự án. Prototype đọc legacy chunks; dashed arrow thể hiện bước integration với corpus pipeline.*
+*Hình 1. Document ingestion và structured-data import publish validated releases và dùng chung evidence/claim/entity contract; entity registry dựng từ BSEE. Prototype chạy từ ontology file nhưng vẫn đọc legacy chunks; dashed arrow là bước integration với corpus pipeline.*
 
 Traceability: document/source version, page/bounding box/offset, source file/row, quote, run/model/ontology version, processing bundle và review history.
 
@@ -48,7 +54,10 @@ Stack dự kiến và đang thử nghiệm: Docling, VietOCR/PP-OCRv6, EasyOCR, 
 - **Kiến trúc/tài liệu:** sơ đồ data flow, catalog nguồn hiện có; ánh xạ section AK-3 sang actual/planned depth, casing, temperature, drilling time; cập nhật backlog, specification và development plan.
 - **PDF extraction:** lưu document ID, physical page, bounding box và content offset; hỗ trợ text/table chunk, scan-page coverage, file integrity và cache khi nguồn/cấu hình thay đổi. Corpus pipeline bổ sung content-addressed catalog, per-page OCR, quality flags, parallel processing và resume.
 - **BSEE ingestion:** tải dữ liệu Gulf, Pacific và Alaska; kiểm SHA256 từng file; lưu file/row nguồn; gộp well theo 10 chữ số đầu API number; nối wellbore–well–operator–lease–block–field và API number changes. Generic mapping tái tạo record và graph counts của adapter riêng.
-- **Prototype kiến trúc AK-3:** Qwen2.5-3B qua llama.cpp trên CPU; LLM tạo fact và quote → validator → review queue → Neo4j theo generation → FastAPI trả lời có citation hoặc abstain khi thiếu fact. Generation checks so sánh chính xác tập (claim, evidence) đã accept với graph đã project; projection thiếu claim không được activate (E11).
+- **Publication (E11):** corpus export và dataset import được validate khi còn staged, publish thành immutable release; pointer `CURRENT.json` chuyển atomic nên interruption không làm mất bản đang dùng. Duplicate record IDs và duplicate column headers bị chặn.
+- **Shared contracts (E12):** evidence (chunk span hoặc dataset row, pin vào release), claim revision (claim_id logic + revision_id), entity (ID từ identifier); JSON Schemas trong `schemas/`.
+- **Entity registry (E13):** dựng từ dataset release bằng config; resolver chỉ chấp nhận identifier, former identifier hoặc tên trong scope (lease), không bao giờ dựa vào similarity.
+- **Prototype kiến trúc AK-3:** ontology đọc từ `profiles/oil_wells.json` (E10); Qwen2.5-3B qua llama.cpp trên CPU; LLM tạo fact và quote → validator → review queue → Neo4j theo generation → FastAPI trả lời có citation hoặc abstain khi thiếu fact. Generation checks so sánh chính xác tập (claim, evidence) đã accept với graph đã project; projection thiếu claim không được activate (E11).
 - **Các module được khảo sát và kiểm chứng theo bước:** open/schema-guided extraction, canonicalization, entity resolution, temporal/provenance, validation, graph storage và retrieval; các module có artifact, metric và replay riêng để phục vụ quyết định integration.
 
 ### 2.3 Kiến trúc và phạm vi integration tiếp theo
@@ -88,16 +97,18 @@ Theo kỳ vọng của anh Tuấn, kỳ này hoàn thành builder, admin applica
 | Locator và BSEE validation | Offset/bounding box hợp lệ 100% trong tập kiểm; BSEE có 0 malformed rows và 0 duplicate API numbers. Lượt cached regression ghi nhận Docling coordinate-clamping warnings. |
 | Generic structured-data import | 58.040 records gồm boreholes và API changes khớp adapter; cùng node/edge counts. Mapping bổ sung wrapper/helper fields và biểu diễn former API numbers qua edges. |
 | Corpus pipeline | 44 PDF phụ lục AK-3, 463 trang, 1.778 chunks, 336 tables; hai workers, resume và export đủ corpus. |
+| Shared evidence contract | 1.778 / 1.778 chunks và 58.040 / 58.040 BSEE records thành evidence hợp lệ, ID không trùng (E12). |
+| Entity registry | 57.453 wellbores, 39.518 wells, 172 former API numbers. Tên + lease: 53% resolve; tên + suffix + lease: 98,6%; còn lại chuyển review; 0 resolve nhầm (E13). |
 
 ### 3.2 Prototype AK-3: extraction, review và question answering
 
-Prototype dùng 15 chunk / 41 gold facts / 31 câu hỏi. Sau extraction, precision là 0.97 và recall 0.68. QA-layer đúng 31/31 theo rubric cho phép honest no-answer khi graph thiếu fact; đánh giá end-to-end đúng 19/31. Lượt reviewed có 11/11 answered responses kèm citation/quote khớp chunk. Hai prompt injection giữ nguyên node/edge counts trong phép kiểm đã chạy.
+Prototype dùng 15 chunk / 41 gold facts / 31 câu hỏi. Lượt E4 (prompt trong code): precision 0.97, recall 0.68; QA-layer đúng 31/31 theo rubric cho phép honest no-answer khi graph thiếu fact; end-to-end đúng 19/31; 11/11 answered responses kèm citation/quote khớp chunk. Hai prompt injection giữ nguyên node/edge counts trong phép kiểm đã chạy.
 
 ![Hình 3. Extraction, review và QA trên AK-3](figures/03-ak3-results.svg)
 
-*Hình 3. Development slice của E4: recovered gold facts, correct validated claims và QA dùng denominator tương ứng. QA-layer rubric chấp nhận honest no-answer khi graph thiếu fact.*
+*Hình 3. Development slice E4/E10 (cùng 15 chunk), số liệu E10: prototype chạy từ ontology file. Recovered gold facts, correct validated claims và QA dùng denominator tương ứng; QA-layer rubric chấp nhận honest no-answer khi graph thiếu fact.*
 
-Vai trò của review: accept-all review để lọt một wrong value vào câu trả lời; oracle reviewer dựa trên gold set loại được trường hợp đó. Prompt đã chỉnh trên chính 15 chunk dùng để chấm, nên đây là in-sample evaluation. Human review và document-level held-out evaluation là bước tiếp theo. Tốc độ CPU khoảng 15 giây mỗi extraction passage và 4–6 giây mỗi câu hỏi trong môi trường thử nghiệm.
+Vai trò của review: accept-all review để lọt một wrong value vào câu trả lời; oracle reviewer dựa trên gold set loại được trường hợp đó. Prompt đã chỉnh trên chính 15 chunk dùng để chấm, nên đây là in-sample evaluation. Human review và document-level held-out evaluation là bước tiếp theo. Tốc độ CPU: E4 khoảng 15 giây mỗi extraction passage và 4–6 giây mỗi câu hỏi; E10 khoảng 22 giây và 7,5 giây vì laptop bận hơn.
 
 Sau buổi họp 07/10, prototype được chỉnh để ontology là input (E10). 14 properties chuyển sang file `profiles/oil_wells.json`, có validation. Prompt, output schema, validator và gold matcher được sinh từ file đó; synthetic ontology thứ hai chạy cùng code mà không sửa code. Kết quả chạy lại trên cùng 15 chunk:
 

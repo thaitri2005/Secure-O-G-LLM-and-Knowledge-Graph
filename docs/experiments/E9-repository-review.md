@@ -1,6 +1,6 @@
 # E9: Repository review and local verification
 
-**Current direction:** English-first oil-well delivery on a reusable core (D-26/D-27). This record preserves the experiment/review as run; profile-driven extraction and QA remain integration work. See the [specification](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Current direction:** a knowledge-graph builder with a user-supplied ontology, oil wells as the use case (D-28/D-29). This record preserves the review as run. **Follow-up:** the export-interruption, duplicate header/ID, validation-order, calendar-date and generation-check findings are fixed and rerun as regression tests in [E11](E11-publication-and-import-fixes.md); cache-identity and redirect findings remain open. See the [specification](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
 
 | | |
 |---|---|

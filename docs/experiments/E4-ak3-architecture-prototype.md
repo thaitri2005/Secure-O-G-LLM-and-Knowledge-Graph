@@ -1,6 +1,6 @@
 # E4: Architecture prototype on AK-3
 
-**Current direction:** English-first oil-well delivery on a reusable core (D-26/D-27). This record preserves the experiment/review as run; profile-driven extraction and QA remain integration work. See the [specification](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Current direction:** a knowledge-graph builder with a user-supplied ontology, oil wells as the use case (D-28/D-29). This record preserves the experiment as run. **Follow-up:** [E10](E10-profile-driven-prototype.md) moved the ontology and prompt into a profile file and reran this setup (precision 0.968, recall 0.732, end-to-end 23/31); [E11](E11-publication-and-import-fixes.md) replaced the count-based generation check with an exact-set check. See the [specification](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
 
 | | |
 |---|---|

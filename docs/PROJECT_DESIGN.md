@@ -17,7 +17,7 @@ Confirmed so far: a three-student team, an internal service as the target, and p
 
 **Version 2.2** recorded the repository assessment and an earlier second-domain proposal. **Version 2.3** supersedes that scope with the team agreement relayed on 27 October: domain-agnostic platform, one oil-well application profile, and English-first delivery (D-26, D-27). Subsurface interpretation and expert-note workflows move to later scope. The assessment’s reliability/security findings remain open ([E9](experiments/E9-repository-review.md)).
 
-**Version 2.4** records the supervisor's direction from the [7 October meeting](requirements/supervisor-meeting-2026-10-07.md), retrieved on 27 October (D-28 to D-35). The product is a **knowledge-graph builder**: a domain-agnostic pipeline plus an admin application, with the ontology supplied by its users and oil-and-gas wells as the use case. The builder comes first: ontology management, extraction, entity identity, connection policy, human-in-the-loop review and graph curation (§2, §5.9, §6.5). Question answering comes second (§8), and access control after the admin layer. New requirements FR-19 to FR-23 cover these.
+**Version 2.4** records the supervisor's direction from the [7 October meeting](requirements/supervisor-meeting-2026-10-07.md), retrieved on 27 October (D-28 to D-35). The product is a **knowledge-graph builder**: a domain-agnostic pipeline plus an admin application, with the ontology supplied by its users and oil-and-gas wells as the use case. The builder comes first: ontology management, extraction, entity identity, connection policy, human-in-the-loop review and graph curation (§2, §5.9, §6.5). Question answering comes second (§8), and access control after the admin layer. New requirements FR-19 to FR-23 cover these. Work the same day moved the prototype's ontology into a file, fixed the E9 defects, and built the shared evidence contract and the entity registry ([E10](experiments/E10-profile-driven-prototype.md)–[E13](experiments/E13-entity-registry-bsee.md), §3).
 
 ### Reading guide
 
@@ -226,58 +226,86 @@ IDs connect implementation work to the acceptance and delivery plan. “Must” 
 
 ### 3.1 What exists
 
-The ingestion layer (stages 1–2 of §5.1, and the dataset path of §5.7) is implemented as two domain-neutral pipelines:
+What is built today, in the order of §5.1:
 
-- **Document ingestion** ([`graph_builder.corpus`](components/corpus-ingestion.md)). It registers supported PDF, scan/image, DOCX, PPTX, XLSX, HTML and Markdown files into a content-addressed store with a SQLite catalog, decides per page whether to use the text layer or OCR, and uses a local Vietnamese/English OCR engine ([E5](experiments/E5-ocr-engine-benchmark.md)). It produces chunks with provenance and quality flags. Processing is per-document, resumable and parallel; exports are validated, then published as immutable releases behind an atomically switched pointer ([E7](experiments/E7-corpus-pipeline-smoke.md), [E11](experiments/E11-publication-and-import-fixes.md)); support does not mean every format has a representative quality benchmark.
-- **Structured-data import** ([`graph_builder.datasets`](components/dataset-import.md)). One mapping file turns CSV, Excel or JSON-lines files into typed records and a property graph whose every record and edge cites its file, digest and row. BSEE well data is one such mapping; it reproduces the earlier dedicated adapter and graph builder exactly ([E6](experiments/E6-generic-import-bsee.md)). The linked BSEE graph (wellbores to wells, operators, leases, blocks, fields and renumbered predecessors) is the seed of the entity registry (§5.7).
+- **Document ingestion** ([`graph_builder.corpus`](components/corpus-ingestion.md)).
+  - Registers supported PDF, scan/image, DOCX, PPTX, XLSX, HTML and Markdown files into a content-addressed store with a SQLite catalog.
+  - Decides per page whether to use the text layer or OCR, using a local Vietnamese/English OCR engine ([E5](experiments/E5-ocr-engine-benchmark.md)).
+  - Produces chunks with provenance and quality flags; processing is per-document, resumable and parallel ([E7](experiments/E7-corpus-pipeline-smoke.md), [E8](experiments/E8-ak3-appendices-corpus-run.md)).
+  - Exports are validated, then published as immutable releases behind an atomically switched pointer ([E11](experiments/E11-publication-and-import-fixes.md)).
 
-The earlier source-specific commands remain for reproducing experiments E1–E4: the GDR PDF pipeline (`graph_builder.ingestion`), the BSEE adapter (`graph_builder.ingestion.bsee`) and the BSEE graph builder (`graph_builder.graph.bsee`). Separately, an [architecture prototype](../prototype/README.md) runs the report track (extraction, validation, review, Neo4j generations, cited QA) on 15 AK-3 chunks as a test build ([experiment E4](experiments/E4-ak3-architecture-prototype.md)). Since [E10](experiments/E10-profile-driven-prototype.md), the prototype reads its ontology from a validated profile file, and a synthetic second profile runs the same extraction and validation code; it also has a duplicate-name search. Its QA templates remain oil-well specific. There is no implemented ontology editor or service, local LLM extraction, graph database integration, web application, authentication, or question-answering service. Libraries that appear transitively in the lock file do not mean these application features exist.
+  Support for a format does not mean every format has a representative quality benchmark.
+- **Structured-data import** ([`graph_builder.datasets`](components/dataset-import.md)). One mapping file turns CSV, Excel or JSON-lines files into typed records and a property graph; every record and edge cites its file, digest and row. Bundles are validated before publication, with the same release mechanism. BSEE well data is one such mapping and reproduces the earlier dedicated adapter exactly ([E6](experiments/E6-generic-import-bsee.md)).
+- **Shared contracts** ([`graph_builder.contracts`](../src/graph_builder/contracts.py), [`schemas/`](../schemas/)). Evidence, claim-revision and entity records; a corpus chunk and a dataset row become the same kind of evidence, pinned to their release ([E12](experiments/E12-shared-evidence-contract.md)).
+- **Entity registry** ([`graph_builder.registry`](components/entity-registry.md)). Built from a dataset bundle by configuration, with a resolver that accepts identifiers or scoped names and never similarity. From BSEE: 57,453 wellbores and 39,518 wells ([E13](experiments/E13-entity-registry-bsee.md)).
+- **Architecture prototype** ([`prototype/`](../prototype/README.md), a test build). It runs the rest of the builder on 15 AK-3 chunks, driven by an ontology file:
+  - local LLM extraction with quotes and deterministic validation;
+  - review queue, Neo4j generations checked against the exact accepted set;
+  - cited, read-only QA;
+  - a duplicate-name search ([E4](experiments/E4-ak3-architecture-prototype.md), [E10](experiments/E10-profile-driven-prototype.md)).
 
-![Current ingestion paths](diagrams/01-current-ingestion.svg)
+  Its QA templates remain oil-well specific, and it still reads the earlier PDF bundle rather than corpus releases.
+
+The earlier source-specific commands remain for reproducing E1–E4: the GDR PDF pipeline (`graph_builder.ingestion`), the BSEE adapter (`graph_builder.ingestion.bsee`) and the BSEE graph builder (`graph_builder.graph.bsee`).
+
+**Not built:**
+- the admin application (ontology editor, review and curation screens);
+- PostgreSQL storage of the shared contracts;
+- in-document reference resolution and confidence-routed review;
+- generic QA intents;
+- authentication and roles;
+- any production service.
+
+Libraries that appear transitively in the lock file do not mean these features exist.
+
+![Current implementation](diagrams/01-current-ingestion.svg)
 
 <details>
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
 flowchart LR
-    subgraph PDF["PDF documents: GDR reports and local PDFs"]
-        direction LR
-        R["fetch<br/>Verify size and SHA256"] --> C["convert<br/>Local Docling on CPU"]
-        C --> H["chunk<br/>Filter and split content"]
-        H --> V["validate / publish<br/>Chunk bundle"]
+    subgraph DOCS["Documents"]
+        direction TB
+        D1["Document pipeline<br/>Text layer or OCR per page"] --> D2[("Corpus release<br/>Chunks with page provenance")]
     end
-    subgraph DATA["Structured well data: BSEE files"]
-        direction LR
-        DF["fetch<br/>Snapshot with SHA256"] --> DP["parse<br/>Published record layouts"]
-        DP --> DC["check<br/>Cross-record rules"]
-        DC --> DB["validate<br/>Record bundle"]
+    subgraph DATA["Structured data"]
+        direction TB
+        S1["Mapping importer<br/>Typed rows, checks"] --> S2[("Dataset release<br/>Records and graph with row provenance")]
+        S2 --> S3[("Entity registry<br/>Identifiers, scoped names")]
     end
-    PDF --> OUT[("Ingestion outputs<br/>Chunks with page provenance<br/>Records with row provenance")]
-    DATA --> OUT
+    D2 --> C["Shared contracts<br/>Evidence, claim revision, entity"]
+    S2 --> C
+    S3 --> C
+    subgraph PROTO["Prototype (test build, 15 AK-3 chunks)"]
+        direction TB
+        P0["Ontology file<br/>oil_wells profile"] --> P1["LLM extraction<br/>and validation"]
+        P1 --> P2["Review queue"] --> P3[("Neo4j generation<br/>exact-set checked")]
+        P3 --> P4["Read-only cited QA"]
+    end
+    C -. "integration planned" .-> PROTO
 ```
 
 </details>
 
-**Figure 1 — Current implementation.** Both paths verify their inputs by SHA256 and produce validated, byte-reproducible file bundles. "Publish" means copying an evaluated PDF bundle into its artifact directory. It does not mean publishing reviewed knowledge into a graph or making a service available.
+**Figure 1 — Current implementation.** Both pipelines publish validated releases behind an atomic pointer, and both feed one evidence contract. The registry is built from the dataset release. The prototype runs the extraction, review, graph and QA stages as a test build. It does not yet read corpus releases or the shared contracts (dashed). None of this is a production service.
 
-| Responsibility | Current code / contract |
+| Responsibility | Current code |
 |---|---|
-| CLI orchestration | [`__main__.py`](../src/graph_builder/ingestion/__main__.py) |
-| HTTPS host allow-list, registry validation, download verification | [`sources.py`](../src/graph_builder/ingestion/sources.py) |
-| CPU parsing, table extraction, remote-service disablement | [`convert.py`](../src/graph_builder/ingestion/convert.py) |
-| Filters, text packing, chunking, tables | [`filters.py`](../src/graph_builder/ingestion/filters.py), [`chunking.py`](../src/graph_builder/ingestion/chunking.py), [`tables.py`](../src/graph_builder/ingestion/tables.py) |
-| Canonical offsets and PDF geometry | [`provenance.py`](../src/graph_builder/ingestion/provenance.py) |
-| Run isolation, comparisons, artifact publication | [`runs.py`](../src/graph_builder/ingestion/runs.py) |
-| Structural validation and quality evaluation | [`schema_validation.py`](../src/graph_builder/ingestion/schema_validation.py), [`validate.py`](../src/graph_builder/ingestion/validate.py), [`evaluation.py`](../src/graph_builder/ingestion/evaluation.py) |
-| BSEE snapshot fetch, parsing, cross-record checks, well grouping, bundle validation | [`bsee.py`](../src/graph_builder/ingestion/bsee.py), [`bsee_layouts.py`](../src/graph_builder/ingestion/bsee_layouts.py), [`bsee_wells.json`](../configs/datasets/bsee_wells.json) |
-
+| Document catalog, page analysis, conversion, OCR, chunking, validation, export | [`corpus/`](../src/graph_builder/corpus/): `catalog.py`, `analysis.py`, `convert.py`, `ocr_engines.py`, `chunking.py`, `validate.py`, `export.py` |
+| Mapping-driven import, readers, values, mapping inference | [`datasets/`](../src/graph_builder/datasets/): `importer.py`, `readers.py`, `values.py`, `mapping.py`, `infer.py` |
+| Immutable releases and atomic pointer | [`publication.py`](../src/graph_builder/publication.py) |
+| Evidence, claim-revision and entity records | [`contracts.py`](../src/graph_builder/contracts.py), [`schemas/`](../schemas/) |
+| Entity registry and resolver | [`registry.py`](../src/graph_builder/registry.py), [`configs/registry/`](../configs/registry/) |
+| Ontology profile loader, extraction, review, generations, QA (test build) | [`prototype/kgproto/`](../prototype/kgproto/), [`prototype/profiles/`](../prototype/profiles/) |
+| Earlier PDF pipeline and BSEE adapter (frozen for reproduction) | [`ingestion/`](../src/graph_builder/ingestion/), [`graph/bsee.py`](../src/graph_builder/graph/bsee.py) |
 The configured PDF baseline is Python 3.12, Docling 2.141.0, pypdf 6.1.1, paragraph chunking with a 1,500-character budget, fast TableFormer, CPU execution, and OCR disabled. Versions come from [`pyproject.toml`](../pyproject.toml), [`requirements.lock.txt`](../requirements.lock.txt), and [`default.json`](../configs/ingestion/default.json); they are repository pins, not a claim that these are the latest releases.
 
 ### 3.2 Evidence and limits
 
 The committed main bundle contains **3 documents, 155 physical pages, and 372 chunks: 237 text and 135 table chunks**. The recorded evaluation reports zero validation errors and 20 allowed over-budget table parts, plus known semantic extraction weaknesses. See [experiment E1](experiments/E1-pdf-ingestion-configuration.md) for the original measurements and method. A valid artifact structure does not establish correct interpretation of every number or table.
 
-The recorded extended and appendix evaluations cover a further 2 reports/170 pages and 44 attachment PDFs/463 pages. Those bundles are ignored local outputs, not guaranteed to exist in a fresh checkout. The evaluation reports 67 scanned appendix pages; that pipeline's chunks do not include OCR output. The new document pipeline processed the same 44 PDFs with OCR: 463 pages, 104 of them OCR'd, 1,778 chunks, and 5 pages flagged for review ([E8](experiments/E8-ak3-appendices-corpus-run.md)). [E4](experiments/E4-ak3-architecture-prototype.md) provides a development prototype benchmark: 41 single-annotator, AI-assisted facts, extraction precision 0.97/recall 0.68, and 19/31 correct end-to-end questions. The 31/31 QA-layer score permits honest no-answer for facts absent from the graph; it is not complete useful-answer coverage. There is no independent release benchmark or real-reviewer measurement yet.
+The recorded extended and appendix evaluations cover a further 2 reports/170 pages and 44 attachment PDFs/463 pages. Those bundles are ignored local outputs, not guaranteed to exist in a fresh checkout. The evaluation reports 67 scanned appendix pages; that pipeline's chunks do not include OCR output. The new document pipeline processed the same 44 PDFs with OCR: 463 pages, 104 of them OCR'd, 1,778 chunks, and 5 pages flagged for review ([E8](experiments/E8-ak3-appendices-corpus-run.md)). [E4](experiments/E4-ak3-architecture-prototype.md) provides a development prototype benchmark: 41 single-annotator, AI-assisted facts, extraction precision 0.97/recall 0.68, and 19/31 correct end-to-end questions. The 31/31 QA-layer score permits honest no-answer for facts absent from the graph; it is not complete useful-answer coverage. [E10](experiments/E10-profile-driven-prototype.md) reran it with the ontology as a file: precision 0.968, recall 0.732, 30/41 facts in the graph, end-to-end 23/31, no wrong values. Both are in-sample. There is no independent release benchmark or real-reviewer measurement yet.
 
 On 27 October, after E10 and E11, 136 main tests (including the available cached PDF regression) and 14 prototype tests passed ([E11](experiments/E11-publication-and-import-fixes.md)). The unified [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers the project’s WebNLG/2Wiki/EOR method evaluation, expanded BSEE graph, ingestion and AK-3 prototype. These workstreams inform the shared contracts and integration backlog; each retains its dataset, metrics and test-suite scope.
 

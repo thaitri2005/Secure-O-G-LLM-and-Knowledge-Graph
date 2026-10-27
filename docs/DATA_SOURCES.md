@@ -1,12 +1,12 @@
 # Data sources
 
-**Current application:** oil wells, initially in English. BSEE and English well reports feed a reusable core through oil-well profile/adapters. AK-3 remains a geothermal development proxy; additional real domains and multilingual delivery are later scope.
+**Current direction:** a knowledge-graph builder whose ontology is supplied by its users; the use case is oil wells, initially in English ([7 October supervisor meeting](requirements/supervisor-meeting-2026-10-07.md)). BSEE and English well reports are the public data it is developed on. AK-3 remains a geothermal development proxy; multilingual delivery is later scope.
 
 **Updated:** 27 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
-This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. Until VPI supplies its own documents (specification D-18), development uses public proxies chosen by the supervisor (D-13):
+This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. VPI will not supply datasets, because its domain data falls under confidentiality rules (specification D-33). Development therefore uses public proxies chosen by the supervisor (D-13):
 
-1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. They seed the entity registry and the wells-and-drilling module. Ingestion: [BSEE well-data ingestion](components/bsee-ingestion.md).
+1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. They seed the entity registry: 57,453 wellbores and 39,518 wells, built by configuration ([entity registry](components/entity-registry.md), [E13](experiments/E13-entity-registry-bsee.md)). Ingestion: the [structured-data importer](components/dataset-import.md), with the earlier [BSEE adapter](components/bsee-ingestion.md) kept for reproduction.
 2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from, for the English oil-well application, with AK-3 retained as a geothermal development proxy. It is in the PDF corpus as `gdr882_ak3_eowr`.
 
 Other corpora (Utah FORGE reports, AK-3 appendices) stay in the repository as regression and evaluation material. BSEE provides authoritative identifiers and attributes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. AK-3 is not a BSEE well, so the two sources are developed as separate tracks for now.
@@ -22,12 +22,14 @@ For the first integrated slice, use 5–10 representative reports, select an app
 flowchart TB
     subgraph T1["Track 1: structured well data (BSEE)"]
         direction LR
-        B1["BSEE well files<br/>Boreholes, API changes"] --> B2["BSEE adapter<br/>Typed rows, row provenance"]
+        B1["BSEE well files<br/>Boreholes, API changes"] --> B2["Mapping importer<br/>Typed rows, row provenance"]
         B2 --> B3["Linked graph<br/>Wellbore, Well, Lease, Block, Operator, Field"]
+        B2 --> B4["Entity registry<br/>API identifiers, lease-scoped names"]
     end
     subgraph T2["Track 2: end-of-well reports (AK-3)"]
         direction LR
-        R1["PDF pipeline<br/>Chunks, page provenance"] --> R2["Local LLM extraction<br/>Claims with quotes"]
+        R0["Ontology file<br/>oil_wells profile"] --> R2
+        R1["Document pipeline<br/>Chunks, page provenance"] --> R2["Local LLM extraction<br/>Claims with quotes"]
         R2 --> R3["Validation and review"]
         R3 --> R4["Neo4j generation<br/>Cited question answering"]
     end
@@ -36,7 +38,10 @@ flowchart TB
 
 </details>
 
-**Figure 8: Two development tracks.** Track 1 has implemented [ingestion](components/bsee-ingestion.md) and a [linked graph](components/bsee-ingestion.md#linked-graph), now reproducible through the generic importer. Track 2 has implemented local ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks ([E4](experiments/E4-ak3-architecture-prototype.md)). Neither path is an accepted secure production service; integration and publication defects remain open ([E9](experiments/E9-repository-review.md)). The diagram shows the source-specific baseline; generic-pipeline CLI entry points are in the README.
+**Figure 8: Two development tracks.**
+- **Track 1:** [import](components/dataset-import.md), a linked graph, and an [entity registry](components/entity-registry.md) ([E13](experiments/E13-entity-registry-bsee.md)).
+- **Track 2:** [document ingestion](components/corpus-ingestion.md), with the rest as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks driven by an ontology file ([E4](experiments/E4-ak3-architecture-prototype.md), [E10](experiments/E10-profile-driven-prototype.md)).
+- **Both tracks:** they publish validated releases behind an atomic pointer ([E11](experiments/E11-publication-and-import-fixes.md)) and share one evidence contract ([E12](experiments/E12-shared-evidence-contract.md)). Neither is an accepted secure production service.
 
 ## 1. BSEE Data Center – Wells Information
 
@@ -116,7 +121,7 @@ What we learn here should transfer to oil-and-gas EOW reports and to BSEE's End 
 
 ### Section-to-knowledge map
 
-This map guides the first ontology draft and the development labels. "Target" means knowledge the graph should eventually hold; nothing here is extracted yet.
+This map guides the ontology and the development labels. "Target" means knowledge the graph should eventually hold. The prototype extracts the 14 properties of `prototype/profiles/oil_wells.json` (depths, durations, dates, API number, elevation, casing depths, temperatures, inclinations, rig time) from 15 chunks ([E10](experiments/E10-profile-driven-prototype.md)); the rest of the map is not extracted yet.
 
 | Report section (as chunked) | Example content in AK-3 | Target entities and claims |
 |---|---|---|
