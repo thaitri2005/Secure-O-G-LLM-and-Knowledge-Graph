@@ -15,7 +15,7 @@
 
 | Run | Setup | Result |
 |---|---|---|
-| 1 | All 44 documents, 2 workers, 10:27–11:22 | 35 done, 5 failed validation, 4 not started (the run stopped at 40/44 without a summary line) |
+| 1 | All 44 documents, 2 workers, 10:27–11:22 | 35 done, 5 failed validation, 4 not started: stopped deliberately with Ctrl+C at 40/44 to improve speed and logging before resuming |
 | Fixes | `9083594` | Page sizes are now taken from the converted document, so rotated pages match their chunk regions. Table row ranges start at the serializer's header count and are capped at the table size |
 | 2 | Same command, 2 workers, 12:17–12:23 | The 35 finished documents were skipped after manifest checks. The remaining 9 (198 pages) took 6.0 minutes: 9 done, 0 failed |
 | Export | `export --name v1` | 44 documents, 463 pages, 1,778 chunks, 336 tables, 0 held back |
@@ -25,7 +25,7 @@ The five failures in run 1 were real validator catches, not crashes:
 - **Rotated pages:** one document's chunk regions fell outside its page because of the rotation.
 - **Table row ranges:** in four documents (two daily reports and two cement job reports), a chunk's row range pointed outside its table.
 
-Per-document failure isolation worked as designed: the other documents finished, and resume re-ran only the unfinished ones. Run 1 also showed that the per-document times in the log were cumulative rather than per document; `3f38143` fixed that and added a heartbeat every minute.
+Per-document failure isolation worked as designed: the other documents finished, and resume after the deliberate stop re-ran only the unfinished ones. Between the runs, the logging was improved (`afef0c2`, `3f38143`): per-document times, elapsed time, ETA and a heartbeat every minute.
 
 ## Results (export v1)
 
@@ -64,6 +64,6 @@ A sample of other OCR chunks: continuous prose (letters, permit text, targeting 
 ## Not covered
 
 - OCR accuracy against a transcription: there is no gold text for these scans.
-- Wall-clock throughput for the whole portfolio in one uninterrupted run (run 1 stopped at 40/44).
+- Wall-clock throughput for the whole portfolio in a single run (it was done in two runs with a code change in between).
 - One worker against two workers on the same input.
 - A VPI or other Vietnamese sample: backlog item 4a, second half.
