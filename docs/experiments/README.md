@@ -10,7 +10,8 @@ Every measurement the project relies on comes from one experiment, recorded in o
 | [E4](E4-ak3-architecture-prototype.md) | Architecture prototype on AK-3 | 25 Oct 2026 | Reports | `prototype/` (separate environment) | Stack works end to end; extraction precision 0.97, recall 0.68 before review; prose recall is the bottleneck |
 | [E5](E5-ocr-engine-benchmark.md) | OCR engine benchmark, Vietnamese and English scans | 27 Oct 2026 | Reports (languages) | `scripts/ocr_benchmark.py`, `graph_builder.corpus.ocr_engines` | VietOCR: Vietnamese CER 5.2% and word recall 96% on moderate scans, against 24% CER for EasyOCR; PP-OCR drops Vietnamese marks |
 | [E6](E6-generic-import-bsee.md) | BSEE through the generic structured-data importer | 27 Oct 2026 | BSEE | `graph_builder.datasets`, `configs/datasets/bsee_wells.mapping.json` | All 58,040 records identical to the dedicated adapter; same node and edge counts |
-| [E7](E7-corpus-pipeline-smoke.md) | Corpus pipeline smoke test | 27 Oct 2026 | Reports | `graph_builder.corpus` | Scan, PDF and Markdown processed, resumed and exported; multi-worker run not yet exercised |
+| [E7](E7-corpus-pipeline-smoke.md) | Corpus pipeline smoke test | 27 Oct 2026 | Reports | `graph_builder.corpus` | Scan, PDF and Markdown processed, resumed and exported (one worker) |
+| [E8](E8-ak3-appendices-corpus-run.md) | AK-3 appendix portfolio through the document pipeline | 27 Oct 2026 | Reports | `scripts/run_ak3_appendices.py`, `graph_builder.corpus` | 44 PDFs, 463 pages (104 OCR'd), 1,778 chunks exported with two workers; validation caught two defects, since fixed; 5 pages flagged, hand-checked |
 
 ## Adding an experiment
 

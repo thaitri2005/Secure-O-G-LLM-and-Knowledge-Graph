@@ -11,7 +11,7 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, milestones, ownership, estimates, risks, next backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public proxy data (BSEE well files, AK-3 and other end-of-well reports): content, terms, quality findings, refresh |
 | Supporting | [Components](components/) | How each implemented subsystem works and is run. Current pipelines: [document ingestion](components/corpus-ingestion.md) (any format, OCR, Vietnamese) and [structured-data import](components/dataset-import.md) (mapping-driven). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion and linked graph](components/bsee-ingestion.md) |
-| Supporting | [Experiments](experiments/README.md) | Every measurement, one record per experiment (E1–E7) |
+| Supporting | [Experiments](experiments/README.md) | Every measurement, one record per experiment (E1–E8) |
 | Supporting | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
 

@@ -96,7 +96,7 @@ Borehole status codes: PA 30,731 · ST 17,169 · COM 3,656 · TA 2,923 · CNL 99
 | Submission | [GDR 882](https://gdr.openei.org/submissions/882), "End of Well Report and Addenda". Author Mary Mann, Geothermal Resource Group, Inc. (GRG), for the City of Akutan |
 | License | CC BY 4.0 |
 | Appendices | [AK-3 EOW Appendices.pdf](https://gdr.openei.org/files/882/AK-3EOWAppendices.pdf): a PDF portfolio of 44 unique attachments, 463 pages, 67 of them scanned (drilling plan and permits) |
-| Repository status | Main bundle `gdr882_ak3_eowr`: 60 chunks (54 text, 6 table). Appendices: local registry `gdr_ak3_appendices`. Gold annotations exist for the abbreviation table and six appendix tables. |
+| Repository status | Main bundle `gdr882_ak3_eowr`: 60 chunks (54 text, 6 table). Appendices: local registry `gdr_ak3_appendices`, and a document-pipeline corpus with OCR (44 PDFs, 1,778 chunks; [E8](experiments/E8-ak3-appendices-corpus-run.md)). Gold annotations exist for the abbreviation table and six appendix tables. |
 
 ### Why this report
 
@@ -132,7 +132,7 @@ This map guides the first ontology draft and the development labels. "Target" me
 - **Planned versus actual qualifiers.** The executive summary mixes planned and actual values in one sentence; [design §5.6](PROJECT_DESIGN.md#56-worked-example-using-an-existing-passage) works through this case.
 - **Split and misaligned tables.** The casing data is emitted as two similar tables (`#t002`, `#t003`). The abbreviation table's last row is misaligned ("Waiting on Cement" is separated from "WOC").
 - **Units.** Feet, °F, ppf, ppg and gpm appear without a column-level unit in some places, so the ontology must state the expected units.
-- **Scanned appendix pages.** 67 pages need OCR, which is disabled in published bundles.
+- **Scanned appendix pages.** The older PDF pipeline leaves them without text. The document pipeline OCRs them ([E8](experiments/E8-ak3-appendices-corpus-run.md)): prose scans read well, while dense scanned forms such as the AOGCC Permit to Drill remain fragmentary and are flagged for review.
 - **Offset wells.** TG-2 and TG-4 are named only within the Akutan project, so names must be scoped by project.
 
 ## 3. Utah FORGE: reference material

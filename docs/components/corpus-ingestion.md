@@ -2,7 +2,7 @@
 
 This guide describes the **implemented generic document pipeline**. It takes documents in many formats, reads every page in the most reliable way available (text layer, OCR of images, or full-page OCR), and produces passage and table chunks with page, region and section provenance. It is the pipeline for new and VPI documents. The older [PDF ingestion](pdf-ingestion.md) pipeline stays in place to reproduce the published GDR bundle and experiments E1–E4.
 
-Measurements: [E5](../experiments/E5-ocr-engine-benchmark.md) (OCR engines), [E7](../experiments/E7-corpus-pipeline-smoke.md) (end-to-end smoke test).
+Measurements: [E5](../experiments/E5-ocr-engine-benchmark.md) (OCR engines), [E7](../experiments/E7-corpus-pipeline-smoke.md) (end-to-end smoke test), [E8](../experiments/E8-ak3-appendices-corpus-run.md) (AK-3 appendix portfolio: 44 PDFs, 463 pages, two workers).
 
 ## Setup
 
@@ -33,6 +33,8 @@ python -m graph_builder.corpus export data/corpora/vpi --name v1      # one bund
   - `--workers N` runs N worker processes. Each loads its own models (about 2–3 GB of RAM), so use 1–2 on a 16 GB machine. A worker that crashes fails only the documents it held.
 - **`export`** writes `exports/<name>/` atomically: either the old export or the complete new one is visible. Documents that failed or were never processed are listed under `held_back` in the manifest. `--hold-review` also holds back documents with pages that need review.
 - **`retire --only DOC_ID`** removes a document from future exports.
+- **Run logs.** Every command also writes a timestamped log to `<corpus>/logs/`. `process` logs one line per finished document (pages, OCR pages, chunks, tables, review and missing pages, time), elapsed time, pages done and an ETA, plus a heartbeat every minute naming the documents still in progress.
+- **AK-3 appendix example.** [`scripts/run_ak3_appendices.py`](../../scripts/run_ak3_appendices.py) downloads and verifies the AK-3 appendix portfolio, splits it into 44 PDFs, and runs `init`, `add`, `process`, `export` and `status` on `data/corpora/ak3_appendices`. Use `--workers 2` to run faster, and `--scanned-only` to process only the PDFs with scanned pages. Results: [E8](../experiments/E8-ak3-appendices-corpus-run.md).
 
 ## Supported inputs
 
@@ -97,5 +99,7 @@ Record schemas: [`corpus_document`](../../schemas/corpus_document.schema.json), 
 
 - Handwriting, stamps, heavy skew and multi-column reading order on scans are not evaluated; [E5](../experiments/E5-ocr-engine-benchmark.md) used rendered pages.
 - VietOCR lacks some symbols ("°").
-- Multi-worker processing and very large files have not been exercised yet ([E7](../experiments/E7-corpus-pipeline-smoke.md)).
+- Two workers on a 463-page corpus work ([E8](../experiments/E8-ak3-appendices-corpus-run.md)); very large single files and recovery from a crashed worker have not been exercised.
+- Scanned forms with small print come out fragmentary, and VietOCR can turn English form labels into invented Vietnamese. The language and spelling checks flag such pages for review ([E8](../experiments/E8-ak3-appendices-corpus-run.md)); for English-only corpora, compare `rapidocr`.
+- A scanned contents page is reported as `missing`: OCR reads it, then the contents filter removes the text ([E8](../experiments/E8-ak3-appendices-corpus-run.md)).
 - Legacy-encoded PDFs are re-read by OCR rather than decoded from their font encoding.

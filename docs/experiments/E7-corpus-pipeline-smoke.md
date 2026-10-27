@@ -8,7 +8,7 @@
 | **Input** | Three small files: a one-page image-only Vietnamese scan (the [E2](E2-vietnamese-ocr-smoke.md) fixture), a two-page excerpt of the Petroleum Law PDF (text layer), and a Vietnamese Markdown note with a table |
 | **Code** | [`graph_builder.corpus`](../../src/graph_builder/corpus/), configuration [`configs/corpus/default.json`](../../configs/corpus/default.json) |
 | **Outputs** | Ignored, local: `data/interim/corpus_smoke/` |
-| **Status** | Passed with one worker; multi-worker processing is implemented but not yet exercised |
+| **Status** | Passed with one worker. Two workers and a real scanned corpus were exercised afterwards in [E8](E8-ak3-appendices-corpus-run.md) |
 
 ## Steps and results
 
@@ -25,6 +25,6 @@
 
 ## Not covered
 
-- Parallel workers (`--workers 2`) and recovery from a crashed worker.
+- Recovery from a crashed worker. (Parallel workers: see [E8](E8-ak3-appendices-corpus-run.md).)
 - Large documents, DOCX, PPTX, XLSX, HTML and images other than PDF scans.
-- Real scanned corpora. The AK-3 appendix portfolio (67 scanned pages) is the next candidate.
+- Real scanned corpora: done for the AK-3 appendix portfolio in [E8](E8-ak3-appendices-corpus-run.md).

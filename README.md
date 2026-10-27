@@ -75,10 +75,10 @@ docs/
   DATA_SOURCES.md       the public proxy data
   requirements/         VPI's requirement documents: digest (originals kept out of Git)
   components/           guides to implemented subsystems
-  experiments/          one record per experiment (E1–E7) and the register
+  experiments/          one record per experiment (E1–E8) and the register
   diagrams/             SVG exports of the Mermaid diagrams
 schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline)
-scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark)
+scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark, E8 AK-3 appendix corpus run)
 src/graph_builder/corpus/      document pipeline (python -m graph_builder.corpus)
 src/graph_builder/datasets/    structured-data importer (python -m graph_builder.datasets)
 src/graph_builder/ingestion/   earlier PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
