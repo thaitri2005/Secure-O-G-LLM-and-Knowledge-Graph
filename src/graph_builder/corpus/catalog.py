@@ -209,4 +209,3 @@ def iter_files(paths: list[Path], recursive: bool) -> Iterator[Path]:
             yield path
         else:
             raise ValueError(f"No such file or directory: {path}")
-
