@@ -13,8 +13,8 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, milestones, ownership, estimates, risks, next backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public proxy data (BSEE well files, AK-3 and other end-of-well reports): content, terms, quality findings, refresh |
 | Supporting | [Components](components/) | How each implemented subsystem works and is run. Current pipelines: [document ingestion](components/corpus-ingestion.md) (any format, OCR, Vietnamese) and [structured-data import](components/dataset-import.md) (mapping-driven). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion and linked graph](components/bsee-ingestion.md) |
-| Supporting | [Experiments](experiments/README.md) | Repository measurements, one record per experiment (E1–E9); E9 records the review verification and open defects |
-| Supporting | [Repository assessment](REPOSITORY_REVIEW_2026-10-27.md) | Code findings, cost/scope/security assessment and implementation priorities; fixes remain open |
+| Supporting | [Experiments](experiments/README.md) | Repository measurements, one record per experiment (E1–E12); E9 records the review findings, E10 the profile-driven prototype, E11 the fixes, E12 the shared evidence contract |
+| Supporting | [Repository assessment](REPOSITORY_REVIEW_2026-10-27.md) | Code findings, cost/scope/security assessment and implementation priorities; publication, dataset and generation-check fixes done in E11, others open |
 | Reporting | [Progress report 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) · [PDF](../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf) | Unified Vietnamese project-status report covering ingestion, method evaluation, graph construction, prototype QA and next steps |
 | Supporting | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.schema.json",
+  "title": "Evidence",
+  "description": "One exact place in one published release that supports a claim: a span of a corpus chunk, or fields of a dataset record. The ID is a digest of source, release and locator, so a re-chunked or re-imported source gets new evidence IDs instead of silently changing old ones (design §3.3, §7.1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "kind", "source", "bundle", "locator"],
+  "properties": {
+    "evidence_id": {"type": "string", "pattern": "^ev:[a-f0-9]{24}$"},
+    "kind": {"enum": ["document_span", "dataset_row"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "sha256"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1, "description": "Corpus doc_id, or dataset_id/source file ID"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$", "description": "Digest of the original file"}
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "release", "sums_sha256"],
+      "properties": {
+        "kind": {"enum": ["corpus_export", "dataset_release"]},
+        "release": {"type": "string", "minLength": 1, "description": "Release directory name, or 'flat' for a bundle written before releases"},
+        "sums_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$", "description": "Digest of the release's SHA256SUMS"}
+      }
+    },
+    "locator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["chunk_id", "chunk_sha256", "page", "pages", "regions", "quote", "quote_start", "quote_end"],
+          "properties": {
+            "chunk_id": {"type": "string"},
+            "chunk_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "page": {"type": ["integer", "null"], "minimum": 1},
+            "pages": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+            "regions": {"type": "array"},
+            "table_id": {"type": ["string", "null"]},
+            "quote": {"type": "string", "minLength": 1},
+            "quote_start": {"type": "integer", "minimum": 0, "description": "Offset of the quote in the chunk text"},
+            "quote_end": {"type": "integer", "minimum": 0}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["record_id", "file", "member", "row", "fields"],
+          "properties": {
+            "record_id": {"type": "string", "minLength": 1},
+            "file": {"type": "string", "minLength": 1},
+            "member": {"type": ["string", "null"]},
+            "row": {"type": "integer", "minimum": 1},
+            "fields": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+          }
+        }
+      ]
+    }
+  }
+}

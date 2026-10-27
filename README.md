@@ -14,7 +14,7 @@ A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premi
 | Structured-data import | CSV, Excel and JSON-lines files (also inside ZIPs) to typed records and a linked graph, described by one mapping file; every record and edge cites its file, digest and row | Implemented ([guide](docs/components/dataset-import.md)); BSEE reproduced exactly ([E6](docs/experiments/E6-generic-import-bsee.md)) |
 | BSEE well data and linked graph | Wellbores linked to wells, operators, leases, blocks, fields and former records. Seed of the entity registry | Implemented as a mapping ([mapping](configs/datasets/bsee_wells.mapping.json)); earlier [dedicated adapter](docs/components/bsee-ingestion.md) kept |
 | Published GDR PDF bundle | Byte-reproducible chunks of three end-of-well reports, used by experiments E1–E4 | Implemented ([details](docs/components/pdf-ingestion.md)) |
-| Core schema and entity registry | Generic entities, opaque IDs and evidence/claim contracts; profile-declared types and scoped English aliases | Specified ([§5.7, §6](docs/PROJECT_DESIGN.md#6-ontology-layer-and-domain-modules)); not started |
+| Core schema and entity registry | Generic entities, opaque IDs and evidence/claim contracts; profile-declared types and scoped English aliases | Contracts and schemas implemented ([E12](docs/experiments/E12-shared-evidence-contract.md)); registry storage and resolution not started |
 | Domain profiles | One `oil_wells` application; reusable core/profile contracts | Prototype ontology v0.1 (14 properties); well-specific extraction/QA still to externalize. Other domains, interpretation/expert-note workflows and multilingual rollout later |
 | Ontology management and graph curation | Load, edit, version and AI-draft the ontology in an admin application; reference resolution; duplicate-node search and merge; confidence-routed review | Specified ([§5.9, §6.5](docs/PROJECT_DESIGN.md#59-builder-controls-nodes-connections-and-curation)); not started |
 | Report knowledge (AK-3) | LLM extraction with quotes, validation, review, graph generations, cited QA | Prototype on 15 AK-3 chunks ([experiment E4](docs/experiments/E4-ak3-architecture-prototype.md)); production version planned |
@@ -80,12 +80,14 @@ docs/
   DATA_SOURCES.md       the public proxy data
   requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests
   components/           guides to implemented subsystems
-  experiments/          one record per experiment (E1–E9) and the register
+  experiments/          one record per experiment (E1–E12) and the register
   reports/              updated Vietnamese progress report (editable Markdown)
   diagrams/             SVG exports of the Mermaid diagrams
-schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline)
+schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline; evidence, claim, entity for application records)
 scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark, E8 AK-3 appendix corpus run)
 src/graph_builder/corpus/      document pipeline (python -m graph_builder.corpus)
+src/graph_builder/publication.py  immutable releases behind an atomic pointer (exports and dataset bundles)
+src/graph_builder/contracts.py    shared evidence, claim-revision and entity records
 src/graph_builder/datasets/    structured-data importer (python -m graph_builder.datasets)
 src/graph_builder/ingestion/   earlier PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
 src/graph_builder/graph/       earlier BSEE linked graph (python -m graph_builder.graph.bsee)

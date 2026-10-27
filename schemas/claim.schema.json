@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claim.schema.json",
+  "title": "Claim revision",
+  "description": "One revision of one asserted value under a profile. claim_id names the logical claim (profile, subject, property, qualifier, context); revision_id changes whenever the value, evidence or origin does, so a review decision can never silently carry over to changed evidence (design §5.2, §7.1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claim_id", "revision_id", "profile", "subject", "property", "qualifier", "value", "context", "kind",
+               "evidence", "origin"],
+  "properties": {
+    "claim_id": {"type": "string", "pattern": "^cl:[a-f0-9]{24}$"},
+    "revision_id": {"type": "string", "pattern": "^cr:[a-f0-9]{24}$"},
+    "profile": {"type": "string", "pattern": "^[a-z][a-z0-9_]*@[0-9A-Za-z.-]+$"},
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_type", "mention", "key", "entity_id"],
+      "properties": {
+        "entity_type": {"type": "string", "minLength": 1},
+        "mention": {"type": "string", "minLength": 1, "description": "The name as written in the evidence"},
+        "key": {"type": "string", "minLength": 1, "description": "The profile's normalized match key"},
+        "entity_id": {"type": ["string", "null"], "pattern": "^ent:[a-f0-9]{24}$", "description": "Set once resolved to a registry entity"}
+      }
+    },
+    "property": {"type": "string", "minLength": 1},
+    "qualifier": {"type": "string", "minLength": 1},
+    "value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "unit"],
+      "properties": {
+        "raw": {"type": "string", "description": "The value as stated in the source"},
+        "unit": {"type": "string"},
+        "normalized": {"description": "Present only when a reviewed conversion rule produced it"}
+      }
+    },
+    "context": {"type": "object", "description": "Profile-declared context fields such as depth or casing size"},
+    "kind": {"enum": ["observation", "plan", "derived", "interpretation"]},
+    "evidence": {"type": "array", "items": {"type": "string", "pattern": "^ev:[a-f0-9]{24}$"}, "minItems": 1},
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "version"],
+      "properties": {
+        "method": {"enum": ["model_extraction", "dataset_mapping", "manual"]},
+        "version": {"type": "string", "minLength": 1, "description": "Model and prompt, mapping ID, or reviewer correction"}
+      }
+    }
+  }
+}
