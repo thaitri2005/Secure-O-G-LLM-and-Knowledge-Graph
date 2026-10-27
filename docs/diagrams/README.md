@@ -2,17 +2,19 @@
 
 These SVGs are the portable exports used in [the project specification](../PROJECT_DESIGN.md), [development plan](../DEVELOPMENT_PLAN.md) and [data sources](../DATA_SOURCES.md). Their editable Mermaid source sits directly below each image, in an expandable block in the corresponding document. That source is authoritative; the SVGs are derived presentation assets.
 
+Current direction (27 October): domain-agnostic core and one English oil-well application. Diagrams 02 and 09 include the versioned domain-profile input; diagram 04 shows the first-delivery logical model, with expert notes/interpretation links deferred. Diagrams 01/08 preserve current source-specific tracks. Architecture/lifecycle diagrams remain targets; publication/withdrawal guarantees still require implementation. M0–M7 hours/windows remain illustrative pending re-estimation.
+
 | File | Diagram | Used in |
 |---|---|---|
 | `01-current-ingestion.svg` | Implemented PDF and BSEE ingestion paths | Design §3 |
 | `02-target-architecture.svg` | Proposed application components and deployment boundary | Design §4 |
 | `03-claim-lifecycle.svg` | Candidate, review, publication and withdrawal states | Design §5 |
-| `04-data-model.svg` | Documents, dataset records, expert notes, evidence, entities, claims, claim links and answers | Design §7 |
+| `04-data-model.svg` | First-delivery documents, dataset records, evidence, generic entities, claims and answers | Design §7 |
 | `05-question-answering.svg` | Authorized query and evidence-linked answer sequence | Design §8 |
 | `06-deployment-recovery.svg` | Development, release, operation and recovery | Design §11 |
 | `07-milestone-dependencies.svg` | Development milestone dependency graph | Plan §3 |
 | `08-source-integration.svg` | The two current development tracks: BSEE data and end-of-well reports | Data sources, Design §5.7 |
-| `09-three-layers.svg` | Domain modules, entity registry and core ontology, applications; what the capstone delivers | Design §1.3 |
+| `09-three-layers.svg` | Reusable core, versioned profiles and English oil-well application | Design §1.3 |
 
 ## Regenerating a diagram
 
@@ -28,4 +30,4 @@ All exports use Mermaid 11.17.2 with the shared theme in [`mermaid-config.json`]
    If Puppeteer cannot download Chromium, point it at an installed Chromium-based browser. Pass `-p puppeteer.json` with `{"executablePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"}`.
 3. Open the SVG and check for clipping, overlapping labels and text size before committing. Update the source block and the SVG in the same commit.
 
-Diagrams 04 and 09 were generated on 27 October 2026, 01, 02 and 08 on 25 October 2026, and the others on 23 October 2026. Spacing differs slightly between the sets.
+Diagrams 02, 04 and 09 were updated on 27 October 2026, 01 and 08 on 25 October 2026, and the others on 23 October 2026. Spacing differs slightly between the sets.

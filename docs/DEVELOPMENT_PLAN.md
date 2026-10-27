@@ -1,6 +1,6 @@
 # Development and delivery plan
 
-**Version:** 2.0 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
+**Version:** 2.2 · **Baseline date:** 23 October 2026 · **Last revised:** 27 October 2026<br>
 **Product target:** a maintained internal service for one small team<br>
 **Team:** three students · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Data:** [Data sources](DATA_SOURCES.md)
 
@@ -8,13 +8,13 @@ This plan schedules the [specification](PROJECT_DESIGN.md): deliverable work, de
 
 ## Current status
 
-**Focus.** The capstone delivers two domain modules over a shared entity registry ([specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers)). Until VPI supplies documents, develop on [BSEE well data](DATA_SOURCES.md#1-bsee-data-center--wells-information) and end-of-well reports, starting with [AK-3](DATA_SOURCES.md#2-akutan-ak-3-end-of-well-report-the-document-exemplar). Demonstrate new features on them first; keep the other GDR registries as regression and evaluation material. Take the open questions of [specification §13.2](PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings) to the next supervisor meeting.
+**Focus.** Build a domain-agnostic platform and deliver one **oil-well** application profile, initially in **English** (specification D-26/D-27). Develop on [BSEE well data](DATA_SOURCES.md#1-bsee-data-center--wells-information) and English end-of-well reports, with [AK-3](DATA_SOURCES.md#2-akutan-ak-3-end-of-well-report-the-document-exemplar) as an existing development proxy. Oil terminology belongs in profile/adapters, while source/evidence/review/publication contracts remain reusable. Additional domains, interpretation/expert-note workflows and multilingual delivery are later scope.
 
 **Implemented** (code, tests and a verification record exist):
 
 | Item | Milestone | Guide | Evidence |
 |---|---|---|---|
-| Domain-neutral document ingestion: any supported format, per-page OCR decision, Vietnamese OCR, quality flags, content-addressed catalog, resumable per-document processing, atomic export | M1 (FR-01, FR-02, FR-13; v2 chunk envelope) | [Document ingestion](components/corpus-ingestion.md) | [E5](experiments/E5-ocr-engine-benchmark.md), [E7](experiments/E7-corpus-pipeline-smoke.md), [E8](experiments/E8-ak3-appendices-corpus-run.md) |
+| Domain-neutral document ingestion: supported formats, per-page OCR, Vietnamese OCR, quality flags, content-addressed catalog, resumable parallel processing and staged export; atomic replacement remains open | M1 (FR-01, FR-02, FR-13; v2 chunk envelope) | [Document ingestion](components/corpus-ingestion.md) | [E5](experiments/E5-ocr-engine-benchmark.md), [E7](experiments/E7-corpus-pipeline-smoke.md), [E8](experiments/E8-ak3-appendices-corpus-run.md), [E9](experiments/E9-repository-review.md) |
 | Mapping-driven structured-data import with row provenance, checks and graph rules; BSEE as a mapping | M1 (FR-15); M3 groundwork (FR-16) | [Structured-data import](components/dataset-import.md) | [E6](experiments/E6-generic-import-bsee.md) |
 | PDF ingestion with page/region/offset provenance, evaluation and publication | Pre-M1 baseline | [PDF ingestion](components/pdf-ingestion.md) | [E1](experiments/E1-pdf-ingestion-configuration.md), [E3](experiments/E3-reproduction-run-2026-10-25.md) |
 | Local PDF registration, opt-in Vietnamese–English OCR, source-aware cache checks, scanned-page coverage checks | M1 (partial) | [OCR ingestion](components/ocr-ingestion.md) | [E2](experiments/E2-vietnamese-ocr-smoke.md) |
@@ -22,9 +22,11 @@ This plan schedules the [specification](PROJECT_DESIGN.md): deliverable work, de
 | BSEE linked graph within the source (wellbores, wells, operators, leases, blocks, fields), every edge citing its row | M3 groundwork (seed of the entity registry, FR-16) | [BSEE ingestion](components/bsee-ingestion.md#linked-graph) | [E3](experiments/E3-reproduction-run-2026-10-25.md) |
 | Architecture prototype (test build): AK-3 extraction, validation, review queue, Neo4j generations, cited QA | Evidence for the M2/M3/M5 design, not a completed milestone | [Prototype](../prototype/README.md) | [E4](experiments/E4-ak3-architecture-prototype.md) |
 
-The [experiment register](experiments/README.md) holds all measurements. The prototype's main lesson (E4): the stack works end to end on a laptop, and the bottleneck is extraction recall on prose, not the architecture.
+The [experiment register](experiments/README.md) holds repository measurements. E4 demonstrates laptop integration and weak prose recall on a development slice; it does not establish architecture reliability under failure or independent QA quality. The [27 October review](REPOSITORY_REVIEW_2026-10-27.md) reproduced publication, dataset and date-validation defects ([E9](experiments/E9-repository-review.md)); they remain unfixed. All 128 main tests and four prototype ontology tests passed. The unified [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) brings together ingestion, WebNLG/2Wiki/EOR method evaluation, graph construction and prototype QA. The next slice integrates these workstreams through shared evidence/claim contracts.
 
-**Not yet started for the VPI requirements:** core ontology and registry contract (FR-16), claim kinds and claim links (FR-17), language-tagged names (FR-18), the subsurface-interpretation module. **Still open in M1:** an OCR check on VPI samples (the AK-3 appendix run, [E8](experiments/E8-ak3-appendices-corpus-run.md), covered two workers and a real scanned corpus), web upload on top of the catalog, the access skeleton, and snapshot comparison for structured datasets.
+**Next milestone.** A real reviewer accepts a versioned oil-well claim; three English question intents return cited knowledge; interrupted replacement preserves accepted data; withdrawal immediately blocks serving. Freeze the English oil-well evaluation split before prompt tuning. Extract the profile boundary from the existing well-specific prototype and check it with a small synthetic configuration fixture.
+
+**Not yet started for the first delivery:** generic registry/profile contracts (FR-16), reusable extraction and query dispatch, language-tagged/scoped English aliases (FR-18). **Still open in M1:** representative English scan/table quality checks, web upload on the catalog, access skeleton and dataset snapshot comparison. Existing Vietnamese OCR and AK-3 corpus runs remain completed evidence; FR-17 and multilingual rollout move to later scope.
 
 ## 1. Planning basis
 
@@ -34,7 +36,9 @@ Use **20 working weeks as an illustrative baseline**, assuming each student cont
 
 At 8 hours/student/week, the same 720-hour capacity would take about 30 working weeks; at 15 hours it would take about 16. Exams, holidays, hardware queues, and institutional approvals can extend elapsed calendar time without adding engineering hours. Re-estimate after M1 and M2 using actual delivery speed.
 
-The baseline includes one ontology/domain, one shared document-access boundary, a small supported-question catalogue, a simple review interface, and a single-host deployment. It excludes fine-tuning, multi-GPU inference, high availability, general OCR, multi-tenancy, and an elaborate graph visualization editor.
+The baseline delivers one English oil-well profile on a reusable core, one shared document-access boundary, a small question catalogue, a simple review interface and single-host deployment. Start integration on 5–10 representative English reports, implement three intents first and agree 5–8 for the initial workload. These are workload limits; held-out acceptance sizes remain unchanged. Defer second-domain delivery, subsurface interpretation, expert-note capture, Vietnamese/Russian rollout, fine-tuning, multi-GPU inference, high availability, multi-tenancy and an elaborate graph editor.
+
+The 720-hour capacity model below remains a historical planning illustration. Re-estimate remaining work for one English oil-well profile, explicit generic-core interfaces, reliability fixes, annotation/review and deployment using actual weekly availability. Removed second-domain/expert-note/multilingual work reduces breadth; it does not establish a new delivery date or automatic cost saving. Measure review effort and preserve contingency.
 
 ## 2. Team responsibilities
 
@@ -75,15 +79,15 @@ Effort is combined team effort, including peer review, milestone tests, and rele
 |---|---|---:|---|---|---|
 | M0 — Scope and host feasibility | Week 1 | 12 h | C, with product owner | None | Supervisor meeting on the open questions Q1–Q9; confirm service audience, one-workspace policy, host access, operator path, workload, question shortlist, and spending control; record decisions |
 | M1 — Reproducible ingestion boundary | Weeks 1–2 | 44 h | A | M0 | Clean setup, independent bundle verification, source-neutral v2 envelope/local upload adapter, input limits, baseline access skeleton, immutable run manifest; G1/G2 cases defined |
-| M2 — Ontology and local extraction slice | Weeks 3–5 | 80 h | A | M1 | Core ontology and registry contract (FR-16, FR-18); drafts of both domain modules; one PDF → typed candidates (including claim kinds) → exact evidence; small-model comparison on actual GPU; ontology validator and frozen evaluation split; initial G3 results |
-| M3 — Accepted knowledge and graph publication | Weeks 6–8 | 72 h | B | M2 contracts | Claims, claim links and reviews in PostgreSQL; entity registry seeded from BSEE with conservative identity links; Neo4j projection, complete-generation activation, retry/rollback demo; G1/G4 and crash cases pass |
-| M4 — Team application and review workflow | Weeks 6–11 | 104 h | C | M1 API/auth contracts; M3 before closure | Login/roles, uploads/jobs, candidate review, PDF evidence, conflict/merge actions, claim-link review and expert notes (FR-17), publication and retirement UI; unauthorized direct requests denied |
-| M5 — Bounded question answering | Weeks 12–14 | 84 h | B | M3/M4; frozen question catalogue | Intent plans, parameterized templates across modules, deterministic answers, citations, competing views, abstention, optional wording fallback; passage-retrieval baseline; G5/G6 benchmark report |
+| M2 — Ontology and local extraction slice | Weeks 3–5 | 80 h | A | M1 | Generic registry/profile contracts (FR-16/18), one `oil_wells` ontology; English PDF → typed candidates → evidence; externalize prototype rules; synthetic profile fixture; frozen English evaluation split; initial G3 |
+| M3 — Accepted knowledge and graph publication | Weeks 6–8 | 72 h | B | M2 contracts | Claims/reviews in PostgreSQL; profile-driven registry seeded from BSEE; Neo4j exact-set projection, activation, retry/rollback; G1/G4 and crash cases |
+| M4 — Team application and review workflow | Weeks 6–11 | 104 h | C | M1 API/auth; M3 before closure | Login/roles, uploads/jobs, claim/evidence review, conflicting values and identity merges, publication/retirement UI; unauthorized direct requests denied |
+| M5 — Bounded question answering | Weeks 12–14 | 84 h | B | M3/M4; frozen English question catalogue | Profile-selected oil-well intents and trusted parameterized queries, deterministic answers, citations and abstention; English passage-retrieval baseline; G5/G6 |
 | M6 — Production hardening | Weeks 15–17 | 88 h | C | M3–M5 | Pinned deployment, actual-host load/VRAM tests, offline test, fault tests, backup/restore, retirement propagation, runbooks; G7/G8 evidence |
 | M7 — Pilot, corrections, and handover | Weeks 18–20 | 92 h | C, with product owner | M6 technical gates | At least 3 intended users, task/time comparison, defects resolved, release checklist, operator training and acceptance; G9 and all release gates signed off |
 | **Total planned delivery** | **20-week illustration** | **576 h** | | | **Plus 144 h reserved capacity; total 720 h** |
 
-The hours are a constrained first-release allocation. Version 2.0 absorbs the VPI requirements (FR-16 to FR-18, a second domain module) into M2–M5 without changing the totals; re-estimate after M2 and draw on the reserve if needed, or apply the scope cuts in §4.3. A requirement for custom identity infrastructure, document-level permissions, enterprise availability, or substantial parser repair requires a new estimate. Avoid compressing the quality and operations milestones to preserve an artificial deadline.
+The milestone table retains the earlier 576-hour allocation for comparison. Re-estimate the narrowed English oil-well scope and remaining core/profile work, reliability fixes, annotation and integration before committing dates. Authentication/direct-route checks begin in M1/M4, publication crash cases in M3, and withdrawal/restore in the first complete slice; M6 repeats them on the agreed host.
 
 ![Milestone dependencies](diagrams/07-milestone-dependencies.svg)
 
@@ -112,9 +116,9 @@ flowchart TB
 - Inventory the actual GPU and available allocation. An A100 partition may expose less memory than the physical card; record what the process can actually use.
 - Confirm that the research machine may host a persistent service, whether other workloads compete for resources, and who can administer it after the project.
 - Confirm the institutional login, network/TLS route, backup destination, data classification, and expected support hours.
-- Select approximately 10 question intents and identify a domain reviewer. Decide whether all team readers may view all published documents.
+- Agree 5–8 initial question intents, implement three first, and identify a domain reviewer. Decide whether all team readers may view all published documents.
 - Agree weekly availability and a currency-denominated spending ceiling. Record the owner of any cloud account and its shutdown/budget controls.
-- Take the open questions of [specification §13.2](PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings) to the supervisors: VPI documents and where they may be processed, the second domain module, languages, and the end state. Record each answer as a decision in specification §13.1.
+- Take specification §13.2 to supervisors: approved English oil-well sources, well-property/question catalogue, reviewers, host/data boundary and expected end state. Record answers in §13.1; the team’s one-profile, English-first direction is already recorded as D-26/D-27.
 
 **Output:** a one-page decision record, confirmed backlog priorities, and a revised milestone calendar if needed. Do not buy hardware or reserve paid instances merely because the estimates mention them.
 
@@ -130,9 +134,9 @@ The structured-data path belongs to M1 as well. The BSEE adapter (done) verifies
 
 ### M2: smallest complete extraction example
 
-Work on the two [data source](DATA_SOURCES.md) tracks. First write the core ontology and the entity-registry contract ([specification §5.7, §6.1](PROJECT_DESIGN.md#61-core-ontology-and-domain-modules)): shared types, identifier schemes, language-tagged names, claim kinds and claim links. Seed it from the BSEE well grouping. Then draft the two module ontologies from the AK-3 section map: `drilling_and_wells` (starting from the prototype's 14 properties) and `subsurface_interpretation` (geology and testing sections). The extraction slice is AK-3. The architecture prototype already ran this flow on 15 AK-3 chunks ([experiment E4](experiments/E4-ak3-architecture-prototype.md)): its main lesson is that prose extraction recall, not the stack, is the bottleneck.
+Work on the two [data source](DATA_SOURCES.md) tracks within one oil-well application. Define generic source/evidence/claim/entity contracts and a versioned `oil_wells` profile: Well/Wellbore types, identifier schemes, scoped English aliases, properties, units, MD/TVD and planned/actual context. Start from the prototype’s 14 properties and move hardcoded assumptions into profile assets or registered rules. Seed identity using the BSEE adapter. Freeze English development/test documents and questions; keep existing AK-3 results as the baseline. A small synthetic non-well profile fixture verifies configuration loading, validation and dispatch without adding a second delivered domain.
 
-Before building a broad pipeline, use one short report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, qualifiers, claim kind, and an exact evidence span. Include a deliberately ambiguous alias, a Vietnamese alias, an interpretation that competes with another, and a misleading embedded instruction. Compare model output with deterministic checks and a manual reference.
+Before building a broad pipeline, use one short English well-report section, one relation type, and one quantity type. Produce typed JSON with original value/unit, normalized value only when a rule exists, planned/actual qualifiers and an exact evidence span. Include ambiguous English aliases, conflicting reported values, MD/TVD distinctions and a misleading embedded instruction. Compare model output with deterministic checks and a manual reference.
 
 Benchmark two or three eligible small instruction models, starting around 7–8B parameters with 4-bit weights. Record checkpoint/license, weight/tokenizer hashes, runtime version, prompt/schema, context budget, GPU allocation, peak VRAM/RAM, latency, schema-valid output rate, factual precision/recall, and numerical/citation errors. A public-data cloud run may screen candidates, but final acceptance uses the agreed school-host profile.
 
@@ -140,17 +144,19 @@ Create development/test documents and label at least the initial portion of the 
 
 **Exit demo:** a local command takes versioned chunks and ontology and writes reviewable candidates with evidence; invalid output is bounded and visible. No automatic graph publication yet.
 
+Freeze the held-out document split and matching rubric before the next E4 prompt or model comparison. Use E4's 15 chunks only for development. Add full claim/answer context checks and report missed-fact coverage separately from correct abstention. Measure a real reviewer's time and corrections before sizing a large extraction run.
+
 ### M3: durable knowledge and reproducible graph
 
-Implement relational migrations for document/run metadata, the entity registry, candidate/claim revisions, claim links, review decisions, jobs, outbox, and graph-generation pointers. Load the BSEE wells and wellbores into the registry. Implement the entity-resolution rules and tests for duplicate names, aliases in two languages, merges, and reversal. Build claim/evidence nodes in Neo4j using registry IDs and a generation marker.
+Implement relational migrations for document/run metadata, the generic entity registry, profile versions, candidate/claim revisions, review decisions, jobs, outbox and graph-generation pointers. Load BSEE wells and wellbores through the oil-well adapter/profile. Test duplicate names, scoped English aliases, external identifiers, merges and reversal. Build claim/evidence nodes using canonical registry IDs and a generation marker. Claim-to-claim interpretation links remain later scope.
 
-Inject failures before and after outbox processing and generation activation. A job retry must not duplicate effects. A missing projection marker must fail closed. Restore a graph from accepted records without rerunning the language model. Demonstrate that conflicting facts and competing interpretations remain independently inspectable.
+Inject failures before and after outbox processing and generation activation. A job retry must not duplicate effects. A missing projection marker must fail closed. Restore a graph from accepted records without rerunning the language model. Demonstrate that conflicting reported well values remain independently inspectable.
 
-**Exit demo:** a reviewed claim becomes queryable with its source; one registry entity carries claims from both domain modules; a failed replacement build leaves the old graph usable; rolling back selects a prior validated generation. If Q5 is approved, the shared entity is a BSEE well that also appears in an ingested report.
+**Exit demo:** a reviewed oil-well claim becomes queryable with its source; one registry entity links dataset and report claims; a failed replacement preserves the old graph; rollback selects a validated generation. Prefer an approved English report for a BSEE well; otherwise label a synthetic linking fixture explicitly.
 
 ### M4: a usable review application
 
-Implement a small set of screens: document list/upload and coverage; job detail; review queue; claim/evidence detail with claim links; entity detail/conflicts/interpretations; expert-note entry and second-expert review; publication summary; and minimal administration. Prefer a clear fact table and relationship list before adding a force-directed graph visualization.
+Implement document list/upload and coverage, job detail, claim/evidence review, entity identity/conflicting values, publication summary and minimal administration. Keep labels and question examples in English. Interpretation links and expert-note entry remain later extensions. Prefer a clear fact table and relationship list before force-directed visualization.
 
 The review view must show exact text, physical page, highlighted region where reliable, table headers for numeric cells, ontology rule, and validation issues. Never force a reviewer to approve a claim without access to its source. Correcting a claim creates a revision and requires a reason. Test stale edits from two reviewers and retired-source behavior.
 
@@ -160,7 +166,7 @@ The review view must show exact text, physical page, highlighted region where re
 
 Implement the supported-intent schema and versioned query catalogue. Start with direct structured search and deterministic answer formatting, then add natural-language intent classification. Optional generated wording comes last and retains a deterministic fallback.
 
-Create at least 60 held-out questions, including missing information, ambiguity, conflicting values, competing interpretations, questions across both modules, Vietnamese entity names, unit distinctions, withdrawn evidence, and adversarial instructions. Measure results before and after the optional model wording layer. Compare at least a small representative subset against direct PDF search and a simple passage-search baseline to explain where the graph helps.
+Create at least 60 held-out English oil-well questions covering supported intents, missing information, ambiguous identity, conflicting values, planned/actual and MD/TVD distinctions, cross-source links, withdrawn evidence and adversarial instructions. Measure results before/after optional model wording, and compare against direct PDF search and a simple English passage-retrieval baseline on the same questions.
 
 **Exit demo:** a supported question produces a correct answer, an exact citation, and the served knowledge revision. Ambiguous questions request clarification. Unsupported and unavailable cases are distinguishable.
 
@@ -202,6 +208,8 @@ No actual budget amount was supplied. These are planning categories, not prices 
 
 Track spend and remaining credits weekly. Save experiment checkpoints/results frequently, stop idle paid resources, and treat credits as a finite balance. Free or educational Colab resources are not a production hosting assumption: Google documents changing availability, runtime termination, and restrictions on web-service use. Use it for bounded interactive experiments. [Colab FAQ](https://research.google.com/colaboratory/faq.html).
 
+Track candidates/page, review minutes/candidate, accepted useful claims/reviewer-hour and GPU-hours/accepted claim. As an illustration only, 5,000 pages × 3 candidates/page × 30 seconds/candidate is 125 reviewer-hours before corrections and annotation. Include this work explicitly in capacity and reviewer agreements. There is still no verified currency budget or host quote. Benchmark English OCR on the required prose, forms and tables; use the existing E5 RapidOCR/VietOCR comparison to shortlist configurations. Vietnamese expansion has a separate future budget.
+
 ### 4.3 Scope cuts if resources are tighter
 
 Cut in this order: optional generated prose; elaborate graph visualization; extra question intents; extra ontology types; optional OCR; corpus size/concurrency beyond the agreed minimum. Keep citations, validation, role enforcement, withdrawal behavior, backups, and honest coverage reporting. If no persistent host/operator is available, deliver the validated prototype and handover package while explicitly leaving the internal production release unaccepted.
@@ -229,7 +237,7 @@ Likelihood/impact are initial qualitative estimates. Review weekly and after eac
 | R-16 | BSEE files change between snapshots, or redistribution terms forbid sharing derived data | Medium / Medium | New `Last-Modified`, changed digests, unclear license | Recorded snapshots and optional pins; freeze evaluation snapshots; keep BSEE data out of Git until terms are confirmed | B |
 | R-17 | Supervisor focus changes again | Medium / Medium | New sources requested before M2 closes | Keep adapters source-specific and contracts source-neutral; record each change as a decision (specification D-13) | Product owner |
 | R-18 | VPI documents arrive late, or may not leave VPI premises | High / High | No documents by M2; processing restricted | Keep public proxies (D-18); keep the stack installable on a VPI-controlled host; report proxy results as such | Product owner |
-| R-19 | Two domain modules and competing interpretations exceed three students' capacity | Medium / High | M2 or M3 overruns the reserve | Keep the second module to a few types and one interpretation pattern; cut extra intents first (§4.3) | A / product owner |
+| R-19 | Oil-specific hardcoding blocks reuse, or abstraction work expands beyond capacity | Medium / High | Core branches on well types, or a second real profile enters backlog | One oil-well profile; narrow generic contracts and registered rules; synthetic portability fixture; defer extra domains/languages | A / product owner |
 
 External dependencies are host allocation, institutional access/identity/TLS, backup storage, domain review, and model-use permissions. Record who is expected to supply each item and by which milestone. Lack of a reply is not approval.
 
@@ -252,27 +260,25 @@ Each change receives peer review. Implement tests for meaningful contracts and f
 
 ### Definition of release complete
 
-All Must requirements (FR-01 through FR-13, and FR-15 through FR-18) have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
+All Must requirements (FR-01 through FR-13, FR-15, FR-16 and FR-18) have accepted evidence; gates G1–G9 have results; unresolved defects are classified and accepted where permissible; the workload and support limits are published; the product owner and operator accept their respective responsibilities. Security, evidence integrity, and recovery failures block release. The source repository and this design alone do not satisfy that definition.
 
 ## 7. Next implementation backlog
 
-Revised 27 October 2026 for the VPI requirements, the AK-3 and BSEE tracks, and the prototype results. Complete the small evidence-to-claim path before expanding infrastructure. Items marked partly done have prototype evidence; production versions remain. Each experiment gets the next ID in the [experiment register](experiments/README.md).
+Revised after the 27 October repository review. Complete one reviewed evidence-to-answer path before expanding formats, domains or infrastructure. All fixes below are open unless explicitly marked otherwise. Preserve E1–E8 as historical measurements; E9 records the review checks.
 
 | Order | Task | Acceptance artifact | Status |
 |---|---|---|---|
-| 1 | Supervisor meeting on specification §13.2; name the product/domain reviewer and prospective operator; inspect the actual host | Answers recorded as decisions; decision record with GPU/VRAM, RAM/disk, sharing, access, identity, and service-hosting status | Open |
-| 2 | Recreate the pinned environment and verify both ingestion paths | Setup log; unit tests; nine matching PDF manifest entries; a validated BSEE bundle with its snapshot digests | Done 25 Oct 2026 ([E3](experiments/E3-reproduction-run-2026-10-25.md)) |
-| 3 | Write the core ontology and the entity-registry contract (FR-16, FR-18) | Schema for registry entries, identifier schemes, language-tagged names and aliases, claim kinds and claim links; BSEE wells loaded as fixtures; Vietnamese alias fixtures | Open |
-| 4 | Define versioned source, run, and evidence envelopes covering PDFs, dataset snapshots **and** expert notes | JSON schemas and fixtures covering GDR, local PDF, a BSEE row, an expert note, duplicate text, multi-page chunks, Unicode, and tables | Corpus document/chunk/table schemas and generated dataset schemas exist; expert-note envelope open |
-| 4a | Exercise the document pipeline at size: AK-3 appendix portfolio (44 PDFs, 67 scanned pages) with two workers, then a small VPI sample | Experiment record with throughput, review-flag rate and a hand check of flagged pages | AK-3 part done ([E8](experiments/E8-ak3-appendices-corpus-run.md)); VPI sample open |
-| 5 | Review the prototype ontology v0.1 (14 properties) as the first `drilling_and_wells` module with a domain reviewer; draft `subsurface_interpretation`; add 10 intended questions; compare with the published well-engineering ontology ([related work](references.md)) | Reviewed module ontologies with quantity/unit/qualifier rules, Vietnamese labels and unsupported examples | Prototype draft exists |
-| 6 | Improve prose extraction (the prototype's weak point, [E4](experiments/E4-ak3-architecture-prototype.md)) | Sentence-level passages, a second pass on summaries, or a 7–8B model; recall on the same slice reported against E4 run 5 | Open |
-| 7 | Enlarge the AK-3 gold set with interpretations and freeze a held-out split | Second annotator on a subset; interpretation claims and links labelled; held-out chunks never used for prompt changes | 41 development facts exist (single annotator) |
-| 8 | Run the extraction experiment on the school GPU | Versioned candidates, validation, quality/latency/VRAM report for 3B and 7–8B models | CPU run done in E4 |
-| 9 | Map BSEE fields to dataset claims and add snapshot comparison | Versioned mapping; claims citing snapshot and row; added/changed/removed report between two snapshots | Open |
-| 10 | If Q5 is approved, ingest one oil-and-gas report about a BSEE well | One registry entity with claims from the dataset and the report | Open |
-| 11 | Replace the stand-in reviewer with a person and a minimal review screen | Review time per claim and reviewer agreement on the AK-3 slice | Review API exists in the prototype |
-| 12 | Finalize relational/graph contracts from the tested slice | Prototype schema promoted into the application with migrations, including registry and claim links; BSEE graph loaded into Neo4j | Prototype schema exists |
+| 1 | Resolve specification §13.2 and agree the initial questions, reviewer, host/data boundary, capacity and spending ceiling | One decision record; demonstrator versus internal-pilot acceptance named; one English oil-well profile, core/profile boundary and remaining estimate recorded | Open |
+| 2 | Freeze an independent document-level split, gold revision and full matching rubric before tuning | Dataset/gold/scorer manifest, second annotation subset, leakage check; review-time protocol | E4 has 41 development facts; held-out work open |
+| 3 | Fix staging/activation, duplicate headers/record IDs and date validation | Invalid replacement cannot displace accepted data; interrupted swap preserves current release; malformed model dates reject cleanly | Reproduced in E9; fixes open |
+| 4 | Define shared source/bundle/evidence, registry and claim-revision contracts | One corpus document and synthetic dataset row; scoped identifiers, language tags, MD/TVD, planned/actual, original units and versioned evidence | Ingestion schemas exist; application contracts open |
+| 5 | Add deterministic CI and installation/cache checks | 128 main + 4 prototype checks in explicit suites; targeted behavior regressions; configuration-aware cache tests; installed wheel/schema check | Local suites passed in E9; CI/fixes open |
+| 6 | Build authenticated review with a minimal source viewer | Server-derived actor, direct-route role checks, real reviewer acceptance/correction, source navigation and measured minutes/claim | Prototype API only |
+| 7 | Promote durable jobs, review revisions and exact generation-set validation | Migrations, idempotent leased job, frozen accepted set, completion marker, crash/retry and generation-pinning demo | Prototype generation mechanism exists; production contracts open |
+| 8 | Deliver three cited question intents and source withdrawal | Correct answer with exact evidence; unsupported/missing cases; immediate retirement block and restore tombstones | E4 development QA only |
+| 9 | Demonstrate oil-well cross-source identity and profile portability | One well linked to dataset/report evidence; small synthetic profile fixture loads/validates/dispatches without core edits | Open; AK-3 is not a BSEE well |
+| 10 | Compare extraction/model/OCR and retrieval approaches on frozen inputs | False-negative trace by stage; passage/claim/graph baseline; full-context scoring, latency/memory and review cost | E4/E5 development results; independent comparison open |
+| 11 | Run host pilot, blocked-network workflow and independent restore | Approved data boundary, workload results, access/failure gates, known limits, named operator and handover | Open |
 
 The main [README](../README.md) remains the setup/CLI entry point. Do not rerun `publish` simply to check documentation: it writes the selected bundle. Fresh `run` requires PDF/model acquisition and can take time; first inspect existing artifacts and use an isolated named run for experiments.
 
@@ -294,3 +300,5 @@ Scope questions for the supervisors are in [specification §13.2](PROJECT_DESIGN
 | Snapshot-level review of datasets (specification D-14) | M3 | Determines the review workload and how dataset claims enter the graph |
 
 The specification and this plan remain usable with clearly labelled assumptions; production implementation must close the relevant decisions at their stated gates.
+
+Deliver the public-data demonstrator independently of private-data admission. Keep the internal-service target, but do not report that target accepted without host, identity, recovery and operator evidence. The unified [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) preserves the team's reporting voice and summarizes the state of all project workstreams, their evaluation results and the integration plan.

@@ -1,13 +1,17 @@
 # Data sources
 
+**Current application:** oil wells, initially in English. BSEE and English well reports feed a reusable core through oil-well profile/adapters. AK-3 remains a geothermal development proxy; additional real domains and multilingual delivery are later scope.
+
 **Updated:** 27 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
 This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. Until VPI supplies its own documents (specification D-18), development uses public proxies chosen by the supervisor (D-13):
 
 1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. They seed the entity registry and the wells-and-drilling module. Ingestion: [BSEE well-data ingestion](components/bsee-ingestion.md).
-2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from, for both domain modules. It is in the PDF corpus as `gdr882_ak3_eowr`.
+2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from, for the English oil-well application, with AK-3 retained as a geothermal development proxy. It is in the PDF corpus as `gdr882_ak3_eowr`.
 
 Other corpora (Utah FORGE reports, AK-3 appendices) stay in the repository as regression and evaluation material. BSEE provides authoritative identifiers and attributes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. AK-3 is not a BSEE well, so the two sources are developed as separate tracks for now.
+
+For the first integrated slice, use 5–10 representative reports, select an approved report about a BSEE well for the cross-source identity demonstration, and freeze a separate document-level evaluation split before tuning. Synthetic identity fixtures may test the contract but must remain labeled; they do not establish a real BSEE–report match. The [project progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) also covers the EOR evaluation and expanded BSEE graph workstreams. The snapshot counts below describe the well-information configuration; the expanded graph has its own scope and manifest.
 
 ![Two development tracks](diagrams/08-source-integration.svg)
 
@@ -32,7 +36,7 @@ flowchart TB
 
 </details>
 
-**Figure 8: Two development tracks.** Track 1 is implemented end to end: [ingestion](components/bsee-ingestion.md) and the [linked graph](components/bsee-ingestion.md#linked-graph). Track 2 has production ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks ([experiment E4](experiments/E4-ak3-architecture-prototype.md)).
+**Figure 8: Two development tracks.** Track 1 has implemented [ingestion](components/bsee-ingestion.md) and a [linked graph](components/bsee-ingestion.md#linked-graph), now reproducible through the generic importer. Track 2 has implemented local ingestion; the rest runs as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks ([E4](experiments/E4-ak3-architecture-prototype.md)). Neither path is an accepted secure production service; integration and publication defects remain open ([E9](experiments/E9-repository-review.md)). The diagram shows the source-specific baseline; generic-pipeline CLI entry points are in the README.
 
 ## 1. BSEE Data Center – Wells Information
 

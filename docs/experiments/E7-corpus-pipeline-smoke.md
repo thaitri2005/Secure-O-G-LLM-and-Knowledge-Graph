@@ -25,6 +25,8 @@
 
 ## Not covered
 
+- Interruption-safe replacement of an existing export. [E9](E9-repository-review.md) later reproduced a missing published path between its two renames; E7 demonstrates successful export, not atomic replacement.
+
 - Recovery from a crashed worker. (Parallel workers: see [E8](E8-ak3-appendices-corpus-run.md).)
 - Large documents, DOCX, PPTX, XLSX, HTML and images other than PDF scans.
 - Real scanned corpora: done for the AK-3 appendix portfolio in [E8](E8-ak3-appendices-corpus-run.md).

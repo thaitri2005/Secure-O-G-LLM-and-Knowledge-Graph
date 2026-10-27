@@ -1,5 +1,7 @@
 # Document ingestion (`graph_builder.corpus`)
 
+**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+
 This guide describes the **implemented generic document pipeline**. It takes documents in many formats, reads every page in the most reliable way available (text layer, OCR of images, or full-page OCR), and produces passage and table chunks with page, region and section provenance. It is the pipeline for new and VPI documents. The older [PDF ingestion](pdf-ingestion.md) pipeline stays in place to reproduce the published GDR bundle and experiments E1–E4.
 
 Measurements: [E5](../experiments/E5-ocr-engine-benchmark.md) (OCR engines), [E7](../experiments/E7-corpus-pipeline-smoke.md) (end-to-end smoke test), [E8](../experiments/E8-ak3-appendices-corpus-run.md) (AK-3 appendix portfolio: 44 PDFs, 463 pages, two workers).
@@ -20,6 +22,7 @@ Models are stored in `data/interim/ocr_models/`. Conversion never downloads anyt
 
 ```powershell
 python -m graph_builder.corpus init data/corpora/vpi                  # creates config.json, catalog.sqlite, store/, work/, exports/
+# For the English workload, set ocr.engine to "rapidocr" in config.json before processing.
 python -m graph_builder.corpus add data/corpora/vpi D:\docs --recursive --license-id vpi-internal
 python -m graph_builder.corpus analyze data/corpora/vpi               # page plan only: how many pages need OCR
 python -m graph_builder.corpus process data/corpora/vpi               # convert, chunk, check, validate
@@ -31,7 +34,7 @@ python -m graph_builder.corpus export data/corpora/vpi --name v1      # one bund
 - **`process`** handles each document independently and records the result in the catalog. A failure stays with its document and is retried with `--retry-failed`.
   - Re-running skips complete documents (manifest digests verified) and resumes partly converted ones from their cached segments.
   - `--workers N` runs N worker processes. Each loads its own models (about 2–3 GB of RAM), so use 1–2 on a 16 GB machine. A worker that crashes fails only the documents it held.
-- **`export`** writes `exports/<name>/` atomically: either the old export or the complete new one is visible. Documents that failed or were never processed are listed under `held_back` in the manifest. `--hold-review` also holds back documents with pages that need review.
+- **`export`** stages a complete bundle before installing `exports/<name>/`. Replacing an existing name uses two renames: the path is temporarily absent and an interruption can leave the old export under `.old`. This is not an atomic replacement. Use a fresh name for each inspection run; the application's immutable-release/pointer mechanism remains planned. Documents that failed or were never processed are listed under `held_back`. `--hold-review` also holds back documents with pages that need review.
 - **`retire --only DOC_ID`** removes a document from future exports.
 - **Run logs.** Every command also writes a timestamped log to `<corpus>/logs/`. `process` logs one line per finished document (pages, OCR pages, chunks, tables, review and missing pages, time), elapsed time, pages done and an ETA, plus a heartbeat every minute naming the documents still in progress.
 - **AK-3 appendix example.** [`scripts/run_ak3_appendices.py`](../../scripts/run_ak3_appendices.py) downloads and verifies the AK-3 appendix portfolio, splits it into 44 PDFs, and runs `init`, `add`, `process`, `export` and `status` on `data/corpora/ak3_appendices`. Use `--workers 2` to run faster, and `--scanned-only` to process only the PDFs with scanned pages. Results: [E8](../experiments/E8-ak3-appendices-corpus-run.md).
@@ -68,7 +71,7 @@ Pages are converted in segments: consecutive `text` and `hybrid` pages in batche
 
 ## OCR engine
 
-The default engine is PP-OCRv6 text-line detection (ONNX) with VietOCR transformer recognition ([`vietocr_engine.py`](../../src/graph_builder/corpus/vietocr_engine.py)), registered as a Docling OCR plugin. It reads Vietnamese with all its marks as well as English. Set `"ocr": {"engine": "rapidocr"}` for faster English-only corpora; `easyocr` remains for comparison. [E5](../experiments/E5-ocr-engine-benchmark.md) has the measurements. On a laptop CPU, expect roughly 25–50 s per scanned page; text pages take well under a second each after model loading.
+The default engine is PP-OCRv6 text-line detection (ONNX) with VietOCR transformer recognition ([`vietocr_engine.py`](../../src/graph_builder/corpus/vietocr_engine.py)), registered as a Docling OCR plugin. It reads Vietnamese with all its marks as well as English. For the current English oil-well workload, benchmark and pin `"ocr": {"engine": "rapidocr"}` on representative prose, forms and tables; the E5 English scan200 sample favored it in error and runtime. The code default remains VietOCR until configuration is explicitly selected; `easyocr` remains for comparison. [E5](../experiments/E5-ocr-engine-benchmark.md) has the measurements. On a laptop CPU, expect roughly 25–50 s per scanned page; text pages take well under a second each after model loading.
 
 ## Quality flags
 
@@ -93,9 +96,16 @@ Per document, in `work/<doc_id>/<fingerprint>/`:
 
 The fingerprint hashes the configuration, the Docling versions and the OCR model digests. Changing any of them creates a new output directory instead of overwriting the old one.
 
+It does not yet include the collected OCR runtime versions or complete pipeline/layout/table-model identity. Process-local converter reuse also keys only on format/mode. Changed runtimes or repeated library calls with different configurations can therefore reuse stale work; complete fingerprinting and configuration-aware reuse are open fixes ([E9](../experiments/E9-repository-review.md)).
+
 Record schemas: [`corpus_document`](../../schemas/corpus_document.schema.json), [`corpus_chunk`](../../schemas/corpus_chunk.schema.json), [`corpus_table`](../../schemas/corpus_table.schema.json). Chunk offsets index `text.txt`, which is the chunks joined by two newlines. Every document is validated before its manifest is written: schemas, offsets, digests, regions inside the page, and table references.
 
 ## Limitations
+
+- This is a local processing tool, not an authenticated application boundary. Parsing isolation, enforced network denial and expanded-archive/image resource limits remain required before shared/private-data use.
+- Remote URL redirects are checked after `urlopen` follows them; the allow-list is not a complete SSRF defense. Keep acquisition operator-controlled.
+- `retire` excludes future exports; it does not revoke older exports or answers. Immediate application withdrawal and restore tombstones remain planned.
+- Standalone wheel/schema packaging and a reproducible Linux/GPU environment have not been verified. Run from the documented Windows checkout environment.
 
 - Handwriting, stamps, heavy skew and multi-column reading order on scans are not evaluated; [E5](../experiments/E5-ocr-engine-benchmark.md) used rendered pages.
 - VietOCR lacks some symbols ("°").

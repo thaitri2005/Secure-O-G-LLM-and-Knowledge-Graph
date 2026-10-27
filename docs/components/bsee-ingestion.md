@@ -1,10 +1,14 @@
 # BSEE well-data ingestion
 
+**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+
 > **Superseded for new work.** BSEE is now imported by the generic [structured-data importer](dataset-import.md) with [`bsee_wells.mapping.json`](../../configs/datasets/bsee_wells.mapping.json), which reproduces this adapter's records and graph exactly ([E6](../experiments/E6-generic-import-bsee.md)). This adapter is kept because experiment E3 references it.
 
 This document describes the **implemented structured-data adapter** for the BSEE Data Center well files. Why this dataset was chosen, and what it contains, is in [Data sources](../DATA_SOURCES.md). How its records will become graph knowledge is in [specification §5.7](../PROJECT_DESIGN.md#57-structured-well-data-and-the-entity-registry).
 
 The adapter uses only the Python standard library plus `jsonschema` for output validation. It adds no dependencies to the lock file.
+
+Current integration work uses the generic importer and a shared evidence/claim-revision contract. Snapshot comparison/review and a real dataset–report identity demonstration remain open; AK-3 is not a BSEE well. The expanded BSEE graph in the [project progress report](../reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) is another graph configuration in the same project; counts below describe this well-information adapter. Publication fixes found in [E9](../experiments/E9-repository-review.md) remain open in the generic path.
 
 ## Commands
 

@@ -1,5 +1,7 @@
 # Documentation
 
+**Current direction:** domain-agnostic platform; one English-first oil-well application. [Specification §4.4](PROJECT_DESIGN.md#44-core-and-domain-profile-boundary) defines the core/profile boundary; D-26/D-27 record the team/user decisions.
+
 ## Document hierarchy
 
 The [project specification](PROJECT_DESIGN.md) is the **single source of truth**. Every other document is an input to it, derived from it, or supports it, and it wins any disagreement.
@@ -11,7 +13,9 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, milestones, ownership, estimates, risks, next backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public proxy data (BSEE well files, AK-3 and other end-of-well reports): content, terms, quality findings, refresh |
 | Supporting | [Components](components/) | How each implemented subsystem works and is run. Current pipelines: [document ingestion](components/corpus-ingestion.md) (any format, OCR, Vietnamese) and [structured-data import](components/dataset-import.md) (mapping-driven). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion and linked graph](components/bsee-ingestion.md) |
-| Supporting | [Experiments](experiments/README.md) | Every measurement, one record per experiment (E1–E8) |
+| Supporting | [Experiments](experiments/README.md) | Repository measurements, one record per experiment (E1–E9); E9 records the review verification and open defects |
+| Supporting | [Repository assessment](REPOSITORY_REVIEW_2026-10-27.md) | Code findings, cost/scope/security assessment and implementation priorities; fixes remain open |
+| Reporting | [Progress report 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) · [PDF](../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf) | Unified Vietnamese project-status report covering ingestion, method evaluation, graph construction, prototype QA and next steps |
 | Supporting | [Related work](references.md) | Papers and resources from the supervisor, access status, takeaways |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
 
@@ -20,6 +24,7 @@ Reading order for a new team member: the specification's §1, the development pl
 ## Conventions
 
 - **Implemented** means code, tests and a verification record exist in this repository. **Proposed** or **planned** means design intent only.
+- The progress report presents the project as one body of work. Keep dataset, configuration, metric and test-suite scope attached to each experiment; distinguish completed workstreams from planned integration.
 - Change the specification first, then the plan. A plan or guide must not introduce scope the specification does not contain.
 - Measurements live in experiment records. Don't copy numbers between documents; link to the experiment that owns them.
 - When behavior changes, update the component guide and specification §3 in the same change.

@@ -1,8 +1,12 @@
 # Related work and reference material
 
-**Updated:** 25 October 2026
+**Application of this reading:** reusable KG/evidence/review architecture; one English oil-well application. Oil-specific ontologies inform the `oil_wells` profile. Multilingual and interpretation literature remains future-extension research.
+
+**Updated:** 27 October 2026 · Supervisor-link access observations below were recorded on 25 October and have not been refreshed.
 
 This page records the papers and resources the supervisor pointed to, what we could verify about them, and what they mean for the design. "Verified" means we read the item or a bibliographic record of it. Summaries of abstracts are paraphrased and are not a substitute for reading the papers.
+
+The project's [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers the review of 27 papers and 13 repositories, including KGGen, EDC, GLiNER, Graphiti, GraphRAG, LightRAG and HippoRAG. Keep exact paper/repository versions, licenses and experiment manifests with the method-evaluation workstream. Compare passage retrieval, accepted-claim lookup and bounded graph traversal under matched conditions.
 
 ## Items from the supervisor
 

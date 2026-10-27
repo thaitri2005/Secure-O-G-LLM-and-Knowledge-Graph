@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="509" height="180" preserveAspectRatio="xMinYMin meet" viewBox="0 0 509 180" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="509" height="180"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-180)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="0" y="164" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,328) scale(1,-1)">EXTRACTION / REVIEW</text>
+			<text x="0" y="138" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,276) scale(1,-1)">Gold facts recovered</text>
+			<rect x="167" y="131" width="270" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="167" y="131" width="184.390243902439" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="447" y="133" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,266) scale(1,-1)">28 / 41</text>
+			<text x="167" y="117" style="font-family: Arial; font-size: 8px;fill: rgb(67%,44%,19%); stroke:none;" transform="translate(0,234) scale(1,-1)">Recall 0.68; 13 gold facts missed</text>
+			<text x="0" y="94" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,188) scale(1,-1)">Correct validated claims</text>
+			<rect x="167" y="87" width="270" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="167" y="87" width="260.6896551724138" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="447" y="89" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,178) scale(1,-1)">28 / 29</text>
+			<text x="167" y="73" style="font-family: Arial; font-size: 8px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,146) scale(1,-1)">Precision 0.97; oracle rejects 1 wrong candidate</text>
+			<text x="0" y="51" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,102) scale(1,-1)">QUESTION ANSWERING</text>
+			<text x="0" y="29" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,58) scale(1,-1)">End-to-end correct</text>
+			<rect x="167" y="23" width="270" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="167" y="23" width="165.48387096774195" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<text x="447" y="24" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,48) scale(1,-1)">19 / 31</text>
+			<text x="0" y="9" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,18) scale(1,-1)">QA-layer correct</text>
+			<rect x="167" y="2" width="270" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="167" y="2" width="270" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<text x="447" y="3" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,6) scale(1,-1)">31 / 31</text>
+		</g>
+	</g>
+</svg>

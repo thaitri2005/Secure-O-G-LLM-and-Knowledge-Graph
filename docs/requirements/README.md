@@ -4,6 +4,8 @@
 
 This folder holds the two VPI documents that define what the project is asked to do, and an English digest of them with requirement IDs (SR-xx). They are inputs, and many details are still to be adjusted in supervisor meetings. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or deferred ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to be agreed ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new or revised document, update this digest first, then the specification.
 
+The team agreement relayed on 27 October narrows delivery to one **English-first oil-well application**, while the platform core stays domain-agnostic (specification D-26/D-27). The original stakeholder inputs below are preserved; interpretation/expert-note workflows, extra domains and multilingual delivery are deferred in the specification. Public-data demonstration and private-data pilot acceptance remain distinct (§1.6).
+
 ## The documents
 
 | Document | Origin | Content |

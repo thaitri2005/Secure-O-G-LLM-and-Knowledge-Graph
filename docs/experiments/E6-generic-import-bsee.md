@@ -40,3 +40,7 @@ Differences:
 ## Interpretation
 
 A new dataset needs a mapping file, not code. `python -m graph_builder.datasets infer FILE` drafts one from a CSV or Excel sample. The BSEE-specific modules stay in the repository because earlier experiments reference them; new structured sources should use the importer.
+
+## Later validation findings
+
+[E9](E9-repository-review.md), 27 October, found that the generic CLI validates the bundle after installation and reproduced duplicate generated record IDs when no natural key was configured. Duplicate headers can also discard values, and replacement is not an atomic pointer switch. These findings do not change E6's successful BSEE comparison; they limit the generic importer's readiness for arbitrary/shared-service inputs. Fixes remain open.

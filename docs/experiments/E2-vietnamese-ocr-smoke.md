@@ -1,5 +1,7 @@
 # E2: Vietnamese OCR smoke test
 
+Later work: [E5](E5-ocr-engine-benchmark.md) compares OCR engines and [E8](E8-ak3-appendices-corpus-run.md) exercises a real appendix corpus. The current generic pipeline uses VietOCR by default; the EasyOCR observations below remain this experiment's historical results.
+
 | | |
 |---|---|
 | **Date** | 24–25 October 2026 |
@@ -36,4 +38,4 @@ On non-Windows hosts, pass `--font` with a font that supports Vietnamese.
 
 - The CER and WER include chunking effects, not only recognition errors: the title became section metadata instead of body text. The degree symbol was misread, and some punctuation was lost.
 - One clean, printed, synthetic page says nothing about handwriting, skew, poor resolution, complex reading order, merged table cells or real VPI scans.
-- Before Vietnamese documents enter the first release (specification §1.5), run a follow-up experiment on representative scans with human reference transcriptions. Score clean scans, degraded scans, mixed text and image pages, tables, and numbers with units separately.
+- Vietnamese delivery is deferred under the English-first scope (D-27). Before that extension is prioritized, run a follow-up on representative scans with human reference transcriptions, separating clean/degraded scans, mixed pages, tables and numbers with units. The current workload evaluates English well reports.

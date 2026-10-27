@@ -1,5 +1,7 @@
 # Architecture prototype (test build)
 
+**Promotion direction:** a domain-agnostic core with one English `oil_wells` profile. This prototype still hardcodes well/property assumptions; externalize those through profile contracts during integration. Interpretation/expert-note workflows, other domains and multilingual rollout are later scope.
+
 > **This is experiment E4, a test of the target architecture, not the system.** It runs a small version of the specification ([docs/PROJECT_DESIGN.md](../docs/PROJECT_DESIGN.md) §4–§8) on 15 chunks of **one** report (AK-3), to check that the pieces fit together and to measure where errors come from. It has no authentication, no UI, and throwaway credentials. Its numbers are development-set results. Findings and every run are recorded in the [E4 experiment record](../docs/experiments/E4-ak3-architecture-prototype.md).
 
 ## What it contains
@@ -16,6 +18,12 @@
 | Evaluation | `evaluate_extraction.py` (precision/recall before review), `evaluate_qa.py` (end-to-end, QA layer, citations, safety, latency), `test_ontology.py` |
 
 Out of scope: BSEE (developed as its own track), authentication and roles, UI, multi-user concurrency, backups.
+
+## Current limits after the 27 October review
+
+The four ontology tests pass, but temporary probes found that impossible dates can pass and an invalid month can raise `IndexError`. Generation validation checks that existing claims have evidence and that nonempty accepted input produces a nonempty graph; it does not compare the exact expected accepted set. A partial projection can therefore pass. Review actors are caller-supplied, schema DDL runs per connection and the API has no authorization. These shortcuts remain unfixed ([E9](../docs/experiments/E9-repository-review.md)).
+
+Before promotion, use migrations and managed connections, server-derived review identity, independent output validation, exact generation membership/completion checks and source withdrawal. Freeze a document-level held-out split before further prompt/model changes; E4's scores remain development results with a simulated reviewer. The generic corpus/importer paths are not yet integrated into this prototype.
 
 ## Run it
 

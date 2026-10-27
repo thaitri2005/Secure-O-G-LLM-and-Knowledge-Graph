@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="509" height="217" preserveAspectRatio="xMinYMin meet" viewBox="0 0 509 217" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="509" height="217"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-217)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="0" y="203" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,406) scale(1,-1)">Engine / language</text>
+			<text x="117" y="203" style="font-family: Arial-Bold; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,406) scale(1,-1)">CER ↓  (0–0.25)</text>
+			<text x="280" y="203" style="font-family: Arial-Bold; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,406) scale(1,-1)">WER</text>
+			<text x="330" y="203" style="font-family: Arial-Bold; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,406) scale(1,-1)">Word recall ↑ (0–1)</text>
+			<text x="480" y="203" style="font-family: Arial-Bold; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,406) scale(1,-1)">s/page</text>
+			<text x="0" y="171" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,342) scale(1,-1)">EasyOCR / VI</text>
+			<rect x="117" y="168" width="109" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="117" y="168" width="104.63999999999999" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,44%,19%); fill-rule: evenodd;"/>
+			<text x="235" y="171" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,342) scale(1,-1)">0.240</text>
+			<text x="280" y="171" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,342) scale(1,-1)">0.294</text>
+			<rect x="330" y="168" width="96" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="330" y="168" width="82.464" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="435" y="171" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,342) scale(1,-1)">0.859</text>
+			<text x="488" y="171" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,342) scale(1,-1)">41</text>
+			<text x="0" y="137" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,274) scale(1,-1)">RapidOCR / VI</text>
+			<rect x="117" y="134" width="109" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="117" y="134" width="61.476" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,44%,19%); fill-rule: evenodd;"/>
+			<text x="235" y="137" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,274) scale(1,-1)">0.141</text>
+			<text x="280" y="137" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,274) scale(1,-1)">0.562</text>
+			<rect x="330" y="134" width="96" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="330" y="134" width="42.24000000000001" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="435" y="137" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,274) scale(1,-1)">0.440</text>
+			<text x="488" y="137" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,274) scale(1,-1)">28</text>
+			<text x="0" y="103" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,206) scale(1,-1)">VietOCR / VI</text>
+			<rect x="117" y="100" width="109" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="117" y="100" width="22.671999999999997" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,44%,19%); fill-rule: evenodd;"/>
+			<text x="235" y="103" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,206) scale(1,-1)">0.052</text>
+			<text x="280" y="103" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,206) scale(1,-1)">0.082</text>
+			<rect x="330" y="100" width="96" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="330" y="100" width="90.72000000000003" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="435" y="103" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,206) scale(1,-1)">0.945</text>
+			<text x="488" y="103" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,206) scale(1,-1)">48</text>
+			<text x="0" y="69" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">RapidOCR / EN</text>
+			<rect x="117" y="66" width="109" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="117" y="66" width="9.156000000000006" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,44%,19%); fill-rule: evenodd;"/>
+			<text x="235" y="69" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">0.021</text>
+			<text x="280" y="69" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">0.044</text>
+			<rect x="330" y="66" width="96" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="330" y="66" width="95.80799999999999" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="435" y="69" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">0.998</text>
+			<text x="488" y="69" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,138) scale(1,-1)">13</text>
+			<text x="0" y="35" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,70) scale(1,-1)">VietOCR / EN</text>
+			<rect x="117" y="32" width="109" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="117" y="32" width="12.207999999999998" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(67%,44%,19%); fill-rule: evenodd;"/>
+			<text x="235" y="35" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,70) scale(1,-1)">0.028</text>
+			<text x="280" y="35" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,70) scale(1,-1)">0.059</text>
+			<rect x="330" y="32" width="96" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(87%,89%,91%); fill-rule: evenodd;"/>
+			<rect x="330" y="32" width="94.56" height="11" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<text x="435" y="35" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,70) scale(1,-1)">0.985</text>
+			<text x="488" y="35" style="font-family: Arial; font-size: 8.5px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,70) scale(1,-1)">26</text>
+			<text x="0" y="9" style="font-family: Arial; font-size: 8px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,18) scale(1,-1)">VI: 8 pages   |   EN: 3 pages   |   scan200 only   |   E5 synthetic scans</text>
+		</g>
+	</g>
+</svg>

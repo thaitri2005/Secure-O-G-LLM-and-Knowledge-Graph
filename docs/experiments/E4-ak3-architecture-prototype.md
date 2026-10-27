@@ -1,5 +1,7 @@
 # E4: Architecture prototype on AK-3
 
+**Current direction:** English-first oil-well delivery on a reusable core (D-26/D-27). This record preserves the experiment/review as run; profile-driven extraction and QA remain integration work. See the [specification](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+
 | | |
 |---|---|
 | **Date** | 25 October 2026 |
@@ -84,12 +86,15 @@ Switching the publication pointer between generations 1 and 2 changed the answer
 3. **Review matters even at 97% precision.** Without it, a wrong value reached an answer.
 4. **Deterministic code around a small model is what made it work.** Table rows were split by code; the plan's qualifier, well name and casing size were checked by code; queries were fixed templates. The 3B model alone mislabelled qualifiers and intents often.
 5. **The bottleneck is extraction recall on prose (0.68 overall).** Next experiments:
+   - first freeze a separate, deduplicated, document-level held-out set and matching rubric; keep this slice as development data;
    - split long paragraphs into sentences;
    - make a second pass on executive summaries;
    - try a 7–8B model on the school GPU;
-   - only then enlarge the gold set and add a held-out test.
+   - report held-out results once the prompt is fixed; do not tune on that set.
 
 ## Not tested
+
+**27 October follow-up:** [E9](E9-repository-review.md) records passing ontology tests alongside reproduced calendar-date defects and a code finding that generation validation does not establish exact accepted-set completeness. The count-based injection fingerprint also does not prove that graph properties were unchanged. E4's original observations above remain historical; these limitations must be fixed/tested before application promotion.
 
 - Human reviewers, and real reviewer time.
 - The UI.

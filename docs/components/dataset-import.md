@@ -1,5 +1,7 @@
 # Structured-data import (`graph_builder.datasets`)
 
+**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+
 This guide describes the **implemented generic importer** for tabular data. One mapping file describes:
 - the source files;
 - how to parse them into typed records;
@@ -40,7 +42,7 @@ python -m graph_builder.datasets validate --output data/processed/local/datasets
 
 - **Snapshots:** downloads go to `data/raw/<dataset_id>/` and are recorded in `snapshot.json` (URL, bytes, SHA256, `Last-Modified`, time). A cached file is reused only if its digest matches. A pinned `sha256` that no longer matches stops the import, so a publisher's new version is never taken silently.
 - **Encodings:** `auto` tries UTF-8 (with or without BOM), UTF-16, Windows-1258 (Vietnamese) and Windows-1252. Text is normalized to NFC, so tone marks stored as combining characters compare equal to precomposed ones.
-- **Scale:** rows stream from file to file. Keys, nodes and reference checks use a temporary SQLite database, so memory does not grow with row count. The output is staged and swapped in only when the import succeeds.
+- **Scale:** record processing uses streaming and temporary SQLite keys/nodes. XLSX ZIP members may be read fully into memory; this is not a bound on all input memory. Output is staged, then installed after import-level error checks. The CLI's full bundle validation runs afterwards; validation-before-publication remains an open fix.
 - **Outputs**, in `data/processed/local/datasets/<dataset_id>/` by default:
   - `records/<table>.jsonl`;
   - `nodes.jsonl` (nodes carry their first record's evidence) and `edges.jsonl` (one per row, with evidence);
@@ -50,6 +52,11 @@ python -m graph_builder.datasets validate --output data/processed/local/datasets
   - `SHA256SUMS`.
 
 ## Limitations
+
+- Replacing a bundle uses two renames and can leave the published path absent on interruption. Use a fresh output directory while the immutable-release/pointer fix remains open.
+- Optional natural `key` checks do not independently enforce unique generated `record_id` values during import. A duplicate-ID bundle can be installed before post-import validation reports it ([E9](../experiments/E9-repository-review.md)).
+- Duplicate/empty CSV or XLSX header names are not rejected; duplicate names can silently discard a value. Inspect headers before importing until this is fixed.
+- Download size caps, pre-request redirect checks and enforced parser CPU/RAM/disk budgets remain planned. The ZIP-member size check alone does not provide these guarantees.
 
 - One sheet per table for Excel. Formulas are read as their cached values.
 - No aggregation across rows (for example collecting all previous numbers onto one node); express such links as edges.

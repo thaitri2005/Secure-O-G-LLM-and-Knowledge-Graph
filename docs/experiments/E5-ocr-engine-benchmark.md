@@ -64,6 +64,8 @@ Means per page. VietOCR was run on the `scan200` set and on one clean page, to k
 
 ## Limits
 
+- The default is a measured starting profile, not a universal best engine. E8 later found invented Vietnamese text on dense English forms. Select/compare profiles by required language and page type, and freeze independent evaluation pages before tuning. No new OCR inference was run in the E9 review.
+
 - One document type (legal text in the Official Gazette layout) and synthetic degradation. Real scans add skew, stamps, handwriting and bleed-through, which this set lacks.
 - Small sample: 11 pages, and only the `scan200` condition for VietOCR. The `poor150` condition was not run for VietOCR.
 - VietOCR's vocabulary lacks some symbols, such as "°", which it reads as another character. Numbers with units should be checked in review.

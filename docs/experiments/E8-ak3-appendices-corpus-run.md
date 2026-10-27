@@ -63,7 +63,9 @@ A sample of other OCR chunks: continuous prose (letters, permit text, targeting 
 
 ## Not covered
 
+- Replacement of an existing published export under interruption: [E9](E9-repository-review.md) found the two-rename implementation is not atomic. This successful `v1` export does not establish that guarantee; the fix remains open.
+
 - OCR accuracy against a transcription: there is no gold text for these scans.
 - Wall-clock throughput for the whole portfolio in a single run (it was done in two runs with a code change in between).
 - One worker against two workers on the same input.
-- A VPI or other Vietnamese sample: backlog item 4a, second half.
+- A VPI or other Vietnamese sample remains unevaluated; further Vietnamese work is deferred under D-27. The immediate OCR follow-up uses English well-report pages.

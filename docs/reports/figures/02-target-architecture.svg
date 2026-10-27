@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="509" height="197" preserveAspectRatio="xMinYMin meet" viewBox="0 0 509 197" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="509" height="197"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-197)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="155" width="112" height="35" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="14.482666015624993" y="169.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,339) scale(1,-1)">Browser / review UI</text>
+			<rect x="183" y="155" width="190" height="35" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="261.245849609375" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">FastAPI</text>
+			<text x="213.705810546875" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">auth / profiles / bounded queries</text>
+			<path d="M 112,172 L 183,172 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="183 172, 178.6699 174.5, 178.6699 169.5" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<rect x="390" y="155" width="119" height="35" rx="4" ry="4" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(91%,95%,94%); fill-rule: evenodd;"/>
+			<text x="415.7412109375" y="175.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,351) scale(1,-1)">oil_wells profile</text>
+			<text x="405.227294921875" y="163.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,327) scale(1,-1)">English rules / queries</text>
+			<path d="M 390,172 L 373,172 Z" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="373 172, 377.3301 169.5, 377.3301 174.5" style="stroke: rgb(15%,46%,41%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,46%,41%); fill-rule: evenodd;"/>
+			<rect x="0" y="78" width="151" height="43" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="49.495361328125" y="102.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,205) scale(1,-1)">PostgreSQL</text>
+			<text x="20.730957031249993" y="90.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,181) scale(1,-1)">entities / revisions / reviews</text>
+			<rect x="179" y="78" width="151" height="43" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="226.49365234375" y="102.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,205) scale(1,-1)">Artifact store</text>
+			<text x="195.215576171875" y="90.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,181) scale(1,-1)">originals / versioned evidence</text>
+			<rect x="358" y="78" width="151" height="43" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="421.245849609375" y="102.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,205) scale(1,-1)">Neo4j</text>
+			<text x="379.216552734375" y="90.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,181) scale(1,-1)">completed graph projection</text>
+			<path d="M 254,155 L 254,121 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="254 121, 256.5 125.3301, 251.5 125.3301" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<path d="M 75,137 L 434,137 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 254,155 L 254,137 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 75,137 L 75,121 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="75 121, 77.5 125.3301, 72.5 125.3301" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<path d="M 434,137 L 434,121 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="434 121, 436.5 125.3301, 431.5 125.3301" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<rect x="0" y="7" width="151" height="39" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="59.99609375" y="29.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,59) scale(1,-1)">Worker</text>
+			<text x="26.476806640624993" y="17.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,35) scale(1,-1)">profile-driven processing</text>
+			<rect x="179" y="7" width="151" height="39" rx="4" ry="4" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 0.8; fill: rgb(94%,96%,96%); fill-rule: evenodd;"/>
+			<text x="228.244873046875" y="29.5" style="font-family: Arial-Bold; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,59) scale(1,-1)">Local model</text>
+			<text x="201.97216796875" y="17.5" style="font-family: Arial; font-size: 9px;fill: rgb(14%,21%,27%); stroke:none;" transform="translate(0,35) scale(1,-1)">llama.cpp / schema output</text>
+			<path d="M 151,27 L 179,27 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="179 27, 174.6699 29.5, 174.6699 24.5" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<path d="M 75,46 L 75,78 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="75 78, 72.5 73.66987, 77.5 73.66987" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<path d="M 75,59 L 434,59 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 254,59 L 254,78 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="254 78, 251.5 73.66987, 256.5 73.66987" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<path d="M 434,59 L 434,78 Z" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="434 78, 431.5 73.66987, 436.5 73.66987" style="stroke: rgb(15%,26%,36%); stroke-linecap: butt; stroke-width: 1; fill: rgb(15%,26%,36%); fill-rule: evenodd;"/>
+			<text x="347" y="10" style="font-family: Arial; font-size: 8px;fill: rgb(67%,44%,19%); stroke:none;" transform="translate(0,20) scale(1,-1)">All inside approved boundary</text>
+			<text x="347" y="23" style="font-family: Arial-Bold; font-size: 8px;fill: rgb(67%,44%,19%); stroke:none;" transform="translate(0,46) scale(1,-1)">TARGET — integration plan</text>
+		</g>
+	</g>
+</svg>
