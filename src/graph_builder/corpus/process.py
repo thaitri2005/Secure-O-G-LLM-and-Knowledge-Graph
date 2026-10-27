@@ -176,6 +176,10 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
     chunks, tables, statistics = chunk_document(merged, doc["doc_id"], config, ocr_pages)
     confidence = {page: scores for meta in metas for page, scores in meta["confidence"].items()}
     for page in analysis:
+        converted = merged.pages.get(page["page"])
+        if converted is not None:
+            # Docling reports the displayed (rotation-applied) size; regions use the same frame.
+            page["width"], page["height"] = round(converted.size.width, 2), round(converted.size.height, 2)
         page["confidence"] = confidence.get(str(page["page"]), confidence.get(page["page"], {}))
         page["ocr_engine"] = config["ocr"]["engine"] if page["mode"] in ("ocr", "hybrid") else None
     assess_pages(analysis, chunks, config["quality"])

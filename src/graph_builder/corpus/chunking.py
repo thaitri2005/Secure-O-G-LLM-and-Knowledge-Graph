@@ -165,12 +165,15 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
                            "header_rows": header_rows, "cells": cells, "rows_text": rows_text})
             table_ids[item.self_ref] = table_id
             caption = clean_text(item.caption_text(doc))
-            next_row = header_rows
+            from docling_core.transforms.serializer.markdown import _count_header_rows
+            # Rows are counted as the Markdown serializer renders them; cap at the grid in case it differs.
+            next_row = min(_count_header_rows(item), item.data.num_rows)
             items = [(item, None), *[(ref.resolve(doc), None) for ref in item.captions]]
             for part in split_table(item.export_to_markdown(doc=doc), caption, max_chars):
                 rows = max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2)
-                emit("table", part, items, table_id=table_id, row_start=next_row, row_end=next_row + rows)
-                next_row += rows
+                end = min(next_row + rows, item.data.num_rows)
+                emit("table", part, items, table_id=table_id, row_start=next_row, row_end=end)
+                next_row = end
         elif isinstance(item, TextItem):
             if item.self_ref in caption_refs:
                 continue
