@@ -6,7 +6,7 @@ their cached segments, and isolates failures to the document that caused them.
 """
 from __future__ import annotations
 
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 from concurrent.futures.process import BrokenProcessPool
 import gzip
 import hashlib
@@ -17,6 +17,7 @@ import multiprocessing
 import os
 from pathlib import Path
 import shutil
+import threading
 import time
 import traceback
 from typing import Any, Callable
@@ -231,7 +232,7 @@ def _guarded(root: str, doc: dict[str, Any], config: dict[str, Any], fingerprint
 
 
 def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = False, only: list[str] | None = None,
-        report: Callable[[str], None] = print) -> dict[str, int]:
+        report: Callable[[str], None] = print, heartbeat: float = 60.0) -> dict[str, int]:
     """Process every pending document. Returns counts of done, failed and skipped documents."""
     from .config import fingerprint as make_fingerprint
     from .ocr_engines import engine_fingerprint
@@ -256,8 +257,22 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
     clock = time.perf_counter()
     done_pages = 0
 
+    active: dict[str, tuple[float, int]] = {}  # doc_id -> (start time, pages) for documents being worked on
+    stop = threading.Event()
+
+    def beat():
+        while not stop.wait(heartbeat):
+            elapsed = time.perf_counter() - clock
+            running = ", ".join(f"{doc_id} ({pages} pages, {(time.perf_counter() - start) / 60:.1f} min)"
+                                for doc_id, (start, pages) in sorted(active.items())) or "none"
+            report(f"... still working: {counts['done'] + counts['failed']}/{len(pending)} documents, "
+                   f"pages {done_pages}/{total_pages}, elapsed {elapsed / 60:.1f} min; in progress: {running}")
+
     def record(doc: dict[str, Any], status: str, summary: dict | None, error: str | None, started: str, seconds: float):
         nonlocal done_pages
+        active.pop(doc["doc_id"], None)
+        if summary and summary.get("seconds"):
+            seconds = summary["seconds"]  # the worker's own time, excluding time spent queued
         corpus.record_job(doc["doc_id"], fingerprint, status, error, started, seconds, summary)
         recorded.add(doc["doc_id"])
         counts[status] += 1
@@ -274,12 +289,24 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
                f"ETA {eta / 60:.0f} min")
 
     arguments = (str(corpus.root),)
-    if workers <= 1:
-        for doc in pending:
-            started, clock = now(), time.perf_counter()
-            status, summary, error = _guarded(*arguments, doc, config, fingerprint, ocr, str(models))
-            record(doc, status, summary, error, started, time.perf_counter() - clock)
-        return counts
+    beater = threading.Thread(target=beat, name="corpus-heartbeat", daemon=True)
+    if heartbeat > 0:
+        beater.start()
+    try:
+        if workers <= 1:
+            for doc in pending:
+                started, began = now(), time.perf_counter()
+                active[doc["doc_id"]] = (began, doc["pages"] or 1)
+                status, summary, error = _guarded(*arguments, doc, config, fingerprint, ocr, str(models))
+                record(doc, status, summary, error, started, time.perf_counter() - began)
+        else:
+            _run_pool(pending, workers, arguments, config, fingerprint, ocr, str(models), record, recorded, active)
+    finally:
+        stop.set()
+    return counts
+
+
+def _run_pool(pending, workers, arguments, config, fingerprint, ocr, models, record, recorded, active) -> None:
     remaining = list(pending)
     while remaining:
         context = multiprocessing.get_context("spawn")
@@ -288,14 +315,21 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
             futures = {}
             for doc in remaining:
                 started[doc["doc_id"]] = (now(), time.perf_counter())
-                futures[pool.submit(_guarded, *arguments, doc, config, fingerprint, ocr, str(models))] = doc
+                futures[pool.submit(_guarded, *arguments, doc, config, fingerprint, ocr, models)] = doc
             remaining = []
             try:
-                for future in as_completed(futures):
-                    doc = futures[future]
-                    status, summary, error = future.result()
-                    record(doc, status, summary, error, started[doc["doc_id"]][0],
-                           time.perf_counter() - started[doc["doc_id"]][1])
+                waiting = set(futures)
+                while waiting:
+                    finished, waiting = wait(waiting, timeout=5, return_when=FIRST_COMPLETED)
+                    for future in waiting:
+                        doc = futures[future]
+                        if future.running() and doc["doc_id"] not in active:
+                            active[doc["doc_id"]] = (time.perf_counter(), doc["pages"] or 1)
+                    for future in finished:
+                        doc = futures[future]
+                        status, summary, error = future.result()
+                        record(doc, status, summary, error, started[doc["doc_id"]][0],
+                               time.perf_counter() - active.get(doc["doc_id"], (started[doc["doc_id"]][1], 0))[0])
             except BrokenProcessPool:
                 # A worker died (for example out of memory). Fail the documents still running; requeue the rest.
                 for future, doc in futures.items():
@@ -306,4 +340,3 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
                                started[doc["doc_id"]][0], time.perf_counter() - started[doc["doc_id"]][1])
                     else:
                         remaining.append(doc)
-    return counts
