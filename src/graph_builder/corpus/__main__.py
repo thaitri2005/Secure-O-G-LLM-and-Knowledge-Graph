@@ -45,9 +45,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args(argv)
-    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.WARNING, format="%(levelname)s %(message)s")
     os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    log_file = setup_logging(args)
     from .catalog import Corpus, iter_files
+    log = logging.getLogger("graph_builder.corpus.cli")
+
+    def print(message: str = "", **_: object) -> None:  # noqa: A001 - every user-facing line also goes to the log
+        log.info(message)
+
+    if log_file:
+        print(f"log: {log_file}")
     try:
         if args.command == "models":
             os.environ["HF_HUB_OFFLINE"] = "0"
@@ -95,7 +102,8 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "process":
             from .process import run
-            counts = run(corpus, args.models, workers=args.workers, retry_failed=args.retry_failed, only=args.only)
+            counts = run(corpus, args.models, workers=args.workers, retry_failed=args.retry_failed, only=args.only,
+                         report=print)
             print(json.dumps(counts))
             return 1 if counts["failed"] else 0
         if args.command == "status":
@@ -128,9 +136,38 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"retired {doc_id}")
             return 0
     except (OSError, ValueError, RuntimeError) as error:
-        print(f"FAIL: {error}", file=sys.stderr)
+        log.error(f"FAIL: {error}")
         return 1
+    except KeyboardInterrupt:
+        log.warning("Interrupted. Finished documents and converted segments are kept; run the same command to resume.")
+        return 130
     return 0
+
+
+def setup_logging(args: argparse.Namespace) -> Path | None:
+    """Console and a timestamped file in <corpus>/logs/; third-party chatter only at warning level."""
+    from datetime import datetime
+    formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S")
+    root = logging.getLogger()
+    for handler in [h for h in root.handlers if getattr(h, "corpus_cli", False)]:
+        root.removeHandler(handler)  # main() may run several times in one process
+        handler.close()
+    root.setLevel(logging.WARNING)
+    console = logging.StreamHandler(sys.stdout)
+    console.setFormatter(logging.Formatter("%(asctime)s %(message)s", "%H:%M:%S"))
+    console.corpus_cli = True
+    root.addHandler(console)
+    logging.getLogger("graph_builder").setLevel(logging.DEBUG if args.verbose else logging.INFO)
+    if args.corpus is None or args.command in ("init", "models", "status"):
+        return None
+    directory = args.corpus / "logs"
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / f"{args.command}-{datetime.now():%Y%m%d-%H%M%S}.log"
+    handler = logging.FileHandler(path, encoding="utf-8")
+    handler.setFormatter(formatter)
+    handler.corpus_cli = True
+    root.addHandler(handler)
+    return path
 
 
 if __name__ == "__main__":

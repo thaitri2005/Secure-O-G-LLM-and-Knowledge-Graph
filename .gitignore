@@ -12,3 +12,4 @@ prototype/.venv/
 prototype/results/*.log
 # Original VPI documents: the repository is public. Remove this rule only once VPI agrees to publication.
 docs/requirements/originals/
+data/corpora/

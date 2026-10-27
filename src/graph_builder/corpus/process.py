@@ -102,6 +102,8 @@ def convert_segment(source: Path, kind: str, mode: str, pages: tuple[int, int] |
         stream.write(result.document.model_dump_json())
     os.replace(partial, cache)
     atomic_write_json(meta_path, meta)
+    LOGGER.info("  %s pages %s (%s): %s in %.1f s", source.parent.parent.name, pages or "all", mode,
+                meta["status"], meta["seconds"])
     return result.document, meta
 
 
@@ -243,15 +245,29 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
             counts["skipped"] += 1
             continue
         pending.append(doc)
-    report(f"fingerprint {fingerprint}: {len(pending)} to process, {counts['skipped']} skipped")
+    total_pages = sum(doc["pages"] or 1 for doc in pending)
+    report(f"fingerprint {fingerprint}: {len(pending)} documents ({total_pages} pages) to process, "
+           f"{counts['skipped']} already done, {workers} worker(s)")
     recorded: set[str] = set()
+    clock = time.perf_counter()
+    done_pages = 0
 
     def record(doc: dict[str, Any], status: str, summary: dict | None, error: str | None, started: str, seconds: float):
+        nonlocal done_pages
         corpus.record_job(doc["doc_id"], fingerprint, status, error, started, seconds, summary)
         recorded.add(doc["doc_id"])
         counts[status] += 1
-        detail = json.dumps(summary) if summary else error
-        report(f"[{counts['done'] + counts['failed']}/{len(pending)}] {status} {doc['doc_id']}: {detail}")
+        done_pages += doc["pages"] or 1
+        elapsed = time.perf_counter() - clock
+        eta = elapsed / done_pages * (total_pages - done_pages) if done_pages else 0
+        if summary:
+            detail = (f"{summary['pages'] or '-'} pages, {summary['ocr_pages']} OCR, {summary['chunks']} chunks, "
+                      f"{summary['tables']} tables, review {summary['review_pages']}, missing {summary['missing_pages']}")
+        else:
+            detail = error
+        report(f"[{counts['done'] + counts['failed']}/{len(pending)}] {status.upper()} {doc['doc_id']} "
+               f"({seconds:.0f} s): {detail} | elapsed {elapsed / 60:.1f} min, pages {done_pages}/{total_pages}, "
+               f"ETA {eta / 60:.0f} min")
 
     arguments = (str(corpus.root),)
     if workers <= 1:
