@@ -29,7 +29,9 @@ services:
   llama:
     image: ghcr.io/ggml-org/llama.cpp:server@sha256:1fa7f8f0ca663fdcf3203dc125a7e0b5c9e49c9ed054b049599666cd7e300eb0
     command: ["-m", "/models/qwen2.5-3b-instruct-q4_k_m.gguf", "--host", "0.0.0.0", "--port", "8080",
-              "-c", "8192", "-t", "8", "--parallel", "1", "--jinja"]
+              "-c", "8192", "-t", "8", "--parallel", "1", "--jinja", "--load-mode", "none"]
+    # --load-mode none: read the model once into memory instead of memory-mapping it. Mapping it through the
+    # Windows bind mount made loading take 20+ minutes and generation about 10x slower on 27 October (E10).
     ports:
       - "127.0.0.1:8080:8080"
     volumes:

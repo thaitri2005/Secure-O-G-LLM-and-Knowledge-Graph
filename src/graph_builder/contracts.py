@@ -35,8 +35,13 @@ def _validator(name: str):
     return Draft202012Validator(json.loads((SCHEMAS / f"{name}.schema.json").read_text(encoding="utf-8")))
 
 
-def check(name: str, record: dict[str, Any]) -> dict[str, Any]:
-    """Validate a record against schemas/<name>.schema.json; raise ContractError listing every problem."""
+def check(name: str, record: dict[str, Any], validate: bool = True) -> dict[str, Any]:
+    """Validate a record against schemas/<name>.schema.json; raise ContractError listing every problem.
+
+    Bulk builders may pass ``validate=False`` after validating a sample: schema checks cost about 2.5 ms each.
+    """
+    if not validate:
+        return record
     problems = [f"{error.json_path}: {error.message}" for error in _validator(name).iter_errors(record)]
     if problems:
         raise ContractError(f"invalid {name}: {problems}")
@@ -71,7 +76,8 @@ def evidence_from_chunk(chunk: dict[str, Any], document: dict[str, Any], bundle:
                               "source": source, "bundle": bundle, "locator": locator})
 
 
-def evidence_from_record(record: dict[str, Any], bundle: dict[str, str], fields: list[str]) -> dict[str, Any]:
+def evidence_from_record(record: dict[str, Any], bundle: dict[str, str], fields: list[str],
+                         validate: bool = True) -> dict[str, Any]:
     """Evidence for named fields of one dataset record; every field must exist on the record."""
     missing = [field for field in fields if field not in record]
     if missing:
@@ -81,7 +87,7 @@ def evidence_from_record(record: dict[str, Any], bundle: dict[str, str], fields:
     locator = {"record_id": record["record_id"], "file": origin["source_id"], "member": origin.get("member"),
                "row": origin["row"], "fields": sorted(fields)}
     return check("evidence", {"evidence_id": _digest("ev", [source, bundle, locator]), "kind": "dataset_row",
-                              "source": source, "bundle": bundle, "locator": locator})
+                              "source": source, "bundle": bundle, "locator": locator}, validate)
 
 
 def claim_revision(profile: str, subject: dict[str, Any], property_name: str, qualifier: str, value: dict[str, Any],
@@ -104,7 +110,9 @@ def claim_revision(profile: str, subject: dict[str, Any], property_name: str, qu
 
 
 def entity(profile: str, entity_type: str, names: list[dict[str, Any]],
-           identifiers: list[dict[str, str]] | None = None, key: str | None = None) -> dict[str, Any]:
+           identifiers: list[dict[str, str]] | None = None, key: str | None = None,
+           evidence: list[str] | None = None, former_identifiers: list[dict[str, str]] | None = None,
+           validate: bool = True) -> dict[str, Any]:
     """A registry entity. Its ID comes from its first identifier, or else from its type, scope and name key."""
     identifiers = identifiers or []
     if identifiers:
@@ -113,5 +121,10 @@ def entity(profile: str, entity_type: str, names: list[dict[str, Any]],
         basis = [entity_type, names[0].get("scope") if names else None, key]
     else:
         raise ContractError("an entity needs an identifier or a name key")
-    return check("entity", {"entity_id": _digest("ent", basis), "entity_type": entity_type, "profile": profile,
-                            "identifiers": identifiers, "names": names})
+    record = {"entity_id": _digest("ent", basis), "entity_type": entity_type, "profile": profile,
+              "identifiers": identifiers, "names": names}
+    if evidence:
+        record["evidence"] = sorted(set(evidence))
+    if former_identifiers:
+        record["former_identifiers"] = former_identifiers
+    return check("entity", record, validate)

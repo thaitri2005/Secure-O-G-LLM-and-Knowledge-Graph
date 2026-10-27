@@ -10,6 +10,18 @@
     "entity_id": {"type": "string", "pattern": "^ent:[a-f0-9]{24}$"},
     "entity_type": {"type": "string", "minLength": 1},
     "profile": {"type": "string", "pattern": "^[a-z][a-z0-9_]*@[0-9A-Za-z.-]+$"},
+    "evidence": {"type": "array", "items": {"type": "string", "pattern": "^ev:[a-f0-9]{24}$"},
+                 "description": "Evidence for the entity's identifiers and names (FR-16 provenance)"},
+    "former_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scheme", "value"],
+        "properties": {"scheme": {"type": "string", "minLength": 1}, "value": {"type": "string", "minLength": 1}}
+      },
+      "description": "Identifiers the entity used to have (for example renumbered API numbers); they resolve to it"
+    },
     "identifiers": {
       "type": "array",
       "items": {

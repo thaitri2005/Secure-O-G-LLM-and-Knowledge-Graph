@@ -1,0 +1,22 @@
+{
+  "registry": "bsee_wells",
+  "profile": "oil_wells@0.2",
+  "dataset": "data/processed/local/datasets/bsee_wells",
+  "output": "data/processed/local/registry/bsee_wells",
+  "entities": [
+    {
+      "label": "Wellbore",
+      "entity_type": "Wellbore",
+      "identifier": {"scheme": "bsee_api12", "property": "api_well_number", "match": {"strip": "non_digits", "length": 12}},
+      "names": [{"property": "well_name", "scope": {"edge": "SURFACE_ON_LEASE", "property": "lease_number"}},
+                {"properties": ["well_name", "well_name_suffix"],
+                 "scope": {"edge": "SURFACE_ON_LEASE", "property": "lease_number"}}],
+      "former_identifiers": [{"edge": "RENUMBERED_FROM", "scheme": "bsee_api12"}]
+    },
+    {
+      "label": "Well",
+      "entity_type": "Well",
+      "identifier": {"scheme": "bsee_api10", "property": "api10", "match": {"strip": "non_digits", "length": 10}}
+    }
+  ]
+}
