@@ -1,17 +1,26 @@
 # Data sources
 
-**Current direction:** a knowledge-graph builder whose ontology is supplied by its users; the use case is oil wells, initially in English ([7 October supervisor meeting](requirements/supervisor-meeting-2026-10-07.md)). BSEE and English well reports are the public data it is developed on. AK-3 remains a geothermal development proxy; multilingual delivery is later scope.
+**Current direction (28 October 2026):** a GraphRAG application for drilling reports ([meeting](requirements/supervisor-meeting-2026-10-28.md)). Data is scoped **by document type**, not by sub-domain (specification D-40): everything in end-of-well reports and daily drilling reports, including their short geology sections at summary level. BSEE supplies well identity. Work starts on one document (D-44).
 
-**Updated:** 27 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
+**Updated:** 29 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
 This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. VPI will not supply datasets, because its domain data falls under confidentiality rules (specification D-33). Development therefore uses public proxies chosen by the supervisor (D-13):
 
 1. **[BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information)**: structured records for about 57,000 offshore boreholes. They seed the entity registry: 57,453 wellbores and 39,518 wells, built by configuration ([entity registry](components/entity-registry.md), [E13](experiments/E13-entity-registry-bsee.md)). Ingestion: the [structured-data importer](components/dataset-import.md), with the earlier [BSEE adapter](components/bsee-ingestion.md) kept for reproduction.
-2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the document type to extract knowledge from, for the English oil-well application, with AK-3 retained as a geothermal development proxy. It is in the PDF corpus as `gdr882_ak3_eowr`.
+2. **End-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf)**: the first document the GraphRAG pipeline is built and checked on (D-44). AK-3 is a geothermal well, used as a public stand-in for an oil-and-gas end-of-well report. It is in the PDF corpus as `gdr882_ak3_eowr`.
+3. **Daily drilling reports**, starting with the four daily-report attachments in the AK-3 appendix portfolio (§2, "Daily drilling reports"). They are almost entirely tables, which is why tables are their own workstream (D-47).
 
-Other corpora (Utah FORGE reports, AK-3 appendices) stay in the repository as regression and evaluation material. BSEE provides authoritative identifiers and attributes, which suits identity, reference data and graph structure. An end-of-well report describes how one well was drilled, cased, logged and tested, mostly in prose and tables, which suits LLM extraction with evidence and review. AK-3 is not a BSEE well, so the two sources are developed as separate tracks for now.
+BSEE provides authoritative identifiers and attributes: identity, reference data and the structure that links documents to one well. Drilling reports carry the knowledge, mostly in tables, plus some prose. AK-3 is not a BSEE well, so report-to-registry linking needs either a public oil-and-gas report for a BSEE well or AK-3's own project-scoped registry entry (specification §5.7, Q5).
 
-For the first integrated slice, use 5–10 representative reports, select an approved report about a BSEE well for the cross-source identity demonstration, and freeze a separate document-level evaluation split before tuning. Synthetic identity fixtures may test the contract but must remain labeled; they do not establish a real BSEE–report match. The [project progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) also covers the EOR evaluation and expanded BSEE graph workstreams. The snapshot counts below describe the well-information configuration; the expanded graph has its own scope and manifest.
+**Order of use.**
+
+1. The AK-3 end-of-well report.
+2. One AK-3 daily report.
+3. 5–10 documents: the other AK-3 daily reports, the Utah FORGE end-of-well reports, and public oil-and-gas reports when found.
+
+Freeze a held-out document split before tuning. The supervisor's drilling expert group is preparing the evaluation question set (Q2).
+
+**Sharing with the supervisor.** He asked to see the BSEE data. Share a ZIP of the local snapshot privately (team drive); it stays out of Git (D-15).
 
 ![Two development tracks](diagrams/08-source-integration.svg)
 
@@ -121,7 +130,7 @@ What we learn here should transfer to oil-and-gas EOW reports and to BSEE's End 
 
 ### Section-to-knowledge map
 
-This map guides the ontology and the development labels. "Target" means knowledge the graph should eventually hold. The prototype extracts the 14 properties of `prototype/profiles/oil_wells.json` (depths, durations, dates, API number, elevation, casing depths, temperatures, inclinations, rig time) from 15 chunks ([E10](experiments/E10-profile-driven-prototype.md)); the rest of the map is not extracted yet.
+This map guides the ontology and the development labels. Under scope by document type, **every section is in scope**, including the geology section at summary level (rock types and intervals, not interpretation). "Target" means knowledge the graph should eventually hold. The prototype extracts the 14 properties of `prototype/profiles/oil_wells.json` (depths, durations, dates, API number, elevation, casing depths, temperatures, inclinations, rig time) from 15 chunks ([E10](experiments/E10-profile-driven-prototype.md)); the rest of the map is not extracted yet.
 
 | Report section (as chunked) | Example content in AK-3 | Target entities and claims |
 |---|---|---|
@@ -143,6 +152,36 @@ This map guides the ontology and the development labels. "Target" means knowledg
 - **Units.** Feet, °F, ppf, ppg and gpm appear without a column-level unit in some places, so the ontology must state the expected units.
 - **Scanned appendix pages.** The older PDF pipeline leaves them without text. The document pipeline OCRs them ([E8](experiments/E8-ak3-appendices-corpus-run.md)): prose scans read well, while dense scanned forms such as the AOGCC Permit to Drill remain fragmentary and are flagged for review.
 - **Offset wells.** TG-2 and TG-4 are named only within the Akutan project, so names must be scoped by project.
+
+### Daily drilling reports
+
+The AK-3 appendix portfolio holds four daily-report attachments, one report per day from 18 August 2016 (file names dated 20 September 2016):
+
+| Attachment (corpus document) | Pages | Content |
+|---|---:|---|
+| `…_27_6_dailyreportdetailrpt_nocost` | 45 | Daily detail report: a key–value header (field, well, rig, depths, days, casing, RKB elevation), safety summary, current and planned operations in prose, operations tables |
+| `…_28_6_dailyreportdetailrpt` | 46 | The same with daily cost and AFE fields |
+| `…_29_6_dailyreportgraphicalrpt` | 27 | Graphical report: planned vs actual well schematic, depth–days chart, costs, safety and personnel boxes |
+| `…_30_6_dailyreportsummaryrpt` | 27 | Summary report: the header plus current and planned operations and comments |
+
+All four are in the document-pipeline corpus `ak3_appendices` ([E8](experiments/E8-ak3-appendices-corpus-run.md)). E8 found table row ranges pointing outside their table in two of the daily reports, an example of why their tables need dedicated handling. Gold tables already exist: [`data/gold/ingestion/tables/akutan_daily_operations.csv`](../data/gold/ingestion/tables/akutan_daily_operations.csv), plus a page annotation of the detail report's first page. A FORGE daily-report table (`forge_daily_report.csv`) also exists. These seed the **table evaluation set** (plan M1).
+
+What makes them hard (specification §5.10):
+
+- **Key–value forms lose their pairing with the current parser.** In the parsed detail report, labels and values come out of order: the text reads "Days On Location: 1700", where 1,700 ft is really the proposed TD, and "Rig: City of Akutan Major LF90" merges the operator into the rig name. A layout-aware VLM must keep each value with its label. This first page is the first test case.
+- **The report header lives outside the tables but applies to every row.** Date, well and depth must be attached to every operations row group.
+- **Reported in drilling reports generally (supervisor, 28 October), to confirm on AK-3:**
+  - operations tables running over several pages with the header only on the first;
+  - sentences inside cells;
+  - many merged cells.
+
+**Further public sources to check (Q5).**
+
+- BSEE eWell Well Activity Reports and End of Operations Reports, for wells that are in the BSEE registry (listed under "Other BSEE material").
+- The Utah FORGE drilling data on the GDR.
+- Other public operator data releases that include daily drilling reports.
+
+Confirm each one's terms before use, and record it here with its license.
 
 ## 3. Utah FORGE: reference material
 

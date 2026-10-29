@@ -1,6 +1,6 @@
 # Structured-data import (`graph_builder.datasets`)
 
-**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md), [meeting](../requirements/supervisor-meeting-2026-10-28.md)). This guide records implemented behavior only. The importer supplies well identity (BSEE) for the entity registry; well-specific mappings belong to the drilling-report profile. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
 
 This guide describes the **implemented generic importer** for tabular data. One mapping file describes:
 - the source files;

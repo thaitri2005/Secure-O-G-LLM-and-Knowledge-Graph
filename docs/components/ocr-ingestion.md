@@ -1,6 +1,6 @@
 # Vietnamese and multilingual PDF ingestion
 
-**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md), [meeting](../requirements/supervisor-meeting-2026-10-28.md)). This guide records implemented behavior only. Historical: VLM page parsing replaces OCR-engine work (D-39). Kept to reproduce experiment E2.
 
 > **Superseded for new work.** The [document ingestion](corpus-ingestion.md) pipeline decides OCR per page and uses a measured Vietnamese engine (VietOCR; [E5](../experiments/E5-ocr-engine-benchmark.md)) instead of EasyOCR. This guide describes the opt-in OCR of the earlier PDF pipeline, kept for experiment E2.
 

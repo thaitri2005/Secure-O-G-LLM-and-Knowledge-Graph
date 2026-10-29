@@ -2,19 +2,27 @@
 
 These SVGs are the portable exports used in [the project specification](../PROJECT_DESIGN.md), [development plan](../DEVELOPMENT_PLAN.md) and [data sources](../DATA_SOURCES.md). Their editable Mermaid source sits directly below each image, in an expandable block in the corresponding document. That source is authoritative; the SVGs are derived presentation assets.
 
-Current direction (27 October, with the 7 October supervisor direction): a knowledge-graph builder with a user-supplied ontology, one English oil-well use case; builder and admin console first, QA second, access control later. Diagram 01 shows what is built today (pipelines, releases, shared contracts, registry, prototype); diagram 02 labels the web UI as the admin console and the profile as admin-loaded; diagram 07 follows the reordered milestones; diagram 08 adds the registry and the ontology file to the two tracks. Diagrams 02 and 09 include the versioned domain-profile input; diagram 04 shows the first-delivery logical model, with expert notes/interpretation links deferred. Diagrams 01 and 08 describe the current implementation; the others are targets. File releases are atomic (E11); graph publication in the application and withdrawal still require implementation. M0–M7 hours/windows remain illustrative pending re-estimation.
+Current direction (28 October 2026): a GraphRAG application for drilling reports ([specification](../PROJECT_DESIGN.md) 3.0). On 29 October these were redrawn:
+
+- diagram 02: target components with object store, vector store, page parser, model endpoints, hosted development models and school GPU slots;
+- diagram 03: the item lifecycle with review by exception;
+- diagram 04: the data model with parent/child chunks and vector points;
+- diagram 05: the GraphRAG answer flow;
+- diagram 07: the new milestones;
+- diagram 09: the three layers as built in the capstone.
+
+Diagram 01 (current implementation) was relabelled to show the prototype as the baseline. Diagram 06 (deployment and recovery) was removed with the production-operations detail it illustrated; that work is now second-semester scope. Diagram 08 is unchanged and describes the current two tracks.
 
 | File | Diagram | Used in |
 |---|---|---|
-| `01-current-ingestion.svg` | What is built: document and data pipelines, releases, shared contracts, registry, prototype | Design §3 |
-| `02-target-architecture.svg` | Proposed application components and deployment boundary | Design §4 |
-| `03-claim-lifecycle.svg` | Candidate, review, publication and withdrawal states | Design §5 |
-| `04-data-model.svg` | First-delivery documents, dataset records, evidence, generic entities, claims and answers | Design §7 |
-| `05-question-answering.svg` | Authorized query and evidence-linked answer sequence | Design §8 |
-| `06-deployment-recovery.svg` | Development, release, operation and recovery | Design §11 |
-| `07-milestone-dependencies.svg` | Development milestone dependency graph | Plan §3 |
+| `01-current-ingestion.svg` | What is built: document and data pipelines, releases, shared contracts, registry, baseline prototype | Design §3 |
+| `02-target-architecture.svg` | Target components, stores and model endpoints | Design §4 |
+| `03-claim-lifecycle.svg` | Item lifecycle with review by exception | Design §5.2 |
+| `04-data-model.svg` | Files, pages, parent/child chunks, vector points, entities, items, corrections, answers | Design §7 |
+| `05-question-answering.svg` | GraphRAG retrieval and cited answer sequence | Design §8 |
+| `07-milestone-dependencies.svg` | Milestones M0–M6 | Plan §3 |
 | `08-source-integration.svg` | The two development tracks: BSEE data (import, graph, registry) and end-of-well reports (ontology file, extraction, review, QA) | Data sources, Design §5.7 |
-| `09-three-layers.svg` | Reusable core, versioned profiles and English oil-well application | Design §1.3 |
+| `09-three-layers.svg` | Three layers as delivered by the capstone | Design §1.3 |
 
 ## Regenerating a diagram
 
@@ -30,4 +38,4 @@ All exports use Mermaid 11.17.2 with the shared theme in [`mermaid-config.json`]
    If Puppeteer cannot download Chromium, point it at an installed Chromium-based browser. Pass `-p puppeteer.json` with `{"executablePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"}`.
 3. Open the SVG and check for clipping, overlapping labels and text size before committing. Update the source block and the SVG in the same commit.
 
-Diagrams 01, 02, 04, 07, 08 and 09 were updated on 27 October 2026, and the others on 23 October 2026. Spacing differs slightly between the sets.
+Diagrams 01, 02, 03, 04, 05, 07 and 09 were regenerated on 29 October 2026; diagram 08 dates from 27 October.

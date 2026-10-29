@@ -1,6 +1,6 @@
 # Experiment register
 
-**Current delivery scope:** a knowledge-graph builder with a user-supplied ontology, applied to one English oil-well use case (specification D-28/D-29). Historical experiments retain their original data, languages and results. Existing Vietnamese OCR remains completed work; second-domain and multilingual rollout are later scope.
+**Current direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md)). Historical experiments keep their data and results. The next experiments, numbered from E14, are the table evaluation and VLM comparison, the GraphRAG base comparison on one document, and the embedding comparison. E4/E10 are the baseline those must match ([plan](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog)). Every new record also reports model endpoint, calls, tokens and cost.
 
 Every measurement the project relies on comes from one experiment, recorded in one file here. Experiments are numbered in the order they were run and never renumbered. Each record starts with the same header: date, question, requirement, input, gold data, outputs and status. Other documents link to an experiment instead of copying its numbers.
 
@@ -22,12 +22,12 @@ Every measurement the project relies on comes from one experiment, recorded in o
 
 ## Adding an experiment
 
-1. Take the next ID (E10, E11, …) and copy the header table of an existing record.
+1. Take the next ID (E14, E15, …) and copy the header table of an existing record.
 2. State the question and the requirement or decision it informs before running anything.
 3. Use a named run (`--run-name`) or a separate directory so that the experiment cannot overwrite published data or another experiment's outputs. Keep large outputs in ignored `data/interim/`. Commit only small result summaries.
-4. Freeze any gold data before tuning, and say whether the result is a development or held-out score.
+4. Freeze any gold data before tuning, and say whether the result is a development or held-out score. Record the model endpoint (hosted or local), model and version, calls, tokens and cost.
 5. Record what changed between runs, the results, and what was learned, then add a row above. If the result changes the design, update the [specification](../PROJECT_DESIGN.md) in the same change.
 
-## Method-evaluation and graph-construction workstreams
+## Method-evaluation workstream (historical)
 
-The unified [project progress report](../reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers WebNLG/2Wiki/EOR evaluation, the expanded BSEE graph and replay alongside E1–E13. Preserve the dataset, model/configuration, scorer version and manifest for each run. The method suite has 354 tests; the ingestion/application checks have 136 main and 14 prototype tests. Assign experiment IDs when consolidating these run records into the register. **The code for these method evaluations (and the 354-test suite) is not yet in this repository**: it is in a team member's separate repository. It is to be added under `experiments/` with configs, data scripts, scorers and per-run results ([plan backlog](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog) item 2). Until then, those numbers cannot be rerun from this repository.
+The WebNLG/2Wiki/EOR method evaluations and the expanded BSEE graph are reported in the [27 October progress report](../reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md). Their code lives in a team member's separate repository and is **no longer planned for import**: the capstone is not a research project (specification D-41), so method comparisons now run only on drilling documents inside the GraphRAG pipeline. Treat those numbers as background, not as evidence for this repository.

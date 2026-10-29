@@ -2,6 +2,8 @@
 
 **Kind:** input to the [project specification](../PROJECT_DESIGN.md) · **Recorded:** Teams transcript, 37 minutes, retrieved 27 October 2026 · **Present:** MSc. Nguyen Anh Tuan (VPI supervisor), Thai Huu Tri, Nguyen Le Hung, Tran Quang Khai
 
+> **Partly superseded by the [28 October meeting](supervisor-meeting-2026-10-28.md).** Still valid: the ontology is the user's input, entities need unified IDs, people stay in the loop, and the team reuses open-source work. Superseded: QA as a second phase built on templates (now GraphRAG), approval of every item (now review by exception), "drop geology" (now scope by document type), and the build order. The text below is kept as the record of what was said.
+
 This digest paraphrases the supervisor's direction. It predates the BSEE/AK-3 data direction (25 October, D-13) and the team's scope agreement (27 October, D-26/D-27), and it is the basis for both. The specification records it as decisions D-28 to D-35 and resolves conflicts in [§13.1](../PROJECT_DESIGN.md#131-decision-register). The raw transcript is not committed.
 
 ## 1. Reframe: build a knowledge-graph builder, apply it to oil and gas

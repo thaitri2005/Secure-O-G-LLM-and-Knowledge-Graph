@@ -1,12 +1,23 @@
 # Stakeholder requirements
 
-**Updated:** 27 October 2026 (7 October meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
+**Updated:** 29 October 2026 (28 October meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
 
-This folder holds the two VPI documents that define what the project is asked to do, and an English digest of them with requirement IDs (SR-xx). They are inputs, and many details are still to be adjusted in supervisor meetings. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or deferred ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to be agreed ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new or revised document, update this digest first, then the specification.
+This folder holds the two VPI documents that define what the project is asked to do, an English digest of them with requirement IDs (SR-xx), and digests of the supervisor meetings. They are inputs. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or dropped ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to agree ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new document or a meeting changes direction, update the digest here first, then the specification.
 
-The supervisor's direction from the [7 October meeting](supervisor-meeting-2026-10-07.md) is the third input: the product is a **knowledge-graph builder** whose ontology is supplied by its users, applied to oil-and-gas wells as the use case; the builder and its admin application come first, question answering second, permissions later (specification D-28 to D-35).
+**Current direction: the [28 October meeting](supervisor-meeting-2026-10-28.md)** (specification D-36 to D-47):
 
-The team agreement relayed on 27 October narrows delivery to one **English-first oil-well application**, while the platform core stays domain-agnostic (specification D-26/D-27). The original stakeholder inputs below are preserved; interpretation/expert-note workflows, extra domains and multilingual delivery are deferred in the specification. Public-data demonstration and private-data pilot acceptance remain distinct (§1.6).
+- a GraphRAG application for drilling reports, built on an existing open-source pipeline;
+- open-weight models of about 7B or smaller, never commercial APIs;
+- hosted open models for development on public data, and school GPU slots for large runs;
+- VLM page parsing, with tables as their own workstream;
+- scope by document type (end-of-well and daily drilling reports);
+- separate stores linked by one ID scheme;
+- review by exception;
+- a full application delivered as a capstone, not research;
+- ingestion first, on one document;
+- weekly check-ins and roles split into data, backend and frontend.
+
+The [7 October meeting](supervisor-meeting-2026-10-07.md) still holds where 28 October does not override it: the ontology is the user's input, entities need unified IDs, people stay in the loop, and the team reuses open-source work. Its "QA second", per-claim review and "geology excluded" points are superseded.
 
 ## The documents
 
@@ -14,8 +25,8 @@ The team agreement relayed on 27 October narrows delivery to one **English-first
 |---|---|---|
 | `originals/capstone-proposal-vpi.pdf` | Capstone project proposal, Vietnam Petroleum Institute (VPI) | Title, supervisors, company, one-page project description, team size |
 | `originals/KGinEP-vi.docx` | "Xây dựng Đồ thị tri thức cho tài liệu chuyên ngành lĩnh vực Dầu khí" (Building knowledge graphs for oil-and-gas technical documents), in Vietnamese | VPI's view of why oil-and-gas knowledge needs knowledge graphs, the main difficulties, and the intended three-layer approach |
-
 | [`supervisor-meeting-2026-10-07.md`](supervisor-meeting-2026-10-07.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 7 October 2026 (digest of the Teams transcript) | Graph builder first, user-supplied ontology, builder difficulties, admin application, data and domain, schedule |
+| [`supervisor-meeting-2026-10-28.md`](supervisor-meeting-2026-10-28.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 28 October 2026 (digest of the Teams transcript) | GraphRAG, open models ≤ ~7B, compute, VLM parsing, tables, data scope by document type, storage and IDs, ontology control, process; list of removed design content |
 
 The originals are **not committed**: the repository is public, and `originals/` is in `.gitignore` until VPI agrees to publication. Share them through the team drive. The digest below paraphrases them.
 

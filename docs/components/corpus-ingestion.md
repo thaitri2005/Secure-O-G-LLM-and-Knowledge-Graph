@@ -1,6 +1,6 @@
 # Document ingestion (`graph_builder.corpus`)
 
-**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md), [meeting](../requirements/supervisor-meeting-2026-10-28.md)). This guide records implemented behavior only. This pipeline is the current parser and chunker and the **baseline** for the VLM comparison (specification D-39, §5.10). Its row-safe Markdown table chunks carry over; OCR-engine tuning (VietOCR, RapidOCR, EasyOCR) is no longer planned work, and the engines remain for reproduction. Planned additions are VLM page parsing, multi-page table joining, parent/child chunk IDs and object storage (§5.11).
 
 This guide describes the **implemented generic document pipeline**. It takes documents in many formats, reads every page in the most reliable way available (text layer, OCR of images, or full-page OCR), and produces passage and table chunks with page, region and section provenance. It is the pipeline for new and VPI documents. The older [PDF ingestion](pdf-ingestion.md) pipeline stays in place to reproduce the published GDR bundle and experiments E1–E4.
 
@@ -71,7 +71,7 @@ Pages are converted in segments: consecutive `text` and `hybrid` pages in batche
 
 ## OCR engine
 
-The default engine is PP-OCRv6 text-line detection (ONNX) with VietOCR transformer recognition ([`vietocr_engine.py`](../../src/graph_builder/corpus/vietocr_engine.py)), registered as a Docling OCR plugin. It reads Vietnamese with all its marks as well as English. For the current English oil-well workload, benchmark and pin `"ocr": {"engine": "rapidocr"}` on representative prose, forms and tables; the E5 English scan200 sample favored it in error and runtime. The code default remains VietOCR until configuration is explicitly selected; `easyocr` remains for comparison. [E5](../experiments/E5-ocr-engine-benchmark.md) has the measurements. On a laptop CPU, expect roughly 25–50 s per scanned page; text pages take well under a second each after model loading.
+The default engine is PP-OCRv6 text-line detection (ONNX) with VietOCR transformer recognition ([`vietocr_engine.py`](../../src/graph_builder/corpus/vietocr_engine.py)), registered as a Docling OCR plugin. It reads Vietnamese with all its marks as well as English. For English pages, `"ocr": {"engine": "rapidocr"}` measured better on the E5 English sample. Further OCR-engine tuning is not planned: VLM page parsing replaces it (specification D-39). The code default remains VietOCR until configuration is explicitly selected; `easyocr` remains for comparison. [E5](../experiments/E5-ocr-engine-benchmark.md) has the measurements. On a laptop CPU, expect roughly 25–50 s per scanned page; text pages take well under a second each after model loading.
 
 ## Quality flags
 

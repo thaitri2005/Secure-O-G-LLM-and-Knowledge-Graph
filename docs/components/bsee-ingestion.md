@@ -1,6 +1,6 @@
 # BSEE well-data ingestion
 
-**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md), [meeting](../requirements/supervisor-meeting-2026-10-28.md)). This guide records implemented behavior only. Earlier dedicated adapter, kept for reproduction; current BSEE work uses the [structured-data importer](dataset-import.md) and the [entity registry](entity-registry.md).
 
 > **Superseded for new work.** BSEE is now imported by the generic [structured-data importer](dataset-import.md) with [`bsee_wells.mapping.json`](../../configs/datasets/bsee_wells.mapping.json), which reproduces this adapter's records and graph exactly ([E6](../experiments/E6-generic-import-bsee.md)). This adapter is kept because experiment E3 references it.
 

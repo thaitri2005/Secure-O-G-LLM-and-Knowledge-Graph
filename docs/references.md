@@ -1,12 +1,12 @@
 # Related work and reference material
 
-**Application of this reading:** reusable KG/evidence/review architecture; one English oil-well application. Oil-specific ontologies inform the `oil_wells` profile. Multilingual and interpretation literature remains future-extension research.
+**Application of this reading (28 October 2026):** the project builds a GraphRAG application for drilling reports on an existing open-source pipeline, with open-weight models of about 7B or smaller ([specification](PROJECT_DESIGN.md) D-36, D-37). Reading serves practical choices: which base pipeline, which parser, which models, and what a drilling ontology looks like. It does not serve a research contribution (D-41).
 
-**Updated:** 27 October 2026 · Supervisor-link access observations below were recorded on 25 October and have not been refreshed.
+**Updated:** 29 October 2026. The supervisor-link access observations below were recorded on 25 October. On 28 October the supervisor said he cannot access the two papers either; a friend studying abroad will download them and he will forward them (specification Q9).
 
 This page records the papers and resources the supervisor pointed to, what we could verify about them, and what they mean for the design. "Verified" means we read the item or a bibliographic record of it. Summaries of abstracts are paraphrased and are not a substitute for reading the papers.
 
-The project's [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers the review of 27 papers and 13 repositories, including KGGen, EDC, GLiNER, Graphiti, GraphRAG, LightRAG and HippoRAG. Keep exact paper/repository versions, licenses and experiment manifests with the method-evaluation workstream. Compare passage retrieval, accepted-claim lookup and bounded graph traversal under matched conditions.
+The [27 October progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) covers the earlier review of 27 papers and 13 repositories (KGGen, EDC, GLiNER, Graphiti, GraphRAG, LightRAG, HippoRAG and others). It is the starting list for the candidates below.
 
 ## Items from the supervisor
 
@@ -18,7 +18,7 @@ The project's [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10
 | [BSEE Data Center – Wells Information](https://catalog.data.gov/dataset/bsee-data-center-wells-information) | **Verified and ingested.** | See [Data sources §1](DATA_SOURCES.md#1-bsee-data-center--wells-information) and [BSEE ingestion](components/bsee-ingestion.md). |
 | [AK-3 End of Well Report](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf) | **Verified and ingested.** | See [Data sources §2](DATA_SOURCES.md#2-akutan-ak-3-end-of-well-report-the-document-exemplar). |
 
-**Action for the team.** Someone with OnePetro and EarthDoc access (for example through the library) should open both links and fill in the bibliographic record and three to five takeaways below. Until then, do not cite either paper for a specific claim.
+**Action for the team.** When the supervisor forwards the papers, fill in the bibliographic record and three to five takeaways below. Until then, do not cite either paper for a specific claim.
 
 ### OnePetro 642469: identification note
 
@@ -49,3 +49,22 @@ These appeared in searches for the items above and may be useful background. Non
 - *Agentic Retrieval Augmented Generation for Drilling.* ADIPEC 2025 ([OnePetro](https://onepetro.org/SPEADIP/proceedings-abstract/25ADIP/25ADIP/D021S081R003/792938)). Combines knowledge graphs with retrieval in a conversational interface.
 - *Leveraging large language models for automated knowledge extraction from geological reports.* Journal of Rock Mechanics and Geotechnical Engineering, 2026 ([ScienceDirect](https://www.sciencedirect.com/science/article/pii/S1674775526001216)). Benchmarks LLMs on knowledge-graph construction and question answering over geological reports.
 - *From Data to Decision-Making: A Review of Large Language Model Applications Across the Full Lifecycle of Geothermal Resource Development.* Energies 19(21), 5052 ([MDPI](https://www.mdpi.com/1996-1073/19/21/5052)). Notes that knowledge-graph and retrieval frameworks in geothermal work are mostly proposals rather than implemented systems.
+
+## Candidates for the GraphRAG application
+
+These are candidates to **compare on one document**, not decisions. Record versions, licenses and results as experiments (E14 onward) and choose by measurement ([specification §9](PROJECT_DESIGN.md#9-technology-choices-and-alternatives)).
+
+| Need | Candidates | What to check |
+|---|---|---|
+| GraphRAG base pipeline | [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python), [LightRAG](https://github.com/HKUDS/LightRAG), [Microsoft GraphRAG](https://github.com/microsoft/graphrag), LlamaIndex property-graph index | Works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema so the ontology slice can be injected; keeps chunk provenance; Neo4j storage; calls and tokens per page; license and activity |
+| Page/table parsing (VLM) | granite-docling / SmolDocling (Docling VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL (3B/7B) | Within ~7B; cell accuracy, merged cells and multi-page joins on the table set; key–value forms; Markdown/HTML output; speed |
+| Embeddings | BAAI bge-m3, Qwen3-Embedding (0.6B), nomic-embed-text; reranker bge-reranker-v2-m3 | Retrieval recall on the development questions; English technical terms and numbers; size |
+| LLM (≤ ~7B) | Qwen2.5-7B-Instruct, Llama-3.1-8B-class, Qwen2.5-3B (current prototype) | JSON compliance, extraction precision/recall, answer quality, tokens per page; availability on OpenRouter for development and locally for runs |
+| Drilling ontology | Queiroz et al. well-engineering ontology for daily reports (below) | Class and relation names to reuse in the drilling-report profile |
+
+Repository GraphRAG pipelines are generic. What they typically lack, and what this project adds (supervisor, 28 October):
+
+- handling of drilling tables;
+- injecting a user ontology during ingestion;
+- unified IDs across documents and stores;
+- human-in-the-loop correction of low-confidence items.

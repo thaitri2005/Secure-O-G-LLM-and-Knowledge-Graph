@@ -1,6 +1,6 @@
 # Progress report
 
-**Current direction:** a knowledge-graph builder with a user-supplied ontology, one oil-well use case, English-first; builder first, QA second ([7 October meeting](../requirements/supervisor-meeting-2026-10-07.md)). The report was revised on 27 October to include that direction and the profile-driven prototype run (E10); it keeps its Vietnamese narrative and completed research results.
+**Historical snapshot (27 October 2026).** This report predates the [28 October direction](../requirements/supervisor-meeting-2026-10-28.md): GraphRAG, open models of about 7B, VLM parsing and a full application. Its "builder first, QA second" framing, OCR-engine plan and research workstream are superseded; see the [specification](../PROJECT_DESIGN.md) for the current design. The supervisor asked for lighter reporting from now on: a weekly slide plan and short group-chat updates (D-46), not reports of this length.
 
 [Vietnamese report](KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) · [PDF](../../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf)
 

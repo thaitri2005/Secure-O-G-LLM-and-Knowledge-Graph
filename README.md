@@ -1,24 +1,39 @@
 # Secure LLM and Knowledge Graph Platform
 
-A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise **knowledge-graph builder**. It is a domain-agnostic pipeline and admin application that turns documents and datasets into a reviewed knowledge graph, guided by an ontology its users supply. The use case is **oil wells** (drilling and production), initially using **English** documents and questions; well terminology, identifiers, units and query rules belong in a versioned domain profile. The builder comes first, question answering second ([supervisor direction, 7 October](docs/requirements/supervisor-meeting-2026-10-07.md)). Ingestion runs locally; extraction, review, graph storage and cited QA run as a well-specific prototype. Three students are building it on school hardware.
+A capstone project for the Vietnam Petroleum Institute (VPI): a secure, on-premise **GraphRAG application for drilling reports**.
 
-**Start here:** the [project specification](docs/PROJECT_DESIGN.md) is the single source of truth for scope and design. The [documentation index](docs/README.md) lists everything else. Until VPI supplies its own documents, development uses public proxies: [BSEE well data](https://catalog.data.gov/dataset/bsee-data-center-wells-information) and end-of-well reports, starting with [Akutan AK-3](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf) ([data sources](docs/DATA_SOURCES.md)).
+- It ingests end-of-well and daily drilling reports and parses pages and tables with vision-language models.
+- It extracts entities and relations under an ontology the user supplies, and links every well to one ID across documents.
+- It answers questions with citations to the source page.
+
+Administrators manage documents, the ontology and the glossary, and correct low-confidence items; end users ask questions. Models are **open-weight and about 7B parameters or smaller**; commercial models and APIs are never used. The direction comes from the [28 October supervisor meeting](docs/requirements/supervisor-meeting-2026-10-28.md). The work is a capstone application, not a research project.
+
+**Start here.**
+
+- The [project specification](docs/PROJECT_DESIGN.md) is the single source of truth.
+- The [development plan](docs/DEVELOPMENT_PLAN.md) has the milestones and this week's tasks.
+- The [documentation index](docs/README.md) lists everything else.
+
+Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well data](https://catalog.data.gov/dataset/bsee-data-center-wells-information) for well identity, and drilling reports starting with the [Akutan AK-3 end-of-well report](https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf) and its daily reports.
 
 ## Status
 
-**27 October review:** document ingestion, structured-data import and the AK-3 prototype exist as separate paths; their integration remains open. The next milestone is the builder slice: an ontology loaded from a file rather than code, extraction with reference resolution, duplicate search, and a real reviewer publishing into a validated graph generation. Cited QA follows, then access control. The publication, dataset-identity, header and generation-check defects from the [repository assessment](docs/REPOSITORY_REVIEW_2026-10-27.md) are fixed and covered by tests ([E11](docs/experiments/E11-publication-and-import-fixes.md)); cache-identity and redirect-check findings remain open. See the updated [development plan](docs/DEVELOPMENT_PLAN.md#7-next-implementation-backlog) and [progress report](docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md).
+**29 October:** the design was rewritten for the GraphRAG direction (specification 3.0).
+
+- **Carries over:** ingestion, structured-data import, the entity registry and an extraction/QA prototype.
+- **Not built yet:** the GraphRAG pipeline, VLM parsing, object and vector storage, the ID scheme across stores, and the frontend.
+- **Next:** ingestion and data organization on one end-of-well and one daily report, then a one-document GraphRAG slice ([plan](docs/DEVELOPMENT_PLAN.md#current-status)).
 
 | Component | Purpose | Status |
 |---|---|---|
-| Document ingestion | PDF, scans, images, DOCX, PPTX, XLSX, HTML and Markdown to passage and table chunks with page, region and section provenance; per-page OCR decision; Vietnamese OCR (VietOCR); quality flags; resumable, parallel, exportable | Implemented ([guide](docs/components/corpus-ingestion.md), [E5](docs/experiments/E5-ocr-engine-benchmark.md), [E7](docs/experiments/E7-corpus-pipeline-smoke.md)) |
-| Structured-data import | CSV, Excel and JSON-lines files (also inside ZIPs) to typed records and a linked graph, described by one mapping file; every record and edge cites its file, digest and row | Implemented ([guide](docs/components/dataset-import.md)); BSEE reproduced exactly ([E6](docs/experiments/E6-generic-import-bsee.md)) |
-| BSEE well data and linked graph | Wellbores linked to wells, operators, leases, blocks, fields and former records. Seed of the entity registry | Implemented as a mapping ([mapping](configs/datasets/bsee_wells.mapping.json)); earlier [dedicated adapter](docs/components/bsee-ingestion.md) kept |
-| Published GDR PDF bundle | Byte-reproducible chunks of three end-of-well reports, used by experiments E1–E4 | Implemented ([details](docs/components/pdf-ingestion.md)) |
-| Core schema and entity registry | Generic entities, opaque IDs and evidence/claim contracts; profile-declared types and scoped English aliases | Contracts and schemas ([E12](docs/experiments/E12-shared-evidence-contract.md)); registry built from BSEE by config with conservative resolution ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); PostgreSQL storage and report linking planned |
-| Domain profiles | One `oil_wells` application; reusable core/profile contracts | Prototype ontology v0.1 (14 properties); well-specific extraction/QA still to externalize. Other domains, interpretation/expert-note workflows and multilingual rollout later |
-| Ontology management and graph curation | Load, edit, version and AI-draft the ontology in an admin application; reference resolution; duplicate-node search and merge; confidence-routed review | Specified ([§5.9, §6.5](docs/PROJECT_DESIGN.md#59-builder-controls-nodes-connections-and-curation)); not started |
-| Report knowledge (AK-3) | LLM extraction with quotes, validation, review, graph generations, cited QA | Prototype on 15 AK-3 chunks ([experiment E4](docs/experiments/E4-ak3-architecture-prototype.md)); production version planned |
-| Review, graph storage, question answering | Review queue; graph in which every fact keeps its evidence; supported questions answered from graph queries with citations | Prototype; production version planned |
+| Document ingestion | Files to page-provenanced passage and table chunks (Docling, Markdown tables, rows never split) | Implemented ([guide](docs/components/corpus-ingestion.md)); baseline for the VLM comparison |
+| VLM page parsing and multi-page tables | Pages and tables to Markdown/HTML with a document VLM; continued tables joined with headers carried | Planned (M1) |
+| Storage and ID scheme | MinIO for files, PostgreSQL for metadata and chunks, a vector store, Neo4j; file → page → parent → child chunk → vector → graph | Planned (M1) |
+| Structured-data import | CSV/Excel/JSON-lines to typed records with row provenance; BSEE as a mapping | Implemented ([guide](docs/components/dataset-import.md), [E6](docs/experiments/E6-generic-import-bsee.md)) |
+| Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned |
+| GraphRAG pipeline | Existing open-source base, ontology injection, extraction, embeddings, graph and vector retrieval, cited answers | Planned (M2); base chosen by comparison |
+| Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Implemented as the baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
+| Application | Chat with citations; admin for documents, ontology, glossary, flagged items | Planned (M4) |
 
 ## Quick start
 
@@ -35,7 +50,7 @@ python -m unittest prototype.test_ontology    # 14 prototype tests (profiles, va
 
 The lock file is the verified Windows CPU environment. A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment.
 
-**Ingest documents** (any mix of PDFs, scans and Office files; OCR needs the extra and a one-time model download):
+**Ingest documents** with the current Docling-based pipeline (any mix of PDFs, scans and Office files; OCR needs the extra and a one-time model download). VLM parsing replaces OCR for new work once M1 selects a model:
 
 ```powershell
 python -m pip install -e ".[ocr]"; python -m pip install --no-deps vietocr==0.3.13
@@ -79,10 +94,10 @@ docs/
   PROJECT_DESIGN.md     project specification: the single source of truth
   DEVELOPMENT_PLAN.md   status, milestones, risks, backlog (derived from the specification)
   DATA_SOURCES.md       the public proxy data
-  requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests
+  requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests (7 and 28 October)
   components/           guides to implemented subsystems
   experiments/          one record per experiment (E1–E13) and the register
-  reports/              updated Vietnamese progress report (editable Markdown)
+  reports/              Vietnamese progress report of 27 October (historical snapshot)
   diagrams/             SVG exports of the Mermaid diagrams
 schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline; evidence, claim, entity for application records)
 scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark, E8 AK-3 appendix corpus run)
@@ -93,7 +108,7 @@ src/graph_builder/registry.py     entity registry from a dataset bundle, conserv
 src/graph_builder/datasets/    structured-data importer (python -m graph_builder.datasets)
 src/graph_builder/ingestion/   earlier PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
 src/graph_builder/graph/       earlier BSEE linked graph (python -m graph_builder.graph.bsee)
-prototype/        experiment E4: test build of the target stack on AK-3 (Neo4j, PostgreSQL, llama.cpp, FastAPI); not the system
+prototype/        experiments E4/E10: extraction and template-QA prototype on AK-3; the baseline for the GraphRAG pipeline
 tests/            unit and regression tests (unittest)
 ```
 

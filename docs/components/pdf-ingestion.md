@@ -1,6 +1,6 @@
 # PDF ingestion
 
-**Delivery scope:** domain-agnostic core, one English-first oil-well application. This guide records implemented component behavior; existing Vietnamese OCR options remain available for reproduction. Oil-specific identifiers and mappings belong to the oil-well profile/adapters. See [core/profile boundary](../PROJECT_DESIGN.md#44-core-and-domain-profile-boundary).
+**Direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md), [meeting](../requirements/supervisor-meeting-2026-10-28.md)). This guide records implemented behavior only. Historical pipeline, frozen to reproduce the committed GDR bundle and experiments E1–E4; new work uses [document ingestion](corpus-ingestion.md).
 
 > **Kept for the published GDR bundle.** New documents of any format go through the [document ingestion](corpus-ingestion.md) pipeline, which reuses this pipeline's filters, table views and provenance code. This pipeline remains the byte-reproducible source of `data/processed/` and experiments E1–E4.
 
