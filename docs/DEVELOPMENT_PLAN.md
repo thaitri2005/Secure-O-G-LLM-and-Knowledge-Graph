@@ -1,10 +1,10 @@
 # Development and delivery plan
 
-**Version:** 3.0 · **Baseline date:** 23 October 2026 · **Last revised:** 29 October 2026 (28 October supervisor direction applied)<br>
+**Version:** 3.1 · **Baseline date:** 23 October 2026 · **Last revised:** 30 October 2026 (first build split into three tracks)<br>
 **Product target:** a GraphRAG application for drilling reports: ingestion, storage, retrieval, chat and administration<br>
-**Team:** three students · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Direction:** [28 October meeting](requirements/supervisor-meeting-2026-10-28.md)
+**Team:** Tri, Khai, Hung · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Direction:** [28 October meeting](requirements/supervisor-meeting-2026-10-28.md)
 
-This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q12) refer to the specification. Version 3.0 replaces the earlier plan: the M0–M7 milestones, the 720-hour model, the Student A/B/C roles and the research backlog items are removed. The [meeting digest](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) records what was removed and why.
+This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q12) refer to the specification. Version 3.0 replaces the earlier plan: the M0–M7 milestones, the 720-hour model, the Student A/B/C roles and the research backlog items are removed. The [meeting digest](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) records what was removed and why. Version 3.1 splits the first build into three independent tracks (D-48) and plans only M0 and M1 in detail.
 
 ## Current status
 
@@ -15,6 +15,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - Parse pages with VLMs and treat tables as their own workstream (D-39, D-47).
 - Scope by document type: end-of-well and daily drilling reports (D-40).
 - Work in this order: ingestion, then data organization, then retrieval (D-45). Start with **one document** (D-44).
+- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C domain and evaluation (D-48, spec §4.5).
 
 **What exists and carries over** (code, tests and an experiment record):
 
@@ -54,30 +55,34 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - **Questions:** the supervisor has asked a drilling expert group for an evaluation question set (Q2). The team writes development questions until it arrives.
 - **Estimates:** plan week by week. Re-plan at every weekly check-in from what was actually finished. There is no fixed hour budget.
 
-## 2. Team roles
+## 2. Team split
 
-The supervisor asked for a split into data, backend and frontend (D-46). Names are assigned in this week's plan. Everyone joins integration, demos and documentation.
+**First build (M0–M1): three independent tracks** (D-48, spec [§4.5](PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files)). Each track is a line of work that one person can research in depth and build in their own way. The tracks meet only through versioned files (K1–K5).
 
-| Role | Owns | Reviews |
-|---|---|---|
-| **Data** | Document collection (end-of-well, daily reports), VLM parsing and the table evaluation, multi-page tables, chunking and IDs, ontology and glossary content, labelled samples and the question set | Extraction quality and citations |
-| **Backend** | GraphRAG base selection and adaptation, model client and endpoints, extraction (ontology injection, batching, deterministic table mapping), embeddings and vector store, Neo4j, PostgreSQL and MinIO layout, retrieval and answers, scores, cost accounting, API | ID scheme and stores |
-| **Frontend** | Chat with citations and source-page viewer; admin screens for documents, runs, ontology and glossary, flagged items and merges; demo build | User flows and acceptance demos |
+**The split holds for one stint of one to two weeks.** At the end of each stint, the team divides the work again according to what is next. A track may change owner, merge with another or be replaced, and a new stint may split along different lines. Owners for the first stint:
+
+| Track | Owner (proposed) | Owns | Does not touch |
+|---|---|---|---|
+| **A. Ingestion and tables** (heaviest) | Khai | Page parsing (Docling vs document VLMs), table structure, multi-page tables, key-value forms, chunking, the ID scheme up to child chunks; publishes K1 | Models for extraction or answers, the ontology, question writing |
+| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, vector store choice, model client, ontology injection, graph build, retrieval and cited answers, cost per page; publishes K4 | Parsing, labelling, judging its own answers |
+| **C. Domain and evaluation** | Hung | Drilling-report ontology and glossary, development question set with gold answers and pages, table gold labels, the scorer and its reports, public DDR sources (Q5), the expert-group question set (Q2), the weekly slides; publishes K2, K3, K5 | Pipeline code |
+
+When the application work starts (M2), the split follows the data/backend/frontend lines the supervisor asked for (D-46). Who takes which is decided at that stint's split, not now. Everyone joins integration, demos and documentation.
 
 The supervisor and Dr. Dung are consulted on scope; the drilling expert group, through the supervisor, on questions and domain terms.
 
 ## 3. Milestones
 
-Windows are counted from the week of 2 November 2026 and are indicative; each weekly check-in revises them.
+Windows are counted from the week of 2 November 2026 and are indicative; each weekly check-in revises them. Only M0 and M1 are planned in detail. Later milestones are outlines, replanned from what M1 teaches.
 
 | Milestone | Window | Lead | Exit demo |
 |---|---|---|---|
-| **M0: Plan, access, current-workflow demo** | Week 1 | All | Weekly plan (slides) shared; supervisor on GitHub; OpenRouter account with a cap; GPU booking request sent; current workflow shown to the supervisor (below) |
-| **M1: Ingestion and data organization** | Weeks 1–3 | Data, with Backend | One EOWR and one DDR registered in MinIO, parsed (VLM vs Docling), tables joined across pages, parent/child chunks with IDs in PostgreSQL; table evaluation report; storage and ID design written and shown (spec §4.2, §5.10, §5.11) |
-| **M2: One-document GraphRAG slice** | Weeks 3–5 | Backend | Base pipeline chosen from a comparison on the AK-3 EOWR; ontology slice injected; items extracted with chunk citations; embeddings in the vector store; Neo4j graph; 10–20 development questions answered with page citations; calls, tokens and cost reported; compared with the E10 baseline |
-| **M3: Quality and control** | Weeks 5–8 | Backend, with Data | Glossary in use; wells linked to registry IDs across the EOWR and DDRs; scores and flagged items; deterministic DDR table mapping and row batching (fewer calls per page); relation normalization; 5–10 documents; first run of the expert question set if it has arrived (G3–G6) |
-| **M4: Full application** | Weeks 5–10 | Frontend, with Backend | Non-developer does it unaided: uploads a report, watches the run, corrects three flagged items, merges a duplicate well, edits a glossary entry, activates the generation, asks a question and opens the cited page; ontology versions and audit visible |
-| **M5: Scale run on local models** | Weeks 9–12 | Backend, with Data | Local ~7B model served on a booked school GPU; the corpus processed in checkpointed runs; evaluation on the held-out expert questions; cost and throughput report (G8) |
+| **M0: Plan, access, current-workflow demo** | Week 1 | All | Weekly plan (slides) shared; tracks assigned; contracts K1–K5 at version 0; supervisor on GitHub; OpenRouter account with a cap; GPU booking request sent; current workflow shown to the supervisor |
+| **M1: First build — one-document slice in three tracks** | Weeks 1–5 | Per stint (first stint: A Khai, B Tri, C Hung) | On the AK-3 EOWR and one AK-3 DDR: parser chosen with table scores; K1 version 1 published; base pipeline, LLM, embedding model and vector store chosen by comparison; the development questions answered with page citations and scored by Track C; compared with the E10 baseline and plain vector RAG; calls, tokens and cost per page reported |
+| **M2: Integration on the stores** | Weeks 5–7 | Data, with Backend | The four stores up in Docker Compose (MinIO, PostgreSQL, the chosen vector store, Neo4j) and loaded from K1 IDs; one command runs the chosen parser and base pipeline on a new report end to end; a page rebuilt from its chunks; API contract drafted (spec §7.5) and the frontend started on fixtures |
+| **M3: Quality and control** | Weeks 7–10 | Backend, with Data | Glossary in use; wells linked to registry IDs across the EOWR and DDRs; scores and flagged items; deterministic DDR table mapping and row batching (fewer calls per page); relation normalization; 5–10 documents; first run of the expert question set if it has arrived (G3–G6) |
+| **M4: Full application** | Weeks 7–11 | Frontend, with Backend | Non-developer does it unaided: uploads a report, watches the run, corrects three flagged items, merges a duplicate well, edits a glossary entry, activates the generation, asks a question and opens the cited page; ontology versions and audit visible |
+| **M5: Scale run on local models** | Weeks 10–13 | Backend, with Data | Local ~7B model served on a booked school GPU; the corpus processed in checkpointed runs; evaluation on the held-out expert questions; cost and throughput report (G8) |
 | **M6: Access control and hardening** | Second semester | Frontend, with Backend | Login and roles; private-endpoint guard tested (G7); backup and restore of all stores; joint evaluation on the supervisor's document if supplied |
 
 ![Milestone dependencies](diagrams/07-milestone-dependencies.svg)
@@ -87,8 +92,8 @@ Windows are counted from the week of 2 November 2026 and are indicative; each we
 
 ```mermaid
 flowchart TB
-    M0["M0<br/>Plan, access, workflow demo"] --> M1["M1<br/>Ingestion and data organization"]
-    M1 --> M2["M2<br/>One-document GraphRAG slice"]
+    M0["M0<br/>Plan, access, workflow demo"] --> M1["M1<br/>First build: three tracks on one document"]
+    M1 --> M2["M2<br/>Integration on the stores"]
     M2 --> M3["M3<br/>Quality and control"]
     M2 --> M4["M4<br/>Full application"]
     M3 --> M4
@@ -99,11 +104,16 @@ flowchart TB
 
 </details>
 
-**Figure 7 — Milestone dependencies.** The frontend can start in M2 against the API contract (spec §7.5) with fixture data. The critical path is ingestion and IDs → base pipeline on one document → quality on several documents → scale run.
+**Figure 7 — Milestone dependencies.** M1 runs three tracks in parallel; nothing after M1 starts until its exit demo. The critical path is Track A's chunk package → Track B's engine on it → integration on the stores → quality on several documents → scale run.
 
 ### M0: this week
 
-- **Weekly plan.** Hung drafts it this week as a short slide deck: roles, milestones, this week's tasks. Share it with the supervisor and in the group chat.
+- **Weekly plan.** Hung drafts it this week as a short slide deck: tracks and owners for this stint, M1 checkpoints, this week's tasks. Share it with the supervisor and in the group chat. Tell the supervisor why the first phase is split by track instead of data/backend/frontend (D-48).
+- **Contracts at version 0** (half a day, all three together). Agree K1–K5 field lists (spec §4.5), write them as JSON Schemas in `schemas/`, and produce each version 0 from what exists:
+  - K1, by Khai: from the AK-3 corpus chunks;
+  - K2, by Hung: from `oil_wells.json`;
+  - K3, by Hung: from the prototype's 31 questions;
+  - K5, by Hung: from the 10 gold tables.
 - **Access.**
   - Add the supervisor to the GitHub repository.
   - Create the OpenRouter account and set a spending cap; record who holds it (Q6).
@@ -115,14 +125,34 @@ flowchart TB
   - where data is stored (corpus directories, `data/processed/`, Neo4j in Docker);
   - what is missing: the ontology is team-authored, not given with the data (spec §6.1), and there are no embeddings, VLM, object store or ID scheme yet.
 - **BSEE data.** Share it with the supervisor as a ZIP of the local snapshot through the team drive. It is not committed (D-15).
-- **Base pipeline shortlist.** List the GraphRAG candidates and the comparison criteria (spec §9).
-- **Embedding plan.** List the candidate embedding models and how they will be compared (retrieval recall on development questions).
 
-### M1: ingestion and data organization
+### M1: first build in three tracks
 
-1. **Collect** the AK-3 EOWR (in the repository) and one daily drilling report from the AK-3 appendices. List further public DDR sources (Q5, [Data sources](DATA_SOURCES.md)).
-2. **Table evaluation set**: 20–40 pages from both document types with merged cells, nested text and tables continuing across pages. Label the expected cells for a subset.
-3. **VLM comparison.** Run Docling (baseline) and two or three document VLMs within the size limit through hosted endpoints on that set. Measure:
+Each track below lists its goal, the questions it researches, its work, its checkpoints and its exit. A track may change its own method freely; it may change a contract only by the rules in spec §4.5. Each comparison becomes an experiment record (E14 onward).
+
+**Shared checkpoints.**
+
+| When | All tracks |
+|---|---|
+| End of week 1 | Contracts K1–K5 at version 0; each track running on version 0 inputs |
+| End of week 3 | **Dry run:** Track B runs on Track A's real K1 for the AK-3 EOWR; Track C scores whatever exists. Fix contract mismatches only, not quality |
+| End of week 5 | **First full pass:** EOWR and one DDR through A → B → C; scores shown to the supervisor; choices recorded |
+
+#### Track A: ingestion and tables (first stint: Khai)
+
+**Goal.** Drilling-report pages become correct text, tables and chunks, each with a stable ID back to its file and page.
+
+**Research questions.**
+
+1. Which document VLM of about 7B or smaller parses drilling-report tables better than Docling, and at what seconds and tokens per page?
+2. How to detect a table that continues on the next page, join the parts and carry the header (spec §5.10).
+3. How to read key-value forms, such as DDR header boxes. "Days On Location: 1700" is the kind of mismatch seen in the AK-3 daily reports ([Data sources](DATA_SOURCES.md)).
+4. How to cut parent and child chunks so that no table row is split and each table child carries its header.
+
+**Work.**
+
+1. **Baseline.** Run the current Docling pipeline on the AK-3 EOWR and the four AK-3 DDR attachments. Score its tables with Track C's scorer on K5.
+2. **VLM comparison.** Run two or three VLMs from the spec §9 list through OpenRouter on the K5 pages. Measure:
    - cell accuracy;
    - header and row correctness;
    - merged cells;
@@ -130,26 +160,106 @@ flowchart TB
    - seconds and tokens per page.
 
    Pick one parser, or keep Docling.
-4. **Multi-page tables.** Detect continuation, join the parts, carry the header and record the page span (spec §5.10).
-5. **Storage layout.**
-   - MinIO, or a directory with the same interface, for originals, page images and parser output.
-   - PostgreSQL tables for files, pages, tables and chunks.
-   - Choose the vector store (spec §4.2).
-6. **ID scheme.** File → page → table → parent → child IDs. Rebuild a page as text from its chunks to prove nothing is detached (spec §5.11).
+3. **Multi-page tables and key-value forms.** Join continued tables, record the page span, and flag uncertain joins.
+4. **Chunks and IDs.** Build parent/child chunks with spec §5.11 IDs, and rebuild every page from its chunks to prove nothing is detached. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
 
-### M2: one-document GraphRAG slice
+**Exit.**
 
-1. **Model client.** One OpenAI-compatible client with the endpoint, model and version recorded per run, and the private-file guard (FR-28).
-2. **Base comparison.** Run two or three candidate GraphRAG pipelines on the AK-3 EOWR with the same ~7B model. Compare:
-   - extracted items against the E4/E10 gold facts;
+- A parser choice with table scores against K5.
+- K1 version 1 for both documents.
+- The page-rebuild check passes.
+
+**Starts from.**
+
+- The corpus pipeline and its tests ([guide](components/corpus-ingestion.md), [E8](experiments/E8-ak3-appendices-corpus-run.md)).
+- Code stays in `src/graph_builder/`.
+- Compute: a laptop for Docling and OpenRouter for the VLMs.
+
+#### Track B: GraphRAG engine and models (first stint: Tri)
+
+**Goal.** Chunks with IDs become a graph and vectors that answer questions with chunk citations, on a ~7B model, at a known cost.
+
+**Research questions.**
+
+1. Which open-source GraphRAG base fits our needs: neo4j-graphrag-python, LightRAG, Microsoft GraphRAG or LlamaIndex property graphs? Use the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
+2. Which ~7B LLM extracts reliably (JSON compliance, precision, recall)?
+3. Which embedding model retrieves the right chunks for the questions?
+4. Which vector store: Neo4j's index, pgvector or Qdrant?
+5. Which retrieval mode answers best: vector, graph or hybrid?
+6. How many calls and tokens per page does each option need?
+
+**Work.**
+
+1. **Model client.** One OpenAI-compatible client that records the endpoint, model and version per run and refuses private files (FR-28).
+2. **Base comparison.** Install two or three candidate bases and run each on K1 version 0 with the same ~7B model and K2 version 0. Compare:
+   - extracted items against the E10 gold facts;
    - calls and tokens;
    - provenance kept;
    - ease of injecting the ontology.
 
-   Choose one and record the reasons.
-3. **Ontology.** Extend `oil_wells.json` into the drilling-report profile: entity types, relations, EOWR and DDR sections, glossary seed from the AK-3 abbreviation table. Implement slicing and the injection points (spec §6.2).
-4. **Index and graph.** Embed child chunks with the chosen embedding model and write the vector payloads; project items, entities and chunk nodes to Neo4j as a generation.
-5. **Answer** 10–20 development questions with citations. Check them by hand, and compare with the E10 template baseline and plain vector RAG.
+   Choose one by week 3 and record the reasons.
+3. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store.
+4. **Answers.** Answer K3 with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
+
+**Exit.**
+
+- A base, an LLM, an embedding model and a vector store chosen, with a comparison record.
+- K4 for the K3 questions on both documents.
+- Calls, tokens and cost per page reported.
+
+**Starts from.**
+
+- The prototype ([E10](experiments/E10-profile-driven-prototype.md)) and its Neo4j compose file.
+- K1, K2 and K3 at version 0.
+- New code in its own folder (`graphrag/`), kept separate from `src/graph_builder/` until M2 decides what stays.
+- Compute: OpenRouter, within the cap.
+
+#### Track C: domain and evaluation (first stint: Hung)
+
+**Goal.** Define what the system should know and answer about drilling reports, and measure how close Tracks A and B come.
+
+**Research questions.**
+
+1. What do end-of-well and daily drilling reports contain, section by section? Which entities, relations and properties matter, including geology at summary level (D-40)?
+2. Which questions would a drilling engineer ask of these reports?
+3. How should tables, answers and citations be scored fairly?
+4. Which public DDRs exist for wells in a structured dataset (Q5)?
+
+**Work.**
+
+1. **Ontology and glossary.** Extend `oil_wells.json` into the drilling-report slice for EOWR and DDR. Seed the glossary from the AK-3 abbreviation table. Publish K2 version 1 by week 3.
+2. **Question set.** Write 30–50 development questions on the AK-3 EOWR and one DDR, each with a gold answer and its page. Mix text, table, multi-page-table and key-value questions. Publish K3 version 1 by week 3. Swap in or add the expert group's set when it arrives (Q2).
+3. **Table gold.** Label 20–40 pages from both document types with merged cells, nested text and continued tables. Extend K5 from the existing 10 tables.
+4. **Scorer.** Write one command that scores:
+   - K1 tables against K5;
+   - K4 answers against K3, both the answer and whether the citation lands on the gold page;
+   - extracted items against gold facts.
+
+   Report per run.
+5. **Sources and plan.** Look for public DDR sources. Make the weekly slides.
+
+**Exit.**
+
+- K2, K3 and K5 at version 1.
+- The scorer has run on both other tracks' outputs.
+- A short list of DDR sources.
+
+**Starts from.**
+
+- The prototype's questions and facts.
+- The gold tables and page annotations.
+- New code and gold data in `eval/`.
+- Compute: a laptop.
+
+### M2: integration on the stores
+
+Outline only; plan it in detail at the end of M1.
+
+1. Deploy MinIO, PostgreSQL, the vector store chosen in M1 and Neo4j with Docker Compose. Load them from K1 IDs (spec §4.2, §5.11).
+2. Turn Track A's parser and Track B's engine into one run that registers a new report and goes through to answers. Each run pins its versions (spec §4.3).
+3. Decide the package layout from the code that survived M1, and move the prototype and legacy pipelines aside.
+4. Draft the API contract (spec §7.5). The frontend starts against fixtures.
+5. Switch to data/backend/frontend roles (D-46).
 
 ### M3: quality and control
 
@@ -224,18 +334,19 @@ Keep:
 
 | ID | Risk | Watch for | Mitigation | Owner |
 |---|---|---|---|---|
-| R-01 | A ~7B model extracts plausible but wrong facts | Low precision on the labelled sample | Ontology slices, verbatim-value check, scores and flagged items, deterministic table mapping | Backend |
-| R-02 | Table parsing errors (merged cells, multi-page) propagate | Wrong cells, missing headers | Table evaluation set, VLM comparison, header carry-over, flags on uncertain joins | Data |
-| R-03 | The chosen GraphRAG base does not fit (no schema control, loses provenance, too many calls) | Base comparison results | Compare before choosing; wrap it behind the ID scheme and model client so it can be swapped | Backend |
+| R-01 | A ~7B model extracts plausible but wrong facts | Low precision on the labelled sample | Ontology slices, verbatim-value check, scores and flagged items, deterministic table mapping | Track B, then Backend |
+| R-02 | Table parsing errors (merged cells, multi-page) propagate | Wrong cells, missing headers | Table evaluation set, VLM comparison, header carry-over, flags on uncertain joins | Track A, then Data |
+| R-03 | The chosen GraphRAG base does not fit (no schema control, loses provenance, too many calls) | Base comparison results | Compare before choosing; wrap it behind the ID scheme and model client so it can be swapped | Track B |
 | R-04 | LLM calls and tokens per page too high for large runs | Cost report per page | Deterministic table mapping, batching, caching by page hash, cost estimate before runs | Backend |
 | R-05 | School GPU slots hard to get or too short | No booking, long queue | Ask early; checkpointed jobs; hosted open models for development | All |
 | R-06 | Hosted endpoint used on non-public data | Private file in a run | Permission field enforced by the model client; test it | Backend |
-| R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Data |
-| R-08 | Expert question set arrives late | None by M3 | Development questions written by the team, labelled as such | Data |
+| R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Track C |
+| R-08 | Expert question set arrives late | None by M3 | Development questions written by Track C, labelled as such | Track C |
 | R-09 | Scope too large for three people | Milestones slip two weeks running | Cut in the order of §4; keep a thin working path end to end | All |
 | R-10 | Direction drifts without anyone noticing | Week without supervisor contact | Weekly check-in; group-chat updates every few days (D-46) | All |
 | R-11 | Wrong entity merges corrupt answers | Two wells joined | Identifier and scoped-name matching only; merges always by a person | Backend |
 | R-12 | BSEE redistribution terms unclear | Request to share derived data | Keep out of Git; share privately with the supervisor only | Data |
+| R-13 | Tracks drift apart, or work is lost when owners change at a stint boundary | Dry run in week 3 breaks; a new owner cannot pick up a track | Contracts at version 0 in week 1; versioned changes announced in the chat; dry run in week 3; each track's experiment record and README kept current for handover | All |
 
 ## 6. Working cadence (D-46)
 
@@ -258,20 +369,20 @@ Keep:
 
 | Order | Task | Acceptance | Status |
 |---|---|---|---|
-| 1 | Weekly plan slides; roles assigned; supervisor added to GitHub; OpenRouter account with cap; GPU booking request | Shared in the group chat | Open (this week) |
+| 1 | Weekly plan slides; tracks assigned; supervisor added to GitHub; OpenRouter account with cap; GPU booking request | Shared in the group chat | Open (this week) |
 | 2 | Demo of the current workflow to the supervisor (M0 list) | Supervisor has seen ingestion outputs, BSEE graph, prototype, storage, gaps | Open (this week) |
-| 3 | Table evaluation set from AK-3 EOWR and appendix DDR pages | 20–40 pages, labelled subset | Open |
-| 4 | VLM vs Docling comparison on the table set through hosted endpoints | Report with cell accuracy, joins, cost; parser chosen | Open |
-| 5 | Multi-page table joining with header carry-over | Continued tables joined with page spans; uncertain joins flagged | Open |
-| 6 | Storage layout and ID scheme: MinIO, PostgreSQL tables, vector store choice, parent/child IDs | Page rebuilt from chunks; every chunk resolves to file and page | Open |
-| 7 | Model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Open |
-| 8 | GraphRAG base comparison on the AK-3 EOWR | Comparison against E10 gold facts, calls, tokens; base chosen | Open |
-| 9 | Drilling-report ontology (EOWR + DDR) and glossary seed; ontology slicing and injection points | Off-ontology rate and per-type counts reported per run | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
-| 10 | Embeddings, vector index and cited answers on one document | 10–20 development questions answered with page citations; compared with E10 templates and plain vector RAG | Open |
-| 11 | Registry linking of report mentions; DDR-to-well links | One well's EOWR and DDRs under one ID | Registry exists ([E13](experiments/E13-entity-registry-bsee.md)) |
-| 12 | Scores, flagged items, deterministic DDR table mapping, row batching | Flagged share and calls per page reported | Open |
-| 13 | Frontend: chat, source viewer, admin screens | M4 exit demo by a non-developer | Open |
-| 14 | Local model on a school GPU; scale run; evaluation on expert questions | M5 report | Open |
+| 3 | Contracts K1–K5 as JSON Schemas, each with a version 0 file | All three tracks run on version 0 inputs | Open (this week, all) |
+| 4 | A: Docling baseline and VLM comparison on the K5 pages | Parser chosen with table scores | Open |
+| 5 | A: multi-page tables, key-value forms, parent/child chunks with IDs; K1 version 1 | Page rebuilt from chunks; EOWR by week 3, DDR by week 5 | Open |
+| 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Open |
+| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Open |
+| 8 | B: LLM, embedding model and vector store comparison; cited answers (K4) | K3 answered with chunk citations; cost per page | Open |
+| 9 | C: drilling-report ontology slice and glossary seed (K2 version 1) | EOWR and DDR sections covered | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
+| 10 | C: 30–50 development questions with gold pages (K3 version 1); 20–40 labelled table pages (K5) | Mix of text, table, multi-page and key-value questions | 31 prototype questions and 10 gold tables exist |
+| 11 | C: scorer for tables, answers with citations, and extracted items | One command; run on A's and B's outputs | Open |
+| 12 | M1 dry run (week 3) and first full pass (week 5) | Scores shown to the supervisor | Open |
+| 13 | M2: stores, one end-to-end run, package layout, API contract | M2 exit demo | Later |
+| 14 | M3–M5: registry linking, scores and flagged items, frontend, local-model scale run | Their exit demos | Later |
 | 15 | Open repository-review fixes: cache identity, redirect checks ([E9](experiments/E9-repository-review.md)) | Tests | Open; low priority |
 
 The main [README](../README.md) stays the setup entry point. Do not rerun `publish` just to check documentation: it writes the selected bundle.
@@ -280,11 +391,12 @@ The main [README](../README.md) stays the setup entry point. Do not rerun `publi
 
 | Decision | Needed by | Why |
 |---|---|---|
-| Who holds which role | M0 | The supervisor asked for a data/backend/frontend split |
+| Next split of the work | End of each one- to two-week stint | The split is redone every stint (D-48); first stint: A Khai, B Tri, C Hung |
+| Data/backend/frontend owners | The stint where M2 starts | The supervisor asked for this split (D-46) |
 | OpenRouter account owner and cap (Q6) | M0 | Development model access |
 | GPU booking process (Q7) | M1, before M5 | Large runs and the local-model evaluation |
-| Vector store | M1 | Storage layout and ID payloads |
-| VLM, embedding model, ~7B LLM (Q4) | M1–M2 | Quality and cost |
-| GraphRAG base (Q3) | M2 | Everything after M2 builds on it |
+| Vector store | M1 (Track B) | Storage layout and ID payloads |
+| VLM (Track A), embedding model and ~7B LLM (Track B) (Q4) | M1 | Quality and cost |
+| GraphRAG base (Q3) | M1 week 3 (Track B) | Everything after M1 builds on it |
 | Public DDR sources (Q5) | M1 | Daily reports are half of the document scope |
-| Question set (Q2) | M3 | Evaluation |
+| Question set (Q2) | M1 for the development set; M3 for the expert set | Evaluation |

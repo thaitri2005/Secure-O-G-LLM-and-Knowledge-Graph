@@ -10,7 +10,7 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 |---|---|---|
 | **Inputs** | [Stakeholder requirements](requirements/README.md) | VPI's documents (SR-01 to SR-18) and the supervisor meetings: [28 October](requirements/supervisor-meeting-2026-10-28.md) (current direction) and [7 October](requirements/supervisor-meeting-2026-10-07.md) (partly superseded) |
 | **Source of truth** | [Project specification and system design](PROJECT_DESIGN.md) | Scope, architecture and stores, ID scheme, tables, ontology injection, GraphRAG retrieval, models and compute, acceptance gates, decisions, open questions |
-| **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, roles (data, backend, frontend), milestones, this week's tasks, risks, backlog |
+| **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, the three first-build tracks and later roles, milestones, this week's tasks, risks, backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well reports (AK-3 first), daily drilling reports |
 | Supporting | [Components](components/) | How each implemented subsystem works: [document ingestion](components/corpus-ingestion.md), [structured-data import](components/dataset-import.md), [entity registry](components/entity-registry.md). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion](components/bsee-ingestion.md) |
 | Supporting | [Experiments](experiments/README.md) | Measurements, one record per experiment (E1–E13) |
@@ -22,7 +22,7 @@ Reading order for a new team member:
 
 1. the [28 October meeting digest](requirements/supervisor-meeting-2026-10-28.md);
 2. the specification's §1 and §3;
-3. the development plan's current status and your role's milestone;
+3. the specification's §4.5 and the development plan's M1 section for your track;
 4. the data sources;
 5. the component guide for your area.
 

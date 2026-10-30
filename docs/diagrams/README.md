@@ -20,9 +20,10 @@ Diagram 01 (current implementation) was relabelled to show the prototype as the 
 | `03-claim-lifecycle.svg` | Item lifecycle with review by exception | Design §5.2 |
 | `04-data-model.svg` | Files, pages, parent/child chunks, vector points, entities, items, corrections, answers | Design §7 |
 | `05-question-answering.svg` | GraphRAG retrieval and cited answer sequence | Design §8 |
-| `07-milestone-dependencies.svg` | Milestones M0–M6 | Plan §3 |
+| `07-milestone-dependencies.svg` | Milestones M0–M6, with M1 as the three-track first build | Plan §3 |
 | `08-source-integration.svg` | The two development tracks: BSEE data (import, graph, registry) and end-of-well reports (ontology file, extraction, review, QA) | Data sources, Design §5.7 |
 | `09-three-layers.svg` | Three layers as delivered by the capstone | Design §1.3 |
+| `10-first-build-tracks.svg` | First build: tracks A, B and C joined by contracts K1–K5 | Design §4.5 |
 
 ## Regenerating a diagram
 
@@ -38,4 +39,4 @@ All exports use Mermaid 11.17.2 with the shared theme in [`mermaid-config.json`]
    If Puppeteer cannot download Chromium, point it at an installed Chromium-based browser. Pass `-p puppeteer.json` with `{"executablePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"}`.
 3. Open the SVG and check for clipping, overlapping labels and text size before committing. Update the source block and the SVG in the same commit.
 
-Diagrams 01, 02, 03, 04, 05, 07 and 09 were regenerated on 29 October 2026; diagram 08 dates from 27 October.
+Diagrams 01, 02, 03, 04, 05 and 09 were regenerated on 29 October 2026; diagram 07 was regenerated and diagram 10 added on 30 October (first build in three tracks); diagram 08 dates from 27 October.

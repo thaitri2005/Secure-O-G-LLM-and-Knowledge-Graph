@@ -2,14 +2,14 @@
 
 ## Project specification and system design
 
-**Document version:** 3.0 · **Baseline date:** 23 October 2026 · **Last revised:** 29 October 2026 (28 October supervisor direction)<br>
+**Document version:** 3.1 · **Baseline date:** 23 October 2026 · **Last revised:** 30 October 2026 (first build split into three tracks, §4.5)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** design baseline for a GraphRAG application on drilling reports; ingestion, structured-data import, the entity registry and an extraction/QA prototype exist<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md) and [28 October](requirements/supervisor-meeting-2026-10-28.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
 
 > **This document is the project's single source of truth.** It decides what the project builds, for whom, how the parts fit together, and how completion is judged. The [stakeholder requirements](requirements/README.md) and supervisor meetings are inputs; §1.2 states how each requirement is met, narrowed or dropped. The [development plan](DEVELOPMENT_PLAN.md) schedules this specification and must not add scope of its own. Component guides describe implemented behavior, and experiment records hold measurements. If any of them disagrees with this document, this document wins until it is changed. Items still to settle with the supervisors are in [§13.2](#132-open-questions-for-supervisor-meetings).
 
-**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here.
+**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). The stores, API and frontend are deferred to M2.
 
 ### Reading guide
 
@@ -422,6 +422,77 @@ The core works on typed contracts and opaque IDs; drilling semantics enter throu
 | Retrieval, answer generation, citation checks | Example questions; table column mappings for known layouts |
 
 The ontology belongs to whoever runs the system (D-29). The team writes the core and supplies the drilling-report profile as its test ontology. A synthetic second profile checks that no core code names a well type.
+
+### 4.5 First build: three tracks joined by files
+
+The target in §4.1 is not built in one go (D-48). The first phase (plan M1) builds the **one-document slice**: the AK-3 end-of-well report and then one AK-3 daily report, from pages to cited answers. The work is split into three tracks. Each track has its own owner for the stint, research questions, data, tools and experiment records. The tracks touch each other only through the versioned files listed below. No database, API or frontend sits between them in this phase.
+
+| Track | Question it answers | Covers (spec sections) | Produces |
+|---|---|---|---|
+| **A. Ingestion and tables** | How do drilling-report pages become correct text, tables and chunks with stable IDs? | §5.1 stages 1–4, §5.10, §5.11 up to child chunks | The chunk package (K1) |
+| **B. GraphRAG engine and models** | Which base pipeline, ~7B LLM and embedding model turn chunks into a graph and cited answers, and at what cost? | §5.1 stages 5, 8 and 9, §5.3, §6.2 injection, §8, §9 model and base rows, the vector store choice in §4.2 | Answer records (K4); base, model and vector-store choices with a comparison |
+| **C. Domain and evaluation** | What should the system know and answer, and how good is it? | §6 ontology and glossary content, §12 measures, Q2 and Q5 | Ontology slice (K2), question set (K3), table gold (K5), the scorer and its reports |
+
+![First build: three tracks](diagrams/10-first-build-tracks.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
+```mermaid
+flowchart LR
+    PDF[("AK-3 EOWR,<br/>then one AK-3 DDR")]
+    subgraph TA["Track A: ingestion and tables"]
+        A1["Docling baseline vs<br/>document VLMs"] --> A2["Multi-page tables,<br/>key-value forms"] --> A3["Parent/child chunks<br/>with IDs"]
+    end
+    subgraph TB["Track B: GraphRAG engine and models"]
+        B1["Base pipeline,<br/>~7B LLM, embeddings"] --> B2["Ontology injection,<br/>graph and vectors"] --> B3["Cited answers,<br/>cost per page"]
+    end
+    subgraph TC["Track C: domain and evaluation"]
+        C1["Ontology and<br/>glossary"]
+        C2["Questions with<br/>gold answers and pages"]
+        C3["Table gold labels"]
+        C4["Scorer"]
+    end
+    PDF --> A1
+    PDF --> C2 & C3
+    A3 -- "K1 chunk package" --> B1
+    C1 -- "K2 ontology slice" --> B2
+    C2 -- "K3 question set" --> B3
+    B3 -- "K4 answer records" --> C4
+    C3 -- "K5 table gold" --> A1
+    A2 -. "parsed tables" .-> C4
+```
+
+</details>
+
+**Figure 10 — First build.** Arrows are files, not calls. Every contract has a version 0 built from what already exists, so no track waits for another to start.
+
+| Contract | From → to | Content | Version 0 (exists today) |
+|---|---|---|---|
+| **K1 Chunk package** | A → B | Per document: the file record (`file_id`, name, document type, page count); pages (`file_id:p<n>`, parser and model); tables (`file_id:t<n>`, page span, header, cells); parent and child chunks (§5.11 IDs, text, pages, table ID and row range) | AK-3 chunks from the current corpus pipeline (`data/processed/gdr_chunks_full.jsonl`, [`corpus_chunk.schema.json`](../schemas/corpus_chunk.schema.json)), converted to K1 IDs |
+| **K2 Ontology slice** | C → B | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) (14 properties, [E10](experiments/E10-profile-driven-prototype.md)) |
+| **K3 Question set** | C → B | Question ID, question, gold answer, answer type, file and page(s) holding the answer, evidence kind (text, table, multi-page table, key-value form), document type | [`prototype/gold/questions.json`](../prototype/gold/questions.json) and `ak3_facts.json` (31 questions) |
+| **K4 Answer record** | B → C | Question ID, answer, cited child chunk IDs, base pipeline, models and versions, calls, tokens, cost | None; B writes the first one in week 2 |
+| **K5 Table gold** | C → A | One CSV per labelled table, and a manifest with file, page span and the difficulty it tests (merged cells, continuation, key-value form) | [`data/gold/ingestion/tables/`](../data/gold/ingestion/tables/) (10 tables) and page annotations in [`data/gold/ingestion/pages/`](../data/gold/ingestion/pages/) |
+
+The contract schemas live in `schemas/` next to the existing ones. The rules:
+
+1. A track changes a contract only by publishing a new version. It announces the change in the group chat and keeps the previous version readable for one week.
+2. The scorer belongs to Track C, so no track grades its own output.
+3. Each track records its comparisons as experiment records.
+4. The first full pass, A's package through B's engine to C's scorer, happens at the end of the phase. One earlier dry run in week 3 checks that the contracts fit.
+
+**Not in the first build:**
+
+- MinIO, PostgreSQL and the four-store deployment (§4.2), which the next milestone builds from the K1 IDs;
+- the API and the frontend;
+- login;
+- scores and flagged items;
+- registry linking;
+- local GPU runs;
+- more than two documents.
+
+The tracks are the split for the current stint. The team divides the work again every one to two weeks (D-48), and uses the data/backend/frontend split (D-46) once the application work starts (plan M2).
 
 ## 5. Document-to-graph processing
 
@@ -861,15 +932,15 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Area | Choice | Status and notes |
 |---|---|---|
 | Language | Python 3.12 | Existing |
-| GraphRAG base (D-36) | Chosen in M2 from a one-document comparison of candidates: [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python) (schema-guided KG builder, Neo4j-native, vector and hybrid retrievers), [LightRAG](https://github.com/HKUDS/LightRAG) (light, graph + vector retrieval), [Microsoft GraphRAG](https://github.com/microsoft/graphrag) (community summaries; heavy LLM use), LlamaIndex property graphs (schema-constrained extractors). Criteria: works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema and lets us inject an ontology slice; keeps chunk provenance; uses Neo4j or allows it; extraction calls and tokens per page; license; maintenance | Proposed. The surveyed repositories (27 papers, 13 repositories, [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) §4) are the starting list |
-| LLM (D-37) | Open-weight instruction models, **about 7B or smaller**, e.g. Qwen2.5-7B-Instruct, Llama-3.1-8B-class, Qwen2.5-3B (current prototype). Measure JSON compliance, extraction precision and recall, answer quality, tokens per page | Proposed; checkpoint chosen in M2 by measurement |
-| Page parsing (D-39) | Document VLMs of about 7B or smaller, compared with Docling's table model on the table set: e.g. granite-docling / SmolDocling (inside Docling's VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL-3B/7B | Proposed; selected in M1 |
+| GraphRAG base (D-36) | Chosen in M1 by Track B (§4.5) from a one-document comparison of candidates: [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python) (schema-guided KG builder, Neo4j-native, vector and hybrid retrievers), [LightRAG](https://github.com/HKUDS/LightRAG) (light, graph + vector retrieval), [Microsoft GraphRAG](https://github.com/microsoft/graphrag) (community summaries; heavy LLM use), LlamaIndex property graphs (schema-constrained extractors). Criteria: works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema and lets us inject an ontology slice; keeps chunk provenance; uses Neo4j or allows it; extraction calls and tokens per page; license; maintenance | Proposed. The surveyed repositories (27 papers, 13 repositories, [progress report](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) §4) are the starting list |
+| LLM (D-37) | Open-weight instruction models, **about 7B or smaller**, e.g. Qwen2.5-7B-Instruct, Llama-3.1-8B-class, Qwen2.5-3B (current prototype). Measure JSON compliance, extraction precision and recall, answer quality, tokens per page | Proposed; checkpoint chosen in M1 (Track B) by measurement |
+| Page parsing (D-39) | Document VLMs of about 7B or smaller, compared with Docling's table model on the table set: e.g. granite-docling / SmolDocling (inside Docling's VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL-3B/7B | Proposed; selected in M1 (Track A) |
 | Existing parser | Docling + pypdf; corpus pipeline with per-page OCR (VietOCR/RapidOCR) | Existing; Docling is the baseline; OCR engines are kept only for reproduction |
 | Embeddings | Open embedding models, e.g. BAAI bge-m3, Qwen3-Embedding-0.6B, nomic-embed-text; optionally a reranker (bge-reranker-v2-m3) | Proposed; chosen on retrieval recall over the question set |
 | Model client (FR-28) | One OpenAI-compatible client for LLM, VLM and embeddings. Development: hosted open models (OpenRouter) on public data. Large runs and deployment: local serving with vLLM or llama.cpp on a school GPU | Proposed |
 | Object store | MinIO (S3 API); a local directory behind the same interface in development | Proposed |
 | Metadata DB | PostgreSQL | Proposed |
-| Vector store | Neo4j vector index, pgvector or Qdrant: one, chosen in M1 (§4.2) | Proposed |
+| Vector store | Neo4j vector index, pgvector or Qdrant: one, chosen in M1 by Track B (§4.2) | Proposed |
 | Graph DB | Neo4j Community | Existing in the prototype |
 | Backend | FastAPI + Pydantic | Prototype API exists |
 | Frontend | React + TypeScript; PDF.js for the source page | Proposed |
@@ -1010,6 +1081,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-45 | **Order**: ingestion, then data organization and storage, then a thin GraphRAG slice, then quality controls, then the full application; access control before private data. Supersedes the D-30 order | Supervisor direction, 28 Oct (§11) | — |
 | D-46 | **Process**: weekly 30-minute supervisor check-in; short group-chat updates every few days; a light weekly plan (slides acceptable); roles split into data, backend and frontend | Supervisor direction, 28 Oct (§12) | Team or supervisor changes cadence |
 | D-47 | **Tables are a dedicated workstream** with their own evaluation set: merged cells, nested text, multi-page continuation, header carry-over, row-safe chunking | Supervisor direction, 28 Oct (§7) | — |
+| D-48 | **First build in three independent tracks** joined only by versioned files (§4.5): A ingestion and tables, B GraphRAG engine and models, C domain and evaluation. Stores, API and frontend wait for M2. **Work is divided again at the end of every one- to two-week stint**; the D-46 data/backend/frontend split is used once the application work starts | Team decision, 30 Oct; refines D-45 and D-46 for the first phase | Contracts keep breaking, or a track is blocked for more than a week |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1034,8 +1106,8 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 |---|---|---|---|
 | Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and may it be processed on school GPUs? | Public data only until then; a private document runs on local models only | §10.1, final evaluation |
 | Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct; team writes development questions meanwhile | G5, §12 |
-| Q3 | Which GraphRAG base pipeline? | Team compares candidates on one document in M2 and reports | D-36, §9 |
-| Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1–M2, within D-37 | §9 |
+| Q3 | Which GraphRAG base pipeline? | Track B compares candidates on one document in M1 and reports | D-36, §9 |
+| Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |
 | Q6 | How is the OpenRouter (or similar) account funded and capped, and who holds it? | Supervisor supports the cost; team sets a monthly cap | D-38 |
 | Q7 | How does the team book the school GPUs (which GPUs, slot length, software allowed)? | Ask Dr. Le Duy Dung | D-38, §11 |

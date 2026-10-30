@@ -27,11 +27,11 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 | Component | Purpose | Status |
 |---|---|---|
 | Document ingestion | Files to page-provenanced passage and table chunks (Docling, Markdown tables, rows never split) | Implemented ([guide](docs/components/corpus-ingestion.md)); baseline for the VLM comparison |
-| VLM page parsing and multi-page tables | Pages and tables to Markdown/HTML with a document VLM; continued tables joined with headers carried | Planned (M1) |
-| Storage and ID scheme | MinIO for files, PostgreSQL for metadata and chunks, a vector store, Neo4j; file → page → parent → child chunk → vector → graph | Planned (M1) |
+| VLM page parsing and multi-page tables | Pages and tables to Markdown/HTML with a document VLM; continued tables joined with headers carried | Planned (M1, Track A) |
+| Storage and ID scheme | MinIO for files, PostgreSQL for metadata and chunks, a vector store, Neo4j; file → page → parent → child chunk → vector → graph | Planned (IDs in M1 Track A; stores in M2) |
 | Structured-data import | CSV/Excel/JSON-lines to typed records with row provenance; BSEE as a mapping | Implemented ([guide](docs/components/dataset-import.md), [E6](docs/experiments/E6-generic-import-bsee.md)) |
 | Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned |
-| GraphRAG pipeline | Existing open-source base, ontology injection, extraction, embeddings, graph and vector retrieval, cited answers | Planned (M2); base chosen by comparison |
+| GraphRAG pipeline | Existing open-source base, ontology injection, extraction, embeddings, graph and vector retrieval, cited answers | Planned (M1, Track B); base chosen by comparison |
 | Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Implemented as the baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
 | Application | Chat with citations; admin for documents, ontology, glossary, flagged items | Planned (M4) |
 
