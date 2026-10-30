@@ -1,4 +1,5 @@
 """Track B baseline pieces without any model call: client guard, cache and ledger; BM25; fusion; scoring."""
+import importlib.util
 import json
 from pathlib import Path
 import tempfile
@@ -7,6 +8,7 @@ from unittest.mock import patch
 
 import httpx
 
+from graphrag.baseline import render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk
 from graphrag.retrieval import BM25, Fusion
@@ -137,9 +139,51 @@ class CitationTests(unittest.TestCase):
         by_value = {"value": "9.2", "chunk": "c0099", "quote": "invented"}
         self.assertEqual(resolve(by_value, self.hits, self.texts, "d"), ("d#c0001", "by_value"))
 
+    def test_thousands_separator_does_not_break_support(self):
+        answer = {"value": "1955", "chunk": "c0099", "quote": "reached TD at 1955 feet"}
+        self.assertEqual(resolve(answer, self.hits, self.texts, "d"), ("d#c0002", "by_value"))
+
     def test_unsupported_answer_gets_no_citation(self):
         answer = {"value": "3000", "chunk": "c0002", "quote": "3000 ft"}
         self.assertEqual(resolve(answer, self.hits, self.texts, "d"), (None, "unsupported"))
+
+class FactTests(unittest.TestCase):
+    def test_fact_renders_with_qualifier_and_context(self):
+        fact = {"well": "AK-3", "property": "casing_depth", "qualifier": "planned", "value": 220,
+                "context": {"casing_size_in": "5-1/2"}}
+        self.assertEqual(render(fact), "AK-3 casing_depth (planned) at casing_size_in 5-1/2 = 220")
+
+
+@unittest.skipUnless(importlib.util.find_spec("neo4j_graphrag"), "needs requirements-graphrag.lock.txt")
+class Neo4jKgTests(unittest.TestCase):
+    def setUp(self):
+        from graphrag import neo4j_kg
+        self.kg = neo4j_kg
+        self.profile = json.loads(neo4j_kg.PROFILE.read_text(encoding="utf-8"))
+
+    def test_profile_becomes_a_pruning_schema(self):
+        schema = self.kg.schema_from_profile(self.profile)
+        labels = [n["label"] for n in schema["node_types"]]
+        self.assertEqual(labels[0], "Well")
+        self.assertIn("Inclination", labels)
+        well = [p["name"] for p in schema["node_types"][0]["properties"]]
+        self.assertIn("planned_total_depth", well)
+        self.assertNotIn("inclination", well)
+        self.assertIn(("Well", "HAS_INCLINATION", "Inclination"), schema["patterns"])
+        self.assertFalse(schema["additional_node_types"])
+
+    def test_well_names_and_casing_sizes_compare_loosely(self):
+        self.assertEqual(self.kg.well_key("Akutan Well AK-3", self.profile), self.kg.well_key("AK-3", self.profile))
+        self.assertEqual(self.kg.size("8-5/8"), self.kg.size("8.625"))
+        self.assertIsNone(self.kg.size("blank"))
+
+    def test_extraction_score_counts_wrong_values_where_gold_has_the_key(self):
+        facts = [{"chunk": "c", "well": "AK-3", "property": "total_depth", "qualifier": "actual", "value": 1955,
+                  "context": None},
+                 {"chunk": "c", "well": "AK-3", "property": "total_depth", "qualifier": "planned", "value": 1800,
+                  "context": None}]
+        score = self.kg.score_extraction(facts, self.profile)
+        self.assertEqual((score["gold_found"], score["facts_with_gold_key"], score["right_where_keyed"]), (1, 2, 1))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,20 @@
+# Track B development services: Neo4j with APOC for neo4j-graphrag-python (E16). Local only, throwaway credentials.
+# The prototype's compose file (prototype/docker-compose.yml) stays unchanged; run one or the other, they share ports.
+name: graphrag-dev
+
+services:
+  neo4j:
+    image: neo4j:5.26-community@sha256:adaa077a3ab023015143b8f73f7076a7d053f12985f5b06f4c6a128c3a2f7240
+    environment:
+      NEO4J_AUTH: neo4j/graphrag-dev
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_server_memory_heap_max__size: 2G
+      NEO4J_server_memory_pagecache_size: 1G
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - neo4j-data:/data
+
+volumes:
+  neo4j-data:

@@ -16,14 +16,14 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: BM25, top 5, Qwen3-4B, citations and values checked in code: 22/31 ([E15](../../experiments/E15-baseline-checks-in-code.md)) | B-D03, B-C08, B-D12 |
-| Bases to run | neo4j-graphrag-python, then LightRAG | B-D04 |
+| Baseline | Plain RAG: Qwen3-8B (thinking off), top 5, citations and values checked in code: 28/31 on AK-3 with BM25, 26/31 on three reports with fusion ([E17](../../experiments/E17-model-sweep.md)) | B-D03, B-C08, B-D14 |
+| Bases to run | neo4j-graphrag-python run and not adopted: its facts do not improve answers ([E16](../../experiments/E16-neo4j-graphrag-python.md)); LightRAG next | B-D04, B-D14 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
-| LLM | Open: Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct, Qwen3-8B, Llama-3.1-8B-Instruct (8B allowed) | B-F10, B-D06 |
+| LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Embeddings | BM25 alone on one report; fusion with Qwen3-Embedding-0.6B across reports (hit@5 0.91 against 0.78) | B-F14, B-D12 |
-| Compute | Desktop RTX 4080 SUPER with llama.cpp; a 31-question run takes about 25 s | B-F16 |
-| Next | Withhold unsupported answers; try 7–8B models; then neo4j-graphrag-python (E16) | B-D13 |
+| Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
+| Next | Graph-worthy questions from the supervisor; filter by well; LightRAG with Qwen3-8B | B-D15 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -293,3 +293,51 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 1. Withhold answers without a supported citation, and measure it.
 2. Run the baseline with Qwen3-8B and Qwen2.5-7B-Instruct locally, to size how much of the reading gap is the model.
 3. Run neo4j-graphrag-python as E16 (B-D10 step 2).
+
+## 2026-10-31 (evening): neo4j-graphrag-python, models and a correction
+
+**B-F18 (finding; replaces B-F17, which was wrong).** A supported citation does not mean a right answer.
+
+- B-F17 said the one unsupported citation in E15 was the made-up answer (q25). It was q19's correct answer, flagged because `1955` did not match `1,955` in the passage. q25's wrong value, 0.25, is in the cited survey table, on other rows, so the check passed it.
+- After the check learned to ignore thousands separators, every E15 answer had a supported citation; withholding unsupported answers changed nothing (22/31, [E17](../../experiments/E17-model-sweep.md)). The E15 record carries a correction note.
+
+**B-C09 (design choice).** Track B services and environment.
+
+- Neo4j 5.26 with APOC runs from `configs/graphrag/docker-compose.yml` (APOC is needed by neo4j-graphrag's writer). The prototype's compose file is unchanged; the two share ports, so run one at a time.
+- neo4j-graphrag 1.23 needs `pypdf>=6.19`; the main environment pins 6.1.1 for Track A. Its runs therefore use a separate `.venv-graphrag` from `requirements-graphrag.lock.txt`. `graphrag/baseline.py` still runs in the main `.venv`.
+- llama-server runs with `-c 32768 -np 4` (8k context per slot); `-c 8192` was too small for extraction prompts.
+
+**B-F19 (finding).** Parallel requests to llama.cpp make results non-repeatable.
+
+- Three cold runs of the same extraction with 4 parallel requests gave recall 0.54, 0.85 and 0.85; one request at a time gave 0.854 three times, bit for bit.
+- Server settings matter too: the same sequential answer run scored 22/31 and 23/31 under two context settings.
+
+**B-C10 (design choice; from B-F19).** Measurement runs send one request at a time, and each record states the server settings. `neo4j_kg.py` defaults to `--concurrency 1`; `baseline.py` is already sequential.
+
+**E16 (experiment).** neo4j-graphrag-python on AK-3: [E16](../../experiments/E16-neo4j-graphrag-python.md).
+
+- The library's default prompt with Qwen3-4B: recall **0.85** of the 41 gold facts, 72% right where gold has the key, about 2 calls, 4,500 tokens and 3 s per page, 0 invalid JSON. E10's own pipeline: recall 0.73 at higher precision.
+- The E4 domain rules raised precision (0.84) but cut recall to 0.44; one added context sentence cut it to 0.37; Qwen3-8B as extractor gave 0.51.
+- Adding the extracted facts under each passage cost 29% more prompt tokens and lowered the 4B model's answers from 23/31 to 21/31; with Qwen3-8B it stayed at 28/31.
+
+**B-F20 (finding; from E16).** Small-model extraction is fragile: one prompt sentence moves recall between 0.37 and 0.85, and a bigger model can be worse. Prompt tuning on 41 facts would overfit.
+
+**E17 (experiment).** Answer models and multi-report retrieval: [E17](../../experiments/E17-model-sweep.md).
+
+- BM25, top 5, AK-3: Qwen3-8B (thinking off) **28/31**, Qwen3-4B 23/31, Llama-3.1-8B 10/31, Qwen2.5-7B 8/31. The last two abstain on nearly every answerable question.
+- Three reports, Qwen3-8B: BM25 22/31, fusion **26/31**.
+
+**B-D14 (decision; from E16 and E17).**
+
+1. The plain RAG baseline is now **Qwen3-8B with thinking off**, BM25 on one report and fusion across reports. It answers 28/31 on AK-3 and is the bar for every base.
+2. **neo4j-graphrag-python is not adopted as the base on this evidence.** Its graph does not improve answers on these questions. Its schema handling and provenance remain the reference for how a graph should be built if one is needed.
+3. Qwen2.5-7B and Llama-3.1-8B are dropped as answer models for this harness.
+
+- *Why:* E16 and E17. On single-fact questions over one or three reports, reading by a capable model beats an extracted graph (as B-F01 predicted).
+
+**B-D15 (decision).** Next, in order:
+
+1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set, since the 31 development questions are mostly single-fact lookups that plain RAG already answers.
+2. Filter retrieval by well or document using the ID payload (§5.11), to stop wrong values from distractor reports.
+3. Run LightRAG (B-D10 step 3) with Qwen3-8B on the three-report pool, and compare with the fusion baseline (26/31).
+4. Try the library's own retrievers (vector-Cypher, Text2Cypher) only if step 1 brings questions that need them.

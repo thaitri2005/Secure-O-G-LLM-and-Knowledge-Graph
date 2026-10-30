@@ -1,0 +1,2611 @@
+{
+  "pool": "ak3",
+  "chunks": 60,
+  "pages": 28,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "embed_model": "qwen3-embedding-0.6b",
+  "prompt": "library",
+  "concurrency": 1,
+  "entity_resolution": false,
+  "seconds": 208.2,
+  "extraction": {
+    "gold_facts": 41,
+    "gold_found": 21,
+    "recall": 0.512,
+    "extracted_facts": 255,
+    "facts_with_gold_key": 86,
+    "right_where_keyed": 33,
+    "precision_where_keyed": 0.384,
+    "facts_without_well": 0,
+    "missed": [
+      "g03",
+      "g04",
+      "g07",
+      "g15",
+      "g24",
+      "g25",
+      "g26",
+      "g27",
+      "g28",
+      "g29",
+      "g30",
+      "g31",
+      "g32",
+      "g33",
+      "g34",
+      "g35",
+      "g38",
+      "g39",
+      "g40",
+      "g41"
+    ]
+  },
+  "cost": {
+    "llm": {
+      "calls": 60,
+      "cached_calls": 0,
+      "invalid_json": 1,
+      "prompt_tokens": 114204,
+      "completion_tokens": 21946,
+      "seconds": 199.2,
+      "cost_usd": 0.0,
+      "models": [
+        "local-llama:qwen3-8b"
+      ]
+    },
+    "embeddings": {
+      "calls": 60,
+      "cached_calls": 0,
+      "invalid_json": 0,
+      "prompt_tokens": 11001,
+      "completion_tokens": 0,
+      "seconds": 8.6,
+      "cost_usd": 0.0,
+      "models": [
+        "local-embed:qwen3-embedding-0.6b"
+      ]
+    },
+    "per_page": {
+      "llm_calls": 2.14,
+      "prompt_tokens": 4079,
+      "completion_tokens": 784,
+      "seconds": 7.44
+    }
+  },
+  "graph": {
+    "labels": {
+      "__KGBuilder__": 293,
+      "__Entity__": 232,
+      "Well": 96,
+      "Chunk": 60,
+      "CasingDepth": 38,
+      "MaxMeasuredTemperature": 35,
+      "ProjectedFormationTemperature": 33,
+      "Inclination": 30,
+      "Document": 1
+    },
+    "relationships": {
+      "FROM_CHUNK": 232,
+      "FROM_DOCUMENT": 60,
+      "NEXT_CHUNK": 59,
+      "HAS_CASING_DEPTH": 39,
+      "HAS_MAX_MEASURED_TEMPERATURE": 35,
+      "HAS_PROJECTED_FORMATION_TEMPERATURE": 33,
+      "HAS_INCLINATION": 30
+    }
+  },
+  "schema": {
+    "node_types": [
+      {
+        "label": "Well",
+        "description": "a well",
+        "properties": [
+          {
+            "name": "name",
+            "type": "STRING",
+            "required": true,
+            "description": "well name exactly as written, such as AK-3 or TG-2"
+          },
+          {
+            "name": "total_depth",
+            "type": "FLOAT",
+            "description": "final drilled depth of a well (actual) or the depth it was planned to reach (planned) (actual, ft)"
+          },
+          {
+            "name": "planned_total_depth",
+            "type": "FLOAT",
+            "description": "final drilled depth of a well (actual) or the depth it was planned to reach (planned) (planned, ft)"
+          },
+          {
+            "name": "drilling_days",
+            "type": "FLOAT",
+            "description": "total days of the drilling project including rig-up and rig-down (actual, days)"
+          },
+          {
+            "name": "planned_drilling_days",
+            "type": "FLOAT",
+            "description": "total days of the drilling project including rig-up and rig-down (planned, days)"
+          },
+          {
+            "name": "spud_to_release_days",
+            "type": "FLOAT",
+            "description": "days from spud to rig release (actual, days)"
+          },
+          {
+            "name": "spud_date",
+            "type": "STRING",
+            "description": "date drilling started (YYYY-MM-DD) (actual, date)"
+          },
+          {
+            "name": "rig_release_date",
+            "type": "STRING",
+            "description": "date the rig was released (YYYY-MM-DD) (actual, date)"
+          },
+          {
+            "name": "api_number",
+            "type": "STRING",
+            "description": "API well number exactly as written (none, id)"
+          },
+          {
+            "name": "ground_elevation",
+            "type": "FLOAT",
+            "description": "ground elevation above sea level (actual, ft)"
+          },
+          {
+            "name": "productive_time",
+            "type": "FLOAT",
+            "description": "total productive rig time (actual, hours)"
+          },
+          {
+            "name": "non_productive_time",
+            "type": "FLOAT",
+            "description": "total non-productive rig time (actual, hours)"
+          },
+          {
+            "name": "total_rig_time",
+            "type": "FLOAT",
+            "description": "total rig time (actual, hours)"
+          }
+        ],
+        "additional_properties": false
+      },
+      {
+        "label": "CasingDepth",
+        "description": "setting depth of one casing or liner string; casing_size_in is its outer diameter like 8-5/8",
+        "properties": [
+          {
+            "name": "value",
+            "type": "FLOAT",
+            "required": true,
+            "description": "setting depth of one casing or liner string; casing_size_in is its outer diameter like 8-5/8 (ft)"
+          },
+          {
+            "name": "casing_size_in",
+            "type": "STRING",
+            "required": true,
+            "description": "casing size"
+          },
+          {
+            "name": "qualifier",
+            "type": "STRING",
+            "description": "actual or planned"
+          }
+        ],
+        "additional_properties": false
+      },
+      {
+        "label": "MaxMeasuredTemperature",
+        "description": "the maximum temperature measured in the well, with its depth",
+        "properties": [
+          {
+            "name": "value",
+            "type": "FLOAT",
+            "required": true,
+            "description": "the maximum temperature measured in the well, with its depth (degF)"
+          },
+          {
+            "name": "depth_ft",
+            "type": "FLOAT",
+            "required": true,
+            "description": "depth"
+          }
+        ],
+        "additional_properties": false
+      },
+      {
+        "label": "ProjectedFormationTemperature",
+        "description": "calculated or projected equilibrium formation temperature at a depth",
+        "properties": [
+          {
+            "name": "value",
+            "type": "FLOAT",
+            "required": true,
+            "description": "calculated or projected equilibrium formation temperature at a depth (degF)"
+          },
+          {
+            "name": "depth_ft",
+            "type": "FLOAT",
+            "required": true,
+            "description": "depth"
+          }
+        ],
+        "additional_properties": false
+      },
+      {
+        "label": "Inclination",
+        "description": "survey inclination in degrees at a measured depth",
+        "properties": [
+          {
+            "name": "value",
+            "type": "FLOAT",
+            "required": true,
+            "description": "survey inclination in degrees at a measured depth (deg)"
+          },
+          {
+            "name": "depth_ft",
+            "type": "FLOAT",
+            "required": true,
+            "description": "depth"
+          }
+        ],
+        "additional_properties": false
+      }
+    ],
+    "relationship_types": [
+      {
+        "label": "HAS_CASING_DEPTH"
+      },
+      {
+        "label": "HAS_MAX_MEASURED_TEMPERATURE"
+      },
+      {
+        "label": "HAS_PROJECTED_FORMATION_TEMPERATURE"
+      },
+      {
+        "label": "HAS_INCLINATION"
+      }
+    ],
+    "patterns": [
+      [
+        "Well",
+        "HAS_CASING_DEPTH",
+        "CasingDepth"
+      ],
+      [
+        "Well",
+        "HAS_MAX_MEASURED_TEMPERATURE",
+        "MaxMeasuredTemperature"
+      ],
+      [
+        "Well",
+        "HAS_PROJECTED_FORMATION_TEMPERATURE",
+        "ProjectedFormationTemperature"
+      ],
+      [
+        "Well",
+        "HAS_INCLINATION",
+        "Inclination"
+      ]
+    ],
+    "additional_node_types": false,
+    "additional_relationship_types": false,
+    "additional_patterns": false
+  },
+  "facts": [
+    {
+      "chunk": "gdr882_ak3_eowr#c0000",
+      "well": "Geothermal Resource Group, Inc. 77530 Enfield Ln Bldg E Palm Desert, CA 92211-7261",
+      "property": "max_measured_temperature",
+      "value": 350.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0000",
+      "well": "Geothermal Resource Group, Inc. 77530 Enfield Ln Bldg E Palm Desert, CA 92211-7261",
+      "property": "casing_depth",
+      "value": 8000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0000",
+      "well": "Geothermal Resource Group, Inc. 77530 Enfield Ln Bldg E Palm Desert, CA 92211-7261",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0000",
+      "well": "Geothermal Resource Group, Inc. 77530 Enfield Ln Bldg E Palm Desert, CA 92211-7261",
+      "property": "projected_formation_temperature",
+      "value": 360.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "projected_formation_temperature",
+      "value": 334,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 850
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "projected_formation_temperature",
+      "value": 310,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 1955
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "projected_formation_temperature",
+      "value": 340,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 400
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "drilling_days",
+      "value": 30,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "total_depth",
+      "value": 1700,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "total_depth",
+      "value": 1955,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "rig_release_date",
+      "value": "2024-08-28",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "drilling_days",
+      "value": 27,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "spud_date",
+      "value": "2024-08-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "ground_elevation",
+      "value": 120,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0002",
+      "well": "Akutan Well AK-3",
+      "property": "max_measured_temperature",
+      "value": 329,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0004",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 833
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0004",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 400,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 833
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0004",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 833,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0004",
+      "well": "TG-2",
+      "property": "casing_depth",
+      "value": 833,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0004",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 350,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 833
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0006",
+      "well": "HSBV",
+      "property": "casing_depth",
+      "value": 8000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0006",
+      "well": "HSBV",
+      "property": "max_measured_temperature",
+      "value": 250.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0006",
+      "well": "HSBV",
+      "property": "projected_formation_temperature",
+      "value": 260.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0006",
+      "well": "HSBV",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0008",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 12.5,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0008",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8500,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0008",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 220,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0008",
+      "well": "AK-3",
+      "property": "api_number",
+      "value": "50-295-20005-00-00",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0008",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 230,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "api_number",
+      "value": "123456789",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "total_rig_time",
+      "value": 1380.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 30.5,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "productive_time",
+      "value": 1200.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "spud_date",
+      "value": "2024-05-15",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "spud_to_release_days",
+      "value": 28.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "non_productive_time",
+      "value": 180.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 30.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 8500.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 8500.5,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "rig_release_date",
+      "value": "2024-06-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "ground_elevation",
+      "value": 1200.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 5000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 5000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 210.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0009",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 220.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 260,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 1955
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 250,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1955
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 1.75,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 1,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1700
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 1955,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "3-\u00bd\""
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 27,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 1700,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 1955,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "api_number",
+      "value": "AK-3",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "rig_release_date",
+      "value": "2016-09-05",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 19,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "spud_date",
+      "value": "2016-08-18",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0010",
+      "well": "AK-3",
+      "property": "ground_elevation",
+      "value": 41,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 350.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 360.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "api_number",
+      "value": "123456789",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "total_rig_time",
+      "value": 180.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 3.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "productive_time",
+      "value": 150.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "spud_date",
+      "value": "2024-08-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "spud_to_release_days",
+      "value": 3.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "non_productive_time",
+      "value": 30.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 3.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 12500.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 12500.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "rig_release_date",
+      "value": "2024-08-04",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0011",
+      "well": "AK-3",
+      "property": "ground_elevation",
+      "value": 1000.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0012",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 40,
+      "qualifier": "planned",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0012",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 220,
+      "qualifier": "planned",
+      "context": {
+        "casing_size_in": "5-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0012",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 800,
+      "qualifier": "planned",
+      "context": {
+        "casing_size_in": "4-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0012",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 700,
+      "qualifier": "planned",
+      "context": {
+        "casing_size_in": "3-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0013",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 221.7,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0013",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 1955,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "3-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0013",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 800,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "4-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0013",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 40,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0014",
+      "well": "City of Akutan well",
+      "property": "inclination",
+      "value": 15,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 6000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0014",
+      "well": "City of Akutan well",
+      "property": "projected_formation_temperature",
+      "value": 200,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 6000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0014",
+      "well": "City of Akutan well",
+      "property": "max_measured_temperature",
+      "value": 150,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 6000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0014",
+      "well": "City of Akutan well",
+      "property": "casing_depth",
+      "value": 6,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "6\""
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0015",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0015",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 250,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0015",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 260,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0015",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8000,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "rig_release_date",
+      "value": "2016-09-05",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "spud_date",
+      "value": "2016-09-07",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 260.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0018",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 250.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "api_number",
+      "value": "API-12345",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "total_rig_time",
+      "value": 180.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "drilling_days",
+      "value": 30.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "productive_time",
+      "value": 120.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "spud_date",
+      "value": "2024-01-15",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "spud_to_release_days",
+      "value": 25.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "non_productive_time",
+      "value": 60.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "drilling_days",
+      "value": 35.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "total_depth",
+      "value": 1050.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "total_depth",
+      "value": 1000.5,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "rig_release_date",
+      "value": "2024-01-30",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "ground_elevation",
+      "value": 150.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "casing_depth",
+      "value": 500.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "max_measured_temperature",
+      "value": 150.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0020",
+      "well": "VOIP",
+      "property": "projected_formation_temperature",
+      "value": 160.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "max_measured_temperature",
+      "value": 200.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 5000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "casing_depth",
+      "value": 5000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "api_number",
+      "value": "123456789",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "total_rig_time",
+      "value": 120.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "drilling_days",
+      "value": 3.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "productive_time",
+      "value": 100.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "spud_date",
+      "value": "2024-08-14",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "spud_to_release_days",
+      "value": 3.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "non_productive_time",
+      "value": 20.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "drilling_days",
+      "value": 3.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "total_depth",
+      "value": 10000.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "total_depth",
+      "value": 10000.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "rig_release_date",
+      "value": "2024-08-17",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "ground_elevation",
+      "value": 100.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0021",
+      "well": "TG-2",
+      "property": "projected_formation_temperature",
+      "value": 220.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "max_measured_temperature",
+      "value": 105.5,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 35
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "non_productive_time",
+      "value": 12,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "total_rig_time",
+      "value": 12,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "spud_date",
+      "value": "2016-08-18",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "productive_time",
+      "value": 0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "ground_elevation",
+      "value": 0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0022",
+      "well": "Well",
+      "property": "casing_depth",
+      "value": 40,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8\""
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "max_measured_temperature",
+      "value": 190,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 99
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "inclination",
+      "value": 0.5,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 99
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "non_productive_time",
+      "value": 8,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "rig_release_date",
+      "value": "2024-08-21",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "total_rig_time",
+      "value": 8,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "drilling_days",
+      "value": 0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "spud_date",
+      "value": "2024-08-21",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "productive_time",
+      "value": 0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "spud_to_release_days",
+      "value": 0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "casing_depth",
+      "value": 176,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "max_measured_temperature",
+      "value": 145,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 130
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "max_measured_temperature",
+      "value": 140,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 140
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0023",
+      "well": "Well",
+      "property": "inclination",
+      "value": 0.5,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 130
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "api_number",
+      "value": "123456789",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "total_rig_time",
+      "value": 1500.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "drilling_days",
+      "value": 30.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "productive_time",
+      "value": 1200.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "spud_date",
+      "value": "2024-05-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "spud_to_release_days",
+      "value": 25.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "non_productive_time",
+      "value": 300.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "drilling_days",
+      "value": 35.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "total_depth",
+      "value": 10500.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "total_depth",
+      "value": 10000.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "rig_release_date",
+      "value": "2024-05-26",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "ground_elevation",
+      "value": 1500.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "casing_depth",
+      "value": 5000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "max_measured_temperature",
+      "value": 350.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "projected_formation_temperature",
+      "value": 400.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0024",
+      "well": "well",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 5000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0025",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8000,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0026",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 225
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0026",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 186,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 225
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0026",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 165,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 225
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0026",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 220,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5-1/2\""
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0027",
+      "well": "next hole section",
+      "property": "inclination",
+      "value": 4,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0027",
+      "well": "next hole section",
+      "property": "casing_depth",
+      "value": 5.5,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5-1/2"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0027",
+      "well": "next hole section",
+      "property": "casing_depth",
+      "value": 8.625,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0028",
+      "well": "PQ",
+      "property": "max_measured_temperature",
+      "value": 132,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 805
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0028",
+      "well": "PQ",
+      "property": "inclination",
+      "value": 0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 805
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0028",
+      "well": "PQ",
+      "property": "projected_formation_temperature",
+      "value": 132,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 805
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0028",
+      "well": "PQ",
+      "property": "casing_depth",
+      "value": 805,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "4-1/2\""
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0030",
+      "well": "Akutan",
+      "property": "casing_depth",
+      "value": 1705,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "HQ"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0030",
+      "well": "Akutan",
+      "property": "max_measured_temperature",
+      "value": 185,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1705
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0030",
+      "well": "Akutan",
+      "property": "inclination",
+      "value": 0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1705
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0030",
+      "well": "Akutan",
+      "property": "projected_formation_temperature",
+      "value": 200,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 1705
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "non_productive_time",
+      "value": 180,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "total_depth",
+      "value": 255,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "rig_release_date",
+      "value": "2024-08-04",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "total_rig_time",
+      "value": 180,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "drilling_days",
+      "value": 3,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "spud_date",
+      "value": "2024-08-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "spud_to_release_days",
+      "value": 3,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "projected_formation_temperature",
+      "value": 160,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 176
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "casing_depth",
+      "value": 176,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "inclination",
+      "value": 15,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 176
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0034",
+      "well": "Well",
+      "property": "max_measured_temperature",
+      "value": 150,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 176
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 350.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 320.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 6000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 5000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 5000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "api_number",
+      "value": "123456789",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "total_rig_time",
+      "value": 1500.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 30.5,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "productive_time",
+      "value": 1200.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "spud_date",
+      "value": "2024-05-15",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "spud_to_release_days",
+      "value": 28.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "non_productive_time",
+      "value": 300.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "drilling_days",
+      "value": 30.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 8500.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "total_depth",
+      "value": 8500.5,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "rig_release_date",
+      "value": "2024-06-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0042",
+      "well": "AK-3",
+      "property": "ground_elevation",
+      "value": 1200.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 310,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 169
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 210,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 169
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 8,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 383
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 205,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 383
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 320,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 383
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 142
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 12,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 169
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 300,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 142
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0047",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 215,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 142
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "max_measured_temperature",
+      "value": 160,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 785
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "inclination",
+      "value": 70,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 471.5
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "casing_depth",
+      "value": 471.5,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "inclination",
+      "value": 70,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 470
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "max_measured_temperature",
+      "value": 150,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 780
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "casing_depth",
+      "value": 470,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "casing_depth",
+      "value": 432,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0048",
+      "well": "Well site geologist",
+      "property": "casing_depth",
+      "value": 431,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0052",
+      "well": "this well",
+      "property": "max_measured_temperature",
+      "value": 300,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 300
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0052",
+      "well": "this well",
+      "property": "casing_depth",
+      "value": 800,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0052",
+      "well": "this well",
+      "property": "inclination",
+      "value": 0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 300
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0052",
+      "well": "this well",
+      "property": "projected_formation_temperature",
+      "value": 300,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 300
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0054",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 310,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 1000
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0054",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 334,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 850
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0054",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 340,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 400
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0054",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 329,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 500
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 266.2,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 400
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 310,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 1955
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 305,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 1955
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 340,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 400
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 334,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 850
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0055",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 299,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 850
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "max_measured_temperature",
+      "value": 200.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "non_productive_time",
+      "value": 20.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "drilling_days",
+      "value": 30.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "total_depth",
+      "value": 10000.0,
+      "qualifier": "planned",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "api_number",
+      "value": "API-12345",
+      "qualifier": "none",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "rig_release_date",
+      "value": "2024-08-31",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "total_rig_time",
+      "value": 120.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "productive_time",
+      "value": 100.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "spud_date",
+      "value": "2024-08-01",
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "ground_elevation",
+      "value": 100.0,
+      "qualifier": "actual",
+      "context": null
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "casing_depth",
+      "value": 5000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 7000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0058",
+      "well": "well test",
+      "property": "projected_formation_temperature",
+      "value": 220.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8500.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0059",
+      "well": "AK-3",
+      "property": "max_measured_temperature",
+      "value": 250.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0059",
+      "well": "AK-3",
+      "property": "inclination",
+      "value": 15.0,
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0059",
+      "well": "AK-3",
+      "property": "projected_formation_temperature",
+      "value": 260.0,
+      "qualifier": "projected",
+      "context": {
+        "depth_ft": 8000.0
+      }
+    },
+    {
+      "chunk": "gdr882_ak3_eowr#c0059",
+      "well": "AK-3",
+      "property": "casing_depth",
+      "value": 8000.0,
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "8-5/8"
+      }
+    }
+  ]
+}

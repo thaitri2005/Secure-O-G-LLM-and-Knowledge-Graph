@@ -1,0 +1,31 @@
+# Track B environment for neo4j-graphrag-python (E16), kept apart from requirements.lock.txt because
+# neo4j-graphrag 1.23 needs pypdf>=6.19 and the main environment pins pypdf 6.1.1 (Track A ingestion).
+# py -3.12 -m venv .venv-graphrag; .venv-graphrag\Scripts\python -m pip install -r requirements-graphrag.lock.txt
+annotated-types==0.8.0
+anyio==4.15.1
+certifi==2026.10.23
+fsspec==2026.9.0
+h11==0.16.0
+httpcore==1.0.9
+httpcore2==2.16.0
+httpx==0.28.1
+httpx2==2.16.0
+idna==3.20
+jiter==0.18.0
+json_repair==0.64.2
+neo4j==6.4.1
+neo4j-graphrag==1.23.0
+numpy==2.5.4
+openai==3.41.0
+pydantic==2.14.2
+pydantic_core==2.50.2
+pypdf==6.21.4
+pytz==2026.6
+PyYAML==6.0.3
+scipy==1.18.1
+sniffio==1.3.1
+tenacity==9.2.1
+truststore==0.10.5
+types-PyYAML==6.0.12.20261030
+typing-inspection==0.4.4
+typing_extensions==4.16.0

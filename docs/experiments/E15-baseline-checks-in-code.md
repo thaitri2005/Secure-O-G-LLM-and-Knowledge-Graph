@@ -37,7 +37,7 @@ E14's configuration reran on the new machine with E14's code and gave 21/31, the
 | Checked citation is on a gold chunk | — | 15/16 | 13/13 |
 | Invalid JSON | 0/31 | 0/31 | 0/31 |
 
-Where the checked citations came from (*k* = 5): 15 kept from the model, 6 found by quote, 3 found by value, 1 unsupported (q25, the made-up inclination).
+Where the checked citations came from (*k* = 5): 15 kept from the model, 6 found by quote, 3 found by value, 1 unsupported. The unsupported one was a correct answer (q19, `1955`): its passage writes `1,955`, and the check did not ignore thousands separators. That was fixed after E15 (see the correction below).
 
 **Cost.**
 
@@ -58,7 +58,7 @@ Where the checked citations came from (*k* = 5): 15 kept from the model, 6 found
 | Table chunk retrieved, model said "not stated" | q12, q16, q18, q21 |
 | Text chunk retrieved, model said "not stated" | q03, q04, q06 |
 | Extra value (19 and 27 days) | q05 |
-| Answered a question the report does not answer (inclination at 1,000 ft; the code check found no support) | q25 |
+| Answered a question the report does not answer (inclination at 1,000 ft, which the survey skips). It gave 0.25, which is in the survey table on other rows, so the citation check found the value and passed it | q25 |
 
 Date normalization fixed q07. Nothing else moved.
 
@@ -78,14 +78,18 @@ Date normalization fixed q07. Nothing else moved.
 
 ## What was learned
 
-1. **The code checks pay for themselves.** Every answer with any support in the passages now carries a citation that is verifiably in a retrieved chunk (16/17), against 7/17 for the model's own quotes. The one unsupported answer is exactly the wrong one (q25), so "no supported citation" is a usable signal to withhold an answer.
+1. **The code checks pay for themselves.** Every answer now carries a citation that is verifiably in a retrieved chunk (16/17 at E15, 17/17 after the separator fix), against 7/17 for the model's own quotes. But a supported citation does not mean a right answer: q25's wrong value is in the cited table, on another row.
 2. ***k* = 3 is not worth it.** It saves 37% of prompt tokens but loses two answers and one retrieval hit. Keep *k* = 5.
 3. **The remaining gap is reading, as in E14.** Seven of nine misses are the 4B model abstaining on passages that hold the answer, four of them tables. A larger model (Qwen3-8B), better table text from Track A, and extracted facts (neo4j-graphrag-python) are the levers.
 4. **A desktop GPU makes runs cheap enough to repeat.** One full 31-question run takes about 25 s, so model and prompt comparisons can run several times to average out noise.
 
 ## Next
 
-- Withhold answers with no supported citation, and measure the effect (should fix q25 without losing others).
+- Withhold answers with no supported citation, and measure the effect. (Done: no effect, see the correction.)
 - Run the same baseline with Qwen3-8B and Qwen2.5-7B-Instruct locally, to see how much of the reading gap is model size.
 - Run neo4j-graphrag-python as E16 (B-D10 step 2).
 - Use fusion retrieval once the corpus holds more than one report.
+
+## Correction (31 October 2026, later the same day)
+
+The first version of this record said the one unsupported citation was q25's made-up answer, and that "no supported citation" was therefore a good reason to withhold an answer. Both were wrong. The unsupported citation was q19's correct answer, flagged only because `1955` did not match `1,955`. After the check learned to ignore thousands separators, all 17 answers had a supported citation, and withholding unsupported answers (`--withhold-unsupported`) left the score at 22/31. The text above has been corrected. The same mistake is recorded in the Track B log as B-F18, which replaces B-F17.

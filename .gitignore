@@ -1,4 +1,5 @@
 .venv/
+.venv-graphrag/
 data/raw/
 data/interim/
 data/processed/local/
@@ -9,6 +10,7 @@ build/
 dist/
 .pytest_cache/
 prototype/.venv/
+.venv-graphrag/
 prototype/results/*.log
 # Original VPI documents: the repository is public. Remove this rule only once VPI agrees to publication.
 docs/requirements/originals/

@@ -41,7 +41,7 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). Run **neo4j-graphrag-python** first: its schema is the ontology injection, it can prune types the schema does not define, and it links chunks to their documents. Then run **LightRAG**, whose own docs want a ~30B extraction model, so a ~7B run is the real test. Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python has been run (E16) and not adopted; **LightRAG** is next. Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -50,64 +50,58 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `retrieval.py` | BM25, dense and fusion retrieval |
   | `scoring.py` | The prototype's answer rules, plus date and number normalization |
   | `citations.py` | Citations checked against the retrieved chunks in code |
-  | `baseline.py` | Command line |
+  | `baseline.py` | Command line for retrieval and answer runs (`--facts`, `--withhold-unsupported`) |
+  | `neo4j_kg.py` | neo4j-graphrag-python with the ontology file as its schema (runs in `.venv-graphrag`) |
 
-  Endpoints are in `configs/graphrag/endpoints.json`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
-- **E14** ([record](docs/experiments/E14-plain-rag-baseline.md)), plain RAG on the AK-3 EOWR (60 chunks):
-  - BM25 retrieval found every gold fact in the top 5, beating Qwen3-Embedding-0.6B (hit@5 0.78).
-  - BM25, top 5 and Qwen3-4B-Instruct-2507 answered **21/31**. The prototype, E10, answered 23/31.
-  - All 9 questions that should get no answer were refused, and there were 0 invalid JSON outputs.
-  - The misses come from the 4B model reading tables and abstaining. Model-written citations are unreliable, so citations are checked in code (B-C07).
-- **E15** ([record](docs/experiments/E15-baseline-checks-in-code.md)), the same baseline with citations and values checked in code, on the desktop GPU:
-  - **22/31** at *k* = 5. Citations were supported after the check in 16/17 answers; the one unsupported answer was the one hallucination (q25).
-  - *k* = 3 gives 20/31 for 37% fewer tokens, so *k* stays 5 (B-D12).
-  - A full run takes 25 s. Fusion retrieval lifts three-report hit@5 from 0.78 to 0.91.
+  Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
+- **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
 
-### Next steps (B-D13, then B-D10)
+  | Run | Setup | Correct |
+  |---|---|---:|
+  | [E14](docs/experiments/E14-plain-rag-baseline.md) | BM25, top 5, Qwen3-4B, laptop CPU | 21/31 |
+  | [E15](docs/experiments/E15-baseline-checks-in-code.md) | Same, citations and values checked in code, desktop GPU | 22/31 |
+  | [E16](docs/experiments/E16-neo4j-graphrag-python.md) | neo4j-graphrag facts added under the passages (Qwen3-4B / Qwen3-8B) | 21/31 / 28/31 |
+  | [E17](docs/experiments/E17-model-sweep.md) | BM25, top 5, **Qwen3-8B** (thinking off) | **28/31** |
+  | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
 
-1. Withhold answers that have no supported citation, and measure the effect.
-2. Run the baseline with Qwen3-8B and Qwen2.5-7B-Instruct locally, to size how much of the reading gap is the model.
-3. Run **neo4j-graphrag-python** as E16:
-   - same 60 chunks, same 31 questions, same model;
-   - `oil_wells.json` turned into its schema, with undefined types pruned;
-   - one extraction pass per chunk, JSON-schema output, cached.
+  - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
+  - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.
+  - **Run one request at a time for measurements:** parallel requests to llama.cpp make results non-repeatable (B-F19). Record the server settings with each run.
+  - A supported citation does not prove a right answer (B-F18, which corrects B-F17).
 
-   Compare with E15 on correctness, citations, tokens per page and time.
-4. Then LightRAG under the same conditions.
-5. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
-6. Choose the vector store with Khai (Track C) once the base is chosen.
+### Next steps (B-D15)
+
+1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
+2. Filter retrieval by well or document using the ID payload (§5.11), to stop wrong values from distractor reports.
+3. Run LightRAG with Qwen3-8B on the three-report pool and compare with the fusion baseline (26/31).
+4. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
+5. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs
 
-The old laptop (i5-1340P, CPU only, shared with other work) proved too slow, and its model files were deleted. Runs now happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB), fully local on the GPU with llama.cpp (B-F16); OpenRouter remains an option.
+Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Windows), fully local on the GPU with llama.cpp (B-F16). The old laptop proved too slow. OpenRouter remains an option for public data.
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. `graphrag/` needs only `httpx` and `numpy`, which the lock file includes.
-2. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Check which candidate models OpenRouter serves:
-
-   | Purpose | Candidates |
-   |---|---|
-   | LLM | Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct, Qwen3-8B, Llama-3.1-8B-Instruct |
-   | Embeddings | Qwen3-Embedding-0.6B, bge-m3 |
-
-   Public data only. The client refuses private data on hosted endpoints.
-3. **Local, with llama.cpp (`llama-server`):** download the GGUFs into ignored `data/interim/models/`:
+2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports.
+3. **llama.cpp:** the Windows CUDA 12.4 build of release b12015 plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`. GGUFs go into ignored `data/interim/models/`:
 
    | Model | Hugging Face repository and file |
    |---|---|
-   | LLM | `unsloth/Qwen3-4B-Instruct-2507-GGUF`, file `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` |
+   | Answer LLM (baseline) | `Qwen/Qwen3-8B-GGUF`, file `Qwen3-8B-Q4_K_M.gguf`; serve with thinking off |
+   | Smaller LLM | `unsloth/Qwen3-4B-Instruct-2507-GGUF`, file `Qwen3-4B-Instruct-2507-Q4_K_M.gguf` |
    | Embeddings | `Qwen/Qwen3-Embedding-0.6B-GGUF`, file `Qwen3-Embedding-0.6B-Q8_0.gguf` |
-   | Embeddings, optional | `ggml-org/bge-m3-Q8_0-GGUF` |
+   | Dropped (E17) | `bartowski/Qwen2.5-7B-Instruct-GGUF`, `bartowski/Meta-Llama-3.1-8B-Instruct-GGUF` (Q4_K_M) |
 
-   Server commands are in [graphrag/README.md](graphrag/README.md). On a machine with an Nvidia GPU, drop `--device none -ngl 0`; on an integrated GPU, keep them. PyTorch embeddings were unusably slow on the old laptop, which is why all models go through endpoints (B-C06).
-4. Reproduce E14 to check the setup:
+   Server commands are in [graphrag/README.md](graphrag/README.md): `-c 32768 -np 4 -ngl 99`. On a laptop with an integrated GPU, use `--device none -ngl 0` instead.
+4. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Public data only; the client refuses private data on hosted endpoints.
+5. Check the setup by reproducing E17's baseline:
 
    ```
    python -m graphrag.baseline retrieval --pool ak3 --retrievers bm25 --name check
-   python -m graphrag.baseline answer --pool ak3 --retriever bm25 --k 5 --endpoint <endpoint> --model <model> --name check_answers
+   python -m graphrag.baseline answer --pool ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name check_answers
    ```
 
-   BM25 hit@5 should be 1.00. Delete the `check*` result files afterwards.
-
+   BM25 hit@5 should be 1.00 and the answers about 28/31. Delete the `check*` result files afterwards.
 ## Useful facts
 
 - Data: `data/processed/gdr_chunks_full.jsonl` holds the K1 version 0 chunks: AK-3 EOWR (`gdr882_ak3_eowr`, 60 chunks) plus two other EOWRs (372 chunks in total). Gold data: `prototype/gold/questions.json` (31 questions) and `ak3_facts.json` (41 facts, chunk IDs like `c0002`).

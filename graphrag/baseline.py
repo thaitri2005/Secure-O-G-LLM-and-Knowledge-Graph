@@ -41,6 +41,13 @@ ANSWER_SCHEMA = {
 }
 
 
+def render(fact: dict) -> str:
+    """One extracted fact (graphrag.neo4j_kg) as a line under its passage in the answer prompt."""
+    qualifier = "" if fact["qualifier"] in ("actual", "none") else f" ({fact['qualifier']})"
+    context = "".join(f" at {k} {v}" for k, v in (fact["context"] or {}).items())
+    return f"{fact['well'] or 'unnamed well'} {fact['property']}{qualifier}{context} = {fact['value']}"
+
+
 def pool(name: str):
     if name == "three":
         return load_chunks()
@@ -100,24 +107,39 @@ def evaluate_answers(args) -> dict:
     questions, gold = load_questions()
     retriever = build(args.retriever, chunks)
     client = ModelClient(load_endpoints()[args.endpoint], args.model)
+    facts: dict[str, list[str]] = {}
+    if args.facts:
+        for fact in json.loads((RESULTS / f"{args.facts}.json").read_text(encoding="utf-8"))["facts"]:
+            facts.setdefault(fact["chunk"], []).append(render(fact))
     rows = []
     for q in questions:
         hits = [cid for cid, _ in retriever.search(q["question"], args.k)]
-        passages = "\n\n".join(f"[{cid.split('#')[-1]}] (page {by_id[cid].page}) {by_id[cid].text}" for cid in hits)
+        passages = "\n\n".join(
+            f"[{cid.split('#')[-1]}] (page {by_id[cid].page}) {by_id[cid].text}"
+            + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
+            for cid in hits)
         call = client.chat([{"role": "system", "content": SYSTEM},
                             {"role": "user", "content": f"Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
                            schema=ANSWER_SCHEMA, max_tokens=args.max_tokens)
         parsed = call.parsed or {"status": "invalid", "answers": []}
-        answers = parsed.get("answers", []) if parsed.get("status") == "answered" else []
+        status = parsed.get("status", "invalid")
+        answers = parsed.get("answers", []) if status == "answered" else []
+        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, AK3) for a in answers]
+        withheld = []
+        if args.withhold_unsupported:
+            # B-F17: an answer no retrieved passage supports is dropped; with none left, the question is withheld.
+            withheld = [a["value"] for a, (c, _) in zip(answers, resolved) if c is None]
+            kept = [(a, r) for a, r in zip(answers, resolved) if r[0] is not None]
+            answers, resolved = [a for a, _ in kept], [r for _, r in kept]
+            status = "withheld" if withheld and not answers else status
         values = list(dict.fromkeys(normalize(a["value"]) for a in answers))
         expected = [gold[g] for g in q["gold"]]
-        result = score_answer(q, expected, parsed.get("status", "invalid"), values)
+        result = score_answer(q, expected, status, values)
         wanted = gold_chunks(q, gold)
         cited = [f"{AK3}#{a['chunk']}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
-        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, AK3) for a in answers]
         rows.append({
-            "id": q["id"], "kind": q["kind"], "status": parsed.get("status"), "values": values,
-            "raw_values": [a["value"] for a in answers],
+            "id": q["id"], "kind": q["kind"], "status": status, "values": values,
+            "raw_values": [a["value"] for a in answers], "withheld_values": withheld,
             **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
             "citations": [{"chunk": c, "how": how} for c, how in resolved],
             "citations_supported": all(c is not None for c, _ in resolved),
@@ -128,7 +150,7 @@ def evaluate_answers(args) -> dict:
                                    for a, c in zip(answers, cited)),
             "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
             "seconds": call.seconds, "cached": call.cached})
-        print(f"{q['id']} {q['kind']:<11} {'OK ' if result['correct'] else 'BAD'} {parsed.get('status')} "
+        print(f"{q['id']} {q['kind']:<11} {'OK ' if result['correct'] else 'BAD'} {status} "
               f"{rows[-1]['values']} {call.prompt_tokens}+{call.completion_tokens} tok {call.seconds}s", flush=True)
     kinds = list(dict.fromkeys(q["kind"] for q in questions))
     answered = [r for r in rows if r["status"] == "answered"]
@@ -138,7 +160,8 @@ def evaluate_answers(args) -> dict:
 
     return {
         "pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
-        "endpoint": args.endpoint, "model": args.model, "questions": len(rows),
+        "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported, "facts": args.facts,
+        "questions": len(rows), "withheld": [r["id"] for r in rows if r["withheld_values"]],
         "correct_total": frac("correct", rows),
         "correct_by_kind": {k: frac("correct", [r for r in rows if r["kind"] == k]) for k in kinds},
         "answers_without_wrong_values": frac("no_wrong_values", answered) if answered else "0/0",
@@ -170,6 +193,9 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--endpoint", default="local-llama")
     a.add_argument("--model", required=True)
     a.add_argument("--max-tokens", type=int, default=400)
+    a.add_argument("--facts", help="a graphrag.neo4j_kg result name; its facts are shown under each passage")
+    a.add_argument("--withhold-unsupported", action="store_true",
+                   help="drop answers that no retrieved passage supports (B-F17)")
     for p in (r, a):
         p.add_argument("--name", required=True, help="result file name under graphrag/results/")
     args = parser.parse_args(argv)

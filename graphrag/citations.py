@@ -6,11 +6,18 @@ first one containing the value. An answer no retrieved passage supports gets no 
 """
 from __future__ import annotations
 
+import re
+
 from .scoring import squash
 
 
+def _plain(text: str) -> str:
+    return re.sub(r"(?<=\d),(?=\d{3}\b)", "", squash(text)).lower()
+
+
 def _contains(text: str, needle: str) -> bool:
-    return bool(squash(needle)) and squash(needle).lower() in squash(text).lower()
+    """Case-, space- and thousands-separator-insensitive, so "1955" is found in "1,955 ft"."""
+    return bool(squash(needle)) and _plain(needle) in _plain(text)
 
 
 def resolve(answer: dict, hits: list[str], texts: dict[str, str], doc_id: str) -> tuple[str | None, str]:
