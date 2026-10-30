@@ -18,8 +18,9 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
 | Baseline | Plain vector RAG | B-D03 |
 | Bases to run | neo4j-graphrag-python, then LightRAG | B-D04 |
+| What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash | B-C01 to B-C04 |
-| LLM | Open: Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct; 8B models pending | B-F10, B-D05 |
+| LLM | Open: Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct, Qwen3-8B, Llama-3.1-8B-Instruct (8B allowed) | B-F10, B-D06 |
 | Embeddings | Open: Qwen3-Embedding-0.6B, bge-m3 | B-F11 |
 | Vector store | Open; decided with Track C after the base | — |
 
@@ -159,3 +160,25 @@ Scores come from secondary rankings, so we choose by retrieval recall on our own
 
 - Reruns and comparisons then cost nothing for unchanged chunks.
 - *Why:* efficiency; LightRAG and the prototype already do this.
+
+**B-D06 (decision; answers B-D05).** 8B models count as "about 7B".
+
+- Qwen3-8B and Llama-3.1-8B-Instruct join the LLM candidates.
+- *Why:* confirmed by Tri on 30 October 2026.
+
+**B-D07 (decision).** Every licence in the survey is acceptable if we give proper credit, including Youtu-GraphRAG's Tencent licence.
+
+- Copied or adapted code keeps its copyright notice.
+- The source repository, commit and licence are recorded in a `NOTICE` file next to the code.
+- *Why:* Tri's decision on 30 October 2026.
+
+**B-D08 (decision).** Adopt only what is close to our description, then make it better.
+
+- We look only at solutions close to the 28 October description:
+  - ontology-guided extraction with small models;
+  - chunk provenance;
+  - graph and vector retrieval;
+  - a usable application.
+- We take them over and improve them on drilling reports, for example with ontology slicing, cost per page, tables and review by exception.
+- neo4j-labs/llm-graph-builder is studied whenever we need a part it already has, such as schema settings, chat modes or token limits. We do not adopt it wholesale.
+- *Why:* the supervisor asked to take over an existing pipeline and improve it (D-36, D-41).

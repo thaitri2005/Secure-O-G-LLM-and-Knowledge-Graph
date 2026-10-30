@@ -24,6 +24,6 @@ Measurements go into experiment records in [`docs/experiments/`](../../experimen
    - cost per page and per question;
 
    alongside quality. A base that is slightly better but several times more expensive per page loses.
-3. **Use what exists.** Prefer a library or repository that already does the job. Copy or adapt MIT- and Apache-licensed code with attribution. Read any other licence before copying anything ([survey](survey.md#licences)).
+3. **Use what exists, then improve it.** Look only at solutions close to our description, take them over and make them better on drilling reports (B-D08). Copied code keeps its credit ([survey](survey.md#licences)).
 4. **Keep everything else fixed when comparing.** Every candidate gets the same chunks, questions, model and token budget, so that the comparison measures the pipeline and not the setup.
 5. **Log as you go.** A finding, a decision, a design choice or a run goes into [log.md](log.md) the same day. A decision that changes the specification also goes into specification §13.1.
