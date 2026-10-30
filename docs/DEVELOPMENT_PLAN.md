@@ -176,9 +176,16 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 **Goal.** Chunks with IDs become a graph and vectors that answer questions with chunk citations, on a ~7B model, at a known cost.
 
+**Working files.** Findings, decisions, design choices and runs are logged in [`docs/tracks/B-graphrag/log.md`](tracks/B-graphrag/log.md). The survey of ready-made repositories is in [`survey.md`](tracks/B-graphrag/survey.md).
+
+This stint starts small and treats efficiency as a headline metric (B-D01, B-D02):
+
+- begin with the 15 prototype chunks, then the whole AK-3 end-of-well report;
+- record calls, tokens, seconds and cost per page on every run.
+
 **Research questions.**
 
-1. Which open-source GraphRAG base fits our needs: neo4j-graphrag-python, LightRAG, Microsoft GraphRAG or LlamaIndex property graphs? Use the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
+1. Which open-source GraphRAG base fits our needs? Run neo4j-graphrag-python, then LightRAG (B-D04), judged on the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
 2. Which ~7B LLM extracts reliably (JSON compliance, precision, recall)?
 3. Which embedding model retrieves the right chunks for the questions?
 4. Which vector store suits the chosen base: Neo4j's index, pgvector or Qdrant? Decided with Track C.
@@ -187,22 +194,27 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 **Work.**
 
-1. **Model client.** One OpenAI-compatible client that records the endpoint, model and version per run and refuses private files (FR-28).
-2. **Base comparison.** Install two or three candidate bases and run each on K1 version 0 with the same ~7B model and K2 version 0. Compare:
+1. **Model client.** One OpenAI-compatible client with these properties:
+   - it records the endpoint, model and version per run;
+   - it refuses private files (FR-28);
+   - it uses JSON-schema output;
+   - it caches calls by chunk hash.
+2. **Vector baseline.** Run plain vector RAG on the same chunks and questions. Every base must beat it or justify its extra cost (B-D03).
+3. **Base comparison.** Run each candidate base on K1 version 0 with the same ~7B model and K2 version 0. Compare:
    - extracted items against the E10 gold facts;
    - calls and tokens;
    - provenance kept;
    - ease of injecting the ontology.
 
    Choose one by week 3 and record the reasons.
-3. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store with Track C.
-4. **Thin ontology slice.** Extend `oil_wells.json` only with what the reports show:
+4. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store with Track C.
+5. **Thin ontology slice.** Extend `oil_wells.json` only with what the reports show:
    - section headings;
    - table column headers;
    - the AK-3 abbreviation table as the glossary seed.
 
    Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
-5. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
+6. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
 
 **Exit.**
 

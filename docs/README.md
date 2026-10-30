@@ -13,6 +13,7 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, the three first-build tracks and later roles, milestones, this week's tasks, risks, backlog |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well reports (AK-3 first), daily drilling reports |
 | Supporting | [Components](components/) | How each implemented subsystem works: [document ingestion](components/corpus-ingestion.md), [structured-data import](components/dataset-import.md), [entity registry](components/entity-registry.md). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion](components/bsee-ingestion.md) |
+| Supporting | [Track logs](tracks/) | Each first-build track's findings, decisions, design choices and runs, logged the same day. Currently: [Track B, GraphRAG engine](tracks/B-graphrag/README.md) |
 | Supporting | [Experiments](experiments/README.md) | Measurements, one record per experiment (E1–E13) |
 | Supporting | [Related work](references.md) | Papers, GraphRAG repositories and model candidates |
 | Historical | [Repository assessment, 27 October](REPOSITORY_REVIEW_2026-10-27.md) · [Progress report, 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) | Snapshots from before the 28 October direction; their open code findings are tracked in the plan backlog |
@@ -31,6 +32,7 @@ Reading order for a new team member:
 - **Implemented** means code, tests and a verification record exist in this repository. **Planned** or **proposed** means design intent only.
 - Change the specification first, then the plan. A plan or guide must not introduce scope the specification does not contain.
 - When the direction changes, **remove** the superseded design text instead of keeping old and new side by side. Record the removal in the meeting digest and move the old decision to the superseded table in specification §13.1.
+- Log every finding, decision, design choice and experiment the same day in the track log ([example](tracks/B-graphrag/log.md)). Project-level decisions also go into specification §13.1.
 - Measurements live in experiment records. Do not copy numbers between documents; link to the experiment that owns them.
 - When behavior changes, update the component guide and specification §3 in the same change.
 - Supervisor direction is recorded as a meeting digest in `requirements/` and as decisions in specification §13.1; unanswered questions stay in §13.2.
