@@ -247,3 +247,14 @@ Scores come from secondary rankings, so we choose by retrieval recall on our own
 
 - Rerun E14 with the B-C07 checks and *k* = 3 at the same time, so that the baseline is as strong and as cheap as it can be.
 - Speed and cost comparisons move to OpenRouter once the key is set. This laptop is shared with other work, so its timings are not comparable between runs.
+
+## 2026-10-31
+
+**B-D11 (decision).** Track B runs move to a bigger machine or to OpenRouter. The old laptop's downloaded models were deleted, about 7 GB:
+
+- `data/interim/models/`;
+- the Hugging Face cache copies of Qwen3-Embedding-0.6B and bge-small.
+
+How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../../CLAUDE.md).
+
+- *Why:* the laptop was too slow to compare runs (B-F12, E14), and a new session must be able to continue from the repository alone.
