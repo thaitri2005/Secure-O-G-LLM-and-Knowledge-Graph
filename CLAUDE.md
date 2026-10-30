@@ -48,7 +48,8 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   |---|---|
   | `client.py` | One OpenAI-compatible client with JSON-schema output, embeddings, a request cache, a cost ledger and the private-data guard |
   | `retrieval.py` | BM25, dense and fusion retrieval |
-  | `scoring.py` | The prototype's answer rules |
+  | `scoring.py` | The prototype's answer rules, plus date and number normalization |
+  | `citations.py` | Citations checked against the retrieved chunks in code |
   | `baseline.py` | Command line |
 
   Endpoints are in `configs/graphrag/endpoints.json`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
@@ -57,31 +58,31 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   - BM25, top 5 and Qwen3-4B-Instruct-2507 answered **21/31**. The prototype, E10, answered 23/31.
   - All 9 questions that should get no answer were refused, and there were 0 invalid JSON outputs.
   - The misses come from the 4B model reading tables and abstaining. Model-written citations are unreliable, so citations are checked in code (B-C07).
+- **E15** ([record](docs/experiments/E15-baseline-checks-in-code.md)), the same baseline with citations and values checked in code, on the desktop GPU:
+  - **22/31** at *k* = 5. Citations were supported after the check in 16/17 answers; the one unsupported answer was the one hallucination (q25).
+  - *k* = 3 gives 20/31 for 37% fewer tokens, so *k* stays 5 (B-D12).
+  - A full run takes 25 s. Fusion retrieval lifts three-report hit@5 from 0.78 to 0.91.
 
-### Next steps (B-D10)
+### Next steps (B-D13, then B-D10)
 
-1. Strengthen the baseline:
-   - check citations in code (each cited chunk must be among the retrieved ones, and the quote must appear in it);
-   - normalize dates and numbers in code;
-   - try *k* = 3 to cut prompt tokens.
-
-   Rerun as E15.
-2. Run **neo4j-graphrag-python**:
+1. Withhold answers that have no supported citation, and measure the effect.
+2. Run the baseline with Qwen3-8B and Qwen2.5-7B-Instruct locally, to size how much of the reading gap is the model.
+3. Run **neo4j-graphrag-python** as E16:
    - same 60 chunks, same 31 questions, same model;
    - `oil_wells.json` turned into its schema, with undefined types pruned;
    - one extraction pass per chunk, JSON-schema output, cached.
 
-   Compare with E14 on correctness, citations, tokens per page and time. Record as E16.
-3. Then LightRAG under the same conditions.
-4. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
-5. Choose the vector store with Khai (Track C) once the base is chosen.
+   Compare with E15 on correctness, citations, tokens per page and time.
+4. Then LightRAG under the same conditions.
+5. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
+6. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs
 
-The old laptop (i5-1340P, CPU only, shared with other work) proved too slow, and its model files were deleted. Run on a bigger machine or on OpenRouter.
+The old laptop (i5-1340P, CPU only, shared with other work) proved too slow, and its model files were deleted. Runs now happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB), fully local on the GPU with llama.cpp (B-F16); OpenRouter remains an option.
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. `graphrag/` needs only `httpx` and `numpy`, which the lock file includes.
-2. **Hosted, preferred for comparisons:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Check which candidate models OpenRouter serves:
+2. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Check which candidate models OpenRouter serves:
 
    | Purpose | Candidates |
    |---|---|

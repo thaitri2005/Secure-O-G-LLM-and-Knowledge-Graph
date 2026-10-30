@@ -3,11 +3,27 @@ prototype/kgproto/evaluate_qa.py) so that results compare with E10."""
 from __future__ import annotations
 
 import re
+from datetime import datetime
 from typing import Any
+
+DATE_FORMATS = ["%Y-%m-%d", "%d %B %Y", "%d %b %Y", "%B %d, %Y", "%b %d, %Y", "%B %d %Y", "%d-%b-%Y", "%d-%B-%Y",
+                "%d/%m/%Y", "%d.%m.%Y", "%Y/%m/%d"]
 
 
 def squash(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
+
+
+def normalize(value: str) -> str:
+    """Dates to YYYY-MM-DD and numbers without thousands separators, in code rather than by the model (B-D10)."""
+    text = squash(str(value)).rstrip(".")
+    cleaned = re.sub(r"(\d)(st|nd|rd|th)\b", r"\1", text)
+    for fmt in DATE_FORMATS:
+        try:
+            return datetime.strptime(cleaned, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            pass
+    return re.sub(r"(?<=\d),(?=\d{3}\b)", "", text)
 
 
 def number(value: Any) -> float | None:

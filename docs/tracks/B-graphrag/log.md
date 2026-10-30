@@ -16,12 +16,14 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: BM25, top 5, Qwen3-4B answers 21/31 ([E14](../../experiments/E14-plain-rag-baseline.md)) | B-D03, B-D09 |
+| Baseline | Plain RAG: BM25, top 5, Qwen3-4B, citations and values checked in code: 22/31 ([E15](../../experiments/E15-baseline-checks-in-code.md)) | B-D03, B-C08, B-D12 |
 | Bases to run | neo4j-graphrag-python, then LightRAG | B-D04 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Open: Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct, Qwen3-8B, Llama-3.1-8B-Instruct (8B allowed) | B-F10, B-D06 |
-| Embeddings | BM25 beat Qwen3-Embedding-0.6B on AK-3; dense to be retried on faster compute | B-F14, B-D09 |
+| Embeddings | BM25 alone on one report; fusion with Qwen3-Embedding-0.6B across reports (hit@5 0.91 against 0.78) | B-F14, B-D12 |
+| Compute | Desktop RTX 4080 SUPER with llama.cpp; a 31-question run takes about 25 s | B-F16 |
+| Next | Withhold unsupported answers; try 7–8B models; then neo4j-graphrag-python (E16) | B-D13 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -258,3 +260,36 @@ Scores come from secondary rankings, so we choose by retrieval recall on our own
 How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../../CLAUDE.md).
 
 - *Why:* the laptop was too slow to compare runs (B-F12, E14), and a new session must be able to continue from the repository alone.
+
+## 2026-10-31 (afternoon): desktop GPU and E15
+
+**B-F16 (finding).** A desktop GPU makes Track B runs cheap enough to repeat.
+
+- Machine: RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB. llama.cpp b12015 (CUDA 12.4 Windows build), both models fully on the GPU, about 4 GB of video memory together.
+- The E14 answer run takes 25 s instead of 3,714 s on the laptop; indexing AK-3 with Qwen3-Embedding-0.6B takes 1.1 s instead of 614 s.
+- E14 reproduced on this machine at 21/31 with identical prompt tokens. GPU decoding is not bit-for-bit repeatable: completion tokens differ by about 0.5% between runs, so a difference of one question is noise.
+
+**B-C08 (design choice; implements B-C07).** Citations and values are checked in code after the answer call.
+
+- `graphrag/citations.py`: a model citation stands only if the chunk was retrieved and holds the quote; otherwise it is attached from the retrieved chunk holding the quote, then the value; otherwise the answer has no supported citation.
+- `scoring.normalize`: dates to `YYYY-MM-DD`, no thousands separators, duplicate values merged. Raw model values stay in the result file.
+
+**E15 (experiment).** Baseline with the code checks: [E15](../../experiments/E15-baseline-checks-in-code.md).
+
+- BM25, *k* = 5, Qwen3-4B: **22/31** (E14: 21/31). Date normalization fixed q07.
+- Citations supported after the check: 16/17 answers, against 7/17 verbatim model quotes. The one unsupported answer is the one wrong answer to an unanswerable question (q25).
+- *k* = 3: 20/31 with 37% fewer prompt tokens.
+- Retrieval: dense quality unchanged from E14; on the 372-chunk pool, fusion lifts hit@5 from 0.78 to 0.91.
+
+**B-F17 (finding; from E15).** An answer with no supported citation is a usable signal to withhold it: in E15 it flagged exactly the one hallucinated answer and nothing else.
+
+**B-D12 (decision; from E15).** The baseline stays at BM25 with *k* = 5 on one report; fusion of BM25 and Qwen3-Embedding-0.6B is used once a pool holds more than one report.
+
+- *Why:* *k* = 3 loses two answers for 37% fewer tokens; fusion is the only retriever that holds up against distractor reports (0.91 against 0.78).
+- Replaces the part of B-D09 that kept dense retrieval off: it is cheap on the GPU.
+
+**B-D13 (decision).** Next, in order:
+
+1. Withhold answers without a supported citation, and measure it.
+2. Run the baseline with Qwen3-8B and Qwen2.5-7B-Instruct locally, to size how much of the reading gap is the model.
+3. Run neo4j-graphrag-python as E16 (B-D10 step 2).

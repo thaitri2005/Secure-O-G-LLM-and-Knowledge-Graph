@@ -9,13 +9,15 @@ import argparse
 import json
 import statistics
 import time
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from .citations import resolve
 from .client import ModelClient, load_endpoints
 from .data import AK3, ROOT, load_chunks, load_questions, prototype_slice
 from .retrieval import BM25, Dense, Fusion
-from .scoring import score_answer, squash
+from .scoring import normalize, score_answer, squash
 
 RESULTS = ROOT / "graphrag/results"
 POOLS = {"slice": "the 15 prototype chunks", "ak3": "the whole AK-3 EOWR",
@@ -107,13 +109,19 @@ def evaluate_answers(args) -> dict:
                            schema=ANSWER_SCHEMA, max_tokens=args.max_tokens)
         parsed = call.parsed or {"status": "invalid", "answers": []}
         answers = parsed.get("answers", []) if parsed.get("status") == "answered" else []
+        values = list(dict.fromkeys(normalize(a["value"]) for a in answers))
         expected = [gold[g] for g in q["gold"]]
-        result = score_answer(q, expected, parsed.get("status", "invalid"), [a["value"] for a in answers])
+        result = score_answer(q, expected, parsed.get("status", "invalid"), values)
         wanted = gold_chunks(q, gold)
         cited = [f"{AK3}#{a['chunk']}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
+        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, AK3) for a in answers]
         rows.append({
-            "id": q["id"], "kind": q["kind"], "status": parsed.get("status"), "values": [a["value"] for a in answers],
+            "id": q["id"], "kind": q["kind"], "status": parsed.get("status"), "values": values,
+            "raw_values": [a["value"] for a in answers],
             **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
+            "citations": [{"chunk": c, "how": how} for c, how in resolved],
+            "citations_supported": all(c is not None for c, _ in resolved),
+            "verified_on_gold_chunk": all(c in wanted for c, _ in resolved) if wanted and resolved else None,
             "citations_in_retrieved": all(c in hits for c in cited),
             "citations_on_gold_chunk": all(c in wanted for c in cited) if wanted and cited else None,
             "quotes_verbatim": all(c in by_id and squash(a["quote"]) in squash(by_id[c].text)
@@ -136,6 +144,10 @@ def evaluate_answers(args) -> dict:
         "answers_without_wrong_values": frac("no_wrong_values", answered) if answered else "0/0",
         "citations_in_retrieved": frac("citations_in_retrieved", answered) if answered else "0/0",
         "quotes_verbatim": frac("quotes_verbatim", answered) if answered else "0/0",
+        "citations_supported_after_check": frac("citations_supported", answered) if answered else "0/0",
+        "citation_sources": dict(Counter(c["how"] for r in answered for c in r["citations"])),
+        "verified_on_gold_chunk": frac("verified_on_gold_chunk",
+                                       [r for r in answered if r["verified_on_gold_chunk"] is not None]),
         "retrieved_gold": frac("retrieved_gold", [r for r in rows if r["retrieved_gold"] is not None]),
         "cost": client.ledger.summary(),
         "per_question": {"prompt_tokens_median": statistics.median(r["prompt_tokens"] for r in rows),

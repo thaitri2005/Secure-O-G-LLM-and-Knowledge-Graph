@@ -10,7 +10,8 @@ import httpx
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk
 from graphrag.retrieval import BM25, Fusion
-from graphrag.scoring import score_answer, same_value
+from graphrag.citations import resolve
+from graphrag.scoring import normalize, score_answer, same_value
 
 HOSTED = Endpoint("openrouter", "https://example.invalid/v1", True, None, 1.0, 2.0)
 LOCAL = Endpoint("local-llama", "http://127.0.0.1:9/v1", False)
@@ -114,6 +115,31 @@ class ScoringTests(unittest.TestCase):
     def test_no_expected_fact_requires_no_answer(self):
         self.assertTrue(score_answer({}, [], "not_stated", [])["correct"])
         self.assertFalse(score_answer({}, [], "answered", ["42"])["correct"])
+
+    def test_dates_and_numbers_are_normalized_in_code(self):
+        self.assertEqual(normalize("18 August 2016"), "2016-08-18")
+        self.assertEqual(normalize("August 18th, 2016"), "2016-08-18")
+        self.assertEqual(normalize("1,955 ft"), "1955 ft")
+        self.assertEqual(normalize("12-1/4"), "12-1/4")
+
+
+class CitationTests(unittest.TestCase):
+    texts = {"d#c0001": "Mud weight was 9.2 ppg.", "d#c0002": "Total depth 1,955 ft MD was reached."}
+    hits = ["d#c0001", "d#c0002"]
+
+    def test_correct_citation_is_kept(self):
+        answer = {"value": "1955", "chunk": "c0002", "quote": "Total depth 1,955 ft"}
+        self.assertEqual(resolve(answer, self.hits, self.texts, "d"), ("d#c0002", "model"))
+
+    def test_wrong_chunk_is_repaired_from_the_quote_or_value(self):
+        by_quote = {"value": "1955", "chunk": "c0001", "quote": "1,955 ft MD"}
+        self.assertEqual(resolve(by_quote, self.hits, self.texts, "d"), ("d#c0002", "by_quote"))
+        by_value = {"value": "9.2", "chunk": "c0099", "quote": "invented"}
+        self.assertEqual(resolve(by_value, self.hits, self.texts, "d"), ("d#c0001", "by_value"))
+
+    def test_unsupported_answer_gets_no_citation(self):
+        answer = {"value": "3000", "chunk": "c0002", "quote": "3000 ft"}
+        self.assertEqual(resolve(answer, self.hits, self.texts, "d"), (None, "unsupported"))
 
 
 if __name__ == "__main__":
