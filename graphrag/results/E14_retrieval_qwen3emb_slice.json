@@ -1,0 +1,40 @@
+{
+  "pool": "slice",
+  "pool_description": "the 15 prototype chunks",
+  "chunks": 15,
+  "pages": 11,
+  "questions_with_gold": 23,
+  "retrievers": [
+    {
+      "retriever": "bm25",
+      "hit@1": 0.87,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.92,
+      "index_seconds": 0.01,
+      "query_ms_median": 0.6
+    },
+    {
+      "retriever": "dense:qwen3-embedding-0.6b",
+      "hit@1": 0.565,
+      "hit@3": 0.826,
+      "hit@5": 0.826,
+      "hit@10": 0.957,
+      "mrr": 0.708,
+      "index_seconds": 170.46,
+      "query_ms_median": 7396.9,
+      "embedded_tokens": 3714
+    },
+    {
+      "retriever": "fusion:bm25+dense:qwen3-embedding-0.6b",
+      "hit@1": 0.739,
+      "hit@3": 0.913,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.824,
+      "index_seconds": 170.47,
+      "query_ms_median": 6521.0
+    }
+  ]
+}

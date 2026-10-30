@@ -1,0 +1,19 @@
+{
+  "pool": "three",
+  "pool_description": "the three EOWRs in the bundle (AK-3 plus two distractor reports)",
+  "chunks": 372,
+  "pages": 150,
+  "questions_with_gold": 23,
+  "retrievers": [
+    {
+      "retriever": "bm25",
+      "hit@1": 0.391,
+      "hit@3": 0.783,
+      "hit@5": 0.783,
+      "hit@10": 0.913,
+      "mrr": 0.587,
+      "index_seconds": 0.23,
+      "query_ms_median": 9.7
+    }
+  ]
+}

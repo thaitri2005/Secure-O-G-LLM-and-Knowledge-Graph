@@ -1,0 +1,40 @@
+{
+  "pool": "ak3",
+  "pool_description": "the whole AK-3 EOWR",
+  "chunks": 60,
+  "pages": 28,
+  "questions_with_gold": 23,
+  "retrievers": [
+    {
+      "retriever": "bm25",
+      "hit@1": 0.696,
+      "hit@3": 0.957,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.808,
+      "index_seconds": 0.1,
+      "query_ms_median": 6.2
+    },
+    {
+      "retriever": "dense:qwen3-embedding-0.6b",
+      "hit@1": 0.522,
+      "hit@3": 0.783,
+      "hit@5": 0.783,
+      "hit@10": 0.826,
+      "mrr": 0.653,
+      "index_seconds": 613.92,
+      "query_ms_median": 5837.0,
+      "embedded_tokens": 11275
+    },
+    {
+      "retriever": "fusion:bm25+dense:qwen3-embedding-0.6b",
+      "hit@1": 0.609,
+      "hit@3": 0.826,
+      "hit@5": 0.87,
+      "hit@10": 0.957,
+      "mrr": 0.726,
+      "index_seconds": 614.02,
+      "query_ms_median": 5864.7
+    }
+  ]
+}

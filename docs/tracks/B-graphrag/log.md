@@ -16,12 +16,12 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain vector RAG | B-D03 |
+| Baseline | Plain RAG: BM25, top 5, Qwen3-4B answers 21/31 ([E14](../../experiments/E14-plain-rag-baseline.md)) | B-D03, B-D09 |
 | Bases to run | neo4j-graphrag-python, then LightRAG | B-D04 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
-| Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash | B-C01 to B-C04 |
+| Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Open: Qwen3-4B-Instruct-2507, Qwen2.5-7B-Instruct, Qwen3-8B, Llama-3.1-8B-Instruct (8B allowed) | B-F10, B-D06 |
-| Embeddings | Open: Qwen3-Embedding-0.6B, bge-m3 | B-F11 |
+| Embeddings | BM25 beat Qwen3-Embedding-0.6B on AK-3; dense to be retried on faster compute | B-F14, B-D09 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -182,3 +182,68 @@ Scores come from secondary rankings, so we choose by retrieval recall on our own
 - We take them over and improve them on drilling reports, for example with ontology slicing, cost per page, tables and review by exception.
 - neo4j-labs/llm-graph-builder is studied whenever we need a part it already has, such as schema settings, chat modes or token limits. We do not adopt it wholesale.
 - *Why:* the supervisor asked to take over an existing pipeline and improve it (D-36, D-41).
+
+## 2026-10-30 (evening): first code and the retrieval baseline
+
+**B-C05 (design choice).** Code lives in [`graphrag/`](../../../graphrag/README.md).
+
+| Module | Contents |
+|---|---|
+| `client.py` | Model client covering B-C02 and B-C04, plus the private-data guard (FR-28) |
+| `retrieval.py` | BM25, dense and fusion retrieval |
+| `scoring.py` | The prototype's answer rules, so results compare with E10 |
+| `baseline.py` | Command line for retrieval and answer runs |
+
+- Endpoints are configured in `configs/graphrag/endpoints.json`.
+- Tests are in `tests/test_graphrag.py` (12 tests, no model calls).
+
+**B-F12 (finding).** PyTorch on this laptop (Intel i5-1340P, 16 GB, CPU only) is unusably slow for embeddings.
+
+- One batch of eight 200-token passages through bge-small (33M parameters) took 13–21 s, where about 0.1 s is normal.
+- llama.cpp on the same CPU embeds about 18–80 tokens per second with Qwen3-Embedding-0.6B. The rate depends on what else is running on the laptop.
+
+**B-C06 (design choice; follows B-F12).** All models, embeddings included, are served through OpenAI-compatible endpoints (llama.cpp locally) and called through the one client.
+
+- The PyTorch embedding path was removed.
+- *Why:* serving through endpoints is faster here, and it is how deployment will work (vLLM or llama.cpp on the school GPUs).
+
+**B-F13 (finding).** llama.cpp's Vulkan backend on the Iris Xe integrated GPU runs out of device memory even for a 0.6B embedding model.
+
+- Running with `--device none -ngl 0`, which uses the CPU only, works.
+
+**B-F14 (finding).** On the AK-3 report, BM25 retrieves better than dense embeddings, and is about 6,000× cheaper to index. See [E14](../../experiments/E14-plain-rag-baseline.md).
+
+| Pool | Retriever | Hit@5 | Mean reciprocal rank |
+|---|---|---|---|
+| 60 AK-3 chunks | BM25 | 1.00 | 0.81 |
+| 60 AK-3 chunks | Qwen3-Embedding-0.6B | 0.78 | 0.65 |
+| 60 AK-3 chunks | Fusion of both | 0.87 | 0.73 |
+| 372 chunks (three reports) | BM25 | 0.78 | 0.59 |
+
+- Our questions name wells, depths and casing sizes, so they are keyword-heavy, and BM25 matches those keywords exactly.
+- Fusion with weak dense results drags BM25 down.
+- Adding other reports hurts BM25. Filtering by document or well, using the ID payload (§5.11), will matter before the corpus grows.
+
+**B-D09 (decision).** Use BM25 as the retriever for the answer baseline. Do not run dense retrieval over the 372-chunk pool on this laptop.
+
+- Indexing that pool would take over an hour at the speed measured here.
+- Dense and hybrid retrieval are revisited on OpenRouter or the school GPUs, where embedding is cheap.
+
+**E14 (experiment).** Plain RAG baseline: [E14](../../experiments/E14-plain-rag-baseline.md).
+
+- BM25 over the AK-3 report, the top 5 chunks and Qwen3-4B-Instruct-2507 (local CPU) answered **21/31** correctly. The E10 prototype answered 23/31.
+- All 9 questions that should get no answer were refused.
+- There were 0 invalid JSON outputs.
+- Each question used about 1,400 prompt tokens and about 100 s on the laptop.
+
+**B-F15 (finding; from E14).** On one report, the 4B model's reading is the bottleneck, not retrieval.
+
+- Every gold fact was among the 5 passages. Seven misses were the model saying "not stated", four of them on table chunks.
+- Model-written citations are unreliable: quotes were verbatim in only 5 of 15 answers.
+
+**B-C07 (design choice; from B-F15).** Citations are attached or checked in code from the retrieved chunk IDs, never taken on trust from the model. Dates and numbers are normalized in code after the call.
+
+**B-D10 (decision).** Next, run neo4j-graphrag-python on the same 60 chunks, questions and model, and compare it with E14 on correctness, citations, tokens and time.
+
+- Rerun E14 with the B-C07 checks and *k* = 3 at the same time, so that the baseline is as strong and as cheap as it can be.
+- Speed and cost comparisons move to OpenRouter once the key is set. This laptop is shared with other work, so its timings are not comparable between runs.
