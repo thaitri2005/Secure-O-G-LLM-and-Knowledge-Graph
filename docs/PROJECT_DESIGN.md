@@ -9,7 +9,7 @@
 
 > **This document is the project's single source of truth.** It decides what the project builds, for whom, how the parts fit together, and how completion is judged. The [stakeholder requirements](requirements/README.md) and supervisor meetings are inputs; §1.2 states how each requirement is met, narrowed or dropped. The [development plan](DEVELOPMENT_PLAN.md) schedules this specification and must not add scope of its own. Component guides describe implemented behavior, and experiment records hold measurements. If any of them disagrees with this document, this document wins until it is changed. Items still to settle with the supervisors are in [§13.2](#132-open-questions-for-supervisor-meetings).
 
-**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). The stores, API and frontend are deferred to M2.
+**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). Domain depth is kept thin (D-49). The stores, API and frontend are deferred to M2.
 
 ### Reading guide
 
@@ -430,8 +430,8 @@ The target in §4.1 is not built in one go (D-48). The first phase (plan M1) bui
 | Track | Question it answers | Covers (spec sections) | Produces |
 |---|---|---|---|
 | **A. Ingestion and tables** | How do drilling-report pages become correct text, tables and chunks with stable IDs? | §5.1 stages 1–4, §5.10, §5.11 up to child chunks | The chunk package (K1) |
-| **B. GraphRAG engine and models** | Which base pipeline, ~7B LLM and embedding model turn chunks into a graph and cited answers, and at what cost? | §5.1 stages 5, 8 and 9, §5.3, §6.2 injection, §8, §9 model and base rows, the vector store choice in §4.2 | Answer records (K4); base, model and vector-store choices with a comparison |
-| **C. Domain and evaluation** | What should the system know and answer, and how good is it? | §6 ontology and glossary content, §12 measures, Q2 and Q5 | Ontology slice (K2), question set (K3), table gold (K5), the scorer and its reports |
+| **B. GraphRAG engine and models** | Which base pipeline, ~7B LLM and embedding model turn chunks into a graph and cited answers, and at what cost? | §5.1 stages 5, 8 and 9, §5.3, §6.2 slice and injection, §8, §9 model and base rows, the vector store choice in §4.2 | Answer records (K4); a thin ontology slice (K2); base, model and vector-store choices with a comparison |
+| **C. Evaluation and inspection tools** | How good is each track's output, and how can the team see it? | §12 measures, Q2 and Q5 | Question set (K3), table gold (K5), the scorer and its reports, a viewer for pages, chunks and answers |
 
 ![First build: three tracks](diagrams/10-first-build-tracks.svg)
 
@@ -445,22 +445,23 @@ flowchart LR
         A1["Docling baseline vs<br/>document VLMs"] --> A2["Multi-page tables,<br/>key-value forms"] --> A3["Parent/child chunks<br/>with IDs"]
     end
     subgraph TB["Track B: GraphRAG engine and models"]
+        B0["Thin ontology slice"] -- "K2" --> B2
         B1["Base pipeline,<br/>~7B LLM, embeddings"] --> B2["Ontology injection,<br/>graph and vectors"] --> B3["Cited answers,<br/>cost per page"]
     end
-    subgraph TC["Track C: domain and evaluation"]
-        C1["Ontology and<br/>glossary"]
+    subgraph TC["Track C: evaluation and inspection tools"]
         C2["Questions with<br/>gold answers and pages"]
         C3["Table gold labels"]
         C4["Scorer"]
+        C5["Viewer: page beside<br/>tables, chunks, answers"]
     end
     PDF --> A1
     PDF --> C2 & C3
     A3 -- "K1 chunk package" --> B1
-    C1 -- "K2 ontology slice" --> B2
     C2 -- "K3 question set" --> B3
     B3 -- "K4 answer records" --> C4
     C3 -- "K5 table gold" --> A1
     A2 -. "parsed tables" .-> C4
+    A3 & B3 -.-> C5
 ```
 
 </details>
@@ -470,12 +471,16 @@ flowchart LR
 | Contract | From → to | Content | Version 0 (exists today) |
 |---|---|---|---|
 | **K1 Chunk package** | A → B | Per document: the file record (`file_id`, name, document type, page count); pages (`file_id:p<n>`, parser and model); tables (`file_id:t<n>`, page span, header, cells); parent and child chunks (§5.11 IDs, text, pages, table ID and row range) | AK-3 chunks from the current corpus pipeline (`data/processed/gdr_chunks_full.jsonl`, [`corpus_chunk.schema.json`](../schemas/corpus_chunk.schema.json)), converted to K1 IDs |
-| **K2 Ontology slice** | C → B | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) (14 properties, [E10](experiments/E10-profile-driven-prototype.md)) |
+| **K2 Ontology slice** | B (its own input) | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) (14 properties, [E10](experiments/E10-profile-driven-prototype.md)) |
 | **K3 Question set** | C → B | Question ID, question, gold answer, answer type, file and page(s) holding the answer, evidence kind (text, table, multi-page table, key-value form), document type | [`prototype/gold/questions.json`](../prototype/gold/questions.json) and `ak3_facts.json` (31 questions) |
 | **K4 Answer record** | B → C | Question ID, answer, cited child chunk IDs, base pipeline, models and versions, calls, tokens, cost | None; B writes the first one in week 2 |
 | **K5 Table gold** | C → A | One CSV per labelled table, and a manifest with file, page span and the difficulty it tests (merged cells, continuation, key-value form) | [`data/gold/ingestion/tables/`](../data/gold/ingestion/tables/) (10 tables) and page annotations in [`data/gold/ingestion/pages/`](../data/gold/ingestion/pages/) |
 
-The contract schemas live in `schemas/` next to the existing ones. The rules:
+The contract schemas live in `schemas/` next to the existing ones.
+
+**Domain depth is kept thin (D-49).** The project is a software capstone, not a domain study. The ontology slice comes from what the reports themselves show: section headings, table column headers and the AK-3 abbreviation table, on top of `oil_wells.json`. A model drafts the development questions from the pages, and a person checks each one against its page. The domain-correct question set comes from the drilling expert group (Q2). No track's work is domain research.
+
+The rules:
 
 1. A track changes a contract only by publishing a new version. It announces the change in the group chat and keeps the previous version readable for one week.
 2. The scorer belongs to Track C, so no track grades its own output.
@@ -1081,7 +1086,8 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-45 | **Order**: ingestion, then data organization and storage, then a thin GraphRAG slice, then quality controls, then the full application; access control before private data. Supersedes the D-30 order | Supervisor direction, 28 Oct (§11) | — |
 | D-46 | **Process**: weekly 30-minute supervisor check-in; short group-chat updates every few days; a light weekly plan (slides acceptable); roles split into data, backend and frontend | Supervisor direction, 28 Oct (§12) | Team or supervisor changes cadence |
 | D-47 | **Tables are a dedicated workstream** with their own evaluation set: merged cells, nested text, multi-page continuation, header carry-over, row-safe chunking | Supervisor direction, 28 Oct (§7) | — |
-| D-48 | **First build in three independent tracks** joined only by versioned files (§4.5): A ingestion and tables, B GraphRAG engine and models, C domain and evaluation. Stores, API and frontend wait for M2. **Work is divided again at the end of every one- to two-week stint**; the D-46 data/backend/frontend split is used once the application work starts | Team decision, 30 Oct; refines D-45 and D-46 for the first phase | Contracts keep breaking, or a track is blocked for more than a week |
+| D-48 | **First build in three independent tracks** joined only by versioned files (§4.5): A ingestion and tables, B GraphRAG engine and models, C evaluation and inspection tools. Stores, API and frontend wait for M2. **Work is divided again at the end of every one- to two-week stint**; the D-46 data/backend/frontend split is used once the application work starts | Team decision, 30 Oct; refines D-45 and D-46 for the first phase | Contracts keep breaking, or a track is blocked for more than a week |
+| D-49 | **Domain depth is kept thin**: the ontology slice comes from the reports' own headings, table columns and abbreviation table; development questions are model-drafted and checked against the page; the expert group supplies the domain-correct question set (§4.5) | Team decision, 30 Oct, after the first split loaded one person with domain work | Supervisor asks for deeper domain modelling |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 

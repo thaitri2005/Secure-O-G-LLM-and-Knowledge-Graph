@@ -23,7 +23,7 @@ Diagram 01 (current implementation) was relabelled to show the prototype as the 
 | `07-milestone-dependencies.svg` | Milestones M0–M6, with M1 as the three-track first build | Plan §3 |
 | `08-source-integration.svg` | The two development tracks: BSEE data (import, graph, registry) and end-of-well reports (ontology file, extraction, review, QA) | Data sources, Design §5.7 |
 | `09-three-layers.svg` | Three layers as delivered by the capstone | Design §1.3 |
-| `10-first-build-tracks.svg` | First build: tracks A, B and C joined by contracts K1–K5 | Design §4.5 |
+| `10-first-build-tracks.svg` | First build: tracks A, B and C joined by contracts K1–K5; the ontology slice inside track B | Design §4.5 |
 
 ## Regenerating a diagram
 

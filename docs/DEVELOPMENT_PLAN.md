@@ -4,7 +4,7 @@
 **Product target:** a GraphRAG application for drilling reports: ingestion, storage, retrieval, chat and administration<br>
 **Team:** Tri, Khai, Hung · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Direction:** [28 October meeting](requirements/supervisor-meeting-2026-10-28.md)
 
-This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q12) refer to the specification. Version 3.0 replaces the earlier plan: the M0–M7 milestones, the 720-hour model, the Student A/B/C roles and the research backlog items are removed. The [meeting digest](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) records what was removed and why. Version 3.1 splits the first build into three independent tracks (D-48) and plans only M0 and M1 in detail.
+This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q12) refer to the specification. Version 3.0 replaces the earlier plan: the M0–M7 milestones, the 720-hour model, the Student A/B/C roles and the research backlog items are removed. The [meeting digest](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) records what was removed and why. Version 3.1 splits the first build into three independent tracks (D-48), keeps domain depth thin (D-49) and plans only M0 and M1 in detail.
 
 ## Current status
 
@@ -15,7 +15,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - Parse pages with VLMs and treat tables as their own workstream (D-39, D-47).
 - Scope by document type: end-of-well and daily drilling reports (D-40).
 - Work in this order: ingestion, then data organization, then retrieval (D-45). Start with **one document** (D-44).
-- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C domain and evaluation (D-48, spec §4.5).
+- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C evaluation and inspection tools (D-48, spec §4.5). Keep domain depth thin (D-49).
 
 **What exists and carries over** (code, tests and an experiment record):
 
@@ -64,8 +64,8 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | Track | Owner (proposed) | Owns | Does not touch |
 |---|---|---|---|
 | **A. Ingestion and tables** (heaviest) | Khai | Page parsing (Docling vs document VLMs), table structure, multi-page tables, key-value forms, chunking, the ID scheme up to child chunks; publishes K1 | Models for extraction or answers, the ontology, question writing |
-| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, vector store choice, model client, ontology injection, graph build, retrieval and cited answers, cost per page; publishes K4 | Parsing, labelling, judging its own answers |
-| **C. Domain and evaluation** | Hung | Drilling-report ontology and glossary, development question set with gold answers and pages, table gold labels, the scorer and its reports, public DDR sources (Q5), the expert-group question set (Q2), the weekly slides; publishes K2, K3, K5 | Pipeline code |
+| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, vector store choice, model client, a thin ontology slice and its injection, graph build, retrieval and cited answers, cost per page; publishes K2, K4 | Parsing, labelling, judging its own answers |
+| **C. Evaluation and inspection tools** | Hung | Development question set (model-drafted, checked against the page), table gold labels, the scorer and its reports, a viewer for pages, chunks and answers, contract checks, public DDR sources (Q5), the expert-group question set when it arrives (Q2), the weekly slides; publishes K3, K5 | Pipeline code, the ontology |
 
 When the application work starts (M2), the split follows the data/backend/frontend lines the supervisor asked for (D-46). Who takes which is decided at that stint's split, not now. Everyone joins integration, demos and documentation.
 
@@ -111,7 +111,7 @@ flowchart TB
 - **Weekly plan.** Hung drafts it this week as a short slide deck: tracks and owners for this stint, M1 checkpoints, this week's tasks. Share it with the supervisor and in the group chat. Tell the supervisor why the first phase is split by track instead of data/backend/frontend (D-48).
 - **Contracts at version 0** (half a day, all three together). Agree K1–K5 field lists (spec §4.5), write them as JSON Schemas in `schemas/`, and produce each version 0 from what exists:
   - K1, by Khai: from the AK-3 corpus chunks;
-  - K2, by Hung: from `oil_wells.json`;
+  - K2, by Tri: from `oil_wells.json`;
   - K3, by Hung: from the prototype's 31 questions;
   - K5, by Hung: from the 10 gold tables.
 - **Access.**
@@ -199,7 +199,13 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
    Choose one by week 3 and record the reasons.
 3. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store.
-4. **Answers.** Answer K3 with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
+4. **Thin ontology slice.** Extend `oil_wells.json` only with what the reports show:
+   - section headings;
+   - table column headers;
+   - the AK-3 abbreviation table as the glossary seed.
+
+   Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
+5. **Answers.** Answer K3 with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
 
 **Exit.**
 
@@ -214,34 +220,44 @@ Each track below lists its goal, the questions it researches, its work, its chec
 - New code in its own folder (`graphrag/`), kept separate from `src/graph_builder/` until M2 decides what stays.
 - Compute: OpenRouter, within the cap.
 
-#### Track C: domain and evaluation (first stint: Hung)
+#### Track C: evaluation and inspection tools (first stint: Hung)
 
-**Goal.** Define what the system should know and answer about drilling reports, and measure how close Tracks A and B come.
+**Goal.** Make every other track's output measurable and visible. This is engineering work, not domain work (D-49). The domain-correct questions come from the expert group (Q2), and the ontology belongs to Track B.
 
 **Research questions.**
 
-1. What do end-of-well and daily drilling reports contain, section by section? Which entities, relations and properties matter, including geology at summary level (D-40)?
-2. Which questions would a drilling engineer ask of these reports?
-3. How should tables, answers and citations be scored fairly?
-4. Which public DDRs exist for wells in a structured dataset (Q5)?
+1. How do others score table extraction? Look at cell-level metrics such as TEDS and GriTS, and at what fits our CSV gold.
+2. How do others evaluate RAG answers and citations? Look at RAGAS-style metrics, and check whether the cited chunk lands on the gold page.
+3. How can a model draft a question set from document pages, and how can a person check it quickly without domain expertise?
+4. How can a page be shown next to its parsed tables, chunks and the answers that cite it, in a form that can grow into the M4 source viewer?
 
 **Work.**
 
-1. **Ontology and glossary.** Extend `oil_wells.json` into the drilling-report slice for EOWR and DDR. Seed the glossary from the AK-3 abbreviation table. Publish K2 version 1 by week 3.
-2. **Question set.** Write 30–50 development questions on the AK-3 EOWR and one DDR, each with a gold answer and its page. Mix text, table, multi-page-table and key-value questions. Publish K3 version 1 by week 3. Swap in or add the expert group's set when it arrives (Q2).
-3. **Table gold.** Label 20–40 pages from both document types with merged cells, nested text and continued tables. Extend K5 from the existing 10 tables.
-4. **Scorer.** Write one command that scores:
+1. **Question set.** Have a model draft question–answer pairs from AK-3 EOWR pages and one DDR, each tied to its page.
+   - Check each pair against its page and keep 30–50.
+   - Mix text, table, multi-page-table and key-value questions.
+   - Publish K3 version 1 by week 3.
+   - Add the expert group's set when it arrives.
+2. **Table gold.** Pick 20–40 pages with merged cells, nested text and continued tables. Pre-fill the cells from a parser, then correct them by hand. This is copying what the page shows, not interpreting it. Extend K5 from the existing 10 tables.
+3. **Scorer.** Write one command that scores:
    - K1 tables against K5;
    - K4 answers against K3, both the answer and whether the citation lands on the gold page;
-   - extracted items against gold facts.
+   - cost and calls per page from K4.
 
-   Report per run.
-5. **Sources and plan.** Look for public DDR sources. Make the weekly slides.
+   It reports per run, so tracks can compare runs over time.
+4. **Viewer.** Build a simple local page that shows:
+   - a page image beside its parsed tables and chunks (K1);
+   - each answer (K4) with its cited chunks highlighted.
+
+   Use Streamlit or plain HTML. It is a debugging tool first.
+5. **Contract checks.** The scorer validates K1, K3, K4 and K5 against their schemas.
+6. **Sources and slides.** Look for public DDR sources (Q5) and make the weekly slides.
 
 **Exit.**
 
-- K2, K3 and K5 at version 1.
+- K3 and K5 at version 1.
 - The scorer has run on both other tracks' outputs.
+- The viewer is used in the week-5 demo.
 - A short list of DDR sources.
 
 **Starts from.**
@@ -249,7 +265,7 @@ Each track below lists its goal, the questions it researches, its work, its chec
 - The prototype's questions and facts.
 - The gold tables and page annotations.
 - New code and gold data in `eval/`.
-- Compute: a laptop.
+- Compute: a laptop, and OpenRouter for drafting questions.
 
 ### M2: integration on the stores
 
@@ -377,9 +393,9 @@ Keep:
 | 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Open |
 | 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Open |
 | 8 | B: LLM, embedding model and vector store comparison; cited answers (K4) | K3 answered with chunk citations; cost per page | Open |
-| 9 | C: drilling-report ontology slice and glossary seed (K2 version 1) | EOWR and DDR sections covered | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
-| 10 | C: 30–50 development questions with gold pages (K3 version 1); 20–40 labelled table pages (K5) | Mix of text, table, multi-page and key-value questions | 31 prototype questions and 10 gold tables exist |
-| 11 | C: scorer for tables, answers with citations, and extracted items | One command; run on A's and B's outputs | Open |
+| 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
+| 10 | C: 30–50 model-drafted, page-checked development questions (K3 version 1); 20–40 labelled table pages (K5) | Mix of text, table, multi-page and key-value questions | 31 prototype questions and 10 gold tables exist |
+| 11 | C: scorer for tables and answers with citations; viewer for pages, chunks and answers | One command; run on A's and B's outputs; viewer in the week-5 demo | Open |
 | 12 | M1 dry run (week 3) and first full pass (week 5) | Scores shown to the supervisor | Open |
 | 13 | M2: stores, one end-to-end run, package layout, API contract | M2 exit demo | Later |
 | 14 | M3–M5: registry linking, scores and flagged items, frontend, local-model scale run | Their exit demos | Later |
