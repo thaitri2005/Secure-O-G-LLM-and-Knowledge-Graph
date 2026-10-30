@@ -15,7 +15,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - Parse pages with VLMs and treat tables as their own workstream (D-39, D-47).
 - Scope by document type: end-of-well and daily drilling reports (D-40).
 - Work in this order: ingestion, then data organization, then retrieval (D-45). Start with **one document** (D-44).
-- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C evaluation and inspection tools (D-48, spec §4.5). Keep domain depth thin (D-49).
+- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C storage, IDs and the end-to-end run (D-48, spec §4.5). Keep domain depth thin (D-49).
 
 **What exists and carries over** (code, tests and an experiment record):
 
@@ -57,15 +57,17 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 ## 2. Team split
 
-**First build (M0–M1): three independent tracks** (D-48, spec [§4.5](PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files)). Each track is a line of work that one person can research in depth and build in their own way. The tracks meet only through versioned files (K1–K5).
+**First build (M0–M1): three tracks** (D-48, spec [§4.5](PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files)). Each track is a line of work that one person can research in depth and build in their own way. Tracks A and B meet only through versioned files. Track C sits between them and builds what links them: IDs, stores and the runner.
 
 **The split holds for one stint of one to two weeks.** At the end of each stint, the team divides the work again according to what is next. A track may change owner, merge with another or be replaced, and a new stint may split along different lines. Owners for the first stint:
 
-| Track | Owner (proposed) | Owns | Does not touch |
+| Track | Owner | Owns | Does not touch |
 |---|---|---|---|
-| **A. Ingestion and tables** (heaviest) | Khai | Page parsing (Docling vs document VLMs), table structure, multi-page tables, key-value forms, chunking, the ID scheme up to child chunks; publishes K1 | Models for extraction or answers, the ontology, question writing |
-| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, vector store choice, model client, a thin ontology slice and its injection, graph build, retrieval and cited answers, cost per page; publishes K2, K4 | Parsing, labelling, judging its own answers |
-| **C. Evaluation and inspection tools** | Hung | Development question set (model-drafted, checked against the page), table gold labels, the scorer and its reports, a viewer for pages, chunks and answers, contract checks, public DDR sources (Q5), the expert-group question set when it arrives (Q2), the weekly slides; publishes K3, K5 | Pipeline code, the ontology |
+| **A. Ingestion and tables** | Hung | Page parsing (Docling vs document VLMs), table structure, multi-page tables, key-value forms, chunking; publishes K1 | Models for extraction or answers, the ontology, storage |
+| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, model client, a thin ontology slice and its injection, graph build, retrieval and cited answers, cost per page; publishes K2, K4 | Parsing, storage layout |
+| **C. Storage, IDs and the end-to-end run** | Khai | ID scheme and contract schemas with validators; MinIO, PostgreSQL, the vector store (chosen with Tri) and Neo4j in Docker Compose; loader from K1; run log; one command that runs A → B; a debugging viewer | Parsing, models |
+
+There is no team-written question set (D-49). Tri checks answers against the prototype's 31 questions until the drilling expert group's set arrives (Q2).
 
 When the application work starts (M2), the split follows the data/backend/frontend lines the supervisor asked for (D-46). Who takes which is decided at that stint's split, not now. Everyone joins integration, demos and documentation.
 
@@ -77,9 +79,9 @@ Windows are counted from the week of 2 November 2026 and are indicative; each we
 
 | Milestone | Window | Lead | Exit demo |
 |---|---|---|---|
-| **M0: Plan, access, current-workflow demo** | Week 1 | All | Weekly plan (slides) shared; tracks assigned; contracts K1–K5 at version 0; supervisor on GitHub; OpenRouter account with a cap; GPU booking request sent; current workflow shown to the supervisor |
-| **M1: First build — one-document slice in three tracks** | Weeks 1–5 | Per stint (first stint: A Khai, B Tri, C Hung) | On the AK-3 EOWR and one AK-3 DDR: parser chosen with table scores; K1 version 1 published; base pipeline, LLM, embedding model and vector store chosen by comparison; the development questions answered with page citations and scored by Track C; compared with the E10 baseline and plain vector RAG; calls, tokens and cost per page reported |
-| **M2: Integration on the stores** | Weeks 5–7 | Data, with Backend | The four stores up in Docker Compose (MinIO, PostgreSQL, the chosen vector store, Neo4j) and loaded from K1 IDs; one command runs the chosen parser and base pipeline on a new report end to end; a page rebuilt from its chunks; API contract drafted (spec §7.5) and the frontend started on fixtures |
+| **M0: Plan, access, current-workflow demo** | Week 1 | All | Weekly plan (slides) shared; tracks assigned; K1 and K4 schemas at version 0; supervisor on GitHub; OpenRouter account with a cap; GPU booking request sent; current workflow shown to the supervisor |
+| **M1: First build — one-document slice in three tracks** | Weeks 1–5 | Per stint (first stint: A Hung, B Tri, C Khai) | On the AK-3 EOWR and one AK-3 DDR: parser chosen with table scores; K1 version 1 published; base pipeline, LLM, embedding model and vector store chosen by comparison; the prototype questions answered with page citations; the stores loaded and the run started by one command; compared with the E10 baseline and plain vector RAG; calls, tokens and cost per page reported |
+| **M2: Integration on the stores** | Weeks 5–7 | Data, with Backend | The M1 runner and stores turned into the ingestion worker: upload a new report and it runs end to end with pinned versions; API contract drafted (spec §7.5) and the frontend started on fixtures |
 | **M3: Quality and control** | Weeks 7–10 | Backend, with Data | Glossary in use; wells linked to registry IDs across the EOWR and DDRs; scores and flagged items; deterministic DDR table mapping and row batching (fewer calls per page); relation normalization; 5–10 documents; first run of the expert question set if it has arrived (G3–G6) |
 | **M4: Full application** | Weeks 7–11 | Frontend, with Backend | Non-developer does it unaided: uploads a report, watches the run, corrects three flagged items, merges a duplicate well, edits a glossary entry, activates the generation, asks a question and opens the cited page; ontology versions and audit visible |
 | **M5: Scale run on local models** | Weeks 10–13 | Backend, with Data | Local ~7B model served on a booked school GPU; the corpus processed in checkpointed runs; evaluation on the held-out expert questions; cost and throughput report (G8) |
@@ -104,16 +106,12 @@ flowchart TB
 
 </details>
 
-**Figure 7 — Milestone dependencies.** M1 runs three tracks in parallel; nothing after M1 starts until its exit demo. The critical path is Track A's chunk package → Track B's engine on it → integration on the stores → quality on several documents → scale run.
+**Figure 7 — Milestone dependencies.** M1 runs three tracks in parallel; nothing after M1 starts until its exit demo. The critical path is Track A's chunk package → Track B's engine on it, run and stored by Track C → integration into a worker → quality on several documents → scale run.
 
 ### M0: this week
 
 - **Weekly plan.** Hung drafts it this week as a short slide deck: tracks and owners for this stint, M1 checkpoints, this week's tasks. Share it with the supervisor and in the group chat. Tell the supervisor why the first phase is split by track instead of data/backend/frontend (D-48).
-- **Contracts at version 0** (half a day, all three together). Agree K1–K5 field lists (spec §4.5), write them as JSON Schemas in `schemas/`, and produce each version 0 from what exists:
-  - K1, by Khai: from the AK-3 corpus chunks;
-  - K2, by Tri: from `oil_wells.json`;
-  - K3, by Hung: from the prototype's 31 questions;
-  - K5, by Hung: from the 10 gold tables.
+- **Contracts at version 0** (half a day, all three together). Agree the K1 and K4 field lists (spec §4.5). Khai writes them as JSON Schemas in `schemas/` and converts the AK-3 corpus chunks into K1 version 0. Tri starts K2 from `oil_wells.json`. Hung uses the 10 existing gold tables as K5.
 - **Access.**
   - Add the supervisor to the GitHub repository.
   - Create the OpenRouter account and set a spending cap; record who holds it (Q6).
@@ -134,11 +132,11 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 | When | All tracks |
 |---|---|
-| End of week 1 | Contracts K1–K5 at version 0; each track running on version 0 inputs |
-| End of week 3 | **Dry run:** Track B runs on Track A's real K1 for the AK-3 EOWR; Track C scores whatever exists. Fix contract mismatches only, not quality |
-| End of week 5 | **First full pass:** EOWR and one DDR through A → B → C; scores shown to the supervisor; choices recorded |
+| End of week 1 | K1 and K4 schemas and version 0 files; A and B running on version 0 inputs; stores coming up |
+| End of week 3 | **Dry run:** Track B runs on Track A's real K1 for the AK-3 EOWR, and Track C loads both into the stores. Fix contract mismatches only, not quality |
+| End of week 5 | **First full pass:** EOWR and one DDR through A → B with Track C's runner, stored and shown in the viewer; scores and choices shown to the supervisor |
 
-#### Track A: ingestion and tables (first stint: Khai)
+#### Track A: ingestion and tables (first stint: Hung)
 
 **Goal.** Drilling-report pages become correct text, tables and chunks, each with a stable ID back to its file and page.
 
@@ -151,8 +149,8 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 **Work.**
 
-1. **Baseline.** Run the current Docling pipeline on the AK-3 EOWR and the four AK-3 DDR attachments. Score its tables with Track C's scorer on K5.
-2. **VLM comparison.** Run two or three VLMs from the spec §9 list through OpenRouter on the K5 pages. Measure:
+1. **Baseline.** Run the current Docling pipeline on the AK-3 EOWR and the four AK-3 DDR attachments. Score its tables against the 10 existing gold tables (K5).
+2. **VLM comparison.** Run two or three VLMs from the spec §9 list through OpenRouter on the pages of the gold tables. Measure:
    - cell accuracy;
    - header and row correctness;
    - merged cells;
@@ -161,13 +159,12 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
    Pick one parser, or keep Docling.
 3. **Multi-page tables and key-value forms.** Join continued tables, record the page span, and flag uncertain joins.
-4. **Chunks and IDs.** Build parent/child chunks with spec §5.11 IDs, and rebuild every page from its chunks to prove nothing is detached. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
+4. **Chunks.** Build parent/child chunks in the K1 format, with the spec §5.11 IDs from Track C's schema. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
 
 **Exit.**
 
 - A parser choice with table scores against K5.
 - K1 version 1 for both documents.
-- The page-rebuild check passes.
 
 **Starts from.**
 
@@ -184,7 +181,7 @@ Each track below lists its goal, the questions it researches, its work, its chec
 1. Which open-source GraphRAG base fits our needs: neo4j-graphrag-python, LightRAG, Microsoft GraphRAG or LlamaIndex property graphs? Use the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
 2. Which ~7B LLM extracts reliably (JSON compliance, precision, recall)?
 3. Which embedding model retrieves the right chunks for the questions?
-4. Which vector store: Neo4j's index, pgvector or Qdrant?
+4. Which vector store suits the chosen base: Neo4j's index, pgvector or Qdrant? Decided with Track C.
 5. Which retrieval mode answers best: vector, graph or hybrid?
 6. How many calls and tokens per page does each option need?
 
@@ -198,19 +195,19 @@ Each track below lists its goal, the questions it researches, its work, its chec
    - ease of injecting the ontology.
 
    Choose one by week 3 and record the reasons.
-3. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store.
+3. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store with Track C.
 4. **Thin ontology slice.** Extend `oil_wells.json` only with what the reports show:
    - section headings;
    - table column headers;
    - the AK-3 abbreviation table as the glossary seed.
 
    Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
-5. **Answers.** Answer K3 with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
+5. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
 
 **Exit.**
 
 - A base, an LLM, an embedding model and a vector store chosen, with a comparison record.
-- K4 for the K3 questions on both documents.
+- K4 for the prototype questions, and for the expert questions if they arrive.
 - Calls, tokens and cost per page reported.
 
 **Starts from.**
@@ -220,59 +217,49 @@ Each track below lists its goal, the questions it researches, its work, its chec
 - New code in its own folder (`graphrag/`), kept separate from `src/graph_builder/` until M2 decides what stays.
 - Compute: OpenRouter, within the cap.
 
-#### Track C: evaluation and inspection tools (first stint: Hung)
+#### Track C: storage, IDs and the end-to-end run (first stint: Khai)
 
-**Goal.** Make every other track's output measurable and visible. This is engineering work, not domain work (D-49). The domain-correct questions come from the expert group (Q2), and the ontology belongs to Track B.
+**Goal.** Every piece the other two tracks produce is linked by one ID scheme, stored where spec §4.2 says, and runnable in one command.
 
 **Research questions.**
 
-1. How do others score table extraction? Look at cell-level metrics such as TEDS and GriTS, and at what fits our CSV gold.
-2. How do others evaluate RAG answers and citations? Look at RAGAS-style metrics, and check whether the cited chunk lands on the gold page.
-3. How can a model draft a question set from document pages, and how can a person check it quickly without domain expertise?
-4. How can a page be shown next to its parsed tables, chunks and the answers that cite it, in a form that can grow into the M4 source viewer?
+1. How to write the §5.11 ID scheme so that every chunk, vector and answer resolves to its file and page, and so that rechunking never breaks old citations.
+2. How to lay out MinIO keys and PostgreSQL tables for files, pages, tables, chunks and runs.
+3. Which vector store to use: Neo4j's index, pgvector or Qdrant? Decide with Tri, based on what the chosen GraphRAG base supports.
+4. How do the candidate GraphRAG pipelines store their own data, and how do we keep our IDs through them?
 
 **Work.**
 
-1. **Question set.** Have a model draft question–answer pairs from AK-3 EOWR pages and one DDR, each tied to its page.
-   - Check each pair against its page and keep 30–50.
-   - Mix text, table, multi-page-table and key-value questions.
-   - Publish K3 version 1 by week 3.
-   - Add the expert group's set when it arrives.
-2. **Table gold.** Pick 20–40 pages with merged cells, nested text and continued tables. Pre-fill the cells from a parser, then correct them by hand. This is copying what the page shows, not interpreting it. Extend K5 from the existing 10 tables.
-3. **Scorer.** Write one command that scores:
-   - K1 tables against K5;
-   - K4 answers against K3, both the answer and whether the citation lands on the gold page;
-   - cost and calls per page from K4.
-
-   It reports per run, so tracks can compare runs over time.
-4. **Viewer.** Build a simple local page that shows:
-   - a page image beside its parsed tables and chunks (K1);
-   - each answer (K4) with its cited chunks highlighted.
-
-   Use Streamlit or plain HTML. It is a debugging tool first.
-5. **Contract checks.** The scorer validates K1, K3, K4 and K5 against their schemas.
-6. **Sources and slides.** Look for public DDR sources (Q5) and make the weekly slides.
+1. **IDs and schemas.** Write the K1 and K4 schemas in `schemas/`, with validators, starting from the E12 evidence contract and the current chunk schemas. Convert the existing AK-3 chunks into K1 version 0 for Hung and Tri.
+2. **Stores.** Bring up MinIO, PostgreSQL, the vector store and Neo4j with Docker Compose, extending the prototype's compose file.
+3. **Loader and run log.**
+   - Load K1 into the stores with its IDs.
+   - Rebuild a page from its chunks to prove nothing is detached.
+   - Record each run's models, versions, calls, tokens and cost from K4.
+4. **Runner.** One command that runs Hung's parser and then Tri's engine on a document and loads the results.
+5. **Viewer.** A simple local page that shows a page image beside its chunks and the answers that cite them. Use Streamlit or plain HTML; it is a debugging tool first.
 
 **Exit.**
 
-- K3 and K5 at version 1.
-- The scorer has run on both other tracks' outputs.
-- The viewer is used in the week-5 demo.
-- A short list of DDR sources.
+- K1 and K4 schemas with validators.
+- The four stores up and loaded with the AK-3 EOWR.
+- The page-rebuild check passes.
+- The week-5 full pass runs through the runner.
+- The viewer is used in the demo.
 
 **Starts from.**
 
-- The prototype's questions and facts.
-- The gold tables and page annotations.
-- New code and gold data in `eval/`.
-- Compute: a laptop, and OpenRouter for drafting questions.
+- The E12 evidence contract and the existing chunk schemas.
+- The prototype's Neo4j compose file.
+- New code in `platform/`.
+- Compute: a laptop.
 
 ### M2: integration on the stores
 
 Outline only; plan it in detail at the end of M1.
 
-1. Deploy MinIO, PostgreSQL, the vector store chosen in M1 and Neo4j with Docker Compose. Load them from K1 IDs (spec §4.2, §5.11).
-2. Turn Track A's parser and Track B's engine into one run that registers a new report and goes through to answers. Each run pins its versions (spec §4.3).
+1. Turn Track C's runner into an ingestion worker that registers a new report and goes through to answers. Each run pins its versions (spec §4.3).
+2. Move the stores from development to a shared setup with backup of PostgreSQL and MinIO.
 3. Decide the package layout from the code that survived M1, and move the prototype and legacy pipelines aside.
 4. Draft the API contract (spec §7.5). The frontend starts against fixtures.
 5. Switch to data/backend/frontend roles (D-46).
@@ -356,8 +343,8 @@ Keep:
 | R-04 | LLM calls and tokens per page too high for large runs | Cost report per page | Deterministic table mapping, batching, caching by page hash, cost estimate before runs | Backend |
 | R-05 | School GPU slots hard to get or too short | No booking, long queue | Ask early; checkpointed jobs; hosted open models for development | All |
 | R-06 | Hosted endpoint used on non-public data | Private file in a run | Permission field enforced by the model client; test it | Backend |
-| R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Track C |
-| R-08 | Expert question set arrives late | None by M3 | Development questions written by Track C, labelled as such | Track C |
+| R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Track A |
+| R-08 | Expert question set arrives late | None by M3 | Keep checking against the prototype's 31 questions; ask the supervisor at each check-in | Track B |
 | R-09 | Scope too large for three people | Milestones slip two weeks running | Cut in the order of §4; keep a thin working path end to end | All |
 | R-10 | Direction drifts without anyone noticing | Week without supervisor contact | Weekly check-in; group-chat updates every few days (D-46) | All |
 | R-11 | Wrong entity merges corrupt answers | Two wells joined | Identifier and scoped-name matching only; merges always by a person | Backend |
@@ -387,16 +374,16 @@ Keep:
 |---|---|---|---|
 | 1 | Weekly plan slides; tracks assigned; supervisor added to GitHub; OpenRouter account with cap; GPU booking request | Shared in the group chat | Open (this week) |
 | 2 | Demo of the current workflow to the supervisor (M0 list) | Supervisor has seen ingestion outputs, BSEE graph, prototype, storage, gaps | Open (this week) |
-| 3 | Contracts K1–K5 as JSON Schemas, each with a version 0 file | All three tracks run on version 0 inputs | Open (this week, all) |
-| 4 | A: Docling baseline and VLM comparison on the K5 pages | Parser chosen with table scores | Open |
-| 5 | A: multi-page tables, key-value forms, parent/child chunks with IDs; K1 version 1 | Page rebuilt from chunks; EOWR by week 3, DDR by week 5 | Open |
+| 3 | K1 and K4 schemas with validators; K1 version 0 from the AK-3 chunks | A and B run on version 0 inputs | Open (this week, C) |
+| 4 | A: Docling baseline and VLM comparison on the gold-table pages | Parser chosen with table scores | Open |
+| 5 | A: multi-page tables, key-value forms, parent/child chunks; K1 version 1 | EOWR by week 3, DDR by week 5 | Open |
 | 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Open |
 | 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Open |
-| 8 | B: LLM, embedding model and vector store comparison; cited answers (K4) | K3 answered with chunk citations; cost per page | Open |
+| 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | Open |
 | 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
-| 10 | C: 30–50 model-drafted, page-checked development questions (K3 version 1); 20–40 labelled table pages (K5) | Mix of text, table, multi-page and key-value questions | 31 prototype questions and 10 gold tables exist |
-| 11 | C: scorer for tables and answers with citations; viewer for pages, chunks and answers | One command; run on A's and B's outputs; viewer in the week-5 demo | Open |
-| 12 | M1 dry run (week 3) and first full pass (week 5) | Scores shown to the supervisor | Open |
+| 10 | C: MinIO, PostgreSQL, vector store (chosen with B) and Neo4j in Docker Compose; loader from K1; page-rebuild check | AK-3 EOWR loaded; every chunk resolves to file and page | Open |
+| 11 | C: run log, one-command runner (A → B), debugging viewer | Week-5 full pass runs through it; viewer in the demo | Open |
+| 12 | M1 dry run (week 3) and first full pass (week 5) | Shown to the supervisor | Open |
 | 13 | M2: stores, one end-to-end run, package layout, API contract | M2 exit demo | Later |
 | 14 | M3–M5: registry linking, scores and flagged items, frontend, local-model scale run | Their exit demos | Later |
 | 15 | Open repository-review fixes: cache identity, redirect checks ([E9](experiments/E9-repository-review.md)) | Tests | Open; low priority |
@@ -407,12 +394,12 @@ The main [README](../README.md) stays the setup entry point. Do not rerun `publi
 
 | Decision | Needed by | Why |
 |---|---|---|
-| Next split of the work | End of each one- to two-week stint | The split is redone every stint (D-48); first stint: A Khai, B Tri, C Hung |
+| Next split of the work | End of each one- to two-week stint | The split is redone every stint (D-48); first stint: A Hung, B Tri, C Khai |
 | Data/backend/frontend owners | The stint where M2 starts | The supervisor asked for this split (D-46) |
 | OpenRouter account owner and cap (Q6) | M0 | Development model access |
 | GPU booking process (Q7) | M1, before M5 | Large runs and the local-model evaluation |
-| Vector store | M1 (Track B) | Storage layout and ID payloads |
+| Vector store | M1 (Tracks B and C) | Storage layout and ID payloads |
 | VLM (Track A), embedding model and ~7B LLM (Track B) (Q4) | M1 | Quality and cost |
 | GraphRAG base (Q3) | M1 week 3 (Track B) | Everything after M1 builds on it |
-| Public DDR sources (Q5) | M1 | Daily reports are half of the document scope |
-| Question set (Q2) | M1 for the development set; M3 for the expert set | Evaluation |
+| Public DDR sources (Q5) | M1 (Track A) | Daily reports are half of the document scope |
+| Expert question set (Q2) | M3 | Evaluation; the team writes none of its own |
