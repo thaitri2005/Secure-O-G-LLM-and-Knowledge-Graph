@@ -1,0 +1,2 @@
+{"candidate_id":"c_000","evidence":{"char_end":43,"char_start":0,"chunk_id":"d#c000","doc_id":"d","grounding":"exact","text":"Set CIBP at 9,500'. Invented artifact text."},"object_id":"o0","predicate":"set_plug_at","predicate_source":"schema","subject_id":"s0"}
+{"candidate_id":"c_003","evidence":{"char_end":43,"char_start":0,"chunk_id":"d#c000","doc_id":"d","grounding":"exact","text":"Set CIBP at 9,500'. Invented artifact text."},"object_id":"o3","predicate":"set_plug_at","predicate_source":"schema","subject_id":"s3"}

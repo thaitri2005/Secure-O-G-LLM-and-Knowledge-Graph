@@ -1,0 +1,455 @@
+{"aliases":[],"entity_id":"e_0039ff03a007","kind":"entity","mention_ids":["m_473e58dc861d"],"name":"09-24-08","resolver":"identity"}
+{"aliases":[],"entity_id":"e_00a6ba21da70","kind":"entity","mention_ids":["m_3e12efa4cd35","m_4a71e912660f","m_4ea92ed7273b","m_61a0b88d49ac","m_7be17b4978ef","m_97267ad61a53","m_a973db9e1f89","m_ac6c1084e74a","m_dc6e8888d32b","m_dd44cf391601","m_e24668944447","m_fa217d410b51"],"name":"TA","resolver":"identity"}
+{"aliases":[],"entity_id":"e_00daf9755873","kind":"entity","mention_ids":["m_585e7485f0e7"],"name":"Trim A 3300'Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0202bb83c043","kind":"entity","mention_ids":["m_e4c9edba9ee4"],"name":"9307' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_02bff37ec9ec","kind":"literal","mention_ids":["m_82f84446c983"],"name":"12056 MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_03cd5c2f17c4","kind":"entity","mention_ids":["m_1692c6de095a"],"name":"9,952' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_04ab0c9f96f1","kind":"entity","mention_ids":["m_c33017d5d612"],"name":"7658' - 7750' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_04e937ae5690","kind":"entity","mention_ids":["m_c5734fea3cc6"],"name":"Hercules 201","resolver":"identity"}
+{"aliases":[],"entity_id":"e_04ef0f0cec1c","kind":"literal","mention_ids":["m_82d08b4e31d0"],"name":"3500 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_05078432c17d","kind":"entity","mention_ids":["m_0be2c4d1755b"],"name":"5375'MD /TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_06267b1dc9b2","kind":"entity","mention_ids":["m_64d4436a659a"],"name":"CHZ","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0634ba263ab1","kind":"entity","mention_ids":["m_d12ab8ba0fec"],"name":"10662' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_068a6a780eaf","kind":"entity","mention_ids":["m_3349697ff129"],"name":"4435' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0691a664b24b","kind":"entity","mention_ids":["m_e78177758570"],"name":"BP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0708b1af3717","kind":"entity","mention_ids":["m_5ef14347672e"],"name":"5,219? MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0735b8e12f8d","kind":"entity","mention_ids":["m_e4d6eca80b62"],"name":"12,342'-12,366' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0751e20d78c9","kind":"entity","mention_ids":["m_eac3c53f059c"],"name":"22in surface casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_07640844c4f4","kind":"entity","mention_ids":["m_3e2bc93f2c41"],"name":"\"LG\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_07dc59cd45e0","kind":"entity","mention_ids":["m_a9611eabd7ff"],"name":"GC825-16","resolver":"identity"}
+{"aliases":[],"entity_id":"e_07f5159401d9","kind":"entity","mention_ids":["m_6a84ef7674a3"],"name":"18-5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_090b14d2ddd5","kind":"entity","mention_ids":["m_99f62daad32b"],"name":"reservoir sands","resolver":"identity"}
+{"aliases":[],"entity_id":"e_091c57911594","kind":"entity","mention_ids":["m_140cd79e45c8"],"name":"10105' - 10130' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_09630a44001e","kind":"entity","mention_ids":["m_637d8f48ec96"],"name":"\"6-A2\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_097f3d044f9c","kind":"entity","mention_ids":["m_b536c87abde7"],"name":"VR 255 OCS G-01152","resolver":"identity"}
+{"aliases":[],"entity_id":"e_09d7a3e7f594","kind":"entity","mention_ids":["m_cce57a4714c3"],"name":"H-1/H-1A zone","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0a706dcb4c9b","kind":"literal","mention_ids":["m_648b8a8fc666"],"name":"1750psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0a88712559a1","kind":"literal","mention_ids":["m_6d050142247f","m_a0f4ff5499cc"],"name":"14.5 ppg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0c6a1bfac7f7","kind":"entity","mention_ids":["m_2f022213196c"],"name":"10,478'-10,490' MD/TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0d95b33cddac","kind":"entity","mention_ids":["m_b45d2183fb0b"],"name":"Ensco 87","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0eee51d64ad7","kind":"entity","mention_ids":["m_60e4b1da7d8a"],"name":"20' below mudline","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0fa4d137ea0d","kind":"entity","mention_ids":["m_b43a4035db42"],"name":"VR 131 Well No. 21ST","resolver":"identity"}
+{"aliases":[],"entity_id":"e_0ff3da7069a8","kind":"entity","mention_ids":["m_e5155c84307d"],"name":"7816' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_10041596b588","kind":"entity","mention_ids":["m_4924f4aef8ad"],"name":"10,026'-10,046' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_108c013fde08","kind":"literal","mention_ids":["m_1773c1598239"],"name":"1000 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_117b61d83f5d","kind":"entity","mention_ids":["m_475b441f69e0"],"name":"10032' - 10072'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_12112d3fd107","kind":"entity","mention_ids":["m_a6e1dc29f14c"],"name":"10,870'-10,880' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_128c455ddaf6","kind":"entity","mention_ids":["m_34bb0eeadd88"],"name":"production pkr","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1292bda2d2a4","kind":"entity","mention_ids":["m_94453983719d"],"name":"Pride 1502","resolver":"identity"}
+{"aliases":[],"entity_id":"e_13a298025fee","kind":"entity","mention_ids":["m_c85f65247338"],"name":"D-10 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_146a9d6bea50","kind":"entity","mention_ids":["m_1762173cebab"],"name":"285' BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_14c577ac718b","kind":"entity","mention_ids":["m_695eaffb6b2e"],"name":"12056 MD/10253TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_158346d96d66","kind":"entity","mention_ids":["m_1d3cbd5c5927"],"name":"Archer packer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_15f107acb1bd","kind":"entity","mention_ids":["m_66a80a1f2c0a"],"name":"cement on top of MRBP to 7,350'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_15f91f6c2419","kind":"entity","mention_ids":["m_951c318f632a","m_acea673b8213","m_d5635f60797e"],"name":"plugged and abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_16ad6655fbf9","kind":"entity","mention_ids":["m_7506217a9ec5"],"name":"SS 112 V-4","resolver":"identity"}
+{"aliases":[],"entity_id":"e_16e827b4c135","kind":"entity","mention_ids":["m_e97565835b7a"],"name":"10,656' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_16f099693a54","kind":"entity","mention_ids":["m_44d3758333eb"],"name":"10,035' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_176a6b122365","kind":"entity","mention_ids":["m_f6b4d2bcd845"],"name":"10-3/4\" CIBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_17f54e91fbb1","kind":"entity","mention_ids":["m_d1f5824acf07"],"name":"ST00BP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_191074d1eb3d","kind":"literal","mention_ids":["m_b33b9a06e853"],"name":"June 27, 2008","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1919129254c8","kind":"entity","mention_ids":["m_a48177e88a10"],"name":"13-3/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1972109a6a10","kind":"entity","mention_ids":["m_b6d1e14fdd71"],"name":"\"Plan 5A\" sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_19eb23dc9535","kind":"entity","mention_ids":["m_993fb3c9f8ac"],"name":"B008 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1a178d3a9224","kind":"entity","mention_ids":["m_ac6e24918b46"],"name":"12-09-10","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1a541c63d12b","kind":"entity","mention_ids":["m_33d956e73538"],"name":"EF Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1abcbd815f2d","kind":"entity","mention_ids":["m_72d9fd8ff9f4"],"name":"5,964' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1e0f75252b14","kind":"entity","mention_ids":["m_74da2bb5873d"],"name":"19,031' MD/16,837' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1e0fb6d1daaa","kind":"literal","mention_ids":["m_4051885a15a3"],"name":"2800 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1e258d220a12","kind":"entity","mention_ids":["m_8a1a8cb1b605"],"name":"39#/ft, P-110","resolver":"identity"}
+{"aliases":[],"entity_id":"e_1edf33d30b7e","kind":"entity","mention_ids":["m_9840eaf91802"],"name":"10507' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2011007279f8","kind":"entity","mention_ids":["m_4d1c9bbbdb72"],"name":"9 5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2014190aa875","kind":"entity","mention_ids":["m_9ab6e61194db"],"name":"9307' MD / 9153' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_214c6dd30771","kind":"entity","mention_ids":["m_b83a5d92a801"],"name":"retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_25f48b1a5fc5","kind":"entity","mention_ids":["m_96f4e45a23b0"],"name":"All casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_26b4e1b62c82","kind":"entity","mention_ids":["m_be0007ae6de1"],"name":"MP 72 OCS-G 03417, Well No. 08","resolver":"identity"}
+{"aliases":[],"entity_id":"e_279dc3f5658d","kind":"entity","mention_ids":["m_2006dcf672b1"],"name":"11860'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_27c543f25a0f","kind":"entity","mention_ids":["m_56e5f32eb596"],"name":"Stone Energy","resolver":"identity"}
+{"aliases":[],"entity_id":"e_27cc61e5d622","kind":"entity","mention_ids":["m_913ff8aeaa07"],"name":"11073' - 11245' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_27d4c71f9754","kind":"entity","mention_ids":["m_bd191673def8"],"name":"inflatable cement retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2832b850ad94","kind":"entity","mention_ids":["m_ae67a62512a3"],"name":"TTBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_28f904b1a3af","kind":"entity","mention_ids":["m_eddda5d0447b"],"name":"casing stings","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2a609230a5a9","kind":"entity","mention_ids":["m_4d02a4e3d397"],"name":"TOC","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2ac087348708","kind":"entity","mention_ids":["m_dc84926e45e8"],"name":"posi-set plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2ae5a43dac28","kind":"entity","mention_ids":["m_62b50283d9db"],"name":"SS 224 PP2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2b55c8a50e14","kind":"entity","mention_ids":["m_3a66293f273a"],"name":"\"R-1\" sd","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2b5a68a7a34f","kind":"entity","mention_ids":["m_9278c9319589"],"name":"11150' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2bc34ee65fac","kind":"entity","mention_ids":["m_393317adbb8e","m_e96e82ee7d97"],"name":"TTVBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2bdff97f3732","kind":"entity","mention_ids":["m_92d79f8c7bbb"],"name":"ED Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2d49d5e20c61","kind":"entity","mention_ids":["m_1a1eb108489a"],"name":"VR 348 #1ST wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2d7722ee2330","kind":"entity","mention_ids":["m_89a39303c392"],"name":"12405' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2e2fc3ed29e8","kind":"entity","mention_ids":["m_7cef04c9fade"],"name":"7 5/8\" prod. csg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_2f4b992159a9","kind":"entity","mention_ids":["m_b6d3f9cd025c"],"name":"9,495?-9,489?","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3001bd90f414","kind":"entity","mention_ids":["m_8aa6ba75976c"],"name":"PL 23 OCS G-01238, Well No. E002ST1","resolver":"identity"}
+{"aliases":[],"entity_id":"e_30ad74d2f03d","kind":"entity","mention_ids":["m_d94bea974570"],"name":"9564' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3165a6da758f","kind":"entity","mention_ids":["m_a17519e7e9bb"],"name":"successfully completed plugback operations","resolver":"identity"}
+{"aliases":[],"entity_id":"e_326f169790f0","kind":"entity","mention_ids":["m_89f8289bc37e"],"name":"5851' - 5000' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3376296d492a","kind":"entity","mention_ids":["m_7498c5e12ff5"],"name":"\"T-16\" sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_33e3a42c7a3d","kind":"entity","mention_ids":["m_c8f4cbf39a04"],"name":"8004'MD-8014'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_34199f04b4de","kind":"entity","mention_ids":["m_ea006fa1278e"],"name":"\"ED Sand\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_34df4b629402","kind":"entity","mention_ids":["m_2c2bd40e2ae8"],"name":"bridge plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_34e26212faf8","kind":"entity","mention_ids":["m_c26ede47fe42"],"name":"Well A-7","resolver":"identity"}
+{"aliases":[],"entity_id":"e_34fb8d1c6005","kind":"literal","mention_ids":["m_f999cddb3dae"],"name":"10.8 ppg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_35938e809cc9","kind":"entity","mention_ids":["m_698f9af5d312","m_76a5e8ad2dab","m_e61796e311cb"],"name":"cement plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_36ba366347f9","kind":"entity","mention_ids":["m_3ae9908f82bb"],"name":"3278' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_379fc0d5299a","kind":"entity","mention_ids":["m_9333e0c57c4e"],"name":"PA","resolver":"identity"}
+{"aliases":[],"entity_id":"e_37be140d7040","kind":"entity","mention_ids":["m_5a08a9f7cc86"],"name":"inside the tubing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_380e5e1df423","kind":"entity","mention_ids":["m_460e1ce5fdfc"],"name":"50' of cmt on top of the CIBP, w/ ETOC @ 11,113' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3910a71e9f8c","kind":"entity","mention_ids":["m_310bf03c99af"],"name":"23,580'MD/ 23,410'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_39552ec2e988","kind":"entity","mention_ids":["m_c93b6051f474"],"name":"11080' - 11110'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3a2c27360d89","kind":"entity","mention_ids":["m_6571275ae04b"],"name":"(20k)","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3b909fdcb587","kind":"entity","mention_ids":["m_f9c51b3a3355"],"name":"11,546' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3cf7eea31490","kind":"entity","mention_ids":["m_48f955c18bcd"],"name":"14,509' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3d2f54f7aa90","kind":"entity","mention_ids":["m_e1ef4fdf0cde"],"name":"03/26/1969","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3d93e800ab22","kind":"entity","mention_ids":["m_1a5a769c9701"],"name":"ST 100, OCS-G-05599, Well A-7D","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3d9a527f2335","kind":"entity","mention_ids":["m_05794243e6f4"],"name":"3585' - 3438'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3db0266852ae","kind":"entity","mention_ids":["m_4c082fb24708"],"name":"15' BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3dfe9f27eec1","kind":"literal","mention_ids":["m_bb214ecc3920"],"name":"11.9 ppg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3ed4a07b4264","kind":"entity","mention_ids":["m_f48b161e7422"],"name":"EI 57 H-1ST1 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3f0d6887fb32","kind":"entity","mention_ids":["m_4f8e5a6e6c48"],"name":"3544' - 3557' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_3fd6bdada6a3","kind":"entity","mention_ids":["m_b6fe42c09e62"],"name":"7-5/8\" csg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4005bc676e63","kind":"entity","mention_ids":["m_5c904455099d"],"name":"4112' md","resolver":"identity"}
+{"aliases":[],"entity_id":"e_405f1d60de40","kind":"entity","mention_ids":["m_899cc51105bc"],"name":"8099'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_406c8181876a","kind":"entity","mention_ids":["m_bb95f687d2ab"],"name":"19' above water line","resolver":"identity"}
+{"aliases":[],"entity_id":"e_40ad74284032","kind":"entity","mention_ids":["m_004492878290"],"name":"7892'MD / 7816' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_412f8d7d99e6","kind":"entity","mention_ids":["m_eb1f4340fe60"],"name":"SS 93 #8ST1 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_419200375ce2","kind":"entity","mention_ids":["m_9018494f88e0"],"name":"3438'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4231c684ef82","kind":"entity","mention_ids":["m_3fbf7d41519e"],"name":"5\" 18#/ft, P-110 prod. liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4243f0b5e9ed","kind":"entity","mention_ids":["m_48ade10bb815"],"name":"Marg A 4B Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_425975f35bbf","kind":"entity","mention_ids":["m_c4f910b73d40"],"name":"9,848'-9,861' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_45058468a39c","kind":"entity","mention_ids":["m_4984601a0891"],"name":"10925' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4764ed20ad85","kind":"entity","mention_ids":["m_9a37359a04c2"],"name":"8372' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_488c65846f66","kind":"entity","mention_ids":["m_5b249ced5d8d","m_79eb246e65c0"],"name":"08/05/2010","resolver":"identity"}
+{"aliases":[],"entity_id":"e_495c02ee5314","kind":"entity","mention_ids":["m_c5286a454b16"],"name":"1585' MD / TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_499e546d7edd","kind":"entity","mention_ids":["m_ff583f7eaf48"],"name":"28,155'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_49ad6c6b5d55","kind":"entity","mention_ids":["m_63e6539d029b"],"name":"9-7/8in","resolver":"identity"}
+{"aliases":[],"entity_id":"e_49cd05639601","kind":"entity","mention_ids":["m_17bf094a65e0"],"name":"B-8 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4a230edfc2c9","kind":"entity","mention_ids":["m_2e9a993ea010"],"name":"ST02BP01","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4aba5aa8ff74","kind":"entity","mention_ids":["m_1c0c9dd6f666"],"name":"209-ft","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4c9668064d7a","kind":"entity","mention_ids":["m_d00a009f3b29"],"name":"9 5/8\" EZSV","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4caf37cb4bcb","kind":"entity","mention_ids":["m_f2954de71349"],"name":"03/26/2012","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4d4f97127ff0","kind":"entity","mention_ids":["m_2ccc6e91210f"],"name":"4433' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4dc627031303","kind":"entity","mention_ids":["m_5ef619dc9336"],"name":"to 12848' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4f52e761976f","kind":"entity","mention_ids":["m_dffeddb6ac86","m_ee98491b9f28"],"name":"cement retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4fca65861059","kind":"entity","mention_ids":["m_c2d45f3aae60"],"name":"\"R-14\" sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_4feca4314231","kind":"entity","mention_ids":["m_dbf1dafc4e76"],"name":"11588' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_501e4f2c29fa","kind":"entity","mention_ids":["m_b124cad78b82"],"name":"PL-9A","resolver":"identity"}
+{"aliases":[],"entity_id":"e_510ef10e89b2","kind":"entity","mention_ids":["m_28916f96783e"],"name":"5850' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_52d2718c1aea","kind":"entity","mention_ids":["m_4e23a5606fa7"],"name":"28,155'MD / 27,237'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_53ba6689a7d1","kind":"entity","mention_ids":["m_f34dae6f409d"],"name":"3161' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_53d45e94fbc6","kind":"entity","mention_ids":["m_8e01a9573433"],"name":"VR 348 #1ST","resolver":"identity"}
+{"aliases":[],"entity_id":"e_547f2c4b9c07","kind":"entity","mention_ids":["m_c203838c9228"],"name":"7-3/4\" casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5487d17e3395","kind":"entity","mention_ids":["m_fcae28ec6d0d"],"name":"12807'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_549fac6a209c","kind":"entity","mention_ids":["m_b9be4e978cc9"],"name":"70' of cement on top of the plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_562f91d91dab","kind":"entity","mention_ids":["m_aa1f0de15347"],"name":"162' AML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_56914bfb05ed","kind":"entity","mention_ids":["m_0c88b11feb1a","m_38f651c2d78a","m_3accc22edff3"],"name":"cmt plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_56cbfc09d0b0","kind":"entity","mention_ids":["m_5f85f31500f1"],"name":"G14870 No.7 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_56cf3f2855fc","kind":"entity","mention_ids":["m_e0ee36856b1c"],"name":"9440' - 9494' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_57596620f7b0","kind":"entity","mention_ids":["m_b9473bd028df"],"name":"D Plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_58d8d1987c64","kind":"entity","mention_ids":["m_9d8ad061a603"],"name":"3585'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_596629904e47","kind":"entity","mention_ids":["m_5306e82c515d"],"name":"wellbore collapsed @ 5850' MD / 5568' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_598693a9f575","kind":"entity","mention_ids":["m_66d775899ee7"],"name":"J Upper Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5b46d9db4280","kind":"entity","mention_ids":["m_337cc326ccb5"],"name":"peddle basket","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5bae90b985fa","kind":"literal","mention_ids":["m_a77aa5cac09a"],"name":"13.6 ppg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5bee086ecff9","kind":"entity","mention_ids":["m_963d4f73e408"],"name":"51' of cement on top of plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5c41b693bfa3","kind":"entity","mention_ids":["m_cc3d58463270"],"name":"11,163' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5c618f5c45a4","kind":"entity","mention_ids":["m_6744f463a5ab"],"name":"tubing punch, 10450' - 10460' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5cc6862f4514","kind":"entity","mention_ids":["m_4784baaca749"],"name":"578'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5d01452b09b4","kind":"entity","mention_ids":["m_8d1001e84c35"],"name":"5109' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5db17cdf0f51","kind":"entity","mention_ids":["m_2bfb01a3b0d8"],"name":"top of plug; ETOC at 10,002' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5e207a974c4b","kind":"entity","mention_ids":["m_4b48e97f87ae"],"name":"13-5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5f8af4a560b8","kind":"entity","mention_ids":["m_69b58c33e9f1"],"name":"tubing punch","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5f9810bec89c","kind":"entity","mention_ids":["m_98325fce6711"],"name":"12,600 ft. sands","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5fb552a76ef3","kind":"entity","mention_ids":["m_0adf41fed729","m_1e84f97f49b8","m_86a33a2dec0d","m_960a21b18dd6","m_9e6caaf7e907","m_d9938f0eb75f"],"name":"COM","resolver":"identity"}
+{"aliases":[],"entity_id":"e_5ff90a14e3bd","kind":"entity","mention_ids":["m_0b1664d219f9"],"name":"production tubing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_60d19d626cb8","kind":"entity","mention_ids":["m_349937c8f122"],"name":"\"Upper JE\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_61b20c366412","kind":"entity","mention_ids":["m_dab312ca6341"],"name":"8069'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_62101469dd7b","kind":"entity","mention_ids":["m_112f65edf80a"],"name":"10-13-07","resolver":"identity"}
+{"aliases":[],"entity_id":"e_622a67d82a19","kind":"entity","mention_ids":["m_b91d72a6a49f"],"name":"well A-2ST1","resolver":"identity"}
+{"aliases":[],"entity_id":"e_62883b381fa1","kind":"entity","mention_ids":["m_97de83427690"],"name":"D-2 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_62ac33da3a36","kind":"entity","mention_ids":["m_dff7c47a48b6"],"name":"abandoned preparation for slot recovery","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6331086dda43","kind":"entity","mention_ids":["m_4d3b550731f3"],"name":"\"EF Sand\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_64875fcccaac","kind":"entity","mention_ids":["m_f3e2e9249632"],"name":"fish","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6632e52b15e8","kind":"entity","mention_ids":["m_b5c6b364f488"],"name":"top of the retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_666568cd9af5","kind":"entity","mention_ids":["m_22b0b376f246"],"name":"correct the casing pressure problem with the tubing/casing annulus","resolver":"identity"}
+{"aliases":[],"entity_id":"e_66c7aad24840","kind":"entity","mention_ids":["m_61251001d1e9"],"name":"EC 339 A01BP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_66f57d0bfa1f","kind":"entity","mention_ids":["m_38f8a3d64ea5"],"name":"\"Posi-set\" plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_671d263c208e","kind":"entity","mention_ids":["m_5d5a71e529a1"],"name":"MODU, Rowan Alaska","resolver":"identity"}
+{"aliases":[],"entity_id":"e_677b90f2aaf0","kind":"entity","mention_ids":["m_2f9e98ca7b1f"],"name":"10,918'-10,930' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_67c5949e18d9","kind":"entity","mention_ids":["m_0e9b9284200a"],"name":"11,471'-11,482'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_67d0449ffe1b","kind":"entity","mention_ids":["m_d086b6b0e4f4"],"name":"11200' Sd.","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6820fa05bcb0","kind":"entity","mention_ids":["m_f94757059d9e"],"name":"\"K-4\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_685601509a56","kind":"entity","mention_ids":["m_76e3d0ac3c09","m_da0661673ce4","m_ded3e3bf9696"],"name":"plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6927036d947a","kind":"literal","mention_ids":["m_7f2350a6070e"],"name":"19 bbls","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6a976b8cf1e8","kind":"entity","mention_ids":["m_53c5de464382"],"name":"7-3/4\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6a9845d5fe9c","kind":"entity","mention_ids":["m_016db7b76ae7"],"name":"4344' MD / 3278' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6ab391f356f9","kind":"entity","mention_ids":["m_2491d0309094"],"name":"8370' MD / 4433' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6aefd5695d04","kind":"entity","mention_ids":["m_e0818d5bef88"],"name":"SS 224 E19BP2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6b20d3938fef","kind":"literal","mention_ids":["m_49603c773d9f"],"name":"3000 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6b7014ca0918","kind":"entity","mention_ids":["m_cf1238e36e60"],"name":"ST02","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6bcd708ef162","kind":"entity","mention_ids":["m_68dde941da48"],"name":"temporary abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6cf2499f7bb7","kind":"entity","mention_ids":["m_3969828a8fa1"],"name":"dry hole tree","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6dd57a6c87fa","kind":"entity","mention_ids":["m_a5712718555c"],"name":"7,230' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6f2d7562690b","kind":"entity","mention_ids":["m_5cd753d5a090"],"name":"04-18-10","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6f457f55e317","kind":"entity","mention_ids":["m_90ec1af754b8"],"name":"alternates","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6f63f8526702","kind":"entity","mention_ids":["m_1a6b6794491a"],"name":"\"M-11\" Sd","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6f6ae4da7f18","kind":"entity","mention_ids":["m_35ffc5e0da9a"],"name":"851' cmt plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_6fcb626f1070","kind":"entity","mention_ids":["m_42fe88f57e01"],"name":"9-5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_70ad67b53bd5","kind":"entity","mention_ids":["m_e878f7dfe9a9"],"name":"Temporarily well cap installed","resolver":"identity"}
+{"aliases":[],"entity_id":"e_70cd9c21956a","kind":"entity","mention_ids":["m_08b917bf8c97","m_1d1677233136","m_44a1e019cb9e","m_96d5c68e9978","m_df771ac3f304","m_e49a3913ba73","m_f25db0095c34","m_fe230dc8e35c"],"name":"temporarily abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_719bc25ccbe5","kind":"entity","mention_ids":["m_5b60ea505189"],"name":"11974'-12018'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_71de0577cb6f","kind":"entity","mention_ids":["m_1f58999e24bb"],"name":"VR 131, OCS 00775, Well No. 022ST","resolver":"identity"}
+{"aliases":[],"entity_id":"e_72a822bb33e2","kind":"entity","mention_ids":["m_a80989ec74cc"],"name":"GA 272 A001","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7310fbfca497","kind":"entity","mention_ids":["m_fc2197fa12cf"],"name":"EI 243, OCS-G-02899, Well D-1ST","resolver":"identity"}
+{"aliases":[],"entity_id":"e_757cbb429a04","kind":"entity","mention_ids":["m_5d79baf00fc9"],"name":"04/08/1969","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7612282e002d","kind":"entity","mention_ids":["m_927ca30dfb95"],"name":"live GLV","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7671b61abc85","kind":"entity","mention_ids":["m_d0d390c7b72e"],"name":"B-9 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7765e1e5cb84","kind":"entity","mention_ids":["m_fb8c91c91afa"],"name":"shut-in waiting on pipeline and facilities hook up","resolver":"identity"}
+{"aliases":[],"entity_id":"e_78074e3e8afd","kind":"entity","mention_ids":["m_f04e666364c8"],"name":"12905' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7882f7a095c0","kind":"entity","mention_ids":["m_4b18e7854c26"],"name":"AB-10 and AB-12 Sands","resolver":"identity"}
+{"aliases":[],"entity_id":"e_789caa26da6f","kind":"entity","mention_ids":["m_22324f258a6c"],"name":"27,237'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7a7a118c62c6","kind":"entity","mention_ids":["m_66e0528f7fd2"],"name":"09-11-07","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7bc43e14d965","kind":"entity","mention_ids":["m_c35cec5a7698"],"name":"below the retainer with ETOC at 12650' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7c1049ea40a3","kind":"entity","mention_ids":["m_11ee43674edd"],"name":"179' AML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7c34465f474a","kind":"entity","mention_ids":["m_9edcb33ca04e"],"name":"P&A","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7c424d206c09","kind":"entity","mention_ids":["m_edd8f34fe2f7"],"name":"13096' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7c789020a853","kind":"entity","mention_ids":["m_aa4c7a82d2f8"],"name":"EC 64, OCS-G-00089","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7cfb71c9e9bf","kind":"entity","mention_ids":["m_74da32169376"],"name":"WC 45 C-3","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7d585a95f349","kind":"entity","mention_ids":["m_d09678122e39"],"name":"\"OW Upper\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7dc54fc3324e","kind":"entity","mention_ids":["m_56eea5a3becb"],"name":"B010 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7dd9b3388122","kind":"entity","mention_ids":["m_758d10995e32"],"name":"SI","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7e9c81f9a266","kind":"entity","mention_ids":["m_26ab7a1bae28"],"name":"30\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7f0e7ae4cf91","kind":"entity","mention_ids":["m_da866c386acc"],"name":"02-05-09","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7f1f7baed73e","kind":"entity","mention_ids":["m_ab820ee4b517"],"name":"13654' - 13660' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_7fc0a42ce9a3","kind":"entity","mention_ids":["m_e8b9951577a0"],"name":"07/31/2009","resolver":"identity"}
+{"aliases":[],"entity_id":"e_813dad70ef38","kind":"entity","mention_ids":["m_d42a7b53c447"],"name":"11,728'-11812\" MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_81834c12038e","kind":"entity","mention_ids":["m_f1ffda08f795"],"name":"TA?d","resolver":"identity"}
+{"aliases":[],"entity_id":"e_818b801f16f8","kind":"entity","mention_ids":["m_7c856d112347"],"name":"9670' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_81b20aa0075f","kind":"entity","mention_ids":["m_0ebc7459f900"],"name":"9,566?-9,530?","resolver":"identity"}
+{"aliases":[],"entity_id":"e_825c4426ceb4","kind":"entity","mention_ids":["m_2f391c392a7c"],"name":"08-25-13","resolver":"identity"}
+{"aliases":[],"entity_id":"e_828d5e39cc55","kind":"entity","mention_ids":["m_24650f9a113f","m_401e41d7fd2c"],"name":"temporarily abandon","resolver":"identity"}
+{"aliases":[],"entity_id":"e_82abae0eca18","kind":"entity","mention_ids":["m_45ab8d10c24b"],"name":"7,465' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_82f6144787bb","kind":"entity","mention_ids":["m_4a9dc0479f65"],"name":"30\" and 13 3/8\" casings / conductors","resolver":"identity"}
+{"aliases":[],"entity_id":"e_82fd8c8f3528","kind":"entity","mention_ids":["m_fc434f570dee"],"name":"SS 118, B001 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_844035fb59f2","kind":"entity","mention_ids":["m_602c417d9119"],"name":"B-7 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8443773985f1","kind":"entity","mention_ids":["m_1afb5b0081f2"],"name":"14.6 ppg SBM","resolver":"identity"}
+{"aliases":[],"entity_id":"e_857d6c9ae0a9","kind":"entity","mention_ids":["m_522901f8241f"],"name":"8372' - 8380' & 8511' - 8527'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_85b255774052","kind":"entity","mention_ids":["m_b1fcb6b9d472"],"name":"10669'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_85ba691b5fed","kind":"entity","mention_ids":["m_fee91f1fd69f"],"name":"\"EP Upper\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_864cef4daf7e","kind":"literal","mention_ids":["m_ef18fee2bd23"],"name":"22in","resolver":"identity"}
+{"aliases":[],"entity_id":"e_86ed6ee3c058","kind":"literal","mention_ids":["m_3edba93bf3c3"],"name":"1,000 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8704b7356e50","kind":"entity","mention_ids":["m_494d737bd940"],"name":"10,482'-10510'MD / 8,995'-9,013' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_876cf940c614","kind":"entity","mention_ids":["m_99aa724d20fa"],"name":"20-ft BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_87c4865cafaf","kind":"entity","mention_ids":["m_02f2f92802ba","m_091c8b98c0c6","m_314d2e5c8047","m_3af0f45015f3","m_a83dbd5c64b2","m_ae9bacaaa0a5"],"name":"MRBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_87fa3ee03703","kind":"entity","mention_ids":["m_59eb185f79fb"],"name":"Well A15ST2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8959452ff4ec","kind":"entity","mention_ids":["m_4c4c15c4eda5"],"name":"11172' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8960a8bafac3","kind":"entity","mention_ids":["m_10c2ef00b789"],"name":"drive pipe","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8b4373d66638","kind":"entity","mention_ids":["m_dfb2242d44d7"],"name":"9-5/8\" CIBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8b4d0872acbd","kind":"entity","mention_ids":["m_65ef2d693c5f"],"name":"11,517'-11,527'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8c5c9c35d210","kind":"entity","mention_ids":["m_e8018162f2b2"],"name":"8008'-8028'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8c95560087b6","kind":"entity","mention_ids":["m_b244fb278142"],"name":"19,360' MD / 17,109' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8cf724348374","kind":"literal","mention_ids":["m_40fcddad981b"],"name":"June 29, 2012","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8ecb844d9bef","kind":"entity","mention_ids":["m_5e68239412ea"],"name":"expandable liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8ee0d01f6978","kind":"entity","mention_ids":["m_76b9cdc8af3d"],"name":"SS 99 A1ST1 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8f01f3dad1b9","kind":"literal","mention_ids":["m_330004de5e12"],"name":"20k","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8f305c4c5736","kind":"entity","mention_ids":["m_36d1b310ae25"],"name":"thru-tubing gravel pack screen assy","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8f57f4905243","kind":"entity","mention_ids":["m_e4ea0f3ce26b"],"name":"6,162? MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8fb9d8ce0b12","kind":"entity","mention_ids":["m_8ae998771bdd"],"name":"G06 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_8fc8a2f9b476","kind":"entity","mention_ids":["m_35962a0f9ba0"],"name":"11588' MD / 10925' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_900df8f74104","kind":"entity","mention_ids":["m_a81a42eee447"],"name":"5568' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9034b41f0c31","kind":"entity","mention_ids":["m_2abbc7d940ed"],"name":"Well A005","resolver":"identity"}
+{"aliases":[],"entity_id":"e_904806e7b42c","kind":"entity","mention_ids":["m_2583d3222a02"],"name":"08-26-09","resolver":"identity"}
+{"aliases":[],"entity_id":"e_908f9a51bd69","kind":"entity","mention_ids":["m_534611ac497e"],"name":"9656' MD / 6063' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_90a4d4c42336","kind":"entity","mention_ids":["m_9d61a8ae30a8"],"name":"20' BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_920d0947cc08","kind":"entity","mention_ids":["m_11d3261c7308"],"name":"5 1/2\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_92ddc751f67d","kind":"entity","mention_ids":["m_7e37e28cdd8c"],"name":"10856' - 10872' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_930f4ee1e707","kind":"entity","mention_ids":["m_ddeb902e0ba9"],"name":"11418' - 11428'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9403e310e0f6","kind":"entity","mention_ids":["m_b2dc6752353f"],"name":"SS 93 E1","resolver":"identity"}
+{"aliases":[],"entity_id":"e_944b7f6314df","kind":"entity","mention_ids":["m_d2c36211cfe1"],"name":"permanently plug and abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9460c2df9b19","kind":"entity","mention_ids":["m_2b3f2e101667"],"name":"ROB M-1A Sand (HI197)","resolver":"identity"}
+{"aliases":[],"entity_id":"e_946d61ae52fe","kind":"entity","mention_ids":["m_0e7db0be1fc2","m_ca822201af8d"],"name":"plugged & abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_949e8206928e","kind":"entity","mention_ids":["m_71235fa53a40"],"name":"7147' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_94adf0f4a0fc","kind":"entity","mention_ids":["m_8b4847c23877"],"name":"14,432'-14,457' & 14,470'-14,498' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_94c579a59bfa","kind":"entity","mention_ids":["m_98dc07b6d3bb"],"name":"21,355'MD / 21,331'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_95371f067e26","kind":"entity","mention_ids":["m_8053f56c5120"],"name":"Temporarily well cap","resolver":"identity"}
+{"aliases":[],"entity_id":"e_975b3dd1c6bc","kind":"entity","mention_ids":["m_86bde5f2351b"],"name":"producing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_97df01f033b3","kind":"entity","mention_ids":["m_8b2899f2f85c"],"name":"20' below the mud line","resolver":"identity"}
+{"aliases":[],"entity_id":"e_982d35114522","kind":"entity","mention_ids":["m_bb0c1eba5a0c"],"name":"P001 ST02 wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_983f69802887","kind":"entity","mention_ids":["m_bad68142ef13"],"name":"SS 224 E20BP well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_98d44c80bc91","kind":"entity","mention_ids":["m_13209a41cf91"],"name":"10906' - 10916' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9936b18301d9","kind":"entity","mention_ids":["m_340435aa72a3"],"name":"10.8 ppg SBM","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9960b0ccaad6","kind":"entity","mention_ids":["m_15ec491c900f"],"name":"07-16-07","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9a1582b29b89","kind":"entity","mention_ids":["m_d65a37704fd7"],"name":"8,677'MD/TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9a20381cde6a","kind":"entity","mention_ids":["m_0d86fa6aa301"],"name":"L-22 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9a2ccc2ccbc2","kind":"entity","mention_ids":["m_fb07ef454bf4"],"name":"14' BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9b3e1542fc26","kind":"entity","mention_ids":["m_865446803729"],"name":"EC 73 Well No. B004","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9b5f56e8acd3","kind":"entity","mention_ids":["m_bbf8c2c17084","m_f51fe2b0a450"],"name":"shut in","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9ba9a6801c4f","kind":"entity","mention_ids":["m_588163356146","m_62f0d8809a06","m_e8ee0930719c"],"name":"P&A?d","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9be62f44f1fa","kind":"entity","mention_ids":["m_47eeb800469f"],"name":"Vermilion Block 268, OCS-G 02082, Well J6BP2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9bff5634ac87","kind":"entity","mention_ids":["m_6f90aa6e7d44"],"name":"10450' - 10460' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9c0a20729937","kind":"entity","mention_ids":["m_29efe4795a0a"],"name":"370' RKB","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9c26e81940b9","kind":"entity","mention_ids":["m_04e62a5a7253"],"name":"cast iron bridge plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9c4893a78a53","kind":"entity","mention_ids":["m_3db74e8ed199"],"name":"3834' - 4344' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9da268fd312e","kind":"entity","mention_ids":["m_b949a1ffa892","m_cdf1940a04b7"],"name":"casings","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9e7e56c1a713","kind":"entity","mention_ids":["m_15d1e1f205c4"],"name":"4428' RKB","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9eb3d3dfba9b","kind":"entity","mention_ids":["m_6b773a45ea8c"],"name":"14,790' MD / 14,509' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_9f019f49f258","kind":"entity","mention_ids":["m_f88204f116a6"],"name":"4344' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a0136083302b","kind":"entity","mention_ids":["m_a85d2c1a433f"],"name":"Ang B 7200' Sd.","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a01e4c2a4d9e","kind":"entity","mention_ids":["m_305bd4b22f8a"],"name":"EC 316 #2ST wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a15bc54e5700","kind":"entity","mention_ids":["m_2ed3857e3b07"],"name":"7892'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a25f1769cee5","kind":"entity","mention_ids":["m_a015a22bbc66"],"name":"\"BB-1\" sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a300622ccb6f","kind":"entity","mention_ids":["m_2448c8de5c01"],"name":"11180' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a373fa538d48","kind":"entity","mention_ids":["m_ba68a074e32c"],"name":"cmt","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a44d02f4c23a","kind":"entity","mention_ids":["m_073a15e7ac65"],"name":"12770' - 12800'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a550f6347be9","kind":"entity","mention_ids":["m_7c9d96033a3f"],"name":"EC 346 A12ST4 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a5eedb07611d","kind":"entity","mention_ids":["m_013ec191419d","m_230a8e4a7e48","m_7acd87bcd7de","m_8b9e8b4b821d","m_c274f789ae30"],"name":"CIBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a62146a0a5c8","kind":"entity","mention_ids":["m_abedc3452fba"],"name":"SS 112 V-4 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a62647f25c97","kind":"entity","mention_ids":["m_5ce5be8505aa"],"name":"H-1/H-1A Sd","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a6a1db7f9e67","kind":"entity","mention_ids":["m_c9c7ab7276fb"],"name":"\"K-3\" & \"K-2\" Sands","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a6ab894a48c5","kind":"entity","mention_ids":["m_d2b507220022"],"name":"unsuccessfully performed zone change operations","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a751a2be053f","kind":"entity","mention_ids":["m_319ffff0046f"],"name":"12356' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a7a041b31ffc","kind":"entity","mention_ids":["m_853c28716da8"],"name":"63' AML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a7e0b5bc9904","kind":"entity","mention_ids":["m_0bf2f18371ea","m_bdffff9d546b"],"name":"9-5/8\" casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a81710c60f7a","kind":"entity","mention_ids":["m_bf97794ead51"],"name":"Bridge plug & cmt plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a86aefe23e13","kind":"entity","mention_ids":["m_2db2b17a8536"],"name":"259-ft MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a87f0ed2e869","kind":"entity","mention_ids":["m_6a0842c54c98"],"name":"MC 28 Well A-19","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a8d7be5d5e6e","kind":"entity","mention_ids":["m_697c87b4366c"],"name":"TA'ed","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a9601a1ed728","kind":"literal","mention_ids":["m_ff2eb8e65ee7"],"name":"1500 psig","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a9620111da31","kind":"entity","mention_ids":["m_11187e51f279"],"name":"21,755'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_a9d6091e6573","kind":"entity","mention_ids":["m_b3ed7cdc05cf"],"name":"10,503' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_aa05f34fdc05","kind":"literal","mention_ids":["m_215abbd56437"],"name":"10253TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_aacfaa388aa2","kind":"entity","mention_ids":["m_9a13a70c385c"],"name":"7 5/8\" casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ab9bdb570ddf","kind":"literal","mention_ids":["m_263e08cada44"],"name":"2 MRBP","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ac22219a089c","kind":"entity","mention_ids":["m_641e9eeefc16"],"name":"12207' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ac4f27be4514","kind":"entity","mention_ids":["m_db70280841d5"],"name":"22,987'MD / 22,890'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ac6baf358cd3","kind":"entity","mention_ids":["m_90deabab52d8"],"name":"04-23-10","resolver":"identity"}
+{"aliases":[],"entity_id":"e_acb339a74b7b","kind":"entity","mention_ids":["m_273ad77b15d0"],"name":"sliding sleeve","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ad3320530149","kind":"entity","mention_ids":["m_799a8d88e8a2"],"name":"9564' MD / 9439' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ad54e0abf506","kind":"entity","mention_ids":["m_e639a02285ac"],"name":"11936'-11944'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ad72bc26d23e","kind":"entity","mention_ids":["m_6a240ca8349e"],"name":"11,616' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ae362d539c77","kind":"literal","mention_ids":["m_71ab3ccca5e6"],"name":"January 14, 2007","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ae6ab44bce3b","kind":"entity","mention_ids":["m_be69836f0164"],"name":"12350' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_aea51b5969ee","kind":"entity","mention_ids":["m_1427c3878e38"],"name":"completed on the well on 12-30-10","resolver":"identity"}
+{"aliases":[],"entity_id":"e_af3c43235b34","kind":"literal","mention_ids":["m_e7594672d2b6"],"name":"23 Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b036cd50e930","kind":"entity","mention_ids":["m_cdb6d215929c"],"name":"VR 255 OCS G-01152, Well No. H005","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b114d526a513","kind":"entity","mention_ids":["m_c8f29ada5563"],"name":"balance cmt plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b1308a2f886e","kind":"entity","mention_ids":["m_d2f553f9ea0a"],"name":"Cement positive","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b17fe926e459","kind":"entity","mention_ids":["m_945b5110874d"],"name":"13440'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b331fc67af2f","kind":"entity","mention_ids":["m_57083c8ad923"],"name":"ML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b3a64d4d2bb9","kind":"entity","mention_ids":["m_8c169ecfe12d"],"name":"casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b65a182d1df0","kind":"entity","mention_ids":["m_55384c90752f","m_5b402abe4863","m_d63b73a63d87"],"name":"7 5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b775f73d4470","kind":"entity","mention_ids":["m_59a8f56a9a6c"],"name":"18#/ft, P-110","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b7881e7a5acb","kind":"entity","mention_ids":["m_7e84883e74b8"],"name":"B003 well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b81127d246e8","kind":"entity","mention_ids":["m_10cda46fc6dd"],"name":"MU 736 #1BP2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b856199732fe","kind":"entity","mention_ids":["m_594b35b940bf"],"name":"EW 306 A01ST well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b864ebfe5273","kind":"entity","mention_ids":["m_e9b4d6fcc176"],"name":"80' BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b91539057383","kind":"entity","mention_ids":["m_03e4ab593baf","m_cfe04572727c"],"name":"5\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b925ec023fe5","kind":"entity","mention_ids":["m_33390d42d32a"],"name":"6969' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b9526bb62689","kind":"entity","mention_ids":["m_137b5c715ecf"],"name":"11025'- 11042'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b99440728be0","kind":"entity","mention_ids":["m_23d8ac59f7a0","m_def2cb74f1c5"],"name":"temporary abandonment","resolver":"identity"}
+{"aliases":[],"entity_id":"e_b9da8e454b0f","kind":"entity","mention_ids":["m_9e080d9f7ed4"],"name":"9-7/8in liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ba942d02b9fd","kind":"entity","mention_ids":["m_7a24296d94c4"],"name":"9153' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bb3f50664160","kind":"entity","mention_ids":["m_5b5412f7a85f"],"name":"05/20/2021","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bbc55b9e6215","kind":"entity","mention_ids":["m_c7c3e0f50c5e"],"name":"1500' - 1700'RKB","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bc154c52cc5e","kind":"entity","mention_ids":["m_08f3419ddda0"],"name":"9656' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bc5b7bcdd921","kind":"entity","mention_ids":["m_4903f7c59890"],"name":"cmt pkr","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bcb2c4433286","kind":"entity","mention_ids":["m_a2986ac8567a"],"name":"11958'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bd26d02c092d","kind":"entity","mention_ids":["m_8122a5a7d736"],"name":"7,700 ft MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_bd8483287459","kind":"entity","mention_ids":["m_0290ae0f0c39","m_04d03024deff","m_0aba6155e18e","m_0c4e2ffc450e","m_17c41ec06f77","m_25d6756bf6dc","m_26f2466b55cf","m_34d5f06112b3","m_3abd76e8016e","m_3bde849860ff","m_4edbf77ebd14","m_503d34450311","m_576ad347a944","m_5cdb60483304","m_5edf99630379","m_60e546cb30cf","m_63a364f37f95","m_694cf8f6bf1a","m_6e48a5e6b54b","m_6f38e6aeda7a","m_76acf2e2af5b","m_76cbe53e4333","m_7da419bad4ec","m_7e3f6fe62f01","m_83edbd75e6d5","m_91a906b5dd60","m_99cac332b276","m_a7e9953e910b","m_ae3d99511e59","m_ae9ab8c938d7","m_b3abd2d2f5aa","m_b57a43c352e0","m_bcd496ec669c","m_c32bef645543","m_c801a245fbb2","m_c82a323816f8","m_cb7e12e59d40","m_ce9a53f22f7c","m_d7a3d46c5187","m_dc990b4579e1","m_df6068a17a6f","m_e6e14e729168","m_f66da9043d4c","m_fac9017c8154"],"name":"well","resolver":"identity"}
+{"aliases":[],"entity_id":"e_beae362e24c0","kind":"literal","mention_ids":["m_c777765e4dc8"],"name":"4715 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c07bfe21456b","kind":"entity","mention_ids":["m_b77d5a8fb689"],"name":"10,520' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c0858c084219","kind":"entity","mention_ids":["m_868266e21641"],"name":"slickline lubricator system","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c0d915e0f114","kind":"entity","mention_ids":["m_e461132aa318"],"name":"5 1/2\" production liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c1200a180e65","kind":"entity","mention_ids":["m_2c9312874869"],"name":"11-3/4\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c156a3b89321","kind":"entity","mention_ids":["m_0b7a678f6720","m_3071d1c68deb","m_30a26a4f3f5b"],"name":"TD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c1f469975914","kind":"entity","mention_ids":["m_01c988648e6c","m_4b61c80b2cd4","m_4cb12ef41803","m_67b6f74d29dc"],"name":"cement","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c237fa406686","kind":"entity","mention_ids":["m_14ed2059ee61"],"name":"20\", 13 3/8\", 9 5/8\" and 7\" casings / conductors","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c247f3d3b5ed","kind":"entity","mention_ids":["m_50bfdec05c08"],"name":"11968'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c2fe0714ccd4","kind":"entity","mention_ids":["m_6a330a4acf13"],"name":"sand fill","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c30e54d75f27","kind":"entity","mention_ids":["m_cf62f5bea79d"],"name":"plugged and temporarily abandoned","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c39e4eb7ea5e","kind":"literal","mention_ids":["m_6c6905341fb2"],"name":"1540 psi","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c5c988e6b235","kind":"entity","mention_ids":["m_3f043cc86ddd"],"name":"11190' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c6359a7968b3","kind":"entity","mention_ids":["m_c515c31aab86"],"name":"surface","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c6c58db20551","kind":"entity","mention_ids":["m_c0490472e5a5"],"name":"2,890' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c71d43594132","kind":"entity","mention_ids":["m_c6c156654bbc"],"name":"9,360?-9,298?","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c82c4f612005","kind":"entity","mention_ids":["m_c2100643f5a6"],"name":"EI 183 A4","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c903d6374773","kind":"entity","mention_ids":["m_8d1cf1c238c5"],"name":"13402'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c9d5285c48b8","kind":"entity","mention_ids":["m_96f6e404e7f2"],"name":"HI A-494 Well B-4(BP02)","resolver":"identity"}
+{"aliases":[],"entity_id":"e_c9d74be9ceb2","kind":"entity","mention_ids":["m_19270507e066"],"name":"wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_cc197e6a0e34","kind":"entity","mention_ids":["m_13d21ac163c1"],"name":"8640'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_cc5ea7e42214","kind":"entity","mention_ids":["m_f527b555723d"],"name":"ST 110, OCS-G 26094, Well No. 01","resolver":"identity"}
+{"aliases":[],"entity_id":"e_cd6aa39fedbb","kind":"entity","mention_ids":["m_62f92094edb5"],"name":"26\" and 10-3/4\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_cdae50e39f05","kind":"entity","mention_ids":["m_4036ca6027d7"],"name":"8,377'MD/TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ce6c356dca4c","kind":"entity","mention_ids":["m_dae2153d2088"],"name":"8372' - 8380'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ce879ce49e27","kind":"entity","mention_ids":["m_3989f6323f27"],"name":"SS 118, OCS-00068, Well B001ST00BP00","resolver":"identity"}
+{"aliases":[],"entity_id":"e_cea1fc5a8392","kind":"entity","mention_ids":["m_3c59787da0f6"],"name":"\"R-9\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d048c6ff1de4","kind":"entity","mention_ids":["m_24dec7f56250"],"name":"G22238 No.2 ST00BP02 wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d04d80429207","kind":"entity","mention_ids":["m_27928f547ca8"],"name":"EW 306, OCS-G-07917, Well A6ST2","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d0c140a55c8b","kind":"entity","mention_ids":["m_6a977b16b746"],"name":"on top of the existing plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d253c76ab925","kind":"entity","mention_ids":["m_d027ec77f073"],"name":"7 5/8\" 39#/ft, P-110 prod. liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d32fd370ff79","kind":"entity","mention_ids":["m_cde444ac6572"],"name":"below the retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d3bb984e7847","kind":"entity","mention_ids":["m_0a90788e6118"],"name":"9392'- 11172' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d3bfaf2e057b","kind":"entity","mention_ids":["m_80d0364b5acb"],"name":"11,487'-11,499'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d627a0f26d08","kind":"entity","mention_ids":["m_341605ab5d8b"],"name":"8372' MD / 4435' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d7eb4aa6d08d","kind":"entity","mention_ids":["m_2d849998b250"],"name":"Rowan Alaska","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d8384ed0da5b","kind":"entity","mention_ids":["m_9661c850c6dc"],"name":"10,938'-10.950' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d864321d560c","kind":"entity","mention_ids":["m_26c74c92c2a7"],"name":"EI 302 w#04","resolver":"identity"}
+{"aliases":[],"entity_id":"e_d9cfc72e36c3","kind":"entity","mention_ids":["m_64bd5b77cafa"],"name":"2\" dump bailer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_dc61e3986abd","kind":"entity","mention_ids":["m_ab4e98479201"],"name":"9439' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_dd0d04bfe2f1","kind":"entity","mention_ids":["m_da623ba2d640"],"name":"EC 339 A01BP wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_dd5096e616b4","kind":"entity","mention_ids":["m_d34e509302ca"],"name":"\"Upper Cib-Carst\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_dd9ea52e14f4","kind":"entity","mention_ids":["m_65e94a1799a7"],"name":"7-5/8\"","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ded46b5870d0","kind":"entity","mention_ids":["m_98e7e922cfd9"],"name":"11590' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_df279cc7336f","kind":"entity","mention_ids":["m_20d278ec4266"],"name":"\"Lentic 1-3\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_df2f1a7f7b2d","kind":"entity","mention_ids":["m_b88ae2d6388c"],"name":"\"Ang B 7200' Sd.","resolver":"identity"}
+{"aliases":[],"entity_id":"e_df7ea439c90c","kind":"entity","mention_ids":["m_3dca810976ee"],"name":"5\" liner","resolver":"identity"}
+{"aliases":[],"entity_id":"e_dfdda2c81d20","kind":"entity","mention_ids":["m_123a5adb86eb"],"name":"579'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e0e65acbf68f","kind":"entity","mention_ids":["m_82ce1b3b3833"],"name":"6063' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e122faf7bdff","kind":"entity","mention_ids":["m_3f9b3b8b16fd"],"name":"9950' MD / TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e2acda654b8a","kind":"entity","mention_ids":["m_bdf93c72eb3c"],"name":"200'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e35250a498bc","kind":"entity","mention_ids":["m_a963d46752be"],"name":"13096' MD / 11590' TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e375e1dd8030","kind":"entity","mention_ids":["m_40887d23224e","m_44703df8f715","m_9d09b4df89b7"],"name":"TA'd","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e3841d4b7c1b","kind":"entity","mention_ids":["m_5bca3cbe5145"],"name":"11-3/4\" casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e4fcf99d7f32","kind":"entity","mention_ids":["m_101995c0d6dc"],"name":"95'BML","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e55aa594fc1d","kind":"literal","mention_ids":["m_5abfec96e395"],"name":"May 05, 2008","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e58c6fe3bdde","kind":"entity","mention_ids":["m_609090a0cd58"],"name":"ETOC","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e617e82d0187","kind":"entity","mention_ids":["m_10fab166dd93"],"name":"Casing stubs","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e720b43008a3","kind":"entity","mention_ids":["m_8701ed7a1457"],"name":"inflatable cmt retainer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_e8ee69d4610b","kind":"entity","mention_ids":["m_34070774648e"],"name":"14,790' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_eaf181105e12","kind":"entity","mention_ids":["m_6905cb818a77"],"name":"15988' - 16028' & 16036' - 16046' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_eb4cfd950eac","kind":"entity","mention_ids":["m_766a5fc87126"],"name":"10517'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ebc60dd3d52d","kind":"entity","mention_ids":["m_1237d0a2dd36"],"name":"2990'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ec1c34846306","kind":"entity","mention_ids":["m_79ccf222bdca"],"name":"\"Plan 5 Lower\" sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ed7b8443cec1","kind":"entity","mention_ids":["m_dc212d7681b0"],"name":"26,192'MD/ 25,590'TVD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ee3351051e8b","kind":"entity","mention_ids":["m_d0b128575a3c"],"name":"16\" drive pipe","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ee871afede71","kind":"entity","mention_ids":["m_88c674b0baea"],"name":"12825'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_eee0fe7aa710","kind":"entity","mention_ids":["m_89857d6b3e33"],"name":"\"Tex X-2\" Sand","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ef0c26f989fc","kind":"entity","mention_ids":["m_5a747f706b2d"],"name":"EI 28 Well #006","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ef150cb9513e","kind":"entity","mention_ids":["m_3432f6f755c3"],"name":"packer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ef57d9a20312","kind":"entity","mention_ids":["m_9a8f1d5ef767"],"name":"McMoRan","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f051053daea8","kind":"entity","mention_ids":["m_5c3d0d6ffa7e"],"name":"70' of cement on top of the plug, w/ ETOC at 11,546' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f0b18950a5ee","kind":"entity","mention_ids":["m_2e59a0f4d511"],"name":"7994'-8007'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f1e858641c31","kind":"entity","mention_ids":["m_a715cbcef136"],"name":"expandable liners","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f2422f3d2add","kind":"entity","mention_ids":["m_412ef8ec8318"],"name":"8511' - 8527'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f35b07f8b26c","kind":"entity","mention_ids":["m_22128f5c1ca6"],"name":"the same","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f36e241d8af9","kind":"entity","mention_ids":["m_b152d26e1167"],"name":"SS 118, B001 wellbore","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f392785ac7b5","kind":"entity","mention_ids":["m_066e79522d06"],"name":"GC 826-10 ST02BP00","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f4bca25b939e","kind":"entity","mention_ids":["m_1b83a3f716f1"],"name":"10699'","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f56e6e2369b7","kind":"entity","mention_ids":["m_b168a008996f"],"name":"12.4 ppg SBM","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f66b32e54dbb","kind":"entity","mention_ids":["m_793c793f3b88"],"name":"abandonment plug","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f6831ae196c2","kind":"entity","mention_ids":["m_c83d9f91c6ff"],"name":"EC 316 #2ST","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f7114e6e510a","kind":"entity","mention_ids":["m_28f5ebc3f229"],"name":"15324' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f74aeb39cb0d","kind":"entity","mention_ids":["m_362edb8f2fd3"],"name":"production packer","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f7d2bc6b18ec","kind":"entity","mention_ids":["m_5a8f4c9d0cdb"],"name":"7980'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f7ee47320679","kind":"entity","mention_ids":["m_4ce6c2a7fb70"],"name":"MODU, Diamond Ocean King","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f81a34e1d785","kind":"entity","mention_ids":["m_cb5d40d32569"],"name":"EZSV","resolver":"identity"}
+{"aliases":[],"entity_id":"e_f88221e3e598","kind":"entity","mention_ids":["m_f56a846f31f9"],"name":"8370' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fa7cd86533c7","kind":"entity","mention_ids":["m_e1122a74e5ca"],"name":"12.3 ppg SBM","resolver":"identity"}
+{"aliases":[],"entity_id":"e_faa1bde0439a","kind":"entity","mention_ids":["m_5f9e893b59dc"],"name":"MC 109 A15ST1","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fbb4d965aae8","kind":"entity","mention_ids":["m_9dca8237eee5"],"name":"9,990' MD - 10,000' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fcb6bab2c7c1","kind":"entity","mention_ids":["m_3bc2e6d09560"],"name":"10665' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fd1db0e9bc59","kind":"entity","mention_ids":["m_205338e0d055"],"name":"12,700' MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fd957b372052","kind":"entity","mention_ids":["m_223164393591"],"name":"13 3/8\" casing","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fe127a6ef3a4","kind":"entity","mention_ids":["m_cca46f63a736"],"name":"11,518'-11530'MD","resolver":"identity"}
+{"aliases":[],"entity_id":"e_fefdc6eadff3","kind":"literal","mention_ids":["m_f8cc7877c1c3"],"name":"16.2 ppg","resolver":"identity"}
+{"aliases":[],"entity_id":"e_ff8049bc14c8","kind":"entity","mention_ids":["m_89d388d3f93f"],"name":"Marg A 4a Sand","resolver":"identity"}

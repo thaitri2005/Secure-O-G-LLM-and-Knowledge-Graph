@@ -1,0 +1,13 @@
+version: 1
+relations:
+  born_in:       {definition: "The subject person was born in the object location."}
+  birthplace_of: {definition: "The subject location is the place where the object person was born.", inverse_of: born_in}
+  works_at:
+    definition: "The subject person is employed by or works at the object organization."
+    temporal:
+      start: [joined, started working at, hired by, began working at]
+      end:   [left, resigned from, quit, stopped working at]
+  works_on:   {definition: "The subject organization or person does research or work on the object topic."}
+  developed:  {definition: "The subject entity created or developed the object product or system."}
+  operates:   {definition: "The subject organization runs or operates the object facility."}
+  part_of:    {definition: "The subject organization is a division or part of the object organization."}

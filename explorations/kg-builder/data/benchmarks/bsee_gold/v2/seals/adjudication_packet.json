@@ -1,0 +1,24 @@
+{
+ "created_at": "2026-10-28T11:39:34.982276+00:00",
+ "dependencies": {
+  "seals/annotator_a.json": "9bc7fd499b1b39fb3244322889998b0362f3f93bc6fb8fcc2157b99975efe1d7",
+  "seals/annotator_b.json": "03cd84b8777a1f618b7b4de95abe449fcfaa2044a3c3aa8bdde5c843f3e352a1"
+ },
+ "files": {
+  "adjudication/key.json": "d9a21af69f478c220df8e4eff5120ba2d33723343893c51d119e56e435f0c38c",
+  "adjudication/packet_01.jsonl": "647b9e86328ca9499886faedf07b42bcc98fbcc99c588f234fda28ea5d3ee6a9",
+  "adjudication/packet_02.jsonl": "680a9809268cffbf4c455577e3b2409df2028229924b5c439d144b3bca0268b6",
+  "adjudication/packet_03.jsonl": "7b71249cb41434b6b9477c7c5a653fbc72b718488ef5a1a8e16cddc3bf1201c6",
+  "adjudication/packet_04.jsonl": "469914c9a2f890dd1698771c35896a88e64e4b4bc0af50cf9bfba494dfd4388f",
+  "adjudication/packet_05.jsonl": "6a92bf71bbc855b27ae498d8b3189908609c6c0b08f4cbec895f4e9f5a2e352b",
+  "adjudication/packet_06.jsonl": "d6cb8270c8c940edea05471a1113ae5b14b419a4a479f16374438b6db9fbdc0d",
+  "adjudication/packet_07.jsonl": "5bef0451f49457afc7d8e56104c74637822dc7369df284544cc35549caf921da",
+  "adjudication/packet_08.jsonl": "9ff38f070edf4c53f8817b8f154c7026253ed6afaaff266b50c6bc62b5accc83",
+  "adjudication/packet_09.jsonl": "3b4d1c213629e83b335310d7e2aa7e55efe61d4d5d4dc02d73617d6a10c35c7e",
+  "adjudication/packet_10.jsonl": "f619bdee46a43e608291e815119ee2b575c0d70b299afef5ce5349904457b5b5",
+  "adjudication/packet_11.jsonl": "71eaba4a2fe357d29b47737f7b3985fee74d475cb0ff2390039481ac75491ddc"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "62bc4f5cf1538353df1a2e00899313c36520e3db21845bec35261dc83bed721e",
+ "role": "adjudication_packet"
+}

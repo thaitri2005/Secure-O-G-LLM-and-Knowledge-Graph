@@ -1,0 +1,109 @@
+{
+ "config": {
+  "ablation": "A4",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "example",
+   "max_minutes": 180,
+   "schema_path": "contracts\\ontology\\bsee.yaml"
+  },
+  "chunk": {
+   "max_chars": 2000
+  },
+  "corpus": {
+   "format": "jsonl",
+   "limit": null,
+   "path": "data/benchmarks/bsee_text/v1/dev/dev.jsonl"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": null
+  },
+  "extract": {
+   "backend": "kggen",
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "ground": {
+   "mode": "window"
+  },
+  "induce": {
+   "max_concepts": 5,
+   "max_entities": 50,
+   "max_relations": 100,
+   "max_tokens": 64,
+   "min_support": 1
+  },
+  "judge": {
+   "max_tokens": 32,
+   "scope": "risky",
+   "version": "v2"
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "number_guard": true,
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "bsee_text_dev_v1_base"
+  },
+  "validate": {
+   "min_grounding": "partial",
+   "mode": "soft"
+  }
+ },
+ "config_hash": "993ff4900a74de76c30ead83929851052f39a1ad66dcb464a3e96067c06ad9c2",
+ "corpus_hash": "990e7a669aa142485fff19b1ead6d1e11fb175709be3be465448d80056f710bb",
+ "exit_code": 0,
+ "finished_at": "2026-10-26T07:03:22.251816+00:00",
+ "flags": {
+  "canon": true,
+  "judge": false,
+  "resolve": true,
+  "temporal": true,
+  "validate": true
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 2428.235,
+  "export": 0.031,
+  "extract": 0.484,
+  "ingest": 0.0,
+  "resolve": 1.609,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.016
+ },
+ "started_at": "2026-10-26T06:22:51.857651+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

@@ -1,0 +1,233 @@
+{
+  "entities": [
+    "priests",
+    "Book of the Dead",
+    "Egyptians",
+    "internal organs",
+    "mummification",
+    "afterlife",
+    "deceased",
+    "pharaohs",
+    "ordinary Egyptians",
+    "embalmers",
+    "religious texts",
+    "linen bandages",
+    "Ancient Egypt",
+    "common people",
+    "funeral procession",
+    "Giza",
+    "burial practices",
+    "amulets",
+    "pyramids",
+    "professional mourners",
+    "salt",
+    "tombs",
+    "soul",
+    "papyrus scrolls"
+  ],
+  "relations": [
+    [
+      "pyramids",
+      "are located at",
+      "Giza"
+    ],
+    [
+      "burial practices",
+      "ensure",
+      "safe passage into the afterlife"
+    ],
+    [
+      "Book of the Dead",
+      "helps navigate",
+      "dangers of the afterlife"
+    ],
+    [
+      "common people",
+      "are buried with",
+      "food"
+    ],
+    [
+      "tombs",
+      "house",
+      "important individuals"
+    ],
+    [
+      "ordinary Egyptians",
+      "are buried with",
+      "personal belongings"
+    ],
+    [
+      "burial practices",
+      "reflect",
+      "beliefs about the afterlife"
+    ],
+    [
+      "items in tombs",
+      "provide",
+      "sustenance to the deceased"
+    ],
+    [
+      "pyramids",
+      "serve as",
+      "gateway to the afterlife"
+    ],
+    [
+      "mummification",
+      "prevents",
+      "decay of the body"
+    ],
+    [
+      "mummification",
+      "wraps body in",
+      "linen bandages"
+    ],
+    [
+      "amulets",
+      "guide",
+      "deceased on journey to afterlife"
+    ],
+    [
+      "family of deceased",
+      "hire",
+      "professional mourners"
+    ],
+    [
+      "items in tombs",
+      "provide",
+      "comfort to the deceased"
+    ],
+    [
+      "Book of the Dead",
+      "inscribed on",
+      "papyrus scrolls"
+    ],
+    [
+      "professional mourners",
+      "lead",
+      "funeral procession"
+    ],
+    [
+      "deceased",
+      "are buried with",
+      "clothing"
+    ],
+    [
+      "mummification",
+      "uses",
+      "salt"
+    ],
+    [
+      "mummification",
+      "involves preserving",
+      "body of the deceased"
+    ],
+    [
+      "common people",
+      "are buried with",
+      "tools"
+    ],
+    [
+      "Ancient Egypt",
+      "is known for",
+      "burial practices"
+    ],
+    [
+      "burial practices",
+      "reflect",
+      "reverence for the deceased"
+    ],
+    [
+      "burial practices",
+      "are part of",
+      "Egyptian culture"
+    ],
+    [
+      "deceased",
+      "are buried with",
+      "food"
+    ],
+    [
+      "pyramids",
+      "protect",
+      "possessions of the deceased"
+    ],
+    [
+      "mummification",
+      "involves removing",
+      "internal organs"
+    ],
+    [
+      "deceased",
+      "are buried with",
+      "jewelry"
+    ],
+    [
+      "religious texts",
+      "guide",
+      "deceased on journey to afterlife"
+    ],
+    [
+      "soul",
+      "needs to be reunited with",
+      "body of the deceased"
+    ],
+    [
+      "burial process",
+      "requires expertise of",
+      "priests"
+    ],
+    [
+      "Book of the Dead",
+      "is a religious text found in",
+      "tombs"
+    ],
+    [
+      "tombs",
+      "house",
+      "pharaohs"
+    ],
+    [
+      "burial process",
+      "requires expertise of",
+      "embalmers"
+    ],
+    [
+      "deceased",
+      "are buried with",
+      "personal belongings"
+    ],
+    [
+      "pyramids",
+      "protect",
+      "body of the deceased"
+    ]
+  ],
+  "edges": [
+    "are located at",
+    "helps navigate",
+    "involves removing",
+    "are part of",
+    "is known for",
+    "lead",
+    "hire",
+    "reflect",
+    "wraps body in",
+    "provide",
+    "uses",
+    "ensure",
+    "is a religious text found in",
+    "prevents",
+    "inscribed on",
+    "house",
+    "protect",
+    "guide",
+    "involves preserving",
+    "serve as",
+    "are buried with",
+    "needs to be reunited with",
+    "requires expertise of"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

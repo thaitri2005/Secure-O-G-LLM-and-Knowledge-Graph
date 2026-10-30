@@ -1,0 +1,5291 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5"
+ ],
+ "mock": false,
+ "name": "window_grounding_ablation",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/eval/showcase.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 14,
+      "entities_literal": 0,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 6,
+       "cache_misses": 0,
+       "calls": 6,
+       "completion_tokens": 351,
+       "finish_length": 0,
+       "prompt_tokens": 2273,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.015,
+       "export": 0.0,
+       "extract": 7.312,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 10,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 14,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A0",
+     "showcase": {
+      "G1": "FAIL",
+      "G2": "FAIL",
+      "G3": "FAIL",
+      "G4": {
+       "q1": "FAIL",
+       "q2": "FAIL",
+       "q3": "FAIL",
+       "q4": "FAIL"
+      },
+      "G5": "PASS",
+      "G6": "PASS",
+      "gold_recall": 0.0
+     },
+     "webnlg": null
+    },
+    "A1": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 12,
+      "entities_literal": 0,
+      "er_reduction": 0.1428571428571429,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 6,
+       "cache_misses": 0,
+       "calls": 6,
+       "completion_tokens": 351,
+       "finish_length": 0,
+       "prompt_tokens": 2273,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.016,
+       "export": 0.016,
+       "extract": 0.078,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 10,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 14,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A1",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "FAIL",
+      "G3": "FAIL",
+      "G4": {
+       "q1": "FAIL",
+       "q2": "FAIL",
+       "q3": "FAIL",
+       "q4": "FAIL"
+      },
+      "G5": "PASS",
+      "G6": "PASS",
+      "gold_recall": 0.0
+     },
+     "webnlg": null
+    },
+    "A2": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 8,
+       "self_canon": 0,
+       "sent": 10,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 17,
+       "cache_misses": 0,
+       "calls": 17,
+       "completion_tokens": 567,
+       "finish_length": 0,
+       "prompt_tokens": 8462,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 5.062,
+       "export": 0.0,
+       "extract": 0.094,
+       "ingest": 0.0,
+       "resolve": 0.094,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 7,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A2",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "FAIL",
+      "G4": {
+       "q1": "PASS",
+       "q2": "FAIL",
+       "q3": "FAIL",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "G6": "FAIL",
+      "gold_recall": 0.5
+     },
+     "webnlg": null
+    },
+    "A3": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 5,
+       "self_canon": 0,
+       "sent": 7,
+       "trigger": 3,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 13,
+       "cache_misses": 0,
+       "calls": 13,
+       "completion_tokens": 515,
+       "finish_length": 0,
+       "prompt_tokens": 6338,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 4.063,
+       "export": 0.0,
+       "extract": 0.062,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 7,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 2
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A3",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": {
+       "q1": "PASS",
+       "q2": "PASS",
+       "q3": "PASS",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "G6": "FAIL",
+      "gold_recall": 1.0
+     },
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 5,
+       "self_canon": 0,
+       "sent": 7,
+       "trigger": 3,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 13,
+       "cache_misses": 0,
+       "calls": 13,
+       "completion_tokens": 515,
+       "finish_length": 0,
+       "prompt_tokens": 6338,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 4.062,
+       "export": 0.0,
+       "extract": 0.109,
+       "ingest": 0.0,
+       "resolve": 0.079,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.015
+      },
+      "statements_accepted": 7,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 2
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A4",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": {
+       "q1": "PASS",
+       "q2": "PASS",
+       "q3": "PASS",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "G6": "FAIL",
+      "gold_recall": 1.0
+     },
+     "webnlg": null
+    },
+    "A5": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 5,
+       "self_canon": 0,
+       "sent": 7,
+       "trigger": 3,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 10,
+       "none": 0,
+       "overlap": 0,
+       "window": 0
+      },
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 13,
+       "cache_misses": 0,
+       "calls": 17,
+       "completion_tokens": 523,
+       "finish_length": 0,
+       "prompt_tokens": 6671,
+       "seconds": 17.8
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 4.047,
+       "export": 0.016,
+       "extract": 0.313,
+       "ingest": 0.0,
+       "judge": 8.984,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 7,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 2
+     },
+     "run_dir": "results/ablation_window_grounding/showcase/A5",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": {
+       "q1": "PASS",
+       "q2": "PASS",
+       "q3": "PASS",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "G6": "FAIL",
+      "gold_recall": 1.0
+     },
+     "webnlg": null
+    }
+   },
+   "name": "showcase"
+  },
+  {
+   "baseline": {
+    "label": "B-EDC: EDC alone, same 10 docs (minitest)",
+    "webnlg": {
+     "ent_type": {
+      "F1": 0.8849206349206349,
+      "P": 0.878095238095238,
+      "R": 0.8952380952380953
+     },
+     "exact": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     },
+     "full_triple": {
+      "F1": 0.46511627906976744,
+      "P": 0.46511627906976744,
+      "R": 0.46511627906976744
+     },
+     "partial": {
+      "F1": 0.8638888888888889,
+      "P": 0.8580952380952381,
+      "R": 0.8726190476190476
+     },
+     "per_tag": {
+      "objects": {
+       "exact": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       },
+       "strict": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       }
+      },
+      "predicates": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      },
+      "subjects": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      }
+     },
+     "strict": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     }
+    }
+   },
+   "config": "configs/eval/webnlg10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 10,
+       "cache_misses": 0,
+       "calls": 10,
+       "completion_tokens": 695,
+       "finish_length": 0,
+       "prompt_tokens": 8075,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.031,
+       "export": 0.016,
+       "extract": 4.047,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A0",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.803968253968254,
+       "P": 0.7942857142857143,
+       "R": 0.819047619047619
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      },
+      "full_triple": {
+       "F1": 0.26,
+       "P": 0.26,
+       "R": 0.26
+      },
+      "partial": {
+       "F1": 0.7698412698412698,
+       "P": 0.7619047619047619,
+       "R": 0.7821428571428571
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        },
+        "strict": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      }
+     }
+    },
+    "A1": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 10,
+       "cache_misses": 0,
+       "calls": 10,
+       "completion_tokens": 695,
+       "finish_length": 0,
+       "prompt_tokens": 8075,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.047,
+       "export": 0.015,
+       "extract": 4.063,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A1",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.803968253968254,
+       "P": 0.7942857142857143,
+       "R": 0.819047619047619
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      },
+      "full_triple": {
+       "F1": 0.26,
+       "P": 0.26,
+       "R": 0.26
+      },
+      "partial": {
+       "F1": 0.7698412698412698,
+       "P": 0.7619047619047619,
+       "R": 0.7821428571428571
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        },
+        "strict": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      }
+     }
+    },
+    "A2": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 33,
+       "self_canon": 0,
+       "sent": 33,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 31,
+       "cache_misses": 0,
+       "calls": 31,
+       "completion_tokens": 1300,
+       "finish_length": 0,
+       "prompt_tokens": 25704,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.063,
+       "export": 0.015,
+       "extract": 4.047,
+       "ingest": 0.0,
+       "resolve": 0.062,
+       "temporal.tag": 0.0,
+       "validate": 0.016,
+       "viz": 0.0
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A2",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8849206349206349,
+       "P": 0.878095238095238,
+       "R": 0.8952380952380953
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      },
+      "full_triple": {
+       "F1": 0.4318181818181818,
+       "P": 0.4318181818181818,
+       "R": 0.4318181818181818
+      },
+      "partial": {
+       "F1": 0.8638888888888889,
+       "P": 0.8580952380952381,
+       "R": 0.8726190476190476
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      }
+     }
+    },
+    "A3": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 33,
+       "self_canon": 0,
+       "sent": 33,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 31,
+       "cache_misses": 0,
+       "calls": 31,
+       "completion_tokens": 1300,
+       "finish_length": 0,
+       "prompt_tokens": 25704,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.062,
+       "export": 0.016,
+       "extract": 4.047,
+       "ingest": 0.0,
+       "resolve": 0.063,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A3",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8849206349206349,
+       "P": 0.878095238095238,
+       "R": 0.8952380952380953
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      },
+      "full_triple": {
+       "F1": 0.4318181818181818,
+       "P": 0.4318181818181818,
+       "R": 0.4318181818181818
+      },
+      "partial": {
+       "F1": 0.8638888888888889,
+       "P": 0.8580952380952381,
+       "R": 0.8726190476190476
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      }
+     }
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 33,
+       "self_canon": 0,
+       "sent": 33,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 31,
+       "cache_misses": 0,
+       "calls": 31,
+       "completion_tokens": 1300,
+       "finish_length": 0,
+       "prompt_tokens": 25704,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.015,
+       "canon": 6.047,
+       "export": 0.0,
+       "extract": 4.047,
+       "ingest": 0.0,
+       "resolve": 0.063,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A4",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8849206349206349,
+       "P": 0.878095238095238,
+       "R": 0.8952380952380953
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      },
+      "full_triple": {
+       "F1": 0.4318181818181818,
+       "P": 0.4318181818181818,
+       "R": 0.4318181818181818
+      },
+      "partial": {
+       "F1": 0.8638888888888889,
+       "P": 0.8580952380952381,
+       "R": 0.8726190476190476
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      }
+     }
+    },
+    "A5": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 33,
+       "self_canon": 0,
+       "sent": 33,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "judge_no": 1
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 27,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 27,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 31,
+       "cache_misses": 0,
+       "calls": 44,
+       "completion_tokens": 1326,
+       "finish_length": 0,
+       "prompt_tokens": 27080,
+       "seconds": 77.0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.062,
+       "export": 0.015,
+       "extract": 4.047,
+       "ingest": 0.0,
+       "judge": 39.938,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 1,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10/A5",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8849206349206349,
+       "P": 0.878095238095238,
+       "R": 0.8952380952380953
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      },
+      "full_triple": {
+       "F1": 0.4318181818181818,
+       "P": 0.4318181818181818,
+       "R": 0.4318181818181818
+      },
+      "partial": {
+       "F1": 0.8638888888888889,
+       "P": 0.8580952380952381,
+       "R": 0.8726190476190476
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.8428571428571429,
+       "P": 0.8380952380952381,
+       "R": 0.85
+      }
+     }
+    }
+   },
+   "name": "webnlg10"
+  },
+  {
+   "baseline": null,
+   "config": "configs/eval/webnlg10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 28,
+       "none": 0,
+       "overlap": 0,
+       "window": 3
+      },
+      "grounding": {
+       "exact": 28,
+       "none": 0,
+       "partial": 3
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 20,
+       "cache_misses": 0,
+       "calls": 20,
+       "completion_tokens": 1452,
+       "finish_length": 0,
+       "prompt_tokens": 7850,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.031,
+       "export": 0.015,
+       "extract": 0.172,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 29,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_kggen/A0",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.5411840411840412,
+       "P": 0.5355855855855856,
+       "R": 0.5495495495495495
+      },
+      "evaluator_seconds": 1.1,
+      "exact": {
+       "F1": 0.4546332046332046,
+       "P": 0.45135135135135135,
+       "R": 0.45945945945945943
+      },
+      "full_triple": {
+       "F1": 0.0,
+       "P": 0.0,
+       "R": 0.0
+      },
+      "partial": {
+       "F1": 0.506917631917632,
+       "P": 0.5024774774774775,
+       "R": 0.5135135135135135
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        },
+        "strict": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7567567567567568,
+         "P": 0.7567567567567568,
+         "R": 0.7567567567567568
+        },
+        "strict": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.4366151866151866,
+       "P": 0.4333333333333333,
+       "R": 0.44144144144144143
+      }
+     }
+    },
+    "A1": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 28,
+       "none": 0,
+       "overlap": 0,
+       "window": 3
+      },
+      "grounding": {
+       "exact": 28,
+       "none": 0,
+       "partial": 3
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 20,
+       "cache_misses": 0,
+       "calls": 20,
+       "completion_tokens": 1452,
+       "finish_length": 0,
+       "prompt_tokens": 7850,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.032,
+       "export": 0.0,
+       "extract": 0.171,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.015
+      },
+      "statements_accepted": 29,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_kggen/A1",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.5411840411840412,
+       "P": 0.5355855855855856,
+       "R": 0.5495495495495495
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.4546332046332046,
+       "P": 0.45135135135135135,
+       "R": 0.45945945945945943
+      },
+      "full_triple": {
+       "F1": 0.0,
+       "P": 0.0,
+       "R": 0.0
+      },
+      "partial": {
+       "F1": 0.506917631917632,
+       "P": 0.5024774774774775,
+       "R": 0.5135135135135135
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        },
+        "strict": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7567567567567568,
+         "P": 0.7567567567567568,
+         "R": 0.7567567567567568
+        },
+        "strict": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.4366151866151866,
+       "P": 0.4333333333333333,
+       "R": 0.44144144144144143
+      }
+     }
+    },
+    "A2": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 30,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 28,
+       "none": 0,
+       "overlap": 0,
+       "window": 3
+      },
+      "grounding": {
+       "exact": 28,
+       "none": 0,
+       "partial": 3
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 61,
+       "cache_misses": 0,
+       "calls": 61,
+       "completion_tokens": 2100,
+       "finish_length": 0,
+       "prompt_tokens": 30613,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.062,
+       "export": 0.016,
+       "extract": 0.125,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 28,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_kggen/A2",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.6490990990990991,
+       "P": 0.6404118404118404,
+       "R": 0.6666666666666666
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.6189189189189189,
+       "P": 0.6131274131274131,
+       "R": 0.6306306306306306
+      },
+      "full_triple": {
+       "F1": 0.25,
+       "P": 0.25,
+       "R": 0.25
+      },
+      "partial": {
+       "F1": 0.6430180180180181,
+       "P": 0.6357786357786358,
+       "R": 0.6576576576576576
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        },
+        "strict": {
+         "F1": 0.5405405405405406,
+         "P": 0.5405405405405406,
+         "R": 0.5405405405405406
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        },
+        "strict": {
+         "F1": 0.7027027027027027,
+         "P": 0.7027027027027027,
+         "R": 0.7027027027027027
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.6009009009009009,
+       "P": 0.5951093951093951,
+       "R": 0.6126126126126126
+      }
+     }
+    },
+    "A3": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 30,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 28,
+       "none": 0,
+       "overlap": 0,
+       "window": 3
+      },
+      "grounding": {
+       "exact": 28,
+       "none": 0,
+       "partial": 3
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 61,
+       "cache_misses": 0,
+       "calls": 61,
+       "completion_tokens": 2100,
+       "finish_length": 0,
+       "prompt_tokens": 30613,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.047,
+       "export": 0.0,
+       "extract": 0.172,
+       "ingest": 0.0,
+       "resolve": 0.063,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.031
+      },
+      "statements_accepted": 28,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_kggen/A3",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.6490990990990991,
+       "P": 0.6404118404118404,
+       "R": 0.6666666666666666
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.6189189189189189,
+       "P": 0.6131274131274131,
+       "R": 0.6306306306306306
+      },
+      "full_triple": {
+       "F1": 0.25,
+       "P": 0.25,
+       "R": 0.25
+      },
+      "partial": {
+       "F1": 0.6430180180180181,
+       "P": 0.6357786357786358,
+       "R": 0.6576576576576576
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        },
+        "strict": {
+         "F1": 0.5405405405405406,
+         "P": 0.5405405405405406,
+         "R": 0.5405405405405406
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        },
+        "strict": {
+         "F1": 0.7027027027027027,
+         "P": 0.7027027027027027,
+         "R": 0.7027027027027027
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.6009009009009009,
+       "P": 0.5951093951093951,
+       "R": 0.6126126126126126
+      }
+     }
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 30,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 28,
+       "none": 0,
+       "overlap": 0,
+       "window": 3
+      },
+      "grounding": {
+       "exact": 28,
+       "none": 0,
+       "partial": 3
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 61,
+       "cache_misses": 0,
+       "calls": 61,
+       "completion_tokens": 2100,
+       "finish_length": 0,
+       "prompt_tokens": 30613,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.063,
+       "export": 0.032,
+       "extract": 0.171,
+       "ingest": 0.0,
+       "resolve": 0.062,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.015
+      },
+      "statements_accepted": 28,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_kggen/A4",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.6490990990990991,
+       "P": 0.6404118404118404,
+       "R": 0.6666666666666666
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.6189189189189189,
+       "P": 0.6131274131274131,
+       "R": 0.6306306306306306
+      },
+      "full_triple": {
+       "F1": 0.25,
+       "P": 0.25,
+       "R": 0.25
+      },
+      "partial": {
+       "F1": 0.6430180180180181,
+       "P": 0.6357786357786358,
+       "R": 0.6576576576576576
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        },
+        "strict": {
+         "F1": 0.5405405405405406,
+         "P": 0.5405405405405406,
+         "R": 0.5405405405405406
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        },
+        "strict": {
+         "F1": 0.7027027027027027,
+         "P": 0.7027027027027027,
+         "R": 0.7027027027027027
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.6009009009009009,
+       "P": 0.5951093951093951,
+       "R": 0.6126126126126126
+      }
+     }
+    }
+   },
+   "name": "webnlg10_kggen"
+  },
+  {
+   "baseline": null,
+   "config": "configs/eval/webnlg10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "coverage<tau",
+        "score": 0.3181
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "coverage>=tau",
+        "score": 0.443
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "coverage>=tau",
+        "score": 0.3829
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "coverage>=tau",
+        "score": 0.545
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "coverage>=tau",
+        "score": 0.491
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "coverage>=tau",
+        "score": 0.352
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "coverage<tau",
+        "score": 0.3156
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "coverage>=tau",
+        "score": 0.4482
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "coverage>=tau",
+        "score": 0.4011
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "coverage>=tau",
+        "score": 0.4332
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 4,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 25,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 25,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 12,
+       "cache_misses": 0,
+       "calls": 12,
+       "completion_tokens": 818,
+       "finish_length": 0,
+       "prompt_tokens": 8015,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.031,
+       "export": 0.0,
+       "extract": 4.39,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.016,
+       "viz": 0.0
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_auto/A0",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.7182539682539683,
+       "P": 0.7085714285714285,
+       "R": 0.7333333333333333
+      },
+      "evaluator_seconds": 1.0,
+      "exact": {
+       "F1": 0.6309523809523809,
+       "P": 0.6247619047619047,
+       "R": 0.6404761904761904
+      },
+      "full_triple": {
+       "F1": 0.125,
+       "P": 0.125,
+       "R": 0.125
+      },
+      "partial": {
+       "F1": 0.6746031746031745,
+       "P": 0.6666666666666666,
+       "R": 0.6869047619047619
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        },
+        "strict": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.4,
+         "P": 0.4,
+         "R": 0.4
+        },
+        "strict": {
+         "F1": 0.4,
+         "P": 0.4,
+         "R": 0.4
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        },
+        "strict": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.6309523809523809,
+       "P": 0.6247619047619047,
+       "R": 0.6404761904761904
+      }
+     }
+    },
+    "A1": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "coverage<tau",
+        "score": 0.3181
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "coverage>=tau",
+        "score": 0.443
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "coverage>=tau",
+        "score": 0.3829
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "coverage>=tau",
+        "score": 0.545
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "coverage>=tau",
+        "score": 0.491
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "coverage>=tau",
+        "score": 0.352
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "coverage<tau",
+        "score": 0.3156
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "coverage>=tau",
+        "score": 0.4482
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "coverage>=tau",
+        "score": 0.4011
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "coverage>=tau",
+        "score": 0.4332
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 34,
+      "entities_literal": 4,
+      "er_reduction": 0.02857142857142858,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 25,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 25,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 12,
+       "cache_misses": 0,
+       "calls": 12,
+       "completion_tokens": 818,
+       "finish_length": 0,
+       "prompt_tokens": 8015,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.032,
+       "export": 0.016,
+       "extract": 4.313,
+       "ingest": 0.0,
+       "resolve": 0.062,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 31,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_auto/A1",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.7182539682539683,
+       "P": 0.7085714285714285,
+       "R": 0.7333333333333333
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.6309523809523809,
+       "P": 0.6247619047619047,
+       "R": 0.6404761904761904
+      },
+      "full_triple": {
+       "F1": 0.125,
+       "P": 0.125,
+       "R": 0.125
+      },
+      "partial": {
+       "F1": 0.6746031746031745,
+       "P": 0.6666666666666666,
+       "R": 0.6869047619047619
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        },
+        "strict": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.4,
+         "P": 0.4,
+         "R": 0.4
+        },
+        "strict": {
+         "F1": 0.4,
+         "P": 0.4,
+         "R": 0.4
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        },
+        "strict": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.6309523809523809,
+       "P": 0.6247619047619047,
+       "R": 0.6404761904761904
+      }
+     }
+    },
+    "A2": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "coverage<tau",
+        "score": 0.3181
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "coverage>=tau",
+        "score": 0.443
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "coverage>=tau",
+        "score": 0.3829
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "coverage>=tau",
+        "score": 0.545
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "coverage>=tau",
+        "score": 0.491
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "coverage>=tau",
+        "score": 0.352
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "coverage<tau",
+        "score": 0.3156
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "coverage>=tau",
+        "score": 0.4482
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "coverage>=tau",
+        "score": 0.4011
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "coverage>=tau",
+        "score": 0.4332
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 31,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 34,
+      "entities_literal": 4,
+      "er_reduction": 0.02857142857142858,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 25,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 25,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 38,
+       "cache_misses": 0,
+       "calls": 38,
+       "completion_tokens": 1405,
+       "finish_length": 0,
+       "prompt_tokens": 26862,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.063,
+       "export": 0.015,
+       "extract": 4.328,
+       "ingest": 0.0,
+       "resolve": 0.078,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 29,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_auto/A2",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8182539682539682,
+       "P": 0.8114285714285714,
+       "R": 0.8285714285714285
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      },
+      "full_triple": {
+       "F1": 0.35555555555555557,
+       "P": 0.35555555555555557,
+       "R": 0.35555555555555557
+      },
+      "partial": {
+       "F1": 0.7972222222222222,
+       "P": 0.7914285714285714,
+       "R": 0.805952380952381
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        },
+        "strict": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        },
+        "strict": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        },
+        "strict": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      }
+     }
+    },
+    "A3": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "coverage<tau",
+        "score": 0.3181
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "coverage>=tau",
+        "score": 0.443
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "coverage>=tau",
+        "score": 0.3829
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "coverage>=tau",
+        "score": 0.545
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "coverage>=tau",
+        "score": 0.491
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "coverage>=tau",
+        "score": 0.352
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "coverage<tau",
+        "score": 0.3156
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "coverage>=tau",
+        "score": 0.4482
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "coverage>=tau",
+        "score": 0.4011
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "coverage>=tau",
+        "score": 0.4332
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 31,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 34,
+      "entities_literal": 4,
+      "er_reduction": 0.02857142857142858,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 25,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 25,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 38,
+       "cache_misses": 0,
+       "calls": 38,
+       "completion_tokens": 1405,
+       "finish_length": 0,
+       "prompt_tokens": 26862,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.063,
+       "export": 0.015,
+       "extract": 4.359,
+       "ingest": 0.0,
+       "resolve": 0.063,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 29,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_auto/A3",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8182539682539682,
+       "P": 0.8114285714285714,
+       "R": 0.8285714285714285
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      },
+      "full_triple": {
+       "F1": 0.35555555555555557,
+       "P": 0.35555555555555557,
+       "R": 0.35555555555555557
+      },
+      "partial": {
+       "F1": 0.7972222222222222,
+       "P": 0.7914285714285714,
+       "R": 0.805952380952381
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        },
+        "strict": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        },
+        "strict": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        },
+        "strict": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      }
+     }
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0000",
+        "reason": "coverage<tau",
+        "score": 0.3181
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "coverage>=tau",
+        "score": 0.443
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "coverage>=tau",
+        "score": 0.3829
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "coverage>=tau",
+        "score": 0.545
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "coverage>=tau",
+        "score": 0.491
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "coverage>=tau",
+        "score": 0.352
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "webnlg_0006",
+        "reason": "coverage<tau",
+        "score": 0.3156
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "coverage>=tau",
+        "score": 0.4482
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "coverage>=tau",
+        "score": 0.4011
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "coverage>=tau",
+        "score": 0.4332
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 31,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 34,
+      "entities_literal": 4,
+      "er_reduction": 0.02857142857142858,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 0,
+       "exact": 25,
+       "none": 0,
+       "overlap": 0,
+       "window": 6
+      },
+      "grounding": {
+       "exact": 25,
+       "none": 0,
+       "partial": 6
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 38,
+       "cache_misses": 0,
+       "calls": 38,
+       "completion_tokens": 1405,
+       "finish_length": 0,
+       "prompt_tokens": 26862,
+       "seconds": 0
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 6.062,
+       "export": 0.0,
+       "extract": 4.313,
+       "ingest": 0.0,
+       "resolve": 0.063,
+       "temporal.tag": 0.0,
+       "validate": 0.015,
+       "viz": 0.016
+      },
+      "statements_accepted": 29,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/webnlg10_auto/A4",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8182539682539682,
+       "P": 0.8114285714285714,
+       "R": 0.8285714285714285
+      },
+      "evaluator_seconds": 0.9,
+      "exact": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      },
+      "full_triple": {
+       "F1": 0.35555555555555557,
+       "P": 0.35555555555555557,
+       "R": 0.35555555555555557
+      },
+      "partial": {
+       "F1": 0.7972222222222222,
+       "P": 0.7914285714285714,
+       "R": 0.805952380952381
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        },
+        "strict": {
+         "F1": 0.6685714285714286,
+         "P": 0.6666666666666666,
+         "R": 0.6714285714285714
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        },
+        "strict": {
+         "F1": 0.8285714285714286,
+         "P": 0.8285714285714286,
+         "R": 0.8285714285714286
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        },
+        "strict": {
+         "F1": 0.8571428571428571,
+         "P": 0.8571428571428571,
+         "R": 0.8571428571428571
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7761904761904762,
+       "P": 0.7714285714285715,
+       "R": 0.7833333333333333
+      }
+     }
+    }
+   },
+   "name": "webnlg10_auto"
+  },
+  {
+   "baseline": null,
+   "config": "configs/eval/2wiki10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 256,
+      "entities_literal": 25,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 53,
+       "cache_misses": 0,
+       "calls": 53,
+       "completion_tokens": 12296,
+       "finish_length": 0,
+       "prompt_tokens": 27920,
+       "seconds": 0
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.047,
+       "export": 0.031,
+       "extract": 0.516,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.11
+      },
+      "statements_accepted": 247,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A0",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A1": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 254,
+      "entities_literal": 25,
+      "er_reduction": 0.0078125,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 53,
+       "cache_misses": 0,
+       "calls": 53,
+       "completion_tokens": 12296,
+       "finish_length": 0,
+       "prompt_tokens": 27920,
+       "seconds": 0
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.063,
+       "export": 0.032,
+       "extract": 0.547,
+       "ingest": 0.0,
+       "resolve": 0.172,
+       "temporal.tag": 0.0,
+       "validate": 0.015,
+       "viz": 0.109
+      },
+      "statements_accepted": 246,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A1",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A2": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 247,
+       "sent": 247,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 254,
+      "entities_literal": 25,
+      "er_reduction": 0.0078125,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 252,
+       "cache_misses": 0,
+       "calls": 252,
+       "completion_tokens": 16823,
+       "finish_length": 4,
+       "prompt_tokens": 149953,
+       "seconds": 0
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.016,
+       "canon": 9.047,
+       "export": 0.031,
+       "extract": 0.484,
+       "ingest": 0.0,
+       "resolve": 0.156,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.109
+      },
+      "statements_accepted": 246,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A2",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A3": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 247,
+       "sent": 247,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 254,
+      "entities_literal": 25,
+      "er_reduction": 0.0078125,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 252,
+       "cache_misses": 0,
+       "calls": 252,
+       "completion_tokens": 16823,
+       "finish_length": 4,
+       "prompt_tokens": 149953,
+       "seconds": 0
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 8.046,
+       "export": 0.313,
+       "extract": 0.5,
+       "ingest": 0.0,
+       "resolve": 0.172,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.125
+      },
+      "statements_accepted": 246,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A3",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 247,
+       "sent": 247,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 254,
+      "entities_literal": 25,
+      "er_reduction": 0.0078125,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "weak_evidence": 2
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 252,
+       "cache_misses": 0,
+       "calls": 252,
+       "completion_tokens": 16823,
+       "finish_length": 4,
+       "prompt_tokens": 149953,
+       "seconds": 0
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 9.078,
+       "export": 0.047,
+       "extract": 0.594,
+       "ingest": 0.0,
+       "resolve": 0.156,
+       "temporal.tag": 0.0,
+       "validate": 0.016,
+       "viz": 0.109
+      },
+      "statements_accepted": 246,
+      "statements_flagged": 2,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A4",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A5": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "auto",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_000",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_001",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_002",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_003",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_004",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_005",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_006",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_007",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_008",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_009",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_010",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_011",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_012",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_013",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_014",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_015",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_016",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_017",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_018",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_019",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_020",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_021",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_022",
+        "reason": "no_schema",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "wiki_023",
+        "reason": "no_schema",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 247,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 247,
+       "sent": 247,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 26,
+      "docs": 24,
+      "duplicate_candidates": 0,
+      "entities": 254,
+      "entities_literal": 25,
+      "er_reduction": 0.0078125,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "judge_no": 16,
+       "weak_evidence": 2
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 52,
+       "exact": 144,
+       "none": 2,
+       "overlap": 13,
+       "window": 36
+      },
+      "grounding": {
+       "exact": 144,
+       "none": 2,
+       "partial": 101
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 252,
+       "cache_misses": 0,
+       "calls": 414,
+       "completion_tokens": 17147,
+       "finish_length": 4,
+       "prompt_tokens": 175153,
+       "seconds": 1461.5
+      },
+      "mentions": 294,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 9.063,
+       "export": 0.11,
+       "extract": 0.593,
+       "ingest": 0.0,
+       "judge": 733.344,
+       "resolve": 0.172,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.171
+      },
+      "statements_accepted": 246,
+      "statements_flagged": 17,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 256,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/ablation_window_grounding/2wiki10/A5",
+     "showcase": null,
+     "webnlg": null
+    }
+   },
+   "name": "2wiki10"
+  }
+ ]
+}

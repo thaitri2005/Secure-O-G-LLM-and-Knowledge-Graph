@@ -1,0 +1,18 @@
+root: data/benchmarks/bsee_gold/v2
+batch_size: 20
+seed: 42
+annotators:
+- annotator_a
+- annotator_b
+converter: v2
+frozen_inputs:
+- contracts/ontology/bsee.yaml
+- configs/experiments/bsee_eval.yaml
+- src/kgbuilder/evaluation/well_rules.py
+- src/kgbuilder/core/well_facts.py
+- src/kgbuilder/core/well_values.py
+- src/kgbuilder/core/well_literals.py
+- src/kgbuilder/core/well_convert.py
+- configs/domains/bsee/bsee_literals.yaml
+# Publication re-sealing binds existing labels and evaluation inputs.
+forbidden_before_seal: []

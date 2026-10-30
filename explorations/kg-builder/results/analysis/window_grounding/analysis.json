@@ -1,0 +1,7954 @@
+{
+ "alias": {
+  "2wiki10/A0": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "2wiki10/A1": {
+   "groups": 2,
+   "items": [
+    {
+     "aliases": [
+      "Cnut the Great"
+     ],
+     "conflict": false,
+     "entity_id": "e_3c0d731552b9",
+     "name": "Cnut",
+     "number_sets": [
+      [],
+      []
+     ]
+    },
+    {
+     "aliases": [
+      "The Spartan Gladiators"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3e6b1015c6b",
+     "name": "The Spartan Gladiator",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "2wiki10/A2": {
+   "groups": 2,
+   "items": [
+    {
+     "aliases": [
+      "Cnut the Great"
+     ],
+     "conflict": false,
+     "entity_id": "e_3c0d731552b9",
+     "name": "Cnut",
+     "number_sets": [
+      [],
+      []
+     ]
+    },
+    {
+     "aliases": [
+      "The Spartan Gladiators"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3e6b1015c6b",
+     "name": "The Spartan Gladiator",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "2wiki10/A3": {
+   "groups": 2,
+   "items": [
+    {
+     "aliases": [
+      "Cnut the Great"
+     ],
+     "conflict": false,
+     "entity_id": "e_3c0d731552b9",
+     "name": "Cnut",
+     "number_sets": [
+      [],
+      []
+     ]
+    },
+    {
+     "aliases": [
+      "The Spartan Gladiators"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3e6b1015c6b",
+     "name": "The Spartan Gladiator",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "2wiki10/A4": {
+   "groups": 2,
+   "items": [
+    {
+     "aliases": [
+      "Cnut the Great"
+     ],
+     "conflict": false,
+     "entity_id": "e_3c0d731552b9",
+     "name": "Cnut",
+     "number_sets": [
+      [],
+      []
+     ]
+    },
+    {
+     "aliases": [
+      "The Spartan Gladiators"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3e6b1015c6b",
+     "name": "The Spartan Gladiator",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "2wiki10/A5": {
+   "groups": 2,
+   "items": [
+    {
+     "aliases": [
+      "Cnut the Great"
+     ],
+     "conflict": false,
+     "entity_id": "e_3c0d731552b9",
+     "name": "Cnut",
+     "number_sets": [
+      [],
+      []
+     ]
+    },
+    {
+     "aliases": [
+      "The Spartan Gladiators"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3e6b1015c6b",
+     "name": "The Spartan Gladiator",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "showcase/A0": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "showcase/A1": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "International Business Machines",
+      "International Business Machines Corporation"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3ac7a4ef1a8",
+     "name": "IBM",
+     "number_sets": [
+      [],
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "showcase/A2": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "International Business Machines",
+      "International Business Machines Corporation"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3ac7a4ef1a8",
+     "name": "IBM",
+     "number_sets": [
+      [],
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "showcase/A3": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "International Business Machines",
+      "International Business Machines Corporation"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3ac7a4ef1a8",
+     "name": "IBM",
+     "number_sets": [
+      [],
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "showcase/A4": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "International Business Machines",
+      "International Business Machines Corporation"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3ac7a4ef1a8",
+     "name": "IBM",
+     "number_sets": [
+      [],
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "showcase/A5": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "International Business Machines",
+      "International Business Machines Corporation"
+     ],
+     "conflict": false,
+     "entity_id": "e_d3ac7a4ef1a8",
+     "name": "IBM",
+     "number_sets": [
+      [],
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "webnlg10/A0": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10/A1": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10/A2": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10/A3": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10/A4": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10/A5": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_auto/A0": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_auto/A1": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "Liselotte_Grschebina"
+     ],
+     "conflict": false,
+     "entity_id": "e_a0c26b7225b2",
+     "name": "Liselotte Grschebina",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "webnlg10_auto/A2": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "Liselotte_Grschebina"
+     ],
+     "conflict": false,
+     "entity_id": "e_a0c26b7225b2",
+     "name": "Liselotte Grschebina",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "webnlg10_auto/A3": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "Liselotte_Grschebina"
+     ],
+     "conflict": false,
+     "entity_id": "e_a0c26b7225b2",
+     "name": "Liselotte Grschebina",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "webnlg10_auto/A4": {
+   "groups": 1,
+   "items": [
+    {
+     "aliases": [
+      "Liselotte_Grschebina"
+     ],
+     "conflict": false,
+     "entity_id": "e_a0c26b7225b2",
+     "name": "Liselotte Grschebina",
+     "number_sets": [
+      [],
+      []
+     ]
+    }
+   ],
+   "number_conflicts": 0
+  },
+  "webnlg10_kggen/A0": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_kggen/A1": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_kggen/A2": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_kggen/A3": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  },
+  "webnlg10_kggen/A4": {
+   "groups": 0,
+   "items": [],
+   "number_conflicts": 0
+  }
+ },
+ "format": "kgb.analysis/1",
+ "judge": {
+  "2wiki10/A5": {
+   "finish_length": 4,
+   "judged": 162,
+   "no_vs_gold": null,
+   "recorded": {
+    "errors": 0,
+    "no": 16,
+    "unparsed": 0,
+    "yes": 146
+   },
+   "reparsed": {
+    "errors": 0,
+    "no": 16,
+    "unparsed": 0,
+    "yes": 146
+   },
+   "skipped": 84
+  },
+  "showcase/A5": {
+   "finish_length": 0,
+   "judged": 4,
+   "no_vs_gold": {
+    "recorded": {
+     "gold_correct": 0,
+     "n_no": 0,
+     "precision": null
+    },
+    "reparsed": {
+     "gold_correct": 0,
+     "n_no": 0,
+     "precision": null
+    }
+   },
+   "recorded": {
+    "errors": 0,
+    "no": 0,
+    "unparsed": 0,
+    "yes": 4
+   },
+   "reparsed": {
+    "errors": 0,
+    "no": 0,
+    "unparsed": 0,
+    "yes": 4
+   },
+   "skipped": 3
+  },
+  "webnlg10/A5": {
+   "finish_length": 0,
+   "judged": 13,
+   "no_vs_gold": {
+    "recorded": {
+     "gold_correct": 1,
+     "n_no": 1,
+     "precision": 0.0
+    },
+    "reparsed": {
+     "gold_correct": 1,
+     "n_no": 1,
+     "precision": 0.0
+    }
+   },
+   "recorded": {
+    "errors": 0,
+    "no": 1,
+    "unparsed": 0,
+    "yes": 12
+   },
+   "reparsed": {
+    "errors": 0,
+    "no": 1,
+    "unparsed": 0,
+    "yes": 12
+   },
+   "skipped": 18
+  }
+ },
+ "qa": {
+  "diffs": [
+   {
+    "f1_row": 0.0,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Anne Baldwin Gust Brown held position First Lady of California",
+     "- Anne Baldwin Gust Brown held position executive vice president",
+     "- Anne Baldwin Gust Brown is married to Jerry Brown",
+     "- Anne Baldwin Gust Brown is of nationality American",
+     "- Anne Baldwin Gust Brown served as First Lady of California from 2011 to 2019",
+     "- Anne Baldwin Gust Brown was born on March 15, 1958",
+     "- Anne Baldwin Gust Brown worked for The Gap",
+     "- Dangerously They Live is country of origin American"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [
+     "Dangerously They Live"
+    ],
+    "passages_only_vs": [
+     "Georges Lautner",
+     "Jerry Brown",
+     "John Lyon, 4th Earl of Strathmore and Kinghorne",
+     "Julia Livia"
+    ],
+    "qid": "0e7078b00bb011ebab90acde48001122",
+    "row": "graph@A0",
+    "seeds_row": [
+     "Anne Baldwin Gust Brown"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon has title 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon has occupation Scottish peer",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon is spouse of Mary Oliphant",
+     "- James Lyon is title of 7th Earl of Strathmore",
+     "- James Lyon succeeded Charles Lyon",
+     "- John Lyon has occupation Scottish nobleman",
+     "- John Lyon has occupation peer",
+     "- John Lyon has title 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is father of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon is spouse of Elizabeth Stanhope",
+     "- John Lyon is title of 4th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon has title 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [
+     "Drusus Julius Caesar",
+     "Edith of Wessex",
+     "Edward the Confessor"
+    ],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "graph@A0",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 1.0,
+    "f1_vs": 0.0,
+    "facts_only_row": [
+     "- Alberto De Martino created films for market of international market",
+     "- Alberto De Martino worked as Italian film director",
+     "- Alberto De Martino worked as child actor",
+     "- Alberto De Martino worked as cinema",
+     "- Alberto De Martino worked as screenwriter",
+     "- Gladiators Seven is also known as The Revolt of the Seven",
+     "- Gladiators Seven is also known as The Spartan Gladiator",
+     "- Gladiators Seven is directed by Alberto De Martino",
+     "- Gladiators Seven is genre Italian peplum film",
+     "- Gladiators Seven is release year 1964",
+     "- Gladiators Seven stars Tony Russel",
+     "- Phalitamsha is directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha is genre Kannada movie",
+     "- Phalitamsha is written by Srinivasa Kulakarni",
+     "- Phalitamsha stars Jai Jagadish",
+     "- Phalitamsha was produced under the banner of A 1 Movietone",
+     "- Phalitamsha was released in 1976",
+     "- S. R. Puttanna Kanagal is considered as one of the greatest in Indian cinema",
+     "- S. R. Puttanna Kanagal was born as Shubraveshti Ramaswamiah Seetharama Sharma",
+     "- S. R. Puttanna Kanagal worked as Indian filmmaker"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [
+     "Alberto De Martino"
+    ],
+    "passages_only_vs": [
+     "Georges Lautner",
+     "Robert Florey"
+    ],
+    "qid": "02b62fce087211ebbd64ac1f6bf848b6",
+    "row": "graph@A4",
+    "seeds_row": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.0,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Anne Baldwin Gust Brown is married to Jerry Brown",
+     "- Anne Baldwin Gust Brown nationality is American",
+     "- Anne Baldwin Gust Brown served as First Lady of California from 2011 to 2019",
+     "- Anne Baldwin Gust Brown was born on March 15, 1958",
+     "- Anne Baldwin Gust Brown worked as First Lady of California",
+     "- Anne Baldwin Gust Brown worked as executive vice president",
+     "- Anne Baldwin Gust Brown worked for The Gap",
+     "- Dangerously They Live is country of origin American"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [
+     "Dangerously They Live"
+    ],
+    "passages_only_vs": [
+     "Georges Lautner",
+     "Jerry Brown",
+     "John Lyon, 4th Earl of Strathmore and Kinghorne",
+     "Julia Livia"
+    ],
+    "qid": "0e7078b00bb011ebab90acde48001122",
+    "row": "graph@A4",
+    "seeds_row": [
+     "Anne Baldwin Gust Brown"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon held office 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon is also known as 7th Earl of Strathmore",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon succeeded Charles Lyon",
+     "- James Lyon was married to Mary Oliphant",
+     "- James Lyon worked as Scottish peer",
+     "- John Lyon held office 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is also known as 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is parent of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon was married to Elizabeth Stanhope",
+     "- John Lyon worked as Scottish nobleman",
+     "- John Lyon worked as peer",
+     "- Thomas Lyon held office 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [
+     "Drusus Julius Caesar",
+     "Edith of Wessex",
+     "Edward the Confessor"
+    ],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "graph@A4",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 1.0,
+    "f1_vs": 0.0,
+    "facts_only_row": [
+     "- Alberto De Martino created films for market of international market",
+     "- Alberto De Martino worked as Italian film director",
+     "- Alberto De Martino worked as child actor",
+     "- Alberto De Martino worked as cinema",
+     "- Alberto De Martino worked as screenwriter",
+     "- Gladiators Seven is also known as The Revolt of the Seven",
+     "- Gladiators Seven is also known as The Spartan Gladiator",
+     "- Gladiators Seven is directed by Alberto De Martino",
+     "- Gladiators Seven is genre Italian peplum film",
+     "- Gladiators Seven is release year 1964",
+     "- Gladiators Seven stars Tony Russel",
+     "- Phalitamsha is directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha is genre Kannada movie",
+     "- Phalitamsha is written by Srinivasa Kulakarni",
+     "- Phalitamsha stars Jai Jagadish",
+     "- Phalitamsha was produced under the banner of A 1 Movietone",
+     "- Phalitamsha was released in 1976",
+     "- S. R. Puttanna Kanagal is considered as one of the greatest in Indian cinema",
+     "- S. R. Puttanna Kanagal was born as Shubraveshti Ramaswamiah Seetharama Sharma",
+     "- S. R. Puttanna Kanagal worked as Indian filmmaker"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [
+     "Alberto De Martino"
+    ],
+    "passages_only_vs": [
+     "Georges Lautner",
+     "Robert Florey"
+    ],
+    "qid": "02b62fce087211ebbd64ac1f6bf848b6",
+    "row": "graph@A5",
+    "seeds_row": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.0,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Anne Baldwin Gust Brown is married to Jerry Brown",
+     "- Anne Baldwin Gust Brown nationality is American",
+     "- Anne Baldwin Gust Brown served as First Lady of California from 2011 to 2019",
+     "- Anne Baldwin Gust Brown was born on March 15, 1958",
+     "- Anne Baldwin Gust Brown worked as First Lady of California",
+     "- Anne Baldwin Gust Brown worked as executive vice president",
+     "- Anne Baldwin Gust Brown worked for The Gap",
+     "- Dangerously They Live is country of origin American"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [
+     "Dangerously They Live"
+    ],
+    "passages_only_vs": [
+     "Georges Lautner",
+     "Jerry Brown",
+     "John Lyon, 4th Earl of Strathmore and Kinghorne",
+     "Julia Livia"
+    ],
+    "qid": "0e7078b00bb011ebab90acde48001122",
+    "row": "graph@A5",
+    "seeds_row": [
+     "Anne Baldwin Gust Brown"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon held office 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon is also known as 7th Earl of Strathmore",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon succeeded Charles Lyon",
+     "- James Lyon was married to Mary Oliphant",
+     "- James Lyon worked as Scottish peer",
+     "- John Lyon held office 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is also known as 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is parent of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon was married to Elizabeth Stanhope",
+     "- John Lyon worked as Scottish nobleman",
+     "- John Lyon worked as peer",
+     "- Thomas Lyon held office 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [
+     "Drusus Julius Caesar",
+     "Edith of Wessex",
+     "Edward the Confessor"
+    ],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "graph@A5",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon has title 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon has occupation Scottish peer",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon is spouse of Mary Oliphant",
+     "- James Lyon is title of 7th Earl of Strathmore",
+     "- James Lyon succeeded Charles Lyon",
+     "- John Lyon has occupation Scottish nobleman",
+     "- John Lyon has occupation peer",
+     "- John Lyon has title 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is father of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon is spouse of Elizabeth Stanhope",
+     "- John Lyon is title of 4th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon has title 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "hybrid@A0",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon held office 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon is also known as 7th Earl of Strathmore",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon succeeded Charles Lyon",
+     "- James Lyon was married to Mary Oliphant",
+     "- James Lyon worked as Scottish peer",
+     "- John Lyon held office 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is also known as 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is parent of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon was married to Elizabeth Stanhope",
+     "- John Lyon worked as Scottish nobleman",
+     "- John Lyon worked as peer",
+     "- Thomas Lyon held office 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "hybrid@A4",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 0.4,
+    "f1_vs": 1.0,
+    "facts_only_row": [
+     "- Charles Lyon held office 6th Earl of Strathmore and Kinghorne",
+     "- James Lyon died in Edinburgh",
+     "- James Lyon died in Scotland",
+     "- James Lyon is also known as 7th Earl of Strathmore",
+     "- James Lyon is son of John Lyon",
+     "- James Lyon is son of Lady Elizabeth Stanhope",
+     "- James Lyon succeeded Charles Lyon",
+     "- James Lyon was married to Mary Oliphant",
+     "- James Lyon worked as Scottish peer",
+     "- John Lyon held office 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is also known as 4th Earl of Strathmore and Kinghorne",
+     "- John Lyon is parent of John Lyon, 5th Earl of Strathmore and Kinghorne",
+     "- John Lyon is son of Patrick Lyon",
+     "- John Lyon was married to Elizabeth Stanhope",
+     "- John Lyon worked as Scottish nobleman",
+     "- John Lyon worked as peer",
+     "- Thomas Lyon held office 8th Earl of Strathmore and Kinghorne",
+     "- Thomas Lyon is ancestor of Elizabeth Bowes – Lyon",
+     "- Thomas Lyon is brother of James Lyon",
+     "- Thomas Lyon succeeded James Lyon"
+    ],
+    "facts_only_vs": [],
+    "passages_only_row": [],
+    "passages_only_vs": [],
+    "qid": "3602458e0bb011ebab90acde48001122",
+    "row": "hybrid@A5",
+    "seeds_row": [
+     "7th Earl of Strathmore",
+     "James Lyon"
+    ],
+    "seeds_vs": [],
+    "vs": "text"
+   },
+   {
+    "f1_row": 1.0,
+    "f1_vs": 0.0,
+    "facts_only_row": [
+     "- Alberto De Martino worked as Italian film director",
+     "- Alberto De Martino worked as child actor",
+     "- Alberto De Martino worked as cinema",
+     "- Alberto De Martino worked as screenwriter",
+     "- Gladiators Seven is also known as The Revolt of the Seven",
+     "- Gladiators Seven is also known as The Spartan Gladiator",
+     "- Gladiators Seven is directed by Alberto De Martino",
+     "- Gladiators Seven is genre Italian peplum film",
+     "- Gladiators Seven is release year 1964",
+     "- Gladiators Seven stars Tony Russel",
+     "- Phalitamsha is directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha is genre Kannada movie",
+     "- Phalitamsha is written by Srinivasa Kulakarni",
+     "- Phalitamsha stars Jai Jagadish",
+     "- S. R. Puttanna Kanagal worked as Indian filmmaker"
+    ],
+    "facts_only_vs": [
+     "- Alberto De Martino was occupation of Italian film director",
+     "- Alberto De Martino worked in field of cinema",
+     "- Gladiators Seven also known as The Revolt of the Seven",
+     "- Gladiators Seven also known as The Spartan Gladiator",
+     "- Gladiators Seven also known as The Spartan Gladiators",
+     "- Gladiators Seven director Alberto De Martino",
+     "- Gladiators Seven genre Italian peplum film",
+     "- Gladiators Seven release year 1964",
+     "- Gladiators Seven starring Tony Russel",
+     "- Phalitamsha is a Kannada movie",
+     "- Phalitamsha paired Jai Jagadish",
+     "- Phalitamsha was directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha was written by Srinivasa Kulakarni",
+     "- S. R. Puttanna Kanagal is fondly called Chitra Bramha",
+     "- S. R. Puttanna Kanagal was a Indian filmmaker"
+    ],
+    "passages_only_row": [],
+    "passages_only_vs": [],
+    "qid": "02b62fce087211ebbd64ac1f6bf848b6",
+    "row": "graph@A4",
+    "seeds_row": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "seeds_vs": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "vs": "graph@A0"
+   },
+   {
+    "f1_row": 1.0,
+    "f1_vs": 0.0,
+    "facts_only_row": [
+     "- Alberto De Martino worked as Italian film director",
+     "- Alberto De Martino worked as child actor",
+     "- Alberto De Martino worked as cinema",
+     "- Alberto De Martino worked as screenwriter",
+     "- Gladiators Seven is also known as The Revolt of the Seven",
+     "- Gladiators Seven is also known as The Spartan Gladiator",
+     "- Gladiators Seven is directed by Alberto De Martino",
+     "- Gladiators Seven is genre Italian peplum film",
+     "- Gladiators Seven is release year 1964",
+     "- Gladiators Seven stars Tony Russel",
+     "- Phalitamsha is directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha is genre Kannada movie",
+     "- Phalitamsha is written by Srinivasa Kulakarni",
+     "- Phalitamsha stars Jai Jagadish",
+     "- S. R. Puttanna Kanagal worked as Indian filmmaker"
+    ],
+    "facts_only_vs": [
+     "- Alberto De Martino was occupation of Italian film director",
+     "- Alberto De Martino worked in field of cinema",
+     "- Gladiators Seven also known as The Revolt of the Seven",
+     "- Gladiators Seven also known as The Spartan Gladiator",
+     "- Gladiators Seven also known as The Spartan Gladiators",
+     "- Gladiators Seven director Alberto De Martino",
+     "- Gladiators Seven genre Italian peplum film",
+     "- Gladiators Seven release year 1964",
+     "- Gladiators Seven starring Tony Russel",
+     "- Phalitamsha is a Kannada movie",
+     "- Phalitamsha paired Jai Jagadish",
+     "- Phalitamsha was directed by S. R. Puttanna Kanagal",
+     "- Phalitamsha was written by Srinivasa Kulakarni",
+     "- S. R. Puttanna Kanagal is fondly called Chitra Bramha",
+     "- S. R. Puttanna Kanagal was a Indian filmmaker"
+    ],
+    "passages_only_row": [],
+    "passages_only_vs": [],
+    "qid": "02b62fce087211ebbd64ac1f6bf848b6",
+    "row": "graph@A5",
+    "seeds_row": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "seeds_vs": [
+     "Gladiators Seven",
+     "Phalitamsha"
+    ],
+    "vs": "graph@A0"
+   }
+  ],
+  "duplicate_rows": [],
+  "pairs": [
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": -0.4,
+     "mean": -0.16,
+     "n": 10
+    },
+    "losses": 2,
+    "row": "graph@A0",
+    "sign_p": 0.5,
+    "ties": 8,
+    "vs": "text",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.24,
+     "lo": -0.36,
+     "mean": -0.06,
+     "n": 10
+    },
+    "losses": 2,
+    "row": "graph@A4",
+    "sign_p": 1.0,
+    "ties": 7,
+    "vs": "text",
+    "wins": 1
+   },
+   {
+    "bootstrap": {
+     "hi": 0.24,
+     "lo": -0.36,
+     "mean": -0.06,
+     "n": 10
+    },
+    "losses": 2,
+    "row": "graph@A5",
+    "sign_p": 1.0,
+    "ties": 7,
+    "vs": "text",
+    "wins": 1
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": -0.18,
+     "mean": -0.06,
+     "n": 10
+    },
+    "losses": 1,
+    "row": "hybrid@A0",
+    "sign_p": 1.0,
+    "ties": 9,
+    "vs": "text",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": -0.18,
+     "mean": -0.06,
+     "n": 10
+    },
+    "losses": 1,
+    "row": "hybrid@A4",
+    "sign_p": 1.0,
+    "ties": 9,
+    "vs": "text",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": -0.18,
+     "mean": -0.06,
+     "n": 10
+    },
+    "losses": 1,
+    "row": "hybrid@A5",
+    "sign_p": 1.0,
+    "ties": 9,
+    "vs": "text",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.3,
+     "lo": 0.0,
+     "mean": 0.1,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "graph@A4",
+    "sign_p": 1.0,
+    "ties": 9,
+    "vs": "graph@A0",
+    "wins": 1
+   },
+   {
+    "bootstrap": {
+     "hi": 0.3,
+     "lo": 0.0,
+     "mean": 0.1,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "graph@A5",
+    "sign_p": 1.0,
+    "ties": 9,
+    "vs": "graph@A0",
+    "wins": 1
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": 0.0,
+     "mean": 0.0,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "graph@A5",
+    "sign_p": 1.0,
+    "ties": 10,
+    "vs": "graph@A4",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": 0.0,
+     "mean": 0.0,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "hybrid@A4",
+    "sign_p": 1.0,
+    "ties": 10,
+    "vs": "hybrid@A0",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": 0.0,
+     "mean": 0.0,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "hybrid@A5",
+    "sign_p": 1.0,
+    "ties": 10,
+    "vs": "hybrid@A0",
+    "wins": 0
+   },
+   {
+    "bootstrap": {
+     "hi": 0.0,
+     "lo": 0.0,
+     "mean": 0.0,
+     "n": 10
+    },
+    "losses": 0,
+    "row": "hybrid@A5",
+    "sign_p": 1.0,
+    "ties": 10,
+    "vs": "hybrid@A4",
+    "wins": 0
+   }
+  ]
+ },
+ "qa_dirs": [
+  "runs/reference/ablation_window_grounding/qa"
+ ],
+ "rejected": {
+  "2wiki10/A0": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "2wiki10/A1": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "2wiki10/A2": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "2wiki10/A3": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "2wiki10/A4": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "2wiki10/A5": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A0": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A1": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A2": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A3": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A4": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "showcase/A5": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A0": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A1": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A2": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A3": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A4": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10/A5": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_auto/A0": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_auto/A1": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_auto/A2": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_auto/A3": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_auto/A4": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_kggen/A0": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_kggen/A1": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_kggen/A2": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_kggen/A3": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  },
+  "webnlg10_kggen/A4": {
+   "by_reason": {},
+   "rejected": 0,
+   "weak": {
+    "distance": {},
+    "items": [],
+    "n": 0,
+    "object_in_chunk": 0,
+    "unlocated": 0
+   }
+  }
+ },
+ "root": "runs/reference/ablation_window_grounding",
+ "webnlg": {
+  "webnlg10": {
+   "f1_label": "harness exact-string F1, not EDC strict",
+   "levels": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5"
+   ],
+   "per_doc_f1": {
+    "A0": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     0.0,
+     0.6666666666666666,
+     0.6666666666666666,
+     0.25,
+     0.0,
+     0.3333333333333333,
+     0.0
+    ],
+    "A1": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     0.0,
+     0.6666666666666666,
+     0.6666666666666666,
+     0.25,
+     0.0,
+     0.3333333333333333,
+     0.0
+    ],
+    "A2": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ],
+    "A3": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ],
+    "A4": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ],
+    "A5": [
+     1.0,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ]
+   },
+   "residual": {
+    "A0": {
+     "counts": {
+      "direction": 1,
+      "literal": 2,
+      "missing_only": 2,
+      "other": 2,
+      "partial_entity": 2,
+      "predicate": 9,
+      "surface": 5
+     },
+     "extra": 21,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "missing": 23
+    },
+    "A1": {
+     "counts": {
+      "direction": 1,
+      "literal": 2,
+      "missing_only": 2,
+      "other": 2,
+      "partial_entity": 2,
+      "predicate": 9,
+      "surface": 5
+     },
+     "extra": 21,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "missing": 23
+    },
+    "A2": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 2,
+      "other": 1,
+      "partial_entity": 2,
+      "surface": 5
+     },
+     "extra": 12,
+     "items": [
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 14
+    },
+    "A3": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 2,
+      "other": 1,
+      "partial_entity": 2,
+      "surface": 5
+     },
+     "extra": 12,
+     "items": [
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 14
+    },
+    "A4": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 2,
+      "other": 1,
+      "partial_entity": 2,
+      "surface": 5
+     },
+     "extra": 12,
+     "items": [
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 14
+    },
+    "A5": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 2,
+      "other": 1,
+      "partial_entity": 2,
+      "surface": 5
+     },
+     "extra": 12,
+     "items": [
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 14
+    }
+   },
+   "transitions": [
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A0",
+     "gained": [],
+     "lost": [],
+     "to": "A1"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.5238,
+      "lo": 0.1,
+      "mean": 0.3071,
+      "n": 10
+     },
+     "from": "A1",
+     "gained": [
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": true,
+       "triple": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": true,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": true,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "lost": [
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": false,
+       "triple": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": false,
+       "triple": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ]
+      }
+     ],
+     "to": "A2"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A3"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A3",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A4",
+     "gained": [],
+     "lost": [],
+     "to": "A5"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    }
+   ]
+  },
+  "webnlg10_auto": {
+   "f1_label": "harness exact-string F1, not EDC strict",
+   "levels": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+   ],
+   "per_doc_f1": {
+    "A0": [
+     0.0,
+     0.0,
+     0.2857142857142857,
+     0.0,
+     0.6666666666666666,
+     0.6666666666666666,
+     0.0,
+     0.0,
+     0.3333333333333333,
+     0.0
+    ],
+    "A1": [
+     0.0,
+     0.0,
+     0.2857142857142857,
+     0.0,
+     0.6666666666666666,
+     0.6666666666666666,
+     0.0,
+     0.0,
+     0.3333333333333333,
+     0.0
+    ],
+    "A2": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ],
+    "A3": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ],
+    "A4": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     1.0,
+     0.6666666666666666,
+     1.0,
+     0.75,
+     0.5714285714285714,
+     0.3333333333333333,
+     0.6666666666666666
+    ]
+   },
+   "residual": {
+    "A0": {
+     "counts": {
+      "direction": 1,
+      "literal": 2,
+      "missing_only": 4,
+      "other": 3,
+      "partial_entity": 1,
+      "predicate": 13,
+      "surface": 5
+     },
+     "extra": 25,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "missing": 29
+    },
+    "A1": {
+     "counts": {
+      "direction": 1,
+      "literal": 2,
+      "missing_only": 4,
+      "other": 3,
+      "partial_entity": 1,
+      "predicate": 13,
+      "surface": 5
+     },
+     "extra": 25,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "missing": 29
+    },
+    "A2": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 4,
+      "other": 1,
+      "partial_entity": 2,
+      "predicate": 1,
+      "surface": 5
+     },
+     "extra": 13,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 17
+    },
+    "A3": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 4,
+      "other": 1,
+      "partial_entity": 2,
+      "predicate": 1,
+      "surface": 5
+     },
+     "extra": 13,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 17
+    },
+    "A4": {
+     "counts": {
+      "direction": 1,
+      "literal": 3,
+      "missing_only": 4,
+      "other": 1,
+      "partial_entity": 2,
+      "predicate": 1,
+      "surface": 5
+     },
+     "extra": 13,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "runwayLength",
+        "3500_(metres)"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 2,
+       "extra": [
+        "United_States",
+        "ethnicGroup",
+        "African_American"
+       ],
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_(millimetres)"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 7,
+       "extra": null,
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "\"1_June_2009\""
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "direction",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "ethnicGroup",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 17
+    }
+   },
+   "transitions": [
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A0",
+     "gained": [],
+     "lost": [],
+     "to": "A1"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.606,
+      "lo": 0.1667,
+      "mean": 0.3821,
+      "n": 10
+     },
+     "from": "A1",
+     "gained": [
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": true,
+       "triple": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": true,
+       "triple": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610_(metres)"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": true,
+       "triple": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": true,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": true,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "lost": [
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "elevationAboveSeaLevel",
+        "610_(metres)"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operator",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": false,
+       "triple": [
+        "Ciudad_Ayala",
+        "leaderName",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "timezone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": false,
+       "triple": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "affiliatedWith",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "establishedYear",
+        "2000"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "bornIn",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "diedIn",
+        "Israel"
+       ]
+      }
+     ],
+     "to": "A2"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A3"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A3",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    }
+   ]
+  },
+  "webnlg10_kggen": {
+   "f1_label": "harness exact-string F1, not EDC strict",
+   "levels": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+   ],
+   "per_doc_f1": {
+    "A0": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "A1": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "A2": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     0.5,
+     0.4,
+     1.0,
+     0.75,
+     0.2,
+     0.0,
+     0.6666666666666666
+    ],
+    "A3": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     0.5,
+     0.4,
+     1.0,
+     0.75,
+     0.2,
+     0.0,
+     0.6666666666666666
+    ],
+    "A4": [
+     0.5,
+     0.0,
+     0.2857142857142857,
+     0.5,
+     0.4,
+     1.0,
+     0.75,
+     0.2,
+     0.0,
+     0.6666666666666666
+    ]
+   },
+   "residual": {
+    "A0": {
+     "counts": {
+      "extra_only": 2,
+      "missing_only": 6,
+      "other": 5,
+      "predicate": 24
+     },
+     "extra": 31,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is based in",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is operated by",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "was born in",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "birthPlace",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "was married to",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 2,
+       "extra": [
+        "African_Americans",
+        "are ethnic group in",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "has timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "is led by",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has engine type",
+        "V12_engine"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "engine",
+        "V12_engine"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has length",
+        "17068.8_millimetres"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has transmission type",
+        "diesel-electric_transmission"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "powerType",
+        "Diesel-electric_transmission"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "has ICAO location identifier",
+        "EGBF"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "icaoLocationIdentifier",
+        "EGBF"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "is located in",
+        "Thurleigh"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "location",
+        "Thurleigh"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is affiliated with",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Bangalore"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "India"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Soldevanahalli"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located near",
+        "Hessarghatta_Main_Road"
+       ],
+       "missing": null
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located on",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ],
+       "missing": null
+      },
+      {
+       "class": "predicate",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "is owned by",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "was designed by",
+        "Robert_A.M._Stern"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A._M._Stern"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 8,
+       "extra": null,
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "is an ethnic group in",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      }
+     ],
+     "missing": 35
+    },
+    "A1": {
+     "counts": {
+      "extra_only": 2,
+      "missing_only": 6,
+      "other": 5,
+      "predicate": 24
+     },
+     "extra": 31,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is based in",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is operated by",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "was born in",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "birthPlace",
+        "United_States"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "was married to",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 2,
+       "extra": [
+        "African_Americans",
+        "are ethnic group in",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "has timezone",
+        "Pacific_Standard_Time_Zone"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "is led by",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has engine type",
+        "V12_engine"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "engine",
+        "V12_engine"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has length",
+        "17068.8_millimetres"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "has transmission type",
+        "diesel-electric_transmission"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "powerType",
+        "Diesel-electric_transmission"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "has ICAO location identifier",
+        "EGBF"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "icaoLocationIdentifier",
+        "EGBF"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "is located in",
+        "Thurleigh"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "location",
+        "Thurleigh"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 5,
+       "extra": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ],
+       "missing": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 6,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is affiliated with",
+        "Visvesvaraya_Technological_University"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Bangalore"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "India"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Soldevanahalli"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located near",
+        "Hessarghatta_Main_Road"
+       ],
+       "missing": null
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "is located on",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ],
+       "missing": null
+      },
+      {
+       "class": "predicate",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "is owned by",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "was designed by",
+        "Robert_A.M._Stern"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A._M._Stern"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 8,
+       "extra": null,
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "is an ethnic group in",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 9,
+       "extra": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ],
+       "missing": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      }
+     ],
+     "missing": 35
+    },
+    "A2": {
+     "counts": {
+      "extra_only": 2,
+      "literal": 1,
+      "missing_only": 7,
+      "other": 5,
+      "partial_entity": 1,
+      "predicate": 2,
+      "surface": 5
+     },
+     "extra": 16,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 2,
+       "extra": [
+        "African_Americans",
+        "isPartOf",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "director",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_millimetres"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 4,
+       "extra": null,
+       "missing": [
+        "ALCO_RS-3",
+        "powerType",
+        "Diesel-electric_transmission"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Bangalore"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Hessarghatta_Main_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "India"
+       ],
+       "missing": null
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Soldevanahalli"
+       ],
+       "missing": null
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A.M._Stern"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A._M._Stern"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 8,
+       "extra": null,
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "country",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 21
+    },
+    "A3": {
+     "counts": {
+      "extra_only": 2,
+      "literal": 1,
+      "missing_only": 7,
+      "other": 5,
+      "partial_entity": 1,
+      "predicate": 2,
+      "surface": 5
+     },
+     "extra": 16,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 2,
+       "extra": [
+        "African_Americans",
+        "isPartOf",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "director",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_millimetres"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 4,
+       "extra": null,
+       "missing": [
+        "ALCO_RS-3",
+        "powerType",
+        "Diesel-electric_transmission"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Bangalore"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Hessarghatta_Main_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "India"
+       ],
+       "missing": null
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Soldevanahalli"
+       ],
+       "missing": null
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A.M._Stern"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A._M._Stern"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 8,
+       "extra": null,
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "country",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 21
+    },
+    "A4": {
+     "counts": {
+      "extra_only": 2,
+      "literal": 1,
+      "missing_only": 7,
+      "other": 5,
+      "partial_entity": 1,
+      "predicate": 2,
+      "surface": 5
+     },
+     "extra": 16,
+     "items": [
+      {
+       "class": "predicate",
+       "doc": 0,
+       "extra": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ],
+       "missing": [
+        "Nie_Haisheng",
+        "nationality",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "birthDate",
+        "1964-10-13"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 0,
+       "extra": null,
+       "missing": [
+        "Nie_Haisheng",
+        "occupation",
+        "Fighter_pilot"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 1,
+       "extra": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ],
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "operatingOrganisation",
+        "ENAIRE"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "elevationAboveTheSeaLevel",
+        "610.0"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 1,
+       "extra": null,
+       "missing": [
+        "Adolfo_Suárez_Madrid–Barajas_Airport",
+        "runwayLength",
+        "3500.0"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 2,
+       "extra": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "\"Ruth Ribicoff\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 2,
+       "extra": [
+        "African_Americans",
+        "isPartOf",
+        "United_States"
+       ],
+       "missing": [
+        "Abraham_A._Ribicoff",
+        "nationality",
+        "United_States"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 2,
+       "extra": null,
+       "missing": [
+        "United_States",
+        "ethnicGroup",
+        "African_Americans"
+       ]
+      },
+      {
+       "class": "predicate",
+       "doc": 3,
+       "extra": [
+        "Ciudad_Ayala",
+        "director",
+        "Juan_Nolasco"
+       ],
+       "missing": [
+        "Ciudad_Ayala",
+        "leader",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "class": "literal",
+       "doc": 4,
+       "extra": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_millimetres"
+       ],
+       "missing": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8 (millimetres)"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 4,
+       "extra": null,
+       "missing": [
+        "ALCO_RS-3",
+        "powerType",
+        "Diesel-electric_transmission"
+       ]
+      },
+      {
+       "class": "partial_entity",
+       "doc": 6,
+       "extra": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "campus",
+        "\"In Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore – 560090.\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Bangalore"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "country",
+        "\"India\""
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Hessarghatta_Main_Road"
+       ],
+       "missing": [
+        "Acharya_Institute_of_Technology",
+        "established",
+        "2000"
+       ]
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "India"
+       ],
+       "missing": null
+      },
+      {
+       "class": "extra_only",
+       "doc": 7,
+       "extra": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Soldevanahalli"
+       ],
+       "missing": null
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A.M._Stern"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A._M._Stern"
+       ]
+      },
+      {
+       "class": "surface",
+       "doc": 8,
+       "extra": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ],
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_&_Mary"
+       ]
+      },
+      {
+       "class": "missing_only",
+       "doc": 8,
+       "extra": null,
+       "missing": [
+        "Alan_B._Miller_Hall",
+        "completionDate",
+        "2009-06-01"
+       ]
+      },
+      {
+       "class": "other",
+       "doc": 9,
+       "extra": [
+        "Arab_citizens_of_Israel",
+        "country",
+        "Israel"
+       ],
+       "missing": [
+        "Israel",
+        "ethnicGroup",
+        "Arab_citizens_of_Israel"
+       ]
+      }
+     ],
+     "missing": 21
+    }
+   },
+   "transitions": [
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A0",
+     "gained": [],
+     "lost": [],
+     "to": "A1"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.6221,
+      "lo": 0.2388,
+      "mean": 0.4302,
+      "n": 10
+     },
+     "from": "A1",
+     "gained": [
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": true,
+       "triple": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Hubei"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": true,
+       "triple": [
+        "Nie_Haisheng",
+        "birthPlace",
+        "Zaoyang"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "origin",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "location",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": true,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "operatingOrganisation",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": true,
+       "triple": [
+        "Abraham_A._Ribicoff",
+        "birthPlace",
+        "United_States"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": true,
+       "triple": [
+        "Abraham_A._Ribicoff",
+        "spouse",
+        "Ruth_Ribicoff"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": false,
+       "triple": [
+        "African_Americans",
+        "isPartOf",
+        "United_States"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": false,
+       "triple": [
+        "Ciudad_Ayala",
+        "director",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": true,
+       "triple": [
+        "Ciudad_Ayala",
+        "timeZone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 4,
+       "gold_correct": true,
+       "triple": [
+        "ALCO_RS-3",
+        "engine",
+        "V12_engine"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 4,
+       "gold_correct": true,
+       "triple": [
+        "ALCO_RS-3",
+        "length",
+        "17068.8_millimetres"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": true,
+       "triple": [
+        "Bedford_Aerodrome",
+        "cityServed",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": true,
+       "triple": [
+        "Bedford_Aerodrome",
+        "icaoLocationIdentifier",
+        "EGBF"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": true,
+       "triple": [
+        "Bedford_Aerodrome",
+        "location",
+        "Thurleigh"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "ethnicGroup",
+        "Arabs"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Israel",
+        "ethnicGroup",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "address",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": true,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "affiliation",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Bangalore"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Hessarghatta_Main_Road"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "India"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "location",
+        "Soldevanahalli"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 8,
+       "gold_correct": true,
+       "triple": [
+        "Alan_B._Miller_Hall",
+        "architect",
+        "Robert_A.M._Stern"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 8,
+       "gold_correct": true,
+       "triple": [
+        "Alan_B._Miller_Hall",
+        "owner",
+        "College_of_William_and_Mary"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Arab_citizens_of_Israel",
+        "country",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "birthPlace",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": true,
+       "triple": [
+        "Liselotte_Grschebina",
+        "deathPlace",
+        "Israel"
+       ]
+      }
+     ],
+     "lost": [
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "is from",
+        "People's_Republic_of_China"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "was born in",
+        "Hubei"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 0,
+       "gold_correct": false,
+       "triple": [
+        "Nie_Haisheng",
+        "was born in",
+        "Zaoyang"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is based in",
+        "Paracuellos_de_Jarama"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 1,
+       "gold_correct": false,
+       "triple": [
+        "Adolfo_Suarez_Madrid-Barajas_Airport",
+        "is operated by",
+        "Enaire"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": false,
+       "triple": [
+        "Abraham_A._Ribicoff",
+        "was born in",
+        "United_States"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": false,
+       "triple": [
+        "Abraham_A._Ribicoff",
+        "was married to",
+        "Ruth_Ribicoff"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 2,
+       "gold_correct": false,
+       "triple": [
+        "African_Americans",
+        "are ethnic group in",
+        "United_States"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": false,
+       "triple": [
+        "Ciudad_Ayala",
+        "has timezone",
+        "Pacific_Standard_Time_Zone"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 3,
+       "gold_correct": false,
+       "triple": [
+        "Ciudad_Ayala",
+        "is led by",
+        "Juan_Nolasco"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 4,
+       "gold_correct": false,
+       "triple": [
+        "ALCO_RS-3",
+        "has engine type",
+        "V12_engine"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 4,
+       "gold_correct": false,
+       "triple": [
+        "ALCO_RS-3",
+        "has length",
+        "17068.8_millimetres"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 4,
+       "gold_correct": false,
+       "triple": [
+        "ALCO_RS-3",
+        "has transmission type",
+        "diesel-electric_transmission"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": false,
+       "triple": [
+        "Bedford_Aerodrome",
+        "has ICAO location identifier",
+        "EGBF"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": false,
+       "triple": [
+        "Bedford_Aerodrome",
+        "is located in",
+        "Thurleigh"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 5,
+       "gold_correct": false,
+       "triple": [
+        "Bedford_Aerodrome",
+        "serves",
+        "Bedford_Autodrome"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "has ethnic group",
+        "Arabs"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Israel",
+        "has ethnic group",
+        "Israeli_Jews"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 6,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is affiliated with",
+        "Visvesvaraya_Technological_University"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Bangalore"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "India"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is located in",
+        "Soldevanahalli"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is located near",
+        "Hessarghatta_Main_Road"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 7,
+       "gold_correct": false,
+       "triple": [
+        "Acharya_Institute_of_Technology",
+        "is located on",
+        "Acharya_Dr._Sarvapalli_Radhakrishnan_Road"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 8,
+       "gold_correct": false,
+       "triple": [
+        "Alan_B._Miller_Hall",
+        "is owned by",
+        "College_of_William_and_Mary"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 8,
+       "gold_correct": false,
+       "triple": [
+        "Alan_B._Miller_Hall",
+        "was designed by",
+        "Robert_A.M._Stern"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Arab_citizens_of_Israel",
+        "is an ethnic group in",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "died in",
+        "Israel"
+       ]
+      },
+      {
+       "cause": "canon",
+       "doc": 9,
+       "gold_correct": false,
+       "triple": [
+        "Liselotte_Grschebina",
+        "was born in",
+        "Karlsruhe"
+       ]
+      }
+     ],
+     "to": "A2"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A3"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A3",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    },
+    {
+     "bootstrap": {
+      "hi": 0.0,
+      "lo": 0.0,
+      "mean": 0.0,
+      "n": 10
+     },
+     "from": "A2",
+     "gained": [],
+     "lost": [],
+     "to": "A4"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,82 @@
+adopted_as_national_patron_saint,The subject entity adopted the person specified by the object entity as its national patron saint.
+adopted_in,The subject entity was adopted during the time specified by the object entity.
+argues_about,The subject entity presents arguments or opinions regarding the topic specified by the object entity.
+attended_educational_institution,The subject entity attended or studied at the educational institution specified by the object entity.
+canonised,The subject entity canonized (officially declared a saint) the person specified by the object entity.
+canonised_in,The subject entity was canonized (officially declared a saint) during the time specified by the object entity.
+capitalized_on_appeal_of,The subject entity leveraged or took advantage of the popularity or appeal associated with the entity specified by the object entity.
+celebrates_feast_day_of,The subject entity observes or commemorates the feast day associated with the person or entity specified by the object entity.
+claims_about_cause_of_death_of,The subject entity asserts or reports information regarding how the person specified by the object entity died.
+collaborated_with,The subject entity worked in collaboration with the person or entity specified by the object entity.
+conquered,The subject entity conquered or took control of the place or entity specified by the object entity.
+created_films_for_market_of,The subject entity created films intended for the specific market specified by the object entity.
+died_in,The subject entity died in the location specified by the object entity.
+directed,The subject entity directed the film or production specified by the object entity.
+has_music_by,The subject entity features musical composition by the person specified by the object entity.
+held_office,The subject entity held the specific position or title specified by the object entity.
+is_a,The subject entity is an instance or member of the category or group specified by the object entity.
+is_also_known_as,The subject entity is alternatively referred to or identified by the name specified by the object entity.
+is_ancestor_of,The subject entity is an ancestor of the person or entity specified by the object entity.
+is_biographer_of,The subject entity wrote the biography of the person specified by the object entity.
+is_brother_of,The subject entity is the brother of the person or entity specified by the object entity.
+is_by,The subject entity was created or authored by the person or group specified by the object entity.
+is_considered_as_one_of_the_greatest_in,The subject entity is regarded as being among the most outstanding or excellent examples within the field or category specified by the object entity.
+is_country_of_origin,The subject entity originates from the country specified by the object entity.
+is_daughter_of,The subject entity is the daughter of the person or entity specified by the object entity.
+is_directed_by,The subject entity was directed by the person or entity specified by the object entity.
+is_first_cousin_of,"The subject entity shares a grandparent with the person specified by the object entity, but they are not siblings."
+is_genre,The subject entity belongs to the genre specified by the object entity.
+is_granddaughter_of,The subject entity is the female child of the child of the person specified by the object entity.
+is_heir_to,"The subject entity is designated to inherit the position, title, or estate specified by the object entity."
+is_likened_to,"The subject entity is compared or associated with the object entity, often in a metaphorical or mythological context."
+is_literally,The subject entity corresponds to the literal translation or meaning specified by the object entity.
+is_located_in,The subject entity is geographically or administratively situated within the location specified by the object entity.
+is_married_to,The subject entity is married to the person specified by the object entity.
+is_member_of_political_party,The subject entity is a member of the political party specified by the object entity.
+is_niece_of,The subject entity is the daughter of the sibling of the person specified by the object entity.
+is_parent_of,The subject entity is the parent of the person specified by the object entity.
+is_part_of,The subject entity is a component or subdivision of the larger entity specified by the object entity.
+is_regarded_as_reflective_of,"The subject entity is considered to reflect or be influenced by the style, movement, or concept specified by the object entity."
+is_release_year,The subject entity was released in the year specified by the object entity.
+is_set_during,The subject entity is set in the time period or event specified by the object entity.
+is_set_in,The subject entity takes place or is situated in the location or setting specified by the object entity.
+is_son_of,The subject entity is the male child of the person specified by the object entity.
+is_written_by,The subject entity was authored or created by the person specified by the object entity.
+led_to_advance_in_power_of,The subject entity caused an increase in the power or influence of the entity specified by the object entity.
+mother_is,The subject entity has the person specified by the object entity as their mother.
+moved_to,The subject entity relocated to the location specified by the object entity.
+nationality_is,The subject entity holds the nationality specified by the object entity.
+participated_in,The subject entity took part in the event specified by the object entity.
+premiered_on,The subject entity had its first public performance or screening on the date specified by the object entity.
+raised_in,The subject entity was raised or brought up in the location specified by the object entity.
+ran_for_office_in,The subject entity ran as a candidate for an office within the jurisdiction or body specified by the object entity.
+received_award,The subject entity was given or received the award specified by the object entity.
+received_awards_at,The subject entity received one or more awards at the event or ceremony specified by the object entity.
+restored_rule_after_period_of,The subject entity restored its rule following the period of rule specified by the object entity.
+seduced,"The subject entity engaged in sexual relations with the person specified by the object entity, often involving deception or manipulation."
+served_as_first_lady_of_california_from,The subject entity served in the role of First Lady of California during the time period specified by the object entity.
+specialized_in_genre_of,The subject entity specialized in creating works within the specific genre specified by the object entity.
+stars,The subject entity features the person specified by the object entity as a main actor or star.
+succeeded,"The subject entity succeeded the person or entity specified by the object entity in a title, position, or role."
+surpassed,The subject entity exceeded the record or status held by the person or entity specified by the object entity.
+took_place_in,The event specified by the subject entity occurred during the time specified by the object entity.
+translated_from,The subject entity performed translations originating from the language specified by the object entity.
+try_to_pry_information_from,The subject entity attempts to extract information from the target specified by the object entity.
+was_a_member_of,"The subject entity was a member of the group, organization, or category specified by the object entity."
+was_born_as,The subject entity was originally named or identified by the name specified by the object entity at birth.
+was_born_in,The subject entity was born in the location specified by the object entity.
+was_born_on,The subject entity was born on the date specified by the object entity.
+was_editor_of,The subject entity served as the editor for the publication or organization specified by the object entity.
+was_killed_by,"The subject entity was killed by the person, group, or force specified by the object entity."
+was_married_to,The subject entity was married to the person specified by the object entity.
+was_national_saint_of,The subject entity served as the national saint of the country or region specified by the object entity.
+was_nominated_for,The subject entity received a nomination for the award or recognition specified by the object entity.
+was_proclaimed_king_after,The subject entity was proclaimed king following the event specified by the object entity.
+was_produced_under_the_banner_of,The subject entity was produced under the production company or banner specified by the object entity.
+was_released_after,The subject entity was released at a later time than the event or work specified by the object entity.
+was_released_in,The subject entity was released in the year specified by the object entity.
+was_reviewed_by,"The subject entity was reviewed by the publication, critic, or entity specified by the object entity."
+was_selected_for_preservation_in,"The subject entity was chosen to be preserved in the archive, registry, or collection specified by the object entity."
+was_shot_at,The subject entity was filmed or shot at the location specified by the object entity.
+worked_as,The subject entity worked in the role or profession specified by the object entity.
+worked_for,The subject entity was employed by or worked for the organization specified by the object entity.

@@ -1,0 +1,34 @@
+Extract all completed, affirmative well-operation facts stated by the supplied text that fit the listed relations. Use the text alone. Return only a JSON array of objects with the string keys "subject", "relation", and "object"; return [] when no supported fact fits. Do not add explanations or markdown.
+
+Rules:
+- Choose relation names exactly from the supplied list, which holds only some of the 21 relations; extract the facts that fit a listed relation. Do not invent relations.
+- Copy the subject as an exact text span. Use "well" for the report's own well only when no other subject is named; never attach another named well's facts to it.
+- Copy the object as an exact substring, including written units and depth references. Do not normalize, convert, expand shorthand, supply missing units, or invent dates or status codes.
+- Emit one fact per stated value. A paired depth such as 13243' MD/12625' TVD gives two facts, with objects "13243' MD" and "12625' TVD". Keep a stated interval as one interval object.
+- Numbers in names such as BN 7300' Sand are part of the name, not depths. A tubular's stated outside diameter can be a separate casing_size fact; a composite hole size is not a tubular diameter.
+- Exclude planned, approved-only, attempted, negated, and uncertain operations. An object's mere mention does not prove that an operation occurred.
+- Distinguish total depth of the well from intermediate or section drilling depth. Distinguish cement plugs from cement behind casing and equipment setting from plug setting.
+- Use tested_to_pressure only for a stated pressure test, not operating, pumping, injection, or bleed pressure. A pressure-test # is not the weight # in a tubular specification.
+- Do not treat tool movements as drilling or setting. Do not infer a setting depth for nearby equipment. Use corrected values when a correction is explicitly stated.
+- For mud weight changed from one value to another, extract the new weight; keep the old weight only if separately stated as a fact. A company performing work is not necessarily the well's operator.
+- Keep names of zones, rigs, fluids and companies as written. A status phrase stays as written. A date stays as written without borrowing a year from elsewhere.
+
+Invented example 1:
+Text: The 8-inch casing was landed at 4,620 ft MD.
+Output: [{"subject":"8-inch casing","relation":"set_casing_at","object":"4,620 ft MD"},{"subject":"8-inch casing","relation":"casing_size","object":"8-inch"}]
+
+Invented example 2:
+Text: Total depth reached 6,840 ft MD/6,310 ft TVD.
+Output: [{"subject":"well","relation":"reached_td","object":"6,840 ft MD"},{"subject":"well","relation":"reached_td","object":"6,310 ft TVD"}]
+
+Invented example 3:
+Text: The isolation valve passed a pressure test at 1,650 psi before a planned plug setting at 2,730 ft.
+Output: [{"subject":"isolation valve","relation":"tested_to_pressure","object":"1,650 psi"}]
+=== USER ===
+Allowed relations:
+{relations}
+
+Text:
+{text}
+
+Return the JSON array only.

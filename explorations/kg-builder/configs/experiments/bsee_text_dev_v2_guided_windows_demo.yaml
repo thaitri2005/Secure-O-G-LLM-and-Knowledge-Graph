@@ -1,0 +1,1 @@
+demo: {name: bsee_text_dev_v2_guided_windows_demo, levels: [A0, A4], runs: [configs/experiments/bsee_text_dev_v2_guided_windows.yaml]}

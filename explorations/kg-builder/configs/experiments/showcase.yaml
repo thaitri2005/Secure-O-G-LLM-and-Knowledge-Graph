@@ -1,0 +1,5 @@
+run: {name: showcase}
+corpus: {path: data/benchmarks/showcase/corpus.jsonl, format: jsonl}
+canon: {schema_path: contracts/ontology/showcase.yaml, few_shot: example, max_minutes: 20}
+eval: {showcase_gold_dir: data/benchmarks/showcase, showcase_queries: configs/experiments/showcase_queries.yaml}
+ablation: A4

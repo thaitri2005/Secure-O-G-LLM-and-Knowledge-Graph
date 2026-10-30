@@ -1,0 +1,1064 @@
+{
+ "api_key": "lm-studio",
+ "base_url": "http://127.0.0.1:49827/v1",
+ "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+ "enrich_schema": false,
+ "few_shot_dir": "third_party\\edc\\few_shot_examples\\example",
+ "items": [
+  {
+   "key": "eor_-107397_6254f1ff#c000",
+   "text": "ERT has completed permanent abandon operations of the EI 302 A03BP1 well by removing the remaining 26\" drive pipe @ 15'BML & 18 5/8\" csg at 18' BML.  The operations began on 09-22-09 and were completed on 09-22-09.  A site clearance operation was performed and the site clearance report will be filed with the MMS Structural Department as part of the EI 302 A platform removal report.",
+   "triples": [
+    [
+     "ERT",
+     "completed operations on",
+     "EI 302 A03BP1 well"
+    ],
+    [
+     "site clearance report",
+     "will be filed with",
+     "MMS Structural Department"
+    ],
+    [
+     "site clearance operation",
+     "was performed by",
+     "ERT"
+    ],
+    [
+     "ERT",
+     "removed",
+     "csg"
+    ],
+    [
+     "ERT",
+     "removed",
+     "drive pipe"
+    ],
+    [
+     "site clearance report",
+     "is part of",
+     "EI 302 A platform removal report"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-108210_cf2cb337#c000",
+   "text": "ERT has completed permanent abandonment operations of the EC 364 A01.  A derrick barge was moved on location and as part of the operations to remove the EC 364 A platform, the remaining casing strings of the EC 364 A01 well, the 36\" drive pipe & 20\" conductor csg were cut and pulled 16' BML.  Operations started and were completed on 11-04-09.",
+   "triples": [
+    [
+     "casing strings",
+     "are part of",
+     "EC 364 A01 well"
+    ],
+    [
+     "derrick barge",
+     "was moved to location for removal of",
+     "EC 364 A platform"
+    ],
+    [
+     "ERT",
+     "completed operations on",
+     "EC 364 A01"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-110924_63135b4a#c000",
+   "text": "Change status from TA to completed per MMS request. Received the following when status changed: 1156  Eor status code and status date: COM, 03/14/2010 Well status code and status date: TA, 03/14/2010 If the well status changes, the well status date must also be changed and vice versa.\nChanged date to 3/15/10 after discussion with Mark Malbrue.",
+   "triples": [
+    [
+     "Eor status code",
+     "has value",
+     "COM"
+    ],
+    [
+     "Well status code",
+     "has value",
+     "TA"
+    ],
+    [
+     "received data",
+     "contains identifier",
+     "1156"
+    ],
+    [
+     "date change",
+     "discussed with",
+     "Mark Malbrue"
+    ],
+    [
+     "Well status code",
+     "has date",
+     "03/14/2010"
+    ],
+    [
+     "status",
+     "changed from",
+     "TA"
+    ],
+    [
+     "date",
+     "changed to",
+     "3/15/10"
+    ],
+    [
+     "change status",
+     "requested by",
+     "MMS"
+    ],
+    [
+     "status",
+     "changed to",
+     "completed"
+    ],
+    [
+     "Eor status code",
+     "has date",
+     "03/14/2010"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-115098_07919947#c000",
+   "text": "Additional TA work was completed on 03/20/2011.  The 7-5/8\" was cut with a casing cutter at 285' BML on 03/05/2011.  From 09/03/09 to 09/04/09, the 26\" was cut @ 19' BML and the 10-3/4\" was cut @ 14' BML during wedding cake operations on the platform to remove obstructions to the wellbore.",
+   "triples": [
+    [
+     "26\"",
+     "was cut at depth during period from",
+     "19' BML"
+    ],
+    [
+     "10-3/4\"",
+     "was cut at depth during period from",
+     "14' BML"
+    ],
+    [
+     "7-5/8\"",
+     "was cut on date",
+     "03/05/2011"
+    ],
+    [
+     "10-3/4\"",
+     "was cut during period starting on",
+     "09/03/09"
+    ],
+    [
+     "10-3/4\"",
+     "was cut during period ending on",
+     "09/04/09"
+    ],
+    [
+     "TA work",
+     "was completed on",
+     "03/20/2011"
+    ],
+    [
+     "7-5/8\"",
+     "was cut with",
+     "casing cutter"
+    ],
+    [
+     "26\"",
+     "was cut during period ending on",
+     "09/04/09"
+    ],
+    [
+     "7-5/8\"",
+     "was cut at depth on",
+     "285' BML"
+    ],
+    [
+     "26\"",
+     "was cut during period starting on",
+     "09/03/09"
+    ],
+    [
+     "wedding cake operations",
+     "took place at location",
+     "platform"
+    ],
+    [
+     "wedding cake operations",
+     "were performed to remove obstructions from",
+     "wellbore"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-124567_2cc73bb4#c000",
+   "text": "Stone Energy has completed operations on the ST 164 Well C-10 to install a PB safety valve insert in lieu of a SCSSV due to the inability to re-establish control line integrity. The PB safety valve & X lock were set in the 2.813\" X profile at 810' MD. Operations started 04/27/2012 and ended 04/28/2012.",
+   "triples": [
+    [
+     "PB safety valve insert",
+     "in lieu of",
+     "SCSSV"
+    ],
+    [
+     "operations on ST 164 Well C-10",
+     "ended",
+     "04/28/2012"
+    ],
+    [
+     "operations on ST 164 Well C-10",
+     "started",
+     "04/27/2012"
+    ],
+    [
+     "Stone Energy",
+     "completed operations on",
+     "ST 164 Well C-10"
+    ],
+    [
+     "operations on ST 164 Well C-10",
+     "due to inability to re-establish",
+     "control line integrity"
+    ],
+    [
+     "operations on ST 164 Well C-10",
+     "install",
+     "PB safety valve insert"
+    ],
+    [
+     "PB safety valve & X lock",
+     "set in",
+     "2.813\" X profile at 810' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-125106_405da87f#c000",
+   "text": "The cementing of well conductors and the pressure testing of casing annuli were not part of the well work procedures set forth in the approved APM to PA dated May 27, 2010 and, as such, were not performed as part of the well PA operations.  The requested information should have been provided by the Operator of record when the well was Temporarily Abandoned (TA) in 2008 and should be contained in BSEE records.",
+   "triples": [
+    [
+     "cementing of well conductors and the pressure testing of casing annuli",
+     "were not performed as part of",
+     "well PA operations"
+    ],
+    [
+     "cementing",
+     "is part of",
+     "well conductors"
+    ],
+    [
+     "approved APM to PA",
+     "dated",
+     "May 27, 2010"
+    ],
+    [
+     "requested information",
+     "should be contained in",
+     "BSEE records"
+    ],
+    [
+     "pressure testing",
+     "is part of",
+     "casing annuli"
+    ],
+    [
+     "well work procedures",
+     "set forth in",
+     "approved APM to PA"
+    ],
+    [
+     "requested information",
+     "should have been provided by",
+     "Operator of record"
+    ],
+    [
+     "well",
+     "was Temporarily Abandoned (TA) in",
+     "2008"
+    ],
+    [
+     "cementing of well conductors and the pressure testing of casing annuli",
+     "were not part of",
+     "well work procedures"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-128140_c5f23ccc#c000",
+   "text": "Operations were successfully completed on the SS Block 112 Well V-5(ST01) to isolate the \"R-15\" Sand completion existing perforations of 10,728'-10,734' & 10,775'-10,794' MD by setting a TTBP at 10,697' MD and dumping 52' of cement on top of the plug; ETOC at 10,645' MD. The TTBP at 10,697' and cement plug at 10,645' MD were pressure tested to 1000 psi. Subsequent zone change operations were suspended due to tubing x casing communication found and the \"R-13\" Sand was not perforated for production. Operations began 10/18/2012 and ended 10/22/2012.",
+   "triples": [
+    [
+     "cement plug",
+     "is located on top of",
+     "TTBP"
+    ],
+    [
+     "R-13 Sand",
+     "was not perforated in",
+     "SS Block 112 Well V-5(ST01)"
+    ],
+    [
+     "SS Block 112 Well V-5(ST01)",
+     "experienced issue",
+     "tubing x casing communication"
+    ],
+    [
+     "SS Block 112 Well V-5(ST01)",
+     "has location",
+     "R-15 Sand"
+    ],
+    [
+     "cement plug",
+     "has depth",
+     "ETO C"
+    ],
+    [
+     "TTBP",
+     "is located at depth",
+     "SS Block 112 Well V-5(ST01)"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-130290_0503055e#c000",
+   "text": "Permanently abandon A003 by jetting a hole, cutting all casings at 16' BML, and installing a well head cap in the 30\" drive pipe. Squeeze micro-matrix cement into micro annuli to stop bubbles. Confirmed no bubbles present 2/18/2013.",
+   "triples": [
+    [
+     "micro-matrix cement",
+     "is squeezed into",
+     "micro annuli"
+    ],
+    [
+     "no bubbles present",
+     "was confirmed on",
+     "2/18/2013"
+    ],
+    [
+     "casings",
+     "are cut at",
+     "16' BML"
+    ],
+    [
+     "A003",
+     "is abandoned by",
+     "jetting a hole"
+    ],
+    [
+     "micro-matrix cement",
+     "stops",
+     "bubbles"
+    ],
+    [
+     "well head cap",
+     "is installed in",
+     "30\" drive pipe"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-130814_06e54c49#c000",
+   "text": "Temporarily abandon VK 826 A013. The Chris K was squeezed and abandoned with coil tubing prior to temporary abandonment operations.\nTubing was cut at 10,165' MD and pulled from the well. \nRelease mudline packer and pull downhole equipment. Note, could not get down and found large amounts of paraffin when tool string was recovered. Went to secondary release mechanism for mudline packer.\nSet bridge plug and set 200' cement plug on top of CIBP, then used a retrievable packer to isolate leak. See attached verbal approval for reference.\nPOH with retrievable packer and set cement retainer at 5,600' MD, pump 19 bbls of cement and squeeze casing leak at 5,623' MD-5,639' MD. Pressure test casing to 1500 psi for 15 minutes.\nSpot 50' cement plug on top of retainer to leave TOC at 5,550' MD. Pressure test casing to 1500 psi for 15 minutes.\nSet cement retainer w/ TCP at 4,384' MD, perforate 9 5/8\" casing from 4,500'-4,504'. 9 5/8\" x 13 3/8\" annulus postive and negative tested. 50' cement on top of cement retainer, TOC at 4,334' MD. Test casing and plug to 1500 psi.\nSet cement retainer w/ TCP at 2,835' MD, 9 5/8\" and 13 5/8\" casing perforated from 2,950'-2,954' MD. 13 3/8\" x 20\" annulus postive and negative tested. Cement plug on top of retainer, TOC 2,285' MD.",
+   "triples": [
+    [
+     "retrievable packer",
+     "was used to isolate",
+     "casing leak"
+    ],
+    [
+     "cement retainer",
+     "had cement plug on top of with TOC at",
+     "2,285' MD"
+    ],
+    [
+     "Chris K",
+     "was squeezed and abandoned with",
+     "coil tubing"
+    ],
+    [
+     "cement",
+     "was pumped to squeeze",
+     "casing leak"
+    ],
+    [
+     "cement retainer",
+     "had cement on top of with TOC at",
+     "4,334' MD"
+    ],
+    [
+     "cement plug",
+     "was set on top of",
+     "CIBP"
+    ],
+    [
+     "cement retainer",
+     "was set at",
+     "5,600' MD"
+    ],
+    [
+     "Tubing",
+     "was cut at",
+     "10,165' MD"
+    ],
+    [
+     "cement retainer",
+     "was set at",
+     "4,384' MD"
+    ],
+    [
+     "cement retainer",
+     "was set at",
+     "2,835' MD"
+    ],
+    [
+     "VK 826 A013",
+     "is temporarily abandoned by",
+     "Chris K"
+    ],
+    [
+     "mudline packer",
+     "had large amounts of paraffin found in when tool string was recovered",
+     "tool string"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-152673_db7c1616#c000",
+   "text": "The GC743 DC321 ST00BP00 well was drilled & completed on January 30th 2014. The M-55 sand and the M54 sand were completed. Both intervals were individually Frac Packed sand control completions.  The completion allows for the isolation of the lower interval from the upper interval through the installed down hole flow control system. When the rig moved off the well, the upper interval DHFC sleeve (M55) was left open and lower interval (M54) DHFC sleeve was left closed.",
+   "triples": [
+    [
+     "GC743 DC321 ST00BP00 well",
+     "was drilled & completed on",
+     "January 30th 2014"
+    ],
+    [
+     "M54 sand",
+     "is part of completion for",
+     "GC743 DC321 ST00BP00 well"
+    ],
+    [
+     "lower interval (M54) DHFC sleeve",
+     "was left closed after rig moved off",
+     "GC743 DC321 ST00BP00 well"
+    ],
+    [
+     "GC743 DC321 ST00BP00 well",
+     "has installed system for isolation",
+     "down hole flow control system"
+    ],
+    [
+     "rig",
+     "moved off",
+     "GC743 DC321 ST00BP00 well"
+    ],
+    [
+     "M-55 sand",
+     "is part of completion for",
+     "GC743 DC321 ST00BP00 well"
+    ],
+    [
+     "upper interval DHFC sleeve (M55)",
+     "was left open after rig moved off",
+     "GC743 DC321 ST00BP00 well"
+    ],
+    [
+     "GC743 DC321 ST00BP00 well",
+     "uses type of completion",
+     "Frac Packed sand control completions"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-164448_ba63f431#c000",
+   "text": "The well was TA'd in May 2016.  Sustained casing pressure was observed and confirmed in July 2016.  The pressure mitigation steps of drilling existing surface cement plugs and placing mechanical plugs cement retainers.",
+   "triples": [
+    [
+     "pressure mitigation steps",
+     "involved drilling",
+     "existing surface cement plugs"
+    ],
+    [
+     "well",
+     "was TA'd in",
+     "May 2016"
+    ],
+    [
+     "Sustained casing pressure",
+     "was observed and confirmed in",
+     "July 2016"
+    ],
+    [
+     "pressure mitigation steps",
+     "involved placing",
+     "mechanical plugs cement retainers"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-165961_0ff1703a#c000",
+   "text": "The OCS-G 4909 Well No. 8 is on Medco's current Idle Iron List and has future utility as a sidetrack candidate for future development of the 7300' Sand.  Medco performed a temporary abandonment operation in this well, which allows future utilization of this wellbore.",
+   "triples": [
+    [
+     "OCS-G 4909 Well No. 8",
+     "is on",
+     "Idle Iron List"
+    ],
+    [
+     "OCS-G 4909 Well No. 8",
+     "is candidate for",
+     "sidetrack candidate"
+    ],
+    [
+     "sidetrack candidate",
+     "for development of",
+     "7300' Sand"
+    ],
+    [
+     "Medco",
+     "performed",
+     "temporary abandonment operation"
+    ],
+    [
+     "temporary abandonment operation",
+     "on",
+     "OCS-G 4909 Well No. 8"
+    ],
+    [
+     "temporary abandonment operation",
+     "allows utilization of",
+     "wellbore"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-167489_53d2848f#c000",
+   "text": "Operation objective was to fish 7/32\" Braided line with Coil Tubing and Retrieve Packer and run a new packer.  The operation was unsuccessful in fishing the 7/32\" braided line and retrieving the packer.  Operations took place from 4/6/2017 to 4/18/2017.",
+   "triples": [
+    [
+     "Operations",
+     "ended on",
+     "4/18/2017"
+    ],
+    [
+     "Operation objective",
+     "intended action",
+     "new packer"
+    ],
+    [
+     "Operation objective",
+     "attempted to retrieve",
+     "Packer"
+    ],
+    [
+     "Operation objective",
+     "used tool",
+     "Coil Tubing"
+    ],
+    [
+     "Operations",
+     "started on",
+     "4/6/2017"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-170357_f1d06dc1#c000",
+   "text": "Enhance Production Operation - performed gas lift valve modifications and closed sliding sleeves at 9286', 9165' and 9130' to the current completion to convert the well to be a waterflood injector.\n\nOperation Completed 10/30/17",
+   "triples": [
+    [
+     "well",
+     "was converted to be",
+     "waterflood injector"
+    ],
+    [
+     "gas lift valve",
+     "was modified at depth",
+     "9286'"
+    ],
+    [
+     "sliding sleeves",
+     "were closed at depth",
+     "9130'"
+    ],
+    [
+     "gas lift valve",
+     "was modified at depth",
+     "9130'"
+    ],
+    [
+     "sliding sleeves",
+     "were closed at depth",
+     "9286'"
+    ],
+    [
+     "gas lift valve",
+     "was modified at depth",
+     "9165'"
+    ],
+    [
+     "sliding sleeves",
+     "were closed at depth",
+     "9165'"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-172767_e3c82a7e#c000",
+   "text": "Used HWOU to conduct casing pressure remediation operations.  SCP remediated by installing two isolation packer assemblies and the well was returned to production on 06/12/2018.\nNo change to the producing zone.",
+   "triples": [
+    [
+     "well",
+     "returned on date",
+     "06/12/2018"
+    ],
+    [
+     "well",
+     "was returned to",
+     "production"
+    ],
+    [
+     "SCP",
+     "remediated by installing",
+     "isolation packer assemblies"
+    ],
+    [
+     "HWOU",
+     "used to conduct",
+     "casing pressure remediation operations"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-173155_10692aa9#c000",
+   "text": "10-3/4\" Csg cut & removed 20'BML. Well will remain in TA status, unable t/cut 36\" csg 15' BML due t/36\" is part of the leg structure of the platform, will be removed with structure.  10-3/4\" Csg cut & removed 20'BML.",
+   "triples": [
+    [
+     "36\" csg",
+     "is part of structure",
+     "leg structure"
+    ],
+    [
+     "10-3/4\" Csg",
+     "is cut & removed at depth",
+     "20'BML"
+    ],
+    [
+     "leg structure",
+     "belongs to",
+     "platform"
+    ],
+    [
+     "Well",
+     "remains in status",
+     "TA status"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-195601_85455bff#c000",
+   "text": "The B-102 operation completed it's thru-tubing wireline camera run to investigate the tubing obstruction encountered in the well. From the camera run evaluation it appears the well has collapsed tubing that is \"pinched in\" 180 degrees opposite one another at approximately 9,060ft, preventing any thru-tubing wireline activity below this depth. With this collapsed tubing obstruction, the remaining operations were not completed at this time.",
+   "triples": [
+    [
+     "well",
+     "has",
+     "collapsed tubing"
+    ],
+    [
+     "thru-tubing wireline camera run",
+     "was used to investigate",
+     "tubing obstruction"
+    ],
+    [
+     "collapsed tubing",
+     "is located at",
+     "9,060ft"
+    ],
+    [
+     "collapsed tubing",
+     "prevents",
+     "thru-tubing wireline activity"
+    ],
+    [
+     "B-102 operation",
+     "completed",
+     "thru-tubing wireline camera run"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-198980_84b280ce#c000",
+   "text": "Well fully TA'd with all plugs to surface. Recovered 10.75\" x 7\" casing 30' BML. 24\" casing was cut and proven at 23' BML and will be recovered for full PA during platform decom. Status and Date can't be changed.",
+   "triples": [
+    [
+     "24\" casing",
+     "will be recovered for purpose",
+     "PA"
+    ],
+    [
+     "24\" casing",
+     "was cut and proven at depth",
+     "23' BML"
+    ],
+    [
+     "plugs to surface",
+     "are connected to",
+     "TA"
+    ],
+    [
+     "PA",
+     "is associated with event",
+     "platform decom"
+    ],
+    [
+     "TA",
+     "has status of",
+     "fully TA'd"
+    ],
+    [
+     "10.75\" x 7\" casing",
+     "was recovered at depth",
+     "30' BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-26618_62fca1da#c000",
+   "text": "Change out tubing from 2 7/8\" to 4 1/2\". Please note that the EOT is located @ 15380'MD for the new 4 1/2\" tubing. Additionally please add the TVD depths to the Q 4Sand production interval. They are 15468' - 15512' and 15524' - 15545'.",
+   "triples": [
+    [
+     "EOT",
+     "is located at depth",
+     "15380'MD"
+    ],
+    [
+     "Q 4Sand production interval",
+     "has TVD depth range",
+     "15524'"
+    ],
+    [
+     "Q 4Sand production interval",
+     "has TVD depth range",
+     "15512'"
+    ],
+    [
+     "Q 4Sand production interval",
+     "has TVD depth range",
+     "15468'"
+    ],
+    [
+     "Q 4Sand production interval",
+     "has TVD depth range",
+     "15545'"
+    ],
+    [
+     "tubing",
+     "is changed from size",
+     "2 7/8\""
+    ],
+    [
+     "tubing",
+     "is changed to size",
+     "4 1/2\""
+    ]
+   ]
+  },
+  {
+   "key": "eor_-50573_f397a443#c000",
+   "text": "All casings cut @ 26' BML.  After several failed attempts to pull casings, Management elected to  wait until platform removal to blow casings and remove with derrick barge.  Well A016 remains in TA status.",
+   "triples": [
+    [
+     "Well A016",
+     "is in",
+     "TA status"
+    ],
+    [
+     "Management",
+     "elected to wait until",
+     "platform removal"
+    ],
+    [
+     "casings",
+     "are removed with",
+     "derrick barge"
+    ],
+    [
+     "casings",
+     "are cut at",
+     "26' BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-53971_7ac0b755#c000",
+   "text": "The EC 339, OCS-G 27051, Well A-02 has been completed for production. The well was spud on 02-09-07 and TD'd on 03-06-07 at depth of 9750' MD / 7395' TVD.  The well was completed as a single, gravel packed gas completion in the \"Lentic 1 7200' \" Sand.  Completion operations began on 08.11/2007 and were completed on 08/27/2007.",
+   "triples": [
+    [
+     "Completion operations",
+     "were completed on",
+     "08/27/2007"
+    ],
+    [
+     "Well A-02",
+     "is identified by",
+     "OCS-G 27051"
+    ],
+    [
+     "The well",
+     "has depth of",
+     "9750' MD"
+    ],
+    [
+     "The well",
+     "has depth of",
+     "7395' TVD"
+    ],
+    [
+     "Well A-02",
+     "is identified by",
+     "EC 339"
+    ],
+    [
+     "The well",
+     "TD'd on",
+     "03-06-07"
+    ],
+    [
+     "The well",
+     "was completed as",
+     "single, gravel packed gas completion"
+    ],
+    [
+     "Well A-02",
+     "has been completed for",
+     "production"
+    ],
+    [
+     "The well",
+     "was spud on",
+     "02-09-07"
+    ],
+    [
+     "Completion operations",
+     "began on",
+     "08.11/2007"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-60952_c561d036#c000",
+   "text": "WELL IS DSI. NO HYDROCARBONS WERE ENCOUNTERED WHILE DRILLING TO SURFACE CASING SETTING DEPTH. WELL GA019 PBHL IS IN AC 0813 ON LEASE G17561, SURF LOC'N IS IN AC 0857 ON LEASE G17565. Batch set location is in surface location.",
+   "triples": [
+    [
+     "GA019 PBHL",
+     "is located in",
+     "AC 0813"
+    ],
+    [
+     "GA019 PBHL",
+     "is on",
+     "LEASE G17561"
+    ],
+    [
+     "WELL IS DSI",
+     "is",
+     "DSI"
+    ],
+    [
+     "SURF LOC'N",
+     "is in",
+     "AC 0857"
+    ],
+    [
+     "SURF LOC'N",
+     "is on",
+     "LEASE G17565"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-67804_f684b876#c000",
+   "text": "ERT spud the SS 224 E-18 on 01-24-08 and TD'd the well at a depth of 18178' MD/ 15600' TVD, w/a MW of 14.0 ppg on 04-24-08. The open hole portion of the wellbore, 16153' - 18178' was plugged back. The well was then completed for production as a singel, gravel packed, gas completion in the \"EP\" Sd.  Completion operations were completed on 05-18-08.",
+   "triples": [
+    [
+     "wellbore",
+     "action",
+     "plugged back"
+    ],
+    [
+     "well",
+     "mud weight",
+     "14.0 ppg"
+    ],
+    [
+     "ERT",
+     "TD date",
+     "04-24-08"
+    ],
+    [
+     "open hole portion",
+     "depth range end",
+     "18178'"
+    ],
+    [
+     "well",
+     "completed in formation",
+     "EP Sd."
+    ],
+    [
+     "open hole portion",
+     "is part of",
+     "wellbore"
+    ],
+    [
+     "well",
+     "total depth MD",
+     "18178' MD"
+    ],
+    [
+     "ERT",
+     "spud",
+     "SS 224 E-18"
+    ],
+    [
+     "completion type",
+     "is",
+     "gas completion"
+    ],
+    [
+     "well",
+     "completed for",
+     "production"
+    ],
+    [
+     "completion type",
+     "is",
+     "singel"
+    ],
+    [
+     "open hole portion",
+     "depth range start",
+     "16153'"
+    ],
+    [
+     "ERT",
+     "TD'd",
+     "well"
+    ],
+    [
+     "Completion operations",
+     "completion date",
+     "05-18-08"
+    ],
+    [
+     "well",
+     "total depth TVD",
+     "15600' TVD"
+    ],
+    [
+     "ERT",
+     "spud date",
+     "01-24-08"
+    ],
+    [
+     "completion type",
+     "is",
+     "gravel packed"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-72895_a2987c28#c000",
+   "text": "This well was one that was worked on in 2006 when the Southern Hercules was on location.  The bottom 2 plugs (#1 ? perforations and #2 ? intermediate) were put in place.  The tubing and 7? casing were cut and pulled and a CIBP placed in the 10-3/4? casing.  The cement for the surface plug was not pumped before the decision to rig down was made.",
+   "triples": [
+    [
+     "CIBP",
+     "was placed in",
+     "10-3/4? casing"
+    ],
+    [
+     "Southern Hercules",
+     "was on location during",
+     "2006"
+    ],
+    [
+     "cement for surface plug",
+     "is component of",
+     "surface plug"
+    ],
+    [
+     "This well",
+     "was worked on in",
+     "2006"
+    ],
+    [
+     "tubing",
+     "was cut and pulled with",
+     "7? casing"
+    ],
+    [
+     "#1 ? perforations",
+     "is type of plug",
+     "#2 ? intermediate"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-75852_b6a7c2bc#c000",
+   "text": "Stone Energy has successfully performed zone change operations on the PL 23 OCS-G 01238, Well No. D001 to produce the \"W Sand\".  Operations began on May 11, 2008 and were completed on June 8, 2008.  The previous producing interval in the well the \"X-2 Sand\" was isolated by setting an EZSV @ 16000', dumping 10' cement on top and setting a CIBP 15980'.  The \"W Sand\" was perforated 15924' - 15944' for production.",
+   "triples": [
+    [
+     "Well No. D001",
+     "produces",
+     "W Sand"
+    ],
+    [
+     "Operations",
+     "began on",
+     "May 11, 2008"
+    ],
+    [
+     "Well No. D001",
+     "set CIBP at depth",
+     "CIBP 15980'"
+    ],
+    [
+     "EZSV",
+     "set at depth",
+     "16000'"
+    ],
+    [
+     "Well No. D001",
+     "previously produced from interval",
+     "X-2 Sand"
+    ],
+    [
+     "W Sand",
+     "was perforated at interval",
+     "15924' - 15944'"
+    ],
+    [
+     "Stone Energy",
+     "performed operations on",
+     "Well No. D001"
+    ],
+    [
+     "X-2 Sand",
+     "was isolated by setting",
+     "EZSV"
+    ],
+    [
+     "Operations",
+     "involved dumping",
+     "cement"
+    ],
+    [
+     "Operations",
+     "completed on",
+     "June 8, 2008"
+    ],
+    [
+     "Stone Energy",
+     "operated at location",
+     "PL 23 OCS-G 01238"
+    ]
+   ]
+  }
+ ],
+ "model": "qwen3.6-35b-a3b",
+ "net_log": "runs/reference/bsee_text/dev_v1_base/bsee_text_dev_v1_base/A4/net_edc.jsonl",
+ "schema_csv": "runs/reference/bsee_text/dev_v1_base/bsee_text_dev_v1_base/A4/edc/schema.csv",
+ "templates_dir": "third_party\\edc\\prompt_templates",
+ "version": 1
+}

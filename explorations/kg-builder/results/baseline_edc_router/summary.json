@@ -1,0 +1,666 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A4"
+ ],
+ "mock": true,
+ "name": "demo",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/experiments/showcase.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 14,
+      "entities_literal": 0,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 6,
+       "cache_misses": 0,
+       "calls": 6,
+       "completion_tokens": 351,
+       "finish_length": 0,
+       "prompt_tokens": 2273,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.0,
+       "export": 0.0,
+       "extract": 10.75,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.015,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 10,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 14,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/baseline_edc_router/showcase/A0",
+     "showcase": {
+      "G1": "FAIL",
+      "G2": "FAIL",
+      "G3": "FAIL",
+      "G4": {
+       "q1": "FAIL",
+       "q2": "FAIL",
+       "q3": "FAIL",
+       "q4": "FAIL"
+      },
+      "G5": "PASS",
+      "gold_recall": 0.0
+     },
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "demo_alice",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_ibm",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "demo_turing",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 5,
+       "self_canon": 0,
+       "sent": 7,
+       "trigger": 3,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 13,
+       "cache_misses": 0,
+       "calls": 13,
+       "completion_tokens": 515,
+       "finish_length": 0,
+       "prompt_tokens": 6338,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 7.031,
+       "export": 0.016,
+       "extract": 0.063,
+       "ingest": 0.0,
+       "resolve": 0.125,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 7,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 2
+     },
+     "run_dir": "runs/reference/baseline_edc_router/showcase/A4",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": {
+       "q1": "PASS",
+       "q2": "PASS",
+       "q3": "PASS",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "gold_recall": 1.0
+     },
+     "webnlg": null
+    }
+   },
+   "name": "showcase"
+  },
+  {
+   "baseline": {
+    "label": "B-EDC: EDC alone, same 10 docs (minitest)",
+    "webnlg": {
+     "ent_type": {
+      "F1": 0.8849206349206349,
+      "P": 0.878095238095238,
+      "R": 0.8952380952380953
+     },
+     "exact": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     },
+     "full_triple": {
+      "F1": 0.46511627906976744,
+      "P": 0.46511627906976744,
+      "R": 0.46511627906976744
+     },
+     "partial": {
+      "F1": 0.8638888888888889,
+      "P": 0.8580952380952381,
+      "R": 0.8726190476190476
+     },
+     "per_tag": {
+      "objects": {
+       "exact": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       },
+       "strict": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       }
+      },
+      "predicates": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      },
+      "subjects": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      }
+     },
+     "strict": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     }
+    }
+   },
+   "config": "configs/experiments/webnlg10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 19,
+       "none": 1,
+       "partial": 13
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 10,
+       "cache_misses": 0,
+       "calls": 10,
+       "completion_tokens": 695,
+       "finish_length": 0,
+       "prompt_tokens": 8075,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.0,
+       "export": 0.015,
+       "extract": 6.016,
+       "ingest": 0.016,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 31,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/baseline_edc_router/webnlg10/A0",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.803968253968254,
+       "P": 0.7942857142857143,
+       "R": 0.819047619047619
+      },
+      "evaluator_seconds": 1.2,
+      "exact": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      },
+      "full_triple": {
+       "F1": 0.26,
+       "P": 0.26,
+       "R": 0.26
+      },
+      "partial": {
+       "F1": 0.7698412698412698,
+       "P": 0.7619047619047619,
+       "R": 0.7821428571428571
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        },
+        "strict": {
+         "F1": 0.6,
+         "P": 0.6,
+         "R": 0.6
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        },
+        "strict": {
+         "F1": 0.9142857142857143,
+         "P": 0.9142857142857143,
+         "R": 0.9142857142857143
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.7357142857142857,
+       "P": 0.7295238095238095,
+       "R": 0.7452380952380953
+      }
+     }
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "edc",
+      "routes": [
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0000",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0001",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0002",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0003",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0004",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0005",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0006",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0007",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0008",
+        "reason": "backend=edc",
+        "score": null
+       },
+       {
+        "backend": "edc",
+        "doc_id": "webnlg_0009",
+        "reason": "backend=edc",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 33,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 33,
+       "self_canon": 0,
+       "sent": 33,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 35,
+      "entities_literal": 5,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 19,
+       "none": 1,
+       "partial": 13
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 31,
+       "cache_misses": 0,
+       "calls": 31,
+       "completion_tokens": 1300,
+       "finish_length": 0,
+       "prompt_tokens": 25704,
+       "seconds": 0
+      },
+      "mentions": 43,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "weak_evidence": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 8.016,
+       "export": 0.016,
+       "extract": 6.015,
+       "ingest": 0.0,
+       "resolve": 0.109,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.015
+      },
+      "statements_accepted": 30,
+      "statements_rejected": 1,
+      "surfaces_non_literal": 35,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/baseline_edc_router/webnlg10/A4",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.8658730158730159,
+       "P": 0.8590476190476191,
+       "R": 0.8761904761904762
+      },
+      "evaluator_seconds": 1.2,
+      "exact": {
+       "F1": 0.8238095238095238,
+       "P": 0.819047619047619,
+       "R": 0.830952380952381
+      },
+      "full_triple": {
+       "F1": 0.4418604651162791,
+       "P": 0.4418604651162791,
+       "R": 0.4418604651162791
+      },
+      "partial": {
+       "F1": 0.8448412698412698,
+       "P": 0.839047619047619,
+       "R": 0.8535714285714285
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        },
+        "strict": {
+         "F1": 0.7257142857142858,
+         "P": 0.7238095238095238,
+         "R": 0.7285714285714285
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.8857142857142857,
+         "P": 0.8857142857142857,
+         "R": 0.8857142857142857
+        },
+        "strict": {
+         "F1": 0.8857142857142857,
+         "P": 0.8857142857142857,
+         "R": 0.8857142857142857
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.8857142857142857,
+         "P": 0.8857142857142857,
+         "R": 0.8857142857142857
+        },
+        "strict": {
+         "F1": 0.8857142857142857,
+         "P": 0.8857142857142857,
+         "R": 0.8857142857142857
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.8238095238095238,
+       "P": 0.819047619047619,
+       "R": 0.830952380952381
+      }
+     }
+    }
+   },
+   "name": "webnlg10"
+  }
+ ]
+}

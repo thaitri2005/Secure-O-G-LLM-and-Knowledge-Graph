@@ -1,0 +1,11 @@
+# Exact pins of packages imported by src/kgbuilder; already installed in .venvs/kggen from configs/requirements/kggen.txt. Do not pip install from this file.
+pydantic==2.11.9
+PyYAML==6.0.3
+networkx==3.5
+numpy==2.3.3
+dspy==3.0.4
+litellm==1.77.5
+semhash==0.3.2
+sentence-transformers==5.1.1
+neo4j==6.0.3
+# kg-gen @ third_party/kg-gen (6259b4c, installed --no-deps); EDC worker: configs/requirements/edc.txt in .venvs/edc

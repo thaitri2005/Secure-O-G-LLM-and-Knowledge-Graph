@@ -1,0 +1,87 @@
+{
+  "model": "qwen3.6-35b-a3b",
+  "docs": {
+    "demo_ibm": {
+      "entities": 8,
+      "relations": 4,
+      "seconds": 40.7
+    },
+    "demo_turing": {
+      "entities": 2,
+      "relations": 3,
+      "seconds": 33.0
+    },
+    "demo_alice": {
+      "entities": 3,
+      "relations": 3,
+      "seconds": 32.9
+    }
+  },
+  "wall_seconds": 106.6,
+  "score": {
+    "gold_triples": 4,
+    "predicted_triples": 10,
+    "pair_recall": 1.0,
+    "triple_recall": 0.5,
+    "per_gold": [
+      {
+        "gold": [
+          "Alan Turing",
+          "born_in",
+          "London"
+        ],
+        "pair_match": true,
+        "triple_match": true,
+        "predicted_relations": [
+          "was born in"
+        ]
+      },
+      {
+        "gold": [
+          "Alice",
+          "works_at",
+          "Acme Labs"
+        ],
+        "pair_match": true,
+        "triple_match": false,
+        "predicted_relations": [
+          "joined",
+          "left"
+        ]
+      },
+      {
+        "gold": [
+          "Alice",
+          "works_at",
+          "Nova AI"
+        ],
+        "pair_match": true,
+        "triple_match": false,
+        "predicted_relations": [
+          "joined"
+        ]
+      },
+      {
+        "gold": [
+          "IBM Research",
+          "works_on",
+          "artificial intelligence"
+        ],
+        "pair_match": true,
+        "triple_match": true,
+        "predicted_relations": [
+          "works on"
+        ]
+      }
+    ]
+  },
+  "proxy": {
+    "llm_calls": 6,
+    "prompt_tokens": 2273,
+    "completion_tokens": 351,
+    "llm_seconds": 105.4,
+    "finish_length": 0
+  },
+  "llm_log": "results\\upstream\\kggen\\llm_calls_showcase.jsonl",
+  "net_log": "results\\upstream\\logs\\net_kggen_showcase.jsonl"
+}

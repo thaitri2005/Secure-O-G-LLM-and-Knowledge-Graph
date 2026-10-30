@@ -1,0 +1,116 @@
+{
+ "config": {
+  "ablation": "A0",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "example",
+   "max_minutes": 180,
+   "schema_path": "contracts\\ontology\\bsee.yaml"
+  },
+  "chunk": {
+   "max_chars": 2000
+  },
+  "corpus": {
+   "format": "jsonl",
+   "limit": null,
+   "path": "data/benchmarks/bsee_text/v2/test_subset.jsonl"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": null
+  },
+  "extract": {
+   "backend": "guided",
+   "guided_mode": "chunk",
+   "guided_prompt": "configs/prompts/bsee_guided.txt",
+   "guided_recall_prompt": "configs/prompts/bsee_guided_recall.txt",
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "ground": {
+   "mode": "window"
+  },
+  "induce": {
+   "max_concepts": 5,
+   "max_entities": 50,
+   "max_relations": 100,
+   "max_tokens": 64,
+   "min_support": 1
+  },
+  "judge": {
+   "max_tokens": 32,
+   "scope": "risky",
+   "version": "v2"
+  },
+  "literals": {
+   "derive_attributes": false,
+   "lexicon": null
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "number_guard": true,
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "bsee_text_test_v2_guided_recall"
+  },
+  "validate": {
+   "min_grounding": "partial",
+   "mode": "soft"
+  }
+ },
+ "config_hash": "690cfcdb407347446fe91b99e5c206cd89c7e087d691a8a03c91d64df3ab614c",
+ "corpus_hash": "0c28f21473041c8374083f94d49bfab5c33acb06495ea5e5e98d666aee521da1",
+ "exit_code": 0,
+ "finished_at": "2026-10-28T00:04:37.977544+00:00",
+ "flags": {
+  "canon": false,
+  "judge": false,
+  "resolve": false,
+  "temporal": false,
+  "validate": false
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 0.047,
+  "export": 0.172,
+  "extract": 2527.375,
+  "ingest": 0.015,
+  "resolve": 0.015,
+  "temporal.tag": 0.0,
+  "validate": 0.016,
+  "viz": 0.969
+ },
+ "started_at": "2026-10-27T23:22:29.344769+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

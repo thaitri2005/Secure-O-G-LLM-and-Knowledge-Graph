@@ -1,0 +1,32 @@
+{
+ "ai_gold": {
+  "casing_size": 33,
+  "completed_in": 2,
+  "cut_at": 16,
+  "has_mud_weight": 3,
+  "has_well_status": 47,
+  "perforated_interval": 28,
+  "reached_td": 13,
+  "set_casing_at": 6,
+  "set_equipment_at": 1,
+  "set_plug_at": 20,
+  "tested_to_pressure": 12
+ },
+ "eligible": {
+  "casing_size": 367,
+  "completed_in": 30,
+  "cut_at": 222,
+  "drilled_to": 24,
+  "fit_lot_emw": 4,
+  "has_mud_weight": 32,
+  "has_well_status": 693,
+  "perforated_interval": 308,
+  "pumped": 3,
+  "reached_td": 113,
+  "set_casing_at": 50,
+  "set_equipment_at": 12,
+  "set_plug_at": 218,
+  "tagged_at": 24,
+  "tested_to_pressure": 117
+ }
+}

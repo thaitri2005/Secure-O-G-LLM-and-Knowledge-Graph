@@ -1,0 +1,16 @@
+# Replay the retriever and reader on intermediate pipeline graphs.
+qa:
+  name: twowiki10_qa_intermediate_graphs
+  build_config: configs/experiments/twowiki10.yaml
+  questions: data/benchmarks/2wiki/2wiki_30.json
+  limit: 10
+  graphs: {A2: runs/reference/ablation_sentence_grounding/2wiki10/A2, A3: runs/reference/ablation_sentence_grounding/2wiki10/A3, P2: runs/reference/schema_induction/2wiki10_pass2/A4}
+  modes: [text, graph, hybrid]
+  k: 5
+  hops: 2
+  max_seeds: 5
+  max_statements: 20
+  max_tokens: 32
+  embedder: sentence-transformers/all-MiniLM-L6-v2
+  seed_linking: exact
+  fact_order: confidence

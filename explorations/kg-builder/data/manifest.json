@@ -1,0 +1,156 @@
+{
+ "seed": 42,
+ "webnlg": {
+  "purpose": "construction accuracy (EDC evaluate/evaluation_script.py, WebNLG P/R/F1)",
+  "source_url": "https://github.com/clear-nus/edc/tree/02aad17e2fc1e9845c84746b384e7fd3160edc1a/datasets",
+  "source_files": {
+   "third_party/edc/datasets/webnlg.txt": "b43a271053d4ea0af63937825a0782d6e292054ea87b56b1de631c7c73ff2eac",
+   "third_party/edc/evaluate/references/webnlg.txt": "b243cdc545aea7b2ef60ee8e477befc4058c876f7ee5046e655a47f705ddc140"
+  },
+  "license": "WebNLG corpus: CC BY-NC-SA 4.0 (GEM/web_nlg card lists CC BY-NC 4.0); EDC code MIT",
+  "full_size": 1165,
+  "selection": {
+   "seed": 42,
+   "n": 30,
+   "line_indices_0based": [
+    13,
+    51,
+    54,
+    61,
+    65,
+    178,
+    191,
+    209,
+    228,
+    285,
+    318,
+    326,
+    407,
+    440,
+    447,
+    451,
+    457,
+    476,
+    501,
+    563,
+    569,
+    689,
+    696,
+    859,
+    864,
+    865,
+    919,
+    1034,
+    1116,
+    1149
+   ]
+  },
+  "gold_triples": 106,
+  "files": {
+   "data/benchmarks/webnlg/webnlg_30.txt": "a34c57d9299fe5c317eccfee94e5f397e64e565975a2f94c26e3348036405a67",
+   "data/benchmarks/webnlg/webnlg_30.ref.txt": "25d52634a76b2f6c98add33177674bc7b09ce49633753304543c78a8e5d764fb"
+  }
+ },
+ "mine": {
+  "purpose": "information retention (KGGen MINE: KG retrieval + LLM judge, accuracy per essay)",
+  "source_url": "https://huggingface.co/datasets/josancamon/kg-gen-MINE-evaluation-dataset/tree/aacf51485de5cb6f4a411599f1d0846842c14009",
+  "source_files": {
+   ".cache/hf/hub/datasets--josancamon--kg-gen-MINE-evaluation-dataset/snapshots/aacf51485de5cb6f4a411599f1d0846842c14009/data/train-00000-of-00001.parquet": "79531283d986715676b72d0eae594aeb5e37845bce71056249dbdbd79a31510e"
+  },
+  "license": "not declared on the HF dataset card; kg-gen code MIT (pyproject only). Cite, do not redistribute",
+  "full_size": 101,
+  "selection": {
+   "seed": 42,
+   "n": 5,
+   "essay_ids": [
+    4,
+    15,
+    37,
+    86,
+    100
+   ]
+  },
+  "queries": 75,
+  "essay_chars": [
+   3470,
+   3479,
+   4577,
+   4269,
+   4043
+  ],
+  "reference_accuracy_note": "kggen/graphrag/openie_accuracy are the published per-essay scores (LLM judge)",
+  "files": {
+   "data/benchmarks/mine/mine_5.jsonl": "c91792223c27b28c46d4e6c002b348ebd75a1705d6d9875636463811561ad66d"
+  }
+ },
+ "2wiki": {
+  "purpose": "graph-as-index QA (EM/F1 on answer, Recall@k on supporting passages; evidences = gold triples)",
+  "source_url": "https://github.com/OSU-NLP-Group/HippoRAG/tree/d5c8329422e0a0b834a15874545cb6a74b4f9b26/reproduce/dataset",
+  "upstream_dataset": "https://github.com/Alab-NII/2wikimultihop",
+  "source_files": {
+   "third_party/hipporag/reproduce/dataset/2wikimultihopqa.json": "7a2f0cb66570047f1c79e37aedb8a6258eac369b82a767242d9ebcd9f111708b",
+   "third_party/hipporag/reproduce/dataset/2wikimultihopqa_corpus.json": "5ff0bd1c6d3b0fd745213f472abf0bbed9653e229765bdd6038b62f4ddcb83c5"
+  },
+  "license": "2WikiMultihopQA: Apache-2.0 (Wikipedia text CC BY-SA); HippoRAG code MIT",
+  "full_size": 1000,
+  "selection": {
+   "seed": 42,
+   "per_type": {
+    "compositional": 8,
+    "comparison": 8,
+    "bridge_comparison": 7,
+    "inference": 7
+   },
+   "question_ids": [
+    "01309e5008bd11ebbd89ac1f6bf848b6",
+    "02b62fce087211ebbd64ac1f6bf848b6",
+    "0e7078b00bb011ebab90acde48001122",
+    "0f97e1f3096f11ebbdb0ac1f6bf848b6",
+    "10b8d7940baf11ebab90acde48001122",
+    "149af27608ab11ebbd81ac1f6bf848b6",
+    "1f562d40086911ebbd5eac1f6bf848b6",
+    "31c340da0bde11eba7f7acde48001122",
+    "31e34c220bde11eba7f7acde48001122",
+    "3602458e0bb011ebab90acde48001122",
+    "37a7af5a0bb011ebab90acde48001122",
+    "433bcf3d08b711ebbd88ac1f6bf848b6",
+    "567300700bdc11eba7f7acde48001122",
+    "593584760bb011ebab90acde48001122",
+    "62a9cd640bb011ebab90acde48001122",
+    "66119246086f11ebbd62ac1f6bf848b6",
+    "6a419ba2087611ebbd67ac1f6bf848b6",
+    "711449320bde11eba7f7acde48001122",
+    "821e65dc086911ebbd5eac1f6bf848b6",
+    "86508dc60bdc11eba7f7acde48001122",
+    "87e4e1e0088b11ebbd6fac1f6bf848b6",
+    "9523a3df088911ebbd6eac1f6bf848b6",
+    "ace717d0088411ebbd6dac1f6bf848b6",
+    "c68eb0be08e611ebbda5ac1f6bf848b6",
+    "d1086a1d08d911ebbd9cac1f6bf848b6",
+    "daaaf3480bdc11eba7f7acde48001122",
+    "e2c19fd80bae11ebab90acde48001122",
+    "e7d5fd3708c811ebbd92ac1f6bf848b6",
+    "f253a3040bdd11eba7f7acde48001122",
+    "f52452fc0bda11eba7f7acde48001122"
+   ]
+  },
+  "corpus_passages": 74,
+  "corpus_policy": "supporting passages of the selected questions only (other questions' passages act as distractors)",
+  "gold_evidence_triples": 74,
+  "files": {
+   "data/benchmarks/2wiki/2wiki_30.json": "b7ad5a31f09cd14768b95e5683e62d7ee4bb6d9dca8d6a0e3d39765116609d2e",
+   "data/benchmarks/2wiki/2wiki_30_corpus.json": "ea6b1fa0ea4625d6771aa3057da3bc581c046f3047ece191b90ce7c3207abe5a"
+  }
+ },
+ "showcase": {
+  "purpose": "synthetic demonstration: entity merge (IBM), relation canonicalization including inverse (Turing), temporal edges (Alice)",
+  "source_url": "Project-authored synthetic examples; see docs/datasets-and-licenses.md",
+  "license": "TBD by repository owner",
+  "files": {
+   "data/benchmarks/showcase/corpus.jsonl": "3d850a11e9e0b4e4d11e220880a938b36a56fba220f4f1d3ed8fa49fce662a23",
+   "data/benchmarks/showcase/gold_entities.jsonl": "d55e33aa717eeb765340430481ebefcfbc029aafbb8042937eaa0a5df156215a",
+   "data/benchmarks/showcase/gold_triples.jsonl": "5b7afeae27a07111159e21bd4df8df83bb5a5e07ebae354fa9b3fa5e9ff8212b",
+   "data/benchmarks/showcase/questions.jsonl": "3a2bee303f9bfe8e9f64d4bd069350c710e45f6ee290b6ca78b8001509cc97c1"
+  }
+ }
+}

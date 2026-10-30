@@ -1,0 +1,22 @@
+{
+  "models": {
+    "sentence-transformers/all-MiniLM-L6-v2": {
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": ".cache/hf/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "minishlab/potion-base-8M": {
+      "revision": "bf8b056651a2c21b8d2565580b8569da283cab23",
+      "path": ".cache/hf/hub/models--minishlab--potion-base-8M/snapshots/bf8b056651a2c21b8d2565580b8569da283cab23"
+    }
+  },
+  "datasets": {
+    "josancamon/kg-gen-MINE-evaluation-dataset": {
+      "revision": "aacf51485de5cb6f4a411599f1d0846842c14009",
+      "file": ".cache/hf/hub/datasets--josancamon--kg-gen-MINE-evaluation-dataset/snapshots/aacf51485de5cb6f4a411599f1d0846842c14009/data/train-00000-of-00001.parquet"
+    }
+  },
+  "nltk": [
+    "punkt",
+    "punkt_tab"
+  ]
+}

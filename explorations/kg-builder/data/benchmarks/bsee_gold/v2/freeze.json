@@ -1,0 +1,44 @@
+{
+ "annotators": [
+  "annotator_a",
+  "annotator_b"
+ ],
+ "batch_size": 20,
+ "checked_absent": [],
+ "converter": "v2",
+ "corpus_sha256": "063dbfe1d020246d4e88092da12f49bdb1f1aad0a696bf31a8886b8408952a6e",
+ "created_at": "2026-10-28T11:39:32.818760+00:00",
+ "format": "kgb.well_freeze/1",
+ "frozen_inputs": {
+  "configs/domains/bsee/bsee_literals.yaml": "4b1912e1dcd36f43deba223d6e2ea8efdf433c903b57f76b2ebab70e258509ba",
+  "configs/experiments/bsee_eval.yaml": "a61486118b88a458c04b0390d344a8222c71ed93c1b1e345df5e9c5472fe760d",
+  "contracts/ontology/bsee.yaml": "8b35dc56ba8e4e87f7f81ed2b8f5354ff0c2afa7d517cbf18809507365d699c3",
+  "src/kgbuilder/core/well_convert.py": "6a31e1197365e7fdf75f693b40b81fce28ad4b73f51e44878f851e4ce40ca881",
+  "src/kgbuilder/core/well_facts.py": "3ac287f526fa521824bad11375b3fc0977e867841af5e724e695c8ff914a11e8",
+  "src/kgbuilder/core/well_literals.py": "83b9690178b88571a6f4111106a4402d037c7e52a45bebf488dac3b95dda3dda",
+  "src/kgbuilder/core/well_values.py": "bdc1be14eb09a39d4564290a852b8672f3889aa69bb59156816e9d0e74c6be8b",
+  "src/kgbuilder/evaluation/well_rules.py": "d198a854f83992a838f90b6ec714cda3940b618a2f90ee37eaa7c308049d3518"
+ },
+ "n_dev": 65,
+ "n_gold": 220,
+ "n_test": 155,
+ "packets": {
+  "packets/batch_01.jsonl": "c0a6378eed5013cd3e823826300ad06d280246a3a083743648d8e7740c059bb6",
+  "packets/batch_02.jsonl": "d3deec4945f845d4ecf66c8dee360f933e03bbf3d0ea068bb5e2b11a069edd91",
+  "packets/batch_03.jsonl": "9c8d9f9ce75178413957ba4444ea91e9ddf8a0114314842c207532b099fab367",
+  "packets/batch_04.jsonl": "3b06f9e3d07b0ca362a7408b63ba95aedff10812e4663c0ff725125da59b6422",
+  "packets/batch_05.jsonl": "63d4fa0c9249d11b0e7f9e7f7cbb31acf160f1e7361cdf0991f01fc2216d8ca9",
+  "packets/batch_06.jsonl": "c739b6108edb3170b7151a92141e28cb350c4d553fabde25bd2785dce863367b",
+  "packets/batch_07.jsonl": "7fda46dd3f8c98df474bd52a4b6e447b0e61ed357539d512d633abd97ad15563",
+  "packets/batch_08.jsonl": "bb158c59ab100b0f2fb357eb8c1df22d3fae2c8d80c19604510dc5ad49357d8e",
+  "packets/batch_09.jsonl": "952b744a7dbdf716b45314b379cf28ff79b58c5e73d658a6e37ada0314712a3b",
+  "packets/batch_10.jsonl": "7d9b938e9f8e9aee7487975ab15acf884965fec4976df81d3630182f9524cb92",
+  "packets/batch_11.jsonl": "f54203652d3ac5b590529a20ac62458c7ea93fb21c3f183e945f9a3c9792909d"
+ },
+ "protocol": {
+  "protocol/guideline.md": "e5ea8bcbec32490b46199fa7385fc4598130a91bb035d95b06893d7491061803"
+ },
+ "seed": 42,
+ "split_sha256": "4667b31aefa77a9fc32a75b82554d5f9f87eeae1b1f00c032f5193c227040278",
+ "statement": "re-sealed for publication; label content identical"
+}

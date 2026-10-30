@@ -1,0 +1,9 @@
+{
+  "config": {
+    "ablation": "A4",
+    "canon": {
+      "schema_path": "contracts/ontology/bsee.yaml",
+      "verifier_normalize": false
+    }
+  }
+}

@@ -1,0 +1,1248 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "completed_in": "The subject entity (well) is completed or located within the formation or zone specified by the object entity.",
+    "has_mud_weight": "The subject entity (well) uses drilling mud with the weight specified by the object entity.",
+    "perforated_interval": "The subject entity (well) has perforations in the interval specified by the object entity.",
+    "reached_td": "The subject entity (well) reached a total depth of the measurement specified by the object entity.",
+    "set_casing_at": "The subject entity (liner/casing) was set at the depth specified by the object entity.",
+    "spudded_on": "The subject entity (well) was started or began drilling on the date specified by the object entity."
+   },
+   "key": "eor_-114746_b2d98b27#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "MC 109 A28ST1",
+      "spudded_on",
+      "12-23-10"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "\"M\" Sd"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "14890' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "has_mud_weight",
+      "12.1 SBM"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "3573' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "9594' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "5\" prod. liner",
+      "set_casing_at",
+      "14880' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "4101' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "perforated_interval",
+      "14438' - 14557' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location specified by the object entity."
+   },
+   "key": "eor_-115438_333b2915#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "20\" csg",
+      "cut_at",
+      "17' BML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "30\" DP",
+      "cut_at",
+      "17' BML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "13-3/8\" casing",
+      "cut_at",
+      "18' BML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location or depth specified by the object entity."
+   },
+   "key": "eor_-115900_0d7536f0#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "10-3/4\" csg",
+      "cut_at",
+      "25' BML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "36\" csg",
+      "cut_at",
+      "20' BML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "16\" csg",
+      "cut_at",
+      "20' BML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cemented_interval": "The subject entity covers or is associated with the interval specified by the object entity.",
+    "set_equipment_at": "The subject entity was installed or positioned at the location specified by the object entity.",
+    "set_plug_at": "The subject entity was set or placed at the location specified by the object entity."
+   },
+   "key": "eor_-116875_f4419ce1#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "cement",
+      "set_plug_at",
+      "52' of cement on top of the plug"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cement",
+      "cemented_interval",
+      "11,838' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "CIBP",
+      "set_equipment_at",
+      "11,890' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location specified by the object entity.",
+    "perforated_interval": "The subject entity is perforated within the interval specified by the object entity.",
+    "set_equipment_at": "The subject entity is equipment that is set or installed at the location specified by the object entity.",
+    "set_plug_at": "The subject entity has a plug set at the location specified by the object entity."
+   },
+   "key": "eor_-118079_3204a4e0#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "9 5/8\" csg",
+      "perforated_interval",
+      "2030' - 2033' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt retainer",
+      "set_equipment_at",
+      "2450' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7\" prod. csg",
+      "cut_at",
+      "2500' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "EZSV",
+      "set_equipment_at",
+      "2000'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "set_plug_at",
+      "9300' - 9000' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cemented_interval": "The subject entity is cemented in the interval specified by the object entity.",
+    "completed_in": "The subject entity was completed in the formation, zone, or equipment specified by the object entity.",
+    "cut_at": "The subject entity was cut at the location specified by the object entity.",
+    "has_well_status": "The subject entity has the well status specified by the object entity.",
+    "perforated_interval": "The subject entity has perforations in the interval specified by the object entity.",
+    "set_equipment_at": "The subject entity (equipment) was set at the location specified by the object entity.",
+    "set_plug_at": "The subject entity was set as a plug at the location or interval specified by the object entity.",
+    "tagged_at": "The subject entity was tagged at the location specified by the object entity.",
+    "tested_to_pressure": "The subject entity was tested to the pressure specified by the object entity."
+   },
+   "key": "eor_-118413_493be58c#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt",
+      "cemented_interval",
+      "ETOC @ 5255' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt plug",
+      "tagged_at",
+      "268'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "2 7/8\" prod. tbg",
+      "cut_at",
+      "517'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "2 7/8\" prod. tbg & 7 5/8\" csg, 2050' - 1721' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "TTCIBP",
+      "set_equipment_at",
+      "5275'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt plug",
+      "set_plug_at",
+      "474' - 268 MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "VR 175 A01 well",
+      "completed_in",
+      "\"P\" sand"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7 5/8\" csg",
+      "cut_at",
+      "477' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "CIBP",
+      "set_equipment_at",
+      "474' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "329' cmt plug",
+      "set_plug_at",
+      "in the"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "VR 175 A01 well",
+      "has_well_status",
+      "COM"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "tagged_at",
+      "1687' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt plug",
+      "tested_to_pressure",
+      "1000 psi"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "10 3/4\" csg",
+      "cut_at",
+      "227' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "2 7/8\" prod. tbg",
+      "perforated_interval",
+      "@ 2050' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "24\" drive pipe",
+      "cut_at",
+      "219' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location specified by the object entity.",
+    "set_equipment_at": "The subject entity was set or installed at the location specified by the object entity."
+   },
+   "key": "eor_-118442_e824835f#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Production packer",
+      "set_equipment_at",
+      "9380'RKB"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Production tubing",
+      "cut_at",
+      "9430'RKB"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "reached_td": "The subject entity (well) reached its total depth at the measurement specified by the object entity.",
+    "spudded_on": "The subject entity (well) was started or began drilling on the date specified by the object entity."
+   },
+   "key": "eor_-122267_0453276f#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "SS 117 #4ST well",
+      "reached_td",
+      "10827' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "SS 117 #4ST well",
+      "reached_td",
+      "10290' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "SS 117 #4ST well",
+      "spudded_on",
+      "03-05-12"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "tagged_at": "The subject entity was tagged at the depth or location specified by the object entity."
+   },
+   "key": "eor_-122973_20baee8e#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "tagged_at",
+      "7836'"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has_well_status": "The subject entity has the well status specified by the object entity."
+   },
+   "key": "eor_-123822_74d13bb8#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "has_well_status",
+      "suspended"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "set_equipment_at": "The subject entity was set or installed at the location specified by the object entity."
+   },
+   "key": "eor_-128981_ddbfd535#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "NVTTBP",
+      "set_equipment_at",
+      "15,727' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "drilled_to": "The subject entity was drilled to the depth specified by the object entity.",
+    "set_equipment_at": "The subject entity (equipment) was set or installed at the location/depth specified by the object entity.",
+    "set_plug_at": "The subject entity (plug) was set or installed at the location/depth specified by the object entity."
+   },
+   "key": "eor_-130036_9eca0583#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "drilled_to",
+      "12,372' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "drilled_to",
+      "13,869' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cement retainer",
+      "set_equipment_at",
+      "8,850' MD / 7,659' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "surface plug",
+      "set_plug_at",
+      "352 - 575' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed_in": "The subject entity (the well) was completed in the geological formation, sand, or zone specified by the object entity.",
+    "reached_td": "The subject entity (the well) reached a total depth of the measurement specified by the object entity.",
+    "spudded_on": "The subject entity (the well) was started or began drilling on the date specified by the object entity."
+   },
+   "key": "eor_-131362_db600049#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "B-23 Sand"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "11,194' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "10,950' TD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "B-22"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "spudded_on",
+      "March 11, 2013"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed_in": "The subject entity underwent completion operations within the formation or zone specified by the object entity.",
+    "perforated_interval": "The subject entity has perforations created in the interval specified by the object entity.",
+    "set_equipment_at": "The equipment specified by the subject entity was installed or positioned at the depth or location specified by the object entity.",
+    "tagged_at": "The subject entity was located or encountered at the depth or position specified by the object entity.",
+    "tested_to_pressure": "The subject entity was subjected to a pressure test reaching the pressure specified by the object entity."
+   },
+   "key": "eor_-132134_956583d3#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "TTVBP",
+      "set_equipment_at",
+      "16,525'MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "R-Sand"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Q-Sand",
+      "perforated_interval",
+      "16,300'-16,340'MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "cmt plug",
+      "tested_to_pressure",
+      "1000psi"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Fish",
+      "tagged_at",
+      "16,440'WLM"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location or depth specified by the object entity."
+   },
+   "key": "eor_-13562_30064403#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "20\" and 30\" casing strings",
+      "cut_at",
+      "15'BML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "casing_size": "The subject entity has a casing size specified by the object entity.",
+    "casing_spec": "The subject entity has the casing specifications (such as weight and grade) specified by the object entity.",
+    "cemented_interval": "The subject entity was cemented over the interval specified by the object entity, or the cement for the subject entity extends to the location specified by the object entity.",
+    "completed_in": "The subject entity (well) is completed in the formation or zone specified by the object entity.",
+    "drilled_to": "The subject entity was drilled to the depth specified by the object entity.",
+    "encountered_marker": "The subject entity encountered the geological marker or formation specified by the object entity during drilling.",
+    "set_casing_at": "The subject entity (a casing or liner) is set at the depth specified by the object entity."
+   },
+   "key": "eor_-142921_1797e22d#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "liner",
+      "cemented_interval",
+      "liner top"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+      "set_casing_at",
+      "11,150'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "cemented_interval",
+      "7,910' - 11,150'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "drilled_to",
+      "10,696' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "completed_in",
+      "Bul 1-6 Sand"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "drilled_to",
+      "11,150' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+      "casing_spec",
+      "26.0 ppf,HCP-110, Ultra SF"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+      "casing_size",
+      "7\""
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "drilled_to",
+      "11,006'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "encountered_marker",
+      "Bul 1-6 Sand"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "casing_size": "The subject entity has a size or diameter specified by the object entity.",
+    "perforated_interval": "The subject entity was perforated within the interval specified by the object entity.",
+    "pumped": "The quantity of material specified by the object entity was pumped for the subject entity.",
+    "set_casing_at": "The subject entity involved setting casing at the depth or location specified by the object entity.",
+    "tested_to_pressure": "The subject entity was subjected to a pressure test with the pressure specified by the object entity."
+   },
+   "key": "eor_-166132_a786b652#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "TT-CIBP",
+      "tested_to_pressure",
+      "1000 psi"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "TT-CIBP",
+      "set_casing_at",
+      "6900' RKB"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "tested_to_pressure",
+      "1000 psi"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "CLass H cmt",
+      "pumped",
+      "19.25 bbls"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "set_casing_at",
+      "669' RKB"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "3-1/2\" tbg",
+      "perforated_interval",
+      "@ 6800' RKB"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "10-3/4\" csg",
+      "casing_size",
+      "10-3/4\""
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location or depth specified by the object entity.",
+    "has_well_status": "The subject entity has the well status specified by the object entity."
+   },
+   "key": "eor_-168515_f4ef6404#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "VR 376 A-2 Well",
+      "has_well_status",
+      "TA"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "2-7/8\" SS tbg",
+      "cut_at",
+      "990' BML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "2-7/8\" LS tbg",
+      "cut_at",
+      "1,000' BML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has_well_status": "The subject entity has the well status specified by the object entity.",
+    "set_casing_at": "The subject entity was set at the location or depth specified by the object entity."
+   },
+   "key": "eor_-169920_21cfa07c#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "has_well_status",
+      "TA"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "13-3/8\"",
+      "set_casing_at",
+      "46' AML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "24\"",
+      "set_casing_at",
+      "54' AML"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "9-5/8\"",
+      "set_casing_at",
+      "45' AML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has_well_status": "The subject entity has the well status specified by the object entity.",
+    "set_plug_at": "The subject entity was set at the location or depth specified by the object entity."
+   },
+   "key": "eor_-170898_868e37ba#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "has_well_status",
+      "shut in"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "DS pump through style plug",
+      "set_plug_at",
+      "5774' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "reached_td": "The subject entity (a well) reached its total depth at the measurement specified by the object entity.",
+    "spudded_on": "The subject entity (a well) started drilling operations on the date specified by the object entity."
+   },
+   "key": "eor_-18059_ec0e3fb8#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "2699' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Well A018 ST00 BP01",
+      "spudded_on",
+      "04/03/2006"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "2701' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "set_equipment_at": "The subject entity was installed or positioned at the location specified by the object entity."
+   },
+   "key": "eor_-196115_8113ec4a#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "chemical injection valve",
+      "set_equipment_at",
+      "7348'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "8303'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "7509'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "9892'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "9097'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "6712'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "dummy GLVs",
+      "set_equipment_at",
+      "10726'"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "drilled_to": "The subject entity was drilled to the depth specified by the object entity."
+   },
+   "key": "eor_-197666_4272619c#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "MC 28 #A35",
+      "drilled_to",
+      "13,200' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "MC 28 #A35",
+      "drilled_to",
+      "7077' TVD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "perforated_interval": "The subject entity was perforated within the interval specified by the object entity.",
+    "set_equipment_at": "The subject entity was installed or set at the location specified by the object entity."
+   },
+   "key": "eor_-34426_d7cc6642#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "production tbg",
+      "perforated_interval",
+      "7743' - 7749'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "MRBP",
+      "set_equipment_at",
+      "7789'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "through tubing Gravel pack assy.",
+      "set_equipment_at",
+      "from 7666' - 7789'"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed_in": "The subject entity (well) was completed in the formation or interval specified by the object entity.",
+    "has_mud_weight": "The subject entity (well) used drilling mud with a weight specified by the object entity.",
+    "reached_td": "The subject entity (well) reached the total depth specified by the object entity.",
+    "set_casing_at": "The subject entity (casing) was installed or set at the depth specified by the object entity.",
+    "spudded_on": "The subject entity (well) started drilling operations on the date specified by the object entity."
+   },
+   "key": "eor_-41196_1c943c61#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "EC 316 OCS-G 23803, Well No. 01",
+      "reached_td",
+      "TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "EC 316 OCS-G 23803, Well No. 01",
+      "reached_td",
+      "3600' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "EC 316 OCS-G 23803, Well No. 01",
+      "spudded_on",
+      "04-22-07"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "7 5/8\" 29.7#/ft, ECP-110 production csg",
+      "set_casing_at",
+      "3565' MD /TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "EC 316 OCS-G 23803, Well No. 01",
+      "has_mud_weight",
+      "10.2 ppg"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "EC 316 Well No. #001",
+      "completed_in",
+      "3300' Sd."
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has_well_status": "The subject entity is currently assigned the well status specified by the object entity."
+   },
+   "key": "eor_-51778_88fb60a3#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Well C022",
+      "has_well_status",
+      "TA"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed_in": "The subject entity was completed in or associated with the location/formation specified by the object entity.",
+    "reached_td": "The subject entity reached a total depth of the distance specified by the object entity.",
+    "spudded_on": "The subject entity (the well) started drilling operations on the date specified by the object entity."
+   },
+   "key": "eor_-56779_3c2ebf5b#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "4289' MD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "ST 86 OCS-00605",
+      "spudded_on",
+      "August 27, 2007"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "reached_td",
+      "4113' TVD"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "ST 86 OCS-00605",
+      "completed_in",
+      "3700' Sand"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cemented_interval": "The subject entity specifies the interval or section where cement was placed, as described by the object entity.",
+    "perforated_interval": "The subject entity specifies the interval or section that was perforated, as described by the object entity.",
+    "set_equipment_at": "The subject entity is located at or set at the position specified by the object entity."
+   },
+   "key": "eor_-71046_fba9df86#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "well",
+      "cemented_interval",
+      "20' cement on top, ETOC @ 9090'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "TTVP",
+      "set_equipment_at",
+      "9110'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Discorbis \"B-1\" Sand",
+      "perforated_interval",
+      "9006' - 9016'"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut_at": "The subject entity was cut at the location or depth specified by the object entity."
+   },
+   "key": "eor_-97254_c04a81d6#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "20\" - 20\" X 30\" XO",
+      "cut_at",
+      "15' (BML)"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "13-3/8\" casing",
+      "cut_at",
+      "17' (BML)"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "9-5/8\" casing",
+      "cut_at",
+      "47'"
+     ]
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

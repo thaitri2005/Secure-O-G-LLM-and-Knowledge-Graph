@@ -1,0 +1,11 @@
+{"aliases":[],"entity_id":"e_1645ee78de0f","kind":"entity","mention_ids":["m_e7dd77e2b292"],"name":"London","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_1cdcf0895a98","kind":"entity","mention_ids":["m_4631300427b4"],"name":"Nova AI","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_21839c83f19b","kind":"entity","mention_ids":["m_68fc4457a5af"],"name":"artificial intelligence","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_3d224aae3dcc","kind":"entity","mention_ids":["m_d4fc6a631854"],"name":"Alan Turing","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_424168479b5f","kind":"entity","mention_ids":["m_7614cce83038"],"name":"IBM Research","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_522b276a356b","kind":"entity","mention_ids":["m_7e7dfd44c029"],"name":"Alice","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_7e79e6c8c640","kind":"entity","mention_ids":["m_5423fddc965a"],"name":"laboratories","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_7f36426d0331","kind":"entity","mention_ids":["m_ed5f2e62f31b"],"name":"computing systems","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_960d2cbf6df7","kind":"entity","mention_ids":["m_5bdd66326dcd"],"name":"Acme Labs","resolver":"semhash+rules"}
+{"aliases":["International Business Machines","International Business Machines Corporation"],"entity_id":"e_d3ac7a4ef1a8","kind":"entity","mention_ids":["m_36a9b7190914","m_a38e25e8f421","m_afd3a169fe3d"],"name":"IBM","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_fde3a012e554","kind":"entity","mention_ids":["m_9dd073b05da5"],"name":"research division","resolver":"semhash+rules"}

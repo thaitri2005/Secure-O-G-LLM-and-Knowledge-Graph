@@ -1,0 +1,3868 @@
+[
+ {
+  "_id": "01309e5008bd11ebbd89ac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film whose director is younger, Dangerously They Live or Salad By The Roots?",
+  "context": [
+   [
+    "Ravina (actress)",
+    [
+     "Ravina is an Indian actress who acted in Dhallywood movies.",
+     "She acted in\" Praner Cheye Priyo\" which film is considered as turning point of the career of Riaz."
+    ]
+   ],
+   [
+    "Georges Lautner",
+    [
+     "Georges Lautner( 24 January 1926 – 22 November 2013) was a French film director and screenwriter, known primarily for his comedies created in collaboration with screenwriter Michel Audiard.",
+     "Lautner's ventures into other genres were less successful though the thriller Le Professionnel starring Jean- Paul Belmondo was a big commercial hit in France in 1981.",
+     "He was born in Nice, the son of actress Renée Saint- Cyr."
+    ]
+   ],
+   [
+    "Dmitri Varfolomeyev (footballer, born 1978)",
+    [
+     "Dmitri Nikolayevich Varfolomeyev( born 15 March 1978 in Leningrad) is a former Russian football player.",
+     "He is a younger brother of Sergei Varfolomeyev."
+    ]
+   ],
+   [
+    "Roman Smishko",
+    [
+     "Roman Smishko is a retired Ukrainian professional footballer who played as a goalkeeper.",
+     "He is a younger brother of Ukrainian defender Bohdan Smishko."
+    ]
+   ],
+   [
+    "Robert Florey",
+    [
+     "Robert Florey( 14 September 1900 – 16 May 1979) was a French- American director, screenwriter, film journalist and actor.",
+     "Born as Robert Fuchs in Paris, he became an orphan at an early age and was then raised in Switzerland.",
+     "In 1920 he worked at first as a film journalist, then as an assistant and extra in featurettes from Louis Feuillade.",
+     "Florey moved to the United States in 1921.",
+     "As a director, Florey's most productive decades were the 1930s and 1940s, working on relatively low- budget fillers for Paramount and Warner Brothers.",
+     "His reputation is balanced between his avant- garde expressionist style, most evident in his early career, and his work as a fast, reliable studio- system director called on to finish troubled projects, such as 1939's\" Hotel Imperial\".",
+     "He directed more than 50 movies.",
+     "His most popular film is likely the first Marx Brothers feature\" The Cocoanuts\" of 1929, and his 1932 foray into Universal- style horror,\" Murders in the Rue Morgue\" is regarded by horror fans as highly reflective of German expressionism.",
+     "In 2006, as his 1937 film\" Daughter of Shanghai\" was selected for preservation in the United States National Film Registry by the Library of Congress, Florey was called\" widely acclaimed as the best director working in major studio B-films\"."
+    ]
+   ],
+   [
+    "Miloš Zličić",
+    [
+     "Miloš Zličić( born 29 December 1999) is a Serbian football forward.",
+     "He is a younger brother of Lazar Zličić."
+    ]
+   ],
+   [
+    "Salad by the Roots",
+    [
+     "Salad by the Roots( literally\"( Eating) dandelions by the roots\" which is the French idiom for\" Pushing up the daisies\") is a Franco- Italian comedy directed by Georges Lautner and released in 1964, a year after his success with Les Tontons flingueurs, which was also set in the Parisian underworld.",
+     "It benefits from music by Georges Delerue and dialogue by Michel Audiard, among whose legendary lines is\" Plus t'as de pognon, moins t'as de principes.",
+     "L'oseille c'est la gangrène de l'âme.\"",
+     "( The more loot you've got, the fewer your principles.",
+     "Lolly is the gangrene of the soul)."
+    ]
+   ],
+   [
+    "Vadim Vlasov",
+    [
+     "Vadim Nikolayevich Vlasov( born 19 December 1980) is a former Russian football player.",
+     "He is a younger brother of Dmitri Vlasov."
+    ]
+   ],
+   [
+    "La Bestia humana",
+    [
+     "La Bestia humana is a 1957 Argentine film whose story is based on the novel\" La Bête Humaine\" by the French writer Émile Zola."
+    ]
+   ],
+   [
+    "Dangerously They Live",
+    [
+     "Dangerously They Live is a 1941 American World War II spy film directed by Robert Florey, and starring John Garfield, Nancy Coleman and Raymond Massey.",
+     "Nazi spies try to pry information out of a British agent."
+    ]
+   ]
+  ],
+  "entity_ids": "Q5216156_Q1979969_Q1349886_Q1351715",
+  "supporting_facts": [
+   [
+    "Dangerously They Live",
+    0
+   ],
+   [
+    "Salad by the Roots",
+    0
+   ],
+   [
+    "Robert Florey",
+    0
+   ],
+   [
+    "Georges Lautner",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Dangerously They Live",
+    "director",
+    "Robert Florey"
+   ],
+   [
+    "Salad by the Roots",
+    "director",
+    "Georges Lautner"
+   ],
+   [
+    "Robert Florey",
+    "date of birth",
+    "14 September 1900"
+   ],
+   [
+    "Georges Lautner",
+    "date of birth",
+    "24 January 1926"
+   ]
+  ],
+  "answer": "Salad By The Roots",
+  "evidences_id": [],
+  "answer_id": "Q1979969"
+ },
+ {
+  "_id": "02b62fce087211ebbd64ac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film whose director is younger, Phalitamsha or Gladiators Seven?",
+  "context": [
+   [
+    "Alberto De Martino",
+    [
+     "Alberto De Martino( 12 June 1929 – 2 June 2015) was an Italian film director and screenwriter.",
+     "Born in Rome, De Martino started as a child actor and later returned to the cinema where worked as a screenwriter, director and dubbing supervisor.",
+     "De Martino's films as a director specialised in wellcrafted knock- offs of Hollywood hit films.",
+     "These films were specifically created films in Western, horror and mythology genres which were developed for the international market.",
+     "\" The Telegraph\" stated that his best known of these film was probably\" The Antichrist The Antichrist\" capitalized on the box- office appeal of\" The Exorcist\"( 1973) and in its first week in the United States earned a greater box office than\" Jaws\"."
+    ]
+   ],
+   [
+    "Miloš Zličić",
+    [
+     "Miloš Zličić( born 29 December 1999) is a Serbian football forward.",
+     "He is a younger brother of Lazar Zličić."
+    ]
+   ],
+   [
+    "La Bestia humana",
+    [
+     "La Bestia humana is a 1957 Argentine film whose story is based on the novel\" La Bête Humaine\" by the French writer Émile Zola."
+    ]
+   ],
+   [
+    "Vadim Vlasov",
+    [
+     "Vadim Nikolayevich Vlasov( born 19 December 1980) is a former Russian football player.",
+     "He is a younger brother of Dmitri Vlasov."
+    ]
+   ],
+   [
+    "Roman Smishko",
+    [
+     "Roman Smishko is a retired Ukrainian professional footballer who played as a goalkeeper.",
+     "He is a younger brother of Ukrainian defender Bohdan Smishko."
+    ]
+   ],
+   [
+    "Gladiators Seven",
+    [
+     "Gladiators Seven( also known as The Revolt of the Seven, The Spartan Gladiator and The Spartan Gladiators) is a 1964 Italian peplum film directed by Alberto De Martino and starring Tony Russel."
+    ]
+   ],
+   [
+    "Phalitamsha",
+    [
+     "Released in 1976 Phalitamsha is a romantic Kannada movie, directed by S. R. Puttanna Kanagal.",
+     "It was written by Srinivasa Kulakarni under the Banner of A 1 Movietone.",
+     "The movie paired newcomer Jai Jagadish with four heroines.",
+     "Aarathi as expected has the meatiest role and delivers yet another power- packed performance.",
+     "Despite a good- looking hero, top notch actresses and beautiful outdoor locales, Phalitamsha remains one of the few flops of ace director Puttana Kanagal's career."
+    ]
+   ],
+   [
+    "Ravina (actress)",
+    [
+     "Ravina is an Indian actress who acted in Dhallywood movies.",
+     "She acted in\" Praner Cheye Priyo\" which film is considered as turning point of the career of Riaz."
+    ]
+   ],
+   [
+    "Dmitri Varfolomeyev (footballer, born 1978)",
+    [
+     "Dmitri Nikolayevich Varfolomeyev( born 15 March 1978 in Leningrad) is a former Russian football player.",
+     "He is a younger brother of Sergei Varfolomeyev."
+    ]
+   ],
+   [
+    "Puttanna Kanagal",
+    [
+     "S. R. Puttanna Kanagal( born Shubraveshti Ramaswamiah Seetharama Sharma, 1 December 1933 – 5 June 1985), fondly called the' Chitra Bramha'( God of Films, Kannada) was an Indian filmmaker and is considered as one of Indian cinema's greatest filmmakers."
+    ]
+   ]
+  ],
+  "entity_ids": "Q39049542_Q9268498_Q7262452_Q441994",
+  "supporting_facts": [
+   [
+    "Phalitamsha",
+    0
+   ],
+   [
+    "Gladiators Seven",
+    0
+   ],
+   [
+    "Puttanna Kanagal",
+    0
+   ],
+   [
+    "Alberto De Martino",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Phalitamsha",
+    "director",
+    "Puttanna Kanagal"
+   ],
+   [
+    "Gladiators Seven",
+    "director",
+    "Alberto De Martino"
+   ],
+   [
+    "Puttanna Kanagal",
+    "date of birth",
+    "1 December 1933"
+   ],
+   [
+    "Alberto De Martino",
+    "date of birth",
+    "12 June 1929"
+   ]
+  ],
+  "answer": "Phalitamsha",
+  "evidences_id": [],
+  "answer_id": "Q39049542"
+ },
+ {
+  "_id": "0e7078b00bb011ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is Anne Gust Brown's father-in-law?",
+  "context": [
+   [
+    "John Adams (merchant)",
+    [
+     "John Adams( 1672 or 1673 – 1745) was an American- born Canadian merchant and member of the Nova Scotia Council.",
+     "He was the father- in- law of Henry Newton( politician)."
+    ]
+   ],
+   [
+    "Ludwig von Westphalen",
+    [
+     "Johann Ludwig von Westphalen( 11 July 1770 – 3 March 1842) was a liberal Prussian civil servant and the father- in- law of Karl Marx."
+    ]
+   ],
+   [
+    "Ogawa Mataji",
+    [
+     "Viscount was a general in the early Imperial Japanese Army.",
+     "He was also the father- in- law of Field Marshal Gen Sugiyama."
+    ]
+   ],
+   [
+    "Anne Gust Brown",
+    [
+     "Anne Baldwin Gust Brown (born March 15, 1958) is an American business executive who was the First Lady of California from 2011 to 2019.",
+     "She is married to former Governor Jerry Brown.",
+     "Her career positions include executive vice president for the clothing retailer",
+     "The Gap and a director of the fast food chain, Jack in the Box, Inc."
+    ]
+   ],
+   [
+    "Barthold A. Butenschøn Sr.",
+    [
+     "Hans Barthold Andresen Butenschøn( 27 December 1877 – 28 November 1971) was a Norwegian businessperson.",
+     "He was born in Kristiania as a son of Nils August Andresen Butenschøn and Hanna Butenschøn, and grandson of Nicolay Andresen.",
+     "Together with Mabel Anette Plahte( 1877 – 1973, a daughter of Frithjof M. Plahte) he had the son Hans Barthold Andresen Butenschøn Jr. and was through him the father- in- law of Ragnhild Butenschøn and grandfather of Peter Butenschøn.",
+     "Through his daughter Marie Claudine he was the father- in- law of Joakim Lehmkuhl, through his daughter Mabel Anette he was the father- in- law of Harald Astrup( a son of Sigurd Astrup) and through his daughter Nini Augusta he was the father- in- law of Ernst Torp.",
+     "He took commerce school and agricultural school.",
+     "He was hired in the family company N. A. Andresen& Co, and became a co-owner in 1910.",
+     "He eventually became chief executive officer.",
+     "The bank changed its name to Andresens Bank in 1913 and merged with Bergens Kreditbank in 1920.",
+     "The merger was dissolved later in the 1920s.",
+     "He was also a landowner, owning Nedre Skøyen farm and a lot of land in Enebakk.",
+     "He chaired the board of Nydalens Compagnie from 1926, having not been a board member before that.",
+     "He also chaired the supervisory council of Forsikringsselskapet Viking and Nedre Glommen salgsforening, and was a supervisory council member of Filharmonisk Selskap.",
+     "He was a member of the gentlemen's club SK Fram since 1890, and was proclaimed a lifetime member in 1964.",
+     "He was buried in Enebakk."
+    ]
+   ],
+   [
+    "Jerry Brown",
+    [
+     "Edmund Gerald Brown Jr. (born April 7, 1938) is an American retired politician who served as the 34th and 39th governor of California from 1975 to 1983 and from 2011 to 2019.",
+     "A member of the Democratic Party, Brown served as California Attorney General from 2007 to 2011.",
+     "He was both the oldest and sixth-youngest governor of California as a consequence of the 28-year gap between his second and third terms.",
+     "Upon completing his fourth term in office, Brown became the third longest-serving governor in United States history, serving 16 years and 7 days in office.",
+     "Brown was born in San Francisco as the son of Bernice Layne Brown and Pat Brown, who served as the 32nd governor of California (1959–1967).",
+     "After graduating from the University of California, Berkeley and Yale University, he began his political career as a member of the Los Angeles Community College District Board of Trustees (1969–1971).",
+     "He was elected to serve as the 23rd Secretary of State of California from 1971 to 1975.",
+     "At 36, Brown was elected to his first term as governor of California in 1974, making him the youngest California governor in 111 years.",
+     "In 1978, he won his second term.",
+     "During and following his first governorship, Brown ran as a candidate for the Democratic presidential nomination in 1976, 1980 and 1992.",
+     "He declined to pursue a third term in 1982, instead making an unsuccessful run for the United States Senate that same year.",
+     "After traveling abroad, he returned to California and served as Chairman of the California Democratic Party (1989–1991), attempting to run for the Senate once more in 1992.",
+     "After six years out of politics, Brown returned to public life, serving as Mayor of Oakland (1999–2007), and then as Attorney General of California (2007–2011).",
+     "He ran for his third and fourth terms as California governor in 2010 and 2014, his eligibility to do so having stemmed from California's constitutional grandfather clause.",
+     "On October 7, 2013, he became the longest-serving chief executive in the history of California, surpassing Earl Warren."
+    ]
+   ],
+   [
+    "James Armour (Master mason)",
+    [
+     "James Armour (15 January 1730 – 20 September 1798) was a master mason and father of Jean Armour, and therefore the father-in-law of the poet Robert Burns."
+    ]
+   ],
+   [
+    "Harry Smith (athlete)",
+    [
+     "Harry James Smith( July 30, 1888 – November 20, 1962) was an American long- distance runner.",
+     "He was most notable for competing in the 1912 Olympics in Stockholm.",
+     "He was also the father of Hart wrestling family matriarch Helen Hart and the father- in- law of Stu Hart."
+    ]
+   ],
+   [
+    "Peter Burroughs",
+    [
+     "Peter Burroughs( born 27 January 1947) is a British television and film actor, the director of Willow Management.",
+     "He is the father- in- law of actor and TV presenter Warwick Davis."
+    ]
+   ],
+   [
+    "John Vernou Bouvier III",
+    [
+     "John Vernou\" Black Jack\" Bouvier III( May 19, 1891 – August 3, 1957) was an American Wall Street stockbroker and socialite.",
+     "He was the father of First Lady Jacqueline Kennedy Onassis and of socialite Lee Radziwill, and was the father- in- law of John F. Kennedy."
+    ]
+   ]
+  ],
+  "entity_ids": "Q16192730_Q152451",
+  "supporting_facts": [
+   [
+    "Anne Gust Brown",
+    1
+   ],
+   [
+    "Jerry Brown",
+    4
+   ]
+  ],
+  "evidences": [
+   [
+    "Anne Baldwin Gust Brown",
+    "spouse",
+    "Jerry Brown"
+   ],
+   [
+    "Jerry Brown",
+    "father",
+    "Pat Brown"
+   ]
+  ],
+  "answer": "Pat Brown",
+  "evidences_id": [
+   [
+    "Q16192730",
+    "spouse",
+    "Q152451"
+   ],
+   [
+    "Q152451",
+    "father",
+    "Q724121"
+   ]
+  ],
+  "answer_id": "Q724121"
+ },
+ {
+  "_id": "0f97e1f3096f11ebbdb0ac1f6bf848b6",
+  "type": "comparison",
+  "question": "Which film came out earlier, Two Brides And A Baby or Dinner At The Ritz?",
+  "context": [
+   [
+    "Two Brides and a Baby",
+    [
+     "Two Brides and a Baby is a 2011 Nigerian romantic drama film directed by Teco Benson and starring Keira Hewatch, Kalu Ikeagwu, OC Ukeje, Chelsea Eze, Stella Damasus- Aboderin and Okey Uzoeshi.",
+     "It premiered on November 17, 2011.",
+     "It received awards and nominations at Africa Movie Academy Awards, Best of Nollywood Awards and Africa Magic Viewers Choice Awards."
+    ]
+   ],
+   [
+    "Dinner at the Ritz",
+    [
+     "Dinner at the Ritz is a 1937 British mystery romance film directed by Harold D. Schuster and starring David Niven, Annabella and Paul Lukas",
+     "It was produced by the British branch of 20th Century Fox, and shot at Denham Studios."
+    ]
+   ],
+   [
+    "Puttin' On the Ritz (film)",
+    [
+     "Puttin'",
+     "On the Ritz is a 1930 musical film directed by Edward Sloman and starring Harry Richman, Joan Bennett, and James Gleason.",
+     "The screenplay was written by Gleason and William K.",
+     "Wells based on a story by John W. Considine, Jr. It was the first of many films to feature the popular song\" Puttin' On the Ritz\", which was written and published by Irving Berlin in 1929."
+    ]
+   ],
+   [
+    "Dinner at Eight (1989 film)",
+    [
+     "Dinner at Eight is a 1989 American comedy film directed by Ron Lagomarsino and written by Tom Griffin.",
+     "It is a remake of the 1933 film\" Dinner at Eight\".",
+     "The film stars Lauren Bacall, Charles Durning, Ellen Greene, Harry Hamlin, John Mahoney and Marsha Mason.",
+     "The film premiered on TNT on December 11, 1989."
+    ]
+   ],
+   [
+    "Life Begins in College",
+    [
+     "Life Begins in College is a 1937 American comedy film.",
+     "It marked the Ritz Brothers' first starring role in a feature film."
+    ]
+   ],
+   [
+    "The Ritz Hotel, London",
+    [
+     "The Ritz London is a Grade II listed 5- star hotel located in Piccadilly in London, England.",
+     "A symbol of high society and luxury, the hotel is one of the world's most prestigious and best known hotels.",
+     "It is a member of the international consortium, The Leading Hotels of the World.",
+     "Over the course of its history the Ritz has become so associated with luxury and elegance that the word\" ritzy\" has entered the English language to denote something that is ostentatiously stylish, fancy, or fashionable.",
+     "The hotel was opened by Swiss hotelier César Ritz in May 1906, eight years after he established the Hôtel Ritz Paris.",
+     "After a weak beginning, the hotel began to gain popularity towards the end of World War I, and became popular with politicians, socialites, writers and actors of the day in particular.",
+     "David Lloyd George held a number of secret meetings at the Ritz during the latter half of the war, and it was at the Ritz that he made the decision to intervene on behalf of Greece against Turkey.",
+     "Noël Coward was a notable diner at the Ritz in the 1920s and 1930s.",
+     "Owned by the Bracewell- Smith family for a period until 1976, The Ellerman Group of Companies purchased the hotel for £ 80 million from Trafalgar House in October 1995.",
+     "They spent eight years and £ 40 million restoring it to its former grandeur.",
+     "In 2002, it became the first hotel to receive a Royal warrant from the Prince of Wales for its banquet and catering services.",
+     "The exterior is both structurally and visually Franco- American in style with little trace of English architecture, and is heavily influenced by the architectural traditions of Paris.",
+     "The facade on the Piccadilly side is roughly, on the Arlington Street side, and on the Green Park side.",
+     "At the corners of the pavilion roofs of the Ritz are large green copper lions, the emblem of the hotel.",
+     "The Ritz has 111 rooms and 25 suites.",
+     "The Ritz Club, owned by the owners of the Ritz Hotel since 1998, is a casino in the basement of the hotel, occupying the space which was formerly the Ritz Bar and Grill.",
+     "It offers roulette, black jack, baccarat, and poker, as well as some slot machines.",
+     "The interior was designed mainly by London and Paris based designers in the Louis XVI style, which is consistent throughout.",
+     "Author Marcus",
+     "Binney describes the great suite of ground- floor rooms as\" one of the all- time masterpieces of hotel architecture\" and compares it to a royal palace with its\" grand vistas, lofty proportions and sparkling chandeliers\".",
+     "The Ritz's most widely known facility is the Palm Court, which hosts the famous\" Tea at the Ritz\".",
+     "It is an opulently decorated cream- coloured Louis XVI setting, with panelled mirrors in gilt bronze frames.",
+     "The hotel has six private dining rooms, the Marie Antoinette Suite, with its\" boiserie\", and the rooms within the Grade II* listed William Kent House.",
+     "The Rivoli Bar, built in the Art Deco style, was designed in 2001 by interior designer Tessa Kennedy, to resemble the bar on the Orient Express."
+    ]
+   ],
+   [
+    "Dinner at Eight",
+    [
+     "Dinner at Eight may refer to:"
+    ]
+   ],
+   [
+    "Stella Damasus",
+    [
+     "Stella Damasus( born April 24, 1978) is a Nigerian actress and singer.",
+     "She was nominated for\" Best Actress in a Leading Role\" at the Africa Movie Academy Awards in 2009.",
+     "She won the Award for Best Actress at the Nigeria Entertainment Awards in 2007 In 2012 she won the award for Best Actress for the movie Two Brides and a Baby at the Golden Icons Academy Awards in Houston, Texas."
+    ]
+   ],
+   [
+    "The Two Brides",
+    [
+     "The Two Brides is a lost 1919 silent film drama produced by Famous Players- Lasky and distributed through Paramount Pictures.",
+     "It was directed by Edward José and starred Opera singer Lina Cavalieri in her last motion picture.",
+     "An original story for the screen was written by Alicia Ramsey."
+    ]
+   ],
+   [
+    "Keira Hewatch",
+    [
+     "Keira Hewatch,( born November 8, 1985) is a Nigerian actress, singer, songwriter and writer, best known for her role as ‘ Keche ’ in the movie;\" Two Brides and a Baby\", as well as her role as ‘ Peace Nwosu ’ in the television series;\" Lekki Wives\" Hewatch won the Best of Nollywood award( BON) for ‘ Best Breakout Performance ’ in 2011 and has been nominated twice for the Golden Icon Academy Awards( GIAMA)."
+    ]
+   ]
+  ],
+  "entity_ids": "Q18170571_Q5278420",
+  "supporting_facts": [
+   [
+    "Two Brides and a Baby",
+    0
+   ],
+   [
+    "Dinner at the Ritz",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Two Brides and a Baby",
+    "publication date",
+    "2011"
+   ],
+   [
+    "Dinner at the Ritz",
+    "publication date",
+    "1937"
+   ]
+  ],
+  "answer": "Dinner At The Ritz",
+  "evidences_id": [],
+  "answer_id": "Q5278420"
+ },
+ {
+  "_id": "10b8d7940baf11ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is Edith Of Wessex's mother-in-law?",
+  "context": [
+   [
+    "Vera Miletić",
+    [
+     "Vera Miletić (Serbian Cyrillic: Вера Милетић; 8 March 1920 – 7 September 1944) was a Serbian student and soldier.",
+     "She was notable for being the mother of Mira Marković, posthumously making her the mother-in-law of Serbian president Slobodan Milošević."
+    ]
+   ],
+   [
+    "Maria Thins",
+    [
+     "Maria Thins( c. 1593 – 27 December 1680) was the mother- in- law of Johannes Vermeer and a member of the Gouda Thins family."
+    ]
+   ],
+   [
+    "Eadgyth",
+    [
+     "Edith of England, also spelt Eadgyth or Ædgyth( 910 – 26 January 946), a member of the House of Wessex, was German queen from 936, by her marriage with King Otto I."
+    ]
+   ],
+   [
+    "Edith of Wessex",
+    [
+     "Edith of Wessex (1025 – 18 December 1075) was a Queen of England.",
+     "Her husband was Edward the Confessor, whom she married on 23 January 1045.",
+     "Unlike most English queens in the 10th and 11th centuries, she was crowned.",
+     "The principal source on her life is a work she herself commissioned,",
+     "the \"Vita Ædwardi Regis\" or the \"Life of King Edward who rests at Westminster\", which is inevitably biased."
+    ]
+   ],
+   [
+    "Priscilla Pointer",
+    [
+     "Priscilla Marie Pointer( born May 18, 1924) is an American stage, film and television character actress.",
+     "She began her career in the theater, including productions on Broadway.",
+     "Later, Pointer moved to Hollywood to act in films and on television.",
+     "She is the mother of Amy Irving, therefore making her the former mother- in- law of filmmakers Steven Spielberg and Bruno Barreto and the mother- in- law of documentary filmmaker Kenneth Bowser, Jr."
+    ]
+   ],
+   [
+    "Eldon Howard",
+    [
+     "Eldon Howard was a British screenwriter.",
+     "She was the mother- in- law of Edward J. Danziger and wrote a number of the screenplays for films by his company Danziger Productions."
+    ]
+   ],
+   [
+    "Marian Shields Robinson",
+    [
+     "Marian Lois Robinson( née Shields; born July 29, 1937) is the mother of Michelle Obama, former First Lady of the United States, and Craig Robinson, a basketball executive, and the mother- in- law of former U.S. President Barack Obama."
+    ]
+   ],
+   [
+    "Godwin, Earl of Wessex",
+    [
+     "Godwin of Wessex( died 15 April 1053) became one of the most powerful earls in England under the Danish king Cnut the Great( King of England from 1016 to 1035) and his successors.",
+     "Cnut made Godwin the first Earl of Wessex.",
+     "Godwin was the father of King Harold Godwinson and of Edith of Wessex, who married in 1045 King Edward the Confessor."
+    ]
+   ],
+   [
+    "Edward the Confessor",
+    [
+     "Edward the Confessor (1003 – 5 January 1066), also known as Saint Edward the Confessor, was among the last Anglo-Saxon kings of England.",
+     "Usually considered the last king of the House of Wessex, he ruled from 1042 to 1066.",
+     "Edward was the son of Æthelred the Unready and Emma of Normandy.",
+     "He succeeded Cnut the Great's son – and his own half brother – Harthacnut.",
+     "He restored the rule of the House of Wessex after the period of Danish rule since Cnut (better known as Canute) conquered England in 1016.",
+     "When Edward died in 1066, he was succeeded by Harold Godwinson, who was defeated and killed in the same year by the Normans under William the Conqueror at the Battle of Hastings.",
+     "Edgar the Ætheling, who was of the House of Wessex, was proclaimed king after the Battle of Hastings in 1066, but never ruled and was deposed after about eight weeks.",
+     "Historians disagree about Edward's fairly long (24-year) reign.",
+     "His nickname reflects the traditional image of him as unworldly and pious.",
+     "Confessor reflects his reputation as a saint who did not suffer martyrdom, as opposed to King Edward the Martyr.",
+     "Some portray",
+     "Edward the Confessor's reign as leading to the disintegration of royal power in England and the advance in power of the House of Godwin, due to the infighting that began after his heirless death.",
+     "Biographers Frank Barlow and Peter Rex, on the other hand, portray Edward as a successful king, one who was energetic, resourceful and sometimes ruthless; they argue that the Norman conquest shortly after his death tarnished his image.",
+     "However, Richard Mortimer argues that the return of the Godwins from exile in 1052 \"meant the effective end of his exercise of power\", citing Edward's reduced activity as implying \"a withdrawal from affairs\".",
+     "About a century later, in 1161, Pope Alexander III canonised the king.",
+     "Saint Edward was one of England's national saints until King Edward III adopted Saint George as the national patron saint in about 1350.",
+     "Saint Edward's feast day is 13 October, celebrated by both the Church of England and the Catholic Church in England and Wales."
+    ]
+   ],
+   [
+    "Gytha Thorkelsdóttir",
+    [
+     "Gytha Thorkelsdóttir( 997 – c. 1069), also called Githa, was a Danish noblewoman.",
+     "She was the mother of King Harold Godwinson and of Edith of Wessex, queen consort of King Edward the Confessor of England."
+    ]
+   ]
+  ],
+  "entity_ids": "Q259564_Q130005",
+  "supporting_facts": [
+   [
+    "Edith of Wessex",
+    1
+   ],
+   [
+    "Edward the Confessor",
+    2
+   ]
+  ],
+  "evidences": [
+   [
+    "Edith of Wessex",
+    "spouse",
+    "Edward the Confessor"
+   ],
+   [
+    "Edward the Confessor",
+    "mother",
+    "Emma"
+   ]
+  ],
+  "answer": "Emma",
+  "evidences_id": [
+   [
+    "Q259564",
+    "spouse",
+    "Q130005"
+   ],
+   [
+    "Q130005",
+    "mother",
+    "Q40061"
+   ]
+  ],
+  "answer_id": "Q40061"
+ },
+ {
+  "_id": "149af27608ab11ebbd81ac1f6bf848b6",
+  "type": "comparison",
+  "question": "Who was born earlier, Marius Mapou or Ademilson Silva Marques?",
+  "context": [
+   [
+    "Nelinho (Portuguese footballer)",
+    [
+     "Joaquim Manuel Rodrigues Silva Marques( born 22 August 1948 in Lisbon), known as Nelinho, is a retired Portuguese footballer who played as a right winger."
+    ]
+   ],
+   [
+    "Nélson Lisboa",
+    [
+     "Nélson Couto e Silva Marques Lisboa, commonly known as Nélson Couto( born 17 April 1930) is a Brazilian basketball player.",
+     "He competed in the men's tournament at the 1956 Summer Olympics."
+    ]
+   ],
+   [
+    "Vitinha (futsal player)",
+    [
+     "Vítor Manuel da Silva Marques( born 16 March 1969), commonly known as Vitinha, was a Portuguese futsal player who played as a defender.",
+     "Vitinha captained the Portugal national team, and was the most capped player alongside André Lima upon his retirement from the team."
+    ]
+   ],
+   [
+    "Ademilson Silva Marques",
+    [
+     "Ademilson Silva Marques( born November 22, 1985 in São Luís), commonly known as Mimica, is a Brazilian footballer.",
+     "He currently plays for Remo."
+    ]
+   ],
+   [
+    "Luís Carlos (footballer, born 1972)",
+    [
+     "Luís Carlos da Silva Marques( born 21 August 1972), known as Luís Carlos, is a former Portuguese footballer who played as a left winger."
+    ]
+   ],
+   [
+    "Fernanda Marques",
+    [
+     "Deolinda Fernanda da Silva Marques( born 15 April 1966) is a Portuguese long- distance runner.",
+     "She competed in the women's 10,000 metres at the 1992 Summer Olympics."
+    ]
+   ],
+   [
+    "Daniel Marques",
+    [
+     "José Daniel Silva Marques, known as Daniel Marques( born 28 September 1987) is a Portuguese football player who plays for Ribeirão."
+    ]
+   ],
+   [
+    "Silva Marques",
+    [
+     "Francisco da Silva Marques( born 11 March 1905, date of death unknown) was a Portuguese footballer who played as forward."
+    ]
+   ],
+   [
+    "Marius Mapou",
+    [
+     "Marius Mapou( born 22 June 1980) is an international footballer for New Caledonia.",
+     "He played in the 2008 OFC Nations Cup."
+    ]
+   ],
+   [
+    "Armando Marques",
+    [
+     "Armando da Silva Marques,( born 1 May 1937) is a Portuguese sports shooter.",
+     "He competed at the 1964, 1972 and 1976 Summer Olympics.",
+     "In the mixed trap event at the 1976 Olympics, he won a silver medal."
+    ]
+   ]
+  ],
+  "entity_ids": "Q6765966_Q63169584",
+  "supporting_facts": [
+   [
+    "Marius Mapou",
+    0
+   ],
+   [
+    "Ademilson Silva Marques",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Marius Mapou",
+    "date of birth",
+    "22 June 1980"
+   ],
+   [
+    "Ademilson Silva Marques",
+    "date of birth",
+    "November 22, 1985"
+   ]
+  ],
+  "answer": "Marius Mapou",
+  "evidences_id": [],
+  "answer_id": "Q6765966"
+ },
+ {
+  "_id": "1f562d40086911ebbd5eac1f6bf848b6",
+  "type": "comparison",
+  "question": "Which film came out earlier, I Love You Rosa or Pyar Ka Bandhan?",
+  "context": [
+   [
+    "Daniel Rosa",
+    [
+     "Daniel Rosa or Rosas may refer to:"
+    ]
+   ],
+   [
+    "Pyar Ka Karz",
+    [
+     "Pyar Ka Karz is a 1990 Hindi- language Indian feature film directed by K. Bapaiah, starring Mithun Chakraborty, Dharmendra and Shakti Kapoor."
+    ]
+   ],
+   [
+    "Rose (disambiguation)",
+    [
+     "A rose is a perennial plant of the genus\" Rosa\", or the flower it bears.",
+     "Rose may also refer to:"
+    ]
+   ],
+   [
+    "Rosa",
+    [
+     "Rosa or De Rosa may refer to:"
+    ]
+   ],
+   [
+    "Love You",
+    [
+     "Love You may refer to:"
+    ]
+   ],
+   [
+    "Pyar Ka Bandhan",
+    [
+     "Pyar Ka Bandhan is a 1963 Hindi film."
+    ]
+   ],
+   [
+    "I Love You Rosa",
+    [
+     "I Love You Rosa( translit.",
+     "Ani Ohev Otach Rosa) is a 1972 Israeli film directed by Moshé Mizrahi.",
+     "It was nominated for the Academy Award for Best Foreign Language Film.",
+     "It was also entered into the 1972 Cannes Film Festival."
+    ]
+   ],
+   [
+    "P.S. I Love You",
+    [
+     "P.S. I Love",
+     "You may refer to:"
+    ]
+   ],
+   [
+    "I Love You, I Love You Not",
+    [
+     "I Love You, I Love You Not is a 1996 American romantic drama film directed by Billy Hopkins and written( also the play) by Wendy Kesselman."
+    ]
+   ],
+   [
+    "Pyar Ka Devta",
+    [
+     "Pyar Ka Devta is a 1991 Hindi language Indian film directed by Kovelamudi Bapayya, starring Mithun Chakraborty, Madhuri Dixit, and Nirupa Roy."
+    ]
+   ]
+  ],
+  "entity_ids": "Q1634440_Q21646893",
+  "supporting_facts": [
+   [
+    "I Love You Rosa",
+    1
+   ],
+   [
+    "Pyar Ka Bandhan",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "I Love You Rosa",
+    "publication date",
+    "1972"
+   ],
+   [
+    "Pyar Ka Bandhan",
+    "publication date",
+    "1963"
+   ]
+  ],
+  "answer": "Pyar Ka Bandhan",
+  "evidences_id": [],
+  "answer_id": "Q21646893"
+ },
+ {
+  "_id": "31c340da0bde11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "What is the date of death of Julia Livia's father?",
+  "context": [
+   [
+    "Fred Bradley (rower)",
+    [
+     "Frederick Bradley( 1908- date of death unknown) was an English rower."
+    ]
+   ],
+   [
+    "Etan Boritzer",
+    [
+     "Etan Boritzer( born 1950) is an American writer of children ’s literature who is best known for his book\" What is God?\" first published in 1989.",
+     "His best selling\" What is?\" illustrated children's book series on character education and difficult subjects for children is a popular teaching guide for parents, teachers and child- life professionals.",
+     "Boritzer gained national critical acclaim after\" What is God?\" was published in 1989 although the book has caused controversy from religious fundamentalists for its universalist views.",
+     "The other current books in the\" What is?\" series include",
+     "What is Love?,",
+     "What is Death?,",
+     "What is Beautiful?,",
+     "What is Funny?,",
+     "What is Right?,",
+     "What is Peace?,",
+     "What is Money?,",
+     "What is Dreaming?,",
+     "What is a Friend?,",
+     "What is True?,",
+     "What is a Family?,",
+     "What is a Feeling?\"",
+     "The series is now also translated into 15 languages.",
+     "Boritzer was first published in 1963 at the age of 13 when he wrote an essay in his English class at Wade Junior High School in the Bronx, New York on the assassination of John F. Kennedy.",
+     "His essay was included in a special anthology by New York City public school children compiled and published by the New York City Department of Education.",
+     "Boritzer now lives in Venice, California and maintains his publishing office there also.",
+     "He has helped numerous other authors to get published through\" How to Get Your Book Published!\" programs.",
+     "Boritzer is also a yoga teacher who teaches regular classes locally and guest- teaches nationally.",
+     "He is also recognized nationally as an erudite speaker on\" The Teachings of the Buddha.\""
+    ]
+   ],
+   [
+    "Harry Wainwright (footballer)",
+    [
+     "Harry Wainwright( born 1899; date of death unknown) was an English footballer."
+    ]
+   ],
+   [
+    "Theodred II (Bishop of Elmham)",
+    [
+     "Theodred II was a medieval Bishop of Elmham.",
+     "The date of Theodred's consecration unknown, but the date of his death was sometime between 995 and 997."
+    ]
+   ],
+   [
+    "Harry Johnson (wrestler)",
+    [
+     "Harry Johnson( 1903- date of death unknown) was an English wrestler."
+    ]
+   ],
+   [
+    "Julia Livia",
+    [
+     "Julia Livia (c.7–43 AD), sometimes referred to as Julia Drusi Caesaris filia (Julia, daughter of Drusus Caesar), was the daughter of Drusus Julius Caesar and Livilla, and granddaughter of the Roman Emperor Tiberius.",
+     "She was also a first cousin of the emperor Caligula, and niece of the emperor Claudius."
+    ]
+   ],
+   [
+    "Bill Smith (footballer, born 1897)",
+    [
+     "William Thomas Smith( born 9 April 1897, date of death unknown) was an English professional footballer."
+    ]
+   ],
+   [
+    "Thomas Scott (diver)",
+    [
+     "Thomas Scott( 1907- date of death unknown) was an English diver."
+    ]
+   ],
+   [
+    "Drusus Julius Caesar",
+    [
+     "Drusus Julius Caesar (14 BC – 14 September AD 23), was the son of Emperor Tiberius, and heir to the Roman Empire following the death of his adoptive brother Germanicus in AD 19.",
+     "He was born at Rome to a prominent branch of the \"gens Claudia\", the son of Tiberius and his first wife, Vipsania Agrippina.",
+     "His name at birth was Nero Claudius Drusus after his paternal uncle, Drusus the Elder.",
+     "In AD 4, he assumed the name \"Julius Caesar\" following his father's adoption into the Julii by Augustus, and became Drusus Julius Caesar.",
+     "Drusus first entered politics with the office of quaestor in AD 10.",
+     "His political career mirrored that of Germanicus, and he assumed all his offices at the same age as him.",
+     "Following the model of Augustus, it was intended that the two would rule together.",
+     "They were both popular, and many dedications have been found in their honor across Roman Italy.",
+     "Cassius Dio calls him \"Castor\" in his \"Roman History\", likening Drusus and Germanicus to the twins, Castor and Pollux, of Roman mythology.",
+     "Drusus died suddenly 14 September 23, seemingly from natural causes.",
+     "Ancient historians, such as Tacitus and Suetonius, claim he died amid a feud with the powerful Sejanus, Praetorian prefect of Rome.",
+     "They allege that he had been murdered.",
+     "In their account, Sejanus had seduced his wife Livilla, and with the help of a doctor she had poisoned Drusus.",
+     "Despite the rumors, Tiberius did not suspect Sejanus and the two remained friends until Sejanus' fall from grace in 31."
+    ]
+   ],
+   [
+    "Albert Thompson (footballer, born 1912)",
+    [
+     "Albert Thompson( born 1912, date of death unknown) was a Welsh footballer."
+    ]
+   ]
+  ],
+  "entity_ids": "Q266030_Q313737",
+  "supporting_facts": [
+   [
+    "Julia Livia",
+    0
+   ],
+   [
+    "Drusus Julius Caesar",
+    9
+   ]
+  ],
+  "evidences": [
+   [
+    "Julia Livia",
+    "father",
+    "Drusus Julius Caesar"
+   ],
+   [
+    "Drusus Julius Caesar",
+    "date of death",
+    "14 September 23"
+   ]
+  ],
+  "answer": "14 September 23",
+  "evidences_id": [
+   [
+    "Q266030",
+    "father",
+    "Q313737"
+   ],
+   [
+    "Q313737",
+    "date of death",
+    "date_information"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "31e34c220bde11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "Where was the wife of Adam Włodek born?",
+  "context": [
+   [
+    "Catherine Exley",
+    [
+     "Catherine Exley was the wife of a soldier and accompanied her husband when he served in Portugal, Spain and Ireland during the Napoleonic Wars.",
+     "She is best known as the author of a diary that gives an account of military life in that era from the viewpoint of the wife of a common soldier."
+    ]
+   ],
+   [
+    "Artaynte",
+    [
+     "Artaynte( f. 478 BC), was the wife of the Crown Prince Darius."
+    ]
+   ],
+   [
+    "Hafsa Hatun",
+    [
+     "Hafsa Hatun was the wife of Sultan Bayezid I of the Ottoman Empire."
+    ]
+   ],
+   [
+    "Empress Shōken",
+    [
+     ", also known as, was the wife of Emperor Meiji of Japan."
+    ]
+   ],
+   [
+    "Waldrada of Lotharingia",
+    [
+     "Waldrada was the mistress, and later the wife, of Lothair II of Lotharingia."
+    ]
+   ],
+   [
+    "Papianilla (wife of Tonantius Ferreolus)",
+    [
+     "Papianilla was a Roman noblewoman",
+     "She was the wife of Tonantius Ferreolus.",
+     "Another Papianilla, the wife of the poet Sidonius Apollinaris, was a relative of hers.",
+     "She had Tonantius Ferreolus and other sons."
+    ]
+   ],
+   [
+    "Eunoë (wife of Bogudes)",
+    [
+     "Eunoë was the wife of Bogudes, King of Mauretania."
+    ]
+   ],
+   [
+    "Wisława Szymborska",
+    [
+     "Maria Wisława Anna Szymborska (2 July 1923 – 1 February 2012) was a Polish poet, essayist, translator and recipient of the 1996 Nobel Prize in Literature.",
+     "Born in Prowent, which has since become part of Kórnik, she later resided in Kraków until the end of her life.",
+     "In Poland, Szymborska's books have reached sales rivaling prominent prose authors: although she once remarked in a poem, \"Some Like PoetryNiektórzy lubią poezję\"), that no more than two out of a thousand people care for the art.",
+     "Szymborska was awarded the 1996 Nobel Prize in Literature \"for poetry that with ironic precision allows the historical and biological context to come to light in fragments of human reality\".",
+     "She became better known internationally as a result of this.",
+     "Her work has been translated into English and many European languages, as well as into Arabic, Hebrew, Japanese, Persian and Chinese."
+    ]
+   ],
+   [
+    "Agatha (wife of Samuel of Bulgaria)",
+    [
+     "Agatha was the wife of Emperor Samuel of Bulgaria."
+    ]
+   ],
+   [
+    "Adam Włodek",
+    [
+     "Adam Włodek (8 August 1922 in Kraków – 19 January 1986 in Kraków) was a Polish poet, editor and translator.",
+     "He was married to Polish Noble Prize laureate, Wisława Szymborska between 1948 - 1954.",
+     "He published 10 books, mostly collections of his poems.",
+     "He was also the editor of several Polish newspapers including \"Dziennik Polski\", and translated works from Czech and Slovak languages into Polish."
+    ]
+   ]
+  ],
+  "entity_ids": "Q3180512_Q42552",
+  "supporting_facts": [
+   [
+    "Adam Włodek",
+    1
+   ],
+   [
+    "Wisława Szymborska",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Adam Włodek",
+    "spouse",
+    "Wisława Szymborska"
+   ],
+   [
+    "Wisława Szymborska",
+    "place of birth",
+    "Kórnik"
+   ]
+  ],
+  "answer": "Kórnik",
+  "evidences_id": [
+   [
+    "Q3180512",
+    "spouse",
+    "Q42552"
+   ],
+   [
+    "Q42552",
+    "place of birth",
+    "Q51408"
+   ]
+  ],
+  "answer_id": "Q51408"
+ },
+ {
+  "_id": "3602458e0bb011ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is James Lyon, 7Th Earl Of Strathmore And Kinghorne's paternal grandfather?",
+  "context": [
+   [
+    "John Bowes-Lyon",
+    [
+     "The Hon. John Herbert\" Jock\" Bowes- Lyon( 1 April 1886 – 7 February 1930), was the second son of the 14th Earl of Strathmore and Kinghorne and the Countess of Strathmore and Kinghorne, and the brother of Elizabeth Bowes- Lyon( the future Queen Elizabeth and later the Queen Mother).",
+     "He was an uncle to Queen Elizabeth II, although he died when she was a small child."
+    ]
+   ],
+   [
+    "Michael Bowes-Lyon, 17th Earl of Strathmore and Kinghorne",
+    [
+     "Fergus Michael Claude Bowes- Lyon, 17th and 4th Earl of Strathmore and Kinghorne( 31 December 1928 – 19 August 1987), was a British nobleman and peer.",
+     "He was a nephew of Queen Elizabeth The Queen Mother( born Elizabeth Bowes- Lyon), and a first cousin of Queen Elizabeth II and Princess Margaret.",
+     "He was the son of Capt. The Hon. Michael Claude Hamilton Bowes- Lyon and Elizabeth Margaret Cator.",
+     "His paternal grandparents were Claude Bowes- Lyon, 14th Earl of Strathmore and Kinghorne and Cecilia Cavendish- Bentinck.",
+     "He married Mary Pamela McCorquodale( b.1932) on 10 April 1956.",
+     "They had three children:",
+     "He inherited the earldom of Strathmore and Kinghorne upon the death of his first cousin Timothy Bowes- Lyon, 16th Earl of Strathmore and Kinghorne.",
+     "He was succeeded by his son."
+    ]
+   ],
+   [
+    "John Lyon, 5th Earl of Strathmore and Kinghorne",
+    [
+     "John Lyon, 5th Earl of Strathmore and Kinghorne( 1696 – 13 November 1715) was a Scottish peer and nobleman.",
+     "He was the son of John Lyon, 4th Earl of Strathmore and Kinghorne.",
+     "He died fighting with the Jacobites in The Battle of Sheriffmuir in 1715."
+    ]
+   ],
+   [
+    "John Lyon, 4th Earl of Strathmore and Kinghorne",
+    [
+     "John Lyon, 4th Earl of Strathmore and Kinghorne( 1663 – 1712) was a Scottish nobleman and peer.",
+     "He was the son of Patrick Lyon, 3rd Earl of Strathmore and Kinghorne.",
+     "He married Elizabeth Stanhope on 21 September 1691 and was succeeded as Earl by his son John Lyon, 5th Earl of Strathmore and Kinghorne."
+    ]
+   ],
+   [
+    "Mary Bowes, Countess of Strathmore and Kinghorne",
+    [
+     "Mary Eleanor Bowes, Countess of Strathmore and Kinghorne( 24 February 1749 – 28 April 1800), known as\" The Unhappy Countess\", was an 18th- century British heiress, notorious for her licentious lifestyle, who was married at one time to the 9th Earl of Strathmore and Kinghorne.",
+     "She and the Earl are ancestors of Queen Elizabeth II."
+    ]
+   ],
+   [
+    "Thomas Lyon-Bowes, Lord Glamis",
+    [
+     "Thomas George Lyon-Bowes, Lord Glamis (6 February 1801 – 27 January 1834) was an heir to the Earldom of Strathmore and Kinghorne.",
+     "He was the only son of Thomas Lyon-Bowes, 11th Earl of Strathmore and Kinghorne and Mary Elizabeth Louisa Rodney Carpenter.",
+     "He is the great grandfather of Queen Elizabeth, the Queen Mother.",
+     "On 21 December 1820, he married Charlotte Grimstead, daughter of Joseph Valentine Grimstead, of Ewood Park and Merry Hall, and Charlotte Jane Sarah Walsh.",
+     "They had seven children:",
+     "Thomas died at the age of 32 in Honfleur, France; leaving his wife – Lady Glamis – very little money to bring up their four surviving children.",
+     "His eldest son, Thomas Lyon-Bowes became the heir to the Earldom of Strathmore and Kinghorne."
+    ]
+   ],
+   [
+    "James Lyon, 7th Earl of Strathmore and Kinghorne",
+    [
+     "James Lyon, 7th Earl of Strathmore( circa 1702 – 1735) was a Scottish peer and freemason.",
+     "He was the son of John Lyon, 4th Earl of Strathmore and Kinghorne and Lady Elizabeth Stanhope.",
+     "He was christened on 24 December 1702.",
+     "He succeeded as Earl of Strathmore following the stabbing of Charles Lyon, 6th Earl of Strathmore and Kinghorne in a drunken altercation in 1728.",
+     "On 6 March 1731 he married Mary Oliphant, daughter of Charles Oliphant( brother of William Oliphant, 11th Lord Oliphant).",
+     "He died without issue on 4 January 1735 at Edinburgh, Scotland.",
+     "He was succeeded as earl by his younger brother, Thomas Lyon, 8th Earl of Strathmore and Kinghorne, ancestor of Elizabeth Bowes – Lyon, the Queen Mother."
+    ]
+   ],
+   [
+    "Charles Lyon, 6th Earl of Strathmore and Kinghorne",
+    [
+     "Charles Lyon, 6th Earl of Strathmore and Kinghorne( c. 1699 – 11 May 1728) was a Scottish peer and nobleman.",
+     "He was the son of John Lyon, 4th Earl of Strathmore and Kinghorne.",
+     "His exact date of birth is unknown but he was baptised on 12 July 1699.",
+     "Although his brother John Lyon, 5th Earl of Strathmore and Kinghorne was to display the family ’s royalist sympathies when he joined the Jacobite cause, and was slain at the battle of Sheriffmuir in 1715, Charles, the 6th Earl was not directly implicated in the rebellion and although both his family seats were visited by the Old Pretender( James).",
+     "On 25 July 1725 he married Lady Susan Cochrane( died 23 June 1754), daughter of John Cochrane, 4th Earl of Dundonald.",
+     "Earl Charles was killed in a brawl at Forfar by Carnegie of Finhaven in May 1728 and left no heir."
+    ]
+   ],
+   [
+    "Susan Lyon, Countess of Strathmore and Kinghorne",
+    [
+     "Susan Lyon, Countess of Strathmore and Kinghorne(\" née\" Cochrane, – 23 June 1754) was a Scottish noble.",
+     "She was the daughter of John Cochrane, 4th Earl of Dundonald, wife of Charles Lyon, 6th Earl of Strathmore and Kinghorne, and\" Scotland's fairest daughter\", to quote a chronicler of the time.",
+     "She married Charles Lyon, 6th Earl of Strathmore and Kinghorne, but he was killed in an unfortunate brawl at Forfar by Carnegie of Finhavon in May 1728, leaving no heir.",
+     "The resulting trial is famous for establishing in Scots law the\" not guilty\" verdict.",
+     "Later the Countess married her servant and was shunned by her family until she died in Paris leaving a daughter who was left penniless by her rich relatives."
+    ]
+   ],
+   [
+    "Thomas Lyon-Bowes, 11th Earl of Strathmore and Kinghorne",
+    [
+     "Thomas Lyon-Bowes, 11th Earl of Strathmore and Kinghorne (3 May 1773 – 27 August 1846) was a Scottish nobleman and peer.",
+     "He was the third son of John Bowes, 9th Earl of Strathmore and Kinghorne, and Mary Bowes, Countess of Strathmore and Kinghorne.",
+     "His mother was the author of the verse drama, \"The Siege of Jerusalem\" (1769).",
+     "He is the great-great-grandfather of Queen Elizabeth The Queen Mother.",
+     "The eldest brother was John Bowes, 10th Earl of Strathmore and Kinghorne, who had a long affair with Mary Millner.",
+     "Their only son John Bowes was only legitimized following the demise of his father.",
+     "He inherited most of the real estate of his father, but none of his titles.",
+     "The second brother was George Bowes-Lyon who had married Mary Thornhill, but died childless on 26 December 1806.",
+     "Thomas was their only legitimate heir and became the new Earl of Strathmore and Kinghorne on 3 July 1820.",
+     "On 25 March 1800, Thomas married firstly Mary Elizabeth Louisa Rodney Carpenter (1 January 1783 – 1 June 1811), daughter of George Carpenter (21 October 1713 – 10 November 1782) and his wife Mary Elizabeth Walsh (bap.",
+     "18 May 1758, d. 27 November 1812).",
+     "They had two children:",
+     "His first wife died on 1 June 1811.",
+     "He married secondly Eliza Northcote, daughter to a Colonel of the British Army.",
+     "They had a daughter:",
+     "On 8 December 1817, Thomas married his third wife Marianna Cheape, daughter of John Cheape.",
+     "This marriage was childless but lasted until his death.",
+     "He was succeeded by his grandson Thomas Lyon-Bowes, 12th Earl of Strathmore and Kinghorne."
+    ]
+   ]
+  ],
+  "entity_ids": "Q7620335_Q6245623",
+  "supporting_facts": [
+   [
+    "James Lyon, 7th Earl of Strathmore and Kinghorne",
+    1
+   ],
+   [
+    "John Lyon, 4th Earl of Strathmore and Kinghorne",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "James Lyon, 7th Earl of Strathmore and Kinghorne",
+    "father",
+    "John Lyon, 4th Earl of Strathmore and Kinghorne"
+   ],
+   [
+    "John Lyon, 4th Earl of Strathmore and Kinghorne",
+    "father",
+    "Patrick Lyon, 3rd Earl of Strathmore and Kinghorne"
+   ]
+  ],
+  "answer": "Patrick Lyon, 3rd Earl of Strathmore and Kinghorne",
+  "evidences_id": [
+   [
+    "Q7620335",
+    "father",
+    "Q6245623"
+   ],
+   [
+    "Q6245623",
+    "father",
+    "Q7147046"
+   ]
+  ],
+  "answer_id": "Q7147046"
+ },
+ {
+  "_id": "37a7af5a0bb011ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is Margaret Fiennes, 11Th Baroness Dacre's paternal grandfather?",
+  "context": [
+   [
+    "Margaret Fiennes, 11th Baroness Dacre",
+    [
+     "Margaret Fiennes, 11th Baroness Dacre (1541 – 16 March 1612) was a \"suo jure\" peeress having been created Baroness Dacre by King James I of England in 1604.",
+     "She was the daughter of Thomas Fiennes, 9th Baron Dacre who was executed for murder in the year of her birth.",
+     "His title and lands had been forfeited to the crown.",
+     "Baroness Margaret's husband was Sampson Lennard MP.",
+     "She was also known as Baroness Dacre of the South."
+    ]
+   ],
+   [
+    "Gregory Fiennes, 10th Baron Dacre",
+    [
+     "Gregory Fiennes, 10th Baron Dacre (25 June 1539, Hurstmonceaux, Sussex – 25 December 1594, Chelsea, Middlesex, England) was an English courtier.",
+     "He was the son of Thomas Fiennes, 9th Baron Dacre (c. 1515-1541) and Mary Neville.",
+     "His father was convicted of the murder of a gamekeeper and hanged like a common criminal at Tyburn in 1541, and the aftermath the family was stripped of its lands and titles by Henry VIII.",
+     "In the following years, his mother battled to have the properties restored on behalf of her children, and on her ascension in 1558 Queen Elizabeth restored the title of Baron Dacre to Gregory, his elder brother Thomas having died of the plague at age 15.",
+     "In 1565, he married Anne Sackville, daughter of Sir Richard Sackville and Winifred Brydges.",
+     "They had one daughter, Elizabeth, who died young.",
+     "Fiennes, his wife, and their daughter, are buried at Chelsea Old Church within a magnificent marble tomb.",
+     "Fiennes also had an illegitimate daughter named Mary in about 1571, but no mention of this child is made in the tomb heraldry.",
+     "Gregory Fiennes is a sitter with his mother in a significant portrait by Hans Eworth.",
+     "He was succeeded by his sister Margaret Fiennes, 11th Baroness Dacre."
+    ]
+   ],
+   [
+    "Thomas Fiennes, 9th Baron Dacre",
+    [
+     "Thomas Fiennes, 9th Baron Dacre (ca. 1515 – 1541) was an English aristocrat notable for his conviction and execution for murder.",
+     "Dacre was the son of Sir Thomas Fiennes and Jane Sutton daughter of Edward Sutton, 2nd Baron Dudley.",
+     "When his father died in 1528 he became heir apparent to his grandfather's title and the family seat at Herstmonceux Castle in Sussex, and he succeeded to the title at the age of approximately 19 in 1533.",
+     "In 1536 he married Mary Neville, daughter of George Neville, 5th Baron Bergavenny.",
+     "They had three children.",
+     "His only sister Anne married John Mantell, who was hanged along with his brother-in-law.",
+     "He was a member of the jury at the trial of Anne Boleyn in 1536, and of Thomas, Lord Darcy, and John, Lord Hussey in May 1537 (for their part in the Pilgrimage of Grace), and of Baron Montagu and the Marquess of Exeter in 1538 for the Exeter Conspiracy.",
+     "On 30 April 1541 Dacre led a party of gentlemen including his brother-in-law John Mantell, John Frowds, George Roidon, Thomas Isleie, and two yeomen Richard Middleton and John Goldwell, to poach on the lands of Sir Nicholas Pelham of Laughton.",
+     "During the escapade they encountered John Busbrig (or Busbridge), James Busbrig, and Richard Summer who were servants of Pelham.",
+     "The encounter turned into an affray during which John Busbrig was fatally wounded.",
+     "Dacre and several others were charged with murder and arraigned before the Lord High Steward, Lord Audley of Walden on 27 June.",
+     "Dacre originally entered a plea of not guilty but was later persuaded to change it to guilty and throw himself upon the King's mercy in the hope of a reprieve.",
+     "Unlike many of his contemporaries he was not executed by beheading but was hanged at Tyburn on 29 June 1541.",
+     "An account of the execution in Hall's Chronicle says:\nMantell, Frowds and Roidon were also executed for the crime.",
+     "Dacre's family were stripped of their lands and title, but the title was restored to his second son Gregory in 1558",
+     "(the elder son Thomas died before the restitution, aged 15)."
+    ]
+   ],
+   [
+    "Sampson Lennard",
+    [
+     "Sampson Lennard( died 20 September 1615), of Chevening in Kent, was an English Member of Parliament who represented an unusually large number of different constituencies during the reigns of Elizabeth I and James I.",
+     "A prominent member of the Kent and Sussex gentry, Lennard was High Sheriff of Kent in 1590 – 1.",
+     "He entered Parliament in 1571 as member for Launceston( Cornwall).",
+     "He subsequently also represented Bramber( 1584 – 5), St Mawes( 1586 – 7), Christchurch( 1589), St Germans( 1593), Rye( 1597), Liskeard( 1601) and Sussex( 1614).",
+     "Lennard married Margaret Fiennes( 1541 – 1612), daughter of Thomas Fiennes, 9th Baron Dacre, and after her brother's death in 1594 he successfully claimed the barony on her behalf, so that she became the 11th Baroness Dacre.",
+     "They had seven children, and their younger son, Sir Henry Lennard( 1570 – 1616), succeeded his mother as 12th Baron Dacre."
+    ]
+   ],
+   [
+    "Robert More",
+    [
+     "Sir Robert More( 21 May",
+     "1581 – February 1626) was an English politician who sat in the House of Commons from 1601.",
+     "More was the eldest son of Sir George More of Loseley and his first wife Anne Poynings, daughter of Sir Adrian Poynings.",
+     "He entered Corpus Christi College, Oxford in 1595 and was awarded BA in 1598.",
+     "In 1600 he entered the Inner Temple, and also became with his father joint keeper of Farnham Little Park.",
+     "In 1601, More was elected Member of Parliament for Guildford.",
+     "He was knighted between 17 October 1601 and 28 February 1604.",
+     "He was joint constable with his father of Farnham Castle from about 1603 to 1608 and probably became a gentleman pensioner early in the reign of King James.",
+     "In 1604 he was elected MP for Surrey.",
+     "He was a J.P. for Surrey during the reign of James I.",
+     "In 1614 he was elected MP for Guildford again.",
+     "He was a Deputy Lieutenant of Surrey by 1619.",
+     "In 1621 he was re-elected MP for Guildford.",
+     "He was elected MP for Surrey again in 1624 and was elected MP for Guildford again in 1625.",
+     "More died on 2 or 10 February 1626 at the age of 44 and was outlived by his father.",
+     "He was buried in the Loseley chapel at St Nicholas ’s, Guildford.",
+     "More married Frances Lennard, daughter of Sampson Lennard and his wife Margaret Fiennes, 11th Baroness Dacre.",
+     "They had six sons and five daughters."
+    ]
+   ],
+   [
+    "Kaya Alp",
+    [
+     "Kaya Alp was, according to Ottoman tradition, the son of Kızıl Buğa and the father of Suleyman Shah, who was, in turn, the grandfather of Ertuğrul, and the great grandfather of the Ottoman Empire founder, Osman I."
+    ]
+   ],
+   [
+    "Abd al-Muttalib",
+    [
+     "Abd al- Muttalib Shaybah ibn Hashim( c. 497 – 578) was the grandfather of Islamic prophet Muhammad."
+    ]
+   ],
+   [
+    "Anne Sackville, Baroness Dacre",
+    [
+     "Anne Fiennes, Baroness Dacre( died 10 May 1595) was an English gentlewoman and benefactress."
+    ]
+   ],
+   [
+    "Henry Lennard, 12th Baron Dacre",
+    [
+     "Henry Lennard, 12th Baron Dacre (25 March 1570 – 8 August 1616) was an English baron and politician.",
+     "He was the son of Margaret Fiennes, 11th Baroness Dacre and Sampson Lennard.",
+     "He was the Member of Parliament for West Looe in 1597–1598 and Baron Dacre.",
+     "He married in 1589 Chrysogona Baker, by whom he had issue:"
+    ]
+   ],
+   [
+    "Lyon Cohen",
+    [
+     "Lyon Cohen( 1868–1937) was a Polish- born Canadian businessman and a philanthropist.",
+     "He was the grandfather of singer/ poet Leonard Cohen."
+    ]
+   ]
+  ],
+  "entity_ids": "Q6759401_Q7789582",
+  "supporting_facts": [
+   [
+    "Margaret Fiennes, 11th Baroness Dacre",
+    1
+   ],
+   [
+    "Thomas Fiennes, 9th Baron Dacre",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Margaret Fiennes, 11th Baroness Dacre",
+    "father",
+    "Thomas Fiennes, 9th Baron Dacre"
+   ],
+   [
+    "Thomas Fiennes, 9th Baron Dacre",
+    "father",
+    "Sir Thomas Fiennes"
+   ]
+  ],
+  "answer": "Sir Thomas Fiennes",
+  "evidences_id": [
+   [
+    "Q6759401",
+    "father",
+    "Q7789582"
+   ],
+   [
+    "Q7789582",
+    "father",
+    "Q75272765"
+   ]
+  ],
+  "answer_id": "Q75272765"
+ },
+ {
+  "_id": "433bcf3d08b711ebbd88ac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film has the director died first, Showdown At Boot Hill or The Walls Of Hell?",
+  "context": [
+   [
+    "Boot Hill (disambiguation)",
+    [
+     "Boot Hill is the name for a number of cemeteries, chiefly in the American West.",
+     "Boot Hill may also refer to:"
+    ]
+   ],
+   [
+    "Gene Fowler Jr.",
+    [
+     "Gene Fowler Jr.( 27 May 1917 – 11 May 1998), the eldest son of journalist and author Gene Fowler, was a prominent Hollywood film editor.",
+     "His work included films of Fritz Lang and Samuel Fuller and movies like Stanley Kramer's\" It's a Mad, Mad, Mad, Mad World\"( 1963), John Cassavetes'\" A Child Is Waiting\"( 1963) and\" Hang' Em High\"( 1968).",
+     "He was also the director of feature films as well as numerous television programs.",
+     "While the majority of his directorial work is regarded as minor efforts( Leonard Maltin lists only three of his seven features in his compendium), two of his films,\" I Was a Teenage Werewolf\"( 1957) and\" I Married a Monster from Outer Space\"( 1958), have gained some critical attention in retrospect.",
+     "Gene Fowler Jr. was married to film editor Marjorie Fowler from 1944 until his death.",
+     "He died in Woodland Hills, California of natural causes.",
+     "His brother Will Fowler( 1922–2004) was a Hollywood screenwriter."
+    ]
+   ],
+   [
+    "Boot Hill Bandits",
+    [
+     "Boot Hill Bandits is a 1942 American film directed by S. Roy Luby, one entry in the Range Busters series."
+    ]
+   ],
+   [
+    "Quell and Co.",
+    [
+     "Quell and Co is a 1982 film directed by William Witney.",
+     "It was also known as Showdown at Eagle Gap."
+    ]
+   ],
+   [
+    "Benjamin Hill",
+    [
+     "Benjamin Hill or Ben Hill or Benny Hill may refer to:"
+    ]
+   ],
+   [
+    "The Walls of Hell",
+    [
+     "The Walls of Hell, also known as Intramuros is a 1964 Philippine- American film directed by Eddie Romero and Gerardo de Leon and starring Jock Mahoney.",
+     "The film was made back- to- back with\" Moro Witch Doctor\"( 1964).",
+     "It was produced by Hemisphere Pictures( owned by Eddie Romero, Irwin Pizor and Kane W. Lynn)."
+    ]
+   ],
+   [
+    "Showdown at Boot Hill",
+    [
+     "Showdown at Boot Hill is a 1958 American Western film directed by Gene Fowler Jr., written by Louis Vittes, and starring Charles Bronson, Robert Hutton, John Carradine, Carole Mathews, Fintan Meyler and Paul Maxey.",
+     "The film was released on May 1, 1958, by 20th Century Fox.",
+     "It was the first film Gene Fowler Jr. made for Regal Films."
+    ]
+   ],
+   [
+    "Eddie Romero",
+    [
+     "Edgar Sinco Romero( July 7, 1924 – May 28, 2013) was a Filipino film director, film producer and screenwriter."
+    ]
+   ],
+   [
+    "Showdown at Abilene",
+    [
+     "Showdown at Abilene is a 1956 American Western film directed by Charles Haas.",
+     "It was remade as\" Gunfight in Abilene\"."
+    ]
+   ],
+   [
+    "Gang War (1958 film)",
+    [
+     "Gang War is a 1958 American drama film directed by Gene Fowler, Jr. and written by Louis Vittes.",
+     "The film stars Charles Bronson, Kent Taylor, Jennifer Holden, John Doucette, Gloria Henry and Gloria Grey.",
+     "The film was released in July 1958, by 20th Century Fox.",
+     "It was the second of two films Gene Fowler directed with Charles Bronson for Regal Films, the other being\" Showdown at Boot Hill\".",
+     "Writer Vittes and director Fowler later made\" The Oregon Trail\" for Regal."
+    ]
+   ]
+  ],
+  "entity_ids": "Q2992450_Q47064185_Q4994308_Q2470168",
+  "supporting_facts": [
+   [
+    "Showdown at Boot Hill",
+    0
+   ],
+   [
+    "The Walls of Hell",
+    0
+   ],
+   [
+    "Gene Fowler Jr.",
+    0
+   ],
+   [
+    "Eddie Romero",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Showdown at Boot Hill",
+    "director",
+    "Gene Fowler Jr."
+   ],
+   [
+    "The Walls of Hell",
+    "director",
+    "Eddie Romero"
+   ],
+   [
+    "Gene Fowler Jr.",
+    "date of death",
+    "11 May 1998"
+   ],
+   [
+    "Eddie Romero",
+    "date of death",
+    "May 28, 2013"
+   ]
+  ],
+  "answer": "Showdown At Boot Hill",
+  "evidences_id": [],
+  "answer_id": "Q2992450"
+ },
+ {
+  "_id": "567300700bdc11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "Who is the spouse of the composer of song Know Bout Me?",
+  "context": [
+   [
+    "Know Bout Me",
+    [
+     "\"Know Bout Me\" is the lead single from American producer and rapper Timbaland's upcoming fourth studio album, \"Opera Noir\".",
+     "The song features vocals from Jay Z, Drake and James Fauntleroy.",
+     "It was released via digital download on November 21, 2013 in the United States."
+    ]
+   ],
+   [
+    "Princess Auguste of Bavaria (1875–1964)",
+    [
+     "Princess Auguste of Bavaria( 28 April 1877 – 25 June 1964) was a member of the Bavarian Royal House of Wittelsbach and the spouse of Archduke Joseph August of Austria."
+    ]
+   ],
+   [
+    "Gertrude of Bavaria",
+    [
+     "Gertrude of Saxony and Bavaria( 1152/55–1197) was Duchess of Swabia as the spouse of Duke Frederick IV, and Queen of Denmark as the spouse of King Canute VI."
+    ]
+   ],
+   [
+    "Jay-Z",
+    [
+     "Shawn Corey Carter (born December 4, 1969), known professionally as Jay-Z (stylized as JAY-Z), is an American rapper, songwriter, producer, entrepreneur, and record executive.",
+     "He is regarded as one of the greatest rappers of all time.",
+     "Born and raised in New York City, Jay-Z first began his musical career after founding the record label Roc-A-Fella Records in 1995, and subsequently released his debut studio album \"Reasonable Doubt\" in 1996.",
+     "The album was released to widespread critical success, and solidified his standing in the music industry.",
+     "He has gone on to release twelve additional albums, which have all attained generally positive critical reception and commercial success, including \"The Blueprint\" (2001) and \"The Black Album\" (2003).",
+     "Jay-Z has also released the full-length collaborative albums",
+     "\"Watch the Throne\" (2011) and \"Everything Is Love\" (2018) with Kanye West and wife Beyoncé, respectively.",
+     "Outside of his musical career, Jay-Z has also attained significant success and media attention for his career as a businessman.",
+     "In 1999, he founded the clothing retailer Rocawear, and in 2003, he founded the luxury sports bar chain 40/40 Club.",
+     "Both businesses have grown to become multi-million dollar corporations, and allowed Jay-Z to fund the start-up for the entertainment company Roc Nation, which was founded in 2008.",
+     "In 2015, he acquired the tech company Aspiro, and took charge of their media streaming service Tidal, which has since become the world's third-largest online streaming company.",
+     "Jay-Z is one of the world's best-selling music artists, with over 100 million records sold worldwide.",
+     "He has won a total of 22 Grammy Awards, the most by a rapper, and holds the record for the most number-one albums by a solo artist on the \"Billboard\" 200, with 14.",
+     "He has been ranked by \"Billboard\" and fellow music publication \"Rolling Stone\" as one of the 100 Greatest Artists of All Time.",
+     "In 2017, he became the first rapper to be honored into the Songwriters Hall of Fame, and in 2018, received the commemorative \"Salute to Industry Icons\" award at the 60th Grammy Awards.",
+     "In June 2019, Jay-Z officially became the first hip hop billionaire, making him the 3rd wealthiest African-American and the wealthiest American musician."
+    ]
+   ],
+   [
+    "Don't Worry Bout Me (Zara Larsson song)",
+    [
+     "\" Do n't Worry Bout Me\" is a song by Swedish singer Zara Larsson.",
+     "It was released by TEN Music Group and Epic Records on 28 March 2019 as the second single from Larsson's upcoming third studio album.",
+     "Larsson wrote\" Do n't Worry Bout Me\" with Tove Lo, Rami Yacoub, Linnea Södahl, Whitney Phillips, and The Struts, who also produced the song."
+    ]
+   ],
+   [
+    "Marie-Louise Coidavid",
+    [
+     "Marie Louise Coidavid( 1778 – March 11, 1851), was the Queen of the Kingdom of Haiti 1811 – 20 as the spouse of Henri I of Haiti."
+    ]
+   ],
+   [
+    "Mehdi Abrishamchi",
+    [
+     "Mehdi Abrishamchi is an Iranian People's Mujahedin of Iran( MEK) politician who has been described as\" the right hand man of Massoud Rajavi\".",
+     "He is the former spouse of the group's current leader, Maryam Rajavi, whom he divorced so that she could become the spouse of Massoud Rajavi."
+    ]
+   ],
+   [
+    "Adib Kheir",
+    [
+     "Adib Kheir was a leading Syrian nationalist of the 1920s.",
+     "He was the owner of the Librairie Universelle in Damascus.",
+     "His granddaughter is the spouse of Manaf Tlass."
+    ]
+   ],
+   [
+    "Maria Teresa, Grand Duchess of Luxembourg",
+    [
+     "Maria Teresa, Grand Duchess of Luxembourg( born María Teresa Mestre y Batista; on 22 March 1956), is the spouse of Grand Duke Henri."
+    ]
+   ],
+   [
+    "Sophia Magdalena of Denmark",
+    [
+     "Sophia Magdalena of Denmark (3 July 1746 – 21 August 1813) was Queen of Sweden as the spouse of King Gustav III."
+    ]
+   ]
+  ],
+  "entity_ids": "Q16998606_Q62766",
+  "supporting_facts": [
+   [
+    "Know Bout Me",
+    1
+   ],
+   [
+    "Jay-Z",
+    6
+   ]
+  ],
+  "evidences": [
+   [
+    "Know Bout Me",
+    "composer",
+    "Jay Z"
+   ],
+   [
+    "Jay-Z",
+    "spouse",
+    "Beyoncé"
+   ]
+  ],
+  "answer": "Beyoncé",
+  "evidences_id": [
+   [
+    "Q16998606",
+    "composer",
+    "Q62766"
+   ],
+   [
+    "Q62766",
+    "spouse",
+    "Q36153"
+   ]
+  ],
+  "answer_id": "Q36153"
+ },
+ {
+  "_id": "593584760bb011ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is the paternal grandfather of Prince Charles Louis, Duke Of Chartres?",
+  "context": [
+   [
+    "Prince Jacques, Duke of Orléans",
+    [
+     "Prince Jacques of Orléans, Duke of Orléans,\" fils de France\"( Jacques Jean Jaroslaw Marie; born 25 June 1941 in Rabat, Morocco), is the son of Henri, Count of Paris( the Orléanist claimant to the French throne from 1940 until his death) and his wife, Princess Isabelle of Orléans- Braganza."
+    ]
+   ],
+   [
+    "Prince Charles Louis, Duke of Chartres",
+    [
+     "Prince Charles Louis of Orléans, Duke of Chartres",
+     "(Charles Louis Henri",
+     "Foulques Benoît Elzéar Jean Marie; born 28 July 1972) is the elder son of Prince Jacques, Duke of Orléans and Gersende de Sabran-Pontevès."
+    ]
+   ],
+   [
+    "Charles II, Duke of Parma",
+    [
+     "Charles Louis( 22 December 1799 – 16 April 1883) was King of Etruria( 1803 – 1807; reigned as Louis II), Duke of Lucca( 1824 – 1847; reigned as Charles I), and Duke of Parma( 1847 – 1849; reigned as Charles II).",
+     "He was the only son of Louis, Prince of Piacenza, and his wife Infanta Maria Luisa of Spain.",
+     "Born at the Royal Palace of Madrid at the court of his maternal grandfather King Charles IV of Spain, he spent his first years living at the Spanish court.",
+     "In 1801, by the Treaty of Aranjuez, Charles became Crown Prince of Etruria, a newly created kingdom formed from territories of the Grand Duchy of Tuscany.",
+     "Charles moved to Italy with his parents and in 1803, not yet four years old, he succeeded his father as King of Etruria under the name Charles Louis I. His mother Infanta Maria Luisa assumed the regency while Charles Louis' minority lasted.",
+     "In 1807 Napoleon Bonaparte dissolved the kingdom of Etruria and Charles Louis and his mother took refuge in Spain.",
+     "In May 1808 they were forced to leave Spain by Napoleon who arrested Charles Louis' mother in a convent in Rome.",
+     "Between 1811 and 1814 Charles Louis was placed under the care of his grandfather, the deposed King Charles IV of Spain.",
+     "After Napoleon's fall, in 1817, Infanta Maria Luisa became Duchess of Lucca in her own right and Charles Louis, age sixteen, became hereditary Prince of Lucca.",
+     "In 1820 he married Princess Maria Teresa of Savoy.",
+     "They were a mismatched couple and had only one surviving son.",
+     "At his mother's death in 1824, Charles Louis became the reigning Duke of Lucca as Charles I.",
+     "He had little interest in ruling.",
+     "He left the duchy in the hands of his ministers and spent most of his time traveling around Europe.",
+     "A liberal movement led him to abdicate Lucca in favor of the Grand Duke of Tuscany in October 1847 in exchange for financial compensation, as he wanted to retire to private life.",
+     "Two months later, in December 1847, at the death of the former Empress Marie Louise, he succeeded her as the reigning Duke of Parma according to what had been stipulated by the Congress of Vienna.",
+     "His reign in Parma as Duke Charles II was brief.",
+     "He was ill- received by his new subjects and within a few months he was ousted by a revolution.",
+     "He regained control of Parma under the protection of Austrian troops, but finally abdicated in favor of his son Charles III on 14 March 1849.",
+     "His son was assassinated in 1854 and his grandson Robert I, the last reigning Duke of Parma, was deposed in 1860.",
+     "In exile Charles Louis assumed the title of count of Villafranca.",
+     "He spent the last years of his life mostly in France, dying at Nice on 16 April 1883."
+    ]
+   ],
+   [
+    "William Montagu Douglas Scott, 6th Duke of Buccleuch",
+    [
+     "William Henry Walter Montagu Douglas Scott, 6th Duke of Buccleuch and 8th Duke of Queensberry( 9 September 1831 – 5 November 1914) was a Scottish Member of Parliament and peer.",
+     "He was the paternal grandfather of Princess Alice, Duchess of Gloucester, and the maternal great- grandfather of Prince William of Gloucester and Prince Richard, Duke of Gloucester.",
+     "He was a paternal great- great- grandfather to Sarah, Duchess of York."
+    ]
+   ],
+   [
+    "Charles Louis d'Albert de Luynes",
+    [
+     "Charles Louis d'Albert de Luynes (Marie Charles Louis; 24 April 1717 – 8 October 1771) was a French nobleman and member of the House of Albert.",
+     "He was the fifth Duke of Luynes as well as Duke of Chevreuse."
+    ]
+   ],
+   [
+    "Prince Henri of Orléans",
+    [
+     "Prince Henri of Orléans( 16 October 1867 – 9 August 1901) was the son of Prince Robert, Duke of Chartres, and Princess Françoise of Orléans."
+    ]
+   ],
+   [
+    "Richard Wesley, 1st Baron Mornington",
+    [
+     "Richard Colley Wesley, 1st Baron Mornington (– 31 January 1758) was an Irish peer, best remembered as the grandfather of Arthur Wellesley, 1st Duke of Wellington."
+    ]
+   ],
+   [
+    "Ernst I, Prince of Hohenlohe-Langenburg",
+    [
+     "Ernst Christian Carl, 4th Prince of Hohenlohe- Langenburg( 7 May 1794 – 12 April 1860).",
+     "He was the son of Prince Charles Louis of Hohenlohe- Langenburg and Countess Amalie Henriette of Solms- Baruth."
+    ]
+   ],
+   [
+    "William of Conches",
+    [
+     "William of Conches( c. 1090 – after 1154) was a French scholastic philosopher who sought to expand the bounds of Christian humanism by studying secular works of the classics and fostering empirical science.",
+     "He was a prominent member of the School of Chartres.",
+     "John of Salisbury, a bishop of Chartres and former student of William's, refers to William as the most talented grammarian after Bernard of Chartres."
+    ]
+   ],
+   [
+    "Christian Louis I, Duke of Mecklenburg",
+    [
+     "Christian Louis I, Duke of Mecklenburg- Schwerin( 1 December 1623 in Schwerin – 21 June 1692 in The Hague) was a reigning Duke of Mecklenburg- Schwerin."
+    ]
+   ]
+  ],
+  "entity_ids": "Q2958216_Q2420456",
+  "supporting_facts": [
+   [
+    "Prince Charles Louis, Duke of Chartres",
+    2
+   ],
+   [
+    "Prince Jacques, Duke of Orléans",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Prince Charles Louis of Orléans, Duke of Chartres",
+    "father",
+    "Prince Jacques, Duke of Orléans"
+   ],
+   [
+    "Prince Jacques, Duke of Orléans",
+    "father",
+    "Henri, Count of Paris"
+   ]
+  ],
+  "answer": "Henri, Count of Paris",
+  "evidences_id": [
+   [
+    "Q2958216",
+    "father",
+    "Q2420456"
+   ],
+   [
+    "Q2420456",
+    "father",
+    "Q538411"
+   ]
+  ],
+  "answer_id": "Q538411"
+ },
+ {
+  "_id": "62a9cd640bb011ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is the father-in-law of John Ernest, Duke Of Saxe-Eisenach?",
+  "context": [
+   [
+    "William, Duke of Saxe-Weimar",
+    [
+     "Wilhelm, Duke of Saxe-Weimar (Altenburg, 11 April 1598 – Weimar, 17 May 1662), was a duke of Saxe-Weimar.",
+     "Wilhelm was the fifth (but third surviving) son of Johann, Duke of Saxe-Weimar, and Dorothea Maria of Anhalt.",
+     "He was brother to Bernard of Saxe-Weimar, a successful Protestant general in the Thirty Years' War, and to Ernest I, Duke of Saxe-Gotha (later Altenburg), a successful and well regarded ruler known as \"The Pious\"."
+    ]
+   ],
+   [
+    "William August, Duke of Saxe-Eisenach",
+    [
+     "Wilhelm August, Duke of Saxe- Eisenach( 30 November 1668 – 23 February 1671) was a duke of Saxe- Eisenach.",
+     "He was born at Eisenach, the youngest and only surviving son of Adolf Wilhelm, Duke of Saxe- Eisenach and Marie Elisabeth of Brunswick- Wolfenbüttel.",
+     "All his older brothers died before his father, and Wilhelm August, the fifth and youngest child, was born nine days after the death of Adolf Wilhelm( 21 November 1668) and succeeded him in the duchy of Saxe- Eisenach from the moment of his birth, under the guardianship of his uncle Johann Georg.",
+     "A sickly boy, he died at Eisenach when only two years old, and Eisenach was inherited by Johann Georg."
+    ]
+   ],
+   [
+    "Dorothea Maria of Saxe-Gotha-Altenburg",
+    [
+     "Dorothea Maria of Saxe- Gotha-Altenburg( 12 February 1654 in Gotha – 17 June 1682 in Gotha), was a German princess member of the House of Wettin in the Ernestine branch of Saxe- Gotha- Altenburg.",
+     "She was the twelfth child and fourth daughter of Ernest I, Duke of Saxe- Gotha by his wife Elisabeth Sophie, the only daughter of John Philip, Duke of Saxe- Altenburg."
+    ]
+   ],
+   [
+    "William Ernest, Duke of Saxe-Weimar",
+    [
+     "William Ernest, Duke of Saxe- Weimar( 19 October 1662 – 26 August 1728) was a duke of Saxe- Weimar."
+    ]
+   ],
+   [
+    "Christine of Hesse-Kassel (1578–1658)",
+    [
+     "Christine of Hesse-Kassel (19 October 1578 – 19 August 1658) was a German noblewoman member of the House of Hesse and by marriage Duchess of Saxe-Eisenach and Saxe-Coburg.",
+     "Born in Kassel, she was the tenth of eleven children born from the marriage of William IV, Landgrave of Hesse-Kassel and his wife Duchess Sabine of Württemberg.",
+     "She was probably named after both her paternal grandmother and aunt (by marriage Duchess consort of Schleswig-Holstein-Gottorp)."
+    ]
+   ],
+   [
+    "John Ernest, Duke of Saxe-Eisenach",
+    [
+     "Johann Ernst of Saxe-Eisenach (Gotha, 9 July 1566 – Eisenach, 23 October 1638), was a duke of Saxe-Eisenach and later of Saxe-Coburg.",
+     "He was the fourth (but second surviving) and youngest son of Johann Frederick II, Duke of Saxony and Countess Palatine Elisabeth of Simmern-Sponheim.",
+     "His grandfather, Johann Frederick I, had still held the title of Elector of Saxony, but after the Battle of Mühlberg he lost the title to his cousin Maurice, from the Albertine line.",
+     "His father tried since then to regain the Electorate again for the Ernestine line.",
+     "For this purpose he accepted an outlawed knight, Wilhelm von Grumbach, with himself, which led finally to the fact that also over his father the anger of the Emperor.",
+     "Only one year after his birth was besieged the castle of his father in Gotha by troops of the Elector Augustus of Saxony and finally conquered.",
+     "His father came into imperial prison from the rest of his life.",
+     "His mother, Johann Ernst and his older brothers had to flee from Gotha.",
+     "They found first admission with his uncle, the duke Johann Wilhelm of Saxe-Weimar, who took over also the guardianship for the princes -at the same time, he was granted by the Emperor with the lands of his brother Johann Frederick II-.",
+     "After a short time in Weimar, Johann Ernst, as well as his mother and his brothers, lived in Eisenach and Eisenberg.",
+     "Later, his uncle Johann Wilhelm of Saxe-Weimar lost the Imperial favour.",
+     "In the Diet of Speyer (1570), the Emperor decided to restore to the three sons of Johann Frederick II his hereditary rights.",
+     "In 1572 his older brother Frederick Heinrich died from typhus fever.",
+     "The same year, by the Division of Erfurt, the decision of the Diet of Speyer was made: The lands of his father were extracted again from the duchy of Saxe-Weimar, and created from them the new \"Duchy of Saxe-Coburg-Eisenach\".",
+     "Johann Ernst and his older surviving brother, Johann Casimir, were made rulers of the new country.",
+     "During there minority, the lands were under the guardianship of the three Elector Princes: Frederick III of the Palatinate (also his maternal grandfather), Johann George of Brandenburg and Augustus of Saxony; also, they took the regency over Saxe-Coburg-Eisenach.",
+     "The duchess Elizabeth moved to Austria, where she should live themselves in the future in the proximity of her husband, still imperial prissioner.",
+     "The two young princes, Johann Casimir and Johann Ernst, moved to Coburg, the future residence of his new principality.",
+     "With only six years, Johann Ernst was separated from his parents forever and entrusted to the education of strange persons.",
+     "Since 1578 he visited the University of Leipzig then together with his brother.",
+     "In 1586, after the wedding of his brother with Anna of Saxony, the daughter of the Elector Augustus, the guardianship finalized, and Johann Casimir began, together with his brother, the independent ruling of Saxe-Coburg-Eisenach.",
+     "Johann Casimir and Johann Ernst governed together the principality for the next ten years; however, Johann Casimir carried the main responsibility for the government as an older brother.",
+     "Also, in order to had a separated residence from his brother too, Johann Ernst establishes himself in the small town of Marksuhl on 1587.",
+     "Since 1590 Johann Ernst withdrew himself from the government of the duchy, with his brother completely agreed it, that this should govern the duchy for five years alone, when this time had elapsed and finally agreed (in 1596) with its brother to a new divisionary treaty.",
+     "The duchy of Saxe-Eisenach was taken by Johann Ernst as independent principality separated from Saxe-Coburg, who remained with Johann Casimir.",
+     "Thus, Saxe-Eisenach, for the first time in his history, had his own independent political unit became within the Holy Roman Empire.",
+     "During his first year of reign, Johann Ernst still live in Marsuhl because Eisenach, the new capital of his country, was inhabited and, only with the establishment of his official residence",
+     "the citizens began to moved there.",
+     "In 1598 Johann Ernst created for his duchy his own \"Landesregierung\" (Federal State Government) and a\" Konsistorium\".",
+     "In 1633 his brother, the duke Johann Casimir of Saxe-Coburg, died childless.",
+     "For this, Johann Ernst inherited Saxe-Coburg, and until his own death he governed both countries in a personal union, but maintains, however, his residence in Eisenach.",
+     "In Wiener Neustadt on 23 November 1591 Johann Ernst married firstly with Elisabeth of Mansfeld-Hinterort.",
+     "She died four days after giving birth to their only son:",
+     "In Rotenburg on 14 May 1598 Johann Ernst married secondly with Christine of Hesse-Kassel.",
+     "The marriage was happy, but remained childless.",
+     "With the death of Johann Ernst ended the older line of Saxe-Coburg-Eisenach.",
+     "His principality was divided (under the rules of the Ernestine line) between Saxe-Weimar and Saxe-Altenburg."
+    ]
+   ],
+   [
+    "John George II, Duke of Saxe-Eisenach",
+    [
+     "Johann Georg II, Duke of Saxe- Eisenach( Friedewald, 24 July",
+     "1665 – Eisenach, 10 November 1698), was a duke of Saxe- Eisenach.",
+     "He was the second son of Johann Georg I, Duke of Saxe- Eisenach and Johannetta of Sayn- Wittgenstein.",
+     "The death of his older brother, Frederick August—who was killed in battle in 1684 — make him the new heir of the duchy of Saxe- Eisenach.",
+     "Two years later( 1686), Johann Georg succeeded his father when he died.",
+     "In Kirchheim unter Teck on 20 September 1688 Johann Georg married with Sophie Charlotte of Württemberg.",
+     "This union was childless.",
+     "When his cousin, the young Duke Johann Wilhelm of Saxe- Jena died( 1690) Johann Georg inherited a part of his duchy, because he was compelled to make a divisionary treaty with the Duke Wilhelm Ernst of Saxe- Weimar, his other cousin and brother- in- law of the late duke.",
+     "Johann Georg died suddenly of smallpox, and was succeeded by his brother, Johann Wilhelm."
+    ]
+   ],
+   [
+    "Fredericka Elisabeth of Saxe-Eisenach",
+    [
+     "Fredericka Elisabeth of Saxe- Eisenach( 5 May 1669- 12 November 1730), was a German noblewoman member of the House of Wettin and by marriage Duchess of Saxe- Weissenfels.",
+     "Born in Altenkirchen, she was the seventh of eight children born from the marriage of John George I, Duke of Saxe- Eisenach and Johannetta, Countess of Sayn- Wittgenstein- Sayn- Altenkirchen.",
+     "From her seven older and younger siblings four survive adulthood: Eleonore Erdmuthe Luise( by her two marriages Margravine of Brandenburg- Ansbach and Electress of Saxony), Frederick August, Hereditary Prince of Saxe- Eisenach, John George II, Duke of Saxe- Eisenach and John William, Duke of Saxe- Eisenach."
+    ]
+   ],
+   [
+    "Wilhelm Heinrich, Duke of Saxe-Eisenach",
+    [
+     "Wilhelm Heinrich, Duke of Saxe- Eisenach( 10 November 1691 – 26 July 1741), was a duke of Saxe- Eisenach.",
+     "He was born in Oranjewoud, the eldest and only surviving son of Johann Wilhelm, Duke of Saxe- Eisenach and his first wife Amalie of Nassau- Dietz.",
+     "Wilhelm Heinrich first married Albertine Juliane of Nassau- Idstein( daughter George August, Count of Nassau- Idstein) in Idstein on 15 February 1713.",
+     "This marriage was childless.",
+     "He married his second wife Anna Sophie Charlotte of Brandenburg- Schwedt in Berlin on 3 June 1723, just eight months after the death of Albertine Juliane.",
+     "The second marriage was also childless.",
+     "Wilhelm Heinrich acceded to the duchy of Saxe- Eisenach in 1729 upon the death of his father and was succeeded by his second cousin, duke Ernst August I of Saxe- Weimar.",
+     "The personal union between Eisenach and Weimar created by this succession was only nominal until 1809, when the two patrimonies were formally united.",
+     "He died in Eisenach."
+    ]
+   ],
+   [
+    "John William III, Duke of Saxe-Eisenach",
+    [
+     "John William III, Duke of Saxe- Eisenach( 17 October 1666 – 14 January 1729), was a duke of Saxe- Eisenach, and came from the Ernestine line of the house of Wettin."
+    ]
+   ]
+  ],
+  "entity_ids": "Q68666_Q1083877",
+  "supporting_facts": [
+   [
+    "John Ernest, Duke of Saxe-Eisenach",
+    33
+   ],
+   [
+    "Christine of Hesse-Kassel (1578–1658)",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Johann Ernst of Saxe-Eisenach",
+    "spouse",
+    "Christine of Hesse-Kassel"
+   ],
+   [
+    "Christine of Hesse-Kassel",
+    "father",
+    "William IV, Landgrave of Hesse-Kassel"
+   ]
+  ],
+  "answer": "William IV, Landgrave of Hesse-Kassel",
+  "evidences_id": [
+   [
+    "Q68666",
+    "spouse",
+    "Q1083877"
+   ],
+   [
+    "Q1083877",
+    "father",
+    "Q696040"
+   ]
+  ],
+  "answer_id": "Q696040"
+ },
+ {
+  "_id": "66119246086f11ebbd62ac1f6bf848b6",
+  "type": "comparison",
+  "question": "Who was born later, Peter Samuel George Mackenzie or Josip Petrov Babich?",
+  "context": [
+   [
+    "Walter George Mitchell",
+    [
+     "Walter George Mitchell,( May 30, 1877 – April 3, 1935) was a Canadian lawyer and politician.",
+     "Born in Danby, Quebec, the son of William Mitchell, a Canadian senator, and Dora Godard, Mitchell was educated at the Montreal High School, Bishop's College, and McGill University where he received a Bachelor of Civil Law degree in 1901 and was a charter member of The Kappa Alpha Society.",
+     "After being called to the Quebec Bar in 1901, he practiced law with the law firm of Greenshields, Greenshields& Heneker.",
+     "He soon was part of the firm Laflamme, Mitchell and Callaghan and was created a King's Counsel in 1912.",
+     "He was acclaimed to the Legislative Assembly of Quebec for the electoral district of Richmond in a 1914 by-election called after the death of Peter Samuel George Mackenzie.",
+     "A Liberal, he was re-elected by acclamation in 1916 and in 1919.",
+     "He was Treasurer of the Province of Quebec from 1914 to 1921 in the cabinet of Lomer Gouin and Louis- Alexandre Taschereau.",
+     "From 1918 to 1921, he was Minister of Municipal Affairs.",
+     "He resigned in 1921 and was elected to the House of Commons of Canada for the electoral district of St. Antoine.",
+     "A Liberal, he resigned in May 1924.",
+     "He ran again in the 1930 election for the electoral district of Richmond — Wolfe but was defeated."
+    ]
+   ],
+   [
+    "Sam Dalby",
+    [
+     "Samuel George Dalby( born 17 January 2000) is an English professional footballer who plays for English Premier League side Watford as a striker."
+    ]
+   ],
+   [
+    "Peter Samuel George Mackenzie",
+    [
+     "Peter Samuel George Mackenzie (19 December 1862 – 1 November 1914) was a Canadian lawyer and politician.",
+     "Born at Cumberland House, in the Hudson's Bay Company territories, Mackenzie was the son of Jane and Roderick Mackenzie.",
+     "His father, a cousin of the explorer Sir Alexander Mackenzie, was an agent of the Company.",
+     "He was educated at Upper Canada College, Toronto, the High School of Montreal, the St. Francis College at Richmond, and McGill University at Montreal, then articled in Montreal to Melbourne Tait and John Joseph Caldwell Abbott, the second of whom later became Prime Minister of Canada.",
+     "On 4 February 1884 Mackenzie was called to the bar of Quebec and opened his own office at Richmond, later going into partnership with Henry Aylmer, who had been a member of the House of Commons from 1874 to 1878, and with Auguste-Maurice Tessier.",
+     "Later he practised alone again, and was appointed King's Counsel on 30 June 1903.",
+     "At the 1900 Quebec general election, Mackenzie was elected to the Legislative Assembly of Quebec as a Liberal member for Richmond and was re-elected unopposed in 1904 and 1908.",
+     "In January 1910 his seat fell vacant when he was appointed as Treasurer in the Lomer Gouin cabinet, but he was again elected unopposed at the by-election of January 1910 and in the general election of 1912.",
+     "He was a member of the governing body of Bishop's College and in 1906 joined the Protestant Committee of the Council of Public Instruction.",
+     "Mackenzie died in office at Melbourne, Richmond, on 1 November 1914, aged 51, and was buried in St Ann's Cemetery, Richmond, three days later.",
+     "He left a widow, who had previously been Mrs Penfold."
+    ]
+   ],
+   [
+    "Samuel G. Andrews",
+    [
+     "Samuel George Andrews( October 16, 1796 – June 11, 1863) was an American politician and a U.S. Representative from New York."
+    ]
+   ],
+   [
+    "George Mackenzie, 1st Earl of Cromartie",
+    [
+     "George Mackenzie, 1st Earl of Cromartie FRS( 1630 – 1714), known as Sir George Mackenzie, 2nd Baronet from 1654 to 1685 and as The Viscount of Tarbat from 1685 to 1703, was a Scottish statesman."
+    ]
+   ],
+   [
+    "Josip Petrov Babich",
+    [
+     "Josip Petrov Babich( 23 October 1895 – 22 August 1983) was a New Zealand gum-digger, wine- maker and farmer.",
+     "He was born in Runovic, Dalmatia on 23 October 1895."
+    ]
+   ],
+   [
+    "George Mackenzie, 3rd Earl of Cromartie",
+    [
+     "George Mackenzie, 3rd Earl of Cromartie( c. 1703 – 28 September 1766) was a Scottish nobleman."
+    ]
+   ],
+   [
+    "W. Augustus Barratt",
+    [
+     "W. Augustus Barratt( 1873- 1947) was a Scottish- born, later American, songwriter and musician."
+    ]
+   ],
+   [
+    "Billy George (footballer, born 1895)",
+    [
+     "William Samuel George( 27 July 1895 – 29 September 1962) was an English professional footballer who played as a wing half for Sunderland."
+    ]
+   ],
+   [
+    "Sam Davis (footballer)",
+    [
+     "Samuel George Davis MM was an English professional football right back who played in the Football League for Newport County."
+    ]
+   ]
+  ],
+  "entity_ids": "Q3376860_Q6290930",
+  "supporting_facts": [
+   [
+    "Peter Samuel George Mackenzie",
+    0
+   ],
+   [
+    "Josip Petrov Babich",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Peter Samuel George Mackenzie",
+    "date of birth",
+    "19 December 1862"
+   ],
+   [
+    "Josip Petrov Babich",
+    "date of birth",
+    "23 October 1895"
+   ]
+  ],
+  "answer": "Josip Petrov Babich",
+  "evidences_id": [],
+  "answer_id": "Q6290930"
+ },
+ {
+  "_id": "6a419ba2087611ebbd67ac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film has the director who is older than the other, Ven Mi Corazón Te Llama or Waking The Dead (Film)? ",
+  "context": [
+   [
+    "Ven mi corazón te llama",
+    [
+     "Ven mi corazón te llama is a 1942 Argentine film directed by Manuel Romero."
+    ]
+   ],
+   [
+    "Keith Gordon",
+    [
+     "Keith Gordon( born February 3, 1961) is an American actor and film director."
+    ]
+   ],
+   [
+    "Ben Palmer",
+    [
+     "Ben Palmer is a British film and television director who is known for being the director of\" Bo' Selecta\" and\" The Inbetweeners\"."
+    ]
+   ],
+   [
+    "Mercedes Quintana",
+    [
+     "Quintana Saravia Haydée Mercedes, known as Mercedes Quintana( 1910 – 1996 in Buenos Aires) was an Argentine classical dancer, choreographer, director and actress of stage, screen and television.",
+     "She had a prominent stage career in Argentina in the 1930s.",
+     "She appeared in films such as\" Yo quiero ser bataclana\"( 1941),\" Ven ... mi corazón te llama\"( 1942) and\" Mujeres que bailan\"( 1949)."
+    ]
+   ],
+   [
+    "Roy Frumkes",
+    [
+     "Roy Frumkes is an American independent filmmaker.",
+     "Frumkes directed the 1985 documentary\" Document of the Dead\", a film detailing the production of\" Dawn of the Dead\"."
+    ]
+   ],
+   [
+    "Manuel Romero",
+    [
+     "Manuel Romeo (September 21, 1891 – October 3, 1954 in Buenos Aires) was an Argentine film director, screenwriter, dramatist and score composer, and one of the influential directors in the cinema of Argentina of the classic era.",
+     "He directed and wrote over films between 1931 and 1951 even composing the musical scores for several.",
+     "He was a pioneer of Variety Theatre, and one of the few tango lyrical writers that has reached timeless classical success.",
+     "When he was a teenager, he began his journalist job in the Magacine Fray Mochoy, and in the newspapers Crítica y Última Hora.",
+     "His first play, \"Teatro breve\" is from 1919 with the collaboration of Ivo Pelay.",
+     "He wrote 180 more.",
+     "In 1922 the most famous, \"El bailarín del cabaret\", was staged with the César Ratti's company, where Corsini triunfó (had a success) with \"Patotero sentimental\".",
+     "In 1923 he travelled to Europe with Luis Bayón Herrera.",
+     "In Paris, where he acted on several plays, he met Carlos Gardel and the idea of filmmaking was born.",
+     "He wrote the plot and songs for \"Luces de Buenos Aires\", directed by the Chilean Adelqui Millar.",
+     "It starred Gloria Guzmán, Sofía Bozán, Pedro Quartucci and the Julio De Caro musical group.",
+     "He returned to Buenos Aires, where he introduced the new ideas taken from music hall and varieties shows.",
+     "He started to work at the Lumitón cinema company, with Enrique Telémaco Susini .",
+     "With that film company, released in February 1935, \"Noches de Buenos Aires\", written and directed by Romero, his cinema career began.",
+     "The film starred Tita Merello, Irma Córdoba, Enrique Serrano and Fernando Ochoa.",
+     "He filmed very quickly, he only wanted to finish and achieve a good result.",
+     "His films were rejected by critics and intellectuals as a result, but ordinary people liked his style because they knew him from radio of variety shows.",
+     "He directed films such as Adiós pampa mía in 1946."
+    ]
+   ],
+   [
+    "Félicité Du Jeu",
+    [
+     "Félicité Du Jeu is a French actress.",
+     "She is best known for her role as DC Stella Goodman in the BBC drama\" Waking the Dead\"."
+    ]
+   ],
+   [
+    "Canta mi corazón",
+    [
+     "Canta mi corazón(\" My Heart Sings\") is a 1965 Mexican film.",
+     "It stars Sara García."
+    ]
+   ],
+   [
+    "Elliot Silverstein",
+    [
+     "Elliot Silverstein( born August 3, 1927, in Boston, Massachusetts) is an American director, who is best known for being the director of the movie\" Cat Ballou\"( 1965)."
+    ]
+   ],
+   [
+    "Waking the Dead (film)",
+    [
+     "Waking the Dead is a 2000 drama film directed by Keith Gordon and starring Billy Crudup and Jennifer Connelly.",
+     "The screenplay by Robert Dillon is based on the 1986 novel of the same name by Scott Spencer."
+    ]
+   ]
+  ],
+  "entity_ids": "Q7919517_Q287274_Q6752853_Q1738056",
+  "supporting_facts": [
+   [
+    "Ven mi corazón te llama",
+    0
+   ],
+   [
+    "Waking the Dead (film)",
+    0
+   ],
+   [
+    "Manuel Romero",
+    0
+   ],
+   [
+    "Keith Gordon",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Ven mi corazón te llama",
+    "director",
+    "Manuel Romero"
+   ],
+   [
+    "Waking the Dead (film)",
+    "director",
+    "Keith Gordon"
+   ],
+   [
+    "Manuel Romero",
+    "date of birth",
+    "September 21, 1891"
+   ],
+   [
+    "Keith Gordon",
+    "date of birth",
+    "February 3, 1961"
+   ]
+  ],
+  "answer": "Ven Mi Corazón Te Llama",
+  "evidences_id": [],
+  "answer_id": "Q7919517"
+ },
+ {
+  "_id": "711449320bde11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "What is the place of birth of the editor of magazine Scrutiny (Journal)?",
+  "context": [
+   [
+    "Shahadat Chowdhury",
+    [
+     "Shahadat Chowdhury( 28 July 1943 – 29 November 2005) was a Bangladeshi journalist and editor of several news magazines.",
+     "He served as the editor of Weekly Bichitra from 1972 until its publication was ceased in 1997.",
+     "He then served as the editor of Shaptahik 2000 and Anandadhara."
+    ]
+   ],
+   [
+    "Peter Bhatia",
+    [
+     "Peter Bhatia is an American journalist and the editor of the\" Detroit Free Press\".",
+     "He was previously the editor of\" The Oregonian\"."
+    ]
+   ],
+   [
+    "Scrutiny (journal)",
+    [
+     "Scrutiny:",
+     "A Quarterly Review was a literature periodical founded in 1932 by L. C. Knights and F. R. Leavis, who remained its principal editor until the final issue in 1953.",
+     "Other editors included D. W. Harding and Harold Andrew Mason.",
+     "An additional volume, number 20, is often included in this series, including \"A Retrospect\" by Leavis, indexes, and errata."
+    ]
+   ],
+   [
+    "Uma Bhatt",
+    [
+     "Uma Bhatt( born c.1952) is an Indian scholar, writer, and founder- editor of a magazine for women.",
+     "She is involved in political issues in her home state of Uttarakhand"
+    ]
+   ],
+   [
+    "F. R. Leavis",
+    [
+     "Frank Raymond \"F. R.\" Leavis (14 July 1895 – 14 April 1978) was a British literary critic of the early-to-mid-twentieth century.",
+     "He taught for much of his career at Downing College, Cambridge, and later at the University of York."
+    ]
+   ],
+   [
+    "Ger Colleran",
+    [
+     "Gerard Colleran is an Irish journalist, the editor of the\" Irish Daily Star\" from 1999 to 2014, and since 2017 the editor of\" Kerry's Eye\".",
+     "In 2009,\" Village\" listed him as one of Ireland's 100 most influential people.",
+     "He is a native of Mayo, County Mayo, grew up in Quin, County Clare, and was educated at the University of London and the University of Limerick.",
+     "Prior to his work at the\" Daily Star\" he was the editor of\" The Kerryman\"."
+    ]
+   ],
+   [
+    "John Mulholland (journalist)",
+    [
+     "John Mulholland( born 20 November 1962) is an Irish journalist who was the editor of the British Sunday newspaper\" The Observer\" for 10 years and assistant editor of\" The Guardian\".",
+     "He has worked for most of his career with the Guardian Media Group.",
+     "In April 2018, he became the editor of Guardian US."
+    ]
+   ],
+   [
+    "Gerhard Jynge",
+    [
+     "Gerhard Vilhelm Jynge (1877 – February 21, 1945) was a Norwegian newspaper editor.",
+     "He became the editor of \"Oplandenes Avis\" in 1908 and the sub-editor of \"Verdens Gang\" in 1911, served as the first editor of \"Haugesunds Dagblad\" from June 8, 1912 to December 1913, became the editor of \"Dagsposten\" in Trondheim in 1914, and was the editor of \"Aalesunds Avis\" from 1917 to 1921.",
+     "He became an appellate judge pro tem in Bergen in 1921, and a regular judge in 1928.",
+     "He died on February 21, 1945, when the steamship \"Austri\" was sunk by British aircraft in Bømla Fjord."
+    ]
+   ],
+   [
+    "Marco Roth",
+    [
+     "Marco Roth( born 1974) in New York, New York is a co-founder and editor of\" n+1\" magazine."
+    ]
+   ],
+   [
+    "Roger Hodge",
+    [
+     "Roger D. Hodge( born 1967 in Del Rio, Texas, U.S.) is Deputy Editor at The Intercept.",
+     "He was the editor of\" Harper's Magazine\" from March 2006 through January 2010.",
+     "He was the editor of the\" Oxford American\" from 2012- 2015."
+    ]
+   ]
+  ],
+  "entity_ids": "Q7439355_Q2428288",
+  "supporting_facts": [
+   [
+    "Scrutiny (journal)",
+    1
+   ],
+   [
+    "F. R. Leavis",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Scrutiny",
+    "editor",
+    "F. R. Leavis"
+   ],
+   [
+    "F. R. Leavis",
+    "place of birth",
+    "Cambridge"
+   ]
+  ],
+  "answer": "Cambridge",
+  "evidences_id": [
+   [
+    "Q7439355",
+    "editor",
+    "Q2428288"
+   ],
+   [
+    "Q2428288",
+    "place of birth",
+    "Q350"
+   ]
+  ],
+  "answer_id": "Q350"
+ },
+ {
+  "_id": "821e65dc086911ebbd5eac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film has the director who died earlier, The Hitler Gang or Flannelfoot?",
+  "context": [
+   [
+    "Flannelfoot",
+    [
+     "Flannelfoot is a 1953 British crime film directed by Maclean Rogers and starring Ronald Howard, Mary Germaine and Jack Watling.",
+     "It was made at Walton Studios.",
+     "The film's sets were designed by John Stoll.",
+     "The film reflects the media interest in the notorious and elusive cat burglar of the 1930s Harry Edward Vickers who was nicknamed Flannelfoot because he would cover his boots with cloth to silence his footsteps."
+    ]
+   ],
+   [
+    "Ben Palmer",
+    [
+     "Ben Palmer is a British film and television director who is known for being the director of\" Bo' Selecta\" and\" The Inbetweeners\"."
+    ]
+   ],
+   [
+    "The Hitler Gang",
+    [
+     "The Hitler Gang is a 1944 American pseudo- documentary film directed by John Farrow, which traces the political rise of Adolf Hitler.",
+     "Described as a\" documentary- propaganda\" film by its studio, Paramount Pictures, the historical drama is based on documented fact and marks the first serious effort to portray Hitler in film.",
+     "The filmmakers chose to avoid casting stars in the lead roles, assembling instead a remarkable company of lookalikes to play Hitler, Goebbels, Himmler, Göring, and other leading Nazis."
+    ]
+   ],
+   [
+    "Erich Jahn",
+    [
+     "Erich Jahn( born 23 July 1907, date of death unknown) was a leader of the Hitler Youth in Berlin.",
+     "He was born in Berlin and as a teenager became a member of the Berlin youth organisation' Bismarck Bund'.",
+     "He later became involved in the Hitler Youth, playing a significant role in the organisation at both a local and a national level.",
+     "He became a member of the Nazi Party in 1929.",
+     "He was a close associate of\" Reichsjugendführer\" Baldur von Schirach."
+    ]
+   ],
+   [
+    "Abhishek Saxena",
+    [
+     "Abhishek Saxena is an Indian Bollywood and Punjabi film director who directed the movie Phullu.",
+     "The Phullu movie was released in theaters on 16 June 2017, in which film Sharib Hashmi is the lead role.",
+     "Apart from these, he has also directed Patiala Dreamz, this is a Punjabi film.",
+     "This film was screened in cinemas in 2014."
+    ]
+   ],
+   [
+    "Karl Nabersberg",
+    [
+     "Karl Nabersberg( sometimes written as Carl Nabersberg) was a German youth leader.",
+     "Nabersberg was the son of a Crefeld shopkeeper.",
+     "In 1923 he joined the Jugendorganisation, the forerunner of the Hitler Youth, in his home town.",
+     "On 28 December 1925 he was admitted as a member of the National Socialist German Workers' Party( member number 26269) and as a member of the Sturmabteilung.",
+     "After school, he studied law at the University of Cologne and Humboldt University of Berlin, although he never graduated.",
+     "He participated in the founding of the Cologne local NSDAP and served from 1928 to 1929 as a high- school group leader of the National Socialist German Students' League as well as a group leader of the General Student Committee at Humboldt University.",
+     "From November 1931 to June 1934 was Stabsführer of the Hitler Youth and deputy to Reichsjugendführer Baldur von Schirach.",
+     "In July 1933, Schirach dissolved the Reich Committee of German Youth Associations which represented 135 different youth groups.",
+     "Nabersberg led a raid on the Berlin headquarters of the Committee, with a handful of Sturmabteilung men and 50 armed teenagers from the Hitler Youth.",
+     "( The figure of 50 armed teenagers comes from Baldur von Schirach's 1934 book\" Die Hitler – Jugend\" and may be exaggerated.",
+     "A postwar account by Helene Gehse, one of five staff at the headquarters, reported a very small number of Hitler Youth, one of whom was armed with an old carbine.)",
+     "During the raid, Hermann Maaß was summoned and threatened by Nabersberg before being told to leave the building.",
+     "Schirach named Nabersberg as one of the\" Pioneers of the Third Reich\" in his 1933 book.",
+     "From July 1934 he became head of the Border and International Relations Office of the Hitler Youth, promoting ethnic politics amongst Germanic youth in neighbouring countries.",
+     "In January 1935 he resigned this position for health reasons and assumed the duties of an Obergebietsführer of the Hitler Youth.",
+     "In November 1937 he met Lord Baden- Powell with a view to forging closer ties between the Hitler Youth and The Scout Association.",
+     "After the war, the West Berlin Denazification Tribunal fined Nabersberg ℛℳ 6,000.",
+     "He died in 1946."
+    ]
+   ],
+   [
+    "Drew Esocoff",
+    [
+     "Drew Esocoff( born c. 1957) is an American television sports director, who as of 2006 has been the director of NBC Sunday Night Football."
+    ]
+   ],
+   [
+    "John Farrow",
+    [
+     "John Villiers Farrow, KGCHS (10 February 190427 January 1963) was an Australian-born American film director, producer and screenwriter.",
+     "In 1957, he won the Academy Award for Best Writing/Best Screenplay for \"Around the World in Eighty Days\" and in 1942, he was nominated as Best Director for \"Wake Island\".",
+     "He had seven children by his wife, actress Maureen O'Sullivan, including actress Mia Farrow."
+    ]
+   ],
+   [
+    "G. Marthandan",
+    [
+     "G. Marthandan is an Indian film director who works in Malayalam cinema."
+    ]
+   ],
+   [
+    "Maclean Rogers",
+    [
+     "Maclean Rogers( 13 July 1899 – 4 January 1962) was a British film director and screenwriter."
+    ]
+   ]
+  ],
+  "entity_ids": "Q2411975_Q28961085_Q547495_Q6724633",
+  "supporting_facts": [
+   [
+    "The Hitler Gang",
+    0
+   ],
+   [
+    "Flannelfoot",
+    0
+   ],
+   [
+    "John Farrow",
+    0
+   ],
+   [
+    "Maclean Rogers",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "The Hitler Gang",
+    "director",
+    "John Farrow"
+   ],
+   [
+    "Flannelfoot",
+    "director",
+    "Maclean Rogers"
+   ],
+   [
+    "John Farrow",
+    "date of death",
+    "27 January 1963"
+   ],
+   [
+    "Maclean Rogers",
+    "date of death",
+    "4 January 1962"
+   ]
+  ],
+  "answer": "Flannelfoot",
+  "evidences_id": [],
+  "answer_id": "Q28961085"
+ },
+ {
+  "_id": "86508dc60bdc11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "Where was the composer of film Billy Elliot born?",
+  "context": [
+   [
+    "Billy Elliot the Musical Live",
+    [
+     "Billy Elliot the Musical Live is a 2014 British filmed version of Elton John's\" Billy Elliot the Musical\"( 2005), which in turn was based on the 2000 film\" Billy Elliot\".",
+     "Stephen Daldry directed both the original film and the 2014 musical adaptation.",
+     "Filmed on 28 September 2014 at the Victoria Palace Theatre in London's West End,\" Billy Elliot Live\" was broadcast live to cinemas in several European countries, followed by further worldwide screenings.",
+     "North American screenings took place on 12, 15, and 18 November.",
+     "The filmed production stars Elliott Hanna as Billy, Ruthie Henshall as Mrs. Wilkinson, and Deka Walmsley, Ann Emery, and Chris Grahamson as Billy's father, grandmother, and older brother, respectively."
+    ]
+   ],
+   [
+    "Corey Snide",
+    [
+     "Corey Snide( born December 19, 1993) is an American actor and dancer best known for his performance as Billy in\" Billy Elliot the Musical\" based on the hit film\" Billy Elliot\".",
+     "Snide is a graduate of Colonie Central High School( class of 2011), and of Juilliard( class of 2015)."
+    ]
+   ],
+   [
+    "Lee Hall (playwright)",
+    [
+     "Lee Hall( born 20 September 1966) is an English playwright, television writer, screenwriter, and lyricist.",
+     "He is best known for writing the 2000 film\" Billy Elliot\" and the book and lyrics for its stage musical adaptation, and the 2019 film\" Rocketman\"."
+    ]
+   ],
+   [
+    "Billy Elliot",
+    [
+     "Billy Elliot is a 2000 British dance drama film about a boy aspiring to be a professional dancer while dealing with the negative stereotype of the male ballet dancer.",
+     "Set in County Durham, North East England during the 1984–85 coal miners' strike, it was written by Lee Hall and directed by Stephen Daldry with music composed by Stephen Warbeck.",
+     "Production was by Greg Brenman and Jon Finn, co-production by BBC Films, Tiger Aspect Pictures and Working Title Films.",
+     "The film stars Jamie Bell as 11-year-old Billy, Gary Lewis as his coal miner father, Jamie Draven as Billy's older brother, and Julie Walters as his ballet teacher.",
+     "The film was theatrically released on 29 September 2000.",
+     "It received positive critical response and commercial success, earning £73 million on a £3 million budget.",
+     "It received several accolades including the BAFTA Award for Best Film and three Academy Award nominations.",
+     "In 2001, author Melvin Burgess was commissioned to write the novelisation of the film based on Lee Hall's screenplay.",
+     "The story was adapted for the West End stage as \"Billy Elliot the Musical\" in 2005; it opened in Australia in 2007 and on Broadway in 2008."
+    ]
+   ],
+   [
+    "Stephen Warbeck",
+    [
+     "Stephen Warbeck (born 3 May 1953) is an English composer, best known for his film and television scores.",
+     "Warbeck was born in Southampton, Hampshire.",
+     "He first became known for the music for \"Prime Suspect\" and won an Oscar for his score for \"Shakespeare in Love\".",
+     "He won the Drama Desk Award for Outstanding Music in a Play in 1994.",
+     "Warbeck attended Bristol University, and began his career as an actor.",
+     "He plays the accordion and co-leads the group \"The hKippers\"",
+     "(the 'h' is silent) with Paul Bradley."
+    ]
+   ],
+   [
+    "James Lomas (actor)",
+    [
+     "James Jacob Lomas( born 1 March 1990) is a British Olivier Award- winning actor best known for his role as Billy Elliot in\" Billy Elliot the Musical\".",
+     "Lomas was one of the three original Billy Elliots of the original West End theatre production of\" Billy Elliot the Musical\".",
+     "He continued performing until 7 January 2006.",
+     "Together with his two original colleagues Liam Mower and George Maguire, alternating in the role of “ Billy ”, he performed again in a first anniversary Gala show on 12 May 2006."
+    ]
+   ],
+   [
+    "Walter Ulfig",
+    [
+     "Walter Ulfig was a German composer of film scores."
+    ]
+   ],
+   [
+    "Luke Elliot",
+    [
+     "Luke James Elliot( born June 30, 1984) is an American singer- songwriter and composer."
+    ]
+   ],
+   [
+    "Don Elliot (rower)",
+    [
+     "Donald' Don' S S Elliot( born 1929), is a male former rower who competed for England."
+    ]
+   ],
+   [
+    "Alonso Mudarra",
+    [
+     "Alonso Mudarra( c. 1510 – April 1, 1580) was a Spanish composer of the Renaissance, and also played the vihuela, a guitar- shaped string instrument.",
+     "He was an innovative composer of instrumental music as well as songs, and was the composer of the earliest surviving music for the guitar."
+    ]
+   ]
+  ],
+  "entity_ids": "Q458629_Q1361541",
+  "supporting_facts": [
+   [
+    "Billy Elliot",
+    1
+   ],
+   [
+    "Stephen Warbeck",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Billy Elliot",
+    "composer",
+    "Stephen Warbeck"
+   ],
+   [
+    "Stephen Warbeck",
+    "place of birth",
+    "Southampton, Hampshire"
+   ]
+  ],
+  "answer": "Southampton, Hampshire",
+  "evidences_id": [
+   [
+    "Q458629",
+    "composer",
+    "Q1361541"
+   ],
+   [
+    "Q1361541",
+    "place of birth",
+    "Q79848"
+   ]
+  ],
+  "answer_id": "Q79848"
+ },
+ {
+  "_id": "87e4e1e0088b11ebbd6fac1f6bf848b6",
+  "type": "comparison",
+  "question": "Are Antoine Jean-Baptiste Thomas and Canardo (Rapper) of the same nationality?",
+  "context": [
+   [
+    "Victor Cochinat",
+    [
+     "Jean-Baptiste-Thomas-Victor Cochinat (19 January 1819 – October 1886) was a 19th-century French lawyer, journalist and man of letters.",
+     "He authored political articles under the pseudonyms Maxime Leclerc, Louis de Roselay etc.",
+     "He was Chief editor of the \"Figaro-Programme\" in 1856 and of \"Le Foyer\" from 23 April 1858 to 2 February 1859."
+    ]
+   ],
+   [
+    "Antoine Jean-Baptiste",
+    [
+     "Antoine Jean- Baptiste( born 20 January 1991 in Longjumeau, France) is a professional footballer who plays as a defender for FC Vaulx- en- Velin in the French Championnat National 3 and internationally for Martinique."
+    ]
+   ],
+   [
+    "Jean Baptiste Antoine Auget de Montyon",
+    [
+     "Antoine Jean Baptiste Robert Auget, Baron de Montyon( 23 December 173329 December 1820) was a French philanthropist, born in Paris."
+    ]
+   ],
+   [
+    "Canardo (rapper)",
+    [
+     "Hakim Mouhid( born 22 September 1984 in Trappes, Yvelines), better known by his stage name Canardo, is a French rapper, singer, songwriter and music producer.",
+     "After working with label\" Banlieue Sale Music\" since 2007, in 2011, he founded his own label\" Henijai Music\".",
+     "He is the brother of fellow French rapper La Fouine."
+    ]
+   ],
+   [
+    "Dominique Antoine Magaud",
+    [
+     "Dominique Antoine Jean- Baptiste Magaud( 4 August 1817, Marseille- 23 December 1899, Marseille) was a French painter, muralist and art school director."
+    ]
+   ],
+   [
+    "J-Flexx",
+    [
+     "J- Flexx is a former rapper of Death Row Records."
+    ]
+   ],
+   [
+    "Jean-Baptiste Cécille",
+    [
+     "Jean- Baptiste Thomas Médée Cécille( 16 October 1787, Rouen – 9 November 1873) was a French Admiral and politician who played an important role in the French intervention of Vietnam.",
+     "He also circumnavigated the globe."
+    ]
+   ],
+   [
+    "Antoine Jean-Baptiste Thomas",
+    [
+     "Antoine Jean- Baptiste Thomas( 1791–1833) was a French painter and lithographer.",
+     "Thomas mentored under François- André Vincent, and later studied at the École des Beaux- Arts.",
+     "Thomas lived and traveled around Italy, which inspired many of his works.",
+     "He specialized in oil paintings, often depictions of Italian daily life or ancient rome.",
+     "He was also commissioned to paint a number of religious works for various churches.",
+     "In 1816 he won the Prix de Rome with his piece\" Oenone Refusing to Help the Wounded Paris\".",
+     "He spent two years studying art in Rome and returned to Paris in 1818.",
+     "Between 1819 and 1831 he exhibited his paintings at Salons, however today he is best known for his series of lithographs,\" One Year in Rome and Its Environs\".",
+     "Thomas' style is characterized as Romanticism."
+    ]
+   ],
+   [
+    "Pierre Villiers",
+    [
+     "Pierre Antoine Jean-Baptiste Villiers (10 March 1760 – Paris, 21 July 1849) was a French playwright, journalist and poet."
+    ]
+   ],
+   [
+    "Juju (German rapper)",
+    [
+     "Judith Wessendorf( born in Berlin on 20 November 1992) is a German rapper of Moroccan descent."
+    ]
+   ]
+  ],
+  "entity_ids": "Q384625_Q2936160",
+  "supporting_facts": [
+   [
+    "Antoine Jean-Baptiste Thomas",
+    0
+   ],
+   [
+    "Canardo (rapper)",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Antoine Jean-Baptiste Thomas",
+    "country of citizenship",
+    "French"
+   ],
+   [
+    "Canardo (rapper)",
+    "country of citizenship",
+    "French"
+   ]
+  ],
+  "answer": "yes",
+  "evidences_id": [
+   [
+    "Q384625",
+    "country of citizenship",
+    "Q142"
+   ],
+   [
+    "Q2936160",
+    "country of citizenship",
+    "Q142"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "9523a3df088911ebbd6eac1f6bf848b6",
+  "type": "comparison",
+  "question": "Do David Elliot (Illustrator) and Eustace William Ferguson share the same nationality?",
+  "context": [
+   [
+    "David Elliot Loye",
+    [
+     "David Elliot Loye( born 26 April 1925), is an American author, psychologist, and evolutionary systems scientist."
+    ]
+   ],
+   [
+    "David Elliot (footballer)",
+    [
+     "David Elliot( born 13 November 1969 in Glasgow) is a Scottish former footballer who played for Celtic, Partick Thistle, St Mirren, Falkirk and Hibernian."
+    ]
+   ],
+   [
+    "William Ferguson (pioneer)",
+    [
+     "William Ferguson( c. 1809 – 3 December 1892) was a pioneer settler of South Australia, one of the last surviving emigrants on in 1836."
+    ]
+   ],
+   [
+    "Eustace William Ferguson",
+    [
+     "Eustace William Ferguson born 24 October",
+     "1884( Invercargill, New Zealand) died 18 July 1927( Wahroonga, New South Wales) was a New Zealand pathologist and entomologist.,",
+     "He was the third child of John Ferguson( clergyman) and Isabella Adie( 1854- 1929).",
+     "His eldest brother was Sir John Alexander Ferguson( 1881- 1969), bibliographer and judge, who wrote the first bibliography of Australia.",
+     "He was a member from 1908 and president in 1926- 27 of the Linnean Society of New South Wales, president of the Royal Zoological Society of New South Wales in 1922- 23, a member of the Royal societies of New South Wales and South Australia and of the Royal Institute of Tropical Medicine, London, an associate member of the Australian National Research Council and a member of the Great Barrier Reef Committee.",
+     "He and his wife, Jessie Perry( 1886- 1967) had six children, several of whom were notable:"
+    ]
+   ],
+   [
+    "William F. Slemons",
+    [
+     "William Ferguson Slemons( March 15, 1830 – December 10, 1918) was a U.S. Representative from Arkansas."
+    ]
+   ],
+   [
+    "William C. Ferguson",
+    [
+     "William C. Ferguson( died October 14, 2015) was a telecommunications executive who served as chairman and CEO of NYNEX."
+    ]
+   ],
+   [
+    "David Elliot Johnson",
+    [
+     "David Elliot Johnson( April 17, 1933 – January 14, 1995) was the 14th Bishop of Massachusetts in The Episcopal Church."
+    ]
+   ],
+   [
+    "Billy Ferguson",
+    [
+     "William Ferguson( 28 May 1938 – 31 October 1998) was a Northern Irish footballer who played as a winger."
+    ]
+   ],
+   [
+    "David Elliot (illustrator)",
+    [
+     "David Elliot is a New Zealand illustrator and author, known internationally for his contributions to the\" Redwall\" fantasy series by British author, Brian Jacques."
+    ]
+   ],
+   [
+    "William Parrington",
+    [
+     "William Ferguson Parrington (1 November 1889 — 7 May 1980) was an English cricketer who played first-class cricket for Derbyshire in 1926."
+    ]
+   ]
+  ],
+  "entity_ids": "Q5233345_Q5414315",
+  "supporting_facts": [
+   [
+    "David Elliot (illustrator)",
+    0
+   ],
+   [
+    "Eustace William Ferguson",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "David Elliot (illustrator)",
+    "country of citizenship",
+    "New Zealand"
+   ],
+   [
+    "Eustace William Ferguson",
+    "country of citizenship",
+    "New Zealand"
+   ]
+  ],
+  "answer": "yes",
+  "evidences_id": [
+   [
+    "Q5233345",
+    "country of citizenship",
+    "Q664"
+   ],
+   [
+    "Q5414315",
+    "country of citizenship",
+    "Q664"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "ace717d0088411ebbd6dac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film has the director who is older than the other, Colierul De Turcoaze or Leo And Loree? ",
+  "context": [
+   [
+    "Gheorghe Vitanidis",
+    [
+     "Gheorghe Vitanidis (1 October 1929 – 25 November 1994) was a Romanian film director.",
+     "He directed 19 films between 1958 and 1987.",
+     "His 1969 film \"A Woman for a Season\" was entered into the 6th Moscow International Film Festival.",
+     "His 1979 film \"The Moment\" was entered into the 11th Moscow International Film Festival."
+    ]
+   ],
+   [
+    "Logan Sandler",
+    [
+     "Logan Sandler is an American writer and director who is best known for his first feature film\" Live Cargo\"."
+    ]
+   ],
+   [
+    "Dan Milne",
+    [
+     "Dan Milne is a British actor/ director who is possibly best known for his role in\" EastEnders\"."
+    ]
+   ],
+   [
+    "Leo and Loree",
+    [
+     "Leo and Loree is a 1980 American romantic comedy film directed by Jerry Paris, starring Donny Most and Linda Purl."
+    ]
+   ],
+   [
+    "Colierul de turcoaze",
+    [
+     "Colierul de turcoaze is a 1986 Romanian action film directed by Gheorghe Vitanidis."
+    ]
+   ],
+   [
+    "Ben Palmer",
+    [
+     "Ben Palmer is a British film and television director who is known for being the director of\" Bo' Selecta\" and\" The Inbetweeners\"."
+    ]
+   ],
+   [
+    "Elliot Silverstein",
+    [
+     "Elliot Silverstein( born August 3, 1927, in Boston, Massachusetts) is an American director, who is best known for being the director of the movie\" Cat Ballou\"( 1965)."
+    ]
+   ],
+   [
+    "Scotty Fox",
+    [
+     "Scott Fox is a pornographic film director who is a member of the AVN Hall of Fame."
+    ]
+   ],
+   [
+    "Jerry Paris",
+    [
+     "William Gerald Paris( July 25, 1925 – March 31, 1986) professionally known as Jerry Paris, was an American actor and director best known for playing Jerry Helper, the dentist and next- door neighbor of Rob and Laura Petrie, on\" The Dick Van Dyke Show\"."
+    ]
+   ],
+   [
+    "Leo Bianchi",
+    [
+     "Leo Bianchi( born 9 March 1974) is an Italian- born Bulgarian singer- songwriter, chef and TV personality.",
+     "He has released a number of singles at times using the mononym Лео( or Leo) and cooperated with a number of artists, notably Deo, Ingrata amongst many.",
+     "He took part in the Bulgarian TV reality show\" Big Brother 2\" in 2005 and in\" Big Brother All Stars 2013\", in both of which he finished as runner- up.",
+     "He also had some cooking shows."
+    ]
+   ]
+  ],
+  "entity_ids": "Q12724364_Q6524347_Q655787_Q1381411",
+  "supporting_facts": [
+   [
+    "Colierul de turcoaze",
+    0
+   ],
+   [
+    "Leo and Loree",
+    0
+   ],
+   [
+    "Gheorghe Vitanidis",
+    0
+   ],
+   [
+    "Jerry Paris",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Colierul de turcoaze",
+    "director",
+    "Gheorghe Vitanidis"
+   ],
+   [
+    "Leo and Loree",
+    "director",
+    "Jerry Paris"
+   ],
+   [
+    "Gheorghe Vitanidis",
+    "date of birth",
+    "1 October 1929"
+   ],
+   [
+    "Jerry Paris",
+    "date of birth",
+    "July 25, 1925"
+   ]
+  ],
+  "answer": "Leo And Loree",
+  "evidences_id": [],
+  "answer_id": "Q6524347"
+ },
+ {
+  "_id": "c68eb0be08e611ebbda5ac1f6bf848b6",
+  "type": "bridge_comparison",
+  "question": "Which film has the director who was born later, Felices 140 or Dr. Who And The Daleks?",
+  "context": [
+   [
+    "John Wilcox (cinematographer)",
+    [
+     "John Laurence Wilcox, BSC( 7 May 1913 – 31 May 1979) was a British Cinematographer.",
+     "He worked several times with director Freddie Francis; and photographed many popular British films, including\" Carve Her Name with PrideSummer Holiday\" and\" Dr. Who and the Daleks\".",
+     "The nephew of the director and producer Herbert Wilcox, he began his film career in 1930 as an often uncredited second camera assistant to Freddie Young.",
+     "His involvement as a cameraman included work on\" The Third Man\", and\" Outcast of the Islands\", and he made his debut as chief camera operator in 1951 with\" Mr. Denning Drives North\"."
+    ]
+   ],
+   [
+    "W. Augustus Barratt",
+    [
+     "W. Augustus Barratt( 1873- 1947) was a Scottish- born, later American, songwriter and musician."
+    ]
+   ],
+   [
+    "Dr Victor",
+    [
+     "Victor Khojane, better known as Dr Victor or Dr Vic, is a reggae and R&B musician, who was born in Kimberley, South Africa."
+    ]
+   ],
+   [
+    "Felices 140",
+    [
+     "Felices 140 is a 2015 Spanish comedy- drama film directed by Gracia Querejeta.",
+     "It was co-written by Querejeta and Antonio Mercero.",
+     "It was released in Spain on April 10, 2015.",
+     "On September 8, 2015 it was one of the three entries shortlisted to represent Spain at the 88th Academy Awards in the category for Best Foreign Language Film, but was not selected."
+    ]
+   ],
+   [
+    "Roberta Tovey",
+    [
+     "Roberta Tovey( born 9 August 1953 in Shepherd's Bush, London) is an English actress who has appeared in films and television programmes.",
+     "One of her better- known roles was that of Susan, the granddaughter of Dr. Who, in the films\" Dr. Who and the Daleks\"( 1965) and\" Daleks' Invasion Earth 2150 A.D.\"( 1966), which starred Peter Cushing as Dr. Who.",
+     "She also appeared in the films\" Never Let Go\"( 1960),\" Touch of Death\"( 1961),\" A High Wind in Jamaica\"( 1965),\" Runaway Railway\"( 1965) and\" The Beast in the Cellar\"( 1970), and the TV series\" Not in Front of the Children\"( 1967- 68)\", Going Straight\"( 1978) and\" My Husband and I\"( 1987).",
+     "More recently, she appeared on\" The Film Programme\" BBC Radio 4, 30 May 2013, with Bernard Cribbins in which they look back at their roles in Dr. Who films of the 1960s.",
+     "This was in commemoration of the 50th anniversary of the first episode of Doctor Who.",
+     "She is the daughter of actor George Tovey.",
+     "More recently, she has enjoyed appearing at a few\" Doctor Who\" conventions round the country, recalling her time on the 1960s Dalek movies."
+    ]
+   ],
+   [
+    "Hassan Zee",
+    [
+     "Hassan Zee is a Pakistani- American film director who was born in Chakwal, Pakistan."
+    ]
+   ],
+   [
+    "Gracia Querejeta",
+    [
+     "Gracia Querejeta Marín( born 13 August 1962, in Madrid) is a Spanish film director.",
+     "Her father is the film producer Elías Querejeta and she studied Ancient History in the Universidad Complutense de Madrid.",
+     "She worked in several film crafts until she debuted in direction with the documentary\" El trabajo de rodar\"( 1994)"
+    ]
+   ],
+   [
+    "Gordon Flemyng",
+    [
+     "Gordon William Flemyng( 7 March 1934 – 12 July 1995) was a Scottish television and film director.",
+     "He was also a writer and producer.",
+     "He directed six theatrical features, several television films and numerous episodes of television series, some of which he also wrote and produced."
+    ]
+   ],
+   [
+    "Daleks' Invasion Earth 2150 A.D.",
+    [
+     "Daleks' Invasion Earth 2150 A.D. is a 1966 British science fiction film directed by Gordon Flemyng and written by Milton Subotsky, and the second of two films based on the British science- fiction television series\" Doctor Who\".",
+     "It stars Peter Cushing in a return to the role of the eccentric inventor and time traveller Dr. Who, Roberta Tovey as Susan, Jill Curzon as Louise and Bernard Cribbins as Tom Campbell.",
+     "It is the sequel to\" Dr. Who and the Daleks\"( 1965).",
+     "The story is based on the\" Doctor Who\" television serial\" The Dalek Invasion of Earth\"( 1964), produced by the BBC.",
+     "The film was not intended to form part of the ongoing storylines of the television series.",
+     "Elements from the programme are used, however, such as various characters, the Daleks and a police box time machine, albeit in re-imagined forms."
+    ]
+   ],
+   [
+    "Dr. Who and the Daleks",
+    [
+     "Dr. Who and the Daleks is a 1965 British science fiction film directed by Gordon Flemyng and written by Milton Subotsky, and the first of two films based on the British science- fiction television series\" Doctor Who\".",
+     "It stars Peter Cushing as Dr. Who, Roberta Tovey as Susan, Jennie Linden as Barbara, and Roy Castle as Ian.",
+     "It was followed by\" Daleks' Invasion Earth 2150 A.D.\"( 1966).",
+     "The story is based on the\" Doctor Who\" television serial\" The Daleks\", produced by the BBC.",
+     "Filmed in Technicolor, it is the first\" Doctor Who\" story to be made in colour and in a widescreen format.",
+     "The film was not intended to form part of the ongoing story- lines of the television series.",
+     "Elements from the programme are used, however, such as various characters, the Daleks and a police box time machine, albeit in re-imagined forms."
+    ]
+   ]
+  ],
+  "entity_ids": "Q19632200_Q3038433_Q2659453_Q3110896",
+  "supporting_facts": [
+   [
+    "Felices 140",
+    0
+   ],
+   [
+    "Dr. Who and the Daleks",
+    0
+   ],
+   [
+    "Gracia Querejeta",
+    0
+   ],
+   [
+    "Gordon Flemyng",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Felices 140",
+    "director",
+    "Gracia Querejeta"
+   ],
+   [
+    "Dr. Who and the Daleks",
+    "director",
+    "Gordon Flemyng"
+   ],
+   [
+    "Gracia Querejeta",
+    "date of birth",
+    "13 August 1962"
+   ],
+   [
+    "Gordon Flemyng",
+    "date of birth",
+    "7 March 1934"
+   ]
+  ],
+  "answer": "Felices 140",
+  "evidences_id": [],
+  "answer_id": "Q19632200"
+ },
+ {
+  "_id": "d1086a1d08d911ebbd9cac1f6bf848b6",
+  "type": "comparison",
+  "question": "Did the movies Junior Army and Live At The Rainbow '74, originate from the same country?",
+  "context": [
+   [
+    "At the Movies",
+    [
+     "At the Movies may refer to:"
+    ]
+   ],
+   [
+    "Behind the Rainbow",
+    [
+     "Behind the Rainbow is a 2009 documentary film."
+    ]
+   ],
+   [
+    "Queen at Wembley",
+    [
+     "Queen Live at Wembley Stadium, also referred to as Queen Live At Wembley, Queen At Wembley, Queen Live At Wembley' 86, Live At Wembley and Live At Wembley'86, is a recording of a concert at the original Wembley Stadium, London, England on Saturday 12 July 1986 during Queen's\" Magic Tour\" and transmitted and released in various audio and video forms( including the Queen: Live at Wembley Stadium DVD)."
+    ]
+   ],
+   [
+    "Live at the Rainbow 1973",
+    [
+     "Live at the Rainbow 1973 is a live album by the British glam rock band Sweet, released in 1999.",
+     "The album is a recording of a concert at the Rainbow Theatre, London on 21 December 1973.",
+     "This release marks the first time the Rainbow Theatre concert has been available in its entirety, seven of the tracks having been previously available on Sweet's 1975 double album\" Strung Up\"."
+    ]
+   ],
+   [
+    "Live at the Rainbow (disambiguation)",
+    [
+     "Live at the Rainbow is an album by Iron Maiden.",
+     "Live at the Rainbow may also refer to:"
+    ]
+   ],
+   [
+    "At the Rainbow",
+    [
+     "At the Rainbow is the first live album from the Dutch rock band Focus, released in October 1973 on Imperial Records.",
+     "The album was recorded at the Rainbow Theatre in London on 5 May 1973.",
+     "A studio album was initially slated for release, but it was shelved due to disagreements within the band.",
+     "( An album compiled from the tapes of these sessions was later released with the title\" Ship of Memories At the Rainbow\" was released instead."
+    ]
+   ],
+   [
+    "Live at the Rainbow '74",
+    [
+     "Live at the Rainbow'74 is a live album by the British rock band Queen released in September 2014."
+    ]
+   ],
+   [
+    "Over the Rainbow (disambiguation)",
+    [
+     "\" Over the Rainbow\" is a song from the musical film\" The Wizard of Oz\"( 1939).",
+     "Over the Rainbow or Somewhere Over the Rainbow may also refer to:"
+    ]
+   ],
+   [
+    "Junior Army",
+    [
+     "Junior Army is a 1942 American film directed by Lew Landers, starring Freddie Bartholomew, Billy Halop, and Huntz Hall, and released by Columbia Pictures."
+    ]
+   ],
+   [
+    "The Rainbow (BBC miniseries)",
+    [
+     "The Rainbow is a BBC miniseries of 1988 directed by Stuart Burge, adapted from the D. H. Lawrence novel \"The Rainbow\" (1915)."
+    ]
+   ]
+  ],
+  "entity_ids": "Q60738707_Q3486024",
+  "supporting_facts": [
+   [
+    "Junior Army",
+    0
+   ],
+   [
+    "Live at the Rainbow '74",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Junior Army",
+    "country of origin",
+    "American"
+   ],
+   [
+    "Live at the Rainbow '74",
+    "country of origin",
+    "British"
+   ]
+  ],
+  "answer": "no",
+  "evidences_id": [
+   [
+    "Q60738707",
+    "country of origin",
+    "Q30"
+   ],
+   [
+    "Q3486024",
+    "country of origin",
+    "Q145"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "daaaf3480bdc11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "When did Sila Zandukeli-Sandunov's wife die?",
+  "context": [
+   [
+    "Sila Zandukeli-Sandunov",
+    [
+     "Sila Nikolaevich Sandunov , born Silovan Nikolozis dze Zandukeli , (born 1756— Died 1820) was a businessman and actor of Georgian origin active at the court of Catherine the Great.",
+     "Sandunov's family emigrated from Georgia to Russia proper as part of an entourage accompanying the exiled Georgian monarch Vakhtang VI.",
+     "Sandunov is best remembered today as the founder of the eponymous Sanduny Baths, an architectural and cultural landmark of downtown Moscow.",
+     "The businessman started his investment in the baths by selling diamonds he had received as a wedding gift from Empress Catherine, who personally attended the wedding ceremony at the royal chapel.",
+     "Sandunov was married to mezzo-soprano Elizabeth Sandunova."
+    ]
+   ],
+   [
+    "Thomas Scott (diver)",
+    [
+     "Thomas Scott( 1907- date of death unknown) was an English diver."
+    ]
+   ],
+   [
+    "Fred Bradley (rower)",
+    [
+     "Frederick Bradley( 1908- date of death unknown) was an English rower."
+    ]
+   ],
+   [
+    "Elizabeth Sandunova",
+    [
+     "Elizabeth S. Sandunova née Uranova (1772/76 – 3 December 1826), was a Russian Empire stage actress and operatic mezzo-soprano.",
+     "Wife of Sila Sandunov."
+    ]
+   ],
+   [
+    "Harry Johnson (wrestler)",
+    [
+     "Harry Johnson( 1903- date of death unknown) was an English wrestler."
+    ]
+   ],
+   [
+    "Etan Boritzer",
+    [
+     "Etan Boritzer( born 1950) is an American writer of children ’s literature who is best known for his book\" What is God?\" first published in 1989.",
+     "His best selling\" What is?\" illustrated children's book series on character education and difficult subjects for children is a popular teaching guide for parents, teachers and child- life professionals.",
+     "Boritzer gained national critical acclaim after\" What is God?\" was published in 1989 although the book has caused controversy from religious fundamentalists for its universalist views.",
+     "The other current books in the\" What is?\" series include",
+     "What is Love?,",
+     "What is Death?,",
+     "What is Beautiful?,",
+     "What is Funny?,",
+     "What is Right?,",
+     "What is Peace?,",
+     "What is Money?,",
+     "What is Dreaming?,",
+     "What is a Friend?,",
+     "What is True?,",
+     "What is a Family?,",
+     "What is a Feeling?\"",
+     "The series is now also translated into 15 languages.",
+     "Boritzer was first published in 1963 at the age of 13 when he wrote an essay in his English class at Wade Junior High School in the Bronx, New York on the assassination of John F. Kennedy.",
+     "His essay was included in a special anthology by New York City public school children compiled and published by the New York City Department of Education.",
+     "Boritzer now lives in Venice, California and maintains his publishing office there also.",
+     "He has helped numerous other authors to get published through\" How to Get Your Book Published!\" programs.",
+     "Boritzer is also a yoga teacher who teaches regular classes locally and guest- teaches nationally.",
+     "He is also recognized nationally as an erudite speaker on\" The Teachings of the Buddha.\""
+    ]
+   ],
+   [
+    "Bill Smith (footballer, born 1897)",
+    [
+     "William Thomas Smith( born 9 April 1897, date of death unknown) was an English professional footballer."
+    ]
+   ],
+   [
+    "Albert Thompson (footballer, born 1912)",
+    [
+     "Albert Thompson( born 1912, date of death unknown) was a Welsh footballer."
+    ]
+   ],
+   [
+    "Harry Wainwright (footballer)",
+    [
+     "Harry Wainwright( born 1899; date of death unknown) was an English footballer."
+    ]
+   ],
+   [
+    "Theodred II (Bishop of Elmham)",
+    [
+     "Theodred II was a medieval Bishop of Elmham.",
+     "The date of Theodred's consecration unknown, but the date of his death was sometime between 995 and 997."
+    ]
+   ]
+  ],
+  "entity_ids": "Q4407561_Q4407564",
+  "supporting_facts": [
+   [
+    "Sila Zandukeli-Sandunov",
+    4
+   ],
+   [
+    "Elizabeth Sandunova",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    " Sila",
+    "spouse",
+    "Elizabeth Sandunova"
+   ],
+   [
+    "Elizabeth Sandunova",
+    "date of death",
+    "3 December 1826"
+   ]
+  ],
+  "answer": "3 December 1826",
+  "evidences_id": [
+   [
+    "Q4407561",
+    "spouse",
+    "Q4407564"
+   ],
+   [
+    "Q4407564",
+    "date of death",
+    "date_information"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "e2c19fd80bae11ebab90acde48001122",
+  "type": "inference",
+  "question": "Who is the paternal grandfather of Lady Helen Taylor?",
+  "context": [
+   [
+    "Kaya Alp",
+    [
+     "Kaya Alp was, according to Ottoman tradition, the son of Kızıl Buğa and the father of Suleyman Shah, who was, in turn, the grandfather of Ertuğrul, and the great grandfather of the Ottoman Empire founder, Osman I."
+    ]
+   ],
+   [
+    "Lady Helen Taylor",
+    [
+     "Lady Helen Marina Lucy Taylor (\"née\" Windsor; born 28 April 1964) is a relative of the British royal family.",
+     "She is the daughter of Prince Edward, Duke of Kent, and Katharine, Duchess of Kent, and a great-granddaughter of King George V. She is currently 43rd in line of succession to the British throne."
+    ]
+   ],
+   [
+    "Prithvipati Shah",
+    [
+     "Prithvipati Shah( ?–1716) was the king of the Gorkha Kingdom in the Indian subcontinent, present- day Nepal.",
+     "He was the grandfather of Nara Bhupal Shah."
+    ]
+   ],
+   [
+    "John Westley",
+    [
+     "Rev. John Westley( 1636 – 78) was an English nonconformist minister.",
+     "He was the grandfather of John Wesley( founder of Methodism)."
+    ]
+   ],
+   [
+    "Lyon Cohen",
+    [
+     "Lyon Cohen( 1868–1937) was a Polish- born Canadian businessman and a philanthropist.",
+     "He was the grandfather of singer/ poet Leonard Cohen."
+    ]
+   ],
+   [
+    "Fujiwara no Nagara",
+    [
+     ", also known as Fujiwara no Nagayoshi, was a Japanese statesman, courtier and politician of the early Heian period.",
+     "He was the grandfather of Emperor Yōzei."
+    ]
+   ],
+   [
+    "Abd al-Muttalib",
+    [
+     "Abd al- Muttalib Shaybah ibn Hashim( c. 497 – 578) was the grandfather of Islamic prophet Muhammad."
+    ]
+   ],
+   [
+    "Helen Taylor (writer)",
+    [
+     "Helen Taylor( 1818–1885) was an English writer of books for children."
+    ]
+   ],
+   [
+    "Guillaume Wittouck",
+    [
+     "Guillaume Wittouck( 1749- 1829) was a Belgian lawyer and High Magistrate.",
+     "He was the Grandfather of industrialist Paul Wittouck."
+    ]
+   ],
+   [
+    "Prince Edward, Duke of Kent",
+    [
+     "Prince Edward, Duke of Kent, (Edward George Nicholas Paul Patrick; born 9 October 1935) is a member of the British royal family.",
+     "He is a first cousin of Queen Elizabeth II through their fathers, Prince George, Duke of Kent, and King George VI.",
+     "Because his mother, Princess Marina of Greece and Denmark was a cousin of Prince Philip, Duke of Edinburgh, Edward is both a second cousin and first cousin once removed to Prince Charles and his siblings.",
+     "He has held the title of Duke of Kent since the age of six, after the death of his father in a plane crash in 1942.",
+     "He carries out engagements on behalf of the Queen.",
+     "He is president of the All England Lawn Tennis and Croquet Club, presenting the trophies to the Wimbledon champion and runner-up, and served as the United Kingdom's Special Representative for International Trade and Investment, retiring in 2001.",
+     "He is president of The Scout Association, the Royal United Services Institute, and the Royal Institution of Great Britain, and since 1967 Grand Master of the United Grand Lodge of England.",
+     "He is also patron of the Institute of Advanced Motorists, an independent road safety charity which specialises in training and advice for post-licence drivers and riders."
+    ]
+   ]
+  ],
+  "entity_ids": "Q674343_Q158258",
+  "supporting_facts": [
+   [
+    "Lady Helen Taylor",
+    1
+   ],
+   [
+    "Prince Edward, Duke of Kent",
+    1
+   ]
+  ],
+  "evidences": [
+   [
+    "Lady Helen Marina Lucy Taylor",
+    "father",
+    "Prince Edward, Duke of Kent"
+   ],
+   [
+    "Prince Edward, Duke of Kent",
+    "father",
+    "Prince George, Duke of Kent"
+   ]
+  ],
+  "answer": "Prince George, Duke of Kent",
+  "evidences_id": [
+   [
+    "Q674343",
+    "father",
+    "Q158258"
+   ],
+   [
+    "Q158258",
+    "father",
+    "Q160770"
+   ]
+  ],
+  "answer_id": "Q160770"
+ },
+ {
+  "_id": "e7d5fd3708c811ebbd92ac1f6bf848b6",
+  "type": "comparison",
+  "question": "Are Carl Wijk and Anders Lindstedt from the same country?",
+  "context": [
+   [
+    "At the Supper Club (Stafford)",
+    [
+     "This compact disc was created from transcriptions of\" The Chesterfield Supper Club\" recorded for the Armed Forces Radio Service( AFRS) in May 1946.",
+     "Others featured on the broadcasts are Carl Kress and his Orchestra, Helen Carroll and the Satisfiers."
+    ]
+   ],
+   [
+    "Godwin Davy",
+    [
+     "Godwin Davy( born 15 December 1979) is an Anguillan international footballer who plays as a goalkeeper.",
+     "He made his international debut in a World Cup qualifying match against El Salvador, resulting in a lopsided match, losing 12- 0 in February 2008, and also played in the 4 – 0 loss to the same country in the return match in March 2008."
+    ]
+   ],
+   [
+    "1991 ATP Tour World Championships – Doubles",
+    [
+     "John Fitzgerald and Anders Järryd won the final match 6 – 4, 6 – 4, 2 – 6, 6 – 4 against Ken Flach and Robert Seguso."
+    ]
+   ],
+   [
+    "Nina Cook Silitch",
+    [
+     "Nina Cook Silitch( born December 5, 1972) is an American ski mountaineer, is married to Michael Silitch, has 2 children; Birken and Anders Silitch."
+    ]
+   ],
+   [
+    "1992 ATP Tour World Championships – Doubles",
+    [
+     "Defending champions John Fitzgerald and Anders Järryd lost to in the final 2 – 6, 6 – 7, 7 – 5, 6 – 3, 3 – 6 against Todd Woodbridge and Mark Woodforde."
+    ]
+   ],
+   [
+    "Carl Wijk",
+    [
+     "Carl Wijk was a Swedish football manager.",
+     "He was Malmö FF's first manager in Allsvenskan when he started managing the club."
+    ]
+   ],
+   [
+    "2001–02 UEFA Champions League second group stage",
+    [
+     "Eight winners and eight runners- up from the first group stage were drawn into four groups of four teams, each containing two group winners and two runners- up.",
+     "Teams from the same country or from the same first round group could not be drawn together.",
+     "The top two teams in each group advanced to the quarter- finals."
+    ]
+   ],
+   [
+    "Poincaré–Lindstedt method",
+    [
+     "In perturbation theory, the Poincaré – Lindstedt method or Lindstedt – Poincaré method is a technique for uniformly approximating periodic solutions to ordinary differential equations, when regular perturbation approaches fail.",
+     "The method removes secular terms—terms growing without bound—arising in the straightforward application of perturbation theory to weakly nonlinear problems with finite oscillatory solutions.",
+     "The method is named after Henri Poincaré, and Anders Lindstedt."
+    ]
+   ],
+   [
+    "Anders Lindstedt",
+    [
+     "Anders Lindstedt( 27 June 1854 – 16 May 1939) was a Swedish mathematician, astronomer, and actuarial scientist, known for the Lindstedt- Poincaré method."
+    ]
+   ],
+   [
+    "Tulipani, Love, Honour and a Bicycle",
+    [
+     "Tulipani, Love, Honour and a Bicycle is a 2017 Dutch comedy film, written by Peter van Wijk and directed by Mike van Diem.",
+     "It was shortlisted by the EYE Film Institute Netherlands as one of the eight films to be selected as the potential Dutch submission for the Academy Award for Best Foreign Language Film at the 90th Academy Awards.",
+     "However, it was not selected, with\" Layla M.\" being chosen as the Dutch entry."
+    ]
+   ]
+  ],
+  "entity_ids": "Q5040955_Q491167",
+  "supporting_facts": [
+   [
+    "Carl Wijk",
+    0
+   ],
+   [
+    "Anders Lindstedt",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Carl Wijk",
+    "country of citizenship",
+    "Swedish"
+   ],
+   [
+    "Anders Lindstedt",
+    "country of citizenship",
+    "Swedish"
+   ]
+  ],
+  "answer": "yes",
+  "evidences_id": [
+   [
+    "Q5040955",
+    "country of citizenship",
+    "Q34"
+   ],
+   [
+    "Q491167",
+    "country of citizenship",
+    "Q34"
+   ]
+  ],
+  "answer_id": null
+ },
+ {
+  "_id": "f253a3040bdd11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "What is the place of birth of Princess Maria Of Greece And Denmark's mother?",
+  "context": [
+   [
+    "Princess Tatiana of Greece and Denmark",
+    [
+     "Princess Tatiana of Greece and Denmark( born Tatiana Ellinka Blatnik, 28 August 1980) is the wife of Prince Nikolaos, son of Constantine II, who reigned as King of Greece until the monarchy was abolished in 1973."
+    ]
+   ],
+   [
+    "Prince Achileas-Andreas of Greece and Denmark",
+    [
+     "Prince Achileas- Andreas of Greece and Denmark( born 12 August 2000) is a member of the Greek royal family.",
+     "He is the second son and third child of Crown Prince Pavlos of Greece and Marie- Chantal Miller.",
+     "His paternal grandparents are Constantine II of Greece and Anne- Marie of Denmark, who were the last King and Queen of the Hellenes.",
+     "He is currently third in the line of succession to the former Greek throne."
+    ]
+   ],
+   [
+    "Princess Theodora of Greece and Denmark (1906–1969)",
+    [
+     "Princess Theodora of Greece and Denmark( 30 May 1906 – 16 October 1969) was the second child and daughter of Prince Andrew of Greece and Denmark and Princess Alice of Battenberg, and the second eldest sister of Prince Philip, Duke of Edinburgh."
+    ]
+   ],
+   [
+    "Olga Constantinovna of Russia",
+    [
+     "Olga Constantinovna of Russia (18 June 1926) was Queen consort of the Hellenes as the wife of King George I.",
+     "She was briefly the regent of Greece in 1920.",
+     "A member of the Romanov dynasty",
+     ", she was the daughter of Grand Duke Constantine Nikolaievich and his wife, Princess Alexandra of Saxe-Altenburg.",
+     "She spent her childhood in Saint Petersburg, Poland and the Crimea, and married King George I of Greece in 1867 at the age of sixteen.",
+     "At first, she felt ill at ease in the Kingdom of Greece, but she quickly became involved in social and charitable work.",
+     "She founded hospitals and schools, but her attempt to promote a new, more accessible, Greek translation of the Gospels sparked riots by religious conservatives.",
+     "On the assassination of her husband in 1913, Olga returned to Russia.",
+     "When the First World War broke out, she set up a military hospital in Pavlovsk Palace, which belonged to her brother.",
+     "She was trapped in the palace after the Russian Revolution of 1917, until the Danish embassy intervened, allowing her to escape to Switzerland.",
+     "Olga could not return to Greece as her son, King Constantine I, had been deposed.",
+     "In October 1920, she returned to Athens on the fatal illness of her grandson, King Alexander.",
+     "After his death, she was appointed regent until the restoration of Constantine I the following month.",
+     "After the defeat of the Greeks in the Greco-Turkish War of 1919–22",
+     "the Greek royal family were again exiled and Olga spent the last years of her life in the United Kingdom, France and Italy."
+    ]
+   ],
+   [
+    "Princess Irene of Greece and Denmark",
+    [
+     "Princess Irene of Greece and Denmark( born 11 May 1942) is the youngest child and second daughter of King Paul of Greece and his wife Princess Frederika of Hanover.",
+     "She is the younger sister of Queen Sofía of Spain and of the deposed King Constantine II of Greece and maternal aunt of Felipe VI of Spain."
+    ]
+   ],
+   [
+    "Princess Alexia of Greece and Denmark",
+    [
+     "Princess Alexia of Greece and Denmark( born 10 July 1965) is the eldest child of Constantine II and Anne- Marie of Denmark, who were king and queen of Greece from 1964 until the abolition of the monarchy in 1973."
+    ]
+   ],
+   [
+    "Princess Xenia Georgievna of Russia",
+    [
+     "Princess Xenia Georgievna of Russia( 22 August 1903, Mikhailovskoe, Russia – 17 September 1965, Glen Cove, New York) was the younger daughter of Grand Duke George Mihailovich of Russia and Princess Maria Georgievna of Greece and Denmark.",
+     "She was a granddaughter of George I of Greece and first cousin of the brothers King Alexander I of Greece, King George II of Greece, King Paul I of Greece and their sister Queen Helen, Queen Mother of Romania and also of Prince Philip, Duke of Edinburgh."
+    ]
+   ],
+   [
+    "Princess Maria-Olympia of Greece and Denmark",
+    [
+     "Princess Maria- Olympia of Greece and Denmark( born 25 July 1996) is an American fashion model, socialite and member of the Greek royal family.",
+     "She is the oldest child and only daughter of Pavlos, Crown Prince of Greece and his wife, Marie- Chantal Miller.",
+     "Her paternal grandparents are Constantine II of Greece and Anne- Marie of Denmark, who were the last King and Queen of the Hellenes, while her maternal grandfather is duty free entrepreneur Robert Warren Miller.",
+     "She is currently sixth in the line of succession to the former throne of Greece, after her father and brothers."
+    ]
+   ],
+   [
+    "Prince Nikolaos of Greece and Denmark",
+    [
+     "Prince Nikolaos of Greece and Denmark( born 1 October 1969) is the third child of Constantine II and Anne- Marie of Denmark, who were the last King and Queen of Greece, reigning from 1964 to 1973."
+    ]
+   ],
+   [
+    "Princess Maria of Greece and Denmark",
+    [
+     "Princess Maria of Greece and Denmark  (3 March 1876 – 14 December 1940) was a daughter of King George I of Greece and his wife Grand Duchess Olga Constantinovna of Russia.",
+     "She was a sister of King Constantine I of Greece and a first cousin of Tsar Nicholas II of Russia.",
+     "Born as a princess of Greece and Denmark, she was educated in Athens by private tutors.",
+     "Her father instilled in her a great love for Greece and throughout her life, she remained a fervent patriot.",
+     "She married Grand Duke George Mikhailovich of Russia, her first cousin once removed, who courted her for five years.",
+     "The wedding took place in 1900 in Corfu.",
+     "The couple settled in St. Petersburg and they had two daughters: Princesses Nina (1901 -1974) and Xenia of Russia (1903 -1965).",
+     "Grand Duke George Mikhailovich had a house built for her in Crimea and he was a devoted father and husband, but the marriage was unhappy.",
+     "Princess Maria, known upon her marriage as Grand Duchess Maria Georgievna of Russia, neither get to love her husband nor her adopted country.",
+     "Longing for her native Greece, she never adapted to live in Russia.",
+     "Over the years, she became estranged from her husband taking any opportunity to spend time abroad.",
+     "At the outbreak of World War I, she was vacationing in England with her daughters and chose not to return to Russia.",
+     "During the conflict, she was a patron of three military hospitals in Harrogate, which she financed generously.",
+     "Her husband was trapped in Russia after the revolution and he was shot by the Bolsheviks with several other Romanov relatives in January 1919.",
+     "In her widowhood, deprived of her Russian income, Princess Maria faced serious financial difficulties.",
+     "She returned to live in Greece with her daughters in 1920.",
+     "There, she began a relationship with Admiral Perikles Ioannidis, who had been the commander of the ship that she took at her return to Athens.",
+     "They were married in 1922.",
+     "The proclamation of the Second Hellenic Republic in 1924, sent her into exile.",
+     "The princess returned to live in Britain for a couple of years and she settled in Rome in 1926 with her second husband.",
+     "She lived in Italy for over a decade until the outbreak of the Greco-Italian War in 1940 forced her to return to her native Greece.",
+     "She was in poor health and was cared for by her nephew King Paul of Greece and his wife Frederica.",
+     "She died, as the Greek royal family was about to leave for exile.",
+     "She left a book of memoirs, published posthumously by her grandchildren with the title \"A Romanov Diary\"."
+    ]
+   ]
+  ],
+  "entity_ids": "Q232732_Q155178",
+  "supporting_facts": [
+   [
+    "Princess Maria of Greece and Denmark",
+    0
+   ],
+   [
+    "Olga Constantinovna of Russia",
+    8
+   ]
+  ],
+  "evidences": [
+   [
+    "Princess Maria of Greece and Denmark",
+    "mother",
+    "Olga Constantinovna of Russia"
+   ],
+   [
+    "Olga Constantinovna of Russia",
+    "place of birth",
+    "Pavlovsk"
+   ]
+  ],
+  "answer": "Pavlovsk",
+  "evidences_id": [
+   [
+    "Q232732",
+    "mother",
+    "Q155178"
+   ],
+   [
+    "Q155178",
+    "place of birth",
+    "Q177888"
+   ]
+  ],
+  "answer_id": "Q177888"
+ },
+ {
+  "_id": "f52452fc0bda11eba7f7acde48001122",
+  "type": "compositional",
+  "question": "Where was the place of death of Thaddeus P. Mott's father?",
+  "context": [
+   [
+    "Where Was I",
+    [
+     "\" Where Was I?\" may refer to:"
+    ]
+   ],
+   [
+    "Thad",
+    [
+     "Thad is a masculine given name, often a short form( hypocorism) of Thaddeus.",
+     "It may refer to:"
+    ]
+   ],
+   [
+    "Valentine Mott",
+    [
+     "Valentine Mott (August 20, 1785April 26, 1865), American surgeon, was born at Glen Cove, New York.",
+     "He graduated at Columbia College, studied under Sir Astley Cooper in London, and also spent a winter in Edinburgh.",
+     "After acting as demonstrator of anatomy he was appointed professor of surgery in Columbia College in 1809.",
+     "From 1811 to 1834 he was in very extensive practice as a surgeon, and most successful as a teacher and operator.",
+     "He tied the innominate artery in 1818; the patient lived twenty-six days.",
+     "He performed a similar operation on the carotid forty-six times with good results; and in 1827 he was also successful in the case of the common iliac.",
+     "He is said to have performed one thousand amputations and one hundred and sixty-five lithotomies.",
+     "After spending seven years in Europe (1834-1841)",
+     "Mott returned to New York where he was on the founding faculty of the university medical college of New York, now New York University School of Medicine.",
+     "He translated AALM Velpeau's \"Operative Surgery\", and was foreign associate of the Imperial Academy of Medicine of Paris.",
+     "A collection of his correspondence is held at the National Library of Medicine in Bethesda, Maryland."
+    ]
+   ],
+   [
+    "Beaulieu-sur-Loire",
+    [
+     "Beaulieu- sur- Loire is a commune in the Loiret department in north -central France.",
+     "It is also the place of death of Jacques MacDonald, a French general who served in the Napoleonic Wars"
+    ]
+   ],
+   [
+    "Sennedjem",
+    [
+     "The Ancient Egyptian artisan Sennedjem lived in Set Maat( translated as\" The Place of Truth\"), contemporary Deir el- Medina, on the west bank of the Nile, opposite Thebes, during the reigns of Seti I and Ramesses II.",
+     "Sennedjem had the title\" Servant in the Place of Truth\".",
+     "He was buried along with his wife, Iyneferti, and family in a tomb in the village necropolis.",
+     "His tomb was discovered January 31, 1886.",
+     "When Sennedjem's tomb was found, in it there was regular furniture from his home, including a stool and a bed, which he actually used when he was alive.",
+     "His titles included Servant in the Place of Truth, meaning that he worked on the excavation and decoration of the nearby royal tombs."
+    ]
+   ],
+   [
+    "Motherland (disambiguation)",
+    [
+     "Motherland is the place of one's birth, the place of one's ancestors, or the place of origin of an ethnic group.",
+     "Motherland may also refer to:"
+    ]
+   ],
+   [
+    "Lydia Hamilton Smith",
+    [
+     "Lydia Hamilton Smith( February 14, 1813 – February 14, 1884) was the long- time housekeeper of Thaddeus Stevens and a prominent African- American businesswoman after his death."
+    ]
+   ],
+   [
+    "Place of birth",
+    [
+     "The place of birth( POB) or birthplace is the place where a person was born.",
+     "This place is often used in legal documents, together with name and date of birth, to uniquely identify a person.",
+     "As a general rule with respect to passports, the place of birth is determined to be the country that currently has\" sovereignty\" over the actual place of birth, regardless of when the birth actually occurred.",
+     "The place of birth is not necessarily the place where the parents of the new baby live.",
+     "If the baby is born in a hospital in another place, that place is the place of birth.",
+     "In many countries, this also means that the government requires that the birth of the new baby is registered in the place of birth.",
+     "Some countries place less or no importance on the place of birth, instead using alternative geographical characteristics for the purpose of identity documents.",
+     "For example, Sweden has used the concept of\" födelsehemortdomicile of birth\") since 1947.",
+     "This means that the domicile of the baby's mother is the registered place of birth.",
+     "The location of the maternity ward or other physical birthplace is considered unimportant.",
+     "Similarly, Switzerland uses the concept of\" Heimatortlieu d'origineluogo d'origineplace of origin\" in German, French and Italian respectively).",
+     "A child born to Swiss parents is automatically assigned the place of origin of the parent with the same last name, so the child either gets their mother's or father's place of origin.",
+     "A child born to one Swiss parent and one foreign parent acquires the place of origin of their Swiss parent.",
+     "In a Swiss passport and identity card, the holder's place of origin is stated, not their place of birth.",
+     "In some countries( primarily in the Americas), the place of birth automatically determines the nationality of the baby, a practice often referred to by the Latin phrase\" jus soli\".",
+     "Almost all countries outside the Americas instead attribute nationality based on the nationality( ies) of the baby's parents( referred to as\" jus sanguinis\").",
+     "There can be some confusion regarding the place of birth if the birth takes place in an unusual way: when babies are born on an airplane or at sea, difficulties can arise.",
+     "The place of birth of such a person depends on the law of the countries involved, which include the nationality of the plane or ship, the nationality( ies) of the parents and/ or the location of the plane or ship( if the birth occurs in the territorial waters or airspace of a country).",
+     "Some administrative forms may request the applicant's\" country of birth\".",
+     "It is important to determine from the requester whether the information requested refers to the applicant's\" place of birth\" or\" nationality at birth\".",
+     "For US citizens born abroad who under the US Constitution acquire US citizenship at the time of birth, the nationality at birth will be USA( American), while the place of birth would be the country in which the actual birth takes place."
+    ]
+   ],
+   [
+    "Thaddeus P. Mott",
+    [
+     "Thaddeus Phelps Mott (December 7, 1831 – November 23, 1894) was a 19th-century American adventurer, sailor and soldier of fortune.",
+     "A former Union Army officer during American Civil War, he also took part in wars in Mexico, Italy, and the Ottoman Empire.",
+     "He was primarily responsible for recruiting former Union and Confederate soldiers for service in the Egyptian Army, in which he held the rank of major general, and was the first officer to take service with the Khedive Isma'il Pasha as his aide-de-camp in 1870.",
+     "At the time of his death, he was also the last surviving son of the eminent surgeon Valentine Mott."
+    ]
+   ],
+   [
+    "Anthony Ellmaker Roberts",
+    [
+     "Anthony Ellmaker Roberts( October 29, 1803 – January 23, 1885), was an American politician, member of the United States House of Representatives from 1855 to 1859, an abolitionist and close associate of Thaddeus Stevens."
+    ]
+   ]
+  ],
+  "entity_ids": "Q7709005_Q7910987",
+  "supporting_facts": [
+   [
+    "Thaddeus P. Mott",
+    3
+   ],
+   [
+    "Valentine Mott",
+    0
+   ]
+  ],
+  "evidences": [
+   [
+    "Thaddeus Phelps Mott",
+    "father",
+    "Valentine Mott"
+   ],
+   [
+    "Valentine Mott",
+    "place of death",
+    "New York"
+   ]
+  ],
+  "answer": "New York",
+  "evidences_id": [
+   [
+    "Q7709005",
+    "father",
+    "Q7910987"
+   ],
+   [
+    "Q7910987",
+    "place of death",
+    "Q60"
+   ]
+  ],
+  "answer_id": "Q60"
+ }
+]

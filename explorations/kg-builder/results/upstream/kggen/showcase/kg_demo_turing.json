@@ -1,0 +1,31 @@
+{
+  "entities": [
+    "Alan Turing",
+    "London"
+  ],
+  "relations": [
+    [
+      "London",
+      "is birthplace of",
+      "Alan Turing"
+    ],
+    [
+      "Turing's place of birth",
+      "is",
+      "London"
+    ],
+    [
+      "Alan Turing",
+      "was born in",
+      "London"
+    ]
+  ],
+  "edges": [
+    "is",
+    "was born in",
+    "is birthplace of"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

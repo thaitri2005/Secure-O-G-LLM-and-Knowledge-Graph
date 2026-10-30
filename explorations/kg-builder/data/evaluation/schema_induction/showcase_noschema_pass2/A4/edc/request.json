@@ -1,0 +1,82 @@
+{
+ "api_key": "lm-studio",
+ "base_url": "http://127.0.0.1:59591/v1",
+ "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+ "enrich_schema": false,
+ "few_shot_dir": "third_party\\edc\\few_shot_examples\\example",
+ "items": [
+  {
+   "key": "demo_alice#c000",
+   "text": "2021: Alice joined Acme Labs.\n2024: Alice left Acme Labs and joined Nova AI.",
+   "triples": [
+    [
+     "Alice",
+     "left",
+     "Acme Labs"
+    ],
+    [
+     "Alice",
+     "joined",
+     "Nova AI"
+    ],
+    [
+     "Alice",
+     "joined",
+     "Acme Labs"
+    ]
+   ]
+  },
+  {
+   "key": "demo_ibm#c000",
+   "text": "International Business Machines developed several computing systems.\nIBM expanded its research division.\nInternational Business Machines Corporation operates laboratories worldwide.\nIBM Research works on artificial intelligence.",
+   "triples": [
+    [
+     "International Business Machines",
+     "developed",
+     "computing systems"
+    ],
+    [
+     "International Business Machines Corporation",
+     "operates",
+     "laboratories"
+    ],
+    [
+     "IBM",
+     "expanded",
+     "research division"
+    ],
+    [
+     "IBM Research",
+     "works on",
+     "artificial intelligence"
+    ]
+   ]
+  },
+  {
+   "key": "demo_turing#c000",
+   "text": "Alan Turing was born in London.\nLondon was the birthplace of Alan Turing.\nTuring's place of birth was London.",
+   "triples": [
+    [
+     "London",
+     "is birthplace of",
+     "Alan Turing"
+    ],
+    [
+     "Alan Turing",
+     "was born in",
+     "London"
+    ],
+    [
+     "Turing's place of birth",
+     "is",
+     "London"
+    ]
+   ]
+  }
+ ],
+ "model": "qwen3.6-35b-a3b",
+ "net_log": "runs/reference/schema_induction/showcase_noschema_pass2/A4/net_edc.jsonl",
+ "schema_csv": "runs/reference/schema_induction/showcase_noschema_pass2/A4/edc/schema.csv",
+ "templates_dir": "third_party\\edc\\prompt_templates",
+ "version": 1
+}

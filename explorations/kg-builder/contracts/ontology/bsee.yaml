@@ -1,0 +1,58 @@
+version: 1
+relations:
+  spudded_on:
+    definition: The subject well was spudded (drilling started) on the object date.
+  reached_td:
+    definition: The subject well reached its total depth (TD) at the object depth.
+  drilled_to:
+    definition: The subject well was drilled to the object depth (an intermediate
+      or section depth, including "section TD").
+  set_casing_at:
+    definition: The subject casing, liner or conductor was set, landed or run to the
+      object depth (shoe or setting depth).
+  casing_size:
+    definition: The subject tubular has the object outside diameter.
+  casing_spec:
+    definition: The subject tubular has the object weight and/or grade (e.g. "23 lb/ft
+      P-110").
+  cemented_interval:
+    definition: Cement was placed behind or in the subject over the object interval,
+      or its top of cement (TOC) is at the object depth.
+  set_plug_at:
+    definition: The subject plug was set or placed at the object depth or over the
+      object interval.
+  set_equipment_at:
+    definition: The subject packer, nipple, valve, tubing stop, hanger or retainer
+      was set or is located at the object depth.
+  tagged_at:
+    definition: A tool tagged the subject (plug, TOC, fill, fish, obstruction) at
+      the object depth.
+  cut_at:
+    definition: The subject was cut (and possibly pulled) at the object depth (often
+      BML).
+  tested_to_pressure:
+    definition: The subject was pressure-tested to the object pressure.
+  fit_lot_emw:
+    definition: A formation integrity or leak-off test of the subject well held the
+      object equivalent mud weight.
+  perforated_interval:
+    definition: The subject (well, tubing string, or zone) was perforated over the
+      object interval.
+  has_mud_weight:
+    definition: The subject well's mud/fluid weight was (raised, reduced or displaced)
+      to the object density.
+  completed_in:
+    definition: The subject well was completed or recompleted in the object zone.
+  encountered_marker:
+    definition: The subject well encountered (logged, penetrated) the object geologic
+      marker or formation.
+  has_well_status:
+    definition: The subject well has or entered the object status (TA, PA, COM, ST,
+      BP, SI).
+  used_rig:
+    definition: Operations on the subject well used the object rig or vessel.
+  operated_by:
+    definition: The subject well is operated by the object company (stated as operator,
+      not a service company).
+  pumped:
+    definition: The object volume of the subject fluid was pumped or mixed and pumped.

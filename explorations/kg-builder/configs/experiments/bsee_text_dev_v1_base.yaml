@@ -1,0 +1,5 @@
+run: {name: bsee_text_dev_v1_base}
+corpus: {path: data/benchmarks/bsee_text/v1/dev/dev.jsonl, format: jsonl}
+extract: {backend: kggen}
+canon: {schema_path: contracts/ontology/bsee.yaml, few_shot: example, max_minutes: 180}
+ablation: A4

@@ -1,0 +1,228 @@
+{
+  "format": "kgb.graph/1",
+  "run_name": "synthetic",
+  "ablation": "A4",
+  "flags": {},
+  "documents": [
+    {
+      "doc_id": "synthetic_a",
+      "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+      "title": null,
+      "source_uri": null,
+      "published_at": null
+    },
+    {
+      "doc_id": "synthetic_b",
+      "text": "The well reached 11000 ft TVD.",
+      "title": null,
+      "source_uri": null,
+      "published_at": null
+    }
+  ],
+  "chunks": [
+    {
+      "doc_id": "synthetic_a",
+      "chunk_id": "synthetic_a#c000",
+      "idx": 0,
+      "char_start": 0,
+      "char_end": 98,
+      "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed."
+    },
+    {
+      "doc_id": "synthetic_b",
+      "chunk_id": "synthetic_b#c000",
+      "idx": 0,
+      "char_start": 0,
+      "char_end": 30,
+      "text": "The well reached 11000 ft TVD."
+    }
+  ],
+  "entities": [
+    {
+      "entity_id": "e0",
+      "name": "The well",
+      "aliases": [],
+      "kind": "entity",
+      "mention_ids": [],
+      "resolver": "identity"
+    },
+    {
+      "entity_id": "e1",
+      "name": "12000 ft MD",
+      "aliases": [],
+      "kind": "entity",
+      "mention_ids": [],
+      "resolver": "identity"
+    },
+    {
+      "entity_id": "e2",
+      "name": "API 012345679100",
+      "aliases": [],
+      "kind": "entity",
+      "mention_ids": [],
+      "resolver": "identity"
+    },
+    {
+      "entity_id": "e3",
+      "name": "11000 ft TVD",
+      "aliases": [],
+      "kind": "entity",
+      "mention_ids": [],
+      "resolver": "identity"
+    },
+    {
+      "entity_id": "e4",
+      "name": "API 0123456789",
+      "aliases": [],
+      "kind": "entity",
+      "mention_ids": [],
+      "resolver": "identity"
+    }
+  ],
+  "statements": [
+    {
+      "statement_id": "s0",
+      "subject_id": "e0",
+      "object_id": "e1",
+      "predicate": "reached_td",
+      "predicate_source": "schema",
+      "source_doc_id": "synthetic_a",
+      "evidence_span": {
+        "doc_id": "synthetic_a",
+        "chunk_id": "synthetic_a#c000",
+        "char_start": 0,
+        "char_end": 98,
+        "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+        "grounding": "exact"
+      },
+      "evidence": [
+        {
+          "doc_id": "synthetic_a",
+          "chunk_id": "synthetic_a#c000",
+          "char_start": 0,
+          "char_end": 98,
+          "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+          "grounding": "exact"
+        }
+      ],
+      "support_count": 1,
+      "valid_from": null,
+      "valid_to": null,
+      "extractor_version": "synthetic",
+      "confidence": 1.0,
+      "status": "accepted",
+      "reasons": [],
+      "candidate_ids": [
+        "c0"
+      ]
+    },
+    {
+      "statement_id": "s1",
+      "subject_id": "e0",
+      "object_id": "e3",
+      "predicate": "reached_td",
+      "predicate_source": "schema",
+      "source_doc_id": "synthetic_b",
+      "evidence_span": {
+        "doc_id": "synthetic_b",
+        "chunk_id": "synthetic_b#c000",
+        "char_start": 0,
+        "char_end": 30,
+        "text": "The well reached 11000 ft TVD.",
+        "grounding": "exact"
+      },
+      "evidence": [
+        {
+          "doc_id": "synthetic_b",
+          "chunk_id": "synthetic_b#c000",
+          "char_start": 0,
+          "char_end": 30,
+          "text": "The well reached 11000 ft TVD.",
+          "grounding": "exact"
+        }
+      ],
+      "support_count": 1,
+      "valid_from": null,
+      "valid_to": null,
+      "extractor_version": "synthetic",
+      "confidence": 1.0,
+      "status": "accepted",
+      "reasons": [],
+      "candidate_ids": [
+        "c1"
+      ]
+    },
+    {
+      "statement_id": "s2",
+      "subject_id": "e2",
+      "object_id": "e3",
+      "predicate": "reached_td",
+      "predicate_source": "schema",
+      "source_doc_id": "synthetic_a",
+      "evidence_span": {
+        "doc_id": "synthetic_a",
+        "chunk_id": "synthetic_a#c000",
+        "char_start": 0,
+        "char_end": 98,
+        "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+        "grounding": "exact"
+      },
+      "evidence": [
+        {
+          "doc_id": "synthetic_a",
+          "chunk_id": "synthetic_a#c000",
+          "char_start": 0,
+          "char_end": 98,
+          "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+          "grounding": "exact"
+        }
+      ],
+      "support_count": 1,
+      "valid_from": null,
+      "valid_to": null,
+      "extractor_version": "synthetic",
+      "confidence": 1.0,
+      "status": "accepted",
+      "reasons": [],
+      "candidate_ids": [
+        "c2"
+      ]
+    },
+    {
+      "statement_id": "s3",
+      "subject_id": "e4",
+      "object_id": "e1",
+      "predicate": "reached_td",
+      "predicate_source": "schema",
+      "source_doc_id": "synthetic_a",
+      "evidence_span": {
+        "doc_id": "synthetic_a",
+        "chunk_id": "synthetic_a#c000",
+        "char_start": 0,
+        "char_end": 98,
+        "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+        "grounding": "exact"
+      },
+      "evidence": [
+        {
+          "doc_id": "synthetic_a",
+          "chunk_id": "synthetic_a#c000",
+          "char_start": 0,
+          "char_end": 98,
+          "text": "The well reached 12000 ft MD. API 012345679100 reached 11000 ft TVD. API 0123456789 was discussed.",
+          "grounding": "exact"
+        }
+      ],
+      "support_count": 1,
+      "valid_from": null,
+      "valid_to": null,
+      "extractor_version": "synthetic",
+      "confidence": 1.0,
+      "status": "accepted",
+      "reasons": [],
+      "candidate_ids": [
+        "c3"
+      ]
+    }
+  ]
+}

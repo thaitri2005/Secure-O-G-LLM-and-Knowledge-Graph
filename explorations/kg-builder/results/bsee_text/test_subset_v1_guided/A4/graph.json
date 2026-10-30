@@ -1,0 +1,5438 @@
+{
+ "ablation": "A4",
+ "chunks": [
+  {
+   "char_end": 338,
+   "char_start": 0,
+   "chunk_id": "eor_-10441_37e78f36#c000",
+   "doc_id": "eor_-10441_37e78f36",
+   "idx": 0,
+   "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud. A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree. Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD."
+  },
+  {
+   "char_end": 455,
+   "char_start": 0,
+   "chunk_id": "eor_-106378_8b6db016#c000",
+   "doc_id": "eor_-106378_8b6db016",
+   "idx": 0,
+   "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD."
+  },
+  {
+   "char_end": 237,
+   "char_start": 0,
+   "chunk_id": "eor_-106701_93dbc0f4#c000",
+   "doc_id": "eor_-106701_93dbc0f4",
+   "idx": 0,
+   "text": "The subsequent report for the approved EOR to TA the well stipulates that the casings would be cut 15' BML and pulled during platform removal.  The attached Salvage report shows September 11, 2004 as the date casings were cut and pulled."
+  },
+  {
+   "char_end": 202,
+   "char_start": 0,
+   "chunk_id": "eor_-110709_c543c162#c000",
+   "doc_id": "eor_-110709_c543c162",
+   "idx": 0,
+   "text": "Wash sand with a coil tbg unit, install a thru-tbg gravel pack, wash proppant from atop the vented, gravel pack screen using a coil tbg unit and spotted acid into perforations to stimulate productivity."
+  },
+  {
+   "char_end": 412,
+   "char_start": 0,
+   "chunk_id": "eor_-111190_bf5f7db8#c000",
+   "doc_id": "eor_-111190_bf5f7db8",
+   "idx": 0,
+   "text": "Zone change operations were successfully completed on EW 306, Well A-3ST3.  Operations began on May 9, 2010 and were completed on May 25, 2010.  The previous producing interval, the \"LH\" Sand, perfs 16310' - 16328' MD, was isolated by setting a MRBP @ 16295' MD and dumping 50' of cmt on top of the plug; ETOC @ 16245' MD.  The \"LG Lwr\" Sand was then exposed to production by perforating from 16167' - 16175' MD."
+  },
+  {
+   "char_end": 443,
+   "char_start": 0,
+   "chunk_id": "eor_-115129_7f61f092#c000",
+   "doc_id": "eor_-115129_7f61f092",
+   "idx": 0,
+   "text": "Leed has successfully completed perforation modification operations on the SS 201 A06 well, \"KH\" Sand completion to reduce water production.  \n\nA MRBP was set at 12901' MD.   Resin and cement was dumped on top of the plug with the ETOC cement @ 12853' MD.  The operation successfully isolated the bottom portion of the \"KH\" Sand completion, perforation interval 12853' - 12896' MD.\n\nOperations began on 01-31-11 and were completed on 02-04-11."
+  },
+  {
+   "char_end": 706,
+   "char_start": 0,
+   "chunk_id": "eor_-115965_1bc5d37f#c000",
+   "doc_id": "eor_-115965_1bc5d37f",
+   "idx": 0,
+   "text": "Stone has completed zone change operations on the VR 51 A-4 well to produce the \"CC-1\" sand. The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD. The \"CC-1\" sand was perforated at intervals 10,382'-10,392' MD. A CIBP was set at 10,399' MD and GP assy was set on top of CIBP. The \"CC-1\" sand was then gravel packed. Coil tubing was then utilized to perform an acid job on the well and jet the well with nitrogen to lift the well allowing for production to be established from the \"CC-1\" Sand. Operations began 03/25/2011 and ended 05/04/2011."
+  },
+  {
+   "char_end": 378,
+   "char_start": 0,
+   "chunk_id": "eor_-116446_6cdc069f#c000",
+   "doc_id": "eor_-116446_6cdc069f",
+   "idx": 0,
+   "text": "Stone has successfully completed operations on the EW 306 A-16 well to install a subsurface safety PB insert valve in the X-nipple at 471' MD to convert the operation of the downhole safety valve to subsea control. This has allowed for production to be restored from the well. Operations began and ended on 04/27/2011.\n\nSee attached file, Current Wellbore Schematic for details."
+  },
+  {
+   "char_end": 256,
+   "char_start": 0,
+   "chunk_id": "eor_-117225_14d568fc#c000",
+   "doc_id": "eor_-117225_14d568fc",
+   "idx": 0,
+   "text": "Stone has successfully completed perforation modification operation on the EC 121 B-1 well. Perforations were added to the lower lobe of the current completion, the \"Cyclam 3-B\" sand at intervals 9,996'-10,006' MD. Operations began and ended on 05/22/2011."
+  },
+  {
+   "char_end": 218,
+   "char_start": 0,
+   "chunk_id": "eor_-117598_649ccce8#c000",
+   "doc_id": "eor_-117598_649ccce8",
+   "idx": 0,
+   "text": "Unable to Pressure test the surface plug, bubble tested and weight tested 3/16/11, but when pressure testing a hole blew out through the 10 ¾? and 20? somewhere between mud line and water line. Could not pressure test."
+  },
+  {
+   "char_end": 397,
+   "char_start": 0,
+   "chunk_id": "eor_-118968_bc3de2d8#c000",
+   "doc_id": "eor_-118968_bc3de2d8",
+   "idx": 0,
+   "text": "Stone has successfully completed operations on the EW 306 A-14ST1 well to convert the well from flowing to  a gas lift well. The previously installed gas lift valves were activated and utilized to produce the well via gas lift operations.   The results of the operations have reclassified the well from producing oil well (POW) to oil gas lift (OGL).  Operations began 08/23/11 and ended 08/25/11."
+  },
+  {
+   "char_end": 510,
+   "char_start": 0,
+   "chunk_id": "eor_-119584_ca8392d9#c000",
+   "doc_id": "eor_-119584_ca8392d9",
+   "idx": 0,
+   "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD.  Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg.  A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD."
+  },
+  {
+   "char_end": 223,
+   "char_start": 0,
+   "chunk_id": "eor_-121126_77121f26#c000",
+   "doc_id": "eor_-121126_77121f26",
+   "idx": 0,
+   "text": "Stone Energy Corporation has successfully completed operations on the MC 109 Well No. A012ST01 to install live gas lift valves in the well to convert to a gas lift oil well. Operations began 01/08/2012 and ended 01/31/2012."
+  },
+  {
+   "char_end": 280,
+   "char_start": 0,
+   "chunk_id": "eor_-123375_80318692#c000",
+   "doc_id": "eor_-123375_80318692",
+   "idx": 0,
+   "text": "Well was batch set (through the 22\" casing) and suspended on 04/19/2012, pending further operations.\nOn 05/31/2012, tagged cement @ 8,694'. Apply 20k weight test down. Displaced well to 12.2 ppg mud with corrosion inhibitor. Install 30\" TA Cap and inject McDermid fluid in TA Cap."
+  },
+  {
+   "char_end": 280,
+   "char_start": 0,
+   "chunk_id": "eor_-123740_b8fbb4ed#c000",
+   "doc_id": "eor_-123740_b8fbb4ed",
+   "idx": 0,
+   "text": "Well was batch set (through the 22\" casing) and suspended on 05/02/2012, pending further operations.\nOn 05/31/2012, tagged cement @ 8,697'. Apply 20k weight test down. Displaced well to 12.2 ppg mud with corrosion inhibitor. Install 30\" TA Cap and inject McDermid fluid in TA Cap."
+  },
+  {
+   "char_end": 255,
+   "char_start": 0,
+   "chunk_id": "eor_-124122_63f93a45#c000",
+   "doc_id": "eor_-124122_63f93a45",
+   "idx": 0,
+   "text": "Due to the fact that this well was previously classified as PA?d by a previous operator in 1975 McMoRan is not aware of the dates the cement plugs were placed on this well.  This well was actually PA?d by McMoRan on 05/15/2012 all casings cut @ 20-ft BML."
+  },
+  {
+   "char_end": 274,
+   "char_start": 0,
+   "chunk_id": "eor_-125705_5e2da512#c000",
+   "doc_id": "eor_-125705_5e2da512",
+   "idx": 0,
+   "text": "Slight intermittent bubbles were observed emanating from the annuli.   A slip on intervention well cap was installed. Micro-Matrix Cement was injected to stop bubbling. No bubbles observed.\n\nPlease note: The 30\", 13 3/8\" and 9 5/8\" casings / conductors were cut at 186' AML."
+  },
+  {
+   "char_end": 200,
+   "char_start": 0,
+   "chunk_id": "eor_-126565_84b0a5fb#c000",
+   "doc_id": "eor_-126565_84b0a5fb",
+   "idx": 0,
+   "text": "The approved APM was to change zones; however, after further geological review, it was determined that the new perfs were in the same zone, resulting in a modification to perforations in current zone."
+  },
+  {
+   "char_end": 218,
+   "char_start": 0,
+   "chunk_id": "eor_-126963_4cf1485f#c000",
+   "doc_id": "eor_-126963_4cf1485f",
+   "idx": 0,
+   "text": "Well is T/A. e-well will not let me make the reservior name change\n\nPlease submit a correction report regarding the sand. If BRA3 is correct, simply change it on the wellbore. Correction report was submitted last week."
+  },
+  {
+   "char_end": 791,
+   "char_start": 0,
+   "chunk_id": "eor_-132305_5dd63b49#c000",
+   "doc_id": "eor_-132305_5dd63b49",
+   "idx": 0,
+   "text": "Anadarko received approval for a 14 day temporary zone change/test for EB 646 SS007 ST01. The DS-1 FB A sand was temporarily isolated and only the DS-1 FB A sand was produced temporarily. \n\nThe isolation resulted in a loss of oil and an increase in water after production. Therefore the test was ended early and the well was returned to the pre-test configuration with both the DS-1 FB A and DP-1 FB A open. Both the district and region were notified.\n\n*Per the approved APM comments Anadarko was required to return the wellbore to the commingled DP-1/DS-1 completion at the end of the test period unless written permission was granted by both the district and the region to do otherwise. This was also discussed with Mark Osterman prior to sleeve shift back to the commingled configuration."
+  },
+  {
+   "char_end": 485,
+   "char_start": 0,
+   "chunk_id": "eor_-137936_910ef7c0#c000",
+   "doc_id": "eor_-137936_910ef7c0",
+   "idx": 0,
+   "text": "The Mad Dog batch set drilling operations installed 36\" conductor and 22\" surface casing in Green Canyon Block 782. The batch set wells include MD12, MD15, MD16, MD17 and MD18, respectively.  Batch set operations started on September 25, 2013 and concluded on December 21, 2013 with all of the batch set wells status drilling suspended.  The Mad Dog Spar Rig was used for the batch set operation, no BOPs were used during any part of the batch set since all operations were open water."
+  },
+  {
+   "char_end": 318,
+   "char_start": 0,
+   "chunk_id": "eor_-141200_58ebd6ad#c000",
+   "doc_id": "eor_-141200_58ebd6ad",
+   "idx": 0,
+   "text": "Permenent abandonment operations to sever, pull and remove casings. (All other abandonment work previously conducted.)\n\n#6: All casing (7\", 10-3/4\" & 16\") cut on 2/20/14 with cutting tool to 20' BML. Total 75.5' - 5250 lbs. \n\nCut 36\" drive pipe on 2/21/14 with cutting tool (ICT) to 16' BML. Length 70.2' - 32,150 lbs."
+  },
+  {
+   "char_end": 436,
+   "char_start": 0,
+   "chunk_id": "eor_-151231_23dd2d46#c000",
+   "doc_id": "eor_-151231_23dd2d46",
+   "idx": 0,
+   "text": "Zone change operations have been completed on the EC 36 Well A-1 to produce the \"Cris I M-7\" Sd (S02). The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi. The \"Cris I M-7\" Sd was open to production by shifting sliding sleeves at 9,754' & 9,772' MD open. Operations began 01/09/2015 and ended 01/18/2015."
+  },
+  {
+   "char_end": 202,
+   "char_start": 0,
+   "chunk_id": "eor_-153193_1cb44328#c000",
+   "doc_id": "eor_-153193_1cb44328",
+   "idx": 0,
+   "text": "Well is P/A.\nAttached is a well sketch for Well B006 that was done in 1986 that shows the calculated TOC in the 7\" X 9 5/8\" annulus to be at approximately 6760', well above the 7\" X 5\" X-over at 10020'."
+  },
+  {
+   "char_end": 1702,
+   "char_start": 0,
+   "chunk_id": "eor_-154697_e8f1e681#c000",
+   "doc_id": "eor_-154697_e8f1e681",
+   "idx": 0,
+   "text": "Rooster Petroleum, LLC has completed temporary abandonment operations on the HI 115 Well B001(ST02).  The \"Cris R\" Sand perfs (16,862'-16,877' MD) were sqz'd w/ 4.8 bbls (40.5 sxs, 43.7 cu ft) Class H cmt w/ TOC at 16,310' pressure tested to 1000 psi.  A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi.  \n\nThe 3-1/2\" tbg was perf'd at 9698'-9700' MD.  A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi. The 3-1/2\" tbg was perf'd @9400'MD.  A 200' cmt balanced plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" annulus w/6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9172' MD, pressure tested to 1000 psi. The 3-1/2\" tbg was cut/pulled f/ 1630' MD. A 7-5/8\" csg CIBP was set at 1,505 MD (1345' BML) and pressure tested to 1000 psi.  The 7-5/8\" csg was perf'd at 1500' MD (1340' BML).  A 300' cmt plug was set in the 7-5/8\" csg & 7-5/8\" x 13-5/8\" annulus w/39 bbls (203 sxs, 219 cu ft) Class H Cmt w/TOC at 1170' MD (1010' BML) & pressure tested to 1000 psi. \n\nThe 7-5/8\" csg was perf'd @ 991' RKB. A 13-5/8\" csg CIBP was set @ 700' MD (600'BML).  The 13-5/8\" csg was perf'd 695'-697'.  A 207' cmt plug was set w/ 59.3 bbl (308 sxs) Class H cmt f/ 493'-700' RKB and pressure tested to 1000 psi. A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB.\n\nCsg strings were cut and pulled at the following depths:\n\n7-5/8\" csg - (947' MD) 844' BML\n\n13-5/8\" csg - (473' RKB) 313' BML\n\nTA operations commenced on 4/26/2015 and were completed on 5/28/2015."
+  },
+  {
+   "char_end": 217,
+   "char_start": 0,
+   "chunk_id": "eor_-157593_4154806b#c000",
+   "doc_id": "eor_-157593_4154806b",
+   "idx": 0,
+   "text": "Permanent Abandonment. Received a departure from 250.1716(a),which states that all casing must be removed 15' BML. All remaining casings were cut @ 200' BWL (450' AML). The conductors and platform are a reef in place."
+  },
+  {
+   "char_end": 299,
+   "char_start": 0,
+   "chunk_id": "eor_-158773_5cb14ed0#c000",
+   "doc_id": "eor_-158773_5cb14ed0",
+   "idx": 0,
+   "text": "9-5/8\", 13-3/8\", and 20\" casing strings cut/pulled BML. 48\" drive pipe cut BML, but not yet pulled. Well status remains TAd.\n\nThe plugs in the well were set by a different operator (Seneca Resources Corporation) in 2003. Energy XXI doesn't have documentation for dates the plugs were set and tested."
+  },
+  {
+   "char_end": 237,
+   "char_start": 0,
+   "chunk_id": "eor_-165397_7e84fdbf#c000",
+   "doc_id": "eor_-165397_7e84fdbf",
+   "idx": 0,
+   "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD.\n\nPlease note contingency steps 13-15 in procedure were omitted from the operation.\n\nOperations Completed 09/18/2016"
+  },
+  {
+   "char_end": 267,
+   "char_start": 0,
+   "chunk_id": "eor_-165748_eb51960b#c000",
+   "doc_id": "eor_-165748_eb51960b",
+   "idx": 0,
+   "text": "The OCS-G 4909 Well No. 7 is on Medco's current Idle Iron List and has future utility as a sidetrack candidate for future development of the 7300' Sand.  Medco performed a temporary abandonment operation in this well, which allows future utilization of this wellbore."
+  },
+  {
+   "char_end": 506,
+   "char_start": 0,
+   "chunk_id": "eor_-166906_ddf3eab2#c000",
+   "doc_id": "eor_-166906_ddf3eab2",
+   "idx": 0,
+   "text": "Operation to perform the zonal testing required in the DC132\ncommingling agreement. The first step was to close the upper M57 zone and perform the single zone M55 well test. The second step was to close the lower M55 zone and open the upper M57 zone to perform the single zone M57 well test. The third step was to open the lower M55 zone and return to commingling production from both zones after conducting the single zone well tests. These activities was completed between February 12th to February 14th."
+  },
+  {
+   "char_end": 214,
+   "char_start": 0,
+   "chunk_id": "eor_-169333_fcc04c1b#c000",
+   "doc_id": "eor_-169333_fcc04c1b",
+   "idx": 0,
+   "text": "Operations to temporarily abandon this well thru the surface plug were completed on 09/19/2017.  Please note, the well was given a status of \"temporarily abandoned\" on 10/01/2005 & the status date remains the same."
+  },
+  {
+   "char_end": 203,
+   "char_start": 0,
+   "chunk_id": "eor_-174092_065bc7f9#c000",
+   "doc_id": "eor_-174092_065bc7f9",
+   "idx": 0,
+   "text": "Operations to complete the temporary abandonment through surface were suspended; although the well is not abandoned to surface, all zones are isolated so the well remains in \"TA Status\" as of 01/29/2012."
+  },
+  {
+   "char_end": 208,
+   "char_start": 0,
+   "chunk_id": "eor_-175209_7ab3d938#c000",
+   "doc_id": "eor_-175209_7ab3d938",
+   "idx": 0,
+   "text": "Cement packer recompletion operations to the E-1 Sand were suspended on 12/22/2018 prior to perforating the new zone (all other zones are now isolated thus leaving the well in \"temporarily abandoned\" status)."
+  },
+  {
+   "char_end": 230,
+   "char_start": 0,
+   "chunk_id": "eor_-180488_0256a4e8#c000",
+   "doc_id": "eor_-180488_0256a4e8",
+   "idx": 0,
+   "text": "Casing Pressure Repair Operations Suspended 3/21/20 - After several days of bailing they are unable to get below 2,554' and have been unsuccessful in cleaning out A-7 with slickline. A DX plug was set in the SCSSV profile at 482'."
+  },
+  {
+   "char_end": 258,
+   "char_start": 0,
+   "chunk_id": "eor_-180868_bbb62974#c000",
+   "doc_id": "eor_-180868_bbb62974",
+   "idx": 0,
+   "text": "Drilling operations 4/19/2020 - 6/5/2020.  Subsea tree installation 6/10/2020 - 6/11/2020.  Initial completion operations for a triple stacked frac pack in the Upper (B6U) and Lower (B6L) lobe of the \"B6 Sand\" and the \"B4 Sand\" took place 6/8/2020 - 8/3/2020"
+  },
+  {
+   "char_end": 285,
+   "char_start": 0,
+   "chunk_id": "eor_-183053_2531389f#c000",
+   "doc_id": "eor_-183053_2531389f",
+   "idx": 0,
+   "text": "Permit changed to zonal isolation in lieu of full TA. Complete 10/25/20\n\nDue to issues on the E003 well, the decision has been made to demobilize all equipment and personnel and return in 2021 to complete the TA of this well. A new APM will be submitted to fully TA the well next year."
+  },
+  {
+   "char_end": 252,
+   "char_start": 0,
+   "chunk_id": "eor_-200983_091a7dba#c000",
+   "doc_id": "eor_-200983_091a7dba",
+   "idx": 0,
+   "text": "Per APM COA: \n7. After the valve is set it in the well, your regulatory department is to send in a variance request in TIMSWEB so that the alternate compliance will appear on the inspection report and will be approved on our production operations side."
+  },
+  {
+   "char_end": 205,
+   "char_start": 0,
+   "chunk_id": "eor_-203739_27d06f7b#c000",
+   "doc_id": "eor_-203739_27d06f7b",
+   "idx": 0,
+   "text": "The well was temporarily abandoned through the surface plug as of 05/10/2025; however, eWell recognizes the zonal isolation date as the temporary abandonment date from a previous EOR and cannot be changed."
+  },
+  {
+   "char_end": 278,
+   "char_start": 0,
+   "chunk_id": "eor_-203944_26c4b587#c000",
+   "doc_id": "eor_-203944_26c4b587",
+   "idx": 0,
+   "text": "Operations to temporarily abandon the well through the surface plug were completed on 06/16/2025.\n\n*eWell recognizes a TA date of 08/09/1996 due to previous zonal isolation operations & prevents updating the date. This operation was to complete full TA through the surface plug*"
+  },
+  {
+   "char_end": 277,
+   "char_start": 0,
+   "chunk_id": "eor_-204443_c33bbff3#c000",
+   "doc_id": "eor_-204443_c33bbff3",
+   "idx": 0,
+   "text": "Operations to temporarily abandon the well through the surface plug were completed on 07/11/2025.\n\neWell recognizes a TA date of 09/11/2013 due to previous zonal isolation operations & prevents updating the date. This\noperation was to complete full TA through the surface plug."
+  },
+  {
+   "char_end": 345,
+   "char_start": 0,
+   "chunk_id": "eor_-205910_3a614ea8#c000",
+   "doc_id": "eor_-205910_3a614ea8",
+   "idx": 0,
+   "text": "Remove the upper completion from the well and abandon the lower completion.\n. Set a secondary plug above the tubing stub.\n. Cut and pull 7-5/8' and 8-5/8\" tie-back to recover the well slot and enable drilling a cased-hole sidetrack.\n. Set API 11D1 certified bridge plug with min 100ft of cement to permanently abandon the MB09 ST01 BP00 wellbore"
+  },
+  {
+   "char_end": 227,
+   "char_start": 0,
+   "chunk_id": "eor_-2095_f2a90e24#c000",
+   "doc_id": "eor_-2095_f2a90e24",
+   "idx": 0,
+   "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+  },
+  {
+   "char_end": 242,
+   "char_start": 0,
+   "chunk_id": "eor_-46627_c8788ba2#c000",
+   "doc_id": "eor_-46627_c8788ba2",
+   "idx": 0,
+   "text": "The South Marsh Island Block 123, OCS-G 23845, Well No. 01 was drilled and temporary abandon. The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD.  The wellbore was temporarily abandon on June 01, 2007."
+  },
+  {
+   "char_end": 422,
+   "char_start": 0,
+   "chunk_id": "eor_-48387_268b7e78#c000",
+   "doc_id": "eor_-48387_268b7e78",
+   "idx": 0,
+   "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand.  Operations began on May 28, 2007 and were completed on June 3, 2007. The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'.  The 5\" liner was perforated @ 14912' - 14954' for production."
+  },
+  {
+   "char_end": 231,
+   "char_start": 0,
+   "chunk_id": "eor_-48472_a0f3a4d2#c000",
+   "doc_id": "eor_-48472_a0f3a4d2",
+   "idx": 0,
+   "text": "Well is currently in TA status. The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+  },
+  {
+   "char_end": 314,
+   "char_start": 0,
+   "chunk_id": "eor_-53929_9608c4e5#c000",
+   "doc_id": "eor_-53929_9608c4e5",
+   "idx": 0,
+   "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07.  The well was successfuly completed as a single, gravel packed, oil completion in the \"Big 2 1-B\" Sand. Completion operations were completed on 08-23-07."
+  },
+  {
+   "char_end": 241,
+   "char_start": 0,
+   "chunk_id": "eor_-63747_d1598053#c000",
+   "doc_id": "eor_-63747_d1598053",
+   "idx": 0,
+   "text": "The 9-5/8\" casing has been cut & pulled a minimum of 15' BML. Remaining casings will be cut & pulled a minimum of 15' BML at platform removal. These abandonment operations were completed on 2/12/08.  SS207 Well No. A018 remains in TA status."
+  },
+  {
+   "char_end": 286,
+   "char_start": 0,
+   "chunk_id": "eor_-66275_ce78f433#c000",
+   "doc_id": "eor_-66275_ce78f433",
+   "idx": 0,
+   "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD.  Due to lost returns, the wellbore was plugged back and abandoned on January 11, 2008 to drill the EI 183 A6BP3 wellbore."
+  },
+  {
+   "char_end": 380,
+   "char_start": 0,
+   "chunk_id": "eor_-79498_761e2a90#c000",
+   "doc_id": "eor_-79498_761e2a90",
+   "idx": 0,
+   "text": "Completed as a single stacked gravel packed completion in the Lower KJ/KK Sand with an unperforated selective in the LP Sand.  The Lower KJ/KK Sand will only be produced at this time.  A zone change could be submitted at a later date to commingle the sands.\n\nAlso please note:  The KJ/KK Sand is hooked up and ready to flow.  Due to Hurricane Ike, the well is temporarily shut-in."
+  },
+  {
+   "char_end": 824,
+   "char_start": 0,
+   "chunk_id": "eor_-83553_7787b0dc#c000",
+   "doc_id": "eor_-83553_7787b0dc",
+   "idx": 0,
+   "text": "Stone performed zone change operations on the PL 23, OCS-G-01238, Well C4ST1BP1 to produce the \"CP 28\" Sand.  Operations began on August 18, 2008, and were completed on September 30, 2008. The previous producing interval, the \"CP 29\" Sand was isolated by setting a posi-set plug @ 15310' MD and dumping 25' cmt on top of the plug, ETOC @ 15285'.  \n\nThe \"CP 28\" Sand was exposed to production by perforating from 15180' - 15192' MD.  The well was turned over to production on October 1, 2008; however, the \"CP 28\" watered out and did not produce at economic levels.  Test results for October 2, 2008:  38 MCFPD, 0 BCPD, 1600 BWPD.  A Notice of 1st Production is not being filed for the \"CP 28\" Sand completion interval.  The well is shut-in while waiting for zone change operations to be completed to produce the \"CP24\" Sand."
+  }
+ ],
+ "documents": [
+  {
+   "doc_id": "eor_-10441_37e78f36",
+   "published_at": "2006-01-09",
+   "source_uri": "bsee:eor:-10441",
+   "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud. A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree. Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD.",
+   "title": "BSEE EOR -10441 API 177084094000"
+  },
+  {
+   "doc_id": "eor_-106378_8b6db016",
+   "published_at": "2004-03-13",
+   "source_uri": "bsee:eor:-106378",
+   "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD.",
+   "title": "BSEE EOR -106378 API 177154028602"
+  },
+  {
+   "doc_id": "eor_-106701_93dbc0f4",
+   "published_at": "2004-09-11",
+   "source_uri": "bsee:eor:-106701",
+   "text": "The subsequent report for the approved EOR to TA the well stipulates that the casings would be cut 15' BML and pulled during platform removal.  The attached Salvage report shows September 11, 2004 as the date casings were cut and pulled.",
+   "title": "BSEE EOR -106701 API 177094087800"
+  },
+  {
+   "doc_id": "eor_-110709_c543c162",
+   "published_at": "2008-10-25",
+   "source_uri": "bsee:eor:-110709",
+   "text": "Wash sand with a coil tbg unit, install a thru-tbg gravel pack, wash proppant from atop the vented, gravel pack screen using a coil tbg unit and spotted acid into perforations to stimulate productivity.",
+   "title": "BSEE EOR -110709 API 427084058302"
+  },
+  {
+   "doc_id": "eor_-111190_bf5f7db8",
+   "published_at": "2008-07-27",
+   "source_uri": "bsee:eor:-111190",
+   "text": "Zone change operations were successfully completed on EW 306, Well A-3ST3.  Operations began on May 9, 2010 and were completed on May 25, 2010.  The previous producing interval, the \"LH\" Sand, perfs 16310' - 16328' MD, was isolated by setting a MRBP @ 16295' MD and dumping 50' of cmt on top of the plug; ETOC @ 16245' MD.  The \"LG Lwr\" Sand was then exposed to production by perforating from 16167' - 16175' MD.",
+   "title": "BSEE EOR -111190 API 608104004803"
+  },
+  {
+   "doc_id": "eor_-115129_7f61f092",
+   "published_at": "2010-03-05",
+   "source_uri": "bsee:eor:-115129",
+   "text": "Leed has successfully completed perforation modification operations on the SS 201 A06 well, \"KH\" Sand completion to reduce water production.  \n\nA MRBP was set at 12901' MD.   Resin and cement was dumped on top of the plug with the ETOC cement @ 12853' MD.  The operation successfully isolated the bottom portion of the \"KH\" Sand completion, perforation interval 12853' - 12896' MD.\n\nOperations began on 01-31-11 and were completed on 02-04-11.",
+   "title": "BSEE EOR -115129 API 177114154000"
+  },
+  {
+   "doc_id": "eor_-115965_1bc5d37f",
+   "published_at": "2004-05-31",
+   "source_uri": "bsee:eor:-115965",
+   "text": "Stone has completed zone change operations on the VR 51 A-4 well to produce the \"CC-1\" sand. The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD. The \"CC-1\" sand was perforated at intervals 10,382'-10,392' MD. A CIBP was set at 10,399' MD and GP assy was set on top of CIBP. The \"CC-1\" sand was then gravel packed. Coil tubing was then utilized to perform an acid job on the well and jet the well with nitrogen to lift the well allowing for production to be established from the \"CC-1\" Sand. Operations began 03/25/2011 and ended 05/04/2011.",
+   "title": "BSEE EOR -115965 API 177054120100"
+  },
+  {
+   "doc_id": "eor_-116446_6cdc069f",
+   "published_at": "1996-10-16",
+   "source_uri": "bsee:eor:-116446",
+   "text": "Stone has successfully completed operations on the EW 306 A-16 well to install a subsurface safety PB insert valve in the X-nipple at 471' MD to convert the operation of the downhole safety valve to subsea control. This has allowed for production to be restored from the well. Operations began and ended on 04/27/2011.\n\nSee attached file, Current Wellbore Schematic for details.",
+   "title": "BSEE EOR -116446 API 608105006400"
+  },
+  {
+   "doc_id": "eor_-117225_14d568fc",
+   "published_at": "2006-09-02",
+   "source_uri": "bsee:eor:-117225",
+   "text": "Stone has successfully completed perforation modification operation on the EC 121 B-1 well. Perforations were added to the lower lobe of the current completion, the \"Cyclam 3-B\" sand at intervals 9,996'-10,006' MD. Operations began and ended on 05/22/2011.",
+   "title": "BSEE EOR -117225 API 177034099700"
+  },
+  {
+   "doc_id": "eor_-117598_649ccce8",
+   "published_at": "2010-12-15",
+   "source_uri": "bsee:eor:-117598",
+   "text": "Unable to Pressure test the surface plug, bubble tested and weight tested 3/16/11, but when pressure testing a hole blew out through the 10 ¾? and 20? somewhere between mud line and water line. Could not pressure test.",
+   "title": "BSEE EOR -117598 API 177214016000"
+  },
+  {
+   "doc_id": "eor_-118968_bc3de2d8",
+   "published_at": "1996-05-12",
+   "source_uri": "bsee:eor:-118968",
+   "text": "Stone has successfully completed operations on the EW 306 A-14ST1 well to convert the well from flowing to  a gas lift well. The previously installed gas lift valves were activated and utilized to produce the well via gas lift operations.   The results of the operations have reclassified the well from producing oil well (POW) to oil gas lift (OGL).  Operations began 08/23/11 and ended 08/25/11.",
+   "title": "BSEE EOR -118968 API 608105005901"
+  },
+  {
+   "doc_id": "eor_-119584_ca8392d9",
+   "published_at": "2011-10-22",
+   "source_uri": "bsee:eor:-119584",
+   "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD.  Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg.  A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD.",
+   "title": "BSEE EOR -119584 API 177114096002"
+  },
+  {
+   "doc_id": "eor_-121126_77121f26",
+   "published_at": "2010-04-08",
+   "source_uri": "bsee:eor:-121126",
+   "text": "Stone Energy Corporation has successfully completed operations on the MC 109 Well No. A012ST01 to install live gas lift valves in the well to convert to a gas lift oil well. Operations began 01/08/2012 and ended 01/31/2012.",
+   "title": "BSEE EOR -121126 API 608174043201"
+  },
+  {
+   "doc_id": "eor_-123375_80318692",
+   "published_at": "2012-04-19",
+   "source_uri": "bsee:eor:-123375",
+   "text": "Well was batch set (through the 22\" casing) and suspended on 04/19/2012, pending further operations.\nOn 05/31/2012, tagged cement @ 8,694'. Apply 20k weight test down. Displaced well to 12.2 ppg mud with corrosion inhibitor. Install 30\" TA Cap and inject McDermid fluid in TA Cap.",
+   "title": "BSEE EOR -123375 API 608124007100"
+  },
+  {
+   "doc_id": "eor_-123740_b8fbb4ed",
+   "published_at": "2012-05-02",
+   "source_uri": "bsee:eor:-123740",
+   "text": "Well was batch set (through the 22\" casing) and suspended on 05/02/2012, pending further operations.\nOn 05/31/2012, tagged cement @ 8,697'. Apply 20k weight test down. Displaced well to 12.2 ppg mud with corrosion inhibitor. Install 30\" TA Cap and inject McDermid fluid in TA Cap.",
+   "title": "BSEE EOR -123740 API 608124007000"
+  },
+  {
+   "doc_id": "eor_-124122_63f93a45",
+   "published_at": "1975-01-19",
+   "source_uri": "bsee:eor:-124122",
+   "text": "Due to the fact that this well was previously classified as PA?d by a previous operator in 1975 McMoRan is not aware of the dates the cement plugs were placed on this well.  This well was actually PA?d by McMoRan on 05/15/2012 all casings cut @ 20-ft BML.",
+   "title": "BSEE EOR -124122 API 177024022800"
+  },
+  {
+   "doc_id": "eor_-125705_5e2da512",
+   "published_at": "2007-09-23",
+   "source_uri": "bsee:eor:-125705",
+   "text": "Slight intermittent bubbles were observed emanating from the annuli.   A slip on intervention well cap was installed. Micro-Matrix Cement was injected to stop bubbling. No bubbles observed.\n\nPlease note: The 30\", 13 3/8\" and 9 5/8\" casings / conductors were cut at 186' AML.",
+   "title": "BSEE EOR -125705 API 177104044200"
+  },
+  {
+   "doc_id": "eor_-126565_84b0a5fb",
+   "published_at": "2007-07-24",
+   "source_uri": "bsee:eor:-126565",
+   "text": "The approved APM was to change zones; however, after further geological review, it was determined that the new perfs were in the same zone, resulting in a modification to perforations in current zone.",
+   "title": "BSEE EOR -126565 API 177054124900"
+  },
+  {
+   "doc_id": "eor_-126963_4cf1485f",
+   "published_at": "2012-09-04",
+   "source_uri": "bsee:eor:-126963",
+   "text": "Well is T/A. e-well will not let me make the reservior name change\n\nPlease submit a correction report regarding the sand. If BRA3 is correct, simply change it on the wellbore. Correction report was submitted last week.",
+   "title": "BSEE EOR -126963 API 177164001400"
+  },
+  {
+   "doc_id": "eor_-132305_5dd63b49",
+   "published_at": "2008-06-19",
+   "source_uri": "bsee:eor:-132305",
+   "text": "Anadarko received approval for a 14 day temporary zone change/test for EB 646 SS007 ST01. The DS-1 FB A sand was temporarily isolated and only the DS-1 FB A sand was produced temporarily. \n\nThe isolation resulted in a loss of oil and an increase in water after production. Therefore the test was ended early and the well was returned to the pre-test configuration with both the DS-1 FB A and DP-1 FB A open. Both the district and region were notified.\n\n*Per the approved APM comments Anadarko was required to return the wellbore to the commingled DP-1/DS-1 completion at the end of the test period unless written permission was granted by both the district and the region to do otherwise. This was also discussed with Mark Osterman prior to sleeve shift back to the commingled configuration.",
+   "title": "BSEE EOR -132305 API 608044026201"
+  },
+  {
+   "doc_id": "eor_-137936_910ef7c0",
+   "published_at": "2013-12-18",
+   "source_uri": "bsee:eor:-137936",
+   "text": "The Mad Dog batch set drilling operations installed 36\" conductor and 22\" surface casing in Green Canyon Block 782. The batch set wells include MD12, MD15, MD16, MD17 and MD18, respectively.  Batch set operations started on September 25, 2013 and concluded on December 21, 2013 with all of the batch set wells status drilling suspended.  The Mad Dog Spar Rig was used for the batch set operation, no BOPs were used during any part of the batch set since all operations were open water.",
+   "title": "BSEE EOR -137936 API 608114061200"
+  },
+  {
+   "doc_id": "eor_-141200_58ebd6ad",
+   "published_at": "2014-02-21",
+   "source_uri": "bsee:eor:-141200",
+   "text": "Permenent abandonment operations to sever, pull and remove casings. (All other abandonment work previously conducted.)\n\n#6: All casing (7\", 10-3/4\" & 16\") cut on 2/20/14 with cutting tool to 20' BML. Total 75.5' - 5250 lbs. \n\nCut 36\" drive pipe on 2/21/14 with cutting tool (ICT) to 16' BML. Length 70.2' - 32,150 lbs.",
+   "title": "BSEE EOR -141200 API 177004001800"
+  },
+  {
+   "doc_id": "eor_-151231_23dd2d46",
+   "published_at": "2009-12-24",
+   "source_uri": "bsee:eor:-151231",
+   "text": "Zone change operations have been completed on the EC 36 Well A-1 to produce the \"Cris I M-7\" Sd (S02). The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi. The \"Cris I M-7\" Sd was open to production by shifting sliding sleeves at 9,754' & 9,772' MD open. Operations began 01/09/2015 and ended 01/18/2015.",
+   "title": "BSEE EOR -151231 API 177034101400"
+  },
+  {
+   "doc_id": "eor_-153193_1cb44328",
+   "published_at": "2015-04-23",
+   "source_uri": "bsee:eor:-153193",
+   "text": "Well is P/A.\nAttached is a well sketch for Well B006 that was done in 1986 that shows the calculated TOC in the 7\" X 9 5/8\" annulus to be at approximately 6760', well above the 7\" X 5\" X-over at 10020'.",
+   "title": "BSEE EOR -153193 API 427044007500"
+  },
+  {
+   "doc_id": "eor_-154697_e8f1e681",
+   "published_at": "2015-05-28",
+   "source_uri": "bsee:eor:-154697",
+   "text": "Rooster Petroleum, LLC has completed temporary abandonment operations on the HI 115 Well B001(ST02).  The \"Cris R\" Sand perfs (16,862'-16,877' MD) were sqz'd w/ 4.8 bbls (40.5 sxs, 43.7 cu ft) Class H cmt w/ TOC at 16,310' pressure tested to 1000 psi.  A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi.  \n\nThe 3-1/2\" tbg was perf'd at 9698'-9700' MD.  A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi. The 3-1/2\" tbg was perf'd @9400'MD.  A 200' cmt balanced plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" annulus w/6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9172' MD, pressure tested to 1000 psi. The 3-1/2\" tbg was cut/pulled f/ 1630' MD. A 7-5/8\" csg CIBP was set at 1,505 MD (1345' BML) and pressure tested to 1000 psi.  The 7-5/8\" csg was perf'd at 1500' MD (1340' BML).  A 300' cmt plug was set in the 7-5/8\" csg & 7-5/8\" x 13-5/8\" annulus w/39 bbls (203 sxs, 219 cu ft) Class H Cmt w/TOC at 1170' MD (1010' BML) & pressure tested to 1000 psi. \n\nThe 7-5/8\" csg was perf'd @ 991' RKB. A 13-5/8\" csg CIBP was set @ 700' MD (600'BML).  The 13-5/8\" csg was perf'd 695'-697'.  A 207' cmt plug was set w/ 59.3 bbl (308 sxs) Class H cmt f/ 493'-700' RKB and pressure tested to 1000 psi. A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB.\n\nCsg strings were cut and pulled at the following depths:\n\n7-5/8\" csg - (947' MD) 844' BML\n\n13-5/8\" csg - (473' RKB) 313' BML\n\nTA operations commenced on 4/26/2015 and were completed on 5/28/2015.",
+   "title": "BSEE EOR -154697 API 427084056903"
+  },
+  {
+   "doc_id": "eor_-157593_4154806b",
+   "published_at": "2015-07-27",
+   "source_uri": "bsee:eor:-157593",
+   "text": "Permanent Abandonment. Received a departure from 250.1716(a),which states that all casing must be removed 15' BML. All remaining casings were cut @ 200' BWL (450' AML). The conductors and platform are a reef in place.",
+   "title": "BSEE EOR -157593 API 608174018200"
+  },
+  {
+   "doc_id": "eor_-158773_5cb14ed0",
+   "published_at": "2003-08-08",
+   "source_uri": "bsee:eor:-158773",
+   "text": "9-5/8\", 13-3/8\", and 20\" casing strings cut/pulled BML. 48\" drive pipe cut BML, but not yet pulled. Well status remains TAd.\n\nThe plugs in the well were set by a different operator (Seneca Resources Corporation) in 2003. Energy XXI doesn't have documentation for dates the plugs were set and tested.",
+   "title": "BSEE EOR -158773 API 427084051700"
+  },
+  {
+   "doc_id": "eor_-165397_7e84fdbf",
+   "published_at": "1993-10-14",
+   "source_uri": "bsee:eor:-165397",
+   "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD.\n\nPlease note contingency steps 13-15 in procedure were omitted from the operation.\n\nOperations Completed 09/18/2016",
+   "title": "BSEE EOR -165397 API 177094095700"
+  },
+  {
+   "doc_id": "eor_-165748_eb51960b",
+   "published_at": "2016-10-07",
+   "source_uri": "bsee:eor:-165748",
+   "text": "The OCS-G 4909 Well No. 7 is on Medco's current Idle Iron List and has future utility as a sidetrack candidate for future development of the 7300' Sand.  Medco performed a temporary abandonment operation in this well, which allows future utilization of this wellbore.",
+   "title": "BSEE EOR -165748 API 177254032200"
+  },
+  {
+   "doc_id": "eor_-166906_ddf3eab2",
+   "published_at": "2016-06-08",
+   "source_uri": "bsee:eor:-166906",
+   "text": "Operation to perform the zonal testing required in the DC132\ncommingling agreement. The first step was to close the upper M57 zone and perform the single zone M55 well test. The second step was to close the lower M55 zone and open the upper M57 zone to perform the single zone M57 well test. The third step was to open the lower M55 zone and return to commingling production from both zones after conducting the single zone well tests. These activities was completed between February 12th to February 14th.",
+   "title": "BSEE EOR -166906 API 608114040700"
+  },
+  {
+   "doc_id": "eor_-169333_fcc04c1b",
+   "published_at": "2005-10-01",
+   "source_uri": "bsee:eor:-169333",
+   "text": "Operations to temporarily abandon this well thru the surface plug were completed on 09/19/2017.  Please note, the well was given a status of \"temporarily abandoned\" on 10/01/2005 & the status date remains the same.",
+   "title": "BSEE EOR -169333 API 177034099200"
+  },
+  {
+   "doc_id": "eor_-174092_065bc7f9",
+   "published_at": "2012-01-29",
+   "source_uri": "bsee:eor:-174092",
+   "text": "Operations to complete the temporary abandonment through surface were suspended; although the well is not abandoned to surface, all zones are isolated so the well remains in \"TA Status\" as of 01/29/2012.",
+   "title": "BSEE EOR -174092 API 177084053602"
+  },
+  {
+   "doc_id": "eor_-175209_7ab3d938",
+   "published_at": "2018-12-22",
+   "source_uri": "bsee:eor:-175209",
+   "text": "Cement packer recompletion operations to the E-1 Sand were suspended on 12/22/2018 prior to perforating the new zone (all other zones are now isolated thus leaving the well in \"temporarily abandoned\" status).",
+   "title": "BSEE EOR -175209 API 177094141301"
+  },
+  {
+   "doc_id": "eor_-180488_0256a4e8",
+   "published_at": "1994-09-23",
+   "source_uri": "bsee:eor:-180488",
+   "text": "Casing Pressure Repair Operations Suspended 3/21/20 - After several days of bailing they are unable to get below 2,554' and have been unsuccessful in cleaning out A-7 with slickline. A DX plug was set in the SCSSV profile at 482'.",
+   "title": "BSEE EOR -180488 API 177090068601"
+  },
+  {
+   "doc_id": "eor_-180868_bbb62974",
+   "published_at": "2020-08-03",
+   "source_uri": "bsee:eor:-180868",
+   "text": "Drilling operations 4/19/2020 - 6/5/2020.  Subsea tree installation 6/10/2020 - 6/11/2020.  Initial completion operations for a triple stacked frac pack in the Upper (B6U) and Lower (B6L) lobe of the \"B6 Sand\" and the \"B4 Sand\" took place 6/8/2020 - 8/3/2020",
+   "title": "BSEE EOR -180868 API 608114073900"
+  },
+  {
+   "doc_id": "eor_-183053_2531389f",
+   "published_at": "2020-10-25",
+   "source_uri": "bsee:eor:-183053",
+   "text": "Permit changed to zonal isolation in lieu of full TA. Complete 10/25/20\n\nDue to issues on the E003 well, the decision has been made to demobilize all equipment and personnel and return in 2021 to complete the TA of this well. A new APM will be submitted to fully TA the well next year.",
+   "title": "BSEE EOR -183053 API 177154106500"
+  },
+  {
+   "doc_id": "eor_-200983_091a7dba",
+   "published_at": "1997-02-26",
+   "source_uri": "bsee:eor:-200983",
+   "text": "Per APM COA: \n7. After the valve is set it in the well, your regulatory department is to send in a variance request in TIMSWEB so that the alternate compliance will appear on the inspection report and will be approved on our production operations side.",
+   "title": "BSEE EOR -200983 API 177190097102"
+  },
+  {
+   "doc_id": "eor_-203739_27d06f7b",
+   "published_at": "2013-07-01",
+   "source_uri": "bsee:eor:-203739",
+   "text": "The well was temporarily abandoned through the surface plug as of 05/10/2025; however, eWell recognizes the zonal isolation date as the temporary abandonment date from a previous EOR and cannot be changed.",
+   "title": "BSEE EOR -203739 API 177090093500"
+  },
+  {
+   "doc_id": "eor_-203944_26c4b587",
+   "published_at": "1996-08-09",
+   "source_uri": "bsee:eor:-203944",
+   "text": "Operations to temporarily abandon the well through the surface plug were completed on 06/16/2025.\n\n*eWell recognizes a TA date of 08/09/1996 due to previous zonal isolation operations & prevents updating the date. This operation was to complete full TA through the surface plug*",
+   "title": "BSEE EOR -203944 API 177090076801"
+  },
+  {
+   "doc_id": "eor_-204443_c33bbff3",
+   "published_at": "2013-09-11",
+   "source_uri": "bsee:eor:-204443",
+   "text": "Operations to temporarily abandon the well through the surface plug were completed on 07/11/2025.\n\neWell recognizes a TA date of 09/11/2013 due to previous zonal isolation operations & prevents updating the date. This\noperation was to complete full TA through the surface plug.",
+   "title": "BSEE EOR -204443 API 177094014000"
+  },
+  {
+   "doc_id": "eor_-205910_3a614ea8",
+   "published_at": "2026-05-16",
+   "source_uri": "bsee:eor:-205910",
+   "text": "Remove the upper completion from the well and abandon the lower completion.\n. Set a secondary plug above the tubing stub.\n. Cut and pull 7-5/8' and 8-5/8\" tie-back to recover the well slot and enable drilling a cased-hole sidetrack.\n. Set API 11D1 certified bridge plug with min 100ft of cement to permanently abandon the MB09 ST01 BP00 wellbore",
+   "title": "BSEE EOR -205910 API 608174122501"
+  },
+  {
+   "doc_id": "eor_-2095_f2a90e24",
+   "published_at": "2005-02-21",
+   "source_uri": "bsee:eor:-2095",
+   "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD.",
+   "title": "BSEE EOR -2095 API 177044105500"
+  },
+  {
+   "doc_id": "eor_-46627_c8788ba2",
+   "published_at": "2007-06-01",
+   "source_uri": "bsee:eor:-46627",
+   "text": "The South Marsh Island Block 123, OCS-G 23845, Well No. 01 was drilled and temporary abandon. The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD.  The wellbore was temporarily abandon on June 01, 2007.",
+   "title": "BSEE EOR -46627 API 177084094800"
+  },
+  {
+   "doc_id": "eor_-48387_268b7e78",
+   "published_at": "2001-07-04",
+   "source_uri": "bsee:eor:-48387",
+   "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand.  Operations began on May 28, 2007 and were completed on June 3, 2007. The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'.  The 5\" liner was perforated @ 14912' - 14954' for production.",
+   "title": "BSEE EOR -48387 API 177134019901"
+  },
+  {
+   "doc_id": "eor_-48472_a0f3a4d2",
+   "published_at": "2007-09-01",
+   "source_uri": "bsee:eor:-48472",
+   "text": "Well is currently in TA status. The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment.",
+   "title": "BSEE EOR -48472 API 177054009601"
+  },
+  {
+   "doc_id": "eor_-53929_9608c4e5",
+   "published_at": "2007-08-22",
+   "source_uri": "bsee:eor:-53929",
+   "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07.  The well was successfuly completed as a single, gravel packed, oil completion in the \"Big 2 1-B\" Sand. Completion operations were completed on 08-23-07.",
+   "title": "BSEE EOR -53929 API 177004127601"
+  },
+  {
+   "doc_id": "eor_-63747_d1598053",
+   "published_at": "2002-11-08",
+   "source_uri": "bsee:eor:-63747",
+   "text": "The 9-5/8\" casing has been cut & pulled a minimum of 15' BML. Remaining casings will be cut & pulled a minimum of 15' BML at platform removal. These abandonment operations were completed on 2/12/08.  SS207 Well No. A018 remains in TA status.",
+   "title": "BSEE EOR -63747 API 177112005000"
+  },
+  {
+   "doc_id": "eor_-66275_ce78f433",
+   "published_at": "2008-01-11",
+   "source_uri": "bsee:eor:-66275",
+   "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD.  Due to lost returns, the wellbore was plugged back and abandoned on January 11, 2008 to drill the EI 183 A6BP3 wellbore.",
+   "title": "BSEE EOR -66275 API 177094146902"
+  },
+  {
+   "doc_id": "eor_-79498_761e2a90",
+   "published_at": "2008-08-16",
+   "source_uri": "bsee:eor:-79498",
+   "text": "Completed as a single stacked gravel packed completion in the Lower KJ/KK Sand with an unperforated selective in the LP Sand.  The Lower KJ/KK Sand will only be produced at this time.  A zone change could be submitted at a later date to commingle the sands.\n\nAlso please note:  The KJ/KK Sand is hooked up and ready to flow.  Due to Hurricane Ike, the well is temporarily shut-in.",
+   "title": "BSEE EOR -79498 API 177194003301"
+  },
+  {
+   "doc_id": "eor_-83553_7787b0dc",
+   "published_at": "2003-09-19",
+   "source_uri": "bsee:eor:-83553",
+   "text": "Stone performed zone change operations on the PL 23, OCS-G-01238, Well C4ST1BP1 to produce the \"CP 28\" Sand.  Operations began on August 18, 2008, and were completed on September 30, 2008. The previous producing interval, the \"CP 29\" Sand was isolated by setting a posi-set plug @ 15310' MD and dumping 25' cmt on top of the plug, ETOC @ 15285'.  \n\nThe \"CP 28\" Sand was exposed to production by perforating from 15180' - 15192' MD.  The well was turned over to production on October 1, 2008; however, the \"CP 28\" watered out and did not produce at economic levels.  Test results for October 2, 2008:  38 MCFPD, 0 BCPD, 1600 BWPD.  A Notice of 1st Production is not being filed for the \"CP 28\" Sand completion interval.  The well is shut-in while waiting for zone change operations to be completed to produce the \"CP24\" Sand.",
+   "title": "BSEE EOR -83553 API 177134024102"
+  }
+ ],
+ "entities": [
+  {
+   "aliases": [
+    "temporarily abandoned"
+   ],
+   "entity_id": "e_00a6ba21da70",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1cd37cc7f476",
+    "m_a841ef8f18a6",
+    "m_bdf170e1b1c0"
+   ],
+   "name": "TA",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_012c07d30c68",
+   "kind": "entity",
+   "mention_ids": [
+    "m_f102db6a4d75"
+   ],
+   "name": "a minimum of 15' BML",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_0190e4c31806",
+   "kind": "entity",
+   "mention_ids": [
+    "m_d981cb1df85f"
+   ],
+   "name": "13562' - 13569' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_04873abce30c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_07c70078cd30"
+   ],
+   "name": "VR 51 A-4 well",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_05d1801baa9d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0a4d63ea4ca6"
+   ],
+   "name": "13658' - 13696' MD / 13498' - 13532' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_097a35f1bcdb",
+   "kind": "entity",
+   "mention_ids": [
+    "m_859472ad8886"
+   ],
+   "name": "9182' - 9208' MD / 9073' - 9098' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_09b817efedb4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_7fec09d829a6"
+   ],
+   "name": "5\" 18#/ft, P-110 production liner",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_0bf21be2345a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5d12064e4b8d"
+   ],
+   "name": "8439-8453-ft MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_0c1aa0fcb78f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_dd241bd17ad0"
+   ],
+   "name": "15180' - 15192' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_107b22805b1e",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9d4d52281d67"
+   ],
+   "name": "TOC @ 14,614'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_108c013fde08",
+   "kind": "literal",
+   "mention_ids": [
+    "m_059f6aa5620d"
+   ],
+   "name": "1000 psi",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_12715cc6a3e3",
+   "kind": "literal",
+   "mention_ids": [
+    "m_69b0ec0dc04e"
+   ],
+   "name": "May 12, 2007",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_15b221baf8a8",
+   "kind": "entity",
+   "mention_ids": [
+    "m_84a433ca2c8e"
+   ],
+   "name": "700' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_17e41e84610b",
+   "kind": "entity",
+   "mention_ids": [
+    "m_02f91018ff4a"
+   ],
+   "name": "254' RKB",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_197b0f2b5ee9",
+   "kind": "literal",
+   "mention_ids": [
+    "m_a982a2d4c752"
+   ],
+   "name": "December 19, 2007",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_1dc70bd69ad0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_fc14f7af648c"
+   ],
+   "name": "SS207 Well No. A018",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_23b6070d015d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_96e31078f081"
+   ],
+   "name": "4\" AML",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_28514711a7f3",
+   "kind": "entity",
+   "mention_ids": [
+    "m_801d19cc90b5"
+   ],
+   "name": "13-5/8\" csg",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_285914532e88",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4e9a57e5c4de"
+   ],
+   "name": "16.3 ppg mud",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_2ab4c6d7d096",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1638243275a2"
+   ],
+   "name": "FXE",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_2ac087348708",
+   "kind": "entity",
+   "mention_ids": [
+    "m_2d815b03e09a",
+    "m_31f69913c285"
+   ],
+   "name": "Posi-set Plug",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_2bcbd84439f0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_45a5bf975f0a"
+   ],
+   "name": "Well Q1ST2",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_2eee49ddd98c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_f3ceb8577c7d"
+   ],
+   "name": "15612' Md",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_33c9e4a108aa",
+   "kind": "entity",
+   "mention_ids": [
+    "m_991d326221b7"
+   ],
+   "name": "packoff assembly",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_35d4825cd33c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_d8e4a639415b"
+   ],
+   "name": "13734' - 13752' MD / 13567' - 13583' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_392c846fe973",
+   "kind": "entity",
+   "mention_ids": [
+    "m_174b216f527e"
+   ],
+   "name": "12901' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_3bada48862a4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ede7b808c5fd"
+   ],
+   "name": "10,382'-10,392' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_3c356e77a04f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_6bd9e87e99c1"
+   ],
+   "name": "9,891' RKB + 10' cmt",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_3c6112c70d9c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_c76acf7440e5"
+   ],
+   "name": "EI 183 A6BP2",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_3ec0d7317a9b",
+   "kind": "entity",
+   "mention_ids": [
+    "m_3acd712f0281"
+   ],
+   "name": "471' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [
+    "7 5/8\" csg"
+   ],
+   "entity_id": "e_3fd6bdada6a3",
+   "kind": "entity",
+   "mention_ids": [
+    "m_67bbffed2fd0",
+    "m_dd3dfcd61afb"
+   ],
+   "name": "7-5/8\" csg",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_40c07b79b937",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ca36078e8419"
+   ],
+   "name": "8675-ft MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_4139f656fe00",
+   "kind": "entity",
+   "mention_ids": [
+    "m_08881a116649"
+   ],
+   "name": "13633' - 13640' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_41803046bf7c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_36bc2e4dd58e"
+   ],
+   "name": "12,080' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_4554b0a4adb1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_8f61e3ae8982"
+   ],
+   "name": "200' BWL",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_48e14004209f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_95f1a26d58d9"
+   ],
+   "name": "\"CP 28\" Sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_4be66b332071",
+   "kind": "entity",
+   "mention_ids": [
+    "m_2a15caf5a7fa"
+   ],
+   "name": "Well A16BP",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_4e07b1eea2c0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ecf643965cb6"
+   ],
+   "name": "14345' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5016637dac6a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ae4a954f861f"
+   ],
+   "name": "HI 115 Well B001(ST02)",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_50584f6dffde",
+   "kind": "entity",
+   "mention_ids": [
+    "m_780e6ca09ddf"
+   ],
+   "name": "BN 8400-ft Sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_53b4d4575dc0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1fd33afee889"
+   ],
+   "name": "EC 121 B-1 well",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_53cdd954b75d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_15ce79e8c7a0"
+   ],
+   "name": "9,996'-10,006' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5643715609c5",
+   "kind": "literal",
+   "mention_ids": [
+    "m_4872e80da50a"
+   ],
+   "name": "10.0 ppg",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5862175800e8",
+   "kind": "entity",
+   "mention_ids": [
+    "m_29983df28ae4"
+   ],
+   "name": "493'-700' RKB",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5d13daae0dfa",
+   "kind": "entity",
+   "mention_ids": [
+    "m_187b8f99b4ae"
+   ],
+   "name": "26\" drive pipe",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5fb552a76ef3",
+   "kind": "entity",
+   "mention_ids": [
+    "m_fe42b7d0077a"
+   ],
+   "name": "COM",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_643d98d287d8",
+   "kind": "literal",
+   "mention_ids": [
+    "m_2c8da71c2967"
+   ],
+   "name": "1,505 MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_64f6bd111f2b",
+   "kind": "entity",
+   "mention_ids": [
+    "m_d3de1742bb42"
+   ],
+   "name": "10-06-11",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_65efa573cf8f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5af0e476b831"
+   ],
+   "name": "TAd",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_669ad6899abd",
+   "kind": "entity",
+   "mention_ids": [
+    "m_efb4f84b2ff8"
+   ],
+   "name": "BML",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_675e7d6a49d6",
+   "kind": "entity",
+   "mention_ids": [
+    "m_643f5c16278e"
+   ],
+   "name": "442' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [
+    "plugs"
+   ],
+   "entity_id": "e_685601509a56",
+   "kind": "entity",
+   "mention_ids": [
+    "m_645a302f8dd1",
+    "m_f9a5c3bec40f"
+   ],
+   "name": "plug",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_6c01b78938ed",
+   "kind": "entity",
+   "mention_ids": [
+    "m_d44c7c12716b"
+   ],
+   "name": "\"R-3\" Sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7241b2e39c6d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_aa61e63fd1dc"
+   ],
+   "name": "12853' - 12896' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_731a2bdf66a1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_955474efac1b"
+   ],
+   "name": "48\" drive pipe",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7accd41cd0fa",
+   "kind": "entity",
+   "mention_ids": [
+    "m_c5494ada878a"
+   ],
+   "name": "9357' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7b8822761129",
+   "kind": "entity",
+   "mention_ids": [
+    "m_97ef3b484425"
+   ],
+   "name": "07-21-07",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7cec808fa5e0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_b65a1722968c"
+   ],
+   "name": "Lower KJ/KK Sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7dbf3d543fd6",
+   "kind": "entity",
+   "mention_ids": [
+    "m_53b79a06e490"
+   ],
+   "name": "\"Cris I M-7\" Sd",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8015e04326be",
+   "kind": "entity",
+   "mention_ids": [
+    "m_3c0cc0130a09"
+   ],
+   "name": "PL 23 OCS G-01238, Well No. C-001ST",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_81a9e7131cf1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_30b616f0221b"
+   ],
+   "name": "09/19/2017",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_81fa77db5de2",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5559714edcf8"
+   ],
+   "name": "1500' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_833451464c6a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_8cd67509adbe"
+   ],
+   "name": "Cris S-4 SD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_879580b7986e",
+   "kind": "entity",
+   "mention_ids": [
+    "m_8e16d24f4e4f"
+   ],
+   "name": "EC 282 #C-1",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_87c4865cafaf",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0e119b4765ae",
+    "m_33a8300475dc",
+    "m_573555ef6a8e",
+    "m_7069956c4b67"
+   ],
+   "name": "MRBP",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_89aa8371309e",
+   "kind": "entity",
+   "mention_ids": [
+    "m_504e85907947"
+   ],
+   "name": "186' AML",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8a8e12d3e893",
+   "kind": "entity",
+   "mention_ids": [
+    "m_215bfce3512b"
+   ],
+   "name": "8321-ft TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8dbac6afc326",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9a2fb2a53558"
+   ],
+   "name": "3-1/2\" tubing string",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_909abed54e9a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9eae7971adf6"
+   ],
+   "name": "EC 36 Well A-1",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_91c85c2d2ce4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_daf8c1ff45f2"
+   ],
+   "name": "15080'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_93f5f13a753f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_a75880e4f9c4"
+   ],
+   "name": "14648' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_952e7a6ea602",
+   "kind": "literal",
+   "mention_ids": [
+    "m_53aa45bfb676"
+   ],
+   "name": "1050 psi",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_978410b2e67d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_b1edc7195d92"
+   ],
+   "name": "All remaining casings",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_990c8473c398",
+   "kind": "entity",
+   "mention_ids": [
+    "m_cb0e8907904e"
+   ],
+   "name": "6400' MD / TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_9b02d9974c14",
+   "kind": "entity",
+   "mention_ids": [
+    "m_fa80b0df56d0"
+   ],
+   "name": "ST",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_9f7fbf137632",
+   "kind": "entity",
+   "mention_ids": [
+    "m_da6297591ad0"
+   ],
+   "name": "subsurface safety PB insert valve",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_9fe7d8923287",
+   "kind": "entity",
+   "mention_ids": [
+    "m_f1e492bf760e"
+   ],
+   "name": "1630' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a0bcbacb8273",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0c5c9872cf02"
+   ],
+   "name": "14,635'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a0ccd43b62a1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_647907277068"
+   ],
+   "name": "5 1/2-inch",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a311d8d530ff",
+   "kind": "entity",
+   "mention_ids": [
+    "m_c2a6ef259af0"
+   ],
+   "name": "473' RKB",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a5eedb07611d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5e69c53c53b6",
+    "m_d4a0ebc8fb08"
+   ],
+   "name": "CIBP",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a742839bfca8",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5b223108ff1d"
+   ],
+   "name": "695'-697'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a7daa66b3b43",
+   "kind": "entity",
+   "mention_ids": [
+    "m_467403735ac4"
+   ],
+   "name": "9475'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a7e0b5bc9904",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0b64ec36648d",
+    "m_6ad064524046"
+   ],
+   "name": "9-5/8\" casing",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_adbaf2ac306d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_b2bab9e87941"
+   ],
+   "name": "9400'MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ae9e23d16279",
+   "kind": "entity",
+   "mention_ids": [
+    "m_2789a6c1d58b"
+   ],
+   "name": "\"CC-1\" sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_af24a0fd98f8",
+   "kind": "entity",
+   "mention_ids": [
+    "m_7d5f7e7d56e5"
+   ],
+   "name": "2-7/8\" tubing",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_b65a182d1df0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_c5d374ead86a"
+   ],
+   "name": "7 5/8\"",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_b775f73d4470",
+   "kind": "entity",
+   "mention_ids": [
+    "m_7afa46342fcf"
+   ],
+   "name": "18#/ft, P-110",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_b91539057383",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1cf615b1a6c1"
+   ],
+   "name": "5\"",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_bd8483287459",
+   "kind": "entity",
+   "mention_ids": [
+    "m_347f5dbfc7d1",
+    "m_5535cb30d42a",
+    "m_5a6cdb1407eb",
+    "m_754b8d09ecf0",
+    "m_75c9a3101b6f",
+    "m_ccf2dd6942c2",
+    "m_da9b53c2b2d0"
+   ],
+   "name": "well",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c156a3b89321",
+   "kind": "entity",
+   "mention_ids": [
+    "m_3184b154c6cb"
+   ],
+   "name": "TD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c1dba2514dae",
+   "kind": "entity",
+   "mention_ids": [
+    "m_2fda3dfe4940"
+   ],
+   "name": "11136' TVD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c42b64be4d89",
+   "kind": "entity",
+   "mention_ids": [
+    "m_402cef3be7e1"
+   ],
+   "name": "991' RKB",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c90c116b6356",
+   "kind": "entity",
+   "mention_ids": [
+    "m_8548871303a4"
+   ],
+   "name": "947' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c9d74be9ceb2",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0fb78feba063"
+   ],
+   "name": "wellbore",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_cdc7e86ff0cf",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1b78a45211ef"
+   ],
+   "name": "20\" casing string",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ce986937dbdd",
+   "kind": "entity",
+   "mention_ids": [
+    "m_e2d0d804e33b"
+   ],
+   "name": "TOC at 9410' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d3dbb89c341a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9f37bf311d4a"
+   ],
+   "name": "12300' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d46849a5183e",
+   "kind": "entity",
+   "mention_ids": [
+    "m_38b6bcd68eb9"
+   ],
+   "name": "30\", 13 3/8\" and 9 5/8\" casings / conductors",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d58536b19006",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4823c6ea208e"
+   ],
+   "name": "7689-ft",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d8985abe11e3",
+   "kind": "entity",
+   "mention_ids": [
+    "m_845e0dd54b89"
+   ],
+   "name": "10,399' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d974e4c79b46",
+   "kind": "entity",
+   "mention_ids": [
+    "m_13e7f781cfef"
+   ],
+   "name": "15310' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_db6eedfa72b1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ec98baa5e186"
+   ],
+   "name": "13-3/8\" casing",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e039a607ce7d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_23fd845cc161"
+   ],
+   "name": "TOC at 9172' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e1ddc7c0fbba",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1060f0b1134c"
+   ],
+   "name": "482'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e716b990ff0a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_57dffcd5ecf5"
+   ],
+   "name": "12,075' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e7c27100bb75",
+   "kind": "entity",
+   "mention_ids": [
+    "m_10d2edcbbf2d"
+   ],
+   "name": "14912' - 14954'",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e9c2509d8410",
+   "kind": "entity",
+   "mention_ids": [
+    "m_fa66a0907d2d"
+   ],
+   "name": "460' RKB",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ee55f0057e34",
+   "kind": "entity",
+   "mention_ids": [
+    "m_12db41902171"
+   ],
+   "name": "DX plug",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_eeb3d6b75d2a",
+   "kind": "entity",
+   "mention_ids": [
+    "m_af205ec9dcde"
+   ],
+   "name": "South Marsh Island Block 123, OCS-G 23845, Well No. 01",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ef282cb543cf",
+   "kind": "entity",
+   "mention_ids": [
+    "m_dca59bbec76b"
+   ],
+   "name": "\"KH\" Sand",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_f354641a70ab",
+   "kind": "entity",
+   "mention_ids": [
+    "m_493d70758bdc"
+   ],
+   "name": "TOC at 1170' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_f51f8380fd25",
+   "kind": "entity",
+   "mention_ids": [
+    "m_6614b81fc73a"
+   ],
+   "name": "9698'-9700' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_f99e71bbe644",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5224cf5eed90"
+   ],
+   "name": "5 1/2-inch production liner",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_fa33b01be552",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4c932d93f0f1"
+   ],
+   "name": "16295' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_fa8d916bf9f4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0892a5d8b99b"
+   ],
+   "name": "3-1/2\" tbg",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_fb642e6cafaf",
+   "kind": "entity",
+   "mention_ids": [
+    "m_594980864a59"
+   ],
+   "name": "temporarily shut-in",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_fcf39e0efce2",
+   "kind": "entity",
+   "mention_ids": [
+    "m_e06ca645693c"
+   ],
+   "name": "1357'- 1420' MD",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_fecd90f79b26",
+   "kind": "entity",
+   "mention_ids": [
+    "m_e2eced502d7f"
+   ],
+   "name": "CP27 Sand",
+   "resolver": "semhash+rules"
+  }
+ ],
+ "flags": {
+  "canon": true,
+  "judge": false,
+  "resolve": true,
+  "temporal": true,
+  "validate": true
+ },
+ "format": "kgb.graph/1",
+ "run_name": "bsee_text_test_subset_v1_guided",
+ "statements": [
+  {
+   "candidate_ids": [
+    "c_01e6209fcab2a655"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 77,
+     "char_start": 0,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:0-77",
+     "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 77,
+    "char_start": 0,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:0-77",
+    "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_285914532e88",
+   "predicate": "has_mud_weight",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_0131a2aae1c8882b",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_df170fe4a34e8f0b"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 186,
+     "char_start": 94,
+     "chunk_id": "eor_-46627_c8788ba2#c000",
+     "doc_id": "eor_-46627_c8788ba2",
+     "grounding": "exact",
+     "span": "eor_-46627_c8788ba2:94-186",
+     "text": "The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 186,
+    "char_start": 94,
+    "chunk_id": "eor_-46627_c8788ba2#c000",
+    "doc_id": "eor_-46627_c8788ba2",
+    "grounding": "exact",
+    "span": "eor_-46627_c8788ba2:94-186",
+    "text": "The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_990c8473c398",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-46627_c8788ba2",
+   "statement_id": "s_021cdc74a3f5d55c",
+   "status": "accepted",
+   "subject_id": "e_c9d74be9ceb2",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_986fb38edbf52b2e"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 347,
+     "char_start": 164,
+     "chunk_id": "eor_-106378_8b6db016#c000",
+     "doc_id": "eor_-106378_8b6db016",
+     "grounding": "exact",
+     "span": "eor_-106378_8b6db016:164-347",
+     "text": "The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 347,
+    "char_start": 164,
+    "chunk_id": "eor_-106378_8b6db016#c000",
+    "doc_id": "eor_-106378_8b6db016",
+    "grounding": "exact",
+    "span": "eor_-106378_8b6db016:164-347",
+    "text": "The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_4e07b1eea2c0",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-106378_8b6db016",
+   "statement_id": "s_02740d20c29b984b",
+   "status": "accepted",
+   "subject_id": "e_87c4865cafaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_237929c779f64457"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 360,
+     "char_start": 296,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "exact",
+     "span": "eor_-119584_ca8392d9:296-360",
+     "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 360,
+    "char_start": 296,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "exact",
+    "span": "eor_-119584_ca8392d9:296-360",
+    "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_b91539057383",
+   "predicate": "casing_size",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_03473c9253e092b5",
+   "status": "accepted",
+   "subject_id": "e_09b817efedb4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_7f13e799bf3e0d71"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 172,
+     "char_start": 144,
+     "chunk_id": "eor_-115129_7f61f092#c000",
+     "doc_id": "eor_-115129_7f61f092",
+     "grounding": "exact",
+     "span": "eor_-115129_7f61f092:144-172",
+     "text": "A MRBP was set at 12901' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 172,
+    "char_start": 144,
+    "chunk_id": "eor_-115129_7f61f092#c000",
+    "doc_id": "eor_-115129_7f61f092",
+    "grounding": "exact",
+    "span": "eor_-115129_7f61f092:144-172",
+    "text": "A MRBP was set at 12901' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_392c846fe973",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115129_7f61f092",
+   "statement_id": "s_07e688476e18be6b",
+   "status": "accepted",
+   "subject_id": "e_87c4865cafaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_b01397bdfcd77eab"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 102,
+     "char_start": 0,
+     "chunk_id": "eor_-151231_23dd2d46#c000",
+     "doc_id": "eor_-151231_23dd2d46",
+     "grounding": "exact",
+     "span": "eor_-151231_23dd2d46:0-102",
+     "text": "Zone change operations have been completed on the EC 36 Well A-1 to produce the \"Cris I M-7\" Sd (S02)."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 102,
+    "char_start": 0,
+    "chunk_id": "eor_-151231_23dd2d46#c000",
+    "doc_id": "eor_-151231_23dd2d46",
+    "grounding": "exact",
+    "span": "eor_-151231_23dd2d46:0-102",
+    "text": "Zone change operations have been completed on the EC 36 Well A-1 to produce the \"Cris I M-7\" Sd (S02)."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7dbf3d543fd6",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-151231_23dd2d46",
+   "statement_id": "s_0c0d98f703e57b6b",
+   "status": "accepted",
+   "subject_id": "e_909abed54e9a",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_3755dd8e2707fb19"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 160,
+     "char_start": 0,
+     "chunk_id": "eor_-53929_9608c4e5#c000",
+     "doc_id": "eor_-53929_9608c4e5",
+     "grounding": "partial",
+     "span": "eor_-53929_9608c4e5:0-160",
+     "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 160,
+    "char_start": 0,
+    "chunk_id": "eor_-53929_9608c4e5#c000",
+    "doc_id": "eor_-53929_9608c4e5",
+    "grounding": "partial",
+    "span": "eor_-53929_9608c4e5:0-160",
+    "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_d3dbb89c341a",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-53929_9608c4e5",
+   "statement_id": "s_134a10bfd3dff63f",
+   "status": "accepted",
+   "subject_id": "e_4be66b332071",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_199b3c5c695ec5bb"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 125,
+     "char_start": 0,
+     "chunk_id": "eor_-48387_268b7e78#c000",
+     "doc_id": "eor_-48387_268b7e78",
+     "grounding": "exact",
+     "span": "eor_-48387_268b7e78:0-125",
+     "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 125,
+    "char_start": 0,
+    "chunk_id": "eor_-48387_268b7e78#c000",
+    "doc_id": "eor_-48387_268b7e78",
+    "grounding": "exact",
+    "span": "eor_-48387_268b7e78:0-125",
+    "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_fecd90f79b26",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48387_268b7e78",
+   "statement_id": "s_1402e0b30c3b5f81",
+   "status": "accepted",
+   "subject_id": "e_8015e04326be",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_62d1e6250248ca64"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 439,
+     "char_start": 375,
+     "chunk_id": "eor_-115965_1bc5d37f#c000",
+     "doc_id": "eor_-115965_1bc5d37f",
+     "grounding": "exact",
+     "span": "eor_-115965_1bc5d37f:375-439",
+     "text": "A CIBP was set at 10,399' MD and GP assy was set on top of CIBP."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 439,
+    "char_start": 375,
+    "chunk_id": "eor_-115965_1bc5d37f#c000",
+    "doc_id": "eor_-115965_1bc5d37f",
+    "grounding": "exact",
+    "span": "eor_-115965_1bc5d37f:375-439",
+    "text": "A CIBP was set at 10,399' MD and GP assy was set on top of CIBP."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_d8985abe11e3",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115965_1bc5d37f",
+   "statement_id": "s_159cf0554d76675d",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_784080591bf244f2"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 310,
+     "char_start": 93,
+     "chunk_id": "eor_-115965_1bc5d37f#c000",
+     "doc_id": "eor_-115965_1bc5d37f",
+     "grounding": "exact",
+     "span": "eor_-115965_1bc5d37f:93-310",
+     "text": "The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 310,
+    "char_start": 93,
+    "chunk_id": "eor_-115965_1bc5d37f#c000",
+    "doc_id": "eor_-115965_1bc5d37f",
+    "grounding": "exact",
+    "span": "eor_-115965_1bc5d37f:93-310",
+    "text": "The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_41803046bf7c",
+   "predicate": "set_casing_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115965_1bc5d37f",
+   "statement_id": "s_15d011fda8de696f",
+   "status": "accepted",
+   "subject_id": "e_8dbac6afc326",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_002a3f5194b0368b"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 231,
+     "char_start": 32,
+     "chunk_id": "eor_-48472_a0f3a4d2#c000",
+     "doc_id": "eor_-48472_a0f3a4d2",
+     "grounding": "partial",
+     "span": "eor_-48472_a0f3a4d2:32-231",
+     "text": "The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 231,
+    "char_start": 32,
+    "chunk_id": "eor_-48472_a0f3a4d2#c000",
+    "doc_id": "eor_-48472_a0f3a4d2",
+    "grounding": "partial",
+    "span": "eor_-48472_a0f3a4d2:32-231",
+    "text": "The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_23b6070d015d",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48472_a0f3a4d2",
+   "statement_id": "s_166bf376a1eba260",
+   "status": "accepted",
+   "subject_id": "e_a7e0b5bc9904",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_d5b2e0c2e7c1a0ad"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1505,
+     "char_start": 1378,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1378-1505",
+     "text": "A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1505,
+    "char_start": 1378,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1378-1505",
+    "text": "A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_17e41e84610b",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_166bf79505a2a621",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a8ea03cb35723f1f"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 230,
+     "char_start": 183,
+     "chunk_id": "eor_-180488_0256a4e8#c000",
+     "doc_id": "eor_-180488_0256a4e8",
+     "grounding": "exact",
+     "span": "eor_-180488_0256a4e8:183-230",
+     "text": "A DX plug was set in the SCSSV profile at 482'."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 230,
+    "char_start": 183,
+    "chunk_id": "eor_-180488_0256a4e8#c000",
+    "doc_id": "eor_-180488_0256a4e8",
+    "grounding": "exact",
+    "span": "eor_-180488_0256a4e8:183-230",
+    "text": "A DX plug was set in the SCSSV profile at 482'."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e1ddc7c0fbba",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-180488_0256a4e8",
+   "statement_id": "s_18437944ccaf182e",
+   "status": "accepted",
+   "subject_id": "e_ee55f0057e34",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_3c75d05158a65301"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 287,
+     "char_start": 103,
+     "chunk_id": "eor_-151231_23dd2d46#c000",
+     "doc_id": "eor_-151231_23dd2d46",
+     "grounding": "exact",
+     "span": "eor_-151231_23dd2d46:103-287",
+     "text": "The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 287,
+    "char_start": 103,
+    "chunk_id": "eor_-151231_23dd2d46#c000",
+    "doc_id": "eor_-151231_23dd2d46",
+    "grounding": "exact",
+    "span": "eor_-151231_23dd2d46:103-287",
+    "text": "The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_3c356e77a04f",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-151231_23dd2d46",
+   "statement_id": "s_1e3f8b5630a0d367",
+   "status": "accepted",
+   "subject_id": "e_87c4865cafaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a60b766fd3d651f9"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 380,
+     "char_start": 326,
+     "chunk_id": "eor_-79498_761e2a90#c000",
+     "doc_id": "eor_-79498_761e2a90",
+     "grounding": "exact",
+     "span": "eor_-79498_761e2a90:326-380",
+     "text": "Due to Hurricane Ike, the well is temporarily shut-in."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 380,
+    "char_start": 326,
+    "chunk_id": "eor_-79498_761e2a90#c000",
+    "doc_id": "eor_-79498_761e2a90",
+    "grounding": "exact",
+    "span": "eor_-79498_761e2a90:326-380",
+    "text": "Due to Hurricane Ike, the well is temporarily shut-in."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_fb642e6cafaf",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-79498_761e2a90",
+   "statement_id": "s_1ff95a80bb840886",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_94ce20b851d733f9"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 124,
+     "char_start": 100,
+     "chunk_id": "eor_-158773_5cb14ed0#c000",
+     "doc_id": "eor_-158773_5cb14ed0",
+     "grounding": "exact",
+     "span": "eor_-158773_5cb14ed0:100-124",
+     "text": "Well status remains TAd."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 124,
+    "char_start": 100,
+    "chunk_id": "eor_-158773_5cb14ed0#c000",
+    "doc_id": "eor_-158773_5cb14ed0",
+    "grounding": "exact",
+    "span": "eor_-158773_5cb14ed0:100-124",
+    "text": "Well status remains TAd."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_65efa573cf8f",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-158773_5cb14ed0",
+   "statement_id": "s_26483c9b0af120fe",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_55120c0e7d14edf2"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 160,
+     "char_start": 0,
+     "chunk_id": "eor_-53929_9608c4e5#c000",
+     "doc_id": "eor_-53929_9608c4e5",
+     "grounding": "partial",
+     "span": "eor_-53929_9608c4e5:0-160",
+     "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 160,
+    "char_start": 0,
+    "chunk_id": "eor_-53929_9608c4e5#c000",
+    "doc_id": "eor_-53929_9608c4e5",
+    "grounding": "partial",
+    "span": "eor_-53929_9608c4e5:0-160",
+    "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c1dba2514dae",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-53929_9608c4e5",
+   "statement_id": "s_266c5d61e0dbce52",
+   "status": "accepted",
+   "subject_id": "e_4be66b332071",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_9c7bb8dfdb83b459"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 967,
+     "char_start": 917,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:917-967",
+     "text": "The 7-5/8\" csg was perf'd at 1500' MD (1340' BML)."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 967,
+    "char_start": 917,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:917-967",
+    "text": "The 7-5/8\" csg was perf'd at 1500' MD (1340' BML)."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_81fa77db5de2",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_27b4baf4a851b061",
+   "status": "accepted",
+   "subject_id": "e_3fd6bdada6a3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a977ee7cad54b8e3"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 360,
+     "char_start": 296,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "exact",
+     "span": "eor_-119584_ca8392d9:296-360",
+     "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 360,
+    "char_start": 296,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "exact",
+    "span": "eor_-119584_ca8392d9:296-360",
+    "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_b775f73d4470",
+   "predicate": "casing_spec",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_2d43eff454e23bc6",
+   "status": "accepted",
+   "subject_id": "e_09b817efedb4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_85fb410498c7cb4c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 95,
+     "char_start": 0,
+     "chunk_id": "eor_-169333_fcc04c1b#c000",
+     "doc_id": "eor_-169333_fcc04c1b",
+     "grounding": "exact",
+     "span": "eor_-169333_fcc04c1b:0-95",
+     "text": "Operations to temporarily abandon this well thru the surface plug were completed on 09/19/2017."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 95,
+    "char_start": 0,
+    "chunk_id": "eor_-169333_fcc04c1b#c000",
+    "doc_id": "eor_-169333_fcc04c1b",
+    "grounding": "exact",
+    "span": "eor_-169333_fcc04c1b:0-95",
+    "text": "Operations to temporarily abandon this well thru the surface plug were completed on 09/19/2017."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_81a9e7131cf1",
+   "predicate": "spudded_on",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-169333_fcc04c1b",
+   "statement_id": "s_307f5aab4d6be4ab",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_92650046379f1840"
+   ],
+   "confidence": 0.3,
+   "evidence": [
+    {
+     "char_end": 455,
+     "char_start": 0,
+     "chunk_id": "eor_-106378_8b6db016#c000",
+     "doc_id": "eor_-106378_8b6db016",
+     "grounding": "none",
+     "span": "eor_-106378_8b6db016:0-455",
+     "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 455,
+    "char_start": 0,
+    "chunk_id": "eor_-106378_8b6db016#c000",
+    "doc_id": "eor_-106378_8b6db016",
+    "grounding": "none",
+    "span": "eor_-106378_8b6db016:0-455",
+    "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_4139f656fe00",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [
+    "weak_evidence"
+   ],
+   "source_doc_id": "eor_-106378_8b6db016",
+   "statement_id": "s_318b17380e0fb505",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_ef355e6c4443f6b5"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 99,
+     "char_start": 56,
+     "chunk_id": "eor_-158773_5cb14ed0#c000",
+     "doc_id": "eor_-158773_5cb14ed0",
+     "grounding": "exact",
+     "span": "eor_-158773_5cb14ed0:56-99",
+     "text": "48\" drive pipe cut BML, but not yet pulled."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 99,
+    "char_start": 56,
+    "chunk_id": "eor_-158773_5cb14ed0#c000",
+    "doc_id": "eor_-158773_5cb14ed0",
+    "grounding": "exact",
+    "span": "eor_-158773_5cb14ed0:56-99",
+    "text": "48\" drive pipe cut BML, but not yet pulled."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_669ad6899abd",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-158773_5cb14ed0",
+   "statement_id": "s_32e5be5cdf10ec69",
+   "status": "accepted",
+   "subject_id": "e_731a2bdf66a1",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_b4e056ad420c9fca"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 164,
+     "char_start": 0,
+     "chunk_id": "eor_-66275_ce78f433#c000",
+     "doc_id": "eor_-66275_ce78f433",
+     "grounding": "exact",
+     "span": "eor_-66275_ce78f433:0-164",
+     "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 164,
+    "char_start": 0,
+    "chunk_id": "eor_-66275_ce78f433#c000",
+    "doc_id": "eor_-66275_ce78f433",
+    "grounding": "exact",
+    "span": "eor_-66275_ce78f433:0-164",
+    "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_197b0f2b5ee9",
+   "predicate": "spudded_on",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-66275_ce78f433",
+   "statement_id": "s_33458fbe5126051e",
+   "status": "accepted",
+   "subject_id": "e_3c6112c70d9c",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_80a053d72ce3a40f"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 353,
+     "char_start": 253,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:253-353",
+     "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 353,
+    "char_start": 253,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:253-353",
+    "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a0bcbacb8273",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_397796fd3e83e091",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_36df4a0ad04dfaaf"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 338,
+     "char_start": 209,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:209-338",
+     "text": "Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 338,
+    "char_start": 209,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:209-338",
+    "text": "Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_0bf21be2345a",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_41a8fe4db3919572",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a96d2503699bfa9f"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1181,
+     "char_start": 1144,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1144-1181",
+     "text": "The 7-5/8\" csg was perf'd @ 991' RKB."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1181,
+    "char_start": 1144,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1144-1181",
+    "text": "The 7-5/8\" csg was perf'd @ 991' RKB."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c42b64be4d89",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_41f2d7434e9e127a",
+   "status": "accepted",
+   "subject_id": "e_3fd6bdada6a3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_d0f036bcb973088d"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 789,
+     "char_start": 623,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:623-789",
+     "text": "A 200' cmt balanced plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" annulus w/6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9172' MD, pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 789,
+    "char_start": 623,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:623-789",
+    "text": "A 200' cmt balanced plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" annulus w/6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9172' MD, pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e039a607ce7d",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_447a97e5114e8330",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_69a61f802f5855ca"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 227,
+     "char_start": 0,
+     "chunk_id": "eor_-2095_f2a90e24#c000",
+     "doc_id": "eor_-2095_f2a90e24",
+     "grounding": "exact",
+     "span": "eor_-2095_f2a90e24:0-227",
+     "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 227,
+    "char_start": 0,
+    "chunk_id": "eor_-2095_f2a90e24#c000",
+    "doc_id": "eor_-2095_f2a90e24",
+    "grounding": "exact",
+    "span": "eor_-2095_f2a90e24:0-227",
+    "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_35d4825cd33c",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-2095_f2a90e24",
+   "statement_id": "s_46152ba6f4835718",
+   "status": "accepted",
+   "subject_id": "e_879580b7986e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4443f1da16f20348"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 164,
+     "char_start": 0,
+     "chunk_id": "eor_-66275_ce78f433#c000",
+     "doc_id": "eor_-66275_ce78f433",
+     "grounding": "exact",
+     "span": "eor_-66275_ce78f433:0-164",
+     "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 164,
+    "char_start": 0,
+    "chunk_id": "eor_-66275_ce78f433#c000",
+    "doc_id": "eor_-66275_ce78f433",
+    "grounding": "exact",
+    "span": "eor_-66275_ce78f433:0-164",
+    "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_93f5f13a753f",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-66275_ce78f433",
+   "statement_id": "s_4aba3582b154f934",
+   "status": "accepted",
+   "subject_id": "e_3c6112c70d9c",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_757932e3e8a5d06c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 241,
+     "char_start": 200,
+     "chunk_id": "eor_-63747_d1598053#c000",
+     "doc_id": "eor_-63747_d1598053",
+     "grounding": "exact",
+     "span": "eor_-63747_d1598053:200-241",
+     "text": "SS207 Well No. A018 remains in TA status."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 241,
+    "char_start": 200,
+    "chunk_id": "eor_-63747_d1598053#c000",
+    "doc_id": "eor_-63747_d1598053",
+    "grounding": "exact",
+    "span": "eor_-63747_d1598053:200-241",
+    "text": "SS207 Well No. A018 remains in TA status."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_00a6ba21da70",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-63747_d1598053",
+   "statement_id": "s_4dcd5118417775ab",
+   "status": "accepted",
+   "subject_id": "e_1dc70bd69ad0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_72a7aa304db76703"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 125,
+     "char_start": 0,
+     "chunk_id": "eor_-79498_761e2a90#c000",
+     "doc_id": "eor_-79498_761e2a90",
+     "grounding": "partial",
+     "span": "eor_-79498_761e2a90:0-125",
+     "text": "Completed as a single stacked gravel packed completion in the Lower KJ/KK Sand with an unperforated selective in the LP Sand."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 125,
+    "char_start": 0,
+    "chunk_id": "eor_-79498_761e2a90#c000",
+    "doc_id": "eor_-79498_761e2a90",
+    "grounding": "partial",
+    "span": "eor_-79498_761e2a90:0-125",
+    "text": "Completed as a single stacked gravel packed completion in the Lower KJ/KK Sand with an unperforated selective in the LP Sand."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7cec808fa5e0",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-79498_761e2a90",
+   "statement_id": "s_4e433c07289f903e",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4b48aa7d154c7277"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 345,
+     "char_start": 189,
+     "chunk_id": "eor_-83553_7787b0dc#c000",
+     "doc_id": "eor_-83553_7787b0dc",
+     "grounding": "exact",
+     "span": "eor_-83553_7787b0dc:189-345",
+     "text": "The previous producing interval, the \"CP 29\" Sand was isolated by setting a posi-set plug @ 15310' MD and dumping 25' cmt on top of the plug, ETOC @ 15285'."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 345,
+    "char_start": 189,
+    "chunk_id": "eor_-83553_7787b0dc#c000",
+    "doc_id": "eor_-83553_7787b0dc",
+    "grounding": "exact",
+    "span": "eor_-83553_7787b0dc:189-345",
+    "text": "The previous producing interval, the \"CP 29\" Sand was isolated by setting a posi-set plug @ 15310' MD and dumping 25' cmt on top of the plug, ETOC @ 15285'."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_d974e4c79b46",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-83553_7787b0dc",
+   "statement_id": "s_53e7608e4db07618",
+   "status": "accepted",
+   "subject_id": "e_2ac087348708",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_137350768151ba76"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 832,
+     "char_start": 790,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:790-832",
+     "text": "The 3-1/2\" tbg was cut/pulled f/ 1630' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 832,
+    "char_start": 790,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:790-832",
+    "text": "The 3-1/2\" tbg was cut/pulled f/ 1630' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_9fe7d8923287",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_5476ccbdfa7401dc",
+   "status": "accepted",
+   "subject_id": "e_fa8d916bf9f4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_5e8d4374bae6ce8c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 92,
+     "char_start": 0,
+     "chunk_id": "eor_-115965_1bc5d37f#c000",
+     "doc_id": "eor_-115965_1bc5d37f",
+     "grounding": "exact",
+     "span": "eor_-115965_1bc5d37f:0-92",
+     "text": "Stone has completed zone change operations on the VR 51 A-4 well to produce the \"CC-1\" sand."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 92,
+    "char_start": 0,
+    "chunk_id": "eor_-115965_1bc5d37f#c000",
+    "doc_id": "eor_-115965_1bc5d37f",
+    "grounding": "exact",
+    "span": "eor_-115965_1bc5d37f:0-92",
+    "text": "Stone has completed zone change operations on the VR 51 A-4 well to produce the \"CC-1\" sand."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ae9e23d16279",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115965_1bc5d37f",
+   "statement_id": "s_585edad7d0ddfcd4",
+   "status": "accepted",
+   "subject_id": "e_04873abce30c",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_417e972349bd5e15"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1631,
+     "char_start": 1598,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1598-1631",
+     "text": "13-5/8\" csg - (473' RKB) 313' BML"
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1631,
+    "char_start": 1598,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1598-1631",
+    "text": "13-5/8\" csg - (473' RKB) 313' BML"
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a311d8d530ff",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_5d49a81df3e7d6c7",
+   "status": "accepted",
+   "subject_id": "e_28514711a7f3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_5583f7b998de1efb"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 175,
+     "char_start": 0,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:0-175",
+     "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 175,
+    "char_start": 0,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:0-175",
+    "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_64f6bd111f2b",
+   "predicate": "spudded_on",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_5d6ea5b16a53c8be",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_8cf61a2e2869e561"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 77,
+     "char_start": 0,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:0-77",
+     "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 77,
+    "char_start": 0,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:0-77",
+    "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_8a8e12d3e893",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_5de6557c1ebc7e4f",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_8fee40b4c03a72c0"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 77,
+     "char_start": 0,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:0-77",
+     "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 77,
+    "char_start": 0,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:0-77",
+    "text": "Wellbore drilled to total depth of 8675-ft MD, 8321-ft TVD with 16.3 ppg mud."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_40c07b79b937",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_61a2eae0d7e7cb7b",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_9b560739de6d5ba1"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 214,
+     "char_start": 0,
+     "chunk_id": "eor_-116446_6cdc069f#c000",
+     "doc_id": "eor_-116446_6cdc069f",
+     "grounding": "exact",
+     "span": "eor_-116446_6cdc069f:0-214",
+     "text": "Stone has successfully completed operations on the EW 306 A-16 well to install a subsurface safety PB insert valve in the X-nipple at 471' MD to convert the operation of the downhole safety valve to subsea control."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 214,
+    "char_start": 0,
+    "chunk_id": "eor_-116446_6cdc069f#c000",
+    "doc_id": "eor_-116446_6cdc069f",
+    "grounding": "exact",
+    "span": "eor_-116446_6cdc069f:0-214",
+    "text": "Stone has successfully completed operations on the EW 306 A-16 well to install a subsurface safety PB insert valve in the X-nipple at 471' MD to convert the operation of the downhole safety valve to subsea control."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_3ec0d7317a9b",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-116446_6cdc069f",
+   "statement_id": "s_63b95bb99655d348",
+   "status": "accepted",
+   "subject_id": "e_9f7fbf137632",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4ee3d98dd3526f68"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 231,
+     "char_start": 99,
+     "chunk_id": "eor_-48472_a0f3a4d2#c000",
+     "doc_id": "eor_-48472_a0f3a4d2",
+     "grounding": "exact",
+     "span": "eor_-48472_a0f3a4d2:99-231",
+     "text": "The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 231,
+    "char_start": 99,
+    "chunk_id": "eor_-48472_a0f3a4d2#c000",
+    "doc_id": "eor_-48472_a0f3a4d2",
+    "grounding": "exact",
+    "span": "eor_-48472_a0f3a4d2:99-231",
+    "text": "The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_23b6070d015d",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48472_a0f3a4d2",
+   "statement_id": "s_65a4ff6fbba7cacf",
+   "status": "accepted",
+   "subject_id": "e_5d13daae0dfa",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_f4c3e4509a8db29c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1229,
+     "char_start": 1182,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1182-1229",
+     "text": "A 13-5/8\" csg CIBP was set @ 700' MD (600'BML)."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1229,
+    "char_start": 1182,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1182-1229",
+    "text": "A 13-5/8\" csg CIBP was set @ 700' MD (600'BML)."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_15b221baf8a8",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_67f244129ffa055b",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_aba0fae82d38dfa1"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 360,
+     "char_start": 296,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "exact",
+     "span": "eor_-119584_ca8392d9:296-360",
+     "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 360,
+    "char_start": 296,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "exact",
+    "span": "eor_-119584_ca8392d9:296-360",
+    "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c156a3b89321",
+   "predicate": "set_casing_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_6ca9266a60f34136",
+   "status": "accepted",
+   "subject_id": "e_09b817efedb4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_3d624c3e877fc1c8"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 208,
+     "char_start": 78,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:78-208",
+     "text": "A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 208,
+    "char_start": 78,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:78-208",
+    "text": "A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_d58536b19006",
+   "predicate": "set_casing_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_6cf8006f873256f7",
+   "status": "accepted",
+   "subject_id": "e_f99e71bbe644",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_e8878886f3a20a22"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 374,
+     "char_start": 311,
+     "chunk_id": "eor_-115965_1bc5d37f#c000",
+     "doc_id": "eor_-115965_1bc5d37f",
+     "grounding": "exact",
+     "span": "eor_-115965_1bc5d37f:311-374",
+     "text": "The \"CC-1\" sand was perforated at intervals 10,382'-10,392' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 374,
+    "char_start": 311,
+    "chunk_id": "eor_-115965_1bc5d37f#c000",
+    "doc_id": "eor_-115965_1bc5d37f",
+    "grounding": "exact",
+    "span": "eor_-115965_1bc5d37f:311-374",
+    "text": "The \"CC-1\" sand was perforated at intervals 10,382'-10,392' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_3bada48862a4",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115965_1bc5d37f",
+   "statement_id": "s_7091503a816de0a7",
+   "status": "accepted",
+   "subject_id": "e_ae9e23d16279",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_8c819c47f020804d"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 227,
+     "char_start": 0,
+     "chunk_id": "eor_-2095_f2a90e24#c000",
+     "doc_id": "eor_-2095_f2a90e24",
+     "grounding": "exact",
+     "span": "eor_-2095_f2a90e24:0-227",
+     "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 227,
+    "char_start": 0,
+    "chunk_id": "eor_-2095_f2a90e24#c000",
+    "doc_id": "eor_-2095_f2a90e24",
+    "grounding": "exact",
+    "span": "eor_-2095_f2a90e24:0-227",
+    "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_05d1801baa9d",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-2095_f2a90e24",
+   "statement_id": "s_741238e2e26349ee",
+   "status": "accepted",
+   "subject_id": "e_879580b7986e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_48d2b1c8185dcc67"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 140,
+     "char_start": 0,
+     "chunk_id": "eor_-115129_7f61f092#c000",
+     "doc_id": "eor_-115129_7f61f092",
+     "grounding": "exact",
+     "span": "eor_-115129_7f61f092:0-140",
+     "text": "Leed has successfully completed perforation modification operations on the SS 201 A06 well, \"KH\" Sand completion to reduce water production."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 140,
+    "char_start": 0,
+    "chunk_id": "eor_-115129_7f61f092#c000",
+    "doc_id": "eor_-115129_7f61f092",
+    "grounding": "exact",
+    "span": "eor_-115129_7f61f092:0-140",
+    "text": "Leed has successfully completed perforation modification operations on the SS 201 A06 well, \"KH\" Sand completion to reduce water production."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ef282cb543cf",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115129_7f61f092",
+   "statement_id": "s_78e253ed15c2f7f7",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_5d0cd31f6d7d78ae"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 61,
+     "char_start": 0,
+     "chunk_id": "eor_-63747_d1598053#c000",
+     "doc_id": "eor_-63747_d1598053",
+     "grounding": "exact",
+     "span": "eor_-63747_d1598053:0-61",
+     "text": "The 9-5/8\" casing has been cut & pulled a minimum of 15' BML."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 61,
+    "char_start": 0,
+    "chunk_id": "eor_-63747_d1598053#c000",
+    "doc_id": "eor_-63747_d1598053",
+    "grounding": "exact",
+    "span": "eor_-63747_d1598053:0-61",
+    "text": "The 9-5/8\" casing has been cut & pulled a minimum of 15' BML."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_012c07d30c68",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-63747_d1598053",
+   "statement_id": "s_7dfc0835c6e63b3c",
+   "status": "accepted",
+   "subject_id": "e_a7e0b5bc9904",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_282a94d0588c90d3"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 231,
+     "char_start": 32,
+     "chunk_id": "eor_-48472_a0f3a4d2#c000",
+     "doc_id": "eor_-48472_a0f3a4d2",
+     "grounding": "partial",
+     "span": "eor_-48472_a0f3a4d2:32-231",
+     "text": "The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 231,
+    "char_start": 32,
+    "chunk_id": "eor_-48472_a0f3a4d2#c000",
+    "doc_id": "eor_-48472_a0f3a4d2",
+    "grounding": "partial",
+    "span": "eor_-48472_a0f3a4d2:32-231",
+    "text": "The 2-7/8\" tubing, 7\" and 9-5/8\" casings have been cut and pulled. The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_23b6070d015d",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48472_a0f3a4d2",
+   "statement_id": "s_7e0fadda19cc66d2",
+   "status": "accepted",
+   "subject_id": "e_af24a0fd98f8",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_718d9523b057e772"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1141,
+     "char_start": 969,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:969-1141",
+     "text": "A 300' cmt plug was set in the 7-5/8\" csg & 7-5/8\" x 13-5/8\" annulus w/39 bbls (203 sxs, 219 cu ft) Class H Cmt w/TOC at 1170' MD (1010' BML) & pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1141,
+    "char_start": 969,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:969-1141",
+    "text": "A 300' cmt plug was set in the 7-5/8\" csg & 7-5/8\" x 13-5/8\" annulus w/39 bbls (203 sxs, 219 cu ft) Class H Cmt w/TOC at 1170' MD (1010' BML) & pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_f354641a70ab",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_7f22ccd97c00f563",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_b8dbbba0354604b9"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 164,
+     "char_start": 0,
+     "chunk_id": "eor_-66275_ce78f433#c000",
+     "doc_id": "eor_-66275_ce78f433",
+     "grounding": "exact",
+     "span": "eor_-66275_ce78f433:0-164",
+     "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 164,
+    "char_start": 0,
+    "chunk_id": "eor_-66275_ce78f433#c000",
+    "doc_id": "eor_-66275_ce78f433",
+    "grounding": "exact",
+    "span": "eor_-66275_ce78f433:0-164",
+    "text": "The EI 183 A6BP2 wellbore was spud on December 19, 2007 at a depth of 14219' MD and the wellbore was TD'd on December 30, 2007 at a depth of 15612' Md / 14648' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_2eee49ddd98c",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-66275_ce78f433",
+   "statement_id": "s_812456442e8878fe",
+   "status": "accepted",
+   "subject_id": "e_3c6112c70d9c",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_568a142f11202200"
+   ],
+   "confidence": 0.3,
+   "evidence": [
+    {
+     "char_end": 455,
+     "char_start": 0,
+     "chunk_id": "eor_-106378_8b6db016#c000",
+     "doc_id": "eor_-106378_8b6db016",
+     "grounding": "none",
+     "span": "eor_-106378_8b6db016:0-455",
+     "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 455,
+    "char_start": 0,
+    "chunk_id": "eor_-106378_8b6db016#c000",
+    "doc_id": "eor_-106378_8b6db016",
+    "grounding": "none",
+    "span": "eor_-106378_8b6db016:0-455",
+    "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2.  Operations began on August 2, 2009, and ended on August 5, 2009.  The previous producing interval, the \"Tex-X-1\" Sand, perfs 14425' - 14470' MD, was isolated by setting a MRBP @ 14345' MD and setting ~52' of cmt on top of the plug, ETOC @ 14293' MD.  The \"D-2\" Sand was then exposed to production by perforating from 13633' - 13640' MD & 13562' - 13569' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_0190e4c31806",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [
+    "weak_evidence"
+   ],
+   "source_doc_id": "eor_-106378_8b6db016",
+   "statement_id": "s_827adc543c634aeb",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a025cf410b8532cf"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 100,
+     "char_start": 0,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:0-100",
+     "text": "Rooster Petroleum, LLC has completed temporary abandonment operations on the HI 115 Well B001(ST02)."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 100,
+    "char_start": 0,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:0-100",
+    "text": "Rooster Petroleum, LLC has completed temporary abandonment operations on the HI 115 Well B001(ST02)."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_9b02d9974c14",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_849582d3b8634f5a",
+   "status": "accepted",
+   "subject_id": "e_5016637dac6a",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_ab6d6fcde3b53880"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 510,
+     "char_start": 296,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:296-510",
+     "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 510,
+    "char_start": 296,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:296-510",
+    "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_097a35f1bcdb",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_8a3ade7e7e306615",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_379da83b72a5c377",
+    "c_95559559b4fe41aa"
+   ],
+   "confidence": 0.99,
+   "evidence": [
+    {
+     "char_end": 585,
+     "char_start": 403,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:403-585",
+     "text": "A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi."
+    },
+    {
+     "char_end": 789,
+     "char_start": 623,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:623-789",
+     "text": "A 200' cmt balanced plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" annulus w/6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9172' MD, pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 585,
+    "char_start": 403,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:403-585",
+    "text": "A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_108c013fde08",
+   "predicate": "tested_to_pressure",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_8aefcec38222c2c9",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 2,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_94a150e5072e675e"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 208,
+     "char_start": 78,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:78-208",
+     "text": "A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 208,
+    "char_start": 78,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:78-208",
+    "text": "A 5 1/2-inch production liner was run to TD with TOL at 7689-ft. Initial completion operations were performed with a mudline tree."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a0ccd43b62a1",
+   "predicate": "casing_size",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_8d5fa2d50c46ed3f",
+   "status": "accepted",
+   "subject_id": "e_f99e71bbe644",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_778a8edc48f2d15b"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 915,
+     "char_start": 833,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:833-915",
+     "text": "A 7-5/8\" csg CIBP was set at 1,505 MD (1345' BML) and pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 915,
+    "char_start": 833,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:833-915",
+    "text": "A 7-5/8\" csg CIBP was set at 1,505 MD (1345' BML) and pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_643d98d287d8",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_917d89b7f63cca74",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_dcb19f7c6cfc48fd"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 359,
+     "char_start": 196,
+     "chunk_id": "eor_-48387_268b7e78#c000",
+     "doc_id": "eor_-48387_268b7e78",
+     "grounding": "exact",
+     "span": "eor_-48387_268b7e78:196-359",
+     "text": "The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 359,
+    "char_start": 196,
+    "chunk_id": "eor_-48387_268b7e78#c000",
+    "doc_id": "eor_-48387_268b7e78",
+    "grounding": "exact",
+    "span": "eor_-48387_268b7e78:196-359",
+    "text": "The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_91c85c2d2ce4",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48387_268b7e78",
+   "statement_id": "s_91c406ec3afca762",
+   "status": "accepted",
+   "subject_id": "e_2ac087348708",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_c77cc8bf28136a43"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 175,
+     "char_start": 95,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "exact",
+     "span": "eor_-119584_ca8392d9:95-175",
+     "text": "The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 175,
+    "char_start": 95,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "exact",
+    "span": "eor_-119584_ca8392d9:95-175",
+    "text": "The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_b65a182d1df0",
+   "predicate": "casing_size",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_9d04e5149328dea9",
+   "status": "accepted",
+   "subject_id": "e_3fd6bdada6a3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4ef1a2988a401e0b"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 214,
+     "char_start": 0,
+     "chunk_id": "eor_-117225_14d568fc#c000",
+     "doc_id": "eor_-117225_14d568fc",
+     "grounding": "partial",
+     "span": "eor_-117225_14d568fc:0-214",
+     "text": "Stone has successfully completed perforation modification operation on the EC 121 B-1 well. Perforations were added to the lower lobe of the current completion, the \"Cyclam 3-B\" sand at intervals 9,996'-10,006' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 214,
+    "char_start": 0,
+    "chunk_id": "eor_-117225_14d568fc#c000",
+    "doc_id": "eor_-117225_14d568fc",
+    "grounding": "partial",
+    "span": "eor_-117225_14d568fc:0-214",
+    "text": "Stone has successfully completed perforation modification operation on the EC 121 B-1 well. Perforations were added to the lower lobe of the current completion, the \"Cyclam 3-B\" sand at intervals 9,996'-10,006' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_53cdd954b75d",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-117225_14d568fc",
+   "statement_id": "s_9ec0497770de628b",
+   "status": "accepted",
+   "subject_id": "e_53b4d4575dc0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_c024f4d4d3e21e22"
+   ],
+   "confidence": 0.3,
+   "evidence": [
+    {
+     "char_end": 422,
+     "char_start": 0,
+     "chunk_id": "eor_-48387_268b7e78#c000",
+     "doc_id": "eor_-48387_268b7e78",
+     "grounding": "none",
+     "span": "eor_-48387_268b7e78:0-422",
+     "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand.  Operations began on May 28, 2007 and were completed on June 3, 2007. The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'.  The 5\" liner was perforated @ 14912' - 14954' for production."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 422,
+    "char_start": 0,
+    "chunk_id": "eor_-48387_268b7e78#c000",
+    "doc_id": "eor_-48387_268b7e78",
+    "grounding": "none",
+    "span": "eor_-48387_268b7e78:0-422",
+    "text": "Stone has successfully performed a zone change operation on the PL 23 OCS G-01238, Well No. C-001ST to produce the CP27 Sand.  Operations began on May 28, 2007 and were completed on June 3, 2007. The previous producing interval in the well, the CP28 Sand was isolated by setting a Posi-set Plug @ 15080' & dumping 32' of cmt on top of the plug, ETOC @ 15048'.  The 5\" liner was perforated @ 14912' - 14954' for production."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e7c27100bb75",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [
+    "weak_evidence"
+   ],
+   "source_doc_id": "eor_-48387_268b7e78",
+   "statement_id": "s_a1ca75fb2668601d",
+   "status": "accepted",
+   "subject_id": "e_8015e04326be",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_3450f26a71bb4931"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 510,
+     "char_start": 296,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:296-510",
+     "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 510,
+    "char_start": 296,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:296-510",
+    "text": "A 5\" 18#/ft, P-110 production liner was set from 5395' MD to TD.  \n\nThe well was completed for production as a single, GP, oil completion in the \"R-3\" Sand with perforations of 9182' - 9208' MD / 9073' - 9098' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_6c01b78938ed",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_a1e6377675fc290f",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_5842b2c14bc63634"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1377,
+     "char_start": 1270,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1270-1377",
+     "text": "A 207' cmt plug was set w/ 59.3 bbl (308 sxs) Class H cmt f/ 493'-700' RKB and pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1377,
+    "char_start": 1270,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1270-1377",
+    "text": "A 207' cmt plug was set w/ 59.3 bbl (308 sxs) Class H cmt f/ 493'-700' RKB and pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_5862175800e8",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_aa8f4634e34b0638",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_e9222d27b2481e33"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 294,
+     "char_start": 177,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:177-294",
+     "text": "Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 294,
+    "char_start": 177,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:177-294",
+    "text": "Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a7daa66b3b43",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_ab92290d243c140b",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_f86421304e431015"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 287,
+     "char_start": 103,
+     "chunk_id": "eor_-151231_23dd2d46#c000",
+     "doc_id": "eor_-151231_23dd2d46",
+     "grounding": "exact",
+     "span": "eor_-151231_23dd2d46:103-287",
+     "text": "The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 287,
+    "char_start": 103,
+    "chunk_id": "eor_-151231_23dd2d46#c000",
+    "doc_id": "eor_-151231_23dd2d46",
+    "grounding": "exact",
+    "span": "eor_-151231_23dd2d46:103-287",
+    "text": "The \"Cris I M-8\" Sd (S01) existing perfs of 9,934'-9,945' MD (9,367'-9,378' TVD) were isolated by setting a MRBP at 9,891' RKB + 10' cmt (ETOC 9,881' RKB); pressure tested to 1050 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_952e7a6ea602",
+   "predicate": "tested_to_pressure",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-151231_23dd2d46",
+   "statement_id": "s_b22910f9d91cdf40",
+   "status": "accepted",
+   "subject_id": "e_87c4865cafaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_8e874751e60a694c"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 160,
+     "char_start": 0,
+     "chunk_id": "eor_-53929_9608c4e5#c000",
+     "doc_id": "eor_-53929_9608c4e5",
+     "grounding": "partial",
+     "span": "eor_-53929_9608c4e5:0-160",
+     "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 160,
+    "char_start": 0,
+    "chunk_id": "eor_-53929_9608c4e5#c000",
+    "doc_id": "eor_-53929_9608c4e5",
+    "grounding": "partial",
+    "span": "eor_-53929_9608c4e5:0-160",
+    "text": "ERT has complete operations on the WC 215, OCS-G 04087, Well A16BP. The wellbore was spud on 07-21-07 and drilled to a TD of 12300' MD / 11136' TVD on 07-30-07."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7b8822761129",
+   "predicate": "spudded_on",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-53929_9608c4e5",
+   "statement_id": "s_b752390c9efb367e",
+   "status": "accepted",
+   "subject_id": "e_4be66b332071",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_06b4c72a90694c97"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 322,
+     "char_start": 145,
+     "chunk_id": "eor_-111190_bf5f7db8#c000",
+     "doc_id": "eor_-111190_bf5f7db8",
+     "grounding": "exact",
+     "span": "eor_-111190_bf5f7db8:145-322",
+     "text": "The previous producing interval, the \"LH\" Sand, perfs 16310' - 16328' MD, was isolated by setting a MRBP @ 16295' MD and dumping 50' of cmt on top of the plug; ETOC @ 16245' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 322,
+    "char_start": 145,
+    "chunk_id": "eor_-111190_bf5f7db8#c000",
+    "doc_id": "eor_-111190_bf5f7db8",
+    "grounding": "exact",
+    "span": "eor_-111190_bf5f7db8:145-322",
+    "text": "The previous producing interval, the \"LH\" Sand, perfs 16310' - 16328' MD, was isolated by setting a MRBP @ 16295' MD and dumping 50' of cmt on top of the plug; ETOC @ 16245' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_fa33b01be552",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-111190_bf5f7db8",
+   "statement_id": "s_bb9e27640a9f8ff3",
+   "status": "accepted",
+   "subject_id": "e_87c4865cafaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_6d9866afe81e74a9"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1268,
+     "char_start": 1231,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1231-1268",
+     "text": "The 13-5/8\" csg was perf'd 695'-697'."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1268,
+    "char_start": 1231,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1231-1268",
+    "text": "The 13-5/8\" csg was perf'd 695'-697'."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a742839bfca8",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_c0ba70d7a90345fd",
+   "status": "accepted",
+   "subject_id": "e_28514711a7f3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_3da397c87bc84cda"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 231,
+     "char_start": 99,
+     "chunk_id": "eor_-48472_a0f3a4d2#c000",
+     "doc_id": "eor_-48472_a0f3a4d2",
+     "grounding": "exact",
+     "span": "eor_-48472_a0f3a4d2:99-231",
+     "text": "The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 231,
+    "char_start": 99,
+    "chunk_id": "eor_-48472_a0f3a4d2#c000",
+    "doc_id": "eor_-48472_a0f3a4d2",
+    "grounding": "exact",
+    "span": "eor_-48472_a0f3a4d2:99-231",
+    "text": "The 13-3/8\" casing and 26\" drive pipe are cut at 4\" AML and will be cut at minimum of 15' BML and recovered at platform abandonment."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_23b6070d015d",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-48472_a0f3a4d2",
+   "statement_id": "s_c45e7805df0a0014",
+   "status": "accepted",
+   "subject_id": "e_db6eedfa72b1",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4c0c8c7bf9169351"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1505,
+     "char_start": 1378,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1378-1505",
+     "text": "A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1505,
+    "char_start": 1378,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1378-1505",
+    "text": "A 20\" csg CIBP was set @ 300' BML / 460' RKB + 206' cmt surf plug w/65.6 bbls (341 sxs) Class H cmt w/TOC @ 94' BML / 254' RKB."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e9c2509d8410",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_cc3038db6eecf256",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_fb04ee34910108ea"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 175,
+     "char_start": 0,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:0-175",
+     "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 175,
+    "char_start": 0,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:0-175",
+    "text": "Stone has successfully drilled and completed for production the SS 112 OCS-00066, Well Q1ST2.  The well was spud on 10-06-11 by cutting a window in the 7 5/8\" csg at 5678' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_5643715609c5",
+   "predicate": "has_mud_weight",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_cda17cb6f6aaa887",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_937ea78eca802fcd"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 621,
+     "char_start": 586,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:586-621",
+     "text": "The 3-1/2\" tbg was perf'd @9400'MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 621,
+    "char_start": 586,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:586-621",
+    "text": "The 3-1/2\" tbg was perf'd @9400'MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_adbaf2ac306d",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_ce133e2e27290a8b",
+   "status": "accepted",
+   "subject_id": "e_fa8d916bf9f4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_deb1fb69280d743f"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 274,
+     "char_start": 191,
+     "chunk_id": "eor_-125705_5e2da512#c000",
+     "doc_id": "eor_-125705_5e2da512",
+     "grounding": "exact",
+     "span": "eor_-125705_5e2da512:191-274",
+     "text": "Please note: The 30\", 13 3/8\" and 9 5/8\" casings / conductors were cut at 186' AML."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 274,
+    "char_start": 191,
+    "chunk_id": "eor_-125705_5e2da512#c000",
+    "doc_id": "eor_-125705_5e2da512",
+    "grounding": "exact",
+    "span": "eor_-125705_5e2da512:191-274",
+    "text": "Please note: The 30\", 13 3/8\" and 9 5/8\" casings / conductors were cut at 186' AML."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_89aa8371309e",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-125705_5e2da512",
+   "statement_id": "s_d8eba38cea9ed8c9",
+   "status": "accepted",
+   "subject_id": "e_d46849a5183e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_cc5eeeae0367293f"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 186,
+     "char_start": 0,
+     "chunk_id": "eor_-46627_c8788ba2#c000",
+     "doc_id": "eor_-46627_c8788ba2",
+     "grounding": "partial",
+     "span": "eor_-46627_c8788ba2:0-186",
+     "text": "The South Marsh Island Block 123, OCS-G 23845, Well No. 01 was drilled and temporary abandon. The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 186,
+    "char_start": 0,
+    "chunk_id": "eor_-46627_c8788ba2#c000",
+    "doc_id": "eor_-46627_c8788ba2",
+    "grounding": "partial",
+    "span": "eor_-46627_c8788ba2:0-186",
+    "text": "The South Marsh Island Block 123, OCS-G 23845, Well No. 01 was drilled and temporary abandon. The wellbore was spud on May 12, 2007 and TD'd on May 24, 2007 at a depth of 6400' MD / TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_12715cc6a3e3",
+   "predicate": "spudded_on",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-46627_c8788ba2",
+   "statement_id": "s_d902794c1f623b3d",
+   "status": "accepted",
+   "subject_id": "e_eeb3d6b75d2a",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_0086d6d0c0c9bd6c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 121,
+     "char_start": 0,
+     "chunk_id": "eor_-165397_7e84fdbf#c000",
+     "doc_id": "eor_-165397_7e84fdbf",
+     "grounding": "exact",
+     "span": "eor_-165397_7e84fdbf:0-121",
+     "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 121,
+    "char_start": 0,
+    "chunk_id": "eor_-165397_7e84fdbf#c000",
+    "doc_id": "eor_-165397_7e84fdbf",
+    "grounding": "exact",
+    "span": "eor_-165397_7e84fdbf:0-121",
+    "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_675e7d6a49d6",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-165397_7e84fdbf",
+   "statement_id": "s_d9eaa10edabae67e",
+   "status": "accepted",
+   "subject_id": "e_2ab4c6d7d096",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_c85cb25ad6d98f97"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 227,
+     "char_start": 0,
+     "chunk_id": "eor_-2095_f2a90e24#c000",
+     "doc_id": "eor_-2095_f2a90e24",
+     "grounding": "exact",
+     "span": "eor_-2095_f2a90e24:0-227",
+     "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 227,
+    "char_start": 0,
+    "chunk_id": "eor_-2095_f2a90e24#c000",
+    "doc_id": "eor_-2095_f2a90e24",
+    "grounding": "exact",
+    "span": "eor_-2095_f2a90e24:0-227",
+    "text": "Remington has performed completion operations of the EC 282 #C-1 wellbore as a single frac-pack completion in the Cris S-4 SD w/perforations F/13658' - 13696' MD / 13498' - 13532' TVD & 13734' - 13752' MD / 13567' - 13583' TVD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_833451464c6a",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-2095_f2a90e24",
+   "statement_id": "s_da0841f48d2d5a59",
+   "status": "accepted",
+   "subject_id": "e_879580b7986e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_e6e7494b02c4cbda"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 353,
+     "char_start": 253,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:253-353",
+     "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 353,
+    "char_start": 253,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:253-353",
+    "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_107b22805b1e",
+   "predicate": "cemented_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_e0d2154e9e11bae9",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_e0f3b1aa0f357316"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 585,
+     "char_start": 403,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:403-585",
+     "text": "A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 585,
+    "char_start": 403,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:403-585",
+    "text": "A 200' balanced cmt plug was set in the 3-1/2\" tbg & 3-1/2\" x 7-5/8\" csg annulus w/ 6.4 bbls (34 sxs, 36 cu ft) Class H cmt w/TOC at 9410' MD; plugs independently tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ce986937dbdd",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_e0fa1148f1697776",
+   "status": "accepted",
+   "subject_id": "e_685601509a56",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_559b4c6aa6cec0a4"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 431,
+     "char_start": 349,
+     "chunk_id": "eor_-83553_7787b0dc#c000",
+     "doc_id": "eor_-83553_7787b0dc",
+     "grounding": "exact",
+     "span": "eor_-83553_7787b0dc:349-431",
+     "text": "The \"CP 28\" Sand was exposed to production by perforating from 15180' - 15192' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 431,
+    "char_start": 349,
+    "chunk_id": "eor_-83553_7787b0dc#c000",
+    "doc_id": "eor_-83553_7787b0dc",
+    "grounding": "exact",
+    "span": "eor_-83553_7787b0dc:349-431",
+    "text": "The \"CP 28\" Sand was exposed to production by perforating from 15180' - 15192' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_0c1aa0fcb78f",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-83553_7787b0dc",
+   "statement_id": "s_e14db397b1a1ec29",
+   "status": "accepted",
+   "subject_id": "e_48e14004209f",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_86c94ebdc5ec9251"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 381,
+     "char_start": 257,
+     "chunk_id": "eor_-115129_7f61f092#c000",
+     "doc_id": "eor_-115129_7f61f092",
+     "grounding": "partial",
+     "span": "eor_-115129_7f61f092:257-381",
+     "text": "The operation successfully isolated the bottom portion of the \"KH\" Sand completion, perforation interval 12853' - 12896' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 381,
+    "char_start": 257,
+    "chunk_id": "eor_-115129_7f61f092#c000",
+    "doc_id": "eor_-115129_7f61f092",
+    "grounding": "partial",
+    "span": "eor_-115129_7f61f092:257-381",
+    "text": "The operation successfully isolated the bottom portion of the \"KH\" Sand completion, perforation interval 12853' - 12896' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7241b2e39c6d",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115129_7f61f092",
+   "statement_id": "s_e1d20e8c57050558",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_b00465b35cd31670"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 1596,
+     "char_start": 1565,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:1565-1596",
+     "text": "7-5/8\" csg - (947' MD) 844' BML"
+    }
+   ],
+   "evidence_span": {
+    "char_end": 1596,
+    "char_start": 1565,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:1565-1596",
+    "text": "7-5/8\" csg - (947' MD) 844' BML"
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c90c116b6356",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_e2085d0dfd20d3bd",
+   "status": "accepted",
+   "subject_id": "e_3fd6bdada6a3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_10f66060b0583b07"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 401,
+     "char_start": 357,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:357-401",
+     "text": "The 3-1/2\" tbg was perf'd at 9698'-9700' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 401,
+    "char_start": 357,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:357-401",
+    "text": "The 3-1/2\" tbg was perf'd at 9698'-9700' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_f51f8380fd25",
+   "predicate": "perforated_interval",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_e4dc6d2036f97b27",
+   "status": "accepted",
+   "subject_id": "e_fa8d916bf9f4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_228a9bfb5c08a13b"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 96,
+     "char_start": 0,
+     "chunk_id": "eor_-106378_8b6db016#c000",
+     "doc_id": "eor_-106378_8b6db016",
+     "grounding": "exact",
+     "span": "eor_-106378_8b6db016:0-96",
+     "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 96,
+    "char_start": 0,
+    "chunk_id": "eor_-106378_8b6db016#c000",
+    "doc_id": "eor_-106378_8b6db016",
+    "grounding": "exact",
+    "span": "eor_-106378_8b6db016:0-96",
+    "text": "Stone Energy successfully completed zone change operations on ST 164, OCS-G-01250, Well C-15ST2."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_5fb552a76ef3",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-106378_8b6db016",
+   "statement_id": "s_e8edeb9edd712eef",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_fbbfb1048d288681"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 121,
+     "char_start": 0,
+     "chunk_id": "eor_-165397_7e84fdbf#c000",
+     "doc_id": "eor_-165397_7e84fdbf",
+     "grounding": "exact",
+     "span": "eor_-165397_7e84fdbf:0-121",
+     "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 121,
+    "char_start": 0,
+    "chunk_id": "eor_-165397_7e84fdbf#c000",
+    "doc_id": "eor_-165397_7e84fdbf",
+    "grounding": "exact",
+    "span": "eor_-165397_7e84fdbf:0-121",
+    "text": "GasLift Modification - Pulled and placed packoff assembly at 1357'- 1420' MD, installed live GLVs and set FXE at 442' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_fcf39e0efce2",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-165397_7e84fdbf",
+   "statement_id": "s_ec4f38f2b1f5a65c",
+   "status": "accepted",
+   "subject_id": "e_33c9e4a108aa",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_96a5215c77cf62a1"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 168,
+     "char_start": 115,
+     "chunk_id": "eor_-157593_4154806b#c000",
+     "doc_id": "eor_-157593_4154806b",
+     "grounding": "exact",
+     "span": "eor_-157593_4154806b:115-168",
+     "text": "All remaining casings were cut @ 200' BWL (450' AML)."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 168,
+    "char_start": 115,
+    "chunk_id": "eor_-157593_4154806b#c000",
+    "doc_id": "eor_-157593_4154806b",
+    "grounding": "exact",
+    "span": "eor_-157593_4154806b:115-168",
+    "text": "All remaining casings were cut @ 200' BWL (450' AML)."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_4554b0a4adb1",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-157593_4154806b",
+   "statement_id": "s_ef3ee8cdf4347340",
+   "status": "accepted",
+   "subject_id": "e_978410b2e67d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_6d5e850afe461f3d"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 353,
+     "char_start": 253,
+     "chunk_id": "eor_-154697_e8f1e681#c000",
+     "doc_id": "eor_-154697_e8f1e681",
+     "grounding": "exact",
+     "span": "eor_-154697_e8f1e681:253-353",
+     "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 353,
+    "char_start": 253,
+    "chunk_id": "eor_-154697_e8f1e681#c000",
+    "doc_id": "eor_-154697_e8f1e681",
+    "grounding": "exact",
+    "span": "eor_-154697_e8f1e681:253-353",
+    "text": "A CIBP was set in the 3-1/2\" tbg at 14,635' + 21' cmt (TOC @ 14,614') & pressure tested to 1000 psi."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_108c013fde08",
+   "predicate": "tested_to_pressure",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-154697_e8f1e681",
+   "statement_id": "s_f048906f68547f2a",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_354335a40eb9e6dd"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 294,
+     "char_start": 177,
+     "chunk_id": "eor_-119584_ca8392d9#c000",
+     "doc_id": "eor_-119584_ca8392d9",
+     "grounding": "partial",
+     "span": "eor_-119584_ca8392d9:177-294",
+     "text": "Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 294,
+    "char_start": 177,
+    "chunk_id": "eor_-119584_ca8392d9#c000",
+    "doc_id": "eor_-119584_ca8392d9",
+    "grounding": "partial",
+    "span": "eor_-119584_ca8392d9:177-294",
+    "text": "Operations were completed on 11-08-11.\n\nThe well was drilled to TD, 9475' / 9357' TVD on 10-12-11 w/a MW of 10.0 ppg."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7accd41cd0fa",
+   "predicate": "reached_td",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-119584_ca8392d9",
+   "statement_id": "s_f1b77f4e7b9cb5bb",
+   "status": "accepted",
+   "subject_id": "e_2bcbd84439f0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_08ff9bb2fb44fb61",
+    "c_24c82c67993d2ce8"
+   ],
+   "confidence": 0.99,
+   "evidence": [
+    {
+     "char_end": 214,
+     "char_start": 97,
+     "chunk_id": "eor_-169333_fcc04c1b#c000",
+     "doc_id": "eor_-169333_fcc04c1b",
+     "grounding": "exact",
+     "span": "eor_-169333_fcc04c1b:97-214",
+     "text": "Please note, the well was given a status of \"temporarily abandoned\" on 10/01/2005 & the status date remains the same."
+    },
+    {
+     "char_end": 31,
+     "char_start": 0,
+     "chunk_id": "eor_-48472_a0f3a4d2#c000",
+     "doc_id": "eor_-48472_a0f3a4d2",
+     "grounding": "exact",
+     "span": "eor_-48472_a0f3a4d2:0-31",
+     "text": "Well is currently in TA status."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 214,
+    "char_start": 97,
+    "chunk_id": "eor_-169333_fcc04c1b#c000",
+    "doc_id": "eor_-169333_fcc04c1b",
+    "grounding": "exact",
+    "span": "eor_-169333_fcc04c1b:97-214",
+    "text": "Please note, the well was given a status of \"temporarily abandoned\" on 10/01/2005 & the status date remains the same."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_00a6ba21da70",
+   "predicate": "has_well_status",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-169333_fcc04c1b",
+   "statement_id": "s_f4f85478d96f8d75",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 2,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_ff5ce3ffef4720fe"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 338,
+     "char_start": 209,
+     "chunk_id": "eor_-10441_37e78f36#c000",
+     "doc_id": "eor_-10441_37e78f36",
+     "grounding": "exact",
+     "span": "eor_-10441_37e78f36:209-338",
+     "text": "Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 338,
+    "char_start": 209,
+    "chunk_id": "eor_-10441_37e78f36#c000",
+    "doc_id": "eor_-10441_37e78f36",
+    "grounding": "exact",
+    "span": "eor_-10441_37e78f36:209-338",
+    "text": "Wellbore completed as a single, GP gas completion in the BN 8400-ft Sand with perforations from 8400-8430-ft and 8439-8453-ft MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_50584f6dffde",
+   "predicate": "completed_in",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-10441_37e78f36",
+   "statement_id": "s_f58b4f5f8fbf1747",
+   "status": "accepted",
+   "subject_id": "e_bd8483287459",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_0f858cea43cc86d7"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 55,
+     "char_start": 0,
+     "chunk_id": "eor_-158773_5cb14ed0#c000",
+     "doc_id": "eor_-158773_5cb14ed0",
+     "grounding": "exact",
+     "span": "eor_-158773_5cb14ed0:0-55",
+     "text": "9-5/8\", 13-3/8\", and 20\" casing strings cut/pulled BML."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 55,
+    "char_start": 0,
+    "chunk_id": "eor_-158773_5cb14ed0#c000",
+    "doc_id": "eor_-158773_5cb14ed0",
+    "grounding": "exact",
+    "span": "eor_-158773_5cb14ed0:0-55",
+    "text": "9-5/8\", 13-3/8\", and 20\" casing strings cut/pulled BML."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_669ad6899abd",
+   "predicate": "cut_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-158773_5cb14ed0",
+   "statement_id": "s_fd9af6d8af2660f9",
+   "status": "accepted",
+   "subject_id": "e_cdc7e86ff0cf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a831bdc4496ffe9d"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 310,
+     "char_start": 93,
+     "chunk_id": "eor_-115965_1bc5d37f#c000",
+     "doc_id": "eor_-115965_1bc5d37f",
+     "grounding": "exact",
+     "span": "eor_-115965_1bc5d37f:93-310",
+     "text": "The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 310,
+    "char_start": 93,
+    "chunk_id": "eor_-115965_1bc5d37f#c000",
+    "doc_id": "eor_-115965_1bc5d37f",
+    "grounding": "exact",
+    "span": "eor_-115965_1bc5d37f:93-310",
+    "text": "The previous completion, the \"C01\" sand, was isolated by pulling the 3-1/2\" tubing string at 12,080' MD, setting a CIBP in the casing at 12,075' MD, and dumping 50' of cement on top of the plug, w/ ETOC at 12,025' MD."
+   },
+   "extractor_version": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e716b990ff0a",
+   "predicate": "set_equipment_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "eor_-115965_1bc5d37f",
+   "statement_id": "s_ff3c543e7986aacb",
+   "status": "accepted",
+   "subject_id": "e_a5eedb07611d",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "details": {
+  "G1": {
+   "matches": [
+    "e_d3ac7a4ef1a8"
+   ],
+   "research_entities": [
+    "e_424168479b5f"
+   ]
+  },
+  "G2": {
+   "matches": [
+    "s_60001f55aab47dce"
+   ],
+   "reverse": [],
+   "spans": [
+    "demo_turing:0-31",
+    "demo_turing:32-73"
+   ],
+   "support_count": 2
+  },
+  "G3": {
+   "acme": [
+    {
+     "statement_id": "s_3dd9f1cd65155a9f",
+     "valid_from": null,
+     "valid_to": null
+    }
+   ],
+   "nova": [
+    {
+     "statement_id": "s_06502ce81c1cb731",
+     "valid_from": null,
+     "valid_to": null
+    }
+   ]
+  },
+  "G4": {
+   "q1": {
+    "expected": [
+     "London"
+    ],
+    "found": [
+     "e_1645ee78de0f"
+    ],
+    "ok": true
+   },
+   "q2": {
+    "expected": [
+     "Acme Labs"
+    ],
+    "found": [
+     "e_1cdcf0895a98",
+     "e_960d2cbf6df7"
+    ],
+    "ok": false
+   },
+   "q3": {
+    "expected": [
+     "Nova AI"
+    ],
+    "found": [
+     "e_1cdcf0895a98",
+     "e_960d2cbf6df7"
+    ],
+    "ok": false
+   },
+   "q4": {
+    "expected": [
+     "artificial intelligence"
+    ],
+    "found": [
+     "e_21839c83f19b"
+    ],
+    "ok": true
+   }
+  },
+  "G5": {
+   "invalid": []
+  },
+  "G6": {
+   "reversed": [
+    "s_37ce755eecb4e695"
+   ]
+  },
+  "gold_recall": {
+   "gold_entities": 8,
+   "matched": 2,
+   "total": 4
+  }
+ },
+ "status": {
+  "G1": "PASS",
+  "G2": "PASS",
+  "G3": "FAIL",
+  "G4": {
+   "q1": "PASS",
+   "q2": "FAIL",
+   "q3": "FAIL",
+   "q4": "PASS"
+  },
+  "G5": "PASS",
+  "G6": "FAIL",
+  "gold_recall": 0.5
+ }
+}

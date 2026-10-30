@@ -1,0 +1,134 @@
+{
+  "minitests": {
+    "edc_webnlg_10": {
+      "scores": {
+        "strict": {
+          "P": 0.838,
+          "R": 0.85,
+          "F1": 0.843
+        },
+        "exact": {
+          "F1": 0.843
+        },
+        "partial": {
+          "F1": 0.864
+        },
+        "ent_type": {
+          "F1": 0.885
+        },
+        "full_triple_exact_match_F1": 0.465,
+        "evaluator_ceiling_gold_vs_gold_strict_F1": 0.965
+      },
+      "per_tag_strict_F1": {
+        "subjects": 0.914,
+        "predicates": 0.914,
+        "objects": 0.726
+      },
+      "usage": {
+        "llm_calls": 31,
+        "oie": 10,
+        "schema_definition": 10,
+        "canonicalization_verify": 11,
+        "prompt_tokens": 25704,
+        "completion_tokens": 1300,
+        "llm_seconds": 443.8,
+        "wall_minutes": 7.4
+      },
+      "attempt1": {
+        "usage": {
+          "llm_calls": 21,
+          "prompt_tokens": 23059,
+          "completion_tokens": 1280,
+          "llm_seconds": 525.4
+        }
+      }
+    },
+    "kggen_mine_3": {
+      "scores": {
+        "overall_accuracy": 0.644,
+        "correct": 29,
+        "queries": 45,
+        "published_kggen_mean_same_essays": 0.622,
+        "per_essay": [
+          null,
+          null,
+          null,
+          null,
+          {
+            "acc": 0.2,
+            "published": 0.4,
+            "entities": 14,
+            "relations": 12
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "acc": 0.867,
+            "published": 0.667,
+            "entities": 24,
+            "relations": 35
+          },
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "acc": 0.867,
+            "published": 0.8,
+            "entities": 56,
+            "relations": 39
+          }
+        ]
+      },
+      "usage": {
+        "llm_calls": 52,
+        "extraction_calls": 7,
+        "judge_calls": 45,
+        "prompt_tokens": 27671,
+        "completion_tokens": 8612,
+        "llm_seconds": 1813.8,
+        "wall_minutes": 30.4
+      }
+    },
+    "kggen_showcase": {
+      "scores": {
+        "pair_recall": 1.0,
+        "triple_recall": 0.5,
+        "predicted_triples": 10
+      },
+      "usage": {
+        "llm_calls": 6,
+        "prompt_tokens": 2273,
+        "completion_tokens": 351,
+        "llm_seconds": 105.4,
+        "wall_minutes": 1.8
+      }
+    },
+    "total_minitest_llm_minutes": 47.6
+  }
+}

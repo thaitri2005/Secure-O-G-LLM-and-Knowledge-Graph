@@ -1,0 +1,61 @@
+entity_types:
+  ai: 1
+  city: 1
+  company: 2
+  division: 1
+  laboratory: 1
+  location: 1
+  person: 2
+  research center: 1
+  system: 1
+  technology: 1
+induced:
+  format: kgb.induced_schema/1
+  method: edc_self_canon+autoschemakg_entity_concepts
+  schema_id: is_49ba4a994edd
+  source_graph_sha256: 1fa2967a17da436000f01bff60ec951a386bd51308546e3eb85e56783d0bc81d
+  source_run: runs/reference/schema_induction/showcase_noschema/A4
+relations:
+  developed:
+    aliases:
+    - developed
+    definition: The subject entity created or developed the product, system, or technology specified by the object entity.
+    domain: company
+    range: system
+    support: 1
+  is_birthplace_of:
+    aliases:
+    - is birthplace of
+    definition: The subject entity is the location where the person or entity specified by the object entity was born.
+    domain: city
+    range: city
+    support: 3
+  joined:
+    aliases:
+    - joined
+    definition: The subject entity became a member of or started working for the organization specified by the object entity.
+    domain: person
+    range: ai
+    support: 2
+  left:
+    aliases:
+    - left
+    definition: The subject entity ceased to be a member of or stopped working for the organization specified by the object entity.
+    domain: person
+    range: company
+    support: 1
+  operates:
+    aliases:
+    - operates
+    definition: The subject entity operates or manages the facility, organization, or entity specified by the object entity.
+    domain: company
+    range: division
+    support: 2
+  works_on:
+    aliases:
+    - works on
+    definition: The subject entity works on or focuses research/development efforts on the topic specified by the object entity.
+    domain: research center
+    range: technology
+    support: 1
+version: 1

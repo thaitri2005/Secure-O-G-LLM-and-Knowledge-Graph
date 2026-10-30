@@ -1,0 +1,83 @@
+{
+  "entities": [
+    "artificial intelligence",
+    "IBM Research",
+    "Alan Turing",
+    "computing systems",
+    "International Business Machines Corporation",
+    "International Business Machines",
+    "research division",
+    "laboratories",
+    "Alice",
+    "IBM",
+    "Acme Labs",
+    "London",
+    "Nova AI"
+  ],
+  "relations": [
+    [
+      "International Business Machines",
+      "developed",
+      "computing systems"
+    ],
+    [
+      "Alice",
+      "left",
+      "Acme Labs"
+    ],
+    [
+      "Alice",
+      "joined",
+      "Acme Labs"
+    ],
+    [
+      "Turing's place of birth",
+      "is",
+      "London"
+    ],
+    [
+      "International Business Machines Corporation",
+      "operates",
+      "laboratories"
+    ],
+    [
+      "IBM Research",
+      "works on",
+      "artificial intelligence"
+    ],
+    [
+      "London",
+      "is birthplace of",
+      "Alan Turing"
+    ],
+    [
+      "Alice",
+      "joined",
+      "Nova AI"
+    ],
+    [
+      "IBM",
+      "expanded",
+      "research division"
+    ],
+    [
+      "Alan Turing",
+      "was born in",
+      "London"
+    ]
+  ],
+  "edges": [
+    "is birthplace of",
+    "developed",
+    "operates",
+    "works on",
+    "left",
+    "is",
+    "joined",
+    "was born in",
+    "expanded"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

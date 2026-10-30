@@ -1,0 +1,130 @@
+{
+ "ablation": "A4",
+ "chunks": [
+  {
+   "char_end": 43,
+   "char_start": 0,
+   "chunk_id": "d#c000",
+   "doc_id": "d",
+   "idx": 0,
+   "text": "Set CIBP at 9,500'. Invented artifact text."
+  }
+ ],
+ "documents": [
+  {
+   "doc_id": "d",
+   "text": "Set CIBP at 9,500'. Invented artifact text."
+  }
+ ],
+ "entities": [
+  {
+   "aliases": [],
+   "entity_id": "s0",
+   "kind": "entity",
+   "mention_ids": [],
+   "name": "CIBP",
+   "resolver": "synthetic"
+  },
+  {
+   "aliases": [],
+   "entity_id": "o0",
+   "kind": "entity",
+   "mention_ids": [],
+   "name": "9,500'",
+   "resolver": "synthetic"
+  },
+  {
+   "aliases": [],
+   "entity_id": "s3",
+   "kind": "entity",
+   "mention_ids": [],
+   "name": "CIBP",
+   "resolver": "synthetic"
+  },
+  {
+   "aliases": [],
+   "entity_id": "o3",
+   "kind": "entity",
+   "mention_ids": [],
+   "name": "9,500'",
+   "resolver": "synthetic"
+  }
+ ],
+ "flags": {},
+ "format": "kgb.graph/1",
+ "run_name": "synthetic",
+ "statements": [
+  {
+   "candidate_ids": [
+    "c_000"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 43,
+     "char_start": 0,
+     "chunk_id": "d#c000",
+     "doc_id": "d",
+     "grounding": "exact",
+     "text": "Set CIBP at 9,500'. Invented artifact text."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 43,
+    "char_start": 0,
+    "chunk_id": "d#c000",
+    "doc_id": "d",
+    "grounding": "exact",
+    "text": "Set CIBP at 9,500'. Invented artifact text."
+   },
+   "extractor_version": "synthetic",
+   "object_id": "o0",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "d",
+   "statement_id": "statement_0",
+   "status": "accepted",
+   "subject_id": "s0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_003"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 43,
+     "char_start": 0,
+     "chunk_id": "d#c000",
+     "doc_id": "d",
+     "grounding": "exact",
+     "text": "Set CIBP at 9,500'. Invented artifact text."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 43,
+    "char_start": 0,
+    "chunk_id": "d#c000",
+    "doc_id": "d",
+    "grounding": "exact",
+    "text": "Set CIBP at 9,500'. Invented artifact text."
+   },
+   "extractor_version": "synthetic",
+   "object_id": "o3",
+   "predicate": "set_plug_at",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "d",
+   "statement_id": "statement_3",
+   "status": "accepted",
+   "subject_id": "s3",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  }
+ ]
+}

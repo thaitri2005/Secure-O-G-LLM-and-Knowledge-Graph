@@ -1,0 +1,2 @@
+{"doc_id": "synthetic_a", "API12": "012345678900", "API10": "0123456789", "SN_EOR": "-1", "split": "test", "text_sha256": "2487f158361971857e67774e61b2844f387d4ef97bcd8178bb3a9f78debfc135"}
+{"doc_id": "synthetic_b", "API12": "012345679100", "API10": "0123456791", "SN_EOR": "-2", "split": "test", "text_sha256": "1836829f431efe4a832b53a6a4b55d55d170ff864f5e069dd0bee873b751a9bf"}

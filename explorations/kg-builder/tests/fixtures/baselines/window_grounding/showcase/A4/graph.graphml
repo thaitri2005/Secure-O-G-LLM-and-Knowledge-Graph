@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="support_count" attr.type="long" />
+  <key id="d10" for="edge" attr.name="confidence" attr.type="double" />
+  <key id="d9" for="edge" attr.name="extractor_version" attr.type="string" />
+  <key id="d8" for="edge" attr.name="valid_to" attr.type="string" />
+  <key id="d7" for="edge" attr.name="valid_from" attr.type="string" />
+  <key id="d6" for="edge" attr.name="evidence_text" attr.type="string" />
+  <key id="d5" for="edge" attr.name="evidence_span" attr.type="string" />
+  <key id="d4" for="edge" attr.name="source_doc_id" attr.type="string" />
+  <key id="d3" for="edge" attr.name="predicate" attr.type="string" />
+  <key id="d2" for="node" attr.name="kind" attr.type="string" />
+  <key id="d1" for="node" attr.name="aliases" attr.type="string" />
+  <key id="d0" for="node" attr.name="name" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="e_1645ee78de0f">
+      <data key="d0">London</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_1cdcf0895a98">
+      <data key="d0">Nova AI</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_21839c83f19b">
+      <data key="d0">artificial intelligence</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_3d224aae3dcc">
+      <data key="d0">Alan Turing</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_424168479b5f">
+      <data key="d0">IBM Research</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_522b276a356b">
+      <data key="d0">Alice</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_7e79e6c8c640">
+      <data key="d0">laboratories</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_7f36426d0331">
+      <data key="d0">computing systems</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_960d2cbf6df7">
+      <data key="d0">Acme Labs</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_d3ac7a4ef1a8">
+      <data key="d0">IBM</data>
+      <data key="d1">["International Business Machines","International Business Machines Corporation"]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_fde3a012e554">
+      <data key="d0">research division</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <edge source="e_3d224aae3dcc" target="e_1645ee78de0f" id="s_60001f55aab47dce">
+      <data key="d3">born_in</data>
+      <data key="d4">demo_turing</data>
+      <data key="d5">demo_turing:0-31</data>
+      <data key="d6">Alan Turing was born in London.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17</data>
+      <data key="d10">0.99</data>
+      <data key="d11">2</data>
+    </edge>
+    <edge source="e_424168479b5f" target="e_21839c83f19b" id="s_0421bb5fe2894f34">
+      <data key="d3">works_on</data>
+      <data key="d4">demo_ibm</data>
+      <data key="d5">demo_ibm:182-228</data>
+      <data key="d6">IBM Research works on artificial intelligence.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17</data>
+      <data key="d10">0.9</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_522b276a356b" target="e_960d2cbf6df7" id="s_4571a545d46466be">
+      <data key="d3">works_at</data>
+      <data key="d4">demo_alice</data>
+      <data key="d5">demo_alice:0-29</data>
+      <data key="d6">2021: Alice joined Acme Labs.</data>
+      <data key="d7">2021</data>
+      <data key="d8">2024</data>
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=trigger</data>
+      <data key="d10">0.99</data>
+      <data key="d11">2</data>
+    </edge>
+    <edge source="e_522b276a356b" target="e_1cdcf0895a98" id="s_70186c28e5047779">
+      <data key="d3">works_at</data>
+      <data key="d4">demo_alice</data>
+      <data key="d5">demo_alice:30-76</data>
+      <data key="d6">2024: Alice left Acme Labs and joined Nova AI.</data>
+      <data key="d7">2024</data>
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=trigger</data>
+      <data key="d10">0.9</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d3ac7a4ef1a8" target="e_fde3a012e554" id="s_37ce755eecb4e695">
+      <data key="d3">part_of</data>
+      <data key="d4">demo_ibm</data>
+      <data key="d5">demo_ibm:69-104</data>
+      <data key="d6">IBM expanded its research division.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17</data>
+      <data key="d10">0.9</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d3ac7a4ef1a8" target="e_7f36426d0331" id="s_6cd948115c1c7d5a">
+      <data key="d3">developed</data>
+      <data key="d4">demo_ibm</data>
+      <data key="d5">demo_ibm:0-68</data>
+      <data key="d6">International Business Machines developed several computing systems.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17</data>
+      <data key="d10">0.9</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d3ac7a4ef1a8" target="e_7e79e6c8c640" id="s_daa24c9c2a393086">
+      <data key="d3">operates</data>
+      <data key="d4">demo_ibm</data>
+      <data key="d5">demo_ibm:105-181</data>
+      <data key="d6">International Business Machines Corporation operates laboratories worldwide.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17</data>
+      <data key="d10">0.9</data>
+      <data key="d11">1</data>
+    </edge>
+  </graph>
+</graphml>

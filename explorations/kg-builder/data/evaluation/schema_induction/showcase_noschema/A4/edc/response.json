@@ -1,0 +1,152 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "joined": "The subject entity became a member of or started working for the organization specified by the object entity.",
+    "left": "The subject entity ceased to be a member of or stopped working for the organization specified by the object entity."
+   },
+   "key": "demo_alice#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Alice",
+      "left",
+      "Acme Labs"
+     ]
+    },
+    {
+     "candidates": {
+      "left": 0.7716803550720215
+     },
+     "canonical": [
+      "Alice",
+      "joined",
+      "Nova AI"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alice",
+      "joined",
+      "Acme Labs"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "developed": "The subject entity created or developed the product, system, or technology specified by the object entity.",
+    "expanded": "The subject entity expanded the scope, size, or capabilities of the entity specified by the object entity.",
+    "operates": "The subject entity operates or manages the facility, organization, or entity specified by the object entity.",
+    "works on": "The subject entity works on or focuses research/development efforts on the topic specified by the object entity."
+   },
+   "key": "demo_ibm#c000",
+   "results": [
+    {
+     "candidates": {
+      "joined": 0.7010177373886108,
+      "left": 0.47022706270217896
+     },
+     "canonical": [
+      "International Business Machines",
+      "developed",
+      "computing systems"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6819496154785156,
+      "joined": 0.7547560334205627,
+      "left": 0.5675673484802246
+     },
+     "canonical": [
+      "International Business Machines Corporation",
+      "operates",
+      "laboratories"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6758047342300415,
+      "joined": 0.7061430811882019,
+      "left": 0.5492526292800903,
+      "operates": 0.6894267201423645
+     },
+     "canonical": [
+      "IBM",
+      "operates",
+      "research division"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6684920787811279,
+      "joined": 0.6824089884757996,
+      "left": 0.49721020460128784,
+      "operates": 0.685639500617981
+     },
+     "canonical": [
+      "IBM Research",
+      "works on",
+      "artificial intelligence"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is": "The subject entity is identified as or equated to the object entity.",
+    "is birthplace of": "The subject entity is the location where the person or entity specified by the object entity was born.",
+    "was born in": "The subject entity was born in the location specified by the object entity."
+   },
+   "key": "demo_turing#c000",
+   "results": [
+    {
+     "candidates": {
+      "developed": 0.7034568190574646,
+      "joined": 0.7659959197044373,
+      "left": 0.5499252676963806,
+      "operates": 0.7562887072563171,
+      "works on": 0.7046281695365906
+     },
+     "canonical": [
+      "London",
+      "is birthplace of",
+      "Alan Turing"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6042658090591431,
+      "is birthplace of": 0.8529435396194458,
+      "joined": 0.705926239490509,
+      "left": 0.5388809442520142,
+      "operates": 0.6155876517295837
+     },
+     "canonical": [
+      "Alan Turing",
+      "is birthplace of",
+      "London"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.700358510017395,
+      "is birthplace of": 0.8462259769439697,
+      "joined": 0.7470813989639282,
+      "operates": 0.7489354014396667,
+      "works on": 0.6835296154022217
+     },
+     "canonical": [
+      "Turing's place of birth",
+      "is birthplace of",
+      "London"
+     ]
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

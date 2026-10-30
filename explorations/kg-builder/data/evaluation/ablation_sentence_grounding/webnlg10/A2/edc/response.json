@@ -1,0 +1,436 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "birthDate": "The subject entity was born on the date specified by the object entity.",
+    "birthPlace": "The subject entity was born in the location specified by the object entity.",
+    "nationality": "The subject entity holds the nationality specified by the object entity.",
+    "occupation": "The subject entity works as or has the profession specified by the object entity."
+   },
+   "key": "webnlg_0000#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Nie_Haisheng",
+      "birthPlace",
+      "Zaoyang"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Nie_Haisheng",
+      "birthPlace",
+      "Hubei"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Nie_Haisheng",
+      "birthDate",
+      "1964-10-13"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Nie_Haisheng",
+      "nationality",
+      "People's_Republic_of_China"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Nie_Haisheng",
+      "occupation",
+      "Fighter_pilot"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "elevationAboveSeaLevel": "The subject entity is located at an elevation above sea level specified by the object entity.",
+    "location": "The subject entity is located in the place specified by the object entity.",
+    "operator": "The subject entity is operated by the organization or entity specified by the object entity.",
+    "runwayLength": "The subject entity has a runway length specified by the object entity."
+   },
+   "key": "webnlg_0001#c000",
+   "results": [
+    {
+     "candidates": {
+      "affiliation": 0.8732237219810486,
+      "director": 0.8848316669464111,
+      "governmentType": 0.8820152878761292,
+      "industry": 0.8699049353599548,
+      "operatingOrganisation": 0.9445223808288574
+     },
+     "canonical": [
+      "Adolfo_Suarez_Madrid-Barajas_Airport",
+      "operatingOrganisation",
+      "Enaire"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Adolfo_Suarez_Madrid-Barajas_Airport",
+      "location",
+      "Paracuellos_de_Jarama"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Adolfo_Suarez_Madrid-Barajas_Airport",
+      "runwayLength",
+      "3500 (metres)"
+     ]
+    },
+    {
+     "candidates": {
+      "elevationAboveTheSeaLevel": 0.9567745923995972,
+      "hasToItsNorth": 0.7536482214927673,
+      "hasToItsSouthwest": 0.752752423286438,
+      "location": 0.7860345244407654,
+      "state": 0.7570093274116516
+     },
+     "canonical": [
+      "Adolfo_Suarez_Madrid-Barajas_Airport",
+      "elevationAboveTheSeaLevel",
+      "610 (metres)"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "birthPlace": "The subject entity was born in the location specified by the object entity.",
+    "ethnicGroup": "The subject entity contains or is associated with the ethnic group specified by the object entity.",
+    "spouse": "The subject entity is married to the person specified by the object entity."
+   },
+   "key": "webnlg_0002#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Abraham_A._Ribicoff",
+      "birthPlace",
+      "United_States"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "United_States",
+      "ethnicGroup",
+      "African_American"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Abraham_A._Ribicoff",
+      "spouse",
+      "Ruth_Ribicoff"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "leaderName": "The subject entity is led by the person or entity specified by the object entity.",
+    "timezone": "The subject entity is located in the time zone specified by the object entity."
+   },
+   "key": "webnlg_0003#c000",
+   "results": [
+    {
+     "candidates": {
+      "creator": 0.8457086682319641,
+      "director": 0.9035875797271729,
+      "leader": 0.9089677333831787,
+      "leaderTitle": 0.8989089727401733,
+      "president": 0.8612343668937683
+     },
+     "canonical": [
+      "Ciudad_Ayala",
+      "leader",
+      "Juan_Nolasco"
+     ]
+    },
+    {
+     "candidates": {
+      "country": 0.776242196559906,
+      "location": 0.8170968294143677,
+      "state": 0.7997921705245972,
+      "timeZone": 1.000000238418579,
+      "utcOffset": 0.9545018672943115
+     },
+     "canonical": [
+      "Ciudad_Ayala",
+      "timeZone",
+      "Pacific_Standard_Time_Zone"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "engine": "The subject entity is equipped with the engine specified by the object entity.",
+    "length": "The subject entity has the length specified by the object entity.",
+    "powerType": "The subject entity uses the type of power or transmission specified by the object entity."
+   },
+   "key": "webnlg_0004#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "ALCO_RS-3",
+      "length",
+      "17068.8 (millimetres)"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "ALCO_RS-3",
+      "powerType",
+      "Diesel-electric_transmission"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "ALCO_RS-3",
+      "engine",
+      "V12_engine"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "icaoLocationIdentifier": "The subject entity has the ICAO location identifier specified by the object entity.",
+    "location": "The subject entity is located in the place specified by the object entity.",
+    "serves": "The subject entity provides service to or supports the entity specified by the object entity."
+   },
+   "key": "webnlg_0005#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Bedford_Aerodrome",
+      "location",
+      "Thurleigh"
+     ]
+    },
+    {
+     "candidates": {
+      "affiliation": 0.8091341853141785,
+      "cityServed": 0.9127308130264282,
+      "operatingOrganisation": 0.8394636511802673,
+      "regionServed": 0.8549485206604004,
+      "service": 0.9578573703765869
+     },
+     "canonical": [
+      "Bedford_Aerodrome",
+      "cityServed",
+      "Bedford_Autodrome"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Bedford_Aerodrome",
+      "icaoLocationIdentifier",
+      "EGBF"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "bornIn": "The subject entity was born in the location specified by the object entity.",
+    "diedIn": "The subject entity died in the location specified by the object entity.",
+    "ethnicGroup": "The subject entity contains or is associated with the ethnic group specified by the object entity."
+   },
+   "key": "webnlg_0006#c000",
+   "results": [
+    {
+     "candidates": {
+      "assembly": 0.8025448322296143,
+      "birthDate": 0.8179577589035034,
+      "birthPlace": 1.0,
+      "location": 0.8082740306854248,
+      "origin": 0.8364633321762085
+     },
+     "canonical": [
+      "Liselotte_Grschebina",
+      "birthPlace",
+      "Karlsruhe"
+     ]
+    },
+    {
+     "candidates": {
+      "birthPlace": 0.715071976184845,
+      "deathDate": 0.8570626974105835,
+      "deathPlace": 0.9999998807907104,
+      "extinctionDate": 0.7066410183906555,
+      "formerTeam": 0.6918655037879944
+     },
+     "canonical": [
+      "Liselotte_Grschebina",
+      "deathPlace",
+      "Israel"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Israel",
+      "ethnicGroup",
+      "Arabs"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Israel",
+      "ethnicGroup",
+      "Israeli_Jews"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "address": "The subject entity is located at the address specified by the object entity.",
+    "affiliatedWith": "The subject entity has an affiliation with the organization or institution specified by the object entity.",
+    "establishedYear": "The subject entity was established in the year specified by the object entity."
+   },
+   "key": "webnlg_0007#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Acharya_Institute_of_Technology",
+      "address",
+      "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+     ]
+    },
+    {
+     "candidates": {
+      "affiliation": 0.8930706977844238,
+      "foundedBy": 0.7598697543144226,
+      "founder": 0.7667563557624817,
+      "governmentType": 0.75125652551651,
+      "operatingOrganisation": 0.7570608258247375
+     },
+     "canonical": [
+      "Acharya_Institute_of_Technology",
+      "affiliation",
+      "Visvesvaraya_Technological_University"
+     ]
+    },
+    {
+     "candidates": {
+      "established": 0.9773720502853394,
+      "foundingDate": 0.8795888423919678,
+      "foundingYear": 0.9589704275131226,
+      "productionStartYear": 0.8541538715362549,
+      "youthclub": 0.8136655688285828
+     },
+     "canonical": [
+      "Acharya_Institute_of_Technology",
+      "established",
+      "2000"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "architect": "The subject entity was designed by the architect specified by the object entity.",
+    "completionDate": "The subject entity was completed on the date specified by the object entity.",
+    "owner": "The subject entity is owned by the person or organization specified by the object entity."
+   },
+   "key": "webnlg_0008#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Alan_B._Miller_Hall",
+      "owner",
+      "College_of_William_and_Mary"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alan_B._Miller_Hall",
+      "architect",
+      "Robert_A._M._Stern"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alan_B._Miller_Hall",
+      "completionDate",
+      "\"1 June 2009\""
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "bornIn": "The subject entity was born in the location specified by the object entity.",
+    "diedIn": "The subject entity died in the location specified by the object entity.",
+    "ethnicGroup": "The subject entity is an ethnic group located in or associated with the place specified by the object entity."
+   },
+   "key": "webnlg_0009#c000",
+   "results": [
+    {
+     "candidates": {
+      "assembly": 0.8025448322296143,
+      "birthDate": 0.8179577589035034,
+      "birthPlace": 1.0,
+      "location": 0.8082740306854248,
+      "origin": 0.8364633321762085
+     },
+     "canonical": [
+      "Liselotte_Grschebina",
+      "birthPlace",
+      "Karlsruhe"
+     ]
+    },
+    {
+     "candidates": {
+      "birthPlace": 0.715071976184845,
+      "deathDate": 0.8570626974105835,
+      "deathPlace": 0.9999998807907104,
+      "extinctionDate": 0.7066410183906555,
+      "formerTeam": 0.6918655037879944
+     },
+     "canonical": [
+      "Liselotte_Grschebina",
+      "deathPlace",
+      "Israel"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Arab_citizens_of_Israel",
+      "ethnicGroup",
+      "Israel"
+     ]
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

@@ -1,0 +1,17 @@
+{
+ "corpus_sha256": "ba824c24453f698f9c0e38a87f7ee047fb12c0ce515d849c0b2594175dbb3849",
+ "count": 7185,
+ "evaluator_sha256": {
+  "src/kgbuilder/build/refine/well_link.py": "1fc0f8460338832c74df613d36f265ec6ad8b9b338e1670cca981011e7a9fc92",
+  "src/kgbuilder/evaluation/well_eval.py": "201f46da94b63bd0e14dc7e167d50741b43d6bdc30c2fab4273b2ece0e36298a"
+ },
+ "llm_calls": 0,
+ "not_mapped": [
+  "BOREHOLE_STAT_CD",
+  "has_well_status"
+ ],
+ "observations_sha256": "00d4e40fdd644d233cb671724b603a0be7b1dd89d20e1dbeef42ce16502d8b45",
+ "policy_sha256": "c3234ff1ffc845fc4d0c1537f0c2d593a71f14d4b550f137d9e3a28d6b23db19",
+ "source_manifest_sha256": "2c900b326112c55941c8bfe5903114ba76d02fc7685a694029a01e3320c0a356",
+ "tables_sha256": "36cc848d2c4943e905c0a86c6bd7a6f752b2c6fd0d39fc32c8f8e7cb99b67ee9"
+}

@@ -1,0 +1,287 @@
+{
+  "entities": [
+    "young men",
+    "interests",
+    "Samoan culture",
+    "religious ceremonies",
+    "Japanese mafia",
+    "symbols",
+    "strength",
+    "community traditions",
+    "Japan",
+    "Maori culture",
+    "nature",
+    "loved ones",
+    "Ainu people",
+    "courage",
+    "Polynesian cultures",
+    "Western societies",
+    "yakuza",
+    "personal values",
+    "cultural history",
+    "experiences",
+    "indigenous cultures",
+    "values",
+    "rank",
+    "ancestors",
+    "evil spirits",
+    "traditional Japanese culture",
+    "commitment",
+    "adulthood",
+    "body art",
+    "ancient Egypt",
+    "identity",
+    "life story",
+    "tribal affiliations",
+    "cultural roots",
+    "lineage",
+    "cultural heritage",
+    "protection",
+    "quotes",
+    "moko",
+    "ritual",
+    "Tattoos",
+    "mythology",
+    "rite of passage",
+    "code of honor",
+    "magical properties",
+    "empowerment",
+    "achievements",
+    "criminal organization",
+    "loyalty",
+    "self-expression",
+    "belonging",
+    "pe'a",
+    "family lineage",
+    "spiritual connection",
+    "memorial tattoos",
+    "social status"
+  ],
+  "relations": [
+    [
+      "Tattoos",
+      "serve as symbols of",
+      "identity"
+    ],
+    [
+      "Memorial tattoos",
+      "honor",
+      "loved ones"
+    ],
+    [
+      "Ainu people",
+      "are from",
+      "Japan"
+    ],
+    [
+      "Tattoos",
+      "were used to ward off",
+      "evil spirits"
+    ],
+    [
+      "moko",
+      "denote",
+      "tribal affiliations"
+    ],
+    [
+      "Tattoos",
+      "are a form of",
+      "self-expression"
+    ],
+    [
+      "pe'a",
+      "symbolize commitment to",
+      "community traditions"
+    ],
+    [
+      "Ancient Egypt",
+      "believed tattoos had",
+      "magical properties"
+    ],
+    [
+      "Tattoos",
+      "symbolize",
+      "strength"
+    ],
+    [
+      "Tattoos",
+      "represent",
+      "interests"
+    ],
+    [
+      "Ainu people",
+      "used tattoos to symbolize",
+      "spiritual connection"
+    ],
+    [
+      "Tattoos",
+      "are a form of",
+      "body art"
+    ],
+    [
+      "Tattoos",
+      "symbolize",
+      "loyalty"
+    ],
+    [
+      "moko",
+      "denote",
+      "lineage"
+    ],
+    [
+      "pe'a",
+      "mark transition to",
+      "adulthood"
+    ],
+    [
+      "Polynesian cultures",
+      "used tattoos to signify",
+      "achievements"
+    ],
+    [
+      "Samoan culture",
+      "uses",
+      "pe'a"
+    ],
+    [
+      "Ancient Egypt",
+      "use tattoos for",
+      "religious ceremonies"
+    ],
+    [
+      "Tattoos",
+      "symbolize connection to",
+      "ancestors"
+    ],
+    [
+      "Yakuza tattoos",
+      "signify adherence to",
+      "code of honor"
+    ],
+    [
+      "Tattoos",
+      "represent",
+      "values"
+    ],
+    [
+      "Tattoos",
+      "have",
+      "cultural history"
+    ],
+    [
+      "Western societies",
+      "use tattoos for",
+      "self-expression"
+    ],
+    [
+      "pe'a",
+      "are a",
+      "rite of passage"
+    ],
+    [
+      "Tattoos",
+      "represent",
+      "experiences"
+    ],
+    [
+      "moko",
+      "denote",
+      "life story"
+    ],
+    [
+      "Tattoos",
+      "reflect",
+      "family lineage"
+    ],
+    [
+      "Indigenous cultures",
+      "use tattoos to connect individuals to",
+      "cultural heritage"
+    ],
+    [
+      "Yakuza",
+      "are also known as",
+      "Japanese mafia"
+    ],
+    [
+      "Tattoos",
+      "symbolize",
+      "courage"
+    ],
+    [
+      "Tattoos",
+      "serve as form of",
+      "empowerment"
+    ],
+    [
+      "Yakuza tattoos",
+      "signify commitment to",
+      "criminal organization"
+    ],
+    [
+      "Polynesian cultures",
+      "used tattoos to signify",
+      "rank"
+    ],
+    [
+      "Maori culture",
+      "uses",
+      "moko"
+    ],
+    [
+      "Tattoos",
+      "serve as symbols of",
+      "ritual"
+    ],
+    [
+      "Tattoos",
+      "serve as symbols of",
+      "belonging"
+    ],
+    [
+      "Polynesian cultures",
+      "used tattoos to signify",
+      "social status"
+    ],
+    [
+      "Traditional Japanese culture",
+      "associated tattoos with",
+      "yakuza"
+    ],
+    [
+      "Tattoos",
+      "serve as form of",
+      "protection"
+    ]
+  ],
+  "edges": [
+    "serve as symbols of",
+    "used tattoos to signify",
+    "have",
+    "serve as form of",
+    "used tattoos to symbolize",
+    "reflect",
+    "are a form of",
+    "are a",
+    "mark transition to",
+    "represent",
+    "were used to ward off",
+    "denote",
+    "believed tattoos had",
+    "are from",
+    "uses",
+    "symbolize connection to",
+    "signify commitment to",
+    "honor",
+    "use tattoos to connect individuals to",
+    "are also known as",
+    "symbolize",
+    "symbolize commitment to",
+    "use tattoos for",
+    "associated tattoos with",
+    "signify adherence to"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

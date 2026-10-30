@@ -1,0 +1,23 @@
+{
+  "spudded_on": "The subject well was spudded (drilling started) on the object date.",
+  "reached_td": "The subject well reached its total depth (TD) at the object depth.",
+  "drilled_to": "The subject well was drilled to the object depth (an intermediate or section depth, including \"section TD\").",
+  "set_casing_at": "The subject casing, liner or conductor was set, landed or run to the object depth (shoe or setting depth).",
+  "casing_size": "The subject tubular has the object outside diameter.",
+  "casing_spec": "The subject tubular has the object weight and/or grade (e.g. \"23 lb/ft P-110\").",
+  "cemented_interval": "Cement was placed behind or in the subject over the object interval, or its top of cement (TOC) is at the object depth.",
+  "set_plug_at": "The subject plug was set or placed at the object depth or over the object interval.",
+  "set_equipment_at": "The subject packer, nipple, valve, tubing stop, hanger or retainer was set or is located at the object depth.",
+  "tagged_at": "A tool tagged the subject (plug, TOC, fill, fish, obstruction) at the object depth.",
+  "cut_at": "The subject was cut (and possibly pulled) at the object depth (often BML).",
+  "tested_to_pressure": "The subject was pressure-tested to the object pressure.",
+  "fit_lot_emw": "A formation integrity or leak-off test of the subject well held the object equivalent mud weight.",
+  "perforated_interval": "The subject (well, tubing string, or zone) was perforated over the object interval.",
+  "has_mud_weight": "The subject well's mud/fluid weight was (raised, reduced or displaced) to the object density.",
+  "completed_in": "The subject well was completed or recompleted in the object zone.",
+  "encountered_marker": "The subject well encountered (logged, penetrated) the object geologic marker or formation.",
+  "has_well_status": "The subject well has or entered the object status (TA, PA, COM, ST, BP, SI).",
+  "used_rig": "Operations on the subject well used the object rig or vessel.",
+  "operated_by": "The subject well is operated by the object company (stated as operator, not a service company).",
+  "pumped": "The object volume of the subject fluid was pumped or mixed and pumped."
+}

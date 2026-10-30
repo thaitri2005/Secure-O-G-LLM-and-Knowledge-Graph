@@ -1,0 +1,4 @@
+- {qid: q1, subject: Alan Turing, predicate: born_in, at: null, expect: [London]}
+- {qid: q2, subject: Alice, predicate: works_at, at: "2022", expect: [Acme Labs]}
+- {qid: q3, subject: Alice, predicate: works_at, at: "2025", expect: [Nova AI]}
+- {qid: q4, subject: IBM Research, predicate: works_on, at: null, expect: [artificial intelligence]}

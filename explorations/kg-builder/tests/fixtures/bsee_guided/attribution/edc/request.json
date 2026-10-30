@@ -1,0 +1,31 @@
+{
+ "enrich_schema": false,
+ "items": [
+  {
+   "key": "d#c000",
+   "text": "Set CIBP at 9,500'. Invented artifact text.",
+   "triples": [
+    [
+     "CIBP",
+     "set_plug_at",
+     "9,500'"
+    ],
+    [
+     "CIBP",
+     "undefined",
+     "9,500'"
+    ],
+    [
+     "CIBP",
+     "no definition",
+     "9,500'"
+    ],
+    [
+     "CIBP",
+     "set at",
+     "9,500'"
+    ]
+   ]
+  }
+ ]
+}

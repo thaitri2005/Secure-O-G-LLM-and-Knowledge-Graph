@@ -1,0 +1,8117 @@
+{
+ "corpus_sha256": "ba824c24453f698f9c0e38a87f7ee047fb12c0ce515d849c0b2594175dbb3849",
+ "dev_excluded": 0,
+ "exports": {
+  "full": {
+   "ai_gold": {
+    "L1": {
+     "asserted_nonasserted": 2,
+     "ci95": [
+      0.15306122448979592,
+      0.3
+     ],
+     "f1": 0.2366412213740458,
+     "fn": 65,
+     "fp": 135,
+     "matched_other": 1,
+     "matched_uncertain": 3,
+     "precision": 0.18674698795180722,
+     "recall": 0.3229166666666667,
+     "tp": 31
+    },
+    "L2": {
+     "asserted_nonasserted": 0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "f1": 0.0,
+     "fn": 96,
+     "fp": 170,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "TD date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "TD'd": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "TD'd on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "action": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "allows utilization of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are connected to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are cut at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are removed with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "attempted to retrieve": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "began on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "belongs to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "casing_size": {
+       "f1": 0.0,
+       "fn": 24,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed in formation": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed operations on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completion date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "cut_at": {
+       "f1": 0.0,
+       "fn": 11,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "dated": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "depth range end": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "depth range start": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "due to inability to re-establish": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "elected to wait until": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "ended": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "ended on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "experienced issue": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "for development of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had cement on top of with TOC at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had cement plug on top of with TOC at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had large amounts of paraffin found in when tool string was recovered": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has TVD depth range": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has been completed for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has depth of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has installed system for isolation": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has status of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has_mud_weight": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "has_well_status": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "in lieu of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "install": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "intended action": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved drilling": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved dumping": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved placing": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is abandoned by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is associated with event": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is candidate for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is changed from size": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is changed to size": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is component of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is cut & removed at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is identified by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is installed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located on top of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of completion for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of structure": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is squeezed into": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is temporarily abandoned by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is type of plug": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "mud weight": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "operated at location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "performed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "performed operations on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "prevents": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "previously produced from interval": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "produces": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "remains in status": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "remediated by installing": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "removed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "returned on date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set CIBP at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set forth in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set_casing_at": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "should be contained in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "should have been provided by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spud": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spud date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "started": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "started on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "stops": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "took place at location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "total depth MD": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "total depth TVD": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used to conduct": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used tool": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "uses type of completion": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was TA'd in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was Temporarily Abandoned (TA) in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was completed as": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was confirmed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was converted to be": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut and proven at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut and pulled with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at depth during period from": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at depth on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut during period ending on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut during period starting on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut on date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was drilled & completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was isolated by setting": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was left closed after rig moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was left open after rig moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was modified at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was moved to location for removal of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was not perforated in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was observed and confirmed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was on location during": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was perforated at interval": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was performed by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was placed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was pumped to squeeze": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was recovered at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was returned to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was set at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was set on top of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was spud on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was squeezed and abandoned with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was used to investigate": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was used to isolate": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was worked on in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were closed at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were not part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were not performed as part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were performed to remove obstructions from": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "will be filed with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "will be recovered for purpose": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      }
+     },
+     "precision": 0.0,
+     "recall": 0.0,
+     "tp": 0
+    },
+    "L3": {
+     "asserted_nonasserted": 0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "f1": 0.0,
+     "fn": 96,
+     "fp": 170,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "TD date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "TD'd": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "TD'd on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "action": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "allows utilization of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are connected to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are cut at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "are removed with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "attempted to retrieve": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "began on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "belongs to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "casing_size": {
+       "f1": 0.0,
+       "fn": 24,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed in formation": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed operations on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completion date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "cut_at": {
+       "f1": 0.0,
+       "fn": 11,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "dated": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "depth range end": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "depth range start": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "due to inability to re-establish": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "elected to wait until": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "ended": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "ended on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "experienced issue": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "for development of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had cement on top of with TOC at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had cement plug on top of with TOC at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "had large amounts of paraffin found in when tool string was recovered": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has TVD depth range": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has been completed for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has depth of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has installed system for isolation": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has status of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "has_mud_weight": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "has_well_status": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "in lieu of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "install": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "intended action": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved drilling": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved dumping": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "involved placing": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is abandoned by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is associated with event": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is candidate for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is changed from size": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is changed to size": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is component of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is cut & removed at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is identified by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is installed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is located on top of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of completion for": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is part of structure": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is squeezed into": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is temporarily abandoned by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "is type of plug": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "mud weight": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "operated at location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "performed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "performed operations on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "prevents": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "previously produced from interval": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "produces": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "remains in status": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "remediated by installing": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "removed": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "returned on date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set CIBP at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set forth in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "set_casing_at": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "should be contained in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "should have been provided by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spud": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spud date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "started": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "started on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "stops": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "took place at location": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "total depth MD": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "total depth TVD": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used to conduct": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used tool": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "uses type of completion": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was TA'd in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was Temporarily Abandoned (TA) in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was completed as": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was confirmed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was converted to be": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut and proven at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut and pulled with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at depth during period from": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut at depth on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut during period ending on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut during period starting on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut on date": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was cut with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was drilled & completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was isolated by setting": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was left closed after rig moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was left open after rig moved off": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was modified at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was moved to location for removal of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was not perforated in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was observed and confirmed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was on location during": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was perforated at interval": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was performed by": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was placed in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was pumped to squeeze": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was recovered at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was returned to": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was set at": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was set on top of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was spud on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was squeezed and abandoned with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was used to investigate": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was used to isolate": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "was worked on in": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were closed at depth": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were completed on": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were not part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were not performed as part of": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "were performed to remove obstructions from": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "will be filed with": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "will be recovered for purpose": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      }
+     },
+     "precision": 0.0,
+     "recall": 0.0,
+     "tp": 0
+    },
+    "iaa_reference": {
+     "L1": {
+      "asserted_nonasserted": 0,
+      "f1": 0.8924731182795699,
+      "fn": 5,
+      "fp": 15,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "precision": 0.8469387755102041,
+      "recall": 0.9431818181818182,
+      "tp": 83
+     },
+     "L2": {
+      "asserted_nonasserted": 0,
+      "f1": 0.8924731182795699,
+      "fn": 5,
+      "fp": 15,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.8292682926829268,
+        "fn": 0,
+        "fp": 7,
+        "precision": 0.7083333333333334,
+        "recall": 1.0,
+        "tp": 17
+       },
+       "cemented_interval": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "completed_in": {
+        "f1": 0.5,
+        "fn": 3,
+        "fp": 3,
+        "precision": 0.5,
+        "recall": 0.5,
+        "tp": 3
+       },
+       "cut_at": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 11
+       },
+       "has_mud_weight": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "has_well_status": {
+        "f1": 0.9375,
+        "fn": 1,
+        "fp": 1,
+        "precision": 0.9375,
+        "recall": 0.9375,
+        "tp": 15
+       },
+       "perforated_interval": {
+        "f1": 0.9090909090909091,
+        "fn": 0,
+        "fp": 1,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "tp": 5
+       },
+       "pumped": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "reached_td": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4
+       },
+       "set_casing_at": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.9333333333333333,
+        "fn": 0,
+        "fp": 1,
+        "precision": 0.875,
+        "recall": 1.0,
+        "tp": 7
+       },
+       "set_plug_at": {
+        "f1": 0.875,
+        "fn": 0,
+        "fp": 2,
+        "precision": 0.7777777777777778,
+        "recall": 1.0,
+        "tp": 7
+       },
+       "spudded_on": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2
+       },
+       "tested_to_pressure": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6
+       },
+       "used_rig": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3
+       }
+      },
+      "precision": 0.8469387755102041,
+      "recall": 0.9431818181818182,
+      "tp": 83
+     },
+     "L3": {
+      "asserted_nonasserted": 0,
+      "f1": 0.8709677419354839,
+      "fn": 7,
+      "fp": 17,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.8292682926829268,
+        "fn": 0,
+        "fp": 7,
+        "precision": 0.7083333333333334,
+        "recall": 1.0,
+        "tp": 17
+       },
+       "cemented_interval": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "completed_in": {
+        "f1": 0.5,
+        "fn": 3,
+        "fp": 3,
+        "precision": 0.5,
+        "recall": 0.5,
+        "tp": 3
+       },
+       "cut_at": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 11
+       },
+       "has_mud_weight": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "has_well_status": {
+        "f1": 0.9375,
+        "fn": 1,
+        "fp": 1,
+        "precision": 0.9375,
+        "recall": 0.9375,
+        "tp": 15
+       },
+       "perforated_interval": {
+        "f1": 0.5454545454545454,
+        "fn": 2,
+        "fp": 3,
+        "precision": 0.5,
+        "recall": 0.6,
+        "tp": 3
+       },
+       "pumped": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 1
+       },
+       "reached_td": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4
+       },
+       "set_casing_at": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.9333333333333333,
+        "fn": 0,
+        "fp": 1,
+        "precision": 0.875,
+        "recall": 1.0,
+        "tp": 7
+       },
+       "set_plug_at": {
+        "f1": 0.875,
+        "fn": 0,
+        "fp": 2,
+        "precision": 0.7777777777777778,
+        "recall": 1.0,
+        "tp": 7
+       },
+       "spudded_on": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 2
+       },
+       "tested_to_pressure": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 6
+       },
+       "used_rig": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 3
+       }
+      },
+      "precision": 0.826530612244898,
+      "recall": 0.9204545454545454,
+      "tp": 81
+     },
+     "n_unreadable": 0,
+     "partitions": {
+      "G+": 88,
+      "G-": 0,
+      "G?": 0,
+      "Gother": 0
+     }
+    },
+    "n_unreadable": 1,
+    "partitions": {
+     "G+": 96,
+     "G-": 5,
+     "G?": 10,
+     "Gother": 7
+    },
+    "per_chunk": {
+     "eor_-107397_6254f1ff#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "removed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was performed by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "will be filed with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "removed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was performed by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "will be filed with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 3,
+       "G-": 0,
+       "G?": 2,
+       "Gother": 0
+      }
+     },
+     "eor_-108210_cf2cb337#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was moved to location for removal of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was moved to location for removal of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 6,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-115098_07919947#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.3157894736842105,
+       "fn": 4,
+       "fp": 9,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.25,
+       "recall": 0.42857142857142855,
+       "tp": 3
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 12,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "took place at location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut at depth during period from": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut at depth on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut during period ending on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut during period starting on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut on date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were performed to remove obstructions from": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 12,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "took place at location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut at depth during period from": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut at depth on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut during period ending on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut during period starting on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut on date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were performed to remove obstructions from": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 7,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-124567_2cc73bb4#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "due to inability to re-establish": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "ended": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "in lieu of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "install": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "started": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "due to inability to re-establish": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "ended": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "in lieu of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "install": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "started": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 2,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-125106_405da87f#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 9,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 9,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "dated": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set forth in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "should be contained in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "should have been provided by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was Temporarily Abandoned (TA) in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were not part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were not performed as part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 9,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "dated": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set forth in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "should be contained in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "should have been provided by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was Temporarily Abandoned (TA) in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were not part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were not performed as part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 1,
+       "G?": 1,
+       "Gother": 0
+      }
+     },
+     "eor_-128140_c5f23ccc#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.15384615384615385,
+       "fn": 6,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.16666666666666666,
+       "recall": 0.14285714285714285,
+       "tp": 1
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "experienced issue": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located on top of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "tested_to_pressure": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was not perforated in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "experienced issue": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located on top of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "tested_to_pressure": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was not perforated in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 7,
+       "G-": 1,
+       "G?": 0,
+       "Gother": 1
+      }
+     },
+     "eor_-130290_0503055e#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.4444444444444444,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.3333333333333333,
+       "recall": 0.6666666666666666,
+       "tp": 2
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is abandoned by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is installed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is squeezed into": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "stops": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was confirmed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is abandoned by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is installed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is squeezed into": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "stops": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was confirmed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 3,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-130814_06e54c49#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.3333333333333333,
+       "fn": 18,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.5,
+       "recall": 0.25,
+       "tp": 6
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 24,
+       "fp": 12,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 7,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cemented_interval": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "had cement on top of with TOC at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "had cement plug on top of with TOC at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "had large amounts of paraffin found in when tool string was recovered": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is temporarily abandoned by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "pumped": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "tested_to_pressure": {
+         "f1": 0.0,
+         "fn": 4,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was pumped to squeeze": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was set at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was set on top of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was squeezed and abandoned with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was used to isolate": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 24,
+       "fp": 12,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 7,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cemented_interval": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "had cement on top of with TOC at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "had cement plug on top of with TOC at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "had large amounts of paraffin found in when tool string was recovered": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is temporarily abandoned by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "pumped": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "tested_to_pressure": {
+         "f1": 0.0,
+         "fn": 4,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was pumped to squeeze": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was set at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was set on top of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was squeezed and abandoned with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was used to isolate": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 24,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-152673_db7c1616#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 8,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 8,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has installed system for isolation": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of completion for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "uses type of completion": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was drilled & completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was left closed after rig moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was left open after rig moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 8,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has installed system for isolation": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is part of completion for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "uses type of completion": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was drilled & completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was left closed after rig moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was left open after rig moved off": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 3,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 2
+      }
+     },
+     "eor_-164448_ba63f431#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 3,
+       "matched_other": 1,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "involved drilling": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "involved placing": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was TA'd in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was observed and confirmed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "involved drilling": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "involved placing": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was TA'd in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was observed and confirmed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 1
+      }
+     },
+     "eor_-165961_0ff1703a#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "allows utilization of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "for development of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is candidate for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "performed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "allows utilization of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "for development of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is candidate for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "performed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-167489_53d2848f#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "attempted to retrieve": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "ended on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "intended action": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "started on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used tool": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "attempted to retrieve": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "ended on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "intended action": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "started on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used tool": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 0,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-170357_f1d06dc1#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.6,
+       "fn": 0,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.42857142857142855,
+       "recall": 1.0,
+       "tp": 3
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was converted to be": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was modified at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were closed at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "set_equipment_at": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was converted to be": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was modified at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were closed at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 3,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 1
+      }
+     },
+     "eor_-172767_e3c82a7e#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "remediated by installing": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "returned on date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used to conduct": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was returned to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "remediated by installing": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "returned on date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used to conduct": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was returned to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 1
+      }
+     },
+     "eor_-173155_10692aa9#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.2,
+       "fn": 5,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.25,
+       "recall": 0.16666666666666666,
+       "tp": 1
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "belongs to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is cut & removed at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is part of structure": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "remains in status": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "belongs to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is cut & removed at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is part of structure": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "remains in status": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 6,
+       "G-": 1,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-195601_85455bff#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 1,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "prevents": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was used to investigate": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "completed": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "prevents": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was used to investigate": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 0,
+       "G-": 0,
+       "G?": 1,
+       "Gother": 0
+      }
+     },
+     "eor_-198980_84b280ce#c000": {
+      "L1": {
+       "asserted_nonasserted": 1,
+       "f1": 0.4,
+       "fn": 3,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 1,
+       "precision": 0.4,
+       "recall": 0.4,
+       "tp": 2
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 5,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are connected to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has status of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is associated with event": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut and proven at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was recovered at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "will be recovered for purpose": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 5,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are connected to": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has status of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is associated with event": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was cut and proven at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was recovered at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "will be recovered for purpose": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 5,
+       "G-": 1,
+       "G?": 1,
+       "Gother": 0
+      }
+     },
+     "eor_-26618_62fca1da#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.4444444444444444,
+       "fn": 1,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 1,
+       "precision": 0.3333333333333333,
+       "recall": 0.6666666666666666,
+       "tp": 2
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has TVD depth range": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 4,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is changed from size": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is changed to size": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "set_casing_at": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": 0.0,
+         "fn": 3,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has TVD depth range": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 4,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is changed from size": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is changed to size": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "set_casing_at": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 3,
+       "G-": 0,
+       "G?": 3,
+       "Gother": 0
+      }
+     },
+     "eor_-50573_f397a443#c000": {
+      "L1": {
+       "asserted_nonasserted": 1,
+       "f1": 0.3333333333333333,
+       "fn": 1,
+       "fp": 3,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.25,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "are removed with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "elected to wait until": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 4,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "are cut at": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "are removed with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "cut_at": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "elected to wait until": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 2,
+       "G-": 1,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-53971_7ac0b755#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.375,
+       "fn": 3,
+       "fp": 7,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.3,
+       "recall": 0.5,
+       "tp": 3
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 10,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "TD'd on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "began on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has been completed for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has depth of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is identified by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "reached_td": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "spudded_on": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was completed as": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was spud on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 10,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "TD'd on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "began on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has been completed for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has depth of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is identified by": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "reached_td": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "spudded_on": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was completed as": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was spud on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "were completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 6,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-60952_c561d036#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 5,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is located in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 2,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     },
+     "eor_-67804_f684b876#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.34782608695652173,
+       "fn": 2,
+       "fp": 13,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.23529411764705882,
+       "recall": 0.6666666666666666,
+       "tp": 4
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 17,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "TD date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "TD'd": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "action": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed in formation": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completion date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "depth range end": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "depth range start": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_mud_weight": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "mud weight": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "reached_td": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "spud": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "spud date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "spudded_on": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "total depth MD": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "total depth TVD": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 17,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "TD date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "TD'd": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "action": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed for": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed in formation": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "completion date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "depth range end": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "depth range start": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "has_mud_weight": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "has_well_status": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "is": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 3,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is part of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "mud weight": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "reached_td": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "spud": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "spud date": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "spudded_on": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "total depth MD": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "total depth TVD": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 6,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 1
+      }
+     },
+     "eor_-72895_a2987c28#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "is component of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is type of plug": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was cut and pulled with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was on location during": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was placed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was worked on in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 6,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "casing_size": {
+         "f1": null,
+         "fn": 0,
+         "fp": 0,
+         "precision": null,
+         "recall": null,
+         "tp": 0
+        },
+        "is component of": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "is type of plug": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "used_rig": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was cut and pulled with": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was on location during": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was placed in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was worked on in": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 1,
+       "G-": 0,
+       "G?": 2,
+       "Gother": 0
+      }
+     },
+     "eor_-75852_b6a7c2bc#c000": {
+      "L1": {
+       "asserted_nonasserted": 0,
+       "f1": 0.4,
+       "fn": 1,
+       "fp": 8,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "precision": 0.2727272727272727,
+       "recall": 0.75,
+       "tp": 3
+      },
+      "L2": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 11,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "began on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "involved dumping": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "operated at location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "performed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "previously produced from interval": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "produces": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set CIBP at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was isolated by setting": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was perforated at interval": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "L3": {
+       "asserted_nonasserted": 0,
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 11,
+       "matched_other": 0,
+       "matched_uncertain": 0,
+       "per_relation": {
+        "began on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "completed_in": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "involved dumping": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "operated at location": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "perforated_interval": {
+         "f1": 0.0,
+         "fn": 1,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "performed operations on": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "previously produced from interval": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "produces": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set CIBP at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set at depth": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "set_plug_at": {
+         "f1": 0.0,
+         "fn": 2,
+         "fp": 0,
+         "precision": null,
+         "recall": 0.0,
+         "tp": 0
+        },
+        "was isolated by setting": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        },
+        "was perforated at interval": {
+         "f1": 0.0,
+         "fn": 0,
+         "fp": 1,
+         "precision": 0.0,
+         "recall": null,
+         "tp": 0
+        }
+       },
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "n_unreadable": 0,
+      "partitions": {
+       "G+": 4,
+       "G-": 0,
+       "G?": 0,
+       "Gother": 0
+      }
+     }
+    }
+   },
+   "rules": {
+    "L1": {
+     "asserted_nonasserted": 0,
+     "f1": 0.0,
+     "fn": 57,
+     "fp": 0,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "precision": null,
+     "recall": 0.0,
+     "tp": 0
+    },
+    "L2": {
+     "asserted_nonasserted": 0,
+     "f1": 0.0,
+     "fn": 57,
+     "fp": 0,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cut_at": {
+       "f1": 0.0,
+       "fn": 9,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "has_well_status": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": null,
+     "recall": 0.0,
+     "tp": 0
+    },
+    "L3": {
+     "asserted_nonasserted": 0,
+     "f1": 0.0,
+     "fn": 57,
+     "fp": 0,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cut_at": {
+       "f1": 0.0,
+       "fn": 9,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "has_well_status": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.0,
+       "fn": 8,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": null,
+     "recall": 0.0,
+     "tp": 0
+    },
+    "n_unreadable": 0,
+    "partitions": {
+     "G+": 57,
+     "G-": 4,
+     "G?": 0,
+     "Gother": 0
+    },
+    "rules_vs_ai_gold": {
+     "L1": {
+      "asserted_nonasserted": 0,
+      "f1": 0.6068965517241379,
+      "fn": 46,
+      "fp": 11,
+      "matched_other": 0,
+      "matched_uncertain": 1,
+      "precision": 0.8,
+      "recall": 0.4888888888888889,
+      "tp": 44
+     },
+     "L2": {
+      "asserted_nonasserted": 0,
+      "f1": 0.5379310344827586,
+      "fn": 51,
+      "fp": 16,
+      "matched_other": 0,
+      "matched_uncertain": 1,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.5,
+        "fn": 16,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "tp": 8
+       },
+       "completed_in": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "cut_at": {
+        "f1": 0.631578947368421,
+        "fn": 5,
+        "fp": 2,
+        "precision": 0.75,
+        "recall": 0.5454545454545454,
+        "tp": 6
+       },
+       "has_mud_weight": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_well_status": {
+        "f1": 0.5806451612903226,
+        "fn": 7,
+        "fp": 6,
+        "precision": 0.6,
+        "recall": 0.5625,
+        "tp": 9
+       },
+       "perforated_interval": {
+        "f1": 0.7142857142857143,
+        "fn": 1,
+        "fp": 3,
+        "precision": 0.625,
+        "recall": 0.8333333333333334,
+        "tp": 5
+       },
+       "pumped": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "reached_td": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4
+       },
+       "set_casing_at": {
+        "f1": 0.0,
+        "fn": 0,
+        "fp": 1,
+        "precision": 0.0,
+        "recall": null,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.2222222222222222,
+        "fn": 7,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.125,
+        "tp": 1
+       },
+       "set_plug_at": {
+        "f1": 0.3076923076923077,
+        "fn": 5,
+        "fp": 4,
+        "precision": 0.3333333333333333,
+        "recall": 0.2857142857142857,
+        "tp": 2
+       },
+       "tested_to_pressure": {
+        "f1": 0.8,
+        "fn": 2,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "tp": 4
+       }
+      },
+      "precision": 0.7090909090909091,
+      "recall": 0.43333333333333335,
+      "tp": 39
+     },
+     "L3": {
+      "asserted_nonasserted": 0,
+      "f1": 0.4413793103448276,
+      "fn": 58,
+      "fp": 23,
+      "matched_other": 0,
+      "matched_uncertain": 1,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.5,
+        "fn": 16,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "tp": 8
+       },
+       "completed_in": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "cut_at": {
+        "f1": 0.5263157894736842,
+        "fn": 6,
+        "fp": 3,
+        "precision": 0.625,
+        "recall": 0.45454545454545453,
+        "tp": 5
+       },
+       "has_mud_weight": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_well_status": {
+        "f1": 0.5806451612903226,
+        "fn": 7,
+        "fp": 6,
+        "precision": 0.6,
+        "recall": 0.5625,
+        "tp": 9
+       },
+       "perforated_interval": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 8,
+        "precision": 0.0,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "pumped": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "reached_td": {
+        "f1": 1.0,
+        "fn": 0,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4
+       },
+       "set_casing_at": {
+        "f1": 0.0,
+        "fn": 0,
+        "fp": 1,
+        "precision": 0.0,
+        "recall": null,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.2222222222222222,
+        "fn": 7,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.125,
+        "tp": 1
+       },
+       "set_plug_at": {
+        "f1": 0.15384615384615385,
+        "fn": 6,
+        "fp": 5,
+        "precision": 0.16666666666666666,
+        "recall": 0.14285714285714285,
+        "tp": 1
+       },
+       "tested_to_pressure": {
+        "f1": 0.8,
+        "fn": 2,
+        "fp": 0,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "tp": 4
+       }
+      },
+      "precision": 0.5818181818181818,
+      "recall": 0.35555555555555557,
+      "tp": 32
+     },
+     "excluded_predictions": {
+      "G-": 4
+     },
+     "n_unreadable": 1,
+     "partitions": {
+      "G+": 90,
+      "G-": 4,
+      "G?": 9,
+      "Gother": 0
+     }
+    },
+    "system_vs_ai_gold_same_relations": {
+     "L1": {
+      "asserted_nonasserted": 0,
+      "f1": 0.0,
+      "fn": 90,
+      "fp": 0,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "precision": null,
+      "recall": 0.0,
+      "tp": 0
+     },
+     "L2": {
+      "asserted_nonasserted": 0,
+      "f1": 0.0,
+      "fn": 90,
+      "fp": 0,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.0,
+        "fn": 24,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "completed_in": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "cut_at": {
+        "f1": 0.0,
+        "fn": 11,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_mud_weight": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_well_status": {
+        "f1": 0.0,
+        "fn": 16,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "perforated_interval": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "pumped": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "reached_td": {
+        "f1": 0.0,
+        "fn": 4,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_casing_at": {
+        "f1": null,
+        "fn": 0,
+        "fp": 0,
+        "precision": null,
+        "recall": null,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.0,
+        "fn": 8,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_plug_at": {
+        "f1": 0.0,
+        "fn": 7,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "tested_to_pressure": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       }
+      },
+      "precision": null,
+      "recall": 0.0,
+      "tp": 0
+     },
+     "L3": {
+      "asserted_nonasserted": 0,
+      "f1": 0.0,
+      "fn": 90,
+      "fp": 0,
+      "matched_other": 0,
+      "matched_uncertain": 0,
+      "per_relation": {
+       "casing_size": {
+        "f1": 0.0,
+        "fn": 24,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "completed_in": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "cut_at": {
+        "f1": 0.0,
+        "fn": 11,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_mud_weight": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "has_well_status": {
+        "f1": 0.0,
+        "fn": 16,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "perforated_interval": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "pumped": {
+        "f1": 0.0,
+        "fn": 1,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "reached_td": {
+        "f1": 0.0,
+        "fn": 4,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_casing_at": {
+        "f1": null,
+        "fn": 0,
+        "fp": 0,
+        "precision": null,
+        "recall": null,
+        "tp": 0
+       },
+       "set_equipment_at": {
+        "f1": 0.0,
+        "fn": 8,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "set_plug_at": {
+        "f1": 0.0,
+        "fn": 7,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       },
+       "tested_to_pressure": {
+        "f1": 0.0,
+        "fn": 6,
+        "fp": 0,
+        "precision": null,
+        "recall": 0.0,
+        "tp": 0
+       }
+      },
+      "precision": null,
+      "recall": 0.0,
+      "tp": 0
+     },
+     "n_unreadable": 1,
+     "partitions": {
+      "G+": 90,
+      "G-": 4,
+      "G?": 9,
+      "Gother": 0
+     }
+    }
+   },
+   "self_consistency": null,
+   "silver": {
+    "answerable": 11,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "matched": 0,
+    "per_field": {
+     "BH_TOTAL_MD": {
+      "answerable": 2,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": 0.0,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "BUS_ASC_NAME": {
+      "answerable": 0,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": null,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "COMP_RSVR_NAME": {
+      "answerable": 4,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": 0.0,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "GEO_MARKER_NAME": {
+      "answerable": 0,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": null,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "PERF_TOP_MD": {
+      "answerable": 1,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": 0.0,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "PERF_TOP_TVD": {
+      "answerable": 0,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": null,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "WELL_BORE_TVD": {
+      "answerable": 2,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": 0.0,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     },
+     "WELL_SPUD_DATE": {
+      "answerable": 2,
+      "contradicted": 0,
+      "coverage": null,
+      "matched": 0,
+      "precision": null,
+      "predictions": 0,
+      "recall": 0.0,
+      "status": "insufficient (n<5)",
+      "unassessable": 0
+     }
+    },
+    "precision": null,
+    "predictions": 180,
+    "recall": 0.0,
+    "unassessable": 180
+   }
+  }
+ },
+ "gold_split": "dev",
+ "labels": {
+  "ai_gold": "AI-gold (agent-annotated, adjudicated; not human gold)",
+  "rules": "rules/v2 (deterministic silver)",
+  "self_consistency": "self-consistency (not accuracy)",
+  "silver": "table-silver (answerable fields only)"
+ },
+ "limitations": "Annotators are LLMs; correlated errors are possible and agreement is not correctness. The adjudicator shares the model family of annotator A; A/B anonymisation mitigates this. Blindness is procedural and ordering-checked. Packet IDs carry report serials but annotators have no table access. No domain expert reviewed the guideline.",
+ "n_documents": 25,
+ "policy_file_sha256": "a61486118b88a458c04b0390d344a8222c71ed93c1b1e345df5e9c5472fe760d",
+ "policy_sha256": "c3234ff1ffc845fc4d0c1537f0c2d593a71f14d4b550f137d9e3a28d6b23db19",
+ "references": {
+  "ai_gold": {
+   "adjudicated.jsonl": "56af7f82b1806269346f2effcd8c12505776a60a6fe5bda32e537d5973ed83ac",
+   "annotations": {
+    "annotations/annotator_b/batch_01.jsonl": "07f536295994a377bb07f59b3a054c46e1d754f5be995af56269ea6bc3b364b8",
+    "annotations/annotator_b/batch_02.jsonl": "0c0d2337bc63ffbb7fecd96ea9aa40aa3b1360796be4a200864d1afe97fc4950",
+    "annotations/annotator_b/batch_03.jsonl": "4d13d834d7926107b1ca5ee0c9cfc5b6a4507468dfd3b1fdd28b7050afa27c07",
+    "annotations/annotator_b/batch_04.jsonl": "bc417124d8ee0530b0ff263277b7e9426234b324c2292ee0e3d60dfd03143ae3",
+    "annotations/annotator_b/batch_05.jsonl": "82360a5c6a50f0da8ea3fbead5a0439866a4286e19c75905c3388258e25be58f",
+    "annotations/annotator_a/batch_01.jsonl": "b27f0714ef839738396b51f80ce78a443a1546b2695d0660628cb0f1d720ccb2",
+    "annotations/annotator_a/batch_02.jsonl": "3ecd73cc75ba4fed67f81b617379376800e9b5f20182d2aa7ff65d116bbf3809",
+    "annotations/annotator_a/batch_03.jsonl": "b5af655a7906e8d32ed9e27015c48d5974728f6d356b84736930b5106cd97c04",
+    "annotations/annotator_a/batch_04.jsonl": "a9df642839b8103f930fc3630f5009f64345cb774f5004e6859983681019fcb6",
+    "annotations/annotator_a/batch_05.jsonl": "d9ee8ecb4ece99d56bc05cc3d029a287a8abbc75c4c25d71f10a25eeed9c12f1"
+   },
+   "freeze.json": "94a8c7dc9c17ad8ed6cbc5c590ce3eb67c568d3bc6878e3795fbf8fd6d16fd20",
+   "split.json": "8a9204bac181dc0d56dbdeeaf460e5035663116fa452a9d71256dcaf95298da0"
+  },
+  "rules": "6f620549e1070c7eebedf5d9b11ffc242e59b08c28a531f72d07313de82b7639",
+  "silver": "70e8e7a15b77c2b819bd819f491abf751159a87eab97387979835be82759bb41"
+ },
+ "scope_hash": "990e7a669aa142485fff19b1ead6d1e11fb175709be3be465448d80056f710bb"
+}

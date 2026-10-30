@@ -1,0 +1,44 @@
+{
+ "coverage": {
+  "concept_errors": 0,
+  "entities": 12,
+  "entities_asked": 12,
+  "entities_typed": 12,
+  "statements": 1.0
+ },
+ "entity_types": {
+  "ai": 1,
+  "city": 1,
+  "company": 2,
+  "division": 1,
+  "laboratory": 1,
+  "location": 1,
+  "person": 2,
+  "research center": 1,
+  "system": 1,
+  "technology": 1
+ },
+ "format": "kgb.induce/1",
+ "graph_sha256": "1fa2967a17da436000f01bff60ec951a386bd51308546e3eb85e56783d0bc81d",
+ "llm": {
+  "cache_hits": 0,
+  "cache_misses": 0,
+  "completion_tokens": 131,
+  "finish_length": 0,
+  "llm_calls": 12,
+  "llm_seconds": 146.9,
+  "prompt_tokens": 4917
+ },
+ "relations": {
+  "canonical_redundancy": 0.0,
+  "canonical_types": 6,
+  "dropped_low_support": 0,
+  "dropped_max_relations": 0,
+  "induced_redundancy": 0.0,
+  "induced_types": 6,
+  "open_redundancy": 0.0,
+  "open_types": 9
+ },
+ "schema_id": "is_49ba4a994edd",
+ "source_run": "runs/reference/schema_induction/showcase_noschema/A4"
+}

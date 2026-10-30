@@ -1,0 +1,17 @@
+{
+ "bundle_sha256": "36cc848d2c4943e905c0a86c6bd7a6f752b2c6fd0d39fc32c8f8e7cb99b67ee9",
+ "counts": {
+  "ambiguous": 0,
+  "llm_calls": 0,
+  "matched": 61,
+  "unresolved": 94
+ },
+ "doc_sources_sha256": "15a7caac43d91931b1c1a2c9445c8bf572b035d6cfe8d0c5cbc9bb199e6cd372",
+ "files": {
+  "links.jsonl": "4810695a2b9d9c7e74b51fd93469d1ce5d469d07aba07273ed449274c939a41a",
+  "unresolved.jsonl": "0a1b4c48e37adde4a98a9c8db07e6a953a30d263191351d1a40d4cec09c4eea8"
+ },
+ "format": "kgb.domain_link/1",
+ "rule_version": "links/v1",
+ "text_graph_sha256": "f95c9cae12c5e9125b4e269706abe3a4b67bb69531090c26a9b6e63686e747c8"
+}

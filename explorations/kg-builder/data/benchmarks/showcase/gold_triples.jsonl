@@ -1,0 +1,4 @@
+{"doc_id": "demo_turing", "subject": "Alan Turing", "predicate": "born_in", "object": "London", "valid_from": null, "valid_to": null}
+{"doc_id": "demo_alice", "subject": "Alice", "predicate": "works_at", "object": "Acme Labs", "valid_from": "2021", "valid_to": "2024"}
+{"doc_id": "demo_alice", "subject": "Alice", "predicate": "works_at", "object": "Nova AI", "valid_from": "2024", "valid_to": null}
+{"doc_id": "demo_ibm", "subject": "IBM Research", "predicate": "works_on", "object": "artificial intelligence", "valid_from": null, "valid_to": null}

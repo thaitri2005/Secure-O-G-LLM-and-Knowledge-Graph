@@ -1,0 +1,3377 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "is country of origin": "The subject entity originates from the country specified by the object entity.",
+    "is directed by": "The subject entity was directed by the person or entity specified by the object entity.",
+    "is genre": "The subject entity belongs to the genre specified by the object entity.",
+    "is release year": "The subject entity was released in the year specified by the object entity.",
+    "is set during": "The subject entity is set in the time period or event specified by the object entity.",
+    "stars": "The subject entity features the person specified by the object entity as a main actor or star.",
+    "try to pry information from": "The subject entity attempts to extract information from the target specified by the object entity."
+   },
+   "key": "wiki_000#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Dangerously They Live",
+      "is directed by",
+      "Robert Florey"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.79042649269104
+     },
+     "canonical": [
+      "Dangerously They Live",
+      "stars",
+      "John Garfield"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.755780816078186,
+      "stars": 0.6914880275726318
+     },
+     "canonical": [
+      "Dangerously They Live",
+      "is genre",
+      "spy film"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Dangerously They Live",
+      "stars",
+      "Nancy Coleman"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Dangerously They Live",
+      "stars",
+      "Raymond Massey"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7475190162658691,
+      "is genre": 0.7122976183891296,
+      "stars": 0.655698299407959
+     },
+     "canonical": [
+      "Dangerously They Live",
+      "is set during",
+      "World War II"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.6188892126083374,
+      "is genre": 0.598044216632843,
+      "is set during": 0.7211671471595764,
+      "stars": 0.4748666286468506
+     },
+     "canonical": [
+      "Dangerously They Live",
+      "is release year",
+      "1941"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7675222158432007,
+      "is genre": 0.6800983548164368,
+      "is release year": 0.565209686756134,
+      "is set during": 0.6326494216918945,
+      "stars": 0.6149982213973999
+     },
+     "canonical": [
+      "Nazi spies",
+      "try to pry information from",
+      "British agent"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7209906578063965,
+      "is genre": 0.709210991859436,
+      "is release year": 0.6160051226615906,
+      "is set during": 0.6757790446281433,
+      "try to pry information from": 0.6450355648994446
+     },
+     "canonical": [
+      "Dangerously They Live",
+      "is country of origin",
+      "American"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has dialogue by": "The subject entity contains dialogue written by the person specified by the object entity.",
+    "has music by": "The subject entity features musical composition by the person specified by the object entity.",
+    "is French idiom for": "The subject entity is the French idiomatic expression corresponding to the meaning specified by the object entity.",
+    "is directed by": "The subject entity was directed by the person specified by the object entity.",
+    "is film by": "The subject entity is a film created or directed by the person specified by the object entity.",
+    "is genre of": "The subject entity represents the genre classification of the work specified by the object entity.",
+    "is literally": "The subject entity corresponds to the literal translation or meaning specified by the object entity.",
+    "is set in": "The subject entity takes place or is situated in the location or setting specified by the object entity.",
+    "is written by": "The subject entity was authored or created by the person specified by the object entity.",
+    "means": "The subject entity signifies or has the meaning specified by the object entity.",
+    "was released after": "The subject entity was released at a later time than the event or work specified by the object entity.",
+    "was released in": "The subject entity was published or released in the year specified by the object entity."
+   },
+   "key": "wiki_001#c000",
+   "results": [
+    {
+     "candidates": {
+      "is country of origin": 0.7120961546897888,
+      "is directed by": 0.8439115881919861,
+      "is genre": 0.6988096833229065,
+      "is set during": 0.7107300162315369,
+      "stars": 0.7284223437309265
+     },
+     "canonical": [
+      "Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.",
+      "is written by",
+      "Michel Audiard"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7367990612983704,
+      "is genre": 0.9105556011199951,
+      "is set during": 0.6974727511405945,
+      "is written by": 0.6878682971000671,
+      "stars": 0.6924034953117371
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "is genre",
+      "Franco- Italian comedy"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.7471390962600708,
+      "is directed by": 0.8089643120765686,
+      "is genre": 0.773861825466156,
+      "is set during": 0.7983813881874084,
+      "is written by": 0.7160489559173584
+     },
+     "canonical": [
+      "Les Tontons flingueurs",
+      "is set in",
+      "Parisian underworld"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.5956345200538635,
+      "is directed by": 0.5916855931282043,
+      "is release year": 0.9420811533927917,
+      "is set during": 0.7049688696861267,
+      "is written by": 0.6674590706825256
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "is release year",
+      "1964"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.7444137334823608,
+      "is directed by": 0.8045015931129456,
+      "is genre": 0.7686270475387573,
+      "is set in": 0.7908055186271667,
+      "stars": 0.7388744354248047
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "is literally",
+      "Eating dandelions by the roots"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.8496971726417542,
+      "is genre": 0.7852644920349121,
+      "is literally": 0.7665500044822693,
+      "is written by": 0.7637396454811096,
+      "stars": 0.7741963267326355
+     },
+     "canonical": [
+      "Les Tontons flingueurs",
+      "is directed by",
+      "Georges Lautner"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.6982383131980896,
+      "is directed by": 0.7602598667144775,
+      "is genre": 0.7560463547706604,
+      "is literally": 0.8426480293273926,
+      "is set in": 0.7070214748382568
+     },
+     "canonical": [
+      "Eating dandelions by the roots",
+      "is literally",
+      "Pushing up the daisies"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7877582907676697,
+      "is literally": 0.7098373770713806,
+      "is set in": 0.6985862851142883,
+      "is written by": 0.6966708302497864,
+      "stars": 0.7381481528282166
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "is written by",
+      "Michel Audiard"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7962848544120789,
+      "is genre": 0.7885338068008423,
+      "is literally": 0.9066379070281982,
+      "is set during": 0.7556172609329224,
+      "is set in": 0.7857128977775574
+     },
+     "canonical": [
+      "Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.",
+      "is literally",
+      "The more loot you've got, the fewer your principles. Lolly is the gangrene of the soul"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.62937992811203,
+      "is release year": 0.8156879544258118,
+      "is set during": 0.724494993686676,
+      "is set in": 0.5955029726028442,
+      "is written by": 0.6320501565933228
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "was released after",
+      "Les Tontons flingueurs"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Salad by the Roots",
+      "is directed by",
+      "Georges Lautner"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.6350330114364624,
+      "is genre": 0.7112644910812378,
+      "is literally": 0.5815068483352661,
+      "is written by": 0.5877863764762878,
+      "stars": 0.6323181986808777
+     },
+     "canonical": [
+      "Salad by the Roots",
+      "has music by",
+      "Georges Delerue"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "directed": "The subject entity directed the film, play, or other production specified by the object entity.",
+    "is by": "The subject entity was created or authored by the person or group specified by the object entity.",
+    "is regarded as reflective of": "The subject entity is considered to reflect or be influenced by the style, movement, or concept specified by the object entity.",
+    "moved to": "The subject entity relocated to the location specified by the object entity.",
+    "raised in": "The subject entity was raised or brought up in the location specified by the object entity.",
+    "was born as": "The subject entity was originally named or given the name specified by the object entity at birth.",
+    "was born in": "The subject entity was born in the location specified by the object entity.",
+    "was selected for preservation in": "The subject entity was chosen to be preserved in the archive, registry, or collection specified by the object entity.",
+    "worked as": "The subject entity worked in the role or profession specified by the object entity.",
+    "worked at first as": "The subject entity initially worked in the role or profession specified by the object entity.",
+    "worked for": "The subject entity was employed by or worked for the organization or company specified by the object entity."
+   },
+   "key": "wiki_002#c000",
+   "results": [
+    {
+     "candidates": {
+      "is directed by": 0.8365103602409363,
+      "is literally": 0.7111461758613586,
+      "is set during": 0.7128127813339233,
+      "is written by": 0.9682547450065613,
+      "stars": 0.7161595821380615
+     },
+     "canonical": [
+      "United States National Film Registry",
+      "is by",
+      "Library of Congress"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "The Cocoanuts",
+      "is by",
+      "Marx Brothers"
+     ]
+    },
+    {
+     "candidates": {
+      "has music by": 0.6456100344657898,
+      "is directed by": 0.7372559905052185,
+      "is genre": 0.7086067795753479,
+      "is literally": 0.6505041122436523,
+      "stars": 0.6927789449691772
+     },
+     "canonical": [
+      "Robert Florey",
+      "directed",
+      "The Cocoanuts"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.6979959011077881,
+      "is directed by": 0.780954897403717,
+      "is genre": 0.6712533831596375,
+      "is literally": 0.7015795707702637,
+      "is set in": 0.8594677448272705
+     },
+     "canonical": [
+      "Robert Florey",
+      "moved to",
+      "United States"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Robert Florey",
+      "directed",
+      "Daughter of Shanghai"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Robert Florey",
+      "directed",
+      "Murders in the Rue Morgue"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.776535153388977,
+      "is directed by": 0.776069700717926,
+      "is set in": 0.8130432963371277,
+      "is written by": 0.7734813690185547,
+      "moved to": 0.8248693346977234
+     },
+     "canonical": [
+      "Robert Florey",
+      "was born in",
+      "Paris"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.7376357316970825,
+      "is directed by": 0.8036960363388062,
+      "is set in": 0.8397986888885498,
+      "moved to": 0.8634360432624817,
+      "was born in": 0.8190402984619141
+     },
+     "canonical": [
+      "Robert Florey",
+      "raised in",
+      "Switzerland"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Robert Florey",
+      "directed",
+      "Hotel Imperial"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.7579087615013123,
+      "is directed by": 0.7925432324409485,
+      "is genre": 0.7572596073150635,
+      "is set in": 0.7511435747146606,
+      "is written by": 0.7712235450744629
+     },
+     "canonical": [
+      "Robert Florey",
+      "worked as",
+      "extra"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.6720917820930481,
+      "is written by": 0.678318440914154,
+      "moved to": 0.6716392636299133,
+      "raised in": 0.6749456524848938,
+      "was born in": 0.6689677834510803
+     },
+     "canonical": [
+      "Daughter of Shanghai",
+      "was selected for preservation in",
+      "United States National Film Registry"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.7655386328697205,
+      "is directed by": 0.7762995362281799,
+      "is written by": 0.7747886776924133,
+      "was born in": 0.7450059056282043,
+      "worked as": 0.9564678072929382
+     },
+     "canonical": [
+      "Robert Florey",
+      "worked as",
+      "film journalist"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.7758370041847229,
+      "is directed by": 0.7723256349563599,
+      "is genre": 0.6917901039123535,
+      "is written by": 0.7809087634086609,
+      "worked as": 0.8743594884872437
+     },
+     "canonical": [
+      "Robert Florey",
+      "worked for",
+      "Warner Brothers"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7633276581764221,
+      "is genre": 0.7700272798538208,
+      "is literally": 0.7428805828094482,
+      "is set in": 0.7237027287483215,
+      "worked as": 0.71321702003479
+     },
+     "canonical": [
+      "Murders in the Rue Morgue",
+      "is regarded as reflective of",
+      "German expressionism"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Robert Florey",
+      "worked for",
+      "Paramount"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.7633180618286133,
+      "is country of origin": 0.7023082375526428,
+      "is directed by": 0.7252242565155029,
+      "is written by": 0.7765846252441406,
+      "was born in": 0.8049371242523193
+     },
+     "canonical": [
+      "Robert Florey",
+      "was born as",
+      "Robert Fuchs"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Robert Florey",
+      "worked as",
+      "assistant"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "collaborated with": "The subject entity worked in collaboration with the person or entity specified by the object entity.",
+    "directed": "The subject entity directed the film or production specified by the object entity.",
+    "mother is": "The subject entity has the person specified by the object entity as their mother.",
+    "nationality is": "The subject entity holds the nationality specified by the object entity.",
+    "stars": "The subject entity (typically a film) features the person specified by the object entity as a star or main actor.",
+    "was born in": "The subject entity was born in the location specified by the object entity.",
+    "was released in": "The subject entity (typically a film or media work) was released in the country or region specified by the object entity."
+   },
+   "key": "wiki_003#c000",
+   "results": [
+    {
+     "candidates": {
+      "is by": 0.8236138820648193,
+      "is directed by": 0.8616440892219543,
+      "is written by": 0.8225857019424438,
+      "worked as": 0.8725199103355408,
+      "worked for": 0.8457255959510803
+     },
+     "canonical": [
+      "Georges Lautner",
+      "collaborated with",
+      "Michel Audiard"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Georges Lautner",
+      "directed",
+      "Le Professionnel"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Georges Lautner",
+      "was born in",
+      "Nice"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.8374878168106079,
+      "is genre": 0.6811360716819763,
+      "is literally": 0.7227697968482971,
+      "is set in": 0.6661279797554016,
+      "was born in": 0.6858569383621216
+     },
+     "canonical": [
+      "Georges Lautner",
+      "nationality is",
+      "French"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7090900540351868,
+      "is directed by": 0.7577818036079407,
+      "is written by": 0.7159222960472107,
+      "was born as": 0.7138679027557373,
+      "was born in": 0.6974177360534668
+     },
+     "canonical": [
+      "Georges Lautner",
+      "mother is",
+      "Renée Saint- Cyr"
+     ]
+    },
+    {
+     "candidates": {
+      "directed": 0.7851347327232361,
+      "is country of origin": 0.7875897288322449,
+      "is genre": 0.7583798766136169,
+      "is literally": 0.7226915955543518,
+      "is set in": 0.7172675728797913
+     },
+     "canonical": [
+      "Le Professionnel",
+      "was released in",
+      "France"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Le Professionnel",
+      "stars",
+      "Jean- Paul Belmondo"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is a": "The subject entity is an instance or example of the type specified by the object entity.",
+    "is also known as": "The subject entity is also referred to or identified by the name specified by the object entity.",
+    "paired": "The subject entity features the person specified by the object entity in a prominent role, often as part of a cast pairing.",
+    "was directed by": "The subject entity was directed by the person specified by the object entity.",
+    "was produced under the banner of": "The subject entity was produced under the production company or banner specified by the object entity.",
+    "was released in": "The subject entity was released in the year specified by the object entity.",
+    "was written by": "The subject entity was written by the person specified by the object entity."
+   },
+   "key": "wiki_004#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.7788205146789551,
+      "is directed by": 0.7740166187286377,
+      "is written by": 0.7094901204109192,
+      "stars": 0.8696846961975098,
+      "worked as": 0.7535674571990967
+     },
+     "canonical": [
+      "Phalitamsha",
+      "stars",
+      "Jai Jagadish"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.79282146692276,
+      "is directed by": 0.8245490193367004,
+      "is genre": 0.8128220438957214,
+      "is literally": 0.8166017532348633,
+      "worked as": 0.8019577264785767
+     },
+     "canonical": [
+      "Phalitamsha",
+      "is genre",
+      "Kannada movie"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Phalitamsha",
+      "was released in",
+      "1976"
+     ]
+    },
+    {
+     "candidates": {
+      "directed": 0.7228028178215027,
+      "is by": 0.7094326019287109,
+      "is directed by": 0.7027265429496765,
+      "was released in": 0.7395479679107666,
+      "worked for": 0.7502796649932861
+     },
+     "canonical": [
+      "Phalitamsha",
+      "was produced under the banner of",
+      "A 1 Movietone"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8408123850822449,
+      "is by": 0.8824991583824158,
+      "is directed by": 0.904639482498169,
+      "is literally": 0.8152597546577454,
+      "is written by": 0.9087955951690674
+     },
+     "canonical": [
+      "Phalitamsha",
+      "is written by",
+      "Srinivasa Kulakarni"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8377760648727417,
+      "is by": 0.8127468824386597,
+      "is directed by": 0.9832088351249695,
+      "is written by": 0.8367284536361694,
+      "raised in": 0.7913997769355774
+     },
+     "canonical": [
+      "Phalitamsha",
+      "is directed by",
+      "S. R. Puttanna Kanagal"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.8313189744949341,
+      "is genre": 0.8243100643157959,
+      "is literally": 0.8345270156860352,
+      "is set in": 0.7928842902183533,
+      "was born as": 0.8077966570854187
+     },
+     "canonical": [
+      "S. R. Puttanna Kanagal",
+      "is also known as",
+      "Puttana Kanagal"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "also known as": "The subject entity is also referred to by the name specified by the object entity.",
+    "director": "The subject entity was directed by the person or entity specified by the object entity.",
+    "genre": "The subject entity belongs to the genre specified by the object entity.",
+    "release year": "The subject entity was released in the year specified by the object entity.",
+    "starring": "The subject entity features the person specified by the object entity in a leading role."
+   },
+   "key": "wiki_005#c000",
+   "results": [
+    {
+     "candidates": {
+      "is also known as": 0.9813858270645142,
+      "is directed by": 0.8383192420005798,
+      "is genre": 0.8285787105560303,
+      "is literally": 0.8428485989570618,
+      "was born as": 0.8161447644233704
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is also known as",
+      "The Spartan Gladiators"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9813858270645142,
+      "is directed by": 0.8383192420005798,
+      "is genre": 0.8285787105560303,
+      "is literally": 0.8428485989570618,
+      "was born as": 0.8161447644233704
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is also known as",
+      "The Revolt of the Seven"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9813858270645142,
+      "is directed by": 0.8383192420005798,
+      "is genre": 0.8285787105560303,
+      "is literally": 0.8428485989570618,
+      "was born as": 0.8161447644233704
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is also known as",
+      "The Spartan Gladiator"
+     ]
+    },
+    {
+     "candidates": {
+      "is release year": 1.0,
+      "is set during": 0.7211671471595764,
+      "was released after": 0.8156879544258118,
+      "was released in": 0.6763235330581665,
+      "was selected for preservation in": 0.6543048024177551
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is release year",
+      "1964"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8616440892219543,
+      "is also known as": 0.8313189744949341,
+      "is by": 0.8365103602409363,
+      "is directed by": 0.9999998807907104,
+      "is written by": 0.8439115881919861
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is directed by",
+      "Alberto De Martino"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7834404706954956,
+      "is directed by": 0.8003570437431335,
+      "is written by": 0.7415094971656799,
+      "stars": 0.8355642557144165,
+      "worked as": 0.8005958795547485
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "stars",
+      "Tony Russel"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8243100643157959,
+      "is genre": 0.9999998807907104,
+      "is literally": 0.7686270475387573,
+      "is regarded as reflective of": 0.7700272798538208,
+      "is set in": 0.773861825466156
+     },
+     "canonical": [
+      "Gladiators Seven",
+      "is genre",
+      "Italian peplum film"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is considered as one of the greatest in": "The subject entity is regarded as being among the most outstanding or excellent examples within the field or category specified by the object entity.",
+    "is fondly called": "The subject entity is affectionately referred to by the nickname or alias specified by the object entity.",
+    "means": "The subject entity is defined by or has the meaning specified by the object entity.",
+    "was a": "The subject entity was an instance of the type or profession specified by the object entity.",
+    "was born as": "The subject entity was originally named or identified by the name specified by the object entity at birth."
+   },
+   "key": "wiki_006#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.8105976581573486,
+      "is also known as": 0.8142604827880859,
+      "is directed by": 0.8180813193321228,
+      "is genre": 0.808977484703064,
+      "worked as": 0.8901843428611755
+     },
+     "canonical": [
+      "S. R. Puttanna Kanagal",
+      "worked as",
+      "Indian filmmaker"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "S. R. Puttanna Kanagal",
+      "was born as",
+      "Shubraveshti Ramaswamiah Seetharama Sharma"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9069932103157043,
+      "is directed by": 0.8462260961532593,
+      "is genre": 0.8126537799835205,
+      "is literally": 0.8927183151245117,
+      "is set in": 0.8310359120368958
+     },
+     "canonical": [
+      "Chitra Bramha",
+      "is literally",
+      "God of Films"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.5934987664222717,
+      "is also known as": 0.6448008418083191,
+      "is genre": 0.6200050711631775,
+      "is regarded as reflective of": 0.5987604260444641,
+      "worked as": 0.6154112815856934
+     },
+     "canonical": [
+      "S. R. Puttanna Kanagal",
+      "is considered as one of the greatest in",
+      "Indian cinema"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8359881639480591,
+      "is directed by": 0.6887876391410828,
+      "is genre": 0.6718522310256958,
+      "is literally": 0.6906757354736328,
+      "was born as": 0.7089123725891113
+     },
+     "canonical": [
+      "S. R. Puttanna Kanagal",
+      "is also known as",
+      "Chitra Bramha"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "capitalized on appeal of": "The subject entity leveraged or took advantage of the popularity or appeal associated with the entity specified by the object entity.",
+    "created films for market of": "The subject entity created films intended for the specific market specified by the object entity.",
+    "earned box office in": "The subject entity earned its box office revenue in the location or region specified by the object entity.",
+    "specialized in genre of": "The subject entity specialized in creating works within the specific genre specified by the object entity.",
+    "started as occupation of": "The subject entity began their career or professional life with the occupation specified by the object entity.",
+    "was born in": "The subject entity was born in the location specified by the object entity.",
+    "was occupation of": "The subject entity had the profession or job role specified by the object entity as their occupation.",
+    "was reviewed by": "The subject entity was reviewed by the publication, critic, or entity specified by the object entity.",
+    "worked in field of": "The subject entity worked in the industry, sector, or field specified by the object entity."
+   },
+   "key": "wiki_007#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.6408444046974182,
+      "is also known as": 0.6413410305976868,
+      "is by": 0.6586689352989197,
+      "is directed by": 0.6775186657905579,
+      "is written by": 0.6608672738075256
+     },
+     "canonical": [
+      "The Antichrist The Antichrist",
+      "was reviewed by",
+      "The Telegraph"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7538173198699951,
+      "is directed by": 0.6997025609016418,
+      "is written by": 0.7132559418678284,
+      "worked as": 0.9192990064620972,
+      "worked for": 0.8371366262435913
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "worked as",
+      "dubbing supervisor"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7538173198699951,
+      "is directed by": 0.6997025609016418,
+      "is written by": 0.7132559418678284,
+      "worked as": 0.9192990064620972,
+      "worked for": 0.8371366262435913
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "worked as",
+      "screenwriter"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7278141379356384,
+      "is genre": 0.8277396559715271,
+      "is regarded as reflective of": 0.7036743760108948,
+      "was released in": 0.7043817639350891,
+      "worked as": 0.7309845089912415
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "specialized in genre of",
+      "mythology genres"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.6631888747215271,
+      "raised in": 0.6052051186561584,
+      "was produced under the banner of": 0.6327598094940186,
+      "was released in": 0.6450077295303345,
+      "worked for": 0.6452071666717529
+     },
+     "canonical": [
+      "The Antichrist The Antichrist",
+      "was released in",
+      "United States"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7538173198699951,
+      "is directed by": 0.6997025609016418,
+      "is written by": 0.7132559418678284,
+      "worked as": 0.9192990064620972,
+      "worked for": 0.8371366262435913
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "worked as",
+      "Italian film director"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7720221877098083,
+      "is genre": 0.7577903866767883,
+      "specialized in genre of": 0.7521327137947083,
+      "worked as": 0.8566031455993652,
+      "worked for": 0.8449558615684509
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "worked as",
+      "cinema"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.5570360422134399,
+      "is directed by": 0.5520408153533936,
+      "is genre": 0.5553086400032043,
+      "is regarded as reflective of": 0.6133002638816833,
+      "raised in": 0.5828862190246582
+     },
+     "canonical": [
+      "The Antichrist The Antichrist",
+      "capitalized on appeal of",
+      "The Exorcist"
+     ]
+    },
+    {
+     "candidates": {
+      "directed": 0.8580631017684937,
+      "is genre": 0.6939687728881836,
+      "specialized in genre of": 0.7048963308334351,
+      "was produced under the banner of": 0.6732606291770935,
+      "was released in": 0.7712692618370056
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "created films for market of",
+      "international market"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alberto De Martino",
+      "specialized in genre of",
+      "Western"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.6834684014320374,
+      "is written by": 0.6416838765144348,
+      "specialized in genre of": 0.6588442921638489,
+      "worked as": 0.7931162714958191,
+      "worked for": 0.7272666692733765
+     },
+     "canonical": [
+      "Alberto De Martino",
+      "worked as",
+      "child actor"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alberto De Martino",
+      "was born in",
+      "Rome"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Alberto De Martino",
+      "specialized in genre of",
+      "horror"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "held position": "The subject entity held the specific job title or office specified by the object entity.",
+    "is married to": "The subject entity is married to the person specified by the object entity.",
+    "is of nationality": "The subject entity holds the nationality specified by the object entity.",
+    "served as First Lady of California from": "The subject entity served in the role of First Lady of California during the time period specified by the object entity.",
+    "was born on": "The subject entity was born on the date specified by the object entity.",
+    "worked for": "The subject entity was employed by or worked for the organization specified by the object entity."
+   },
+   "key": "wiki_008#c000",
+   "results": [
+    {
+     "candidates": {
+      "is directed by": 0.5702246427536011,
+      "is set during": 0.606951117515564,
+      "is written by": 0.5543370842933655,
+      "was born as": 0.5705015659332275,
+      "worked as": 0.6155057549476624
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "served as First Lady of California from",
+      "2011 to 2019"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "worked for",
+      "The Gap"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7325047850608826,
+      "is directed by": 0.7052271366119385,
+      "is set in": 0.6978441476821899,
+      "worked as": 0.7988288402557373,
+      "worked for": 0.8181646466255188
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "worked as",
+      "First Lady of California"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8221027255058289,
+      "is directed by": 0.8109855055809021,
+      "is written by": 0.7816359400749207,
+      "mother is": 0.7816228270530701,
+      "worked as": 0.777434229850769
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "is married to",
+      "Jerry Brown"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7325047850608826,
+      "is directed by": 0.7052271366119385,
+      "is set in": 0.6978441476821899,
+      "worked as": 0.7988288402557373,
+      "worked for": 0.8181646466255188
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "worked as",
+      "executive vice president"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7154911160469055,
+      "is country of origin": 0.8374878168106079,
+      "is literally": 0.7227697968482971,
+      "nationality is": 0.9999998807907104,
+      "was released in": 0.6880315542221069
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "nationality is",
+      "American"
+     ]
+    },
+    {
+     "candidates": {
+      "is release year": 0.7780337929725647,
+      "is set during": 0.7325627207756042,
+      "is written by": 0.7176381945610046,
+      "was born as": 0.7540257573127747,
+      "was born in": 0.8179580569267273
+     },
+     "canonical": [
+      "Anne Baldwin Gust Brown",
+      "was born on",
+      "March 15, 1958"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "attended educational institution": "The subject entity attended or studied at the educational institution specified by the object entity.",
+    "held office": "The subject entity held the specific position or title specified by the object entity.",
+    "is from": "The subject entity originates from or is associated with the location specified by the object entity.",
+    "is member of political party": "The subject entity is a member of the political party specified by the object entity.",
+    "is parent of": "The subject entity is the parent of the person specified by the object entity.",
+    "ran for office in": "The subject entity ran as a candidate for an office within the jurisdiction or body specified by the object entity.",
+    "served as chairman of": "The subject entity served as the chairman of the organization or group specified by the object entity.",
+    "served as member of": "The subject entity was a member of the organization or group specified by the object entity.",
+    "served as office holder in jurisdiction": "The subject entity held an official position within the geographical jurisdiction specified by the object entity."
+   },
+   "key": "wiki_009#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.8455581068992615,
+      "is by": 0.8406578898429871,
+      "is directed by": 0.8379534482955933,
+      "worked as": 0.8302457332611084,
+      "worked for": 0.8453954458236694
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "worked for",
+      "Los Angeles Community College District Board of Trustees"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8126890659332275,
+      "is directed by": 0.8039878010749817,
+      "is literally": 0.7807717323303223,
+      "is set in": 0.8312092423439026,
+      "raised in": 0.7833532691001892
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "held office",
+      "Secretary of State of California"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7453063726425171,
+      "is also known as": 0.7861407399177551,
+      "is directed by": 0.7638207077980042,
+      "is genre": 0.7393761873245239,
+      "is literally": 0.7410633563995361
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "is member of political party",
+      "Democratic Party"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7018717527389526,
+      "held office": 0.6869391202926636,
+      "is also known as": 0.7144360542297363,
+      "is directed by": 0.693122923374176,
+      "worked as": 0.7132974863052368
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "attended educational institution",
+      "Yale University"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.821747362613678,
+      "is also known as": 0.8298656940460205,
+      "is directed by": 0.8602959513664246,
+      "is married to": 0.840966522693634,
+      "mother is": 0.8859574198722839
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "is parent of",
+      "Bernice Layne Brown"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.700547456741333,
+      "is directed by": 0.7018581032752991,
+      "is member of political party": 0.7420578002929688,
+      "worked as": 0.7044802904129028,
+      "worked for": 0.7193271517753601
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "ran for office in",
+      "United States Senate"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.754090428352356,
+      "is member of political party": 0.7594209909439087,
+      "is parent of": 0.7535755634307861,
+      "worked as": 0.7408472895622253,
+      "worked for": 0.7853190302848816
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "is member of political party",
+      "California Democratic Party"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.7976290583610535,
+      "is country of origin": 0.7809945940971375,
+      "is set in": 0.7981364727020264,
+      "moved to": 0.7318143844604492,
+      "ran for office in": 0.7499731779098511
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "ran for office in",
+      "California"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.8786358833312988,
+      "is set in": 0.8714998364448547,
+      "moved to": 0.8338493704795837,
+      "raised in": 0.8496679663658142,
+      "was born in": 0.8358039855957031
+     },
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "was born in",
+      "San Francisco"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "is parent of",
+      "Pat Brown"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "held office",
+      "Mayor of Oakland"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edmund Gerald Brown Jr.",
+      "attended educational institution",
+      "University of California, Berkeley"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "became longest-serving chief executive of": "The subject entity became the longest-serving person to hold the position of chief executive for the organization or jurisdiction specified by the object entity.",
+    "surpassed": "The subject entity exceeded the record or status held by the person or entity specified by the object entity."
+   },
+   "key": "wiki_009#c001",
+   "results": [
+    {
+     "candidates": {
+      "held office": 0.5304356217384338,
+      "ran for office in": 0.5439612865447998,
+      "stars": 0.4634076654911041,
+      "worked as": 0.5137815475463867,
+      "worked for": 0.532161295413971
+     },
+     "canonical": [
+      "he",
+      "held office",
+      "California"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.63583904504776,
+      "is directed by": 0.6478636264801025,
+      "is parent of": 0.6353389620780945,
+      "is written by": 0.6359893083572388,
+      "try to pry information from": 0.6444081664085388
+     },
+     "canonical": [
+      "he",
+      "surpassed",
+      "Earl Warren"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is country of origin": "The subject entity originates from the country specified by the object entity.",
+    "is directed by": "The subject entity was directed by the person or entity specified by the object entity.",
+    "is release year": "The subject entity was released in the year specified by the object entity.",
+    "premiered on": "The subject entity had its first public performance or screening on the date specified by the object entity.",
+    "received awards at": "The subject entity received one or more awards at the event or ceremony specified by the object entity.",
+    "stars": "The subject entity features the person specified by the object entity as a main actor or star."
+   },
+   "key": "wiki_010#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "Keira Hewatch"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "OC Ukeje"
+     ]
+    },
+    {
+     "candidates": {
+      "is release year": 0.6156301498413086,
+      "is set during": 0.5417104363441467,
+      "served as First Lady of California from": 0.5298894643783569,
+      "was born on": 0.6152469515800476,
+      "was released after": 0.5578994750976562
+     },
+     "canonical": [
+      "Two Brides and a Baby",
+      "premiered on",
+      "November 17, 2011"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "Okey Uzoeshi"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "Stella Damasus- Aboderin"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "Chelsea Eze"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.5921786427497864,
+      "is also known as": 0.5735819339752197,
+      "is married to": 0.574532687664032,
+      "is set during": 0.5797373652458191,
+      "stars": 0.5714780688285828
+     },
+     "canonical": [
+      "Two Brides and a Baby",
+      "received awards at",
+      "Africa Magic Viewers Choice Awards"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "received awards at",
+      "Africa Movie Academy Awards"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "stars",
+      "Kalu Ikeagwu"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "is country of origin",
+      "Nigerian"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "received awards at",
+      "Best of Nollywood Awards"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "is directed by",
+      "Teco Benson"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Two Brides and a Baby",
+      "is release year",
+      "2011"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is directed by": "The subject entity was directed by the person or entity specified by the object entity.",
+    "is genre of": "The subject entity belongs to the genre specified by the object entity.",
+    "is produced by": "The subject entity was produced by the company or entity specified by the object entity.",
+    "is release year of": "The subject entity was released in the year specified by the object entity.",
+    "stars": "The subject entity features the person specified by the object entity as a star or main cast member.",
+    "was shot at": "The subject entity was filmed or shot at the location specified by the object entity."
+   },
+   "key": "wiki_011#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Dinner at the Ritz",
+      "stars",
+      "Paul Lukas"
+     ]
+    },
+    {
+     "candidates": {
+      "is release year": 1.0,
+      "is set during": 0.7211671471595764,
+      "was born on": 0.7780337929725647,
+      "was released after": 0.8156879544258118,
+      "was released in": 0.6763235330581665
+     },
+     "canonical": [
+      "Dinner at the Ritz",
+      "is release year",
+      "1937"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Dinner at the Ritz",
+      "stars",
+      "David Niven"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8243100643157959,
+      "is genre": 0.9999998807907104,
+      "is regarded as reflective of": 0.7700272798538208,
+      "is set in": 0.773861825466156,
+      "specialized in genre of": 0.8277396559715271
+     },
+     "canonical": [
+      "Dinner at the Ritz",
+      "is genre",
+      "British mystery romance film"
+     ]
+    },
+    {
+     "candidates": {
+      "is by": 0.8484543561935425,
+      "is directed by": 0.8297153115272522,
+      "is written by": 0.8377510905265808,
+      "was produced under the banner of": 0.8784480690956116,
+      "worked for": 0.8865953683853149
+     },
+     "canonical": [
+      "Dinner at the Ritz",
+      "was produced under the banner of",
+      "20th Century Fox"
+     ]
+    },
+    {
+     "candidates": {
+      "directed": 0.7150900363922119,
+      "is directed by": 0.6939482092857361,
+      "moved to": 0.7009748220443726,
+      "raised in": 0.7046582698822021,
+      "was released in": 0.6897160410881042
+     },
+     "canonical": [
+      "Dinner at the Ritz",
+      "was shot at",
+      "Denham Studios"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Dinner at the Ritz",
+      "is directed by",
+      "Harold D. Schuster"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Dinner at the Ritz",
+      "stars",
+      "Annabella"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "also known as": "The subject entity is also referred to by the name specified by the object entity.",
+    "married": "The subject entity was married to the person specified by the object entity.",
+    "was": "The subject entity held the title, role, or position specified by the object entity."
+   },
+   "key": "wiki_012#c000",
+   "results": [
+    {
+     "candidates": {
+      "held office": 0.9550110101699829,
+      "is also known as": 0.78554767370224,
+      "is parent of": 0.7966105937957764,
+      "is set in": 0.7944654226303101,
+      "worked as": 0.8115323781967163
+     },
+     "canonical": [
+      "Edith of Wessex",
+      "held office",
+      "Queen of England"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7989773154258728,
+      "is directed by": 0.8091636896133423,
+      "is married to": 0.9618496298789978,
+      "is parent of": 0.7959767580032349,
+      "is written by": 0.795940637588501
+     },
+     "canonical": [
+      "Edith of Wessex",
+      "is married to",
+      "Edward the Confessor"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.8366154432296753,
+      "is also known as": 0.9813858270645142,
+      "is directed by": 0.8383192420005798,
+      "is literally": 0.8428485989570618,
+      "is parent of": 0.8437047600746155
+     },
+     "canonical": [
+      "Vita Ædwardi Regis",
+      "is literally",
+      "Life of King Edward who rests at Westminster"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "adopted as national patron saint": "The subject entity adopted the person specified by the object entity as its national patron saint.",
+    "adopted in": "The subject entity was adopted during the time specified by the object entity.",
+    "argues about": "The subject entity presents arguments or opinions regarding the topic specified by the object entity.",
+    "canonised": "The subject entity canonized (officially declared a saint) the person specified by the object entity.",
+    "canonised in": "The subject entity was canonized (officially declared a saint) during the time specified by the object entity.",
+    "conquered": "The subject entity conquered or took control of the place or entity specified by the object entity.",
+    "died in": "The subject entity died during the year or time specified by the object entity.",
+    "is also known as": "The subject entity is also referred to by the name specified by the object entity.",
+    "is biographer of": "The subject entity wrote the biography of the person specified by the object entity.",
+    "is member of": "The subject entity is a member of the group, organization, or family specified by the object entity.",
+    "is son of": "The subject entity is the son of the person specified by the object entity.",
+    "led to advance in power of": "The subject entity caused an increase in the power or influence of the entity specified by the object entity.",
+    "restored rule after period of": "The subject entity restored its rule following the period of rule specified by the object entity.",
+    "succeeded": "The subject entity succeeded (followed as ruler or holder of office) the person or entity specified by the object entity.",
+    "took place in": "The event specified by the subject entity occurred during the time specified by the object entity.",
+    "was a member of": "The subject entity was a member of the group, organization, or category specified by the object entity.",
+    "was defeated by": "The subject entity was defeated by the person, group, or force specified by the object entity.",
+    "was killed by": "The subject entity was killed by the person, group, or force specified by the object entity.",
+    "was national saint of": "The subject entity served as the national saint of the country or region specified by the object entity.",
+    "was proclaimed king after": "The subject entity was proclaimed king following the event specified by the object entity.",
+    "was the last king of": "The subject entity was the final king to rule over the dynasty, house, or kingdom specified by the object entity."
+   },
+   "key": "wiki_013#c000",
+   "results": [
+    {
+     "candidates": {
+      "is also known as": 0.8180908560752869,
+      "is directed by": 0.8177273869514465,
+      "is married to": 0.8226122260093689,
+      "is parent of": 0.9283141493797302,
+      "mother is": 0.8475894331932068
+     },
+     "canonical": [
+      "Harthacnut",
+      "is son of",
+      "Cnut the Great"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.645399272441864,
+      "is directed by": 0.6740419268608093,
+      "is literally": 0.644729495048523,
+      "is set in": 0.6503208875656128,
+      "raised in": 0.6800609827041626
+     },
+     "canonical": [
+      "Cnut the Great",
+      "conquered",
+      "England"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8185936808586121,
+      "is by": 0.825229287147522,
+      "is directed by": 0.8152843713760376,
+      "is parent of": 0.8227169513702393,
+      "is son of": 0.8147491216659546
+     },
+     "canonical": [
+      "Edward the Confessor",
+      "was a member of",
+      "Anglo-Saxon kings of England"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7538268566131592,
+      "is by": 0.767593264579773,
+      "is directed by": 0.744262158870697,
+      "is parent of": 0.7479308843612671,
+      "is written by": 0.8131457567214966
+     },
+     "canonical": [
+      "Frank Barlow",
+      "is biographer of",
+      "Edward the Confessor"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.6916794776916504,
+      "is written by": 0.6950616836547852,
+      "ran for office in": 0.6931653618812561,
+      "worked as": 0.7353059649467468,
+      "worked for": 0.6949170827865601
+     },
+     "canonical": [
+      "Harold Godwinson",
+      "succeeded",
+      "Edward the Confessor"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edward the Confessor",
+      "is son of",
+      "Emma of Normandy"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.7994588613510132,
+      "is set during": 0.8187947869300842,
+      "raised in": 0.7976551651954651,
+      "was born in": 0.7835652828216553,
+      "was born on": 0.7913008332252502
+     },
+     "canonical": [
+      "King Edward III",
+      "adopted in",
+      "1350"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edward the Confessor",
+      "is son of",
+      "Æthelred the Unready"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.5743860006332397,
+      "is country of origin": 0.66559898853302,
+      "is member of political party": 0.5645254254341125,
+      "nationality is": 0.6597450971603394,
+      "was released in": 0.5657987594604492
+     },
+     "canonical": [
+      "Saint Edward",
+      "was national saint of",
+      "England"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.7117353081703186,
+      "is release year": 0.6194266080856323,
+      "is set during": 0.6469623446464539,
+      "was released after": 0.6135289072990417,
+      "was selected for preservation in": 0.6213933825492859
+     },
+     "canonical": [
+      "Edward the Confessor",
+      "restored rule after period of",
+      "Danish rule"
+     ]
+    },
+    {
+     "candidates": {
+      "conquered": 0.6589863300323486,
+      "is by": 0.6788399815559387,
+      "is directed by": 0.7118019461631775,
+      "is written by": 0.644980788230896,
+      "was a member of": 0.6745721101760864
+     },
+     "canonical": [
+      "Harold Godwinson",
+      "was killed by",
+      "William the Conqueror"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.6458864808082581,
+      "capitalized on appeal of": 0.7073162198066711,
+      "is directed by": 0.653448760509491,
+      "is regarded as reflective of": 0.6640347242355347,
+      "raised in": 0.6770009994506836
+     },
+     "canonical": [
+      "Edward the Confessor's reign",
+      "led to advance in power of",
+      "House of Godwin"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8316238522529602,
+      "is member of political party": 0.8283088803291321,
+      "is parent of": 0.8894647359848022,
+      "is son of": 0.8688936829566956,
+      "was a member of": 0.9424344897270203
+     },
+     "canonical": [
+      "Edgar the Ætheling",
+      "was a member of",
+      "House of Wessex"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.722298264503479,
+      "is set during": 0.8303219079971313,
+      "is set in": 0.630233645439148,
+      "was born on": 0.6398844718933105,
+      "was released after": 0.7268454432487488
+     },
+     "canonical": [
+      "Battle of Hastings",
+      "took place in",
+      "1066"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7397857904434204,
+      "is directed by": 0.7304301261901855,
+      "is genre": 0.7295444011688232,
+      "is member of political party": 0.7349880933761597,
+      "is parent of": 0.7093411087989807
+     },
+     "canonical": [
+      "Richard Mortimer",
+      "argues about",
+      "Godwins"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.5521247982978821,
+      "conquered": 0.5734589099884033,
+      "held office": 0.560653030872345,
+      "is directed by": 0.5583003759384155,
+      "succeeded": 0.6509820818901062
+     },
+     "canonical": [
+      "Edgar the Ætheling",
+      "was proclaimed king after",
+      "Battle of Hastings"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edward the Confessor",
+      "is also known as",
+      "Saint Edward the Confessor"
+     ]
+    },
+    {
+     "candidates": {
+      "is country of origin": 0.5206838846206665,
+      "mother is": 0.5322547554969788,
+      "nationality is": 0.554279625415802,
+      "was born as": 0.5404759645462036,
+      "was national saint of": 0.8237040042877197
+     },
+     "canonical": [
+      "King Edward III",
+      "adopted as national patron saint",
+      "Saint George"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted as national patron saint": 0.7233088612556458,
+      "adopted in": 0.584648609161377,
+      "was born as": 0.5751860737800598,
+      "was born on": 0.570209264755249,
+      "was national saint of": 0.7020899057388306
+     },
+     "canonical": [
+      "Pope Alexander III",
+      "canonised in",
+      "1161"
+     ]
+    },
+    {
+     "candidates": {
+      "conquered": 0.7419484853744507,
+      "is by": 0.6647520065307617,
+      "is directed by": 0.7019476890563965,
+      "was a member of": 0.6659386157989502,
+      "was killed by": 0.9026712775230408
+     },
+     "canonical": [
+      "Harold Godwinson",
+      "was killed by",
+      "Normans"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Cnut",
+      "is also known as",
+      "Canute"
+     ]
+    },
+    {
+     "candidates": {
+      "conquered": 0.631122350692749,
+      "is son of": 0.5814781188964844,
+      "succeeded": 0.6559317708015442,
+      "was a member of": 0.5846536755561829,
+      "was proclaimed king after": 0.7434302568435669
+     },
+     "canonical": [
+      "Edward the Confessor",
+      "succeeded",
+      "House of Wessex"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.6417551040649414,
+      "is release year": 0.7287177443504333,
+      "was born on": 0.6833261251449585,
+      "was killed by": 0.6728416085243225,
+      "was released after": 0.6376089453697205
+     },
+     "canonical": [
+      "Edward the Confessor",
+      "died in",
+      "1066"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted as national patron saint": 0.7565793395042419,
+      "canonised in": 0.9397150874137878,
+      "succeeded": 0.5612856149673462,
+      "was born as": 0.542870819568634,
+      "was national saint of": 0.7241941690444946
+     },
+     "canonical": [
+      "Pope Alexander III",
+      "canonised",
+      "Edward the Confessor"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Edward the Confessor",
+      "succeeded",
+      "Harthacnut"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Peter Rex",
+      "is biographer of",
+      "Edward the Confessor"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "celebrates feast day of": "The subject entity observes or commemorates the feast day associated with the person or entity specified by the object entity.",
+    "has feast day on": "The subject entity's feast day occurs on the date specified by the object entity.",
+    "is located in": "The subject entity is geographically or administratively situated within the location specified by the object entity."
+   },
+   "key": "wiki_013#c001",
+   "results": [
+    {
+     "candidates": {
+      "is also known as": 0.7904573678970337,
+      "is country of origin": 0.7937029004096985,
+      "is set in": 0.9052214622497559,
+      "moved to": 0.796882688999176,
+      "raised in": 0.789389431476593
+     },
+     "canonical": [
+      "Church of England",
+      "is country of origin",
+      "England"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted as national patron saint": 0.5901834964752197,
+      "is also known as": 0.5615059733390808,
+      "is parent of": 0.552349328994751,
+      "is set during": 0.5583624243736267,
+      "stars": 0.5501124262809753
+     },
+     "canonical": [
+      "Church of England",
+      "celebrates feast day of",
+      "Saint Edward"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7904573678970337,
+      "is country of origin": 0.7937029004096985,
+      "is set in": 0.9052214622497559,
+      "moved to": 0.796882688999176,
+      "raised in": 0.789389431476593
+     },
+     "canonical": [
+      "Catholic Church",
+      "is located in",
+      "Wales"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.5333607792854309,
+      "celebrates feast day of": 0.7958201169967651,
+      "is release year": 0.5616328716278076,
+      "is set during": 0.5772862434387207,
+      "was born on": 0.6467213034629822
+     },
+     "canonical": [
+      "Saint Edward",
+      "celebrates feast day of",
+      "13 October"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Catholic Church",
+      "celebrates feast day of",
+      "Saint Edward"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Church of England",
+      "is located in",
+      "Wales"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Catholic Church",
+      "is located in",
+      "England"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "participated in": "The subject entity took part in the event specified by the object entity.",
+    "plays for": "The subject entity plays for the team or organization specified by the object entity."
+   },
+   "key": "wiki_014#c000",
+   "results": [
+    {
+     "candidates": {
+      "adopted in": 0.7812002897262573,
+      "is directed by": 0.7681220769882202,
+      "is set during": 0.7882830500602722,
+      "took place in": 0.8123931884765625,
+      "was released after": 0.794862687587738
+     },
+     "canonical": [
+      "Marius Mapou",
+      "participated in",
+      "2008 OFC Nations Cup"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8185714483261108,
+      "is also known as": 0.7703284621238708,
+      "is parent of": 0.7816163897514343,
+      "was a member of": 0.8161617517471313,
+      "worked as": 0.7800945043563843
+     },
+     "canonical": [
+      "Marius Mapou",
+      "was a member of",
+      "New Caledonia"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has nationality": "The subject entity holds the nationality specified by the object entity.",
+    "is also known as": "The subject entity is also referred to by the name specified by the object entity.",
+    "plays for": "The subject entity plays for the team or organization specified by the object entity.",
+    "was born in": "The subject entity was born in the location specified by the object entity."
+   },
+   "key": "wiki_015#c000",
+   "results": [
+    {
+     "candidates": {
+      "is also known as": 0.7154911160469055,
+      "is country of origin": 0.8374878168106079,
+      "is literally": 0.7227697968482971,
+      "is son of": 0.7132542133331299,
+      "nationality is": 0.9999998807907104
+     },
+     "canonical": [
+      "Ademilson Silva Marques",
+      "nationality is",
+      "Brazilian"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Ademilson Silva Marques",
+      "was born in",
+      "São Luís"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8185714483261108,
+      "is also known as": 0.7703284621238708,
+      "is parent of": 0.7816163897514343,
+      "was a member of": 0.8161617517471313,
+      "worked as": 0.7800945043563843
+     },
+     "canonical": [
+      "Ademilson Silva Marques",
+      "was a member of",
+      "Remo"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Ademilson Silva Marques",
+      "is also known as",
+      "Mimica"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "directed by": "The subject entity was directed by the person or entity specified by the object entity.",
+    "entered into": "The subject entity was entered into or participated in the event or competition specified by the object entity.",
+    "has transliteration": "The subject entity has the transliteration specified by the object entity.",
+    "is a": "The subject entity is an instance of the type or category specified by the object entity.",
+    "was nominated for": "The subject entity received a nomination for the award or recognition specified by the object entity.",
+    "was released in": "The subject entity was released in the year specified by the object entity."
+   },
+   "key": "wiki_016#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.6905168890953064,
+      "held office": 0.6874729990959167,
+      "is directed by": 0.703448474407196,
+      "participated in": 0.7623687386512756,
+      "worked as": 0.6883229613304138
+     },
+     "canonical": [
+      "I Love You Rosa",
+      "participated in",
+      "Cannes Film Festival"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "I Love You Rosa",
+      "was released in",
+      "1972"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8676754236221313,
+      "is directed by": 0.8319317698478699,
+      "is genre": 0.8452592492103577,
+      "is parent of": 0.8452063202857971,
+      "was a member of": 0.8926798105239868
+     },
+     "canonical": [
+      "I Love You Rosa",
+      "is genre",
+      "Israeli film"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8616440892219543,
+      "is by": 0.8365103602409363,
+      "is directed by": 0.9999998807907104,
+      "is parent of": 0.8602959513664246,
+      "is written by": 0.8439115881919861
+     },
+     "canonical": [
+      "I Love You Rosa",
+      "is directed by",
+      "Moshé Mizrahi"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7043049931526184,
+      "is country of origin": 0.6589398980140686,
+      "is literally": 0.7755465507507324,
+      "is parent of": 0.6598014831542969,
+      "nationality is": 0.6865398287773132
+     },
+     "canonical": [
+      "I Love You Rosa",
+      "is also known as",
+      "Ani Ohev Otach Rosa"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.6165627837181091,
+      "is also known as": 0.6265091896057129,
+      "ran for office in": 0.6052810549736023,
+      "received awards at": 0.8100472092628479,
+      "stars": 0.6049684882164001
+     },
+     "canonical": [
+      "I Love You Rosa",
+      "was nominated for",
+      "Academy Award for Best Foreign Language Film"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is a": "The subject entity is an instance of or belongs to the type specified by the object entity.",
+    "is released in": "The subject entity was released in the year specified by the object entity."
+   },
+   "key": "wiki_017#c000",
+   "results": [
+    {
+     "candidates": {
+      "adopted in": 0.781146228313446,
+      "died in": 0.7287177443504333,
+      "is release year": 1.0,
+      "was born on": 0.7780337929725647,
+      "was released after": 0.8156879544258118
+     },
+     "canonical": [
+      "Pyar Ka Bandhan",
+      "is release year",
+      "1963"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8693572878837585,
+      "is genre": 0.8512710928916931,
+      "is literally": 0.837637722492218,
+      "is parent of": 0.858896791934967,
+      "was a member of": 0.8561128973960876
+     },
+     "canonical": [
+      "Pyar Ka Bandhan",
+      "was a member of",
+      "Hindi film"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is also known as": "The subject entity is alternatively referred to or identified by the name specified by the object entity.",
+    "is daughter of": "The subject entity is the female child of the person specified by the object entity.",
+    "is first cousin of": "The subject entity shares a grandparent with the person specified by the object entity, but they are not siblings.",
+    "is granddaughter of": "The subject entity is the female child of the child of the person specified by the object entity.",
+    "is niece of": "The subject entity is the daughter of the sibling of the person specified by the object entity."
+   },
+   "key": "wiki_018#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.6269970536231995,
+      "is married to": 0.6970233917236328,
+      "is parent of": 0.7339761257171631,
+      "is son of": 0.7180371880531311,
+      "mother is": 0.7436360120773315
+     },
+     "canonical": [
+      "Julia Livia",
+      "is first cousin of",
+      "Caligula"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.7963752150535583,
+      "is married to": 0.819343626499176,
+      "is parent of": 0.9189256429672241,
+      "is son of": 0.9108352065086365,
+      "mother is": 0.8250210881233215
+     },
+     "canonical": [
+      "Julia Livia",
+      "is niece of",
+      "Claudius"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Julia Livia",
+      "is also known as",
+      "Julia Drusi Caesaris filia"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Julia Livia",
+      "is also known as",
+      "Julia, daughter of Drusus Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.833569347858429,
+      "is niece of": 0.9197199940681458,
+      "is parent of": 0.9199011921882629,
+      "is son of": 0.9127532839775085,
+      "mother is": 0.8293688893318176
+     },
+     "canonical": [
+      "Julia Livia",
+      "mother is",
+      "Livilla"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.8273337483406067,
+      "is niece of": 0.9293933510780334,
+      "is parent of": 0.923740565776825,
+      "is son of": 0.9189977645874023,
+      "mother is": 0.822141706943512
+     },
+     "canonical": [
+      "Julia Livia",
+      "is granddaughter of",
+      "Roman Emperor Tiberius"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.833569347858429,
+      "is granddaughter of": 0.9969377517700195,
+      "is niece of": 0.9197199940681458,
+      "is parent of": 0.9199011921882629,
+      "is son of": 0.9127532839775085
+     },
+     "canonical": [
+      "Julia Livia",
+      "is granddaughter of",
+      "Drusus Julius Caesar"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "adopted by": "The subject entity was adopted into the family or lineage specified by the object entity.",
+    "belongs to branch of": "The subject entity is a member of the specific family branch or lineage specified by the object entity.",
+    "calls": "The subject entity refers to or names the object entity as specified (often a nickname or alias).",
+    "claims about cause of death of": "The subject entity asserts or reports information regarding how the person specified by the object entity died.",
+    "died on date": "The subject entity died on the specific date specified by the object entity.",
+    "held office of": "The subject entity served in the political or official position specified by the object entity.",
+    "is Praetorian prefect of Rome": "The subject entity holds the position of Praetorian prefect in Rome as specified by the object entity (note: this relation seems to have swapped subject/object roles compared to standard triples, implying the object is the location/role holder). *Correction based on triple [Sejanus, 'is Praetorian prefect of Rome', 'Rome']: The subject entity holds the title of Praetorian prefect in the location specified by the object entity.*",
+    "is adoptive brother of": "The subject entity is the brother of the person specified by the object entity through adoption rather than blood relation.",
+    "is assumed name of": "The subject entity is a name taken up or adopted by the person specified by the object entity.",
+    "is heir to": "The subject entity is designated to inherit the position, title, or estate specified by the object entity.",
+    "is likened to": "The subject entity is compared or associated with the object entity, often in a metaphorical or mythological context.",
+    "is name at birth of": "The subject entity was the original name given to the person or entity specified by the object entity.",
+    "is son of": "The subject entity is the male child of the person specified by the object entity.",
+    "is wife of": "The subject entity is married to the person specified by the object entity.",
+    "named after": "The subject entity was given its name by someone or something specified by the object entity.",
+    "seduced": "The subject entity engaged in sexual relations with the person specified by the object entity, often involving deception or manipulation.",
+    "was adopted into": "The subject entity was formally accepted into the family, clan, or group specified by the object entity.",
+    "was born at": "The subject entity was born in the location specified by the object entity."
+   },
+   "key": "wiki_019#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "Drusus Julius Caesar",
+      "is son of",
+      "Emperor Tiberius"
+     ]
+    },
+    {
+     "candidates": {
+      "died in": 0.7313274145126343,
+      "is also known as": 0.7226027250289917,
+      "is directed by": 0.7301669120788574,
+      "is parent of": 0.7261955142021179,
+      "was killed by": 0.7230136394500732
+     },
+     "canonical": [
+      "Tacitus",
+      "claims about cause of death of",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Drusus Julius Caesar",
+      "is son of",
+      "Tiberius"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.6968116164207458,
+      "is parent of": 0.6936758160591125,
+      "is son of": 0.7025366425514221,
+      "was a member of": 0.7675312757492065,
+      "was born as": 0.6911011338233948
+     },
+     "canonical": [
+      "Tiberius",
+      "is son of",
+      "Julii"
+     ]
+    },
+    {
+     "candidates": {
+      "is granddaughter of": 0.8192042708396912,
+      "is niece of": 0.8530904054641724,
+      "is parent of": 0.8593008518218994,
+      "is son of": 0.8374330401420593,
+      "was a member of": 0.8316568732261658
+     },
+     "canonical": [
+      "Drusus Julius Caesar",
+      "was a member of",
+      "gens Claudia"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9202775955200195,
+      "is genre": 0.7891340255737305,
+      "is granddaughter of": 0.7986581325531006,
+      "is literally": 0.8200076818466187,
+      "is parent of": 0.7946715354919434
+     },
+     "canonical": [
+      "Cassius Dio",
+      "is also known as",
+      "Castor"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9019646644592285,
+      "is by": 0.8547043800354004,
+      "is directed by": 0.8647233247756958,
+      "is parent of": 0.8579452037811279,
+      "was born as": 0.8748934864997864
+     },
+     "canonical": [
+      "Nero Claudius Drusus",
+      "was born as",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.8228271007537842,
+      "is also known as": 0.7863820195198059,
+      "is located in": 0.8178530335426331,
+      "is member of political party": 0.87907874584198,
+      "ran for office in": 0.8158884644508362
+     },
+     "canonical": [
+      "Drusus Julius Caesar",
+      "held office",
+      "quaestor"
+     ]
+    },
+    {
+     "candidates": {
+      "claims about cause of death of": 0.6973896026611328,
+      "died in": 0.8998422026634216,
+      "is release year": 0.6756686568260193,
+      "was born on": 0.7187548875808716,
+      "was released after": 0.6734335422515869
+     },
+     "canonical": [
+      "Drusus Julius Caesar",
+      "died in",
+      "14 September 23"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.750384509563446,
+      "is granddaughter of": 0.7322842478752136,
+      "is literally": 0.7644005417823792,
+      "is regarded as reflective of": 0.7514622211456299,
+      "is son of": 0.7416352033615112
+     },
+     "canonical": [
+      "Germanicus",
+      "is likened to",
+      "Castor and Pollux"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9118286967277527,
+      "is by": 0.8382707238197327,
+      "is directed by": 0.8715870380401611,
+      "is written by": 0.8535462617874146,
+      "was born as": 0.8909064531326294
+     },
+     "canonical": [
+      "Nero Claudius Drusus",
+      "was born as",
+      "Drusus the Elder"
+     ]
+    },
+    {
+     "candidates": {
+      "is set in": 0.8130432963371277,
+      "moved to": 0.8248693346977234,
+      "raised in": 0.8190402984619141,
+      "was born in": 1.0,
+      "was born on": 0.8179580569267273
+     },
+     "canonical": [
+      "Drusus Julius Caesar",
+      "was born in",
+      "Rome"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted in": 0.7799019813537598,
+      "is niece of": 0.7762637138366699,
+      "is parent of": 0.7898387908935547,
+      "is son of": 0.766768217086792,
+      "was born as": 0.7853578925132751
+     },
+     "canonical": [
+      "Tiberius",
+      "adopted by",
+      "Augustus"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Suetonius",
+      "claims about cause of death of",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.9249323010444641,
+      "is directed by": 0.8546845316886902,
+      "is granddaughter of": 0.8692975044250488,
+      "is parent of": 0.8819760680198669,
+      "is son of": 0.8648613691329956
+     },
+     "canonical": [
+      "Julius Caesar",
+      "is also known as",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "adopted by": 0.8032430410385132,
+      "is granddaughter of": 0.8037229180335999,
+      "is niece of": 0.8417788743972778,
+      "is parent of": 0.8202290534973145,
+      "is son of": 0.8194700479507446
+     },
+     "canonical": [
+      "Germanicus",
+      "is son of",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "is directed by": 0.6814625859260559,
+      "is granddaughter of": 0.7099020481109619,
+      "is married to": 0.7136483788490295,
+      "is niece of": 0.6491090059280396,
+      "is parent of": 0.6444223523139954
+     },
+     "canonical": [
+      "Sejanus",
+      "seduced",
+      "Livilla"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Drusus Julius Caesar",
+      "is likened to",
+      "Castor and Pollux"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.8009437322616577,
+      "is married to": 0.7722357511520386,
+      "is niece of": 0.7679221630096436,
+      "is parent of": 0.7927142381668091,
+      "is son of": 0.768463134765625
+     },
+     "canonical": [
+      "Drusus Julius Caesar",
+      "is heir to",
+      "Roman Empire"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Drusus Julius Caesar",
+      "is son of",
+      "Vipsania Agrippina"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8221027255058289,
+      "is granddaughter of": 0.8204928040504456,
+      "is married to": 1.000000238418579,
+      "is parent of": 0.840966522693634,
+      "is son of": 0.8226122260093689
+     },
+     "canonical": [
+      "Livilla",
+      "is married to",
+      "Drusus Julius Caesar"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.5780652761459351,
+      "is heir to": 0.5120603442192078,
+      "is set in": 0.5413307547569275,
+      "moved to": 0.528062641620636,
+      "was born in": 0.5073282718658447
+     },
+     "canonical": [
+      "Sejanus",
+      "held office",
+      "Rome"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "died in": "The subject entity died in the location specified by the object entity.",
+    "is a": "The subject entity is an instance or member of the category or group specified by the object entity.",
+    "translated from": "The subject entity performed translations originating from the language specified by the object entity.",
+    "was a": "The subject entity held the role, profession, or identity specified by the object entity.",
+    "was born in": "The subject entity was born in the location specified by the object entity.",
+    "was editor of": "The subject entity served as the editor for the publication or organization specified by the object entity.",
+    "was married to": "The subject entity was married to the person specified by the object entity."
+   },
+   "key": "wiki_020#c000",
+   "results": [
+    {
+     "candidates": {
+      "is country of origin": 0.7271302342414856,
+      "is directed by": 0.7364605665206909,
+      "is literally": 0.8642411828041077,
+      "nationality is": 0.6874561309814453,
+      "raised in": 0.6954114437103271
+     },
+     "canonical": [
+      "Adam Włodek",
+      "translated from",
+      "Slovak"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7330694198608398,
+      "is by": 0.7457645535469055,
+      "is written by": 0.7324889302253723,
+      "was a member of": 0.7311256527900696,
+      "was reviewed by": 0.7160345315933228
+     },
+     "canonical": [
+      "Adam Włodek",
+      "was editor of",
+      "Dziennik Polski"
+     ]
+    },
+    {
+     "candidates": {
+      "is also known as": 0.8560545444488525,
+      "is granddaughter of": 0.851571798324585,
+      "is member of political party": 0.8324063420295715,
+      "is parent of": 0.8510493636131287,
+      "was a member of": 0.9481815099716187
+     },
+     "canonical": [
+      "Wisława Szymborska",
+      "is a",
+      "Noble Prize laureate"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Adam Włodek",
+      "was born in",
+      "Kraków"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.7989773154258728,
+      "is directed by": 0.8091636896133423,
+      "is married to": 0.9618496298789978,
+      "is parent of": 0.7959767580032349,
+      "is written by": 0.795940637588501
+     },
+     "canonical": [
+      "Adam Włodek",
+      "was married to",
+      "Wisława Szymborska"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.8229674696922302,
+      "is parent of": 0.8327999711036682,
+      "is son of": 0.8282116055488586,
+      "was a member of": 0.8334525227546692,
+      "worked as": 0.9097266793251038
+     },
+     "canonical": [
+      "Adam Włodek",
+      "is a",
+      "Polish"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Adam Włodek",
+      "translated from",
+      "Czech"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Adam Włodek",
+      "died in",
+      "Kraków"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has translation in language": "The subject entity has been translated into the language specified by the object entity.",
+    "is occupation of": "The subject entity is an occupation held by the person or entity specified by the object entity.",
+    "is part of": "The subject entity is a component or subdivision of the larger entity specified by the object entity.",
+    "is work of": "The subject entity is a creative work produced or authored by the person or entity specified by the object entity.",
+    "received award": "The subject entity was given or received the award specified by the object entity.",
+    "resided in": "The subject entity lived or resided in the location specified by the object entity.",
+    "was born in": "The subject entity was born in the location specified by the object entity."
+   },
+   "key": "wiki_021#c000",
+   "results": [
+    {
+     "candidates": {
+      "is also known as": 0.7551283836364746,
+      "is directed by": 0.7603896856307983,
+      "is literally": 0.9055602550506592,
+      "is set in": 0.7417266964912415,
+      "translated from": 0.9233055114746094
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "Arabic"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.8977971076965332,
+      "is granddaughter of": 0.8694608211517334,
+      "is parent of": 0.8728152513504028,
+      "was a member of": 0.8572394847869873,
+      "worked as": 0.8723697662353516
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "worked as",
+      "essayist"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "was born in",
+      "Prowent"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "European languages"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8331041932106018,
+      "is a": 0.8553333282470703,
+      "is by": 0.812876284122467,
+      "is granddaughter of": 0.8058308959007263,
+      "was a member of": 0.8047242164611816
+     },
+     "canonical": [
+      "Some Like PoetryNiektórzy lubią poezję",
+      "is by",
+      "Maria Wisława Anna Szymborska"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "Persian"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.8977971076965332,
+      "is granddaughter of": 0.8694608211517334,
+      "is parent of": 0.8728152513504028,
+      "was a member of": 0.8572394847869873,
+      "worked as": 0.8723697662353516
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "worked as",
+      "translator"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.6544390320777893,
+      "is also known as": 0.6513000726699829,
+      "participated in": 0.6462701559066772,
+      "received awards at": 0.8704997301101685,
+      "was nominated for": 0.8738789558410645
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "received award",
+      "1996 Nobel Prize in Literature"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "Hebrew"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "Chinese"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "English"
+     ]
+    },
+    {
+     "candidates": {
+      "is located in": 0.7700704336166382,
+      "is set in": 0.8065639138221741,
+      "moved to": 0.8133246302604675,
+      "raised in": 0.7657291293144226,
+      "was born in": 0.8079732656478882
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "resided in",
+      "Kraków"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "has translation in language",
+      "Japanese"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.8977971076965332,
+      "is granddaughter of": 0.8694608211517334,
+      "is parent of": 0.8728152513504028,
+      "was a member of": 0.8572394847869873,
+      "worked as": 0.8723697662353516
+     },
+     "canonical": [
+      "Maria Wisława Anna Szymborska",
+      "worked as",
+      "Polish poet"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.9071642160415649,
+      "is also known as": 0.8487319946289062,
+      "is granddaughter of": 0.8500214219093323,
+      "is parent of": 0.8504327535629272,
+      "was a member of": 0.8451061248779297
+     },
+     "canonical": [
+      "Prowent",
+      "is part of",
+      "Kórnik"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "died in": "The subject entity died in the location specified by the object entity.",
+    "has occupation": "The subject entity has the occupation or profession specified by the object entity.",
+    "has title": "The subject entity holds the title specified by the object entity.",
+    "is ancestor of": "The subject entity is an ancestor of the person or entity specified by the object entity.",
+    "is brother of": "The subject entity is the brother of the person or entity specified by the object entity.",
+    "is daughter of": "The subject entity is the daughter of the person or entity specified by the object entity.",
+    "is son of": "The subject entity is the son of the person or entity specified by the object entity.",
+    "is spouse of": "The subject entity is the spouse of the person or entity specified by the object entity.",
+    "is title of": "The subject entity holds the title specified by the object entity.",
+    "succeeded": "The subject entity succeeded the person or entity specified by the object entity in a title, position, or role."
+   },
+   "key": "wiki_022#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "James Lyon",
+      "is son of",
+      "John Lyon"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.8889809250831604,
+      "is niece of": 0.9017627239227295,
+      "is parent of": 0.8835486173629761,
+      "is part of": 0.8719919919967651,
+      "is son of": 0.8916513323783875
+     },
+     "canonical": [
+      "Thomas Lyon",
+      "is brother of",
+      "James Lyon"
+     ]
+    },
+    {
+     "candidates": {
+      "is brother of": 0.8996127247810364,
+      "is granddaughter of": 0.8826391100883484,
+      "is married to": 0.927768349647522,
+      "is niece of": 0.8708456158638,
+      "was married to": 0.8817417025566101
+     },
+     "canonical": [
+      "James Lyon",
+      "was married to",
+      "Mary Oliphant"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Thomas Lyon",
+      "succeeded",
+      "James Lyon"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "James Lyon",
+      "died in",
+      "Scotland"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "James Lyon",
+      "is also known as",
+      "7th Earl of Strathmore"
+     ]
+    },
+    {
+     "candidates": {
+      "is brother of": 0.8979724645614624,
+      "is granddaughter of": 0.9569740295410156,
+      "is niece of": 0.9610221982002258,
+      "is parent of": 0.9308798909187317,
+      "is son of": 0.9116604328155518
+     },
+     "canonical": [
+      "Mary Oliphant",
+      "is daughter of",
+      "Charles Oliphant"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "Charles Oliphant",
+      "is brother of",
+      "William Oliphant"
+     ]
+    },
+    {
+     "candidates": {
+      "is heir to": 0.7899392247200012,
+      "is married to": 0.8152448534965515,
+      "is parent of": 0.7947816848754883,
+      "worked as": 0.9094597101211548,
+      "worked for": 0.8206126689910889
+     },
+     "canonical": [
+      "James Lyon",
+      "worked as",
+      "freemason"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "Elizabeth Bowes – Lyon",
+      "is also known as",
+      "Queen Mother"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "James Lyon",
+      "died in",
+      "Edinburgh"
+     ]
+    },
+    {
+     "candidates": {
+      "is a": 0.9002718925476074,
+      "is brother of": 0.9209811687469482,
+      "is daughter of": 0.9195346236228943,
+      "is parent of": 0.9296826720237732,
+      "is son of": 0.8964829444885254
+     },
+     "canonical": [
+      "Thomas Lyon",
+      "is ancestor of",
+      "Elizabeth Bowes – Lyon"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "James Lyon",
+      "is son of",
+      "Lady Elizabeth Stanhope"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "William Oliphant",
+      "held office",
+      "11th Lord Oliphant"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "Thomas Lyon",
+      "held office",
+      "8th Earl of Strathmore and Kinghorne"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "John Lyon",
+      "held office",
+      "4th Earl of Strathmore and Kinghorne"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "Charles Lyon",
+      "held office",
+      "6th Earl of Strathmore and Kinghorne"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "James Lyon",
+      "succeeded",
+      "Charles Lyon"
+     ]
+    },
+    {
+     "candidates": {
+      "is ancestor of": 0.7964275479316711,
+      "is married to": 0.8152448534965515,
+      "is parent of": 0.7947816848754883,
+      "worked as": 0.9094597101211548,
+      "worked for": 0.8206126689910889
+     },
+     "canonical": [
+      "James Lyon",
+      "worked as",
+      "Scottish peer"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has occupation": "The subject entity has the profession or role specified by the object entity.",
+    "has title": "The subject entity possesses the title specified by the object entity.",
+    "is father of": "The subject entity is the male parent of the person specified by the object entity.",
+    "is son of": "The subject entity is the male child of the person specified by the object entity.",
+    "is spouse of": "The subject entity is married to the person specified by the object entity.",
+    "is title of": "The subject entity holds the title specified by the object entity."
+   },
+   "key": "wiki_023#c000",
+   "results": [
+    {
+     "candidates": {
+      "collaborated with": 0.8010067939758301,
+      "is daughter of": 0.7940241098403931,
+      "is parent of": 0.8080217242240906,
+      "worked as": 0.9353504776954651,
+      "worked for": 0.8032838106155396
+     },
+     "canonical": [
+      "John Lyon",
+      "worked as",
+      "peer"
+     ]
+    },
+    {
+     "candidates": {
+      "is daughter of": 0.9034988880157471,
+      "is granddaughter of": 0.9436716437339783,
+      "is niece of": 0.8984599113464355,
+      "is parent of": 0.9454345107078552,
+      "is son of": 0.9257105588912964
+     },
+     "canonical": [
+      "John Lyon",
+      "is parent of",
+      "John Lyon, 5th Earl of Strathmore and Kinghorne"
+     ]
+    },
+    {
+     "candidates": {
+      "collaborated with": 0.8010067939758301,
+      "is daughter of": 0.7940241098403931,
+      "is parent of": 0.8080217242240906,
+      "worked as": 0.9353504776954651,
+      "worked for": 0.8032838106155396
+     },
+     "canonical": [
+      "John Lyon",
+      "worked as",
+      "Scottish nobleman"
+     ]
+    },
+    {
+     "candidates": {
+      "is ancestor of": 0.8364286422729492,
+      "is brother of": 0.8347081542015076,
+      "is married to": 1.000000238418579,
+      "is parent of": 0.840966522693634,
+      "was married to": 0.9618496298789978
+     },
+     "canonical": [
+      "John Lyon",
+      "was married to",
+      "Elizabeth Stanhope"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "John Lyon",
+      "is son of",
+      "Patrick Lyon"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9172238111495972,
+      "is also known as": 0.7980403304100037,
+      "is heir to": 0.7867968082427979,
+      "is literally": 0.745656430721283,
+      "is parent of": 0.7602996826171875
+     },
+     "canonical": [
+      "John Lyon",
+      "is also known as",
+      "4th Earl of Strathmore and Kinghorne"
+     ]
+    },
+    {
+     "candidates": {
+      "held office": 0.9045397639274597,
+      "is also known as": 0.8435912728309631,
+      "is genre": 0.7840993404388428,
+      "is heir to": 0.8043850064277649,
+      "is parent of": 0.7942065000534058
+     },
+     "canonical": [
+      "Patrick Lyon",
+      "held office",
+      "3rd Earl of Strathmore and Kinghorne"
+     ]
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

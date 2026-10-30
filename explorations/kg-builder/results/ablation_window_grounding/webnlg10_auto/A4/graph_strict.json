@@ -1,0 +1,1677 @@
+{
+ "ablation": "A4",
+ "chunks": [
+  {
+   "char_end": 120,
+   "char_start": 0,
+   "chunk_id": "webnlg_0000#c000",
+   "doc_id": "webnlg_0000",
+   "idx": 0,
+   "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+  },
+  {
+   "char_end": 183,
+   "char_start": 0,
+   "chunk_id": "webnlg_0001#c000",
+   "doc_id": "webnlg_0001",
+   "idx": 0,
+   "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level."
+  },
+  {
+   "char_end": 155,
+   "char_start": 0,
+   "chunk_id": "webnlg_0002#c000",
+   "doc_id": "webnlg_0002",
+   "idx": 0,
+   "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff."
+  },
+  {
+   "char_end": 92,
+   "char_start": 0,
+   "chunk_id": "webnlg_0003#c000",
+   "doc_id": "webnlg_0003",
+   "idx": 0,
+   "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone."
+  },
+  {
+   "char_end": 107,
+   "char_start": 0,
+   "chunk_id": "webnlg_0004#c000",
+   "doc_id": "webnlg_0004",
+   "idx": 0,
+   "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine."
+  },
+  {
+   "char_end": 138,
+   "char_start": 0,
+   "chunk_id": "webnlg_0005#c000",
+   "doc_id": "webnlg_0005",
+   "idx": 0,
+   "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome. The ICAO location identifier for the Bedford Aerodrome is EGBF."
+  },
+  {
+   "char_end": 117,
+   "char_start": 0,
+   "chunk_id": "webnlg_0006#c000",
+   "doc_id": "webnlg_0006",
+   "idx": 0,
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+  },
+  {
+   "char_end": 277,
+   "char_start": 0,
+   "chunk_id": "webnlg_0007#c000",
+   "doc_id": "webnlg_0007",
+   "idx": 0,
+   "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000."
+  },
+  {
+   "char_end": 127,
+   "char_start": 0,
+   "chunk_id": "webnlg_0008#c000",
+   "doc_id": "webnlg_0008",
+   "idx": 0,
+   "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+  },
+  {
+   "char_end": 120,
+   "char_start": 0,
+   "chunk_id": "webnlg_0009#c000",
+   "doc_id": "webnlg_0009",
+   "idx": 0,
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel. The Arab citizens of Israel is an ethnic group in Israel."
+  }
+ ],
+ "documents": [
+  {
+   "doc_id": "webnlg_0000",
+   "published_at": null,
+   "source_uri": null,
+   "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0001",
+   "published_at": null,
+   "source_uri": null,
+   "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0002",
+   "published_at": null,
+   "source_uri": null,
+   "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0003",
+   "published_at": null,
+   "source_uri": null,
+   "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0004",
+   "published_at": null,
+   "source_uri": null,
+   "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0005",
+   "published_at": null,
+   "source_uri": null,
+   "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome. The ICAO location identifier for the Bedford Aerodrome is EGBF.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0006",
+   "published_at": null,
+   "source_uri": null,
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0007",
+   "published_at": null,
+   "source_uri": null,
+   "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0008",
+   "published_at": null,
+   "source_uri": null,
+   "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009.",
+   "title": null
+  },
+  {
+   "doc_id": "webnlg_0009",
+   "published_at": null,
+   "source_uri": null,
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel. The Arab citizens of Israel is an ethnic group in Israel.",
+   "title": null
+  }
+ ],
+ "entities": [
+  {
+   "aliases": [],
+   "entity_id": "e_020c4b0b226f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_36d6128d9353"
+   ],
+   "name": "Robert_A._M._Stern",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_0dfca9595b33",
+   "kind": "entity",
+   "mention_ids": [
+    "m_15582a6bed9b"
+   ],
+   "name": "Arab_citizens_of_Israel",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_26ade3a57fce",
+   "kind": "entity",
+   "mention_ids": [
+    "m_772daf2524ea"
+   ],
+   "name": "Thurleigh",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_2b4b4294d744",
+   "kind": "literal",
+   "mention_ids": [
+    "m_c7ea9761bf5a"
+   ],
+   "name": "3500 (metres)",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_33b63b65ed4f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_b157fe6c7636"
+   ],
+   "name": "Zaoyang",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_4027565ce1e4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_5a9f3d282a6a"
+   ],
+   "name": "Ciudad_Ayala",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_40a1ab3e58c0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_a038ec0bb688"
+   ],
+   "name": "Nie Haisheng",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_42bd9ec5b641",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1ed5eebdc13a"
+   ],
+   "name": "United_States",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_48e1fd4c108d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_09c620fdb066"
+   ],
+   "name": "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\"",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_57a4bdb0fc39",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ae5c4b213f35"
+   ],
+   "name": "Alan_B._Miller_Hall",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5bcd12475714",
+   "kind": "entity",
+   "mention_ids": [
+    "m_491b86ccb016"
+   ],
+   "name": "Israeli Jews",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_5d16f7ea15d3",
+   "kind": "literal",
+   "mention_ids": [
+    "m_8a59824f81d7"
+   ],
+   "name": "17068.8 (millimetres)",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7015e6e3291f",
+   "kind": "entity",
+   "mention_ids": [
+    "m_3c628863fb7d"
+   ],
+   "name": "Arabs",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_7abfbc52c850",
+   "kind": "entity",
+   "mention_ids": [
+    "m_a2d55ac81833"
+   ],
+   "name": "Bedford_Autodrome",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8256f682432e",
+   "kind": "entity",
+   "mention_ids": [
+    "m_22d377a808c0"
+   ],
+   "name": "ALCO_RS-3",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8369298d6f94",
+   "kind": "entity",
+   "mention_ids": [
+    "m_f8baf5adb971"
+   ],
+   "name": "College_of_William_and_Mary",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8a2dac128e85",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9183ad18aa4e",
+    "m_c8386e9d9e17"
+   ],
+   "name": "Karlsruhe",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_8f4f9f2dcbaf",
+   "kind": "entity",
+   "mention_ids": [
+    "m_098501031d39",
+    "m_5c07ee4a0ec6"
+   ],
+   "name": "Israel",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_9cf40aebe330",
+   "kind": "entity",
+   "mention_ids": [
+    "m_1796ceac6261"
+   ],
+   "name": "Bedford_Aerodrome",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [
+    "Liselotte_Grschebina"
+   ],
+   "entity_id": "e_a0c26b7225b2",
+   "kind": "entity",
+   "mention_ids": [
+    "m_25f8ab90a12e",
+    "m_ad7597dfee22"
+   ],
+   "name": "Liselotte Grschebina",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a37004d37de1",
+   "kind": "entity",
+   "mention_ids": [
+    "m_21e803652bd2"
+   ],
+   "name": "Enaire",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a4ac914c09d7",
+   "kind": "literal",
+   "mention_ids": [
+    "m_b6e00c4be5eb"
+   ],
+   "name": "2000",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_a8b2d883ed16",
+   "kind": "entity",
+   "mention_ids": [
+    "m_6d85bd1aa689"
+   ],
+   "name": "\"1 June 2009\"",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_aa39887bc0a4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_3e344b496b81"
+   ],
+   "name": "Visvesvaraya_Technological_University",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ab596740f045",
+   "kind": "entity",
+   "mention_ids": [
+    "m_ab1225492c09"
+   ],
+   "name": "Juan_Nolasco",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ad516789a07b",
+   "kind": "entity",
+   "mention_ids": [
+    "m_cff91f60ba60"
+   ],
+   "name": "People's Republic of China",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_b0bacb71f2ca",
+   "kind": "entity",
+   "mention_ids": [
+    "m_124c2e2bb017"
+   ],
+   "name": "Diesel-electric_transmission",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_b8d3ecef2415",
+   "kind": "entity",
+   "mention_ids": [
+    "m_b6647857878d"
+   ],
+   "name": "Paracuellos_de_Jarama",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c0547b9d1635",
+   "kind": "entity",
+   "mention_ids": [
+    "m_0e75350ee275"
+   ],
+   "name": "V12_engine",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_c5d1aba758af",
+   "kind": "entity",
+   "mention_ids": [
+    "m_382edb387b5e"
+   ],
+   "name": "Pacific_Standard_Time_Zone",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ca00c9cfadf0",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4b70ab3bbeb6"
+   ],
+   "name": "EGBF",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_cd8c94b78615",
+   "kind": "entity",
+   "mention_ids": [
+    "m_9f6875b3e732"
+   ],
+   "name": "Acharya_Institute_of_Technology",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d3ae0680b4d4",
+   "kind": "entity",
+   "mention_ids": [
+    "m_fa0d242e16c1"
+   ],
+   "name": "Abraham_A._Ribicoff",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_d79f52497f9c",
+   "kind": "entity",
+   "mention_ids": [
+    "m_14c9c9fca2fc"
+   ],
+   "name": "Hubei",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e1dcdfa0baab",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4f84ac9e8e97"
+   ],
+   "name": "Adolfo_Suarez_Madrid-Barajas_Airport",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_e789fac489b8",
+   "kind": "literal",
+   "mention_ids": [
+    "m_5445e546dbe2"
+   ],
+   "name": "610 (metres)",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_ed1ac4d7d46d",
+   "kind": "entity",
+   "mention_ids": [
+    "m_a853b904e040"
+   ],
+   "name": "African_American",
+   "resolver": "semhash+rules"
+  },
+  {
+   "aliases": [],
+   "entity_id": "e_f91d924e0c77",
+   "kind": "entity",
+   "mention_ids": [
+    "m_4c3263acf94c"
+   ],
+   "name": "Ruth_Ribicoff",
+   "resolver": "semhash+rules"
+  }
+ ],
+ "flags": {
+  "canon": true,
+  "judge": false,
+  "resolve": true,
+  "temporal": true,
+  "validate": true
+ },
+ "format": "kgb.graph/1",
+ "run_name": "webnlg10_auto",
+ "statements": [
+  {
+   "candidate_ids": [
+    "c_707ac966865e84ff"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 74,
+     "char_start": 0,
+     "chunk_id": "webnlg_0005#c000",
+     "doc_id": "webnlg_0005",
+     "grounding": "exact",
+     "span": "webnlg_0005:0-74",
+     "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 74,
+    "char_start": 0,
+    "chunk_id": "webnlg_0005#c000",
+    "doc_id": "webnlg_0005",
+    "grounding": "exact",
+    "span": "webnlg_0005:0-74",
+    "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_26ade3a57fce",
+   "predicate": "location",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0005",
+   "statement_id": "s_0bb61d6c8eb003fe",
+   "status": "accepted",
+   "subject_id": "e_9cf40aebe330",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_d3fb829d9dbd29a0"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 92,
+     "char_start": 0,
+     "chunk_id": "webnlg_0003#c000",
+     "doc_id": "webnlg_0003",
+     "grounding": "exact",
+     "span": "webnlg_0003:0-92",
+     "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 92,
+    "char_start": 0,
+    "chunk_id": "webnlg_0003#c000",
+    "doc_id": "webnlg_0003",
+    "grounding": "exact",
+    "span": "webnlg_0003:0-92",
+    "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c5d1aba758af",
+   "predicate": "timeZone",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0003",
+   "statement_id": "s_1b981ce5df1b69df",
+   "status": "accepted",
+   "subject_id": "e_4027565ce1e4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_63a8ce7413e703d6"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 138,
+     "char_start": 75,
+     "chunk_id": "webnlg_0005#c000",
+     "doc_id": "webnlg_0005",
+     "grounding": "exact",
+     "span": "webnlg_0005:75-138",
+     "text": "The ICAO location identifier for the Bedford Aerodrome is EGBF."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 138,
+    "char_start": 75,
+    "chunk_id": "webnlg_0005#c000",
+    "doc_id": "webnlg_0005",
+    "grounding": "exact",
+    "span": "webnlg_0005:75-138",
+    "text": "The ICAO location identifier for the Bedford Aerodrome is EGBF."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ca00c9cfadf0",
+   "predicate": "icaoLocationIdentifier",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0005",
+   "statement_id": "s_1ebb92b9437d74a2",
+   "status": "accepted",
+   "subject_id": "e_9cf40aebe330",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_2961069a8440f197"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 120,
+     "char_start": 63,
+     "chunk_id": "webnlg_0009#c000",
+     "doc_id": "webnlg_0009",
+     "grounding": "exact",
+     "span": "webnlg_0009:63-120",
+     "text": "The Arab citizens of Israel is an ethnic group in Israel."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 120,
+    "char_start": 63,
+    "chunk_id": "webnlg_0009#c000",
+    "doc_id": "webnlg_0009",
+    "grounding": "exact",
+    "span": "webnlg_0009:63-120",
+    "text": "The Arab citizens of Israel is an ethnic group in Israel."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_8f4f9f2dcbaf",
+   "predicate": "ethnicGroup",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0009",
+   "statement_id": "s_27a08277b35b5a93",
+   "status": "accepted",
+   "subject_id": "e_0dfca9595b33",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_ec924e99bb444664"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 91,
+     "char_start": 0,
+     "chunk_id": "webnlg_0001#c000",
+     "doc_id": "webnlg_0001",
+     "grounding": "exact",
+     "span": "webnlg_0001:0-91",
+     "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 91,
+    "char_start": 0,
+    "chunk_id": "webnlg_0001#c000",
+    "doc_id": "webnlg_0001",
+    "grounding": "exact",
+    "span": "webnlg_0001:0-91",
+    "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_b8d3ecef2415",
+   "predicate": "location",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0001",
+   "statement_id": "s_29a696f4b971106d",
+   "status": "accepted",
+   "subject_id": "e_e1dcdfa0baab",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_4f7440c392ce250f"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 107,
+     "char_start": 0,
+     "chunk_id": "webnlg_0004#c000",
+     "doc_id": "webnlg_0004",
+     "grounding": "partial",
+     "span": "webnlg_0004:0-107",
+     "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 107,
+    "char_start": 0,
+    "chunk_id": "webnlg_0004#c000",
+    "doc_id": "webnlg_0004",
+    "grounding": "partial",
+    "span": "webnlg_0004:0-107",
+    "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_c0547b9d1635",
+   "predicate": "engine",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0004",
+   "statement_id": "s_37ec18125a0a5695",
+   "status": "accepted",
+   "subject_id": "e_8256f682432e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_1ec6c18fabe6d0ef"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 105,
+     "char_start": 0,
+     "chunk_id": "webnlg_0002#c000",
+     "doc_id": "webnlg_0002",
+     "grounding": "exact",
+     "span": "webnlg_0002:0-105",
+     "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 105,
+    "char_start": 0,
+    "chunk_id": "webnlg_0002#c000",
+    "doc_id": "webnlg_0002",
+    "grounding": "exact",
+    "span": "webnlg_0002:0-105",
+    "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ed1ac4d7d46d",
+   "predicate": "ethnicGroup",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0002",
+   "statement_id": "s_3d423633384a753c",
+   "status": "accepted",
+   "subject_id": "e_42bd9ec5b641",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_5c57b401fb9a75f3"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 240,
+     "char_start": 0,
+     "chunk_id": "webnlg_0007#c000",
+     "doc_id": "webnlg_0007",
+     "grounding": "exact",
+     "span": "webnlg_0007:0-240",
+     "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 240,
+    "char_start": 0,
+    "chunk_id": "webnlg_0007#c000",
+    "doc_id": "webnlg_0007",
+    "grounding": "exact",
+    "span": "webnlg_0007:0-240",
+    "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_48e1fd4c108d",
+   "predicate": "address",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0007",
+   "statement_id": "s_4257098f024d9547",
+   "status": "accepted",
+   "subject_id": "e_cd8c94b78615",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_9096d2c4eb4ac539"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 240,
+     "char_start": 0,
+     "chunk_id": "webnlg_0007#c000",
+     "doc_id": "webnlg_0007",
+     "grounding": "exact",
+     "span": "webnlg_0007:0-240",
+     "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 240,
+    "char_start": 0,
+    "chunk_id": "webnlg_0007#c000",
+    "doc_id": "webnlg_0007",
+    "grounding": "exact",
+    "span": "webnlg_0007:0-240",
+    "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_aa39887bc0a4",
+   "predicate": "affiliation",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0007",
+   "statement_id": "s_5a12d2977487b6d6",
+   "status": "accepted",
+   "subject_id": "e_cd8c94b78615",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_ff4b1f945a46d32b"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 183,
+     "char_start": 0,
+     "chunk_id": "webnlg_0001#c000",
+     "doc_id": "webnlg_0001",
+     "grounding": "partial",
+     "span": "webnlg_0001:0-183",
+     "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 183,
+    "char_start": 0,
+    "chunk_id": "webnlg_0001#c000",
+    "doc_id": "webnlg_0001",
+    "grounding": "partial",
+    "span": "webnlg_0001:0-183",
+    "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_2b4b4294d744",
+   "predicate": "runwayLength",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0001",
+   "statement_id": "s_5e04eddd1d27274b",
+   "status": "accepted",
+   "subject_id": "e_e1dcdfa0baab",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_1bd7efae622c0c4a"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 117,
+     "char_start": 0,
+     "chunk_id": "webnlg_0006#c000",
+     "doc_id": "webnlg_0006",
+     "grounding": "exact",
+     "span": "webnlg_0006:0-117",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 117,
+    "char_start": 0,
+    "chunk_id": "webnlg_0006#c000",
+    "doc_id": "webnlg_0006",
+    "grounding": "exact",
+    "span": "webnlg_0006:0-117",
+    "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+   },
+   "extractor_version": "kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_5bcd12475714",
+   "predicate": "ethnicGroup",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0006",
+   "statement_id": "s_66bcfb1a2c17d893",
+   "status": "accepted",
+   "subject_id": "e_8f4f9f2dcbaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_8306055b6cae7c3b"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 120,
+     "char_start": 0,
+     "chunk_id": "webnlg_0000#c000",
+     "doc_id": "webnlg_0000",
+     "grounding": "exact",
+     "span": "webnlg_0000:0-120",
+     "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 120,
+    "char_start": 0,
+    "chunk_id": "webnlg_0000#c000",
+    "doc_id": "webnlg_0000",
+    "grounding": "exact",
+    "span": "webnlg_0000:0-120",
+    "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+   },
+   "extractor_version": "kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_33b63b65ed4f",
+   "predicate": "birthPlace",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0000",
+   "statement_id": "s_78c8f081b7e63b49",
+   "status": "accepted",
+   "subject_id": "e_40a1ab3e58c0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_33b5210a27f64c25"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 127,
+     "char_start": 0,
+     "chunk_id": "webnlg_0008#c000",
+     "doc_id": "webnlg_0008",
+     "grounding": "exact",
+     "span": "webnlg_0008:0-127",
+     "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 127,
+    "char_start": 0,
+    "chunk_id": "webnlg_0008#c000",
+    "doc_id": "webnlg_0008",
+    "grounding": "exact",
+    "span": "webnlg_0008:0-127",
+    "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_020c4b0b226f",
+   "predicate": "architect",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0008",
+   "statement_id": "s_7ad5c0e03b40c6fd",
+   "status": "accepted",
+   "subject_id": "e_57a4bdb0fc39",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_f9e28dd4aa00dbce"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 107,
+     "char_start": 0,
+     "chunk_id": "webnlg_0004#c000",
+     "doc_id": "webnlg_0004",
+     "grounding": "partial",
+     "span": "webnlg_0004:0-107",
+     "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 107,
+    "char_start": 0,
+    "chunk_id": "webnlg_0004#c000",
+    "doc_id": "webnlg_0004",
+    "grounding": "partial",
+    "span": "webnlg_0004:0-107",
+    "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_b0bacb71f2ca",
+   "predicate": "powerType",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0004",
+   "statement_id": "s_7c484f8b1f76965c",
+   "status": "accepted",
+   "subject_id": "e_8256f682432e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_22a7df00ff8048f3"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 127,
+     "char_start": 0,
+     "chunk_id": "webnlg_0008#c000",
+     "doc_id": "webnlg_0008",
+     "grounding": "exact",
+     "span": "webnlg_0008:0-127",
+     "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 127,
+    "char_start": 0,
+    "chunk_id": "webnlg_0008#c000",
+    "doc_id": "webnlg_0008",
+    "grounding": "exact",
+    "span": "webnlg_0008:0-127",
+    "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_8369298d6f94",
+   "predicate": "owner",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0008",
+   "statement_id": "s_8a3faa378f2463ab",
+   "status": "accepted",
+   "subject_id": "e_57a4bdb0fc39",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_fd4f82f4ce83f091"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 277,
+     "char_start": 0,
+     "chunk_id": "webnlg_0007#c000",
+     "doc_id": "webnlg_0007",
+     "grounding": "partial",
+     "span": "webnlg_0007:0-277",
+     "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 277,
+    "char_start": 0,
+    "chunk_id": "webnlg_0007#c000",
+    "doc_id": "webnlg_0007",
+    "grounding": "partial",
+    "span": "webnlg_0007:0-277",
+    "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a4ac914c09d7",
+   "predicate": "established",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0007",
+   "statement_id": "s_8d620dc685e87b37",
+   "status": "accepted",
+   "subject_id": "e_cd8c94b78615",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_85972090edf0e8cf"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 120,
+     "char_start": 0,
+     "chunk_id": "webnlg_0000#c000",
+     "doc_id": "webnlg_0000",
+     "grounding": "exact",
+     "span": "webnlg_0000:0-120",
+     "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 120,
+    "char_start": 0,
+    "chunk_id": "webnlg_0000#c000",
+    "doc_id": "webnlg_0000",
+    "grounding": "exact",
+    "span": "webnlg_0000:0-120",
+    "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+   },
+   "extractor_version": "kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_d79f52497f9c",
+   "predicate": "birthPlace",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0000",
+   "statement_id": "s_931835cda5e67653",
+   "status": "accepted",
+   "subject_id": "e_40a1ab3e58c0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_f897aef9479e702c"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 117,
+     "char_start": 0,
+     "chunk_id": "webnlg_0006#c000",
+     "doc_id": "webnlg_0006",
+     "grounding": "exact",
+     "span": "webnlg_0006:0-117",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 117,
+    "char_start": 0,
+    "chunk_id": "webnlg_0006#c000",
+    "doc_id": "webnlg_0006",
+    "grounding": "exact",
+    "span": "webnlg_0006:0-117",
+    "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+   },
+   "extractor_version": "kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7015e6e3291f",
+   "predicate": "ethnicGroup",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0006",
+   "statement_id": "s_94141365bc247f7a",
+   "status": "accepted",
+   "subject_id": "e_8f4f9f2dcbaf",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_61f9a3aeccc1b09b"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 91,
+     "char_start": 0,
+     "chunk_id": "webnlg_0001#c000",
+     "doc_id": "webnlg_0001",
+     "grounding": "exact",
+     "span": "webnlg_0001:0-91",
+     "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 91,
+    "char_start": 0,
+    "chunk_id": "webnlg_0001#c000",
+    "doc_id": "webnlg_0001",
+    "grounding": "exact",
+    "span": "webnlg_0001:0-91",
+    "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a37004d37de1",
+   "predicate": "operatingOrganisation",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0001",
+   "statement_id": "s_955f7d7c434d359c",
+   "status": "accepted",
+   "subject_id": "e_e1dcdfa0baab",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_fad9f9c0861d5322"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 51,
+     "char_start": 0,
+     "chunk_id": "webnlg_0004#c000",
+     "doc_id": "webnlg_0004",
+     "grounding": "exact",
+     "span": "webnlg_0004:0-51",
+     "text": "The length of the ALCO RS-3 is 17068.8 millimetres."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 51,
+    "char_start": 0,
+    "chunk_id": "webnlg_0004#c000",
+    "doc_id": "webnlg_0004",
+    "grounding": "exact",
+    "span": "webnlg_0004:0-51",
+    "text": "The length of the ALCO RS-3 is 17068.8 millimetres."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_5d16f7ea15d3",
+   "predicate": "length",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0004",
+   "statement_id": "s_9a998978e4bd60f3",
+   "status": "accepted",
+   "subject_id": "e_8256f682432e",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_c53acb543bce1116"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 120,
+     "char_start": 0,
+     "chunk_id": "webnlg_0000#c000",
+     "doc_id": "webnlg_0000",
+     "grounding": "exact",
+     "span": "webnlg_0000:0-120",
+     "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 120,
+    "char_start": 0,
+    "chunk_id": "webnlg_0000#c000",
+    "doc_id": "webnlg_0000",
+    "grounding": "exact",
+    "span": "webnlg_0000:0-120",
+    "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964."
+   },
+   "extractor_version": "kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ad516789a07b",
+   "predicate": "origin",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0000",
+   "statement_id": "s_9e74566ff0b8d365",
+   "status": "accepted",
+   "subject_id": "e_40a1ab3e58c0",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a735fb1d95b7c639"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 74,
+     "char_start": 0,
+     "chunk_id": "webnlg_0005#c000",
+     "doc_id": "webnlg_0005",
+     "grounding": "exact",
+     "span": "webnlg_0005:0-74",
+     "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 74,
+    "char_start": 0,
+    "chunk_id": "webnlg_0005#c000",
+    "doc_id": "webnlg_0005",
+    "grounding": "exact",
+    "span": "webnlg_0005:0-74",
+    "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_7abfbc52c850",
+   "predicate": "cityServed",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0005",
+   "statement_id": "s_9fc37db5b5997d5d",
+   "status": "accepted",
+   "subject_id": "e_9cf40aebe330",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_17165a61df895a05",
+    "c_b4b72b06bacde1a5"
+   ],
+   "confidence": 0.99,
+   "evidence": [
+    {
+     "char_end": 117,
+     "char_start": 0,
+     "chunk_id": "webnlg_0006#c000",
+     "doc_id": "webnlg_0006",
+     "grounding": "exact",
+     "span": "webnlg_0006:0-117",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+    },
+    {
+     "char_end": 62,
+     "char_start": 0,
+     "chunk_id": "webnlg_0009#c000",
+     "doc_id": "webnlg_0009",
+     "grounding": "exact",
+     "span": "webnlg_0009:0-62",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 117,
+    "char_start": 0,
+    "chunk_id": "webnlg_0006#c000",
+    "doc_id": "webnlg_0006",
+    "grounding": "exact",
+    "span": "webnlg_0006:0-117",
+    "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17 | kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_8a2dac128e85",
+   "predicate": "birthPlace",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0006",
+   "statement_id": "s_a9d6ada1e829a655",
+   "status": "accepted",
+   "subject_id": "e_a0c26b7225b2",
+   "support_count": 2,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_95aa48c53bab1d30",
+    "c_d29d395677b625b7"
+   ],
+   "confidence": 0.99,
+   "evidence": [
+    {
+     "char_end": 117,
+     "char_start": 0,
+     "chunk_id": "webnlg_0006#c000",
+     "doc_id": "webnlg_0006",
+     "grounding": "exact",
+     "span": "webnlg_0006:0-117",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+    },
+    {
+     "char_end": 62,
+     "char_start": 0,
+     "chunk_id": "webnlg_0009#c000",
+     "doc_id": "webnlg_0009",
+     "grounding": "exact",
+     "span": "webnlg_0009:0-62",
+     "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 117,
+    "char_start": 0,
+    "chunk_id": "webnlg_0006#c000",
+    "doc_id": "webnlg_0006",
+    "grounding": "exact",
+    "span": "webnlg_0006:0-117",
+    "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17 | kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_8f4f9f2dcbaf",
+   "predicate": "deathPlace",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0006",
+   "statement_id": "s_c0f6bc6dc51dc8d0",
+   "status": "accepted",
+   "subject_id": "e_a0c26b7225b2",
+   "support_count": 2,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_6dac5074df6ba5c3"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 155,
+     "char_start": 0,
+     "chunk_id": "webnlg_0002#c000",
+     "doc_id": "webnlg_0002",
+     "grounding": "partial",
+     "span": "webnlg_0002:0-155",
+     "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 155,
+    "char_start": 0,
+    "chunk_id": "webnlg_0002#c000",
+    "doc_id": "webnlg_0002",
+    "grounding": "partial",
+    "span": "webnlg_0002:0-155",
+    "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_42bd9ec5b641",
+   "predicate": "birthPlace",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0002",
+   "statement_id": "s_c6867e3360d02499",
+   "status": "accepted",
+   "subject_id": "e_d3ae0680b4d4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_aef1dca08c5daa0e"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 127,
+     "char_start": 0,
+     "chunk_id": "webnlg_0008#c000",
+     "doc_id": "webnlg_0008",
+     "grounding": "exact",
+     "span": "webnlg_0008:0-127",
+     "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 127,
+    "char_start": 0,
+    "chunk_id": "webnlg_0008#c000",
+    "doc_id": "webnlg_0008",
+    "grounding": "exact",
+    "span": "webnlg_0008:0-127",
+    "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_a8b2d883ed16",
+   "predicate": "completionDate",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0008",
+   "statement_id": "s_c904f24d8e32cbf6",
+   "status": "accepted",
+   "subject_id": "e_57a4bdb0fc39",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_1d6170af9222a725"
+   ],
+   "confidence": 0.6,
+   "evidence": [
+    {
+     "char_end": 183,
+     "char_start": 0,
+     "chunk_id": "webnlg_0001#c000",
+     "doc_id": "webnlg_0001",
+     "grounding": "partial",
+     "span": "webnlg_0001:0-183",
+     "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 183,
+    "char_start": 0,
+    "chunk_id": "webnlg_0001#c000",
+    "doc_id": "webnlg_0001",
+    "grounding": "partial",
+    "span": "webnlg_0001:0-183",
+    "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_e789fac489b8",
+   "predicate": "elevationAboveTheSeaLevel",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0001",
+   "statement_id": "s_e7536b8a49e6da3c",
+   "status": "accepted",
+   "subject_id": "e_e1dcdfa0baab",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_a3573af1efdee79f"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 155,
+     "char_start": 106,
+     "chunk_id": "webnlg_0002#c000",
+     "doc_id": "webnlg_0002",
+     "grounding": "exact",
+     "span": "webnlg_0002:106-155",
+     "text": "Abraham A. Ribicoff was married to Ruth Ribicoff."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 155,
+    "char_start": 106,
+    "chunk_id": "webnlg_0002#c000",
+    "doc_id": "webnlg_0002",
+    "grounding": "exact",
+    "span": "webnlg_0002:106-155",
+    "text": "Abraham A. Ribicoff was married to Ruth Ribicoff."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_f91d924e0c77",
+   "predicate": "spouse",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0002",
+   "statement_id": "s_eb7564e288c41e08",
+   "status": "accepted",
+   "subject_id": "e_d3ae0680b4d4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "candidate_ids": [
+    "c_cb1511a5a5a3c1e4"
+   ],
+   "confidence": 0.9,
+   "evidence": [
+    {
+     "char_end": 92,
+     "char_start": 0,
+     "chunk_id": "webnlg_0003#c000",
+     "doc_id": "webnlg_0003",
+     "grounding": "exact",
+     "span": "webnlg_0003:0-92",
+     "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone."
+    }
+   ],
+   "evidence_span": {
+    "char_end": 92,
+    "char_start": 0,
+    "chunk_id": "webnlg_0003#c000",
+    "doc_id": "webnlg_0003",
+    "grounding": "exact",
+    "span": "webnlg_0003:0-92",
+    "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone."
+   },
+   "extractor_version": "kgb/0.1.0;extract=edc@02aad17;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+   "object_id": "e_ab596740f045",
+   "predicate": "leader",
+   "predicate_source": "schema",
+   "reasons": [],
+   "source_doc_id": "webnlg_0003",
+   "statement_id": "s_f70bf3902a4d5105",
+   "status": "accepted",
+   "subject_id": "e_4027565ce1e4",
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null
+  }
+ ]
+}

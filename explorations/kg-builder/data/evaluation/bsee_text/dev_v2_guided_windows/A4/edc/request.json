@@ -1,0 +1,788 @@
+{
+ "api_key": "lm-studio",
+ "base_url": "http://127.0.0.1:65089/v1",
+ "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+ "enrich_schema": false,
+ "few_shot_dir": "third_party\\edc\\few_shot_examples\\example",
+ "items": [
+  {
+   "key": "eor_-114746_b2d98b27#c000",
+   "text": "Stone has successfully drilled and completed for production the MC 109 A28ST1.  The well was spud on 12-23-10, by cutting a window in the 9 5/8\" @ 4101' MD / 3573' TVD. The well was drilled to a total depth of on 01-24-11, 14890' MD / 9594' TVD, w/a MW of 12.1 SBM.\n\nA 5\" prod. liner was set from 12220' MD to TD,14880' MD and the well completed for production.  The well was completed as a single, gravel packed oil completion in the \"M\" Sd with perforations of 14438' - 14557' MD.  Operations were completed on the well on 02-25-11.",
+   "triples": [
+    [
+     "MC 109 A28ST1",
+     "spudded_on",
+     "12-23-10"
+    ],
+    [
+     "well",
+     "completed_in",
+     "\"M\" Sd"
+    ],
+    [
+     "well",
+     "reached_td",
+     "14890' MD"
+    ],
+    [
+     "well",
+     "has_mud_weight",
+     "12.1 SBM"
+    ],
+    [
+     "well",
+     "reached_td",
+     "3573' TVD"
+    ],
+    [
+     "well",
+     "reached_td",
+     "9594' TVD"
+    ],
+    [
+     "5\" prod. liner",
+     "set_casing_at",
+     "14880' MD"
+    ],
+    [
+     "well",
+     "reached_td",
+     "4101' MD"
+    ],
+    [
+     "well",
+     "perforated_interval",
+     "14438' - 14557' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-115438_333b2915#c000",
+   "text": "30\" DP was cut 17' BML on 3/9/2011.  20\" csg was cut 17' BML on 3/8/2011.  Stone Energy was unable to pull the 30\" DP x 20\" csg at this time.  They will be pulled when the associated EI243 D-AUX structure is removed.  13-3/8\" casing cut 18' BML on 3/8/2011.",
+   "triples": [
+    [
+     "20\" csg",
+     "cut_at",
+     "17' BML"
+    ],
+    [
+     "30\" DP",
+     "cut_at",
+     "17' BML"
+    ],
+    [
+     "13-3/8\" casing",
+     "cut_at",
+     "18' BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-115900_0d7536f0#c000",
+   "text": "36\" csg cut @ 20' BML on 4/7/2011.  16\" csg cut @ 20' BML on 4/6/2011.  36\" x 16\" csg not pulled at this time, will be pulled at time of platform removal.  10-3/4\" csg cut & pulled @ 25' BML on 4/6/2011.  All csg cut via mechanical means.",
+   "triples": [
+    [
+     "10-3/4\" csg",
+     "cut_at",
+     "25' BML"
+    ],
+    [
+     "36\" csg",
+     "cut_at",
+     "20' BML"
+    ],
+    [
+     "16\" csg",
+     "cut_at",
+     "20' BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-116875_f4419ce1#c000",
+   "text": "Stone has successfully completed zone chane operations on the SS 198 G-13ST well to produce the \"LN\" sand. The previous completion, the \"LO\" sand, was isolated by setting a CIBP at 11,890' MD and dumping 52' of cement on top of the plug, w/ ETOC at 11,838' MD. The \"LN\" sand was perforated at intervals 11,786'-11,790' & 11,808'-11,820' MD. Operations began on 09/25/2010 and ended on 04/17/2011.",
+   "triples": [
+    [
+     "cement",
+     "set_plug_at",
+     "52' of cement on top of the plug"
+    ],
+    [
+     "cement",
+     "cemented_interval",
+     "11,838' MD"
+    ],
+    [
+     "CIBP",
+     "set_equipment_at",
+     "11,890' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-118079_3204a4e0#c000",
+   "text": "Stone has successfully plugged back and prepared for sidetrack operations the MC 109 A06 well using the H&P 206 platform rig unit.\n\nThe current completion interval for the well, the \"\"J\" Sand perforations, 9438' - 9532' MD  was isolated by setting a cement retainer @ 9300 and squeezing the perfs with cement, leaving ETOC in the 7\" csg @ 9300'.  A 300' cement plug in the 7\" csg was set from 9300' - 9000' MD.  \n\nThe 7\" prod. csg was cut & pulled at 2500' MD.   A cmt retainer was set in the 7\" csg @ 2450' MD & 225 sxs of cmt sqz'd below the retainer.  50' of cmt was dumped on top of the retainer @ 2450', ETOC @ 2400'.  The 9 5/8\" csg was perforated, 2030' - 2033' MD.   A EZSV set at 2000' and 300 sxs of cmt squeezed below the retainer.\n\nOperations began on 07-20-11 and were completed on 08-16-11.",
+   "triples": [
+    [
+     "9 5/8\" csg",
+     "perforated_interval",
+     "2030' - 2033' MD"
+    ],
+    [
+     "cmt retainer",
+     "set_equipment_at",
+     "2450' MD"
+    ],
+    [
+     "7\" prod. csg",
+     "cut_at",
+     "2500' MD"
+    ],
+    [
+     "EZSV",
+     "set_equipment_at",
+     "2000'"
+    ],
+    [
+     "well",
+     "set_plug_at",
+     "9300' - 9000' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-118413_493be58c#c000",
+   "text": "Rooster Petroleum has successfully completed permanent abandonment operations of the VR 175 A01 well.  The current completion interval in the well, the\"P\" sand existing perforations, 5831' - 5433' were previous sqz'd with cmt on 07-13-04, leaving ETOC in the 2 7/8\" prod. tbg @ 5330' MD.  A TTCIBP was set in the 2 7/8\" prod. tbg @ 5275' and 20' of cmt dumped on top, ETOC @ 5255' MD.  The 2 7/8\" prod. tbg was perforated @ 2050' MD & a 329' cmt plug set in the \n2 7/8\" prod. tbg & 7 5/8\" csg, 2050' - 1721' MD.  The cmt plug was tested to 1000 psi & tagged @ 1687' MD.  \n\n2 7/8\" prod. tbg was cut & pulled @ 517'.  The 7 5/8\" csg was cut & pulled @ 477' MD.  A CIBP was set in the 10 3/4\" csg @ 474' MD & 206' cmt plug set in the 10 3/4\" csg, 474' - 268 MD. The cmt plug was tagged @ 268'.\n\n10 3/4\" csg was cut & pulled @ 227' MD (37' BML) and the 24\" drive pipe was cut & pulled @ 219' MD (25' BML).\n\nOperations began on 08-09-11 and were concluded on 08-17-11.  Note, 48\" well support caisson will be cut & removed at a later date when the structure is removed.",
+   "triples": [
+    [
+     "cmt",
+     "cemented_interval",
+     "ETOC @ 5255' MD"
+    ],
+    [
+     "cmt plug",
+     "tagged_at",
+     "268'"
+    ],
+    [
+     "2 7/8\" prod. tbg",
+     "cut_at",
+     "517'"
+    ],
+    [
+     "well",
+     "completed_in",
+     "2 7/8\" prod. tbg & 7 5/8\" csg, 2050' - 1721' MD"
+    ],
+    [
+     "TTCIBP",
+     "set_equipment_at",
+     "5275'"
+    ],
+    [
+     "cmt plug",
+     "set_plug_at",
+     "474' - 268 MD"
+    ],
+    [
+     "VR 175 A01 well",
+     "completed_in",
+     "\"P\" sand"
+    ],
+    [
+     "7 5/8\" csg",
+     "cut_at",
+     "477' MD"
+    ],
+    [
+     "CIBP",
+     "set_equipment_at",
+     "474' MD"
+    ],
+    [
+     "329' cmt plug",
+     "set_plug_at",
+     "in the"
+    ],
+    [
+     "VR 175 A01 well",
+     "has_well_status",
+     "COM"
+    ],
+    [
+     "well",
+     "tagged_at",
+     "1687' MD"
+    ],
+    [
+     "cmt plug",
+     "tested_to_pressure",
+     "1000 psi"
+    ],
+    [
+     "10 3/4\" csg",
+     "cut_at",
+     "227' MD"
+    ],
+    [
+     "2 7/8\" prod. tbg",
+     "perforated_interval",
+     "@ 2050' MD"
+    ],
+    [
+     "24\" drive pipe",
+     "cut_at",
+     "219' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-118442_e824835f#c000",
+   "text": "Production tubing was cut and pulled from 9430'RKB 08/08/11. Production packer set @ 9380'RKB 08/09/11. New tubing with GLMs and SCSSV was run 08/10/11 - 08/11/11. Current wellbore schematic is attached.",
+   "triples": [
+    [
+     "Production packer",
+     "set_equipment_at",
+     "9380'RKB"
+    ],
+    [
+     "Production tubing",
+     "cut_at",
+     "9430'RKB"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-122267_0453276f#c000",
+   "text": "Stone has successfully drilling and completed for the production the SS 117 #4ST well.  The well was spud on 03-05-12 by cutting a window in the 9 5/8\" csg @ 4916' MD and drilled to a TD on 03-21-12 at a depth of 10827' MD / 10290' TVD.  MW at TD was 12.5 ppg OBM.\n\n7\" production csg was set at TD and the well completed as single non-gravel packed gas completion in the \"C9/10 Lwr\" Sd, with perforations of 10712' - 10785' MD.",
+   "triples": [
+    [
+     "SS 117 #4ST well",
+     "reached_td",
+     "10827' MD"
+    ],
+    [
+     "SS 117 #4ST well",
+     "reached_td",
+     "10290' TVD"
+    ],
+    [
+     "SS 117 #4ST well",
+     "spudded_on",
+     "03-05-12"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-122973_20baee8e#c000",
+   "text": "9-13-12 Please record top of PTP as tagged 7836'. The value is blank - ADDED VALUE TO PTP PLUG.\n\nPlease verify. The schematic shows cement in the 10-3/4 x 16\" annulus. Please expalin this (top job)? If a top job was done, then send in documentation showing it was done. - NO DOCUMENTATION AVAILABLE.  CORRECTED WELLBORE SKETCH.\n\nI did not see where the 10-3/4 x 16\" annulus was pressure tested. Please verify. if was not pressure tested, please submit verbal not to pressure test. - STATE IN WAR 3-30-12 - ATEMPTED TO CIRCULATE, UNABLE TO CIRCULATE. PUMP PRESSURED UP TO 500 PSI.  FAILED TO NOTIFY AND OBTAIN VERBAL TO NOT SQUEEZE.\n\nThe D01 & D03 completions isolation dates should be changed to 3/15/12. - DONE.\n\nThe WAR dated 3/16/12 states that the SS tubing plug was tagged at 7836' but, the schematic states 7890'. Please verify and correct. - CORRECTED WELLBORE SKETCH.",
+   "triples": [
+    [
+     "well",
+     "tagged_at",
+     "7836'"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-123822_74d13bb8#c000",
+   "text": "Well was batch set (through the 22\" casing) and suspended on 05/08/2012, pending further operations.\nOn 05/31/2012, tagged cement @ 8,698'. Apply 20k weight test down. Displaced well to 12.2 ppg mud with corrosion inhibitor. Install 30\" TA Cap and inject McDermid fluid in TA Cap.",
+   "triples": [
+    [
+     "well",
+     "has_well_status",
+     "suspended"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-128981_ddbfd535#c000",
+   "text": "Coiled tubing operations were successfully completed on the VK 990 Well A-28ST to clean out the wellbore and isolate the \"M83C\" Sand existing perfortions of 15,992'-16,072' MD due to lower GP screen failure. The \"M83C\" Sand perforations were isolated by setting a NVTTBP at 15,727' MD and dumping 17' of cmt on top of the plug, w/ ETOC at 15,710' MD. Operations started 11-16-2012 and ended 12-18-2012.",
+   "triples": [
+    [
+     "NVTTBP",
+     "set_equipment_at",
+     "15,727' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-130036_9eca0583#c000",
+   "text": "Wellbore was sidetrack to a depth of 13,869' MD/ 12,372' TVD, no hydrocarbons were encountered.  A cement retainer was set at 8,850' MD / 7,659' TVD and a surface plug was set from 352 - 575' MD.  An APM will be submitted to perform permanent abandonment operations at a later date.",
+   "triples": [
+    [
+     "well",
+     "drilled_to",
+     "12,372' TVD"
+    ],
+    [
+     "well",
+     "drilled_to",
+     "13,869' MD"
+    ],
+    [
+     "cement retainer",
+     "set_equipment_at",
+     "8,850' MD / 7,659' TVD"
+    ],
+    [
+     "surface plug",
+     "set_plug_at",
+     "352 - 575' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-131362_db600049#c000",
+   "text": "Well was spud on March 11, 2013 and TD reached on March 29, 2013 with a depth of 11,194' MD/10,950' TD.  Well was completed as a single, gravel packed oil completion  in the B-22 and completed as a single, gravel packed alternate completion in B-23 Sand. Operations were completed on May 13, 2013.",
+   "triples": [
+    [
+     "well",
+     "completed_in",
+     "B-23 Sand"
+    ],
+    [
+     "well",
+     "reached_td",
+     "11,194' MD"
+    ],
+    [
+     "well",
+     "reached_td",
+     "10,950' TD"
+    ],
+    [
+     "well",
+     "completed_in",
+     "B-22"
+    ],
+    [
+     "well",
+     "spudded_on",
+     "March 11, 2013"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-132134_956583d3#c000",
+   "text": "Operations were successfully completed for Zone Change to Q-Sand. Operations commenced on 03/30/2013 and was\ncompleted 04/07/2013. R-Sand was isolated by setting a TTVBP @ 16,525'MD and dumping 52'cmt, ETOC=16,473'MD. Pressure tested cmt plug @ 16,473'MD to 1000psi. Fish stuck in hole @ 16,440'WLM. The Q-Sand was open to production by perforating intervals, 16,300'-16,340'MD.",
+   "triples": [
+    [
+     "TTVBP",
+     "set_equipment_at",
+     "16,525'MD"
+    ],
+    [
+     "well",
+     "completed_in",
+     "R-Sand"
+    ],
+    [
+     "Q-Sand",
+     "perforated_interval",
+     "16,300'-16,340'MD"
+    ],
+    [
+     "cmt plug",
+     "tested_to_pressure",
+     "1000psi"
+    ],
+    [
+     "Fish",
+     "tagged_at",
+     "16,440'WLM"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-13562_30064403#c000",
+   "text": "The 20\" and 30\" casing strings were cut at 15'BML.  In the process of recovering the casing, they became stuck in the damaged platform trying to pull to the surface.  Conductors will be pulled when platform is removed.",
+   "triples": [
+    [
+     "20\" and 30\" casing strings",
+     "cut_at",
+     "15'BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-142921_1797e22d#c000",
+   "text": "The subject well was drilled to 11,150' MD / 10,696' TVD. A 7\", 26.0 ppf,HCP-110, Ultra SF production liner was ran and cemented from 7,910' - 11,150'. Top of cement is at the liner top based on cement being reverse out after the liner cement job and CBL. Plugged cased-hole MDT 3/16\" hole exist in the Bul 1-6 Sand at 10,995' and an unplugged 3/16\" hole exist at 10,975'.\n\nCompleted as a single oil well with a FP completion in the Bul 1-6 Sand from 10,950' - 11,006' in 7' casing.",
+   "triples": [
+    [
+     "liner",
+     "cemented_interval",
+     "liner top"
+    ],
+    [
+     "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+     "set_casing_at",
+     "11,150'"
+    ],
+    [
+     "well",
+     "cemented_interval",
+     "7,910' - 11,150'"
+    ],
+    [
+     "well",
+     "drilled_to",
+     "10,696' TVD"
+    ],
+    [
+     "well",
+     "completed_in",
+     "Bul 1-6 Sand"
+    ],
+    [
+     "well",
+     "drilled_to",
+     "11,150' MD"
+    ],
+    [
+     "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+     "casing_spec",
+     "26.0 ppf,HCP-110, Ultra SF"
+    ],
+    [
+     "7\", 26.0 ppf,HCP-110, Ultra SF production liner",
+     "casing_size",
+     "7\""
+    ],
+    [
+     "well",
+     "drilled_to",
+     "11,006'"
+    ],
+    [
+     "well",
+     "encountered_marker",
+     "Bul 1-6 Sand"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-166132_a786b652#c000",
+   "text": "Rooster Petroleum, LLC has successfully completed TA operations of the HI A-494 Well C-1 (ST01). \n\nSummary of Operations:\n\nTT-CIBP in 3-1/2\" tbg @ 6900' RKB + 51' cmt (TOC @ 6849' RKB); pressure tested to 1000 psi\n\nPerf'd 3-1/2\" tbg @ 6800' RKB; M&P 10.6 bbls (55 sxs) Class H cmt for 375' balanced cmt plug in 3-1/2\" tbg & 3-1/2\" x 7\" annulus f/ 6425'-6800' RKB; pressure tested to 1000 psi\n\nCut/pulled 3-1/2\" tbg f/ 775' RKB (476' BML)\n\nCut/pulled 7\" csg f/ 750' RKB (451' BML)\n\nCIBP in 10-3/4\" csg @ 669' RKB (370' BML) + 50' cmt (TOC @ 619' RKB (320' BML); pressure tested to 1000 psi\n\nM&P 19.25 bbls (100 sxs) CLass H cmt for 203' bal cmt plug in 10-3/4\" csg f/ 396'-599' RKB (97'-300' BML)\n\nCut/pulled 10-3/4\" csg f/ 334' RKB (35' BML)\n\nOperations commenced 11/05/2016 and were completed 11/12/2016.",
+   "triples": [
+    [
+     "TT-CIBP",
+     "tested_to_pressure",
+     "1000 psi"
+    ],
+    [
+     "TT-CIBP",
+     "set_casing_at",
+     "6900' RKB"
+    ],
+    [
+     "well",
+     "tested_to_pressure",
+     "1000 psi"
+    ],
+    [
+     "CLass H cmt",
+     "pumped",
+     "19.25 bbls"
+    ],
+    [
+     "well",
+     "set_casing_at",
+     "669' RKB"
+    ],
+    [
+     "3-1/2\" tbg",
+     "perforated_interval",
+     "@ 6800' RKB"
+    ],
+    [
+     "10-3/4\" csg",
+     "casing_size",
+     "10-3/4\""
+    ]
+   ]
+  },
+  {
+   "key": "eor_-168515_f4ef6404#c000",
+   "text": "Rooster Petroleum, LLC has successfully completed TA operations of the VR 376 A-2 Well. The 2-7/8\" LS tbg was cut/pulled f/ 1,000' BML (1,392' RKB) & the 2-7/8\" SS tbg was cut/pulled f/ 990' BML (1,382' RKB). \n\nOperations began 06/04/2017 and were completed 06/18/2017.",
+   "triples": [
+    [
+     "VR 376 A-2 Well",
+     "has_well_status",
+     "TA"
+    ],
+    [
+     "2-7/8\" SS tbg",
+     "cut_at",
+     "990' BML"
+    ],
+    [
+     "2-7/8\" LS tbg",
+     "cut_at",
+     "1,000' BML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-169920_21cfa07c#c000",
+   "text": "Note: All casings cut in 2003 by Kerr McGee.  The 20\" x 24\" casing was hung off and pinned @ +20.  The 9-5/8\" is @ 45' AML, the 13-3/8\" @ 46' AML and the 24\" is at 54' AML. The status was changed to TA and this EOR is for the removal of the 20\" x 24\" at the +20.",
+   "triples": [
+    [
+     "well",
+     "has_well_status",
+     "TA"
+    ],
+    [
+     "13-3/8\"",
+     "set_casing_at",
+     "46' AML"
+    ],
+    [
+     "24\"",
+     "set_casing_at",
+     "54' AML"
+    ],
+    [
+     "9-5/8\"",
+     "set_casing_at",
+     "45' AML"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-170898_868e37ba#c000",
+   "text": "The A-12D well was shut in on 08/24/2017 due to Hurricane Harvey. In order to remain in compliance with CFR 250.829(a)(1) the PB valve assembly was pulled and a DS pump through style plug was set in the S-Nipple at 5774' MD.\n\nOperation Completed 12/13/2017",
+   "triples": [
+    [
+     "well",
+     "has_well_status",
+     "shut in"
+    ],
+    [
+     "DS pump through style plug",
+     "set_plug_at",
+     "5774' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-18059_ec0e3fb8#c000",
+   "text": "Well A018 ST00 BP01 was inadvertently bypassed also, as the hole could not be re-entered, as follows:\nFrom WAR WE 04/08/06:\nE-mail Gradishar/McCarroll on 04/07/06 at 11:11 am with possible go forward plans for GC65 A18 ST00 BP01 OCS-G 5889. E-mail McCarroll/Gradishar on 04/07/06 at 11:14 am for verbal approval on the contingency plans. Shell must confirm back to McCarroll next week with which plan was used and then submit the permits in E-Well.\nFrom WAR WE 04/15/06:\nVerbal approval McCarroll/Gradishar on 04/10/06 at 10:25 am to drill BP02.\n\nWell A018 ST00 BP01 TD in OCSG 05889 GC 0065 (well TD is in the surface location). \nWell A018 ST00 BP01 permit approved BHL was OCSG 05900 GC 0109.\nWell A018 ST00 BP01 spud on 04/03/2006, KOP=1878?, TD on 04/06/2006 at 2701' MD, 2699' TVD, X=2318136.68 and Y=10124118.44, \nlat N 27 52 58.713 and long W 90 54 5.872 (TD/BHL).\nPlease note that all casings were set during the BP02.",
+   "triples": [
+    [
+     "well",
+     "reached_td",
+     "2699' TVD"
+    ],
+    [
+     "Well A018 ST00 BP01",
+     "spudded_on",
+     "04/03/2006"
+    ],
+    [
+     "well",
+     "reached_td",
+     "2701' MD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-196115_8113ec4a#c000",
+   "text": "Performed caliper log survey and modified gas list design. New Live GLVs at 3611', 4287', 5120', Orifice valve @ 5915'. Set chemical injection valve at 7348', dummy GLVs at 6712', 7509', 8303' 9097' 9892', 10726'",
+   "triples": [
+    [
+     "chemical injection valve",
+     "set_equipment_at",
+     "7348'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "8303'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "7509'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "9892'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "9097'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "6712'"
+    ],
+    [
+     "dummy GLVs",
+     "set_equipment_at",
+     "10726'"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-197666_4272619c#c000",
+   "text": "MC 28 #A35 drilled to depth of 13,200' MD / 7077' TVD.  Inadvertent Bypass while washing in hole at 8,513' MD / 5,523' TVD. No hydrocarbons in open hole. No access to open hole due to cuttings debris.",
+   "triples": [
+    [
+     "MC 28 #A35",
+     "drilled_to",
+     "13,200' MD"
+    ],
+    [
+     "MC 28 #A35",
+     "drilled_to",
+     "7077' TVD"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-34426_d7cc6642#c000",
+   "text": "Stone has successfully completed workover operations of the EI 49, OCS-G 17959, Well No. 03 to install a through tubing sand control assy. and return the well to production. CT ops to complete the work were started on 12-12-06 and completed on 12-21-06.   The production tbg was punched 7743' - 7749' and a MRBP set at 7789'. Then a through tubing Gravel pack assy. was set from 7666' - 7789'. See attached Current Wellbore Schematic for details on changes to the downhole wellbore profile.",
+   "triples": [
+    [
+     "production tbg",
+     "perforated_interval",
+     "7743' - 7749'"
+    ],
+    [
+     "MRBP",
+     "set_equipment_at",
+     "7789'"
+    ],
+    [
+     "through tubing Gravel pack assy.",
+     "set_equipment_at",
+     "from 7666' - 7789'"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-41196_1c943c61#c000",
+   "text": "Remington has drilled the EC 316 OCS-G 23803, Well No. 01 to a TD of 3600' MD /TVD, w/a MW of 10.2 ppg.  The wellbore was TD'd on 04-22-07.  7 5/8\" 29.7#/ft, ECP-110 production csg has been set at 3565' MD /TVD.  Remington has performed Inital Completion Opertations of the EC 316 Well No. #001 as a  sub sea (mud line tree installed, single, GP, gas completion in the 3300' Sd.",
+   "triples": [
+    [
+     "EC 316 OCS-G 23803, Well No. 01",
+     "reached_td",
+     "TVD"
+    ],
+    [
+     "EC 316 OCS-G 23803, Well No. 01",
+     "reached_td",
+     "3600' MD"
+    ],
+    [
+     "EC 316 OCS-G 23803, Well No. 01",
+     "spudded_on",
+     "04-22-07"
+    ],
+    [
+     "7 5/8\" 29.7#/ft, ECP-110 production csg",
+     "set_casing_at",
+     "3565' MD /TVD"
+    ],
+    [
+     "EC 316 OCS-G 23803, Well No. 01",
+     "has_mud_weight",
+     "10.2 ppg"
+    ],
+    [
+     "EC 316 Well No. #001",
+     "completed_in",
+     "3300' Sd."
+    ]
+   ]
+  },
+  {
+   "key": "eor_-51778_88fb60a3#c000",
+   "text": "HIA572 Well No. C022 was temporarily abandoned on 05/27/07 with casings to be cut and pulled a minimum of 15' BML at time of platform removal.  Due to well bubbling, Apache requested approval to drill out existing cement plug/retainer and squeeze cement to stop bubbling.  Well C022 bubbling has been corrected and remains in TA status.",
+   "triples": [
+    [
+     "Well C022",
+     "has_well_status",
+     "TA"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-56779_3c2ebf5b#c000",
+   "text": "The ST 86 OCS-00605, Well E-5 was spud on August 27, 2007 and TD'd on September 16, 2007 at depth of 4289' MD / 4113' TVD. The well was completed for production as a single,gravel packed, oil completion in the 3700' Sand with existing perforations of 4084' - 4134' MD. Completion operations began on September 25, 2007 and completed on October 01, 2007.",
+   "triples": [
+    [
+     "well",
+     "reached_td",
+     "4289' MD"
+    ],
+    [
+     "ST 86 OCS-00605",
+     "spudded_on",
+     "August 27, 2007"
+    ],
+    [
+     "well",
+     "reached_td",
+     "4113' TVD"
+    ],
+    [
+     "ST 86 OCS-00605",
+     "completed_in",
+     "3700' Sand"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-71046_fba9df86#c000",
+   "text": "Stone has successfully performed zone change operations on the WC 56 OCS 00301, Well No. 16 to produce the Discorbis \"B-1\" Sd.  Operations began on February 24, 2008 and were completed on March 2, 2008.  The previous producing interval in the well, the Discorbis \"B-2\" Sand was isolated by setting a TTVP @ 9110' and dumping 20' cement on top, ETOC @ 9090'.  The Discorbis \"B-1\" Sand was perforated @ 9006' - 9016'.",
+   "triples": [
+    [
+     "well",
+     "cemented_interval",
+     "20' cement on top, ETOC @ 9090'"
+    ],
+    [
+     "TTVP",
+     "set_equipment_at",
+     "9110'"
+    ],
+    [
+     "Discorbis \"B-1\" Sand",
+     "perforated_interval",
+     "9006' - 9016'"
+    ]
+   ]
+  },
+  {
+   "key": "eor_-97254_c04a81d6#c000",
+   "text": "7/6/2008: 9-5/8\" casing was cut and pulled using the mechanical method at 47' (BML).  (This was conducted during Temporary Abandonment Operations and was provided for on the Accepted WAR for week ending 20080712 and on the Accpeted EOR's Temporary Abandonment Schematic dated 20080728.\n\n11/1/2008: 13-3/8\" casing was cut and pulled using the mechanical method at 17' (BML).\n\n11/4/2008:  The 20\" - 20\" X 30\" XO was cut and pulled using the mechanical method at 15' (BML).",
+   "triples": [
+    [
+     "20\" - 20\" X 30\" XO",
+     "cut_at",
+     "15' (BML)"
+    ],
+    [
+     "13-3/8\" casing",
+     "cut_at",
+     "17' (BML)"
+    ],
+    [
+     "9-5/8\" casing",
+     "cut_at",
+     "47'"
+    ]
+   ]
+  }
+ ],
+ "model": "qwen3.6-35b-a3b",
+ "net_log": "runs/reference/bsee_text/dev_v2_guided_windows/bsee_text_dev_v2_guided_windows/A4/net_edc.jsonl",
+ "schema_csv": "runs/reference/bsee_text/dev_v2_guided_windows/bsee_text_dev_v2_guided_windows/A4/edc/schema.csv",
+ "templates_dir": "third_party\\edc\\prompt_templates",
+ "version": 1
+}

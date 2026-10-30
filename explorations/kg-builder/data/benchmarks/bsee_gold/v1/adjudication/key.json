@@ -1,0 +1,402 @@
+{
+ "eor_-104174_d10649cc#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-10441_37e78f36#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-10520_ba936dac#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-106378_8b6db016#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-106701_93dbc0f4#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-107397_6254f1ff#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-108210_cf2cb337#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-110709_c543c162#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-110924_63135b4a#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-111190_bf5f7db8#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-115098_07919947#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-115129_7f61f092#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-115965_1bc5d37f#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-116446_6cdc069f#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-117225_14d568fc#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-117598_649ccce8#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-118968_bc3de2d8#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-119415_11c0cbb9#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-119584_ca8392d9#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-121126_77121f26#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-123375_80318692#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-123740_b8fbb4ed#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-124122_63f93a45#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-124567_2cc73bb4#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-125106_405da87f#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-125705_5e2da512#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-126565_84b0a5fb#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-126602_8d95c32a#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-126963_4cf1485f#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-128140_c5f23ccc#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-130290_0503055e#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-130588_e317e17c#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-130814_06e54c49#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-132305_5dd63b49#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-134149_13cdc763#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-137936_910ef7c0#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-140354_48d65492#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-141200_58ebd6ad#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-143026_a9c866b7#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-146901_9a8a5996#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-151231_23dd2d46#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-152673_db7c1616#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-153193_1cb44328#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-154136_42ab1fde#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-154697_e8f1e681#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-157593_4154806b#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-158773_5cb14ed0#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-164448_ba63f431#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-165397_7e84fdbf#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-165748_eb51960b#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-165961_0ff1703a#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-166906_ddf3eab2#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-167489_53d2848f#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-169333_fcc04c1b#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-170357_f1d06dc1#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-172767_e3c82a7e#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-173155_10692aa9#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-173855_76bcabd9#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-174092_065bc7f9#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-175091_ffdc3acd#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-175209_7ab3d938#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-180488_0256a4e8#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-180868_bbb62974#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-183053_2531389f#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-195601_85455bff#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-197436_058fd49a#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-198980_84b280ce#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-200983_091a7dba#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-203739_27d06f7b#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-203939_90cce872#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-203944_26c4b587#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-204443_c33bbff3#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-204456_35c75b56#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-204458_944e3a87#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-204462_f3a28d25#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-205134_09495322#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-205910_3a614ea8#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-206460_770bde25#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-2095_f2a90e24#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-22159_1f3770d9#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-25920_d8d96cc6#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-26618_62fca1da#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-46627_c8788ba2#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-47467_1b7b233f#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-48368_dff57dae#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-48387_268b7e78#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-48472_a0f3a4d2#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-50573_f397a443#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-53108_7731e6ca#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-53929_9608c4e5#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-53971_7ac0b755#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-60952_c561d036#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-61276_8c03e6aa#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-63747_d1598053#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-66275_ce78f433#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-67804_f684b876#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-72895_a2987c28#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ },
+ "eor_-75852_b6a7c2bc#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-79498_761e2a90#c000": {
+  "A": "annotator_b",
+  "B": "annotator_a"
+ },
+ "eor_-83553_7787b0dc#c000": {
+  "A": "annotator_a",
+  "B": "annotator_b"
+ }
+}

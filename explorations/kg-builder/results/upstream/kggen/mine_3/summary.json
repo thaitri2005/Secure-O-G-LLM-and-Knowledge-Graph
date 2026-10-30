@@ -1,0 +1,63 @@
+{
+  "model": "qwen3.6-35b-a3b",
+  "retrieval_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "essays": [
+    {
+      "id": 4,
+      "accuracy": "20.00%",
+      "entities": 14,
+      "relations": 12,
+      "seconds": 458.8,
+      "published_kggen_accuracy": 0.4,
+      "correct": 3,
+      "queries": 15
+    },
+    {
+      "id": 15,
+      "accuracy": "86.67%",
+      "entities": 24,
+      "relations": 35,
+      "seconds": 562.3,
+      "published_kggen_accuracy": 0.6667000000000001,
+      "correct": 13,
+      "queries": 15
+    },
+    {
+      "id": 37,
+      "accuracy": "86.67%",
+      "entities": 56,
+      "relations": 39,
+      "seconds": 803.0,
+      "published_kggen_accuracy": 0.8,
+      "correct": 13,
+      "queries": 15
+    }
+  ],
+  "overall_accuracy": 0.6444,
+  "correct": 29,
+  "queries": 45,
+  "published_kggen_mean_on_same_essays": 0.6222,
+  "llm_wall_span_seconds": 1823.7,
+  "extraction_usage": {
+    "calls": 7,
+    "prompt_tokens": 7791,
+    "completion_tokens": 3044,
+    "llm_seconds": 557.5
+  },
+  "judge_usage": {
+    "calls": 45,
+    "prompt_tokens": 19880,
+    "completion_tokens": 5568,
+    "llm_seconds": 1256.2
+  },
+  "proxy": {
+    "llm_calls": 52,
+    "prompt_tokens": 27671,
+    "completion_tokens": 8612,
+    "llm_seconds": 1813.8,
+    "finish_length": 0
+  },
+  "llm_log": "results/upstream/kggen/llm_calls_mine_3.jsonl",
+  "net_log": "results/upstream/logs/net_kggen_mine_3.jsonl",
+  "note": "summary rebuilt from results_<id>.json + proxy log; the in-script summary crashed on a relative --out (fixed)"
+}

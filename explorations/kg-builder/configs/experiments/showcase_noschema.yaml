@@ -1,0 +1,5 @@
+# Showcase without a target schema; EDC self-canonicalisation at A2+.
+run: {name: showcase_noschema}
+corpus: {path: data/benchmarks/showcase/corpus.jsonl, format: jsonl}
+canon: {few_shot: example, max_minutes: 20}
+ablation: A4

@@ -1,0 +1,109 @@
+{
+ "config": {
+  "ablation": "A1",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "webnlg",
+   "max_minutes": 20,
+   "schema_path": "third_party\\edc\\schemas\\webnlg_schema.csv"
+  },
+  "chunk": {
+   "max_chars": 20000
+  },
+  "corpus": {
+   "format": "webnlg_txt",
+   "limit": 10,
+   "path": "data/benchmarks/webnlg/webnlg_30.txt"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": "data/benchmarks/webnlg/webnlg_30.ref.txt"
+  },
+  "extract": {
+   "backend": "auto",
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "ground": {
+   "mode": "window"
+  },
+  "induce": {
+   "max_concepts": 5,
+   "max_entities": 50,
+   "max_relations": 100,
+   "max_tokens": 64,
+   "min_support": 1
+  },
+  "judge": {
+   "max_tokens": 32,
+   "scope": "risky",
+   "version": "v2"
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "number_guard": true,
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "webnlg10_auto"
+  },
+  "validate": {
+   "min_grounding": "partial",
+   "mode": "soft"
+  }
+ },
+ "config_hash": "5168490a5c1f81bcd38de7c6ec60adb24e7d67dbbda151ee36a2c021b0817f77",
+ "corpus_hash": "8f102157205ce0e619075acee7f4028654afe1bbe8a250239ef180c99e1d0bbe",
+ "exit_code": 0,
+ "finished_at": "2026-10-24T12:08:02.840900+00:00",
+ "flags": {
+  "canon": false,
+  "judge": false,
+  "resolve": true,
+  "temporal": false,
+  "validate": false
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 0.032,
+  "export": 0.016,
+  "extract": 4.313,
+  "ingest": 0.0,
+  "resolve": 0.062,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.0
+ },
+ "started_at": "2026-10-24T12:07:58.395792+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

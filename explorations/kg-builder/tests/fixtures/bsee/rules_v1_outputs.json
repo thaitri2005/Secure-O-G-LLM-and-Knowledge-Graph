@@ -1,0 +1,3710 @@
+{
+ "cases": [
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 51,
+      "occ": 0,
+      "start": 0,
+      "text": "Tested tubing to 1000 psi and bled down to 200 psi."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 25,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 17,
+      "text": "1000 psi",
+      "unit": "psi",
+      "value": "1000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "result": "failed",
+      "test_kind": "tubing"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 7,
+      "text": "tubing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 51,
+      "occ": 0,
+      "start": 0,
+      "text": "Tested tubing to 1000 psi and bled down to 200 psi."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 50,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 43,
+      "text": "200 psi",
+      "unit": "psi",
+      "value": "200"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "result": "failed",
+      "test_kind": "tubing"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 7,
+      "text": "tubing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tested tubing to 1000 psi and bled down to 200 psi."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 53,
+      "occ": 0,
+      "start": 0,
+      "text": "Bled down to 200 psi, then tested casing to 1500 psi."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 52,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 44,
+      "text": "1500 psi",
+      "unit": "psi",
+      "value": "1500"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "result": "failed",
+      "test_kind": "casing"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 40,
+      "occ": 0,
+      "start": 34,
+      "text": "casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Bled down to 200 psi, then tested casing to 1500 psi."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Tested BOP to 250 psi and 5000 psi."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 21,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 14,
+      "text": "250 psi",
+      "unit": "psi",
+      "value": "250"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "bop"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 7,
+      "text": "BOP",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Tested BOP to 250 psi and 5000 psi."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 34,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 26,
+      "text": "5000 psi",
+      "unit": "psi",
+      "value": "5000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "bop"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 7,
+      "text": "BOP",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tested BOP to 250 psi and 5000 psi."
+  },
+  {
+   "facts": [],
+   "text": "Pressured up to 5000 psi on control line."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 39,
+      "occ": 0,
+      "start": 0,
+      "text": "TD at 6000 ft MD in Amber 6100 ft Sand."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 16,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 6,
+      "text": "6000 ft MD",
+      "unit": "ft",
+      "value": "6000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 39,
+      "occ": 0,
+      "start": 0,
+      "text": "TD at 6000 ft MD in Amber 6100 ft Sand."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 33,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 26,
+      "text": "6100 ft",
+      "unit": "ft",
+      "value": "6100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "TD at 6000 ft MD in Amber 6100 ft Sand."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 41,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached TD at 6000 ft MD and 5600 ft TVD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 14,
+      "text": "6000 ft MD",
+      "unit": "ft",
+      "value": "6000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 41,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached TD at 6000 ft MD and 5600 ft TVD."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 40,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "TVD",
+      "start": 29,
+      "text": "5600 ft TVD",
+      "unit": "ft",
+      "value": "5600"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Reached TD at 6000 ft MD and 5600 ft TVD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 49,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached TD at 6000 ft MD and set plug at 5800 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 48,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 41,
+      "text": "5800 ft",
+      "unit": "ft",
+      "value": "5800"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_plug_at",
+     "subject": {
+      "end": 37,
+      "occ": 0,
+      "start": 33,
+      "text": "plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 49,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached TD at 6000 ft MD and set plug at 5800 ft."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 14,
+      "text": "6000 ft MD",
+      "unit": "ft",
+      "value": "6000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 49,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached TD at 6000 ft MD and set plug at 5800 ft."
+     },
+     "fact_no": 3,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 48,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 41,
+      "text": "5800 ft",
+      "unit": "ft",
+      "value": "5800"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Reached TD at 6000 ft MD and set plug at 5800 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 47,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft and perforated 3900-3950 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 46,
+      "kind": "interval",
+      "lower": "3900",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 34,
+      "text": "3900-3950 ft",
+      "unit": "ft",
+      "upper": "3950"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 47,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft and perforated 3900-3950 ft."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 18,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 11,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 47,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft and perforated 3900-3950 ft."
+     },
+     "fact_no": 3,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 18,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 11,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drilled to 4000 ft and perforated 3900-3950 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 60,
+      "occ": 0,
+      "start": 0,
+      "text": "FIT at 600 ft MD held 12 ppg; raised mud weight to 10.5 ppg."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 28,
+      "kind": "density",
+      "occ": 0,
+      "start": 22,
+      "text": "12 ppg",
+      "unit": "ppg",
+      "value": "12"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "fit"
+     },
+     "record": "fact",
+     "relation": "fit_lot_emw",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 60,
+      "occ": 0,
+      "start": 0,
+      "text": "FIT at 600 ft MD held 12 ppg; raised mud weight to 10.5 ppg."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 59,
+      "kind": "density",
+      "occ": 0,
+      "start": 51,
+      "text": "10.5 ppg",
+      "unit": "ppg",
+      "value": "10.5"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "fit"
+     },
+     "record": "fact",
+     "relation": "fit_lot_emw",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 60,
+      "occ": 0,
+      "start": 0,
+      "text": "FIT at 600 ft MD held 12 ppg; raised mud weight to 10.5 ppg."
+     },
+     "fact_no": 3,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 59,
+      "kind": "density",
+      "occ": 0,
+      "start": 51,
+      "text": "10.5 ppg",
+      "unit": "ppg",
+      "value": "10.5"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_mud_weight",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "FIT at 600 ft MD held 12 ppg; raised mud weight to 10.5 ppg."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 50,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated 7100-7120 ft in the Amber 7200 ft Sand."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 23,
+      "kind": "interval",
+      "lower": "7100",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 11,
+      "text": "7100-7120 ft",
+      "unit": "ft",
+      "upper": "7120"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 50,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated 7100-7120 ft in the Amber 7200 ft Sand."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 44,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 37,
+      "text": "7200 ft",
+      "unit": "ft",
+      "value": "7200"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Perforated 7100-7120 ft in the Amber 7200 ft Sand."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 15,
+      "occ": 0,
+      "start": 0,
+      "text": "TD at 600ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 14,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 6,
+      "text": "600ft MD",
+      "unit": "ft",
+      "value": "600"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "TD at 600ft MD."
+  },
+  {
+   "facts": [],
+   "text": "Drilling 8-1/2 in. hole at 4000 ft."
+  },
+  {
+   "facts": [],
+   "text": "Drilled 8-1/2 in. hole at 4000 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 34,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled 8-1/2 in. hole to 4000 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 33,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 26,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drilled 8-1/2 in. hole to 4000 ft."
+  },
+  {
+   "facts": [],
+   "text": "Fired 3 shots at 7100 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 21,
+      "occ": 0,
+      "start": 0,
+      "text": "Fired gun at 7100 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 20,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 13,
+      "text": "7100 ft",
+      "unit": "ft",
+      "value": "7100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Fired gun at 7100 ft."
+  },
+  {
+   "facts": [],
+   "text": "Testing casing to 1000 psi."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 53,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated 3900-3950 ft; drilling resumed at 4000 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 23,
+      "kind": "interval",
+      "lower": "3900",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 11,
+      "text": "3900-3950 ft",
+      "unit": "ft",
+      "upper": "3950"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 53,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated 3900-3950 ft; drilling resumed at 4000 ft."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 52,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 45,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Perforated 3900-3950 ft; drilling resumed at 4000 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 34,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft, TD at 4500 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 33,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 26,
+      "text": "4500 ft",
+      "unit": "ft",
+      "value": "4500"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 34,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft, TD at 4500 ft."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 18,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 11,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 34,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 4000 ft, TD at 4500 ft."
+     },
+     "fact_no": 3,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 33,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 26,
+      "text": "4500 ft",
+      "unit": "ft",
+      "value": "4500"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drilled to 4000 ft, TD at 4500 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 30,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached section TD at 4000 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 29,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 22,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Reached section TD at 4000 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 45,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached section TD at 4000 ft; TD at 6000 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 29,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 22,
+      "text": "4000 ft",
+      "unit": "ft",
+      "value": "4000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 45,
+      "occ": 0,
+      "start": 0,
+      "text": "Reached section TD at 4000 ft; TD at 6000 ft."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 44,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 37,
+      "text": "6000 ft",
+      "unit": "ft",
+      "value": "6000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Reached section TD at 4000 ft; TD at 6000 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 45,
+      "occ": 0,
+      "start": 0,
+      "text": "Tagged plug in Amber 6100 ft Sand at 6200 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 28,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 21,
+      "text": "6100 ft",
+      "unit": "ft",
+      "value": "6100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "tagged_at",
+     "subject": {
+      "end": 11,
+      "occ": 0,
+      "start": 7,
+      "text": "plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tagged plug in Amber 6100 ft Sand at 6200 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 44,
+      "occ": 0,
+      "start": 0,
+      "text": "Set packer in Amber 6100 ft Sand at 6200 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 27,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 20,
+      "text": "6100 ft",
+      "unit": "ft",
+      "value": "6100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_equipment_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "packer",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Set packer in Amber 6100 ft Sand at 6200 ft."
+  },
+  {
+   "facts": [],
+   "text": "Set cement plug in Amber 6100 ft Sand at 6200 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 44,
+      "occ": 0,
+      "start": 0,
+      "text": "Cut casing in Amber 6100 ft Sand at 6200 ft."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 27,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 20,
+      "text": "6100 ft",
+      "unit": "ft",
+      "value": "6100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "cut_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Cut casing in Amber 6100 ft Sand at 6200 ft."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 44,
+      "occ": 0,
+      "start": 0,
+      "text": "Set packer at 6000 ft in Amber 6100 ft Sand."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 21,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 14,
+      "text": "6000 ft",
+      "unit": "ft",
+      "value": "6000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_equipment_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "packer",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Set packer at 6000 ft in Amber 6100 ft Sand."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "The well reached TD of 12000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 34,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 23,
+      "text": "12000 ft MD",
+      "unit": "ft",
+      "value": "12000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "The well reached TD of 12000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 29,
+      "occ": 0,
+      "start": 0,
+      "text": "Total depth was 13000 ft TVD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 28,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "TVD",
+      "start": 16,
+      "text": "13000 ft TVD",
+      "unit": "ft",
+      "value": "13000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Total depth was 13000 ft TVD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 42,
+      "occ": 0,
+      "start": 0,
+      "text": "The well reached total depth at 9000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 41,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 32,
+      "text": "9000 feet",
+      "unit": "ft",
+      "value": "9000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "reached_td",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "The well reached total depth at 9000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 23,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled to 12000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 22,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 11,
+      "text": "12000 ft MD",
+      "unit": "ft",
+      "value": "12000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drilled to 12000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Drill to section TD of 11000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 34,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 23,
+      "text": "11000 ft MD",
+      "unit": "ft",
+      "value": "11000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drill to section TD of 11000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 30,
+      "occ": 0,
+      "start": 0,
+      "text": "Drilled the well to 8000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 29,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 20,
+      "text": "8000 feet",
+      "unit": "ft",
+      "value": "8000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "drilled_to",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Drilled the well to 8000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Set 7\" casing at 9000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 6,
+      "kind": "size",
+      "occ": 0,
+      "start": 4,
+      "text": "7\"",
+      "unit": "in",
+      "value": "7"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 4,
+      "text": "7\" casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Set 7\" casing at 9000 ft MD."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 27,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 17,
+      "text": "9000 ft MD",
+      "unit": "ft",
+      "value": "9000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "set_casing_at",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 4,
+      "text": "7\" casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Set 7\" casing at 9000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 33,
+      "occ": 0,
+      "start": 0,
+      "text": "Landed 5.5\" liner at 11000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 11,
+      "kind": "size",
+      "occ": 0,
+      "start": 7,
+      "text": "5.5\"",
+      "unit": "in",
+      "value": "5.5"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 17,
+      "occ": 0,
+      "start": 7,
+      "text": "5.5\" liner",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 33,
+      "occ": 0,
+      "start": 0,
+      "text": "Landed 5.5\" liner at 11000 ft MD."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 32,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 21,
+      "text": "11000 ft MD",
+      "unit": "ft",
+      "value": "11000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "set_casing_at",
+     "subject": {
+      "end": 17,
+      "occ": 0,
+      "start": 7,
+      "text": "5.5\" liner",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Landed 5.5\" liner at 11000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Ran 13 3/8\" conductor to 1000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 11,
+      "kind": "size",
+      "occ": 0,
+      "start": 4,
+      "text": "13 3/8\"",
+      "unit": "in",
+      "value": "13.375"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 21,
+      "occ": 0,
+      "start": 4,
+      "text": "13 3/8\" conductor",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Ran 13 3/8\" conductor to 1000 feet."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 34,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 25,
+      "text": "1000 feet",
+      "unit": "ft",
+      "value": "1000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "set_casing_at",
+     "subject": {
+      "end": 21,
+      "occ": 0,
+      "start": 4,
+      "text": "13 3/8\" conductor",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Ran 13 3/8\" conductor to 1000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 24,
+      "occ": 0,
+      "start": 0,
+      "text": "A 7\" casing was present."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 4,
+      "kind": "size",
+      "occ": 0,
+      "start": 2,
+      "text": "7\"",
+      "unit": "in",
+      "value": "7"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 11,
+      "occ": 0,
+      "start": 2,
+      "text": "7\" casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "A 7\" casing was present."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 27,
+      "occ": 0,
+      "start": 0,
+      "text": "A 9-5/8\" liner was present."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 8,
+      "kind": "size",
+      "occ": 0,
+      "start": 2,
+      "text": "9-5/8\"",
+      "unit": "in",
+      "value": "9.625"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 14,
+      "occ": 0,
+      "start": 2,
+      "text": "9-5/8\" liner",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "A 9-5/8\" liner was present."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 32,
+      "occ": 0,
+      "start": 0,
+      "text": "A 13 3/8\" conductor was present."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 9,
+      "kind": "size",
+      "occ": 0,
+      "start": 2,
+      "text": "13 3/8\"",
+      "unit": "in",
+      "value": "13.375"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "casing_size",
+     "subject": {
+      "end": 19,
+      "occ": 0,
+      "start": 2,
+      "text": "13 3/8\" conductor",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "A 13 3/8\" conductor was present."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 26,
+      "occ": 0,
+      "start": 0,
+      "text": "Set DX plug at 1484 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 25,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 15,
+      "text": "1484 ft MD",
+      "unit": "ft",
+      "value": "1484"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_plug_at",
+     "subject": {
+      "end": 11,
+      "occ": 0,
+      "start": 4,
+      "text": "DX plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Set DX plug at 1484 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 46,
+      "occ": 0,
+      "start": 0,
+      "text": "Placed cement plug from 1000 ft to 1200 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 45,
+      "kind": "interval",
+      "lower": "1000",
+      "occ": 0,
+      "reference": "MD",
+      "start": 24,
+      "text": "1000 ft to 1200 ft MD",
+      "unit": "ft",
+      "upper": "1200"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "placed"
+     },
+     "record": "fact",
+     "relation": "set_plug_at",
+     "subject": {
+      "end": 18,
+      "occ": 0,
+      "start": 7,
+      "text": "cement plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Placed cement plug from 1000 ft to 1200 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 34,
+      "occ": 0,
+      "start": 0,
+      "text": "Replaced bridge plug at 3000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 33,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 24,
+      "text": "3000 feet",
+      "unit": "ft",
+      "value": "3000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "replaced"
+     },
+     "record": "fact",
+     "relation": "set_plug_at",
+     "subject": {
+      "end": 20,
+      "occ": 0,
+      "start": 9,
+      "text": "bridge plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Replaced bridge plug at 3000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 25,
+      "occ": 0,
+      "start": 0,
+      "text": "Set packer at 1000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 14,
+      "text": "1000 ft MD",
+      "unit": "ft",
+      "value": "1000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_equipment_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "packer",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Set packer at 1000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Located nipple at 2000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 27,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 18,
+      "text": "2000 feet",
+      "unit": "ft",
+      "value": "2000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "located"
+     },
+     "record": "fact",
+     "relation": "set_equipment_at",
+     "subject": {
+      "end": 14,
+      "occ": 0,
+      "start": 8,
+      "text": "nipple",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Located nipple at 2000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Landed hanger at 3000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 27,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 17,
+      "text": "3000 ft MD",
+      "unit": "ft",
+      "value": "3000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "action": "set"
+     },
+     "record": "fact",
+     "relation": "set_equipment_at",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 7,
+      "text": "hanger",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Landed hanger at 3000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 25,
+      "occ": 0,
+      "start": 0,
+      "text": "Tagged TOC at 1000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "toc",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 14,
+      "text": "1000 ft MD",
+      "unit": "ft",
+      "value": "1000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "tagged_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 7,
+      "text": "TOC",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tagged TOC at 1000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 25,
+      "occ": 0,
+      "start": 0,
+      "text": "Tagged plug at 2000 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 15,
+      "text": "2000 feet",
+      "unit": "ft",
+      "value": "2000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "tagged_at",
+     "subject": {
+      "end": 11,
+      "occ": 0,
+      "start": 7,
+      "text": "plug",
+      "type": "Plug"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tagged plug at 2000 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 33,
+      "occ": 0,
+      "start": 0,
+      "text": "Tagged obstruction at 3000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "obstruction",
+     "object": {
+      "datum": "unknown",
+      "end": 32,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 22,
+      "text": "3000 ft MD",
+      "unit": "ft",
+      "value": "3000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "tagged_at",
+     "subject": {
+      "end": 18,
+      "occ": 0,
+      "start": 7,
+      "text": "obstruction",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tagged obstruction at 3000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 21,
+      "occ": 0,
+      "start": 0,
+      "text": "Cut casing at 18'BML."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "ML",
+      "end": 20,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "BML",
+      "start": 14,
+      "text": "18'BML",
+      "unit": "ft",
+      "value": "18"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "cut_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Cut casing at 18'BML."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 25,
+      "occ": 0,
+      "start": 0,
+      "text": "Cut conductor at 20 feet."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "unknown",
+      "start": 17,
+      "text": "20 feet",
+      "unit": "ft",
+      "value": "20"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "cut_at",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 4,
+      "text": "conductor",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Cut conductor at 20 feet."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 30,
+      "occ": 0,
+      "start": 0,
+      "text": "Cut tubing at least 100 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 29,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 20,
+      "text": "100 ft MD",
+      "unit": "ft",
+      "value": "100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "bound": "ge"
+     },
+     "record": "fact",
+     "relation": "cut_at",
+     "subject": {
+      "end": 10,
+      "occ": 0,
+      "start": 4,
+      "text": "tubing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Cut tubing at least 100 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 26,
+      "occ": 0,
+      "start": 0,
+      "text": "Tested tubing to 1000 psi."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 25,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 17,
+      "text": "1000 psi",
+      "unit": "psi",
+      "value": "1000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "tubing"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 13,
+      "occ": 0,
+      "start": 7,
+      "text": "tubing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Tested tubing to 1000 psi."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 32,
+      "occ": 0,
+      "start": 0,
+      "text": "Pressure tested BOP to 7500 psi."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 31,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 23,
+      "text": "7500 psi",
+      "unit": "psi",
+      "value": "7500"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "result": "good",
+      "test_kind": "bop"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 19,
+      "occ": 0,
+      "start": 16,
+      "text": "BOP",
+      "type": "Equipment"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Pressure tested BOP to 7500 psi. Good test."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 18,
+      "occ": 0,
+      "start": 0,
+      "text": "PT casing @ 2500#."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 17,
+      "kind": "pressure",
+      "occ": 0,
+      "start": 12,
+      "text": "2500#",
+      "unit": "psi",
+      "value": "2500"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "casing"
+     },
+     "record": "fact",
+     "relation": "tested_to_pressure",
+     "subject": {
+      "end": 9,
+      "occ": 0,
+      "start": 3,
+      "text": "casing",
+      "type": "Tubular"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "PT casing @ 2500#."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 22,
+      "occ": 0,
+      "start": 0,
+      "text": "FIT held 17.7 ppg EMW."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 17,
+      "kind": "density",
+      "occ": 0,
+      "start": 9,
+      "text": "17.7 ppg",
+      "unit": "ppg",
+      "value": "17.7"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "fit"
+     },
+     "record": "fact",
+     "relation": "fit_lot_emw",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "FIT held 17.7 ppg EMW."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 18,
+      "occ": 0,
+      "start": 0,
+      "text": "LOT held 15.5 ppg."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 17,
+      "kind": "density",
+      "occ": 0,
+      "start": 9,
+      "text": "15.5 ppg",
+      "unit": "ppg",
+      "value": "15.5"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "lot"
+     },
+     "record": "fact",
+     "relation": "fit_lot_emw",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "LOT held 15.5 ppg."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 23,
+      "occ": 0,
+      "start": 0,
+      "text": "FIT measured 18 lb/gal."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 22,
+      "kind": "density",
+      "occ": 0,
+      "start": 13,
+      "text": "18 lb/gal",
+      "unit": "ppg",
+      "value": "18"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {
+      "test_kind": "fit"
+     },
+     "record": "fact",
+     "relation": "fit_lot_emw",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "FIT measured 18 lb/gal."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 38,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated from 1000 ft to 1200 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 37,
+      "kind": "interval",
+      "lower": "1000",
+      "occ": 0,
+      "reference": "MD",
+      "start": 16,
+      "text": "1000 ft to 1200 ft MD",
+      "unit": "ft",
+      "upper": "1200"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Perforated from 1000 ft to 1200 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 25,
+      "occ": 0,
+      "start": 0,
+      "text": "Perforated at 3000 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 24,
+      "kind": "depth",
+      "occ": 0,
+      "reference": "MD",
+      "start": 14,
+      "text": "3000 ft MD",
+      "unit": "ft",
+      "value": "3000"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Perforated at 3000 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "Fired gun at 4000 ft to 4100 ft MD."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "datum": "unknown",
+      "end": 34,
+      "kind": "interval",
+      "lower": "4000",
+      "occ": 0,
+      "reference": "MD",
+      "start": 13,
+      "text": "4000 ft to 4100 ft MD",
+      "unit": "ft",
+      "upper": "4100"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "perforated_interval",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Fired gun at 4000 ft to 4100 ft MD."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 20,
+      "occ": 0,
+      "start": 0,
+      "text": "Raised MW to 17 ppg."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 19,
+      "kind": "density",
+      "occ": 0,
+      "start": 13,
+      "text": "17 ppg",
+      "unit": "ppg",
+      "value": "17"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_mud_weight",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Raised MW to 17 ppg."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 27,
+      "occ": 0,
+      "start": 0,
+      "text": "Displaced mud to 12 lb/gal."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 26,
+      "kind": "density",
+      "occ": 0,
+      "start": 17,
+      "text": "12 lb/gal",
+      "unit": "ppg",
+      "value": "12"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_mud_weight",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Displaced mud to 12 lb/gal."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 40,
+      "occ": 0,
+      "start": 0,
+      "text": "Mud weight raised from 10 ppg to 11 ppg."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 39,
+      "kind": "density",
+      "occ": 0,
+      "start": 33,
+      "text": "11 ppg",
+      "unit": "ppg",
+      "value": "11"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_mud_weight",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Mud weight raised from 10 ppg to 11 ppg."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Completed in the Alpha sand."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 27,
+      "kind": "entity",
+      "occ": 0,
+      "start": 17,
+      "text": "Alpha sand",
+      "type": "Zone"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "completed_in",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 28,
+      "occ": 0,
+      "start": 0,
+      "text": "Completed in the Alpha sand."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 9,
+      "kind": "status",
+      "occ": 0,
+      "start": 0,
+      "text": "Completed",
+      "value": "COM"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Completed in the Alpha sand."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 29,
+      "occ": 0,
+      "start": 0,
+      "text": "Recompleted to the Beta zone."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 28,
+      "kind": "entity",
+      "occ": 0,
+      "start": 19,
+      "text": "Beta zone",
+      "type": "Zone"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "completed_in",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 29,
+      "occ": 0,
+      "start": 0,
+      "text": "Recompleted to the Beta zone."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 11,
+      "kind": "status",
+      "occ": 0,
+      "start": 0,
+      "text": "Recompleted",
+      "value": "COM"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Recompleted to the Beta zone."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 33,
+      "occ": 0,
+      "start": 0,
+      "text": "Completed in the Gamma reservoir."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 32,
+      "kind": "entity",
+      "occ": 0,
+      "start": 17,
+      "text": "Gamma reservoir",
+      "type": "Zone"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "completed_in",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    },
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 33,
+      "occ": 0,
+      "start": 0,
+      "text": "Completed in the Gamma reservoir."
+     },
+     "fact_no": 2,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 9,
+      "kind": "status",
+      "occ": 0,
+      "start": 0,
+      "text": "Completed",
+      "value": "COM"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Completed in the Gamma reservoir."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 18,
+      "occ": 0,
+      "start": 0,
+      "text": "The well was TA'd."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 17,
+      "kind": "status",
+      "occ": 0,
+      "start": 13,
+      "text": "TA'd",
+      "value": "TA"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "The well was TA'd."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 35,
+      "occ": 0,
+      "start": 0,
+      "text": "The well was permanently abandoned."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 34,
+      "kind": "status",
+      "occ": 0,
+      "start": 13,
+      "text": "permanently abandoned",
+      "value": "PA"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "The well was permanently abandoned."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 21,
+      "occ": 0,
+      "start": 0,
+      "text": "The well was shut-in."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 20,
+      "kind": "status",
+      "occ": 0,
+      "start": 13,
+      "text": "shut-in",
+      "value": "SI"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "has_well_status",
+     "subject": {
+      "implicit": "report_well",
+      "type": "Borehole"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "The well was shut-in."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 21,
+      "occ": 0,
+      "start": 0,
+      "text": "Pumped 24 bbl cement."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 13,
+      "kind": "volume",
+      "occ": 0,
+      "start": 7,
+      "text": "24 bbl",
+      "unit": "bbl",
+      "value": "24"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "pumped",
+     "subject": {
+      "end": 20,
+      "occ": 0,
+      "start": 14,
+      "text": "cement",
+      "type": "Fluid"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Pumped 24 bbl cement."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 30,
+      "occ": 0,
+      "start": 0,
+      "text": "Mixed and pumped 42 sx cement."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 22,
+      "kind": "volume",
+      "occ": 0,
+      "start": 17,
+      "text": "42 sx",
+      "unit": "sx",
+      "value": "42"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "pumped",
+     "subject": {
+      "end": 29,
+      "occ": 0,
+      "start": 23,
+      "text": "cement",
+      "type": "Fluid"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "Mixed and pumped 42 sx cement."
+  },
+  {
+   "facts": [
+    {
+     "annotator": "rules/v1",
+     "chunk_id": "synthetic#c000",
+     "decision_id": null,
+     "evidence": {
+      "end": 20,
+      "occ": 0,
+      "start": 0,
+      "text": "M&P 387 cu ft brine."
+     },
+     "fact_no": 1,
+     "format": "kgb.well_annotation/1",
+     "modality": "done",
+     "note": "",
+     "object": {
+      "end": 13,
+      "kind": "volume",
+      "occ": 0,
+      "start": 4,
+      "text": "387 cu ft",
+      "unit": "cuft",
+      "value": "387"
+     },
+     "origin": null,
+     "other_label": null,
+     "polarity": "positive",
+     "qualifiers": {},
+     "record": "fact",
+     "relation": "pumped",
+     "subject": {
+      "end": 19,
+      "occ": 0,
+      "start": 14,
+      "text": "brine",
+      "type": "Fluid"
+     },
+     "time": null,
+     "uncertainty": "certain"
+    }
+   ],
+   "text": "M&P 387 cu ft brine."
+  }
+ ],
+ "rules_sha256": "ebe9525abb932a8b8afdf39e74519a4f0c6d4b335e84cfdf6c542889f40f1ba9"
+}

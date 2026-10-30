@@ -1,0 +1,5 @@
+source_corpus: data/benchmarks/bsee_text/v1
+exclude_gold_config: configs/experiments/bsee_gold.yaml
+seed: 42
+gold_dev: 65
+gold_test: 155

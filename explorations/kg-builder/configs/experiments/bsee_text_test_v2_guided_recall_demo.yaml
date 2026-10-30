@@ -1,0 +1,7 @@
+demo:
+  name: bsee_text_test_v2_guided_recall_demo
+  levels:
+  - A0
+  - A4
+  runs:
+  - configs/experiments/bsee_text_test_v2_guided_recall.yaml

@@ -1,0 +1,18 @@
+{
+ "created_at": "2026-10-28T07:45:32.028114+00:00",
+ "dependencies": {
+  "seals/annotator_a.json": "b4ad20b57a999d3a497792caedfda3c25753f9ef82d0e417e5f358987bdc88be",
+  "seals/annotator_b.json": "af0f5b0e3da499a604e78df7815a8890a264574234b15de5b740f021b4be12e7"
+ },
+ "files": {
+  "adjudication/key.json": "947a18c7fe3f17f9c295c0bfef82bb3e5c386f2554c4688cc14a5590e6b120bb",
+  "adjudication/packet_01.jsonl": "c4f082c169016b2571e1f8b464f4e013589df18e6dd2430f541fd525ce712fda",
+  "adjudication/packet_02.jsonl": "dba116b1450f5e86395ceead1ad2907fab86fca0cbead43e1f7a217176179da4",
+  "adjudication/packet_03.jsonl": "09e05692d5f0a969521761d3164759e7ec75e93164ae633ec112a9a3d5d71e08",
+  "adjudication/packet_04.jsonl": "fdfbdaebaafcc0b692b3518e659945a02b235b9cafbf9b9db46e367f1671acb2",
+  "adjudication/packet_05.jsonl": "cee0fae413568c1f397eec892cf64f077299e3659b0b80abf17017b7eb73a236"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "5f497c8ea45896762e14a15458653f2bb13115b6764c71ab9fd466690118b984",
+ "role": "adjudication_packet"
+}

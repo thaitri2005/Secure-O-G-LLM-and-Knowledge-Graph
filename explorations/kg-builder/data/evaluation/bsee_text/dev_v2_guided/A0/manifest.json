@@ -1,0 +1,116 @@
+{
+ "config": {
+  "ablation": "A0",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "example",
+   "max_minutes": 180,
+   "schema_path": "contracts\\ontology\\bsee.yaml"
+  },
+  "chunk": {
+   "max_chars": 2000
+  },
+  "corpus": {
+   "format": "jsonl",
+   "limit": null,
+   "path": "data/benchmarks/bsee_text/v2/dev/dev.jsonl"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": null
+  },
+  "extract": {
+   "backend": "guided",
+   "guided_mode": "chunk",
+   "guided_prompt": "configs/prompts/bsee_guided.txt",
+   "guided_recall_prompt": null,
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "ground": {
+   "mode": "window"
+  },
+  "induce": {
+   "max_concepts": 5,
+   "max_entities": 50,
+   "max_relations": 100,
+   "max_tokens": 64,
+   "min_support": 1
+  },
+  "judge": {
+   "max_tokens": 32,
+   "scope": "risky",
+   "version": "v2"
+  },
+  "literals": {
+   "derive_attributes": false,
+   "lexicon": null
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "number_guard": true,
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "bsee_text_dev_v2_guided"
+  },
+  "validate": {
+   "min_grounding": "partial",
+   "mode": "soft"
+  }
+ },
+ "config_hash": "8817147bc659e779c234ce9cc7040922f1d97ee3862e605520b8669429101186",
+ "corpus_hash": "15807773e61c72b3f964dad8918b2ec7e6f573d4bb6ec0f657bd3b1332c91cc1",
+ "exit_code": 0,
+ "finished_at": "2026-10-27T17:20:34.421856+00:00",
+ "flags": {
+  "canon": false,
+  "judge": false,
+  "resolve": false,
+  "temporal": false,
+  "validate": false
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 0.063,
+  "export": 0.156,
+  "extract": 814.093,
+  "ingest": 0.032,
+  "resolve": 0.0,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.265
+ },
+ "started_at": "2026-10-27T17:06:59.761130+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

@@ -1,0 +1,15 @@
+# Local environments, dependencies, caches and generated output
+.venvs/
+.venv/
+.cache/
+runs/
+.neo4j/
+third_party/
+dist/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vscode/
+.agents/

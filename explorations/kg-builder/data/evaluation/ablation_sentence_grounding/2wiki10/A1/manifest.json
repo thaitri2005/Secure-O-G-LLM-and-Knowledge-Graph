@@ -1,0 +1,102 @@
+{
+ "config": {
+  "ablation": "A1",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "example",
+   "max_minutes": 120,
+   "schema_path": null
+  },
+  "chunk": {
+   "max_chars": 2000
+  },
+  "corpus": {
+   "format": "wiki_corpus_json",
+   "limit": 24,
+   "path": "data/benchmarks/2wiki/2wiki_30_corpus.json"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": null
+  },
+  "extract": {
+   "backend": "auto",
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "induce": {
+   "max_concepts": 5,
+   "max_entities": 50,
+   "max_relations": 100,
+   "max_tokens": 64,
+   "min_support": 1
+  },
+  "judge": {
+   "max_tokens": 8
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "2wiki10"
+  },
+  "validate": {
+   "min_grounding": "partial"
+  }
+ },
+ "config_hash": "550138e767304c5e6867ecce640f68206665eefd2fb3fedb9e96ba0624147d8e",
+ "corpus_hash": "6aa8d77f17f2a9392a09d4f594f77086eee783889819c64c9ddd85647bf5f2c4",
+ "exit_code": 0,
+ "finished_at": "2026-10-23T18:14:55.152633+00:00",
+ "flags": {
+  "canon": false,
+  "judge": false,
+  "resolve": true,
+  "temporal": false,
+  "validate": false
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 0.063,
+  "export": 0.047,
+  "extract": 0.5,
+  "ingest": 0.015,
+  "resolve": 0.156,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.109
+ },
+ "started_at": "2026-10-23T18:14:54.266939+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

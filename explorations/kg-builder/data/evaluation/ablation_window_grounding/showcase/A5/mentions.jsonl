@@ -1,0 +1,13 @@
+{"char_end":148,"char_start":105,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_36a9b7190914","surface":"International Business Machines Corporation"}
+{"char_end":75,"char_start":68,"chunk_id":"demo_alice#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_4631300427b4","surface":"Nova AI"}
+{"char_end":170,"char_start":158,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_5423fddc965a","surface":"laboratories"}
+{"char_end":28,"char_start":19,"chunk_id":"demo_alice#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_5bdd66326dcd","surface":"Acme Labs"}
+{"char_end":227,"char_start":204,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_68fc4457a5af","surface":"artificial intelligence"}
+{"char_end":194,"char_start":182,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_7614cce83038","surface":"IBM Research"}
+{"char_end":11,"char_start":6,"chunk_id":"demo_alice#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_7e7dfd44c029","surface":"Alice"}
+{"char_end":103,"char_start":86,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_9dd073b05da5","surface":"research division"}
+{"char_end":31,"char_start":0,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_a38e25e8f421","surface":"International Business Machines"}
+{"char_end":72,"char_start":69,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_afd3a169fe3d","surface":"IBM"}
+{"char_end":11,"char_start":0,"chunk_id":"demo_turing#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_d4fc6a631854","surface":"Alan Turing"}
+{"char_end":30,"char_start":24,"chunk_id":"demo_turing#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_e7dd77e2b292","surface":"London"}
+{"char_end":67,"char_start":50,"chunk_id":"demo_ibm#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_ed5f2e62f31b","surface":"computing systems"}

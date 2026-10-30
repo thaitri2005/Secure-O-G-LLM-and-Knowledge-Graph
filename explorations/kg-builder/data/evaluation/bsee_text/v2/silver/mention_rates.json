@@ -1,0 +1,128 @@
+{
+ "ai_gold": {
+  "BH_TOTAL_MD": {
+   "mentioned": 23,
+   "observations": 218,
+   "rate": 0.10550458715596331
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 2,
+   "observations": 220,
+   "rate": 0.00909090909090909
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 33,
+   "observations": 54,
+   "rate": 0.6111111111111112
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 13,
+   "observations": 163,
+   "rate": 0.07975460122699386
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 34,
+   "observations": 71,
+   "rate": 0.4788732394366197
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 1,
+   "observations": 71,
+   "rate": 0.014084507042253521
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 18,
+   "observations": 218,
+   "rate": 0.08256880733944955
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 19,
+   "observations": 220,
+   "rate": 0.08636363636363636
+  }
+ },
+ "eligible": {
+  "BH_TOTAL_MD": {
+   "mentioned": 67,
+   "observations": 1278,
+   "rate": 0.05242566510172144
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 27,
+   "observations": 1291,
+   "rate": 0.020914020139426802
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 175,
+   "observations": 290,
+   "rate": 0.603448275862069
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 74,
+   "observations": 1003,
+   "rate": 0.07377866400797607
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 153,
+   "observations": 377,
+   "rate": 0.40583554376657827
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 9,
+   "observations": 377,
+   "rate": 0.023872679045092837
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 53,
+   "observations": 1278,
+   "rate": 0.041471048513302036
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 64,
+   "observations": 1291,
+   "rate": 0.049573973663826494
+  }
+ },
+ "test_subset": {
+  "BH_TOTAL_MD": {
+   "mentioned": 15,
+   "observations": 153,
+   "rate": 0.09803921568627451
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 0,
+   "observations": 155,
+   "rate": 0.0
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 25,
+   "observations": 38,
+   "rate": 0.6578947368421053
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 6,
+   "observations": 114,
+   "rate": 0.05263157894736842
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 28,
+   "observations": 53,
+   "rate": 0.5283018867924528
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 1,
+   "observations": 53,
+   "rate": 0.018867924528301886
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 11,
+   "observations": 153,
+   "rate": 0.0718954248366013
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 13,
+   "observations": 155,
+   "rate": 0.08387096774193549
+  }
+ }
+}

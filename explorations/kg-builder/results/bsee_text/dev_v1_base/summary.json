@@ -1,0 +1,472 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A4"
+ ],
+ "mock": false,
+ "name": "bsee_dev",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/experiments/bsee_text_dev_v1_base.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-107397_6254f1ff",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-108210_cf2cb337",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-110924_63135b4a",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-115098_07919947",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-124567_2cc73bb4",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-125106_405da87f",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-128140_c5f23ccc",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-130290_0503055e",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-130814_06e54c49",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-152673_db7c1616",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-164448_ba63f431",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-165961_0ff1703a",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-167489_53d2848f",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-170357_f1d06dc1",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-172767_e3c82a7e",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-173155_10692aa9",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-195601_85455bff",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-198980_84b280ce",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-26618_62fca1da",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-50573_f397a443",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-53971_7ac0b755",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-60952_c561d036",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-67804_f684b876",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-72895_a2987c28",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-75852_b6a7c2bc",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 180,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 25,
+      "docs": 25,
+      "duplicate_candidates": 0,
+      "entities": 240,
+      "entities_literal": 10,
+      "er_reduction": 0.012345679012345734,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 3,
+       "exact": 146,
+       "none": 4,
+       "overlap": 17,
+       "window": 10
+      },
+      "grounding": {
+       "exact": 146,
+       "none": 4,
+       "partial": 30
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 0,
+       "cache_misses": 0,
+       "calls": 50,
+       "completion_tokens": 9564,
+       "finish_length": 0,
+       "prompt_tokens": 24137,
+       "seconds": 2247.8
+      },
+      "mentions": 247,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.032,
+       "export": 0.047,
+       "extract": 1164.218,
+       "ingest": 0.016,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.14
+      },
+      "statements_accepted": 180,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 243,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/dev_v1_base/bsee_text_dev_v1_base/A0",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "kggen",
+      "routes": [
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-107397_6254f1ff",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-108210_cf2cb337",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-110924_63135b4a",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-115098_07919947",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-124567_2cc73bb4",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-125106_405da87f",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-128140_c5f23ccc",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-130290_0503055e",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-130814_06e54c49",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-152673_db7c1616",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-164448_ba63f431",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-165961_0ff1703a",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-167489_53d2848f",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-170357_f1d06dc1",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-172767_e3c82a7e",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-173155_10692aa9",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-195601_85455bff",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-198980_84b280ce",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-26618_62fca1da",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-50573_f397a443",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-53971_7ac0b755",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-60952_c561d036",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-67804_f684b876",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-72895_a2987c28",
+        "reason": "backend=kggen",
+        "score": null
+       },
+       {
+        "backend": "kggen",
+        "doc_id": "eor_-75852_b6a7c2bc",
+        "reason": "backend=kggen",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 180,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 55,
+       "self_canon": 0,
+       "sent": 180,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 125
+      },
+      "chunks": 25,
+      "docs": 25,
+      "duplicate_candidates": 0,
+      "entities": 215,
+      "entities_literal": 10,
+      "er_reduction": 0.0444444444444444,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "weak_evidence": 1
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 3,
+       "exact": 146,
+       "none": 4,
+       "overlap": 17,
+       "window": 10
+      },
+      "grounding": {
+       "exact": 146,
+       "none": 4,
+       "partial": 30
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 50,
+       "cache_misses": 0,
+       "calls": 255,
+       "completion_tokens": 13664,
+       "finish_length": 11,
+       "prompt_tokens": 133024,
+       "seconds": 2410.3
+      },
+      "mentions": 247,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 125
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 2428.235,
+       "export": 0.031,
+       "extract": 0.484,
+       "ingest": 0.0,
+       "resolve": 1.609,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 55,
+      "statements_flagged": 1,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 225,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/dev_v1_base/bsee_text_dev_v1_base/A4",
+     "showcase": null,
+     "webnlg": null
+    }
+   },
+   "name": "bsee_text_dev_v1_base"
+  }
+ ]
+}

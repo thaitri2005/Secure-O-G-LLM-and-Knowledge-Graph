@@ -1,0 +1,159 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "joined": "The subject entity became a member of or started working for the organization specified by the object entity.",
+    "left": "The subject entity ceased to be a member of or stopped working for the organization specified by the object entity."
+   },
+   "key": "demo_alice#c000",
+   "results": [
+    {
+     "candidates": {
+      "developed": 0.49487951397895813,
+      "operates": 0.4550725519657135,
+      "part_of": 0.5323681235313416,
+      "works_at": 0.4685949683189392,
+      "works_on": 0.4469122290611267
+     },
+     "canonical": [
+      "Alice",
+      "works_at",
+      "Acme Labs"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.7075589299201965,
+      "operates": 0.6186294555664062,
+      "part_of": 0.683679461479187,
+      "works_at": 0.6849079728126526,
+      "works_on": 0.621915876865387
+     },
+     "canonical": [
+      "Alice",
+      "works_at",
+      "Nova AI"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.7075589299201965,
+      "operates": 0.6186294555664062,
+      "part_of": 0.683679461479187,
+      "works_at": 0.6849079728126526,
+      "works_on": 0.621915876865387
+     },
+     "canonical": [
+      "Alice",
+      "works_at",
+      "Acme Labs"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "developed": "The subject entity created or developed the product, system, or technology specified by the object entity.",
+    "expanded": "The subject entity expanded the scope, size, or capabilities of the entity specified by the object entity.",
+    "operates": "The subject entity operates or manages the facility, organization, or entity specified by the object entity.",
+    "works on": "The subject entity works on or focuses research/development efforts on the topic specified by the object entity."
+   },
+   "key": "demo_ibm#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "International Business Machines",
+      "developed",
+      "computing systems"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": [
+      "International Business Machines Corporation",
+      "operates",
+      "laboratories"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6567457914352417,
+      "operates": 0.46160265803337097,
+      "part_of": 0.49959227442741394,
+      "works_at": 0.4812191426753998,
+      "works_on": 0.4694337248802185
+     },
+     "canonical": [
+      "IBM",
+      "part_of",
+      "research division"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.6521007418632507,
+      "operates": 0.5469077229499817,
+      "part_of": 0.5542601943016052,
+      "works_at": 0.5855366587638855,
+      "works_on": 0.7506424784660339
+     },
+     "canonical": [
+      "IBM Research",
+      "works_on",
+      "artificial intelligence"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is": "The subject entity is identified as or equated to the object entity.",
+    "is birthplace of": "The subject entity is the location where the person or entity specified by the object entity was born.",
+    "was born in": "The subject entity was born in the location specified by the object entity."
+   },
+   "key": "demo_turing#c000",
+   "results": [
+    {
+     "candidates": {
+      "birthplace_of": 0.6750479340553284,
+      "born_in": 0.6088838577270508,
+      "developed": 0.68980872631073,
+      "works_at": 0.5428548455238342,
+      "works_on": 0.5384195446968079
+     },
+     "canonical": [
+      "London",
+      "birthplace_of",
+      "Alan Turing"
+     ]
+    },
+    {
+     "candidates": {
+      "birthplace_of": 0.8099498152732849,
+      "born_in": 0.7916375398635864,
+      "developed": 0.6451898217201233,
+      "operates": 0.4866296648979187,
+      "works_at": 0.4984971880912781
+     },
+     "canonical": [
+      "Alan Turing",
+      "born_in",
+      "London"
+     ]
+    },
+    {
+     "candidates": {
+      "developed": 0.7121983766555786,
+      "operates": 0.5421780347824097,
+      "part_of": 0.5747347474098206,
+      "works_at": 0.5915946960449219,
+      "works_on": 0.5828529000282288
+     },
+     "canonical": null
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

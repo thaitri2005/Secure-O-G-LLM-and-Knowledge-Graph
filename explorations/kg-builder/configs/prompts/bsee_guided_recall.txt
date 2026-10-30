@@ -1,0 +1,35 @@
+List every completed, affirmative well-operation fact that the supplied text states and that fits one of the listed relations. Reports usually state several such facts, often more than one per sentence; a fact stated in passing or inside a longer clause still counts. Use the text alone. Return only a JSON array of objects with the string keys "subject", "relation", and "object"; return [] only when the text states no completed operation, depth, size, pressure, volume, date or status at all. Do not add explanations or markdown.
+
+Rules:
+- Choose relation names exactly from the supplied list of 21 definitions. Do not invent relations.
+- Copy the subject as an exact text span. Use "well" for the report's own well only when no other subject is named; never attach another named well's facts to it.
+- Copy the object as an exact substring, including written units and depth references. Do not normalize, convert, expand shorthand, supply missing units, or invent dates or status codes.
+- Emit one fact per stated value. A paired depth such as 13243' MD/12625' TVD gives two facts, with objects "13243' MD" and "12625' TVD". Keep a stated interval as one interval object. A low and a high test pressure are two facts.
+- A tubular written with its outside diameter, such as a 7" liner, also gives a casing_size fact whose object is the diameter as written. A composite hole size such as 8-1/2" x 9-7/8" is not a tubular diameter.
+- A status that the text states as the well's state (such as "the well is temporarily abandoned", "the well has been TA'd", "well shut in", "plugged back to sidetrack", or a code such as TA, PA, COM, ST, BP, SI) gives a has_well_status fact; copy the status words as written. "Recompleted to" or "completed in" a named zone is a completed_in fact whose object is the zone, not a has_well_status fact.
+- Numbers in names such as BN 7300' Sand are part of the name, not depths.
+- Leave out only operations that the text calls planned, proposed, scheduled, approved or not done, operations that were attempted (tried, with an unclear or failed outcome), and facts whose wording is unclear to you.
+- Distinguish total depth of the well from intermediate or section drilling depth. Distinguish cement plugs from cement behind casing and equipment setting from plug setting.
+- Use tested_to_pressure only for a stated pressure test, not operating, pumping, injection, or bleed pressure. A pressure-test # is not the weight # in a tubular specification.
+- Do not treat tool movements as drilling or setting. Use corrected values when a correction is explicitly stated. For mud weight changed from one value to another, extract the new weight.
+- Keep names of zones, rigs, fluids and companies as written. A company performing work is not necessarily the well's operator. A date stays as written without borrowing a year from elsewhere.
+
+Invented example 1:
+Text: Ran 7" liner to 9,120 ft MD and tested the liner top to 1,000 psi; good test.
+Output: [{"subject":"7\" liner","relation":"set_casing_at","object":"9,120 ft MD"},{"subject":"7\" liner","relation":"casing_size","object":"7\""},{"subject":"liner top","relation":"tested_to_pressure","object":"1,000 psi"}]
+
+Invented example 2:
+Text: Set a cement retainer at 3,410'. Pumped 40 bbls of brine. The well is temporarily abandoned.
+Output: [{"subject":"cement retainer","relation":"set_equipment_at","object":"3,410'"},{"subject":"brine","relation":"pumped","object":"40 bbls"},{"subject":"well","relation":"has_well_status","object":"temporarily abandoned"}]
+
+Invented example 3:
+Text: Perforated the K-2 sand from 5,200' to 5,230' on 4/12/2015. Plan to set a plug next month.
+Output: [{"subject":"K-2 sand","relation":"perforated_interval","object":"5,200' to 5,230'"}]
+=== USER ===
+Allowed relations:
+{relations}
+
+Text:
+{text}
+
+Return the JSON array only.

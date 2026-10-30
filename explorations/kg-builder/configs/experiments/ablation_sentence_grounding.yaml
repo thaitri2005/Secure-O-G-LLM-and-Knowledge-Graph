@@ -1,0 +1,15 @@
+ablation:
+  name: sentence_grounding_ablation
+  levels: [A0, A1, A2, A3, A4, A5]
+  runs:
+    - {config: configs/experiments/showcase.yaml, sets: [ground.mode=sentence, resolve.number_guard=false, validate.mode=strict, judge.version=v1, judge.max_tokens=8]}
+    - {config: configs/experiments/webnlg10.yaml, sets: [ground.mode=sentence, resolve.number_guard=false, validate.mode=strict, judge.version=v1, judge.max_tokens=8]}
+    - {config: configs/experiments/webnlg10.yaml, sets: [ground.mode=sentence, resolve.number_guard=false, validate.mode=strict, judge.version=v1, judge.max_tokens=8, run.name=webnlg10_kggen, extract.backend=kggen], levels: [A0, A1, A2, A3, A4]}
+    - {config: configs/experiments/webnlg10.yaml, sets: [ground.mode=sentence, resolve.number_guard=false, validate.mode=strict, judge.version=v1, judge.max_tokens=8, run.name=webnlg10_auto, extract.backend=auto], levels: [A0, A1, A2, A3, A4]}
+    - {config: configs/experiments/twowiki10.yaml, sets: [ground.mode=sentence, resolve.number_guard=false, validate.mode=strict, judge.version=v1, judge.max_tokens=8]}
+  baselines:
+    webnlg10: {label: "B-EDC: EDC alone, same 10 docs (minitest)", eval_txt: results/upstream/edc/webnlg_10/eval.txt}
+  qa: {config: configs/experiments/twowiki10_qa.yaml, run: 2wiki10, levels: [A0, A1, A4, A5], sets: [qa.seed_linking=exact, qa.fact_order=confidence]}
+  induce:
+    - {label: showcase_noschema, induce_dir: runs/reference/schema_induction/showcase_noschema/induce, pass2_run: runs/reference/schema_induction/showcase_noschema_pass2/A4}
+    - {label: 2wiki10, induce_dir: runs/reference/schema_induction/2wiki10/induce, pass2_run: runs/reference/schema_induction/2wiki10_pass2/A4}

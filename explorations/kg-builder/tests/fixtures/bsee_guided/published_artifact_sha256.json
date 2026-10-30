@@ -1,0 +1,19 @@
+{
+  "test_base_A0/scores.json": "54d08734c6918f8959dc897eb39e329bebbcc99f984f359f3f10fdd8b726f480",
+  "test_base_A0/per_fact.jsonl": "fb10d641178ffb3f9d03cb3115a27c331b6b1c3280eabeca8bcce1d2f3dc7b08",
+  "test_base_A0/report.md": "365ee5880e14c0147dc263451abad31e9a1aaa4ede8c324b29b565c11d130fd9",
+  "test_base_A4/scores.json": "d88ad2681726895cf1dcfaea0f4508e322dc50817c54078de7bb418b851f9c3b",
+  "test_base_A4/per_fact.jsonl": "64bb94597a9e601718c2c0d47f65e080a5e4db9bdce0727d41429c8259dc8c79",
+  "test_base_A4/report.md": "646f5c3190ca62c7d0efef2b5981eeba054df333b086ada6a90964e37910751b",
+  "test_guided_A4/scores.json": "969d75014e5060620b583c9c44ef006042556c59d8b2d5aff437b4896b6a8ea6",
+  "test_guided_A4/per_fact.jsonl": "ab1b76091dec932a685d2bd765d2bf58d02e99189b9548a9fccaf8b288242668",
+  "test_guided_A4/report.md": "209d8994b90666087b40ddeb4e27c80c9e4132e3d85ff2c09acdb4e2f8abd276",
+  "dev_guided_A4/scores.json": "2a912da3397df3a81dac5e9a5432b7e6d65bc01ed4696c340ee1de4c2c6732da",
+  "dev_guided_A4/per_fact.jsonl": "191f019f65fbd8cb8697f1450635535ab8443216540b5151c469ba4d8db089db",
+  "dev_guided_A4/report.md": "6bc02d2ad65de67882b17ed0fe703c9d4d1e9dfeda3e9b9ee73313379133df15",
+  "dev_attribution/attribution.json": "85dd0b04889467178a5bc04adc9db3f8615c88cc318e42de28a8f4ee1f9bb4be",
+  "dev_attribution/attribution.md": "1851f4f0bb1f9a747a9d36425adbcc588ef79d92653f97c879786a4742176b44",
+  "dev_attribution/per_fact.jsonl": "382d489c94361da3363b2608aab32b3cd924a6109c659a88f184609f09a0a7dc",
+  "test_attribution/attribution.json": "19fdda2d1b3f771127a4bf733b732f9ee4ddfa26ef7b09d812d1cb71e727b67c",
+  "test_attribution/attribution.md": "3968ac25e5f2001d1ed4d492bb8036dcf099f6b69caf81c760c0a6665afd3730"
+}

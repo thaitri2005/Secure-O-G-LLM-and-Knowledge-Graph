@@ -1,0 +1,38 @@
+{
+ "command": "./kgb.ps1 run --config configs/experiments/demo.yaml --mock --out runs/_baseline_v2 --overwrite --set extract.backend=kggen --set llm.cache_path=.cache/tmp/baseline_v2/no_cache.jsonl",
+ "defaults": "Window grounding",
+ "files": {
+  "showcase/A0/entities.jsonl": "e457430208af66d2298d6b2be0d8cfb314069405c9dd8c7500d8914c040619e9",
+  "showcase/A0/graph.graphml": "47f9ff2a5e4e2a63e373fb6d7e0f99d0113fadd796711fd412492a8ed84deed2",
+  "showcase/A0/graph.json": "297f252711dafff3ba3d0e322e683727f39f9204b1a3b6a43aa0f7939ade669a",
+  "showcase/A0/metrics.json": "f80e8978ec6a200b8b529521865ff6ee1e5908cde82a4d2875105e80874ea760",
+  "showcase/A0/statements.jsonl": "7e2d43d6a3320716f68053326c789380d5da3c2cd36f1172fbfac1245cdfe5dd",
+  "showcase/A4/entities.jsonl": "d0fa148472015ff3a62b47f86d9ffa534f2e985b7e6fab259822d5ccbb52f6ef",
+  "showcase/A4/graph.graphml": "99ebc92391472d331833980a26cf15773aac0954a017ae8f015bc0efd37f402d",
+  "showcase/A4/graph.json": "3e6e2a7f83611f3a2c0f2588d05bb5615ca3dba419e65d138328df263f75f794",
+  "showcase/A4/graph_strict.json": "3e6e2a7f83611f3a2c0f2588d05bb5615ca3dba419e65d138328df263f75f794",
+  "showcase/A4/metrics.json": "211bc58a26d4b68c8892bc32830c75416208c3cdc0da9009b96874171cd10003",
+  "showcase/A4/statements.jsonl": "a614f22fb07340b955911c824cf60b575d20e52a71ceaf483d32c5d3426a182b",
+  "webnlg10/A0/entities.jsonl": "9fcd42af13d91ce7fb670ef7329afe477a021739d954d2d0c6a57eb5edf3d148",
+  "webnlg10/A0/graph.graphml": "af856204eecb21a0ed3717ea3a3787197b425fe336e9e08536831692206ceea7",
+  "webnlg10/A0/graph.json": "e2f34ee97a81919a2edacd782b637c590e2a36909250bbd07a44b38351e03c9a",
+  "webnlg10/A0/metrics.json": "1f89bf64bdc92bc71e9c48e3387c5d368504ad9b378dbc3a348cbb6d38654ecf",
+  "webnlg10/A0/statements.jsonl": "138b416d5c477c6a4952df8164071baee3fef5d0aeb75b88269d282c658b1b61",
+  "webnlg10/A4/entities.jsonl": "89a431e3720897ade9c2832e3dedbe5d6d0a7c5fc29353c094d681b2af45f06d",
+  "webnlg10/A4/graph.graphml": "e6b33eb345c63d160a42508ed74da0e92b9bf10569879759fc5d269d1509e25a",
+  "webnlg10/A4/graph.json": "f338d6f4bf7e61b019fee4a28300caff914face27ea820991d8b8803025d9322",
+  "webnlg10/A4/graph_strict.json": "f338d6f4bf7e61b019fee4a28300caff914face27ea820991d8b8803025d9322",
+  "webnlg10/A4/metrics.json": "fc47f4660288ad6de81e87859994b41103b0c1fd6133741c6e5a8905891e6773",
+  "webnlg10/A4/statements.jsonl": "cd4068a29b49bf5c2ec4f31e09ed3cf360adf9742f60d86ed9f76cca0114ce68"
+ },
+ "format": "kgb.baseline/2",
+ "normalize": {
+  "drop": [
+   "stage_seconds",
+   "llm.seconds",
+   "llm.cache_hits",
+   "llm.cache_misses"
+  ]
+ },
+ "supersedes": "mock_demo_v1"
+}

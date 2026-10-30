@@ -1,0 +1,77 @@
+{
+ "details": {
+  "G1": {
+   "matches": [
+    "e_d3ac7a4ef1a8"
+   ],
+   "research_entities": [
+    "e_424168479b5f"
+   ]
+  },
+  "G2": {
+   "matches": [],
+   "reverse": [],
+   "spans": [],
+   "support_count": 0
+  },
+  "G3": {
+   "acme": [],
+   "nova": []
+  },
+  "G4": {
+   "q1": {
+    "expected": [
+     "London"
+    ],
+    "found": [],
+    "ok": false
+   },
+   "q2": {
+    "expected": [
+     "Acme Labs"
+    ],
+    "found": [],
+    "ok": false
+   },
+   "q3": {
+    "expected": [
+     "Nova AI"
+    ],
+    "found": [],
+    "ok": false
+   },
+   "q4": {
+    "expected": [
+     "artificial intelligence"
+    ],
+    "found": [],
+    "ok": false
+   }
+  },
+  "G5": {
+   "invalid": []
+  },
+  "G6": {
+   "reversed": []
+  },
+  "gold_recall": {
+   "gold_entities": 8,
+   "matched": 0,
+   "total": 4
+  }
+ },
+ "status": {
+  "G1": "PASS",
+  "G2": "FAIL",
+  "G3": "FAIL",
+  "G4": {
+   "q1": "FAIL",
+   "q2": "FAIL",
+   "q3": "FAIL",
+   "q4": "FAIL"
+  },
+  "G5": "PASS",
+  "G6": "PASS",
+  "gold_recall": 0.0
+ }
+}

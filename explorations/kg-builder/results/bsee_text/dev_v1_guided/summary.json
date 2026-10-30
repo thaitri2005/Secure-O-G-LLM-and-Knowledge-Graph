@@ -1,0 +1,474 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A4"
+ ],
+ "mock": false,
+ "name": "bsee_dev_guided",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/experiments/bsee_text_dev_v1_guided.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "guided",
+      "routes": [
+       {
+        "backend": "guided",
+        "doc_id": "eor_-107397_6254f1ff",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-108210_cf2cb337",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-110924_63135b4a",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115098_07919947",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-124567_2cc73bb4",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-125106_405da87f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-128140_c5f23ccc",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-130290_0503055e",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-130814_06e54c49",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-152673_db7c1616",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-164448_ba63f431",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165961_0ff1703a",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-167489_53d2848f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-170357_f1d06dc1",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-172767_e3c82a7e",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-173155_10692aa9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-195601_85455bff",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-198980_84b280ce",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-26618_62fca1da",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-50573_f397a443",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-53971_7ac0b755",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-60952_c561d036",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-67804_f684b876",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-72895_a2987c28",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-75852_b6a7c2bc",
+        "reason": "backend=guided",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 40,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 25,
+      "docs": 25,
+      "duplicate_candidates": 1,
+      "entities": 58,
+      "entities_literal": 2,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 1,
+       "exact": 36,
+       "none": 2,
+       "overlap": 0,
+       "window": 1
+      },
+      "grounding": {
+       "exact": 36,
+       "none": 2,
+       "partial": 2
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 0,
+       "cache_misses": 0,
+       "calls": 25,
+       "completion_tokens": 1275,
+       "finish_length": 0,
+       "prompt_tokens": 33509,
+       "seconds": 931.2
+      },
+      "mentions": 68,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "guided_not_in_text": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.032,
+       "export": 0.078,
+       "extract": 478.141,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.015,
+       "viz": 0.047
+      },
+      "statements_accepted": 39,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 58,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/dev_v1_guided/bsee_text_dev_v1_guided/A0",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "guided",
+      "routes": [
+       {
+        "backend": "guided",
+        "doc_id": "eor_-107397_6254f1ff",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-108210_cf2cb337",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-110924_63135b4a",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115098_07919947",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-124567_2cc73bb4",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-125106_405da87f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-128140_c5f23ccc",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-130290_0503055e",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-130814_06e54c49",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-152673_db7c1616",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-164448_ba63f431",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165961_0ff1703a",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-167489_53d2848f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-170357_f1d06dc1",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-172767_e3c82a7e",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-173155_10692aa9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-195601_85455bff",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-198980_84b280ce",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-26618_62fca1da",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-50573_f397a443",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-53971_7ac0b755",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-60952_c561d036",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-67804_f684b876",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-72895_a2987c28",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-75852_b6a7c2bc",
+        "reason": "backend=guided",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 40,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 40,
+       "self_canon": 0,
+       "sent": 40,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 25,
+      "docs": 25,
+      "duplicate_candidates": 1,
+      "entities": 57,
+      "entities_literal": 2,
+      "er_reduction": 0.017241379310344862,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "weak_evidence": 1
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 1,
+       "exact": 36,
+       "none": 2,
+       "overlap": 0,
+       "window": 1
+      },
+      "grounding": {
+       "exact": 36,
+       "none": 2,
+       "partial": 2
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 25,
+       "cache_misses": 0,
+       "calls": 36,
+       "completion_tokens": 1860,
+       "finish_length": 0,
+       "prompt_tokens": 50946,
+       "seconds": 220.8
+      },
+      "mentions": 68,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "guided_not_in_text": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 228.281,
+       "export": 0.016,
+       "extract": 0.454,
+       "ingest": 0.0,
+       "resolve": 10.765,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 38,
+      "statements_flagged": 1,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 58,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/dev_v1_guided/bsee_text_dev_v1_guided/A4",
+     "showcase": null,
+     "webnlg": null
+    }
+   },
+   "name": "bsee_text_dev_v1_guided"
+  }
+ ]
+}

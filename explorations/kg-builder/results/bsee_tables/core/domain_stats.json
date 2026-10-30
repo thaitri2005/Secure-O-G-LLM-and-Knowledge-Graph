@@ -1,0 +1,273 @@
+{
+ "boreholes_by_region": {
+  "alaska": 167,
+  "gom": 55572,
+  "pacific": 1714
+ },
+ "bytes": 772165266,
+ "counts": {
+  "edges": 351047,
+  "nodes": 136057,
+  "sources": 361517,
+  "unresolved": 122158
+ },
+ "edges_by_type": {
+  "API_CHANGED_TO": 170,
+  "BOTTOM_IN_BLOCK": 57453,
+  "ON_LEASE": 114780,
+  "OWNS_INTEREST": 121191,
+  "SIDETRACK_OF": 57453
+ },
+ "joins": {
+  "field": {
+   "denominator": 0,
+   "numerator": 0,
+   "status": "not mapped"
+  },
+  "lease": {
+   "denominator": 114906,
+   "numerator": 114780
+  },
+  "operator": {
+   "denominator": 0,
+   "numerator": 0,
+   "status": "not mapped"
+  }
+ },
+ "lease_region_collision": 82,
+ "llm_calls": 0,
+ "nodes_by_type": {
+  "Area": 93,
+  "Block": 5601,
+  "Borehole": 57453,
+  "Company": 3516,
+  "Lease": 29876,
+  "Well": 39518
+ },
+ "not_mapped": [
+  "BOREHOLE_STAT_CD:status_codes",
+  "has_well_status:silver",
+  "5010:MMS_COMPANY_NUM",
+  "5010:field",
+  "5010:platform",
+  "5010:surface_area_block"
+ ],
+ "peak_rss": 203358208,
+ "staging_bytes": 1115078656,
+ "tables": {
+  "5010_alaska": {
+   "accepted": 167,
+   "duplicate": 0,
+   "null_rates": {
+    "API_WELL_NUMBER": 0.0,
+    "BOREHOLE_STAT_CD": 0.0,
+    "BOTM_LEASE_NUMBER": 0.0,
+    "SURF_LEASE_NUMBER": 0.0,
+    "WELL_NAME": 0.0,
+    "WELL_NAME_SUFFIX": 0.0,
+    "WELL_TYPE_CODE": 0.0
+   },
+   "nulls": {
+    "API_WELL_NUMBER": 0,
+    "BOREHOLE_STAT_CD": 0,
+    "BOTM_LEASE_NUMBER": 0,
+    "SURF_LEASE_NUMBER": 0,
+    "WELL_NAME": 0,
+    "WELL_NAME_SUFFIX": 0,
+    "WELL_TYPE_CODE": 0
+   },
+   "orphan": 0,
+   "quarantined": 0,
+   "source": 167
+  },
+  "5010_gom": {
+   "accepted": 55572,
+   "duplicate": 0,
+   "null_rates": {
+    "API_WELL_NUMBER": 0.0,
+    "BOREHOLE_STAT_CD": 0.0,
+    "BOTM_LEASE_NUMBER": 0.0,
+    "SURF_LEASE_NUMBER": 0.0,
+    "WELL_NAME": 0.0,
+    "WELL_NAME_SUFFIX": 0.0,
+    "WELL_TYPE_CODE": 0.0
+   },
+   "nulls": {
+    "API_WELL_NUMBER": 0,
+    "BOREHOLE_STAT_CD": 0,
+    "BOTM_LEASE_NUMBER": 0,
+    "SURF_LEASE_NUMBER": 0,
+    "WELL_NAME": 0,
+    "WELL_NAME_SUFFIX": 0,
+    "WELL_TYPE_CODE": 0
+   },
+   "orphan": 0,
+   "quarantined": 0,
+   "source": 55572
+  },
+  "5010_pacific": {
+   "accepted": 1714,
+   "duplicate": 0,
+   "null_rates": {
+    "API_WELL_NUMBER": 0.0,
+    "BOREHOLE_STAT_CD": 0.0,
+    "BOTM_LEASE_NUMBER": 0.0,
+    "SURF_LEASE_NUMBER": 0.0,
+    "WELL_NAME": 0.0,
+    "WELL_NAME_SUFFIX": 0.0,
+    "WELL_TYPE_CODE": 0.0
+   },
+   "nulls": {
+    "API_WELL_NUMBER": 0,
+    "BOREHOLE_STAT_CD": 0,
+    "BOTM_LEASE_NUMBER": 0,
+    "SURF_LEASE_NUMBER": 0,
+    "WELL_NAME": 0,
+    "WELL_NAME_SUFFIX": 0,
+    "WELL_TYPE_CODE": 0
+   },
+   "orphan": 0,
+   "quarantined": 0,
+   "source": 1714
+  },
+  "apichgdelimit": {
+   "accepted": 170,
+   "duplicate": 6,
+   "null_rates": {
+    "ACTIVITY_DATE": 0.0,
+    "API_WELL_NUMBER": 0.0,
+    "BH_ACTV_TYPE_CD": 0.0,
+    "PREV_API_NUMBER": 0.0
+   },
+   "nulls": {
+    "ACTIVITY_DATE": 0,
+    "API_WELL_NUMBER": 0,
+    "BH_ACTV_TYPE_CD": 0,
+    "PREV_API_NUMBER": 0
+   },
+   "orphan": 361,
+   "quarantined": 33,
+   "source": 564
+  },
+  "compalldelimit": {
+   "accepted": 4007,
+   "duplicate": 491,
+   "null_rates": {
+    "ALASKA_RGN_CODE": 0.7415750585691115,
+    "ATL_REGION_CODE": 0.772751847179672,
+    "BUS_ASC_NAME": 0.0,
+    "DUNS_NUMBER": 1.0,
+    "GOM_REGION_CODE": 0.029194449450351413,
+    "MMS_COMPANY_NUM": 0.0,
+    "MMS_START_DATE": 0.0,
+    "MMS_TERM_DATE": 0.6878716885925392,
+    "PAC_REGION_CODE": 0.738511443503334,
+    "SORT_NAME": 0.0003604253018561903,
+    "TERMINATION_CODE": 0.6884123265453235,
+    "TERM_ACTN_EFF_DT": 0.7747341863398811
+   },
+   "nulls": {
+    "ALASKA_RGN_CODE": 4115,
+    "ATL_REGION_CODE": 4288,
+    "BUS_ASC_NAME": 0,
+    "DUNS_NUMBER": 5549,
+    "GOM_REGION_CODE": 162,
+    "MMS_COMPANY_NUM": 0,
+    "MMS_START_DATE": 0,
+    "MMS_TERM_DATE": 3817,
+    "PAC_REGION_CODE": 4098,
+    "SORT_NAME": 2,
+    "TERMINATION_CODE": 3820,
+    "TERM_ACTN_EFF_DT": 4299
+   },
+   "orphan": 0,
+   "quarantined": 1542,
+   "source": 5549
+  },
+  "lseowndelimit": {
+   "accepted": 121191,
+   "duplicate": 0,
+   "null_rates": {
+    "ASGN_APRV_DATE": 0.0,
+    "ASGN_EFF_DATE": 0.0005739406013067546,
+    "ASGN_STATUS_CODE": 8.3179797290834e-06,
+    "ASGN_TERM_DATE": 1.0,
+    "ASSIGNMENT_PCT": 0.0,
+    "LEASE_NUMBER": 0.0,
+    "MMS_COMPANY_NUM": 0.0,
+    "MMS_START_DATE": 0.003951040371314615,
+    "OWNER_ALIQUOT_CD": 0.0,
+    "OWNER_GROUP_CODE": 0.9118959587095486,
+    "SN_LSE_OWNER": 0.0
+   },
+   "nulls": {
+    "ASGN_APRV_DATE": 0,
+    "ASGN_EFF_DATE": 138,
+    "ASGN_STATUS_CODE": 2,
+    "ASGN_TERM_DATE": 240443,
+    "ASSIGNMENT_PCT": 0,
+    "LEASE_NUMBER": 0,
+    "MMS_COMPANY_NUM": 0,
+    "MMS_START_DATE": 950,
+    "OWNER_ALIQUOT_CD": 0,
+    "OWNER_GROUP_CODE": 219259,
+    "SN_LSE_OWNER": 0
+   },
+   "orphan": 119252,
+   "quarantined": 0,
+   "source": 240443
+  },
+  "mv_boreholes_all": {
+   "accepted": 57508,
+   "duplicate": 0,
+   "null_rates": {
+    "API_WELL_NUMBER": 0.0,
+    "BH_TOTAL_MD": 0.00587744313834597,
+    "BOREHOLE_STAT_CD": 0.0,
+    "BOREHOLE_STAT_DT": 0.009842108923975794,
+    "BOTM_AREA_CODE": 0.0,
+    "BOTM_BLOCK_NUMBER": 0.0,
+    "BOTM_LATITUDE": 0.006677331849481811,
+    "BOTM_LEASE_NUMBER": 0.0,
+    "BOTM_LONGITUDE": 0.006677331849481811,
+    "RKB_ELEVATION": 0.006138276413716353,
+    "SURF_LATITUDE": 3.4777770049384435e-05,
+    "SURF_LEASE_NUMBER": 0.0,
+    "SURF_LONGITUDE": 3.4777770049384435e-05,
+    "TOTAL_DEPTH_DATE": 0.01952771788272936,
+    "WATER_DEPTH": 0.00415594352090144,
+    "WELL_BORE_TVD": 0.006016554218543507,
+    "WELL_NAME": 0.0,
+    "WELL_NAME_SUFFIX": 0.0,
+    "WELL_SPUD_DATE": 0.01851916255129721,
+    "WELL_TYPE_CODE": 0.0
+   },
+   "nulls": {
+    "API_WELL_NUMBER": 0,
+    "BH_TOTAL_MD": 338,
+    "BOREHOLE_STAT_CD": 0,
+    "BOREHOLE_STAT_DT": 566,
+    "BOTM_AREA_CODE": 0,
+    "BOTM_BLOCK_NUMBER": 0,
+    "BOTM_LATITUDE": 384,
+    "BOTM_LEASE_NUMBER": 0,
+    "BOTM_LONGITUDE": 384,
+    "RKB_ELEVATION": 353,
+    "SURF_LATITUDE": 2,
+    "SURF_LEASE_NUMBER": 0,
+    "SURF_LONGITUDE": 2,
+    "TOTAL_DEPTH_DATE": 1123,
+    "WATER_DEPTH": 239,
+    "WELL_BORE_TVD": 346,
+    "WELL_NAME": 0,
+    "WELL_NAME_SUFFIX": 0,
+    "WELL_SPUD_DATE": 1065,
+    "WELL_TYPE_CODE": 0
+   },
+   "orphan": 0,
+   "quarantined": 0,
+   "source": 57508
+  }
+ },
+ "wall_s": 109.1151790000149
+}

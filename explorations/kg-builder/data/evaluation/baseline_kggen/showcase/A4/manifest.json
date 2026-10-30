@@ -1,0 +1,94 @@
+{
+ "config": {
+  "ablation": "A4",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "example",
+   "max_minutes": 20,
+   "schema_path": "contracts/ontology/showcase.yaml"
+  },
+  "chunk": {
+   "max_chars": 2000
+  },
+  "corpus": {
+   "format": "jsonl",
+   "limit": null,
+   "path": "data/benchmarks/showcase/corpus.jsonl"
+  },
+  "eval": {
+   "showcase_gold_dir": "data/benchmarks/showcase",
+   "showcase_queries": "configs/experiments/showcase_queries.yaml",
+   "webnlg_reference": null
+  },
+  "extract": {
+   "max_failed_chunk_ratio": 0.2
+  },
+  "flags": {},
+  "judge": {
+   "max_tokens": 8
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readwrite",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "replay_logs": [
+    "results/upstream/kggen/llm_calls_showcase.jsonl",
+    "results/upstream/edc/llm_calls_webnlg_10.jsonl",
+    "results/upstream/kggen/llm_calls_mine_3.jsonl",
+    "tests/fixtures/llm/*.jsonl"
+   ],
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "showcase"
+  },
+  "validate": {
+   "min_grounding": "partial"
+  }
+ },
+ "config_hash": "a28648462a982bdc767eb6687b1688470789be11f33e55bec862b06aa27934c4",
+ "corpus_hash": "f68f8bf96c95499fccddd213a5cdde7ab09703d5374a71d618bd57b30096c1bb",
+ "exit_code": 0,
+ "finished_at": "2026-10-21T01:25:40.049679+00:00",
+ "flags": {
+  "canon": true,
+  "judge": false,
+  "resolve": true,
+  "temporal": true,
+  "validate": true
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 98.282,
+  "export": 0.0,
+  "extract": 0.062,
+  "ingest": 0.016,
+  "resolve": 0.218,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.016
+ },
+ "started_at": "2026-10-21T01:24:01.443955+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

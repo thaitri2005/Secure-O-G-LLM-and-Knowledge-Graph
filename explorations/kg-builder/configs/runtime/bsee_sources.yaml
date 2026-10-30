@@ -1,0 +1,527 @@
+snapshot: bsee_public_snapshot
+receipt: .cache/datasets/bsee/incoming/receipt.json
+archives:
+  5010delimit.zip:
+    required: true
+    region: gom
+    members:
+      5010.txt:
+        encoding: utf-8
+        positional:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - ''
+        - ''
+        - ''
+        - BOTM_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - WELL_TYPE_CODE
+        - ''
+        - BOREHOLE_STAT_CD
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - SURF_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        allow_columns:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - BOTM_LEASE_NUMBER
+        - WELL_TYPE_CODE
+        - BOREHOLE_STAT_CD
+        - SURF_LEASE_NUMBER
+        dictionary_ref: borehole.html
+        dictionary_names: &id001
+          API_WELL_NUMBER: API Well Number
+          WELL_NAME: Well Name
+          WELL_NAME_SUFFIX: Well Name Suffix
+          BOTM_LEASE_NUMBER: Bottom Lease Number
+          SURF_LEASE_NUMBER: Surface Lease Number
+          WELL_TYPE_CODE: Type Code
+          BOREHOLE_STAT_CD: Status Code
+  5010pacdelimit.zip:
+    required: true
+    region: pacific
+    members:
+      5010.txt:
+        encoding: utf-8
+        positional:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - ''
+        - ''
+        - ''
+        - BOTM_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - WELL_TYPE_CODE
+        - ''
+        - BOREHOLE_STAT_CD
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - SURF_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        allow_columns:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - BOTM_LEASE_NUMBER
+        - WELL_TYPE_CODE
+        - BOREHOLE_STAT_CD
+        - SURF_LEASE_NUMBER
+        dictionary_ref: borehole.html
+        dictionary_names: *id001
+  5010akdelimit.zip:
+    required: true
+    region: alaska
+    members:
+      5010.txt:
+        encoding: utf-8
+        positional:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - ''
+        - ''
+        - ''
+        - BOTM_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - WELL_TYPE_CODE
+        - ''
+        - BOREHOLE_STAT_CD
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - SURF_LEASE_NUMBER
+        - ''
+        - ''
+        - ''
+        - ''
+        allow_columns:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - BOTM_LEASE_NUMBER
+        - WELL_TYPE_CODE
+        - BOREHOLE_STAT_CD
+        - SURF_LEASE_NUMBER
+        dictionary_ref: borehole.html
+        dictionary_names: *id001
+  BoreholeRawData.zip:
+    required: true
+    members:
+      BoreholeRawData/mv_boreholes_all.txt:
+        encoding: utf-8
+        header:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - BOTM_LEASE_NUMBER
+        - BOTM_AREA_CODE
+        - BOTM_BLOCK_NUMBER
+        - COMPANY_NAME
+        - WELL_SPUD_DATE
+        - BH_TOTAL_MD
+        - WELL_BORE_TVD
+        - WELL_TD_SS
+        - RKB_ELEVATION
+        - WELL_BP_ST_KICKOFF_MD
+        - TOTAL_DEPTH_DATE
+        - BOREHOLE_STAT_DT
+        - WELL_TYPE_CODE
+        - BOREHOLE_STAT_CD
+        - CASING_CUT_CODE
+        - WATER_DEPTH
+        - UNDWTR_COMP_STUB
+        - SURF_LEASE_NUMBER
+        - SURF_LATITUDE
+        - SURF_LONGITUDE
+        - BOTM_LATITUDE
+        - BOTM_LONGITUDE
+        - REGION_CODE
+        allow_columns:
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NAME_SUFFIX
+        - BOTM_LEASE_NUMBER
+        - SURF_LEASE_NUMBER
+        - WELL_TYPE_CODE
+        - BOREHOLE_STAT_CD
+        - BOTM_AREA_CODE
+        - BOTM_BLOCK_NUMBER
+        - WELL_SPUD_DATE
+        - BH_TOTAL_MD
+        - WELL_BORE_TVD
+        - RKB_ELEVATION
+        - TOTAL_DEPTH_DATE
+        - BOREHOLE_STAT_DT
+        - WATER_DEPTH
+        - SURF_LATITUDE
+        - SURF_LONGITUDE
+        - BOTM_LATITUDE
+        - BOTM_LONGITUDE
+        dictionary_ref: borehole.html
+        dictionary_names:
+          API_WELL_NUMBER: API Well Number
+          WELL_NAME: Well Name
+          WELL_NAME_SUFFIX: Well Name Suffix
+          BOTM_LEASE_NUMBER: Bottom Lease Number
+          SURF_LEASE_NUMBER: Surface Lease Number
+          WELL_TYPE_CODE: Type Code
+          BOREHOLE_STAT_CD: Status Code
+          BOTM_AREA_CODE: Bottom Area
+          BOTM_BLOCK_NUMBER: Bottom Block
+          WELL_SPUD_DATE: Spud Date
+          BH_TOTAL_MD: BH Total MD
+          WELL_BORE_TVD: True Vertical Depth
+          RKB_ELEVATION: RKB Elevation
+          TOTAL_DEPTH_DATE: Total Depth Date
+          BOREHOLE_STAT_DT: Status Date
+          WATER_DEPTH: Water Depth
+          SURF_LATITUDE: Surface Latitude
+          SURF_LONGITUDE: Surface Longitude
+          BOTM_LATITUDE: Bottom Latitude
+          BOTM_LONGITUDE: Bottom Longitude
+  compalldelimit.zip:
+    required: true
+    members:
+      compalldelimit.txt:
+        encoding: cp1252
+        positional:
+        - MMS_COMPANY_NUM
+        - MMS_START_DATE
+        - BUS_ASC_NAME
+        - SORT_NAME
+        - MMS_TERM_DATE
+        - PAC_REGION_CODE
+        - GOM_REGION_CODE
+        - ALASKA_RGN_CODE
+        - ATL_REGION_CODE
+        - DUNS_NUMBER
+        - TERM_ACTN_EFF_DT
+        - TERMINATION_CODE
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        allow_columns:
+        - MMS_COMPANY_NUM
+        - MMS_START_DATE
+        - BUS_ASC_NAME
+        - SORT_NAME
+        - MMS_TERM_DATE
+        - PAC_REGION_CODE
+        - GOM_REGION_CODE
+        - ALASKA_RGN_CODE
+        - ATL_REGION_CODE
+        - DUNS_NUMBER
+        - TERM_ACTN_EFF_DT
+        - TERMINATION_CODE
+        deny_columns:
+        - DIVISION_NAME
+        - LINE_1_ADDRESS
+        - LINE_2_ADDRESS
+        - CITY_NAME
+        - POSTAL_ST_CODE
+        - ZIP_CODE
+        - COUNTRY_NAME
+        dictionary_ref: companyAll.html
+  lseowndelimit.zip:
+    required: true
+    members:
+      lseowndelimit.txt:
+        encoding: utf-8
+        positional:
+        - OWNER_ALIQUOT_CD
+        - SN_LSE_OWNER
+        - ASGN_APRV_DATE
+        - MMS_START_DATE
+        - MMS_COMPANY_NUM
+        - LEASE_NUMBER
+        - ASGN_STATUS_CODE
+        - ASGN_TERM_DATE
+        - OWNER_GROUP_CODE
+        - ASSIGNMENT_PCT
+        - ASGN_EFF_DATE
+        allow_columns:
+        - OWNER_ALIQUOT_CD
+        - SN_LSE_OWNER
+        - ASGN_APRV_DATE
+        - MMS_START_DATE
+        - MMS_COMPANY_NUM
+        - LEASE_NUMBER
+        - ASGN_STATUS_CODE
+        - ASGN_TERM_DATE
+        - OWNER_GROUP_CODE
+        - ASSIGNMENT_PCT
+        - ASGN_EFF_DATE
+        deny_columns: []
+        dictionary_ref: leaseOwner.html
+  apichgdelimit.zip:
+    required: true
+    members:
+      apichgdelimit.txt:
+        encoding: utf-8
+        positional:
+        - API_WELL_NUMBER
+        - BH_ACTV_TYPE_CD
+        - PREV_API_NUMBER
+        - ACTIVITY_DATE
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        allow_columns:
+        - API_WELL_NUMBER
+        - BH_ACTV_TYPE_CD
+        - PREV_API_NUMBER
+        - ACTIVITY_DATE
+        deny_columns: []
+        dictionary_ref: apiChanges.html
+  eWellEORRawData.zip:
+    required: true
+    members:
+      eWellEORRawData/mv_eor_casingcutcodes.txt:
+        encoding: utf-8
+        header: &id002
+        - VALUE
+        - ABBREVIATION
+        allow_columns: *id002
+        dictionary_ref: RawData.html
+        dictionary_names:
+          VALUE: VALUE
+          ABBREVIATION: ABBREVIATION
+      eWellEORRawData/mv_eor_completions.txt:
+        encoding: utf-8
+        header: &id003
+        - SN_EOR_FK
+        - SN_EOR_WELL_COMP
+        - INTERVAL
+        - COMP_LEASE_NUMBER
+        - COMP_AREA_CODE
+        - COMP_BLOCK_NUMBER
+        - COMP_STATUS_CD
+        allow_columns: *id003
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_completionsprop.txt:
+        encoding: cp1252
+        header: &id004
+        - SN_EOR_FK
+        - SN_EOR_WELL_COMP
+        - COMP_LATITUDE
+        - COMP_LONGITUDE
+        - COMP_RSVR_NAME
+        - COMP_INTERVAL_NAME
+        allow_columns: *id004
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_compstatcodes.txt:
+        encoding: utf-8
+        header: &id005
+        - VALUE
+        - VALUE_DESC
+        allow_columns: *id005
+        dictionary_ref: RawData.html
+        dictionary_names:
+          VALUE: VALUE
+      eWellEORRawData/mv_eor_cut_casings.txt:
+        encoding: utf-8
+        header: &id006
+        - SN_EOR_FK
+        - CASING_SIZE
+        - CASING_CUT_DATE
+        - CASING_CUT_METHOD_CD
+        - CASING_CUT_DEPTH
+        - CASING_CUT_MDL_IND
+        allow_columns: *id006
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_geomarkers.txt:
+        encoding: cp1252
+        header: &id007
+        - SN_EOR_FK
+        - GEO_MARKER_NAME
+        - TOP_MD
+        allow_columns: *id007
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_hcbearing_intvl_comps.txt:
+        encoding: utf-8
+        header: &id008
+        - SN_EOR_WELL_COMP_FK
+        - SN_HC_BEARING_INTVL_FK
+        allow_columns: *id008
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_hydrobarbtypecodes.txt:
+        encoding: utf-8
+        header: &id009
+        - VALUE
+        - VALUE_DESC
+        allow_columns: *id009
+        dictionary_ref: RawData.html
+        dictionary_names:
+          VALUE: VALUE
+      eWellEORRawData/mv_eor_mainquery.txt:
+        encoding: cp1252
+        header: &id010
+        - SN_EOR
+        - EOR_OPERATION_CD
+        - API_WELL_NUMBER
+        - WELL_NAME
+        - WELL_NM_ST_SFIX
+        - WELL_NM_BP_SFIX
+        - MMS_COMPANY_NUM
+        - BUS_ASC_NAME
+        - BOTM_LEASE_NUMBER
+        - BOTM_AREA_CODE
+        - BOTM_BLOCK_NUMBER
+        - SURF_LEASE_NUMBER
+        - SURF_AREA_CODE
+        - SURF_BLOCK_NUMBER
+        - BOREHOLE_STAT_CD
+        - BOREHOLE_STAT_DT
+        - OPERATIONAL_NARRATIVE
+        - SUBSEA_COMPLETION_FLAG
+        - SUBSEA_PROTECTION_FLAG
+        - SUBSEA_COMPLETION_BUOY_FLAG
+        - SUBSEA_TREE_HEIGHT_AML
+        - OBSTRUCTION_PROTECTION_FLAG
+        - OBSTRUCTION_TYPE_CD
+        - OBSTRUCTION_BUOY_FLAG
+        - OBSTRUCTION_HEIGHT_AML
+        allow_columns: *id010
+        dictionary_ref: RawData.html
+        dictionary_names:
+          API_WELL_NUMBER: API_WELL_NUMBER
+          WELL_NAME: WELL_NAME
+          WELL_NM_ST_SFIX: WELL_NM_ST_SFIX
+          WELL_NM_BP_SFIX: WELL_NM_BP_SFIX
+          MMS_COMPANY_NUM: MMS_COMPANY_NUM
+          BUS_ASC_NAME: BUS_ASC_NAME
+          BOTM_LEASE_NUMBER: BOTM_LEASE_NUMBER
+          BOTM_AREA_CODE: BOTM_AREA_CODE
+          BOTM_BLOCK_NUMBER: BOTM_BLOCK_NUMBER
+          SURF_LEASE_NUMBER: SURF_LEASE_NUMBER
+          SURF_AREA_CODE: SURF_AREA_CODE
+          SURF_BLOCK_NUMBER: SURF_BLOCK_NUMBER
+          BOREHOLE_STAT_CD: BOREHOLE_STAT_CD
+          BOREHOLE_STAT_DT: BOREHOLE_STAT_DT
+          SUBSEA_COMPLETION_FLAG: SUBSEA_COMPLETION_FLAG
+          SUBSEA_PROTECTION_FLAG: SUBSEA_PROTECTION_FLAG
+          SUBSEA_COMPLETION_BUOY_FLAG: SUBSEA_COMPLETION_BUOY_FLAG
+          SUBSEA_TREE_HEIGHT_AML: SUBSEA_TREE_HEIGHT_AML
+          OBSTRUCTION_PROTECTION_FLAG: OBSTRUCTION_PROTECTION_FLAG
+          OBSTRUCTION_TYPE_CD: OBSTRUCTION_TYPE_CD
+          OBSTRUCTION_BUOY_FLAG: OBSTRUCTION_BUOY_FLAG
+          OBSTRUCTION_HEIGHT_AML: OBSTRUCTION_HEIGHT_AML
+      eWellEORRawData/mv_eor_mainquery_prop.txt:
+        encoding: utf-8
+        header: &id011
+        - SN_EOR
+        - BOTM_LONGITUDE
+        - BOTM_LATITUDE
+        - BH_TOTAL_MD
+        - WELL_BORE_TVD
+        - WELL_BP_ST_KICKOFF_MD
+        allow_columns: *id011
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_eor_operationcodes.txt:
+        encoding: utf-8
+        header: &id012
+        - VALUE
+        - ABBREVIATION
+        allow_columns: *id012
+        dictionary_ref: RawData.html
+        dictionary_names:
+          VALUE: VALUE
+          ABBREVIATION: ABBREVIATION
+      eWellEORRawData/mv_eor_perf_intervals.txt:
+        encoding: utf-8
+        header: &id013
+        - SN_EOR_WELL_COMP_FK
+        - PERF_TOP_MD
+        - PERF_BOTM_TVD
+        - PERF_TOP_TVD
+        - PERF_BASE_MD
+        allow_columns: *id013
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+      eWellEORRawData/mv_hcbearing_intervals.txt:
+        encoding: utf-8
+        header: &id014
+        - SN_HC_BEARING_INTVL
+        - SN_EOR_FK
+        - INTERVAL_NAME
+        - TOP_MD
+        - BOTTOM_MD
+        - HYDROCARBON_TYPE_CD
+        allow_columns: *id014
+        dictionary_ref: RawData.html
+        dictionary_names: {}
+  APIRawData.zip:
+    required: false
+    members: {}
+  eWellWARRawData.zip:
+    required: false
+    members: {}
+dictionaries:
+- borehole.html
+- leaseOwner.html
+- companyAll.html
+- apiChanges.html
+- eWellEOR_FieldDefinitions.html
+- eWellWAR_FieldDefinitions.html
+- RawData.html
+- Disclaimer.html
+max_expanded_bytes: 2000000000

@@ -1,0 +1,7 @@
+run: {name: webnlg10}
+corpus: {path: data/benchmarks/webnlg/webnlg_30.txt, format: webnlg_txt, limit: 10}
+chunk: {max_chars: 20000}
+extract: {backend: edc}
+canon: {schema_path: third_party/edc/schemas/webnlg_schema.csv, few_shot: webnlg, max_minutes: 20}
+eval: {webnlg_reference: data/benchmarks/webnlg/webnlg_30.ref.txt}
+ablation: A4

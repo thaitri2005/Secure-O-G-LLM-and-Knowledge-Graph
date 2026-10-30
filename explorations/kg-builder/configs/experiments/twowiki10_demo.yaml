@@ -1,0 +1,4 @@
+demo:
+  name: twowiki10_demo
+  levels: [A0, A1, A4]
+  runs: [configs/experiments/twowiki10.yaml]

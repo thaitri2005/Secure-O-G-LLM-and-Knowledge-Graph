@@ -1,0 +1,10 @@
+{
+ "corpus_sha256": "ba824c24453f698f9c0e38a87f7ee047fb12c0ce515d849c0b2594175dbb3849",
+ "format": "kgb.corpus_subset/1",
+ "ids_sha256": "19ddb845d2b5528d349398332e17a3b88fe78d18a9e43b31f8bbf58cd6426bfc",
+ "llm_calls": 0,
+ "n": 25,
+ "output_sha256": "1126bf1fb80c1806d57b585d1384170d409cd1058f1c8a75b134075928dad010",
+ "part": "dev",
+ "split_sha256": "8a9204bac181dc0d56dbdeeaf460e5035663116fa452a9d71256dcaf95298da0"
+}

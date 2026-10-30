@@ -1,0 +1,166 @@
+{
+ "items": [
+  {
+   "key": "webnlg_0001#c000",
+   "triples": [
+    [
+     "Adolfo_Suarez_Madrid-Barajas_Airport",
+     "operator",
+     "Enaire"
+    ],
+    [
+     "Adolfo_Suarez_Madrid-Barajas_Airport",
+     "location",
+     "Paracuellos_de_Jarama"
+    ],
+    [
+     "Adolfo_Suarez_Madrid-Barajas_Airport",
+     "runwayLength",
+     "3500 (metres)"
+    ],
+    [
+     "Adolfo_Suarez_Madrid-Barajas_Airport",
+     "elevationAboveSeaLevel",
+     "610 (metres)"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0002#c000",
+   "triples": [
+    [
+     "Abraham_A._Ribicoff",
+     "birthPlace",
+     "United_States"
+    ],
+    [
+     "United_States",
+     "ethnicGroup",
+     "African_American"
+    ],
+    [
+     "Abraham_A._Ribicoff",
+     "spouse",
+     "Ruth_Ribicoff"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0003#c000",
+   "triples": [
+    [
+     "Ciudad_Ayala",
+     "leaderName",
+     "Juan_Nolasco"
+    ],
+    [
+     "Ciudad_Ayala",
+     "timezone",
+     "Pacific_Standard_Time_Zone"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0004#c000",
+   "triples": [
+    [
+     "ALCO_RS-3",
+     "length",
+     "17068.8 (millimetres)"
+    ],
+    [
+     "ALCO_RS-3",
+     "powerType",
+     "Diesel-electric_transmission"
+    ],
+    [
+     "ALCO_RS-3",
+     "engine",
+     "V12_engine"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0005#c000",
+   "triples": [
+    [
+     "Bedford_Aerodrome",
+     "location",
+     "Thurleigh"
+    ],
+    [
+     "Bedford_Aerodrome",
+     "serves",
+     "Bedford_Autodrome"
+    ],
+    [
+     "Bedford_Aerodrome",
+     "icaoLocationIdentifier",
+     "EGBF"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0007#c000",
+   "triples": [
+    [
+     "Acharya_Institute_of_Technology",
+     "address",
+     "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+    ],
+    [
+     "Acharya_Institute_of_Technology",
+     "affiliatedWith",
+     "Visvesvaraya_Technological_University"
+    ],
+    [
+     "Acharya_Institute_of_Technology",
+     "establishedYear",
+     "2000"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0008#c000",
+   "triples": [
+    [
+     "Alan_B._Miller_Hall",
+     "owner",
+     "College_of_William_and_Mary"
+    ],
+    [
+     "Alan_B._Miller_Hall",
+     "architect",
+     "Robert_A._M._Stern"
+    ],
+    [
+     "Alan_B._Miller_Hall",
+     "completionDate",
+     "\"1 June 2009\""
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0009#c000",
+   "triples": [
+    [
+     "Liselotte_Grschebina",
+     "bornIn",
+     "Karlsruhe"
+    ],
+    [
+     "Liselotte_Grschebina",
+     "diedIn",
+     "Israel"
+    ],
+    [
+     "Arab_citizens_of_Israel",
+     "ethnicGroup",
+     "Israel"
+    ]
+   ]
+  }
+ ],
+ "mode": "oie",
+ "version": 1
+}

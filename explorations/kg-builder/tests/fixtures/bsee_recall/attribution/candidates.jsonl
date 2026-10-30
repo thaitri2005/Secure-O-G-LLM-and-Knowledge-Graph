@@ -1,0 +1,1 @@
+{"candidate_id":"c_000","chunk_id":"d#c000","evidence":{"char_end":31,"char_start":0,"chunk_id":"d#c000","doc_id":"d","grounding":"exact","text":"Drilled to 100 ft successfully."},"extractor":"guided","extractor_version":"synthetic","object":"100 ft","predicate":"drilled_to","source_doc_id":"d","subject":"well","trigger_relation":null}

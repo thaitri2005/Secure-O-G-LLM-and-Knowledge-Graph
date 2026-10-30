@@ -1,0 +1,5 @@
+run: {name: bsee_text_test_subset_v1_guided}
+corpus: {path: data/benchmarks/bsee_text/v1/test_subset.jsonl, format: jsonl}
+extract: {backend: guided, guided_prompt: configs/prompts/bsee_guided.txt}
+canon: {schema_path: contracts/ontology/bsee.yaml, few_shot: example, max_minutes: 180}
+ablation: A4

@@ -1,0 +1,5 @@
+run: {name: 2wiki10}
+corpus: {path: data/benchmarks/2wiki/2wiki_30_corpus.json, format: wiki_corpus_json, limit: 24}
+extract: {backend: auto}
+canon: {max_minutes: 120}
+ablation: A4

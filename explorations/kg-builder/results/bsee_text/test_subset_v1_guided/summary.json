@@ -1,0 +1,774 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A4"
+ ],
+ "mock": false,
+ "name": "bsee_text_test_subset_v1_guided_demo",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/experiments/bsee_text_test_subset_v1_guided.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "guided",
+      "routes": [
+       {
+        "backend": "guided",
+        "doc_id": "eor_-10441_37e78f36",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-106378_8b6db016",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-106701_93dbc0f4",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-110709_c543c162",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-111190_bf5f7db8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115129_7f61f092",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115965_1bc5d37f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-116446_6cdc069f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-117225_14d568fc",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-117598_649ccce8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-118968_bc3de2d8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-119584_ca8392d9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-121126_77121f26",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-123375_80318692",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-123740_b8fbb4ed",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-124122_63f93a45",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-125705_5e2da512",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-126565_84b0a5fb",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-126963_4cf1485f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-132305_5dd63b49",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-137936_910ef7c0",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-141200_58ebd6ad",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-151231_23dd2d46",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-153193_1cb44328",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-154697_e8f1e681",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-157593_4154806b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-158773_5cb14ed0",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165397_7e84fdbf",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165748_eb51960b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-166906_ddf3eab2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-169333_fcc04c1b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-174092_065bc7f9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-175209_7ab3d938",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-180488_0256a4e8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-180868_bbb62974",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-183053_2531389f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-200983_091a7dba",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-203739_27d06f7b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-203944_26c4b587",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-204443_c33bbff3",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-205910_3a614ea8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-2095_f2a90e24",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-46627_c8788ba2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-48387_268b7e78",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-48472_a0f3a4d2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-53929_9608c4e5",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-63747_d1598053",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-66275_ce78f433",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-79498_761e2a90",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-83553_7787b0dc",
+        "reason": "backend=guided",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 92,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 50,
+      "docs": 50,
+      "duplicate_candidates": 2,
+      "entities": 117,
+      "entities_literal": 6,
+      "er_reduction": 0.008474576271186418,
+      "failed_chunks": 0,
+      "flagged_by_reason": {},
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 4,
+       "exact": 74,
+       "none": 3,
+       "overlap": 2,
+       "window": 9
+      },
+      "grounding": {
+       "exact": 74,
+       "none": 3,
+       "partial": 15
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 0,
+       "cache_misses": 0,
+       "calls": 50,
+       "completion_tokens": 3454,
+       "finish_length": 0,
+       "prompt_tokens": 67411,
+       "seconds": 1765.4
+      },
+      "mentions": 136,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "guided_not_in_text": 15
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.047,
+       "export": 0.093,
+       "extract": 887.734,
+       "ingest": 0.047,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.063
+      },
+      "statements_accepted": 92,
+      "statements_flagged": 0,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 118,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/test_subset_v1_guided/bsee_text_test_subset_v1_guided/A0",
+     "showcase": null,
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "extract": {
+      "backend": "guided",
+      "routes": [
+       {
+        "backend": "guided",
+        "doc_id": "eor_-10441_37e78f36",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-106378_8b6db016",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-106701_93dbc0f4",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-110709_c543c162",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-111190_bf5f7db8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115129_7f61f092",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-115965_1bc5d37f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-116446_6cdc069f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-117225_14d568fc",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-117598_649ccce8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-118968_bc3de2d8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-119584_ca8392d9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-121126_77121f26",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-123375_80318692",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-123740_b8fbb4ed",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-124122_63f93a45",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-125705_5e2da512",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-126565_84b0a5fb",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-126963_4cf1485f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-132305_5dd63b49",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-137936_910ef7c0",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-141200_58ebd6ad",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-151231_23dd2d46",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-153193_1cb44328",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-154697_e8f1e681",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-157593_4154806b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-158773_5cb14ed0",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165397_7e84fdbf",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-165748_eb51960b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-166906_ddf3eab2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-169333_fcc04c1b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-174092_065bc7f9",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-175209_7ab3d938",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-180488_0256a4e8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-180868_bbb62974",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-183053_2531389f",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-200983_091a7dba",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-203739_27d06f7b",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-203944_26c4b587",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-204443_c33bbff3",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-205910_3a614ea8",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-2095_f2a90e24",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-46627_c8788ba2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-48387_268b7e78",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-48472_a0f3a4d2",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-53929_9608c4e5",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-63747_d1598053",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-66275_ce78f433",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-79498_761e2a90",
+        "reason": "backend=guided",
+        "score": null
+       },
+       {
+        "backend": "guided",
+        "doc_id": "eor_-83553_7787b0dc",
+        "reason": "backend=guided",
+        "score": null
+       }
+      ]
+     },
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 92,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 92,
+       "self_canon": 0,
+       "sent": 92,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 50,
+      "docs": 50,
+      "duplicate_candidates": 2,
+      "entities": 114,
+      "entities_literal": 6,
+      "er_reduction": 0.03389830508474578,
+      "failed_chunks": 0,
+      "flagged_by_reason": {
+       "weak_evidence": 3
+      },
+      "ground_rules": {
+       "chunk": 0,
+       "coref": 4,
+       "exact": 74,
+       "none": 3,
+       "overlap": 2,
+       "window": 9
+      },
+      "grounding": {
+       "exact": 74,
+       "none": 3,
+       "partial": 15
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 50,
+       "cache_misses": 0,
+       "calls": 75,
+       "completion_tokens": 4845,
+       "finish_length": 0,
+       "prompt_tokens": 107573,
+       "seconds": 430.4
+      },
+      "mentions": 136,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "guided_not_in_text": 15
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 438.422,
+       "export": 0.016,
+       "extract": 0.781,
+       "ingest": 0.0,
+       "resolve": 11.11,
+       "temporal.tag": 0.0,
+       "validate": 0.015,
+       "viz": 0.031
+      },
+      "statements_accepted": 90,
+      "statements_flagged": 3,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 118,
+      "temporal_statements": 0
+     },
+     "run_dir": "runs/reference/bsee_text/test_subset_v1_guided/bsee_text_test_subset_v1_guided/A4",
+     "showcase": null,
+     "webnlg": null
+    }
+   },
+   "name": "bsee_text_test_subset_v1_guided"
+  }
+ ]
+}

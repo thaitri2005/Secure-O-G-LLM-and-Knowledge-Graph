@@ -1,0 +1,41 @@
+{"char_end":61,"char_start":55,"chunk_id":"webnlg_0009#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_098501031d39","surface":"Israel"}
+{"char_end":56,"char_start":20,"chunk_id":"webnlg_0001#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_0c16227581e7","surface":"Adolfo Suarez Madrid-Barajas Airport"}
+{"char_end":91,"char_start":65,"chunk_id":"webnlg_0003#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_107991e9ed04","surface":"Pacific Standard Time Zone"}
+{"char_end":90,"char_start":85,"chunk_id":"webnlg_0000#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_14c9c9fca2fc","surface":"Hubei"}
+{"char_end":10,"char_start":4,"chunk_id":"webnlg_0001#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_21e803652bd2","surface":"Enaire"}
+{"char_end":103,"char_start":79,"chunk_id":"webnlg_0005#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_2cebccc1ce11","surface":"ICAO location identifier"}
+{"char_end":171,"char_start":166,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_36ea34147b77","surface":"India"}
+{"char_end":95,"char_start":90,"chunk_id":"webnlg_0006#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_3c628863fb7d","surface":"Arabs"}
+{"char_end":20,"char_start":7,"chunk_id":"webnlg_0002#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_3dbcc92f73e1","surface":"United States"}
+{"char_end":20,"char_start":0,"chunk_id":"webnlg_0009#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_3e5212f83ccb","surface":"Liselotte Grschebina"}
+{"char_end":21,"char_start":4,"chunk_id":"webnlg_0005#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_484f86b3c43b","surface":"Bedford Aerodrome"}
+{"char_end":116,"char_start":104,"chunk_id":"webnlg_0006#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_491b86ccb016","surface":"Israeli Jews"}
+{"char_end":137,"char_start":133,"chunk_id":"webnlg_0005#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_4b70ab3bbeb6","surface":"EGBF"}
+{"char_end":239,"char_start":202,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_4c1cf6fbce78","surface":"Visvesvaraya Technological University"}
+{"char_end":154,"char_start":141,"chunk_id":"webnlg_0002#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_571290f2907e","surface":"Ruth Ribicoff"}
+{"char_end":125,"char_start":106,"chunk_id":"webnlg_0002#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_59c935e55067","surface":"Abraham A. Ribicoff"}
+{"char_end":61,"char_start":55,"chunk_id":"webnlg_0006#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_5c07ee4a0ec6","surface":"Israel"}
+{"char_end":58,"char_start":27,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_6fe23607e038","surface":"Acharya Institute of Technology"}
+{"char_end":43,"char_start":34,"chunk_id":"webnlg_0005#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_772daf2524ea","surface":"Thurleigh"}
+{"char_end":120,"char_start":79,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_803afa17ca12","surface":"Acharya Dr. Sarvapalli Radhakrishnan Road"}
+{"char_end":19,"char_start":0,"chunk_id":"webnlg_0008#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_8a94cc50ac79","surface":"Alan B. Miller Hall"}
+{"char_end":90,"char_start":67,"chunk_id":"webnlg_0009#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_8c39c922c8dd","surface":"Arab citizens of Israel"}
+{"char_end":42,"char_start":33,"chunk_id":"webnlg_0006#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_9183ad18aa4e","surface":"Karlsruhe"}
+{"char_end":106,"char_start":96,"chunk_id":"webnlg_0004#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_95a2a2c33085","surface":"V12 engine"}
+{"char_end":155,"char_start":146,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_9e3703e548ca","surface":"Bangalore"}
+{"char_end":12,"char_start":0,"chunk_id":"webnlg_0000#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_a038ec0bb688","surface":"Nie Haisheng"}
+{"char_end":20,"char_start":0,"chunk_id":"webnlg_0006#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_ad7597dfee22","surface":"Liselotte Grschebina"}
+{"char_end":99,"char_start":92,"chunk_id":"webnlg_0000#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_b157fe6c7636","surface":"Zaoyang"}
+{"char_end":61,"char_start":34,"chunk_id":"webnlg_0008#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_bb4f5122af90","surface":"College of William and Mary"}
+{"char_end":73,"char_start":56,"chunk_id":"webnlg_0005#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_be410c9b97cc","surface":"Bedford Autodrome"}
+{"char_end":77,"char_start":63,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_beb0926dab1e","surface":"Soldevanahalli"}
+{"char_end":42,"char_start":33,"chunk_id":"webnlg_0009#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_c8386e9d9e17","surface":"Karlsruhe"}
+{"char_end":90,"char_start":69,"chunk_id":"webnlg_0001#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_c8da20b80516","surface":"Paracuellos de Jarama"}
+{"char_end":68,"char_start":42,"chunk_id":"webnlg_0000#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_cff91f60ba60","surface":"People's Republic of China"}
+{"char_end":27,"char_start":18,"chunk_id":"webnlg_0004#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_d39c9006d573","surface":"ALCO RS-3"}
+{"char_end":28,"char_start":16,"chunk_id":"webnlg_0003#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_d4c734141852","surface":"Ciudad Ayala"}
+{"char_end":96,"char_start":79,"chunk_id":"webnlg_0008#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_da16eec280df","surface":"Robert A.M. Stern"}
+{"char_end":75,"char_start":58,"chunk_id":"webnlg_0002#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_e75c31bcc6e6","surface":"African Americans"}
+{"char_end":57,"char_start":45,"chunk_id":"webnlg_0003#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_f9b26a85769c","surface":"Juan Nolasco"}
+{"char_end":89,"char_start":61,"chunk_id":"webnlg_0004#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_fa8f9d10f6f6","surface":"diesel-electric transmission"}
+{"char_end":144,"char_start":122,"chunk_id":"webnlg_0007#c000","extractor_version":"kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b","mention_id":"m_fc875531d092","surface":"Hessarghatta Main Road"}

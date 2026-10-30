@@ -1,0 +1,16 @@
+{
+ "created_at": "2026-10-28T07:45:31.535697+00:00",
+ "dependencies": {
+  "seals/annotator_a.json": "b4ad20b57a999d3a497792caedfda3c25753f9ef82d0e417e5f358987bdc88be"
+ },
+ "files": {
+  "annotations/annotator_b/batch_01.jsonl": "eff1d8f193f44c666fb58319dbe99268a9a3306bbe6322188c5fe34bb98e3272",
+  "annotations/annotator_b/batch_02.jsonl": "ba93350e04e58a4b415e4bdb06e784dd6b42b5aee2ef2e8b9334191af4891634",
+  "annotations/annotator_b/batch_03.jsonl": "3b1b0f9e08a0bdc66bebb5819997027c503e305e8d0575cb6f37d41c8572ff0d",
+  "annotations/annotator_b/batch_04.jsonl": "25723351d8ddb41ba5c2f66dc6d5a990d003cf8b841e9bb079770d5c73724d8a",
+  "annotations/annotator_b/batch_05.jsonl": "ae0e71c7e080c583caba865776caeaca493cc250dda6853a8800ac1668afec86"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "5f497c8ea45896762e14a15458653f2bb13115b6764c71ab9fd466690118b984",
+ "role": "annotator_b"
+}

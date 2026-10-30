@@ -1,0 +1,6 @@
+{
+ "boreholes": [["012345678900", "00127"], ["012345678901", "00127"], ["012345679000", "G22236"], ["bad", "G22236"]],
+ "companies": [["00001", "Synthetic Operator"], ["00001", "Synthetic Operator"], ["bad", "Synthetic Invalid"]],
+ "ownership": [["00127", "00001", "50"], ["G22236", "00001", "50"], ["G22236", "99999", "25"]],
+ "reports": [["-1", "012345678900", "C", "Synthetic narrative for table hashing only."], ["-2", "012345679000", "A", "Synthetic alternate narrative."], ["-2", "012345679000", "B", "Synthetic conflicting narrative."], ["-3", "999999999999", "C", "Synthetic orphan narrative."]]
+}

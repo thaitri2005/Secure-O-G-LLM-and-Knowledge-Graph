@@ -1,0 +1,42 @@
+{
+ "api10_overlap": 0,
+ "api_not_joined": 0,
+ "chunks": 100,
+ "documents": 100,
+ "duplicate_texts": 65,
+ "eligible": 1291,
+ "eligible_by_split": {
+  "dev": 307,
+  "test": 984
+ },
+ "eligible_by_stratum": {
+  "dev": {
+   "A": 137,
+   "C": 67,
+   "O": 66,
+   "W": 37
+  },
+  "test": {
+   "A": 498,
+   "C": 207,
+   "O": 181,
+   "W": 98
+  }
+ },
+ "empty": 21826,
+ "llm_calls": 0,
+ "n_dev": 25,
+ "n_gold": 100,
+ "n_pilot": 50,
+ "n_test": 75,
+ "per_api10_removed": 436,
+ "pii_flagged": 106,
+ "planning_sample": 3,
+ "rows_read": 45581,
+ "shortfalls": {
+  "dev": 0,
+  "test": 0
+ },
+ "too_long": 7,
+ "too_short": 21847
+}

@@ -1,0 +1,229 @@
+{
+ "api_key": "lm-studio",
+ "base_url": "http://127.0.0.1:63098/v1",
+ "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+ "enrich_schema": false,
+ "few_shot_dir": "third_party\\edc\\few_shot_examples\\webnlg",
+ "items": [
+  {
+   "key": "webnlg_0000#c000",
+   "text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.",
+   "triples": [
+    [
+     "Nie Haisheng",
+     "was born in",
+     "Zaoyang"
+    ],
+    [
+     "Nie Haisheng",
+     "was born in",
+     "Hubei"
+    ],
+    [
+     "Nie Haisheng",
+     "is from",
+     "People's Republic of China"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0001#c000",
+   "text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level.",
+   "triples": [
+    [
+     "Adolfo Suarez Madrid-Barajas Airport",
+     "is based in",
+     "Paracuellos de Jarama"
+    ],
+    [
+     "Adolfo Suarez Madrid-Barajas Airport",
+     "is operated by",
+     "Enaire"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0002#c000",
+   "text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff.",
+   "triples": [
+    [
+     "Abraham A. Ribicoff",
+     "was married to",
+     "Ruth Ribicoff"
+    ],
+    [
+     "African Americans",
+     "are ethnic group in",
+     "United States"
+    ],
+    [
+     "Abraham A. Ribicoff",
+     "was born in",
+     "United States"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0003#c000",
+   "text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone.",
+   "triples": [
+    [
+     "Ciudad Ayala",
+     "has timezone",
+     "Pacific Standard Time Zone"
+    ],
+    [
+     "Ciudad Ayala",
+     "is led by",
+     "Juan Nolasco"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0004#c000",
+   "text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine.",
+   "triples": [
+    [
+     "ALCO RS-3",
+     "has length",
+     "17068.8 millimetres"
+    ],
+    [
+     "ALCO RS-3",
+     "has engine type",
+     "V12 engine"
+    ],
+    [
+     "ALCO RS-3",
+     "has transmission type",
+     "diesel-electric transmission"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0005#c000",
+   "text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome. The ICAO location identifier for the Bedford Aerodrome is EGBF.",
+   "triples": [
+    [
+     "Bedford Aerodrome",
+     "has ICAO location identifier",
+     "EGBF"
+    ],
+    [
+     "Bedford Aerodrome",
+     "serves",
+     "Bedford Autodrome"
+    ],
+    [
+     "Bedford Aerodrome",
+     "is located in",
+     "Thurleigh"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0006#c000",
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.",
+   "triples": [
+    [
+     "Liselotte Grschebina",
+     "was born in",
+     "Karlsruhe"
+    ],
+    [
+     "Israel",
+     "has ethnic group",
+     "Israeli Jews"
+    ],
+    [
+     "Liselotte Grschebina",
+     "died in",
+     "Israel"
+    ],
+    [
+     "Israel",
+     "has ethnic group",
+     "Arabs"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0007#c000",
+   "text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000.",
+   "triples": [
+    [
+     "Acharya Institute of Technology",
+     "is affiliated with",
+     "Visvesvaraya Technological University"
+    ],
+    [
+     "Acharya Institute of Technology",
+     "is located on",
+     "Acharya Dr. Sarvapalli Radhakrishnan Road"
+    ],
+    [
+     "Acharya Institute of Technology",
+     "is located in",
+     "India"
+    ],
+    [
+     "Acharya Institute of Technology",
+     "is located near",
+     "Hessarghatta Main Road"
+    ],
+    [
+     "Acharya Institute of Technology",
+     "is located in",
+     "Bangalore"
+    ],
+    [
+     "Acharya Institute of Technology",
+     "is located in",
+     "Soldevanahalli"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0008#c000",
+   "text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009.",
+   "triples": [
+    [
+     "Alan B. Miller Hall",
+     "was designed by",
+     "Robert A.M. Stern"
+    ],
+    [
+     "Alan B. Miller Hall",
+     "is owned by",
+     "College of William and Mary"
+    ]
+   ]
+  },
+  {
+   "key": "webnlg_0009#c000",
+   "text": "Liselotte Grschebina was born in Karlsruhe and died in Israel. The Arab citizens of Israel is an ethnic group in Israel.",
+   "triples": [
+    [
+     "Arab citizens of Israel",
+     "is an ethnic group in",
+     "Israel"
+    ],
+    [
+     "Liselotte Grschebina",
+     "was born in",
+     "Karlsruhe"
+    ],
+    [
+     "Liselotte Grschebina",
+     "died in",
+     "Israel"
+    ]
+   ]
+  }
+ ],
+ "model": "qwen3.6-35b-a3b",
+ "net_log": "runs/reference/ablation_sentence_grounding/webnlg10_kggen/A2/net_edc.jsonl",
+ "schema_csv": "runs/reference/ablation_sentence_grounding/webnlg10_kggen/A2/edc/schema.csv",
+ "templates_dir": "third_party\\edc\\prompt_templates",
+ "version": 1
+}

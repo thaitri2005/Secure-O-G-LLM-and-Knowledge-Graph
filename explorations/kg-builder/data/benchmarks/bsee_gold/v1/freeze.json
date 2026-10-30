@@ -1,0 +1,34 @@
+{
+ "annotators": [
+  "annotator_a",
+  "annotator_b"
+ ],
+ "batch_size": 20,
+ "checked_absent": [],
+ "corpus_sha256": "ba824c24453f698f9c0e38a87f7ee047fb12c0ce515d849c0b2594175dbb3849",
+ "created_at": "2026-10-28T07:45:30.973763+00:00",
+ "format": "kgb.well_freeze/1",
+ "frozen_inputs": {
+  "configs/experiments/bsee_eval.yaml": "a61486118b88a458c04b0390d344a8222c71ed93c1b1e345df5e9c5472fe760d",
+  "contracts/ontology/bsee.yaml": "8b35dc56ba8e4e87f7f81ed2b8f5354ff0c2afa7d517cbf18809507365d699c3",
+  "src/kgbuilder/core/well_facts.py": "3ac287f526fa521824bad11375b3fc0977e867841af5e724e695c8ff914a11e8",
+  "src/kgbuilder/core/well_values.py": "bdc1be14eb09a39d4564290a852b8672f3889aa69bb59156816e9d0e74c6be8b",
+  "src/kgbuilder/evaluation/well_rules.py": "d198a854f83992a838f90b6ec714cda3940b618a2f90ee37eaa7c308049d3518"
+ },
+ "n_dev": 25,
+ "n_gold": 100,
+ "n_test": 75,
+ "packets": {
+  "packets/batch_01.jsonl": "e86e95b9dddfef3dbc4816cf11ede69e128ceea4a817083bcd913a5cb2380a4b",
+  "packets/batch_02.jsonl": "859124ed6b632baea4c8007e2761bb3da844853a2d38f10cf48fd46da59552c3",
+  "packets/batch_03.jsonl": "28b4e5972d37b8c3a0aba2b5f020b5d1f0483d2b78d0ccfff7ea79e010a67300",
+  "packets/batch_04.jsonl": "8f5d868010af082692950a3a02f64160f9af09926d7043181de4a4a787576e9d",
+  "packets/batch_05.jsonl": "27a0a052a1eb29fd8f5704a7d01edb17cf19d7df44b28313f008a882e71df5df"
+ },
+ "protocol": {
+  "protocol/guideline.md": "46aaa71c6f5729fe911c6d3d0d2ff2afa06fa4adbb89891188e3234240222f36"
+ },
+ "seed": 42,
+ "split_sha256": "8a9204bac181dc0d56dbdeeaf460e5035663116fa452a9d71256dcaf95298da0",
+ "statement": "re-sealed for publication; label content identical"
+}

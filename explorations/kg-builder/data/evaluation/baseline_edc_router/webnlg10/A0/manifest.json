@@ -1,0 +1,95 @@
+{
+ "config": {
+  "ablation": "A0",
+  "canon": {
+   "edc_python": ".venvs\\edc\\Scripts\\python.exe",
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "few_shot": "webnlg",
+   "max_minutes": 20,
+   "schema_path": "third_party\\edc\\schemas\\webnlg_schema.csv"
+  },
+  "chunk": {
+   "max_chars": 20000
+  },
+  "corpus": {
+   "format": "webnlg_txt",
+   "limit": 10,
+   "path": "data/benchmarks/webnlg/webnlg_30.txt"
+  },
+  "eval": {
+   "showcase_gold_dir": null,
+   "showcase_queries": null,
+   "webnlg_reference": "data/benchmarks/webnlg/webnlg_30.ref.txt"
+  },
+  "extract": {
+   "backend": "edc",
+   "max_failed_chunk_ratio": 0.2,
+   "route_tau": 0.33
+  },
+  "flags": {},
+  "judge": {
+   "max_tokens": 8
+  },
+  "llm": {
+   "base_url": "http://127.0.0.1:1234/v1",
+   "cache": "readonly",
+   "cache_path": ".cache\\kgb\\llm_cache.jsonl",
+   "max_concurrency": 2,
+   "max_tokens": 2048,
+   "min_context": 8192,
+   "model": "qwen3.6-35b-a3b",
+   "profile": "lmstudio",
+   "replay_logs": [
+    "data/fixtures/llm/*.jsonl"
+   ],
+   "request_mode": "completions_chatml",
+   "timeout_s": 600
+  },
+  "neo4j": {
+   "batch_size": 500,
+   "database": "neo4j",
+   "uri": "bolt://127.0.0.1:7687",
+   "user": "neo4j"
+  },
+  "resolve": {
+   "alias_rules": true,
+   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+   "method": "semhash",
+   "semhash_threshold": 0.95
+  },
+  "run": {
+   "name": "webnlg10"
+  },
+  "validate": {
+   "min_grounding": "partial"
+  }
+ },
+ "config_hash": "79bd3e300fd53b01f59675e7a88ea063e9790c8a610b23089210c3fd1e341573",
+ "corpus_hash": "8f102157205ce0e619075acee7f4028654afe1bbe8a250239ef180c99e1d0bbe",
+ "exit_code": 0,
+ "finished_at": "2026-10-21T10:06:30.027745+00:00",
+ "flags": {
+  "canon": false,
+  "judge": false,
+  "resolve": false,
+  "temporal": false,
+  "validate": false
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 0.0,
+  "export": 0.015,
+  "extract": 6.016,
+  "ingest": 0.016,
+  "resolve": 0.0,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.016
+ },
+ "started_at": "2026-10-21T10:06:23.976831+00:00",
+ "upstream": {
+  "edc": "02aad17",
+  "kg-gen": "6259b4c"
+ },
+ "version": "0.1.0"
+}

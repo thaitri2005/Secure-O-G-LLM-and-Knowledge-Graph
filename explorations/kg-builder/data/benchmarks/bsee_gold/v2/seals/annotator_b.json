@@ -1,0 +1,22 @@
+{
+ "created_at": "2026-10-28T11:39:33.883173+00:00",
+ "dependencies": {
+  "seals/annotator_a.json": "9bc7fd499b1b39fb3244322889998b0362f3f93bc6fb8fcc2157b99975efe1d7"
+ },
+ "files": {
+  "annotations/annotator_b/batch_01.jsonl": "1d590b6d44a1bb6835a7be5145debb23bd9e2816912249b27f820613d474adc9",
+  "annotations/annotator_b/batch_02.jsonl": "d2549c7403c8f424480ad02f3bb214ec0140006331739a604027d9f88cc02348",
+  "annotations/annotator_b/batch_03.jsonl": "bd2b6de48d5e1bdcf43834fb132dc75e0e8c09cf7ac4fcdf56b0e3933488cf9c",
+  "annotations/annotator_b/batch_04.jsonl": "b4db13407b9af046ea068fd823f966e9cdcad6231124baa7ae92c1f39ff3858a",
+  "annotations/annotator_b/batch_05.jsonl": "61bf00f3de0cbb0b25d480b28d10370c07cf2a5a128d9352dd3b6c7870879ea7",
+  "annotations/annotator_b/batch_06.jsonl": "8a0681a5ffae516a729138ff2e2a1a2d3339fd816d65d3f81594bf31cfc095dd",
+  "annotations/annotator_b/batch_07.jsonl": "715567bf9545526a33c40cc0b4c97de486e90dcc3cdc84016916c6199c6cd7e8",
+  "annotations/annotator_b/batch_08.jsonl": "f70ecea1f1ed61fe6ff5afe2cfb0a8f61217b45fb9d3a6846df487e1f6317790",
+  "annotations/annotator_b/batch_09.jsonl": "53c7a28ac8ff9d9bb19ae32dabfe356e13da385e8c43f580c7575b157663f055",
+  "annotations/annotator_b/batch_10.jsonl": "102ab2f1b278550e3772b7b3402a675356520dd161be340f2752dddb8f98b7ae",
+  "annotations/annotator_b/batch_11.jsonl": "603c5a783625a303cfa6bb5cb8fe7b624754c6e77f481c047957c445e2658a45"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "62bc4f5cf1538353df1a2e00899313c36520e3db21845bec35261dc83bed721e",
+ "role": "annotator_b"
+}

@@ -1,0 +1,4475 @@
+{
+ "items": [
+  {
+   "definitions": {
+    "are located at depth range": "The subject entities are situated within the vertical depth interval specified by the object entity.",
+    "completed as": "The subject entity was finished or configured as the type of completion specified by the object entity.",
+    "drilled to total depth of": "The subject entity was drilled to the total depth specified by the object entity.",
+    "has TVD of": "The subject entity has a True Vertical Depth (TVD) specified by the object entity.",
+    "is at depth of": "The subject entity is positioned at the specific depth specified by the object entity.",
+    "is in formation of": "The subject entity is located within or associated with the geological formation specified by the object entity.",
+    "used mud of type": "The subject entity utilized the specific type of drilling fluid (mud) specified by the object entity during operations.",
+    "was run to": "The subject entity was lowered or installed into the wellbore reaching the destination specified by the object entity.",
+    "were performed with": "The subject entity involved the use of the tool, equipment, or method specified by the object entity during its execution."
+   },
+   "key": "eor_-10441_37e78f36#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.6901803016662598,
+      "drilled_to": 0.744082510471344,
+      "perforated_interval": 0.6303454041481018,
+      "reached_td": 0.7105584740638733,
+      "set_casing_at": 0.6400517821311951
+     },
+     "canonical": [
+      "Wellbore",
+      "reached_td",
+      "8675-ft MD"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5809926986694336,
+      "drilled_to": 0.5694170594215393,
+      "perforated_interval": 0.5885387659072876,
+      "reached_td": 0.6510257720947266,
+      "set_plug_at": 0.6070070862770081
+     },
+     "canonical": [
+      "perforations",
+      "perforated_interval",
+      "8439-8453-ft MD"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6331563591957092,
+      "drilled_to": 0.5660799145698547,
+      "reached_td": 0.6470446586608887,
+      "set_casing_at": 0.5651738047599792,
+      "set_plug_at": 0.6429059505462646
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5809926986694336,
+      "drilled_to": 0.5694170594215393,
+      "perforated_interval": 0.5885387659072876,
+      "reached_td": 0.6510257720947266,
+      "set_plug_at": 0.6070070862770081
+     },
+     "canonical": [
+      "perforations",
+      "perforated_interval",
+      "8400-8430-ft MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5770001411437988,
+      "cut_at": 0.5197224020957947,
+      "has_well_status": 0.3980695307254791,
+      "perforated_interval": 0.5015680193901062,
+      "set_plug_at": 0.44954022765159607
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6188405156135559,
+      "cut_at": 0.5664289593696594,
+      "drilled_to": 0.5837478041648865,
+      "operated_by": 0.5636997818946838,
+      "reached_td": 0.5455667972564697
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5685672163963318,
+      "drilled_to": 0.5444916486740112,
+      "reached_td": 0.6461873054504395,
+      "set_casing_at": 0.5329806208610535,
+      "set_plug_at": 0.5559396743774414
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "encountered_marker": 0.5507203340530396,
+      "fit_lot_emw": 0.559486448764801,
+      "has_mud_weight": 0.5909462571144104,
+      "spudded_on": 0.5416733026504517,
+      "used_rig": 0.5658823251724243
+     },
+     "canonical": [
+      "Wellbore",
+      "has_mud_weight",
+      "16.3 ppg mud"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48442983627319336,
+      "drilled_to": 0.45600995421409607,
+      "encountered_marker": 0.6218724250793457,
+      "operated_by": 0.4539603590965271,
+      "perforated_interval": 0.4701509475708008
+     },
+     "canonical": [
+      "single, GP gas completion",
+      "completed_in",
+      "BN 8400-ft Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5079622268676758,
+      "operated_by": 0.5053815841674805,
+      "set_plug_at": 0.4796016812324524,
+      "tagged_at": 0.526319682598114,
+      "used_rig": 0.4999582767486572
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject event started at the time specified by the object entity.",
+    "completed operations on": "The subject entity finished performing operations on the object entity.",
+    "ended on": "The subject event concluded at the time specified by the object entity.",
+    "was isolated by setting": "The subject entity was isolated using the method or device specified by the object entity."
+   },
+   "key": "eor_-106378_8b6db016#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.546886682510376,
+      "cut_at": 0.5079802870750427,
+      "operated_by": 0.5251538753509521,
+      "perforated_interval": 0.4840122163295746,
+      "used_rig": 0.507840633392334
+     },
+     "canonical": [
+      "Stone Energy",
+      "completed_in",
+      "ST 164"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.546886682510376,
+      "cut_at": 0.5079802870750427,
+      "operated_by": 0.5251538753509521,
+      "perforated_interval": 0.4840122163295746,
+      "used_rig": 0.507840633392334
+     },
+     "canonical": [
+      "Stone Energy",
+      "operated_by",
+      "OCS-G-01250"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.512871503829956,
+      "cut_at": 0.47208741307258606,
+      "perforated_interval": 0.5055726170539856,
+      "set_plug_at": 0.44314202666282654,
+      "spudded_on": 0.3647066056728363
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.38634204864501953,
+      "cut_at": 0.5044320821762085,
+      "operated_by": 0.3955095112323761,
+      "perforated_interval": 0.44924724102020264,
+      "set_plug_at": 0.43372926115989685
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.546886682510376,
+      "cut_at": 0.5079802870750427,
+      "operated_by": 0.5251538753509521,
+      "perforated_interval": 0.4840122163295746,
+      "used_rig": 0.507840633392334
+     },
+     "canonical": [
+      "Stone Energy",
+      "operated_by",
+      "Well C-15ST2"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4132108986377716,
+      "cut_at": 0.47393545508384705,
+      "perforated_interval": 0.5030196309089661,
+      "set_plug_at": 0.4899885058403015,
+      "spudded_on": 0.3949444591999054
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is approved to TA": "The subject entity has received approval for the activity specified by the object entity, where \"TA\" refers to a specific technical action or process related to the well.",
+    "shows date of": "The subject entity indicates or displays the specific date specified by the object entity.",
+    "were cut and pulled on": "The subject entity underwent the actions of being cut and pulled on the date specified by the object entity.",
+    "would be cut and pulled during": "The action involving the subject entity (cutting and pulling) is scheduled to occur in conjunction with or as part of the event specified by the object entity."
+   },
+   "key": "eor_-106701_93dbc0f4#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.3526628911495209,
+      "has_well_status": 0.3921051025390625,
+      "perforated_interval": 0.4561527371406555,
+      "set_plug_at": 0.38151443004608154,
+      "spudded_on": 0.47676849365234375
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4218173921108246,
+      "encountered_marker": 0.377853125333786,
+      "has_well_status": 0.6104262471199036,
+      "operated_by": 0.46877455711364746,
+      "perforated_interval": 0.37540334463119507
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.33770889043807983,
+      "cut_at": 0.5499318838119507,
+      "perforated_interval": 0.3691014051437378,
+      "set_casing_at": 0.3876259922981262,
+      "set_plug_at": 0.3846832811832428
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43956881761550903,
+      "cut_at": 0.6399691104888916,
+      "perforated_interval": 0.4514675438404083,
+      "set_casing_at": 0.41089990735054016,
+      "spudded_on": 0.4711872339248657
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "installs": "The subject entity places or sets up the object entity in its intended position or configuration.",
+    "is spotted into": "The subject entity is placed or injected into the location specified by the object entity.",
+    "stimulates productivity of": "The subject entity enhances the production efficiency or output of the object entity.",
+    "washes": "The subject entity cleans or removes debris from the object entity."
+   },
+   "key": "eor_-110709_c543c162#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.498500794172287,
+      "operated_by": 0.48153549432754517,
+      "perforated_interval": 0.5386713147163391,
+      "set_plug_at": 0.5670521855354309,
+      "used_rig": 0.4557323157787323
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4638507664203644,
+      "cut_at": 0.5001323819160461,
+      "operated_by": 0.49422404170036316,
+      "perforated_interval": 0.5214241743087769,
+      "set_plug_at": 0.578754186630249
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.49562451243400574,
+      "cut_at": 0.5343782305717468,
+      "operated_by": 0.4599819779396057,
+      "perforated_interval": 0.4678332507610321,
+      "tagged_at": 0.43618735671043396
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.49562451243400574,
+      "cut_at": 0.5343782305717468,
+      "operated_by": 0.4599819779396057,
+      "perforated_interval": 0.4678332507610321,
+      "tagged_at": 0.43618735671043396
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43355199694633484,
+      "operated_by": 0.4276796579360962,
+      "perforated_interval": 0.3830800950527191,
+      "reached_td": 0.3769626319408417,
+      "used_rig": 0.4143369197845459
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject entity started or commenced at the time specified by the object entity.",
+    "is located at": "The subject entity is situated at the specific location, depth, or position specified by the object entity.",
+    "is the previous producing interval of": "The subject entity was the prior production zone for the well or structure specified by the object entity.",
+    "perfs from": "The subject entity involves perforations starting from the depth or interval specified by the object entity.",
+    "was exposed to production by perforating from": "The subject entity became accessible for production through perforations starting from the interval specified by the object entity.",
+    "was set at": "The subject entity was placed, positioned, or established at the location or value specified by the object entity.",
+    "were completed on": "The subject entity finished or concluded on the date specified by the object entity.",
+    "were performed on": "The subject entity was carried out upon the object entity specified."
+   },
+   "key": "eor_-111190_bf5f7db8#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5861836075782776,
+      "perforated_interval": 0.6930651068687439,
+      "reached_td": 0.5502546429634094,
+      "set_plug_at": 0.5480257868766785,
+      "tagged_at": 0.5358925461769104
+     },
+     "canonical": [
+      "LH Sand",
+      "perforated_interval",
+      "16310' - 16328' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5583467483520508,
+      "perforated_interval": 0.5502496957778931,
+      "reached_td": 0.5850420594215393,
+      "set_casing_at": 0.5232640504837036,
+      "set_plug_at": 0.57487553358078
+     },
+     "canonical": [
+      "ETO C",
+      "set_plug_at",
+      "16245' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48171594738960266,
+      "cut_at": 0.5026893019676208,
+      "operated_by": 0.45511460304260254,
+      "perforated_interval": 0.6273207664489746,
+      "set_plug_at": 0.47195687890052795
+     },
+     "canonical": [
+      "LG Lwr Sand",
+      "perforated_interval",
+      "16167' - 16175' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5112085342407227,
+      "cut_at": 0.4006037414073944,
+      "has_well_status": 0.4346863627433777,
+      "perforated_interval": 0.48325255513191223,
+      "spudded_on": 0.4565204977989197
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6451565623283386,
+      "drilled_to": 0.5562692284584045,
+      "encountered_marker": 0.5675057172775269,
+      "operated_by": 0.5427005290985107,
+      "perforated_interval": 0.5687432885169983
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5642425417900085,
+      "cut_at": 0.5771732330322266,
+      "operated_by": 0.5004841685295105,
+      "perforated_interval": 0.5896718502044678,
+      "set_plug_at": 0.5236561894416809
+     },
+     "canonical": [
+      "Zone change operations",
+      "completed_in",
+      "EW 306"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4118349552154541,
+      "cut_at": 0.38393518328666687,
+      "perforated_interval": 0.49522730708122253,
+      "set_plug_at": 0.4094172418117523,
+      "spudded_on": 0.38069838285446167
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46985217928886414,
+      "cut_at": 0.5153367519378662,
+      "encountered_marker": 0.4769425094127655,
+      "perforated_interval": 0.5578781366348267,
+      "set_plug_at": 0.5667576789855957
+     },
+     "canonical": [
+      "MRBP",
+      "set_plug_at",
+      "16295' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5642425417900085,
+      "cut_at": 0.5771732330322266,
+      "operated_by": 0.5004841685295105,
+      "perforated_interval": 0.5896718502044678,
+      "set_plug_at": 0.5236561894416809
+     },
+     "canonical": [
+      "Zone change operations",
+      "completed_in",
+      "Well A-3ST3"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed operations on": "The subject entity finished performing work or procedures on the object entity.",
+    "dumped on top of": "The subject entity was poured or placed onto the upper surface of the object entity.",
+    "isolated": "The subject entity physically separated or sealed off the object entity.",
+    "located at depth in": "The subject entity is situated at a specific vertical position within the object entity.",
+    "part of": "The subject entity is a component or section belonging to the object entity.",
+    "performed modification for": "The subject entity carried out changes or adjustments intended for the benefit or improvement of the object entity.",
+    "set at depth of": "The subject entity was positioned or installed at a specific vertical measurement within the object entity."
+   },
+   "key": "eor_-115129_7f61f092#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5808417797088623,
+      "drilled_to": 0.5139868855476379,
+      "encountered_marker": 0.5418512225151062,
+      "perforated_interval": 0.5565742254257202,
+      "pumped": 0.5150892734527588
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5808417797088623,
+      "drilled_to": 0.5139868855476379,
+      "encountered_marker": 0.5418512225151062,
+      "perforated_interval": 0.5565742254257202,
+      "pumped": 0.5150892734527588
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.518634557723999,
+      "drilled_to": 0.47377878427505493,
+      "perforated_interval": 0.5272421836853027,
+      "reached_td": 0.528597354888916,
+      "set_plug_at": 0.5522147417068481
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47452831268310547,
+      "cut_at": 0.3923431932926178,
+      "operated_by": 0.41777950525283813,
+      "perforated_interval": 0.4239845871925354,
+      "used_rig": 0.43130990862846375
+     },
+     "canonical": [
+      "Leed",
+      "completed_in",
+      "KH Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5483256578445435,
+      "cut_at": 0.4901384115219116,
+      "operated_by": 0.4848737418651581,
+      "perforated_interval": 0.4663577377796173,
+      "used_rig": 0.43389031291007996
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4153302311897278,
+      "cut_at": 0.447292298078537,
+      "operated_by": 0.44219970703125,
+      "perforated_interval": 0.43565472960472107,
+      "set_plug_at": 0.4266003370285034
+     },
+     "canonical": [
+      "perforation interval",
+      "perforated_interval",
+      "KH Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6050512790679932,
+      "perforated_interval": 0.5332562327384949,
+      "set_casing_at": 0.5048679113388062,
+      "set_plug_at": 0.47287440299987793,
+      "tagged_at": 0.4650542140007019
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5861427783966064,
+      "drilled_to": 0.5334359407424927,
+      "perforated_interval": 0.5505197644233704,
+      "reached_td": 0.49933725595474243,
+      "set_plug_at": 0.6331273317337036
+     },
+     "canonical": [
+      "MRBP",
+      "set_plug_at",
+      "SS 201 A06 well"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject event or operation started on the date specified by the object entity.",
+    "completed zone change operations on": "The subject entity performed actions to modify or change the zones within the object entity.",
+    "dumped on top of": "The subject substance was poured onto the upper surface of the object entity.",
+    "ended on": "The subject event or operation concluded on the date specified by the object entity.",
+    "established from": "The subject state or result (e.g., production) was initiated using the source specified by the object entity.",
+    "isolated": "The subject entity was separated from or blocked off from the object entity.",
+    "jetted with": "The subject entity was cleaned or treated using jets of the substance specified by the object entity.",
+    "located at depth": "The subject entity is situated at the specific depth specified by the object entity.",
+    "perforated at intervals": "The subject entity had holes created in it at the specific depth intervals specified by the object entity.",
+    "produces": "The subject entity yields or generates the substance specified by the object entity.",
+    "pulled at depth": "The subject entity was extracted or removed from a specific depth specified by the object entity.",
+    "set at depth": "The subject entity was placed or positioned at the specific depth specified by the object entity.",
+    "set in casing at depth": "The subject entity was set inside the casing at the specific depth specified by the object entity.",
+    "set on top of": "The subject entity was placed directly above the object entity.",
+    "utilized to perform": "The subject entity was used as a tool or method to carry out the action specified by the object entity.",
+    "was gravel packed": "The subject entity underwent a process where it was filled with gravel, as specified by the object entity (often implying the method or material used)."
+   },
+   "key": "eor_-115965_1bc5d37f#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.6130520701408386,
+      "drilled_to": 0.5896342396736145,
+      "perforated_interval": 0.5841115713119507,
+      "reached_td": 0.6802826523780823,
+      "set_plug_at": 0.5985987186431885
+     },
+     "canonical": [
+      "ETOC",
+      "set_plug_at",
+      "12,025' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5426207184791565,
+      "cut_at": 0.7308555245399475,
+      "drilled_to": 0.5447027683258057,
+      "perforated_interval": 0.5709854960441589,
+      "set_plug_at": 0.5331514477729797
+     },
+     "canonical": [
+      "tubing string",
+      "cut_at",
+      "12,080' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5148938298225403,
+      "cut_at": 0.4797308146953583,
+      "operated_by": 0.430746465921402,
+      "perforated_interval": 0.5263569355010986,
+      "used_rig": 0.46500155329704285
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6251034736633301,
+      "drilled_to": 0.5926927328109741,
+      "perforated_interval": 0.6019392013549805,
+      "set_casing_at": 0.5863688588142395,
+      "set_plug_at": 0.6081587076187134
+     },
+     "canonical": [
+      "CIBP",
+      "set_plug_at",
+      "12,075' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4934729337692261,
+      "cut_at": 0.638157844543457,
+      "operated_by": 0.38679879903793335,
+      "perforated_interval": 0.5065423250198364,
+      "set_plug_at": 0.46974319219589233
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5254245400428772,
+      "encountered_marker": 0.5259050130844116,
+      "perforated_interval": 0.5309810638427734,
+      "pumped": 0.5438138842582703,
+      "tested_to_pressure": 0.5004763007164001
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43252241611480713,
+      "cut_at": 0.3821016550064087,
+      "perforated_interval": 0.44558459520339966,
+      "set_plug_at": 0.35900288820266724,
+      "spudded_on": 0.4913738965988159
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6823769807815552,
+      "drilled_to": 0.6130678653717041,
+      "reached_td": 0.6496061682701111,
+      "set_casing_at": 0.6319673657417297,
+      "set_plug_at": 0.6747682690620422
+     },
+     "canonical": [
+      "CIBP",
+      "set_plug_at",
+      "10,399' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5351743102073669,
+      "perforated_interval": 0.47698795795440674,
+      "set_plug_at": 0.473991721868515,
+      "tagged_at": 0.46705737709999084,
+      "used_rig": 0.4498957693576813
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5010650157928467,
+      "cut_at": 0.6125373840332031,
+      "drilled_to": 0.4872918128967285,
+      "perforated_interval": 0.5459467768669128,
+      "set_plug_at": 0.633054256439209
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4347209334373474,
+      "cut_at": 0.41836315393447876,
+      "has_well_status": 0.39027541875839233,
+      "operated_by": 0.40710580348968506,
+      "perforated_interval": 0.49799787998199463
+     },
+     "canonical": [
+      "VR 51 A-4 well",
+      "completed_in",
+      "CC-1 sand"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5460730791091919,
+      "cut_at": 0.4638728201389313,
+      "perforated_interval": 0.5591748356819153,
+      "set_plug_at": 0.453683465719223,
+      "tagged_at": 0.4373704195022583
+     },
+     "canonical": [
+      "Stone",
+      "completed_in",
+      "VR 51 A-4 well"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.35972869396209717,
+      "cut_at": 0.39169883728027344,
+      "perforated_interval": 0.44969892501831055,
+      "set_plug_at": 0.4019473195075989,
+      "spudded_on": 0.5177843570709229
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6966789364814758,
+      "drilled_to": 0.6138032078742981,
+      "perforated_interval": 0.6245439052581787,
+      "reached_td": 0.5695797801017761,
+      "set_plug_at": 0.5502393841743469
+     },
+     "canonical": [
+      "CC-1 sand",
+      "perforated_interval",
+      "10,382'-10,392' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4585953950881958,
+      "cut_at": 0.4512256383895874,
+      "has_well_status": 0.3915455937385559,
+      "operated_by": 0.4096488654613495,
+      "perforated_interval": 0.4449295997619629
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5298583507537842,
+      "encountered_marker": 0.49226146936416626,
+      "has_mud_weight": 0.5119621157646179,
+      "perforated_interval": 0.498765766620636,
+      "set_casing_at": 0.49155813455581665
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "allowed for restoration of": "The subject action enabled the recovery or reinstatement of the state or function specified by the object entity.",
+    "completed operations on": "The subject entity performed and finished operational tasks on the object entity.",
+    "controlled by": "The subject entity is operated or managed by the mechanism or system specified by the object entity.",
+    "converted operation of": "The subject action changed the mode or method of operation for the object entity.",
+    "found in": "The subject entity can be found within or is contained by the object entity.",
+    "installed": "The subject entity was placed into position or fitted as part of an installation process involving the object entity.",
+    "located at": "The subject entity is physically situated in or attached to the location specified by the object entity.",
+    "located at depth": "The subject entity is situated at the specific depth specified by the object entity.",
+    "occurred on date": "The subject event took place on the specific date specified by the object entity."
+   },
+   "key": "eor_-116446_6cdc069f#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.47258761525154114,
+      "cut_at": 0.48509421944618225,
+      "has_well_status": 0.402398020029068,
+      "perforated_interval": 0.42347273230552673,
+      "set_plug_at": 0.4067700505256653
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5028285980224609,
+      "operated_by": 0.46672460436820984,
+      "perforated_interval": 0.5041850805282593,
+      "set_casing_at": 0.4587900936603546,
+      "set_plug_at": 0.547153651714325
+     },
+     "canonical": [
+      "subsurface safety PB insert valve",
+      "set_plug_at",
+      "X-nipple"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5665438175201416,
+      "cut_at": 0.4367090165615082,
+      "has_well_status": 0.46872055530548096,
+      "operated_by": 0.5202850699424744,
+      "used_rig": 0.5048125982284546
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.49655231833457947,
+      "cut_at": 0.5094793438911438,
+      "operated_by": 0.4753061830997467,
+      "perforated_interval": 0.4922477602958679,
+      "set_plug_at": 0.5143592357635498
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48252126574516296,
+      "cut_at": 0.4612656831741333,
+      "has_well_status": 0.45990681648254395,
+      "operated_by": 0.47025278210639954,
+      "perforated_interval": 0.4978199005126953
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6130520701408386,
+      "drilled_to": 0.5896342396736145,
+      "perforated_interval": 0.5841115713119507,
+      "reached_td": 0.6802826523780823,
+      "set_plug_at": 0.5985987186431885
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.37709516286849976,
+      "cut_at": 0.4332040846347809,
+      "perforated_interval": 0.4601724445819855,
+      "set_plug_at": 0.4441821277141571,
+      "spudded_on": 0.50775146484375
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.40971532464027405,
+      "cut_at": 0.4955592751502991,
+      "perforated_interval": 0.4461994171142578,
+      "set_casing_at": 0.378749281167984,
+      "set_plug_at": 0.48037534952163696
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4102115035057068,
+      "operated_by": 0.5827627778053284,
+      "set_plug_at": 0.4210287034511566,
+      "tagged_at": 0.393860399723053,
+      "used_rig": 0.40853774547576904
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "added to": "The subject entity was added to the object entity.",
+    "completed operation on": "The subject entity successfully finished performing an operation on the object entity.",
+    "contains": "The subject entity includes or holds the object entity as a part or component.",
+    "ended on": "The subject entity concluded on the date specified by the object entity.",
+    "is type of": "The subject entity is a specific instance or example of the category specified by the object entity.",
+    "located at interval": "The subject entity is situated within the spatial interval specified by the object entity.",
+    "part of completion in": "The subject entity is a component or part of the completion associated with the object entity.",
+    "started on": "The subject entity began on the date specified by the object entity."
+   },
+   "key": "eor_-117225_14d568fc#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4679766893386841,
+      "cut_at": 0.4573346972465515,
+      "has_well_status": 0.43488776683807373,
+      "operated_by": 0.49047335982322693,
+      "perforated_interval": 0.4635241627693176
+     },
+     "canonical": [
+      "lower lobe",
+      "completed_in",
+      "Cyclam 3-B"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5699795484542847,
+      "cut_at": 0.5605034828186035,
+      "operated_by": 0.4601339101791382,
+      "perforated_interval": 0.5434666872024536,
+      "set_plug_at": 0.5300743579864502
+     },
+     "canonical": [
+      "Perforations",
+      "perforated_interval",
+      "lower lobe"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4128773808479309,
+      "cut_at": 0.4481014907360077,
+      "operated_by": 0.4326460063457489,
+      "perforated_interval": 0.45640817284584045,
+      "set_plug_at": 0.4551903009414673
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4726908802986145,
+      "cut_at": 0.38439586758613586,
+      "has_well_status": 0.39447683095932007,
+      "perforated_interval": 0.4776548147201538,
+      "spudded_on": 0.49520015716552734
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5475037693977356,
+      "cut_at": 0.4416453242301941,
+      "has_well_status": 0.45607367157936096,
+      "operated_by": 0.5133479237556458,
+      "used_rig": 0.43231329321861267
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4623775780200958,
+      "cut_at": 0.4591471254825592,
+      "perforated_interval": 0.6191996932029724,
+      "reached_td": 0.448085755109787,
+      "set_plug_at": 0.5294771194458008
+     },
+     "canonical": [
+      "Perforations",
+      "perforated_interval",
+      "9,996'-10,006' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.41438746452331543,
+      "cut_at": 0.39948591589927673,
+      "perforated_interval": 0.5016381740570068,
+      "set_plug_at": 0.4112190902233124,
+      "spudded_on": 0.51649409532547
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5009821057319641,
+      "cut_at": 0.4900418817996979,
+      "operated_by": 0.42562389373779297,
+      "perforated_interval": 0.4528787136077881,
+      "set_plug_at": 0.4367735981941223
+     },
+     "canonical": [
+      "lower lobe",
+      "perforated_interval",
+      "EC 121 B-1 well"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "blew out through": "The subject entity ruptured or opened up in the manner described by the object entity (e.g., passing through a specific size or location).",
+    "located between": "The subject entity is situated in the space defined by the two locations specified by the object entities (note: this relation typically implies a spatial relationship where the subject lies between two other entities, though here it appears to map to specific boundary lines). *Correction based on triple structure*: In the provided triples `['hole', 'located between', 'mud line']`, the object is singular. However, standard \"between\" relations usually involve two objects. Given the context of \"somewhere between mud line and water line\", these triples likely represent partial mappings or specific boundary references. A general description for this specific triple format would be: The subject entity is located in proximity to or defined by the location specified by the object entity, often implying a spatial constraint relative to other entities not explicitly listed as separate objects in this simplified triple format. *Refined General Description*: The subject entity is situated at or near the location specified by the object entity, potentially indicating a boundary or reference point for its position.",
+    "occurred on": "The event specified by the subject entity took place on the date specified by the object entity.",
+    "was intended to be tested by": "The subject entity was planned or designed to undergo the testing method specified by the object entity.",
+    "was tested by": "The subject entity underwent the testing method specified by the object entity."
+   },
+   "key": "eor_-117598_649ccce8#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4323975145816803,
+      "cut_at": 0.4819139242172241,
+      "perforated_interval": 0.45303159952163696,
+      "set_plug_at": 0.4233929216861725,
+      "tested_to_pressure": 0.5033920407295227
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43764594197273254,
+      "cut_at": 0.4183885157108307,
+      "perforated_interval": 0.42367589473724365,
+      "set_plug_at": 0.40404248237609863,
+      "tested_to_pressure": 0.47241130471229553
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4480475187301636,
+      "cut_at": 0.6135722398757935,
+      "encountered_marker": 0.46274876594543457,
+      "perforated_interval": 0.4959973990917206,
+      "set_casing_at": 0.46345216035842896
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3013751208782196,
+      "cut_at": 0.3536258041858673,
+      "perforated_interval": 0.3851150572299957,
+      "set_plug_at": 0.3703314960002899,
+      "spudded_on": 0.4637581706047058
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4480475187301636,
+      "cut_at": 0.6135722398757935,
+      "encountered_marker": 0.46274876594543457,
+      "perforated_interval": 0.4959973990917206,
+      "set_casing_at": 0.46345216035842896
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.40896540880203247,
+      "drilled_to": 0.4368242621421814,
+      "encountered_marker": 0.410359263420105,
+      "perforated_interval": 0.45569467544555664,
+      "tagged_at": 0.4443824589252472
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3013751208782196,
+      "cut_at": 0.3536258041858673,
+      "perforated_interval": 0.3851150572299957,
+      "set_plug_at": 0.3703314960002899,
+      "spudded_on": 0.4637581706047058
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4323975145816803,
+      "cut_at": 0.4819139242172241,
+      "perforated_interval": 0.45303159952163696,
+      "set_plug_at": 0.4233929216861725,
+      "tested_to_pressure": 0.5033920407295227
+     },
+     "canonical": [
+      "surface plug",
+      "tested_to_pressure",
+      "weight test"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.40896540880203247,
+      "drilled_to": 0.4368242621421814,
+      "encountered_marker": 0.410359263420105,
+      "perforated_interval": 0.45569467544555664,
+      "tagged_at": 0.4443824589252472
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject entity started or commenced at the time specified by the object entity.",
+    "completed operations on": "The subject entity performed and finished the operational tasks associated with the object entity.",
+    "ended on": "The subject entity concluded or finished at the time specified by the object entity.",
+    "utilized": "The subject entity used or employed the resource, tool, or method specified by the object entity.",
+    "was converted to": "The subject entity was changed or transformed into the type or state specified by the object entity.",
+    "was reclassified from": "The subject entity was previously categorized under the classification specified by the object entity before being reclassified.",
+    "was reclassified to": "The subject entity is now categorized under the classification specified by the object entity after a change in status."
+   },
+   "key": "eor_-118968_bc3de2d8#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4371490478515625,
+      "cut_at": 0.3862050473690033,
+      "has_well_status": 0.47317785024642944,
+      "perforated_interval": 0.3772548735141754,
+      "set_plug_at": 0.3593105375766754
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.562102198600769,
+      "cut_at": 0.43718716502189636,
+      "has_well_status": 0.4537436366081238,
+      "operated_by": 0.5125048756599426,
+      "used_rig": 0.5117460489273071
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5631694197654724,
+      "cut_at": 0.4574010372161865,
+      "has_well_status": 0.41748061776161194,
+      "perforated_interval": 0.5199283957481384,
+      "set_plug_at": 0.3989797532558441
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4118349552154541,
+      "cut_at": 0.38393518328666687,
+      "perforated_interval": 0.49522730708122253,
+      "set_plug_at": 0.4094172418117523,
+      "spudded_on": 0.38069838285446167
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42292433977127075,
+      "cut_at": 0.4441218078136444,
+      "has_well_status": 0.30676358938217163,
+      "perforated_interval": 0.38889750838279724,
+      "set_plug_at": 0.36776846647262573
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.44260793924331665,
+      "operated_by": 0.49860072135925293,
+      "perforated_interval": 0.42837223410606384,
+      "tagged_at": 0.46124014258384705,
+      "used_rig": 0.48719099164009094
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4630534052848816,
+      "cut_at": 0.5049130916595459,
+      "has_well_status": 0.40322789549827576,
+      "perforated_interval": 0.5007044076919556,
+      "set_plug_at": 0.42434951663017273
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "are located at depth": "The subject entity is situated at the specific depth range specified by the object entity.",
+    "drilled and completed": "The subject entity performed the actions of drilling and completing the well specified by the object entity.",
+    "has true vertical depth of": "The subject entity has a total vertical depth measurement specified by the object entity.",
+    "is part of": "The subject entity is a component or section of the larger entity specified by the object entity.",
+    "spud": "The subject entity initiated the drilling operations for the well specified by the object entity.",
+    "used mud weight of": "The subject entity utilized a drilling fluid with the specific weight specified by the object entity during operations.",
+    "was completed as": "The subject entity was finished or prepared for production in the manner specified by the object entity.",
+    "was drilled to TD at depth": "The subject entity was drilled down to its total depth, which is specified by the object entity.",
+    "was set from depth": "The subject entity was installed or positioned starting from the depth specified by the object entity.",
+    "was set to depth": "The subject entity was installed or positioned up to the specific depth specified by the object entity."
+   },
+   "key": "eor_-119584_ca8392d9#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5732844471931458,
+      "cut_at": 0.43700143694877625,
+      "operated_by": 0.46323564648628235,
+      "perforated_interval": 0.4875529110431671,
+      "set_casing_at": 0.4620484411716461
+     },
+     "canonical": [
+      "Well Q1ST2",
+      "completed_in",
+      "GP, oil completion"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.38939666748046875,
+      "cut_at": 0.4525550305843353,
+      "operated_by": 0.4044637978076935,
+      "perforated_interval": 0.43518006801605225,
+      "set_plug_at": 0.4319852590560913
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6862806677818298,
+      "drilled_to": 0.7259521484375,
+      "perforated_interval": 0.6089321374893188,
+      "reached_td": 0.7131319642066956,
+      "set_casing_at": 0.6380681395530701
+     },
+     "canonical": [
+      "Well Q1ST2",
+      "reached_td",
+      "9475'"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5848714709281921,
+      "drilled_to": 0.572992205619812,
+      "reached_td": 0.7041352391242981,
+      "set_casing_at": 0.5481510758399963,
+      "set_plug_at": 0.5520110726356506
+     },
+     "canonical": [
+      "Well Q1ST2",
+      "reached_td",
+      "9357' TVD"
+     ]
+    },
+    {
+     "candidates": {
+      "drilled_to": 0.5647702813148499,
+      "has_mud_weight": 0.5973362922668457,
+      "spudded_on": 0.5623453259468079,
+      "tested_to_pressure": 0.55092453956604,
+      "used_rig": 0.6777915358543396
+     },
+     "canonical": [
+      "Well Q1ST2",
+      "has_mud_weight",
+      "10.0 ppg"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6428272128105164,
+      "drilled_to": 0.5932061672210693,
+      "reached_td": 0.5552969574928284,
+      "set_casing_at": 0.544407844543457,
+      "set_plug_at": 0.6593900918960571
+     },
+     "canonical": [
+      "Production liner",
+      "set_casing_at",
+      "TD"
+     ]
+    },
+    {
+     "candidates": {
+      "drilled_to": 0.6364654898643494,
+      "encountered_marker": 0.6644991040229797,
+      "operated_by": 0.6199662089347839,
+      "spudded_on": 0.7297308444976807,
+      "used_rig": 0.5932080149650574
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6371787786483765,
+      "drilled_to": 0.5660216212272644,
+      "reached_td": 0.5209235548973083,
+      "set_casing_at": 0.528378963470459,
+      "set_plug_at": 0.6510315537452698
+     },
+     "canonical": [
+      "Production liner",
+      "set_casing_at",
+      "5395' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6164534687995911,
+      "drilled_to": 0.6345323324203491,
+      "encountered_marker": 0.654748260974884,
+      "spudded_on": 0.6866030693054199,
+      "used_rig": 0.6136221885681152
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5954379439353943,
+      "drilled_to": 0.58794766664505,
+      "perforated_interval": 0.5878443717956543,
+      "reached_td": 0.701353132724762,
+      "set_plug_at": 0.5934994220733643
+     },
+     "canonical": [
+      "Perforations",
+      "perforated_interval",
+      "9182' - 9208' MD / 9073' - 9098' TVD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject entity started or commenced at the time specified by the object entity.",
+    "completed operations on": "The subject entity successfully finished performing operations on the object entity.",
+    "converted to": "The subject entity was changed into the form or type specified by the object entity.",
+    "ended on": "The subject entity concluded or finished at the time specified by the object entity.",
+    "installed": "The subject entity placed or fitted the object entity in position for use."
+   },
+   "key": "eor_-121126_77121f26#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5631694197654724,
+      "cut_at": 0.4574010372161865,
+      "has_well_status": 0.41748061776161194,
+      "perforated_interval": 0.5199283957481384,
+      "set_plug_at": 0.3989797532558441
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4118349552154541,
+      "cut_at": 0.38393518328666687,
+      "perforated_interval": 0.49522730708122253,
+      "set_plug_at": 0.4094172418117523,
+      "spudded_on": 0.38069838285446167
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5362458229064941,
+      "operated_by": 0.48866814374923706,
+      "perforated_interval": 0.5452614426612854,
+      "set_plug_at": 0.5837836861610413,
+      "used_rig": 0.5092029571533203
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5577521324157715,
+      "cut_at": 0.4332653284072876,
+      "has_well_status": 0.4708734452724457,
+      "operated_by": 0.5160480737686157,
+      "used_rig": 0.44349876046180725
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43951860070228577,
+      "cut_at": 0.49774685502052307,
+      "has_well_status": 0.3897976279258728,
+      "perforated_interval": 0.4673174023628235,
+      "set_plug_at": 0.4702884554862976
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "contains": "The subject entity contains the substance specified by the object entity.",
+    "had test performed": "A test specified by the object entity was performed on the subject entity.",
+    "was applied on": "The subject entity was applied onto the object entity.",
+    "was displaced to": "The subject entity was replaced or moved to the state/material specified by the object entity.",
+    "was injected into": "The subject entity was injected into the object entity.",
+    "was set on": "The subject entity was set on the date specified by the object entity.",
+    "was tagged at depth": "The subject entity was measured or recorded at the depth specified by the object entity."
+   },
+   "key": "eor_-123375_80318692#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.51657634973526,
+      "cut_at": 0.5672914981842041,
+      "operated_by": 0.43735289573669434,
+      "perforated_interval": 0.5466896295547485,
+      "set_plug_at": 0.46985822916030884
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5142587423324585,
+      "cut_at": 0.5778648257255554,
+      "operated_by": 0.4400959610939026,
+      "perforated_interval": 0.5344016551971436,
+      "set_plug_at": 0.5273880362510681
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42723992466926575,
+      "cut_at": 0.43705445528030396,
+      "fit_lot_emw": 0.4511953294277191,
+      "perforated_interval": 0.4567945599555969,
+      "tested_to_pressure": 0.5437666177749634
+     },
+     "canonical": [
+      "well",
+      "tested_to_pressure",
+      "20k weight test"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5874358415603638,
+      "cut_at": 0.5684018135070801,
+      "operated_by": 0.5125992298126221,
+      "perforated_interval": 0.5921347141265869,
+      "set_plug_at": 0.5161494016647339
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6357430815696716,
+      "perforated_interval": 0.5402071475982666,
+      "reached_td": 0.6264040470123291,
+      "set_casing_at": 0.5925809741020203,
+      "set_plug_at": 0.5672968626022339
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4440945088863373,
+      "cut_at": 0.459788978099823,
+      "has_well_status": 0.4420081377029419,
+      "operated_by": 0.4539024531841278,
+      "perforated_interval": 0.546698272228241
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.40315017104148865,
+      "cut_at": 0.3984253406524658,
+      "perforated_interval": 0.48086678981781006,
+      "set_plug_at": 0.44142526388168335,
+      "spudded_on": 0.5617105960845947
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "contains": "The subject entity includes or holds the component specified by the object entity as part of its composition.",
+    "is at depth": "The subject entity is located at the vertical distance specified by the object entity.",
+    "was displaced to": "The subject entity was replaced or changed into the substance specified by the object entity.",
+    "was injected into": "The subject entity was forced or pumped into the location specified by the object entity.",
+    "was set on": "The subject entity was placed, fixed, or established in position on the date specified by the object entity.",
+    "was subjected to": "The subject entity underwent or experienced the action or test specified by the object entity.",
+    "was tagged on": "The measurement or marking of the subject entity occurred on the date specified by the object entity."
+   },
+   "key": "eor_-123740_b8fbb4ed#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4556414484977722,
+      "cut_at": 0.4513157308101654,
+      "has_well_status": 0.41463199257850647,
+      "operated_by": 0.46885547041893005,
+      "perforated_interval": 0.46796008944511414
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5095835328102112,
+      "cut_at": 0.5279827117919922,
+      "operated_by": 0.42543232440948486,
+      "perforated_interval": 0.5770857930183411,
+      "set_plug_at": 0.4318086802959442
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5522305965423584,
+      "perforated_interval": 0.536460280418396,
+      "reached_td": 0.5220657587051392,
+      "set_plug_at": 0.6089335680007935,
+      "tagged_at": 0.4594321846961975
+     },
+     "canonical": [
+      "cement",
+      "cut_at",
+      "8,697'"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.567229688167572,
+      "perforated_interval": 0.560565173625946,
+      "pumped": 0.5029891729354858,
+      "set_plug_at": 0.5371774435043335,
+      "tested_to_pressure": 0.5079386234283447
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.39315474033355713,
+      "encountered_marker": 0.3993181884288788,
+      "has_well_status": 0.400240421295166,
+      "perforated_interval": 0.49704211950302124,
+      "spudded_on": 0.477321594953537
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4409753084182739,
+      "cut_at": 0.426006942987442,
+      "perforated_interval": 0.5097674131393433,
+      "set_plug_at": 0.47297537326812744,
+      "spudded_on": 0.5432208776473999
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5062517523765564,
+      "perforated_interval": 0.44976216554641724,
+      "set_casing_at": 0.4338308572769165,
+      "set_plug_at": 0.43080583214759827,
+      "tested_to_pressure": 0.5276185274124146
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "PA?d the well on": "The subject entity plugged and abandoned the well specified by the object entity's context (implied from relation name) on the date specified by the object entity.",
+    "is not aware of dates cement plugs were placed on well due to previous classification as PA?d in 1975 by another operator": "The subject entity lacks knowledge regarding the specific dates when cement plugs were installed on the well, a situation attributed to the well being previously classified as plugged and abandoned (PA?) in 1975 by a different operator.",
+    "was cut casings at": "The subject entity had its casings cut at the location or depth specified by the object entity."
+   },
+   "key": "eor_-124122_63f93a45#c000",
+   "results": [
+    {
+     "candidates": {
+      "drilled_to": 0.33504796028137207,
+      "encountered_marker": 0.34003642201423645,
+      "has_well_status": 0.39131805300712585,
+      "operated_by": 0.41409528255462646,
+      "spudded_on": 0.5842593312263489
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.7835652828216553,
+      "drilled_to": 0.6109262704849243,
+      "perforated_interval": 0.6193516254425049,
+      "set_casing_at": 0.6111879944801331,
+      "set_plug_at": 0.5904938578605652
+     },
+     "canonical": [
+      "well",
+      "cut_at",
+      "20-ft BML"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5241814851760864,
+      "operated_by": 0.4670925736427307,
+      "perforated_interval": 0.44453632831573486,
+      "set_plug_at": 0.49022766947746277,
+      "spudded_on": 0.5550537109375
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "emanate from": "The subject entity originates or comes out of the location specified by the object entity.",
+    "injected to stop": "The subject entity was injected with the purpose of stopping or preventing the issue specified by the object entity.",
+    "installed to address": "The subject entity was installed for the purpose of addressing or resolving the problem specified by the object entity."
+   },
+   "key": "eor_-125705_5e2da512#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.47152283787727356,
+      "cut_at": 0.5072745084762573,
+      "operated_by": 0.4635366201400757,
+      "perforated_interval": 0.5385962724685669,
+      "set_plug_at": 0.4778534770011902
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.54245525598526,
+      "cut_at": 0.48281222581863403,
+      "operated_by": 0.49655285477638245,
+      "perforated_interval": 0.49748721718788147,
+      "set_plug_at": 0.48064810037612915
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.44305768609046936,
+      "cut_at": 0.5001670718193054,
+      "perforated_interval": 0.46511080861091614,
+      "set_plug_at": 0.45889878273010254,
+      "spudded_on": 0.3732035160064697
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "to": "The subject entity is directed toward or applied to the object entity.",
+    "was to change": "The subject entity was intended or planned to modify the object entity.",
+    "were in": "The subject entity was located within or part of the object entity."
+   },
+   "key": "eor_-126565_84b0a5fb#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5273134708404541,
+      "cut_at": 0.4728055000305176,
+      "operated_by": 0.41011086106300354,
+      "perforated_interval": 0.48503389954566956,
+      "set_plug_at": 0.41457948088645935
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5341383814811707,
+      "cut_at": 0.541568398475647,
+      "operated_by": 0.48365285992622375,
+      "perforated_interval": 0.5731959939002991,
+      "set_plug_at": 0.531173050403595
+     },
+     "canonical": [
+      "new perfs",
+      "completed_in",
+      "zone"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4830076992511749,
+      "cut_at": 0.4743712544441223,
+      "operated_by": 0.495571494102478,
+      "perforated_interval": 0.5114158987998962,
+      "set_plug_at": 0.4544674754142761
+     },
+     "canonical": [
+      "modification",
+      "completed_in",
+      "perforations"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is": "The subject entity has the property, status, or identity specified by the object entity.",
+    "is located on": "The subject entity is physically situated or positioned on the object entity.",
+    "prevents": "The subject entity stops or hinders the action or change specified by the object entity from occurring.",
+    "was submitted for": "The subject entity was formally presented or filed in relation to the object entity."
+   },
+   "key": "eor_-126963_4cf1485f#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5295664668083191,
+      "operated_by": 0.4701330363750458,
+      "perforated_interval": 0.48847082257270813,
+      "reached_td": 0.47583985328674316,
+      "set_plug_at": 0.5284281373023987
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48267310857772827,
+      "cut_at": 0.4801706075668335,
+      "has_well_status": 0.44088083505630493,
+      "operated_by": 0.45254841446876526,
+      "perforated_interval": 0.4894327223300934
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3742982745170593,
+      "cut_at": 0.46043795347213745,
+      "perforated_interval": 0.43520063161849976,
+      "set_casing_at": 0.3458021581172943,
+      "set_plug_at": 0.39733219146728516
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3906557857990265,
+      "has_well_status": 0.5330582857131958,
+      "operated_by": 0.45720726251602173,
+      "perforated_interval": 0.4246957302093506,
+      "set_plug_at": 0.38938474655151367
+     },
+     "canonical": [
+      "Well",
+      "has_well_status",
+      "T/A"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "discussed with": "The subject entity had a discussion or conversation regarding a specific topic or matter with the person or entity specified by the object entity.",
+    "received approval for": "The subject entity obtained official permission or authorization from an authority to proceed with the action or project specified by the object entity.",
+    "returned well to configuration with": "The subject entity restored the state or setup of a well to include the component or feature specified by the object entity.",
+    "was produced from": "The subject entity was extracted or yielded as a product by the object entity.",
+    "was temporarily isolated in": "The subject entity was separated or blocked off within the location or system specified by the object entity for a limited period."
+   },
+   "key": "eor_-132305_5dd63b49#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.40706491470336914,
+      "cut_at": 0.42322707176208496,
+      "encountered_marker": 0.34541404247283936,
+      "operated_by": 0.352059930562973,
+      "perforated_interval": 0.40462011098861694
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.3619421422481537,
+      "operated_by": 0.4022810459136963,
+      "perforated_interval": 0.33215948939323425,
+      "set_plug_at": 0.3287099301815033,
+      "tagged_at": 0.3326675593852997
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46069252490997314,
+      "cut_at": 0.5020793080329895,
+      "operated_by": 0.450120747089386,
+      "perforated_interval": 0.4378127455711365,
+      "set_plug_at": 0.3740167021751404
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6305366158485413,
+      "drilled_to": 0.44874271750450134,
+      "encountered_marker": 0.4948543608188629,
+      "has_well_status": 0.5257676839828491,
+      "operated_by": 0.5352691411972046
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.41619235277175903,
+      "cut_at": 0.5364165902137756,
+      "perforated_interval": 0.49296262860298157,
+      "set_plug_at": 0.42618367075920105,
+      "spudded_on": 0.3754608631134033
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "concluded on": "The subject entity ended at the time specified by the object entity.",
+    "installed casing in": "The subject entity involved the installation of casing within the location specified by the object entity.",
+    "is part of": "The subject entity is a component or member of the group or set specified by the object entity.",
+    "started on": "The subject entity began at the time specified by the object entity.",
+    "was used for": "The subject entity was utilized to perform or facilitate the activity specified by the object entity."
+   },
+   "key": "eor_-137936_910ef7c0#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5341174602508545,
+      "cut_at": 0.5563618540763855,
+      "operated_by": 0.40567994117736816,
+      "perforated_interval": 0.5714020133018494,
+      "set_plug_at": 0.49065661430358887
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3800155222415924,
+      "cut_at": 0.41248777508735657,
+      "operated_by": 0.4188656508922577,
+      "perforated_interval": 0.41936996579170227,
+      "set_plug_at": 0.4251725673675537
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3800155222415924,
+      "cut_at": 0.41248777508735657,
+      "operated_by": 0.4188656508922577,
+      "perforated_interval": 0.41936996579170227,
+      "set_plug_at": 0.4251725673675537
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3800155222415924,
+      "cut_at": 0.41248777508735657,
+      "operated_by": 0.4188656508922577,
+      "perforated_interval": 0.41936996579170227,
+      "set_plug_at": 0.4251725673675537
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46614301204681396,
+      "cut_at": 0.4444357752799988,
+      "operated_by": 0.498013436794281,
+      "perforated_interval": 0.5188651084899902,
+      "set_plug_at": 0.45702865719795227
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47579896450042725,
+      "cut_at": 0.4767773449420929,
+      "operated_by": 0.4787919521331787,
+      "perforated_interval": 0.47076040506362915,
+      "used_rig": 0.47983935475349426
+     },
+     "canonical": [
+      "Mad Dog Spar Rig",
+      "used_rig",
+      "batch set operation"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3800155222415924,
+      "cut_at": 0.41248777508735657,
+      "operated_by": 0.4188656508922577,
+      "perforated_interval": 0.41936996579170227,
+      "set_plug_at": 0.4251725673675537
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46708613634109497,
+      "cut_at": 0.4779511094093323,
+      "operated_by": 0.4189353287220001,
+      "perforated_interval": 0.5452879071235657,
+      "set_plug_at": 0.4739237427711487
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3800155222415924,
+      "cut_at": 0.41248777508735657,
+      "operated_by": 0.4188656508922577,
+      "perforated_interval": 0.41936996579170227,
+      "set_plug_at": 0.4251725673675537
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has length of": "The subject entity has a physical length equal to the measurement specified by the object entity.",
+    "involve": "The subject entity includes or encompasses the object entity as part of its operations, activities, or components.",
+    "is type of": "The subject entity is a specific kind or category of the general class specified by the object entity.",
+    "used tool for cutting": "The subject entity was processed using the specific tool or equipment specified by the object entity.",
+    "was cut on": "The subject entity underwent a cutting process on the date specified by the object entity.",
+    "was cut to depth of": "The subject entity was severed or trimmed to reach the specific depth specified by the object entity.",
+    "weighs": "The subject entity has a mass or weight equal to the value specified by the object entity."
+   },
+   "key": "eor_-141200_58ebd6ad#c000",
+   "results": [
+    {
+     "candidates": {
+      "casing_spec": 0.4600052535533905,
+      "cut_at": 0.44664430618286133,
+      "perforated_interval": 0.4327974021434784,
+      "reached_td": 0.4446312189102173,
+      "set_plug_at": 0.4116361141204834
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.579740047454834,
+      "operated_by": 0.5262234807014465,
+      "perforated_interval": 0.5324043035507202,
+      "set_plug_at": 0.5086192488670349,
+      "used_rig": 0.5497864484786987
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.7662909030914307,
+      "drilled_to": 0.5685290694236755,
+      "perforated_interval": 0.5687453150749207,
+      "reached_td": 0.5818599462509155,
+      "set_casing_at": 0.594340443611145
+     },
+     "canonical": [
+      "#6 casing",
+      "cut_at",
+      "20' BML"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.7662909030914307,
+      "drilled_to": 0.5685290694236755,
+      "perforated_interval": 0.5687453150749207,
+      "reached_td": 0.5818599462509155,
+      "set_casing_at": 0.594340443611145
+     },
+     "canonical": [
+      "36\" drive pipe",
+      "cut_at",
+      "16' BML"
+     ]
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.5784105658531189,
+      "has_mud_weight": 0.44628626108169556,
+      "perforated_interval": 0.4162471294403076,
+      "pumped": 0.42146801948547363,
+      "tested_to_pressure": 0.4079883396625519
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4143312871456146,
+      "cut_at": 0.40572020411491394,
+      "operated_by": 0.4880389869213104,
+      "perforated_interval": 0.4034234583377838,
+      "tagged_at": 0.3873542845249176
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.579740047454834,
+      "operated_by": 0.5262234807014465,
+      "perforated_interval": 0.5324043035507202,
+      "set_plug_at": 0.5086192488670349,
+      "used_rig": 0.5497864484786987
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.44257932901382446,
+      "cut_at": 0.5736972689628601,
+      "perforated_interval": 0.4382478892803192,
+      "set_casing_at": 0.3657757341861725,
+      "spudded_on": 0.48526081442832947
+     },
+     "canonical": [
+      "36\" drive pipe",
+      "cut_at",
+      "2/21/14"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.44257932901382446,
+      "cut_at": 0.5736972689628601,
+      "perforated_interval": 0.4382478892803192,
+      "set_casing_at": 0.3657757341861725,
+      "spudded_on": 0.48526081442832947
+     },
+     "canonical": [
+      "#6 casing",
+      "cut_at",
+      "2/20/14"
+     ]
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.4600052535533905,
+      "cut_at": 0.44664430618286133,
+      "perforated_interval": 0.4327974021434784,
+      "reached_td": 0.4446312189102173,
+      "set_plug_at": 0.4116361141204834
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.5784105658531189,
+      "has_mud_weight": 0.44628626108169556,
+      "perforated_interval": 0.4162471294403076,
+      "pumped": 0.42146801948547363,
+      "tested_to_pressure": 0.4079883396625519
+     },
+     "canonical": [
+      "36\" drive pipe",
+      "casing_spec",
+      "32,150 lbs"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.38996827602386475,
+      "cut_at": 0.42748355865478516,
+      "operated_by": 0.4175606667995453,
+      "perforated_interval": 0.42049697041511536,
+      "set_plug_at": 0.416807621717453
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject event or operation started on the date specified by the object entity.",
+    "completed on": "The subject event or operation finished on the date specified by the object entity.",
+    "corresponds to": "The subject entity is equivalent to, represents, or maps to the value or measurement specified by the object entity.",
+    "ended on": "The subject event or operation concluded on the date specified by the object entity.",
+    "equals": "The subject entity has a value that is mathematically equivalent to the value specified by the object entity.",
+    "has perfs at": "The subject entity has perforations located at the depth interval specified by the object entity.",
+    "includes": "The subject entity contains or comprises the component, measurement, or value specified by the object entity.",
+    "is identified as": "The subject entity is designated, labeled, or referred to by the identifier specified by the object entity.",
+    "produces": "The subject entity yields, generates, or outputs the substance or resource specified by the object entity.",
+    "was opened by shifting": "The subject entity was made open for production or flow by the action of shifting the object entity.",
+    "was pressure tested to": "The subject entity underwent a pressure test reaching the limit specified by the object entity.",
+    "was set at": "The subject entity was positioned, placed, or established at the location or depth specified by the object entity.",
+    "were isolated by setting": "The subject entity was sealed off or separated from other zones by the installation of the object entity.",
+    "were shifted at depth": "The subject entity was moved or actuated at the specific depth specified by the object entity."
+   },
+   "key": "eor_-151231_23dd2d46#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5911487936973572,
+      "perforated_interval": 0.666073739528656,
+      "reached_td": 0.6221452355384827,
+      "set_casing_at": 0.5494340658187866,
+      "set_plug_at": 0.5776119232177734
+     },
+     "canonical": [
+      "Cris I M-8 Sd",
+      "perforated_interval",
+      "9,934'-9,945' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4737500846385956,
+      "cut_at": 0.5054736733436584,
+      "operated_by": 0.5088618993759155,
+      "perforated_interval": 0.4517766833305359,
+      "set_plug_at": 0.4523630440235138
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43252241611480713,
+      "cut_at": 0.3821016550064087,
+      "perforated_interval": 0.44558459520339966,
+      "set_plug_at": 0.35900288820266724,
+      "spudded_on": 0.4913738965988159
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.413870245218277,
+      "cut_at": 0.3896236717700958,
+      "encountered_marker": 0.37635916471481323,
+      "operated_by": 0.42051786184310913,
+      "perforated_interval": 0.43737831711769104
+     },
+     "canonical": [
+      "EC 36 Well A-1",
+      "completed_in",
+      "Cris I M-7 Sd"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.42170315980911255,
+      "has_well_status": 0.40042439103126526,
+      "operated_by": 0.4519272446632385,
+      "perforated_interval": 0.4709451198577881,
+      "set_plug_at": 0.4229028522968292
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4215233623981476,
+      "cut_at": 0.4003366529941559,
+      "perforated_interval": 0.4524137079715729,
+      "set_plug_at": 0.38365259766578674,
+      "spudded_on": 0.47439590096473694
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.4246131181716919,
+      "has_well_status": 0.4198949337005615,
+      "operated_by": 0.4360211491584778,
+      "perforated_interval": 0.47881966829299927,
+      "reached_td": 0.39384540915489197
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4450427293777466,
+      "fit_lot_emw": 0.39814209938049316,
+      "pumped": 0.45002952218055725,
+      "reached_td": 0.3801203966140747,
+      "tested_to_pressure": 0.7134248614311218
+     },
+     "canonical": [
+      "Cris I M-8 Sd isolation operation",
+      "tested_to_pressure",
+      "1050 psi"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5982646346092224,
+      "perforated_interval": 0.5628185868263245,
+      "reached_td": 0.5871333479881287,
+      "set_casing_at": 0.591877281665802,
+      "set_plug_at": 0.6135482788085938
+     },
+     "canonical": [
+      "MRBP",
+      "set_plug_at",
+      "9,891' RKB"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.42250949144363403,
+      "has_well_status": 0.410627156496048,
+      "operated_by": 0.4383828341960907,
+      "perforated_interval": 0.4789678156375885,
+      "set_plug_at": 0.42142754793167114
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6697776913642883,
+      "perforated_interval": 0.567319393157959,
+      "reached_td": 0.6072402596473694,
+      "set_casing_at": 0.6267443895339966,
+      "set_plug_at": 0.5824824571609497
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6697776913642883,
+      "perforated_interval": 0.567319393157959,
+      "reached_td": 0.6072402596473694,
+      "set_casing_at": 0.6267443895339966,
+      "set_plug_at": 0.5824824571609497
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.42121344804763794,
+      "completed_in": 0.44083210825920105,
+      "has_well_status": 0.4611276686191559,
+      "operated_by": 0.4730093479156494,
+      "perforated_interval": 0.4626503884792328
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5750471353530884,
+      "cut_at": 0.5731195211410522,
+      "operated_by": 0.4412047266960144,
+      "perforated_interval": 0.5607205033302307,
+      "set_plug_at": 0.48997366428375244
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.35972869396209717,
+      "cut_at": 0.39169883728027344,
+      "perforated_interval": 0.44969892501831055,
+      "set_plug_at": 0.4019473195075989,
+      "spudded_on": 0.5177843570709229
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.42170315980911255,
+      "has_well_status": 0.40042439103126526,
+      "operated_by": 0.4519272446632385,
+      "perforated_interval": 0.4709451198577881,
+      "set_plug_at": 0.4229028522968292
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is located at depth": "The subject entity is situated at the specific depth specified by the object entity.",
+    "was created in": "The subject entity was created or constructed in the year specified by the object entity."
+   },
+   "key": "eor_-153193_1cb44328#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4434604346752167,
+      "cut_at": 0.39007842540740967,
+      "operated_by": 0.4031570255756378,
+      "perforated_interval": 0.44369247555732727,
+      "spudded_on": 0.4460248053073883
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6130520701408386,
+      "drilled_to": 0.5896342396736145,
+      "perforated_interval": 0.5841115713119507,
+      "reached_td": 0.6802826523780823,
+      "set_plug_at": 0.5985987186431885
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed operations on": "The subject entity completed operational work on the well or facility specified by the object entity.",
+    "had CIBP set in": "The subject entity had a Cement Integrity Barrier Plug (CIBP) set inside the component specified by the object entity.",
+    "had cmt plug set in": "The subject entity had a cement plug set inside the component specified by the object entity.",
+    "had csg cut and pulled at depth measured from": "The subject entity had casing cut and pulled at a depth measured from the reference point specified by the object entity.",
+    "had csg perf'd at": "The subject entity had casing perforated at the location specified by the object entity.",
+    "had tbg cut/pulled from": "The subject entity had the tubing specified by the object entity cut and pulled from it.",
+    "had tbg perf'd at": "The subject entity had tubing perforated at the location specified by the object entity.",
+    "has TOC at": "The subject entity has its Top of Cement (TOC) located at the position specified by the object entity.",
+    "was sqz'd with": "The subject entity was squeezed (treated) using the material specified by the object entity."
+   },
+   "key": "eor_-154697_e8f1e681#c000",
+   "results": [
+    {
+     "candidates": {
+      "cemented_interval": 0.4200650751590729,
+      "completed_in": 0.38682615756988525,
+      "cut_at": 0.45483940839767456,
+      "operated_by": 0.38408443331718445,
+      "set_plug_at": 0.48412254452705383
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4940476417541504,
+      "cut_at": 0.5656524300575256,
+      "drilled_to": 0.45991477370262146,
+      "perforated_interval": 0.6646850109100342,
+      "set_plug_at": 0.5004621148109436
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6280431747436523,
+      "has_well_status": 0.6332297325134277,
+      "operated_by": 0.6607421040534973,
+      "spudded_on": 0.506395697593689,
+      "used_rig": 0.5266276597976685
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.4200650751590729,
+      "completed_in": 0.38682615756988525,
+      "cut_at": 0.45483940839767456,
+      "operated_by": 0.38408443331718445,
+      "set_plug_at": 0.48412254452705383
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.44170281291007996,
+      "completed_in": 0.41467055678367615,
+      "cut_at": 0.45874276757240295,
+      "operated_by": 0.4529096484184265,
+      "set_plug_at": 0.5495564341545105
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5050358176231384,
+      "cut_at": 0.7454594969749451,
+      "perforated_interval": 0.6362046003341675,
+      "set_casing_at": 0.49953076243400574,
+      "set_plug_at": 0.505291223526001
+     },
+     "canonical": [
+      "HI 115 Well B001(ST02)",
+      "cut_at",
+      "tbg"
+     ]
+    },
+    {
+     "candidates": {
+      "casing_size": 0.4878888726234436,
+      "completed_in": 0.48654964566230774,
+      "cut_at": 0.5709696412086487,
+      "perforated_interval": 0.7449275255203247,
+      "set_plug_at": 0.4970817565917969
+     },
+     "canonical": [
+      "HI 115 Well B001(ST02)",
+      "perforated_interval",
+      "tbg"
+     ]
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.7772912979125977,
+      "cut_at": 0.4663068950176239,
+      "drilled_to": 0.5086116790771484,
+      "perforated_interval": 0.4693357050418854,
+      "reached_td": 0.48124152421951294
+     },
+     "canonical": [
+      "HI 115 Well B001(ST02)",
+      "cemented_interval",
+      "TOC"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.8017708659172058,
+      "drilled_to": 0.6449782848358154,
+      "perforated_interval": 0.6128295063972473,
+      "reached_td": 0.662477970123291,
+      "set_casing_at": 0.6081929206848145
+     },
+     "canonical": [
+      "HI 115 Well B001(ST02)",
+      "cut_at",
+      "BML"
+     ]
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.44170281291007996,
+      "completed_in": 0.41467055678367615,
+      "cut_at": 0.45874276757240295,
+      "operated_by": 0.4529096484184265,
+      "set_plug_at": 0.5495564341545105
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.8017708659172058,
+      "drilled_to": 0.6449782848358154,
+      "perforated_interval": 0.6128295063972473,
+      "reached_td": 0.662477970123291,
+      "set_casing_at": 0.6081929206848145
+     },
+     "canonical": [
+      "HI 115 Well B001(ST02)",
+      "cut_at",
+      "RKB"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6131057143211365,
+      "perforated_interval": 0.5643252730369568,
+      "set_casing_at": 0.41308069229125977,
+      "set_plug_at": 0.4219471216201782,
+      "tested_to_pressure": 0.47683557868003845
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "are": "The subject entity is or constitutes the object entity.",
+    "involves cutting": "The subject entity involves the action of cutting the object entity.",
+    "is governed by": "The subject entity is regulated or controlled by the rules, standards, or regulations specified by the object entity.",
+    "requires removal of": "The subject entity mandates that the object entity must be removed."
+   },
+   "key": "eor_-157593_4154806b#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.3535124361515045,
+      "operated_by": 0.46034878492355347,
+      "perforated_interval": 0.4113377332687378,
+      "set_plug_at": 0.38472843170166016,
+      "tagged_at": 0.35909122228622437
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4185032546520233,
+      "cut_at": 0.42733025550842285,
+      "operated_by": 0.3867146968841553,
+      "perforated_interval": 0.39453908801078796,
+      "set_plug_at": 0.34545770287513733
+     },
+     "canonical": [
+      "250.1716(a)",
+      "cut_at",
+      "casing"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4044683575630188,
+      "cut_at": 0.4002363979816437,
+      "has_well_status": 0.38983553647994995,
+      "operated_by": 0.4940611720085144,
+      "perforated_interval": 0.42015567421913147
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.45851537585258484,
+      "cut_at": 0.6234049201011658,
+      "operated_by": 0.4460654556751251,
+      "perforated_interval": 0.4587646424770355,
+      "tagged_at": 0.4681488275527954
+     },
+     "canonical": [
+      "Permanent Abandonment",
+      "cut_at",
+      "casings"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "cut": "The subject entity was cut using the method, tool, or service specified by the object entity.",
+    "cut/pulled": "The subject entity was cut or pulled using the method, tool, or service specified by the object entity.",
+    "doesn't have documentation for dates the plugs were set and tested": "The subject entity lacks records or documentation regarding the specific dates when the object entity was set and tested.",
+    "is": "The subject entity has the status, condition, or state specified by the object entity.",
+    "were set by": "The subject entity was installed or placed in position by the person or organization specified by the object entity."
+   },
+   "key": "eor_-158773_5cb14ed0#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.7175856232643127,
+      "operated_by": 0.4592857360839844,
+      "perforated_interval": 0.4875469207763672,
+      "set_plug_at": 0.4785540997982025,
+      "tagged_at": 0.46932023763656616
+     },
+     "canonical": [
+      "9-5/8\", 13-3/8\", and 20\" casing strings",
+      "cut_at",
+      "BML"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4436156749725342,
+      "cut_at": 0.5063065886497498,
+      "operated_by": 0.5020145773887634,
+      "perforated_interval": 0.47192537784576416,
+      "set_plug_at": 0.5428658127784729
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4514354467391968,
+      "cut_at": 0.6993880271911621,
+      "operated_by": 0.441445916891098,
+      "perforated_interval": 0.473640501499176,
+      "set_plug_at": 0.45752307772636414
+     },
+     "canonical": [
+      "48\" drive pipe",
+      "cut_at",
+      "BML"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.45974209904670715,
+      "has_well_status": 0.6159393191337585,
+      "operated_by": 0.4541538953781128,
+      "perforated_interval": 0.47722458839416504,
+      "set_plug_at": 0.4020329713821411
+     },
+     "canonical": [
+      "Well status",
+      "has_well_status",
+      "TAd"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.29695165157318115,
+      "cut_at": 0.322266548871994,
+      "operated_by": 0.27317124605178833,
+      "perforated_interval": 0.2847140431404114,
+      "spudded_on": 0.41715285181999207
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "involved installing": "The subject entity involved the action of installing the object entity.",
+    "involved pulling and placing": "The subject entity involved the actions of pulling and placing the object entity.",
+    "involved setting": "The subject entity involved the action of setting the object entity.",
+    "located at depth": "The subject entity is located at the specific depth specified by the object entity.",
+    "occurred on date": "The subject entity occurred or was completed on the date specified by the object entity.",
+    "omitted from": "The subject entity was omitted from or excluded in the context of the object entity.",
+    "part of": "The subject entity is a part of or belongs to the object entity."
+   },
+   "key": "eor_-165397_7e84fdbf#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4897339642047882,
+      "cut_at": 0.4708402156829834,
+      "operated_by": 0.48813724517822266,
+      "perforated_interval": 0.5143340826034546,
+      "set_plug_at": 0.516940712928772
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46873757243156433,
+      "cut_at": 0.4348353147506714,
+      "operated_by": 0.4723179042339325,
+      "perforated_interval": 0.40893471240997314,
+      "set_plug_at": 0.4208586513996124
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6135420203208923,
+      "drilled_to": 0.5726298093795776,
+      "perforated_interval": 0.565959632396698,
+      "reached_td": 0.6351476907730103,
+      "set_plug_at": 0.628321647644043
+     },
+     "canonical": [
+      "FXE",
+      "set_plug_at",
+      "442' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4494445025920868,
+      "cut_at": 0.45194727182388306,
+      "operated_by": 0.49512210488319397,
+      "perforated_interval": 0.4665443003177643,
+      "set_plug_at": 0.4213133752346039
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.49677538871765137,
+      "cut_at": 0.4118720293045044,
+      "has_well_status": 0.4140983521938324,
+      "perforated_interval": 0.48717695474624634,
+      "spudded_on": 0.48527002334594727
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5030323266983032,
+      "cut_at": 0.5500901937484741,
+      "operated_by": 0.36853232979774475,
+      "perforated_interval": 0.5065720677375793,
+      "set_plug_at": 0.4470413029193878
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6135420203208923,
+      "drilled_to": 0.5726298093795776,
+      "perforated_interval": 0.565959632396698,
+      "reached_td": 0.6351476907730103,
+      "set_plug_at": 0.628321647644043
+     },
+     "canonical": [
+      "packoff assembly",
+      "set_plug_at",
+      "1357'- 1420' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6016778945922852,
+      "operated_by": 0.4805302619934082,
+      "perforated_interval": 0.4815364480018616,
+      "set_plug_at": 0.4945615530014038,
+      "used_rig": 0.48253053426742554
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "allows future utilization of": "The action or state specified by the subject entity enables the future use or application of the entity specified by the object entity.",
+    "has future utility for development of": "The subject entity has potential usefulness or value for the future development of the entity specified by the object entity.",
+    "is candidate for": "The subject entity is considered a suitable option or possibility for the role or status specified by the object entity.",
+    "is on": "The subject entity is listed in, included in, or part of the list or group specified by the object entity.",
+    "performed": "The subject entity carried out or executed the action specified by the object entity."
+   },
+   "key": "eor_-165748_eb51960b#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4178565740585327,
+      "cut_at": 0.41529741883277893,
+      "has_well_status": 0.43024298548698425,
+      "perforated_interval": 0.4500408470630646,
+      "set_plug_at": 0.4260074496269226
+     },
+     "canonical": [
+      "OCS-G 4909 Well No. 7",
+      "has_well_status",
+      "Idle Iron List"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.444077730178833,
+      "cut_at": 0.5301417708396912,
+      "perforated_interval": 0.48400938510894775,
+      "set_casing_at": 0.47216466069221497,
+      "set_plug_at": 0.4796723425388336
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.35963720083236694,
+      "has_well_status": 0.3593076169490814,
+      "operated_by": 0.3786078095436096,
+      "perforated_interval": 0.37235257029533386,
+      "used_rig": 0.336765319108963
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.41592544317245483,
+      "has_well_status": 0.4532190263271332,
+      "operated_by": 0.4731508195400238,
+      "perforated_interval": 0.4000140428543091,
+      "set_plug_at": 0.38870352506637573
+     },
+     "canonical": [
+      "OCS-G 4909 Well No. 7",
+      "has_well_status",
+      "sidetrack candidate"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5074271559715271,
+      "has_well_status": 0.4452442526817322,
+      "operated_by": 0.4719213545322418,
+      "perforated_interval": 0.4097871482372284,
+      "reached_td": 0.38245347142219543
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed between": "The subject entity was completed during the time period specified by the object entity.",
+    "is required in": "The subject entity is a requirement or necessary activity within the context of the object entity.",
+    "performed after closing": "The subject entity was performed after the object entity was closed.",
+    "performed after opening": "The subject entity was performed after the object entity was opened.",
+    "resumed from both zones after": "The subject entity resumed production from both zones after the object entity occurred."
+   },
+   "key": "eor_-166906_ddf3eab2#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.579032301902771,
+      "cut_at": 0.5550611019134521,
+      "operated_by": 0.4857671558856964,
+      "perforated_interval": 0.5115883350372314,
+      "set_plug_at": 0.48155346512794495
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.436311811208725,
+      "cut_at": 0.4357645511627197,
+      "operated_by": 0.44663044810295105,
+      "perforated_interval": 0.4249681532382965,
+      "set_plug_at": 0.4199962615966797
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5663062334060669,
+      "cut_at": 0.45257294178009033,
+      "perforated_interval": 0.5460706353187561,
+      "set_plug_at": 0.4273912310600281,
+      "spudded_on": 0.43662649393081665
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.541832447052002,
+      "cut_at": 0.4019682705402374,
+      "operated_by": 0.35709652304649353,
+      "perforated_interval": 0.44971907138824463,
+      "set_plug_at": 0.3595166504383087
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5479707717895508,
+      "cut_at": 0.5618536472320557,
+      "operated_by": 0.4875028133392334,
+      "perforated_interval": 0.5351411700248718,
+      "set_plug_at": 0.5268361568450928
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.579032301902771,
+      "cut_at": 0.5550611019134521,
+      "operated_by": 0.4857671558856964,
+      "perforated_interval": 0.5115883350372314,
+      "set_plug_at": 0.48155346512794495
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has status": "The subject entity holds the status specified by the object entity.",
+    "use": "The subject entity utilizes or employs the object entity for a specific purpose."
+   },
+   "key": "eor_-169333_fcc04c1b#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.47374820709228516,
+      "cut_at": 0.4202148914337158,
+      "has_well_status": 0.6066502928733826,
+      "operated_by": 0.4667665958404541,
+      "perforated_interval": 0.48136746883392334
+     },
+     "canonical": [
+      "well",
+      "has_well_status",
+      "temporarily abandoned"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4488133490085602,
+      "cut_at": 0.4363132417201996,
+      "operated_by": 0.5635393857955933,
+      "perforated_interval": 0.4701656699180603,
+      "used_rig": 0.4741344153881073
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "are isolated in": "The subject entity is separated or enclosed within the location or system specified by the object entity.",
+    "has status as of": "The subject entity holds the specific state or condition specified by the object entity at the time indicated by the date in the object entity.",
+    "is not abandoned to": "The subject entity has not been fully decommissioned or left without containment up to the point specified by the object entity.",
+    "remains in": "The subject entity continues to be in the state or condition specified by the object entity.",
+    "were suspended to complete": "The action performed on the subject entity was paused or stopped with the purpose of finishing the process specified by the object entity."
+   },
+   "key": "eor_-174092_065bc7f9#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.43836528062820435,
+      "cut_at": 0.4010908901691437,
+      "has_well_status": 0.3686122000217438,
+      "operated_by": 0.40041762590408325,
+      "perforated_interval": 0.34881746768951416
+     },
+     "canonical": [
+      "well",
+      "has_well_status",
+      "surface"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4032761752605438,
+      "cut_at": 0.4601869285106659,
+      "perforated_interval": 0.38253945112228394,
+      "set_casing_at": 0.3460817039012909,
+      "set_plug_at": 0.37737932801246643
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5280250310897827,
+      "has_well_status": 0.4440324902534485,
+      "operated_by": 0.4724138081073761,
+      "perforated_interval": 0.5282273292541504,
+      "set_plug_at": 0.5146515369415283
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.45899832248687744,
+      "has_well_status": 0.4827963709831238,
+      "operated_by": 0.4169238805770874,
+      "perforated_interval": 0.4831854999065399,
+      "set_plug_at": 0.40619510412216187
+     },
+     "canonical": [
+      "well",
+      "has_well_status",
+      "TA Status"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.38646411895751953,
+      "has_well_status": 0.4367985725402832,
+      "operated_by": 0.3750700056552887,
+      "perforated_interval": 0.480855256319046,
+      "spudded_on": 0.40510404109954834
+     },
+     "canonical": [
+      "well",
+      "has_well_status",
+      "01/29/2012"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "are isolated in": "The subject entities are separated from other parts within the location specified by the object entity.",
+    "is in status": "The subject entity is currently in the state or condition specified by the object entity.",
+    "prior to perforating": "The subject entity occurred before the action of perforating the object entity took place.",
+    "targeted": "The subject entity aimed at or focused on the object entity as its objective.",
+    "were suspended on": "The subject activity was paused or halted on the date specified by the object entity."
+   },
+   "key": "eor_-175209_7ab3d938#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4832221567630768,
+      "has_well_status": 0.5478060841560364,
+      "operated_by": 0.45552965998649597,
+      "perforated_interval": 0.5180284380912781,
+      "set_plug_at": 0.4522888660430908
+     },
+     "canonical": [
+      "well",
+      "has_well_status",
+      "temporarily abandoned"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.37886130809783936,
+      "cut_at": 0.4421226680278778,
+      "perforated_interval": 0.40263763070106506,
+      "set_plug_at": 0.3911341428756714,
+      "spudded_on": 0.43310385942459106
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5010272860527039,
+      "cut_at": 0.575041651725769,
+      "perforated_interval": 0.6231222748756409,
+      "set_casing_at": 0.4327068328857422,
+      "set_plug_at": 0.4928923547267914
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47511664032936096,
+      "cut_at": 0.5521339774131775,
+      "operated_by": 0.44183480739593506,
+      "perforated_interval": 0.5311002135276794,
+      "set_plug_at": 0.4942566454410553
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46857795119285583,
+      "cut_at": 0.4301460087299347,
+      "operated_by": 0.4445790946483612,
+      "perforated_interval": 0.46884894371032715,
+      "set_plug_at": 0.42954832315444946
+     },
+     "canonical": [
+      "Cement packer recompletion operations",
+      "completed_in",
+      "E-1 Sand"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "performed using method": "The action specified by the subject entity was carried out using the method or tool specified by the object entity.",
+    "suspended on": "The subject entity was suspended or halted on the date specified by the object entity.",
+    "unable to get below depth of": "The subject entity could not penetrate or reach a depth greater than that specified by the object entity.",
+    "unsuccessful in cleaning out": "The subject entity failed to successfully clean out the location or entity specified by the object entity."
+   },
+   "key": "eor_-180488_0256a4e8#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.44385597109794617,
+      "cut_at": 0.38208338618278503,
+      "has_well_status": 0.2874336838722229,
+      "operated_by": 0.34451475739479065,
+      "perforated_interval": 0.3581746220588684
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4869205355644226,
+      "perforated_interval": 0.4202415347099304,
+      "set_plug_at": 0.4446340501308441,
+      "tagged_at": 0.44946059584617615,
+      "used_rig": 0.44246721267700195
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5904576182365417,
+      "drilled_to": 0.5218740701675415,
+      "perforated_interval": 0.5053101778030396,
+      "reached_td": 0.6077959537506104,
+      "set_casing_at": 0.497159868478775
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3934607207775116,
+      "cut_at": 0.4328717887401581,
+      "perforated_interval": 0.4338333010673523,
+      "set_plug_at": 0.414916455745697,
+      "spudded_on": 0.4536803960800171
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "involved equipment type": "The subject entity involved or utilized the specific type of equipment specified by the object entity.",
+    "occurred during period": "The subject entity took place or existed during the time period specified by the object entity.",
+    "occurred in location": "The subject entity took place or was situated in the location specified by the object entity.",
+    "targeted formation": "The subject entity aimed at or focused on the geological formation specified by the object entity."
+   },
+   "key": "eor_-180868_bbb62974#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.47146734595298767,
+      "drilled_to": 0.4323965013027191,
+      "encountered_marker": 0.6602339744567871,
+      "perforated_interval": 0.4373060166835785,
+      "reached_td": 0.4188321828842163
+     },
+     "canonical": [
+      "Initial completion operations",
+      "completed_in",
+      "B4 Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5505226850509644,
+      "cut_at": 0.5186449289321899,
+      "operated_by": 0.483723521232605,
+      "perforated_interval": 0.5448943972587585,
+      "set_plug_at": 0.5132559537887573
+     },
+     "canonical": [
+      "Initial completion operations",
+      "completed_in",
+      "Lower (B6L) lobe"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4881538152694702,
+      "cut_at": 0.47157394886016846,
+      "operated_by": 0.4192410409450531,
+      "perforated_interval": 0.5403503775596619,
+      "set_plug_at": 0.4493038058280945
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4881538152694702,
+      "cut_at": 0.47157394886016846,
+      "operated_by": 0.4192410409450531,
+      "perforated_interval": 0.5403503775596619,
+      "set_plug_at": 0.4493038058280945
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5505226850509644,
+      "cut_at": 0.5186449289321899,
+      "operated_by": 0.483723521232605,
+      "perforated_interval": 0.5448943972587585,
+      "set_plug_at": 0.5132559537887573
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4881538152694702,
+      "cut_at": 0.47157394886016846,
+      "operated_by": 0.4192410409450531,
+      "perforated_interval": 0.5403503775596619,
+      "set_plug_at": 0.4493038058280945
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.48326006531715393,
+      "operated_by": 0.5655342936515808,
+      "perforated_interval": 0.47913604974746704,
+      "set_plug_at": 0.4812924265861511,
+      "used_rig": 0.5914899110794067
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47146734595298767,
+      "drilled_to": 0.4323965013027191,
+      "encountered_marker": 0.6602339744567871,
+      "perforated_interval": 0.4373060166835785,
+      "reached_td": 0.4188321828842163
+     },
+     "canonical": [
+      "Initial completion operations",
+      "completed_in",
+      "B6 Sand"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "changed on": "The subject entity underwent a change on the date specified by the object entity.",
+    "changed to": "The subject entity was changed into the state, form, or type specified by the object entity.",
+    "in": "The subject event or action occurs during the time period specified by the object entity.",
+    "in lieu of": "The subject entity is used or done instead of the object entity.",
+    "on": "The subject issue or problem exists at or affects the location/entity specified by the object entity.",
+    "to complete": "The subject action or event is performed for the purpose of finishing or completing the object entity.",
+    "to demobilize": "The subject decision or action is taken to remove or withdraw the object entity from a site or operation.",
+    "will be submitted to fully TA": "The subject entity will be submitted with the intention of fully performing the technical action (TA) on the object entity."
+   },
+   "key": "eor_-183053_2531389f#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5346185564994812,
+      "cut_at": 0.5171002745628357,
+      "operated_by": 0.4994271993637085,
+      "perforated_interval": 0.5107661485671997,
+      "set_plug_at": 0.4798659682273865
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3702930808067322,
+      "cut_at": 0.42109936475753784,
+      "has_well_status": 0.31036728620529175,
+      "operated_by": 0.3861696720123291,
+      "used_rig": 0.3938702344894409
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4619365632534027,
+      "cut_at": 0.4974778890609741,
+      "has_well_status": 0.4314567744731903,
+      "perforated_interval": 0.4861558675765991,
+      "set_plug_at": 0.44977158308029175
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.410480260848999,
+      "cut_at": 0.3790917992591858,
+      "has_well_status": 0.5040952563285828,
+      "perforated_interval": 0.40734097361564636,
+      "used_rig": 0.392807275056839
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.40676194429397583,
+      "cut_at": 0.42008158564567566,
+      "perforated_interval": 0.43736210465431213,
+      "set_plug_at": 0.35756638646125793,
+      "spudded_on": 0.513660192489624
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3565584421157837,
+      "cut_at": 0.4054147005081177,
+      "perforated_interval": 0.46261706948280334,
+      "set_casing_at": 0.3658418357372284,
+      "set_plug_at": 0.4392010569572449
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48029953241348267,
+      "cut_at": 0.38930851221084595,
+      "operated_by": 0.41465049982070923,
+      "perforated_interval": 0.45002493262290955,
+      "set_plug_at": 0.3901606500148773
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46364307403564453,
+      "cut_at": 0.4621751308441162,
+      "perforated_interval": 0.42901208996772766,
+      "set_casing_at": 0.4259871542453766,
+      "set_plug_at": 0.41852983832359314
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3702930808067322,
+      "cut_at": 0.42109936475753784,
+      "has_well_status": 0.31036728620529175,
+      "operated_by": 0.3861696720123291,
+      "used_rig": 0.3938702344894409
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "appears on": "The subject entity is displayed, listed, or shown on the document, report, or medium specified by the object entity.",
+    "is approved by": "The subject entity is granted approval or authorization by the person, group, or system specified by the object entity.",
+    "is sent to": "The subject entity is transmitted or delivered to the recipient or destination specified by the object entity.",
+    "sends in": "The subject entity submits or forwards the item specified by the object entity for processing or review."
+   },
+   "key": "eor_-200983_091a7dba#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.46100571751594543,
+      "has_well_status": 0.43856728076934814,
+      "operated_by": 0.4227144718170166,
+      "perforated_interval": 0.4398506283760071,
+      "set_plug_at": 0.4597831964492798
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4240470826625824,
+      "has_well_status": 0.4310707747936249,
+      "perforated_interval": 0.436684787273407,
+      "set_plug_at": 0.43727385997772217,
+      "tagged_at": 0.36645978689193726
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.455404669046402,
+      "operated_by": 0.4082912504673004,
+      "perforated_interval": 0.4403517544269562,
+      "set_casing_at": 0.38678473234176636,
+      "set_plug_at": 0.43535372614860535
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.3493633568286896,
+      "has_well_status": 0.37654736638069153,
+      "operated_by": 0.428800106048584,
+      "perforated_interval": 0.34203213453292847,
+      "tagged_at": 0.33831852674484253
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is": "The subject entity is identified as or equivalent to the object entity.",
+    "is from": "The subject entity originates from or is derived from the object entity.",
+    "recognizes": "The subject entity acknowledges or accepts the validity of the object entity.",
+    "was temporarily abandoned as of": "The subject entity underwent temporary abandonment starting from or on the date specified by the object entity.",
+    "was temporarily abandoned through": "The subject entity was temporarily abandoned using the method or mechanism specified by the object entity."
+   },
+   "key": "eor_-203739_27d06f7b#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.41552865505218506,
+      "cut_at": 0.4334905743598938,
+      "has_well_status": 0.37669822573661804,
+      "operated_by": 0.45010364055633545,
+      "perforated_interval": 0.47409072518348694
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3649400770664215,
+      "has_well_status": 0.43026819825172424,
+      "operated_by": 0.368290513753891,
+      "perforated_interval": 0.3327646255493164,
+      "reached_td": 0.31455135345458984
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47344619035720825,
+      "cut_at": 0.4860415756702423,
+      "operated_by": 0.3775034248828888,
+      "perforated_interval": 0.42820411920547485,
+      "set_plug_at": 0.3749227225780487
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.38637831807136536,
+      "cut_at": 0.40755560994148254,
+      "has_well_status": 0.3035953938961029,
+      "perforated_interval": 0.40837398171424866,
+      "spudded_on": 0.40256959199905396
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.44914159178733826,
+      "cut_at": 0.47193238139152527,
+      "has_well_status": 0.44689488410949707,
+      "operated_by": 0.48357197642326355,
+      "perforated_interval": 0.5025756359100342
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "prevents updating the date due to": "The subject entity prevents the modification or update of a specific date because of the object entity.",
+    "recognizes a TA date of": "The subject entity identifies or acknowledges the Temporary Abandonment (TA) date as being the date specified by the object entity.",
+    "was to complete": "The subject entity was intended or designed to achieve the completion of the action or state specified by the object entity.",
+    "were completed on": "The subject entity (an event or process) reached its conclusion on the date specified by the object entity."
+   },
+   "key": "eor_-203944_26c4b587#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.5491780638694763,
+      "cut_at": 0.49351194500923157,
+      "perforated_interval": 0.4924869239330292,
+      "set_casing_at": 0.41403427720069885,
+      "set_plug_at": 0.44651997089385986
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.2770578861236572,
+      "cut_at": 0.291736900806427,
+      "has_well_status": 0.3702378571033478,
+      "perforated_interval": 0.361848920583725,
+      "spudded_on": 0.3406871259212494
+     },
+     "canonical": [
+      "*eWell",
+      "has_well_status",
+      "08/09/1996"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.32437241077423096,
+      "cut_at": 0.31756216287612915,
+      "operated_by": 0.302395224571228,
+      "perforated_interval": 0.38629332184791565,
+      "spudded_on": 0.4066981077194214
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42827096581459045,
+      "cut_at": 0.4024951457977295,
+      "perforated_interval": 0.4684421122074127,
+      "set_plug_at": 0.3606140613555908,
+      "spudded_on": 0.4409917891025543
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is": "The subject entity has the value specified by the object entity.",
+    "is due to": "The subject entity is caused by or results from the object entity.",
+    "prevents updating": "The subject entity blocks or stops any changes to the state or value of the object entity.",
+    "recognizes": "The subject entity identifies or acknowledges the existence of the object entity.",
+    "used via": "The subject entity utilizes or employs the method, tool, or mechanism specified by the object entity.",
+    "was to complete": "The purpose or goal of the subject entity was to finish or achieve the action/object specified by the object entity.",
+    "were completed on": "The subject entity was finished or concluded on the date specified by the object entity."
+   },
+   "key": "eor_-204443_c33bbff3#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.40371018648147583,
+      "cut_at": 0.48911893367767334,
+      "has_well_status": 0.40158727765083313,
+      "perforated_interval": 0.4307452142238617,
+      "set_plug_at": 0.3789465129375458
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4304673671722412,
+      "encountered_marker": 0.39671066403388977,
+      "has_well_status": 0.4257407486438751,
+      "operated_by": 0.428421288728714,
+      "perforated_interval": 0.42275822162628174
+     },
+     "canonical": [
+      "eWell",
+      "has_well_status",
+      "TA date"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4623422622680664,
+      "has_well_status": 0.5331616401672363,
+      "operated_by": 0.48129886388778687,
+      "perforated_interval": 0.5329434275627136,
+      "set_plug_at": 0.4750343859195709
+     },
+     "canonical": [
+      "TA date",
+      "has_well_status",
+      "09/11/2013"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4505927264690399,
+      "operated_by": 0.4936683475971222,
+      "set_plug_at": 0.42700448632240295,
+      "tagged_at": 0.4661972224712372,
+      "used_rig": 0.4702633321285248
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.505890429019928,
+      "cut_at": 0.504921555519104,
+      "operated_by": 0.45148858428001404,
+      "perforated_interval": 0.5276100039482117,
+      "set_plug_at": 0.4322701394557953
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.538887619972229,
+      "cut_at": 0.4257289171218872,
+      "has_well_status": 0.4027637243270874,
+      "perforated_interval": 0.49675777554512024,
+      "spudded_on": 0.4793948531150818
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.48405730724334717,
+      "cut_at": 0.4589594006538391,
+      "perforated_interval": 0.4536288380622864,
+      "set_casing_at": 0.43849435448646545,
+      "set_plug_at": 0.4192078411579132
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is abandoned by": "The subject entity is permanently sealed or decommissioned using the object entity.",
+    "is drilled in": "The subject entity is created or formed within the location specified by the object entity.",
+    "is part of": "The subject entity constitutes a component or section of the object entity.",
+    "is set above": "The subject entity is positioned vertically higher than the object entity.",
+    "is set with": "The subject entity is installed or placed together with the material specified by the object entity."
+   },
+   "key": "eor_-205910_3a614ea8#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.3889607787132263,
+      "cut_at": 0.37719929218292236,
+      "has_well_status": 0.3759094178676605,
+      "operated_by": 0.43041855096817017,
+      "perforated_interval": 0.37942832708358765
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5039883852005005,
+      "drilled_to": 0.4008485674858093,
+      "perforated_interval": 0.38768768310546875,
+      "reached_td": 0.4577484428882599,
+      "set_plug_at": 0.5404154062271118
+     },
+     "canonical": [
+      "secondary plug",
+      "set_plug_at",
+      "tubing stub"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42692625522613525,
+      "cut_at": 0.41375333070755005,
+      "operated_by": 0.4446564316749573,
+      "perforated_interval": 0.43801477551460266,
+      "set_plug_at": 0.4054289758205414
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42692625522613525,
+      "cut_at": 0.41375333070755005,
+      "operated_by": 0.4446564316749573,
+      "perforated_interval": 0.43801477551460266,
+      "set_plug_at": 0.4054289758205414
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.47787174582481384,
+      "cut_at": 0.4866068959236145,
+      "operated_by": 0.5005885362625122,
+      "perforated_interval": 0.48029160499572754,
+      "set_plug_at": 0.5116915106773376
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.46251124143600464,
+      "cut_at": 0.47803595662117004,
+      "operated_by": 0.4815678000450134,
+      "perforated_interval": 0.5152199268341064,
+      "set_plug_at": 0.5032191276550293
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42692625522613525,
+      "cut_at": 0.41375333070755005,
+      "operated_by": 0.4446564316749573,
+      "perforated_interval": 0.43801477551460266,
+      "set_plug_at": 0.4054289758205414
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "completed as": "The subject entity was finished or finalized in the form or type specified by the object entity.",
+    "included": "The subject entity includes or contains the component, feature, or element specified by the object entity.",
+    "performed completion operations on": "The subject entity performed completion operations on the wellbore or structure specified by the object entity.",
+    "performed operations in": "The subject entity performed operations within the location or facility specified by the object entity."
+   },
+   "key": "eor_-2095_f2a90e24#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.48096948862075806,
+      "operated_by": 0.546579122543335,
+      "perforated_interval": 0.5320923328399658,
+      "set_plug_at": 0.4863269627094269,
+      "used_rig": 0.5003795623779297
+     },
+     "canonical": [
+      "Remington",
+      "operated_by",
+      "Cris S-4 SD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42562660574913025,
+      "has_well_status": 0.4121163487434387,
+      "operated_by": 0.4177476465702057,
+      "perforated_interval": 0.4356439709663391,
+      "set_plug_at": 0.4185563921928406
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5251525640487671,
+      "cut_at": 0.4774136245250702,
+      "has_well_status": 0.4205103814601898,
+      "perforated_interval": 0.4982384741306305,
+      "set_plug_at": 0.4197923243045807
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6647020578384399,
+      "drilled_to": 0.5350772738456726,
+      "has_well_status": 0.5442426204681396,
+      "operated_by": 0.5682288408279419,
+      "reached_td": 0.5473284125328064
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "TD'd on": "The subject entity was drilled to total depth (TD) on the date specified by the object entity.",
+    "contains": "The subject entity contains the specific well, block, or feature specified by the object entity.",
+    "is located at": "The subject entity is located at the location or block specified by the object entity.",
+    "is part of": "The subject entity is a part of the larger area or block specified by the object entity.",
+    "reached depth of": "The subject entity reached the depth specified by the object entity.",
+    "was spud on": "The subject entity was started (spudded) on the date specified by the object entity.",
+    "was temporarily abandoned on": "The subject entity was temporarily abandoned on the date specified by the object entity."
+   },
+   "key": "eor_-46627_c8788ba2#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5596941113471985,
+      "drilled_to": 0.6616129279136658,
+      "perforated_interval": 0.5400375127792358,
+      "reached_td": 0.6380648612976074,
+      "spudded_on": 0.6419275403022766
+     },
+     "canonical": [
+      "Well No. 01",
+      "spudded_on",
+      "May 24, 2007"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6997771263122559,
+      "drilled_to": 0.6035720705986023,
+      "reached_td": 0.7188637852668762,
+      "set_casing_at": 0.6358764171600342,
+      "set_plug_at": 0.5991165637969971
+     },
+     "canonical": [
+      "Well No. 01",
+      "reached_td",
+      "6400' MD / TVD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42135384678840637,
+      "cut_at": 0.4121321141719818,
+      "perforated_interval": 0.48557180166244507,
+      "set_plug_at": 0.4016745686531067,
+      "spudded_on": 0.5964598059654236
+     },
+     "canonical": [
+      "Well No. 01",
+      "spudded_on",
+      "May 12, 2007"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42198166251182556,
+      "cut_at": 0.5424153208732605,
+      "perforated_interval": 0.49378135800361633,
+      "set_plug_at": 0.43556496500968933,
+      "tagged_at": 0.43179163336753845
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42102399468421936,
+      "cut_at": 0.39981409907341003,
+      "perforated_interval": 0.40541258454322815,
+      "set_plug_at": 0.3310357332229614,
+      "spudded_on": 0.49532604217529297
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5709914565086365,
+      "drilled_to": 0.5072677135467529,
+      "has_well_status": 0.5784062147140503,
+      "operated_by": 0.5594801306724548,
+      "perforated_interval": 0.5158136487007141
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.44893497228622437,
+      "cut_at": 0.5391488075256348,
+      "operated_by": 0.44332337379455566,
+      "perforated_interval": 0.5103225708007812,
+      "set_plug_at": 0.5306499004364014
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject event or activity started on the date specified by the object entity.",
+    "completed on": "The subject event or activity finished on the date specified by the object entity.",
+    "dumped on top of": "The subject material was poured or deposited onto the upper surface of the object entity.",
+    "is depth of": "The subject entity represents the depth measurement associated with the object entity.",
+    "is located at": "The subject entity is situated in or positioned at the location specified by the object entity.",
+    "isolated": "The subject entity serves to separate or block off the object entity from other areas or flows.",
+    "performed zone change operation on": "The subject entity carried out a procedure to alter the production zones of the object entity.",
+    "produces": "The subject entity yields, generates, or extracts the resource specified by the object entity.",
+    "set at depth": "The subject entity was placed or installed at the specific depth specified by the object entity.",
+    "was perforated at": "The subject entity had holes created in it at the location or depth range specified by the object entity.",
+    "was previous producing interval in": "The subject entity was the active production zone within the object entity prior to a change."
+   },
+   "key": "eor_-48387_268b7e78#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.41327083110809326,
+      "cut_at": 0.42864343523979187,
+      "operated_by": 0.4223935902118683,
+      "perforated_interval": 0.41904106736183167,
+      "tagged_at": 0.388596773147583
+     },
+     "canonical": [
+      "Well No. C-001ST",
+      "completed_in",
+      "CP27 Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.4859335422515869,
+      "operated_by": 0.4781850278377533,
+      "perforated_interval": 0.5206030607223511,
+      "reached_td": 0.44833672046661377,
+      "set_plug_at": 0.5546072125434875
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5506287813186646,
+      "cut_at": 0.43340933322906494,
+      "operated_by": 0.3854134976863861,
+      "perforated_interval": 0.4947189390659332,
+      "tagged_at": 0.4152483344078064
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.39494332671165466,
+      "cut_at": 0.39643076062202454,
+      "perforated_interval": 0.432003378868103,
+      "set_plug_at": 0.3785189390182495,
+      "spudded_on": 0.45086658000946045
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.5372076630592346,
+      "cut_at": 0.5561225414276123,
+      "encountered_marker": 0.5436736345291138,
+      "has_mud_weight": 0.5263643860816956,
+      "perforated_interval": 0.5320037007331848
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5274951457977295,
+      "cut_at": 0.45175865292549133,
+      "operated_by": 0.4181024730205536,
+      "perforated_interval": 0.5148242115974426,
+      "set_plug_at": 0.4337325096130371
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.5857706069946289,
+      "operated_by": 0.46509164571762085,
+      "perforated_interval": 0.5284814834594727,
+      "set_plug_at": 0.4680502712726593,
+      "tagged_at": 0.4843646287918091
+     },
+     "canonical": [
+      "Posi-set Plug",
+      "set_plug_at",
+      "CP28 Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6100757122039795,
+      "reached_td": 0.6339012980461121,
+      "set_casing_at": 0.5428209900856018,
+      "set_plug_at": 0.5456553101539612,
+      "tagged_at": 0.5484138131141663
+     },
+     "canonical": [
+      "ETC @ 15048'",
+      "tagged_at",
+      "End of Cement Top"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.32961878180503845,
+      "cut_at": 0.3831882178783417,
+      "perforated_interval": 0.42155662178993225,
+      "set_plug_at": 0.3807368576526642,
+      "spudded_on": 0.4869893789291382
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6427434682846069,
+      "drilled_to": 0.6086174845695496,
+      "perforated_interval": 0.5688709616661072,
+      "reached_td": 0.5704927444458008,
+      "set_plug_at": 0.6599048376083374
+     },
+     "canonical": [
+      "Posi-set Plug",
+      "set_plug_at",
+      "15080'"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.7166702747344971,
+      "drilled_to": 0.6120436191558838,
+      "perforated_interval": 0.6099889874458313,
+      "reached_td": 0.5679241418838501,
+      "set_plug_at": 0.5760117173194885
+     },
+     "canonical": [
+      "5\" liner",
+      "perforated_interval",
+      "14912' - 14954'"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is in": "The subject entity is currently in the state, condition, or status specified by the object entity.",
+    "will be cut at minimum of": "The subject entity will be cut to a depth or level that is no less than the value specified by the object entity.",
+    "will be recovered at": "The subject entity will be retrieved or removed from the location specified by the object entity."
+   },
+   "key": "eor_-48472_a0f3a4d2#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.6482110023498535,
+      "drilled_to": 0.5075110793113708,
+      "reached_td": 0.5750154256820679,
+      "set_plug_at": 0.5076407194137573,
+      "tagged_at": 0.522990882396698
+     },
+     "canonical": [
+      "13-3/8\" casing",
+      "cut_at",
+      "15' BML"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4345341920852661,
+      "cut_at": 0.4648417830467224,
+      "operated_by": 0.3911363482475281,
+      "perforated_interval": 0.43160709738731384,
+      "set_plug_at": 0.4303143620491028
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4345341920852661,
+      "cut_at": 0.4648417830467224,
+      "operated_by": 0.3911363482475281,
+      "perforated_interval": 0.43160709738731384,
+      "set_plug_at": 0.4303143620491028
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4767659604549408,
+      "has_well_status": 0.5949837565422058,
+      "operated_by": 0.45149338245391846,
+      "perforated_interval": 0.4980139136314392,
+      "set_plug_at": 0.43348801136016846
+     },
+     "canonical": [
+      "Well",
+      "has_well_status",
+      "TA status"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6482110023498535,
+      "drilled_to": 0.5075110793113708,
+      "reached_td": 0.5750154256820679,
+      "set_plug_at": 0.5076407194137573,
+      "tagged_at": 0.522990882396698
+     },
+     "canonical": [
+      "26\" drive pipe",
+      "cut_at",
+      "15' BML"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "has complete operations on": "The subject entity performed completion operations on the object entity.",
+    "is completed in": "The subject entity is located within or associated with the geological formation specified by the object entity."
+   },
+   "key": "eor_-53929_9608c4e5#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.48442983627319336,
+      "drilled_to": 0.45600995421409607,
+      "encountered_marker": 0.6218724250793457,
+      "operated_by": 0.4539603590965271,
+      "perforated_interval": 0.4701509475708008
+     },
+     "canonical": [
+      "Well A16BP",
+      "completed_in",
+      "Big 2 1-B Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5734878182411194,
+      "cut_at": 0.5521180629730225,
+      "perforated_interval": 0.4981427490711212,
+      "tagged_at": 0.46512049436569214,
+      "used_rig": 0.45467695593833923
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5734878182411194,
+      "cut_at": 0.5521180629730225,
+      "perforated_interval": 0.4981427490711212,
+      "tagged_at": 0.46512049436569214,
+      "used_rig": 0.45467695593833923
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5734878182411194,
+      "cut_at": 0.5521180629730225,
+      "perforated_interval": 0.4981427490711212,
+      "tagged_at": 0.46512049436569214,
+      "used_rig": 0.45467695593833923
+     },
+     "canonical": null
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "remains in status": "The subject entity currently maintains or continues to be in the condition, state, or classification specified by the object entity.",
+    "was cut & pulled at depth": "The subject entity was physically removed or extracted from a location at the specific depth specified by the object entity.",
+    "were completed on date": "The subject entity (an action, operation, or project) was finished or concluded on the date specified by the object entity.",
+    "will be cut & pulled at depth during": "The subject entity is scheduled to be physically removed or extracted at a specific depth as part of the process or event specified by the object entity."
+   },
+   "key": "eor_-63747_d1598053#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.7301998138427734,
+      "drilled_to": 0.5257617831230164,
+      "perforated_interval": 0.5448158979415894,
+      "set_casing_at": 0.5125637650489807,
+      "set_plug_at": 0.5293618440628052
+     },
+     "canonical": [
+      "9-5/8\" casing",
+      "cut_at",
+      "15' BML"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.45322534441947937,
+      "cut_at": 0.5951085090637207,
+      "perforated_interval": 0.46713709831237793,
+      "set_casing_at": 0.41971108317375183,
+      "set_plug_at": 0.42560893297195435
+     },
+     "canonical": [
+      "Remaining casings",
+      "cut_at",
+      "platform removal"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5031829476356506,
+      "cut_at": 0.41092777252197266,
+      "perforated_interval": 0.4383091330528259,
+      "set_plug_at": 0.3749472498893738,
+      "spudded_on": 0.4658178687095642
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4173523187637329,
+      "has_well_status": 0.47565048933029175,
+      "operated_by": 0.3970176875591278,
+      "perforated_interval": 0.4036116302013397,
+      "used_rig": 0.3240232467651367
+     },
+     "canonical": [
+      "SS207 Well No. A018",
+      "has_well_status",
+      "TA status"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "abandoned due to": "The subject entity was abandoned because of the condition or event specified by the object entity.",
+    "reached depth at TD": "The subject entity reached a final depth (Total Depth) specified by the object entity.",
+    "started at depth": "The subject entity began drilling operations at the initial depth specified by the object entity.",
+    "was TD'd on": "The subject entity reached total depth (TD) on the date specified by the object entity.",
+    "was abandoned to drill": "The subject entity was abandoned for the purpose of drilling the wellbore specified by the object entity.",
+    "was plugged back and abandoned on": "The subject entity was plugged back and abandoned on the date specified by the object entity.",
+    "was spud on": "The subject entity began drilling operations on the date specified by the object entity."
+   },
+   "key": "eor_-66275_ce78f433#c000",
+   "results": [
+    {
+     "candidates": {
+      "cut_at": 0.5209575891494751,
+      "drilled_to": 0.5441647171974182,
+      "perforated_interval": 0.474511981010437,
+      "reached_td": 0.6482869982719421,
+      "spudded_on": 0.47105661034584045
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "encountered_marker": 0.47839629650115967,
+      "operated_by": 0.4668056070804596,
+      "perforated_interval": 0.4632871150970459,
+      "spudded_on": 0.73686683177948,
+      "used_rig": 0.48551443219184875
+     },
+     "canonical": [
+      "EI 183 A6BP2 wellbore",
+      "spudded_on",
+      "December 19, 2007"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42316338419914246,
+      "cut_at": 0.39819207787513733,
+      "perforated_interval": 0.38988569378852844,
+      "set_plug_at": 0.43101075291633606,
+      "spudded_on": 0.5019094347953796
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.6050480604171753,
+      "drilled_to": 0.568676233291626,
+      "encountered_marker": 0.599644660949707,
+      "operated_by": 0.528780460357666,
+      "spudded_on": 0.6877152919769287
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6568026542663574,
+      "drilled_to": 0.5913734436035156,
+      "perforated_interval": 0.549037516117096,
+      "reached_td": 0.7396146059036255,
+      "set_casing_at": 0.6210800409317017
+     },
+     "canonical": [
+      "EI 183 A6BP2 wellbore",
+      "reached_td",
+      "15612' Md / 14648' TVD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4900813400745392,
+      "cut_at": 0.42957383394241333,
+      "operated_by": 0.3532658815383911,
+      "perforated_interval": 0.4219636619091034,
+      "spudded_on": 0.3586399555206299
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.551794171333313,
+      "drilled_to": 0.6250343322753906,
+      "set_casing_at": 0.5646505355834961,
+      "spudded_on": 0.6058809757232666,
+      "used_rig": 0.5706725716590881
+     },
+     "canonical": [
+      "EI 183 A6BP2 wellbore",
+      "spudded_on",
+      "14219' MD"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "is produced at this time": "The subject entity is being extracted or utilized for production during the current period, as specified by the object entity.",
+    "is temporarily shut-in due to": "The subject entity is currently not flowing or operating because of the event specified by the object entity."
+   },
+   "key": "eor_-79498_761e2a90#c000",
+   "results": [
+    {
+     "candidates": {
+      "completed_in": 0.4054660499095917,
+      "cut_at": 0.41596272587776184,
+      "operated_by": 0.4186822772026062,
+      "perforated_interval": 0.3831736147403717,
+      "set_plug_at": 0.422853946685791
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4734886884689331,
+      "cut_at": 0.4632894992828369,
+      "has_well_status": 0.4510379433631897,
+      "operated_by": 0.5032626390457153,
+      "perforated_interval": 0.5019402503967285
+     },
+     "canonical": [
+      "Lower KJ/KK Sand",
+      "completed_in",
+      "Lower KJ/KK Sand"
+     ]
+    }
+   ]
+  },
+  {
+   "definitions": {
+    "began on": "The subject entity started or commenced at the time specified by the object entity.",
+    "completed on": "The subject entity finished or was completed at the time specified by the object entity.",
+    "dated": "The subject entity is associated with or recorded as occurring on the date specified by the object entity.",
+    "dumped on top of": "The subject material was poured or deposited onto the upper surface of the object entity.",
+    "exposed by": "The subject entity was made accessible or exposed through the method or action specified by the object entity.",
+    "located at depth": "The subject entity is situated at the specific depth specified by the object entity.",
+    "not filed for": "The subject notice or document was not submitted or registered in relation to the object entity.",
+    "occurred at depth range": "The subject event or action took place within the depth range specified by the object entity.",
+    "performed operations on": "The subject entity carried out operational activities on the object entity.",
+    "set at depth": "The subject entity was placed or installed at the specific depth specified by the object entity.",
+    "showed gas rate of": "The subject test results indicated a gas production rate of the amount specified by the object entity.",
+    "showed oil rate of": "The subject test results indicated an oil production rate of the amount specified by the object entity.",
+    "showed water rate of": "The subject test results indicated a water production rate of the amount specified by the object entity.",
+    "shut-in waiting for operations to produce": "The subject entity is currently closed off or inactive while awaiting operations intended to produce the object entity.",
+    "targeted interval for production": "The subject entity aimed to extract resources from the specific interval specified by the object entity.",
+    "turned over to production on": "The subject entity was transferred into active production status at the time specified by the object entity.",
+    "was previous producing interval for": "The subject entity served as the prior productive zone or layer for the object entity.",
+    "watered out in": "The subject entity lost its ability to produce economically due to water intrusion within the location specified by the object entity."
+   },
+   "key": "eor_-83553_7787b0dc#c000",
+   "results": [
+    {
+     "candidates": {
+      "casing_spec": 0.38123419880867004,
+      "fit_lot_emw": 0.37370064854621887,
+      "has_mud_weight": 0.3989527225494385,
+      "pumped": 0.39962106943130493,
+      "tested_to_pressure": 0.4084315896034241
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4481852352619171,
+      "cut_at": 0.3245333731174469,
+      "encountered_marker": 0.3603937029838562,
+      "has_mud_weight": 0.37060311436653137,
+      "operated_by": 0.39973482489585876
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6427434682846069,
+      "drilled_to": 0.6086174845695496,
+      "perforated_interval": 0.5688709616661072,
+      "reached_td": 0.5704927444458008,
+      "set_plug_at": 0.6599048376083374
+     },
+     "canonical": [
+      "posi-set plug",
+      "set_plug_at",
+      "15310' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4274879992008209,
+      "cut_at": 0.5609063506126404,
+      "perforated_interval": 0.4842712879180908,
+      "set_casing_at": 0.43335357308387756,
+      "set_plug_at": 0.5048106908798218
+     },
+     "canonical": [
+      "CP 28 Sand",
+      "perforated_interval",
+      "perforating"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4432174563407898,
+      "cut_at": 0.43415647745132446,
+      "has_well_status": 0.4521740674972534,
+      "operated_by": 0.4137643873691559,
+      "perforated_interval": 0.41192513704299927
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.3884500563144684,
+      "has_mud_weight": 0.42053329944610596,
+      "perforated_interval": 0.37790027260780334,
+      "pumped": 0.44339999556541443,
+      "tested_to_pressure": 0.4277326762676239
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6130520701408386,
+      "drilled_to": 0.5896342396736145,
+      "perforated_interval": 0.5841115713119507,
+      "reached_td": 0.6802826523780823,
+      "set_plug_at": 0.5985987186431885
+     },
+     "canonical": [
+      "ETOC",
+      "set_plug_at",
+      "15285'"
+     ]
+    },
+    {
+     "candidates": {
+      "casing_spec": 0.4186299741268158,
+      "fit_lot_emw": 0.36672112345695496,
+      "perforated_interval": 0.3747374415397644,
+      "pumped": 0.4027872681617737,
+      "tested_to_pressure": 0.46539443731307983
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4118349552154541,
+      "cut_at": 0.38393518328666687,
+      "perforated_interval": 0.49522730708122253,
+      "set_plug_at": 0.4094172418117523,
+      "spudded_on": 0.38069838285446167
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.3694254159927368,
+      "cut_at": 0.4054907262325287,
+      "perforated_interval": 0.4621574878692627,
+      "set_plug_at": 0.3988097012042999,
+      "spudded_on": 0.4311872124671936
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.42206889390945435,
+      "cut_at": 0.4544849097728729,
+      "has_well_status": 0.4358521103858948,
+      "operated_by": 0.4529862701892853,
+      "set_plug_at": 0.43428224325180054
+     },
+     "canonical": [
+      "Well C4ST1BP1",
+      "has_well_status",
+      "CP24 Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "cut_at": 0.6238867044448853,
+      "perforated_interval": 0.5156946182250977,
+      "reached_td": 0.569351851940155,
+      "set_casing_at": 0.584455668926239,
+      "set_plug_at": 0.5965211391448975
+     },
+     "canonical": [
+      "perforating",
+      "perforated_interval",
+      "15180' - 15192' MD"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.43764999508857727,
+      "cut_at": 0.40186554193496704,
+      "operated_by": 0.40837419033050537,
+      "perforated_interval": 0.5258874297142029,
+      "tagged_at": 0.39864036440849304
+     },
+     "canonical": [
+      "Stone",
+      "completed_in",
+      "CP 28 Sand"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.49815863370895386,
+      "has_well_status": 0.44204235076904297,
+      "operated_by": 0.548089325428009,
+      "perforated_interval": 0.38912495970726013,
+      "used_rig": 0.5136128067970276
+     },
+     "canonical": [
+      "Stone",
+      "operated_by",
+      "Well C4ST1BP1"
+     ]
+    },
+    {
+     "candidates": {
+      "completed_in": 0.4298258125782013,
+      "cut_at": 0.3586089313030243,
+      "has_well_status": 0.3464806377887726,
+      "operated_by": 0.3397440016269684,
+      "perforated_interval": 0.3625634014606476
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5993626117706299,
+      "encountered_marker": 0.4651748538017273,
+      "has_well_status": 0.4490217864513397,
+      "operated_by": 0.45316097140312195,
+      "perforated_interval": 0.5620296001434326
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "completed_in": 0.5748034119606018,
+      "cut_at": 0.48186588287353516,
+      "has_well_status": 0.43588072061538696,
+      "perforated_interval": 0.5254150629043579,
+      "set_plug_at": 0.4342736303806305
+     },
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "cemented_interval": 0.5372076630592346,
+      "cut_at": 0.5561225414276123,
+      "encountered_marker": 0.5436736345291138,
+      "has_mud_weight": 0.5263643860816956,
+      "perforated_interval": 0.5320037007331848
+     },
+     "canonical": null
+    }
+   ]
+  }
+ ],
+ "version": 1
+}

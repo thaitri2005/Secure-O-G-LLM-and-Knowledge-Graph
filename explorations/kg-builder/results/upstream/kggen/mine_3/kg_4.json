@@ -1,0 +1,92 @@
+{
+  "entities": [
+    "Earth",
+    "Mesozoic era",
+    "Jurassic Park",
+    "Dinosaurs",
+    "Tyrannosaurus rex",
+    "climate change",
+    "Age of Dinosaurs",
+    "ceratopsians",
+    "asteroid impact",
+    "Paleontologists",
+    "Brachiosaurus",
+    "carnivorous dinosaurs",
+    "human imagination",
+    "scientists"
+  ],
+  "relations": [
+    [
+      "Paleontologists",
+      "study",
+      "Dinosaurs"
+    ],
+    [
+      "scientists",
+      "study",
+      "Dinosaurs"
+    ],
+    [
+      "asteroid impact",
+      "is a theory for the extinction of",
+      "Dinosaurs"
+    ],
+    [
+      "Mesozoic era",
+      "is also known as",
+      "Age of Dinosaurs"
+    ],
+    [
+      "carnivorous dinosaurs",
+      "are a type of",
+      "Dinosaurs"
+    ],
+    [
+      "climate change",
+      "is a theory for the extinction of",
+      "Dinosaurs"
+    ],
+    [
+      "Jurassic Park",
+      "features",
+      "Dinosaurs"
+    ],
+    [
+      "Tyrannosaurus rex",
+      "are a type of",
+      "Dinosaurs"
+    ],
+    [
+      "Age of Dinosaurs",
+      "was dominated by",
+      "Dinosaurs"
+    ],
+    [
+      "Brachiosaurus",
+      "are a type of",
+      "Dinosaurs"
+    ],
+    [
+      "ceratopsians",
+      "are a type of",
+      "Dinosaurs"
+    ],
+    [
+      "Dinosaurs",
+      "captivated",
+      "human imagination"
+    ]
+  ],
+  "edges": [
+    "was dominated by",
+    "study",
+    "captivated",
+    "are a type of",
+    "features",
+    "is a theory for the extinction of",
+    "is also known as"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

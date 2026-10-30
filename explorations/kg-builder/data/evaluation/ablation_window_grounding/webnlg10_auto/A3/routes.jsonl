@@ -1,0 +1,10 @@
+{"backend":"kggen","doc_id":"webnlg_0000","reason":"coverage<tau","score":0.3181}
+{"backend":"edc","doc_id":"webnlg_0001","reason":"coverage>=tau","score":0.443}
+{"backend":"edc","doc_id":"webnlg_0002","reason":"coverage>=tau","score":0.3829}
+{"backend":"edc","doc_id":"webnlg_0003","reason":"coverage>=tau","score":0.545}
+{"backend":"edc","doc_id":"webnlg_0004","reason":"coverage>=tau","score":0.491}
+{"backend":"edc","doc_id":"webnlg_0005","reason":"coverage>=tau","score":0.352}
+{"backend":"kggen","doc_id":"webnlg_0006","reason":"coverage<tau","score":0.3156}
+{"backend":"edc","doc_id":"webnlg_0007","reason":"coverage>=tau","score":0.4482}
+{"backend":"edc","doc_id":"webnlg_0008","reason":"coverage>=tau","score":0.4011}
+{"backend":"edc","doc_id":"webnlg_0009","reason":"coverage>=tau","score":0.4332}

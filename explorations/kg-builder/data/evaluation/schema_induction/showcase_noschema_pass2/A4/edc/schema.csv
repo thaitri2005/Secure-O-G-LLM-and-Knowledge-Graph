@@ -1,0 +1,6 @@
+developed,"The subject entity created or developed the product, system, or technology specified by the object entity."
+is_birthplace_of,The subject entity is the location where the person or entity specified by the object entity was born.
+joined,The subject entity became a member of or started working for the organization specified by the object entity.
+left,The subject entity ceased to be a member of or stopped working for the organization specified by the object entity.
+operates,"The subject entity operates or manages the facility, organization, or entity specified by the object entity."
+works_on,The subject entity works on or focuses research/development efforts on the topic specified by the object entity.

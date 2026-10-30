@@ -1,0 +1,22 @@
+tolerance: {depth_ft: 1, pressure_relative: 0.01, density_ppg: 0.05, volume_relative: 0.01}
+well_aliases: [well, the well, wellbore, borehole, this well]
+well_name_pattern: '^[A-Z]{0,3}\d{2,4}[A-Z]?$'
+generic_heads: [sand, zone, reservoir, formation, rig, well]
+field_relations:
+  BH_TOTAL_MD: reached_td
+  WELL_BORE_TVD: reached_td
+  PERF_TOP_MD: perforated_interval
+  PERF_TOP_TVD: perforated_interval
+  COMP_RSVR_NAME: completed_in
+  GEO_MARKER_NAME: encountered_marker
+  BUS_ASC_NAME: operated_by
+  WELL_SPUD_DATE: spudded_on
+status_lexicon:
+  TA: ["TA'd", T/A, temporarily abandoned]
+  PA: [P&A, permanently abandoned]
+  ST: [sidetrack, plugged back]
+  COM: [completed, recompleted]
+  BP: [bypass]
+not_mapped: [BOREHOLE_STAT_CD, has_well_status]
+insufficient: 5
+bootstrap: {n: 1000, seed: 0}

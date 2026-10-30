@@ -1,0 +1,16 @@
+{
+ "enrich_schema": false,
+ "items": [
+  {
+   "key": "d#c000",
+   "text": "Drilled to 100 ft successfully. Tested valve at 900 psi successfully. Set CIBP at 9,500'.",
+   "triples": [
+    [
+     "well",
+     "drilled_to",
+     "100 ft"
+    ]
+   ]
+  }
+ ]
+}

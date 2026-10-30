@@ -1,0 +1,603 @@
+entity_types:
+  album: 1
+  battle: 1
+  book: 1
+  church: 2
+  city: 1
+  country: 1
+  director: 4
+  dish: 1
+  dynasty: 1
+  entity: 163
+  film: 2
+  king: 2
+  literal: 13
+  movie: 6
+  mythology: 1
+  nationality: 1
+  person: 22
+  saint: 1
+  state: 1
+  writer: 1
+induced:
+  format: kgb.induced_schema/1
+  method: edc_self_canon+autoschemakg_entity_concepts
+  schema_id: is_1655c8bbad9e
+  source_graph_sha256: 891f8a8293683b3bf18020c41438534287eab8b5ebf23f2bcaf22e92a04d1b95
+  source_run: runs/reference/twowiki10_sentence_grounding/2wiki10/A4
+relations:
+  adopted_as_national_patron_saint:
+    aliases:
+    - adopted as national patron saint
+    definition: The subject entity adopted the person specified by the object entity as its national patron saint.
+    domain: king
+    range: entity
+    support: 1
+  adopted_in:
+    aliases:
+    - adopted in
+    definition: The subject entity was adopted during the time specified by the object entity.
+    domain: king
+    range: literal
+    support: 1
+  argues_about:
+    aliases:
+    - argues about
+    definition: The subject entity presents arguments or opinions regarding the topic specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  attended_educational_institution:
+    aliases:
+    - attended educational institution
+    definition: The subject entity attended or studied at the educational institution specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  canonised:
+    aliases:
+    - canonised
+    definition: The subject entity canonized (officially declared a saint) the person specified by the object entity.
+    domain: entity
+    range: person
+    support: 1
+  canonised_in:
+    aliases:
+    - canonised in
+    definition: The subject entity was canonized (officially declared a saint) during the time specified by the object entity.
+    domain: entity
+    range: literal
+    support: 1
+  capitalized_on_appeal_of:
+    aliases:
+    - capitalized on appeal of
+    definition: The subject entity leveraged or took advantage of the popularity or appeal associated with the entity specified by the object entity.
+    domain: book
+    range: entity
+    support: 1
+  celebrates_feast_day_of:
+    aliases:
+    - celebrates feast day of
+    definition: The subject entity observes or commemorates the feast day associated with the person or entity specified by the object entity.
+    domain: church
+    range: saint
+    support: 3
+  claims_about_cause_of_death_of:
+    aliases:
+    - claims about cause of death of
+    definition: The subject entity asserts or reports information regarding how the person specified by the object entity died.
+    domain: entity
+    range: person
+    support: 2
+  collaborated_with:
+    aliases:
+    - collaborated with
+    definition: The subject entity worked in collaboration with the person or entity specified by the object entity.
+    domain: director
+    range: writer
+    support: 1
+  conquered:
+    aliases:
+    - conquered
+    definition: The subject entity conquered or took control of the place or entity specified by the object entity.
+    domain: person
+    range: country
+    support: 1
+  created_films_for_market_of:
+    aliases:
+    - created films for market of
+    definition: The subject entity created films intended for the specific market specified by the object entity.
+    domain: director
+    range: entity
+    support: 1
+  died_in:
+    aliases:
+    - died in
+    definition: The subject entity died in the location specified by the object entity.
+    domain: person
+    range: city
+    support: 5
+  directed:
+    aliases:
+    - directed
+    definition: The subject entity directed the film or production specified by the object entity.
+    domain: director
+    range: movie
+    support: 1
+  has_music_by:
+    aliases:
+    - has music by
+    definition: The subject entity features musical composition by the person specified by the object entity.
+    domain: album
+    range: entity
+    support: 1
+  held_office:
+    aliases:
+    - held office
+    definition: The subject entity held the specific position or title specified by the object entity.
+    domain: person
+    range: person
+    support: 9
+  is_a:
+    aliases:
+    - is a
+    definition: The subject entity is an instance or member of the category or group specified by the object entity.
+    domain: person
+    range: entity
+    support: 2
+  is_also_known_as:
+    aliases:
+    - is also known as
+    definition: The subject entity is alternatively referred to or identified by the name specified by the object entity.
+    domain: person
+    range: person
+    support: 13
+  is_ancestor_of:
+    aliases:
+    - is ancestor of
+    definition: The subject entity is an ancestor of the person or entity specified by the object entity.
+    domain: person
+    range: person
+    support: 1
+  is_biographer_of:
+    aliases:
+    - is biographer of
+    definition: The subject entity wrote the biography of the person specified by the object entity.
+    domain: entity
+    range: person
+    support: 2
+  is_brother_of:
+    aliases:
+    - is brother of
+    definition: The subject entity is the brother of the person or entity specified by the object entity.
+    domain: person
+    range: person
+    support: 2
+  is_by:
+    aliases:
+    - is by
+    definition: The subject entity was created or authored by the person or group specified by the object entity.
+    domain: entity
+    range: entity
+    support: 2
+  is_considered_as_one_of_the_greatest_in:
+    aliases:
+    - is considered as one of the greatest in
+    definition: The subject entity is regarded as being among the most outstanding or excellent examples within the field or category specified by the object entity.
+    domain: director
+    range: entity
+    support: 1
+  is_country_of_origin:
+    aliases:
+    - is country of origin
+    definition: The subject entity originates from the country specified by the object entity.
+    domain: movie
+    range: country
+    support: 3
+  is_daughter_of:
+    aliases:
+    - is daughter of
+    definition: The subject entity is the daughter of the person or entity specified by the object entity.
+    domain: entity
+    range: person
+    support: 1
+  is_directed_by:
+    aliases:
+    - is directed by
+    definition: The subject entity was directed by the person or entity specified by the object entity.
+    domain: movie
+    range: director
+    support: 8
+  is_first_cousin_of:
+    aliases:
+    - is first cousin of
+    definition: The subject entity shares a grandparent with the person specified by the object entity, but they are not siblings.
+    domain: person
+    range: entity
+    support: 1
+  is_genre:
+    aliases:
+    - is genre
+    definition: The subject entity belongs to the genre specified by the object entity.
+    domain: movie
+    range: entity
+    support: 6
+  is_granddaughter_of:
+    aliases:
+    - is granddaughter of
+    definition: The subject entity is the female child of the child of the person specified by the object entity.
+    domain: person
+    range: person
+    support: 2
+  is_heir_to:
+    aliases:
+    - is heir to
+    definition: The subject entity is designated to inherit the position, title, or estate specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  is_likened_to:
+    aliases:
+    - is likened to
+    definition: The subject entity is compared or associated with the object entity, often in a metaphorical or mythological context.
+    domain: person
+    range: mythology
+    support: 2
+  is_literally:
+    aliases:
+    - is literally
+    definition: The subject entity corresponds to the literal translation or meaning specified by the object entity.
+    domain: album
+    range: dish
+    support: 5
+  is_located_in:
+    aliases:
+    - is located in
+    definition: The subject entity is geographically or administratively situated within the location specified by the object entity.
+    domain: church
+    range: country
+    support: 3
+  is_married_to:
+    aliases:
+    - is married to
+    definition: The subject entity is married to the person specified by the object entity.
+    domain: person
+    range: person
+    support: 3
+  is_member_of_political_party:
+    aliases:
+    - is member of political party
+    definition: The subject entity is a member of the political party specified by the object entity.
+    domain: person
+    range: entity
+    support: 2
+  is_niece_of:
+    aliases:
+    - is niece of
+    definition: The subject entity is the daughter of the sibling of the person specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  is_parent_of:
+    aliases:
+    - is parent of
+    definition: The subject entity is the parent of the person specified by the object entity.
+    domain: person
+    range: entity
+    support: 3
+  is_part_of:
+    aliases:
+    - is part of
+    definition: The subject entity is a component or subdivision of the larger entity specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  is_regarded_as_reflective_of:
+    aliases:
+    - is regarded as reflective of
+    definition: The subject entity is considered to reflect or be influenced by the style, movement, or concept specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  is_release_year:
+    aliases:
+    - is release year
+    definition: The subject entity was released in the year specified by the object entity.
+    domain: movie
+    range: literal
+    support: 6
+  is_set_during:
+    aliases:
+    - is set during
+    definition: The subject entity is set in the time period or event specified by the object entity.
+    domain: movie
+    range: entity
+    support: 1
+  is_set_in:
+    aliases:
+    - is set in
+    definition: The subject entity takes place or is situated in the location or setting specified by the object entity.
+    domain: film
+    range: entity
+    support: 1
+  is_son_of:
+    aliases:
+    - is son of
+    definition: The subject entity is the male child of the person specified by the object entity.
+    domain: person
+    range: person
+    support: 11
+  is_written_by:
+    aliases:
+    - is written by
+    definition: The subject entity was authored or created by the person specified by the object entity.
+    domain: album
+    range: writer
+    support: 3
+  led_to_advance_in_power_of:
+    aliases:
+    - led to advance in power of
+    definition: The subject entity caused an increase in the power or influence of the entity specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  mother_is:
+    aliases:
+    - mother is
+    definition: The subject entity has the person specified by the object entity as their mother.
+    domain: director
+    range: person
+    support: 2
+  moved_to:
+    aliases:
+    - moved to
+    definition: The subject entity relocated to the location specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  nationality_is:
+    aliases:
+    - nationality is
+    definition: The subject entity holds the nationality specified by the object entity.
+    domain: person
+    range: nationality
+    support: 3
+  participated_in:
+    aliases:
+    - participated in
+    definition: The subject entity took part in the event specified by the object entity.
+    domain: movie
+    range: entity
+    support: 2
+  premiered_on:
+    aliases:
+    - premiered on
+    definition: The subject entity had its first public performance or screening on the date specified by the object entity.
+    domain: movie
+    range: literal
+    support: 1
+  raised_in:
+    aliases:
+    - raised in
+    definition: The subject entity was raised or brought up in the location specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  ran_for_office_in:
+    aliases:
+    - ran for office in
+    definition: The subject entity ran as a candidate for an office within the jurisdiction or body specified by the object entity.
+    domain: person
+    range: state
+    support: 1
+  received_award:
+    aliases:
+    - received award
+    definition: The subject entity was given or received the award specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  received_awards_at:
+    aliases:
+    - received awards at
+    definition: The subject entity received one or more awards at the event or ceremony specified by the object entity.
+    domain: movie
+    range: entity
+    support: 3
+  restored_rule_after_period_of:
+    aliases:
+    - restored rule after period of
+    definition: The subject entity restored its rule following the period of rule specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  seduced:
+    aliases:
+    - seduced
+    definition: The subject entity engaged in sexual relations with the person specified by the object entity, often involving deception or manipulation.
+    domain: entity
+    range: person
+    support: 1
+  served_as_first_lady_of_california_from:
+    aliases:
+    - served as First Lady of California from
+    definition: The subject entity served in the role of First Lady of California during the time period specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  specialized_in_genre_of:
+    aliases:
+    - specialized in genre of
+    definition: The subject entity specialized in creating works within the specific genre specified by the object entity.
+    domain: director
+    range: entity
+    support: 2
+  stars:
+    aliases:
+    - stars
+    definition: The subject entity features the person specified by the object entity as a main actor or star.
+    domain: movie
+    range: entity
+    support: 13
+  succeeded:
+    aliases:
+    - succeeded
+    definition: The subject entity succeeded the person or entity specified by the object entity in a title, position, or role.
+    domain: person
+    range: person
+    support: 5
+  surpassed:
+    aliases:
+    - surpassed
+    definition: The subject entity exceeded the record or status held by the person or entity specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  took_place_in:
+    aliases:
+    - took place in
+    definition: The event specified by the subject entity occurred during the time specified by the object entity.
+    domain: battle
+    range: literal
+    support: 1
+  translated_from:
+    aliases:
+    - translated from
+    definition: The subject entity performed translations originating from the language specified by the object entity.
+    domain: person
+    range: entity
+    support: 2
+  try_to_pry_information_from:
+    aliases:
+    - try to pry information from
+    definition: The subject entity attempts to extract information from the target specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  was_a_member_of:
+    aliases:
+    - was a member of
+    definition: The subject entity was a member of the group, organization, or category specified by the object entity.
+    domain: king
+    range: dynasty
+    support: 4
+  was_born_as:
+    aliases:
+    - was born as
+    definition: The subject entity was originally named or identified by the name specified by the object entity at birth.
+    domain: director
+    range: person
+    support: 4
+  was_born_in:
+    aliases:
+    - was born in
+    definition: The subject entity was born in the location specified by the object entity.
+    domain: person
+    range: city
+    support: 6
+  was_born_on:
+    aliases:
+    - was born on
+    definition: The subject entity was born on the date specified by the object entity.
+    domain: person
+    range: literal
+    support: 1
+  was_editor_of:
+    aliases:
+    - was editor of
+    definition: The subject entity served as the editor for the publication or organization specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+  was_killed_by:
+    aliases:
+    - was killed by
+    definition: The subject entity was killed by the person, group, or force specified by the object entity.
+    domain: person
+    range: entity
+    support: 2
+  was_married_to:
+    aliases:
+    - was married to
+    definition: The subject entity was married to the person specified by the object entity.
+    domain: person
+    range: entity
+    support: 2
+  was_national_saint_of:
+    aliases:
+    - was national saint of
+    definition: The subject entity served as the national saint of the country or region specified by the object entity.
+    domain: saint
+    range: country
+    support: 1
+  was_nominated_for:
+    aliases:
+    - was nominated for
+    definition: The subject entity received a nomination for the award or recognition specified by the object entity.
+    domain: movie
+    range: entity
+    support: 1
+  was_proclaimed_king_after:
+    aliases:
+    - was proclaimed king after
+    definition: The subject entity was proclaimed king following the event specified by the object entity.
+    domain: king
+    range: battle
+    support: 1
+  was_produced_under_the_banner_of:
+    aliases:
+    - was produced under the banner of
+    definition: The subject entity was produced under the production company or banner specified by the object entity.
+    domain: film
+    range: entity
+    support: 2
+  was_released_after:
+    aliases:
+    - was released after
+    definition: The subject entity was released at a later time than the event or work specified by the object entity.
+    domain: album
+    range: film
+    support: 1
+  was_released_in:
+    aliases:
+    - was released in
+    definition: The subject entity was released in the year specified by the object entity.
+    domain: movie
+    range: literal
+    support: 4
+  was_reviewed_by:
+    aliases:
+    - was reviewed by
+    definition: The subject entity was reviewed by the publication, critic, or entity specified by the object entity.
+    domain: book
+    range: entity
+    support: 1
+  was_selected_for_preservation_in:
+    aliases:
+    - was selected for preservation in
+    definition: The subject entity was chosen to be preserved in the archive, registry, or collection specified by the object entity.
+    domain: entity
+    range: entity
+    support: 1
+  was_shot_at:
+    aliases:
+    - was shot at
+    definition: The subject entity was filmed or shot at the location specified by the object entity.
+    domain: movie
+    range: entity
+    support: 1
+  worked_as:
+    aliases:
+    - worked as
+    definition: The subject entity worked in the role or profession specified by the object entity.
+    domain: person
+    range: entity
+    support: 18
+  worked_for:
+    aliases:
+    - worked for
+    definition: The subject entity was employed by or worked for the organization specified by the object entity.
+    domain: person
+    range: entity
+    support: 1
+version: 1

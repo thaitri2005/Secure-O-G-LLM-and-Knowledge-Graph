@@ -1,0 +1,6 @@
+demo:
+  name: demo
+  levels: [A0, A4]
+  runs: [configs/experiments/showcase.yaml, configs/experiments/webnlg10.yaml]
+  baselines:
+    webnlg10: {label: "B-EDC: EDC alone, same 10 docs (minitest)", eval_txt: results/upstream/edc/webnlg_10/eval.txt}

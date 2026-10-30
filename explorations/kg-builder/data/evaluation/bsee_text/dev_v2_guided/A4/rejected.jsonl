@@ -1,0 +1,4 @@
+{"id":"c_27e254951ae156a6","kind":"candidate","reasons":["guided_not_in_text"],"record":{"chunk_id":"eor_-116875_f4419ce1#c000","item":{"object":"11,838'-11,890'","relation":"cemented_interval","subject":"well"}},"stage":"extract"}
+{"id":"c_5a89a47b076977bf","kind":"candidate","reasons":["guided_not_in_text"],"record":{"chunk_id":"eor_-128981_ddbfd535#c000","item":{"object":"15,727'-15,710' MD","relation":"cemented_interval","subject":"well"}},"stage":"extract"}
+{"id":"c_ee412f16e3616415","kind":"candidate","reasons":["guided_not_in_text"],"record":{"chunk_id":"eor_-116875_f4419ce1#c000","item":{"object":"11,786'-11,790' MD","relation":"perforated_interval","subject":"\"LN\" sand"}},"stage":"extract"}
+{"id":"c_ff4bbb770982bbb4","kind":"candidate","reasons":["guided_not_in_text"],"record":{"chunk_id":"eor_-132134_956583d3#c000","item":{"object":"16,473'MD","relation":"set_plug_at","subject":"cement plug"}},"stage":"extract"}

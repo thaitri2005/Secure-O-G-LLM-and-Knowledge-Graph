@@ -1,0 +1,16 @@
+{
+  "kgb/0.1.0;extract=guided@bsee_guided_groups_v1:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4": "kgb/0.1.0;extract=guided@bsee_guided_groups:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4",
+  "kgb/0.1.0;extract=guided@bsee_guided_groups_v1:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4;canon=edc@02aad17": "kgb/0.1.0;extract=guided@bsee_guided_groups:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4;canon=edc@02aad17",
+  "kgb/0.1.0;extract=guided@bsee_guided_groups_v1:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4;canon=open": "kgb/0.1.0;extract=guided@bsee_guided_groups:295fcc04;llm=qwen3.6-35b-a3b;mode=groups4;canon=open",
+  "kgb/0.1.0;extract=guided@bsee_guided_recall_v1:b66429ee;llm=qwen3.6-35b-a3b": "kgb/0.1.0;extract=guided@bsee_guided_recall:b66429ee;llm=qwen3.6-35b-a3b",
+  "kgb/0.1.0;extract=guided@bsee_guided_recall_v1:b66429ee;llm=qwen3.6-35b-a3b;canon=edc@02aad17": "kgb/0.1.0;extract=guided@bsee_guided_recall:b66429ee;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+  "kgb/0.1.0;extract=guided@bsee_guided_recall_v1:b66429ee;llm=qwen3.6-35b-a3b;canon=edc@02aad17 | kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17 | kgb/0.1.0;extract=guided@bsee_guided_recall:b66429ee;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+  "kgb/0.1.0;extract=guided@bsee_guided_recall_v1:b66429ee;llm=qwen3.6-35b-a3b;canon=open": "kgb/0.1.0;extract=guided@bsee_guided_recall:b66429ee;llm=qwen3.6-35b-a3b;canon=open",
+  "kgb/0.1.0;extract=guided@bsee_guided_recall_v1:b66429ee;llm=qwen3.6-35b-a3b;canon=open | kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;canon=open": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=open | kgb/0.1.0;extract=guided@bsee_guided_recall:b66429ee;llm=qwen3.6-35b-a3b;canon=open",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=edc@02aad17",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;canon=open": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;canon=open",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2;canon=edc@02aad17": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2;canon=edc@02aad17",
+  "kgb/0.1.0;extract=guided@bsee_guided_v1:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2;canon=open": "kgb/0.1.0;extract=guided@bsee_guided:304bf4be;llm=qwen3.6-35b-a3b;mode=windows2;canon=open"
+}

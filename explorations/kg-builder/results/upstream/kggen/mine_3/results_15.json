@@ -1,0 +1,80 @@
+[
+  {
+    "correct_answer": "Ancient Egyptian burial practices reflect Egyptians' beliefs about the afterlife.",
+    "retrieved_context": "tombs house pharaohs. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. Book of the Dead helps navigate dangers of the afterlife. Book of the Dead is a religious text found in tombs. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. tombs house important individuals. Ancient Egypt is known for burial practices. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Elaborate tombs were constructed to house pharaohs and important individuals.",
+    "retrieved_context": "Book of the Dead is a religious text found in tombs. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. tombs house pharaohs. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. pyramids are located at Giza. items in tombs provide sustenance to the deceased. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. Book of the Dead helps navigate dangers of the afterlife. pyramids protect body of the deceased. tombs house important individuals. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Pyramids at Giza were designed to protect the deceased's body and possessions.",
+    "retrieved_context": "mummification wraps body in linen bandages. Book of the Dead is a religious text found in tombs. burial practices are part of Egyptian culture. tombs house pharaohs. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. pyramids are located at Giza. items in tombs provide sustenance to the deceased. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. Book of the Dead helps navigate dangers of the afterlife. pyramids protect body of the deceased. pyramids protect possessions of the deceased. tombs house important individuals. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Items like food, clothing, and jewelry were buried with the deceased.",
+    "retrieved_context": "mummification wraps body in linen bandages. Book of the Dead is a religious text found in tombs. burial process requires expertise of embalmers. burial practices are part of Egyptian culture. tombs house pharaohs. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. pyramids are located at Giza. items in tombs provide sustenance to the deceased. burial process requires expertise of priests. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. Book of the Dead helps navigate dangers of the afterlife. pyramids protect body of the deceased. pyramids protect possessions of the deceased. tombs house important individuals. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 0
+  },
+  {
+    "correct_answer": "Mummification was used to preserve the body for the afterlife.",
+    "retrieved_context": "mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. items in tombs provide comfort to the deceased. mummification prevents decay of the body. mummification wraps body in linen bandages. mummification uses salt. pyramids protect body of the deceased. Ancient Egypt is known for burial practices. pyramids are located at Giza. burial practices ensure safe passage into the afterlife. items in tombs provide sustenance to the deceased. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. burial practices reflect reverence for the deceased. burial practices are part of Egyptian culture. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Mummification involved removing internal organs and drying out the body.",
+    "retrieved_context": "mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. items in tombs provide comfort to the deceased. mummification prevents decay of the body. mummification wraps body in linen bandages. mummification uses salt. burial process requires expertise of priests. pyramids protect body of the deceased. pyramids are located at Giza. items in tombs provide sustenance to the deceased. pyramids protect possessions of the deceased. burial process requires expertise of embalmers. pyramids serve as gateway to the afterlife. mummification involves removing internal organs.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Religious texts and amulets were included in the burial chamber.",
+    "retrieved_context": "mummification wraps body in linen bandages. Book of the Dead is a religious text found in tombs. burial process requires expertise of embalmers. burial practices are part of Egyptian culture. tombs house pharaohs. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. pyramids are located at Giza. items in tombs provide sustenance to the deceased. amulets guide deceased on journey to afterlife. religious texts guide deceased on journey to afterlife. burial process requires expertise of priests. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. Book of the Dead helps navigate dangers of the afterlife. pyramids protect body of the deceased. tombs house important individuals. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "The Book of the Dead helped the deceased navigate the afterlife.",
+    "retrieved_context": "mummification wraps body in linen bandages. Book of the Dead is a religious text found in tombs. burial practices are part of Egyptian culture. tombs house pharaohs. Book of the Dead inscribed on papyrus scrolls. pyramids are located at Giza. amulets guide deceased on journey to afterlife. religious texts guide deceased on journey to afterlife. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. Book of the Dead helps navigate dangers of the afterlife. pyramids protect body of the deceased. tombs house important individuals. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Burial process required priests, embalmers, and skilled individuals.",
+    "retrieved_context": "mummification wraps body in linen bandages. burial process requires expertise of embalmers. burial practices are part of Egyptian culture. items in tombs provide comfort to the deceased. pyramids are located at Giza. items in tombs provide sustenance to the deceased. burial process requires expertise of priests. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. pyramids protect body of the deceased. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Professional mourners were hired to lead funeral processions.",
+    "retrieved_context": "burial process requires expertise of priests. religious texts guide deceased on journey to afterlife. family of deceased hire professional mourners. professional mourners lead funeral procession. Ancient Egypt is known for burial practices. burial practices ensure safe passage into the afterlife. burial process requires expertise of embalmers. burial practices reflect reverence for the deceased. amulets guide deceased on journey to afterlife. burial practices are part of Egyptian culture. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Common people in ancient Egypt were buried with care and respect.",
+    "retrieved_context": "tombs house pharaohs. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. Book of the Dead helps navigate dangers of the afterlife. Book of the Dead is a religious text found in tombs. Ancient Egypt is known for burial practices. burial practices ensure safe passage into the afterlife. tombs house important individuals. items in tombs provide sustenance to the deceased. burial practices reflect reverence for the deceased. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 0
+  },
+  {
+    "correct_answer": "Ordinary Egyptians were buried with items they would need in the afterlife.",
+    "retrieved_context": "tombs house pharaohs. religious texts guide deceased on journey to afterlife. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. Book of the Dead helps navigate dangers of the afterlife. Book of the Dead is a religious text found in tombs. Ancient Egypt is known for burial practices. burial practices ensure safe passage into the afterlife. items in tombs provide sustenance to the deceased. tombs house important individuals. burial practices reflect reverence for the deceased. amulets guide deceased on journey to afterlife. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Burial practices ensured the deceased's safe passage into the afterlife.",
+    "retrieved_context": "mummification wraps body in linen bandages. burial process requires expertise of embalmers. burial practices are part of Egyptian culture. items in tombs provide comfort to the deceased. pyramids are located at Giza. items in tombs provide sustenance to the deceased. amulets guide deceased on journey to afterlife. religious texts guide deceased on journey to afterlife. burial process requires expertise of priests. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. mummification prevents decay of the body. mummification uses salt. pyramids protect body of the deceased. pyramids protect possessions of the deceased. pyramids serve as gateway to the afterlife. Ancient Egypt is known for burial practices. mummification involves removing internal organs. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Ancient Egyptians believed in the existence of a soul.",
+    "retrieved_context": "tombs house pharaohs. mummification involves preserving body of the deceased. soul needs to be reunited with body of the deceased. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. Book of the Dead helps navigate dangers of the afterlife. Book of the Dead is a religious text found in tombs. pyramids protect body of the deceased. Ancient Egypt is known for burial practices. burial practices ensure safe passage into the afterlife. tombs house important individuals. burial practices reflect reverence for the deceased. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "correct_answer": "Ancient Egyptian burial practices were a vital part of Egyptian culture.",
+    "retrieved_context": "tombs house pharaohs. burial process requires expertise of priests. items in tombs provide comfort to the deceased. Book of the Dead inscribed on papyrus scrolls. deceased are buried with personal belongings. Book of the Dead helps navigate dangers of the afterlife. Book of the Dead is a religious text found in tombs. burial practices ensure safe passage into the afterlife. burial practices reflect reverence for the deceased. tombs house important individuals. items in tombs provide sustenance to the deceased. burial process requires expertise of embalmers. Ancient Egypt is known for burial practices. burial practices are part of Egyptian culture. ordinary Egyptians are buried with personal belongings. burial practices reflect beliefs about the afterlife.",
+    "evaluation": 1
+  },
+  {
+    "accuracy": "86.67%"
+  }
+]

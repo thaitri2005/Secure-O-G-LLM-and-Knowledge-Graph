@@ -1,0 +1,59 @@
+{"aliases":["Temporarily abandon"],"entity_id":"e_00a6ba21da70","kind":"entity","mention_ids":["m_27b1b6d5becc","m_2d18bcf3ffbc","m_5450554ac7e4","m_d60cedcc6acb"],"name":"TA","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_0291def7ab18","kind":"entity","mention_ids":["m_dd0078a0e96c"],"name":"SS Block 112 Well V-5(ST01)","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_029546a9ecdc","kind":"entity","mention_ids":["m_38976ba8a541"],"name":"TTBP at 10,697'","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_0532250f0acd","kind":"entity","mention_ids":["m_5afe74d595d8"],"name":"30' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_108c013fde08","kind":"literal","mention_ids":["m_b34630f0ff98"],"name":"1000 psi","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_10aaefb62dec","kind":"entity","mention_ids":["m_cbb39244f812"],"name":"4,500'-4,504'","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_146a9d6bea50","kind":"entity","mention_ids":["m_18bd2019c386"],"name":"285' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_1baa8c2eca8c","kind":"entity","mention_ids":["m_b226206b2ba8"],"name":"2,835' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_1e336c993f29","kind":"entity","mention_ids":["m_201c1a86106f"],"name":"4,384' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_22bc96b121bb","kind":"entity","mention_ids":["m_f4faec9222ba"],"name":"200' cement plug on top of CIBP","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_2832b850ad94","kind":"entity","mention_ids":["m_1172047fbe75"],"name":"TTBP","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_2a8dc8758edc","kind":"entity","mention_ids":["m_ad14b20e630b"],"name":"10-3/4\"","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_2c66af8e4146","kind":"entity","mention_ids":["m_09a83f485fe5"],"name":"cement plug at 10,645' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_2e1034951e7c","kind":"entity","mention_ids":["m_ad468f390ae3"],"name":"All casings","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_2f91f6e23e49","kind":"entity","mention_ids":["m_4ec0f1767605"],"name":"9 5/8\" casing","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_324419f5f25d","kind":"entity","mention_ids":["m_649937d58942"],"name":"X lock","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_34df4b629402","kind":"entity","mention_ids":["m_389633cd0623"],"name":"bridge plug","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_34f8594a187d","kind":"entity","mention_ids":["m_05046e9bd728"],"name":"15980'","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_35938e809cc9","kind":"entity","mention_ids":["m_6b1d5e6cfba4","m_b81c59a317e9"],"name":"cement plug","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_410ccdd06530","kind":"entity","mention_ids":["m_60e2ff34bca3"],"name":"EC 364 A01","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_468a6352878f","kind":"entity","mention_ids":["m_e414f9d6ca45"],"name":"10,165' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_4cf495600b14","kind":"entity","mention_ids":["m_dd223ae2c606"],"name":"10.75\" x 7\" casing","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_4f52e761976f","kind":"entity","mention_ids":["m_8217404b2346"],"name":"cement retainer","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_4f76f6ec626d","kind":"literal","mention_ids":["m_41bb5cb52529"],"name":"14.0 ppg","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_5c831321dcb4","kind":"entity","mention_ids":["m_1a6d834f7386"],"name":"16' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_5fb552a76ef3","kind":"entity","mention_ids":["m_7125db69f655"],"name":"COM","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_700075ae22f5","kind":"entity","mention_ids":["m_d7ed96d5f482"],"name":"Well A016","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_70065c246f42","kind":"entity","mention_ids":["m_2675bd9a3663"],"name":"15924' - 15944'","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_7956c80f7c1d","kind":"entity","mention_ids":["m_0632805ee427"],"name":"26\"","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_82b4725fd535","kind":"entity","mention_ids":["m_26d5b9bd9b20"],"name":"10,697' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_86026b25f897","kind":"entity","mention_ids":["m_1307b5a6d314"],"name":"810' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_8d60e85ed1d6","kind":"entity","mention_ids":["m_c7fd6cd528f0"],"name":"\"EP\" Sd.","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_9883ea6d21d5","kind":"entity","mention_ids":["m_9ce63b1011a2"],"name":"W Sand","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_9a2ccc2ccbc2","kind":"entity","mention_ids":["m_9f74fdd47838"],"name":"14' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_9b02d9974c14","kind":"entity","mention_ids":["m_1f10f898b10e"],"name":"ST","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_a4dec99e3350","kind":"entity","mention_ids":["m_c8c27aa87819"],"name":"10,645' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_a5eedb07611d","kind":"entity","mention_ids":["m_323ed5abe916","m_6afa07cfd1c6"],"name":"CIBP","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_a9bda6b948f6","kind":"entity","mention_ids":["m_bb9939a0891f"],"name":"7395' TVD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_aa4d266617b6","kind":"entity","mention_ids":["m_321f4c09f521"],"name":"SS 224 E-18","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_aa5dda766879","kind":"entity","mention_ids":["m_54ea5648cc6a"],"name":"36\" drive pipe & 20\" conductor csg","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_ab0ba3c71ed0","kind":"entity","mention_ids":["m_aee1db0bc409"],"name":"9750' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_abaf2e055325","kind":"entity","mention_ids":["m_a93b8a5af374"],"name":"PB safety valve","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_ae21e78413fc","kind":"entity","mention_ids":["m_bc04842ac0bb"],"name":"19' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_b032eab1edfa","kind":"entity","mention_ids":["m_e8c9c64b04f8"],"name":"26' BML","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_b6b7e0533548","kind":"entity","mention_ids":["m_2390e6cecdd9"],"name":"01-24-08","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_bd8483287459","kind":"entity","mention_ids":["m_1f91b97903ed","m_336e80637d07","m_418afceec906","m_ad9ceb7196cd","m_e8fdb6ebd0f4"],"name":"well","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_c36ca7956402","kind":"entity","mention_ids":["m_bc259d4e1e1e"],"name":"18178' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_c3ba68b8ecfa","kind":"entity","mention_ids":["m_3021cc1bba3f"],"name":"Tubing","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_c478dddc7561","kind":"entity","mention_ids":["m_f29c0a865f84"],"name":"02-09-07","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_cbea4eb0016e","kind":"entity","mention_ids":["m_869a496ac4b5"],"name":"PL 23 OCS-G 01238, Well No. D001","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_d10602956c94","kind":"entity","mention_ids":["m_a900268f6247"],"name":"EC 339, OCS-G 27051, Well A-02","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_d56e1f35f678","kind":"entity","mention_ids":["m_c9e1640f18ee"],"name":"15600' TVD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_db11fb1a7a77","kind":"entity","mention_ids":["m_73d38e1fcbb6"],"name":"retrievable packer","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_dd9ea52e14f4","kind":"entity","mention_ids":["m_d4b7520f0955"],"name":"7-5/8\"","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_dedc119d0b48","kind":"entity","mention_ids":["m_846d02dd6f93"],"name":"5,600' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_e33575162e90","kind":"entity","mention_ids":["m_4bcfc7be27f5"],"name":"2,950'-2,954' MD","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_ec19c3b91f0e","kind":"entity","mention_ids":["m_05abcceefe22"],"name":"13 5/8\" casing","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_f29489f5555f","kind":"entity","mention_ids":["m_70b5f37da4c9"],"name":"16000'","resolver":"semhash+rules"}
+{"aliases":[],"entity_id":"e_f81a34e1d785","kind":"entity","mention_ids":["m_a32185034398"],"name":"EZSV","resolver":"semhash+rules"}

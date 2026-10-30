@@ -1,0 +1,2254 @@
+{
+ "decision_counts": {
+  "accept_A": 156,
+  "accept_B": 136,
+  "accept_both": 4,
+  "accept_edited": 55,
+  "keep": 702,
+  "reject": 84
+ },
+ "keep_time_differs": 15,
+ "label": "AI-gold (agent-annotated, adjudicated; not human gold)",
+ "n_unreadable": 7,
+ "scopes": {
+  "all": {
+   "chunk_status_agreement": 0.9681818181818181,
+   "evidence_iou": 0.7545504361647636,
+   "iaa": {
+    "L1": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8567639257294429,
+     "fn": 22,
+     "fp": 194,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "precision": 0.7690476190476191,
+     "recall": 0.9670658682634731,
+     "tp": 646
+    },
+    "L2": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8448275862068966,
+     "fn": 31,
+     "fp": 203,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.7510204081632653,
+       "fn": 0,
+       "fp": 61,
+       "precision": 0.6013071895424836,
+       "recall": 1.0,
+       "tp": 92
+      },
+      "casing_spec": {
+       "f1": 0.75,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.75,
+       "tp": 3
+      },
+      "cemented_interval": {
+       "f1": 0.8571428571428571,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.8571428571428571,
+       "recall": 0.8571428571428571,
+       "tp": 6
+      },
+      "completed_in": {
+       "f1": 0.6902654867256637,
+       "fn": 5,
+       "fp": 30,
+       "precision": 0.5652173913043478,
+       "recall": 0.8863636363636364,
+       "tp": 39
+      },
+      "cut_at": {
+       "f1": 0.8188976377952756,
+       "fn": 6,
+       "fp": 17,
+       "precision": 0.7536231884057971,
+       "recall": 0.896551724137931,
+       "tp": 52
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 13
+      },
+      "encountered_marker": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "has_mud_weight": {
+       "f1": 0.9655172413793104,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.9333333333333333,
+       "recall": 1.0,
+       "tp": 14
+      },
+      "has_well_status": {
+       "f1": 0.8041237113402062,
+       "fn": 3,
+       "fp": 54,
+       "precision": 0.6842105263157895,
+       "recall": 0.975,
+       "tp": 117
+      },
+      "perforated_interval": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 69
+      },
+      "pumped": {
+       "f1": 0.9629629629629629,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.9285714285714286,
+       "tp": 13
+      },
+      "reached_td": {
+       "f1": 0.975609756097561,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.9523809523809523,
+       "recall": 1.0,
+       "tp": 40
+      },
+      "set_casing_at": {
+       "f1": 0.8275862068965517,
+       "fn": 0,
+       "fp": 5,
+       "precision": 0.7058823529411765,
+       "recall": 1.0,
+       "tp": 12
+      },
+      "set_equipment_at": {
+       "f1": 0.7945205479452054,
+       "fn": 2,
+       "fp": 13,
+       "precision": 0.6904761904761905,
+       "recall": 0.9354838709677419,
+       "tp": 29
+      },
+      "set_plug_at": {
+       "f1": 0.8865979381443299,
+       "fn": 8,
+       "fp": 14,
+       "precision": 0.86,
+       "recall": 0.9148936170212766,
+       "tp": 86
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 20
+      },
+      "tagged_at": {
+       "f1": 0.9230769230769231,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.8571428571428571,
+       "tp": 6
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 17
+      },
+      "used_rig": {
+       "f1": 0.7368421052631579,
+       "fn": 3,
+       "fp": 2,
+       "precision": 0.7777777777777778,
+       "recall": 0.7,
+       "tp": 7
+      }
+     },
+     "precision": 0.7583333333333333,
+     "recall": 0.9535928143712575,
+     "tp": 637
+    },
+    "L3": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8076923076923077,
+     "fn": 59,
+     "fp": 231,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.7510204081632653,
+       "fn": 0,
+       "fp": 61,
+       "precision": 0.6013071895424836,
+       "recall": 1.0,
+       "tp": 92
+      },
+      "casing_spec": {
+       "f1": 0.75,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.75,
+       "tp": 3
+      },
+      "cemented_interval": {
+       "f1": 0.8571428571428571,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.8571428571428571,
+       "recall": 0.8571428571428571,
+       "tp": 6
+      },
+      "completed_in": {
+       "f1": 0.6902654867256637,
+       "fn": 5,
+       "fp": 30,
+       "precision": 0.5652173913043478,
+       "recall": 0.8863636363636364,
+       "tp": 39
+      },
+      "cut_at": {
+       "f1": 0.7874015748031497,
+       "fn": 8,
+       "fp": 19,
+       "precision": 0.7246376811594203,
+       "recall": 0.8620689655172413,
+       "tp": 50
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 13
+      },
+      "encountered_marker": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "has_mud_weight": {
+       "f1": 0.9655172413793104,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.9333333333333333,
+       "recall": 1.0,
+       "tp": 14
+      },
+      "has_well_status": {
+       "f1": 0.7972508591065293,
+       "fn": 4,
+       "fp": 55,
+       "precision": 0.6783625730994152,
+       "recall": 0.9666666666666667,
+       "tp": 116
+      },
+      "perforated_interval": {
+       "f1": 0.6376811594202898,
+       "fn": 25,
+       "fp": 25,
+       "precision": 0.6376811594202898,
+       "recall": 0.6376811594202898,
+       "tp": 44
+      },
+      "pumped": {
+       "f1": 0.9629629629629629,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.9285714285714286,
+       "tp": 13
+      },
+      "reached_td": {
+       "f1": 0.975609756097561,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.9523809523809523,
+       "recall": 1.0,
+       "tp": 40
+      },
+      "set_casing_at": {
+       "f1": 0.8275862068965517,
+       "fn": 0,
+       "fp": 5,
+       "precision": 0.7058823529411765,
+       "recall": 1.0,
+       "tp": 12
+      },
+      "set_equipment_at": {
+       "f1": 0.7945205479452054,
+       "fn": 2,
+       "fp": 13,
+       "precision": 0.6904761904761905,
+       "recall": 0.9354838709677419,
+       "tp": 29
+      },
+      "set_plug_at": {
+       "f1": 0.8865979381443299,
+       "fn": 8,
+       "fp": 14,
+       "precision": 0.86,
+       "recall": 0.9148936170212766,
+       "tp": 86
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 20
+      },
+      "tagged_at": {
+       "f1": 0.9230769230769231,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.8571428571428571,
+       "tp": 6
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 17
+      },
+      "used_rig": {
+       "f1": 0.7368421052631579,
+       "fn": 3,
+       "fp": 2,
+       "precision": 0.7777777777777778,
+       "recall": 0.7,
+       "tp": 7
+      }
+     },
+     "precision": 0.725,
+     "recall": 0.9116766467065869,
+     "tp": 609
+    },
+    "n_unreadable": 0,
+    "partitions": {
+     "G+": 668,
+     "G-": 0,
+     "G?": 0,
+     "Gother": 0
+    }
+   },
+   "n": 220,
+   "n_unreadable": 7,
+   "rates": {
+    "annotator_a": {
+     "G-": 0.08202247191011236,
+     "G?": 0.07528089887640449,
+     "Gother": 0.09213483146067415
+    },
+    "annotator_b": {
+     "G-": 0.07777777777777778,
+     "G?": 0.016666666666666666,
+     "Gother": 0.12777777777777777
+    }
+   },
+   "rules_vs_ai_gold": {
+    "L1": {
+     "asserted_nonasserted": 16,
+     "f1": 0.48158640226628896,
+     "fn": 472,
+     "fp": 77,
+     "matched_other": 0,
+     "matched_uncertain": 12,
+     "precision": 0.7680722891566265,
+     "recall": 0.35075653370013754,
+     "tp": 255
+    },
+    "L2": {
+     "asserted_nonasserted": 14,
+     "f1": 0.4683663833805477,
+     "fn": 479,
+     "fp": 84,
+     "matched_other": 0,
+     "matched_uncertain": 12,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.4129032258064516,
+       "fn": 82,
+       "fp": 9,
+       "precision": 0.7804878048780488,
+       "recall": 0.2807017543859649,
+       "tp": 32
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.11764705882352941,
+       "fn": 59,
+       "fp": 1,
+       "precision": 0.8,
+       "recall": 0.06349206349206349,
+       "tp": 4
+      },
+      "cut_at": {
+       "f1": 0.5135135135135135,
+       "fn": 33,
+       "fp": 3,
+       "precision": 0.8636363636363636,
+       "recall": 0.36538461538461536,
+       "tp": 19
+      },
+      "drilled_to": {
+       "f1": 0.6666666666666666,
+       "fn": 6,
+       "fp": 1,
+       "precision": 0.875,
+       "recall": 0.5384615384615384,
+       "tp": 7
+      },
+      "encountered_marker": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "has_mud_weight": {
+       "f1": 0.5217391304347826,
+       "fn": 8,
+       "fp": 3,
+       "precision": 0.6666666666666666,
+       "recall": 0.42857142857142855,
+       "tp": 6
+      },
+      "has_well_status": {
+       "f1": 0.5182186234817814,
+       "fn": 79,
+       "fp": 40,
+       "precision": 0.6153846153846154,
+       "recall": 0.44755244755244755,
+       "tp": 64
+      },
+      "operated_by": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.7244094488188977,
+       "fn": 23,
+       "fp": 12,
+       "precision": 0.7931034482758621,
+       "recall": 0.6666666666666666,
+       "tp": 46
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 13,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.8732394366197183,
+       "fn": 9,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.775,
+       "tp": 31
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 6,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.11428571428571428,
+       "fn": 31,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.06060606060606061,
+       "tp": 2
+      },
+      "set_plug_at": {
+       "f1": 0.35,
+       "fn": 70,
+       "fp": 8,
+       "precision": 0.7241379310344828,
+       "recall": 0.23076923076923078,
+       "tp": 21
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 20,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.6666666666666666,
+       "fn": 3,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 3
+      },
+      "tested_to_pressure": {
+       "f1": 0.8,
+       "fn": 5,
+       "fp": 1,
+       "precision": 0.9230769230769231,
+       "recall": 0.7058823529411765,
+       "tp": 12
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 10,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.7469879518072289,
+     "recall": 0.34112792297111416,
+     "tp": 248
+    },
+    "L3": {
+     "asserted_nonasserted": 12,
+     "f1": 0.410933081998115,
+     "fn": 509,
+     "fp": 116,
+     "matched_other": 0,
+     "matched_uncertain": 10,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.4129032258064516,
+       "fn": 82,
+       "fp": 9,
+       "precision": 0.7804878048780488,
+       "recall": 0.2807017543859649,
+       "tp": 32
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.11764705882352941,
+       "fn": 59,
+       "fp": 1,
+       "precision": 0.8,
+       "recall": 0.06349206349206349,
+       "tp": 4
+      },
+      "cut_at": {
+       "f1": 0.4533333333333333,
+       "fn": 35,
+       "fp": 6,
+       "precision": 0.7391304347826086,
+       "recall": 0.3269230769230769,
+       "tp": 17
+      },
+      "drilled_to": {
+       "f1": 0.6666666666666666,
+       "fn": 6,
+       "fp": 1,
+       "precision": 0.875,
+       "recall": 0.5384615384615384,
+       "tp": 7
+      },
+      "encountered_marker": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "has_mud_weight": {
+       "f1": 0.5217391304347826,
+       "fn": 8,
+       "fp": 3,
+       "precision": 0.6666666666666666,
+       "recall": 0.42857142857142855,
+       "tp": 6
+      },
+      "has_well_status": {
+       "f1": 0.5101214574898786,
+       "fn": 80,
+       "fp": 41,
+       "precision": 0.6057692307692307,
+       "recall": 0.4405594405594406,
+       "tp": 63
+      },
+      "operated_by": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.3779527559055118,
+       "fn": 45,
+       "fp": 34,
+       "precision": 0.41379310344827586,
+       "recall": 0.34782608695652173,
+       "tp": 24
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 13,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.8732394366197183,
+       "fn": 9,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.775,
+       "tp": 31
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 16,
+       "fp": 6,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.11428571428571428,
+       "fn": 31,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.06060606060606061,
+       "tp": 2
+      },
+      "set_plug_at": {
+       "f1": 0.3305785123966942,
+       "fn": 71,
+       "fp": 10,
+       "precision": 0.6666666666666666,
+       "recall": 0.21978021978021978,
+       "tp": 20
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 20,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.6666666666666666,
+       "fn": 3,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 3
+      },
+      "tested_to_pressure": {
+       "f1": 0.5333333333333333,
+       "fn": 9,
+       "fp": 5,
+       "precision": 0.6153846153846154,
+       "recall": 0.47058823529411764,
+       "tp": 8
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 10,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.6526946107784432,
+     "recall": 0.2998624484181568,
+     "tp": 218
+    },
+    "excluded_predictions": {
+     "G-": 32
+    },
+    "n_unreadable": 7,
+    "partitions": {
+     "G+": 727,
+     "G-": 82,
+     "G?": 100,
+     "Gother": 148
+    }
+   },
+   "span_exact": 0.9638752052545156
+  },
+  "dev": {
+   "chunk_status_agreement": 0.9230769230769231,
+   "evidence_iou": 0.7329608693101406,
+   "iaa": {
+    "L1": {
+     "asserted_nonasserted": 0,
+     "f1": 0.84,
+     "fn": 5,
+     "fp": 83,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "precision": 0.7356687898089171,
+     "recall": 0.9788135593220338,
+     "tp": 231
+    },
+    "L2": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8290909090909091,
+     "fn": 8,
+     "fp": 86,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.6721311475409836,
+       "fn": 0,
+       "fp": 40,
+       "precision": 0.5061728395061729,
+       "recall": 1.0,
+       "tp": 41
+      },
+      "casing_spec": {
+       "f1": 0.5,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.5,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "cemented_interval": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "completed_in": {
+       "f1": 0.8,
+       "fn": 0,
+       "fp": 6,
+       "precision": 0.6666666666666666,
+       "recall": 1.0,
+       "tp": 12
+      },
+      "cut_at": {
+       "f1": 0.8333333333333334,
+       "fn": 2,
+       "fp": 12,
+       "precision": 0.7446808510638298,
+       "recall": 0.9459459459459459,
+       "tp": 35
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "has_mud_weight": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "has_well_status": {
+       "f1": 0.825,
+       "fn": 1,
+       "fp": 13,
+       "precision": 0.717391304347826,
+       "recall": 0.9705882352941176,
+       "tp": 33
+      },
+      "perforated_interval": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 17
+      },
+      "pumped": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "reached_td": {
+       "f1": 0.9,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.8181818181818182,
+       "recall": 1.0,
+       "tp": 9
+      },
+      "set_casing_at": {
+       "f1": 0.7272727272727273,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.5714285714285714,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "set_equipment_at": {
+       "f1": 0.8666666666666667,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.7647058823529411,
+       "recall": 1.0,
+       "tp": 13
+      },
+      "set_plug_at": {
+       "f1": 0.8852459016393442,
+       "fn": 3,
+       "fp": 4,
+       "precision": 0.8709677419354839,
+       "recall": 0.9,
+       "tp": 27
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      },
+      "tagged_at": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.7261146496815286,
+     "recall": 0.9661016949152542,
+     "tp": 228
+    },
+    "L3": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8109090909090909,
+     "fn": 13,
+     "fp": 91,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.6721311475409836,
+       "fn": 0,
+       "fp": 40,
+       "precision": 0.5061728395061729,
+       "recall": 1.0,
+       "tp": 41
+      },
+      "casing_spec": {
+       "f1": 0.5,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.5,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "cemented_interval": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "completed_in": {
+       "f1": 0.8,
+       "fn": 0,
+       "fp": 6,
+       "precision": 0.6666666666666666,
+       "recall": 1.0,
+       "tp": 12
+      },
+      "cut_at": {
+       "f1": 0.8333333333333334,
+       "fn": 2,
+       "fp": 12,
+       "precision": 0.7446808510638298,
+       "recall": 0.9459459459459459,
+       "tp": 35
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "has_mud_weight": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "has_well_status": {
+       "f1": 0.825,
+       "fn": 1,
+       "fp": 13,
+       "precision": 0.717391304347826,
+       "recall": 0.9705882352941176,
+       "tp": 33
+      },
+      "perforated_interval": {
+       "f1": 0.7058823529411765,
+       "fn": 5,
+       "fp": 5,
+       "precision": 0.7058823529411765,
+       "recall": 0.7058823529411765,
+       "tp": 12
+      },
+      "pumped": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "reached_td": {
+       "f1": 0.9,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.8181818181818182,
+       "recall": 1.0,
+       "tp": 9
+      },
+      "set_casing_at": {
+       "f1": 0.7272727272727273,
+       "fn": 0,
+       "fp": 3,
+       "precision": 0.5714285714285714,
+       "recall": 1.0,
+       "tp": 4
+      },
+      "set_equipment_at": {
+       "f1": 0.8666666666666667,
+       "fn": 0,
+       "fp": 4,
+       "precision": 0.7647058823529411,
+       "recall": 1.0,
+       "tp": 13
+      },
+      "set_plug_at": {
+       "f1": 0.8852459016393442,
+       "fn": 3,
+       "fp": 4,
+       "precision": 0.8709677419354839,
+       "recall": 0.9,
+       "tp": 27
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      },
+      "tagged_at": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.7101910828025477,
+     "recall": 0.9449152542372882,
+     "tp": 223
+    },
+    "n_unreadable": 0,
+    "partitions": {
+     "G+": 236,
+     "G-": 0,
+     "G?": 0,
+     "Gother": 0
+    }
+   },
+   "n": 65,
+   "n_unreadable": 2,
+   "rates": {
+    "annotator_a": {
+     "G-": 0.05460750853242321,
+     "G?": 0.04436860068259386,
+     "Gother": 0.09556313993174062
+    },
+    "annotator_b": {
+     "G-": 0.05053191489361702,
+     "G?": 0.005319148936170213,
+     "Gother": 0.10904255319148937
+    }
+   },
+   "rules_vs_ai_gold": {
+    "L1": {
+     "asserted_nonasserted": 2,
+     "f1": 0.5435897435897435,
+     "fn": 149,
+     "fp": 29,
+     "matched_other": 0,
+     "matched_uncertain": 5,
+     "precision": 0.7851851851851852,
+     "recall": 0.41568627450980394,
+     "tp": 106
+    },
+    "L2": {
+     "asserted_nonasserted": 2,
+     "f1": 0.517948717948718,
+     "fn": 154,
+     "fp": 34,
+     "matched_other": 0,
+     "matched_uncertain": 5,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.4383561643835616,
+       "fn": 34,
+       "fp": 7,
+       "precision": 0.6956521739130435,
+       "recall": 0.32,
+       "tp": 16
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.2857142857142857,
+       "fn": 14,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.17647058823529413,
+       "tp": 3
+      },
+      "cut_at": {
+       "f1": 0.5714285714285714,
+       "fn": 21,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.4,
+       "tp": 14
+      },
+      "drilled_to": {
+       "f1": 0.8,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.6666666666666666,
+       "tp": 4
+      },
+      "has_mud_weight": {
+       "f1": 0.6666666666666666,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 2
+      },
+      "has_well_status": {
+       "f1": 0.5789473684210527,
+       "fn": 17,
+       "fp": 15,
+       "precision": 0.5945945945945946,
+       "recall": 0.5641025641025641,
+       "tp": 22
+      },
+      "perforated_interval": {
+       "f1": 0.7567567567567568,
+       "fn": 3,
+       "fp": 6,
+       "precision": 0.7,
+       "recall": 0.8235294117647058,
+       "tp": 14
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.9411764705882353,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.8888888888888888,
+       "tp": 8
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.23529411764705882,
+       "fn": 13,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.13333333333333333,
+       "tp": 2
+      },
+      "set_plug_at": {
+       "f1": 0.3783783783783784,
+       "fn": 21,
+       "fp": 2,
+       "precision": 0.7777777777777778,
+       "recall": 0.25,
+       "tp": 7
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 5,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.75,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.6,
+       "tp": 3
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 6
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.7481481481481481,
+     "recall": 0.396078431372549,
+     "tp": 101
+    },
+    "L3": {
+     "asserted_nonasserted": 2,
+     "f1": 0.48205128205128206,
+     "fn": 161,
+     "fp": 41,
+     "matched_other": 0,
+     "matched_uncertain": 5,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.4383561643835616,
+       "fn": 34,
+       "fp": 7,
+       "precision": 0.6956521739130435,
+       "recall": 0.32,
+       "tp": 16
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 4,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.2857142857142857,
+       "fn": 14,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.17647058823529413,
+       "tp": 3
+      },
+      "cut_at": {
+       "f1": 0.5714285714285714,
+       "fn": 21,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.4,
+       "tp": 14
+      },
+      "drilled_to": {
+       "f1": 0.8,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.6666666666666666,
+       "tp": 4
+      },
+      "has_mud_weight": {
+       "f1": 0.6666666666666666,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 2
+      },
+      "has_well_status": {
+       "f1": 0.5789473684210527,
+       "fn": 17,
+       "fp": 15,
+       "precision": 0.5945945945945946,
+       "recall": 0.5641025641025641,
+       "tp": 22
+      },
+      "perforated_interval": {
+       "f1": 0.4864864864864865,
+       "fn": 8,
+       "fp": 11,
+       "precision": 0.45,
+       "recall": 0.5294117647058824,
+       "tp": 9
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.9411764705882353,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.8888888888888888,
+       "tp": 8
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 6,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.23529411764705882,
+       "fn": 13,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.13333333333333333,
+       "tp": 2
+      },
+      "set_plug_at": {
+       "f1": 0.32432432432432434,
+       "fn": 22,
+       "fp": 3,
+       "precision": 0.6666666666666666,
+       "recall": 0.21428571428571427,
+       "tp": 6
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 5,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.75,
+       "fn": 2,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.6,
+       "tp": 3
+      },
+      "tested_to_pressure": {
+       "f1": 0.8333333333333334,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.8333333333333334,
+       "recall": 0.8333333333333334,
+       "tp": 5
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.6962962962962963,
+     "recall": 0.3686274509803922,
+     "tp": 94
+    },
+    "excluded_predictions": {
+     "G-": 13
+    },
+    "n_unreadable": 2,
+    "partitions": {
+     "G+": 255,
+     "G-": 18,
+     "G?": 28,
+     "Gother": 46
+    }
+   },
+   "span_exact": 0.9641255605381166
+  },
+  "test": {
+   "chunk_status_agreement": 0.9870967741935484,
+   "evidence_iou": 0.7670231652025381,
+   "iaa": {
+    "L1": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8663883089770354,
+     "fn": 17,
+     "fp": 111,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "precision": 0.7889733840304183,
+     "recall": 0.9606481481481481,
+     "tp": 415
+    },
+    "L2": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8538622129436325,
+     "fn": 23,
+     "fp": 117,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.8292682926829268,
+       "fn": 0,
+       "fp": 21,
+       "precision": 0.7083333333333334,
+       "recall": 1.0,
+       "tp": 51
+      },
+      "casing_spec": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "cemented_interval": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.6666666666666666,
+       "recall": 0.6666666666666666,
+       "tp": 2
+      },
+      "completed_in": {
+       "f1": 0.6506024096385542,
+       "fn": 5,
+       "fp": 24,
+       "precision": 0.5294117647058824,
+       "recall": 0.84375,
+       "tp": 27
+      },
+      "cut_at": {
+       "f1": 0.7906976744186046,
+       "fn": 4,
+       "fp": 5,
+       "precision": 0.7727272727272727,
+       "recall": 0.8095238095238095,
+       "tp": 17
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 7
+      },
+      "encountered_marker": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "has_mud_weight": {
+       "f1": 0.9523809523809523,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.9090909090909091,
+       "recall": 1.0,
+       "tp": 10
+      },
+      "has_well_status": {
+       "f1": 0.7962085308056872,
+       "fn": 2,
+       "fp": 41,
+       "precision": 0.672,
+       "recall": 0.9767441860465116,
+       "tp": 84
+      },
+      "perforated_interval": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 52
+      },
+      "pumped": {
+       "f1": 0.9333333333333333,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.875,
+       "tp": 7
+      },
+      "reached_td": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 31
+      },
+      "set_casing_at": {
+       "f1": 0.8888888888888888,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.8,
+       "recall": 1.0,
+       "tp": 8
+      },
+      "set_equipment_at": {
+       "f1": 0.7441860465116279,
+       "fn": 2,
+       "fp": 9,
+       "precision": 0.64,
+       "recall": 0.8888888888888888,
+       "tp": 16
+      },
+      "set_plug_at": {
+       "f1": 0.8872180451127819,
+       "fn": 5,
+       "fp": 10,
+       "precision": 0.855072463768116,
+       "recall": 0.921875,
+       "tp": 59
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 15
+      },
+      "tagged_at": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 11
+      },
+      "used_rig": {
+       "f1": 0.8235294117647058,
+       "fn": 2,
+       "fp": 1,
+       "precision": 0.875,
+       "recall": 0.7777777777777778,
+       "tp": 7
+      }
+     },
+     "precision": 0.7775665399239544,
+     "recall": 0.9467592592592593,
+     "tp": 409
+    },
+    "L3": {
+     "asserted_nonasserted": 0,
+     "f1": 0.8058455114822547,
+     "fn": 46,
+     "fp": 140,
+     "matched_other": 0,
+     "matched_uncertain": 0,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.8292682926829268,
+       "fn": 0,
+       "fp": 21,
+       "precision": 0.7083333333333334,
+       "recall": 1.0,
+       "tp": 51
+      },
+      "casing_spec": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "cemented_interval": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 1,
+       "precision": 0.6666666666666666,
+       "recall": 0.6666666666666666,
+       "tp": 2
+      },
+      "completed_in": {
+       "f1": 0.6506024096385542,
+       "fn": 5,
+       "fp": 24,
+       "precision": 0.5294117647058824,
+       "recall": 0.84375,
+       "tp": 27
+      },
+      "cut_at": {
+       "f1": 0.6976744186046512,
+       "fn": 6,
+       "fp": 7,
+       "precision": 0.6818181818181818,
+       "recall": 0.7142857142857143,
+       "tp": 15
+      },
+      "drilled_to": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 7
+      },
+      "encountered_marker": {
+       "f1": 0.0,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.0,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "has_mud_weight": {
+       "f1": 0.9523809523809523,
+       "fn": 0,
+       "fp": 1,
+       "precision": 0.9090909090909091,
+       "recall": 1.0,
+       "tp": 10
+      },
+      "has_well_status": {
+       "f1": 0.7867298578199052,
+       "fn": 3,
+       "fp": 42,
+       "precision": 0.664,
+       "recall": 0.9651162790697675,
+       "tp": 83
+      },
+      "perforated_interval": {
+       "f1": 0.6153846153846154,
+       "fn": 20,
+       "fp": 20,
+       "precision": 0.6153846153846154,
+       "recall": 0.6153846153846154,
+       "tp": 32
+      },
+      "pumped": {
+       "f1": 0.9333333333333333,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.875,
+       "tp": 7
+      },
+      "reached_td": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 31
+      },
+      "set_casing_at": {
+       "f1": 0.8888888888888888,
+       "fn": 0,
+       "fp": 2,
+       "precision": 0.8,
+       "recall": 1.0,
+       "tp": 8
+      },
+      "set_equipment_at": {
+       "f1": 0.7441860465116279,
+       "fn": 2,
+       "fp": 9,
+       "precision": 0.64,
+       "recall": 0.8888888888888888,
+       "tp": 16
+      },
+      "set_plug_at": {
+       "f1": 0.8872180451127819,
+       "fn": 5,
+       "fp": 10,
+       "precision": 0.855072463768116,
+       "recall": 0.921875,
+       "tp": 59
+      },
+      "spudded_on": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 15
+      },
+      "tagged_at": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "tested_to_pressure": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 11
+      },
+      "used_rig": {
+       "f1": 0.8235294117647058,
+       "fn": 2,
+       "fp": 1,
+       "precision": 0.875,
+       "recall": 0.7777777777777778,
+       "tp": 7
+      }
+     },
+     "precision": 0.7338403041825095,
+     "recall": 0.8935185185185185,
+     "tp": 386
+    },
+    "n_unreadable": 0,
+    "partitions": {
+     "G+": 432,
+     "G-": 0,
+     "G?": 0,
+     "Gother": 0
+    }
+   },
+   "n": 155,
+   "n_unreadable": 5,
+   "rates": {
+    "annotator_a": {
+     "G-": 0.09547738693467336,
+     "G?": 0.09045226130653267,
+     "Gother": 0.09045226130653267
+    },
+    "annotator_b": {
+     "G-": 0.09232954545454546,
+     "G?": 0.022727272727272728,
+     "Gother": 0.1377840909090909
+    }
+   },
+   "rules_vs_ai_gold": {
+    "L1": {
+     "asserted_nonasserted": 14,
+     "f1": 0.445440956651719,
+     "fn": 323,
+     "fp": 48,
+     "matched_other": 0,
+     "matched_uncertain": 7,
+     "precision": 0.7563451776649747,
+     "recall": 0.3156779661016949,
+     "tp": 149
+    },
+    "L2": {
+     "asserted_nonasserted": 12,
+     "f1": 0.43946188340807174,
+     "fn": 325,
+     "fp": 50,
+     "matched_other": 0,
+     "matched_uncertain": 7,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.3902439024390244,
+       "fn": 48,
+       "fp": 2,
+       "precision": 0.8888888888888888,
+       "recall": 0.25,
+       "tp": 16
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.0425531914893617,
+       "fn": 45,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.021739130434782608,
+       "tp": 1
+      },
+      "cut_at": {
+       "f1": 0.4,
+       "fn": 12,
+       "fp": 3,
+       "precision": 0.625,
+       "recall": 0.29411764705882354,
+       "tp": 5
+      },
+      "drilled_to": {
+       "f1": 0.5454545454545454,
+       "fn": 4,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.42857142857142855,
+       "tp": 3
+      },
+      "encountered_marker": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "has_mud_weight": {
+       "f1": 0.47058823529411764,
+       "fn": 6,
+       "fp": 3,
+       "precision": 0.5714285714285714,
+       "recall": 0.4,
+       "tp": 4
+      },
+      "has_well_status": {
+       "f1": 0.49122807017543857,
+       "fn": 62,
+       "fp": 25,
+       "precision": 0.6268656716417911,
+       "recall": 0.40384615384615385,
+       "tp": 42
+      },
+      "operated_by": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.7111111111111111,
+       "fn": 20,
+       "fp": 6,
+       "precision": 0.8421052631578947,
+       "recall": 0.6153846153846154,
+       "tp": 32
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.8518518518518519,
+       "fn": 8,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.7419354838709677,
+       "tp": 23
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 10,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 18,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.3373493975903614,
+       "fn": 49,
+       "fp": 6,
+       "precision": 0.7,
+       "recall": 0.2222222222222222,
+       "tp": 14
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 15,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.6666666666666666,
+       "fn": 5,
+       "fp": 1,
+       "precision": 0.8571428571428571,
+       "recall": 0.5454545454545454,
+       "tp": 6
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 9,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.7461928934010152,
+     "recall": 0.3114406779661017,
+     "tp": 147
+    },
+    "L3": {
+     "asserted_nonasserted": 10,
+     "f1": 0.36959761549925485,
+     "fn": 348,
+     "fp": 75,
+     "matched_other": 0,
+     "matched_uncertain": 5,
+     "per_relation": {
+      "casing_size": {
+       "f1": 0.3902439024390244,
+       "fn": 48,
+       "fp": 2,
+       "precision": 0.8888888888888888,
+       "recall": 0.25,
+       "tp": 16
+      },
+      "casing_spec": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "cemented_interval": {
+       "f1": 0.0,
+       "fn": 3,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "completed_in": {
+       "f1": 0.0425531914893617,
+       "fn": 45,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.021739130434782608,
+       "tp": 1
+      },
+      "cut_at": {
+       "f1": 0.23076923076923078,
+       "fn": 14,
+       "fp": 6,
+       "precision": 0.3333333333333333,
+       "recall": 0.17647058823529413,
+       "tp": 3
+      },
+      "drilled_to": {
+       "f1": 0.5454545454545454,
+       "fn": 4,
+       "fp": 1,
+       "precision": 0.75,
+       "recall": 0.42857142857142855,
+       "tp": 3
+      },
+      "encountered_marker": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "fit_lot_emw": {
+       "f1": 0.6666666666666666,
+       "fn": 1,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "has_mud_weight": {
+       "f1": 0.47058823529411764,
+       "fn": 6,
+       "fp": 3,
+       "precision": 0.5714285714285714,
+       "recall": 0.4,
+       "tp": 4
+      },
+      "has_well_status": {
+       "f1": 0.47953216374269003,
+       "fn": 63,
+       "fp": 26,
+       "precision": 0.6119402985074627,
+       "recall": 0.3942307692307692,
+       "tp": 41
+      },
+      "operated_by": {
+       "f1": null,
+       "fn": 0,
+       "fp": 0,
+       "precision": null,
+       "recall": null,
+       "tp": 0
+      },
+      "perforated_interval": {
+       "f1": 0.3333333333333333,
+       "fn": 37,
+       "fp": 23,
+       "precision": 0.39473684210526316,
+       "recall": 0.28846153846153844,
+       "tp": 15
+      },
+      "pumped": {
+       "f1": 0.0,
+       "fn": 7,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "reached_td": {
+       "f1": 0.8518518518518519,
+       "fn": 8,
+       "fp": 0,
+       "precision": 1.0,
+       "recall": 0.7419354838709677,
+       "tp": 23
+      },
+      "set_casing_at": {
+       "f1": 0.0,
+       "fn": 10,
+       "fp": 3,
+       "precision": 0.0,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_equipment_at": {
+       "f1": 0.0,
+       "fn": 18,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "set_plug_at": {
+       "f1": 0.3333333333333333,
+       "fn": 49,
+       "fp": 7,
+       "precision": 0.6666666666666666,
+       "recall": 0.2222222222222222,
+       "tp": 14
+      },
+      "spudded_on": {
+       "f1": 0.0,
+       "fn": 15,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tagged_at": {
+       "f1": 0.0,
+       "fn": 1,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "tested_to_pressure": {
+       "f1": 0.3333333333333333,
+       "fn": 8,
+       "fp": 4,
+       "precision": 0.42857142857142855,
+       "recall": 0.2727272727272727,
+       "tp": 3
+      },
+      "used_rig": {
+       "f1": 0.0,
+       "fn": 9,
+       "fp": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      }
+     },
+     "precision": 0.6231155778894473,
+     "recall": 0.2627118644067797,
+     "tp": 124
+    },
+    "excluded_predictions": {
+     "G-": 19
+    },
+    "n_unreadable": 5,
+    "partitions": {
+     "G+": 472,
+     "G-": 64,
+     "G?": 72,
+     "Gother": 102
+    }
+   },
+   "span_exact": 0.9637305699481865
+  }
+ },
+ "unreadable_chunks": [
+  "eor_-112596_afed5a33#c000",
+  "eor_-113092_87360e58#c000",
+  "eor_-113916_452cddba#c000",
+  "eor_-119486_31092d94#c000",
+  "eor_-18059_ec0e3fb8#c000",
+  "eor_-48550_16fcacea#c000",
+  "eor_-65469_f5abf570#c000"
+ ]
+}

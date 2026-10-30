@@ -1,0 +1,29 @@
+{
+  "0": {
+    "new_extraction_calls": 149,
+    "EDC_definitions_upper": 65,
+    "fresh_calls_upper": 214,
+    "wall_minutes": [
+      39.542,
+      69.59
+    ]
+  },
+  "1": {
+    "new_extraction_calls": 260,
+    "EDC_definitions_upper": 65,
+    "fresh_calls_upper": 325,
+    "wall_minutes": [
+      51.567,
+      120.9
+    ]
+  },
+  "2": {
+    "new_extraction_calls": 65,
+    "EDC_definitions_upper": 65,
+    "fresh_calls_upper": 130,
+    "wall_minutes": [
+      34.233,
+      64.025
+    ]
+  }
+}

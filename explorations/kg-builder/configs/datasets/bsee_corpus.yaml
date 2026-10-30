@@ -1,0 +1,12 @@
+source_manifest: .cache/datasets/bsee/bsee_public_snapshot/manifest.json
+tables: runs/reference/bsee_tables/extended
+source_types: [eor]
+seed: 42
+min_chars: 200
+max_chars: 2000
+max_per_api10: 1
+gold_dev: 25
+gold_test: 75
+test_subset: 50
+strata: [EOR_OPERATION_CD]
+exclude_sn_eor: ['-119604', '-120850', '-112992']

@@ -1,0 +1,493 @@
+[
+    {
+        "index": 0,
+        "input_text": "Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Nie_Haisheng",
+                "birthPlace",
+                "Zaoyang"
+            ],
+            [
+                "Nie_Haisheng",
+                "birthPlace",
+                "Hubei"
+            ],
+            [
+                "Nie_Haisheng",
+                "birthDate",
+                "1964-10-13"
+            ],
+            [
+                "Nie_Haisheng",
+                "nationality",
+                "People's_Republic_of_China"
+            ],
+            [
+                "Nie_Haisheng",
+                "occupation",
+                "Fighter_pilot"
+            ]
+        ],
+        "schema_definition": {
+            "birthDate": "The subject entity was born on the date specified by the object entity.",
+            "birthPlace": "The subject entity was born in the location specified by the object entity.",
+            "nationality": "The subject entity holds the nationality specified by the object entity.",
+            "occupation": "The subject entity works as or has the profession specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {}, {}, {}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Nie_Haisheng",
+                "birthPlace",
+                "Zaoyang"
+            ],
+            [
+                "Nie_Haisheng",
+                "birthPlace",
+                "Hubei"
+            ],
+            [
+                "Nie_Haisheng",
+                "birthDate",
+                "1964-10-13"
+            ],
+            [
+                "Nie_Haisheng",
+                "nationality",
+                "People's_Republic_of_China"
+            ],
+            [
+                "Nie_Haisheng",
+                "occupation",
+                "Fighter_pilot"
+            ]
+        ]
+    },
+    {
+        "index": 1,
+        "input_text": "The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama. It has a runway length of 3500 metres and is at an elevation of 610 metres above sea level.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "operator",
+                "Enaire"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "location",
+                "Paracuellos_de_Jarama"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "runwayLength",
+                "3500 (metres)"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "elevationAboveSeaLevel",
+                "610 (metres)"
+            ]
+        ],
+        "schema_definition": {
+            "operator": "The subject entity is operated by the organization or entity specified by the object entity.",
+            "elevationAboveSeaLevel": "The subject entity is located at an elevation above sea level specified by the object entity.",
+            "location": "The subject entity is located in the place specified by the object entity.",
+            "runwayLength": "The subject entity has a runway length specified by the object entity."
+        },
+        "canonicalization_candidates": "[{'operatingOrganisation': 0.9445222, 'director': 0.8848317, 'governmentType': 0.8820153, 'affiliation': 0.8732237, 'industry': 0.86990494}, {}, {}, {'elevationAboveTheSeaLevel': 0.95677453, 'location': 0.7860345, 'state': 0.7570092, 'hasToItsNorth': 0.75364834, 'hasToItsSouthwest': 0.7527524}]",
+        "schema_canonicalizaiton": [
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "operatingOrganisation",
+                "Enaire"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "location",
+                "Paracuellos_de_Jarama"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "runwayLength",
+                "3500 (metres)"
+            ],
+            [
+                "Adolfo_Suarez_Madrid-Barajas_Airport",
+                "elevationAboveTheSeaLevel",
+                "610 (metres)"
+            ]
+        ]
+    },
+    {
+        "index": 2,
+        "input_text": "In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Abraham_A._Ribicoff",
+                "birthPlace",
+                "United_States"
+            ],
+            [
+                "United_States",
+                "ethnicGroup",
+                "African_American"
+            ],
+            [
+                "Abraham_A._Ribicoff",
+                "spouse",
+                "Ruth_Ribicoff"
+            ]
+        ],
+        "schema_definition": {
+            "birthPlace": "The subject entity was born in the location specified by the object entity.",
+            "ethnicGroup": "The subject entity contains or is associated with the ethnic group specified by the object entity.",
+            "spouse": "The subject entity is married to the person specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Abraham_A._Ribicoff",
+                "birthPlace",
+                "United_States"
+            ],
+            [
+                "United_States",
+                "ethnicGroup",
+                "African_American"
+            ],
+            [
+                "Abraham_A._Ribicoff",
+                "spouse",
+                "Ruth_Ribicoff"
+            ]
+        ]
+    },
+    {
+        "index": 3,
+        "input_text": "The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Ciudad_Ayala",
+                "leaderName",
+                "Juan_Nolasco"
+            ],
+            [
+                "Ciudad_Ayala",
+                "timezone",
+                "Pacific_Standard_Time_Zone"
+            ]
+        ],
+        "schema_definition": {
+            "timezone": "The subject entity is located in the time zone specified by the object entity.",
+            "leaderName": "The subject entity is led by the person or entity specified by the object entity."
+        },
+        "canonicalization_candidates": "[{'leader': 0.90896773, 'director': 0.9035874, 'leaderTitle': 0.8989091, 'president': 0.8612342, 'creator': 0.8457087}, {'timeZone': 1.0, 'utcOffset': 0.9545018, 'location': 0.8170965, 'state': 0.799792, 'country': 0.7762421}]",
+        "schema_canonicalizaiton": [
+            [
+                "Ciudad_Ayala",
+                "leader",
+                "Juan_Nolasco"
+            ],
+            [
+                "Ciudad_Ayala",
+                "timeZone",
+                "Pacific_Standard_Time_Zone"
+            ]
+        ]
+    },
+    {
+        "index": 4,
+        "input_text": "The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "ALCO_RS-3",
+                "length",
+                "17068.8 (millimetres)"
+            ],
+            [
+                "ALCO_RS-3",
+                "powerType",
+                "Diesel-electric_transmission"
+            ],
+            [
+                "ALCO_RS-3",
+                "engine",
+                "V12_engine"
+            ]
+        ],
+        "schema_definition": {
+            "length": "The subject entity has the length specified by the object entity.",
+            "powerType": "The subject entity uses the type of power or transmission specified by the object entity.",
+            "engine": "The subject entity is equipped with the engine specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "ALCO_RS-3",
+                "length",
+                "17068.8 (millimetres)"
+            ],
+            [
+                "ALCO_RS-3",
+                "powerType",
+                "Diesel-electric_transmission"
+            ],
+            [
+                "ALCO_RS-3",
+                "engine",
+                "V12_engine"
+            ]
+        ]
+    },
+    {
+        "index": 5,
+        "input_text": "The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome. The ICAO location identifier for the Bedford Aerodrome is EGBF.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Bedford_Aerodrome",
+                "location",
+                "Thurleigh"
+            ],
+            [
+                "Bedford_Aerodrome",
+                "serves",
+                "Bedford_Autodrome"
+            ],
+            [
+                "Bedford_Aerodrome",
+                "icaoLocationIdentifier",
+                "EGBF"
+            ]
+        ],
+        "schema_definition": {
+            "location": "The subject entity is located in the place specified by the object entity.",
+            "serves": "The subject entity provides service to or supports the entity specified by the object entity.",
+            "icaoLocationIdentifier": "The subject entity has the ICAO location identifier specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {'service': 0.9578573, 'cityServed': 0.91273105, 'regionServed': 0.85494864, 'operatingOrganisation': 0.8394636, 'affiliation': 0.80913424}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Bedford_Aerodrome",
+                "location",
+                "Thurleigh"
+            ],
+            [
+                "Bedford_Aerodrome",
+                "cityServed",
+                "Bedford_Autodrome"
+            ],
+            [
+                "Bedford_Aerodrome",
+                "icaoLocationIdentifier",
+                "EGBF"
+            ]
+        ]
+    },
+    {
+        "index": 6,
+        "input_text": "Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Liselotte_Grschebina",
+                "bornIn",
+                "Karlsruhe"
+            ],
+            [
+                "Liselotte_Grschebina",
+                "diedIn",
+                "Israel"
+            ],
+            [
+                "Israel",
+                "ethnicGroup",
+                "Arabs"
+            ],
+            [
+                "Israel",
+                "ethnicGroup",
+                "Israeli_Jews"
+            ]
+        ],
+        "schema_definition": {
+            "bornIn": "The subject entity was born in the location specified by the object entity.",
+            "diedIn": "The subject entity died in the location specified by the object entity.",
+            "ethnicGroup": "The subject entity contains or is associated with the ethnic group specified by the object entity."
+        },
+        "canonicalization_candidates": "[{'birthPlace': 1.0, 'origin': 0.83646333, 'birthDate': 0.81795806, 'location': 0.8082739, 'assembly': 0.8025449}, {'deathPlace': 1.0, 'deathDate': 0.85706276, 'birthPlace': 0.71507204, 'extinctionDate': 0.706641, 'formerTeam': 0.6918656}, {}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Liselotte_Grschebina",
+                "birthPlace",
+                "Karlsruhe"
+            ],
+            [
+                "Liselotte_Grschebina",
+                "deathPlace",
+                "Israel"
+            ],
+            [
+                "Israel",
+                "ethnicGroup",
+                "Arabs"
+            ],
+            [
+                "Israel",
+                "ethnicGroup",
+                "Israeli_Jews"
+            ]
+        ]
+    },
+    {
+        "index": 7,
+        "input_text": "The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University. It was established in the year 2000.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Acharya_Institute_of_Technology",
+                "address",
+                "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+            ],
+            [
+                "Acharya_Institute_of_Technology",
+                "affiliatedWith",
+                "Visvesvaraya_Technological_University"
+            ],
+            [
+                "Acharya_Institute_of_Technology",
+                "establishedYear",
+                "2000"
+            ]
+        ],
+        "schema_definition": {
+            "address": "The subject entity is located at the address specified by the object entity.",
+            "affiliatedWith": "The subject entity has an affiliation with the organization or institution specified by the object entity.",
+            "establishedYear": "The subject entity was established in the year specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {'affiliation': 0.89307064, 'founder': 0.76675653, 'foundedBy': 0.75986975, 'operatingOrganisation': 0.7570609, 'governmentType': 0.75125647}, {'established': 0.9773719, 'foundingYear': 0.9589703, 'foundingDate': 0.8795887, 'productionStartYear': 0.8541536, 'youthclub': 0.81366545}]",
+        "schema_canonicalizaiton": [
+            [
+                "Acharya_Institute_of_Technology",
+                "address",
+                "\"Soldevanahalli,_Acharya_Dr._Sarvapalli_Radhakrishnan_Road,_Hessarghatta_Main_Road,_Bangalore_-_560090,_India\""
+            ],
+            [
+                "Acharya_Institute_of_Technology",
+                "affiliation",
+                "Visvesvaraya_Technological_University"
+            ],
+            [
+                "Acharya_Institute_of_Technology",
+                "established",
+                "2000"
+            ]
+        ]
+    },
+    {
+        "index": 8,
+        "input_text": "Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Alan_B._Miller_Hall",
+                "owner",
+                "College_of_William_and_Mary"
+            ],
+            [
+                "Alan_B._Miller_Hall",
+                "architect",
+                "Robert_A._M._Stern"
+            ],
+            [
+                "Alan_B._Miller_Hall",
+                "completionDate",
+                "\"1 June 2009\""
+            ]
+        ],
+        "schema_definition": {
+            "completionDate": "The subject entity was completed on the date specified by the object entity.",
+            "owner": "The subject entity is owned by the person or organization specified by the object entity.",
+            "architect": "The subject entity was designed by the architect specified by the object entity."
+        },
+        "canonicalization_candidates": "[{}, {}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Alan_B._Miller_Hall",
+                "owner",
+                "College_of_William_and_Mary"
+            ],
+            [
+                "Alan_B._Miller_Hall",
+                "architect",
+                "Robert_A._M._Stern"
+            ],
+            [
+                "Alan_B._Miller_Hall",
+                "completionDate",
+                "\"1 June 2009\""
+            ]
+        ]
+    },
+    {
+        "index": 9,
+        "input_text": "Liselotte Grschebina was born in Karlsruhe and died in Israel. The Arab citizens of Israel is an ethnic group in Israel.\n",
+        "entity_hint": "",
+        "relation_hint": "",
+        "oie": [
+            [
+                "Liselotte_Grschebina",
+                "bornIn",
+                "Karlsruhe"
+            ],
+            [
+                "Liselotte_Grschebina",
+                "diedIn",
+                "Israel"
+            ],
+            [
+                "Arab_citizens_of_Israel",
+                "ethnicGroup",
+                "Israel"
+            ]
+        ],
+        "schema_definition": {
+            "bornIn": "The subject entity was born in the location specified by the object entity.",
+            "ethnicGroup": "The subject entity is an ethnic group located in or associated with the place specified by the object entity.",
+            "diedIn": "The subject entity died in the location specified by the object entity."
+        },
+        "canonicalization_candidates": "[{'birthPlace': 1.0, 'origin': 0.83646333, 'birthDate': 0.81795806, 'location': 0.8082739, 'assembly': 0.8025449}, {'deathPlace': 1.0, 'deathDate': 0.85706276, 'birthPlace': 0.71507204, 'extinctionDate': 0.706641, 'formerTeam': 0.6918656}, {}]",
+        "schema_canonicalizaiton": [
+            [
+                "Liselotte_Grschebina",
+                "birthPlace",
+                "Karlsruhe"
+            ],
+            [
+                "Liselotte_Grschebina",
+                "deathPlace",
+                "Israel"
+            ],
+            [
+                "Arab_citizens_of_Israel",
+                "ethnicGroup",
+                "Israel"
+            ]
+        ]
+    }
+]

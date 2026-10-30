@@ -1,0 +1,37 @@
+{
+ "items": [
+  {
+   "definitions": {},
+   "key": "d#c000",
+   "results": [
+    {
+     "candidates": {},
+     "canonical": [
+      "CIBP",
+      "set_plug_at",
+      "9,500'"
+     ]
+    },
+    {
+     "candidates": {},
+     "canonical": null,
+     "reason": "edc_undefined"
+    },
+    {
+     "candidates": {},
+     "canonical": null
+    },
+    {
+     "candidates": {
+      "set_plug_at": 0.8
+     },
+     "canonical": [
+      "CIBP",
+      "set_plug_at",
+      "9,500'"
+     ]
+    }
+   ]
+  }
+ ]
+}

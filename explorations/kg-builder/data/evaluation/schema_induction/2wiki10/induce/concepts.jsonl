@@ -1,0 +1,226 @@
+{"asked":true,"concepts":["battle","war","conflict","military engagement","historical event"],"context":"Edgar the Ætheling was proclaimed king after, took place in 1066","degree":2,"entity_id":"e_00395a48ea81","kind":"entity","name":"Battle of Hastings","type":"battle"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby received awards at","degree":1,"entity_id":"e_010729d4ede9","kind":"entity","name":"Africa Movie Academy Awards","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby received awards at","degree":1,"entity_id":"e_02c92d829dd0","kind":"entity","name":"Africa Magic Viewers Choice Awards","type":"entity"}
+{"asked":true,"concepts":["person","man","relative","family member","father"],"context":"Mary Oliphant is daughter of, is brother of William Oliphant","degree":2,"entity_id":"e_035c63ba3077","kind":"entity","name":"Charles Oliphant","type":"person"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino worked as","degree":1,"entity_id":"e_037b6391f23a","kind":"entity","name":"Italian film director","type":"entity"}
+{"asked":false,"concepts":[],"context":"was born as Drusus the Elder","degree":2,"entity_id":"e_05ab04f3694c","kind":"entity","name":"Nero Claudius Drusus","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz was shot at","degree":1,"entity_id":"e_05d0dce467dd","kind":"entity","name":"Denham Studios","type":"entity"}
+{"asked":false,"concepts":[],"context":"Julia Livia is also known as","degree":1,"entity_id":"e_071222c2d574","kind":"entity","name":"Julia Drusi Caesaris filia","type":"entity"}
+{"asked":true,"concepts":["person","royal","queen mother","noblewoman"],"context":"Thomas Lyon is ancestor of, is also known as Queen Mother","degree":2,"entity_id":"e_0960e27ca56c","kind":"entity","name":"Elizabeth Bowes – Lyon","type":"person"}
+{"asked":true,"concepts":["king","nobleman","royal","heir","monarch"],"context":"was proclaimed king after Battle of Hastings","degree":2,"entity_id":"e_0be22b831445","kind":"entity","name":"Edgar the Ætheling","type":"king"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz stars","degree":1,"entity_id":"e_0c9f1ec0d48b","kind":"entity","name":"Annabella","type":"entity"}
+{"asked":false,"concepts":[],"context":"is also known as Castor","degree":1,"entity_id":"e_0cc99e7ef22c","kind":"entity","name":"Cassius Dio","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live is set during","degree":1,"entity_id":"e_0d496484abe2","kind":"entity","name":"World War II","type":"entity"}
+{"asked":true,"concepts":["book","novel","publication","literary work","text"],"context":"was released in United States","degree":3,"entity_id":"e_0dc2a1201545","kind":"entity","name":"The Antichrist The Antichrist","type":"book"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. attended educational institution","degree":1,"entity_id":"e_1212600e4a0d","kind":"entity","name":"University of California, Berkeley","type":"entity"}
+{"asked":false,"concepts":[],"context":"John Lyon is son of, held office 4th Earl of Strathmore and Kinghorne","degree":2,"entity_id":"e_1223edfc1b3e","kind":"entity","name":"Patrick Lyon","type":"entity"}
+{"asked":false,"concepts":[],"context":"Maria Wisława Anna Szymborska worked as","degree":1,"entity_id":"e_12b915480d09","kind":"entity","name":"essayist","type":"entity"}
+{"asked":false,"concepts":[],"context":"is literally The more loot you've got, the fewer your principles. Lolly is the gangrene of the soul","degree":2,"entity_id":"e_12f0f1d027aa","kind":"entity","name":"Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor is son of","degree":1,"entity_id":"e_13118f4b74e0","kind":"entity","name":"Emma of Normandy","type":"entity"}
+{"asked":true,"concepts":["person","woman","first lady"],"context":"served as first lady of california from 2011 to 2019","degree":7,"entity_id":"e_13ec2d231537","kind":"entity","name":"Anne Baldwin Gust Brown","type":"person"}
+{"asked":true,"concepts":["film","movie","production","work","art"],"context":"stars Jai Jagadish","degree":6,"entity_id":"e_13f5b90ee36d","kind":"entity","name":"Phalitamsha","type":"film"}
+{"asked":true,"concepts":["movie","film","movie title","film title"],"context":"is also known as The Revolt of the Seven","degree":6,"entity_id":"e_16983ae7cc93","kind":"entity","name":"Gladiators Seven","type":"movie"}
+{"asked":false,"concepts":[],"context":"Adam Włodek was editor of","degree":1,"entity_id":"e_16ff86906b7d","kind":"entity","name":"Dziennik Polski","type":"entity"}
+{"asked":true,"concepts":["king","monarch","ruler","sovereign","english king"],"context":"adopted as national patron saint Saint George","degree":2,"entity_id":"e_184413a4bb8c","kind":"entity","name":"King Edward III","type":"king"}
+{"asked":false,"concepts":[],"context":"Gladiators Seven is genre","degree":1,"entity_id":"e_18b5026f1ba6","kind":"entity","name":"Italian peplum film","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edith of Wessex held office","degree":1,"entity_id":"e_18fbd8933ebe","kind":"entity","name":"Queen of England","type":"entity"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown served as first lady of california from","degree":1,"entity_id":"e_1afc94740451","kind":"entity","name":"2011 to 2019","type":"entity"}
+{"asked":false,"concepts":[],"context":"James Lyon died in","degree":1,"entity_id":"e_1b4e9835735b","kind":"entity","name":"Edinburgh","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz is release year","degree":1,"entity_id":"e_1ba3277e3f03","kind":"literal","name":"1937","type":"literal"}
+{"asked":false,"concepts":[],"context":"Phalitamsha was produced under the banner of","degree":1,"entity_id":"e_1c18828f0ba5","kind":"entity","name":"A 1 Movietone","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. is member of political party","degree":1,"entity_id":"e_1d31ba8c5d5c","kind":"entity","name":"California Democratic Party","type":"entity"}
+{"asked":false,"concepts":[],"context":"Harold Godwinson was killed by","degree":1,"entity_id":"e_1eb7c6de80e3","kind":"entity","name":"Normans","type":"entity"}
+{"asked":true,"concepts":["person","man","freemason"],"context":"Thomas Lyon succeeded, worked as freemason","degree":10,"entity_id":"e_1ef5b5043958","kind":"entity","name":"James Lyon","type":"person"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live is release year","degree":1,"entity_id":"e_1f927f440f0d","kind":"literal","name":"1941","type":"literal"}
+{"asked":false,"concepts":[],"context":"is daughter of Charles Oliphant","degree":1,"entity_id":"e_208ae1c75de2","kind":"entity","name":"Mary Oliphant","type":"entity"}
+{"asked":false,"concepts":[],"context":"Adam Włodek translated from","degree":1,"entity_id":"e_220599f0bf79","kind":"entity","name":"Czech","type":"entity"}
+{"asked":false,"concepts":[],"context":"Le Professionnel was released in","degree":1,"entity_id":"e_23e591e8c36d","kind":"entity","name":"France","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino was born in","degree":2,"entity_id":"e_249f3bef9c6e","kind":"entity","name":"Rome","type":"entity"}
+{"asked":true,"concepts":["person","father","peer","nobleman","aristocrat"],"context":"James Lyon is son of, worked as peer","degree":8,"entity_id":"e_24b68c41a3c7","kind":"entity","name":"John Lyon","type":"person"}
+{"asked":false,"concepts":[],"context":"Pope Alexander III canonised in","degree":1,"entity_id":"e_25c65868b540","kind":"literal","name":"1161","type":"literal"}
+{"asked":false,"concepts":[],"context":"United States National Film Registry is by","degree":1,"entity_id":"e_2622a157b629","kind":"entity","name":"Library of Congress","type":"entity"}
+{"asked":false,"concepts":[],"context":"Robert Florey worked as","degree":1,"entity_id":"e_27a9612b3207","kind":"entity","name":"assistant","type":"entity"}
+{"asked":false,"concepts":[],"context":"Adam Włodek is a","degree":1,"entity_id":"e_27cab0f23afa","kind":"entity","name":"Polish","type":"entity"}
+{"asked":true,"concepts":["film","movie","comedy","crime film"],"context":"Salad by the Roots was released after, is directed by Georges Lautner","degree":3,"entity_id":"e_27e6575d1db0","kind":"entity","name":"Les Tontons flingueurs","type":"film"}
+{"asked":true,"concepts":["person","king","monarch","ruler","historical figure"],"context":"Edward the Confessor succeeded, is son of Cnut","degree":2,"entity_id":"e_2943b505d775","kind":"entity","name":"Harthacnut","type":"person"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor's reign led to advance in power of","degree":1,"entity_id":"e_2979d9d2931b","kind":"entity","name":"House of Godwin","type":"entity"}
+{"asked":false,"concepts":[],"context":"Eating dandelions by the roots is literally","degree":1,"entity_id":"e_2b62ba49c318","kind":"entity","name":"Pushing up the daisies","type":"entity"}
+{"asked":false,"concepts":[],"context":"John Lyon worked as","degree":1,"entity_id":"e_2b974ba4b46a","kind":"entity","name":"peer","type":"entity"}
+{"asked":false,"concepts":[],"context":"Maria Wisława Anna Szymborska worked as","degree":1,"entity_id":"e_2e47fc71395d","kind":"entity","name":"translator","type":"entity"}
+{"asked":false,"concepts":[],"context":"William Oliphant held office","degree":1,"entity_id":"e_30743ad09eac","kind":"entity","name":"11th Lord Oliphant","type":"entity"}
+{"asked":false,"concepts":[],"context":"surpassed Earl Warren","degree":2,"entity_id":"e_30f088ea6673","kind":"entity","name":"he","type":"entity"}
+{"asked":false,"concepts":[],"context":"Salad by the Roots is genre","degree":1,"entity_id":"e_31e6c756c06a","kind":"entity","name":"Franco- Italian comedy","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby is release year","degree":1,"entity_id":"e_32a70a32da27","kind":"literal","name":"2011","type":"literal"}
+{"asked":false,"concepts":[],"context":"Georges Lautner nationality is","degree":1,"entity_id":"e_32f897f04b54","kind":"entity","name":"French","type":"entity"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown worked as","degree":1,"entity_id":"e_331532860535","kind":"entity","name":"First Lady of California","type":"entity"}
+{"asked":false,"concepts":[],"context":"S. R. Puttanna Kanagal was born as","degree":1,"entity_id":"e_342527b32b5a","kind":"entity","name":"Shubraveshti Ramaswamiah Seetharama Sharma","type":"entity"}
+{"asked":true,"concepts":["movie","film","work","production"],"context":"Georges Lautner directed, was released in France","degree":3,"entity_id":"e_34abfa4c0f63","kind":"entity","name":"Le Professionnel","type":"movie"}
+{"asked":true,"concepts":["album","record","music","release"],"context":"was released after Les Tontons flingueurs","degree":7,"entity_id":"e_34bfc9c7d05a","kind":"entity","name":"Salad by the Roots","type":"album"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz is genre","degree":1,"entity_id":"e_354acc4ccae3","kind":"entity","name":"British mystery romance film","type":"entity"}
+{"asked":true,"concepts":["person","roman","nobleman","prince","historical figure"],"context":"Julia Livia is granddaughter of, is son of Vipsania Agrippina","degree":14,"entity_id":"e_37f69cb38fa4","kind":"entity","name":"Drusus Julius Caesar","type":"person"}
+{"asked":false,"concepts":[],"context":"Wisława Szymborska is a","degree":1,"entity_id":"e_39c54690db51","kind":"entity","name":"Noble Prize laureate","type":"entity"}
+{"asked":false,"concepts":[],"context":"I Love You Rosa was released in","degree":1,"entity_id":"e_3a06fc9da1d0","kind":"literal","name":"1972","type":"literal"}
+{"asked":true,"concepts":["person","king","ruler","monarch","historical figure"],"context":"Harthacnut is son of, is also known as Canute","degree":3,"entity_id":"e_3c0d731552b9","kind":"entity","name":"Cnut","type":"person"}
+{"asked":false,"concepts":[],"context":"Robert Florey was born in","degree":1,"entity_id":"e_3c4bd4d0d0d1","kind":"entity","name":"Paris","type":"entity"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar is heir to","degree":1,"entity_id":"e_3fb7644b94b9","kind":"entity","name":"Roman Empire","type":"entity"}
+{"asked":false,"concepts":[],"context":"Ademilson Silva Marques was born in","degree":1,"entity_id":"e_406e82bc434b","kind":"entity","name":"São Luís","type":"entity"}
+{"asked":false,"concepts":[],"context":"Gladiators Seven stars","degree":1,"entity_id":"e_436e179b2160","kind":"entity","name":"Tony Russel","type":"entity"}
+{"asked":false,"concepts":[],"context":"Gladiators Seven is release year","degree":2,"entity_id":"e_44c9b30f7a53","kind":"literal","name":"1964","type":"literal"}
+{"asked":false,"concepts":[],"context":"Ademilson Silva Marques is also known as","degree":1,"entity_id":"e_44faa2081204","kind":"entity","name":"Mimica","type":"entity"}
+{"asked":false,"concepts":[],"context":"James Lyon is son of","degree":1,"entity_id":"e_475c9633df84","kind":"entity","name":"Lady Elizabeth Stanhope","type":"entity"}
+{"asked":false,"concepts":[],"context":"James Lyon died in","degree":1,"entity_id":"e_4bc31e08b78c","kind":"entity","name":"Scotland","type":"entity"}
+{"asked":false,"concepts":[],"context":"Julia Livia is also known as","degree":1,"entity_id":"e_4ed2908705a0","kind":"entity","name":"Julia, daughter of Drusus Caesar","type":"entity"}
+{"asked":false,"concepts":[],"context":"is biographer of Edward the Confessor","degree":1,"entity_id":"e_4efbd1096bfe","kind":"entity","name":"Peter Rex","type":"entity"}
+{"asked":false,"concepts":[],"context":"is by Marx Brothers","degree":1,"entity_id":"e_4f4ea0afc3b8","kind":"entity","name":"The Cocoanuts","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor is son of","degree":1,"entity_id":"e_5052904be000","kind":"entity","name":"Æthelred the Unready","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_50619c65a344","kind":"entity","name":"Chelsea Eze","type":"entity"}
+{"asked":true,"concepts":["movie","film","work","production"],"context":"participated in Cannes Film Festival","degree":5,"entity_id":"e_51110a495cba","kind":"entity","name":"I Love You Rosa","type":"movie"}
+{"asked":false,"concepts":[],"context":"Nazi spies try to pry information from","degree":1,"entity_id":"e_52b751b9fdaa","kind":"entity","name":"British agent","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino worked as","degree":1,"entity_id":"e_5302e2bd9d6b","kind":"entity","name":"dubbing supervisor","type":"entity"}
+{"asked":false,"concepts":[],"context":"was a member of Hindi film","degree":2,"entity_id":"e_5596d2c4872f","kind":"entity","name":"Pyar Ka Bandhan","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live stars","degree":1,"entity_id":"e_574eab89feef","kind":"entity","name":"Raymond Massey","type":"entity"}
+{"asked":true,"concepts":["saint","religious figure","holy person","historical figure","monarch"],"context":"Catholic Church celebrates feast day of, celebrates feast day of 13 October","degree":4,"entity_id":"e_580869ffb630","kind":"entity","name":"Saint Edward","type":"saint"}
+{"asked":false,"concepts":[],"context":"Georges Lautner was born in","degree":1,"entity_id":"e_5929e58a5aa1","kind":"entity","name":"Nice","type":"entity"}
+{"asked":false,"concepts":[],"context":"is also known as Drusus Julius Caesar","degree":1,"entity_id":"e_5a4b0c564820","kind":"entity","name":"Julius Caesar","type":"entity"}
+{"asked":false,"concepts":[],"context":"canonised in 1161","degree":2,"entity_id":"e_5aabf8af27e6","kind":"entity","name":"Pope Alexander III","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. is parent of","degree":1,"entity_id":"e_5c940a7f0ab0","kind":"entity","name":"Pat Brown","type":"entity"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar is son of","degree":1,"entity_id":"e_5dc7943d0a39","kind":"entity","name":"Vipsania Agrippina","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_5e1a06c6ef89","kind":"entity","name":"Stella Damasus- Aboderin","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. was born in","degree":1,"entity_id":"e_61b3f1a25368","kind":"entity","name":"San Francisco","type":"entity"}
+{"asked":false,"concepts":[],"context":"Phalitamsha is written by","degree":1,"entity_id":"e_62aa80386ee0","kind":"entity","name":"Srinivasa Kulakarni","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_63c5dcf22f09","kind":"entity","name":"OC Ukeje","type":"entity"}
+{"asked":false,"concepts":[],"context":"Les Tontons flingueurs is set in","degree":1,"entity_id":"e_6872d5c606e6","kind":"entity","name":"Parisian underworld","type":"entity"}
+{"asked":false,"concepts":[],"context":"Pyar Ka Bandhan was a member of","degree":1,"entity_id":"e_69f45db50b1c","kind":"entity","name":"Hindi film","type":"entity"}
+{"asked":false,"concepts":[],"context":"Ademilson Silva Marques nationality is","degree":1,"entity_id":"e_6b3603fd79c6","kind":"entity","name":"Brazilian","type":"entity"}
+{"asked":false,"concepts":[],"context":"Marius Mapou participated in","degree":1,"entity_id":"e_6c0608264228","kind":"entity","name":"2008 OFC Nations Cup","type":"entity"}
+{"asked":false,"concepts":[],"context":"Murders in the Rue Morgue is regarded as reflective of","degree":1,"entity_id":"e_6c1a7a636ce1","kind":"entity","name":"German expressionism","type":"entity"}
+{"asked":true,"concepts":["person","man","footballer","player","athlete"],"context":"is also known as Mimica","degree":3,"entity_id":"e_6d4ef03dc423","kind":"entity","name":"Ademilson Silva Marques","type":"person"}
+{"asked":false,"concepts":[],"context":"Marius Mapou was a member of","degree":1,"entity_id":"e_6d9dfdb24da8","kind":"entity","name":"New Caledonia","type":"entity"}
+{"asked":false,"concepts":[],"context":"John Lyon worked as","degree":1,"entity_id":"e_6dfce3cabe6a","kind":"entity","name":"Scottish nobleman","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor is also known as","degree":1,"entity_id":"e_6eece427c68d","kind":"entity","name":"Saint Edward the Confessor","type":"entity"}
+{"asked":false,"concepts":[],"context":"Salad by the Roots has music by","degree":1,"entity_id":"e_6f96838da6a5","kind":"entity","name":"Georges Delerue","type":"entity"}
+{"asked":false,"concepts":[],"context":"I Love You Rosa is genre","degree":1,"entity_id":"e_7305281150e5","kind":"entity","name":"Israeli film","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor was a member of","degree":1,"entity_id":"e_75e25bf7f0a1","kind":"entity","name":"Anglo-Saxon kings of England","type":"entity"}
+{"asked":false,"concepts":[],"context":"Julia Livia is granddaughter of","degree":1,"entity_id":"e_7ae080ff23d6","kind":"entity","name":"Roman Emperor Tiberius","type":"entity"}
+{"asked":false,"concepts":[],"context":"Le Professionnel stars","degree":1,"entity_id":"e_7f3f34c4928a","kind":"entity","name":"Jean- Paul Belmondo","type":"entity"}
+{"asked":false,"concepts":[],"context":"he surpassed","degree":1,"entity_id":"e_825a29df518a","kind":"entity","name":"Earl Warren","type":"entity"}
+{"asked":false,"concepts":[],"context":"Georges Lautner mother is","degree":1,"entity_id":"e_82af7752194b","kind":"entity","name":"Renée Saint- Cyr","type":"entity"}
+{"asked":false,"concepts":[],"context":"held office Rome","degree":2,"entity_id":"e_82de9bb98ea3","kind":"entity","name":"Sejanus","type":"entity"}
+{"asked":false,"concepts":[],"context":"The Cocoanuts is by","degree":1,"entity_id":"e_82fda27ca45e","kind":"entity","name":"Marx Brothers","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_83cbae368a89","kind":"entity","name":"Keira Hewatch","type":"entity"}
+{"asked":false,"concepts":[],"context":"Vita Ædwardi Regis is literally","degree":1,"entity_id":"e_83ccc2ee9ebd","kind":"entity","name":"Life of King Edward who rests at Westminster","type":"entity"}
+{"asked":true,"concepts":["person","woman","noblewoman","historical figure"],"context":"is granddaughter of Drusus Julius Caesar","degree":7,"entity_id":"e_843bbbf8eceb","kind":"entity","name":"Julia Livia","type":"person"}
+{"asked":true,"concepts":["dish","salad","meal","food"],"context":"Salad by the Roots is literally, is literally Pushing up the daisies","degree":2,"entity_id":"e_8501fbdf45d1","kind":"entity","name":"Eating dandelions by the roots","type":"dish"}
+{"asked":true,"concepts":["movie","film","cinema"],"context":"is release year 1941","degree":8,"entity_id":"e_852aae0d1a85","kind":"entity","name":"Dangerously They Live","type":"movie"}
+{"asked":false,"concepts":[],"context":"James Lyon worked as","degree":1,"entity_id":"e_86a57c363732","kind":"entity","name":"Scottish peer","type":"entity"}
+{"asked":false,"concepts":[],"context":"Chitra Bramha is literally","degree":1,"entity_id":"e_870b07540289","kind":"entity","name":"God of Films","type":"entity"}
+{"asked":true,"concepts":["church","religion","organization","institution","denomination"],"context":"is country of origin England","degree":3,"entity_id":"e_88dcf13d830d","kind":"entity","name":"Church of England","type":"church"}
+{"asked":false,"concepts":[],"context":"John Lyon was married to","degree":1,"entity_id":"e_89272f700750","kind":"entity","name":"Elizabeth Stanhope","type":"entity"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar died in","degree":1,"entity_id":"e_8a72663388e9","kind":"entity","name":"14 September 23","type":"entity"}
+{"asked":false,"concepts":[],"context":"Saint Edward celebrates feast day of","degree":1,"entity_id":"e_8b8f6b4416f9","kind":"literal","name":"13 October","type":"literal"}
+{"asked":true,"concepts":["movie","film","production","work"],"context":"is country of origin Nigerian","degree":13,"entity_id":"e_8bbef4b1264b","kind":"entity","name":"Two Brides and a Baby","type":"movie"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar is son of, is son of Julii","degree":2,"entity_id":"e_8c41157aec66","kind":"entity","name":"Tiberius","type":"entity"}
+{"asked":false,"concepts":[],"context":"is part of Kórnik","degree":1,"entity_id":"e_8c892d0199c3","kind":"entity","name":"Prowent","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live stars","degree":1,"entity_id":"e_8fff6f32a2c8","kind":"entity","name":"Nancy Coleman","type":"entity"}
+{"asked":true,"concepts":["person","nobleman","earl","aristocrat","title holder"],"context":"James Lyon succeeded, held office 4th Earl of Strathmore and Kinghorne","degree":2,"entity_id":"e_915cb55beb0d","kind":"entity","name":"Charles Lyon","type":"person"}
+{"asked":false,"concepts":[],"context":"Daughter of Shanghai was selected for preservation in, is by Library of Congress","degree":2,"entity_id":"e_91ab4b247f38","kind":"entity","name":"United States National Film Registry","type":"entity"}
+{"asked":false,"concepts":[],"context":"was a member of New Caledonia","degree":2,"entity_id":"e_9225c4ebcfa6","kind":"entity","name":"Marius Mapou","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz was produced under the banner of","degree":1,"entity_id":"e_92ccac90089e","kind":"entity","name":"20th Century Fox","type":"entity"}
+{"asked":true,"concepts":["person","man","husband","poet","writer"],"context":"was married to Wisława Szymborska","degree":7,"entity_id":"e_94c526770853","kind":"entity","name":"Adam Włodek","type":"person"}
+{"asked":false,"concepts":[],"context":"is biographer of Edward the Confessor","degree":1,"entity_id":"e_94edb376b485","kind":"entity","name":"Frank Barlow","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby received awards at","degree":1,"entity_id":"e_94f73ef83ba7","kind":"entity","name":"Best of Nollywood Awards","type":"entity"}
+{"asked":false,"concepts":[],"context":"S. R. Puttanna Kanagal is considered as one of the greatest in","degree":1,"entity_id":"e_9695beed627d","kind":"entity","name":"Indian cinema","type":"entity"}
+{"asked":true,"concepts":["person","writer","poet","author","literary figure"],"context":"worked as essayist","degree":4,"entity_id":"e_97455a3b3b7c","kind":"entity","name":"Maria Wisława Anna Szymborska","type":"person"}
+{"asked":false,"concepts":[],"context":"Cassius Dio is also known as","degree":1,"entity_id":"e_9ae947350b83","kind":"entity","name":"Castor","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby is country of origin","degree":1,"entity_id":"e_9b09c9a773d2","kind":"entity","name":"Nigerian","type":"entity"}
+{"asked":false,"concepts":[],"context":"S. R. Puttanna Kanagal worked as","degree":1,"entity_id":"e_9b90ae88d909","kind":"entity","name":"Indian filmmaker","type":"entity"}
+{"asked":false,"concepts":[],"context":"Julia Livia is niece of","degree":1,"entity_id":"e_9c1eb11b236a","kind":"entity","name":"Claudius","type":"entity"}
+{"asked":true,"concepts":["person","roman","general","prince","nobleman"],"context":"is son of Drusus Julius Caesar","degree":2,"entity_id":"e_9c2e455ebe03","kind":"entity","name":"Germanicus","type":"person"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. is parent of","degree":1,"entity_id":"e_9e1ee2174a74","kind":"entity","name":"Bernice Layne Brown","type":"entity"}
+{"asked":false,"concepts":[],"context":"Cnut is also known as","degree":1,"entity_id":"e_9f3374dd6df0","kind":"entity","name":"Canute","type":"entity"}
+{"asked":true,"concepts":["director","filmmaker","person","italian director","cineaste"],"context":"Gladiators Seven is directed by, specialized in genre of horror","degree":10,"entity_id":"e_a0c8a10aec37","kind":"entity","name":"Alberto De Martino","type":"director"}
+{"asked":false,"concepts":[],"context":"is literally Life of King Edward who rests at Westminster","degree":1,"entity_id":"e_a1fd3b9f89c9","kind":"entity","name":"Vita Ædwardi Regis","type":"entity"}
+{"asked":false,"concepts":[],"context":"Prowent is part of","degree":1,"entity_id":"e_a30ec945e1cc","kind":"entity","name":"Kórnik","type":"entity"}
+{"asked":false,"concepts":[],"context":"James Lyon worked as","degree":1,"entity_id":"e_a45aacce10da","kind":"entity","name":"freemason","type":"entity"}
+{"asked":true,"concepts":["writer","author","screenwriter","filmmaker","director"],"context":"Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme. is written by","degree":3,"entity_id":"e_a795fa12b53c","kind":"entity","name":"Michel Audiard","type":"writer"}
+{"asked":true,"concepts":["person","nobleman","earl","title holder"],"context":"held office 4th Earl of Strathmore and Kinghorne","degree":4,"entity_id":"e_a799bdb0f782","kind":"entity","name":"Thomas Lyon","type":"person"}
+{"asked":false,"concepts":[],"context":"Robert Florey worked as","degree":1,"entity_id":"e_a87955792055","kind":"entity","name":"film journalist","type":"entity"}
+{"asked":false,"concepts":[],"context":"Pyar Ka Bandhan is release year","degree":1,"entity_id":"e_a8d01dd316e9","kind":"literal","name":"1963","type":"literal"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown worked as","degree":1,"entity_id":"e_a94280924428","kind":"entity","name":"executive vice president","type":"entity"}
+{"asked":true,"concepts":["person","king","monarch","ruler","nobleman"],"context":"was killed by Normans","degree":3,"entity_id":"e_aaca1351d1bc","kind":"entity","name":"Harold Godwinson","type":"person"}
+{"asked":false,"concepts":[],"context":"Harold Godwinson was killed by","degree":1,"entity_id":"e_aafe288ceba6","kind":"entity","name":"William the Conqueror","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino worked as","degree":1,"entity_id":"e_aed27c7ee7e2","kind":"entity","name":"screenwriter","type":"entity"}
+{"asked":false,"concepts":[],"context":"Gladiators Seven is also known as","degree":1,"entity_id":"e_af0b2f90ebd5","kind":"entity","name":"The Revolt of the Seven","type":"entity"}
+{"asked":false,"concepts":[],"context":"The Antichrist The Antichrist was released in","degree":2,"entity_id":"e_afa09db86882","kind":"entity","name":"United States","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby premiered on","degree":1,"entity_id":"e_afa1966a2867","kind":"literal","name":"November 17, 2011","type":"literal"}
+{"asked":false,"concepts":[],"context":"King Edward III adopted in","degree":1,"entity_id":"e_b01f67adb173","kind":"literal","name":"1350","type":"literal"}
+{"asked":true,"concepts":["person","politician","governor","father","human"],"context":"is parent of Pat Brown","degree":7,"entity_id":"e_b08be2ddbf42","kind":"entity","name":"Edmund Gerald Brown Jr.","type":"person"}
+{"asked":false,"concepts":[],"context":"Edward the Confessor restored rule after period of","degree":1,"entity_id":"e_b0d53447e76f","kind":"entity","name":"Danish rule","type":"entity"}
+{"asked":false,"concepts":[],"context":"Robert Florey worked as","degree":1,"entity_id":"e_b43c4b82570e","kind":"entity","name":"extra","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_b5593e54c4a0","kind":"entity","name":"Kalu Ikeagwu","type":"entity"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live stars","degree":1,"entity_id":"e_b5beee041451","kind":"entity","name":"John Garfield","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino specialized in genre of","degree":1,"entity_id":"e_b681487927bb","kind":"entity","name":"Western","type":"entity"}
+{"asked":true,"concepts":["country","nation","place","location","region"],"context":"Catholic Church is located in","degree":4,"entity_id":"e_b6ce68526de3","kind":"entity","name":"England","type":"country"}
+{"asked":false,"concepts":[],"context":"The Antichrist The Antichrist capitalized on appeal of","degree":1,"entity_id":"e_b762071d218f","kind":"entity","name":"The Exorcist","type":"entity"}
+{"asked":true,"concepts":["director","filmmaker","cinema personality","indian director"],"context":"S. R. Puttanna Kanagal is also known as, is literally God of Films","degree":2,"entity_id":"e_b837ff8590bb","kind":"entity","name":"Chitra Bramha","type":"director"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar held office","degree":1,"entity_id":"e_b861039bf5ca","kind":"entity","name":"quaestor","type":"entity"}
+{"asked":true,"concepts":["mythology","twins","gods","deities","figures"],"context":"Drusus Julius Caesar is likened to","degree":2,"entity_id":"e_b9a8df7669ca","kind":"entity","name":"Castor and Pollux","type":"mythology"}
+{"asked":false,"concepts":[],"context":"Adam Włodek was married to, is a Noble Prize laureate","degree":2,"entity_id":"e_ba727029a800","kind":"entity","name":"Wisława Szymborska","type":"entity"}
+{"asked":false,"concepts":[],"context":"Phalitamsha stars","degree":1,"entity_id":"e_bb26d9ace26d","kind":"entity","name":"Jai Jagadish","type":"entity"}
+{"asked":false,"concepts":[],"context":"I Love You Rosa was nominated for","degree":1,"entity_id":"e_bba75a7811d5","kind":"entity","name":"Academy Award for Best Foreign Language Film","type":"entity"}
+{"asked":false,"concepts":[],"context":"Robert Florey raised in","degree":1,"entity_id":"e_bbe956747bd1","kind":"entity","name":"Switzerland","type":"entity"}
+{"asked":true,"concepts":["person","queen","royalty","noblewoman","historical figure"],"context":"held office Queen of England","degree":2,"entity_id":"e_bed8c2398a0f","kind":"entity","name":"Edith of Wessex","type":"person"}
+{"asked":false,"concepts":[],"context":"Catholic Church is located in","degree":2,"entity_id":"e_bf2c019c0190","kind":"entity","name":"Wales","type":"entity"}
+{"asked":false,"concepts":[],"context":"claims about cause of death of Drusus Julius Caesar","degree":1,"entity_id":"e_bf35882fafbf","kind":"entity","name":"Suetonius","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino specialized in genre of","degree":1,"entity_id":"e_bf7b06aaafb4","kind":"entity","name":"horror","type":"entity"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown is married to","degree":1,"entity_id":"e_c0ceaa270eec","kind":"entity","name":"Jerry Brown","type":"entity"}
+{"asked":false,"concepts":[],"context":"King Edward III adopted as national patron saint","degree":1,"entity_id":"e_c0d950d9cf58","kind":"entity","name":"Saint George","type":"entity"}
+{"asked":false,"concepts":[],"context":"led to advance in power of House of Godwin","degree":1,"entity_id":"e_c3a21a5ce4de","kind":"entity","name":"Edward the Confessor's reign","type":"entity"}
+{"asked":true,"concepts":["director","filmmaker","person","man","french director"],"context":"Les Tontons flingueurs is directed by, mother is Renée Saint- Cyr","degree":7,"entity_id":"e_c5fe2b689661","kind":"entity","name":"Georges Lautner","type":"director"}
+{"asked":true,"concepts":["person","director","filmmaker","cineaste","artist"],"context":"Dangerously They Live is directed by, was born in Paris","degree":8,"entity_id":"e_c7c065097602","kind":"entity","name":"Robert Florey","type":"person"}
+{"asked":true,"concepts":["dynasty","royal house","family","lineage","kingdom"],"context":"Edward the Confessor succeeded","degree":2,"entity_id":"e_c7e6b65859dd","kind":"entity","name":"House of Wessex","type":"dynasty"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown was born on","degree":1,"entity_id":"e_c8466ba462ab","kind":"literal","name":"March 15, 1958","type":"literal"}
+{"asked":true,"concepts":["church","religion","organization","institution","faith"],"context":"is located in Wales","degree":3,"entity_id":"e_c98c48517dfc","kind":"entity","name":"Catholic Church","type":"church"}
+{"asked":false,"concepts":[],"context":"Anne Baldwin Gust Brown worked for","degree":1,"entity_id":"e_ca4469ed04ca","kind":"entity","name":"The Gap","type":"entity"}
+{"asked":true,"concepts":["person","king","monarch","historical figure","english king"],"context":"Peter Rex is biographer of, is son of Æthelred the Unready","degree":13,"entity_id":"e_cb9650bd3f47","kind":"entity","name":"Edward the Confessor","type":"person"}
+{"asked":false,"concepts":[],"context":"argues about Godwins","degree":1,"entity_id":"e_cce03df95fb4","kind":"entity","name":"Richard Mortimer","type":"entity"}
+{"asked":false,"concepts":[],"context":"John Lyon is parent of","degree":1,"entity_id":"e_ce2e248d7b15","kind":"entity","name":"John Lyon, 5th Earl of Strathmore and Kinghorne","type":"entity"}
+{"asked":true,"concepts":["director","filmmaker","person","indian director","kannada director"],"context":"Phalitamsha is directed by, was born as Shubraveshti Ramaswamiah Seetharama Sharma","degree":5,"entity_id":"e_d1085a78ba9f","kind":"entity","name":"S. R. Puttanna Kanagal","type":"director"}
+{"asked":false,"concepts":[],"context":"Richard Mortimer argues about","degree":1,"entity_id":"e_d34c14b81b82","kind":"entity","name":"Godwins","type":"entity"}
+{"asked":false,"concepts":[],"context":"Gladiators Seven is also known as","degree":1,"entity_id":"e_d3e6b1015c6b","kind":"entity","name":"The Spartan Gladiator","type":"entity"}
+{"asked":false,"concepts":[],"context":"Drusus Julius Caesar is son of","degree":1,"entity_id":"e_d4fdc4121a12","kind":"entity","name":"Emperor Tiberius","type":"entity"}
+{"asked":true,"concepts":["movie","film","cinematic work"],"context":"is release year 1937","degree":6,"entity_id":"e_d5a9eff9d3fc","kind":"entity","name":"Dinner at the Ritz","type":"movie"}
+{"asked":false,"concepts":[],"context":"Adam Włodek translated from","degree":1,"entity_id":"e_d88d9af2002a","kind":"entity","name":"Slovak","type":"entity"}
+{"asked":true,"concepts":["city","place","location","town","metropolis"],"context":"Adam Włodek died in","degree":2,"entity_id":"e_d9e9cb2b0b6a","kind":"entity","name":"Kraków","type":"city"}
+{"asked":false,"concepts":[],"context":"Dangerously They Live is genre","degree":1,"entity_id":"e_daca0e2c6901","kind":"entity","name":"spy film","type":"entity"}
+{"asked":false,"concepts":[],"context":"Battle of Hastings took place in","degree":2,"entity_id":"e_dc543d2abbb0","kind":"literal","name":"1066","type":"literal"}
+{"asked":false,"concepts":[],"context":"is regarded as reflective of German expressionism","degree":1,"entity_id":"e_dcdc1d2cd3a9","kind":"entity","name":"Murders in the Rue Morgue","type":"entity"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby stars","degree":1,"entity_id":"e_dfc1c0578d76","kind":"entity","name":"Okey Uzoeshi","type":"entity"}
+{"asked":false,"concepts":[],"context":"Edmund Gerald Brown Jr. is member of political party","degree":1,"entity_id":"e_e27a64dd4b80","kind":"entity","name":"Democratic Party","type":"entity"}
+{"asked":false,"concepts":[],"context":"I Love You Rosa is directed by","degree":1,"entity_id":"e_e310e667c8bc","kind":"entity","name":"Moshé Mizrahi","type":"entity"}
+{"asked":false,"concepts":[],"context":"was selected for preservation in United States National Film Registry","degree":1,"entity_id":"e_e32f9d5fd9f2","kind":"entity","name":"Daughter of Shanghai","type":"entity"}
+{"asked":true,"concepts":["state","place","location","region","geography"],"context":"he held office","degree":2,"entity_id":"e_e37b030af5fa","kind":"entity","name":"California","type":"state"}
+{"asked":false,"concepts":[],"context":"Dinner at the Ritz is directed by","degree":1,"entity_id":"e_e41ac52ec40d","kind":"entity","name":"Harold D. Schuster","type":"entity"}
+{"asked":false,"concepts":[],"context":"Maria Wisława Anna Szymborska worked as","degree":1,"entity_id":"e_e4d1c39e9a28","kind":"entity","name":"Polish poet","type":"entity"}
+{"asked":false,"concepts":[],"context":"Phalitamsha was released in","degree":1,"entity_id":"e_e4d3d3f0fce6","kind":"literal","name":"1976","type":"literal"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino created films for market of","degree":1,"entity_id":"e_e6b83aa938ad","kind":"entity","name":"international market","type":"entity"}
+{"asked":false,"concepts":[],"context":"claims about cause of death of Drusus Julius Caesar","degree":1,"entity_id":"e_ebabad71cc7d","kind":"entity","name":"Tacitus","type":"entity"}
+{"asked":false,"concepts":[],"context":"Julia Livia is first cousin of","degree":1,"entity_id":"e_edc8d6892920","kind":"entity","name":"Caligula","type":"entity"}
+{"asked":false,"concepts":[],"context":"Robert Florey was born as","degree":1,"entity_id":"e_edf1563724c9","kind":"entity","name":"Robert Fuchs","type":"entity"}
+{"asked":false,"concepts":[],"context":"Elizabeth Bowes – Lyon is also known as","degree":1,"entity_id":"e_edfb07a6ff4e","kind":"entity","name":"Queen Mother","type":"entity"}
+{"asked":false,"concepts":[],"context":"James Lyon is also known as","degree":1,"entity_id":"e_ee21e46d895d","kind":"entity","name":"7th Earl of Strathmore","type":"entity"}
+{"asked":false,"concepts":[],"context":"Maria Wisława Anna Szymborska received award","degree":1,"entity_id":"e_eea0ae5f87fc","kind":"entity","name":"1996 Nobel Prize in Literature","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino worked as","degree":1,"entity_id":"e_ef4d54d14e10","kind":"entity","name":"cinema","type":"entity"}
+{"asked":false,"concepts":[],"context":"Nero Claudius Drusus was born as","degree":1,"entity_id":"e_ef7af164f2b6","kind":"entity","name":"Drusus the Elder","type":"entity"}
+{"asked":true,"concepts":["person","woman","noblewoman","historical figure"],"context":"Julia Livia mother is, is married to Drusus Julius Caesar","degree":3,"entity_id":"e_f04808867504","kind":"entity","name":"Livilla","type":"person"}
+{"asked":false,"concepts":[],"context":"Tiberius is son of","degree":1,"entity_id":"e_f14684eb1291","kind":"entity","name":"Julii","type":"entity"}
+{"asked":false,"concepts":[],"context":"Phalitamsha is genre","degree":1,"entity_id":"e_f1ba7a47b38a","kind":"entity","name":"Kannada movie","type":"entity"}
+{"asked":false,"concepts":[],"context":"Alberto De Martino worked as","degree":1,"entity_id":"e_f644f3103ad3","kind":"entity","name":"child actor","type":"entity"}
+{"asked":false,"concepts":[],"context":"Charles Oliphant is brother of, held office 11th Lord Oliphant","degree":2,"entity_id":"e_f6633239e213","kind":"entity","name":"William Oliphant","type":"entity"}
+{"asked":false,"concepts":[],"context":"Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme. is literally","degree":1,"entity_id":"e_f754cd90b43c","kind":"entity","name":"The more loot you've got, the fewer your principles. Lolly is the gangrene of the soul","type":"entity"}
+{"asked":false,"concepts":[],"context":"The Antichrist The Antichrist was reviewed by","degree":1,"entity_id":"e_f7ce347403f5","kind":"entity","name":"The Telegraph","type":"entity"}
+{"asked":false,"concepts":[],"context":"try to pry information from British agent","degree":1,"entity_id":"e_f7d8d1d66556","kind":"entity","name":"Nazi spies","type":"entity"}
+{"asked":true,"concepts":["nationality","ethnicity","demographic","group"],"context":"Dangerously They Live is country of origin","degree":2,"entity_id":"e_f81c394aa9dc","kind":"entity","name":"American","type":"nationality"}
+{"asked":false,"concepts":[],"context":"Two Brides and a Baby is directed by","degree":1,"entity_id":"e_f9cf4efd9f5a","kind":"entity","name":"Teco Benson","type":"entity"}
+{"asked":true,"concepts":["person","nobleman","earl","aristocrat","title"],"context":"Thomas Lyon held office","degree":5,"entity_id":"e_fe04950249fb","kind":"entity","name":"4th Earl of Strathmore and Kinghorne","type":"person"}
+{"asked":false,"concepts":[],"context":"I Love You Rosa participated in","degree":1,"entity_id":"e_ff6318d4947c","kind":"entity","name":"Cannes Film Festival","type":"entity"}

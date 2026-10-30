@@ -1,0 +1,16 @@
+root: runs/_test/recall_gold
+batch_size: 2
+seed: 42
+annotators:
+- annotator_a
+- annotator_b
+converter: v2
+frozen_inputs:
+- contracts/ontology/bsee.yaml
+- configs/experiments/bsee_eval.yaml
+- src/kgbuilder/evaluation/well_rules.py
+- src/kgbuilder/core/well_facts.py
+- src/kgbuilder/core/well_values.py
+- configs/domains/bsee/bsee_literals.yaml
+forbidden_before_seal:
+- runs/_test/bsee_gold_forbidden

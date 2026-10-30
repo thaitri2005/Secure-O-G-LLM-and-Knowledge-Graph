@@ -1,0 +1,4 @@
+source_manifest: .cache/datasets/bsee/bsee_public_snapshot/manifest.json
+regions: [gom, pacific, alaska]
+scope: core
+sqlite_cache_mib: 64

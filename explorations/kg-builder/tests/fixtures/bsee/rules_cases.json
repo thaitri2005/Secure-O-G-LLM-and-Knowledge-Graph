@@ -1,0 +1,182 @@
+[
+  {
+    "relation": "reached_td",
+    "text": "The well reached TD of 12000 ft MD."
+  },
+  {
+    "relation": "reached_td",
+    "text": "Total depth was 13000 ft TVD."
+  },
+  {
+    "relation": "reached_td",
+    "text": "The well reached total depth at 9000 feet."
+  },
+  {
+    "relation": "drilled_to",
+    "text": "Drilled to 12000 ft MD."
+  },
+  {
+    "relation": "drilled_to",
+    "text": "Drill to section TD of 11000 ft MD."
+  },
+  {
+    "relation": "drilled_to",
+    "text": "Drilled the well to 8000 feet."
+  },
+  {
+    "relation": "set_casing_at",
+    "text": "Set 7\" casing at 9000 ft MD."
+  },
+  {
+    "relation": "set_casing_at",
+    "text": "Landed 5.5\" liner at 11000 ft MD."
+  },
+  {
+    "relation": "set_casing_at",
+    "text": "Ran 13 3/8\" conductor to 1000 feet."
+  },
+  {
+    "relation": "casing_size",
+    "text": "A 7\" casing was present."
+  },
+  {
+    "relation": "casing_size",
+    "text": "A 9-5/8\" liner was present."
+  },
+  {
+    "relation": "casing_size",
+    "text": "A 13 3/8\" conductor was present."
+  },
+  {
+    "relation": "set_plug_at",
+    "text": "Set DX plug at 1484 ft MD."
+  },
+  {
+    "relation": "set_plug_at",
+    "text": "Placed cement plug from 1000 ft to 1200 ft MD."
+  },
+  {
+    "relation": "set_plug_at",
+    "text": "Replaced bridge plug at 3000 feet."
+  },
+  {
+    "relation": "set_equipment_at",
+    "text": "Set packer at 1000 ft MD."
+  },
+  {
+    "relation": "set_equipment_at",
+    "text": "Located nipple at 2000 feet."
+  },
+  {
+    "relation": "set_equipment_at",
+    "text": "Landed hanger at 3000 ft MD."
+  },
+  {
+    "relation": "tagged_at",
+    "text": "Tagged TOC at 1000 ft MD."
+  },
+  {
+    "relation": "tagged_at",
+    "text": "Tagged plug at 2000 feet."
+  },
+  {
+    "relation": "tagged_at",
+    "text": "Tagged obstruction at 3000 ft MD."
+  },
+  {
+    "relation": "cut_at",
+    "text": "Cut casing at 18'BML."
+  },
+  {
+    "relation": "cut_at",
+    "text": "Cut conductor at 20 feet."
+  },
+  {
+    "relation": "cut_at",
+    "text": "Cut tubing at least 100 ft MD."
+  },
+  {
+    "relation": "tested_to_pressure",
+    "text": "Tested tubing to 1000 psi."
+  },
+  {
+    "relation": "tested_to_pressure",
+    "text": "Pressure tested BOP to 7500 psi. Good test."
+  },
+  {
+    "relation": "tested_to_pressure",
+    "text": "PT casing @ 2500#."
+  },
+  {
+    "relation": "fit_lot_emw",
+    "text": "FIT held 17.7 ppg EMW."
+  },
+  {
+    "relation": "fit_lot_emw",
+    "text": "LOT held 15.5 ppg."
+  },
+  {
+    "relation": "fit_lot_emw",
+    "text": "FIT measured 18 lb/gal."
+  },
+  {
+    "relation": "perforated_interval",
+    "text": "Perforated from 1000 ft to 1200 ft MD."
+  },
+  {
+    "relation": "perforated_interval",
+    "text": "Perforated at 3000 ft MD."
+  },
+  {
+    "relation": "perforated_interval",
+    "text": "Fired gun at 4000 ft to 4100 ft MD."
+  },
+  {
+    "relation": "has_mud_weight",
+    "text": "Raised MW to 17 ppg."
+  },
+  {
+    "relation": "has_mud_weight",
+    "text": "Displaced mud to 12 lb/gal."
+  },
+  {
+    "relation": "has_mud_weight",
+    "text": "Mud weight raised from 10 ppg to 11 ppg."
+  },
+  {
+    "relation": "completed_in",
+    "text": "Completed in the Alpha sand."
+  },
+  {
+    "relation": "completed_in",
+    "text": "Recompleted to the Beta zone."
+  },
+  {
+    "relation": "completed_in",
+    "text": "Completed in the Gamma reservoir."
+  },
+  {
+    "relation": "has_well_status",
+    "text": "The well was TA'd."
+  },
+  {
+    "relation": "has_well_status",
+    "text": "The well was permanently abandoned."
+  },
+  {
+    "relation": "has_well_status",
+    "text": "The well was shut-in."
+  },
+  {
+    "relation": "pumped",
+    "text": "Pumped 24 bbl cement."
+  },
+  {
+    "relation": "pumped",
+    "text": "Mixed and pumped 42 sx cement."
+  },
+  {
+    "relation": "pumped",
+    "text": "M&P 387 cu ft brine."
+  }
+]

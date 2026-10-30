@@ -1,0 +1,34 @@
+{
+ "command": "./kgb.ps1 run --config configs/experiments/demo.yaml --mock --out runs/_baseline_capture --overwrite",
+ "files": {
+  "showcase/A0/entities.jsonl": "e457430208af66d2298d6b2be0d8cfb314069405c9dd8c7500d8914c040619e9",
+  "showcase/A0/graph.graphml": "47f9ff2a5e4e2a63e373fb6d7e0f99d0113fadd796711fd412492a8ed84deed2",
+  "showcase/A0/graph.json": "297f252711dafff3ba3d0e322e683727f39f9204b1a3b6a43aa0f7939ade669a",
+  "showcase/A0/metrics.json": "42677a06b0b2f7cacdf58276e60faf2a849b0087e69280e7850ca16324c93aed",
+  "showcase/A0/statements.jsonl": "7e2d43d6a3320716f68053326c789380d5da3c2cd36f1172fbfac1245cdfe5dd",
+  "showcase/A4/entities.jsonl": "d0fa148472015ff3a62b47f86d9ffa534f2e985b7e6fab259822d5ccbb52f6ef",
+  "showcase/A4/graph.graphml": "99ebc92391472d331833980a26cf15773aac0954a017ae8f015bc0efd37f402d",
+  "showcase/A4/graph.json": "3e6e2a7f83611f3a2c0f2588d05bb5615ca3dba419e65d138328df263f75f794",
+  "showcase/A4/metrics.json": "86142dfc13eb0ffad8526520ee0af082a2beb7d3b0c052f36ea7451f7f0232a8",
+  "showcase/A4/statements.jsonl": "a614f22fb07340b955911c824cf60b575d20e52a71ceaf483d32c5d3426a182b",
+  "webnlg10/A0/entities.jsonl": "9fcd42af13d91ce7fb670ef7329afe477a021739d954d2d0c6a57eb5edf3d148",
+  "webnlg10/A0/graph.graphml": "9b4b51df3511d10397b3be30e2a09479b8d4f9e890ce679ee0dcabdc2418be78",
+  "webnlg10/A0/graph.json": "72f1015a2b8cc2460b2c68a3d830fe05bb68a8f791fd1a5a4e762e9dccaba16d",
+  "webnlg10/A0/metrics.json": "c04af8ff563f032ac31d17ac2eaa2c0bfb3b2836ae8abc01b0917e449b4c848f",
+  "webnlg10/A0/statements.jsonl": "e1fbbcf1b7178336e65168c611669257610503c605a36888c593d588ac91fc41",
+  "webnlg10/A4/entities.jsonl": "89a431e3720897ade9c2832e3dedbe5d6d0a7c5fc29353c094d681b2af45f06d",
+  "webnlg10/A4/graph.graphml": "b718b4b345bbd2b05262a169f70ac70b48f2949c343b0f14e252633562787500",
+  "webnlg10/A4/graph.json": "4d6e4f68b0c2f0c5b36d00d59d87215e66a0817a15445ead1a0ce0da9c1f43b7",
+  "webnlg10/A4/metrics.json": "fb154164cd2cc3028034b26cab1eca933eeeb5d31f752cf4cff225fd04ea30a9",
+  "webnlg10/A4/statements.jsonl": "111475801b56fe76d486aed3517dcefadf79afb5f7dc47070846edf1342bc64e"
+ },
+ "format": "kgb.baseline/1",
+ "normalize": {
+  "drop": [
+   "stage_seconds",
+   "llm.seconds",
+   "llm.cache_hits",
+   "llm.cache_misses"
+  ]
+ }
+}

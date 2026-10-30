@@ -1,0 +1,6 @@
+{
+ "format": "synthetic source cases",
+ "header": ["ID", "REMARK"],
+ "rows": [["-1", "Synthetic line one\nSynthetic line two"], ["-2", "Synthetic quoted \"value\""]],
+ "unsafe_members": ["../outside.txt", "/absolute.txt", "C:/outside.txt", "folder\\outside.txt"]
+}

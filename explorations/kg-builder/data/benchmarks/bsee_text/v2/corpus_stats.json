@@ -1,0 +1,26 @@
+{
+ "api10_overlap_with_excluded": 0,
+ "eligible_after_exclusion": {
+  "dev": {
+   "A": 126,
+   "C": 61,
+   "O": 61,
+   "W": 34
+  },
+  "test": {
+   "A": 460,
+   "C": 191,
+   "O": 167,
+   "W": 91
+  }
+ },
+ "llm_calls": 0,
+ "n_dev": 65,
+ "n_gold": 220,
+ "n_test": 155,
+ "shortfalls": {
+  "dev": 0,
+  "test": 0
+ },
+ "v1_ids_in_v2": 0
+}

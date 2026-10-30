@@ -1,0 +1,20 @@
+{
+ "created_at": "2026-10-28T11:39:33.356805+00:00",
+ "dependencies": {},
+ "files": {
+  "annotations/annotator_a/batch_01.jsonl": "fcb9b9f6640256c2cee5d799be9976a7685aaec9f8794b0bba86854c8c697367",
+  "annotations/annotator_a/batch_02.jsonl": "2c12c1a34b4eedde39be586c2012a9285b6333c6c2cfa51e4c731a627ff536e0",
+  "annotations/annotator_a/batch_03.jsonl": "262134492992053e2d7a7de510a06f1558fc3ab6a2f96e9b60119e051599aed3",
+  "annotations/annotator_a/batch_04.jsonl": "e3a08a5a9049bf59cd6c4342e32783a6cbb0ab9d0a70b4c146460da80bcff6d2",
+  "annotations/annotator_a/batch_05.jsonl": "9f6f44ea9fb659093e405ad359d5c0ada25b0e0aa70fb9efd77ab84bd2e32bac",
+  "annotations/annotator_a/batch_06.jsonl": "f53361c87eb3ae56afbad9c7200cf5a76a7d2456acf9553040fb3911a3da6e89",
+  "annotations/annotator_a/batch_07.jsonl": "117abb7d31a6507b9e36a47cecaf26eeb6a78d63f3bb53a4aedf615ba3db6de7",
+  "annotations/annotator_a/batch_08.jsonl": "27c83164e128206e6b4f9416743d6efea33e72137170e3b2d845016c2cb8bfa0",
+  "annotations/annotator_a/batch_09.jsonl": "2907a1eaa03044ed1b2b365b1c4b7f4eba8f625d681c2b59f5f1b8c710e038f2",
+  "annotations/annotator_a/batch_10.jsonl": "ac302f06e9fa3f4c7c41838a3e9eed5dba9dd8d80003e53bde7052f188fe7cb5",
+  "annotations/annotator_a/batch_11.jsonl": "7d76f038dcec9717d02318bca862794ba9fa542b030b5535049cb268207bc5a4"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "62bc4f5cf1538353df1a2e00899313c36520e3db21845bec35261dc83bed721e",
+ "role": "annotator_a"
+}

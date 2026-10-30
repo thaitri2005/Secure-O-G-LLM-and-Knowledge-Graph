@@ -1,0 +1,491 @@
+{
+ "format": "kgb.demo/1",
+ "levels": [
+  "A0",
+  "A4"
+ ],
+ "mock": false,
+ "name": "demo",
+ "runs": [
+  {
+   "baseline": null,
+   "config": "configs/kgb/showcase.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 14,
+      "entities_literal": 0,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 6,
+       "cache_misses": 0,
+       "calls": 6,
+       "completion_tokens": 351,
+       "finish_length": 0,
+       "prompt_tokens": 2273,
+       "seconds": 0
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.0,
+       "export": 0.016,
+       "extract": 18.063,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.0
+      },
+      "statements_accepted": 10,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 14,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/kgb/demo/showcase/A0",
+     "showcase": {
+      "G1": "FAIL",
+      "G2": "FAIL",
+      "G3": "FAIL",
+      "G4": {
+       "q1": "FAIL",
+       "q2": "FAIL",
+       "q3": "FAIL",
+       "q4": "FAIL"
+      },
+      "G5": "PASS",
+      "gold_recall": 0.0
+     },
+     "webnlg": null
+    },
+    "A4": {
+     "exit_code": 0,
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 10,
+      "canon": {
+       "inverse": 1,
+       "mapped_schema": 5,
+       "self_canon": 0,
+       "sent": 7,
+       "trigger": 3,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 3,
+      "docs": 3,
+      "duplicate_candidates": 0,
+      "entities": 11,
+      "entities_literal": 0,
+      "er_reduction": 0.15384615384615385,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 10,
+       "none": 0,
+       "partial": 0
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 6,
+       "cache_misses": 0,
+       "calls": 13,
+       "completion_tokens": 515,
+       "finish_length": 0,
+       "prompt_tokens": 6338,
+       "seconds": 83.7
+      },
+      "mentions": 13,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 98.282,
+       "export": 0.0,
+       "extract": 0.062,
+       "ingest": 0.016,
+       "resolve": 0.218,
+       "temporal.tag": 0.0,
+       "validate": 0.0,
+       "viz": 0.016
+      },
+      "statements_accepted": 7,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 13,
+      "temporal_statements": 2
+     },
+     "run_dir": "results/kgb/demo/showcase/A4",
+     "showcase": {
+      "G1": "PASS",
+      "G2": "PASS",
+      "G3": "PASS",
+      "G4": {
+       "q1": "PASS",
+       "q2": "PASS",
+       "q3": "PASS",
+       "q4": "PASS"
+      },
+      "G5": "PASS",
+      "gold_recall": 1.0
+     },
+     "webnlg": null
+    }
+   },
+   "name": "showcase"
+  },
+  {
+   "baseline": {
+    "label": "B-EDC: EDC alone, same 10 docs (minitest)",
+    "webnlg": {
+     "ent_type": {
+      "F1": 0.8849206349206349,
+      "P": 0.878095238095238,
+      "R": 0.8952380952380953
+     },
+     "exact": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     },
+     "full_triple": {
+      "F1": 0.46511627906976744,
+      "P": 0.46511627906976744,
+      "R": 0.46511627906976744
+     },
+     "partial": {
+      "F1": 0.8638888888888889,
+      "P": 0.8580952380952381,
+      "R": 0.8726190476190476
+     },
+     "per_tag": {
+      "objects": {
+       "exact": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       },
+       "strict": {
+        "F1": 0.7257142857142858,
+        "P": 0.7238095238095238,
+        "R": 0.7285714285714285
+       }
+      },
+      "predicates": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      },
+      "subjects": {
+       "exact": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       },
+       "strict": {
+        "F1": 0.9142857142857143,
+        "P": 0.9142857142857143,
+        "R": 0.9142857142857143
+       }
+      }
+     },
+     "strict": {
+      "F1": 0.8428571428571429,
+      "P": 0.8380952380952381,
+      "R": 0.85
+     }
+    }
+   },
+   "config": "configs/kgb/webnlg10.yaml",
+   "levels": {
+    "A0": {
+     "exit_code": 0,
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 0,
+       "self_canon": 0,
+       "sent": 0,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 0
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 20,
+       "none": 2,
+       "partial": 9
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 0,
+       "cache_misses": 0,
+       "calls": 29,
+       "completion_tokens": 1452,
+       "finish_length": 0,
+       "prompt_tokens": 7850,
+       "seconds": 983.9
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {},
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 0.0,
+       "export": 0.063,
+       "extract": 650.172,
+       "ingest": 0.0,
+       "resolve": 0.0,
+       "temporal.tag": 0.016,
+       "validate": 0.015,
+       "viz": 0.047
+      },
+      "statements_accepted": 29,
+      "statements_rejected": 0,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/kgb/demo/webnlg10/A0",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.5411840411840412,
+       "P": 0.5355855855855856,
+       "R": 0.5495495495495495
+      },
+      "evaluator_seconds": 6.2,
+      "exact": {
+       "F1": 0.4546332046332046,
+       "P": 0.45135135135135135,
+       "R": 0.45945945945945943
+      },
+      "full_triple": {
+       "F1": 0.0,
+       "P": 0.0,
+       "R": 0.0
+      },
+      "partial": {
+       "F1": 0.506917631917632,
+       "P": 0.5024774774774775,
+       "R": 0.5135135135135135
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5945945945945946,
+         "P": 0.5945945945945946,
+         "R": 0.5945945945945946
+        },
+        "strict": {
+         "F1": 0.5675675675675675,
+         "P": 0.5675675675675675,
+         "R": 0.5675675675675675
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        },
+        "strict": {
+         "F1": 0.02702702702702703,
+         "P": 0.02702702702702703,
+         "R": 0.02702702702702703
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7567567567567568,
+         "P": 0.7567567567567568,
+         "R": 0.7567567567567568
+        },
+        "strict": {
+         "F1": 0.7297297297297297,
+         "P": 0.7297297297297297,
+         "R": 0.7297297297297297
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.4366151866151866,
+       "P": 0.4333333333333333,
+       "R": 0.44144144144144143
+      }
+     }
+    },
+    "A4": {
+     "exit_code": 0,
+     "metrics": {
+      "ambiguous_acronyms": 0,
+      "candidates": 31,
+      "canon": {
+       "inverse": 0,
+       "mapped_schema": 30,
+       "self_canon": 0,
+       "sent": 31,
+       "trigger": 0,
+       "undefined": 0,
+       "unmapped": 1
+      },
+      "chunks": 10,
+      "docs": 10,
+      "duplicate_candidates": 0,
+      "entities": 38,
+      "entities_literal": 1,
+      "er_reduction": 0.0,
+      "failed_chunks": 0,
+      "grounding": {
+       "exact": 20,
+       "none": 2,
+       "partial": 9
+      },
+      "judge_errors": 0,
+      "judge_unparsed": 0,
+      "llm": {
+       "cache_hits": 20,
+       "cache_misses": 0,
+       "calls": 61,
+       "completion_tokens": 2100,
+       "finish_length": 0,
+       "prompt_tokens": 30613,
+       "seconds": 452.3
+      },
+      "mentions": 41,
+      "net_blocked": 0,
+      "rejected_by_reason": {
+       "edc_unmapped": 1,
+       "weak_evidence": 2
+      },
+      "stage_seconds": {
+       "assemble": 0.0,
+       "canon": 470.672,
+       "export": 0.047,
+       "extract": 0.172,
+       "ingest": 0.0,
+       "resolve": 0.5,
+       "temporal.tag": 0.0,
+       "validate": 0.016,
+       "viz": 0.031
+      },
+      "statements_accepted": 26,
+      "statements_rejected": 2,
+      "surfaces_non_literal": 38,
+      "temporal_statements": 0
+     },
+     "run_dir": "results/kgb/demo/webnlg10/A4",
+     "showcase": null,
+     "webnlg": {
+      "ent_type": {
+       "F1": 0.6393518518518518,
+       "P": 0.6304232804232804,
+       "R": 0.6574074074074074
+      },
+      "evaluator_seconds": 2.7,
+      "exact": {
+       "F1": 0.6083333333333333,
+       "P": 0.6023809523809524,
+       "R": 0.6203703703703703
+      },
+      "full_triple": {
+       "F1": 0.23404255319148937,
+       "P": 0.23404255319148937,
+       "R": 0.23404255319148937
+      },
+      "partial": {
+       "F1": 0.6331018518518519,
+       "P": 0.6256613756613757,
+       "R": 0.6481481481481481
+      },
+      "per_tag": {
+       "objects": {
+        "exact": {
+         "F1": 0.5555555555555556,
+         "P": 0.5555555555555556,
+         "R": 0.5555555555555556
+        },
+        "strict": {
+         "F1": 0.5277777777777778,
+         "P": 0.5277777777777778,
+         "R": 0.5277777777777778
+        }
+       },
+       "predicates": {
+        "exact": {
+         "F1": 0.5833333333333334,
+         "P": 0.5833333333333334,
+         "R": 0.5833333333333334
+        },
+        "strict": {
+         "F1": 0.5833333333333334,
+         "P": 0.5833333333333334,
+         "R": 0.5833333333333334
+        }
+       },
+       "subjects": {
+        "exact": {
+         "F1": 0.7222222222222222,
+         "P": 0.7222222222222222,
+         "R": 0.7222222222222222
+        },
+        "strict": {
+         "F1": 0.6944444444444444,
+         "P": 0.6944444444444444,
+         "R": 0.6944444444444444
+        }
+       }
+      },
+      "strict": {
+       "F1": 0.5898148148148148,
+       "P": 0.5838624338624339,
+       "R": 0.6018518518518519
+      }
+     }
+    }
+   },
+   "name": "webnlg10"
+  }
+ ]
+}

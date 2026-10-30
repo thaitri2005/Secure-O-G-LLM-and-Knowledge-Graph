@@ -1,0 +1,197 @@
+{
+ "format": "kgb.graph/1",
+ "run_name": "small",
+ "ablation": "A4",
+ "flags": {
+  "er": true,
+  "canon": true,
+  "temporal": true,
+  "validate": true
+ },
+ "documents": [
+  {
+   "doc_id": "d1",
+   "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI.",
+   "title": "Alice",
+   "source_uri": null,
+   "published_at": null
+  },
+  {
+   "doc_id": "d2",
+   "text": "IBM operates Acme Labs.",
+   "title": "IBM",
+   "source_uri": null,
+   "published_at": null
+  }
+ ],
+ "chunks": [
+  {
+   "chunk_id": "d1#c000",
+   "doc_id": "d1",
+   "idx": 0,
+   "char_start": 0,
+   "char_end": 76,
+   "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI."
+  },
+  {
+   "chunk_id": "d2#c000",
+   "doc_id": "d2",
+   "idx": 0,
+   "char_start": 0,
+   "char_end": 23,
+   "text": "IBM operates Acme Labs."
+  }
+ ],
+ "entities": [
+  {
+   "entity_id": "e1",
+   "name": "Alice",
+   "aliases": [],
+   "kind": "entity",
+   "mention_ids": [],
+   "resolver": "identity"
+  },
+  {
+   "entity_id": "e2",
+   "name": "Acme Labs",
+   "aliases": [],
+   "kind": "entity",
+   "mention_ids": [],
+   "resolver": "identity"
+  },
+  {
+   "entity_id": "e3",
+   "name": "Nova AI",
+   "aliases": [],
+   "kind": "entity",
+   "mention_ids": [],
+   "resolver": "identity"
+  },
+  {
+   "entity_id": "e4",
+   "name": "IBM",
+   "aliases": [
+    "International Business Machines"
+   ],
+   "kind": "entity",
+   "mention_ids": [],
+   "resolver": "identity"
+  }
+ ],
+ "statements": [
+  {
+   "statement_id": "s1",
+   "subject_id": "e1",
+   "predicate": "works_at",
+   "object_id": "e2",
+   "predicate_source": "schema",
+   "source_doc_id": "d1",
+   "evidence_span": {
+    "doc_id": "d1",
+    "chunk_id": "d1#c000",
+    "char_start": 0,
+    "char_end": 76,
+    "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI.",
+    "grounding": "exact",
+    "span": "d1:0-76"
+   },
+   "evidence": [
+    {
+     "doc_id": "d1",
+     "chunk_id": "d1#c000",
+     "char_start": 0,
+     "char_end": 76,
+     "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI.",
+     "grounding": "exact",
+     "span": "d1:0-76"
+    }
+   ],
+   "support_count": 1,
+   "valid_from": "2021",
+   "valid_to": "2024",
+   "extractor_version": "kggen@6259b4c;canon=edc@02aad17",
+   "confidence": 0.96,
+   "status": "accepted",
+   "reasons": [],
+   "candidate_ids": [
+    "cs1"
+   ]
+  },
+  {
+   "statement_id": "s2",
+   "subject_id": "e1",
+   "predicate": "works_at",
+   "object_id": "e3",
+   "predicate_source": "schema",
+   "source_doc_id": "d1",
+   "evidence_span": {
+    "doc_id": "d1",
+    "chunk_id": "d1#c000",
+    "char_start": 0,
+    "char_end": 76,
+    "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI.",
+    "grounding": "exact",
+    "span": "d1:0-76"
+   },
+   "evidence": [
+    {
+     "doc_id": "d1",
+     "chunk_id": "d1#c000",
+     "char_start": 0,
+     "char_end": 76,
+     "text": "2021: Alice joined Acme Labs. 2024: Alice left Acme Labs and joined Nova AI.",
+     "grounding": "exact",
+     "span": "d1:0-76"
+    }
+   ],
+   "support_count": 1,
+   "valid_from": "2024",
+   "valid_to": null,
+   "extractor_version": "kggen@6259b4c;canon=edc@02aad17",
+   "confidence": 0.96,
+   "status": "accepted",
+   "reasons": [],
+   "candidate_ids": [
+    "cs2"
+   ]
+  },
+  {
+   "statement_id": "s3",
+   "subject_id": "e4",
+   "predicate": "operates",
+   "object_id": "e2",
+   "predicate_source": "schema",
+   "source_doc_id": "d2",
+   "evidence_span": {
+    "doc_id": "d2",
+    "chunk_id": "d2#c000",
+    "char_start": 0,
+    "char_end": 23,
+    "text": "IBM operates Acme Labs.",
+    "grounding": "exact",
+    "span": "d2:0-23"
+   },
+   "evidence": [
+    {
+     "doc_id": "d2",
+     "chunk_id": "d2#c000",
+     "char_start": 0,
+     "char_end": 23,
+     "text": "IBM operates Acme Labs.",
+     "grounding": "exact",
+     "span": "d2:0-23"
+    }
+   ],
+   "support_count": 1,
+   "valid_from": null,
+   "valid_to": null,
+   "extractor_version": "kggen@6259b4c;canon=edc@02aad17",
+   "confidence": 0.96,
+   "status": "accepted",
+   "reasons": [],
+   "candidate_ids": [
+    "cs3"
+   ]
+  }
+ ]
+}

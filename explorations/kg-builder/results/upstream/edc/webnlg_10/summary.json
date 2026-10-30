@@ -1,0 +1,21 @@
+{
+  "model": "qwen3.6-35b-a3b",
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "docs": 10,
+  "llm_wall_span_seconds": 446.9,
+  "proxy": {
+    "llm_calls": 31,
+    "prompt_tokens": 25704,
+    "completion_tokens": 1300,
+    "llm_seconds": 443.8,
+    "finish_length": 0
+  },
+  "llm_log": "results/upstream/edc/llm_calls_webnlg_10.jsonl",
+  "net_log": "results/upstream/logs/net_edc_webnlg_10.jsonl",
+  "note": "scored after the run (first evaluator call failed on a relative path; fixed in run_edc.evaluate)",
+  "evaluator_tail": [
+    "-----------------------------------------------------------------",
+    "Precision: 0.46511627906976744 Recall: 0.46511627906976744",
+    "F1: 0.46511627906976744"
+  ]
+}

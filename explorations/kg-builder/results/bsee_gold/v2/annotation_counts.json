@@ -1,0 +1,115 @@
+{
+  "chunk_records": 220,
+  "merged_fact_records": 1057,
+  "dev": {
+    "documents": 65,
+    "readable_chunks": 63,
+    "G+": 255,
+    "by_relation": {
+      "casing_size": 50,
+      "casing_spec": 2,
+      "cemented_interval": 4,
+      "completed_in": 17,
+      "cut_at": 35,
+      "drilled_to": 6,
+      "has_mud_weight": 4,
+      "has_well_status": 39,
+      "perforated_interval": 17,
+      "pumped": 6,
+      "reached_td": 9,
+      "set_casing_at": 6,
+      "set_equipment_at": 15,
+      "set_plug_at": 28,
+      "spudded_on": 5,
+      "tagged_at": 5,
+      "tested_to_pressure": 6,
+      "used_rig": 1
+    },
+    "by_kind": {
+      "date": 5,
+      "density": 4,
+      "depth": 101,
+      "entity": 18,
+      "interval": 24,
+      "pressure": 6,
+      "size": 50,
+      "status": 39,
+      "text": 2,
+      "volume": 6
+    }
+  },
+  "agreement": {
+    "n_unreadable": 7,
+    "keep_time_differs": 15,
+    "IAA": {
+      "dev": {
+        "L1": 0.84,
+        "L2": 0.8290909090909091,
+        "L3": 0.8109090909090909
+      },
+      "test": {
+        "L1": 0.8663883089770354,
+        "L2": 0.8538622129436325,
+        "L3": 0.8058455114822547
+      },
+      "all": {
+        "L1": 0.8567639257294429,
+        "L2": 0.8448275862068966,
+        "L3": 0.8076923076923077
+      }
+    }
+  },
+  "split_repeat_byte_equal": true,
+  "adjudication_decision_counts_by_kind": {
+    "agreed": {
+      "keep": 702,
+      "accept_B": 8
+    },
+    "only_A": {
+      "reject": 39,
+      "accept_A": 110,
+      "accept_edited": 26
+    },
+    "only_B": {
+      "accept_B": 64,
+      "reject": 45,
+      "accept_edited": 20
+    },
+    "partial": {
+      "accept_B": 64,
+      "accept_A": 46,
+      "accept_edited": 9,
+      "accept_both": 4
+    }
+  },
+  "adjudication_choices_by_family": {
+    "agreed": {
+      "annotator_a": 708,
+      "annotator_b": 704
+    },
+    "only_A": {
+      "reject": 39,
+      "annotator_a": 27,
+      "accept_edited": 26,
+      "annotator_b": 83
+    },
+    "only_B": {
+      "annotator_b": 47,
+      "reject": 45,
+      "accept_edited": 20,
+      "annotator_a": 17
+    },
+    "partial": {
+      "annotator_a": 91,
+      "annotator_b": 27,
+      "accept_edited": 9
+    }
+  },
+  "partitions": {
+    "G+": 727,
+    "G-": 82,
+    "G?": 100,
+    "Gother": 148,
+    "Total": 1057
+  }
+}

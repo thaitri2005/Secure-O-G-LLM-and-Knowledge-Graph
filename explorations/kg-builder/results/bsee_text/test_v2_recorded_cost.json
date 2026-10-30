@@ -1,0 +1,50 @@
+{
+  "B": {
+    "calls": 155,
+    "new_calls": 90,
+    "new_by_stage": {
+      "canon": 25,
+      "extract": 65
+    }
+  },
+  "guided_windows": {
+    "calls": 327,
+    "new_calls": 178,
+    "new_by_stage": {
+      "canon": 29,
+      "extract": 149
+    }
+  },
+  "guided_groups": {
+    "calls": 552,
+    "new_calls": 292,
+    "new_by_stage": {
+      "canon": 32,
+      "extract": 260
+    }
+  },
+  "guided_recall": {
+    "calls": 303,
+    "new_calls": 173,
+    "new_by_stage": {
+      "canon": 43,
+      "extract": 130
+    }
+  },
+  "test_guided": {
+    "calls": 378,
+    "new_calls": 223,
+    "new_by_stage": {
+      "canon": 68,
+      "extract": 155
+    }
+  },
+  "TEST guided_recall": {
+    "calls": 714,
+    "new_calls": 404,
+    "new_by_stage": {
+      "canon": 94,
+      "extract": 310
+    }
+  }
+}

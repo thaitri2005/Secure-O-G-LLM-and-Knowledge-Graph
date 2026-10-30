@@ -1,0 +1,1405 @@
+{
+ "api_key": "lm-studio",
+ "base_url": "http://127.0.0.1:55945/v1",
+ "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+ "enrich_schema": true,
+ "few_shot_dir": "third_party\\edc\\few_shot_examples\\example",
+ "items": [
+  {
+   "key": "wiki_000#c000",
+   "text": "Dangerously They Live is a 1941 American World War II spy film directed by Robert Florey, and starring John Garfield, Nancy Coleman and Raymond Massey. Nazi spies try to pry information out of a British agent.",
+   "triples": [
+    [
+     "Dangerously They Live",
+     "is directed by",
+     "Robert Florey"
+    ],
+    [
+     "Dangerously They Live",
+     "stars",
+     "John Garfield"
+    ],
+    [
+     "Dangerously They Live",
+     "is genre",
+     "spy film"
+    ],
+    [
+     "Dangerously They Live",
+     "stars",
+     "Nancy Coleman"
+    ],
+    [
+     "Dangerously They Live",
+     "stars",
+     "Raymond Massey"
+    ],
+    [
+     "Dangerously They Live",
+     "is set during",
+     "World War II"
+    ],
+    [
+     "Dangerously They Live",
+     "is release year",
+     "1941"
+    ],
+    [
+     "Nazi spies",
+     "try to pry information from",
+     "British agent"
+    ],
+    [
+     "Dangerously They Live",
+     "is country of origin",
+     "American"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_001#c000",
+   "text": "Salad by the Roots( literally\"( Eating) dandelions by the roots\" which is the French idiom for\" Pushing up the daisies\") is a Franco- Italian comedy directed by Georges Lautner and released in 1964, a year after his success with Les Tontons flingueurs, which was also set in the Parisian underworld. It benefits from music by Georges Delerue and dialogue by Michel Audiard, among whose legendary lines is\" Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.\" ( The more loot you've got, the fewer your principles. Lolly is the gangrene of the soul).",
+   "triples": [
+    [
+     "Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.",
+     "is written by",
+     "Michel Audiard"
+    ],
+    [
+     "Salad by the Roots",
+     "is genre of",
+     "Franco- Italian comedy"
+    ],
+    [
+     "Les Tontons flingueurs",
+     "is set in",
+     "Parisian underworld"
+    ],
+    [
+     "Salad by the Roots",
+     "was released in",
+     "1964"
+    ],
+    [
+     "Salad by the Roots",
+     "is literally",
+     "Eating dandelions by the roots"
+    ],
+    [
+     "Les Tontons flingueurs",
+     "is film by",
+     "Georges Lautner"
+    ],
+    [
+     "Eating dandelions by the roots",
+     "is French idiom for",
+     "Pushing up the daisies"
+    ],
+    [
+     "Salad by the Roots",
+     "has dialogue by",
+     "Michel Audiard"
+    ],
+    [
+     "Plus t'as de pognon, moins t'as de principes. L'oseille c'est la gangrène de l'âme.",
+     "means",
+     "The more loot you've got, the fewer your principles. Lolly is the gangrene of the soul"
+    ],
+    [
+     "Salad by the Roots",
+     "was released after",
+     "Les Tontons flingueurs"
+    ],
+    [
+     "Salad by the Roots",
+     "is directed by",
+     "Georges Lautner"
+    ],
+    [
+     "Salad by the Roots",
+     "has music by",
+     "Georges Delerue"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_002#c000",
+   "text": "Robert Florey( 14 September 1900 – 16 May 1979) was a French- American director, screenwriter, film journalist and actor. Born as Robert Fuchs in Paris, he became an orphan at an early age and was then raised in Switzerland. In 1920 he worked at first as a film journalist, then as an assistant and extra in featurettes from Louis Feuillade. Florey moved to the United States in 1921. As a director, Florey's most productive decades were the 1930s and 1940s, working on relatively low- budget fillers for Paramount and Warner Brothers. His reputation is balanced between his avant- garde expressionist style, most evident in his early career, and his work as a fast, reliable studio- system director called on to finish troubled projects, such as 1939's\" Hotel Imperial\". He directed more than 50 movies. His most popular film is likely the first Marx Brothers feature\" The Cocoanuts\" of 1929, and his 1932 foray into Universal- style horror,\" Murders in the Rue Morgue\" is regarded by horror fans as highly reflective of German expressionism. In 2006, as his 1937 film\" Daughter of Shanghai\" was selected for preservation in the United States National Film Registry by the Library of Congress, Florey was called\" widely acclaimed as the best director working in major studio B-films\".",
+   "triples": [
+    [
+     "United States National Film Registry",
+     "is by",
+     "Library of Congress"
+    ],
+    [
+     "The Cocoanuts",
+     "is by",
+     "Marx Brothers"
+    ],
+    [
+     "Robert Florey",
+     "directed",
+     "The Cocoanuts"
+    ],
+    [
+     "Robert Florey",
+     "moved to",
+     "United States"
+    ],
+    [
+     "Robert Florey",
+     "directed",
+     "Daughter of Shanghai"
+    ],
+    [
+     "Robert Florey",
+     "directed",
+     "Murders in the Rue Morgue"
+    ],
+    [
+     "Robert Florey",
+     "was born in",
+     "Paris"
+    ],
+    [
+     "Robert Florey",
+     "raised in",
+     "Switzerland"
+    ],
+    [
+     "Robert Florey",
+     "directed",
+     "Hotel Imperial"
+    ],
+    [
+     "Robert Florey",
+     "worked as",
+     "extra"
+    ],
+    [
+     "Daughter of Shanghai",
+     "was selected for preservation in",
+     "United States National Film Registry"
+    ],
+    [
+     "Robert Florey",
+     "worked at first as",
+     "film journalist"
+    ],
+    [
+     "Robert Florey",
+     "worked for",
+     "Warner Brothers"
+    ],
+    [
+     "Murders in the Rue Morgue",
+     "is regarded as reflective of",
+     "German expressionism"
+    ],
+    [
+     "Robert Florey",
+     "worked for",
+     "Paramount"
+    ],
+    [
+     "Robert Florey",
+     "was born as",
+     "Robert Fuchs"
+    ],
+    [
+     "Robert Florey",
+     "worked as",
+     "assistant"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_003#c000",
+   "text": "Georges Lautner( 24 January 1926 – 22 November 2013) was a French film director and screenwriter, known primarily for his comedies created in collaboration with screenwriter Michel Audiard. Lautner's ventures into other genres were less successful though the thriller Le Professionnel starring Jean- Paul Belmondo was a big commercial hit in France in 1981. He was born in Nice, the son of actress Renée Saint- Cyr.",
+   "triples": [
+    [
+     "Georges Lautner",
+     "collaborated with",
+     "Michel Audiard"
+    ],
+    [
+     "Georges Lautner",
+     "directed",
+     "Le Professionnel"
+    ],
+    [
+     "Georges Lautner",
+     "was born in",
+     "Nice"
+    ],
+    [
+     "Georges Lautner",
+     "nationality is",
+     "French"
+    ],
+    [
+     "Georges Lautner",
+     "mother is",
+     "Renée Saint- Cyr"
+    ],
+    [
+     "Le Professionnel",
+     "was released in",
+     "France"
+    ],
+    [
+     "Le Professionnel",
+     "stars",
+     "Jean- Paul Belmondo"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_004#c000",
+   "text": "Released in 1976 Phalitamsha is a romantic Kannada movie, directed by S. R. Puttanna Kanagal. It was written by Srinivasa Kulakarni under the Banner of A 1 Movietone. The movie paired newcomer Jai Jagadish with four heroines. Aarathi as expected has the meatiest role and delivers yet another power- packed performance. Despite a good- looking hero, top notch actresses and beautiful outdoor locales, Phalitamsha remains one of the few flops of ace director Puttana Kanagal's career.",
+   "triples": [
+    [
+     "Phalitamsha",
+     "paired",
+     "Jai Jagadish"
+    ],
+    [
+     "Phalitamsha",
+     "is a",
+     "Kannada movie"
+    ],
+    [
+     "Phalitamsha",
+     "was released in",
+     "1976"
+    ],
+    [
+     "Phalitamsha",
+     "was produced under the banner of",
+     "A 1 Movietone"
+    ],
+    [
+     "Phalitamsha",
+     "was written by",
+     "Srinivasa Kulakarni"
+    ],
+    [
+     "Phalitamsha",
+     "was directed by",
+     "S. R. Puttanna Kanagal"
+    ],
+    [
+     "S. R. Puttanna Kanagal",
+     "is also known as",
+     "Puttana Kanagal"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_005#c000",
+   "text": "Gladiators Seven( also known as The Revolt of the Seven, The Spartan Gladiator and The Spartan Gladiators) is a 1964 Italian peplum film directed by Alberto De Martino and starring Tony Russel.",
+   "triples": [
+    [
+     "Gladiators Seven",
+     "also known as",
+     "The Spartan Gladiators"
+    ],
+    [
+     "Gladiators Seven",
+     "also known as",
+     "The Revolt of the Seven"
+    ],
+    [
+     "Gladiators Seven",
+     "also known as",
+     "The Spartan Gladiator"
+    ],
+    [
+     "Gladiators Seven",
+     "release year",
+     "1964"
+    ],
+    [
+     "Gladiators Seven",
+     "director",
+     "Alberto De Martino"
+    ],
+    [
+     "Gladiators Seven",
+     "starring",
+     "Tony Russel"
+    ],
+    [
+     "Gladiators Seven",
+     "genre",
+     "Italian peplum film"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_006#c000",
+   "text": "S. R. Puttanna Kanagal( born Shubraveshti Ramaswamiah Seetharama Sharma, 1 December 1933 – 5 June 1985), fondly called the' Chitra Bramha'( God of Films, Kannada) was an Indian filmmaker and is considered as one of Indian cinema's greatest filmmakers.",
+   "triples": [
+    [
+     "S. R. Puttanna Kanagal",
+     "was a",
+     "Indian filmmaker"
+    ],
+    [
+     "S. R. Puttanna Kanagal",
+     "was born as",
+     "Shubraveshti Ramaswamiah Seetharama Sharma"
+    ],
+    [
+     "Chitra Bramha",
+     "means",
+     "God of Films"
+    ],
+    [
+     "S. R. Puttanna Kanagal",
+     "is considered as one of the greatest in",
+     "Indian cinema"
+    ],
+    [
+     "S. R. Puttanna Kanagal",
+     "is fondly called",
+     "Chitra Bramha"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_007#c000",
+   "text": "Alberto De Martino( 12 June 1929 – 2 June 2015) was an Italian film director and screenwriter. Born in Rome, De Martino started as a child actor and later returned to the cinema where worked as a screenwriter, director and dubbing supervisor. De Martino's films as a director specialised in wellcrafted knock- offs of Hollywood hit films. These films were specifically created films in Western, horror and mythology genres which were developed for the international market. \" The Telegraph\" stated that his best known of these film was probably\" The Antichrist The Antichrist\" capitalized on the box- office appeal of\" The Exorcist\"( 1973) and in its first week in the United States earned a greater box office than\" Jaws\".",
+   "triples": [
+    [
+     "The Antichrist The Antichrist",
+     "was reviewed by",
+     "The Telegraph"
+    ],
+    [
+     "Alberto De Martino",
+     "was occupation of",
+     "dubbing supervisor"
+    ],
+    [
+     "Alberto De Martino",
+     "was occupation of",
+     "screenwriter"
+    ],
+    [
+     "Alberto De Martino",
+     "specialized in genre of",
+     "mythology genres"
+    ],
+    [
+     "The Antichrist The Antichrist",
+     "earned box office in",
+     "United States"
+    ],
+    [
+     "Alberto De Martino",
+     "was occupation of",
+     "Italian film director"
+    ],
+    [
+     "Alberto De Martino",
+     "worked in field of",
+     "cinema"
+    ],
+    [
+     "The Antichrist The Antichrist",
+     "capitalized on appeal of",
+     "The Exorcist"
+    ],
+    [
+     "Alberto De Martino",
+     "created films for market of",
+     "international market"
+    ],
+    [
+     "Alberto De Martino",
+     "specialized in genre of",
+     "Western"
+    ],
+    [
+     "Alberto De Martino",
+     "started as occupation of",
+     "child actor"
+    ],
+    [
+     "Alberto De Martino",
+     "was born in",
+     "Rome"
+    ],
+    [
+     "Alberto De Martino",
+     "specialized in genre of",
+     "horror"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_008#c000",
+   "text": "Anne Baldwin Gust Brown (born March 15, 1958) is an American business executive who was the First Lady of California from 2011 to 2019. She is married to former Governor Jerry Brown. Her career positions include executive vice president for the clothing retailer The Gap and a director of the fast food chain, Jack in the Box, Inc.",
+   "triples": [
+    [
+     "Anne Baldwin Gust Brown",
+     "served as First Lady of California from",
+     "2011 to 2019"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "worked for",
+     "The Gap"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "held position",
+     "First Lady of California"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "is married to",
+     "Jerry Brown"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "held position",
+     "executive vice president"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "is of nationality",
+     "American"
+    ],
+    [
+     "Anne Baldwin Gust Brown",
+     "was born on",
+     "March 15, 1958"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_009#c000",
+   "text": "Edmund Gerald Brown Jr. (born April 7, 1938) is an American retired politician who served as the 34th and 39th governor of California from 1975 to 1983 and from 2011 to 2019. A member of the Democratic Party, Brown served as California Attorney General from 2007 to 2011. He was both the oldest and sixth-youngest governor of California as a consequence of the 28-year gap between his second and third terms. Upon completing his fourth term in office, Brown became the third longest-serving governor in United States history, serving 16 years and 7 days in office. Brown was born in San Francisco as the son of Bernice Layne Brown and Pat Brown, who served as the 32nd governor of California (1959–1967). After graduating from the University of California, Berkeley and Yale University, he began his political career as a member of the Los Angeles Community College District Board of Trustees (1969–1971). He was elected to serve as the 23rd Secretary of State of California from 1971 to 1975. At 36, Brown was elected to his first term as governor of California in 1974, making him the youngest California governor in 111 years. In 1978, he won his second term. During and following his first governorship, Brown ran as a candidate for the Democratic presidential nomination in 1976, 1980 and 1992. He declined to pursue a third term in 1982, instead making an unsuccessful run for the United States Senate that same year. After traveling abroad, he returned to California and served as Chairman of the California Democratic Party (1989–1991), attempting to run for the Senate once more in 1992. After six years out of politics, Brown returned to public life, serving as Mayor of Oakland (1999–2007), and then as Attorney General of California (2007–2011). He ran for his third and fourth terms as California governor in 2010 and 2014, his eligibility to do so having stemmed from California's constitutional grandfather clause.",
+   "triples": [
+    [
+     "Edmund Gerald Brown Jr.",
+     "served as member of",
+     "Los Angeles Community College District Board of Trustees"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "held office",
+     "Secretary of State of California"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "is member of political party",
+     "Democratic Party"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "attended educational institution",
+     "Yale University"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "is parent of",
+     "Bernice Layne Brown"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "ran for office in",
+     "United States Senate"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "served as chairman of",
+     "California Democratic Party"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "served as office holder in jurisdiction",
+     "California"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "is from",
+     "San Francisco"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "is parent of",
+     "Pat Brown"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "held office",
+     "Mayor of Oakland"
+    ],
+    [
+     "Edmund Gerald Brown Jr.",
+     "attended educational institution",
+     "University of California, Berkeley"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_009#c001",
+   "text": "On October 7, 2013, he became the longest-serving chief executive in the history of California, surpassing Earl Warren.",
+   "triples": [
+    [
+     "he",
+     "became longest-serving chief executive of",
+     "California"
+    ],
+    [
+     "he",
+     "surpassed",
+     "Earl Warren"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_010#c000",
+   "text": "Two Brides and a Baby is a 2011 Nigerian romantic drama film directed by Teco Benson and starring Keira Hewatch, Kalu Ikeagwu, OC Ukeje, Chelsea Eze, Stella Damasus- Aboderin and Okey Uzoeshi. It premiered on November 17, 2011. It received awards and nominations at Africa Movie Academy Awards, Best of Nollywood Awards and Africa Magic Viewers Choice Awards.",
+   "triples": [
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "Keira Hewatch"
+    ],
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "OC Ukeje"
+    ],
+    [
+     "Two Brides and a Baby",
+     "premiered on",
+     "November 17, 2011"
+    ],
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "Okey Uzoeshi"
+    ],
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "Stella Damasus- Aboderin"
+    ],
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "Chelsea Eze"
+    ],
+    [
+     "Two Brides and a Baby",
+     "received awards at",
+     "Africa Magic Viewers Choice Awards"
+    ],
+    [
+     "Two Brides and a Baby",
+     "received awards at",
+     "Africa Movie Academy Awards"
+    ],
+    [
+     "Two Brides and a Baby",
+     "stars",
+     "Kalu Ikeagwu"
+    ],
+    [
+     "Two Brides and a Baby",
+     "is country of origin",
+     "Nigerian"
+    ],
+    [
+     "Two Brides and a Baby",
+     "received awards at",
+     "Best of Nollywood Awards"
+    ],
+    [
+     "Two Brides and a Baby",
+     "is directed by",
+     "Teco Benson"
+    ],
+    [
+     "Two Brides and a Baby",
+     "is release year",
+     "2011"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_011#c000",
+   "text": "Dinner at the Ritz is a 1937 British mystery romance film directed by Harold D. Schuster and starring David Niven, Annabella and Paul Lukas It was produced by the British branch of 20th Century Fox, and shot at Denham Studios.",
+   "triples": [
+    [
+     "Dinner at the Ritz",
+     "stars",
+     "Paul Lukas"
+    ],
+    [
+     "Dinner at the Ritz",
+     "is release year of",
+     "1937"
+    ],
+    [
+     "Dinner at the Ritz",
+     "stars",
+     "David Niven"
+    ],
+    [
+     "Dinner at the Ritz",
+     "is genre of",
+     "British mystery romance film"
+    ],
+    [
+     "Dinner at the Ritz",
+     "is produced by",
+     "20th Century Fox"
+    ],
+    [
+     "Dinner at the Ritz",
+     "was shot at",
+     "Denham Studios"
+    ],
+    [
+     "Dinner at the Ritz",
+     "is directed by",
+     "Harold D. Schuster"
+    ],
+    [
+     "Dinner at the Ritz",
+     "stars",
+     "Annabella"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_012#c000",
+   "text": "Edith of Wessex (1025 – 18 December 1075) was a Queen of England. Her husband was Edward the Confessor, whom she married on 23 January 1045. Unlike most English queens in the 10th and 11th centuries, she was crowned. The principal source on her life is a work she herself commissioned, the \"Vita Ædwardi Regis\" or the \"Life of King Edward who rests at Westminster\", which is inevitably biased.",
+   "triples": [
+    [
+     "Edith of Wessex",
+     "was",
+     "Queen of England"
+    ],
+    [
+     "Edith of Wessex",
+     "married",
+     "Edward the Confessor"
+    ],
+    [
+     "Vita Ædwardi Regis",
+     "also known as",
+     "Life of King Edward who rests at Westminster"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_013#c000",
+   "text": "Edward the Confessor (1003 – 5 January 1066), also known as Saint Edward the Confessor, was among the last Anglo-Saxon kings of England. Usually considered the last king of the House of Wessex, he ruled from 1042 to 1066. Edward was the son of Æthelred the Unready and Emma of Normandy. He succeeded Cnut the Great's son – and his own half brother – Harthacnut. He restored the rule of the House of Wessex after the period of Danish rule since Cnut (better known as Canute) conquered England in 1016. When Edward died in 1066, he was succeeded by Harold Godwinson, who was defeated and killed in the same year by the Normans under William the Conqueror at the Battle of Hastings. Edgar the Ætheling, who was of the House of Wessex, was proclaimed king after the Battle of Hastings in 1066, but never ruled and was deposed after about eight weeks. Historians disagree about Edward's fairly long (24-year) reign. His nickname reflects the traditional image of him as unworldly and pious. Confessor reflects his reputation as a saint who did not suffer martyrdom, as opposed to King Edward the Martyr. Some portray Edward the Confessor's reign as leading to the disintegration of royal power in England and the advance in power of the House of Godwin, due to the infighting that began after his heirless death. Biographers Frank Barlow and Peter Rex, on the other hand, portray Edward as a successful king, one who was energetic, resourceful and sometimes ruthless; they argue that the Norman conquest shortly after his death tarnished his image. However, Richard Mortimer argues that the return of the Godwins from exile in 1052 \"meant the effective end of his exercise of power\", citing Edward's reduced activity as implying \"a withdrawal from affairs\". About a century later, in 1161, Pope Alexander III canonised the king. Saint Edward was one of England's national saints until King Edward III adopted Saint George as the national patron saint in about 1350.",
+   "triples": [
+    [
+     "Harthacnut",
+     "is son of",
+     "Cnut the Great"
+    ],
+    [
+     "Cnut the Great",
+     "conquered",
+     "England"
+    ],
+    [
+     "Edward the Confessor",
+     "was a member of",
+     "Anglo-Saxon kings of England"
+    ],
+    [
+     "Frank Barlow",
+     "is biographer of",
+     "Edward the Confessor"
+    ],
+    [
+     "Harold Godwinson",
+     "succeeded",
+     "Edward the Confessor"
+    ],
+    [
+     "Edward the Confessor",
+     "is son of",
+     "Emma of Normandy"
+    ],
+    [
+     "King Edward III",
+     "adopted in",
+     "1350"
+    ],
+    [
+     "Edward the Confessor",
+     "is son of",
+     "Æthelred the Unready"
+    ],
+    [
+     "Saint Edward",
+     "was national saint of",
+     "England"
+    ],
+    [
+     "Edward the Confessor",
+     "restored rule after period of",
+     "Danish rule"
+    ],
+    [
+     "Harold Godwinson",
+     "was killed by",
+     "William the Conqueror"
+    ],
+    [
+     "Edward the Confessor's reign",
+     "led to advance in power of",
+     "House of Godwin"
+    ],
+    [
+     "Edgar the Ætheling",
+     "is member of",
+     "House of Wessex"
+    ],
+    [
+     "Battle of Hastings",
+     "took place in",
+     "1066"
+    ],
+    [
+     "Richard Mortimer",
+     "argues about",
+     "Godwins"
+    ],
+    [
+     "Edgar the Ætheling",
+     "was proclaimed king after",
+     "Battle of Hastings"
+    ],
+    [
+     "Edward the Confessor",
+     "is also known as",
+     "Saint Edward the Confessor"
+    ],
+    [
+     "King Edward III",
+     "adopted as national patron saint",
+     "Saint George"
+    ],
+    [
+     "Pope Alexander III",
+     "canonised in",
+     "1161"
+    ],
+    [
+     "Harold Godwinson",
+     "was defeated by",
+     "Normans"
+    ],
+    [
+     "Cnut",
+     "is also known as",
+     "Canute"
+    ],
+    [
+     "Edward the Confessor",
+     "was the last king of",
+     "House of Wessex"
+    ],
+    [
+     "Edward the Confessor",
+     "died in",
+     "1066"
+    ],
+    [
+     "Pope Alexander III",
+     "canonised",
+     "Edward the Confessor"
+    ],
+    [
+     "Edward the Confessor",
+     "succeeded",
+     "Harthacnut"
+    ],
+    [
+     "Peter Rex",
+     "is biographer of",
+     "Edward the Confessor"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_013#c001",
+   "text": "Saint Edward's feast day is 13 October, celebrated by both the Church of England and the Catholic Church in England and Wales.",
+   "triples": [
+    [
+     "Church of England",
+     "is located in",
+     "England"
+    ],
+    [
+     "Church of England",
+     "celebrates feast day of",
+     "Saint Edward"
+    ],
+    [
+     "Catholic Church",
+     "is located in",
+     "Wales"
+    ],
+    [
+     "Saint Edward",
+     "has feast day on",
+     "13 October"
+    ],
+    [
+     "Catholic Church",
+     "celebrates feast day of",
+     "Saint Edward"
+    ],
+    [
+     "Church of England",
+     "is located in",
+     "Wales"
+    ],
+    [
+     "Catholic Church",
+     "is located in",
+     "England"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_014#c000",
+   "text": "Marius Mapou( born 22 June 1980) is an international footballer for New Caledonia. He played in the 2008 OFC Nations Cup.",
+   "triples": [
+    [
+     "Marius Mapou",
+     "participated in",
+     "2008 OFC Nations Cup"
+    ],
+    [
+     "Marius Mapou",
+     "plays for",
+     "New Caledonia"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_015#c000",
+   "text": "Ademilson Silva Marques( born November 22, 1985 in São Luís), commonly known as Mimica, is a Brazilian footballer. He currently plays for Remo.",
+   "triples": [
+    [
+     "Ademilson Silva Marques",
+     "has nationality",
+     "Brazilian"
+    ],
+    [
+     "Ademilson Silva Marques",
+     "was born in",
+     "São Luís"
+    ],
+    [
+     "Ademilson Silva Marques",
+     "plays for",
+     "Remo"
+    ],
+    [
+     "Ademilson Silva Marques",
+     "is also known as",
+     "Mimica"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_016#c000",
+   "text": "I Love You Rosa( translit. Ani Ohev Otach Rosa) is a 1972 Israeli film directed by Moshé Mizrahi. It was nominated for the Academy Award for Best Foreign Language Film. It was also entered into the 1972 Cannes Film Festival.",
+   "triples": [
+    [
+     "I Love You Rosa",
+     "entered into",
+     "Cannes Film Festival"
+    ],
+    [
+     "I Love You Rosa",
+     "was released in",
+     "1972"
+    ],
+    [
+     "I Love You Rosa",
+     "is a",
+     "Israeli film"
+    ],
+    [
+     "I Love You Rosa",
+     "directed by",
+     "Moshé Mizrahi"
+    ],
+    [
+     "I Love You Rosa",
+     "has transliteration",
+     "Ani Ohev Otach Rosa"
+    ],
+    [
+     "I Love You Rosa",
+     "was nominated for",
+     "Academy Award for Best Foreign Language Film"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_017#c000",
+   "text": "Pyar Ka Bandhan is a 1963 Hindi film.",
+   "triples": [
+    [
+     "Pyar Ka Bandhan",
+     "is released in",
+     "1963"
+    ],
+    [
+     "Pyar Ka Bandhan",
+     "is a",
+     "Hindi film"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_018#c000",
+   "text": "Julia Livia (c.7–43 AD), sometimes referred to as Julia Drusi Caesaris filia (Julia, daughter of Drusus Caesar), was the daughter of Drusus Julius Caesar and Livilla, and granddaughter of the Roman Emperor Tiberius. She was also a first cousin of the emperor Caligula, and niece of the emperor Claudius.",
+   "triples": [
+    [
+     "Julia Livia",
+     "is first cousin of",
+     "Caligula"
+    ],
+    [
+     "Julia Livia",
+     "is niece of",
+     "Claudius"
+    ],
+    [
+     "Julia Livia",
+     "is also known as",
+     "Julia Drusi Caesaris filia"
+    ],
+    [
+     "Julia Livia",
+     "is also known as",
+     "Julia, daughter of Drusus Caesar"
+    ],
+    [
+     "Julia Livia",
+     "is daughter of",
+     "Livilla"
+    ],
+    [
+     "Julia Livia",
+     "is granddaughter of",
+     "Roman Emperor Tiberius"
+    ],
+    [
+     "Julia Livia",
+     "is daughter of",
+     "Drusus Julius Caesar"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_019#c000",
+   "text": "Drusus Julius Caesar (14 BC – 14 September AD 23), was the son of Emperor Tiberius, and heir to the Roman Empire following the death of his adoptive brother Germanicus in AD 19. He was born at Rome to a prominent branch of the \"gens Claudia\", the son of Tiberius and his first wife, Vipsania Agrippina. His name at birth was Nero Claudius Drusus after his paternal uncle, Drusus the Elder. In AD 4, he assumed the name \"Julius Caesar\" following his father's adoption into the Julii by Augustus, and became Drusus Julius Caesar. Drusus first entered politics with the office of quaestor in AD 10. His political career mirrored that of Germanicus, and he assumed all his offices at the same age as him. Following the model of Augustus, it was intended that the two would rule together. They were both popular, and many dedications have been found in their honor across Roman Italy. Cassius Dio calls him \"Castor\" in his \"Roman History\", likening Drusus and Germanicus to the twins, Castor and Pollux, of Roman mythology. Drusus died suddenly 14 September 23, seemingly from natural causes. Ancient historians, such as Tacitus and Suetonius, claim he died amid a feud with the powerful Sejanus, Praetorian prefect of Rome. They allege that he had been murdered. In their account, Sejanus had seduced his wife Livilla, and with the help of a doctor she had poisoned Drusus. Despite the rumors, Tiberius did not suspect Sejanus and the two remained friends until Sejanus' fall from grace in 31.",
+   "triples": [
+    [
+     "Drusus Julius Caesar",
+     "is son of",
+     "Emperor Tiberius"
+    ],
+    [
+     "Tacitus",
+     "claims about cause of death of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "is son of",
+     "Tiberius"
+    ],
+    [
+     "Tiberius",
+     "was adopted into",
+     "Julii"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "belongs to branch of",
+     "gens Claudia"
+    ],
+    [
+     "Cassius Dio",
+     "calls",
+     "Castor"
+    ],
+    [
+     "Nero Claudius Drusus",
+     "is name at birth of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "held office of",
+     "quaestor"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "died on date",
+     "14 September 23"
+    ],
+    [
+     "Germanicus",
+     "is likened to",
+     "Castor and Pollux"
+    ],
+    [
+     "Nero Claudius Drusus",
+     "named after",
+     "Drusus the Elder"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "was born at",
+     "Rome"
+    ],
+    [
+     "Tiberius",
+     "adopted by",
+     "Augustus"
+    ],
+    [
+     "Suetonius",
+     "claims about cause of death of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Julius Caesar",
+     "is assumed name of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Germanicus",
+     "is adoptive brother of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Sejanus",
+     "seduced",
+     "Livilla"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "is likened to",
+     "Castor and Pollux"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "is heir to",
+     "Roman Empire"
+    ],
+    [
+     "Drusus Julius Caesar",
+     "is son of",
+     "Vipsania Agrippina"
+    ],
+    [
+     "Livilla",
+     "is wife of",
+     "Drusus Julius Caesar"
+    ],
+    [
+     "Sejanus",
+     "is Praetorian prefect of Rome",
+     "Rome"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_020#c000",
+   "text": "Adam Włodek (8 August 1922 in Kraków – 19 January 1986 in Kraków) was a Polish poet, editor and translator. He was married to Polish Noble Prize laureate, Wisława Szymborska between 1948 - 1954. He published 10 books, mostly collections of his poems. He was also the editor of several Polish newspapers including \"Dziennik Polski\", and translated works from Czech and Slovak languages into Polish.",
+   "triples": [
+    [
+     "Adam Włodek",
+     "translated from",
+     "Slovak"
+    ],
+    [
+     "Adam Włodek",
+     "was editor of",
+     "Dziennik Polski"
+    ],
+    [
+     "Wisława Szymborska",
+     "is a",
+     "Noble Prize laureate"
+    ],
+    [
+     "Adam Włodek",
+     "was born in",
+     "Kraków"
+    ],
+    [
+     "Adam Włodek",
+     "was married to",
+     "Wisława Szymborska"
+    ],
+    [
+     "Adam Włodek",
+     "was a",
+     "Polish"
+    ],
+    [
+     "Adam Włodek",
+     "translated from",
+     "Czech"
+    ],
+    [
+     "Adam Włodek",
+     "died in",
+     "Kraków"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_021#c000",
+   "text": "Maria Wisława Anna Szymborska (2 July 1923 – 1 February 2012) was a Polish poet, essayist, translator and recipient of the 1996 Nobel Prize in Literature. Born in Prowent, which has since become part of Kórnik, she later resided in Kraków until the end of her life. In Poland, Szymborska's books have reached sales rivaling prominent prose authors: although she once remarked in a poem, \"Some Like PoetryNiektórzy lubią poezję\"), that no more than two out of a thousand people care for the art. Szymborska was awarded the 1996 Nobel Prize in Literature \"for poetry that with ironic precision allows the historical and biological context to come to light in fragments of human reality\". She became better known internationally as a result of this. Her work has been translated into English and many European languages, as well as into Arabic, Hebrew, Japanese, Persian and Chinese.",
+   "triples": [
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "Arabic"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "is occupation of",
+     "essayist"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "was born in",
+     "Prowent"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "European languages"
+    ],
+    [
+     "Some Like PoetryNiektórzy lubią poezję",
+     "is work of",
+     "Maria Wisława Anna Szymborska"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "Persian"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "is occupation of",
+     "translator"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "received award",
+     "1996 Nobel Prize in Literature"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "Hebrew"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "Chinese"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "English"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "resided in",
+     "Kraków"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "has translation in language",
+     "Japanese"
+    ],
+    [
+     "Maria Wisława Anna Szymborska",
+     "is occupation of",
+     "Polish poet"
+    ],
+    [
+     "Prowent",
+     "is part of",
+     "Kórnik"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_022#c000",
+   "text": "James Lyon, 7th Earl of Strathmore( circa 1702 – 1735) was a Scottish peer and freemason. He was the son of John Lyon, 4th Earl of Strathmore and Kinghorne and Lady Elizabeth Stanhope. He was christened on 24 December 1702. He succeeded as Earl of Strathmore following the stabbing of Charles Lyon, 6th Earl of Strathmore and Kinghorne in a drunken altercation in 1728. On 6 March 1731 he married Mary Oliphant, daughter of Charles Oliphant( brother of William Oliphant, 11th Lord Oliphant). He died without issue on 4 January 1735 at Edinburgh, Scotland. He was succeeded as earl by his younger brother, Thomas Lyon, 8th Earl of Strathmore and Kinghorne, ancestor of Elizabeth Bowes – Lyon, the Queen Mother.",
+   "triples": [
+    [
+     "James Lyon",
+     "is son of",
+     "John Lyon"
+    ],
+    [
+     "Thomas Lyon",
+     "is brother of",
+     "James Lyon"
+    ],
+    [
+     "James Lyon",
+     "is spouse of",
+     "Mary Oliphant"
+    ],
+    [
+     "Thomas Lyon",
+     "succeeded",
+     "James Lyon"
+    ],
+    [
+     "James Lyon",
+     "died in",
+     "Scotland"
+    ],
+    [
+     "James Lyon",
+     "is title of",
+     "7th Earl of Strathmore"
+    ],
+    [
+     "Mary Oliphant",
+     "is daughter of",
+     "Charles Oliphant"
+    ],
+    [
+     "Charles Oliphant",
+     "is brother of",
+     "William Oliphant"
+    ],
+    [
+     "James Lyon",
+     "has occupation",
+     "freemason"
+    ],
+    [
+     "Elizabeth Bowes – Lyon",
+     "has title",
+     "Queen Mother"
+    ],
+    [
+     "James Lyon",
+     "died in",
+     "Edinburgh"
+    ],
+    [
+     "Thomas Lyon",
+     "is ancestor of",
+     "Elizabeth Bowes – Lyon"
+    ],
+    [
+     "James Lyon",
+     "is son of",
+     "Lady Elizabeth Stanhope"
+    ],
+    [
+     "William Oliphant",
+     "has title",
+     "11th Lord Oliphant"
+    ],
+    [
+     "Thomas Lyon",
+     "has title",
+     "8th Earl of Strathmore and Kinghorne"
+    ],
+    [
+     "John Lyon",
+     "has title",
+     "4th Earl of Strathmore and Kinghorne"
+    ],
+    [
+     "Charles Lyon",
+     "has title",
+     "6th Earl of Strathmore and Kinghorne"
+    ],
+    [
+     "James Lyon",
+     "succeeded",
+     "Charles Lyon"
+    ],
+    [
+     "James Lyon",
+     "has occupation",
+     "Scottish peer"
+    ]
+   ]
+  },
+  {
+   "key": "wiki_023#c000",
+   "text": "John Lyon, 4th Earl of Strathmore and Kinghorne( 1663 – 1712) was a Scottish nobleman and peer. He was the son of Patrick Lyon, 3rd Earl of Strathmore and Kinghorne. He married Elizabeth Stanhope on 21 September 1691 and was succeeded as Earl by his son John Lyon, 5th Earl of Strathmore and Kinghorne.",
+   "triples": [
+    [
+     "John Lyon",
+     "has occupation",
+     "peer"
+    ],
+    [
+     "John Lyon",
+     "is father of",
+     "John Lyon, 5th Earl of Strathmore and Kinghorne"
+    ],
+    [
+     "John Lyon",
+     "has occupation",
+     "Scottish nobleman"
+    ],
+    [
+     "John Lyon",
+     "is spouse of",
+     "Elizabeth Stanhope"
+    ],
+    [
+     "John Lyon",
+     "is son of",
+     "Patrick Lyon"
+    ],
+    [
+     "John Lyon",
+     "is title of",
+     "4th Earl of Strathmore and Kinghorne"
+    ],
+    [
+     "Patrick Lyon",
+     "has title",
+     "3rd Earl of Strathmore and Kinghorne"
+    ]
+   ]
+  }
+ ],
+ "model": "qwen3.6-35b-a3b",
+ "net_log": "runs/reference/twowiki10_sentence_grounding/2wiki10/A4/net_edc.jsonl",
+ "schema_csv": null,
+ "templates_dir": "third_party\\edc\\prompt_templates",
+ "version": 1
+}

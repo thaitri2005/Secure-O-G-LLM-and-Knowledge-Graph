@@ -1,0 +1,54 @@
+{
+ "coverage": {
+  "concept_errors": 0,
+  "entities": 213,
+  "entities_asked": 50,
+  "entities_typed": 50,
+  "statements": 1.0
+ },
+ "entity_types": {
+  "album": 1,
+  "battle": 1,
+  "book": 1,
+  "church": 2,
+  "city": 1,
+  "country": 1,
+  "director": 4,
+  "dish": 1,
+  "dynasty": 1,
+  "entity": 163,
+  "film": 2,
+  "king": 2,
+  "literal": 13,
+  "movie": 6,
+  "mythology": 1,
+  "nationality": 1,
+  "person": 22,
+  "saint": 1,
+  "state": 1,
+  "writer": 1
+ },
+ "format": "kgb.induce/1",
+ "graph_sha256": "891f8a8293683b3bf18020c41438534287eab8b5ebf23f2bcaf22e92a04d1b95",
+ "llm": {
+  "cache_hits": 0,
+  "cache_misses": 0,
+  "completion_tokens": 547,
+  "finish_length": 0,
+  "llm_calls": 50,
+  "llm_seconds": 623.6,
+  "prompt_tokens": 20880
+ },
+ "relations": {
+  "canonical_redundancy": 0.0122,
+  "canonical_types": 82,
+  "dropped_low_support": 0,
+  "dropped_max_relations": 0,
+  "induced_redundancy": 0.0122,
+  "induced_types": 82,
+  "open_redundancy": 0.0741,
+  "open_types": 135
+ },
+ "schema_id": "is_1655c8bbad9e",
+ "source_run": "runs/reference/twowiki10_sentence_grounding/2wiki10/A4"
+}

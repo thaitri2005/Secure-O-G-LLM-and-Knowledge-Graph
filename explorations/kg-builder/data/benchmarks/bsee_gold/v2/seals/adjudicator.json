@@ -1,0 +1,24 @@
+{
+ "created_at": "2026-10-28T11:39:36.708464+00:00",
+ "dependencies": {
+  "seals/adjudication_packet.json": "f1314db03541f7b874fe4c61337ffe93f7b72331fb2f749d17c46f88f0a94da8",
+  "seals/annotator_a.json": "9bc7fd499b1b39fb3244322889998b0362f3f93bc6fb8fcc2157b99975efe1d7",
+  "seals/annotator_b.json": "03cd84b8777a1f618b7b4de95abe449fcfaa2044a3c3aa8bdde5c843f3e352a1"
+ },
+ "files": {
+  "adjudication/decisions_01.jsonl": "c914fe6dbb86edb238755adcd4384859994beac992f22e40a611e2638819549f",
+  "adjudication/decisions_02.jsonl": "20f6dc59432618ea3939bc032cc988afb0799fdce556bcd8e73a5f912042a1a7",
+  "adjudication/decisions_03.jsonl": "e6e7c81927a360a54d227329889e86bffeac1f49762452018429b350fc9919d1",
+  "adjudication/decisions_04.jsonl": "3c21ed40a63d0bca6f68559e4c0a8658456100de917565dfc325f24120507ae9",
+  "adjudication/decisions_05.jsonl": "6d36c674cafbdbf4498460a9fec669f62b6142d5318181e585dc1c898b009a46",
+  "adjudication/decisions_06.jsonl": "399c78d5aa5a349c564b36a7142a70df228081c5673654a0625c8705222a1331",
+  "adjudication/decisions_07.jsonl": "b49f94ad8026084ede7a6bdb4da0c98f5c4df23fc17d8b93cef080f045a8a449",
+  "adjudication/decisions_08.jsonl": "8ade1b61f80f21eb6ccd7ad83c692c897515ed78bc31fd48856375fd081c8c11",
+  "adjudication/decisions_09.jsonl": "a34376b7d0e686a2dcf1939919692b55bc039cb66ffd8bbaad2ba9ed2e9e400c",
+  "adjudication/decisions_10.jsonl": "25a7925afd1b2dbfa1b0c8d4d346de2130b4b2f7055a866069edb3cf28370efe",
+  "adjudication/decisions_11.jsonl": "9019d6a3da29dd809c3fb294ddab6d7fb1f07478965b5632148e4d0597df314b"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "62bc4f5cf1538353df1a2e00899313c36520e3db21845bec35261dc83bed721e",
+ "role": "adjudicator"
+}

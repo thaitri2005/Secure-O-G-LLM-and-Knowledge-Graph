@@ -1,0 +1,4 @@
+{"allowed":true,"kind":"connect","target":"127.0.0.1:1234"}
+{"allowed":true,"kind":"connect","target":"127.0.0.1:54350"}
+{"allowed":true,"kind":"dns","target":"127.0.0.1:1234"}
+{"allowed":true,"kind":"dns","target":"127.0.0.1:54350"}

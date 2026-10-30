@@ -1,0 +1,43 @@
+{
+  "entities": [
+    "artificial intelligence",
+    "IBM Research",
+    "computing systems",
+    "International Business Machines",
+    "research division",
+    "laboratories",
+    "IBM",
+    "International Business Machines Corporation"
+  ],
+  "relations": [
+    [
+      "International Business Machines",
+      "developed",
+      "computing systems"
+    ],
+    [
+      "International Business Machines Corporation",
+      "operates",
+      "laboratories"
+    ],
+    [
+      "IBM",
+      "expanded",
+      "research division"
+    ],
+    [
+      "IBM Research",
+      "works on",
+      "artificial intelligence"
+    ]
+  ],
+  "edges": [
+    "developed",
+    "expanded",
+    "operates",
+    "works on"
+  ],
+  "entity_clusters": null,
+  "edge_clusters": null,
+  "entity_metadata": null
+}

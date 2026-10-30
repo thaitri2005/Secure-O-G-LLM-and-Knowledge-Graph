@@ -1,0 +1,15 @@
+qa:
+  name: twowiki10_qa
+  build_config: configs/experiments/twowiki10.yaml
+  questions: data/benchmarks/2wiki/2wiki_30.json
+  limit: 10
+  graphs: {A0: runs/reference/twowiki10_sentence_grounding/2wiki10/A0, A1: runs/reference/twowiki10_sentence_grounding/2wiki10/A1, A4: runs/reference/twowiki10_sentence_grounding/2wiki10/A4}
+  modes: [text, graph, hybrid]
+  k: 5
+  hops: 2
+  max_seeds: 5
+  max_statements: 20
+  max_tokens: 32
+  embedder: sentence-transformers/all-MiniLM-L6-v2
+  seed_linking: exact
+  fact_order: confidence

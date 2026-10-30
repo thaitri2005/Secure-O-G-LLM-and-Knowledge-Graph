@@ -1,0 +1,68 @@
+{
+ "ambiguous_acronyms": 1,
+ "candidates": 195,
+ "canon": {
+  "inverse": 0,
+  "mapped_schema": 195,
+  "self_canon": 0,
+  "sent": 195,
+  "trigger": 0,
+  "undefined": 0,
+  "unmapped": 0
+ },
+ "chunks": 65,
+ "docs": 65,
+ "duplicate_candidates": 55,
+ "entities": 223,
+ "entities_literal": 9,
+ "er_reduction": 0.047008547008547064,
+ "failed_chunks": 0,
+ "flagged_by_reason": {
+  "weak_evidence": 7
+ },
+ "ground_rules": {
+  "chunk": 0,
+  "coref": 3,
+  "exact": 162,
+  "none": 7,
+  "overlap": 12,
+  "window": 11
+ },
+ "grounding": {
+  "exact": 162,
+  "none": 7,
+  "partial": 26
+ },
+ "judge_errors": 0,
+ "judge_unparsed": 0,
+ "llm": {
+  "cache_hits": 137,
+  "cache_misses": 0,
+  "calls": 173,
+  "completion_tokens": 11956,
+  "finish_length": 0,
+  "prompt_tokens": 263151,
+  "seconds": 539.6
+ },
+ "mentions": 285,
+ "net_blocked": 0,
+ "rejected_by_reason": {
+  "guided_not_in_text": 11
+ },
+ "stage_seconds": {
+  "assemble": 0.0,
+  "canon": 548.547,
+  "export": 0.047,
+  "extract": 1.828,
+  "ingest": 0.0,
+  "resolve": 11.484,
+  "temporal.tag": 0.0,
+  "validate": 0.0,
+  "viz": 0.094
+ },
+ "statements_accepted": 188,
+ "statements_flagged": 7,
+ "statements_rejected": 0,
+ "surfaces_non_literal": 234,
+ "temporal_statements": 0
+}

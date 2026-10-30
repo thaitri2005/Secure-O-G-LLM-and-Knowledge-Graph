@@ -1,0 +1,5 @@
+run: {name: bsee_text_dev_v2_guided_groups}
+corpus: {path: data/benchmarks/bsee_text/v2/dev/dev.jsonl, format: jsonl}
+extract: {backend: guided, guided_prompt: configs/prompts/bsee_guided_groups.txt, guided_mode: groups4}
+canon: {schema_path: contracts/ontology/bsee.yaml, few_shot: example, max_minutes: 180}
+ablation: A4

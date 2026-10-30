@@ -1,0 +1,128 @@
+{
+ "ai_gold": {
+  "BH_TOTAL_MD": {
+   "mentioned": 7,
+   "observations": 97,
+   "rate": 0.07216494845360824
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 1,
+   "observations": 100,
+   "rate": 0.01
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 13,
+   "observations": 23,
+   "rate": 0.5652173913043478
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 3,
+   "observations": 84,
+   "rate": 0.03571428571428571
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 10,
+   "observations": 27,
+   "rate": 0.37037037037037035
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 1,
+   "observations": 27,
+   "rate": 0.037037037037037035
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 6,
+   "observations": 97,
+   "rate": 0.061855670103092786
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 7,
+   "observations": 100,
+   "rate": 0.07
+  }
+ },
+ "eligible": {
+  "BH_TOTAL_MD": {
+   "mentioned": 67,
+   "observations": 1278,
+   "rate": 0.05242566510172144
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 27,
+   "observations": 1291,
+   "rate": 0.020914020139426802
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 175,
+   "observations": 290,
+   "rate": 0.603448275862069
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 74,
+   "observations": 1003,
+   "rate": 0.07377866400797607
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 153,
+   "observations": 377,
+   "rate": 0.40583554376657827
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 9,
+   "observations": 377,
+   "rate": 0.023872679045092837
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 53,
+   "observations": 1278,
+   "rate": 0.041471048513302036
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 64,
+   "observations": 1291,
+   "rate": 0.049573973663826494
+  }
+ },
+ "test_subset": {
+  "BH_TOTAL_MD": {
+   "mentioned": 4,
+   "observations": 48,
+   "rate": 0.08333333333333333
+  },
+  "BUS_ASC_NAME": {
+   "mentioned": 1,
+   "observations": 50,
+   "rate": 0.02
+  },
+  "COMP_RSVR_NAME": {
+   "mentioned": 9,
+   "observations": 17,
+   "rate": 0.5294117647058824
+  },
+  "GEO_MARKER_NAME": {
+   "mentioned": 3,
+   "observations": 29,
+   "rate": 0.10344827586206896
+  },
+  "PERF_TOP_MD": {
+   "mentioned": 9,
+   "observations": 21,
+   "rate": 0.42857142857142855
+  },
+  "PERF_TOP_TVD": {
+   "mentioned": 1,
+   "observations": 21,
+   "rate": 0.047619047619047616
+  },
+  "WELL_BORE_TVD": {
+   "mentioned": 3,
+   "observations": 48,
+   "rate": 0.0625
+  },
+  "WELL_SPUD_DATE": {
+   "mentioned": 4,
+   "observations": 50,
+   "rate": 0.08
+  }
+ }
+}

@@ -1,0 +1,12 @@
+ablation:
+  name: window_grounding_ablation
+  levels: [A0, A1, A2, A3, A4, A5]
+  runs:
+    - {config: configs/experiments/showcase.yaml}
+    - {config: configs/experiments/webnlg10.yaml}
+    - {config: configs/experiments/webnlg10.yaml, sets: [run.name=webnlg10_kggen, extract.backend=kggen], levels: [A0, A1, A2, A3, A4]}
+    - {config: configs/experiments/webnlg10.yaml, sets: [run.name=webnlg10_auto, extract.backend=auto], levels: [A0, A1, A2, A3, A4]}
+    - {config: configs/experiments/twowiki10.yaml}
+  baselines:
+    webnlg10: {label: "B-EDC: EDC alone, same 10 docs (minitest)", eval_txt: results/upstream/edc/webnlg_10/eval.txt}
+  qa: {config: configs/experiments/twowiki10_qa.yaml, run: 2wiki10, levels: [A0, A4, A5], sets: [qa.seed_linking=robust, qa.fact_order=relevance]}

@@ -1,0 +1,14 @@
+root: runs/_test/bsee_gold
+batch_size: 2
+seed: 42
+annotators:
+- annotator_a
+- annotator_b
+frozen_inputs:
+- contracts/ontology/bsee.yaml
+- configs/experiments/bsee_eval.yaml
+- src/kgbuilder/evaluation/well_rules.py
+- src/kgbuilder/core/well_facts.py
+- src/kgbuilder/core/well_values.py
+forbidden_before_seal:
+- runs/_test/bsee_gold_forbidden

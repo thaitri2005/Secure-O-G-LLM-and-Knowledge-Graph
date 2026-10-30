@@ -1,0 +1,11 @@
+version: 1
+source: "docs/annotation-guideline.md#rules-and-boundaries and #evaluation-corrections; status phrases, examples, status edge cases and tubular literals"
+case_rule: "a phrase without a lowercase ASCII letter matches case-sensitively; any other phrase matches case-insensitively"
+status:
+  TA: ["temporarily abandoned", "T/A", "TA'd", "TA"]
+  PA: ["permanently abandoned", "P&A", "PA"]
+  COM: ["completed", "recompleted", "COM"]
+  ST: ["plugged back for sidetrack", "plugged back to sidetrack", "PB to sidetrack", "sidetracked", "ST"]
+  BP: ["bypassed", "BP"]
+  SI: ["shut in", "shut-in", "SI"]
+tubular_heads: ["casing", "liner", "conductor", "tubing", "drill pipe", "stub"]

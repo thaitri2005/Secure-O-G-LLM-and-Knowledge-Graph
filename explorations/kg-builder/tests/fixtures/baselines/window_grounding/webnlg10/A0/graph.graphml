@@ -1,0 +1,526 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="support_count" attr.type="long" />
+  <key id="d10" for="edge" attr.name="confidence" attr.type="double" />
+  <key id="d9" for="edge" attr.name="extractor_version" attr.type="string" />
+  <key id="d8" for="edge" attr.name="valid_to" attr.type="string" />
+  <key id="d7" for="edge" attr.name="valid_from" attr.type="string" />
+  <key id="d6" for="edge" attr.name="evidence_text" attr.type="string" />
+  <key id="d5" for="edge" attr.name="evidence_span" attr.type="string" />
+  <key id="d4" for="edge" attr.name="source_doc_id" attr.type="string" />
+  <key id="d3" for="edge" attr.name="predicate" attr.type="string" />
+  <key id="d2" for="node" attr.name="kind" attr.type="string" />
+  <key id="d1" for="node" attr.name="aliases" attr.type="string" />
+  <key id="d0" for="node" attr.name="name" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="e_082a6e61da4b">
+      <data key="d0">African Americans</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_0d0eb9909bfb">
+      <data key="d0">College of William and Mary</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_133d47a4dd68">
+      <data key="d0">Bedford Autodrome</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_1e089cf0ff6a">
+      <data key="d0">diesel-electric transmission</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_26103ddac71e">
+      <data key="d0">17068.8 millimetres</data>
+      <data key="d1">[]</data>
+      <data key="d2">literal</data>
+    </node>
+    <node id="e_26ade3a57fce">
+      <data key="d0">Thurleigh</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_31df613d0231">
+      <data key="d0">Robert A.M. Stern</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_33b63b65ed4f">
+      <data key="d0">Zaoyang</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_40a1ab3e58c0">
+      <data key="d0">Nie Haisheng</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_4c35411f70fe">
+      <data key="d0">Pacific Standard Time Zone</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_4e2d19bfa90c">
+      <data key="d0">Paracuellos de Jarama</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_55e148c22b9f">
+      <data key="d0">Acharya Dr. Sarvapalli Radhakrishnan Road</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_5bcd12475714">
+      <data key="d0">Israeli Jews</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_688166fd2da5">
+      <data key="d0">Alan B. Miller Hall</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_6bccd83fbe08">
+      <data key="d0">Visvesvaraya Technological University</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_6e2c3d64955e">
+      <data key="d0">Hessarghatta Main Road</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_7015e6e3291f">
+      <data key="d0">Arabs</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_8a2dac128e85">
+      <data key="d0">Karlsruhe</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_8aebcbe1f95c">
+      <data key="d0">V12 engine</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_8f25862680fc">
+      <data key="d0">Bangalore</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_8f4f9f2dcbaf">
+      <data key="d0">Israel</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_8f979550c56a">
+      <data key="d0">Ruth Ribicoff</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_a0c26b7225b2">
+      <data key="d0">Liselotte Grschebina</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_a37004d37de1">
+      <data key="d0">Enaire</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_ad516789a07b">
+      <data key="d0">People's Republic of China</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_afa09db86882">
+      <data key="d0">United States</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_bb6dc88311c9">
+      <data key="d0">ALCO RS-3</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_bec02a5aa9ec">
+      <data key="d0">Juan Nolasco</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_c4088b5404a6">
+      <data key="d0">Soldevanahalli</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_ca00c9cfadf0">
+      <data key="d0">EGBF</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_d17869c4f1d2">
+      <data key="d0">Abraham A. Ribicoff</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_d2503fb23e23">
+      <data key="d0">Bedford Aerodrome</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_d79f52497f9c">
+      <data key="d0">Hubei</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_d863feb55dbf">
+      <data key="d0">Arab citizens of Israel</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_dfdf68f1deaf">
+      <data key="d0">Acharya Institute of Technology</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_e074138d45b0">
+      <data key="d0">India</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_eb7d7694c72d">
+      <data key="d0">Ciudad Ayala</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <node id="e_f3626f15bfde">
+      <data key="d0">Adolfo Suarez Madrid-Barajas Airport</data>
+      <data key="d1">[]</data>
+      <data key="d2">entity</data>
+    </node>
+    <edge source="e_082a6e61da4b" target="e_afa09db86882" id="s_2cda77be23a3e150">
+      <data key="d3">are ethnic group in</data>
+      <data key="d4">webnlg_0002</data>
+      <data key="d5">webnlg_0002:0-105</data>
+      <data key="d6">In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_40a1ab3e58c0" target="e_33b63b65ed4f" id="s_16af783f588024e5">
+      <data key="d3">was born in</data>
+      <data key="d4">webnlg_0000</data>
+      <data key="d5">webnlg_0000:0-120</data>
+      <data key="d6">Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_40a1ab3e58c0" target="e_ad516789a07b" id="s_83aaf5024b3c1f66">
+      <data key="d3">is from</data>
+      <data key="d4">webnlg_0000</data>
+      <data key="d5">webnlg_0000:0-120</data>
+      <data key="d6">Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_40a1ab3e58c0" target="e_d79f52497f9c" id="s_b9f61c11c0e85190">
+      <data key="d3">was born in</data>
+      <data key="d4">webnlg_0000</data>
+      <data key="d5">webnlg_0000:0-120</data>
+      <data key="d6">Nie Haisheng was a fighter pilot from the People's Republic of China who was born in Hubei, Zaoyang on October 13, 1964.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_688166fd2da5" target="e_0d0eb9909bfb" id="s_237e1179d67ee236">
+      <data key="d3">is owned by</data>
+      <data key="d4">webnlg_0008</data>
+      <data key="d5">webnlg_0008:0-127</data>
+      <data key="d6">Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_688166fd2da5" target="e_31df613d0231" id="s_ddf7e89ae24d5a3f">
+      <data key="d3">was designed by</data>
+      <data key="d4">webnlg_0008</data>
+      <data key="d5">webnlg_0008:0-127</data>
+      <data key="d6">Alan B. Miller Hall, owned by the College of William and Mary, was designed by Robert A.M. Stern and completed on June 1, 2009.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_8f4f9f2dcbaf" target="e_5bcd12475714" id="s_6f077dc53650fccb">
+      <data key="d3">has ethnic group</data>
+      <data key="d4">webnlg_0006</data>
+      <data key="d5">webnlg_0006:0-117</data>
+      <data key="d6">Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_8f4f9f2dcbaf" target="e_7015e6e3291f" id="s_9eb1d2c13e6f9f85">
+      <data key="d3">has ethnic group</data>
+      <data key="d4">webnlg_0006</data>
+      <data key="d5">webnlg_0006:0-117</data>
+      <data key="d6">Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_a0c26b7225b2" target="e_8a2dac128e85" id="s_64459d893002f70b">
+      <data key="d3">was born in</data>
+      <data key="d4">webnlg_0006</data>
+      <data key="d5">webnlg_0006:0-117</data>
+      <data key="d6">Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.792</data>
+      <data key="d11">2</data>
+    </edge>
+    <edge source="e_a0c26b7225b2" target="e_8f4f9f2dcbaf" id="s_67e4a3ba23d8976e">
+      <data key="d3">died in</data>
+      <data key="d4">webnlg_0006</data>
+      <data key="d5">webnlg_0006:0-117</data>
+      <data key="d6">Liselotte Grschebina was born in Karlsruhe and died in Israel, which has the ethic group, Arabs and the Israeli Jews.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.792</data>
+      <data key="d11">2</data>
+    </edge>
+    <edge source="e_bb6dc88311c9" target="e_26103ddac71e" id="s_9012d126af450b74">
+      <data key="d3">has length</data>
+      <data key="d4">webnlg_0004</data>
+      <data key="d5">webnlg_0004:0-51</data>
+      <data key="d6">The length of the ALCO RS-3 is 17068.8 millimetres.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_bb6dc88311c9" target="e_8aebcbe1f95c" id="s_93686bc23d7ebc1a">
+      <data key="d3">has engine type</data>
+      <data key="d4">webnlg_0004</data>
+      <data key="d5">webnlg_0004:0-107</data>
+      <data key="d6">The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.48</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_bb6dc88311c9" target="e_1e089cf0ff6a" id="s_c09cf01c1c5c5b6f">
+      <data key="d3">has transmission type</data>
+      <data key="d4">webnlg_0004</data>
+      <data key="d5">webnlg_0004:0-107</data>
+      <data key="d6">The length of the ALCO RS-3 is 17068.8 millimetres. It has a diesel-electric transmission and a V12 engine.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.48</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d17869c4f1d2" target="e_8f979550c56a" id="s_4d36caf8d6160e22">
+      <data key="d3">was married to</data>
+      <data key="d4">webnlg_0002</data>
+      <data key="d5">webnlg_0002:106-155</data>
+      <data key="d6">Abraham A. Ribicoff was married to Ruth Ribicoff.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d17869c4f1d2" target="e_afa09db86882" id="s_f4b548386ffc4ad9">
+      <data key="d3">was born in</data>
+      <data key="d4">webnlg_0002</data>
+      <data key="d5">webnlg_0002:0-155</data>
+      <data key="d6">In the United States, where Abraham A, Ribicoff was born, African Americans are one of the ethnic groups. Abraham A. Ribicoff was married to Ruth Ribicoff.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.48</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d2503fb23e23" target="e_26ade3a57fce" id="s_18c44a0193590f70">
+      <data key="d3">is located in</data>
+      <data key="d4">webnlg_0005</data>
+      <data key="d5">webnlg_0005:0-74</data>
+      <data key="d6">The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d2503fb23e23" target="e_133d47a4dd68" id="s_7b75fda9416b7a60">
+      <data key="d3">serves</data>
+      <data key="d4">webnlg_0005</data>
+      <data key="d5">webnlg_0005:0-74</data>
+      <data key="d6">The Bedford Aerodrome (located in Thurleigh) serves the Bedford Autodrome.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d2503fb23e23" target="e_ca00c9cfadf0" id="s_9569485a9e54997a">
+      <data key="d3">has ICAO location identifier</data>
+      <data key="d4">webnlg_0005</data>
+      <data key="d5">webnlg_0005:75-138</data>
+      <data key="d6">The ICAO location identifier for the Bedford Aerodrome is EGBF.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_d863feb55dbf" target="e_8f4f9f2dcbaf" id="s_661cc142ea5a1c2d">
+      <data key="d3">is an ethnic group in</data>
+      <data key="d4">webnlg_0009</data>
+      <data key="d5">webnlg_0009:63-120</data>
+      <data key="d6">The Arab citizens of Israel is an ethnic group in Israel.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_55e148c22b9f" id="s_17667dc1e6150b20">
+      <data key="d3">is located on</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_8f25862680fc" id="s_5dd588a7b2b31e61">
+      <data key="d3">is located in</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_e074138d45b0" id="s_9a281271d2a5d192">
+      <data key="d3">is located in</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_c4088b5404a6" id="s_caca964bf0f4632f">
+      <data key="d3">is located in</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_6e2c3d64955e" id="s_cd0574a14b725446">
+      <data key="d3">is located near</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_dfdf68f1deaf" target="e_6bccd83fbe08" id="s_f7c719c8c934ee16">
+      <data key="d3">is affiliated with</data>
+      <data key="d4">webnlg_0007</data>
+      <data key="d5">webnlg_0007:0-240</data>
+      <data key="d6">The campus address for the Acharya Institute of Technology is: Soldevanahalli, Acharya Dr. Sarvapalli Radhakrishnan Road, Hessarghatta Main Road, Bangalore - 560090, India and it is affiliated with the Visvesvaraya Technological University.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_eb7d7694c72d" target="e_bec02a5aa9ec" id="s_64c35d372cfff8e7">
+      <data key="d3">is led by</data>
+      <data key="d4">webnlg_0003</data>
+      <data key="d5">webnlg_0003:0-92</data>
+      <data key="d6">The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_eb7d7694c72d" target="e_4c35411f70fe" id="s_d00fd9e827bf1893">
+      <data key="d3">has timezone</data>
+      <data key="d4">webnlg_0003</data>
+      <data key="d5">webnlg_0003:0-92</data>
+      <data key="d6">The timezone of Ciudad Ayala which is led by Juan Nolasco is the Pacific Standard Time Zone.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_f3626f15bfde" target="e_a37004d37de1" id="s_468096ca89ead0ba">
+      <data key="d3">is operated by</data>
+      <data key="d4">webnlg_0001</data>
+      <data key="d5">webnlg_0001:0-91</data>
+      <data key="d6">The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+    <edge source="e_f3626f15bfde" target="e_4e2d19bfa90c" id="s_530c268271f5a6c0">
+      <data key="d3">is based in</data>
+      <data key="d4">webnlg_0001</data>
+      <data key="d5">webnlg_0001:0-91</data>
+      <data key="d6">The Enaire operated Adolfo Suarez Madrid-Barajas Airport is based in Paracuellos de Jarama.</data>
+      <data key="d7" />
+      <data key="d8" />
+      <data key="d9">kgb/0.1.0;extract=kggen@6259b4c;llm=qwen3.6-35b-a3b;canon=open</data>
+      <data key="d10">0.72</data>
+      <data key="d11">1</data>
+    </edge>
+  </graph>
+</graphml>

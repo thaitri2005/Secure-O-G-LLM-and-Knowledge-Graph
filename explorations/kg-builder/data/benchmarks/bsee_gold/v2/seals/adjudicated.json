@@ -1,0 +1,15 @@
+{
+ "created_at": "2026-10-28T11:39:39.160930+00:00",
+ "dependencies": {
+  "seals/adjudication_packet.json": "f1314db03541f7b874fe4c61337ffe93f7b72331fb2f749d17c46f88f0a94da8",
+  "seals/adjudicator.json": "71a44953a328a932dc2a588318e234504bc0bf629b30ac0e003703242fea42a5",
+  "seals/annotator_a.json": "9bc7fd499b1b39fb3244322889998b0362f3f93bc6fb8fcc2157b99975efe1d7",
+  "seals/annotator_b.json": "03cd84b8777a1f618b7b4de95abe449fcfaa2044a3c3aa8bdde5c843f3e352a1"
+ },
+ "files": {
+  "adjudicated.jsonl": "6f9dcc5055a64f5b94de3592c08213caab41203318432361a1b3e36f0d53fce3"
+ },
+ "forbidden_absent": true,
+ "freeze_sha256": "62bc4f5cf1538353df1a2e00899313c36520e3db21845bec35261dc83bed721e",
+ "role": "adjudicated"
+}
