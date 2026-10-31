@@ -17,13 +17,13 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
 | Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)). With a validated fact sheet from LLM and table facts: **30/31** ([E22](../../experiments/E22-table-facts.md)); on the cross-report probe 2 to 5/9 against 3/9, within noise ([E20](../../experiments/E20-well-fact-sheet.md), E22) | B-D03, B-C08, B-D14, B-D16, B-D19, B-D20 |
-| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md)) run and not adopted; LightRAG with K2 injected next (E21) | B-D14, B-D18 |
+| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; the working design uses neo4j-graphrag as an extractor only | B-D14, B-D18, B-D21 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Next | Graph-worthy questions from the supervisor; LightRAG with K2 (E21); validated per-well facts as the graph part, to repeat on the expert set | B-D19 |
+| Next | The expert question set (or 30+ cross-well questions) to judge the graph; people, projects and documents in the fact graph; K1 version 1 tables from Track A | B-D21 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
 | Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
@@ -463,3 +463,14 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 - One JSON line per question: question ID and text, status, normalized answer values with units, citations as child chunk IDs with how each was checked (B-C08), the pipeline (base, retriever, *k*, fact sheet, validation, answer format), the answer model, and the answer call's calls, tokens, seconds and cost; `correct` when the question set has gold.
 - `python -m graphrag.k4 <run>` writes `graphrag/results/<run>.k4.jsonl` from any answer run. The first file is from the working design's E22 run (31 records, valid against the schema).
 - Chunk IDs are K1 version 0 IDs until Track C's §5.11 IDs replace them. Index-time cost stays in the run's result file and experiment record.
+
+**E21 (experiment).** LightRAG with K2 injected: [E21](../../experiments/E21-lightrag-k2.md).
+
+- K2 rendered as `entity_types_guidance`: 925 entities and 1,385 relations (defaults: 2,114 and 3,099), typed well, hole section, formation, project, person, rig; 225 untyped. Same extraction cost (15,900 tokens per page).
+- Answers: 26/31 (defaults 25/31); probe 3/9 (small budget) and 4/9 (default budget, including p07, the report count, for the first time).
+
+**B-D21 (decision; from E19 to E22).** Close the base comparison for this stint.
+
+1. **No GraphRAG base is adopted wholesale.** The working design (B-D19, B-D20) is plain RAG routed by well, plus a per-well fact graph from K2 table mappings and LLM extraction (neo4j-graphrag as the extractor), validated in code: 30/31 on the development questions.
+2. **LightRAG with K2** is kept as the candidate for document, project and people structure (p05, p07), to be tested again when expert questions ask for it.
+3. The open decision moves to the supervisor: graph-worthy questions (30 or more) are needed to judge the graph's value across wells (B-F29). Until they arrive, Track B works on what does not depend on them: fact-graph coverage of people, projects and documents, and running on Track A's K1 version 1.
