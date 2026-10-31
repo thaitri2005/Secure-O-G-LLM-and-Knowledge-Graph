@@ -54,6 +54,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `neo4j_kg.py` | neo4j-graphrag-python with the ontology file as its schema (runs in `.venv-graphrag`) |
   | `lightrag_run.py` | LightRAG 1.5.7 on our chunks, client and answer harness (runs in `.venv-lightrag`) |
   | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
+  | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions) |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
@@ -67,9 +68,9 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
 | [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
   | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
-  | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B) | 21/31 |
+  | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / **28/31** |
 
-  On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions. Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
+  On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; the baseline plus **validated** per-well facts reaches **5/9** (B-D19, the working design). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
   - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.
@@ -81,7 +82,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. LightRAG with K2 injected as its entity-type guidance (E21).
-4. Validate extracted facts (value in the cited chunk, unit, one name per well) before any graph fact reaches an answer (B-F24).
+4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). Next: raise extraction recall (K2, table rows mapped in code) and add people, projects and document counts to the fact graph (B-D19).
 5. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs

@@ -12,6 +12,7 @@ from graphrag.baseline import fact_sheet, render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk, load_questions
 from graphrag.ontology import glossary, guidance, load as load_k2
+from graphrag.validate import validate
 from graphrag.retrieval import BM25, Fusion, WellRouter, well_names
 from graphrag.citations import resolve
 from graphrag.scoring import normalize, score_answer, same_value
@@ -192,6 +193,38 @@ class FactSheetTests(unittest.TestCase):
         self.assertEqual(list(sheet), ["AK-3"])
         self.assertLess(sheet["AK-3"].index("total_depth"), sheet["AK-3"].index("inclination"))
         self.assertIn("[d#c2]", sheet["AK-3"])
+
+
+class ValidateTests(unittest.TestCase):
+    texts = {"a#c1": "Well AK-3 was drilled to 1,955 ft. Spud on 18 August 2016.",
+             "a#c2": "AK-3 reached 1,955 feet.",
+             "a#c3": "Total depth 1,900 ft for AK-3.",
+             "b#c1": "Well 68-32 daily report. Days: 0"}
+
+    def fact(self, chunk, well, value, prop="total_depth"):
+        return {"chunk": chunk, "well": well, "property": prop, "qualifier": "actual", "context": None, "value": value}
+
+    def test_value_must_be_written_in_its_chunk(self):
+        kept, rejected = validate([self.fact("a#c1", "AK-3", 2000.0)], self.texts)
+        self.assertEqual((kept, rejected), ([], {"value not in its chunk": 1}))
+
+    def test_float_and_date_forms_are_found(self):
+        kept, _ = validate([self.fact("a#c1", "Akutan Well AK-3", 1955.0),
+                            self.fact("a#c1", "AK-3", "2016-08-18", "spud_date")], self.texts)
+        self.assertEqual([f["value"] for f in kept], ["1955", "2016-08-18"])
+
+    def test_well_must_be_single_and_named_in_its_document_and_zero_is_empty(self):
+        _, rejected = validate([self.fact("a#c1", "Bows", 1955), self.fact("b#c1", "AK-3", 1955),
+                                self.fact("b#c1", "68-32", 0, "drilling_days")], self.texts)
+        self.assertEqual(rejected, {"no single well name": 1, "well not named in its document": 1, "zero value": 1})
+
+    def test_majority_wins_and_ties_drop_the_key(self):
+        kept, rejected = validate([self.fact("a#c1", "AK-3", 1955), self.fact("a#c2", "AK-3", 1955),
+                                   self.fact("a#c3", "AK-3", 1900)], self.texts)
+        self.assertEqual([f["value"] for f in kept], ["1955"])
+        self.assertEqual(rejected, {"contradicted, outvoted": 1})
+        kept, rejected = validate([self.fact("a#c1", "AK-3", 1955), self.fact("a#c3", "AK-3", 1900)], self.texts)
+        self.assertEqual((kept, rejected), ([], {"contradicted, tie": 2}))
 
 
 class QuestionSetTests(unittest.TestCase):

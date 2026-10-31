@@ -18,6 +18,7 @@ from .client import ModelClient, load_endpoints
 from .data import AK3, QUESTION_SETS, ROOT, load_chunks, load_questions, prototype_slice
 from .retrieval import BM25, Dense, Fusion, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
+from .validate import validate
 
 RESULTS = ROOT / "graphrag/results"
 POOLS = {"slice": "the 15 prototype chunks", "ak3": "the whole AK-3 EOWR",
@@ -138,8 +139,12 @@ def evaluate_answers(args) -> dict:
     if args.facts:
         for fact in json.loads((RESULTS / f"{args.facts}.json").read_text(encoding="utf-8"))["facts"]:
             facts.setdefault(fact["chunk"], []).append(render(fact))
-    sheet = fact_sheet(json.loads((RESULTS / f"{args.fact_sheet}.json").read_text(encoding="utf-8"))["facts"]) \
-        if args.fact_sheet else {}
+    sheet, rejected = {}, {}
+    if args.fact_sheet:
+        sheet_facts = json.loads((RESULTS / f"{args.fact_sheet}.json").read_text(encoding="utf-8"))["facts"]
+        if args.validate:
+            sheet_facts, rejected = validate(sheet_facts, {c.id: c.text for c in chunks})
+        sheet = fact_sheet(sheet_facts)
 
     def retrieve(question: str) -> tuple[list[str], str]:
         hits = [cid for cid, _ in retriever.search(question, args.k)]
@@ -150,7 +155,8 @@ def evaluate_answers(args) -> dict:
                             questions=args.questions, answer_format=args.answer_format)
     return {"pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
             "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported,
-            "facts": args.facts, "fact_sheet": args.fact_sheet, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
+            "facts": args.facts, "fact_sheet": args.fact_sheet, "validated": args.validate,
+            "facts_rejected": rejected, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
 
 
 def fact_sheet(facts: list[dict], limit: int = 25) -> dict[str, str]:
@@ -272,6 +278,7 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--max-tokens", type=int, default=400)
     a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
+    a.add_argument("--validate", action="store_true", help="check fact-sheet facts first (graphrag.validate, B-F24)")
     a.add_argument("--fact-sheet", help="a graphrag.neo4j_kg result name; the facts of each well the question "
                                         "names go before the passages (E20)")
     a.add_argument("--facts", help="a graphrag.neo4j_kg result name; its facts are shown under each passage")

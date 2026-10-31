@@ -35,8 +35,33 @@
 - Conflicting extracted values mislead the model: for q08 it answered three rig-release dates (2016-09-05, 2016-09-01 and 2019-03-12), and for q23 it gave a TG-2 spud date that no passage states. It abstained on q12, q16, q18 and q20, which it answers without the sheet.
 - On the probe, the sheet did not turn depths into well names (p01, p04) and cost p03 and p06.
 
+## Validated facts (`--validate`, `graphrag/validate.py`)
+
+The same 737 facts, checked in code before they reach the answer model. A fact is kept only if its value is written in its source chunk, its well name resolves to one well that its own document names, it is not a zero (empty daily-report form fields), and no equally supported different value exists for the same well, property, qualifier and context (majority wins; a tie drops the key).
+
+| Rejection reason | Facts |
+|---|---:|
+| Value not in its chunk | 146 |
+| Zero value | 134 |
+| No single well name (`Bows`, `8-3/4 in. hole`, `Well_0`) | 128 |
+| Outvoted by a better-supported value | 98 |
+| Tie between different values | 29 |
+| Well not named in its document | 28 |
+| **Kept** | **96** |
+
+The validated AK-3 sheet carries the right total depth (1,955 ft, planned 1,700), spud and release dates, API number and ground elevation; noise remains in casing contexts and in 68-32's dates.
+
+| Question set | Retrieval | No sheet | Raw sheet | **Validated sheet** |
+|---|---|---:|---:|---:|
+| 31 single-well questions | BM25 routed by well, top 5, status first | 28/31 | 21/31 | **28/31** |
+| 9-question probe | Per-well fusion, top 10, evidence first | 3/9 | 1/9 | **5/9** |
+
+- Probe answers right with the validated sheet: p02 (all three depths), p03, **p04 (now with well names)**, p06, p08. Still wrong: p01 (depth instead of name), p05 (a person across reports: not in the 14-property profile), p07 (a count of reports), p09 (68-32's spud date is wrong in the sheet).
+- On the 31 questions the total holds, with different misses: q05, q18, q21 instead of q07, q25, q31.
+- The cost is the extraction (2.5 calls and 4,750 prompt tokens per page with Qwen3-4B) and about 700 more prompt tokens per question that names a well; validation itself makes no model call.
+
 ## What was learned
 
-1. **Extracted facts are a liability unless they are precise.** At 47% precision, a fact sheet lowers answers from 28 to 21 of 31; E16 found the same direction at 72% precision. Graph facts should reach the answer model only after validation (§6.2 stage 6: verbatim value, unit and well checks, dropping contradictions) or only for review.
+1. **Extracted facts are a liability unless they are validated.** Raw, at 47% precision, they lower answers from 28 to 21 of 31. Validated in code, they keep 28/31 and lift the cross-report probe from 3/9 to **5/9**, the best of any setup so far (E19: plain RAG and LightRAG at 3/9). This is the first evidence that graph facts help on questions across wells.
 2. **Daily-report tables are the main source of junk,** and they need Track A's table work before extraction.
-3. **Free-form extraction under the 14-property profile does not give clean per-well facts at this model size.** The next tests are K2 injected into LightRAG (E21) and stricter validation of extracted facts before use.
+3. **Caveats:** one run, 9 probe questions written by the team, AK-3 recall of the extractor only 0.56. Repeat on the expert question set before choosing.

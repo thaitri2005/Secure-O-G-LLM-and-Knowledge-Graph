@@ -16,14 +16,14 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)) | B-D03, B-C08, B-D14, B-D16 |
+| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)). Best on the cross-report probe: plus validated per-well facts, 5/9 ([E20](../../experiments/E20-well-fact-sheet.md)) | B-D03, B-C08, B-D14, B-D16, B-D19 |
 | Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md)) run and not adopted; LightRAG with K2 injected next (E21) | B-D14, B-D18 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Next | Graph-worthy questions from the supervisor; LightRAG with K2 (E21); validate extracted facts before use | B-D18 |
+| Next | Graph-worthy questions from the supervisor; LightRAG with K2 (E21); validated per-well facts as the graph part, to repeat on the expert set | B-D19 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
 | Vector store | Open; decided with Track C after the base | — |
@@ -417,3 +417,16 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 1. **LightRAG is not adopted as the base on this evidence.** The D-50 baseline stays: plain RAG, Qwen3-8B, BM25 routed by well.
 2. Graph value is to be shown on questions across wells and reports. The probe (B-C14) and the supervisor request ([ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md)) serve that.
 3. Next: LightRAG with K2 injected (E21), to see whether our ontology makes its graph precise enough; then a validation step for extracted facts (verbatim value in the cited chunk, unit, one well name per registry entry) before any graph fact reaches an answer.
+
+**B-C15 (design choice).** `graphrag/validate.py` checks extracted facts before they reach an answer (§6.2 stage 6, B-F24): the value is written in its source chunk; the well name resolves to one well that its own document names; zeros (empty daily-report form fields) are dropped; per well, property, qualifier and context the best-supported value wins and a tie drops the key. Each rejection is counted by reason. `baseline.py --fact-sheet <graph> --validate` uses it.
+
+**B-F25 (finding; from E20).** Validated per-well facts help on questions across wells without hurting single-well questions.
+
+- Validation keeps 96 of 737 facts (146 values not in their chunk, 134 zeros, 128 without one well name, 127 contradicted, 28 with a well foreign to their document).
+- With the validated sheet: 28/31 on the single-well questions (raw sheet 21/31) and **5/9 on the probe** (no sheet 3/9, raw sheet 1/9; LightRAG 3/9).
+- Caveats: one run, 9 team-written probe questions, an extractor with 0.56 AK-3 recall.
+
+**B-D19 (decision; from E20).** The working design is plain RAG (D-50) plus a validated per-well fact graph, used for the wells a question names.
+
+- The graph part is extraction (any base that keeps chunk provenance) followed by validation in code; nothing unvalidated reaches an answer.
+- To confirm on the expert question set before it becomes the chosen base. Improve extraction recall next (K2 slice, table rows mapped deterministically), and add people and projects (p05) and document counts (p07), which the 14-property profile does not cover.
