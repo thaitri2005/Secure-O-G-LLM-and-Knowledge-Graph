@@ -24,6 +24,8 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Next | Graph-worthy questions from the supervisor; filter by well; LightRAG with Qwen3-8B | B-D15 |
+| Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
+| Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -363,3 +365,32 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 
 - *Why:* E18. Routing costs nothing and recovers the one-report result.
 - Consequence: on questions that name one well, plain RAG is not hurt by more reports. A graph must be judged on questions that name no well, several wells, or ask across reports (B-D15 step 1).
+
+## 2026-10-31 (late night): LightRAG set-up, a probe across reports, K2 version 1
+
+**B-C12 (design choice).** Answer prompts label passages by chunk number (`[c0005]`) only when all passages come from one report; mixed reports get full chunk IDs, because every report has a `c0005`. Single-report prompts are unchanged, so E14 to E18 results and the request cache stay valid. `baseline.py` gained `--questions` (question set), `--answer-format` and `--fresh` (bypass the cache, to re-measure under new server settings).
+
+**B-C13 (design choice).** `graphrag/lightrag_run.py` runs LightRAG 1.5.7 (HKUDS, MIT, used as a library, in its own `.venv-lightrag`).
+
+- Our K1 chunks go in through `ainsert_custom_chunks`; LightRAG's chunk IDs hash (document, text), so its retrieved chunks map back to K1 IDs by text (0 unmapped in every run).
+- LightRAG calls our model client, so its calls are cached and land in the cost ledger; one request at a time (B-C10).
+- Retrieval uses `aquery_data`; its entities, relations and chunks then go through the baseline's answer prompt, citation check and scoring, so only retrieval differs.
+- The Qwen3-8B server runs with `-c 32768 -np 1` for E19, because LightRAG's extraction prompts and its default 30,000-token query context do not fit an 8k slot. The baseline re-measured under `-np 1` with `--fresh` gives the same 28/31 (AK-3 and three reports), so the server change is not a confound.
+
+**B-C14 (design choice).** A cross-report probe of 9 questions, `graphrag/gold/cross_report_probe.json`: comparisons, a count, people shared across reports, planned against actual, a relation between wells. Gold values and chunk IDs come from the three reports' text.
+
+- It is a development probe, not an evaluation set (D-49); the expert question set replaces it. It also serves as examples of graph-worthy questions for the supervisor (B-D15 step 1).
+- Result rows now record `gold_facts_retrieved`: how many of a question's facts have a passage among the retrieved ones. "Gold chunk retrieved" counts any one, which overstates retrieval for questions across wells.
+
+**B-F22 (finding).** The answer schema's field order makes the model abstain.
+
+- Plain RAG answered 0/9 probe questions. For p08 ("injection in which well was 68-32 drilled to monitor?") the answer passage was ranked first, and Qwen3-8B still returned `not_stated`; with that passage alone, or with two passages, it answered 58-32.
+- Constrained decoding writes fields in schema order, and `status` comes first: the model decides whether to answer before writing anything, and more context pushes it to abstain.
+- An `evidence_first` format (a short evidence note, then answers, then status) answers p08 and p03 (2/9 on the probe) and leaves the 31 questions at 28/31 (q31 now right, q05 now wrong).
+
+**B-D17 (decision).** K2 version 1, the thin ontology slice for end-of-well reports: [`configs/ontology/k2_eowr_v1.json`](../../../configs/ontology/k2_eowr_v1.json).
+
+- 9 entity types, 13 relation types and 19 properties with units, each tied to the section headings where it appears, taken from the three reports' headings and table columns and the prototype's 14 properties (unchanged).
+- 104 glossary entries generated in code (`python -m graphrag.ontology glossary`) from the abbreviation and unit tables, each with its source table. Four entries from merged cells are flagged for a person (`JSA jt`, `LGS LOT`).
+- `python -m graphrag.ontology guidance` renders the slice as LightRAG's `entity_types_guidance`, the injection point for an ontology arm.
+- *Why:* D-49 (thin, from the reports themselves) and B-D15 step 4. Not reviewed by a domain expert.

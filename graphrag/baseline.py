@@ -15,7 +15,7 @@ from typing import Any
 
 from .citations import resolve
 from .client import ModelClient, load_endpoints
-from .data import AK3, ROOT, load_chunks, load_questions, prototype_slice
+from .data import AK3, QUESTION_SETS, ROOT, load_chunks, load_questions, prototype_slice
 from .retrieval import BM25, Dense, Fusion, WellRouter
 from .scoring import normalize, score_answer, squash
 
@@ -39,6 +39,23 @@ ANSWER_SCHEMA = {
     },
     "required": ["status", "answers"], "additionalProperties": False,
 }
+# Constrained decoding writes fields in schema order. With "status" first the model must decide whether to
+# answer before reading anything back; "evidence_first" lets it note the relevant passages, then answer,
+# then decide (B-F22).
+ANSWER_FORMATS = {
+    "status_first": ANSWER_SCHEMA,
+    "evidence_first": {
+        "type": "object",
+        "properties": {
+            "evidence": {"type": "string", "maxLength": 600},
+            "answers": ANSWER_SCHEMA["properties"]["answers"],
+            "status": ANSWER_SCHEMA["properties"]["status"],
+        },
+        "required": ["evidence", "answers", "status"], "additionalProperties": False,
+    },
+}
+EVIDENCE_NOTE = ("\nFirst write the evidence: which passages bear on the question and what they say, in one or two "
+                 "sentences. To compare, count or combine, use the values the passages state.")
 
 
 def render(fact: dict) -> str:
@@ -111,30 +128,50 @@ def evaluate_retrieval(args) -> dict:
 
 def evaluate_answers(args) -> dict:
     chunks = pool(args.pool)
-    by_id = {c.id: c for c in chunks}
-    questions, gold = load_questions()
     retriever = build(args.retriever, chunks)
-    client = ModelClient(load_endpoints()[args.endpoint], args.model)
+    client = ModelClient(load_endpoints()[args.endpoint], args.model, **({"cache_dir": None} if args.fresh else {}))
     facts: dict[str, list[str]] = {}
     if args.facts:
         for fact in json.loads((RESULTS / f"{args.facts}.json").read_text(encoding="utf-8"))["facts"]:
             facts.setdefault(fact["chunk"], []).append(render(fact))
+    rows = answer_questions(lambda q: ([cid for cid, _ in retriever.search(q, args.k)], ""), chunks, client,
+                            facts=facts, withhold_unsupported=args.withhold_unsupported, max_tokens=args.max_tokens,
+                            questions=args.questions, answer_format=args.answer_format)
+    return {"pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
+            "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported,
+            "facts": args.facts, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
+
+
+def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
+                     withhold_unsupported: bool = False, max_tokens: int = 400,
+                     questions: str = "prototype", answer_format: str = "status_first") -> list[dict]:
+    """Answers a question set. `retrieve(question)` gives the passage chunk IDs and optional graph context
+    (text placed before the passages); citations are checked against those passages only."""
+    by_id = {c.id: c for c in chunks}
+    questions, gold = load_questions(questions)
+    facts = facts or {}
     rows = []
     for q in questions:
-        hits = [cid for cid, _ in retriever.search(q["question"], args.k)]
+        hits, graph = retrieve(q["question"])
+        # Passages from one report are labelled by chunk number; mixed reports need the full chunk ID (B-C12).
+        docs = {by_id[cid].doc_id for cid in hits}
+        doc = next(iter(docs)) if len(docs) == 1 else AK3
+        label = (lambda cid: cid.split("#")[-1]) if len(docs) <= 1 else (lambda cid: cid)
         passages = "\n\n".join(
-            f"[{cid.split('#')[-1]}] (page {by_id[cid].page}) {by_id[cid].text}"
+            f"[{label(cid)}] (page {by_id[cid].page}) {by_id[cid].text}"
             + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
             for cid in hits)
-        call = client.chat([{"role": "system", "content": SYSTEM},
-                            {"role": "user", "content": f"Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
-                           schema=ANSWER_SCHEMA, max_tokens=args.max_tokens)
+        graph = f"Knowledge graph extracted from the reports (may be incomplete; cite passages only):\n{graph}\n\n" if graph else ""
+        system = SYSTEM + (EVIDENCE_NOTE if answer_format == "evidence_first" else "")
+        call = client.chat([{"role": "system", "content": system},
+                            {"role": "user", "content": f"{graph}Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
+                           schema=ANSWER_FORMATS[answer_format], max_tokens=max_tokens)
         parsed = call.parsed or {"status": "invalid", "answers": []}
         status = parsed.get("status", "invalid")
         answers = parsed.get("answers", []) if status == "answered" else []
-        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, AK3) for a in answers]
+        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, doc) for a in answers]
         withheld = []
-        if args.withhold_unsupported:
+        if withhold_unsupported:
             # B-F17: an answer no retrieved passage supports is dropped; with none left, the question is withheld.
             withheld = [a["value"] for a, (c, _) in zip(answers, resolved) if c is None]
             kept = [(a, r) for a, r in zip(answers, resolved) if r[0] is not None]
@@ -144,11 +181,15 @@ def evaluate_answers(args) -> dict:
         expected = [gold[g] for g in q["gold"]]
         result = score_answer(q, expected, status, values)
         wanted = gold_chunks(q, gold)
-        cited = [f"{AK3}#{a['chunk']}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
+        cited = [f"{doc}#{a['chunk'].strip('[] ')}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
         rows.append({
             "id": q["id"], "kind": q["kind"], "status": status, "values": values,
             "raw_values": [a["value"] for a in answers], "withheld_values": withheld,
+            **({"evidence": parsed["evidence"]} if "evidence" in parsed else {}),
             **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
+            # Questions across wells need every fact's passage, not just one (cross-report probe).
+            "gold_facts_retrieved": sum(bool(set(e["chunks"]) & set(hits)) for e in expected) if expected else None,
+            "gold_facts": len(expected),
             "citations": [{"chunk": c, "how": how} for c, how in resolved],
             "citations_supported": all(c is not None for c, _ in resolved),
             "verified_on_gold_chunk": all(c in wanted for c, _ in resolved) if wanted and resolved else None,
@@ -156,19 +197,21 @@ def evaluate_answers(args) -> dict:
             "citations_on_gold_chunk": all(c in wanted for c in cited) if wanted and cited else None,
             "quotes_verbatim": all(c in by_id and squash(a["quote"]) in squash(by_id[c].text)
                                    for a, c in zip(answers, cited)),
-            "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
+            "passages": len(hits), "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
             "seconds": call.seconds, "cached": call.cached})
         print(f"{q['id']} {q['kind']:<11} {'OK ' if result['correct'] else 'BAD'} {status} "
               f"{rows[-1]['values']} {call.prompt_tokens}+{call.completion_tokens} tok {call.seconds}s", flush=True)
-    kinds = list(dict.fromkeys(q["kind"] for q in questions))
+    return rows
+
+
+def summarize(rows: list[dict], client: ModelClient) -> dict:
+    kinds = list(dict.fromkeys(r["kind"] for r in rows))
     answered = [r for r in rows if r["status"] == "answered"]
 
     def frac(key, subset):
         return f"{sum(bool(r[key]) for r in subset)}/{len(subset)}"
 
     return {
-        "pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
-        "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported, "facts": args.facts,
         "questions": len(rows), "withheld": [r["id"] for r in rows if r["withheld_values"]],
         "correct_total": frac("correct", rows),
         "correct_by_kind": {k: frac("correct", [r for r in rows if r["kind"] == k]) for k in kinds},
@@ -201,7 +244,10 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--endpoint", default="local-llama")
     a.add_argument("--model", required=True)
     a.add_argument("--max-tokens", type=int, default=400)
+    a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
+    a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
     a.add_argument("--facts", help="a graphrag.neo4j_kg result name; its facts are shown under each passage")
+    a.add_argument("--fresh", action="store_true", help="bypass the request cache, e.g. to re-measure under new server settings")
     a.add_argument("--withhold-unsupported", action="store_true",
                    help="drop answers that no retrieved passage supports (B-F17)")
     for p in (r, a):

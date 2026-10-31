@@ -1,5 +1,6 @@
 .venv/
 .venv-graphrag/
+.venv-lightrag/
 data/raw/
 data/interim/
 data/processed/local/

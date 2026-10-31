@@ -1,0 +1,61 @@
+{
+  "pool": "ak3",
+  "pool_description": "the whole AK-3 EOWR",
+  "chunks": 60,
+  "pages": 28,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "guidance": null,
+  "lightrag": "1.5.7",
+  "graph": {
+    "entities": 516,
+    "relations": 628,
+    "entity_types": {
+      "artifact": 84,
+      "event": 83,
+      "concept": 76,
+      "location": 65,
+      "content": 42,
+      "UNKNOWN": 40,
+      "naturalobject": 37,
+      "organization": 33,
+      "data": 27,
+      "person": 12,
+      "method": 11,
+      "geologicalfeature": 3,
+      "project": 1,
+      "process": 1,
+      "physicalproperty": 1
+    }
+  },
+  "wall_seconds": 625.2,
+  "llm": {
+    "calls": 122,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 315318,
+    "completion_tokens": 65654,
+    "seconds": 603.5,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "embedding": {
+    "calls": 121,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 51172,
+    "completion_tokens": 0,
+    "seconds": 21.0,
+    "cost_usd": 0.0,
+    "models": [
+      "local-embed:qwen3-embedding-0.6b"
+    ]
+  },
+  "per_page": {
+    "calls": 4.36,
+    "tokens": 13606,
+    "seconds": 22.33
+  }
+}

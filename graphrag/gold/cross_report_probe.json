@@ -1,0 +1,31 @@
+{
+  "status": "Development probe, not an evaluation set (D-49). Written by Track B on 31 October 2026 from the three K1 version 0 end-of-well reports, to check whether a graph helps on questions across wells and reports (B-D15 step 1). Replace with the expert question set when it arrives; send to the supervisor as examples of graph-worthy questions.",
+  "documents": ["gdr882_ak3_eowr", "gdr1295_56-32_eowr", "gdr1153_68-32_eowr"],
+  "questions": [
+    {"id": "p01", "kind": "comparison", "question": "Which of the wells AK-3, 56-32 and 68-32 was drilled deepest?", "gold": ["x01"]},
+    {"id": "p02", "kind": "cross_report", "question": "What total depths did wells AK-3, 56-32 and 68-32 reach?", "gold": ["x02", "x03", "x04"]},
+    {"id": "p03", "kind": "comparison", "question": "Which of the wells AK-3, 56-32 and 68-32 was spudded first?", "gold": ["x05"]},
+    {"id": "p04", "kind": "comparison", "question": "Which of the wells AK-3, 56-32 and 68-32 were drilled deeper than planned?", "gold": ["x06", "x07"]},
+    {"id": "p05", "kind": "multi_hop", "question": "Which GRG geologist worked on both the AK-3 well and the Utah FORGE monitoring wells?", "gold": ["x08"]},
+    {"id": "p06", "kind": "multi_hop", "question": "Which senior drilling engineer prepared both the 56-32 and the 68-32 end-of-well reports?", "gold": ["x09"]},
+    {"id": "p07", "kind": "count", "question": "How many of the end-of-well reports cover Utah FORGE wells?", "gold": ["x10"]},
+    {"id": "p08", "kind": "relation", "question": "Injection in which well was 68-32 drilled to monitor?", "gold": ["x11"]},
+    {"id": "p09", "kind": "cross_report", "question": "On what dates were wells AK-3, 68-32 and 56-32 spudded?", "gold": ["x12", "x13", "x14"]}
+  ],
+  "facts": [
+    {"id": "x01", "value": "56-32", "alternatives": ["Well 56-32"], "unit": "well", "chunks": ["gdr1295_56-32_eowr#c0006", "gdr1295_56-32_eowr#c0038", "gdr882_ak3_eowr#c0002", "gdr1153_68-32_eowr#c0005"]},
+    {"id": "x02", "well": "AK-3", "value": 1955, "unit": "ft", "chunks": ["gdr882_ak3_eowr#c0002", "gdr882_ak3_eowr#c0004", "gdr882_ak3_eowr#c0010", "gdr882_ak3_eowr#c0030"]},
+    {"id": "x03", "well": "56-32", "value": 9145, "unit": "ft", "chunks": ["gdr1295_56-32_eowr#c0006", "gdr1295_56-32_eowr#c0036", "gdr1295_56-32_eowr#c0038"]},
+    {"id": "x04", "well": "68-32", "value": 1000, "unit": "ft", "chunks": ["gdr1153_68-32_eowr#c0005", "gdr1153_68-32_eowr#c0017"]},
+    {"id": "x05", "value": "AK-3", "alternatives": ["Well AK-3"], "unit": "well", "chunks": ["gdr882_ak3_eowr#c0010", "gdr1153_68-32_eowr#c0017", "gdr1295_56-32_eowr#c0035"]},
+    {"id": "x06", "value": "AK-3", "alternatives": ["Well AK-3"], "unit": "well", "chunks": ["gdr882_ak3_eowr#c0002", "gdr882_ak3_eowr#c0010"]},
+    {"id": "x07", "value": "56-32", "alternatives": ["Well 56-32"], "unit": "well", "chunks": ["gdr1295_56-32_eowr#c0006", "gdr1295_56-32_eowr#c0038"]},
+    {"id": "x08", "value": "Mary Mann", "unit": "person", "chunks": ["gdr882_ak3_eowr#c0039", "gdr1295_56-32_eowr#c0003", "gdr1153_68-32_eowr#c0003"]},
+    {"id": "x09", "value": "Ernesto Rivas", "unit": "person", "chunks": ["gdr1295_56-32_eowr#c0003", "gdr1153_68-32_eowr#c0003"]},
+    {"id": "x10", "value": 2, "unit": "reports", "chunks": ["gdr1295_56-32_eowr#c0016", "gdr1153_68-32_eowr#c0005"]},
+    {"id": "x11", "value": "58-32", "alternatives": ["Well 58-32"], "unit": "well", "chunks": ["gdr1153_68-32_eowr#c0005"]},
+    {"id": "x12", "well": "AK-3", "value": "2016-08-18", "unit": "date", "chunks": ["gdr882_ak3_eowr#c0010"]},
+    {"id": "x13", "well": "68-32", "value": "2019-03-09", "unit": "date", "chunks": ["gdr1153_68-32_eowr#c0017"]},
+    {"id": "x14", "well": "56-32", "value": "2021-02-08", "unit": "date", "chunks": ["gdr1295_56-32_eowr#c0035"]}
+  ]
+}

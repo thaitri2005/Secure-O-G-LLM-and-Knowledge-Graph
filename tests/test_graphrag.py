@@ -10,7 +10,8 @@ import httpx
 
 from graphrag.baseline import render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
-from graphrag.data import Chunk
+from graphrag.data import Chunk, load_questions
+from graphrag.ontology import glossary, guidance, load as load_k2
 from graphrag.retrieval import BM25, Fusion, WellRouter, well_names
 from graphrag.citations import resolve
 from graphrag.scoring import normalize, score_answer, same_value
@@ -158,6 +159,35 @@ class CitationTests(unittest.TestCase):
     def test_unsupported_answer_gets_no_citation(self):
         answer = {"value": "3000", "chunk": "c0002", "quote": "3000 ft"}
         self.assertEqual(resolve(answer, self.hits, self.texts, "d"), (None, "unsupported"))
+
+class OntologyTests(unittest.TestCase):
+    def test_glossary_merges_expansions_and_flags_merged_cells(self):
+        table = {"table_id": "d#t1", "cells": [
+            {"r": 0, "c": 0, "text": "Abbreviation or Acronyms"}, {"r": 0, "c": 1, "text": "Description"},
+            {"r": 1, "c": 0, "text": "TD"}, {"r": 1, "c": 1, "text": "Total Depth"},
+            {"r": 2, "c": 0, "text": "JSA jt"}, {"r": 2, "c": 1, "text": "job safety analysis Joint"}]}
+        other = dict(table, table_id="d#t2", cells=[{"r": 0, "c": 0, "text": "TD"}, {"r": 0, "c": 1, "text": "total depth"}])
+        k2 = {"sources": {"glossary_tables": ["d#t1", "d#t2"], "unit_tables": []}}
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "tables.jsonl"
+            path.write_text("\n".join(json.dumps(t) for t in (table, other)), encoding="utf-8")
+            entries = {e["term"]: e for e in glossary(k2, path)}
+        self.assertEqual(entries["TD"]["expansions"], ["Total Depth"])
+        self.assertEqual(entries["TD"]["tables"], ["d#t1", "d#t2"])
+        self.assertIn("check", entries["JSA jt"])
+
+    def test_k2_renders_as_lightrag_guidance(self):
+        text = guidance(load_k2())
+        self.assertIn("- Well:", text)
+        self.assertIn("Well MONITORS Well", text)
+
+
+class QuestionSetTests(unittest.TestCase):
+    def test_probe_questions_have_gold_facts_with_full_chunk_ids(self):
+        questions, gold = load_questions("probe")
+        self.assertTrue(all(g in gold for q in questions for g in q["gold"]))
+        self.assertTrue(all("#" in c for fact in gold.values() for c in fact["chunks"]))
+
 
 class FactTests(unittest.TestCase):
     def test_fact_renders_with_qualifier_and_context(self):

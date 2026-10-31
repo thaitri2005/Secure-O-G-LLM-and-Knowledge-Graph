@@ -1,0 +1,1435 @@
+{
+  "k2": "eowr",
+  "version": "1.0",
+  "date": "2026-10-31",
+  "status": "Thin slice for end-of-well reports (D-49). Authored by Track B from the section headings and table columns of the three K1 version 0 end-of-well reports (AK-3, 56-32, 68-32) and the prototype's 14 properties (prototype/profiles/oil_wells.json, unchanged). The glossary is generated from the reports' abbreviation and unit tables by `python -m graphrag.ontology glossary`. Not reviewed by a domain expert.",
+  "sources": {
+    "headings": [
+      "gdr882_ak3_eowr",
+      "gdr1295_56-32_eowr",
+      "gdr1153_68-32_eowr"
+    ],
+    "tables": [
+      "gdr882_ak3_eowr#t002",
+      "gdr882_ak3_eowr#t004",
+      "gdr882_ak3_eowr#t005",
+      "gdr882_ak3_eowr#t006",
+      "gdr1295_56-32_eowr#t012",
+      "gdr1295_56-32_eowr#t015",
+      "gdr1295_56-32_eowr#t025",
+      "gdr1295_56-32_eowr#t027",
+      "gdr1295_56-32_eowr#t030",
+      "gdr1295_56-32_eowr#t036",
+      "gdr1153_68-32_eowr#t003",
+      "gdr1153_68-32_eowr#t004"
+    ],
+    "glossary_tables": [
+      "gdr882_ak3_eowr#t001",
+      "gdr1295_56-32_eowr#t006",
+      "gdr1295_56-32_eowr#t007",
+      "gdr1295_56-32_eowr#t008"
+    ],
+    "unit_tables": [
+      "gdr1295_56-32_eowr#t009",
+      "gdr1295_56-32_eowr#t010"
+    ]
+  },
+  "entity_types": {
+    "Well": {
+      "definition": "A drilled hole with its own name, such as AK-3, TG-2, 56-32 or 68-32",
+      "examples": [
+        "AK-3",
+        "56-32"
+      ],
+      "sections": [
+        "Well Information",
+        "Well Data",
+        "Summary",
+        "Executive Summary"
+      ]
+    },
+    "Project": {
+      "definition": "The program or site a well belongs to, such as the Akutan Geothermal Project or Utah FORGE",
+      "examples": [
+        "Utah FORGE",
+        "Akutan Geothermal Project"
+      ],
+      "sections": [
+        "Introduction",
+        "Summary"
+      ]
+    },
+    "Organization": {
+      "definition": "A company or agency acting as operator, drilling project manager, drilling contractor, service company or regulator",
+      "examples": [
+        "University of Utah",
+        "Geothermal Resource Group",
+        "City of Akutan"
+      ],
+      "sections": [
+        "Well Information",
+        "Permitting",
+        "Introduction"
+      ]
+    },
+    "Person": {
+      "definition": "A named person with a role on the well or the report: prepared, reviewed or approved the report, supervisor, geologist",
+      "examples": [
+        "Mary Mann",
+        "Ernesto Rivas"
+      ],
+      "sections": [
+        "cover pages",
+        "Core logging and Geology"
+      ]
+    },
+    "Rig": {
+      "definition": "The drilling rig, named by contractor and number",
+      "examples": [
+        "Frontier Rig-16"
+      ],
+      "sections": [
+        "Well Information",
+        "Mobilization",
+        "Rig up"
+      ]
+    },
+    "HoleSection": {
+      "definition": "A drilled interval named by its bit size or role: conductor, surface, intermediate, production",
+      "examples": [
+        "12-1/4 in. hole",
+        "Surface Section"
+      ],
+      "sections": [
+        "Conductor",
+        "Surface Section",
+        "Intermediate Section",
+        "Production Section",
+        "6.2 to 6.4 hole sections"
+      ]
+    },
+    "CasingString": {
+      "definition": "A casing or liner run in a hole section, with outer diameter, weight, grade, connection and setting depth",
+      "examples": [
+        "13-3/8 in. casing"
+      ],
+      "sections": [
+        "Casing and Cementing",
+        "Casing Properties and Well Profiles",
+        "Planned Wellbore Construction"
+      ]
+    },
+    "Formation": {
+      "definition": "A rock unit or lithology met at a depth, such as granite, basalt or ash tuff",
+      "examples": [
+        "granite",
+        "Basalt and Andesite Lava"
+      ],
+      "sections": [
+        "Lithology",
+        "Core logging and Geology",
+        "Alteration",
+        "Permeability"
+      ]
+    },
+    "Document": {
+      "definition": "The report itself: an end-of-well or daily drilling report",
+      "examples": [
+        "End of Well Report Utah FORGE Seismic Monitoring Well 56-32"
+      ],
+      "sections": [
+        "cover pages"
+      ]
+    }
+  },
+  "relation_types": {
+    "PART_OF": {
+      "from": "Well",
+      "to": "Project",
+      "definition": "The well was drilled for this project"
+    },
+    "OPERATED_BY": {
+      "from": "Well",
+      "to": "Organization",
+      "definition": "Operator of the well"
+    },
+    "MANAGED_BY": {
+      "from": "Well",
+      "to": "Organization",
+      "definition": "Drilling project manager"
+    },
+    "DRILLED_WITH": {
+      "from": "Well",
+      "to": "Rig",
+      "definition": "The rig that drilled the well"
+    },
+    "CONTRACTOR_OF": {
+      "from": "Organization",
+      "to": "Rig",
+      "definition": "The drilling contractor that owns the rig"
+    },
+    "HAS_SECTION": {
+      "from": "Well",
+      "to": "HoleSection",
+      "definition": "A hole section of the well"
+    },
+    "CASED_WITH": {
+      "from": "HoleSection",
+      "to": "CasingString",
+      "definition": "Casing run in the section"
+    },
+    "ENCOUNTERED": {
+      "from": "Well",
+      "to": "Formation",
+      "definition": "The well met this formation; depth as context"
+    },
+    "MONITORS": {
+      "from": "Well",
+      "to": "Well",
+      "definition": "The well was drilled to monitor activity, such as injection, in another well"
+    },
+    "OFFSET_OF": {
+      "from": "Well",
+      "to": "Well",
+      "definition": "A nearby well the report compares with, with distance as context"
+    },
+    "ABOUT": {
+      "from": "Document",
+      "to": "Well",
+      "definition": "The report covers this well"
+    },
+    "PREPARED_BY": {
+      "from": "Document",
+      "to": "Person",
+      "definition": "Prepared, reviewed or approved the report; the role is context"
+    },
+    "WORKED_ON": {
+      "from": "Person",
+      "to": "Well",
+      "definition": "A person with a stated role on the well, such as geologist or supervisor"
+    }
+  },
+  "properties": {
+    "total_depth": {
+      "of": "Well",
+      "unit": "ft",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Final drilled depth (actual) or depth planned"
+    },
+    "spud_date": {
+      "of": "Well",
+      "unit": "date",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Date drilling started"
+    },
+    "rig_release_date": {
+      "of": "Well",
+      "unit": "date",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Date the rig was released"
+    },
+    "drilling_days": {
+      "of": "Well",
+      "unit": "days",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Days of the drilling project"
+    },
+    "api_number": {
+      "of": "Well",
+      "unit": "id",
+      "qualifiers": [
+        "none"
+      ],
+      "definition": "API well number as written"
+    },
+    "ground_elevation": {
+      "of": "Well",
+      "unit": "ft",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Ground elevation above sea level"
+    },
+    "well_type": {
+      "of": "Well",
+      "unit": "text",
+      "qualifiers": [
+        "none"
+      ],
+      "definition": "Purpose of the well, such as monitoring, production or exploration"
+    },
+    "hole_size": {
+      "of": "HoleSection",
+      "unit": "in",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Bit diameter of the section"
+    },
+    "casing_depth": {
+      "of": "CasingString",
+      "unit": "ft",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "context": "casing_size_in",
+      "definition": "Setting depth of a casing string"
+    },
+    "casing_weight": {
+      "of": "CasingString",
+      "unit": "ppf",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Weight per foot"
+    },
+    "casing_grade": {
+      "of": "CasingString",
+      "unit": "text",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Steel grade, such as K-55"
+    },
+    "inclination": {
+      "of": "Well",
+      "unit": "deg",
+      "qualifiers": [
+        "actual"
+      ],
+      "context": "depth_ft",
+      "definition": "Survey inclination at a measured depth"
+    },
+    "max_measured_temperature": {
+      "of": "Well",
+      "unit": "degF",
+      "qualifiers": [
+        "actual"
+      ],
+      "context": "depth_ft",
+      "definition": "Maximum measured temperature"
+    },
+    "projected_formation_temperature": {
+      "of": "Well",
+      "unit": "degF",
+      "qualifiers": [
+        "projected"
+      ],
+      "context": "depth_ft",
+      "definition": "Projected equilibrium temperature at a depth"
+    },
+    "productive_time": {
+      "of": "Well",
+      "unit": "hours",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Productive rig time"
+    },
+    "non_productive_time": {
+      "of": "Well",
+      "unit": "hours",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Non-productive rig time (NPT)"
+    },
+    "rate_of_penetration": {
+      "of": "HoleSection",
+      "unit": "fph",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Average ROP of a bit run or section"
+    },
+    "mud_weight": {
+      "of": "HoleSection",
+      "unit": "ppg",
+      "qualifiers": [
+        "actual",
+        "planned"
+      ],
+      "definition": "Drilling fluid density"
+    },
+    "top_depth": {
+      "of": "Formation",
+      "unit": "ft",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Depth at which the well met the formation"
+    }
+  },
+  "glossary": [
+    {
+      "term": "$",
+      "kind": "unit",
+      "expansions": [
+        "Currency - daily cost and AFE amounts (Cost)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "1/32 in",
+      "kind": "unit",
+      "expansions": [
+        "Small diameter - bit nozzle diameter (Size/Diameter-1)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "ACP",
+      "kind": "abbreviation",
+      "expansions": [
+        "annulus casing packer"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "AD",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alternative (special) drift"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "ADEC",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alaska Department of Environmental Conservation"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "ADF&G",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alaska Department of Fish and Game"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "ADNR",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alaska Department of Natural Resources"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "AEA",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alaska Energy Authority"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "AFE",
+      "kind": "abbreviation",
+      "expansions": [
+        "authorization for expenditure"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "AOGCC",
+      "kind": "abbreviation",
+      "expansions": [
+        "Alaska Oil and Gas Conservation Commission"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "API",
+      "kind": "abbreviation",
+      "expansions": [
+        "American Petroleum Institute"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "ASL",
+      "kind": "abbreviation",
+      "expansions": [
+        "above sea level"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "bbl",
+      "kind": "unit",
+      "expansions": [
+        "Large volume - mud/water/cement volume (Volume-2)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "BGL",
+      "kind": "abbreviation",
+      "expansions": [
+        "below ground level"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "BHA",
+      "kind": "abbreviation",
+      "expansions": [
+        "bottom-hole assembly"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "BHST",
+      "kind": "abbreviation",
+      "expansions": [
+        "bottom hole static temperature"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "BOP",
+      "kind": "abbreviation",
+      "expansions": [
+        "blowout preventer"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "BOPE",
+      "kind": "abbreviation",
+      "expansions": [
+        "Blowout Prevention Equipment"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "bpm",
+      "kind": "unit",
+      "expansions": [
+        "Large flow rate - cement, mud/water loss (FlowRate-3)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "BTC",
+      "kind": "abbreviation",
+      "expansions": [
+        "buttress threaded and coupled"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "CO2",
+      "kind": "abbreviation",
+      "expansions": [
+        "carbon dioxide"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t006"
+      ]
+    },
+    {
+      "term": "cp",
+      "kind": "unit",
+      "expansions": [
+        "Viscosity - plastic viscosity (Viscosity-2)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "DC",
+      "kind": "abbreviation",
+      "expansions": [
+        "drill collar"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "DOE",
+      "kind": "abbreviation",
+      "expansions": [
+        "Department of Energy"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "DP",
+      "kind": "abbreviation",
+      "expansions": [
+        "drill pipe"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "DSV",
+      "kind": "abbreviation",
+      "expansions": [
+        "drilling supervisor"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "EMW",
+      "kind": "abbreviation",
+      "expansions": [
+        "equivalent mud weight"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "EOWR",
+      "kind": "abbreviation",
+      "expansions": [
+        "end-of-well report"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "FC",
+      "kind": "abbreviation",
+      "expansions": [
+        "float collar"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "FG",
+      "kind": "abbreviation",
+      "expansions": [
+        "fracture gradient"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "FIT",
+      "kind": "abbreviation",
+      "expansions": [
+        "formation integrity test"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "FOSV",
+      "kind": "abbreviation",
+      "expansions": [
+        "full opening safety valve"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "fph",
+      "kind": "unit",
+      "expansions": [
+        "Rate of penetration -- feet per hour (Drilling Rate)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "FS",
+      "kind": "abbreviation",
+      "expansions": [
+        "float shoe"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "ft or (')",
+      "kind": "unit",
+      "expansions": [
+        "Moderate length - depth (Length-1)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "ft-lb",
+      "kind": "unit",
+      "expansions": [
+        "Torque (Torque)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "gal",
+      "kind": "unit",
+      "expansions": [
+        "Small to moderate volume (Volume-1)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "GL",
+      "kind": "abbreviation",
+      "expansions": [
+        "ground level"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "GOCAD",
+      "kind": "abbreviation",
+      "expansions": [
+        "Geologic Object Computer Aided Drawing, geologic modeling software"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "gpm",
+      "kind": "abbreviation",
+      "expansions": [
+        "gallons per minute",
+        "Moderate flow rate - pump flow (FlowRate-1)"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "GRG",
+      "kind": "abbreviation",
+      "expansions": [
+        "Geothermal Resource Group",
+        "Geothermal Resource Group, Inc."
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "H2S",
+      "kind": "abbreviation",
+      "expansions": [
+        "Hydrogen sulfide"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "HSBV",
+      "kind": "abbreviation",
+      "expansions": [
+        "Hot Springs Bay Valley"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "HSE",
+      "kind": "abbreviation",
+      "expansions": [
+        "health, safety, and environmental"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "HWDP",
+      "kind": "abbreviation",
+      "expansions": [
+        "heavy weight drill pipe"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "HWT",
+      "kind": "abbreviation",
+      "expansions": [
+        "Particular core rod thread design"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "IADC ID",
+      "kind": "abbreviation",
+      "expansions": [
+        "International Association of Drilling Contractors inner diameter"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ],
+      "check": "possibly two merged cells"
+    },
+    {
+      "term": "in or (\")",
+      "kind": "unit",
+      "expansions": [
+        "Larger diameter - bit diameter, pipe OD (Size/Diameter-2)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "JSA jt",
+      "kind": "abbreviation",
+      "expansions": [
+        "job safety analysis Joint (casing, drill pipe)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ],
+      "check": "possibly two merged cells"
+    },
+    {
+      "term": "KPI",
+      "kind": "abbreviation",
+      "expansions": [
+        "key performance indicators"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "Ksi",
+      "kind": "abbreviation",
+      "expansions": [
+        "Kilopounds per Square"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "lb",
+      "kind": "unit",
+      "expansions": [
+        "Weight - WOB, hook load (Weight)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "lb /100 sqft",
+      "kind": "unit",
+      "expansions": [
+        "Yield point (Yield Point)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "LCM",
+      "kind": "abbreviation",
+      "expansions": [
+        "lost circulation material"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "LGS LOT",
+      "kind": "abbreviation",
+      "expansions": [
+        "low gravity solids leak off test"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ],
+      "check": "possibly two merged cells"
+    },
+    {
+      "term": "LOT",
+      "kind": "abbreviation",
+      "expansions": [
+        "Leak-off test"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "LSND",
+      "kind": "abbreviation",
+      "expansions": [
+        "low solids non-dispersed (drilling mud)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "LSR",
+      "kind": "abbreviation",
+      "expansions": [
+        "Life-saving rules"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "m",
+      "kind": "abbreviation",
+      "expansions": [
+        "meters"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "M/U",
+      "kind": "abbreviation",
+      "expansions": [
+        "make up"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "MD",
+      "kind": "abbreviation",
+      "expansions": [
+        "measured"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "MI/RU",
+      "kind": "abbreviation",
+      "expansions": [
+        "move in and rig up"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "mile",
+      "kind": "unit",
+      "expansions": [
+        "Long lengths - visibility (Length-2)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "MRT",
+      "kind": "abbreviation",
+      "expansions": [
+        "Maximum Reading Thermometer"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "MSDS",
+      "kind": "abbreviation",
+      "expansions": [
+        "material safety data sheet"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "MW",
+      "kind": "abbreviation",
+      "expansions": [
+        "mud weight"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "N/D",
+      "kind": "abbreviation",
+      "expansions": [
+        "nipple down"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "N/U",
+      "kind": "abbreviation",
+      "expansions": [
+        "nipple up"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t007"
+      ]
+    },
+    {
+      "term": "NEPA",
+      "kind": "abbreviation",
+      "expansions": [
+        "National Environmental Policy Act"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "NMDC",
+      "kind": "abbreviation",
+      "expansions": [
+        "non-magnetic drill collar"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "NPT",
+      "kind": "abbreviation",
+      "expansions": [
+        "national pipe thread"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "o /100",
+      "kind": "unit",
+      "expansions": [
+        "Dog leg severity (DLS) (Dog Leg)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "o F",
+      "kind": "unit",
+      "expansions": [
+        "Temperature - mud temperature (Temperature)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "OD",
+      "kind": "abbreviation",
+      "expansions": [
+        "outer diameter"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "ohm.m",
+      "kind": "unit",
+      "expansions": [
+        "Resistivity - geophysical survey (Resistivity)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "P/T or PT",
+      "kind": "abbreviation",
+      "expansions": [
+        "pressure and temperature"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ],
+      "check": "possibly two merged cells"
+    },
+    {
+      "term": "P/U",
+      "kind": "abbreviation",
+      "expansions": [
+        "pick up"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "PDC",
+      "kind": "abbreviation",
+      "expansions": [
+        "polycrystalline diamond compact (bit)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "PLC",
+      "kind": "abbreviation",
+      "expansions": [
+        "partial loss of circulation"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "POH",
+      "kind": "abbreviation",
+      "expansions": [
+        "pull out of hole"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "PoH",
+      "kind": "abbreviation",
+      "expansions": [
+        "probability of hazard occurrence"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "PPB",
+      "kind": "abbreviation",
+      "expansions": [
+        "pounds per barrel"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "ppf",
+      "kind": "abbreviation",
+      "expansions": [
+        "pounds per foot",
+        "Weight per unit of length - tubular (Weight per Length)"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "PPF",
+      "kind": "abbreviation",
+      "expansions": [
+        "pounds per foot"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "ppg",
+      "kind": "abbreviation",
+      "expansions": [
+        "pounds per gallon",
+        "Fluid density - mud weight/density (Fluid Density)"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "PPG",
+      "kind": "abbreviation",
+      "expansions": [
+        "pounds per gallon"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "psi",
+      "kind": "unit",
+      "expansions": [
+        "Pressure - pump pressure (Pressure)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "PT",
+      "kind": "abbreviation",
+      "expansions": [
+        "Pressure, temperature, normally in reference to a downhole survey or tool"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "PTS",
+      "kind": "abbreviation",
+      "expansions": [
+        "pressure, temperature, and spinner logging / survey"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "PVT",
+      "kind": "abbreviation",
+      "expansions": [
+        "pit volume totalizer"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "RD/MO",
+      "kind": "abbreviation",
+      "expansions": [
+        "rig down and move off"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "RMG",
+      "kind": "abbreviation",
+      "expansions": [
+        "rig manager"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "ROP",
+      "kind": "abbreviation",
+      "expansions": [
+        "Rate of Penetration"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "scfm",
+      "kind": "unit",
+      "expansions": [
+        "Large flow rates - gas flow rate (FlowRate-2)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t009"
+      ]
+    },
+    {
+      "term": "sec /qt",
+      "kind": "unit",
+      "expansions": [
+        "Viscosity - funnel viscosity (Viscosity-1)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "sFIT",
+      "kind": "abbreviation",
+      "expansions": [
+        "step-rate formation integrity test"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "SHPO",
+      "kind": "abbreviation",
+      "expansions": [
+        "State Historic Preservation Office"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "TD",
+      "kind": "abbreviation",
+      "expansions": [
+        "Total Depth or Termination Depth",
+        "Total Depth or Termination Depth of hole or section"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001",
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "TMT",
+      "kind": "abbreviation",
+      "expansions": [
+        "Technical Monitoring Team"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "TOTCO",
+      "kind": "abbreviation",
+      "expansions": [
+        "Common trade name in use for single-shot inclination-only survey tool, mechanical inclination indicator"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "units",
+      "kind": "unit",
+      "expansions": [
+        "Gas concentrations - trip and connection gas (Gas)"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t010"
+      ]
+    },
+    {
+      "term": "UofU",
+      "kind": "abbreviation",
+      "expansions": [
+        "University of Utah"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    },
+    {
+      "term": "VFJ",
+      "kind": "abbreviation",
+      "expansions": [
+        "Valley Flush Joint casing connection"
+      ],
+      "tables": [
+        "gdr882_ak3_eowr#t001"
+      ]
+    },
+    {
+      "term": "xLOT",
+      "kind": "abbreviation",
+      "expansions": [
+        "extended leak off test"
+      ],
+      "tables": [
+        "gdr1295_56-32_eowr#t008"
+      ]
+    }
+  ]
+}
