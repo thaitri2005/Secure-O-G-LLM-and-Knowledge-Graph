@@ -70,9 +70,9 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 | [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
   | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
   | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / 28/31 |
-  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the working design) | **30/31** |
+  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the working design; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
 
-  On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; the baseline plus **validated** per-well facts reaches **5/9** (B-D19, the working design). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
+  On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
   - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.

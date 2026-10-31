@@ -373,6 +373,22 @@
         "actual"
       ],
       "definition": "Depth at which the well met the formation"
+    },
+    "spud_to_release_days": {
+      "of": "Well",
+      "unit": "days",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Days from spud to rig release"
+    },
+    "total_rig_time": {
+      "of": "Well",
+      "unit": "hours",
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Total rig time, productive plus non-productive"
     }
   },
   "glossary": [

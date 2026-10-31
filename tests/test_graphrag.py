@@ -134,6 +134,7 @@ class ScoringTests(unittest.TestCase):
         self.assertFalse(score_answer({}, [], "answered", ["42"])["correct"])
 
     def test_dates_and_numbers_are_normalized_in_code(self):
+        self.assertEqual(normalize("09-Mar-19"), "2019-03-09")
         self.assertEqual(normalize("18 August 2016"), "2016-08-18")
         self.assertEqual(normalize("August 18th, 2016"), "2016-08-18")
         self.assertEqual(normalize("1,955 ft"), "1955 ft")

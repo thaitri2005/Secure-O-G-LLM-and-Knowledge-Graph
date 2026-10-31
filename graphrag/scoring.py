@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Any
 
 DATE_FORMATS = ["%Y-%m-%d", "%d %B %Y", "%d %b %Y", "%B %d, %Y", "%b %d, %Y", "%B %d %Y", "%d-%b-%Y", "%d-%B-%Y",
-                "%d/%m/%Y", "%d.%m.%Y", "%Y/%m/%d"]
+                "%d/%m/%Y", "%d.%m.%Y", "%Y/%m/%d", "%d-%b-%y"]  # 09-Mar-19 in daily reports
 
 
 def squash(text: str) -> str:

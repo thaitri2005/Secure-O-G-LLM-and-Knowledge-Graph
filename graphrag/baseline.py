@@ -15,7 +15,7 @@ from typing import Any
 
 from .citations import resolve
 from .client import ModelClient, load_endpoints
-from .data import AK3, QUESTION_SETS, ROOT, load_chunks, load_questions, prototype_slice
+from .data import AK3, QUESTION_SETS, ROOT, Chunk, load_chunks, load_questions, prototype_slice
 from .retrieval import BM25, Dense, Fusion, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
 from .validate import validate
@@ -139,17 +139,20 @@ def evaluate_answers(args) -> dict:
     if args.facts:
         for fact in json.loads((RESULTS / f"{args.facts}.json").read_text(encoding="utf-8"))["facts"]:
             facts.setdefault(fact["chunk"], []).append(render(fact))
-    sheet, rejected = {}, {}
+    sheet_facts, rejected = [], {}
     if args.fact_sheet:
         # Several builds pool their facts, so validation's majority vote runs across extraction runs (B-F26).
         sheet_facts = [f for name in args.fact_sheet
                        for f in json.loads((RESULTS / f"{name}.json").read_text(encoding="utf-8"))["facts"]]
         if args.validate:
             sheet_facts, rejected = validate(sheet_facts, {c.id: c.text for c in chunks})
-        sheet = fact_sheet(sheet_facts)
+    ranker = PropertyRanker(args.sheet_embed_model) if args.fact_sheet and args.sheet_properties else None
 
     def retrieve(question: str) -> tuple[list[str], str]:
         hits = [cid for cid, _ in retriever.search(question, args.k)]
+        if not args.fact_sheet:
+            return hits, ""
+        sheet = fact_sheet(sheet_facts, properties=ranker.top(question, args.sheet_properties) if ranker else None)
         return hits, "\n".join(sheet[w] for w in sorted(well_names(question)) if w in sheet)
 
     rows = answer_questions(retrieve, chunks, client,
@@ -157,23 +160,47 @@ def evaluate_answers(args) -> dict:
                             questions=args.questions, answer_format=args.answer_format)
     return {"pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
             "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported,
-            "facts": args.facts, "fact_sheet": args.fact_sheet, "validated": args.validate,
+            "facts": args.facts, "fact_sheet": args.fact_sheet, "validated": args.validate, "sheet_properties": args.sheet_properties,
             "facts_rejected": rejected, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
 
 
-def fact_sheet(facts: list[dict], limit: int = 25) -> dict[str, str]:
-    """Per well, the facts a graph build extracted, as lines the answer model can read (E20).
-
-    Facts are grouped under the well name the extractor gave, matched to question wells by `well_names`;
-    each line keeps its source chunk so the model can cite a passage."""
-    lines: dict[str, list[str]] = {}
-    # Well-level facts (depth, dates, days) before the many per-depth readings, which the limit would cut first.
+def fact_lines(facts: list[dict]) -> dict[str, list[tuple[str, str]]]:
+    """Per well, (property, line) for each fact a graph build extracted (E20). Facts are grouped under the well
+    name the extractor gave, matched to question wells by `well_names`; each line keeps its source chunk so the
+    model can cite a passage. Well-level facts (depth, dates, days) come before per-depth readings."""
+    lines: dict[str, list[tuple[str, str]]] = {}
     for fact in sorted(facts, key=lambda f: (bool(f.get("context")), f["property"])):
         for well in well_names(str(fact.get("well") or "")):
-            line = f"- {render(fact)} [{fact['chunk']}]"
+            line = (fact["property"], f"- {render(fact)} [{fact['chunk']}]")
             if line not in lines.setdefault(well, []):
                 lines[well].append(line)
-    return {w: f"{w}:\n" + "\n".join(ls[:limit]) for w, ls in lines.items()}
+    return lines
+
+
+def fact_sheet(facts: list[dict], limit: int = 25, properties: list[str] | None = None) -> dict[str, str]:
+    """Per well, the sheet text: at most `limit` lines, only the given properties when there are any."""
+    out = {}
+    for well, lines in fact_lines(facts).items():
+        kept = [line for prop, line in lines if properties is None or prop in properties][:limit]
+        if kept:
+            out[well] = f"{well}:\n" + "\n".join(kept)
+    return out
+
+
+class PropertyRanker:
+    """Ranks K2 properties by how well their definitions match a question, with the dense embedder (E22).
+
+    The sheet then shows only the facts of the top properties, instead of every fact of a well."""
+
+    def __init__(self, embed_model: str):
+        from .ontology import load as load_k2
+        self.names = list(load_k2()["properties"])
+        definitions = [f"{n.replace('_', ' ')}: {d['definition']}" for n, d in load_k2()["properties"].items()]
+        self.dense = Dense([Chunk(n, "k2", 0, "property", None, t) for n, t in zip(self.names, definitions)],
+                           ModelClient(load_endpoints()["local-embed"], embed_model, cache_dir=None))
+
+    def top(self, question: str, n: int) -> list[str]:
+        return [name for name, _ in self.dense.search(question, n)]
 
 
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
@@ -280,6 +307,9 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--max-tokens", type=int, default=400)
     a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
+    a.add_argument("--sheet-properties", type=int, help="show only the facts of the N K2 properties whose "
+                                                        "definitions best match the question (E22)")
+    a.add_argument("--sheet-embed-model", default="qwen3-embedding-0.6b")
     a.add_argument("--validate", action="store_true", help="check fact-sheet facts first (graphrag.validate, B-F24)")
     a.add_argument("--fact-sheet", nargs="+", help="a graphrag.neo4j_kg result name; the facts of each well the question "
                                         "names go before the passages (E20)")

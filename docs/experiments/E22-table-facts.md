@@ -42,14 +42,17 @@ The recall here counts a fact only with its well, qualifier and context; `neo4j_
 | Table facts only | 26/31 | 2/9 |
 | **LLM and table facts**, first mapping version (AK-3 tables only) | **30/31** | 4/9 |
 | **LLM and table facts**, final mappings (adds 56-32's 98 survey points) | **30/31** | 2/9 |
+| **LLM and table facts**, final mappings, **top 3 properties per question** | **30/31** | 3/9 |
 
 - With both sources the only single-well miss is q05 (27 days on the project, answered 19, the spud-to-release days). q07 (a date without a year), q25 and q31, the baseline's three misses, are now right.
 - On the probe, the first combined sheet answered p02, p03, p04 and p08. Adding 56-32's survey lines to its sheet flipped p03 and p04 (2/9): the probe moves by two questions with context alone, so differences of that size on 9 questions are noise, and an unfiltered sheet distracts. Showing each well's facts ranked by relevance to the question is the next step.
+- **Ranked sheet** (`--sheet-properties 3`): K2's property definitions are embedded once with Qwen3-Embedding-0.6B; per question only the facts of the three best-matching properties are shown ("drilled deepest" ranks `top_depth`, `total_depth`, `casing_depth`; "productive hours" ranks the three rig-time properties). Single-well questions keep 30/31 (the miss moves to q31) with fewer prompt tokens (median 1,793 against 2,254). Probe: 3/9 (p02, p04, p08); p09 found AK-3's and 68-32's spud dates but not 56-32's.
 - Table facts alone help less: the series (inclination, casing, rig time) are there, but the well-level values in prose (total depth, dates) come only from the LLM.
-- Cost per question: about 2,000 to 2,200 prompt tokens on the single-well questions (baseline 1,465), from the sheet lines.
+- Cost per question: about 1,800 (ranked) to 2,250 (full sheet) prompt tokens on the single-well questions (baseline 1,465), plus one query embedding when ranked.
+- Daily reports write dates as `09-Mar-19`; `scoring.normalize` now reads that form.
 
 ## What was learned
 
 1. **Deterministic table mappings are the cheapest source of facts:** 0.68 recall with no model call, against 0.49 for the LLM extractor at 2.5 calls per page. The two are complementary; together and validated they reach 0.78.
-2. **Baseline plus a validated fact graph from both sources answers 30/31,** the best result on the development questions (E10 prototype 23/31, D-50 baseline 28/31), stable across both mapping versions. On the probe the gain is not stable (2 to 5 of 9 across sheet variants).
+2. **Baseline plus a validated fact graph from both sources answers 30/31,** the best result on the development questions (E10 prototype 23/31, D-50 baseline 28/31), stable across three sheet variants. On the probe the results range from 2 to 5 of 9 across sheet variants, against 3/9 without a sheet: with 9 questions this is not distinguishable from noise.
 3. **Caveats:** the mappings were written while looking at the AK-3 tables, from which the gold facts also come; the rules are generic header words, but they must be checked on other reports. One run; 31 and 9 questions.
