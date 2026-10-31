@@ -57,3 +57,32 @@ python -m graphrag.baseline answer --pool ak3 --retriever bm25 --k 5 --endpoint 
 Each build clears the Neo4j database first. Neo4j Browser is at http://127.0.0.1:7474 (user `neo4j`, password `graphrag-dev`, local only).
 
 Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`. The tests make no model calls; the `neo4j_kg` tests run only in `.venv-graphrag`.
+
+## The working design (E22, B-D19 to B-D21)
+
+Plain RAG routed by well, plus a per-well fact graph from two sources, validated in code before it reaches the answer model. 30/31 on the prototype's questions.
+
+```powershell
+# 1. Table facts by K2's mappings (no model call)
+python -m graphrag.tables --pool three --name my_tables
+# 2. Prose facts by neo4j-graphrag with Qwen3-4B (llama-server on port 8082, endpoint local-llama-2; Neo4j running)
+.venv-graphrag\Scripts\python -m graphrag.neo4j_kg --pool three --endpoint local-llama-2 --model qwen3-4b --prompt library --name my_graph
+# 3. Answers: both fact sources, validated, the 3 most relevant K2 properties per question
+python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --fact-sheet my_graph my_tables --validate --sheet-properties 3 --endpoint local-llama --model qwen3-8b --name my_answers
+# 4. K4 answer records for Track C
+python -m graphrag.k4 my_answers
+```
+
+For questions that name several wells, use `--retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --k 10 --answer-format evidence_first --max-tokens 700`. The cross-report probe runs with `--questions probe`.
+
+## LightRAG (E19, E21)
+
+```powershell
+py -3.12 -m venv .venv-lightrag
+.venv-lightrag\Scripts\python -m pip install -r requirements-lightrag.lock.txt
+python -m graphrag.ontology guidance --out data/interim/k2_eowr_v1_guidance.txt
+.venv-lightrag\Scripts\python -m graphrag.lightrag_run index --pool three --model qwen3-8b --guidance data/interim/k2_eowr_v1_guidance.txt --name my_index
+.venv-lightrag\Scripts\python -m graphrag.lightrag_run answer --index my_index --mode mix --budget small --name my_lightrag_answers
+```
+
+LightRAG's prompts need a 32k slot: run the Qwen3-8B server with `-c 32768 -np 1`.
