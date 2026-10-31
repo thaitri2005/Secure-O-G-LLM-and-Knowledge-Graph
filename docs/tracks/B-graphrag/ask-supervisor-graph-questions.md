@@ -7,6 +7,7 @@ Draft by Track B, 31 October 2026, for Tri to send to anh Tuấn (B-D15 step 1).
 - On the prototype's 31 questions, plain RAG (Qwen3-8B, BM25 routed by well, cited answers checked in code) already answers 28/31, on one report and on three ([E18](../../experiments/E18-well-routing.md)). These questions each name one well and ask for one value.
 - Two GraphRAG bases built on the same reports do not beat it on these questions: neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md)) and LightRAG (E19).
 - A graph should earn its cost on questions that **compare or combine several wells or reports**, **count**, or **follow a link** (person, company, well to well). Plain RAG answers at most 3 of our 9 such probe questions (E19).
+- A graph of per-well facts, built from table rows by our ontology's mappings and from LLM extraction, then checked in code, raises that to 4 or 5 of 9, and the single-well questions to 30/31 ([E20](../../experiments/E20-well-fact-sheet.md), [E22](../../experiments/E22-table-facts.md)). We need real questions to know whether this holds.
 
 ## What we would like
 

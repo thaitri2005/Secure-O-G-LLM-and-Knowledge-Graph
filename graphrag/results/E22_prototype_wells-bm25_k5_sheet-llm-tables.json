@@ -13,12 +13,12 @@
   ],
   "validated": true,
   "facts_rejected": {
-    "zero value": 134,
-    "value not in its chunk": 146,
+    "zero value": 135,
+    "value not in its chunk": 149,
     "no single well name": 128,
     "well not named in its document": 28,
     "contradicted, outvoted": 99,
-    "contradicted, tie": 32
+    "contradicted, tie": 34
   },
   "question_set": "prototype",
   "answer_format": "status_first",
@@ -45,11 +45,11 @@
   "retrieved_gold": "23/23",
   "cost": {
     "calls": 31,
-    "cached_calls": 8,
+    "cached_calls": 31,
     "invalid_json": 0,
     "prompt_tokens": 67774,
     "completion_tokens": 2267,
-    "seconds": 80.3,
+    "seconds": 0.0,
     "cost_usd": 0.0,
     "models": [
       "local-llama:qwen3-8b"
@@ -58,7 +58,7 @@
   "per_question": {
     "prompt_tokens_median": 2254,
     "completion_tokens_median": 84,
-    "seconds_median": 2.389
+    "seconds_median": 0.0
   },
   "rows": [
     {
@@ -91,8 +91,8 @@
       "passages": 5,
       "prompt_tokens": 2809,
       "completion_tokens": 97,
-      "seconds": 2.104,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q02",
@@ -124,8 +124,8 @@
       "passages": 5,
       "prompt_tokens": 2659,
       "completion_tokens": 121,
-      "seconds": 5.51,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q03",
@@ -223,8 +223,8 @@
       "passages": 5,
       "prompt_tokens": 1995,
       "completion_tokens": 120,
-      "seconds": 3.461,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q06",
@@ -256,8 +256,8 @@
       "passages": 5,
       "prompt_tokens": 2157,
       "completion_tokens": 66,
-      "seconds": 2.886,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q07",
@@ -289,8 +289,8 @@
       "passages": 5,
       "prompt_tokens": 2281,
       "completion_tokens": 70,
-      "seconds": 3.065,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q08",
@@ -322,8 +322,8 @@
       "passages": 5,
       "prompt_tokens": 2188,
       "completion_tokens": 87,
-      "seconds": 10.851,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q09",
@@ -355,8 +355,8 @@
       "passages": 5,
       "prompt_tokens": 2610,
       "completion_tokens": 121,
-      "seconds": 6.067,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q10",
@@ -388,8 +388,8 @@
       "passages": 5,
       "prompt_tokens": 2689,
       "completion_tokens": 76,
-      "seconds": 3.49,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q11",
@@ -421,8 +421,8 @@
       "passages": 5,
       "prompt_tokens": 2627,
       "completion_tokens": 102,
-      "seconds": 1.529,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q12",
@@ -454,8 +454,8 @@
       "passages": 5,
       "prompt_tokens": 2478,
       "completion_tokens": 108,
-      "seconds": 3.42,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q13",
@@ -487,8 +487,8 @@
       "passages": 5,
       "prompt_tokens": 2388,
       "completion_tokens": 107,
-      "seconds": 2.642,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q14",
@@ -520,8 +520,8 @@
       "passages": 5,
       "prompt_tokens": 2254,
       "completion_tokens": 71,
-      "seconds": 2.08,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q15",
@@ -553,8 +553,8 @@
       "passages": 5,
       "prompt_tokens": 2514,
       "completion_tokens": 113,
-      "seconds": 2.562,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q16",
@@ -586,8 +586,8 @@
       "passages": 5,
       "prompt_tokens": 2513,
       "completion_tokens": 84,
-      "seconds": 2.389,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q17",
@@ -619,8 +619,8 @@
       "passages": 5,
       "prompt_tokens": 1909,
       "completion_tokens": 72,
-      "seconds": 1.133,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q18",
@@ -652,8 +652,8 @@
       "passages": 5,
       "prompt_tokens": 2251,
       "completion_tokens": 90,
-      "seconds": 6.502,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q19",
@@ -685,8 +685,8 @@
       "passages": 5,
       "prompt_tokens": 2589,
       "completion_tokens": 96,
-      "seconds": 7.002,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q20",
@@ -718,8 +718,8 @@
       "passages": 5,
       "prompt_tokens": 2249,
       "completion_tokens": 81,
-      "seconds": 2.689,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q21",
@@ -751,8 +751,8 @@
       "passages": 5,
       "prompt_tokens": 1769,
       "completion_tokens": 88,
-      "seconds": 1.258,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q22",
@@ -784,8 +784,8 @@
       "passages": 5,
       "prompt_tokens": 2254,
       "completion_tokens": 92,
-      "seconds": 2.533,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q23",
@@ -856,8 +856,8 @@
       "passages": 5,
       "prompt_tokens": 2611,
       "completion_tokens": 14,
-      "seconds": 3.015,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q26",
@@ -880,8 +880,8 @@
       "passages": 5,
       "prompt_tokens": 2447,
       "completion_tokens": 17,
-      "seconds": 2.039,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     },
     {
       "id": "q27",
@@ -1009,8 +1009,8 @@
       "passages": 5,
       "prompt_tokens": 2664,
       "completion_tokens": 96,
-      "seconds": 2.105,
-      "cached": false
+      "seconds": 0.0,
+      "cached": true
     }
   ]
 }

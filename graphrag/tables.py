@@ -20,6 +20,8 @@ from .scoring import matches
 
 NUMBER = re.compile(r"-?\d[\d,]*(?:\.\d+)?")
 SIZE = re.compile(r"\d+(?:-\d+/\d+)?")
+MAX_HEADER = 50
+BARE_NUMBER = re.compile(r"\W?\s*\d[\d.,/ -]*")  # 40, 1,955.0, 10-3/4, ~ 220 (with any leading symbol)
 
 
 def first(pattern: re.Pattern, text: str) -> str | None:
@@ -27,9 +29,20 @@ def first(pattern: re.Pattern, text: str) -> str | None:
     return found.group().replace(",", "") if found else None
 
 
-def headers(table: dict, rows: list[list[str]]) -> list[str]:
-    """Column headers, joining the header rows the parser marked (multi-row headers such as Measured / Depth)."""
-    count = max(1, table.get("rendered_header_rows") or table.get("header_rows") or 1)
+def header_count(rows: list[list[str]]) -> int:
+    """Leading rows that are headers: few of their cells are bare numbers. The parser's own counts disagree with
+    the tables (56-32: one rendered header row over a two-row header; two header rows over a data row)."""
+    count = 0
+    for row in rows[:3]:
+        cells = [c for c in row if c.strip()]
+        if not cells or sum(bool(BARE_NUMBER.fullmatch(c.strip())) for c in cells) >= len(cells) / 4:
+            break
+        count += 1
+    return max(1, count)
+
+
+def headers(rows: list[list[str]], count: int) -> list[str]:
+    """Column headers, joining multi-row headers (Measured / Depth)."""
     width = max(len(r) for r in rows)
     return [" ".join(r[c] for r in rows[:count] if c < len(r)).lower() for c in range(width)]
 
@@ -37,7 +50,8 @@ def headers(table: dict, rows: list[list[str]]) -> list[str]:
 def column(heads: list[str], words: str) -> int | None:
     """The first column whose header has one of the `|`-separated words as a whole word ("inc" is not "inches")."""
     pattern = re.compile(rf"\b({words})\b")
-    return next((i for i, h in enumerate(heads) if pattern.search(h)), None)
+    # Real headers are short labels; garbled daily-report grids put whole paragraphs in the first row.
+    return next((i for i, h in enumerate(heads) if len(h) <= MAX_HEADER and pattern.search(h)), None)
 
 
 def extract(chunks, k2: dict) -> list[dict]:
@@ -59,7 +73,8 @@ def extract(chunks, k2: dict) -> list[dict]:
         rows = table_rows(table)
         if len(rows) < 2:
             continue
-        heads = headers(table, rows)
+        start = header_count(rows)
+        heads = headers(rows, start)
         caption = parts[0].text.split("|")[0].lower()
 
         def chunk_for(r: int) -> str:
@@ -70,7 +85,6 @@ def extract(chunks, k2: dict) -> list[dict]:
             facts.append({"chunk": chunk_for(r), "well": main_well[table["doc_id"]], "property": prop,
                           "qualifier": qualifier, "context": context, "value": value, "source": table["table_id"]})
 
-        start = max(1, table.get("rendered_header_rows") or table.get("header_rows") or 1)
         for m in mappings["series"]:
             if not all(column(heads, w) is not None for w in m["when"]):
                 continue

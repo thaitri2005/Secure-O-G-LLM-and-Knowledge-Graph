@@ -13,53 +13,53 @@
   ],
   "validated": true,
   "facts_rejected": {
-    "zero value": 134,
-    "value not in its chunk": 146,
+    "zero value": 135,
+    "value not in its chunk": 149,
     "no single well name": 128,
     "well not named in its document": 28,
     "contradicted, outvoted": 99,
-    "contradicted, tie": 32
+    "contradicted, tie": 34
   },
   "question_set": "probe",
   "answer_format": "evidence_first",
   "questions": 9,
   "withheld": [],
-  "correct_total": "4/9",
+  "correct_total": "2/9",
   "correct_by_kind": {
-    "comparison": "2/3",
+    "comparison": "0/3",
     "cross_report": "1/2",
     "multi_hop": "0/2",
     "count": "0/1",
     "relation": "1/1"
   },
-  "answers_without_wrong_values": "4/6",
-  "citations_in_retrieved": "2/6",
-  "quotes_verbatim": "1/6",
-  "citations_supported_after_check": "5/6",
+  "answers_without_wrong_values": "2/5",
+  "citations_in_retrieved": "3/5",
+  "quotes_verbatim": "2/5",
+  "citations_supported_after_check": "4/5",
   "citation_sources": {
-    "model": 1,
-    "by_value": 5,
-    "by_quote": 2,
+    "model": 4,
+    "by_quote": 1,
+    "by_value": 2,
     "unsupported": 1
   },
-  "verified_on_gold_chunk": "4/6",
+  "verified_on_gold_chunk": "3/5",
   "retrieved_gold": "8/9",
   "cost": {
     "calls": 9,
     "cached_calls": 2,
     "invalid_json": 0,
-    "prompt_tokens": 49576,
-    "completion_tokens": 2274,
-    "seconds": 29.2,
+    "prompt_tokens": 52899,
+    "completion_tokens": 2380,
+    "seconds": 66.2,
     "cost_usd": 0.0,
     "models": [
       "local-llama:qwen3-8b"
     ]
   },
   "per_question": {
-    "prompt_tokens_median": 6257,
-    "completion_tokens_median": 210,
-    "seconds_median": 3.822
+    "prompt_tokens_median": 6757,
+    "completion_tokens_median": 267,
+    "seconds_median": 5.66
   },
   "rows": [
     {
@@ -73,7 +73,7 @@
         "9145"
       ],
       "withheld_values": [],
-      "evidence": "Passages 56-32, 68-32, and AK-3 provide the total depth of each well. 56-32 was drilled to a total depth of 9,145 ft. (passage 56-32). 68-32 was drilled to a total depth of 1,000 ft. (passage 68-32). AK-3 was drilled to a total depth of 1,955 ft. (passage AK-3).",
+      "evidence": "The passage for well 56-32 states that it was drilled to a total depth of 9,145 ft. [gdr1295_56-32_eowr#c0038]. The passage for well 68-32 states that it was drilled to a depth of 1,000 ft. [gdr1153_68-32_eowr#c0005]. The passage for well AK-3 states that it was drilled to a vertical depth of 1,955 feet [gdr882_ak3_eowr#c0002]. Comparing these depths, well 56-32 was drilled the deepest.",
       "correct": false,
       "no_wrong_values": false,
       "retrieved_gold": true,
@@ -91,9 +91,9 @@
       "citations_on_gold_chunk": true,
       "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 6257,
-      "completion_tokens": 210,
-      "seconds": 3.822,
+      "prompt_tokens": 6757,
+      "completion_tokens": 261,
+      "seconds": 27.505,
       "cached": false
     },
     {
@@ -120,11 +120,11 @@
       "citations": [
         {
           "chunk": "gdr882_ak3_eowr#c0010",
-          "how": "by_value"
+          "how": "by_quote"
         },
         {
           "chunk": "gdr1295_56-32_eowr#c0038",
-          "how": "by_value"
+          "how": "model"
         },
         {
           "chunk": "gdr1153_68-32_eowr#c0071",
@@ -137,43 +137,34 @@
       "citations_on_gold_chunk": true,
       "quotes_verbatim": false,
       "passages": 10,
-      "prompt_tokens": 6390,
-      "completion_tokens": 378,
-      "seconds": 5.522,
+      "prompt_tokens": 6890,
+      "completion_tokens": 330,
+      "seconds": 4.607,
       "cached": false
     },
     {
       "id": "p03",
       "kind": "comparison",
-      "status": "answered",
-      "values": [
-        "AK-3"
-      ],
-      "raw_values": [
-        "AK-3"
-      ],
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
       "withheld_values": [],
-      "evidence": "The passage for AK-3 states that the well was spud on 18 August 2016. The passage for 68-32 states that the spud date was 09-Mar-19. The passage for 56-32 does not explicitly state the spud date, but it mentions that the well was drilled deeper than planned and completed ahead of schedule. Based on the spud dates provided, AK-3 was spudded first.",
-      "correct": true,
+      "evidence": "The passage for AK-3 states that the well was spud on 18 August 2016. The passage for 68-32 states that the spud date was 09-Mar-19. The passage for 56-32 does not explicitly state the spud date, but it mentions that the well was completed deeper than planned, ahead of schedule and under budget, implying that it was spud after 68-32.",
+      "correct": false,
       "no_wrong_values": true,
       "retrieved_gold": true,
       "gold_facts_retrieved": 1,
       "gold_facts": 1,
-      "citations": [
-        {
-          "chunk": "gdr882_ak3_eowr#c0010",
-          "how": "by_quote"
-        }
-      ],
+      "citations": [],
       "citations_supported": true,
-      "verified_on_gold_chunk": true,
-      "citations_in_retrieved": false,
-      "citations_on_gold_chunk": false,
-      "quotes_verbatim": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 5973,
-      "completion_tokens": 198,
-      "seconds": 3.226,
+      "prompt_tokens": 6473,
+      "completion_tokens": 375,
+      "seconds": 5.994,
       "cached": false
     },
     {
@@ -181,39 +172,39 @@
       "kind": "comparison",
       "status": "answered",
       "values": [
-        "56-32",
-        "AK-3"
+        "1955",
+        "9145"
       ],
       "raw_values": [
-        "56-32",
-        "AK-3"
+        "1955",
+        "9145"
       ],
       "withheld_values": [],
-      "evidence": "The passages indicate that Well 56-32 was drilled deeper than planned, as stated in [gdr1295_56-32_eowr#c0038] and [gdr1295_56-32_eowr#c0006]. Well AK-3 was drilled to a vertical depth of 1,955 feet, which is deeper than the planned 1,700 feet, as mentioned in [gdr882_ak3_eowr#c0010]. There is no mention of Well 68-32 being drilled deeper than planned.",
-      "correct": true,
-      "no_wrong_values": true,
+      "evidence": "The passage for AK-3 states that the well was drilled to a vertical depth of 1,955 feet, which is deeper than the planned 1,700 feet. The passage for 56-32 mentions that the well was drilled to a total depth of 9,145 ft., 145 ft. deeper than the planned depth of 9,000 ft. The passage for 68-32 does not mention the well being drilled deeper than planned.",
+      "correct": false,
+      "no_wrong_values": false,
       "retrieved_gold": true,
       "gold_facts_retrieved": 2,
       "gold_facts": 2,
       "citations": [
         {
-          "chunk": "gdr1295_56-32_eowr#c0038",
-          "how": "by_quote"
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "model"
         },
         {
-          "chunk": "gdr882_ak3_eowr#c0010",
-          "how": "by_value"
+          "chunk": "gdr1295_56-32_eowr#c0038",
+          "how": "model"
         }
       ],
       "citations_supported": true,
       "verified_on_gold_chunk": true,
-      "citations_in_retrieved": false,
-      "citations_on_gold_chunk": false,
-      "quotes_verbatim": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 6743,
-      "completion_tokens": 398,
-      "seconds": 5.348,
+      "prompt_tokens": 7243,
+      "completion_tokens": 307,
+      "seconds": 5.66,
       "cached": false
     },
     {
@@ -236,9 +227,9 @@
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 3889,
+      "prompt_tokens": 4212,
       "completion_tokens": 101,
-      "seconds": 1.72,
+      "seconds": 8.127,
       "cached": false
     },
     {
@@ -248,7 +239,7 @@
       "values": [],
       "raw_values": [],
       "withheld_values": [],
-      "evidence": "Passage [gdr1295_56-32_eowr#c0003] states that 'Sami Atalay' is listed as 'Sr. Drilling Engineer' and 'Prepared by Sr. Drilling Engineer'. Passage [gdr1153_68-32_eowr#c0003] states that 'Ernesto Rivas' is listed as 'Senior Drilling Engineer (GRG)' and 'Prepared By: GRG'. The question asks for the senior drilling engineer who prepared both the 56-32 and 68-32 end-of-well reports. However, the passages do not indicate that the same individual prepared both reports.",
+      "evidence": "Passage [gdr1295_56-32_eowr#c0003] states that 'Sami Atalay' is listed as 'Sr. Drilling Engineer' and 'Prepared by Sr. Drilling Engineer'. Passage [gdr1153_68-32_eowr#c0003] states that 'Ernesto Rivas' is listed as 'Senior Drilling Engineer (GRG)' and 'Prepared By: GRG'. These indicate that Sami Atalay and Ernesto Rivas are the senior drilling engineers associated with the 56-32 and 68-32 end-of-well reports, respectively.",
       "correct": false,
       "no_wrong_values": true,
       "retrieved_gold": true,
@@ -261,9 +252,9 @@
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 3863,
-      "completion_tokens": 275,
-      "seconds": 4.076,
+      "prompt_tokens": 4363,
+      "completion_tokens": 267,
+      "seconds": 3.87,
       "cached": false
     },
     {
@@ -341,7 +332,7 @@
       "values": [],
       "raw_values": [],
       "withheld_values": [],
-      "evidence": "The passage for AK-3 states that the spud date was 2016-08-18. The passage for 68-32 states that the spud date was 09-Mar-19. The passage for 56-32 does not explicitly state the spud date, but it mentions that the well was drilled to a depth of 9,145 ft. and completed deeper than planned, ahead of schedule and under budget, which implies the spud date is not directly stated in the provided passages.",
+      "evidence": "The passages provide the spud dates for wells AK-3, 68-32, and 56-32. For AK-3, the spud date is stated as 2016-08-18. For 68-32, the spud date is stated as 09-Mar-19. For 56-32, the spud date is not explicitly mentioned, but the drilling started and was completed in 28 days, with the well being drilled to a depth of 9,145 ft. The passage does not provide the exact spud date for 56-32.",
       "correct": false,
       "no_wrong_values": true,
       "retrieved_gold": true,
@@ -354,9 +345,9 @@
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
       "passages": 10,
-      "prompt_tokens": 6625,
-      "completion_tokens": 393,
-      "seconds": 5.445,
+      "prompt_tokens": 7125,
+      "completion_tokens": 418,
+      "seconds": 10.433,
       "cached": false
     }
   ]
