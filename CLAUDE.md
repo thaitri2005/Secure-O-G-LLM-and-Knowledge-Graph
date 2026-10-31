@@ -47,7 +47,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | Module | Contents |
   |---|---|
   | `client.py` | One OpenAI-compatible client with JSON-schema output, embeddings, a request cache, a cost ledger and the private-data guard |
-  | `retrieval.py` | BM25, dense and fusion retrieval |
+  | `retrieval.py` | BM25, dense and fusion retrieval; `WellRouter` keeps only documents that name the asked-about well |
   | `scoring.py` | The prototype's answer rules, plus date and number normalization |
   | `citations.py` | Citations checked against the retrieved chunks in code |
   | `baseline.py` | Command line for retrieval and answer runs (`--facts`, `--withhold-unsupported`) |
@@ -63,6 +63,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E16](docs/experiments/E16-neo4j-graphrag-python.md) | neo4j-graphrag facts added under the passages (Qwen3-4B / Qwen3-8B) | 21/31 / 28/31 |
   | [E17](docs/experiments/E17-model-sweep.md) | BM25, top 5, **Qwen3-8B** (thinking off) | **28/31** |
   | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
+| [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
   - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.
@@ -72,8 +73,8 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 ### Next steps (B-D15)
 
 1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
-2. Filter retrieval by well or document using the ID payload (§5.11), to stop wrong values from distractor reports.
-3. Run LightRAG with Qwen3-8B on the three-report pool and compare with the fusion baseline (26/31).
+2. ~~Filter retrieval by well~~: done in E18 (B-D16).
+3. Run LightRAG with Qwen3-8B on the three-report pool and compare with the well-routed baseline (28/31).
 4. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
 5. Choose the vector store with Khai (Track C) once the base is chosen.
 

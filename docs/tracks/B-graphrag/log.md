@@ -16,12 +16,12 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: Qwen3-8B (thinking off), top 5, citations and values checked in code: 28/31 on AK-3 with BM25, 26/31 on three reports with fusion ([E17](../../experiments/E17-model-sweep.md)) | B-D03, B-C08, B-D14 |
+| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)) | B-D03, B-C08, B-D14, B-D16 |
 | Bases to run | neo4j-graphrag-python run and not adopted: its facts do not improve answers ([E16](../../experiments/E16-neo4j-graphrag-python.md)); LightRAG next | B-D04, B-D14 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
-| Embeddings | BM25 alone on one report; fusion with Qwen3-Embedding-0.6B across reports (hit@5 0.91 against 0.78) | B-F14, B-D12 |
+| Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Next | Graph-worthy questions from the supervisor; filter by well; LightRAG with Qwen3-8B | B-D15 |
 | Vector store | Open; decided with Track C after the base | — |
@@ -341,3 +341,25 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 2. Filter retrieval by well or document using the ID payload (§5.11), to stop wrong values from distractor reports.
 3. Run LightRAG (B-D10 step 3) with Qwen3-8B on the three-report pool, and compare with the fusion baseline (26/31).
 4. Try the library's own retrievers (vector-Cypher, Text2Cypher) only if step 1 brings questions that need them.
+
+## 2026-10-31 (night): well routing
+
+**B-C11 (design choice).** Retrieval can be routed by the well a question names.
+
+- Every retriever takes an `allowed` chunk set, applied before ranking, as a vector-store payload filter would be.
+- `WellRouter` (`wells:<retriever>`) finds well names in the question (`AK-3`, `TG-2`, `56-32`; casing sizes like `4-1/2` are skipped) and allows only the documents that name one of them. A question with no known well is not filtered.
+- Each document's well names stand in for the "well registry IDs" of the §5.11 payload until Track C's registry exists; the router then reads the payload instead.
+- BM25 computes its term statistics over the allowed chunks, as a separate index per well would.
+
+**E18 (experiment).** Well routing: [E18](../../experiments/E18-well-routing.md).
+
+- Three reports, BM25: hit@5 0.78 unfiltered, 0.91 routed with shared statistics, **1.00** routed with filtered statistics (equal to AK-3 alone).
+- Answers with Qwen3-8B: **28/31** routed, against 26/31 for unrouted fusion; routed fusion stays at 26/31.
+- No added calls or tokens.
+
+**B-F21 (finding; from E18).** A filter must also scope the term statistics. Filtering a shared BM25 index after scoring under-weights terms that are rare in the target report but common in the others (hit@5 0.91 instead of 1.00).
+
+**B-D16 (decision; from E18).** The multi-report baseline is BM25 routed by well, Qwen3-8B, top 5: 28/31 on three reports. It replaces fusion as the multi-report retriever in B-D12; fusion is kept for questions that name no well.
+
+- *Why:* E18. Routing costs nothing and recovers the one-report result.
+- Consequence: on questions that name one well, plain RAG is not hurt by more reports. A graph must be judged on questions that name no well, several wells, or ask across reports (B-D15 step 1).

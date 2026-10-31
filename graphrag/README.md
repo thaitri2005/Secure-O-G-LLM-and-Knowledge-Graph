@@ -6,7 +6,7 @@ Track B's code for the first build: the model client, the plain-RAG baseline, an
 |---|---|
 | `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the prototype's 15-chunk slice, its 31 questions and its gold facts |
-| `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion |
+| `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
 | `baseline.py` | Command line for retrieval and answer runs; it writes `graphrag/results/<name>.json`. `--facts` adds a graph's extracted facts under each passage; `--withhold-unsupported` drops answers without a supported citation |
@@ -25,6 +25,8 @@ llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 32768 -n
 
 python -m graphrag.baseline retrieval --pool ak3 --retrievers bm25 dense:qwen3-embedding-0.6b fusion:bm25+dense:qwen3-embedding-0.6b --name my_run
 python -m graphrag.baseline answer --pool ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_answers
+# The multi-report baseline (E18, D-50)
+python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_three
 ```
 
 Pools:

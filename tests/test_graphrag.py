@@ -11,7 +11,7 @@ import httpx
 from graphrag.baseline import render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk
-from graphrag.retrieval import BM25, Fusion
+from graphrag.retrieval import BM25, Fusion, WellRouter, well_names
 from graphrag.citations import resolve
 from graphrag.scoring import normalize, score_answer, same_value
 
@@ -99,6 +99,18 @@ class RetrievalTests(unittest.TestCase):
         bm25 = BM25(self.chunks)
         fused = Fusion([bm25, bm25]).search("mud weight", 2)
         self.assertEqual(fused[0][0], "d#c0001")
+
+    def test_well_names_skip_casing_sizes(self):
+        self.assertEqual(well_names("AK-3 and 56-32 near TG-2; 4-1/2 inch casing, 9-5/8 in."), {"AK-3", "56-32", "TG-2"})
+
+    def test_well_router_keeps_only_documents_naming_the_well(self):
+        pool = [Chunk("a#c0000", "a", 1, "text", None, "Well AK-3 reached total depth of 1,955 ft."),
+                Chunk("a#c0001", "a", 2, "text", None, "Total depth summary table."),
+                Chunk("b#c0000", "b", 1, "text", None, "Well 68-32 total depth 978 ft, total depth reached.")]
+        router = WellRouter(BM25(pool), pool)
+        self.assertEqual(router.documents("What total depth did AK-3 reach?"), ["a"])
+        self.assertTrue(all(cid.startswith("a#") for cid, _ in router.search("What total depth did AK-3 reach?", 3)))
+        self.assertEqual(len(router.search("What total depth was reached?", 3)), 3)
 
 
 class ScoringTests(unittest.TestCase):

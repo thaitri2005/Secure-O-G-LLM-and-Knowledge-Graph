@@ -1,4 +1,4 @@
-"""Plain retrieval baselines (B-D03): BM25, dense embeddings, and their fusion."""
+"""Plain retrieval baselines (B-D03): BM25, dense embeddings, and their fusion; well routing (B-C11)."""
 from __future__ import annotations
 
 import math
@@ -27,34 +27,50 @@ class Retriever(Protocol):
     name: str
     index_seconds: float
 
-    def search(self, question: str, k: int) -> list[tuple[str, float]]: ...
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]: ...
+
+
+def top(ids: list[str], scores, k: int, allowed: set[str] | None) -> list[tuple[str, float]]:
+    """The k best chunks; `allowed` acts like a vector-store payload filter, applied before ranking."""
+    order = [i for i in np.argsort(scores)[::-1] if allowed is None or ids[i] in allowed][:k]
+    return [(ids[i], float(scores[i])) for i in order]
 
 
 class BM25:
+    """Okapi BM25. With `allowed`, term statistics come from the allowed chunks only, as a separate index
+    per document or well would compute them (B-C11)."""
+
     def __init__(self, chunks: list[Chunk], k1: float = 1.5, b: float = 0.75):
         started = time.perf_counter()
         self.name, self.k1, self.b = "bm25", k1, b
         self.ids = [c.id for c in chunks]
         self.docs = [Counter(tokens(passage_text(c))) for c in chunks]
         self.lengths = [sum(d.values()) for d in self.docs]
-        self.average = sum(self.lengths) / len(self.lengths)
-        frequency = Counter(t for d in self.docs for t in d)
-        n = len(self.docs)
-        self.idf = {t: math.log(1 + (n - f + 0.5) / (f + 0.5)) for t, f in frequency.items()}
+        self.stats = {None: self._stats(range(len(self.docs)))}
         self.index_seconds = time.perf_counter() - started
 
-    def search(self, question: str, k: int) -> list[tuple[str, float]]:
+    def _stats(self, rows) -> tuple[dict[str, float], float]:
+        rows = list(rows)
+        frequency = Counter(t for i in rows for t in self.docs[i])
+        n = len(rows)
+        idf = {t: math.log(1 + (n - f + 0.5) / (f + 0.5)) for t, f in frequency.items()}
+        return idf, sum(self.lengths[i] for i in rows) / n
+
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
+        key = frozenset(allowed) if allowed is not None else None
+        if key not in self.stats:
+            self.stats[key] = self._stats(i for i, cid in enumerate(self.ids) if cid in key)
+        idf, average = self.stats[key]
         terms = tokens(question)
         scores = []
         for doc, length in zip(self.docs, self.lengths):
             score = 0.0
             for t in terms:
                 tf = doc.get(t, 0)
-                if tf:
-                    score += self.idf[t] * tf * (self.k1 + 1) / (tf + self.k1 * (1 - self.b + self.b * length / self.average))
+                if tf and t in idf:
+                    score += idf[t] * tf * (self.k1 + 1) / (tf + self.k1 * (1 - self.b + self.b * length / average))
             scores.append(score)
-        order = np.argsort(scores)[::-1][:k]
-        return [(self.ids[i], float(scores[i])) for i in order]
+        return top(self.ids, scores, k, allowed)
 
 
 class Dense:
@@ -78,11 +94,9 @@ class Dense:
         vectors = np.array(self.client.embed(texts), dtype=np.float32)
         return vectors / np.linalg.norm(vectors, axis=1, keepdims=True)
 
-    def search(self, question: str, k: int) -> list[tuple[str, float]]:
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
         query = QUERY_INSTRUCTION + question if self.qwen else question
-        scores = self.matrix @ self._embed([query])[0]
-        order = np.argsort(scores)[::-1][:k]
-        return [(self.ids[i], float(scores[i])) for i in order]
+        return top(self.ids, self.matrix @ self._embed([query])[0], k, allowed)
 
 
 class Fusion:
@@ -93,9 +107,45 @@ class Fusion:
         self.name = "fusion:" + "+".join(r.name for r in retrievers)
         self.index_seconds = sum(r.index_seconds for r in retrievers)
 
-    def search(self, question: str, k: int) -> list[tuple[str, float]]:
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
         scores: Counter = Counter()
         for retriever in self.retrievers:
-            for rank, (chunk_id, _) in enumerate(retriever.search(question, self.depth)):
+            for rank, (chunk_id, _) in enumerate(retriever.search(question, self.depth, allowed)):
                 scores[chunk_id] += 1 / (self.constant + rank + 1)
         return scores.most_common(k)
+
+
+# Well names as reports write them: AK-3, TG-2, 56-32, 68-32. The lookarounds skip casing sizes such as 4-1/2.
+WELL_NAME = re.compile(r"(?<![\w/.-])(?:[A-Z]{1,4}-\d{1,3}[A-Z]?|\d{1,3}-\d{1,3})(?![\w/.-])")
+
+
+def well_names(text: str) -> set[str]:
+    return {m.upper() for m in WELL_NAME.findall(text)}
+
+
+class WellRouter:
+    """Restricts retrieval to the documents that name a well the question names (B-C11).
+
+    Each document's well names stand in for the "well registry IDs" of the vector payload (specification
+    §5.11) until Track C's registry exists. A question that names no well, or only wells no document
+    names, is not filtered.
+    """
+
+    def __init__(self, retriever, chunks: list[Chunk]):
+        self.retriever, self.name, self.index_seconds = retriever, f"wells:{retriever.name}", retriever.index_seconds
+        self.chunks_by_doc: dict[str, set[str]] = {}
+        self.wells_by_doc: dict[str, set[str]] = {}
+        for c in chunks:
+            self.chunks_by_doc.setdefault(c.doc_id, set()).add(c.id)
+            self.wells_by_doc.setdefault(c.doc_id, set()).update(well_names(c.text))
+
+    def documents(self, question: str) -> list[str]:
+        wanted = well_names(question)
+        return sorted(d for d, wells in self.wells_by_doc.items() if wanted & wells)
+
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
+        docs = self.documents(question)
+        if docs:
+            routed = set().union(*(self.chunks_by_doc[d] for d in docs))
+            allowed = routed if allowed is None else allowed & routed
+        return self.retriever.search(question, k, allowed)

@@ -16,7 +16,7 @@ from typing import Any
 from .citations import resolve
 from .client import ModelClient, load_endpoints
 from .data import AK3, ROOT, load_chunks, load_questions, prototype_slice
-from .retrieval import BM25, Dense, Fusion
+from .retrieval import BM25, Dense, Fusion, WellRouter
 from .scoring import normalize, score_answer, squash
 
 RESULTS = ROOT / "graphrag/results"
@@ -63,6 +63,9 @@ def build(spec: str, chunks) -> Any:
         return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None))
     if spec.startswith("fusion:"):
         return Fusion([build(part, chunks) for part in spec.removeprefix("fusion:").split("+")])
+    if spec.startswith("wells:"):
+        # wells:<retriever> keeps only the documents that name a well the question names (B-C11).
+        return WellRouter(build(spec.removeprefix("wells:"), chunks), chunks)
     raise SystemExit(f"unknown retriever {spec!r}")
 
 
@@ -78,8 +81,13 @@ def evaluate_retrieval(args) -> dict:
            "pages": len({(c.doc_id, c.page) for c in chunks}), "questions_with_gold": len(with_gold), "retrievers": []}
     built = {}
     for spec in args.retrievers:
-        retriever = build(spec, chunks) if not spec.startswith("fusion:") else Fusion(
-            [built.get(p) or build(p, chunks) for p in spec.removeprefix("fusion:").split("+")])
+        inner = spec.removeprefix("wells:")
+        if spec.startswith("wells:") and inner in built:
+            retriever = WellRouter(built[inner], chunks)
+        elif spec.startswith("fusion:"):
+            retriever = Fusion([built.get(p) or build(p, chunks) for p in spec.removeprefix("fusion:").split("+")])
+        else:
+            retriever = build(spec, chunks)
         built[spec] = retriever
         ranks, seconds = [], []
         for q in with_gold:

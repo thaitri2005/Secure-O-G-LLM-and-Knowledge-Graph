@@ -1,0 +1,29 @@
+{
+  "pool": "ak3",
+  "pool_description": "the whole AK-3 EOWR",
+  "chunks": 60,
+  "pages": 28,
+  "questions_with_gold": 23,
+  "retrievers": [
+    {
+      "retriever": "bm25",
+      "hit@1": 0.696,
+      "hit@3": 0.957,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.808,
+      "index_seconds": 0.0,
+      "query_ms_median": 0.1
+    },
+    {
+      "retriever": "wells:bm25",
+      "hit@1": 0.696,
+      "hit@3": 0.957,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "mrr": 0.808,
+      "index_seconds": 0.0,
+      "query_ms_median": 0.1
+    }
+  ]
+}
