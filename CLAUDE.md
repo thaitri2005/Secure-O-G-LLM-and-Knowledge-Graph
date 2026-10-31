@@ -89,7 +89,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Windows), fully local on the GPU with llama.cpp (B-F16). The old laptop proved too slow. OpenRouter remains an option for public data.
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. `graphrag/` needs only `httpx` and `numpy`, which the lock file includes.
-2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports. On Windows the `docker` CLI may not be on PATH; it is under `%LOCALAPPDATA%\Programs\DockerDesktopesourcesin`.
+2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports. On Windows the `docker` CLI may not be on PATH; it is under `%LOCALAPPDATA%/Programs/DockerDesktop/resources/bin`.
    For LightRAG runs: a third environment `.venv-lightrag` from `requirements-lightrag.lock.txt`.
 3. **llama.cpp:** the Windows CUDA 12.4 build of release b12015 plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`. GGUFs go into ignored `data/interim/models/`:
 
