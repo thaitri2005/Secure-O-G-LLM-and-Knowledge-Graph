@@ -10,7 +10,7 @@
 | **Gold data** | The prototype's 31 questions and 41 facts; the 9-question cross-report probe ([`cross_report_probe.json`](../../graphrag/gold/cross_report_probe.json), B-C14) |
 | **Models** | Qwen3-8B Q4_K_M (thinking off) for extraction, keywords and answers; Qwen3-Embedding-0.6B Q8_0; llama.cpp b12015 on the desktop RTX 4080 SUPER, **`-c 32768 -np 1`** (LightRAG's prompts do not fit an 8k slot), requests one at a time |
 | **Outputs** | [`graphrag/results/`](../../graphrag/results/): `E19_*.json` |
-| **Status** | AK-3 part and probe baselines done; three-report LightRAG runs in progress |
+| **Status** | Done |
 
 ## How LightRAG was run
 
@@ -74,12 +74,40 @@ Both re-measured with `--fresh` (no cache) under `-np 1`: the same 28/31 and the
 | p06 | Solved with the "which X" rule; the 56-32 cover table is scrambled | Track A |
 | p07 | Counting reports needs document metadata, not passages | A document or well registry |
 
-## What was learned so far
+## Three reports
 
-1. **LightRAG does not beat plain RAG on the 31 single-well questions,** at any budget, and costs more: 13,600 tokens per page to index, and 1.7 to 5 times the prompt tokens per question.
-2. **The answer schema's field order matters more than retrieval on hard questions** (B-F22).
-3. **Questions across wells need per-well facts or links that passages alone do not give;** this is where a graph should be judged (E20, three-report LightRAG below).
+**Index.** 372 chunks, 150 pages: 777 LLM calls (5.2 per page), 2.30 million tokens (15,300 per page), 3,302 s (22 s per page), giving 2,114 entities and 3,099 relations. 120 calls (the AK-3 extractions) came from the request cache, so a cold run is somewhat slower. Entity types are generic again (artifact 463, data 343, concept 297, …; 95 `UNKNOWN`).
 
-## Three reports (in progress)
+**The 31 single-well questions.**
 
-To be filled when the three-report index and its runs finish.
+| Retrieval | Correct | Gold chunk retrieved | Prompt tokens (median) |
+|---|---:|---:|---:|
+| **Baseline: BM25 routed by well, top 5** | **28/31** | 23/23 | 1,465 |
+| LightRAG `mix`, small budget | 25/31 | 20/23 | 2,395 + keyword call |
+| LightRAG `mix`, default budget | 25/31 | 19/23 | 8,912 + keyword call |
+| LightRAG `naive`, small budget | 22/31 | 18/23 | 1,080 |
+
+q03 (TG-2's depth) gets TG-4's 1,500 ft again in `mix` mode.
+
+**The probe (9 questions).**
+
+| Retrieval | Correct | Which | Facts with a retrieved passage | Prompt tokens (median) |
+|---|---:|---|---:|---:|
+| Plain RAG, per-well fusion, top 10 (above) | 3/9 | p03, p06, p08 | 10/14 | 3,681 |
+| LightRAG `mix`, small budget | 3/9 | p04, **p05**, p08 | 8/14 | 2,521 + keyword call |
+| LightRAG `local`, default budget | 3/9 | **p02**, p03, p04 | 7/14 | 10,044 + keyword call |
+| LightRAG `mix`, default budget | 1/9 | p08 | 10/14 | 13,366 + keyword call |
+| LightRAG `global`, default budget | 0/9 | — | 6/14 | 13,962 + keyword call |
+
+All LightRAG probe runs used the evidence-first answer format.
+
+- LightRAG answers questions plain RAG never did: **p05** (Mary Mann, a person linked across the AK-3 and FORGE reports) and **p02** (all three total depths in one answer). Its relation lines also make the model answer p04 with well names rather than depths.
+- It loses p06, and is not consistent across modes: each mode solves a different subset. Together, plain RAG and LightRAG answer 6 distinct probe questions; no single setup answers more than 3.
+- More context hurts: the default budget (13,000+ tokens) answers fewer probe questions than the small one.
+
+## What was learned
+
+1. **LightRAG does not beat plain RAG on the 31 single-well questions,** at any budget or mode, on one report or three, and it costs more: about 15,000 tokens per page to index, and a keyword call plus 1.6 to 6 times the prompt tokens per question.
+2. **On questions across wells it helps on different questions, not more of them.** Its graph links a person across reports (p05) and gathers one value from every well (p02), which passages alone did not. Neither approach passes 3/9.
+3. **The answer schema's field order matters more than retrieval on hard questions** (B-F22).
+4. **Not adopted as the base on this evidence.** Kept as the reference for what a graph adds: entity links across documents. The next test is whether our own ontology (K2) makes its graph more precise (E21).

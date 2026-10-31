@@ -17,13 +17,13 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
 | Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)) | B-D03, B-C08, B-D14, B-D16 |
-| Bases to run | neo4j-graphrag-python run and not adopted: its facts do not improve answers ([E16](../../experiments/E16-neo4j-graphrag-python.md)); LightRAG next | B-D04, B-D14 |
+| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md)) run and not adopted; LightRAG with K2 injected next (E21) | B-D14, B-D18 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Next | Graph-worthy questions from the supervisor; filter by well; LightRAG with Qwen3-8B | B-D15 |
+| Next | Graph-worthy questions from the supervisor; LightRAG with K2 (E21); validate extracted facts before use | B-D18 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
 | Vector store | Open; decided with Track C after the base | — |
@@ -394,3 +394,26 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 - 104 glossary entries generated in code (`python -m graphrag.ontology glossary`) from the abbreviation and unit tables, each with its source table. Four entries from merged cells are flagged for a person (`JSA jt`, `LGS LOT`).
 - `python -m graphrag.ontology guidance` renders the slice as LightRAG's `entity_types_guidance`, the injection point for an ontology arm.
 - *Why:* D-49 (thin, from the reports themselves) and B-D15 step 4. Not reviewed by a domain expert.
+
+## 2026-11-01: LightRAG on three reports, and per-well facts
+
+**E19 (experiment).** LightRAG against the baseline: [E19](../../experiments/E19-lightrag.md).
+
+- 31 single-well questions: LightRAG `mix` 25/31 on AK-3 and on three reports (small or default budget), `naive` 22 to 25/31, `local` 21/31; the baseline stays at 28/31.
+- Indexing: 13,600 to 15,300 tokens and about 22 s per page; a keyword call and 1.6 to 6 times the baseline's prompt tokens per question.
+- Probe: plain RAG and LightRAG each reach 3/9, on different questions; 6 distinct questions are answered by one or the other.
+
+**B-F23 (finding; from E19).** LightRAG's graph helps on different questions, not on more of them. It links a person across reports (p05, Mary Mann) and gathers one value from every well (p02), which passages alone do not; it loses p06 and confuses TG-2 with TG-4 (q03). More graph context (the default 30,000-token budget) answers fewer probe questions than the small budget.
+
+**E20 (experiment).** Per-well facts as answer context: [E20](../../experiments/E20-well-fact-sheet.md).
+
+- neo4j-graphrag with Qwen3-4B on three reports: 2.5 calls and 4,750 prompt tokens per page; AK-3 recall 0.56 (E16 on AK-3 alone: 0.85), 47% right where keyed. 364 of 737 facts are about 68-32, many junk from daily-report tables.
+- Adding each named well's facts before the passages: 28/31 to **21/31**, and 3/9 to **1/9** on the probe.
+
+**B-F24 (finding; from E20).** Unvalidated extracted facts make answers worse; contradictory values (three rig-release dates for AK-3) pull the model off the right passage. Facts must pass validation (§6.2 stage 6) before they reach the answer model.
+
+**B-D18 (decision; from E19 and E20).**
+
+1. **LightRAG is not adopted as the base on this evidence.** The D-50 baseline stays: plain RAG, Qwen3-8B, BM25 routed by well.
+2. Graph value is to be shown on questions across wells and reports. The probe (B-C14) and the supervisor request ([ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md)) serve that.
+3. Next: LightRAG with K2 injected (E21), to see whether our ontology makes its graph precise enough; then a validation step for extracted facts (verbatim value in the cited chunk, unit, one well name per registry entry) before any graph fact reaches an answer.

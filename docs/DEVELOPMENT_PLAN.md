@@ -222,12 +222,12 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
 |---|---|---|
 | 1. Model client | Done: JSON-schema output, cache, cost ledger, private-data guard | `graphrag/client.py` |
 | 2. Vector baseline | Done and strengthened: Qwen3-8B, BM25 routed by well, citations checked in code; 28/31 on one report and on three (D-50) | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md) |
-| 3. Base comparison | neo4j-graphrag-python run, not adopted (its facts do not improve answers); LightRAG next | [E16](experiments/E16-neo4j-graphrag-python.md) |
+| 3. Base comparison | neo4j-graphrag-python and LightRAG run, not adopted: neither beats the baseline, and unvalidated graph facts lower answers. LightRAG with K2 next | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md) |
 | 4. Models | Answer LLM: Qwen3-8B (thinking off). Embeddings: Qwen3-Embedding-0.6B, used only in fusion | [E17](experiments/E17-model-sweep.md) |
-| 5. Ontology slice | Open | — |
+| 5. Ontology slice | K2 version 1 published: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json) |
 | 6. Answers | Cited answers to the 31 questions; K4 file format still open | `graphrag/results/` |
 
-The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Judging a graph needs questions across wells and reports.
+The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Judging a graph needs questions across wells and reports: a 9-question probe (not an evaluation set) shows plain RAG and LightRAG each at 3/9, on different questions (E19).
 
 **Exit.**
 
@@ -403,7 +403,7 @@ Keep:
 | 4 | A: Docling baseline and VLM comparison on the gold-table pages | Parser chosen with table scores | Open |
 | 5 | A: multi-page tables, key-value forms, parent/child chunks; K1 version 1 | EOWR by week 3, DDR by week 5 | Open |
 | 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Done (`graphrag/client.py`) |
-| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | In progress: baseline D-50; neo4j-graphrag not adopted (E16); LightRAG next |
+| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | In progress: baseline D-50; neo4j-graphrag and LightRAG not adopted (E16, E19, E20); LightRAG with K2 next |
 | 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | LLM chosen (Qwen3-8B, E17); retrieval E14 to E18; K4 format open |
 | 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
 | 10 | C: MinIO, PostgreSQL, vector store (chosen with B) and Neo4j in Docker Compose; loader from K1; page-rebuild check | AK-3 EOWR loaded; every chunk resolves to file and page | Open |

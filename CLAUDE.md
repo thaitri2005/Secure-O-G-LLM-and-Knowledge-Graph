@@ -37,11 +37,11 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
 - Write documentation in plain English, with short tables and lists. Vietnamese reports keep technical terms in English.
 
-## Track B: where things stand (31 October 2026)
+## Track B: where things stand (1 November 2026)
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python has been run (E16) and not adopted; **LightRAG** is next. Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19) have been run and not adopted; **LightRAG with the K2 ontology** (E21) is next. Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -52,6 +52,8 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `citations.py` | Citations checked against the retrieved chunks in code |
   | `baseline.py` | Command line for retrieval and answer runs (`--facts`, `--withhold-unsupported`) |
   | `neo4j_kg.py` | neo4j-graphrag-python with the ontology file as its schema (runs in `.venv-graphrag`) |
+  | `lightrag_run.py` | LightRAG 1.5.7 on our chunks, client and answer harness (runs in `.venv-lightrag`) |
+  | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
@@ -64,6 +66,10 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E17](docs/experiments/E17-model-sweep.md) | BM25, top 5, **Qwen3-8B** (thinking off) | **28/31** |
   | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
 | [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
+  | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
+  | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B) | 21/31 |
+
+  On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions. Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
   - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.
@@ -73,9 +79,9 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 ### Next steps (B-D15)
 
 1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
-2. ~~Filter retrieval by well~~: done in E18 (B-D16).
-3. Run LightRAG with Qwen3-8B on the three-report pool and compare with the well-routed baseline (28/31).
-4. Thin ontology slice K2 version 1, from the report's headings, table columns and abbreviation table (D-49).
+2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
+3. LightRAG with K2 injected as its entity-type guidance (E21).
+4. Validate extracted facts (value in the cited chunk, unit, one name per well) before any graph fact reaches an answer (B-F24).
 5. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs
@@ -83,7 +89,8 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Windows), fully local on the GPU with llama.cpp (B-F16). The old laptop proved too slow. OpenRouter remains an option for public data.
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. `graphrag/` needs only `httpx` and `numpy`, which the lock file includes.
-2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports.
+2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports. On Windows the `docker` CLI may not be on PATH; it is under `%LOCALAPPDATA%\Programs\DockerDesktopesourcesin`.
+   For LightRAG runs: a third environment `.venv-lightrag` from `requirements-lightrag.lock.txt`.
 3. **llama.cpp:** the Windows CUDA 12.4 build of release b12015 plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`. GGUFs go into ignored `data/interim/models/`:
 
    | Model | Hugging Face repository and file |
@@ -93,7 +100,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
    | Embeddings | `Qwen/Qwen3-Embedding-0.6B-GGUF`, file `Qwen3-Embedding-0.6B-Q8_0.gguf` |
    | Dropped (E17) | `bartowski/Qwen2.5-7B-Instruct-GGUF`, `bartowski/Meta-Llama-3.1-8B-Instruct-GGUF` (Q4_K_M) |
 
-   Server commands are in [graphrag/README.md](graphrag/README.md): `-c 32768 -np 4 -ngl 99`. On a laptop with an integrated GPU, use `--device none -ngl 0` instead.
+   Server commands are in [graphrag/README.md](graphrag/README.md): `-c 32768 -np 4 -ngl 99` up to E18; **`-np 1` from E19 on** (LightRAG needs a 32k slot; the baseline gives the same 28/31 either way). Qwen3-4B for extraction can run on port 8082 (endpoint `local-llama-2`). On a laptop with an integrated GPU, use `--device none -ngl 0` instead.
 4. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Public data only; the client refuses private data on hosted endpoints.
 5. Check the setup by reproducing E17's baseline:
 

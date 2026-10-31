@@ -1,0 +1,77 @@
+{
+  "pool": "three",
+  "pool_description": "the three EOWRs in the bundle (AK-3 plus two distractor reports)",
+  "chunks": 372,
+  "pages": 150,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "guidance": null,
+  "lightrag": "1.5.7",
+  "graph": {
+    "entities": 2114,
+    "relations": 3099,
+    "entity_types": {
+      "artifact": 463,
+      "data": 343,
+      "concept": 297,
+      "event": 262,
+      "location": 222,
+      "content": 165,
+      "UNKNOWN": 95,
+      "organization": 79,
+      "person": 46,
+      "naturalobject": 45,
+      "method": 27,
+      "process": 23,
+      "other": 9,
+      "operation": 9,
+      "measurement": 4,
+      "geologicalfeature": 3,
+      "activity": 3,
+      "date": 3,
+      "project": 2,
+      "coordinatereferencesystem": 2,
+      "documentsection": 2,
+      "physicalproperty": 1,
+      "status": 1,
+      "document": 1,
+      "material": 1,
+      "month": 1,
+      "documentpage": 1,
+      "year": 1,
+      "contact": 1,
+      "coordinate": 1,
+      "time": 1
+    }
+  },
+  "wall_seconds": 3301.6,
+  "llm": {
+    "calls": 777,
+    "cached_calls": 120,
+    "invalid_json": 0,
+    "prompt_tokens": 1924023,
+    "completion_tokens": 373663,
+    "seconds": 3192.4,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "embedding": {
+    "calls": 573,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 291660,
+    "completion_tokens": 0,
+    "seconds": 104.9,
+    "cost_usd": 0.0,
+    "models": [
+      "local-embed:qwen3-embedding-0.6b"
+    ]
+  },
+  "per_page": {
+    "calls": 5.18,
+    "tokens": 15318,
+    "seconds": 22.01
+  }
+}
