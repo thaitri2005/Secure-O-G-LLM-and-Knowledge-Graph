@@ -141,7 +141,9 @@ def evaluate_answers(args) -> dict:
             facts.setdefault(fact["chunk"], []).append(render(fact))
     sheet, rejected = {}, {}
     if args.fact_sheet:
-        sheet_facts = json.loads((RESULTS / f"{args.fact_sheet}.json").read_text(encoding="utf-8"))["facts"]
+        # Several builds pool their facts, so validation's majority vote runs across extraction runs (B-F26).
+        sheet_facts = [f for name in args.fact_sheet
+                       for f in json.loads((RESULTS / f"{name}.json").read_text(encoding="utf-8"))["facts"]]
         if args.validate:
             sheet_facts, rejected = validate(sheet_facts, {c.id: c.text for c in chunks})
         sheet = fact_sheet(sheet_facts)
@@ -279,7 +281,7 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
     a.add_argument("--validate", action="store_true", help="check fact-sheet facts first (graphrag.validate, B-F24)")
-    a.add_argument("--fact-sheet", help="a graphrag.neo4j_kg result name; the facts of each well the question "
+    a.add_argument("--fact-sheet", nargs="+", help="a graphrag.neo4j_kg result name; the facts of each well the question "
                                         "names go before the passages (E20)")
     a.add_argument("--facts", help="a graphrag.neo4j_kg result name; its facts are shown under each passage")
     a.add_argument("--fresh", action="store_true", help="bypass the request cache, e.g. to re-measure under new server settings")

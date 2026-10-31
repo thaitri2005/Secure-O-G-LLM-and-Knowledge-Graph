@@ -437,3 +437,8 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 - Only decoding differs (11,360 against 11,269 completion tokens); most of the gap is one survey table (26 against 12 inclination facts). The E16 result file predates the concurrency flag, so its exact run conditions cannot be reconstructed.
 - Consequence: a single extraction run is not a measurement. Report extraction recall as a range over runs, and never let extracted facts reach answers unvalidated (B-C15).
 
+**B-F27 (finding; corrects B-F26).** Today's extraction runs are repeatable; E16's recall is the one that cannot be reproduced.
+
+- A second fresh three-report extraction (`E20_graph_three_qwen3-4b_run2.json`) gave the same 737 facts and recall 0.561 as the first; AK-3 alone gave 0.561 under two server settings. Pooling the two runs before validation changes nothing.
+- So "unstable across server restarts" in B-F26 is wrong. What stands: E16's 0.854, with identical prompts, is not reproduced by any run since, and the E16 file does not record its concurrency. Recall figures for this extractor should be taken as 0.56 until a run shows otherwise.
+
