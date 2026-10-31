@@ -1431,5 +1431,58 @@
         "gdr1295_56-32_eowr#t008"
       ]
     }
-  ]
+  ],
+  "table_mappings": {
+    "note": "Deterministic table-to-property mappings (§6.2 stage 4, R-01). A mapping applies to a table whose column headers contain every `when` entry as a whole word; `a|b` means either. `value` and `context` name columns by a word in their header; `rows` maps first-column labels to properties. The well is the document's most-named well; the qualifier is `planned` when the table caption says so.",
+    "series": [
+      {
+        "property": "inclination",
+        "when": [
+          "inclination|inc"
+        ],
+        "value": "inclination|inc",
+        "context": {
+          "depth_ft": "depth"
+        },
+        "qualifier": "actual"
+      },
+      {
+        "property": "projected_formation_temperature",
+        "when": [
+          "projected",
+          "depth"
+        ],
+        "value": "projected",
+        "context": {
+          "depth_ft": "depth"
+        },
+        "qualifier": "projected"
+      },
+      {
+        "property": "casing_depth",
+        "when": [
+          "casing",
+          "depth"
+        ],
+        "value": "depth",
+        "context": {
+          "casing_size_in": "casing"
+        },
+        "qualifier": "actual"
+      }
+    ],
+    "rows": [
+      {
+        "when": [
+          "time"
+        ],
+        "value": "hours",
+        "labels": {
+          "total productive time": "productive_time",
+          "total non-productive time": "non_productive_time",
+          "total rig time": "total_rig_time"
+        }
+      }
+    ]
+  }
 }

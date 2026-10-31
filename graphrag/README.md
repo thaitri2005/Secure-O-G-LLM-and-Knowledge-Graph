@@ -11,6 +11,7 @@ Track B's code for the first build: the model client, the plain-RAG baseline, an
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
 | `baseline.py` | Command line for retrieval and answer runs; it writes `graphrag/results/<name>.json`. `--facts` adds a graph's extracted facts under each passage; `--withhold-unsupported` drops answers without a supported citation |
 | `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages |
+| `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22): `python -m graphrag.tables --pool three --name my_tables` |
 | `lightrag_run.py` | LightRAG 1.5.7 (MIT, as a library, `.venv-lightrag`) on our chunks, client and answer harness (E19) |
 | `ontology.py` | K2 ontology slice: glossary from the reports' tables, rendering as extractor guidance |
 | `neo4j_kg.py` | neo4j-graphrag-python (Apache-2.0, used as a library) on the K1 chunks: the ontology profile as its schema, our client as its LLM and embedder, facts read back from Neo4j and scored against the gold facts (E16) |

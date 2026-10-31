@@ -12,6 +12,7 @@ from graphrag.baseline import fact_sheet, render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk, load_questions
 from graphrag.ontology import glossary, guidance, load as load_k2
+from graphrag.tables import column, extract as extract_tables
 from graphrag.validate import validate
 from graphrag.retrieval import BM25, Fusion, WellRouter, well_names
 from graphrag.citations import resolve
@@ -225,6 +226,30 @@ class ValidateTests(unittest.TestCase):
         self.assertEqual(rejected, {"contradicted, outvoted": 1})
         kept, rejected = validate([self.fact("a#c1", "AK-3", 1955), self.fact("a#c3", "AK-3", 1900)], self.texts)
         self.assertEqual((kept, rejected), ([], {"contradicted, tie": 2}))
+
+
+class TableMappingTests(unittest.TestCase):
+    def test_headers_match_whole_words_only(self):
+        heads = ["hole (inches)", "casing (inches)", "depth (feet)"]
+        self.assertIsNone(column(heads, "inclination|inc"))
+        self.assertEqual(column(heads, "depth"), 2)
+        self.assertEqual(column(["measured depth", "inc (deg)"], "inclination|inc"), 1)
+
+    def test_casing_table_rows_become_planned_facts_with_their_chunk(self):
+        cells = [{"r": r, "c": c, "text": t} for r, row in enumerate(
+            [["Hole (inches)", "Casing (inches)", "Depth (feet)"], ["10-3/4", "8-5/8 (8\" line pipe)", "~ 40"],
+             ["7-1/2", "5-1/2", "~ 220"]]) for c, t in enumerate(row)]
+        table = {"table_id": "d#t1", "doc_id": "d", "header_rows": 1, "rendered_header_rows": 1, "cells": cells}
+        chunk_ = Chunk("d#c0001", "d", 1, "table", None, "Table 1: Planned XY-1 casing. | Hole | Casing | Depth |",
+                       "d#t1", 1, 2)
+        named = Chunk("d#c0000", "d", 1, "text", None, "Well XY-1 was drilled.")
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "tables.jsonl"
+            path.write_text(json.dumps(table), encoding="utf-8")
+            with patch("graphrag.tables.TABLES", path):
+                facts = extract_tables([named, chunk_], load_k2())
+        self.assertEqual([(f["well"], f["qualifier"], f["context"]["casing_size_in"], f["value"], f["chunk"]) for f in facts],
+                         [("XY-1", "planned", "8-5/8", "40", "d#c0001"), ("XY-1", "planned", "5-1/2", "220", "d#c0001")])
 
 
 class QuestionSetTests(unittest.TestCase):

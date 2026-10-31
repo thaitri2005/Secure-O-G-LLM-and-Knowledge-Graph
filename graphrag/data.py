@@ -25,6 +25,9 @@ class Chunk:
     kind: str
     section: str | None
     text: str
+    table_id: str | None = None
+    row_start: int | None = None
+    row_end: int | None = None
 
 
 def load_chunks(docs: list[str] | None = None, path: Path = CHUNKS) -> list[Chunk]:
@@ -33,7 +36,7 @@ def load_chunks(docs: list[str] | None = None, path: Path = CHUNKS) -> list[Chun
         row = json.loads(line)
         if docs is None or row["doc_id"] in docs:
             out.append(Chunk(row["chunk_id"], row["doc_id"], row["page"], row["type"], row.get("section"),
-                             row["text"]))
+                             row["text"], row.get("table_id"), row.get("row_start"), row.get("row_end")))
     return out
 
 

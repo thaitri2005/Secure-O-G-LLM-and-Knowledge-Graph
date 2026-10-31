@@ -55,6 +55,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `lightrag_run.py` | LightRAG 1.5.7 on our chunks, client and answer harness (runs in `.venv-lightrag`) |
   | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
   | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions) |
+  | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
@@ -68,7 +69,8 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
 | [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
   | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
-  | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / **28/31** |
+  | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / 28/31 |
+  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the working design) | **30/31** |
 
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; the baseline plus **validated** per-well facts reaches **5/9** (B-D19, the working design). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
@@ -82,7 +84,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. LightRAG with K2 injected as its entity-type guidance (E21).
-4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). Next: raise extraction recall (K2, table rows mapped in code) and add people, projects and document counts to the fact graph (B-D19).
+4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.
 5. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs

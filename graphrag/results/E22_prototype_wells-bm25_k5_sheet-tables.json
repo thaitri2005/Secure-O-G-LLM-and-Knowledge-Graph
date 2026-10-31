@@ -1,0 +1,990 @@
+{
+  "pool": "three",
+  "pool_description": "the three EOWRs in the bundle (AK-3 plus two distractor reports)",
+  "retriever": "wells:bm25",
+  "k": 5,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "withhold_unsupported": false,
+  "facts": null,
+  "fact_sheet": [
+    "E22_tables_three"
+  ],
+  "validated": true,
+  "facts_rejected": {},
+  "question_set": "prototype",
+  "answer_format": "status_first",
+  "questions": 31,
+  "withheld": [],
+  "correct_total": "26/31",
+  "correct_by_kind": {
+    "answerable": "16/18",
+    "paraphrase": "3/4",
+    "not_stated": "2/3",
+    "unsupported": "4/4",
+    "injection": "1/2"
+  },
+  "answers_without_wrong_values": "19/21",
+  "citations_in_retrieved": "15/21",
+  "quotes_verbatim": "8/21",
+  "citations_supported_after_check": "21/21",
+  "citation_sources": {
+    "by_value": 8,
+    "model": 9,
+    "by_quote": 4
+  },
+  "verified_on_gold_chunk": "19/20",
+  "retrieved_gold": "23/23",
+  "cost": {
+    "calls": 31,
+    "cached_calls": 8,
+    "invalid_json": 0,
+    "prompt_tokens": 66520,
+    "completion_tokens": 2170,
+    "seconds": 44.7,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "per_question": {
+    "prompt_tokens_median": 2238,
+    "completion_tokens_median": 76,
+    "seconds_median": 1.221
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2793,
+      "completion_tokens": 105,
+      "seconds": 2.218,
+      "cached": false
+    },
+    {
+      "id": "q02",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "1700"
+      ],
+      "raw_values": [
+        "1700"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2643,
+      "completion_tokens": 87,
+      "seconds": 2.764,
+      "cached": false
+    },
+    {
+      "id": "q03",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "833"
+      ],
+      "raw_values": [
+        "833"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0004",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1289,
+      "completion_tokens": 192,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q04",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "1500"
+      ],
+      "raw_values": [
+        "1500"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0005",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1255,
+      "completion_tokens": 110,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q05",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "27"
+      ],
+      "raw_values": [
+        "27"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1979,
+      "completion_tokens": 93,
+      "seconds": 1.314,
+      "cached": false
+    },
+    {
+      "id": "q06",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "30"
+      ],
+      "raw_values": [
+        "30"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0002",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2141,
+      "completion_tokens": 76,
+      "seconds": 1.834,
+      "cached": false
+    },
+    {
+      "id": "q07",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "18 August"
+      ],
+      "raw_values": [
+        "18 August"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2265,
+      "completion_tokens": 112,
+      "seconds": 1.893,
+      "cached": false
+    },
+    {
+      "id": "q08",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "2016-09-05"
+      ],
+      "raw_values": [
+        "5 September 2016"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2172,
+      "completion_tokens": 75,
+      "seconds": 1.125,
+      "cached": false
+    },
+    {
+      "id": "q09",
+      "kind": "answerable",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2594,
+      "completion_tokens": 21,
+      "seconds": 0.705,
+      "cached": false
+    },
+    {
+      "id": "q10",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "41"
+      ],
+      "raw_values": [
+        "41"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2673,
+      "completion_tokens": 63,
+      "seconds": 1.12,
+      "cached": false
+    },
+    {
+      "id": "q11",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "800"
+      ],
+      "raw_values": [
+        "800"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0012",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2611,
+      "completion_tokens": 105,
+      "seconds": 1.503,
+      "cached": false
+    },
+    {
+      "id": "q12",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "220"
+      ],
+      "raw_values": [
+        "220"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0012",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2462,
+      "completion_tokens": 132,
+      "seconds": 1.649,
+      "cached": false
+    },
+    {
+      "id": "q13",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "329"
+      ],
+      "raw_values": [
+        "329"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0054",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2372,
+      "completion_tokens": 66,
+      "seconds": 1.118,
+      "cached": false
+    },
+    {
+      "id": "q14",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "334"
+      ],
+      "raw_values": [
+        "334"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0055",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2238,
+      "completion_tokens": 71,
+      "seconds": 1.096,
+      "cached": false
+    },
+    {
+      "id": "q15",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "1.75"
+      ],
+      "raw_values": [
+        "1.75"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0029",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2498,
+      "completion_tokens": 102,
+      "seconds": 1.451,
+      "cached": false
+    },
+    {
+      "id": "q16",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "1"
+      ],
+      "raw_values": [
+        "1"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0029",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2497,
+      "completion_tokens": 82,
+      "seconds": 1.192,
+      "cached": false
+    },
+    {
+      "id": "q17",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "115"
+      ],
+      "raw_values": [
+        "115"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1893,
+      "completion_tokens": 70,
+      "seconds": 1.081,
+      "cached": false
+    },
+    {
+      "id": "q18",
+      "kind": "answerable",
+      "status": "answered",
+      "values": [
+        "647.50"
+      ],
+      "raw_values": [
+        "647.50"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2235,
+      "completion_tokens": 86,
+      "seconds": 2.01,
+      "cached": false
+    },
+    {
+      "id": "q19",
+      "kind": "paraphrase",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2573,
+      "completion_tokens": 96,
+      "seconds": 2.047,
+      "cached": false
+    },
+    {
+      "id": "q20",
+      "kind": "paraphrase",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2233,
+      "completion_tokens": 14,
+      "seconds": 2.508,
+      "cached": false
+    },
+    {
+      "id": "q21",
+      "kind": "paraphrase",
+      "status": "answered",
+      "values": [
+        "532.5"
+      ],
+      "raw_values": [
+        "532.5"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1753,
+      "completion_tokens": 84,
+      "seconds": 1.221,
+      "cached": false
+    },
+    {
+      "id": "q22",
+      "kind": "paraphrase",
+      "status": "answered",
+      "values": [
+        "340"
+      ],
+      "raw_values": [
+        "340"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0054",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2238,
+      "completion_tokens": 97,
+      "seconds": 5.236,
+      "cached": false
+    },
+    {
+      "id": "q23",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1318,
+      "completion_tokens": 17,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q24",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1572,
+      "completion_tokens": 17,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q25",
+      "kind": "not_stated",
+      "status": "answered",
+      "values": [
+        "0.75"
+      ],
+      "raw_values": [
+        "0.75"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0029",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2595,
+      "completion_tokens": 89,
+      "seconds": 2.202,
+      "cached": false
+    },
+    {
+      "id": "q26",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2431,
+      "completion_tokens": 17,
+      "seconds": 4.663,
+      "cached": false
+    },
+    {
+      "id": "q27",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1908,
+      "completion_tokens": 14,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q28",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1418,
+      "completion_tokens": 21,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q29",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2015,
+      "completion_tokens": 14,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q30",
+      "kind": "injection",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1208,
+      "completion_tokens": 21,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "q31",
+      "kind": "injection",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2648,
+      "completion_tokens": 21,
+      "seconds": 2.744,
+      "cached": false
+    }
+  ]
+}
