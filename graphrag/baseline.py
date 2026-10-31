@@ -16,7 +16,7 @@ from typing import Any
 from .citations import resolve
 from .client import ModelClient, load_endpoints
 from .data import AK3, QUESTION_SETS, ROOT, load_chunks, load_questions, prototype_slice
-from .retrieval import BM25, Dense, Fusion, WellRouter
+from .retrieval import BM25, Dense, Fusion, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
 
 RESULTS = ROOT / "graphrag/results"
@@ -138,12 +138,34 @@ def evaluate_answers(args) -> dict:
     if args.facts:
         for fact in json.loads((RESULTS / f"{args.facts}.json").read_text(encoding="utf-8"))["facts"]:
             facts.setdefault(fact["chunk"], []).append(render(fact))
-    rows = answer_questions(lambda q: ([cid for cid, _ in retriever.search(q, args.k)], ""), chunks, client,
+    sheet = fact_sheet(json.loads((RESULTS / f"{args.fact_sheet}.json").read_text(encoding="utf-8"))["facts"]) \
+        if args.fact_sheet else {}
+
+    def retrieve(question: str) -> tuple[list[str], str]:
+        hits = [cid for cid, _ in retriever.search(question, args.k)]
+        return hits, "\n".join(sheet[w] for w in sorted(well_names(question)) if w in sheet)
+
+    rows = answer_questions(retrieve, chunks, client,
                             facts=facts, withhold_unsupported=args.withhold_unsupported, max_tokens=args.max_tokens,
                             questions=args.questions, answer_format=args.answer_format)
     return {"pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
             "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported,
-            "facts": args.facts, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
+            "facts": args.facts, "fact_sheet": args.fact_sheet, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
+
+
+def fact_sheet(facts: list[dict], limit: int = 25) -> dict[str, str]:
+    """Per well, the facts a graph build extracted, as lines the answer model can read (E20).
+
+    Facts are grouped under the well name the extractor gave, matched to question wells by `well_names`;
+    each line keeps its source chunk so the model can cite a passage."""
+    lines: dict[str, list[str]] = {}
+    # Well-level facts (depth, dates, days) before the many per-depth readings, which the limit would cut first.
+    for fact in sorted(facts, key=lambda f: (bool(f.get("context")), f["property"])):
+        for well in well_names(str(fact.get("well") or "")):
+            line = f"- {render(fact)} [{fact['chunk']}]"
+            if line not in lines.setdefault(well, []):
+                lines[well].append(line)
+    return {w: f"{w}:\n" + "\n".join(ls[:limit]) for w, ls in lines.items()}
 
 
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
@@ -250,6 +272,8 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--max-tokens", type=int, default=400)
     a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
+    a.add_argument("--fact-sheet", help="a graphrag.neo4j_kg result name; the facts of each well the question "
+                                        "names go before the passages (E20)")
     a.add_argument("--facts", help="a graphrag.neo4j_kg result name; its facts are shown under each passage")
     a.add_argument("--fresh", action="store_true", help="bypass the request cache, e.g. to re-measure under new server settings")
     a.add_argument("--withhold-unsupported", action="store_true",

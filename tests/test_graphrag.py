@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 import httpx
 
-from graphrag.baseline import render
+from graphrag.baseline import fact_sheet, render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk, load_questions
 from graphrag.ontology import glossary, guidance, load as load_k2
@@ -180,6 +180,18 @@ class OntologyTests(unittest.TestCase):
         text = guidance(load_k2())
         self.assertIn("- Well:", text)
         self.assertIn("Well MONITORS Well", text)
+
+
+class FactSheetTests(unittest.TestCase):
+    def test_facts_group_by_well_with_well_level_facts_first(self):
+        facts = [{"chunk": "d#c1", "well": "Well AK-3", "property": "inclination", "qualifier": "actual",
+                  "context": {"depth_ft": 600}, "value": 1},
+                 {"chunk": "d#c2", "well": "AK-3", "property": "total_depth", "qualifier": "actual",
+                  "context": None, "value": 1955}]
+        sheet = fact_sheet(facts)
+        self.assertEqual(list(sheet), ["AK-3"])
+        self.assertLess(sheet["AK-3"].index("total_depth"), sheet["AK-3"].index("inclination"))
+        self.assertIn("[d#c2]", sheet["AK-3"])
 
 
 class QuestionSetTests(unittest.TestCase):
