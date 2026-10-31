@@ -25,6 +25,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Next | Graph-worthy questions from the supervisor; LightRAG with K2 (E21); validated per-well facts as the graph part, to repeat on the expert set | B-D19 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
+| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
 | Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
 | Vector store | Open; decided with Track C after the base | — |
 
@@ -456,3 +457,9 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 **B-C17 (design choice).** Table mappings find header rows from content (leading rows where under a quarter of the cells are bare numbers) and accept only short headers (at most 50 characters), because the parser's header counts are wrong on 56-32 and 68-32's daily-report forms come out as grids of paragraphs. The fact sheet can be ranked: `--sheet-properties N` shows only the facts of the N K2 properties whose definitions best match the question (Qwen3-Embedding-0.6B). K2 gained `spud_to_release_days` and `total_rig_time` from the prototype profile, and `scoring.normalize` reads `09-Mar-19`.
 
 **B-F29 (finding; from E20 and E22).** The cross-report probe cannot separate setups: across six fact-sheet variants it scored 1, 2, 2, 3, 4 and 5 of 9, and single answers flip with context alone (adding 56-32's survey lines flipped p03 and p04). The single-well result is stable: 30/31 with three different validated sheets. A judgement on graph value across wells needs the expert question set or a larger probe.
+
+**B-C18 (design choice).** K4 version 0.1, the answer record Track B publishes for Track C (§4.5): [`schemas/k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json).
+
+- One JSON line per question: question ID and text, status, normalized answer values with units, citations as child chunk IDs with how each was checked (B-C08), the pipeline (base, retriever, *k*, fact sheet, validation, answer format), the answer model, and the answer call's calls, tokens, seconds and cost; `correct` when the question set has gold.
+- `python -m graphrag.k4 <run>` writes `graphrag/results/<run>.k4.jsonl` from any answer run. The first file is from the working design's E22 run (31 records, valid against the schema).
+- Chunk IDs are K1 version 0 IDs until Track C's §5.11 IDs replace them. Index-time cost stays in the run's result file and experiment record.

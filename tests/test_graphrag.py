@@ -12,6 +12,7 @@ from graphrag.baseline import fact_sheet, render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
 from graphrag.data import Chunk, load_questions
 from graphrag.ontology import glossary, guidance, load as load_k2
+from graphrag.k4 import SCHEMA as K4_SCHEMA, records as k4_records
 from graphrag.tables import column, extract as extract_tables
 from graphrag.validate import validate
 from graphrag.retrieval import BM25, Fusion, WellRouter, well_names
@@ -251,6 +252,24 @@ class TableMappingTests(unittest.TestCase):
                 facts = extract_tables([named, chunk_], load_k2())
         self.assertEqual([(f["well"], f["qualifier"], f["context"]["casing_size_in"], f["value"], f["chunk"]) for f in facts],
                          [("XY-1", "planned", "8-5/8", "40", "d#c0001"), ("XY-1", "planned", "5-1/2", "220", "d#c0001")])
+
+
+class K4Tests(unittest.TestCase):
+    def test_records_from_a_run_match_the_schema(self):
+        import jsonschema
+        run = {"question_set": "prototype", "model": "qwen3-8b", "endpoint": "local-llama", "retriever": "wells:bm25",
+               "k": 5, "cost": {"models": ["local-llama:qwen3-8b"]},
+               "rows": [{"id": "q01", "status": "answered", "values": ["1955"], "units": ["ft"], "correct": True,
+                         "citations": [{"chunk": "gdr882_ak3_eowr#c0010", "how": "model"}],
+                         "prompt_tokens": 1400, "completion_tokens": 80, "seconds": 1.2}]}
+        with tempfile.TemporaryDirectory() as temporary:
+            Path(temporary, "r.json").write_text(json.dumps(run), encoding="utf-8")
+            with patch("graphrag.k4.RESULTS", Path(temporary)):
+                rows = k4_records("r")
+        schema = json.loads(K4_SCHEMA.read_text(encoding="utf-8"))
+        jsonschema.validate(rows[0], schema)
+        self.assertEqual(rows[0]["answers"], [{"value": "1955", "unit": "ft"}])
+        self.assertEqual(rows[0]["question"], "What total depth did well AK-3 reach?")
 
 
 class QuestionSetTests(unittest.TestCase):

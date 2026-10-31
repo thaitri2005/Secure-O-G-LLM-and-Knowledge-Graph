@@ -245,7 +245,8 @@ def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, lis
         cited = [f"{doc}#{a['chunk'].strip('[] ')}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
         rows.append({
             "id": q["id"], "kind": q["kind"], "status": status, "values": values,
-            "raw_values": [a["value"] for a in answers], "withheld_values": withheld,
+            "raw_values": [a["value"] for a in answers], "units": [a["unit"] for a in answers],
+            "withheld_values": withheld,
             **({"evidence": parsed["evidence"]} if "evidence" in parsed else {}),
             **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
             # Questions across wells need every fact's passage, not just one (cross-report probe).

@@ -56,6 +56,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
   | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions) |
   | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
+  | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):

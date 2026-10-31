@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "k4_answer_record.schema.json",
+  "title": "K4 answer record",
+  "description": "One answered question from a Track B run (specification §4.5, K4, B to C). Chunk IDs are K1 version 0 IDs (`<doc_id>#c<nnnn>`) until Track C's §5.11 IDs replace them. Written by `python -m graphrag.k4`, one JSON object per line.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["k4_version", "run", "question_id", "status", "answers", "citations", "pipeline", "models", "cost"],
+  "properties": {
+    "k4_version": {"const": "0.1"},
+    "run": {"type": "string", "minLength": 1, "description": "The result file name under graphrag/results/"},
+    "question_set": {"type": "string"},
+    "question_id": {"type": "string", "minLength": 1},
+    "question": {"type": "string"},
+    "status": {"enum": ["answered", "not_stated", "withheld", "invalid"]},
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["value"],
+        "properties": {
+          "value": {"type": "string", "description": "Normalized in code: dates YYYY-MM-DD, numbers without separators"},
+          "unit": {"type": "string"}
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["chunk_id", "how"],
+        "properties": {
+          "chunk_id": {"type": ["string", "null"], "description": "Child chunk the answer is verified against; null when no retrieved passage supports it"},
+          "how": {"enum": ["model", "by_quote", "by_value", "unsupported"], "description": "How the citation was checked in code (B-C08)"}
+        }
+      }
+    },
+    "pipeline": {
+      "type": "object",
+      "description": "The base and retrieval settings of the run",
+      "properties": {
+        "base": {"type": "string"},
+        "retriever": {"type": "string"},
+        "k": {"type": "integer"},
+        "fact_sheet": {"type": ["array", "null"]},
+        "validated": {"type": "boolean"},
+        "answer_format": {"type": "string"}
+      }
+    },
+    "models": {
+      "type": "object",
+      "required": ["answer"],
+      "properties": {
+        "answer": {"type": "string", "description": "endpoint:model"}
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calls", "prompt_tokens", "completion_tokens", "seconds", "cost_usd"],
+      "properties": {
+        "calls": {"type": "integer", "minimum": 0},
+        "prompt_tokens": {"type": "integer", "minimum": 0},
+        "completion_tokens": {"type": "integer", "minimum": 0},
+        "seconds": {"type": "number", "minimum": 0},
+        "cost_usd": {"type": "number", "minimum": 0}
+      }
+    },
+    "correct": {"type": "boolean", "description": "Development scoring against the question set's gold, when it has one"}
+  }
+}
