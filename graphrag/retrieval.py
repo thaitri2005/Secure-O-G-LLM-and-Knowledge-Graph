@@ -131,8 +131,9 @@ class WellRouter:
     names, is not filtered.
     """
 
-    def __init__(self, retriever, chunks: list[Chunk]):
-        self.retriever, self.name, self.index_seconds = retriever, f"wells:{retriever.name}", retriever.index_seconds
+    def __init__(self, retriever, chunks: list[Chunk], per_well: bool = False):
+        self.retriever, self.per_well, self.index_seconds = retriever, per_well, retriever.index_seconds
+        self.name = f"{'perwell' if per_well else 'wells'}:{retriever.name}"
         self.chunks_by_doc: dict[str, set[str]] = {}
         self.wells_by_doc: dict[str, set[str]] = {}
         for c in chunks:
@@ -145,7 +146,24 @@ class WellRouter:
 
     def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
         docs = self.documents(question)
-        if docs:
-            routed = set().union(*(self.chunks_by_doc[d] for d in docs))
-            allowed = routed if allowed is None else allowed & routed
-        return self.retriever.search(question, k, allowed)
+        wells = [w for w in sorted(well_names(question)) if self.documents(w)]
+        if self.per_well and len(wells) > 1:
+            # One search per named well, interleaved, so each well gets passages within the same total k.
+            # Each search drops the other wells' names: BM25 would match their digits (56-32) in table rows.
+            runs = [self.retriever.search(self._only(question, w), k, self._allowed(self.documents(w), allowed))
+                    for w in wells]
+            out: list[tuple[str, float]] = []
+            for rank in range(k):
+                for run in runs:
+                    if rank < len(run) and run[rank][0] not in {cid for cid, _ in out}:
+                        out.append(run[rank])
+            return out[:k]
+        return self.retriever.search(question, k, self._allowed(docs, allowed) if docs else allowed)
+
+    @staticmethod
+    def _only(question: str, well: str) -> str:
+        return WELL_NAME.sub(lambda m: m.group() if m.group().upper() == well else "", question)
+
+    def _allowed(self, docs: list[str], allowed: set[str] | None) -> set[str]:
+        routed = set().union(*(self.chunks_by_doc[d] for d in docs))
+        return routed if allowed is None else allowed & routed

@@ -55,7 +55,8 @@ ANSWER_FORMATS = {
     },
 }
 EVIDENCE_NOTE = ("\nFirst write the evidence: which passages bear on the question and what they say, in one or two "
-                 "sentences. To compare, count or combine, use the values the passages state.")
+                 "sentences. To compare, count or combine, use the values the passages state. When the question asks "
+                 "which well, person or organization, each answer value is that name, not a number.")
 
 
 def render(fact: dict) -> str:
@@ -80,6 +81,9 @@ def build(spec: str, chunks) -> Any:
         return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None))
     if spec.startswith("fusion:"):
         return Fusion([build(part, chunks) for part in spec.removeprefix("fusion:").split("+")])
+    if spec.startswith("perwell:"):
+        # perwell:<retriever> also searches each named well's documents separately when a question names several.
+        return WellRouter(build(spec.removeprefix("perwell:"), chunks), chunks, per_well=True)
     if spec.startswith("wells:"):
         # wells:<retriever> keeps only the documents that name a well the question names (B-C11).
         return WellRouter(build(spec.removeprefix("wells:"), chunks), chunks)

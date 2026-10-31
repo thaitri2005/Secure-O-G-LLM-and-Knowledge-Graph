@@ -20,9 +20,9 @@ import numpy as np
 from lightrag import LightRAG, QueryParam
 from lightrag.utils import EmbeddingFunc, sanitize_text_for_encoding
 
-from .baseline import POOLS, RESULTS, answer_questions, pool, summarize
+from .baseline import ANSWER_FORMATS, POOLS, RESULTS, answer_questions, pool, summarize
 from .client import ModelClient, load_endpoints
-from .data import ROOT
+from .data import QUESTION_SETS, ROOT, load_questions
 from .retrieval import QUERY_INSTRUCTION, passage_text
 
 WORK = ROOT / "data/interim/lightrag"
@@ -125,7 +125,7 @@ async def answer(args) -> dict:
     contexts: dict[str, tuple[list[str], str]] = {}
     unmapped = 0
     try:
-        questions = json.loads((ROOT / "prototype/gold/questions.json").read_text(encoding="utf-8"))
+        questions, _ = load_questions(args.questions)
         for q in questions:
             data = (await rag.aquery_data(q["question"], QueryParam(mode=args.mode, enable_rerank=False, **budget)))
             data = data.get("data", {}) or {}
@@ -141,8 +141,10 @@ async def answer(args) -> dict:
         await rag.finalize_storages()
     query_cost = llm.ledger.summary()
     reader = ModelClient(load_endpoints()[args.endpoint], meta["model"])
-    rows = answer_questions(lambda question: contexts[question], chunks, reader, max_tokens=args.max_tokens)
+    rows = answer_questions(lambda question: contexts[question], chunks, reader, max_tokens=args.max_tokens,
+                            questions=args.questions, answer_format=args.answer_format)
     out = {"pool": meta["pool"], "index": args.index, "mode": args.mode, "budget": args.budget, "graph_in_prompt": not args.no_graph,
+           "question_set": args.questions, "answer_format": args.answer_format,
            "model": meta["model"], "unmapped_chunks": unmapped,
            "median_passages": float(np.median([r["passages"] for r in rows])),
            "query_keyword_calls": query_cost, **summarize(rows, reader)}
@@ -162,6 +164,8 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--budget", default="default", choices=BUDGETS)
     a.add_argument("--no-graph", action="store_true", help="give the answer model the chunks only")
     a.add_argument("--max-tokens", type=int, default=400)
+    a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
+    a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
     for p in (i, a):
         p.add_argument("--endpoint", default="local-llama")
         p.add_argument("--name", required=True, help="result file name under graphrag/results/ (and index directory)")
