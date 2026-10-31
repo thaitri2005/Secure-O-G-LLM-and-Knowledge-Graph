@@ -1,0 +1,13 @@
+[
+  {
+    "id": "akutan_account_codes",
+    "doc_id": "gdr882_ak3_appx_17_2_ak_3_drillingplan_11_aug_2016",
+    "pages": [
+      34,
+      35
+    ],
+    "csv": "gold/excluded/akutan_account_codes.csv",
+    "reason": "Unruled code-and-description list under a heading, with no cells or column headings. It is text, not a table, so it is excluded from the continued-table set and from X4 recall.",
+    "reviewed": "2026-10-31"
+  }
+]

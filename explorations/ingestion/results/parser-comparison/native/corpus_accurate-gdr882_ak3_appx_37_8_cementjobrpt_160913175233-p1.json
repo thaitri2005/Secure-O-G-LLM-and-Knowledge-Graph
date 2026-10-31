@@ -1,0 +1,534 @@
+{
+  "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+  "items": [
+    {
+      "bbox": [
+        140.5,
+        80.74000000000001,
+        244.42,
+        88.13889502762436
+      ],
+      "id": "#/texts/0",
+      "section": "Cementing Report",
+      "text": "Cementing Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        140.5,
+        95.005,
+        173.45799999999997,
+        100.55417127071826
+      ],
+      "id": "#/texts/1",
+      "section": "Cementing Report",
+      "text": "Well ID:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        176.536,
+        95.005,
+        197.533,
+        100.55417127071826
+      ],
+      "id": "#/texts/2",
+      "section": "Cementing Report",
+      "text": "AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        370.4969,
+        80.74000000000001,
+        534.3929000000003,
+        88.13889502762436
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        462.5228,
+        95.005,
+        534.4868000000001,
+        100.55417127071826
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        140.5,
+        107.96500000000003,
+        534.2334000000006,
+        113.5141712707183
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Valley Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        71.72803497314453,
+        120.42288208007812,
+        540.1629638671875,
+        293.2380676269531
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "SECONDARY 4.500 String OD (ins): MAJOR Cementing Co: Job Type: PROD Well Section: FULL String Type: Start Date/Time: 29-Aug-16 22:30 Original Well Bore Well Bore: Cement Job Information Cementing Engineer: ZONE 2 100 170 150 120 150 Remedial Type: Breakdown Pressure (psi): Init. Injectn Pressure (psi): Final Injectn Pressure (psi): Init. Shut In Pressure (psi): Bleed Back Volume (bbls): Hold Pressure (psi): Final Injectn Rate (bbls/min): Initial Injectn Rate(bbls/min): Breakdown Rate (bbls/min): No. of Attempts: Hold Time: Secondary Job Details",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        266.9963,
+        299.5384,
+        344.91830000000004,
+        305.08757127071823
+      ],
+      "id": "#/texts/6",
+      "section": "Slurry Information",
+      "text": "Slurry Information",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        71.4649887084961,
+        304.4639892578125,
+        540.0928344726562,
+        335.61785888671875
+      ],
+      "id": "#/tables/1",
+      "section": "Slurry Information",
+      "text": "Type Sacks Density Yield Additives Volume Rate 14 13.50 14.6 2.5 Thermolite HT + 1 pint retarder 0.5 LEAD",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        261.0,
+        341.8024,
+        350.9010000000001,
+        347.3515712707182
+      ],
+      "id": "#/texts/7",
+      "section": "Post Job Information",
+      "text": "Post Job Information",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        73.49254608154297,
+        350.5818176269531,
+        539.4570922851562,
+        377.01873779296875
+      ],
+      "id": "#/tables/2",
+      "section": "Post Job Information",
+      "text": "Actual Top of Cmt (ft): Liner Top Test (lbs/gal): CBL Bond Quality: Yes Job Success?",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        82.00001,
+        383.0124,
+        148.19200999999998,
+        387.9449966850829
+      ],
+      "id": "#/texts/8",
+      "section": "Post Job Information",
+      "text": "Misc. Comments:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        199.0,
+        381.844,
+        518.4559999999997,
+        414.3742966850829
+      ],
+      "id": "#/texts/9",
+      "section": "Post Job Information",
+      "text": "Mix 14 sks of Thermolite cement with 60 gallons of fresh water (13.5 ppg) and additives. Pump 10 sack volume at .5 bpm. Initial pump pressure to 170 psi, fall back to 100. Wait 10 min. Pump 2 sks volume, pressure to 150 psi. Shut in side valve. Clean pump and discharge hoses. Set grab sample in water bath at 180 F.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.72768729641693,
+        698.92606,
+        167.62400000000002,
+        703.8337690119436
+      ],
+      "id": "#/texts/10",
+      "section": "Post Job Information",
+      "text": "Printed: 17:52 13-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        273.75898729641693,
+        698.92606,
+        339.1192999999999,
+        703.8337690119436
+      ],
+      "id": "#/texts/11",
+      "section": "Post Job Information",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        495.8760872964169,
+        698.92606,
+        540.1564,
+        703.8337690119436
+      ],
+      "id": "#/texts/12",
+      "section": "Post Job Information",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "2a6ad0b0035dd715238ae0f10f4feee2fd83f870bf31e86c3b0fa8f309524d59",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "2e742792d3d2aa1d316b88ebca81d71dd265fd5c5c0c5251cf6c472160a35a17",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 1,
+          "r": 2,
+          "text": "SECONDARY"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "4.500"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "String OD (ins):"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "MAJOR"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Cementing Co:"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Job Type:"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "PROD"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Well Section:"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "FULL"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "String Type:"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Start Date/Time:"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "29-Aug-16 22:30"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "Original Well Bore"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Well Bore:"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Cement Job Information"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "Cementing Engineer:"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "ZONE"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "text": "2"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "text": "100"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "text": "170"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "150"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "text": "120"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "text": "150"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Remedial Type:"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "Breakdown Pressure (psi):"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "Init. Injectn Pressure (psi):"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Final Injectn Pressure (psi):"
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "Init. Shut In Pressure (psi):"
+        },
+        {
+          "c": 0,
+          "r": 12,
+          "text": "Bleed Back Volume (bbls):"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "Hold Pressure (psi):"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "Final Injectn Rate (bbls/min):"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "text": "Initial Injectn Rate(bbls/min):"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "Breakdown Rate (bbls/min):"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "No. of Attempts:"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "text": "Hold Time:"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Secondary Job Details"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "num_cols": 4,
+      "num_rows": 13,
+      "regions": [
+        {
+          "bbox": [
+            71.72803497314453,
+            120.42288208007812,
+            540.1629638671875,
+            293.2380676269531
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Type"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Sacks"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Density"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Yield"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Additives"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Volume"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Rate"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "14"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "13.50"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "14.6"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "2.5"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "Thermolite HT + 1 pint retarder"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "0.5"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "LEAD"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "num_cols": 7,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            71.4649887084961,
+            304.4639892578125,
+            540.0928344726562,
+            335.61785888671875
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/1"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Actual Top of Cmt (ft):"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Liner Top Test (lbs/gal):"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "CBL Bond Quality:"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Yes Job Success?"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "num_cols": 2,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            73.49254608154297,
+            350.5818176269531,
+            539.4570922851562,
+            377.01873779296875
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/2"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

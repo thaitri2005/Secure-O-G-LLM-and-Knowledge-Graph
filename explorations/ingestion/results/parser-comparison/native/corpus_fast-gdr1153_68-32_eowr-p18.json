@@ -1,0 +1,206 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        33.53734970092774,
+        34.462867736816406,
+        750.1010742187501,
+        576.4591674804686
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "Report For 02-Mar-19 Cost / Mud ($): --- AFE ($) Actual ($) --- --- --- --- --- --- --- 2 Report No: Waiting on daylight. Planned Ops: Current Ops: #10031 Flat Days (act./plan): Rig: 0 / Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): Operator: University of Utah 1000 Proposed TD (ft): Drilling Days (act./plan): 0/0 Next BOP Test: Daily Drilling Report Well ID: Forge 68-32 GRG Well Name: 68-32 9W County: Beaver State: UT Sect: 26 Town: 26S Rng: Job ID: Original Randy Baldwin Supervisors: Continue moving rig to location. Comments: Toolpusher: Tel No.: Original Wellbore Wellbore: Last BOP Test: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 14.000 at 60 Next Casing: Last Casing: 0.0 0 0 Working Interest: Daily AFE No. --- --- Totals: Cost ($): 2 On Location: 0/0 Days Well 0/0 Total Days (act./plan): Operations Summary Operations Description Waiting on day light Received and unloaded 4 more loads of the rig Waiting on daylight. From To Elapsed End MD(ft) Code 0:00 6:00 6.00 0 2-99 6:00 18:00 12.00 0 1-39 18:00 0:00 6.00 0 2-99 Non-Prod Bit/BHA Information Press MudWt Torq RPM WOB ROP Hrs Dist Flow JIF HHP P.Drp J.Vel Jets 1-4 Diam Model No/Run Make No Bit Information for this report. BHA - None YP PV Filt. Vis. Dens. Date/Time No Mud Records for this report. Mud Reports Cl Sand Oil Water Solids pH Cake Ca LGS CaCl Gels Temp In/Out Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow No Drilling Parameters Records for this report. Press. AV:DC AV:DP Mud Depth Gas:Back Max No Mud Log Information for this Log Conn Trip Pore Pres. report. Safety Information 1st Aid: LTI: Days Since: 1 Hours: 0 0 0 Serv: 0 Othr: Cum. Water Hauled: Med: Accident Description: Oper: Total Personnel: 1 Cont: Rig/Weather Information Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. Environment acre-ft 0.000 No Rig Information for this report. No Weather Information for this report. Printed: 20:02 29-Apr-19 Page: 1 of 1 RIMBase 7.4.89.0",
+      "type": "table"
+    }
+  ],
+  "native_sha256": "59df9bebe1cbfa36af311d7bc97835e844bb0aa39762da1f6a3e9fb4472939ce",
+  "page": 18,
+  "page_size": {
+    "height": 611.9999999999999,
+    "width": 792.0000000000001
+  },
+  "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Report For 02-Mar-19 Cost / Mud ($): --- AFE ($) Actual ($) --- --- --- --- --- --- ---"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "2 Report No: Waiting on daylight. Planned Ops: Current Ops: #10031 Flat Days (act./plan): Rig: 0 / Average ROP (ft/hr): Hole Made (ft) / Hrs: Vertical Depth (ft): Measured Depth (ft): Operator: University of Utah 1000 Proposed TD (ft): Drilling Days (act./plan): 0/0 Next BOP Test:"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "Daily Drilling Report Well ID: Forge 68-32"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "GRG Well Name: 68-32 9W County: Beaver State: UT"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "Sect: 26 Town: 26S Rng: Job ID: Original"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Randy Baldwin"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "Supervisors: Continue moving rig to location."
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "Comments: Toolpusher:"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Tel No.:"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Original Wellbore Wellbore: Last BOP Test: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: 14.000 at 60 Next Casing: Last Casing: 0.0 0 0 Working Interest: Daily AFE No. --- --- Totals: Cost ($):"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "2 On Location:"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "0/0 Days Well 0/0 Total Days (act./plan):"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "Operations Summary Operations Description Waiting on day light Received and unloaded 4 more loads of the rig Waiting on daylight."
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "From To Elapsed End MD(ft) Code 0:00 6:00 6.00 0 2-99 6:00 18:00 12.00 0 1-39 18:00 0:00 6.00 0 2-99"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Non-Prod"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "Bit/BHA Information Press MudWt Torq RPM WOB ROP Hrs Dist Flow"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "JIF HHP P.Drp J.Vel"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "Jets 1-4 Diam Model No/Run Make No Bit Information for this report."
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": "BHA - None YP PV Filt. Vis. Dens. Date/Time No Mud Records for this report."
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "Mud Reports Cl Sand Oil Water Solids pH Cake Ca LGS CaCl"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Gels Temp In/Out"
+        },
+        {
+          "c": 7,
+          "r": 2,
+          "text": "Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow No Drilling Parameters Records for this report."
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "Press. AV:DC AV:DP Mud Depth Gas:Back Max No Mud Log Information for this"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Log Conn Trip Pore Pres. report."
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "Safety Information 1st Aid: LTI: Days Since: 1 Hours: 0 0 0 Serv: 0 Othr: Cum. Water Hauled:"
+        },
+        {
+          "c": 9,
+          "r": 1,
+          "text": "Med: Accident Description: Oper: Total Personnel: 1 Cont: Rig/Weather Information"
+        },
+        {
+          "c": 8,
+          "r": 2,
+          "text": "Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report."
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "Environment acre-ft 0.000"
+        },
+        {
+          "c": 9,
+          "r": 2,
+          "text": "No Rig Information for this report. No"
+        },
+        {
+          "c": 10,
+          "r": 2,
+          "text": "Weather Information for this report. Printed: 20:02 29-Apr-19"
+        },
+        {
+          "c": 10,
+          "r": 0,
+          "text": "Page: 1 of 1"
+        },
+        {
+          "c": 10,
+          "r": 1,
+          "text": "RIMBase 7.4.89.0"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 11,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            33.53734970092774,
+            34.462867736816406,
+            750.1010742187501,
+            576.4591674804686
+          ],
+          "page": 18
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_fast"
+}

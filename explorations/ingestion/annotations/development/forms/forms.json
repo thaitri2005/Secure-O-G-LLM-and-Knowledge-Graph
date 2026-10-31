@@ -1,0 +1,3780 @@
+[
+  {
+    "status": "corrected",
+    "id": "akutan_daily_header_1",
+    "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+    "page": 1,
+    "csv": "gold/forms/akutan_daily_header_1.csv",
+    "render": "runs/spikes/gold-review/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p1.png",
+    "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+    "pairs": [
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well ID:",
+        "value": "AK-3",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          104.53,
+          63.87,
+          161.11,
+          70.44
+        ],
+        "key_bbox": [
+          104.53,
+          63.9,
+          136.58,
+          70.44
+        ],
+        "value_bbox": [
+          140.5,
+          63.87,
+          161.11,
+          70.44
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well Name:",
+        "value": "AK-3",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          498.55,
+          63.87,
+          570.1,
+          70.44
+        ],
+        "key_bbox": [
+          498.55,
+          63.9,
+          546.11,
+          70.44
+        ],
+        "value_bbox": [
+          549.49,
+          63.87,
+          570.1,
+          70.44
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Field:",
+        "value": "Hot Springs Bay Va",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          105.24,
+          76.75,
+          207.07,
+          85.19
+        ],
+        "key_bbox": [
+          105.24,
+          76.86,
+          125.7,
+          83.4
+        ],
+        "value_bbox": [
+          129.7,
+          76.75,
+          207.07,
+          85.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Sect:",
+        "value": "5",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          300.8,
+          76.75,
+          328.02,
+          83.4
+        ],
+        "key_bbox": [
+          300.8,
+          76.75,
+          320.1,
+          83.4
+        ],
+        "value_bbox": [
+          323.75,
+          76.95,
+          328.02,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Town:",
+        "value": "112W",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          333.57,
+          76.83,
+          383.75,
+          83.4
+        ],
+        "key_bbox": [
+          333.57,
+          76.86,
+          357.07,
+          83.4
+        ],
+        "value_bbox": [
+          361.33,
+          76.83,
+          383.75,
+          83.3
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Rng:",
+        "value": "S005",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          389.54,
+          76.75,
+          430.97,
+          85.19
+        ],
+        "key_bbox": [
+          389.54,
+          76.86,
+          407.05,
+          85.19
+        ],
+        "value_bbox": [
+          410.73,
+          76.75,
+          430.97,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "County:",
+        "value": "Aleutians East",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          436.76,
+          76.75,
+          527.23,
+          85.19
+        ],
+        "key_bbox": [
+          436.76,
+          76.75,
+          466.53,
+          85.19
+        ],
+        "value_bbox": [
+          469.8,
+          76.86,
+          527.23,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "State:",
+        "value": "AK",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          532.68,
+          76.75,
+          570.22,
+          83.4
+        ],
+        "key_bbox": [
+          532.68,
+          76.75,
+          554.97,
+          83.4
+        ],
+        "value_bbox": [
+          558.25,
+          76.86,
+          570.22,
+          83.3
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "report",
+        "key": "Report No:",
+        "value": "1",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          42.19,
+          90.7,
+          98.89,
+          98.91
+        ],
+        "key_bbox": [
+          42.19,
+          90.7,
+          87.11,
+          98.91
+        ],
+        "value_bbox": [
+          96.52,
+          91.12,
+          98.89,
+          97.59
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "report",
+        "key": "Report For",
+        "value": "12-Aug-16",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          479.18,
+          90.67,
+          570.15,
+          99.03
+        ],
+        "key_bbox": [
+          479.18,
+          90.7,
+          524.6,
+          98.91
+        ],
+        "value_bbox": [
+          527.69,
+          90.67,
+          570.15,
+          99.03
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Operator:",
+        "value": "City of Akutan",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.34,
+          102.68,
+          178.2,
+          110.19
+        ],
+        "key_bbox": [
+          39.34,
+          102.68,
+          74.64,
+          110.07
+        ],
+        "value_bbox": [
+          129.4,
+          102.69,
+          178.2,
+          110.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Rig:",
+        "value": "Major LF90",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.38,
+          102.75,
+          293.23,
+          110.19
+        ],
+        "key_bbox": [
+          185.38,
+          102.79,
+          199.55,
+          110.19
+        ],
+        "value_bbox": [
+          253.77,
+          102.75,
+          293.23,
+          110.18
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Spud Date:",
+        "value": "18-Aug-16",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          299.93,
+          102.69,
+          415.08,
+          110.19
+        ],
+        "key_bbox": [
+          299.93,
+          102.69,
+          341.04,
+          110.08
+        ],
+        "value_bbox": [
+          378.98,
+          102.76,
+          415.08,
+          110.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Daily Cost / Mud ($):",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          422.04,
+          102.32,
+          572.68,
+          110.18
+        ],
+        "key_bbox": [
+          422.04,
+          102.32,
+          497.5,
+          110.18
+        ],
+        "value_bbox": [
+          565.19,
+          106.08,
+          572.68,
+          106.78
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Measured Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.57,
+          114.72,
+          178.41,
+          122.21
+        ],
+        "key_bbox": [
+          39.57,
+          114.72,
+          115.94,
+          122.21
+        ],
+        "value_bbox": [
+          174.69,
+          114.79,
+          178.41,
+          120.63
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Drilling Days (act.):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.38,
+          114.72,
+          293.25,
+          122.21
+        ],
+        "key_bbox": [
+          185.38,
+          114.72,
+          256.85,
+          122.21
+        ],
+        "value_bbox": [
+          289.53,
+          114.79,
+          293.25,
+          120.63
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Well Bore:",
+        "value": "Original Well Bore",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          299.66,
+          114.7,
+          417.09,
+          122.2
+        ],
+        "key_bbox": [
+          299.66,
+          114.8,
+          338.38,
+          120.62
+        ],
+        "value_bbox": [
+          353.38,
+          114.7,
+          417.09,
+          122.2
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Vertical Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.0,
+          126.73,
+          178.41,
+          134.22
+        ],
+        "key_bbox": [
+          39.0,
+          126.73,
+          107.5,
+          134.22
+        ],
+        "value_bbox": [
+          174.69,
+          126.8,
+          178.41,
+          132.64
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Drilling Days (plan):",
+        "value": "30",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.38,
+          126.74,
+          293.25,
+          134.24
+        ],
+        "key_bbox": [
+          185.38,
+          126.74,
+          259.5,
+          134.24
+        ],
+        "value_bbox": [
+          285.08,
+          126.81,
+          293.25,
+          132.66
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "RKB Elevation (ft):",
+        "value": "0.00",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          300.22,
+          126.74,
+          415.07,
+          134.24
+        ],
+        "key_bbox": [
+          300.22,
+          126.74,
+          369.46,
+          134.24
+        ],
+        "value_bbox": [
+          400.23,
+          126.81,
+          415.07,
+          132.65
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Proposed TD (ft):",
+        "value": "1700",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.58,
+          138.76,
+          178.41,
+          146.26
+        ],
+        "key_bbox": [
+          39.58,
+          138.76,
+          103.48,
+          146.26
+        ],
+        "value_bbox": [
+          161.88,
+          138.82,
+          178.41,
+          144.66
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Days On Location:",
+        "value": "1",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.38,
+          138.76,
+          292.17,
+          146.26
+        ],
+        "key_bbox": [
+          185.38,
+          138.76,
+          254.62,
+          146.26
+        ],
+        "value_bbox": [
+          290.06,
+          138.84,
+          292.17,
+          144.59
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last BOP Test:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          300.26,
+          138.76,
+          356.15,
+          144.68
+        ],
+        "key_bbox": [
+          300.26,
+          138.76,
+          356.15,
+          144.68
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Hole Made (ft) / Hrs:",
+        "value": "0 / 0.0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.58,
+          150.79,
+          178.39,
+          158.28
+        ],
+        "key_bbox": [
+          39.58,
+          150.79,
+          113.71,
+          158.28
+        ],
+        "value_bbox": [
+          156.9,
+          150.79,
+          178.39,
+          156.7
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last Casing:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.42,
+          150.79,
+          231.98,
+          158.28
+        ],
+        "key_bbox": [
+          185.42,
+          150.79,
+          231.98,
+          158.28
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Average ROP (ft/hr):",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.0,
+          162.81,
+          115.06,
+          170.31
+        ],
+        "key_bbox": [
+          39.0,
+          162.81,
+          115.06,
+          170.31
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Next Casing:",
+        "value": "5.500 at 220",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          185.39,
+          162.81,
+          293.22,
+          170.31
+        ],
+        "key_bbox": [
+          185.39,
+          162.81,
+          232.88,
+          170.31
+        ],
+        "value_bbox": [
+          249.49,
+          162.88,
+          293.22,
+          168.72
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Working Interest:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          299.66,
+          162.9,
+          364.58,
+          170.3
+        ],
+        "key_bbox": [
+          299.66,
+          162.9,
+          364.58,
+          170.3
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Well Cost ($):",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          421.49,
+          162.44,
+          572.68,
+          170.3
+        ],
+        "key_bbox": [
+          421.49,
+          162.44,
+          471.74,
+          170.3
+        ],
+        "value_bbox": [
+          565.19,
+          166.2,
+          572.68,
+          166.9
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          421.46,
+          114.8,
+          451.99,
+          130.83
+        ],
+        "key_bbox": [
+          421.46,
+          114.8,
+          451.99,
+          120.62
+        ],
+        "value_bbox": [
+          421.72,
+          130.13,
+          429.21,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          489.57,
+          114.34,
+          524.44,
+          130.83
+        ],
+        "key_bbox": [
+          489.57,
+          114.34,
+          517.13,
+          122.2
+        ],
+        "value_bbox": [
+          516.95,
+          130.13,
+          524.44,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          533.58,
+          114.34,
+          572.68,
+          130.83
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          130.13,
+          572.68,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          421.46,
+          114.8,
+          451.99,
+          142.86
+        ],
+        "key_bbox": [
+          421.46,
+          114.8,
+          451.99,
+          120.62
+        ],
+        "value_bbox": [
+          421.72,
+          142.15,
+          429.21,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          489.57,
+          114.34,
+          524.44,
+          142.86
+        ],
+        "key_bbox": [
+          489.57,
+          114.34,
+          517.13,
+          122.2
+        ],
+        "value_bbox": [
+          516.95,
+          142.15,
+          524.44,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          533.58,
+          114.34,
+          572.68,
+          142.86
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          142.15,
+          572.68,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Totals:",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          421.63,
+          150.87,
+          524.44,
+          156.69
+        ],
+        "key_bbox": [
+          421.63,
+          150.87,
+          446.88,
+          156.69
+        ],
+        "value_bbox": [
+          516.95,
+          154.18,
+          524.44,
+          154.88
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          529,
+          112,
+          574,
+          160
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          154.18,
+          572.68,
+          154.88
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Operator:",
+        "value": "2 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          89.74,
+          174.84,
+          167.59,
+          182.23
+        ],
+        "key_bbox": [
+          89.74,
+          174.84,
+          125.04,
+          182.23
+        ],
+        "value_bbox": [
+          152.67,
+          174.84,
+          167.59,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Contractor:",
+        "value": "7 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          174.38,
+          174.84,
+          268.39,
+          180.75
+        ],
+        "key_bbox": [
+          174.38,
+          174.84,
+          216.74,
+          180.75
+        ],
+        "value_bbox": [
+          253.61,
+          174.84,
+          268.39,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Service:",
+        "value": "8 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          275.09,
+          174.84,
+          369.19,
+          180.76
+        ],
+        "key_bbox": [
+          275.09,
+          174.84,
+          305.13,
+          180.76
+        ],
+        "value_bbox": [
+          354.36,
+          174.84,
+          369.19,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Other:",
+        "value": "2 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          375.94,
+          174.84,
+          469.99,
+          180.75
+        ],
+        "key_bbox": [
+          375.94,
+          174.84,
+          398.8,
+          180.75
+        ],
+        "value_bbox": [
+          455.07,
+          174.84,
+          469.99,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Total:",
+        "value": "19 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          476.57,
+          174.84,
+          572.52,
+          180.75
+        ],
+        "key_bbox": [
+          476.57,
+          174.93,
+          497.37,
+          180.75
+        ],
+        "value_bbox": [
+          553.78,
+          174.84,
+          572.52,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "safety",
+        "key": "SafetySummary:",
+        "value": "No incidents or events reported. 1 day since LTI.",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.29,
+          188.36,
+          282.36,
+          195.87
+        ],
+        "key_bbox": [
+          39.29,
+          188.36,
+          101.32,
+          195.86
+        ],
+        "value_bbox": [
+          111.7,
+          188.44,
+          282.36,
+          195.87
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Current Operations:",
+        "value": "Bob, Monty, Kevin and Joe, fly to site locate hole position, fly mini excavator to site begin construction of drill pad, fly camp crew to site",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.38,
+          202.93,
+          566.79,
+          218.04
+        ],
+        "key_bbox": [
+          39.38,
+          203.33,
+          114.16,
+          210.72
+        ],
+        "value_bbox": [
+          132.91,
+          202.93,
+          566.79,
+          218.04
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Planned Operations:",
+        "value": "Construct drill pad, dig and install cellar to collar the hole. Build man camp, sort and fly loads to valley.",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.66,
+          223.33,
+          492.32,
+          231.12
+        ],
+        "key_bbox": [
+          39.66,
+          223.73,
+          116.44,
+          231.12
+        ],
+        "value_bbox": [
+          133.07,
+          223.33,
+          492.32,
+          230.82
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Toolpusher:",
+        "value": "Brian Walker",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.17,
+          235.47,
+          178.47,
+          243.17
+        ],
+        "key_bbox": [
+          39.17,
+          235.87,
+          84.38,
+          243.17
+        ],
+        "value_bbox": [
+          133.18,
+          235.47,
+          178.47,
+          241.29
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Wellsite Supervisors:",
+        "value": "MKeown",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          39.02,
+          247.8,
+          163.16,
+          255.19
+        ],
+        "key_bbox": [
+          39.02,
+          247.8,
+          119.5,
+          255.19
+        ],
+        "value_bbox": [
+          133.19,
+          247.91,
+          163.16,
+          253.72
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Tel No.:",
+        "value": "907-273-0057",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 1,
+        "bbox": [
+          425.81,
+          247.88,
+          511.66,
+          253.73
+        ],
+        "key_bbox": [
+          425.81,
+          247.91,
+          454.15,
+          253.72
+        ],
+        "value_bbox": [
+          462.55,
+          247.88,
+          511.66,
+          253.73
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      }
+    ],
+    "notes": "Header ends before Operations Summary. Field value clipped in render: Hot Springs Bay Va; full PDF layer has Valley. Hidden Job ID and hidden inventory labels are not printed and excluded. Toolpusher and Wellsite Supervisors follow the render. AFE column labels repeat by row; pair boxes are measured where available. Town: 112W and Rng: S005 are printed in that order on the source form and are kept as printed.",
+    "annotator": "Drafted from the source render and PDF text layer; second pass checked against the renders with AI assistance; scope decisions approved by the repository owner.",
+    "reviewed": "2026-10-31",
+    "scope": "Report header down to the block before Operations Summary. Safety, weather and environment blocks lower on the page are out of scope."
+  },
+  {
+    "status": "corrected",
+    "id": "akutan_daily_header_2",
+    "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+    "page": 2,
+    "csv": "gold/forms/akutan_daily_header_2.csv",
+    "render": "runs/spikes/gold-review/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p2.png",
+    "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+    "pairs": [
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well ID:",
+        "value": "AK-3",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          104.53,
+          63.87,
+          161.11,
+          70.44
+        ],
+        "key_bbox": [
+          104.53,
+          63.9,
+          136.58,
+          70.44
+        ],
+        "value_bbox": [
+          140.5,
+          63.87,
+          161.11,
+          70.44
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well Name:",
+        "value": "AK-3",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          498.55,
+          63.87,
+          570.1,
+          70.44
+        ],
+        "key_bbox": [
+          498.55,
+          63.9,
+          546.11,
+          70.44
+        ],
+        "value_bbox": [
+          549.49,
+          63.87,
+          570.1,
+          70.44
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Field:",
+        "value": "Hot Springs Bay Va",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          105.24,
+          76.75,
+          207.07,
+          85.19
+        ],
+        "key_bbox": [
+          105.24,
+          76.86,
+          125.7,
+          83.4
+        ],
+        "value_bbox": [
+          129.7,
+          76.75,
+          207.07,
+          85.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Sect:",
+        "value": "5",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          300.8,
+          76.75,
+          328.02,
+          83.4
+        ],
+        "key_bbox": [
+          300.8,
+          76.75,
+          320.1,
+          83.4
+        ],
+        "value_bbox": [
+          323.75,
+          76.95,
+          328.02,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Town:",
+        "value": "112W",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          333.57,
+          76.83,
+          383.75,
+          83.4
+        ],
+        "key_bbox": [
+          333.57,
+          76.86,
+          357.07,
+          83.4
+        ],
+        "value_bbox": [
+          361.33,
+          76.83,
+          383.75,
+          83.3
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "Rng:",
+        "value": "S005",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          389.54,
+          76.75,
+          430.97,
+          85.19
+        ],
+        "key_bbox": [
+          389.54,
+          76.86,
+          407.05,
+          85.19
+        ],
+        "value_bbox": [
+          410.73,
+          76.75,
+          430.97,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "County:",
+        "value": "Aleutians East",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          436.76,
+          76.75,
+          527.23,
+          85.19
+        ],
+        "key_bbox": [
+          436.76,
+          76.75,
+          466.53,
+          85.19
+        ],
+        "value_bbox": [
+          469.8,
+          76.86,
+          527.23,
+          83.4
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "location",
+        "key": "State:",
+        "value": "AK",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          532.68,
+          76.75,
+          570.22,
+          83.4
+        ],
+        "key_bbox": [
+          532.68,
+          76.75,
+          554.97,
+          83.4
+        ],
+        "value_bbox": [
+          558.25,
+          76.86,
+          570.22,
+          83.3
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "report",
+        "key": "Report No:",
+        "value": "2",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          42.19,
+          90.7,
+          100.06,
+          98.91
+        ],
+        "key_bbox": [
+          42.19,
+          90.7,
+          87.11,
+          98.91
+        ],
+        "value_bbox": [
+          95.8,
+          91.12,
+          100.06,
+          97.59
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "report",
+        "key": "Report For",
+        "value": "13-Aug-16",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          479.18,
+          90.67,
+          570.15,
+          99.03
+        ],
+        "key_bbox": [
+          479.18,
+          90.7,
+          524.6,
+          98.91
+        ],
+        "value_bbox": [
+          527.69,
+          90.67,
+          570.15,
+          99.03
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Operator:",
+        "value": "City of Akutan",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.34,
+          102.68,
+          178.2,
+          110.19
+        ],
+        "key_bbox": [
+          39.34,
+          102.68,
+          74.64,
+          110.07
+        ],
+        "value_bbox": [
+          129.4,
+          102.69,
+          178.2,
+          110.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Rig:",
+        "value": "Major LF90",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.38,
+          102.75,
+          293.23,
+          110.19
+        ],
+        "key_bbox": [
+          185.38,
+          102.79,
+          199.55,
+          110.19
+        ],
+        "value_bbox": [
+          253.77,
+          102.75,
+          293.23,
+          110.18
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Spud Date:",
+        "value": "18-Aug-16",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          299.93,
+          102.69,
+          415.08,
+          110.19
+        ],
+        "key_bbox": [
+          299.93,
+          102.69,
+          341.04,
+          110.08
+        ],
+        "value_bbox": [
+          378.98,
+          102.76,
+          415.08,
+          110.19
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Daily Cost / Mud ($):",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          422.04,
+          102.32,
+          572.68,
+          110.18
+        ],
+        "key_bbox": [
+          422.04,
+          102.32,
+          497.5,
+          110.18
+        ],
+        "value_bbox": [
+          565.19,
+          106.08,
+          572.68,
+          106.78
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Measured Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.57,
+          114.72,
+          178.41,
+          122.21
+        ],
+        "key_bbox": [
+          39.57,
+          114.72,
+          115.94,
+          122.21
+        ],
+        "value_bbox": [
+          174.69,
+          114.79,
+          178.41,
+          120.63
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Drilling Days (act.):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.38,
+          114.72,
+          293.25,
+          122.21
+        ],
+        "key_bbox": [
+          185.38,
+          114.72,
+          256.85,
+          122.21
+        ],
+        "value_bbox": [
+          289.53,
+          114.79,
+          293.25,
+          120.63
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Well Bore:",
+        "value": "Original Well Bore",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          299.66,
+          114.7,
+          417.09,
+          122.2
+        ],
+        "key_bbox": [
+          299.66,
+          114.8,
+          338.38,
+          120.62
+        ],
+        "value_bbox": [
+          353.38,
+          114.7,
+          417.09,
+          122.2
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Vertical Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.0,
+          126.73,
+          178.41,
+          134.22
+        ],
+        "key_bbox": [
+          39.0,
+          126.73,
+          107.5,
+          134.22
+        ],
+        "value_bbox": [
+          174.69,
+          126.8,
+          178.41,
+          132.64
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Drilling Days (plan):",
+        "value": "30",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.38,
+          126.74,
+          293.25,
+          134.24
+        ],
+        "key_bbox": [
+          185.38,
+          126.74,
+          259.5,
+          134.24
+        ],
+        "value_bbox": [
+          285.08,
+          126.81,
+          293.25,
+          132.66
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "RKB Elevation (ft):",
+        "value": "0.00",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          300.22,
+          126.74,
+          415.07,
+          134.24
+        ],
+        "key_bbox": [
+          300.22,
+          126.74,
+          369.46,
+          134.24
+        ],
+        "value_bbox": [
+          400.23,
+          126.81,
+          415.07,
+          132.65
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Proposed TD (ft):",
+        "value": "1700",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.58,
+          138.76,
+          178.41,
+          146.26
+        ],
+        "key_bbox": [
+          39.58,
+          138.76,
+          103.48,
+          146.26
+        ],
+        "value_bbox": [
+          161.88,
+          138.82,
+          178.41,
+          144.66
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Days On Location:",
+        "value": "2",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.38,
+          138.76,
+          293.21,
+          146.26
+        ],
+        "key_bbox": [
+          185.38,
+          138.76,
+          254.62,
+          146.26
+        ],
+        "value_bbox": [
+          289.42,
+          138.84,
+          293.21,
+          144.59
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last BOP Test:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          300.26,
+          138.76,
+          356.15,
+          144.68
+        ],
+        "key_bbox": [
+          300.26,
+          138.76,
+          356.15,
+          144.68
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Hole Made (ft) / Hrs:",
+        "value": "0 / 0.0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.58,
+          150.79,
+          178.39,
+          158.28
+        ],
+        "key_bbox": [
+          39.58,
+          150.79,
+          113.71,
+          158.28
+        ],
+        "value_bbox": [
+          156.9,
+          150.79,
+          178.39,
+          156.7
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last Casing:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.42,
+          150.79,
+          231.98,
+          158.28
+        ],
+        "key_bbox": [
+          185.42,
+          150.79,
+          231.98,
+          158.28
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Average ROP (ft/hr):",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.0,
+          162.81,
+          115.06,
+          170.31
+        ],
+        "key_bbox": [
+          39.0,
+          162.81,
+          115.06,
+          170.31
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Next Casing:",
+        "value": "5.500 at 220",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          185.39,
+          162.81,
+          293.22,
+          170.31
+        ],
+        "key_bbox": [
+          185.39,
+          162.81,
+          232.88,
+          170.31
+        ],
+        "value_bbox": [
+          249.49,
+          162.88,
+          293.22,
+          168.72
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Working Interest:",
+        "value": "",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          299.66,
+          162.9,
+          364.58,
+          170.3
+        ],
+        "key_bbox": [
+          299.66,
+          162.9,
+          364.58,
+          170.3
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Well Cost ($):",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          421.49,
+          162.44,
+          572.68,
+          170.3
+        ],
+        "key_bbox": [
+          421.49,
+          162.44,
+          471.74,
+          170.3
+        ],
+        "value_bbox": [
+          565.19,
+          166.2,
+          572.68,
+          166.9
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          421.46,
+          114.8,
+          451.99,
+          130.83
+        ],
+        "key_bbox": [
+          421.46,
+          114.8,
+          451.99,
+          120.62
+        ],
+        "value_bbox": [
+          421.72,
+          130.13,
+          429.21,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          489.57,
+          114.34,
+          524.44,
+          130.83
+        ],
+        "key_bbox": [
+          489.57,
+          114.34,
+          517.13,
+          122.2
+        ],
+        "value_bbox": [
+          516.95,
+          130.13,
+          524.44,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          533.58,
+          114.34,
+          572.68,
+          130.83
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          130.13,
+          572.68,
+          130.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          421.46,
+          114.8,
+          451.99,
+          142.86
+        ],
+        "key_bbox": [
+          421.46,
+          114.8,
+          451.99,
+          120.62
+        ],
+        "value_bbox": [
+          421.72,
+          142.15,
+          429.21,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          489.57,
+          114.34,
+          524.44,
+          142.86
+        ],
+        "key_bbox": [
+          489.57,
+          114.34,
+          517.13,
+          122.2
+        ],
+        "value_bbox": [
+          516.95,
+          142.15,
+          524.44,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          533.58,
+          114.34,
+          572.68,
+          142.86
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          142.15,
+          572.68,
+          142.86
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Totals:",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          421.63,
+          150.87,
+          524.44,
+          156.69
+        ],
+        "key_bbox": [
+          421.63,
+          150.87,
+          446.88,
+          156.69
+        ],
+        "value_bbox": [
+          516.95,
+          154.18,
+          524.44,
+          154.88
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          529,
+          112,
+          574,
+          160
+        ],
+        "key_bbox": [
+          533.58,
+          114.34,
+          569.59,
+          122.2
+        ],
+        "value_bbox": [
+          565.19,
+          154.18,
+          572.68,
+          154.88
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Operator:",
+        "value": "2 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          89.74,
+          174.84,
+          167.59,
+          182.23
+        ],
+        "key_bbox": [
+          89.74,
+          174.84,
+          125.04,
+          182.23
+        ],
+        "value_bbox": [
+          152.67,
+          174.84,
+          167.59,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Contractor:",
+        "value": "6 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          174.38,
+          174.84,
+          268.39,
+          180.75
+        ],
+        "key_bbox": [
+          174.38,
+          174.84,
+          216.74,
+          180.75
+        ],
+        "value_bbox": [
+          253.54,
+          174.84,
+          268.39,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Service:",
+        "value": "5 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          275.09,
+          174.84,
+          369.19,
+          180.76
+        ],
+        "key_bbox": [
+          275.09,
+          174.84,
+          305.13,
+          180.76
+        ],
+        "value_bbox": [
+          354.37,
+          174.84,
+          369.19,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Other:",
+        "value": "2 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          375.94,
+          174.84,
+          469.99,
+          180.75
+        ],
+        "key_bbox": [
+          375.94,
+          174.84,
+          398.8,
+          180.75
+        ],
+        "value_bbox": [
+          455.07,
+          174.84,
+          469.99,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "Pers/Hrs:",
+        "key": "Total:",
+        "value": "15 / 0",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          476.57,
+          174.84,
+          572.52,
+          180.75
+        ],
+        "key_bbox": [
+          476.57,
+          174.93,
+          497.37,
+          180.75
+        ],
+        "value_bbox": [
+          553.78,
+          174.84,
+          572.52,
+          180.75
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "safety",
+        "key": "SafetySummary:",
+        "value": "No incidents or events reported. 2 days since LTI.",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.29,
+          188.36,
+          286.36,
+          195.87
+        ],
+        "key_bbox": [
+          39.29,
+          188.36,
+          101.32,
+          195.86
+        ],
+        "value_bbox": [
+          111.7,
+          188.44,
+          286.36,
+          195.87
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Current Operations:",
+        "value": "Weather clearing up, should be able to fly. Hold planning meeting.",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.38,
+          203.33,
+          365.22,
+          210.84
+        ],
+        "key_bbox": [
+          39.38,
+          203.33,
+          114.16,
+          210.72
+        ],
+        "value_bbox": [
+          132.7,
+          203.34,
+          365.22,
+          210.84
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Planned Operations:",
+        "value": "Continue to rig up camp and fly loads to valley",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.66,
+          214.95,
+          296.13,
+          222.75
+        ],
+        "key_bbox": [
+          39.66,
+          215.35,
+          116.44,
+          222.75
+        ],
+        "value_bbox": [
+          133.07,
+          214.95,
+          296.13,
+          222.45
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Toolpusher:",
+        "value": "Brian Walker",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.17,
+          227.1,
+          178.47,
+          234.79
+        ],
+        "key_bbox": [
+          39.17,
+          227.5,
+          84.38,
+          234.79
+        ],
+        "value_bbox": [
+          133.18,
+          227.1,
+          178.47,
+          232.91
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Wellsite Supervisors:",
+        "value": "MKeown",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          39.02,
+          239.43,
+          163.16,
+          246.82
+        ],
+        "key_bbox": [
+          39.02,
+          239.43,
+          119.5,
+          246.82
+        ],
+        "value_bbox": [
+          133.19,
+          239.53,
+          163.16,
+          245.35
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "personnel",
+        "key": "Tel No.:",
+        "value": "907-273-0057",
+        "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+        "page": 2,
+        "bbox": [
+          425.81,
+          239.51,
+          511.66,
+          245.36
+        ],
+        "key_bbox": [
+          425.81,
+          239.53,
+          454.15,
+          245.35
+        ],
+        "value_bbox": [
+          462.55,
+          239.51,
+          511.66,
+          245.36
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      }
+    ],
+    "notes": "Header ends before Operations Summary. Field value clipped in render: Hot Springs Bay Va; full PDF layer has Valley. Hidden Job ID and hidden inventory labels are not printed and excluded. Toolpusher and Wellsite Supervisors follow the render. AFE column labels repeat by row; pair boxes are measured where available. Town: 112W and Rng: S005 are printed in that order on the source form and are kept as printed.",
+    "annotator": "Drafted from the source render and PDF text layer; second pass checked against the renders with AI assistance; scope decisions approved by the repository owner.",
+    "reviewed": "2026-10-31",
+    "scope": "Report header down to the block before Operations Summary. Safety, weather and environment blocks lower on the page are out of scope."
+  },
+  {
+    "status": "corrected",
+    "id": "forge_daily_header",
+    "doc_id": "gdr1153_68-32_eowr",
+    "page": 17,
+    "csv": "gold/forms/forge_daily_header.csv",
+    "render": "runs/spikes/gold-review/gdr1153_68-32_eowr-p17.png",
+    "upright_render": "runs/spikes/gold-review/gdr1153_68-32_eowr-p17-upright.png",
+    "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+    "pairs": [
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well ID:",
+        "value": "Forge 68-32",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          55.23,
+          421.47,
+          63.59,
+          507.47
+        ],
+        "key_bbox": [
+          55.26,
+          475.42,
+          61.8,
+          507.47
+        ],
+        "value_bbox": [
+          55.23,
+          421.47,
+          63.59,
+          470.83
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Job ID:",
+        "value": "Original",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          55.15,
+          291.2,
+          63.59,
+          357.35
+        ],
+        "key_bbox": [
+          55.26,
+          327.92,
+          61.8,
+          357.35
+        ],
+        "value_bbox": [
+          55.15,
+          291.2,
+          63.59,
+          324.16
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Well Name:",
+        "value": "68-32",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          55.23,
+          41.96,
+          61.81,
+          115.47
+        ],
+        "key_bbox": [
+          55.26,
+          67.9,
+          61.8,
+          115.47
+        ],
+        "value_bbox": [
+          55.23,
+          41.96,
+          61.81,
+          64.15
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Sect:",
+        "value": "26",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          68.11,
+          240.0,
+          74.76,
+          272.16
+        ],
+        "key_bbox": [
+          68.11,
+          252.87,
+          74.76,
+          272.16
+        ],
+        "value_bbox": [
+          68.19,
+          240.0,
+          74.76,
+          249.33
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Town:",
+        "value": "26S",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          68.11,
+          192.07,
+          74.76,
+          234.39
+        ],
+        "key_bbox": [
+          68.22,
+          210.89,
+          74.76,
+          234.39
+        ],
+        "value_bbox": [
+          68.11,
+          192.07,
+          74.76,
+          207.35
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Rng:",
+        "value": "9W",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          68.19,
+          151.73,
+          76.55,
+          185.92
+        ],
+        "key_bbox": [
+          68.22,
+          168.41,
+          76.55,
+          185.92
+        ],
+        "value_bbox": [
+          68.19,
+          151.73,
+          74.76,
+          164.76
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "County:",
+        "value": "Beaver",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          68.11,
+          84.54,
+          76.55,
+          146.21
+        ],
+        "key_bbox": [
+          68.11,
+          116.44,
+          76.55,
+          146.21
+        ],
+        "value_bbox": [
+          68.22,
+          84.54,
+          74.76,
+          112.51
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "State:",
+        "value": "UT",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          68.11,
+          41.89,
+          74.76,
+          79.27
+        ],
+        "key_bbox": [
+          68.11,
+          56.98,
+          74.76,
+          79.27
+        ],
+        "value_bbox": [
+          68.22,
+          41.89,
+          74.76,
+          52.99
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Report No:",
+        "value": "1",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          82.06,
+          513.14,
+          90.27,
+          569.84
+        ],
+        "key_bbox": [
+          82.06,
+          524.92,
+          90.27,
+          569.84
+        ],
+        "value_bbox": [
+          82.48,
+          513.14,
+          88.96,
+          515.52
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "identity",
+        "key": "Report For",
+        "value": "01-Mar-19",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          82.03,
+          41.94,
+          90.27,
+          131.33
+        ],
+        "key_bbox": [
+          82.06,
+          85.91,
+          90.27,
+          131.33
+        ],
+        "value_bbox": [
+          82.03,
+          41.94,
+          88.61,
+          83.16
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Operator:",
+        "value": "University of Utah",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          93.78,
+          433.79,
+          101.28,
+          572.66
+        ],
+        "key_bbox": [
+          93.78,
+          537.36,
+          101.17,
+          572.66
+        ],
+        "value_bbox": [
+          93.79,
+          433.79,
+          101.28,
+          495.7
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Rig:",
+        "value": "#10031",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          93.78,
+          319.83,
+          101.28,
+          426.62
+        ],
+        "key_bbox": [
+          93.88,
+          412.45,
+          101.28,
+          426.62
+        ],
+        "value_bbox": [
+          93.78,
+          319.83,
+          99.7,
+          344.98
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Spud Date:",
+        "value": "09-Mar-19",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          93.79,
+          196.53,
+          101.18,
+          312.07
+        ],
+        "key_bbox": [
+          93.79,
+          270.96,
+          101.18,
+          312.07
+        ],
+        "value_bbox": [
+          93.86,
+          196.53,
+          99.7,
+          232.74
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Daily Cost / Mud ($):",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          93.78,
+          39.32,
+          101.63,
+          189.24
+        ],
+        "key_bbox": [
+          93.78,
+          113.78,
+          101.63,
+          189.24
+        ],
+        "value_bbox": [
+          97.18,
+          39.32,
+          97.88,
+          46.81
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Measured Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.81,
+          433.59,
+          113.31,
+          572.43
+        ],
+        "key_bbox": [
+          105.81,
+          496.06,
+          113.31,
+          572.43
+        ],
+        "value_bbox": [
+          105.88,
+          433.59,
+          111.72,
+          437.31
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Working Interest:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.9,
+          362.26,
+          113.3,
+          427.18
+        ],
+        "key_bbox": [
+          105.9,
+          362.26,
+          113.3,
+          427.18
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Wellbore:",
+        "value": "Original Wellbore",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.79,
+          194.54,
+          113.3,
+          312.34
+        ],
+        "key_bbox": [
+          105.9,
+          276.74,
+          111.71,
+          312.34
+        ],
+        "value_bbox": [
+          105.79,
+          194.54,
+          113.3,
+          255.15
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Vertical Depth (ft):",
+        "value": "0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          117.82,
+          433.59,
+          125.32,
+          573.0
+        ],
+        "key_bbox": [
+          117.82,
+          504.5,
+          125.32,
+          573.0
+        ],
+        "value_bbox": [
+          117.9,
+          433.59,
+          123.74,
+          437.31
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last Casing:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          117.84,
+          380.02,
+          125.33,
+          426.58
+        ],
+        "key_bbox": [
+          117.84,
+          380.02,
+          125.33,
+          426.58
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "RKB Elevation (ft):",
+        "value": "0.00",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          117.84,
+          196.57,
+          125.33,
+          311.78
+        ],
+        "key_bbox": [
+          117.84,
+          242.54,
+          125.33,
+          311.78
+        ],
+        "value_bbox": [
+          117.91,
+          196.57,
+          123.75,
+          211.41
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Proposed TD (ft):",
+        "value": "1000",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          129.86,
+          433.59,
+          137.36,
+          572.42
+        ],
+        "key_bbox": [
+          129.86,
+          508.52,
+          137.36,
+          572.42
+        ],
+        "value_bbox": [
+          129.92,
+          433.59,
+          135.76,
+          450.12
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Next Casing:",
+        "value": "14.000 at 60",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          129.86,
+          318.78,
+          137.36,
+          426.61
+        ],
+        "key_bbox": [
+          129.86,
+          379.12,
+          137.36,
+          426.61
+        ],
+        "value_bbox": [
+          129.93,
+          318.78,
+          135.77,
+          361.97
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Hole Made (ft) / Hrs:",
+        "value": "0 / 0.0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          141.88,
+          433.61,
+          149.38,
+          572.42
+        ],
+        "key_bbox": [
+          141.88,
+          498.29,
+          149.38,
+          572.42
+        ],
+        "value_bbox": [
+          141.88,
+          433.61,
+          147.8,
+          455.1
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Last BOP Test:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          141.74,
+          370.69,
+          147.65,
+          426.58
+        ],
+        "key_bbox": [
+          141.74,
+          370.69,
+          147.65,
+          426.58
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Average ROP (ft/hr):",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          153.91,
+          496.94,
+          161.4,
+          573.0
+        ],
+        "key_bbox": [
+          153.91,
+          496.94,
+          161.4,
+          573.0
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Next BOP Test:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          153.76,
+          369.79,
+          159.68,
+          426.61
+        ],
+        "key_bbox": [
+          153.76,
+          369.79,
+          159.68,
+          426.61
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Well Cost ($):",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          153.39,
+          39.32,
+          161.25,
+          189.79
+        ],
+        "key_bbox": [
+          153.39,
+          139.54,
+          161.25,
+          189.79
+        ],
+        "value_bbox": [
+          157.3,
+          39.32,
+          158.0,
+          46.81
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Drilling Days (act./plan):",
+        "value": "0/0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          165.79,
+          445.83,
+          173.28,
+          572.42
+        ],
+        "key_bbox": [
+          165.79,
+          482.31,
+          173.28,
+          572.42
+        ],
+        "value_bbox": [
+          165.79,
+          445.83,
+          171.7,
+          456.23
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Flat Days (act./plan):",
+        "value": "0/0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          165.93,
+          316.38,
+          173.43,
+          438.85
+        ],
+        "key_bbox": [
+          165.93,
+          362.06,
+          173.43,
+          438.85
+        ],
+        "value_bbox": [
+          165.93,
+          316.38,
+          171.84,
+          326.77
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Total Days (act./plan):",
+        "value": "0/0",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          165.93,
+          182.82,
+          173.43,
+          309.82
+        ],
+        "key_bbox": [
+          165.93,
+          227.72,
+          173.43,
+          309.82
+        ],
+        "value_bbox": [
+          165.93,
+          182.82,
+          171.84,
+          193.21
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "well",
+        "key": "Days On Location:",
+        "value": "1",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          165.93,
+          40.54,
+          173.43,
+          175.85
+        ],
+        "key_bbox": [
+          165.93,
+          106.6,
+          173.43,
+          175.85
+        ],
+        "value_bbox": [
+          166.0,
+          40.54,
+          171.76,
+          42.65
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.9,
+          159.29,
+          121.93,
+          189.82
+        ],
+        "key_bbox": [
+          105.9,
+          159.29,
+          111.71,
+          189.82
+        ],
+        "value_bbox": [
+          121.22,
+          182.07,
+          121.93,
+          189.56
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.44,
+          87.56,
+          121.93,
+          122.43
+        ],
+        "key_bbox": [
+          105.44,
+          94.87,
+          113.3,
+          122.43
+        ],
+        "value_bbox": [
+          121.22,
+          87.56,
+          121.93,
+          95.05
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 1",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.44,
+          39.32,
+          121.93,
+          78.42
+        ],
+        "key_bbox": [
+          105.44,
+          42.41,
+          113.3,
+          78.42
+        ],
+        "value_bbox": [
+          121.22,
+          39.32,
+          121.93,
+          46.81
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE No.",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.9,
+          159.29,
+          133.95,
+          189.82
+        ],
+        "key_bbox": [
+          105.9,
+          159.29,
+          111.71,
+          189.82
+        ],
+        "value_bbox": [
+          133.25,
+          182.07,
+          133.95,
+          189.56
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "AFE ($)",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.44,
+          87.56,
+          133.95,
+          122.43
+        ],
+        "key_bbox": [
+          105.44,
+          94.87,
+          113.3,
+          122.43
+        ],
+        "value_bbox": [
+          133.25,
+          87.56,
+          133.95,
+          95.05
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost row 2",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          105.44,
+          39.32,
+          133.95,
+          78.42
+        ],
+        "key_bbox": [
+          105.44,
+          42.41,
+          113.3,
+          78.42
+        ],
+        "value_bbox": [
+          133.25,
+          39.32,
+          133.95,
+          46.81
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Totals:",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          141.97,
+          87.56,
+          147.78,
+          189.65
+        ],
+        "key_bbox": [
+          141.97,
+          164.4,
+          147.78,
+          189.65
+        ],
+        "value_bbox": [
+          145.27,
+          87.56,
+          145.98,
+          95.05
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "cost totals",
+        "key": "Actual ($)",
+        "value": "---",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          103,
+          38,
+          149,
+          83
+        ],
+        "key_bbox": [
+          105.44,
+          42.41,
+          113.3,
+          78.42
+        ],
+        "value_bbox": [
+          145.27,
+          39.32,
+          145.98,
+          46.81
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Current Ops:",
+        "value": "Waiting on daylight and remainder of loads for rig up.",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          177.8,
+          325.17,
+          185.3,
+          572.62
+        ],
+        "key_bbox": [
+          177.8,
+          524.49,
+          185.19,
+          572.62
+        ],
+        "value_bbox": [
+          177.8,
+          325.17,
+          185.3,
+          511.9
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Planned Ops:",
+        "value": "Continue unloading equipment.",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          189.8,
+          402.0,
+          197.3,
+          572.42
+        ],
+        "key_bbox": [
+          189.82,
+          522.28,
+          197.22,
+          572.42
+        ],
+        "value_bbox": [
+          189.8,
+          402.0,
+          197.3,
+          511.6
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Toolpusher:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          201.87,
+          527.62,
+          209.17,
+          572.83
+        ],
+        "key_bbox": [
+          201.87,
+          527.62,
+          209.17,
+          572.83
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Supervisors:",
+        "value": "Randy Baldwin",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          201.79,
+          261.22,
+          209.28,
+          367.71
+        ],
+        "key_bbox": [
+          201.79,
+          319.92,
+          209.18,
+          367.71
+        ],
+        "value_bbox": [
+          201.88,
+          261.22,
+          209.28,
+          313.37
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Tel No.:",
+        "value": "",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          201.91,
+          127.99,
+          207.72,
+          156.33
+        ],
+        "key_bbox": [
+          201.91,
+          127.99,
+          207.72,
+          156.33
+        ],
+        "value_bbox": null,
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      },
+      {
+        "status": "corrected",
+        "block": "operations",
+        "key": "Comments:",
+        "value": "3 loads of the rig arrived on Feb 28.",
+        "doc_id": "gdr1153_68-32_eowr",
+        "page": 17,
+        "bbox": [
+          213.4,
+          392.45,
+          220.9,
+          572.62
+        ],
+        "key_bbox": [
+          213.81,
+          529.8,
+          219.72,
+          572.62
+        ],
+        "value_bbox": [
+          213.4,
+          392.45,
+          220.9,
+          517.62
+        ],
+        "bbox_method": "Direct source glyph union in manually selected region; null value box for blank or unaligned value."
+      }
+    ],
+    "notes": "Header ends before Operations Summary. Bboxes are in the original rotated physical page; upright render supplied for reading. Empty values are retained. Cost column headers are separate from their repeated row values.",
+    "annotator": "Drafted from the source render and PDF text layer; second pass checked against the renders with AI assistance; scope decisions approved by the repository owner.",
+    "reviewed": "2026-10-31",
+    "scope": "Report header down to the block before Operations Summary. Safety, weather and environment blocks lower on the page are out of scope."
+  }
+]

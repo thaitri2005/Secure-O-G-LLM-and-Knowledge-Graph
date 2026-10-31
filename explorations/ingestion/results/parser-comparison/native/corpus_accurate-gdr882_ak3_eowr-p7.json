@@ -1,0 +1,182 @@
+{
+  "doc_id": "gdr882_ak3_eowr",
+  "items": [
+    {
+      "bbox": [
+        72.024,
+        74.50400000000002,
+        548.8899999999998,
+        112.43599999999992
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "Archaeological and Historic Properties Review - The Alaska State Historic Preservation Office (SHPO) issued a finding on 20 May 2015, that no significant archaeological or historic properties would be adversely affected by the project, and that no further action was required.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        121.904,
+        549.0039999999999,
+        159.836
+      ],
+      "id": "#/texts/1",
+      "section": null,
+      "text": "Fish Habitat and Water Discharge - The Alaska Department of Fish and Game (ADF&G) issued Fish Habitat Permit 15-11-082, which sets conditions for water withdrawal and discharge in or near anadromous (i.e., salmon bearing) streams located in the project area.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        169.30399999999997,
+        549.076,
+        207.236
+      ],
+      "id": "#/texts/2",
+      "section": null,
+      "text": "Hydrostatic and Aquifer Pump Testing - The Alaska Department of Environmental Conservation (ADEC) issued General Permit Number AKG003008 for discharge of fluids from drilling operations into the impoundment structure identified in the drilling plan.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        216.70399999999995,
+        548.8560000000001,
+        282.266
+      ],
+      "id": "#/texts/3",
+      "section": null,
+      "text": "Water Withdrawal - The Alaska Department of Natural Resources (ADNR) concurred with the water withdrawals required to support drilling and campsite operations. By policy, ADNR will generally withhold issuance of the withdrawal permit until immediately prior to the withdrawal in 2016. However, ADNR provided a letter of explanation of the permitting process, and general concurrence with the withdrawal plan. The was be issued in May 2016.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        291.73400000000004,
+        549.04,
+        357.266
+      ],
+      "id": "#/texts/4",
+      "section": null,
+      "text": "Drilling Permit - Well design and technical specifications were submitted to the Alaska Oil and Gas Conservation Commission (AOGCC) in June 2015. On 13 August 2015, AOGCC issued Permit Number 215-080, API Number 50-295-20005-00-00, which authorized drilling of AK-3. Permit conditions were specified in the permit Letter of Transmittal. The City accepted the conditions, as stated.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        366.73400000000004,
+        549.076,
+        418.48600000000005
+      ],
+      "id": "#/texts/5",
+      "section": null,
+      "text": "Supplemental Information - As requested by the TMT, additional geophysical data interpretation was completed, the results of which were set forth in a report from GRG (Appendix 1-Targeting Report). The City also acquired all property rights necessary for drilling operations. Copies of the exploration agreements were provided to AEA and DOE.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        431.82688,
+        186.58832,
+        445.3025606736842
+      ],
+      "id": "#/texts/6",
+      "section": "Drilling Summary",
+      "text": "Drilling Summary",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        72.024,
+        448.35400000000004,
+        543.1179999999998,
+        458.68600000000004
+      ],
+      "id": "#/texts/7",
+      "section": "Drilling Summary",
+      "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        125.42,
+        469.11400000000003,
+        367.39,
+        479.446
+      ],
+      "id": "#/texts/8",
+      "section": "Drilling Summary",
+      "text": " WGS-84 UTM Zone 3, 443969 E, 6000805 N,",
+      "type": "list_item"
+    },
+    {
+      "bbox": [
+        125.42,
+        483.754,
+        549.1,
+        507.766
+      ],
+      "id": "#/texts/9",
+      "section": "Drilling Summary",
+      "text": " Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.",
+      "type": "list_item"
+    },
+    {
+      "bbox": [
+        72.024,
+        517.234,
+        548.992,
+        555.1659999999999
+      ],
+      "id": "#/texts/10",
+      "section": "Drilling Summary",
+      "text": "These coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        564.664,
+        549.256,
+        671.596
+      ],
+      "id": "#/texts/11",
+      "section": "Drilling Summary",
+      "text": "Well AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-½\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75º at 1,500' and 1º at 1,700'. A comparison of planned versus actual days versus depth is shown in Figure 2.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        681.064,
+        549.328,
+        718.992
+      ],
+      "id": "#/texts/12",
+      "section": "Drilling Summary",
+      "text": "While drilling, two steam kicks occurred. The first kick was observed at 150' and was controlled by pumping cold water to cool the well (as planned). The second kick occurred at 170'. Control was complicated by a plugged core inner barrel, and took almost three days and two cement plugs to",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.024,
+        739.644,
+        78.024,
+        749.976
+      ],
+      "id": "#/texts/13",
+      "section": "Drilling Summary",
+      "text": "7",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "9e134c3b0ac6698ebe56883ae09da19f8804a52e214455183d6a73cac98ed3cb",
+  "page": 7,
+  "page_size": {
+    "height": 792.12,
+    "width": 612.12
+  },
+  "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+  "tables": [],
+  "variant": "corpus_accurate"
+}

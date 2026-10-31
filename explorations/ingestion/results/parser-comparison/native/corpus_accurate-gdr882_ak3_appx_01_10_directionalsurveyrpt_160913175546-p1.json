@@ -1,0 +1,516 @@
+{
+  "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+  "items": [
+    {
+      "bbox": [
+        140.5,
+        80.38,
+        287.74,
+        87.77889502762434
+      ],
+      "id": "#/texts/0",
+      "section": "Directional Survey Report",
+      "text": "Directional Survey Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        140.5,
+        94.64499999999998,
+        173.45799999999997,
+        100.19417127071824
+      ],
+      "id": "#/texts/1",
+      "section": "Directional Survey Report",
+      "text": "Well ID:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        176.536,
+        94.64499999999998,
+        197.533,
+        100.19417127071824
+      ],
+      "id": "#/texts/2",
+      "section": "Directional Survey Report",
+      "text": "AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        370.4969,
+        80.38,
+        534.3929000000003,
+        87.77889502762434
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        462.5228,
+        94.64499999999998,
+        534.4868000000001,
+        100.19417127071824
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        140.5,
+        107.60500000000002,
+        534.2334000000006,
+        113.15417127071828
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Valley Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.2988052368164,
+        117.67802429199219,
+        540.2017211914062,
+        359.68511962890625
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "Original Well Bore Well Bore: 0 0.0 Plane of Vertical Section: 0.0 TieIn ** 0.0 0.00 0 0.0 0.0 TOTCO 100.0 0.50 TOTCO 129.0 0.50 TOTCO 200.0 0.75 TOTCO 300.0 0.25 TOTCO 400.0 0.25 TOTCO 500.0 0.25 TOTCO 600.0 1.00 TOTCO 700.0 1.00 TOTCO 800.0 1.00 TOTCO 900.0 0.75 TOTCO 1,100.0 1.00 TOTCO 1,300.0 1.00 TOTCO 1,500.0 1.75 TOTCO 1,700.0 1.00 TOTCO 1,900.0 2.00 Depth (ft) Inc. (deg) Azimuth (deg) TVD (ft) Type Dog Leg Severity (deg/100) N-S (ft) Vertical Section Closure (ft) Survey Meas. E-W (ft) Coordinates (ft)",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        73.0,
+        367.3001,
+        238.76800000000006,
+        372.2326966850829
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "Calculations using Minimum Curvature Method",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        73.0,
+        703.99003,
+        166.76,
+        708.9226266850828
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "Printed: 17:55 13-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        273.9824,
+        703.99003,
+        337.96639999999985,
+        708.9226266850828
+      ],
+      "id": "#/texts/8",
+      "section": "Geothermal Resource Group",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        495.8555,
+        703.99003,
+        538.9514999999999,
+        708.9226266850828
+      ],
+      "id": "#/texts/9",
+      "section": "Geothermal Resource Group",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "e9326265822b90c65bcb13982bf722cbff04ef13287d1ef2ca8cf92de8abfe39",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "30e20d504b187f0ddfa254f2d02c681cf09b1d1ffba9eef1bc790ff90b12781e",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Original Well Bore Well Bore:"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": "0 0.0"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "Plane of"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": "Vertical Section: 0.0"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "TieIn **"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "0.00"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 8,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "100.0"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "0.50"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "129.0"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "0.50"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "200.0"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "0.75"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "text": "300.0"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "0.25"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "text": "400.0"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "text": "0.25"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "500.0"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "0.25"
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "text": "600.0"
+        },
+        {
+          "c": 2,
+          "r": 10,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "text": "700.0"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 12,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "text": "800.0"
+        },
+        {
+          "c": 2,
+          "r": 12,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 13,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 13,
+          "text": "900.0"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "text": "0.75"
+        },
+        {
+          "c": 0,
+          "r": 14,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 14,
+          "text": "1,100.0"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 15,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 15,
+          "text": "1,300.0"
+        },
+        {
+          "c": 2,
+          "r": 15,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 16,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 16,
+          "text": "1,500.0"
+        },
+        {
+          "c": 2,
+          "r": 16,
+          "text": "1.75"
+        },
+        {
+          "c": 0,
+          "r": 17,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 17,
+          "text": "1,700.0"
+        },
+        {
+          "c": 2,
+          "r": 17,
+          "text": "1.00"
+        },
+        {
+          "c": 0,
+          "r": 18,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 18,
+          "text": "1,900.0"
+        },
+        {
+          "c": 2,
+          "r": 18,
+          "text": "2.00"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "Depth (ft)"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Inc. (deg)"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "Azimuth (deg)"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "TVD (ft)"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Type"
+        },
+        {
+          "c": 9,
+          "r": 0,
+          "text": "Dog Leg"
+        },
+        {
+          "c": 9,
+          "r": 1,
+          "text": "Severity (deg/100)"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "N-S (ft)"
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "Vertical Section"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "Closure (ft)"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Survey"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Meas."
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "E-W (ft)"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Coordinates"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "(ft)"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "num_cols": 10,
+      "num_rows": 19,
+      "regions": [
+        {
+          "bbox": [
+            72.2988052368164,
+            117.67802429199219,
+            540.2017211914062,
+            359.68511962890625
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

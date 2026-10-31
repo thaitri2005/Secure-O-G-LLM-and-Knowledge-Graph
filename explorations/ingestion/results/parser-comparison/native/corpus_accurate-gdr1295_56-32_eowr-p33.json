@@ -1,0 +1,442 @@
+{
+  "doc_id": "gdr1295_56-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        246.6,
+        42.01152000000002,
+        386.75759999999997,
+        80.63740707692307
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "End of Well Report Utah FORGE Seismic Monitoring Well 56-32",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        108.0,
+        109.39631999999995,
+        268.0833120000001,
+        118.86290383954156
+      ],
+      "id": "#/texts/1",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        71.97647999999992,
+        124.09055999999998,
+        538.5235679999997,
+        177.23068707692312
+      ],
+      "id": "#/texts/2",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Planned basic drilling parameters and the design of the mud system for the 17-1/2 in. drilling sections are shown in Table 7 and the average parameters used are shown in Table 8. The spud mud was designed as a pre-hydrated gel mud blended with 3% (4 ppb) fine micronized cellulose. The accepted mud program included the maintenance of 3% micronized cellulose.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        134.89456176757812,
+        217.95045471191406,
+        476.6359558105469,
+        442.7486877441406
+      ],
+      "id": "#/tables/0",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Hole Size 17-1/2 in. Casing Size 13-3/8 in. Mud Type Lime/Gel/Water System Mud Weight (ppg) 8.6 - 9.2 Viscosity (sec) 50-60+ Filtrate (ML) < 20 Total Mud Volume 400 bbls (300 bbls surface volume) Directional Program NA - Vertical Hole Formations Surface Alluvium Interval BHT < 100ºF",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        71.9764799999999,
+        202.80576000000008,
+        333.946848,
+        212.38429818181828
+      ],
+      "id": "#/texts/3",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Table 7: Fluid parameters planned for 17-1/2 in. section",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        143.26895999999996,
+        449.29152000000005,
+        467.1693120000001,
+        522.104927076923
+      ],
+      "id": "#/texts/4",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Drill 17-1/2 in. with flocculated Clay-based mud system; add Gel and Soda Ash/Caustic Soda as needed to maintain adequate viscosity for good hole cleaning (PV alap, YP 25+). Use Bentonite/Sawdust/Polyvis (PHPA) to sweep and stabilize hole as needed; thin mud with Desco CF/water. If encountered, control lost circulation with conventional LCM pills. Run and cement 13-3/8 in. casing",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        146.51438903808594,
+        568.421875,
+        465.34222412109375,
+        704.07470703125
+      ],
+      "id": "#/tables/1",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Fluid Parameters (spud) Unit Min Max Ave Mud Weight ppg 8.7 8.7 8.7 pH 8 10 8.75 API Fluid Loss (Filtrate) cc/30 sec. 13.3 18.2 15.75 Plastic Viscosity cP 12 22 17 Yield Point lb/100ft 2 10 21 15.5",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        72.0,
+        552.37488,
+        329.4097440000001,
+        561.9534181818182
+      ],
+      "id": "#/texts/5",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Table 8: Average fluid properties for 17-1/2 in. section.",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        418.8,
+        39.49151999999992,
+        494.5199999999999,
+        48.957407076923005
+      ],
+      "id": "#/texts/6",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Ref. GRG-10230",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        418.8,
+        56.53152,
+        463.50758399999995,
+        65.99740707692308
+      ],
+      "id": "#/texts/7",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Ver. Final Page 33 of 86",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        418.8,
+        73.69151999999997,
+        509.64043199999986,
+        83.15740707692305
+      ],
+      "id": "#/texts/8",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Issued: 22 July 2021",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        72.0,
+        738.49152,
+        111.962592,
+        747.9574070769231
+      ],
+      "id": "#/texts/9",
+      "section": "6.2.5. 17-1/2 in. Drilling Fluids",
+      "text": "Page | 33",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "d198aae41d3c4130ec9573f69431b83d2266cceb125ed65a67cfd618daeca8c3",
+  "page": 33,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Hole Size"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "17-1/2 in."
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Casing Size"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "13-3/8 in."
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Mud Type"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "Lime/Gel/Water System"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Mud Weight (ppg)"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "8.6 - 9.2"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Viscosity (sec)"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "50-60+"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Filtrate (ML)"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "< 20"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Total Mud Volume"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "400 bbls (300 bbls surface volume)"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "Directional Program"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "text": "NA - Vertical Hole"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "Formations"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "text": "Surface Alluvium"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Interval BHT"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "< 100ºF"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 2,
+      "num_rows": 10,
+      "regions": [
+        {
+          "bbox": [
+            134.89456176757812,
+            217.95045471191406,
+            476.6359558105469,
+            442.7486877441406
+          ],
+          "page": 33
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Fluid Parameters (spud)"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Unit"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Min"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Max"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Ave"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Mud Weight"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "ppg"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "8.7"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "8.7"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "8.7"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "pH"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "8"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "10"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "8.75"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "API Fluid Loss (Filtrate)"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "cc/30 sec."
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "13.3"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "18.2"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "15.75"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Plastic Viscosity"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "cP"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "12"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "22"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": "17"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Yield Point"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "lb/100ft 2"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "10"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "text": "21"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "text": "15.5"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 5,
+      "num_rows": 6,
+      "regions": [
+        {
+          "bbox": [
+            146.51438903808594,
+            568.421875,
+            465.34222412109375,
+            704.07470703125
+          ],
+          "page": 33
+        }
+      ],
+      "table_id": "#/tables/1"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

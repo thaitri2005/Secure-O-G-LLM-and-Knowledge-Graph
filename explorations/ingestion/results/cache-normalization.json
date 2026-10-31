@@ -1,0 +1,241 @@
+{
+  "cause": "The fresh path returns the live object; cached JSON validation clamps provenance coordinates and affects running-line filtering.",
+  "diagnosis_trials": [
+    {
+      "cached": "success",
+      "cached_validator_errors": [],
+      "changes_on_pages_4_to_8": [
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 4,
+          "ref": "#/texts/277",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "2"
+        },
+        {
+          "live": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 615.1800000000001
+          },
+          "page": 5,
+          "ref": "#/texts/333",
+          "reloaded": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 612.0
+          },
+          "text": "260"
+        },
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 6,
+          "ref": "#/texts/377",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "4"
+        },
+        {
+          "live": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 615.1800000000001
+          },
+          "page": 7,
+          "ref": "#/texts/426",
+          "reloaded": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 612.0
+          },
+          "text": "430"
+        },
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 8,
+          "ref": "#/texts/505",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "6"
+        }
+      ],
+      "cold": "failed",
+      "cold_validator_errors": [
+        "gdr882_ak3_appx_04_12_akutan_3#c00008: region outside page 4",
+        "gdr882_ak3_appx_04_12_akutan_3#c00009: region outside page 5",
+        "gdr882_ak3_appx_04_12_akutan_3#c00011: region outside page 6",
+        "gdr882_ak3_appx_04_12_akutan_3#c00013: region outside page 7",
+        "gdr882_ak3_appx_04_12_akutan_3#c00015: region outside page 8",
+        "gdr882_ak3_appx_04_12_akutan_3#c00017: region outside page 9",
+        "gdr882_ak3_appx_04_12_akutan_3#c00018: region outside page 10",
+        "gdr882_ak3_appx_04_12_akutan_3#c00020: region outside page 11",
+        "gdr882_ak3_appx_04_12_akutan_3#c00022: region outside page 12",
+        "gdr882_ak3_appx_04_12_akutan_3#c00022: region outside page 13"
+      ],
+      "page_sizes_equal_before_after_reload": true,
+      "same_coord_origin": true,
+      "trial": 1
+    },
+    {
+      "cached": "success",
+      "cached_validator_errors": [],
+      "changes_on_pages_4_to_8": [
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 4,
+          "ref": "#/texts/277",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "2"
+        },
+        {
+          "live": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 615.1800000000001
+          },
+          "page": 5,
+          "ref": "#/texts/333",
+          "reloaded": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 612.0
+          },
+          "text": "260"
+        },
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 6,
+          "ref": "#/texts/377",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "4"
+        },
+        {
+          "live": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 615.1800000000001
+          },
+          "page": 7,
+          "ref": "#/texts/426",
+          "reloaded": {
+            "b": 596.837064,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740332,
+            "r": 119.00364,
+            "t": 612.0
+          },
+          "text": "430"
+        },
+        {
+          "live": {
+            "b": -2.9247799999999415,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "page": 8,
+          "ref": "#/texts/505",
+          "reloaded": {
+            "b": 0.0,
+            "coord_origin": "BOTTOMLEFT",
+            "l": 109.28193586740336,
+            "r": 119.00364000000005,
+            "t": 3.1801000000000386
+          },
+          "text": "6"
+        }
+      ],
+      "cold": "failed",
+      "cold_validator_errors": [
+        "gdr882_ak3_appx_04_12_akutan_3#c00008: region outside page 4",
+        "gdr882_ak3_appx_04_12_akutan_3#c00009: region outside page 5",
+        "gdr882_ak3_appx_04_12_akutan_3#c00011: region outside page 6",
+        "gdr882_ak3_appx_04_12_akutan_3#c00013: region outside page 7",
+        "gdr882_ak3_appx_04_12_akutan_3#c00015: region outside page 8",
+        "gdr882_ak3_appx_04_12_akutan_3#c00017: region outside page 9",
+        "gdr882_ak3_appx_04_12_akutan_3#c00018: region outside page 10",
+        "gdr882_ak3_appx_04_12_akutan_3#c00020: region outside page 11",
+        "gdr882_ak3_appx_04_12_akutan_3#c00022: region outside page 12",
+        "gdr882_ak3_appx_04_12_akutan_3#c00022: region outside page 13"
+      ],
+      "page_sizes_equal_before_after_reload": true,
+      "same_coord_origin": true,
+      "trial": 2
+    }
+  ],
+  "docling_core": "2.103.1",
+  "source": "src/graph_builder/corpus/process.py:86-108"
+}

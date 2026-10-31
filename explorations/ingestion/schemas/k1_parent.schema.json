@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "parent_id",
+    "type",
+    "file_id",
+    "pages",
+    "section_path",
+    "document_type"
+  ],
+  "properties": {
+    "parent_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}:[stf][1-9][0-9]*$"
+    },
+    "type": {
+      "enum": [
+        "section",
+        "table",
+        "form"
+      ]
+    },
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "uniqueItems": true
+    },
+    "section_path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "document_type": {
+      "type": "string"
+    }
+  }
+}

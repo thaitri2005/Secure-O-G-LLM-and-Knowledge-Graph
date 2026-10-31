@@ -1,0 +1,29 @@
+NPT Code,Rpt No,Report Date,Time From,Time To,Hours,End MD,Ops Code,Activity Description
+WAIT,2,13-Aug-16,0:00,0:00,24.00,0,WOW,Weather Delay
+WOE,5,16-Aug-16,19:00,20:00,1.00,0,WOE,"Fly crews to lodge for evening, Unable to stay on site due to failed generators"
+WOE,5,16-Aug-16,20:00,0:00,4.00,0,WOD,Crews at lodge for night
+WOE,6,17-Aug-16,0:00,9:00,9.00,0,WOD,Rig crews down for night at lodge.
+WOO,7,18-Aug-16,8:00,12:00,4.00,0,WOW,"Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill water tanks."
+KICK,9,20-Aug-16,17:00,18:00,1.00,176,STUCK,"Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8""casing to HWT core rods pump cold water to hole."
+KICK,9,20-Aug-16,18:00,0:00,6.00,176,KILL,Pump 60 gpm cold water 56 degrees trough core rods to cool hole
+KICK,10,21-Aug-16,0:00,7:00,7.00,176,KICK,Well kicked. Steam flow to surface. Lost rod due to foot clamp slipping. Top of HWT rod 2' below foot clamp.
+KICK,10,21-Aug-16,7:00,15:30,8.50,176,FISH,"fly fishing tool from lay down yard,connect inside grapple ,run in on new HWT core rod, catch fish bring through foot camp. secure in head, break down fishing joint. Well blowing and flowing 66 gpm,"
+KICK,10,21-Aug-16,15:30,17:30,2.00,176,WELLHD,"Rig up and install10' joint to string , shut in flow, secure well from blowing, begin pumping cold water into well bore. 60 degree in 136 F out,"
+KICK,10,21-Aug-16,17:30,0:00,6.50,176,WELLHD,"Secure poor boy packoff from HWT to 8"" casing begin pumping 60 gpm of 60 degree water through string into hole. Hole secure."
+KICK,11,22-Aug-16,0:00,7:00,7.00,176,WELLHD,"Continue pumping 35 gpm 60 degree cold water into 8"" casing , packed off on top with poor boy packer."
+KICK,11,22-Aug-16,7:00,15:00,8.00,176,WELLHD,"Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks of portland cement from 88' as a drift plug."
+KICK,11,22-Aug-16,15:00,15:30,0.50,176,TRPO,"Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'."
+KICK,11,22-Aug-16,15:30,16:30,1.00,176,CMTPL,"Mix and pump 10- 92.4 lbs sacks of portland cement into 77 gallons of water, pump through string as drift plug, chasing with 70 gallons of displacement. shut hole in monitor discharge, clean equipment."
+KICK,11,22-Aug-16,16:30,17:30,1.00,176,WOC,"Rotate pipe each 15 minutes, to ensure free. initial static hole with top of fluid 3' below top of 8"" casing , after 1 hour, approx. . 5-1 gallon flowing out of hole."
+KICK,11,22-Aug-16,17:30,0:00,6.50,176,WOC,"Wait on cement, grab sample placed in warm laundry tent to cure. Flow from 8"" casing measured at 11-13 gpm, temp. building to 186 degrees at 00:00"
+KICK,12,23-Aug-16,0:00,3:00,3.00,176,WOC,"pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134: 02:00-120F"
+KICK,12,23-Aug-16,3:00,3:30,0.50,176,WELLHD,"Take off poor boy packoff, prior to lowering rod into hole to tag top of cement. Starting temp of discharge 120F"
+KICK,12,23-Aug-16,3:30,4:00,0.50,176,TRPI,"Run 20' into hole start temp. 115 F- joint down 142F, at 109'"
+KICK,12,23-Aug-16,4:00,4:15,0.25,176,TRPI,"Run in hole with 80' of rod temp begin at 115F end at 126F, tag top of cement at 172' BGS, circulating hole at top of cement fluid temp out 114F, pumping 30 gpm."
+KICK,12,23-Aug-16,4:15,6:00,1.75,176,PUMP,"Pumping cold water to cool hole,Discuss with GRG, Bill Rickard , plan to re cement hole to stop flow."
+KICK,12,23-Aug-16,6:00,7:00,1.00,176,PUMP,"Continue to pump cold water, change out stripping rubbers on packoff, attempt to gain shut in pressure, estimate at 4-9 psi, out floe from 8"" now at 11-13 gpm,"
+KICK,12,23-Aug-16,7:00,8:30,1.50,176,PUMP,"Continue to pump cold water through core rod into hole with bottom of rod at 170', pull rod to 168' prepare to mix and pump 9sks of cement in a balance plug."
+KICK,12,23-Aug-16,8:30,9:15,0.75,176,CMTPL,"Mix 9 bags of cement in 70 gallons of water, 14.5 lb/gal cement mix, pump into core rod and displace with 37 gallons of water, trip out with core rod to 49'. shut down,"
+KICK,12,23-Aug-16,9:15,11:00,1.75,176,WOC,"wait on cement to set, rotate and lift rods every 15 min,begin time to see when fluid level returns to top of 8"" casing . took 1 hour and 15 min to see any water flow out of casing after cement down. minimum flow, less than 0.25 gpm."
+WOE,23,03-Sep-16,6:30,11:00,4.50,1725,CIRC,"Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 jts of used rod from village yard at 11:00 hrs."
+WOO,25,05-Sep-16,6:30,9:00,2.50,1955,WOO,"Waiting on well design after PT data review. Receive well plan: From the current blank run 4 perforated / 1 blank alternating 4 to 1 until run out of perf pipe, then 50 joints of blank. Top of lap joint (TOL): 755' BGS."

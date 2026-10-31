@@ -1,0 +1,519 @@
+{
+  "annotations": {
+    "all_identical": true,
+    "files": 26
+  },
+  "evaluation": {
+    "completed_bundles_unchanged": true,
+    "identical_bytes": true,
+    "returncode": 0,
+    "sha256": "0f4a17866b0a9e47844c259a384b99d0e6c8c3d225982c53a109affe43822d52"
+  },
+  "git": {
+    "branch": "main",
+    "head_unchanged": true,
+    "ignored_paths_visible": [],
+    "outside_scope": [],
+    "protected_differences": [],
+    "protected_files_unchanged": true
+  },
+  "links": {
+    "checked": 291,
+    "errors": []
+  },
+  "results_bytes": 1940407,
+  "reviewable_bytes": 2583733,
+  "reviewable_files": 211,
+  "tests": {
+    "log": "local process report",
+    "returncode": 0
+  },
+  "trace_scan": {
+    "frozen_annotation_exceptions": [
+      {
+        "file": "annotations/development/continued-tables/continued_tables.json",
+        "line": 22,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/continued-tables/continued_tables.json",
+        "line": 35,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/continued-tables/continued_tables.json",
+        "line": 68,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/continued-tables/continued_tables.json",
+        "line": 81,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/excluded/excluded.json",
+        "line": 10,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/forms/forms.json",
+        "line": 8,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/forms/forms.json",
+        "line": 1299,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/forms/forms.json",
+        "line": 2590,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/forms/forms.json",
+        "line": 2591,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 5,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 9,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 10,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 11,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 12,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 13,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 14,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 15,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 16,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 17,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/REVIEW.md",
+        "line": 28,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/scanned-pages/transcriptions.json",
+        "line": 8,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/scanned-pages/transcriptions.json",
+        "line": 40,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/scanned-pages/transcriptions.json",
+        "line": 64,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/source-conventions.md",
+        "line": 1,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/source-conventions.md",
+        "line": 7,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/source-conventions.md",
+        "line": 15,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/development/source-conventions.md",
+        "line": 19,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 23,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 36,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 72,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 73,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 86,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 87,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 101,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/continued-tables/continued_tables.json",
+        "line": 102,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/excluded/excluded.json",
+        "line": 22,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/excluded/excluded.json",
+        "line": 35,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/excluded/excluded.json",
+        "line": 82,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/forms/forms.json",
+        "line": 8,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/forms/forms.json",
+        "line": 1316,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 14,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 18,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 22,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 33,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 37,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 41,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 52,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 56,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 60,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 71,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 75,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 79,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 90,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 94,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 98,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 109,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 113,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 117,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 128,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 132,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 136,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 147,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 151,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 155,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 166,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 170,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/provenance.json",
+        "line": 174,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 5,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 15,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 16,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 17,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 27,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/REVIEW.md",
+        "line": 28,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 10,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 214,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 215,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 235,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 236,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 237,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 256,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 257,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 273,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      },
+      {
+        "file": "annotations/held-out/selection.json",
+        "line": 289,
+        "reason": "frozen annotation metadata preserved byte-for-byte"
+      }
+    ],
+    "interpretation": "Zero outside immutable annotations; strict zero-hit criterion has an annotation-preservation exception.",
+    "unexpected_hits": [
+      {
+        "file": "results/text-support/references.json",
+        "line": 6,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 12,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 36,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 42,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 48,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 54,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 60,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/text-support/references.json",
+        "line": 66,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/tool-survey.json",
+        "line": 2708,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/tool-survey.json",
+        "line": 2912,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/tool-survey.json",
+        "line": 4691,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/tool-survey.json",
+        "line": 6121,
+        "reason": "unexpected trace"
+      },
+      {
+        "file": "results/tool-survey.json",
+        "line": 12203,
+        "reason": "unexpected trace"
+      }
+    ],
+    "zero_hits": false
+  }
+}

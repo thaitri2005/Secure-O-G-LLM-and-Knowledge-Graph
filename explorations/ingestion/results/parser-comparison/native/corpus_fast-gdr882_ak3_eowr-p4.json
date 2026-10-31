@@ -1,0 +1,320 @@
+{
+  "doc_id": "gdr882_ak3_eowr",
+  "items": [
+    {
+      "bbox": [
+        72.024,
+        74.41687999999999,
+        218.46120000000002,
+        87.89256067368422
+      ],
+      "id": "#/texts/0",
+      "section": "Table of Abbreviations",
+      "text": "Table of Abbreviations",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        71.35454923346614,
+        87.82768329057535,
+        549.0471620066209,
+        609.7843564600903
+      ],
+      "id": "#/tables/0",
+      "section": "Table of Abbreviations",
+      "text": "ADEC Alaska Department of Environmental Conservation ADF&G Alaska Department of Fish and Game ADNR Alaska Department of Natural Resources AEA Alaska Energy Authority AOGCC Alaska Oil and Gas Conservation Commission BOPE Blowout Prevention Equipment DOE Department of Energy GOCAD Geologic Object Computer Aided Drawing, geologic modeling software gpm gallons per minute GRG Geothermal Resource Group HSBV Hot Springs Bay Valley HWT Particular core rod thread design LOT Leak-off test m meters MRT Maximum Reading Thermometer NEPA National Environmental Policy Act ppf pounds per foot ppg pounds per gallon PT Pressure, temperature, normally in reference to a downhole survey or tool SHPO State Historic Preservation Office TD Total Depth or Termination Depth TMT Technical Monitoring Team TOTCO Common trade name in use for single-shot inclination-only survey tool, mechanical inclination indicator VFJ Valley Flush Joint casing connection WOC Waiting on Cement",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        72.024,
+        739.644,
+        78.024,
+        749.976
+      ],
+      "id": "#/texts/1",
+      "section": "Table of Abbreviations",
+      "text": "4",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "8fee3a61ab7de6a88ece5df03128eeefc433abb0f1b3b1e4ea1ce3e93b8318cd",
+  "page": 4,
+  "page_size": {
+    "height": 792.12,
+    "width": 612.12
+  },
+  "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "ADEC"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Alaska Department of Environmental Conservation"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "ADF&G"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "Alaska Department of Fish and Game"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "ADNR"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "Alaska Department of Natural Resources"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "AEA"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "Alaska Energy Authority"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "AOGCC"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "Alaska Oil and Gas Conservation Commission"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "BOPE"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "Blowout Prevention Equipment"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "DOE"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "Department of Energy"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "GOCAD"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "text": "Geologic Object Computer Aided Drawing, geologic modeling software"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "gpm"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "text": "gallons per minute"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "GRG"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "Geothermal Resource Group"
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "HSBV"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "text": "Hot Springs Bay Valley"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "HWT"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "text": "Particular core rod thread design"
+        },
+        {
+          "c": 0,
+          "r": 12,
+          "text": "LOT"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "text": "Leak-off test"
+        },
+        {
+          "c": 0,
+          "r": 13,
+          "text": "m"
+        },
+        {
+          "c": 1,
+          "r": 13,
+          "text": "meters"
+        },
+        {
+          "c": 0,
+          "r": 14,
+          "text": "MRT"
+        },
+        {
+          "c": 1,
+          "r": 14,
+          "text": "Maximum Reading Thermometer"
+        },
+        {
+          "c": 0,
+          "r": 15,
+          "text": "NEPA"
+        },
+        {
+          "c": 1,
+          "r": 15,
+          "text": "National Environmental Policy Act"
+        },
+        {
+          "c": 0,
+          "r": 16,
+          "text": "ppf"
+        },
+        {
+          "c": 1,
+          "r": 16,
+          "text": "pounds per foot"
+        },
+        {
+          "c": 0,
+          "r": 17,
+          "text": "ppg"
+        },
+        {
+          "c": 1,
+          "r": 17,
+          "text": "pounds per gallon"
+        },
+        {
+          "c": 0,
+          "r": 18,
+          "text": "PT"
+        },
+        {
+          "c": 1,
+          "r": 18,
+          "text": "Pressure, temperature, normally in reference to a downhole survey or tool"
+        },
+        {
+          "c": 0,
+          "r": 19,
+          "text": "SHPO"
+        },
+        {
+          "c": 1,
+          "r": 19,
+          "text": "State Historic Preservation Office"
+        },
+        {
+          "c": 0,
+          "r": 20,
+          "text": "TD"
+        },
+        {
+          "c": 1,
+          "r": 20,
+          "text": "Total Depth or Termination Depth"
+        },
+        {
+          "c": 0,
+          "r": 21,
+          "text": "TMT"
+        },
+        {
+          "c": 1,
+          "r": 21,
+          "text": "Technical Monitoring Team"
+        },
+        {
+          "c": 0,
+          "r": 22,
+          "text": "TOTCO"
+        },
+        {
+          "c": 1,
+          "r": 22,
+          "text": "Common trade name in use for single-shot inclination-only survey tool, mechanical inclination indicator"
+        },
+        {
+          "c": 0,
+          "r": 23,
+          "text": "VFJ"
+        },
+        {
+          "c": 1,
+          "r": 23,
+          "text": "Valley Flush Joint casing connection"
+        },
+        {
+          "c": 0,
+          "r": 25,
+          "text": "WOC"
+        },
+        {
+          "c": 1,
+          "r": 24,
+          "text": "Waiting on Cement"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "num_cols": 2,
+      "num_rows": 26,
+      "regions": [
+        {
+          "bbox": [
+            71.35454923346614,
+            87.82768329057535,
+            549.0471620066209,
+            609.7843564600903
+          ],
+          "page": 4
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_fast"
+}

@@ -1,0 +1,1957 @@
+{
+  "accepted": 2,
+  "attempts": 130,
+  "pages": [
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 1,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 17,
+        "word_recall": 0.9024390243902439
+      },
+      "before": {
+        "cells": 21,
+        "word_recall": 0.8536585365853658
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 2,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 22,
+        "word_recall": 0.6724137931034483
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 3,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 4,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 5,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 46,
+        "word_recall": 0.7272727272727273
+      },
+      "before": {
+        "cells": 56,
+        "word_recall": 0.7922077922077922
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 6,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 7,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 8,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 9,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 43,
+        "word_recall": 0.8695652173913043
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 10,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 11,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 12,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 13,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 14,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 15,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 7,
+        "word_recall": 0.3829787234042553
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 16,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 28,
+        "word_recall": 0.9
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 24,
+        "word_recall": 0.18556701030927836
+      },
+      "before": {
+        "cells": 32,
+        "word_recall": 0.8762886597938144
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 18,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 24,
+        "word_recall": 0.15463917525773196
+      },
+      "before": {
+        "cells": 32,
+        "word_recall": 0.8969072164948454
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 19,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 25,
+        "word_recall": 0.3288888888888889
+      },
+      "before": {
+        "cells": 33,
+        "word_recall": 0.8933333333333333
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 20,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 43,
+        "word_recall": 0.9043478260869565
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 21,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 41,
+        "word_recall": 0.9039301310043668
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 22,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 51,
+        "word_recall": 0.8904761904761904
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 23,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 52,
+        "word_recall": 0.8854625550660793
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 24,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 65,
+        "word_recall": 0.3089171974522293
+      },
+      "before": {
+        "cells": 156,
+        "word_recall": 0.6114649681528662
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 25,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 51,
+        "word_recall": 0.31958762886597936
+      },
+      "before": {
+        "cells": 113,
+        "word_recall": 0.7457044673539519
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 26,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 76,
+        "word_recall": 0.35060975609756095
+      },
+      "before": {
+        "cells": 49,
+        "word_recall": 0.8871951219512195
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 27,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 54,
+        "word_recall": 0.4033333333333333
+      },
+      "before": {
+        "cells": 50,
+        "word_recall": 0.91
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 28,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 19,
+        "word_recall": 0.29365079365079366
+      },
+      "before": {
+        "cells": 50,
+        "word_recall": 0.9166666666666666
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 29,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 140,
+        "word_recall": 0.8049792531120332
+      },
+      "before": {
+        "cells": 84,
+        "word_recall": 0.8423236514522822
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 30,
+      "source_rotation": 270
+    },
+    {
+      "accepted": true,
+      "after": {
+        "cells": 161,
+        "word_recall": 0.8242424242424242
+      },
+      "before": {
+        "cells": 90,
+        "word_recall": 0.7757575757575758
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 31,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 14,
+        "word_recall": 0.6304347826086957
+      },
+      "before": {
+        "cells": 11,
+        "word_recall": 0.9347826086956522
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 32,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 30,
+        "word_recall": 0.4931506849315068
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 33,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 19,
+        "word_recall": 0.46226415094339623
+      },
+      "before": {
+        "cells": 58,
+        "word_recall": 0.36792452830188677
+      },
+      "degrees": 180,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 34,
+      "source_rotation": 180
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 74,
+        "word_recall": 0.6837606837606838
+      },
+      "before": {
+        "cells": 52,
+        "word_recall": 0.6923076923076923
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 35,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 34,
+        "word_recall": 0.49333333333333335
+      },
+      "before": {
+        "cells": 40,
+        "word_recall": 0.72
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 36,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 37,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 38,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 39,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 40,
+      "source_rotation": 270
+    },
+    {
+      "accepted": true,
+      "after": {
+        "cells": 330,
+        "word_recall": 0.7021276595744681
+      },
+      "before": {
+        "cells": 292,
+        "word_recall": 0.6
+      },
+      "degrees": 90,
+      "doc_id": "gdr1153_78-32_eowr",
+      "page": 56,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 410,
+        "word_recall": 0.23076923076923078
+      },
+      "degrees": 90,
+      "doc_id": "gdr1296_16a78-32_drilling_summary",
+      "page": 73,
+      "source_rotation": 0
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 33,
+        "word_recall": 0.9447852760736196
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 1,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 2,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 3,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 4,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 5,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 6,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 7,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 8,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 9,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 10,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 11,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 12,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 13,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 14,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 15,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 16,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 17,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 18,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 19,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 20,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 21,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 22,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 23,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 24,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 270,
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "page": 25,
+      "source_rotation": 90
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 12,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 22,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 23,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 24,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 17,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 25,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 26,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 27,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 30,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 28,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 29,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 30,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 30,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 31,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 86,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 32,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 33,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 65,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 34,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 35,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 36,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 37,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 38,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 39,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 40,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 41,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 42,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 43,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 44,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 45,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 26,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 46,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 7,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 47,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 48,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 49,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 50,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 328,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 51,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 440,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 52,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 53,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 54,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 28,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 55,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 56,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 57,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 58,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 59,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 60,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 61,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 17,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 62,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 77,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 63,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 64,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 65,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 66,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 67,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 68,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 69,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 70,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 71,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 72,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 73,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 74,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 75,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 76,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 77,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 78,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 79,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 80,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "before": {
+        "cells": 0,
+        "word_recall": 0.0
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "page": 81,
+      "source_rotation": 270
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 92,
+        "word_recall": 0.608
+      },
+      "before": {
+        "cells": 162,
+        "word_recall": 0.68
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_31_7_bhasummaryrpt_160913152816",
+      "page": 1,
+      "source_rotation": 0
+    },
+    {
+      "accepted": false,
+      "after": {
+        "cells": 117,
+        "word_recall": 0.6838235294117647
+      },
+      "before": {
+        "cells": 139,
+        "word_recall": 0.6176470588235294
+      },
+      "degrees": 90,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "page": 1,
+      "source_rotation": 0
+    }
+  ],
+  "rule": "Accept an upright conversion only if it has more non-empty table cells and higher text-layer word recall."
+}

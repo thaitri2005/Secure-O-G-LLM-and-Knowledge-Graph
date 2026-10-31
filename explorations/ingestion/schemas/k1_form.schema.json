@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "form_id",
+    "file_id",
+    "doc_id",
+    "page",
+    "status",
+    "fields",
+    "reference_text",
+    "header_boundary",
+    "bbox_frame",
+    "rotation",
+    "text_layer_only",
+    "visible_glyph_clipping",
+    "method",
+    "verified",
+    "template_label_share",
+    "template_minimum_share"
+  ],
+  "properties": {
+    "form_id": {
+      "type": "string"
+    },
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    },
+    "doc_id": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "const": "success"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "value",
+          "key_bbox",
+          "value_bbox",
+          "verified"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "key_bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "value_bbox": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "canonical_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "source_word_boxes": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "reference_text": {
+      "type": "string"
+    },
+    "header_boundary": {
+      "type": "number"
+    },
+    "bbox_frame": {
+      "type": "string"
+    },
+    "rotation": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "text_layer_only": {
+      "const": true
+    },
+    "visible_glyph_clipping": {
+      "const": true
+    },
+    "method": {
+      "enum": [
+        "rimbase_template",
+        "generic"
+      ]
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "template_label_share": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "template_minimum_share": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

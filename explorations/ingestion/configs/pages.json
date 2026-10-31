@@ -1,0 +1,67 @@
+{
+  "cases": [
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "id": "ak3-abbreviations",
+      "pages": [
+        4
+      ],
+      "reason": "Abbreviations table; compare final row with corrected table gold.",
+      "sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+      "source_registry": "configs/sources/gdr_end_of_well.json"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "id": "forge68-rotated-daily-report",
+      "pages": [
+        17
+      ],
+      "reason": "Rotated daily-report form; corrected table gold.",
+      "sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "source_registry": "configs/sources/gdr_end_of_well.json"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "id": "ak3-daily-operations",
+      "pages": [
+        1
+      ],
+      "reason": "Daily-report header including Days On Location and operations table.",
+      "sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+      "source_registry": "configs/sources/gdr_ak3_appendices.json"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525",
+      "id": "ak3-nonproductive-time",
+      "pages": [
+        1,
+        2
+      ],
+      "reason": "Non-Productive Time Report: repeated nine-column header; activity records continue across pages; total 115.00 on page 2.",
+      "sha256": "f6b0f3f13c5707eeaf4fa95344b6e7babd23c581a86a6e73eb81d1bde26211c7",
+      "source_registry": "configs/sources/gdr_ak3_appendices.json"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_17_2_ak_3_drillingplan_11_aug_2016",
+      "id": "ak3-scanned-well-schematic",
+      "pages": [
+        13
+      ],
+      "reason": "Scanned appendix page flagged needs_ocr in the existing scan inventory.",
+      "sha256": "37bd90ae6d351b0e91397fb65eaea5afa67e8e05bd1dcaa6242877d8bf7ead5c",
+      "source_registry": "configs/sources/gdr_ak3_appendices.json"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "id": "ak3-scanned-permit-letter",
+      "pages": [
+        23
+      ],
+      "reason": "Printed permit-approval letter with numbered conditions; scan inventory needs_ocr page, distinct from the schematic in ak3-scanned-well-schematic.",
+      "sha256": "57f7311db4231ad2e91fa435ae2eea2b51d8d17b99f9c749d5de969013c07d5c",
+      "source_registry": "configs/sources/gdr_ak3_appendices.json"
+    }
+  ],
+  "dpi": 200,
+  "page_numbering": "One-based physical PDF pages; ak3-nonproductive-time is a two-page case."
+}

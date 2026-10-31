@@ -1,0 +1,406 @@
+{
+  "ak3": [
+    {
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "path": "data/raw/gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_02_11_costvsdepthrpt_160920152843",
+      "path": "data/raw/gdr882_ak3_appx_02_11_costvsdepthrpt_160920152843.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_03_11_wellafeactualrpt_160913175710",
+      "path": "data/raw/gdr882_ak3_appx_03_11_wellafeactualrpt_160913175710.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_04_12_akutan_3",
+      "path": "data/raw/gdr882_ak3_appx_04_12_akutan_3.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_05_13_ak_3_advising_report_1_8_25_16_addendum",
+      "path": "data/raw/gdr882_ak3_appx_05_13_ak_3_advising_report_1_8_25_16_addendum.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_06_13_ak_3_advising_report_1_8_25_16",
+      "path": "data/raw/gdr882_ak3_appx_06_13_ak_3_advising_report_1_8_25_16.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_07_13_ak_3_advising_report_2_8_28_16",
+      "path": "data/raw/gdr882_ak3_appx_07_13_ak_3_advising_report_2_8_28_16.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_08_13_ak_3_advising_report_2_8_31_16",
+      "path": "data/raw/gdr882_ak3_appx_08_13_ak_3_advising_report_2_8_31_16.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_09_13_ak_3_advising_report_9_2_16",
+      "path": "data/raw/gdr882_ak3_appx_09_13_ak_3_advising_report_9_2_16.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_10_14_akutan_geothermal_non_compliance",
+      "path": "data/raw/gdr882_ak3_appx_10_14_akutan_geothermal_non_compliance.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_11_16_ak3_run_sheet_1a",
+      "path": "data/raw/gdr882_ak3_appx_11_16_ak3_run_sheet_1a.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_12_16_ak3_run_sheet_2a",
+      "path": "data/raw/gdr882_ak3_appx_12_16_ak3_run_sheet_2a.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_13_16_ak3_run_sheet_3a",
+      "path": "data/raw/gdr882_ak3_appx_13_16_ak3_run_sheet_3a.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_14_16_ptgraph",
+      "path": "data/raw/gdr882_ak3_appx_14_16_ptgraph.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_15_16_summary_data_pt",
+      "path": "data/raw/gdr882_ak3_appx_15_16_summary_data_pt.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_16_1_ak_3_targeting_document_19jan15",
+      "path": "data/raw/gdr882_ak3_appx_16_1_ak_3_targeting_document_19jan15.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_17_2_ak_3_drillingplan_11_aug_2016",
+      "path": "data/raw/gdr882_ak3_appx_17_2_ak_3_drillingplan_11_aug_2016.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+      "path": "data/raw/gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_19_4_wellboreschemarpt_160912211330",
+      "path": "data/raw/gdr882_ak3_appx_19_4_wellboreschemarpt_160912211330.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_20_4_wellboreschemarpt_160920153329",
+      "path": "data/raw/gdr882_ak3_appx_20_4_wellboreschemarpt_160920153329.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_21_5_daysvsdepthrpt_160920160518",
+      "path": "data/raw/gdr882_ak3_appx_21_5_daysvsdepthrpt_160920160518.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_22_5_daysvsdepthrpt_160920160528",
+      "path": "data/raw/gdr882_ak3_appx_22_5_daysvsdepthrpt_160920160528.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525",
+      "path": "data/raw/gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550",
+      "path": "data/raw/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_25_5_wellsummaryrpt_160920160606",
+      "path": "data/raw/gdr882_ak3_appx_25_5_wellsummaryrpt_160920160606.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_26_6_ak_3_management_summary",
+      "path": "data/raw/gdr882_ak3_appx_26_6_ak_3_management_summary.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "path": "data/raw/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_28_6_dailyreportdetailrpt_160920153612",
+      "path": "data/raw/gdr882_ak3_appx_28_6_dailyreportdetailrpt_160920153612.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_29_6_dailyreportgraphicalrpt_160920155318",
+      "path": "data/raw/gdr882_ak3_appx_29_6_dailyreportgraphicalrpt_160920155318.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_30_6_dailyreportsummaryrpt_160920155352",
+      "path": "data/raw/gdr882_ak3_appx_30_6_dailyreportsummaryrpt_160920155352.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_31_7_bhasummaryrpt_160913152816",
+      "path": "data/raw/gdr882_ak3_appx_31_7_bhasummaryrpt_160913152816.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "path": "data/raw/gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "path": "data/raw/gdr882_ak3_appx_33_8_casinginforpt_160913154132.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_34_8_casinginforpt_160920160134",
+      "path": "data/raw/gdr882_ak3_appx_34_8_casinginforpt_160920160134.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_35_8_casinginforpt_160920160146",
+      "path": "data/raw/gdr882_ak3_appx_35_8_casinginforpt_160920160146.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_36_8_casinginforpt_160920160154",
+      "path": "data/raw/gdr882_ak3_appx_36_8_casinginforpt_160920160154.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "path": "data/raw/gdr882_ak3_appx_37_8_cementjobrpt_160913175233.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_38_8_cementjobrpt_160913175248",
+      "path": "data/raw/gdr882_ak3_appx_38_8_cementjobrpt_160913175248.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_39_8_cementjobrpt_160913175302",
+      "path": "data/raw/gdr882_ak3_appx_39_8_cementjobrpt_160913175302.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_40_8_cementjobrpt_160913175316",
+      "path": "data/raw/gdr882_ak3_appx_40_8_cementjobrpt_160913175316.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_41_8_cementjobrpt_160913175330",
+      "path": "data/raw/gdr882_ak3_appx_41_8_cementjobrpt_160913175330.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_42_8_cementjobrpt_160913175344",
+      "path": "data/raw/gdr882_ak3_appx_42_8_cementjobrpt_160913175344.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_43_8_cementjobrpt_160913175357",
+      "path": "data/raw/gdr882_ak3_appx_43_8_cementjobrpt_160913175357.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "path": "data/raw/gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "path": "data/raw/gdr882_ak3_eowr.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    }
+  ],
+  "reports": [
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "path": "data/raw/gdr1153_68-32_eowr.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr1153_78-32_eowr",
+      "path": "data/raw/gdr1153_78-32_eowr.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "path": "data/raw/gdr1295_56-32_eowr.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr1296_16a78-32_drilling_summary",
+      "path": "data/raw/gdr1296_16a78-32_drilling_summary.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "path": "data/raw/gdr882_ak3_eowr.pdf",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    }
+  ]
+}

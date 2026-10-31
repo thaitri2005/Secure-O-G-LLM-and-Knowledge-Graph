@@ -1,0 +1,15 @@
+camelot-py==2.0.0
+click==8.5.0
+et_xmlfile==2.0.0
+mypy_extensions==1.1.0
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+openpyxl==3.1.5
+pandas==3.1.0
+pillow==13.0.0
+playa-pdf==1.1.0
+pypdfium2==5.14.0
+python-dateutil==3.0.0
+six==1.17.0
+tabulate==0.10.0
+tzdata==2026.6

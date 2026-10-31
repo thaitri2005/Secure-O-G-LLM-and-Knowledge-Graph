@@ -1,0 +1,117 @@
+[
+  {
+    "id": "forge16a_td_coordinates",
+    "doc_id": "gdr1296_16a78-32_drilling_summary",
+    "pages": [
+      7,
+      8
+    ],
+    "header_rows": 1,
+    "header_repeated_on_continuation": false,
+    "parts": [
+      {
+        "page": 7,
+        "bbox": [
+          72,
+          703,
+          540,
+          719
+        ],
+        "first_row": 1,
+        "last_row": 0,
+        "header_only": true,
+        "render": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p7.png",
+        "status": "corrected"
+      },
+      {
+        "page": 8,
+        "bbox": [
+          72,
+          77,
+          540,
+          148
+        ],
+        "first_row": 1,
+        "last_row": 5,
+        "render": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p8.png",
+        "status": "corrected"
+      }
+    ],
+    "notes": "Whole printed Table 2. P7 is header-only, so first_row=1,last_row=0 is an empty data range; the initial header is CSV row 0. P8 has no repeated heading. Preserve the printed Well Plan Azimuth label and its ft values despite their apparent semantic mismatch. Table 1, captions, prose and figures are excluded.",
+    "status": "corrected",
+    "format": "grid",
+    "csv": "gold/heldout/continued_tables/forge16a_td_coordinates.csv",
+    "source_sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+    "provenance": "Manually reviewed source renders and direct PDFium text/glyph layer only; parser and candidate reads blocked.",
+    "annotator": "Single annotator with AI assistance; unreviewed draft; no inter-annotator agreement.",
+    "drafted_utc": "2026-10-31T08:54:15.681364+00:00",
+    "reviewed": "2026-10-31",
+    "review": "Second pass checked against the source renders with AI assistance; scope decisions approved by the repository owner."
+  },
+  {
+    "id": "forge68_activity_detail",
+    "doc_id": "gdr1153_68-32_eowr",
+    "pages": [
+      30,
+      31,
+      32
+    ],
+    "header_rows": 1,
+    "header_repeated_on_continuation": true,
+    "parts": [
+      {
+        "page": 30,
+        "bbox": [
+          117,
+          72,
+          705,
+          540
+        ],
+        "first_row": 1,
+        "last_row": 29,
+        "render": "runs/round6/heldout/gdr1153_68-32_eowr-p30.png",
+        "upright_render": "runs/round6/heldout/gdr1153_68-32_eowr-p30-upright.png",
+        "status": "corrected"
+      },
+      {
+        "page": 31,
+        "bbox": [
+          117,
+          72,
+          705,
+          540
+        ],
+        "first_row": 30,
+        "last_row": 54,
+        "render": "runs/round6/heldout/gdr1153_68-32_eowr-p31.png",
+        "upright_render": "runs/round6/heldout/gdr1153_68-32_eowr-p31-upright.png",
+        "status": "corrected"
+      },
+      {
+        "page": 32,
+        "bbox": [
+          117,
+          72,
+          196,
+          540
+        ],
+        "first_row": 54,
+        "last_row": 54,
+        "continues_row_from_previous_page": true,
+        "render": "runs/round6/heldout/gdr1153_68-32_eowr-p32.png",
+        "upright_render": "runs/round6/heldout/gdr1153_68-32_eowr-p32-upright.png",
+        "status": "corrected"
+      }
+    ],
+    "notes": "Whole Operations Activity Detail event grid, printed pages 1-3 of 3. Repeated headers occur once in CSV row 0. Dates and report numbers in vertically merged cells occupy their first-row anchor only. CSV row 54 has a description split across pp31-32: concatenate its text once; both part ranges include that row. P32 adds no new event. Total Hours 298, running furniture, logo and printed footer are excluded. Bboxes remain in the original sideways physical frame; upright review images supplied. Source spellings (day ligth, mask section) are retained.",
+    "status": "corrected",
+    "format": "grid",
+    "csv": "gold/heldout/continued_tables/forge68_activity_detail.csv",
+    "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+    "provenance": "Manually reviewed source renders and direct PDFium text/glyph layer only; parser and candidate reads blocked.",
+    "annotator": "Single annotator with AI assistance; unreviewed draft; no inter-annotator agreement.",
+    "drafted_utc": "2026-10-31T08:54:15.686359+00:00",
+    "reviewed": "2026-10-31",
+    "review": "Second pass checked against the source renders with AI assistance; scope decisions approved by the repository owner."
+  }
+]

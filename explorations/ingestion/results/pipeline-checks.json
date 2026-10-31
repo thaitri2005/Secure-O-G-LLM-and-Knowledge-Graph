@@ -1,0 +1,97 @@
+{
+  "conversion_consistency": {
+    "document": "gdr882_ak3_appx_04_12_akutan_3",
+    "note": "Its segment was cached before the interruption and reused by the resumed run, while the other two runs converted it fresh; identical SHA256SUMS show that fresh and cached conversion give the same K1 records."
+  },
+  "corpora": {
+    "ak3": {
+      "counts": {
+        "chunks": 2151,
+        "files": 45,
+        "forms": 312,
+        "pages": 492,
+        "parents": 1774,
+        "tables": 343
+      },
+      "description": "AK-3 report and appendices, first conversion",
+      "errors": [],
+      "sha256sums_digest": "63e822b229632fdf6cba623efdc86ceb0790e5ff3233586f511a82451377a6a3",
+      "validation": "pass"
+    },
+    "ak3-repeat": {
+      "counts": {
+        "chunks": 2151,
+        "files": 45,
+        "forms": 312,
+        "pages": 492,
+        "parents": 1774,
+        "tables": 343
+      },
+      "description": "AK-3 report and appendices, independent conversion",
+      "errors": [],
+      "sha256sums_digest": "63e822b229632fdf6cba623efdc86ceb0790e5ff3233586f511a82451377a6a3",
+      "validation": "pass"
+    },
+    "ak3-resumed": {
+      "counts": {
+        "chunks": 2151,
+        "files": 45,
+        "forms": 312,
+        "pages": 492,
+        "parents": 1774,
+        "tables": 343
+      },
+      "description": "AK-3 report and appendices, interrupted and resumed",
+      "errors": [],
+      "sha256sums_digest": "63e822b229632fdf6cba623efdc86ceb0790e5ff3233586f511a82451377a6a3",
+      "validation": "pass"
+    },
+    "reports": {
+      "counts": {
+        "chunks": 1109,
+        "files": 5,
+        "forms": 155,
+        "pages": 325,
+        "parents": 756,
+        "tables": 206
+      },
+      "description": "Main and extended reports",
+      "errors": [],
+      "sha256sums_digest": "1f2e5903970dff8ecddf18f347af61bd17766f8d3b99a16a810cade3a19b3e27",
+      "validation": "pass"
+    }
+  },
+  "determinism": {
+    "identical_sha256sums": true,
+    "note": "Each run starts from an empty work directory; no converted cache is shared.",
+    "runs_compared": [
+      "ak3",
+      "ak3-repeat",
+      "ak3-resumed"
+    ]
+  },
+  "native_faults": "Long-lived conversion processes stopped with a native access violation in the page decoder. The runner now converts each document in its own process, propagates failures and reuses completed caches; the underlying native cause is not established.",
+  "resume": {
+    "completed_segments_before_interruption": 4,
+    "completed_segments_unchanged": true,
+    "interruption_exit_code": 1,
+    "note": "The process tree was killed during conversion and the same run was restarted."
+  },
+  "throughput": {
+    "by_effective_mode": {
+      "hybrid": {
+        "conversion_seconds": 111.3,
+        "pages": 38,
+        "seconds_per_page": 2.929
+      },
+      "text": {
+        "conversion_seconds": 605.17,
+        "pages": 401,
+        "seconds_per_page": 1.509
+      }
+    },
+    "document_seconds_total": 1444.8,
+    "note": "Single laptop run on CPU. Seconds per page count converted segments only; scanned pages appear under text because they are converted after the OCRmyPDF pass. The total includes OCR, rotation retries, form pairing and export.",
+    "run": "ak3-repeat"
+  }
+}

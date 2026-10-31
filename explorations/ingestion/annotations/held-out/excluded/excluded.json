@@ -1,0 +1,84 @@
+[
+  {
+    "id": "akutan_hole_section_information",
+    "doc_id": "gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550",
+    "pages": [
+      1,
+      2
+    ],
+    "header_rows": 0,
+    "header_repeated_on_continuation": false,
+    "parts": [
+      {
+        "page": 1,
+        "bbox": [
+          72,
+          351,
+          540,
+          702
+        ],
+        "first_row": 0,
+        "last_row": 27,
+        "render": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p1.png",
+        "status": "draft"
+      },
+      {
+        "page": 2,
+        "bbox": [
+          72,
+          131,
+          540,
+          183
+        ],
+        "first_row": 28,
+        "last_row": 29,
+        "render": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p2.png",
+        "status": "draft"
+      }
+    ],
+    "column_boundaries_pdf_points": [
+      72,
+      136,
+      186,
+      220,
+      264,
+      315,
+      356,
+      428,
+      445,
+      540
+    ],
+    "row_layouts": {
+      "section_band": [
+        0
+      ],
+      "time_cost_and_drill": [
+        0,
+        3,
+        5,
+        7
+      ],
+      "casing_and_weight": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "notes": [
+        0,
+        1
+      ]
+    },
+    "notes": "Ruled Hole Section Information only, five panels MOVE/PERF/PROD/RIGDN/SURF. This is a physically split form-like table, not a uniform column-heading table: header_rows=0. The table title, repeated Well Bore band and later Actual Data/AFE/Job tables are excluded. Nine columns use the union of manual ruling boundaries; merged cells occupy their leftmost anchor, covered cells are blank. SURF Weight and Notes continue on p2. Labels and values inside a single ruled cell stay together; source note wrapping becomes spaces. Review this scope and merged-grid convention first.",
+    "status": "excluded",
+    "format": "grid",
+    "csv": "gold/heldout/excluded/akutan_hole_section_information.csv",
+    "source_sha256": "353433c7a8773db58a48d307dc653b104cedc5cfb7f1db9e7df8e83a2698e303",
+    "provenance": "Manually reviewed source renders and direct PDFium text/glyph layer only; parser and candidate reads blocked.",
+    "annotator": "Single annotator with AI assistance; unreviewed draft; no inter-annotator agreement.",
+    "drafted_utc": "2026-10-31T08:54:15.690061+00:00",
+    "reviewed": "2026-10-31",
+    "reason": "Ruled key-value form, not a table: each cell holds a label and its value, and the nine-column grid is a union of varying ruling boundaries. Scoring it as a grid would be arbitrary, so it is excluded from the continued-table set and from X4b recall."
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {"pattern": "_eowr$", "document_type": "eowr"},
+    {"pattern": "dailyreport", "document_type": "daily_report"},
+    {"pattern": "casinginforpt", "document_type": "casing_report"},
+    {"pattern": "directional|survey", "document_type": "survey_report"},
+    {"pattern": "drillingplan", "document_type": "drilling_plan"},
+    {"pattern": "permit", "document_type": "permit"}
+  ],
+  "default": "other"
+}

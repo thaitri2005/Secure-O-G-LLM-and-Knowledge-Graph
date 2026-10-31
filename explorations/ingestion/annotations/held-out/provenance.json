@@ -1,0 +1,182 @@
+{
+  "status": "draft",
+  "drafted_utc": "2026-10-31T08:56:09.086625+00:00",
+  "selection_sha256": "a294e16e355aa5209c734bcd9675302835bd093ec6ccb51021afc4c225f2c719",
+  "annotation_script_sha256": "13c4c4de2741155b996ed772c374bb26bb03cdc1702889605caea1f6aa927405",
+  "source_inputs": "Rendered source PDF pages and direct source text/glyph captures only.",
+  "captures": [
+    {
+      "doc_id": "gdr1296_16a78-32_drilling_summary",
+      "page": 7,
+      "source_sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p7.png",
+          "sha256": "ae0975bad857e7e6056c2373a861af85f8b1b387fe6df20c3f5f4d22b84db133"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p7.txt",
+          "sha256": "25d9fa08e9737e7499222dd6d4ebf2b827f9a16ce0760576ca3c031df8cf29cd"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p7.json",
+          "sha256": "1999fc432980ed42a7cf6c5cb5d743ca793e214c127e2fcf478072f7e42f2222"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr1296_16a78-32_drilling_summary",
+      "page": 8,
+      "source_sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p8.png",
+          "sha256": "fcaf24d8680c0124e64f979dbd7889858bca4a07acdbed8104340cb27f3797b1"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p8.txt",
+          "sha256": "27354400fab549f4b96ef447483453cd0a0cd3283ffa30bd47460ec486c419a4"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p8.json",
+          "sha256": "bcc44f91386efd5707f59d5752e3c34b2c1b27e12ba4442c6e92b6fc2e9ed138"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 30,
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p30.png",
+          "sha256": "fe32699cee687c4b7fe8a82c4a5de833c67bb9550d4663dbd5a47d954771e9a3"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p30.txt",
+          "sha256": "30073a9d4f79c5f14bfb6d805a6597e3e27b4e08c02436863112acee6b621a54"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p30.json",
+          "sha256": "c8053e8c42f0e78fdb47d62e232db9064d81d1aa7d7637a285bca90aca049662"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 31,
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p31.png",
+          "sha256": "e9419285211224915c475a9ca97c26c38d21382f609303a3ff50e857538979b8"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p31.txt",
+          "sha256": "768631f0e28f9d136c985580f93b64a2355171f564fc23f79eb0d9c66119a3da"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p31.json",
+          "sha256": "41ef5a789466bcf500a4207f2450b91c6ab1253d4f3ed8e68a5b90e1185a9ea5"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 32,
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p32.png",
+          "sha256": "39dcd1e3d0ee7f4ae11441fb2100507bbce974840e410a105be2e6a532ecf94a"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p32.txt",
+          "sha256": "d2aace836418cbe4bcdcfcd82d5ea37ec12dc5a2a942f801cd032ca169eb0048"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_68-32_eowr-p32.json",
+          "sha256": "d0e7ac76122a321aa08a3b6a95a271fcd985f1a4297f3071137fcc449d4f3f38"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550",
+      "page": 1,
+      "source_sha256": "353433c7a8773db58a48d307dc653b104cedc5cfb7f1db9e7df8e83a2698e303",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p1.png",
+          "sha256": "1e6a2d50d6011bbcd002353dd1945e9de28f5116022dc9a253fb3ec6e07ce3ca"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p1.txt",
+          "sha256": "0f17f6b50ee3e0ef030c012ab886af12f46da9287335936d67d339977e68b60b"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p1.json",
+          "sha256": "8e055de72d4948873e962d3afd99081b02270f6cba385f15016d061a65de94c5"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550",
+      "page": 2,
+      "source_sha256": "353433c7a8773db58a48d307dc653b104cedc5cfb7f1db9e7df8e83a2698e303",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p2.png",
+          "sha256": "be26781e4951dd88259c20e5305c7776e5b4beff4324b6d23e8703309283ca93"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p2.txt",
+          "sha256": "f7ef6846d151a834d2dfccddb49ba38ec4204b7c5815b7dd000cab97897b1614"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p2.json",
+          "sha256": "fe60d4e32d058d5d90402876086c0f9116f213f69ef8a60492ef997537c91dad"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 28,
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p28.png",
+          "sha256": "f65415f489ff7bd4c9d14faa06a6e6bd26ddea386b0d255879f54c73de5b4cba"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p28.txt",
+          "sha256": "18d07aff5f982f8d66bb3e60a7f780b48dfe75216d6beaecbf4fc25cd4fe6fa0"
+        },
+        {
+          "path": "runs/round6/heldout/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p28.json",
+          "sha256": "9d7e84f351b01dbd66eedcf048e823d1940d353f96f908bd72ce853f596d6c56"
+        }
+      ]
+    },
+    {
+      "doc_id": "gdr1153_78-32_eowr",
+      "page": 30,
+      "source_sha256": "7dc4d3e9ab9ba396039105c4b89475c9f34fb00525cd49fbe652317add3efa46",
+      "files": [
+        {
+          "path": "runs/round6/heldout/gdr1153_78-32_eowr-p30.png",
+          "sha256": "5e0bf08eff6115457fcbb005ce6c863578e550e4129eb4d8be5edc84097ce3eb"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_78-32_eowr-p30.txt",
+          "sha256": "81681f602598aa109c1a9497f4d8d080f06bffd641f1fbc0490b15dc32fd8215"
+        },
+        {
+          "path": "runs/round6/heldout/gdr1153_78-32_eowr-p30.json",
+          "sha256": "877aa31b39652d9a93ade6fb974131c3df9573878029bd0a5bc79b9b31471d67"
+        }
+      ]
+    }
+  ],
+  "heldout_methods_run": false,
+  "heldout_scoring_run": false
+}

@@ -1,0 +1,46 @@
+block,key,value
+identity,Well ID:,Forge 78-32
+identity,Job ID:,Original
+identity,Well Name:,78-32
+identity,Sect:,26
+identity,Town:,26S
+identity,Rng:,9W
+identity,County:,Beaver
+identity,State:,UT
+identity,Report No:,2
+identity,Report For,14-Mar-19
+well,Operator:,University of Utah
+well,Rig:,#10031
+well,Spud Date:,13-Mar-19
+well,Daily Cost / Mud ($):,---
+well,Measured Depth (ft):,716
+well,Working Interest:,
+well,Wellbore:,Original Wellbore
+well,Vertical Depth (ft):,716
+well,Last Casing:,9.625 at 704
+well,RKB Elevation (ft):,5.70
+well,Proposed TD (ft):,3000
+well,Next Casing:,"5.500 at 3,000"
+well,Hole Made (ft) / Hrs:,16 / 0.5
+well,Last BOP Test:,
+well,Average ROP (ft/hr):,32.0
+well,Next BOP Test:,
+well,Well Cost ($):,---
+well,Drilling Days (act./plan):,2/0
+well,Flat Days (act./plan):,0/0
+well,Total Days (act./plan):,2/0
+well,Days On Location:,2
+cost row 1,AFE No.,---
+cost row 1,AFE ($),---
+cost row 1,Actual ($),---
+cost row 2,AFE No.,---
+cost row 2,AFE ($),---
+cost row 2,Actual ($),---
+cost totals,Totals:,---
+cost totals,Actual ($),---
+operations,Current Ops:,"Cutoff 9 5/8"" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625"" casing. Weld ..."
+operations,Planned Ops:,"Complete Nipple up. Function and test BOP's Make up 8 3/4"" assembly, Clean out cement. Test shoe track. Drill 8.75"" new hole. ..."
+operations,Toolpusher:,"Tyler Curtis, Kollin Mellott"
+operations,Supervisors:,"Virgil Welch, Roger Almond"
+operations,Tel No.:,
+operations,Comments:,

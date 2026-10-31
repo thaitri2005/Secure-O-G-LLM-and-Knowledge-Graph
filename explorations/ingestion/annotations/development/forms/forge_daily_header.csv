@@ -1,0 +1,46 @@
+block,key,value
+identity,Well ID:,Forge 68-32
+identity,Job ID:,Original
+identity,Well Name:,68-32
+identity,Sect:,26
+identity,Town:,26S
+identity,Rng:,9W
+identity,County:,Beaver
+identity,State:,UT
+identity,Report No:,1
+identity,Report For,01-Mar-19
+well,Operator:,University of Utah
+well,Rig:,#10031
+well,Spud Date:,09-Mar-19
+well,Daily Cost / Mud ($):,---
+well,Measured Depth (ft):,0
+well,Working Interest:,
+well,Wellbore:,Original Wellbore
+well,Vertical Depth (ft):,0
+well,Last Casing:,
+well,RKB Elevation (ft):,0.00
+well,Proposed TD (ft):,1000
+well,Next Casing:,14.000 at 60
+well,Hole Made (ft) / Hrs:,0 / 0.0
+well,Last BOP Test:,
+well,Average ROP (ft/hr):,
+well,Next BOP Test:,
+well,Well Cost ($):,---
+well,Drilling Days (act./plan):,0/0
+well,Flat Days (act./plan):,0/0
+well,Total Days (act./plan):,0/0
+well,Days On Location:,1
+cost row 1,AFE No.,---
+cost row 1,AFE ($),---
+cost row 1,Actual ($),---
+cost row 2,AFE No.,---
+cost row 2,AFE ($),---
+cost row 2,Actual ($),---
+cost totals,Totals:,---
+cost totals,Actual ($),---
+operations,Current Ops:,Waiting on daylight and remainder of loads for rig up.
+operations,Planned Ops:,Continue unloading equipment.
+operations,Toolpusher:,
+operations,Supervisors:,Randy Baldwin
+operations,Tel No.:,
+operations,Comments:,3 loads of the rig arrived on Feb 28.

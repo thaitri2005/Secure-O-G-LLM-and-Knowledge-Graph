@@ -1,0 +1,30 @@
+Section Plan: MOVE,,,,,,,,
+Time/Cost Estimates:,,,Size Hole:,,Btm Depth MD: 0,,TVD: 0,
+Drill Days:,,,"Drill Cost: 621,890",,Case/Eval Days: 3,,"Case/Eval Cost: 79,050",
+Casing Plan:,,Type: FULL,,O.D:,,Top MD:,,Top TVD:
+Weight:,,Grade:,,Thread: WELD,,Btm MD:,,Btm TVD:
+Notes:,,,,,,,,
+Section Plan: PERF,,,,,,,,
+Time/Cost Estimates:,,,Size Hole: 3.789,,"Btm Depth MD: 1,700",,"TVD: 1,700",
+Drill Days: 7.5,,,"Drill Cost: 257,625",,Case/Eval Days: 2,,"Case/Eval Cost: 92,700",
+Casing Plan:,,Type: LINER,,O.D: 3.500,,Top MD: 700,,Top TVD: 700
+Weight: 7.7,,Grade: HQ,,Thread: Q,,"Btm MD: 1,700",,"Btm TVD: 1,700"
+Notes:,"3.06"" ID. (Coring: 10 hr/day @ 15'/hr). 1 extra day for injection testing is included in Eval days section.",,,,,,,
+Section Plan: PROD,,,,,,,,
+Time/Cost Estimates:,,,Size Hole: 4.834,,Btm Depth MD: 800,,TVD: 800,
+Drill Days: 5,,,"Drill Cost: 171,750",,Case/Eval Days: 2,,"Case/Eval Cost: 60,700",
+Casing Plan:,,Type: FULL,,O.D: 4.500,,Top MD: 0,,Top TVD: 0
+Weight: 11.7,,Grade: K55,,Thread: VFJ,,Btm MD: 800,,Btm TVD: 800
+Notes:,"Casing should be drifted to 4"" ID. (Coring: 10 hr/day @ 15'/hr)",,,,,,,
+Section Plan: RIGDN,,,,,,,,
+Time/Cost Estimates:,,,Size Hole:,,"Btm Depth MD: 1,700",,"TVD: 1,700",
+Drill Days:,,,Drill Cost:,,Case/Eval Days: 4,,"Case/Eval Cost: 215,100",
+Casing Plan:,,Type:,,O.D:,,Top MD:,,Top TVD:
+Weight:,,Grade:,,Thread:,,Btm MD:,,Btm TVD:
+Notes:,,,,,,,,
+Section Plan: SURF,,,,,,,,
+Time/Cost Estimates:,,,Size Hole: 7.500,,Btm Depth MD: 220,,TVD: 220,
+Drill Days: 4.5,,,"Drill Cost: 154,575",,Case/Eval Days: 2,,"Case/Eval Cost: 60,700",
+Casing Plan:,,Type: FULL,,O.D: 5.500,,Top MD: 0,,Top TVD: 0
+Weight: 15.5,,Grade: K55,,Thread: VFJ,,Btm MD: 220,,Btm TVD: 220
+Notes:,"Casing should be drifted to 4.85"" ID. (Coring/Drilling: 10 hr/day @ 5'/hr - startup delays) GET SETUP TO SET AND CEMENT 8-5/8"" - TO BE RUN IF THE TOP HOLE IS UNCONSOLIDATED (ADD 3 DAYS)",,,,,,,

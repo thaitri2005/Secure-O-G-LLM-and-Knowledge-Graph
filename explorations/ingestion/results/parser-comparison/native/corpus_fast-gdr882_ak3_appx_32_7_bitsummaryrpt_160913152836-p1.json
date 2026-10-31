@@ -1,0 +1,837 @@
+{
+  "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+  "items": [
+    {
+      "bbox": [
+        104.5,
+        44.379999999999995,
+        220.432,
+        51.778895027624344
+      ],
+      "id": "#/texts/0",
+      "section": "Bit Summary Report",
+      "text": "Bit Summary Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        104.5,
+        58.64499999999998,
+        161.533,
+        64.19417127071824
+      ],
+      "id": "#/texts/1",
+      "section": "Bit Summary Report",
+      "text": "Well ID: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        586.4969,
+        44.379999999999995,
+        750.3929000000003,
+        51.778895027624344
+      ],
+      "id": "#/texts/2",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        678.5228,
+        58.64499999999998,
+        750.4868000000002,
+        64.19417127071824
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        104.5,
+        71.60500000000002,
+        220.9509999999999,
+        77.15417127071828
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Valley Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        36.535858154296875,
+        80.51927185058594,
+        756.012939453125,
+        209.66189575195312
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "AK-3 4.835 ADT Field: Well ID: 1 Well 0 East Name: NO State: AK-3 TD AK 12.3 5 Town: 1 0 12:00 6AO Hot Springs 6B5437 Bay Valley 49 4.0 Sect: 9.00 112W S005 1 NO County: A Aleutians 0 1 Rng: 49 18-Aug-16 5.1 2 10.750 MAJOR Hole Opener 4 42 7.5 5000 35 65 9.20 1 NO A E 0 NO 1 TD 38 1 18-Aug-16 16:30 8.8 3 4.835 ADT 8 AM 6B2837 49 176 14.5 3000 425 18 1 8.60 1 1 NO NO A N E 0 NO 2 HP 127 1 19-Aug-16 21:30 9.3 2500 175 4 7.500 MAJOR Hole opener 40 225 20.0 35 9.40 A 0 NO TD 185 1 23-Aug-16 13:00 10.3 5 4.835 ADT 8 AM 6B2838 225 805 0.000 26-Aug-16 56.5 1500 425 18 8.50 4 4 NO A 0 0 NO TD 580 1 19:30 16.4 6 3.825 ADT 8 AM 6B3977 680 1 16:00 1300 44.5 1500 525 8.40 18 620 30-Aug-16 12.3 12.0 1500 525 7 1 18:30 3.825 ADT ADT 8 AM 6B3981 1300 1919 1955 50.5 1500 525 18 8.40 A 8 RG A 0 NO 0 NO 8 1 NO PP TD 619 01-Sep-16 8 3.825 8 AM 6B3763 1919 1 13:00 0.000 04-Sep-16 3.0 18 8.40 1 36 WO Flo MW Ou In No Dia Manuf Mode Serial No Depth - ft Nozzles - 1/32 TF Hr RO RP Gradin In Out Major Loc Hole Mad Ru n Date/Time Pull Gg Oth Bit Summary Report Well ID: Geothermal Resource Group AK-3 Well Name: AK-3",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        37.0,
+        566.74,
+        130.76000000000002,
+        571.6725966850829
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Printed: 15:28 13-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        363.9825,
+        566.74,
+        427.9664999999999,
+        571.6725966850829
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        711.8555,
+        566.74,
+        754.9514999999999,
+        571.6725966850829
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "a7b8edb3a953f27344d1ae3dab2c307f7df3a2d62832a297f6670399f6ce0e50",
+  "page": 1,
+  "page_size": {
+    "height": 612.0,
+    "width": 792.0
+  },
+  "source_sha256": "f94a27b97910e3e246dc0f93a42cf47143df4742ab8fd28d9d67bfe4c92758b2",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 2,
+          "r": 1,
+          "text": "AK-3 4.835 ADT Field:"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "Well ID: 1"
+        },
+        {
+          "c": 18,
+          "r": 1,
+          "text": "Well 0 East"
+        },
+        {
+          "c": 19,
+          "r": 1,
+          "text": "Name: NO State:"
+        },
+        {
+          "c": 20,
+          "r": 1,
+          "text": "AK-3 TD AK"
+        },
+        {
+          "c": 11,
+          "r": 1,
+          "text": "12.3 5 Town:"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "1 0 12:00"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "6AO Hot Springs"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "6B5437 Bay Valley"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "49"
+        },
+        {
+          "c": 10,
+          "r": 1,
+          "text": "4.0 Sect:"
+        },
+        {
+          "c": 12,
+          "r": 1,
+          "text": "9.00 112W S005"
+        },
+        {
+          "c": 16,
+          "r": 1,
+          "text": "1 NO County:"
+        },
+        {
+          "c": 17,
+          "r": 1,
+          "text": "A Aleutians"
+        },
+        {
+          "c": 14,
+          "r": 1,
+          "text": "0"
+        },
+        {
+          "c": 13,
+          "r": 1,
+          "text": "1 Rng:"
+        },
+        {
+          "c": 9,
+          "r": 1,
+          "text": "49"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "18-Aug-16"
+        },
+        {
+          "c": 11,
+          "r": 2,
+          "text": "5.1"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "2"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "10.750 MAJOR"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "Hole Opener"
+        },
+        {
+          "c": 7,
+          "r": 2,
+          "text": "4"
+        },
+        {
+          "c": 8,
+          "r": 2,
+          "text": "42"
+        },
+        {
+          "c": 10,
+          "r": 2,
+          "text": "7.5"
+        },
+        {
+          "c": 12,
+          "r": 2,
+          "text": "5000 35"
+        },
+        {
+          "c": 13,
+          "r": 2,
+          "text": "65"
+        },
+        {
+          "c": 14,
+          "r": 2,
+          "text": "9.20"
+        },
+        {
+          "c": 16,
+          "r": 2,
+          "text": "1 NO"
+        },
+        {
+          "c": 18,
+          "r": 2,
+          "text": "A E"
+        },
+        {
+          "c": 19,
+          "r": 2,
+          "text": "0 NO"
+        },
+        {
+          "c": 15,
+          "r": 2,
+          "text": "1"
+        },
+        {
+          "c": 20,
+          "r": 2,
+          "text": "TD"
+        },
+        {
+          "c": 9,
+          "r": 2,
+          "text": "38"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "1"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": "18-Aug-16"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "16:30"
+        },
+        {
+          "c": 11,
+          "r": 3,
+          "text": "8.8"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": "3"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "4.835 ADT"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "8 AM"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "6B2837"
+        },
+        {
+          "c": 7,
+          "r": 3,
+          "text": "49"
+        },
+        {
+          "c": 8,
+          "r": 3,
+          "text": "176"
+        },
+        {
+          "c": 10,
+          "r": 3,
+          "text": "14.5"
+        },
+        {
+          "c": 12,
+          "r": 3,
+          "text": "3000"
+        },
+        {
+          "c": 13,
+          "r": 3,
+          "text": "425"
+        },
+        {
+          "c": 13,
+          "r": 4,
+          "text": "18 1"
+        },
+        {
+          "c": 14,
+          "r": 3,
+          "text": "8.60"
+        },
+        {
+          "c": 16,
+          "r": 4,
+          "text": "1 1 NO"
+        },
+        {
+          "c": 16,
+          "r": 3,
+          "text": "NO"
+        },
+        {
+          "c": 18,
+          "r": 3,
+          "text": "A"
+        },
+        {
+          "c": 18,
+          "r": 4,
+          "text": "N E"
+        },
+        {
+          "c": 19,
+          "r": 3,
+          "text": "0 NO"
+        },
+        {
+          "c": 15,
+          "r": 3,
+          "text": "2"
+        },
+        {
+          "c": 20,
+          "r": 3,
+          "text": "HP"
+        },
+        {
+          "c": 9,
+          "r": 3,
+          "text": "127"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "1"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": "19-Aug-16"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "21:30"
+        },
+        {
+          "c": 11,
+          "r": 4,
+          "text": "9.3 2500 175"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": "4"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "7.500 MAJOR"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "Hole opener"
+        },
+        {
+          "c": 7,
+          "r": 4,
+          "text": "40"
+        },
+        {
+          "c": 8,
+          "r": 4,
+          "text": "225"
+        },
+        {
+          "c": 10,
+          "r": 4,
+          "text": "20.0"
+        },
+        {
+          "c": 12,
+          "r": 4,
+          "text": "35 9.40"
+        },
+        {
+          "c": 14,
+          "r": 4,
+          "text": "A"
+        },
+        {
+          "c": 19,
+          "r": 4,
+          "text": "0 NO"
+        },
+        {
+          "c": 20,
+          "r": 4,
+          "text": "TD"
+        },
+        {
+          "c": 9,
+          "r": 4,
+          "text": "185"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "1"
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "text": "23-Aug-16"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "13:00"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "text": "10.3"
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "text": "5"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "4.835"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "ADT"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "text": "8 AM"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "text": "6B2838"
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "text": "225"
+        },
+        {
+          "c": 8,
+          "r": 5,
+          "text": "805"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "text": "0.000 26-Aug-16"
+        },
+        {
+          "c": 10,
+          "r": 5,
+          "text": "56.5"
+        },
+        {
+          "c": 11,
+          "r": 5,
+          "text": "1500 425"
+        },
+        {
+          "c": 12,
+          "r": 5,
+          "text": "18 8.50 4"
+        },
+        {
+          "c": 12,
+          "r": 6,
+          "text": "4 NO"
+        },
+        {
+          "c": 13,
+          "r": 5,
+          "text": "A"
+        },
+        {
+          "c": 13,
+          "r": 6,
+          "text": "0"
+        },
+        {
+          "c": 14,
+          "r": 5,
+          "text": "0 NO"
+        },
+        {
+          "c": 15,
+          "r": 5,
+          "text": "TD"
+        },
+        {
+          "c": 9,
+          "r": 5,
+          "text": "580"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "text": "1"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "text": "19:30"
+        },
+        {
+          "c": 11,
+          "r": 7,
+          "text": "16.4"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "text": "6"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "3.825 ADT"
+        },
+        {
+          "c": 3,
+          "r": 7,
+          "text": "8 AM"
+        },
+        {
+          "c": 4,
+          "r": 7,
+          "text": "6B3977"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "680 1 16:00"
+        },
+        {
+          "c": 8,
+          "r": 7,
+          "text": "1300"
+        },
+        {
+          "c": 10,
+          "r": 7,
+          "text": "44.5"
+        },
+        {
+          "c": 12,
+          "r": 7,
+          "text": "1500 525 8.40"
+        },
+        {
+          "c": 13,
+          "r": 7,
+          "text": "18"
+        },
+        {
+          "c": 9,
+          "r": 7,
+          "text": "620"
+        },
+        {
+          "c": 7,
+          "r": 7,
+          "text": "30-Aug-16"
+        },
+        {
+          "c": 11,
+          "r": 9,
+          "text": "12.3 12.0 1500 525"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "7 1 18:30"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "3.825 ADT"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "text": "ADT"
+        },
+        {
+          "c": 3,
+          "r": 8,
+          "text": "8 AM"
+        },
+        {
+          "c": 4,
+          "r": 8,
+          "text": "6B3981"
+        },
+        {
+          "c": 7,
+          "r": 9,
+          "text": "1300"
+        },
+        {
+          "c": 8,
+          "r": 9,
+          "text": "1919 1955"
+        },
+        {
+          "c": 10,
+          "r": 8,
+          "text": "50.5"
+        },
+        {
+          "c": 11,
+          "r": 8,
+          "text": "1500"
+        },
+        {
+          "c": 12,
+          "r": 8,
+          "text": "525"
+        },
+        {
+          "c": 13,
+          "r": 8,
+          "text": "18"
+        },
+        {
+          "c": 14,
+          "r": 9,
+          "text": "8.40 A"
+        },
+        {
+          "c": 17,
+          "r": 9,
+          "text": "8 RG"
+        },
+        {
+          "c": 18,
+          "r": 9,
+          "text": "A"
+        },
+        {
+          "c": 15,
+          "r": 9,
+          "text": "0"
+        },
+        {
+          "c": 19,
+          "r": 9,
+          "text": "NO 0 NO"
+        },
+        {
+          "c": 16,
+          "r": 9,
+          "text": "8 1 NO"
+        },
+        {
+          "c": 20,
+          "r": 9,
+          "text": "PP TD"
+        },
+        {
+          "c": 9,
+          "r": 8,
+          "text": "619"
+        },
+        {
+          "c": 6,
+          "r": 8,
+          "text": "01-Sep-16"
+        },
+        {
+          "c": 5,
+          "r": 9,
+          "text": "8"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "3.825"
+        },
+        {
+          "c": 3,
+          "r": 9,
+          "text": "8 AM"
+        },
+        {
+          "c": 4,
+          "r": 9,
+          "text": "6B3763"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "1919 1 13:00"
+        },
+        {
+          "c": 6,
+          "r": 9,
+          "text": "0.000 04-Sep-16"
+        },
+        {
+          "c": 10,
+          "r": 9,
+          "text": "3.0"
+        },
+        {
+          "c": 12,
+          "r": 9,
+          "text": "18 8.40"
+        },
+        {
+          "c": 13,
+          "r": 9,
+          "text": "1"
+        },
+        {
+          "c": 9,
+          "r": 9,
+          "text": "36"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "WO Flo MW Ou In No Dia Manuf Mode Serial No Depth - ft Nozzles - 1/32 TF Hr RO RP Gradin In Out Major Loc Hole Mad Ru n Date/Time Pull Gg Oth Bit Summary Report Well ID: Geothermal Resource Group AK-3 Well Name: AK-3"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "num_cols": 21,
+      "num_rows": 10,
+      "regions": [
+        {
+          "bbox": [
+            36.535858154296875,
+            80.51927185058594,
+            756.012939453125,
+            209.66189575195312
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_fast"
+}

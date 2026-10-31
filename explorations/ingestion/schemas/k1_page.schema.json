@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "page_id",
+    "file_id",
+    "page",
+    "width",
+    "height",
+    "mode",
+    "conversion_mode",
+    "parser",
+    "ocr",
+    "rotation_attempts",
+    "status",
+    "filtered_text_sha256"
+  ],
+  "properties": {
+    "page_id": {
+      "type": "string"
+    },
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "width": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "height": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "mode": {
+      "enum": [
+        "text",
+        "hybrid",
+        "ocr"
+      ]
+    },
+    "conversion_mode": {
+      "enum": [
+        "text",
+        "hybrid",
+        "ocr"
+      ]
+    },
+    "parser": {
+      "type": "object"
+    },
+    "ocr": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "rotation_attempts": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "review",
+        "missing"
+      ]
+    },
+    "filtered_text_sha256": {
+      "type": "string"
+    }
+  }
+}

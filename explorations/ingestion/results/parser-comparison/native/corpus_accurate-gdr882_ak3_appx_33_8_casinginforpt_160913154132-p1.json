@@ -1,0 +1,524 @@
+{
+  "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+  "items": [
+    {
+      "bbox": [
+        140.5,
+        80.38,
+        291.68800000000005,
+        87.77889502762434
+      ],
+      "id": "#/texts/0",
+      "section": "Casing Information Report",
+      "text": "Casing Information Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        140.5,
+        94.64499999999998,
+        173.45799999999997,
+        100.19417127071824
+      ],
+      "id": "#/texts/1",
+      "section": "Casing Information Report",
+      "text": "Well ID:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        176.536,
+        94.64499999999998,
+        197.533,
+        100.19417127071824
+      ],
+      "id": "#/texts/2",
+      "section": "Casing Information Report",
+      "text": "AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        370.4969,
+        80.38,
+        534.3929000000003,
+        87.77889502762434
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        462.5228,
+        94.64499999999998,
+        534.4868000000001,
+        100.19417127071824
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        140.5,
+        107.60500000000002,
+        534.2334000000006,
+        113.15417127071828
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Valley Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        264.999,
+        122.38239999999996,
+        346.9170000000001,
+        127.93157127071822
+      ],
+      "id": "#/texts/6",
+      "section": "Casing Information",
+      "text": "Casing Information",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        71.74526977539062,
+        123.99079132080078,
+        540.2816772460938,
+        265.5640869140625
+      ],
+      "id": "#/tables/0",
+      "section": "Casing Information",
+      "text": "Centralizers: No: 10.750 Bit Diameter (ins): Well Section: Run Date/Time: Manufacturer/Type: Depths: Manufacturer: Hanger Type: 19-Aug-16 05:00 MOVE 0.00 FULL String Type: String Top MD (ft): String Top TVD (ft): 40.00 Casing Shoe MD (ft): 40.00 Casing Shoe TVD (ft): 40.00 String Nominal OD (ins): 8.650 String Nominal ID (ins): 8.000 Avg. Open Hole Diam. (ins): 10.750 Leak Off Test (lbs/gal):",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        82.0,
+        272.2043,
+        125.98399999999997,
+        277.1368966850829
+      ],
+      "id": "#/texts/7",
+      "section": "Casing Information",
+      "text": "Comments:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        149.536,
+        272.34839999999997,
+        349.064,
+        277.28099668508287
+      ],
+      "id": "#/texts/8",
+      "section": "Casing Information",
+      "text": "Casing is A-53 grade B, .322 wall casing made by Hundi",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        251.9903,
+        285.7504,
+        362.3843000000001,
+        291.2995712707182
+      ],
+      "id": "#/texts/9",
+      "section": "String Component Details",
+      "text": "String Component Details",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        72.23983764648438,
+        296.39923095703125,
+        539.6070556640625,
+        335.69818115234375
+      ],
+      "id": "#/tables/1",
+      "section": "String Component Details",
+      "text": "No. Items Length (ft) I.D. (ins) O.D.(ins) Weight (lbs) Grade Connection Torque (ft lbs) Item Type 1 21.00 8.650 8.000 OTHER WELD JOINT 1 20.20 8.650 8.000 OTHER WELD JOINT",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        82.56,
+        337.2743,
+        128.81775000000002,
+        342.3610403314917
+      ],
+      "id": "#/texts/10",
+      "section": "String Component Details",
+      "text": "Total Items:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        175.2868,
+        337.3168,
+        179.7348,
+        342.2493966850829
+      ],
+      "id": "#/texts/11",
+      "section": "String Component Details",
+      "text": "2",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        214.4365,
+        337.3168,
+        234.44450000000003,
+        342.2493966850829
+      ],
+      "id": "#/texts/12",
+      "section": "String Component Details",
+      "text": "41.20",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        73.0,
+        703.99003,
+        166.76,
+        708.9226266850828
+      ],
+      "id": "#/texts/13",
+      "section": "String Component Details",
+      "text": "Printed: 15:30 13-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        273.9824,
+        703.99003,
+        337.96639999999985,
+        708.9226266850828
+      ],
+      "id": "#/texts/14",
+      "section": "String Component Details",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        495.8555,
+        703.99003,
+        538.9514999999999,
+        708.9226266850828
+      ],
+      "id": "#/texts/15",
+      "section": "String Component Details",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "5f5e51335a31b4a687ee1a502a53b717cf00030377b458cc01d9f8dbe866fe52",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "6322f5c539c556f0936774f4530b7c92758145187a9488620f534e827ca6fa1d",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 7,
+          "text": "Centralizers: No:"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "10.750"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Bit Diameter (ins):"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Well Section:"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Run Date/Time:"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "Manufacturer/Type:"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "Depths:"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "Manufacturer:"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Hanger Type:"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "19-Aug-16 05:00"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "MOVE"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "0.00"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "FULL"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "String Type:"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "String Top MD (ft):"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "String Top TVD (ft):"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "40.00"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Casing Shoe MD (ft):"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "40.00"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "Casing Shoe TVD (ft):"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "40.00"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "String Nominal OD (ins):"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "8.650"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "String Nominal ID (ins):"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "text": "8.000"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "Avg. Open Hole Diam. (ins):"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "text": "10.750"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Leak Off Test (lbs/gal):"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "num_cols": 4,
+      "num_rows": 10,
+      "regions": [
+        {
+          "bbox": [
+            71.74526977539062,
+            123.99079132080078,
+            540.2816772460938,
+            265.5640869140625
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "No. Items"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Length (ft)"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "I.D. (ins)"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "O.D.(ins)"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Weight (lbs)"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Grade"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Connection"
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "Torque (ft lbs)"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Item Type"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "1"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "21.00"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "8.650"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "8.000"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "OTHER"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "WELD"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "JOINT"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "1"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "20.20"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "8.650"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "8.000"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": "OTHER"
+        },
+        {
+          "c": 7,
+          "r": 2,
+          "text": "WELD"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "JOINT"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "num_cols": 9,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            72.23983764648438,
+            296.39923095703125,
+            539.6070556640625,
+            335.69818115234375
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/1"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

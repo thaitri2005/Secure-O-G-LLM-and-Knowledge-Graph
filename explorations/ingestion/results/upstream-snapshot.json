@@ -1,0 +1,1005 @@
+{
+  "citation-index": [
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 201,
+      "path": "third_party/docling/docling/datamodel/pipeline_options.py",
+      "start": 178
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 1465,
+      "path": "third_party/docling/docling/datamodel/stage_model_specs.py",
+      "start": 1438
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 112,
+      "path": "third_party/docling/docling/pipeline/extraction_vlm_pipeline.py",
+      "start": 44
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 57,
+      "path": "third_party/docling/docling/utils/mineru_utils.py",
+      "start": 50
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 230,
+      "path": "third_party/docling/docling/utils/mineru_utils.py",
+      "start": 197
+    },
+    {
+      "commit": "25aaaf4af1c0f2a620716d7d483a34c820133e0e",
+      "end": 69,
+      "path": "third_party/docling-core/docling_core/types/doc/items/key_value.py",
+      "start": 16
+    },
+    {
+      "commit": "25aaaf4af1c0f2a620716d7d483a34c820133e0e",
+      "end": 36,
+      "path": "third_party/docling-core/docling_core/types/doc/items/table/table_data.py",
+      "start": 21
+    },
+    {
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "end": 109,
+      "path": "third_party/mineru/mineru/model/registry.py",
+      "start": 43
+    },
+    {
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "end": 22,
+      "path": "third_party/mineru/mineru/backend/postprocess/table_merge/__init__.py",
+      "start": 1
+    },
+    {
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "end": 420,
+      "path": "third_party/mineru/mineru/config.py",
+      "start": 392
+    },
+    {
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "end": 45,
+      "path": "third_party/mineru/mineru/backend/postprocess/llm_aided.py",
+      "start": 14
+    },
+    {
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "end": 80,
+      "path": "third_party/paddleocr/pyproject.toml",
+      "start": 54
+    },
+    {
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "end": 32,
+      "path": "third_party/paddleocr/docs/version2.x/ppstructure/model_train/train_kie.md",
+      "start": 12
+    },
+    {
+      "commit": "73073ddb617e31ad64f508f00bd5ec13e969472a",
+      "end": 1165,
+      "path": "third_party/opendataloader-pdf/python/opendataloader-pdf/src/opendataloader_pdf/hybrid_server.py",
+      "start": 1099
+    },
+    {
+      "commit": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+      "end": 68,
+      "path": "third_party/pdfplumber/pdfplumber/table.py",
+      "start": 21
+    },
+    {
+      "commit": "92777b852e00933a5c4b9ba642601784604356cd",
+      "end": 340,
+      "path": "third_party/camelot/camelot/parsers/lattice.py",
+      "start": 310
+    },
+    {
+      "commit": "92777b852e00933a5c4b9ba642601784604356cd",
+      "end": 411,
+      "path": "third_party/camelot/camelot/parsers/lattice.py",
+      "start": 376
+    },
+    {
+      "commit": "d55358f2d3c0a15f613dde4c2e8babe75515d461",
+      "end": 447,
+      "path": "third_party/pikepdf/src/pikepdf/_methods.py",
+      "start": 399
+    },
+    {
+      "commit": "b457e9efa68c3a46be2470ffb222ed1bccc4dcbc",
+      "end": 48,
+      "path": "third_party/ocrmypdf/docs/pdfsecurity.md",
+      "start": 3
+    },
+    {
+      "commit": "b457e9efa68c3a46be2470ffb222ed1bccc4dcbc",
+      "end": 539,
+      "path": "third_party/ocrmypdf/src/ocrmypdf/_pipeline.py",
+      "start": 514
+    },
+    {
+      "commit": "b457e9efa68c3a46be2470ffb222ed1bccc4dcbc",
+      "end": 735,
+      "path": "third_party/ocrmypdf/src/ocrmypdf/_pipeline.py",
+      "start": 716
+    },
+    {
+      "commit": "763da61497f4d8627f549bec5e03dbcb4ceb1ef2",
+      "end": 215,
+      "path": "third_party/deepdoctection/packages/deepdoctection/src/deepdoctection/pipe/doctectionpipe.py",
+      "start": 173
+    },
+    {
+      "commit": "de4190987f4c54db0b01be701bf2b0adc30b5c06",
+      "end": 138,
+      "path": "third_party/nemo-retriever/nemo_retriever/src/nemo_retriever/common/api/internal/schemas/meta/metadata_schema.py",
+      "start": 98
+    },
+    {
+      "commit": "de4190987f4c54db0b01be701bf2b0adc30b5c06",
+      "end": 246,
+      "path": "third_party/nemo-retriever/nemo_retriever/src/nemo_retriever/common/api/internal/schemas/meta/metadata_schema.py",
+      "start": 217
+    },
+    {
+      "commit": "de4190987f4c54db0b01be701bf2b0adc30b5c06",
+      "end": 215,
+      "path": "third_party/nemo-retriever/nemo_retriever/src/nemo_retriever/operators/extract/pdf/extract.py",
+      "start": 190
+    },
+    {
+      "commit": "c90fe46c56867b878c38c1b14c991ae9188c7855",
+      "end": 52,
+      "path": "third_party/ragflow/internal/parser/tableutil/table_rows.go",
+      "start": 20
+    },
+    {
+      "commit": "c90fe46c56867b878c38c1b14c991ae9188c7855",
+      "end": 49,
+      "path": "third_party/ragflow/internal/deepdoc/native/tsr.go",
+      "start": 5
+    },
+    {
+      "commit": "2cd2b3329c470ccb53923f8a6d320596b34e56c5",
+      "end": 2962,
+      "path": "third_party/rag-anything/raganything/parser.py",
+      "start": 2880
+    },
+    {
+      "commit": "aaebfe1bb8d55deb6a4304d357a3bf4c92fcd40a",
+      "end": 84,
+      "path": "third_party/lightrag/lightrag/base.py",
+      "start": 79
+    },
+    {
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "end": 224,
+      "path": "third_party/unstructured/unstructured/documents/elements.py",
+      "start": 167
+    },
+    {
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "end": 591,
+      "path": "third_party/unstructured/unstructured/documents/elements.py",
+      "start": 540
+    },
+    {
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "end": 625,
+      "path": "third_party/unstructured/unstructured/documents/elements.py",
+      "start": 608
+    },
+    {
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "end": 835,
+      "path": "third_party/unstructured/unstructured/documents/elements.py",
+      "start": 812
+    },
+    {
+      "commit": "fba48730e31debb85581f45d74c5a363b0f728a7",
+      "end": 173,
+      "path": "third_party/img2table/src/img2table/document/_types.py",
+      "start": 140
+    },
+    {
+      "commit": "fba48730e31debb85581f45d74c5a363b0f728a7",
+      "end": 48,
+      "path": "third_party/img2table/src/img2table/document/image.py",
+      "start": 25
+    },
+    {
+      "commit": "dbb64eba9ee04edced4407acf662cd7bebbda49d",
+      "end": 48,
+      "path": "third_party/mineru-refine/README.md",
+      "start": 25
+    },
+    {
+      "commit": "fdb8f57c5124ff27ad7c12bcb976b48a615f1131",
+      "end": 145,
+      "path": "third_party/potatr/src/potatr/inference.py",
+      "start": 98
+    },
+    {
+      "commit": "fdb8f57c5124ff27ad7c12bcb976b48a615f1131",
+      "end": 205,
+      "path": "third_party/potatr/src/potatr/inference.py",
+      "start": 185
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 112,
+      "path": "third_party/docling/docling/pipeline/extraction_vlm_pipeline.py",
+      "start": 63
+    },
+    {
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "end": 21,
+      "path": "third_party/llama-index/llama-index-core/llama_index/core/node_parser/relational/hierarchical.py",
+      "start": 14
+    },
+    {
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "end": 142,
+      "path": "third_party/llama-index/llama-index-core/llama_index/core/node_parser/relational/hierarchical.py",
+      "start": 126
+    },
+    {
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "end": 95,
+      "path": "third_party/llama-index/llama-index-core/llama_index/core/retrievers/auto_merging_retriever.py",
+      "start": 79
+    },
+    {
+      "commit": "b7803c6f16e48d4e4843a0890dffdd7dad3b35aa",
+      "end": 47,
+      "path": "third_party/neo4j-graphrag/src/neo4j_graphrag/components/lexical_graph.py",
+      "start": 38
+    },
+    {
+      "commit": "b7803c6f16e48d4e4843a0890dffdd7dad3b35aa",
+      "end": 105,
+      "path": "third_party/neo4j-graphrag/src/neo4j_graphrag/components/types.py",
+      "start": 95
+    },
+    {
+      "commit": "9c058dbb58f61021e3a16e37edb8a7527b2cb2d4",
+      "end": 30,
+      "path": "third_party/docling-serve/docling_serve/orchestrator_factory.py",
+      "start": 1
+    },
+    {
+      "commit": "9c058dbb58f61021e3a16e37edb8a7527b2cb2d4",
+      "end": 300,
+      "path": "third_party/docling-serve/docs/configuration.md",
+      "start": 276
+    },
+    {
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d",
+      "end": 250,
+      "path": "third_party/olmocr/olmocr/pipeline.py",
+      "start": 233
+    },
+    {
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d",
+      "end": 310,
+      "path": "third_party/olmocr/olmocr/pipeline.py",
+      "start": 283
+    },
+    {
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d",
+      "end": 570,
+      "path": "third_party/olmocr/olmocr/pipeline.py",
+      "start": 557
+    },
+    {
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d",
+      "end": 82,
+      "path": "third_party/olmocr/olmocr/work_queue.py",
+      "start": 38
+    },
+    {
+      "commit": "f998acba3d33fe381edf597de602f7a1d3174c1a",
+      "end": 85,
+      "path": "third_party/docling-eval/docling_eval/evaluators/table/teds.py",
+      "start": 61
+    },
+    {
+      "commit": "f998acba3d33fe381edf597de602f7a1d3174c1a",
+      "end": 127,
+      "path": "third_party/docling-eval/docling_eval/evaluators/table_evaluator.py",
+      "start": 108
+    },
+    {
+      "commit": "f998acba3d33fe381edf597de602f7a1d3174c1a",
+      "end": 30,
+      "path": "third_party/docling-eval/docling_eval/dataset_builders/cvat_dataset_builder.py",
+      "start": 1
+    },
+    {
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff",
+      "end": 50,
+      "path": "third_party/witsml-schema/doc/Standards/energyml/data/witsml/v1.4.1.1/witsml_v1.4.1.1_data/xsd_schemas/grp_drillReport.xsd",
+      "start": 45
+    },
+    {
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff",
+      "end": 142,
+      "path": "third_party/witsml-schema/doc/Standards/energyml/data/witsml/v1.4.1.1/witsml_v1.4.1.1_data/xsd_schemas/grp_drillReport.xsd",
+      "start": 107
+    },
+    {
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff",
+      "end": 17,
+      "path": "third_party/witsml-schema/doc/Standards/energyml/data/witsml/v1.4.1.1/witsml_v1.4.1.1_data/xsd_schemas/obj_drillReport.xsd",
+      "start": 11
+    },
+    {
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff",
+      "end": 17,
+      "path": "third_party/witsml-schema/doc/Standards/energyml/data/witsml/v1.4.1.1/witsml_v1.4.1.1_data/xsd_schemas/obj_drillReport.xsd",
+      "start": 11
+    },
+    {
+      "commit": "2de5f42b1884495313d9df63868e6a2f3d85fea0",
+      "end": 104,
+      "path": "third_party/docvortex/src/docvortex/content/table/document.py",
+      "start": 40
+    },
+    {
+      "commit": "2de5f42b1884495313d9df63868e6a2f3d85fea0",
+      "end": 49,
+      "path": "third_party/docvortex/src/docvortex/content/table/structure.py",
+      "start": 16
+    },
+    {
+      "commit": "2de5f42b1884495313d9df63868e6a2f3d85fea0",
+      "end": 208,
+      "path": "third_party/docvortex/src/docvortex/content/table/structure.py",
+      "start": 144
+    },
+    {
+      "commit": "20676c0c3d0abfef3122cb0c243cb831b3ea536a",
+      "end": 54,
+      "path": "third_party/tika/tika-core/src/main/java/org/apache/tika/detect/DefaultDetector.java",
+      "start": 30
+    },
+    {
+      "commit": "084acfa90673742cb8e64763a30fcea07e6ce9a7",
+      "end": 66,
+      "path": "third_party/dangerzone/dangerzone/isolation_provider/container.py",
+      "start": 29
+    },
+    {
+      "commit": "71dd5fd7e51ab24f8624b6ba2fcb6014b4e40ed4",
+      "end": 70,
+      "path": "third_party/marker/marker/processors/llm/llm_table_merge.py",
+      "start": 19
+    },
+    {
+      "commit": "16d124f616109746b7785f03085100f1f6247575",
+      "end": 35,
+      "path": "third_party/table-transformer/README.md",
+      "start": 1
+    },
+    {
+      "commit": "664454b689d68614bcfc0b1d57fc2a28b5862825",
+      "end": 57,
+      "path": "third_party/chonkie/src/chonkie/chunker/table.py",
+      "start": 17
+    },
+    {
+      "commit": "5215e9791133fc1ad383af043fb2fde0e7d4e4d4",
+      "end": 144,
+      "path": "third_party/dsrag/dsrag/auto_context.py",
+      "start": 71
+    },
+    {
+      "commit": "864754c5e293fba981302408fa3e2cf2f5f2d889",
+      "end": 28,
+      "path": "third_party/langchain/libs/langchain/langchain_classic/retrievers/parent_document_retriever.py",
+      "start": 11
+    },
+    {
+      "commit": "864754c5e293fba981302408fa3e2cf2f5f2d889",
+      "end": 108,
+      "path": "third_party/langchain/libs/langchain/langchain_classic/retrievers/parent_document_retriever.py",
+      "start": 84
+    },
+    {
+      "commit": "bbe6608bb1fae641ea1c2c5c62ee2c6b6a92ffbe",
+      "end": 57,
+      "path": "third_party/data-prep-kit/data-processing-lib/python/src/data_processing/transform/binary_transform.py",
+      "start": 19
+    },
+    {
+      "commit": "ea2d138c7d2e185feb71ef8014e97d7206820b34",
+      "end": 30,
+      "path": "third_party/omnidocbench/README.md",
+      "start": 11
+    },
+    {
+      "commit": "75bdd80a29bb0fb87bfd340efb5e6c4138ede8ec",
+      "end": 23,
+      "path": "third_party/label-studio/label_studio/annotation_templates/community-contributions/ocr-invoices-pre-ner-bio-format/config.xml",
+      "start": 4
+    },
+    {
+      "commit": "75bdd80a29bb0fb87bfd340efb5e6c4138ede8ec",
+      "end": 16,
+      "path": "third_party/label-studio/label_studio/annotation_templates/computer-vision/pdf_ocr/config.yml",
+      "start": 1
+    },
+    {
+      "commit": "6e7bc5e131eede910d9eab0c2e260dbba89f8c01",
+      "end": 2295,
+      "path": "third_party/azure-di-schema/specification/ai/data-plane/DocumentIntelligence/stable/2024-11-30/DocumentIntelligence.json",
+      "start": 2262
+    },
+    {
+      "commit": "6e7bc5e131eede910d9eab0c2e260dbba89f8c01",
+      "end": 3692,
+      "path": "third_party/azure-di-schema/specification/ai/data-plane/DocumentIntelligence/stable/2024-11-30/DocumentIntelligence.json",
+      "start": 3668
+    },
+    {
+      "commit": "6e7bc5e131eede910d9eab0c2e260dbba89f8c01",
+      "end": 4355,
+      "path": "third_party/azure-di-schema/specification/ai/data-plane/DocumentIntelligence/stable/2024-11-30/DocumentIntelligence.json",
+      "start": 4214
+    },
+    {
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "end": 21,
+      "path": "third_party/docling/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "25aaaf4af1c0f2a620716d7d483a34c820133e0e",
+      "end": 21,
+      "path": "third_party/docling-core/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "a14d633bc9e80a985dab5d6aad686dace72488ba",
+      "end": 21,
+      "path": "third_party/docling-ibm-models/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "end": 25,
+      "path": "third_party/mineru/LICENSE.md",
+      "start": 1
+    },
+    {
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "end": 25,
+      "path": "third_party/paddleocr/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "73073ddb617e31ad64f508f00bd5ec13e969472a",
+      "end": 25,
+      "path": "third_party/opendataloader-pdf/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+      "end": 21,
+      "path": "third_party/pdfplumber/LICENSE.txt",
+      "start": 1
+    },
+    {
+      "commit": "92777b852e00933a5c4b9ba642601784604356cd",
+      "end": 22,
+      "path": "third_party/camelot/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "d55358f2d3c0a15f613dde4c2e8babe75515d461",
+      "end": 25,
+      "path": "third_party/pikepdf/LICENSE.txt",
+      "start": 1
+    },
+    {
+      "commit": "b457e9efa68c3a46be2470ffb222ed1bccc4dcbc",
+      "end": 25,
+      "path": "third_party/ocrmypdf/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "763da61497f4d8627f549bec5e03dbcb4ceb1ef2",
+      "end": 25,
+      "path": "third_party/deepdoctection/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "de4190987f4c54db0b01be701bf2b0adc30b5c06",
+      "end": 25,
+      "path": "third_party/nemo-retriever/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "c90fe46c56867b878c38c1b14c991ae9188c7855",
+      "end": 25,
+      "path": "third_party/ragflow/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "2cd2b3329c470ccb53923f8a6d320596b34e56c5",
+      "end": 21,
+      "path": "third_party/rag-anything/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "aaebfe1bb8d55deb6a4304d357a3bf4c92fcd40a",
+      "end": 21,
+      "path": "third_party/lightrag/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "end": 25,
+      "path": "third_party/unstructured/LICENSE.md",
+      "start": 1
+    },
+    {
+      "commit": "fba48730e31debb85581f45d74c5a363b0f728a7",
+      "end": 10,
+      "path": "third_party/img2table/LICENSE.txt",
+      "start": 1
+    },
+    {
+      "commit": "dbb64eba9ee04edced4407acf662cd7bebbda49d",
+      "end": 21,
+      "path": "third_party/mineru-refine/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "fdb8f57c5124ff27ad7c12bcb976b48a615f1131",
+      "end": 21,
+      "path": "third_party/potatr/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "ab9e1a7d22119db76227ed5e1d4ff47f2b448ff9",
+      "end": 21,
+      "path": "third_party/nuextract/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "end": 21,
+      "path": "third_party/llama-index/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "b7803c6f16e48d4e4843a0890dffdd7dad3b35aa",
+      "end": 25,
+      "path": "third_party/neo4j-graphrag/LICENSE.APACHE2.txt",
+      "start": 1
+    },
+    {
+      "commit": "9c058dbb58f61021e3a16e37edb8a7527b2cb2d4",
+      "end": 21,
+      "path": "third_party/docling-serve/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d",
+      "end": 25,
+      "path": "third_party/olmocr/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "f998acba3d33fe381edf597de602f7a1d3174c1a",
+      "end": 21,
+      "path": "third_party/docling-eval/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff",
+      "end": 25,
+      "path": "third_party/witsml-schema/doc/Standards/energyml/data/witsml/v1.4.1.1/witsml_v1.4.1.1_data/xsd_schemas/obj_drillReport.xsd",
+      "start": 1
+    },
+    {
+      "commit": "61e47ce2a0f0bf90bfaf08dc13f9bc361a6cc893",
+      "end": 25,
+      "path": "third_party/witsml/LICENSE.txt",
+      "start": 1
+    },
+    {
+      "commit": "2de5f42b1884495313d9df63868e6a2f3d85fea0",
+      "end": 21,
+      "path": "third_party/docvortex/LICENSE.md",
+      "start": 1
+    },
+    {
+      "commit": "20676c0c3d0abfef3122cb0c243cb831b3ea536a",
+      "end": 25,
+      "path": "third_party/tika/LICENSE.txt",
+      "start": 1
+    },
+    {
+      "commit": "084acfa90673742cb8e64763a30fcea07e6ce9a7",
+      "end": 25,
+      "path": "third_party/dangerzone/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "71dd5fd7e51ab24f8624b6ba2fcb6014b4e40ed4",
+      "end": 25,
+      "path": "third_party/marker/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "16d124f616109746b7785f03085100f1f6247575",
+      "end": 21,
+      "path": "third_party/table-transformer/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "664454b689d68614bcfc0b1d57fc2a28b5862825",
+      "end": 21,
+      "path": "third_party/chonkie/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "5215e9791133fc1ad383af043fb2fde0e7d4e4d4",
+      "end": 21,
+      "path": "third_party/dsrag/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "864754c5e293fba981302408fa3e2cf2f5f2d889",
+      "end": 21,
+      "path": "third_party/langchain/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "bbe6608bb1fae641ea1c2c5c62ee2c6b6a92ffbe",
+      "end": 25,
+      "path": "third_party/data-prep-kit/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "ea2d138c7d2e185feb71ef8014e97d7206820b34",
+      "end": 25,
+      "path": "third_party/omnidocbench/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "75bdd80a29bb0fb87bfd340efb5e6c4138ede8ec",
+      "end": 25,
+      "path": "third_party/label-studio/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "6e7bc5e131eede910d9eab0c2e260dbba89f8c01",
+      "end": 21,
+      "path": "third_party/azure-di-schema/LICENSE",
+      "start": 1
+    },
+    {
+      "commit": "e0f142d5ddc1461ce721644d92af33db23545105",
+      "end": 21,
+      "path": "third_party/llama.cpp/LICENSE",
+      "start": 1
+    }
+  ],
+  "extra-retrieval": [
+    {
+      "error": "403 Client Error: rate limit exceeded for url: https://api.github.com/repos/boto/botocore/commits/develop",
+      "name": "aws",
+      "url": "https://api.github.com/repos/boto/botocore/commits/develop"
+    },
+    {
+      "Guides/Chapter-02-Data-Definitions.md": 404,
+      "LICENSE": 200,
+      "README.md": 200,
+      "name": "osdu",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "url": "https://community.opengroup.org/api/v4/projects/osdu%2Fdata%2Fdata-definitions/repository/commits/master"
+    },
+    {
+      "LICENSE": 200,
+      "README.md": 200,
+      "config.json": 200,
+      "name": "nuextract3",
+      "revision": "c99dc8f5641b866aa0192b6ea78f84bf9f3535f1",
+      "url": "https://huggingface.co/api/models/numind/NuExtract3"
+    }
+  ],
+  "issues": [
+    {
+      "http_status": 403,
+      "issue": 5417,
+      "reason": "GitHub unauthenticated API rate limit exceeded; issue state and content not verified.",
+      "repository": "opendatalab/MinerU",
+      "status": "unavailable",
+      "url": "https://github.com/opendatalab/MinerU/issues/5417"
+    },
+    {
+      "http_status": 403,
+      "issue": 317,
+      "reason": "GitHub unauthenticated API rate limit exceeded; issue state and content not verified.",
+      "repository": "docling-project/docling-serve",
+      "status": "unavailable",
+      "url": "https://github.com/docling-project/docling-serve/issues/317"
+    }
+  ],
+  "maintenance": [
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/camelot-dev/camelot/releases/tag/v2.0.0",
+        "prerelease": false,
+        "published_at": "2026-06-04T16:30:24Z",
+        "tag_name": "v2.0.0"
+      },
+      "metadata_url": "https://api.github.com/repos/camelot-dev/camelot",
+      "name": "camelot",
+      "open_issues_count": 56,
+      "pushed_at": "2026-10-26T21:33:31Z",
+      "release_http_status": 200,
+      "repository": "camelot-dev/camelot"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/deepdoctection/deepdoctection/releases/tag/v.1.4.0",
+        "prerelease": false,
+        "published_at": "2026-09-14T20:46:22Z",
+        "tag_name": "v.1.4.0"
+      },
+      "metadata_url": "https://api.github.com/repos/deepdoctection/deepdoctection",
+      "name": "deepdoctection",
+      "open_issues_count": 8,
+      "pushed_at": "2026-10-21T11:07:04Z",
+      "release_http_status": 200,
+      "repository": "deepdoctection/deepdoctection"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/docling-project/docling-core/releases/tag/v2.105.0",
+        "prerelease": false,
+        "published_at": "2026-10-27T16:21:19Z",
+        "tag_name": "v2.105.0"
+      },
+      "metadata_url": "https://api.github.com/repos/docling-project/docling-core",
+      "name": "docling-core",
+      "open_issues_count": 186,
+      "pushed_at": "2026-10-29T14:09:44Z",
+      "release_http_status": 200,
+      "repository": "docling-project/docling-core"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/docling-project/docling-ibm-models/releases/tag/v4.0.4",
+        "prerelease": false,
+        "published_at": "2026-10-21T11:33:24Z",
+        "tag_name": "v4.0.4"
+      },
+      "metadata_url": "https://api.github.com/repos/docling-project/docling-ibm-models",
+      "name": "docling-ibm-models",
+      "open_issues_count": 27,
+      "pushed_at": "2026-10-21T13:40:34Z",
+      "release_http_status": 200,
+      "repository": "docling-project/docling-ibm-models"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/docling-project/docling/releases/tag/v2.145.0",
+        "prerelease": false,
+        "published_at": "2026-10-29T14:40:25Z",
+        "tag_name": "v2.145.0"
+      },
+      "metadata_url": "https://api.github.com/repos/docling-project/docling",
+      "name": "docling",
+      "open_issues_count": 917,
+      "pushed_at": "2026-10-30T06:08:03Z",
+      "release_http_status": 200,
+      "repository": "docling-project/docling"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/docling-project/docling-serve/releases/tag/v1.38.2",
+        "prerelease": false,
+        "published_at": "2026-10-27T08:42:51Z",
+        "tag_name": "v1.38.2"
+      },
+      "metadata_url": "https://api.github.com/repos/docling-project/docling-serve",
+      "name": "docling-serve",
+      "open_issues_count": 165,
+      "pushed_at": "2026-10-27T08:42:51Z",
+      "release_http_status": 200,
+      "repository": "docling-project/docling-serve"
+    },
+    {
+      "archived": false,
+      "latest_release": {
+        "html_url": "https://github.com/xavctn/img2table/releases/tag/2.0.0",
+        "prerelease": false,
+        "published_at": "2026-05-10T19:53:19Z",
+        "tag_name": "2.0.0"
+      },
+      "metadata_url": "https://api.github.com/repos/xavctn/img2table",
+      "name": "img2table",
+      "open_issues_count": 76,
+      "pushed_at": "2026-07-12T11:53:50Z",
+      "release_http_status": 200,
+      "repository": "xavctn/img2table"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/HKUDS/LightRAG",
+      "name": "lightrag",
+      "open_issues_count": 423,
+      "pushed_at": "2026-10-29T18:05:03Z",
+      "release_http_status": 403,
+      "repository": "HKUDS/LightRAG"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/run-llama/llama_index",
+      "name": "llama-index",
+      "open_issues_count": 1117,
+      "pushed_at": "2026-10-26T21:25:10Z",
+      "release_http_status": 403,
+      "repository": "run-llama/llama_index"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/opendatalab/MinerU",
+      "name": "mineru",
+      "open_issues_count": 11,
+      "pushed_at": "2026-10-30T04:53:36Z",
+      "release_http_status": 403,
+      "repository": "opendatalab/MinerU"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/LcpMarvel/mineru-refine",
+      "name": "mineru-refine",
+      "open_issues_count": 0,
+      "pushed_at": "2026-07-12T07:46:03Z",
+      "release_http_status": 403,
+      "repository": "LcpMarvel/mineru-refine"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/NVIDIA/NeMo-Retriever",
+      "name": "nemo-retriever",
+      "open_issues_count": 263,
+      "pushed_at": "2026-10-30T00:34:46Z",
+      "release_http_status": 403,
+      "repository": "NVIDIA/NeMo-Retriever"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/neo4j/neo4j-graphrag-python",
+      "name": "neo4j-graphrag",
+      "open_issues_count": 56,
+      "pushed_at": "2026-10-30T02:15:30Z",
+      "release_http_status": 403,
+      "repository": "neo4j/neo4j-graphrag-python"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/numindai/nuextract",
+      "name": "nuextract",
+      "open_issues_count": 9,
+      "pushed_at": "2026-08-17T14:39:31Z",
+      "release_http_status": 403,
+      "repository": "numindai/nuextract"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/ocrmypdf/OCRmyPDF",
+      "name": "ocrmypdf",
+      "open_issues_count": 68,
+      "pushed_at": "2026-10-25T07:47:57Z",
+      "release_http_status": 403,
+      "repository": "ocrmypdf/OCRmyPDF"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/opendataloader-project/opendataloader-pdf",
+      "name": "opendataloader-pdf",
+      "open_issues_count": 57,
+      "pushed_at": "2026-10-30T06:28:03Z",
+      "release_http_status": 403,
+      "repository": "opendataloader-project/opendataloader-pdf"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/PaddlePaddle/PaddleOCR",
+      "name": "paddleocr",
+      "open_issues_count": 261,
+      "pushed_at": "2026-09-16T03:31:50Z",
+      "release_http_status": 403,
+      "repository": "PaddlePaddle/PaddleOCR"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/jsvine/pdfplumber",
+      "name": "pdfplumber",
+      "open_issues_count": 124,
+      "pushed_at": "2026-10-15T01:46:06Z",
+      "release_http_status": 403,
+      "repository": "jsvine/pdfplumber"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/pikepdf/pikepdf",
+      "name": "pikepdf",
+      "open_issues_count": 19,
+      "pushed_at": "2026-10-25T08:26:23Z",
+      "release_http_status": 403,
+      "repository": "pikepdf/pikepdf"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/HKUDS/RAG-Anything",
+      "name": "rag-anything",
+      "open_issues_count": 97,
+      "pushed_at": "2026-10-28T07:20:34Z",
+      "release_http_status": 403,
+      "repository": "HKUDS/RAG-Anything"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/infiniflow/ragflow",
+      "name": "ragflow",
+      "open_issues_count": 1322,
+      "pushed_at": "2026-10-30T06:30:44Z",
+      "release_http_status": 403,
+      "repository": "infiniflow/ragflow"
+    },
+    {
+      "archived": false,
+      "metadata_url": "https://api.github.com/repos/Unstructured-IO/unstructured",
+      "name": "unstructured",
+      "open_issues_count": 323,
+      "pushed_at": "2026-10-30T04:38:47Z",
+      "release_http_status": 403,
+      "repository": "Unstructured-IO/unstructured"
+    }
+  ],
+  "standards-retrieval": [
+    {
+      "path": "Guides/README.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "status": 200
+    },
+    {
+      "path": "Guides/Chapters/02-IDs.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "status": 404
+    },
+    {
+      "path": "Generated/abstract/AbstractCommonResources.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "status": 200
+    },
+    {
+      "path": "Generated/manifest/Manifest.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "status": 200
+    },
+    {
+      "name": "aws",
+      "revision": "7f517a30f80daa50e2ab84c9b1cfa073c4d8cf58",
+      "status": "retrieved",
+      "url": "https://github.com/boto/botocore"
+    }
+  ]
+}

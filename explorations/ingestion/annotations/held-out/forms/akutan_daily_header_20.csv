@@ -1,0 +1,49 @@
+block,key,value
+identity,Well ID:,AK-3
+identity,Well Name:,AK-3
+location,Field:,Hot Springs Bay Va
+location,Sect:,5
+location,Town:,112W
+location,Rng:,S005
+location,County:,Aleutians East
+location,State:,AK
+report,Report No:,20
+report,Report For,31-Aug-16
+well,Operator:,City of Akutan
+well,Rig:,Major LF90
+well,Spud Date:,18-Aug-16
+well,Daily Cost / Mud ($):,---
+well,Measured Depth (ft):,1105
+well,Drilling Days (act.):,14
+well,Well Bore:,Original Well Bore
+well,Vertical Depth (ft):,1105
+well,Drilling Days (plan):,30
+well,RKB Elevation (ft):,6.00
+well,Proposed TD (ft):,1700
+well,Days On Location:,20
+well,Last BOP Test:,30-Aug-16
+well,Hole Made (ft) / Hrs:,300 / 22.5
+well,Last Casing:,4.500 at 800
+well,Average ROP (ft/hr):,13.33
+well,Next Casing:,"3.500 at 1,700"
+well,Working Interest:,
+well,Well Cost ($):,---
+cost row 1,AFE No.,---
+cost row 1,AFE ($),---
+cost row 1,Actual ($),---
+cost row 2,AFE No.,---
+cost row 2,AFE ($),---
+cost row 2,Actual ($),---
+cost totals,Totals:,---
+cost totals,Actual ($),---
+Pers/Hrs:,Operator:,2 / 0
+Pers/Hrs:,Contractor:,7 / 0
+Pers/Hrs:,Service:,1 / 0
+Pers/Hrs:,Other:,0 / 0
+Pers/Hrs:,Total:,10 / 0
+safety,SafetySummary:,No incidents or events reported. 11 days since LTI. Conducted Safety Meeting.
+operations,Current Operations:,Coring ahead at 1195' at 06:00 hrs.
+operations,Planned Operations:,Continue coring ahead HQ to loss zone or 1700'
+personnel,Toolpusher:,Brian Walker
+personnel,Wellsite Supervisors:,MKeown
+personnel,Tel No.:,907-273-0057

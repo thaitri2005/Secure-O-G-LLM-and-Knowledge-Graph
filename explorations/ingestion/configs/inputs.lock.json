@@ -1,0 +1,1798 @@
+{
+  "runtime": {
+    "packages": {
+      "docling": "2.141.0",
+      "docling-core": "2.103.1",
+      "docling-ibm-models": "4.0.4",
+      "pypdfium2": "5.14.0",
+      "rapidocr": "3.10.0",
+      "onnxruntime": "1.24.4",
+      "torch": "2.14.1",
+      "transformers": "5.20.2"
+    },
+    "assets": [
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/.gitattributes",
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/config.json",
+        "sha256": "fdea30805ce2f5666b147fca941dcdd27ad468e27d6ed21902207d3da056a97d"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/docling_heron_400.png",
+        "sha256": "e7f78610372b32a7938e480d2c7fa1c3037ee170bd82282a5bd026232f6e6f9e"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/model.safetensors",
+        "sha256": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/preprocessor_config.json",
+        "sha256": "cd38cd59999e7a95d68e487fbe5132df3d4e5c32a0836add57e6126ba0c4eaf1"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/README.md",
+        "sha256": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/.gitattributes",
+        "sha256": "360aba3ff7ce75396f13f0a77925fe9e79997e8d4bac064595ebb00c82700386"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/.gitignore",
+        "sha256": "b44b404189eaff3631c470946e7350c2e88cead304d332a8ad50325e6f56e95d"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/config.json",
+        "sha256": "9c34024dc28ff47b75818f415e769809798c29bf9bde6f2ccc63a4acb62396d9"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tableformer_accurate.safetensors",
+        "sha256": "2a7d6c924b3cd12fb99a09280ca9c33a89c5d60b93253617d2e088c1a40374d9"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tm_config.json",
+        "sha256": "984e122ceb8ccf84d84c9d2882f6f2302a44b4f1e577babd6289892c36f3cffd"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/fast/tableformer_fast.safetensors",
+        "sha256": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/fast/tm_config.json",
+        "sha256": "dca6762508dddfae6d57d6cb4ef822c6000119dff0f3b6489db7413118c2622a"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/README.md",
+        "sha256": "d17f233378eff1240b623b36da76ee8b40afcca05d505949713bf03f7e00822a"
+      },
+      {
+        "path": "models/corpus-ocr/craft_mlt_25k.pth",
+        "sha256": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17"
+      },
+      {
+        "path": "models/corpus-ocr/english_g2.pth",
+        "sha256": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+        "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/PP-OCRv6_det_small.onnx",
+        "sha256": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/PP-OCRv6_rec_small.onnx",
+        "sha256": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+      }
+    ],
+    "backend": "Docling CPU; tableformer fast; rapidocr provisional",
+    "inference": "local only"
+  },
+  "upstream": [
+    {
+      "name": "docling",
+      "url": "https://github.com/docling-project/docling.git",
+      "commit": "4f00195b8dadbc1a67f4cefae6b619c47e4e515f",
+      "ref": "v2.141.0",
+      "status": "cloned"
+    },
+    {
+      "name": "docling-core",
+      "url": "https://github.com/docling-project/docling-core.git",
+      "commit": "25aaaf4af1c0f2a620716d7d483a34c820133e0e",
+      "ref": "v2.103.1",
+      "status": "cloned"
+    },
+    {
+      "name": "docling-ibm-models",
+      "url": "https://github.com/docling-project/docling-ibm-models.git",
+      "commit": "a14d633bc9e80a985dab5d6aad686dace72488ba",
+      "ref": "v4.0.4",
+      "status": "cloned"
+    },
+    {
+      "name": "mineru",
+      "url": "https://github.com/opendatalab/MinerU.git",
+      "commit": "dc60e7c6722ebf25a04ae2bc3b59f5b55118a040",
+      "ref": "4.0.12",
+      "status": "cloned"
+    },
+    {
+      "name": "paddleocr",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR.git",
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "opendataloader-pdf",
+      "url": "https://github.com/opendataloader-project/opendataloader-pdf.git",
+      "commit": "73073ddb617e31ad64f508f00bd5ec13e969472a",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "pdfplumber",
+      "url": "https://github.com/jsvine/pdfplumber.git",
+      "commit": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+      "ref": "stable",
+      "status": "cloned"
+    },
+    {
+      "name": "camelot",
+      "url": "https://github.com/camelot-dev/camelot.git",
+      "commit": "92777b852e00933a5c4b9ba642601784604356cd",
+      "ref": "master",
+      "status": "cloned"
+    },
+    {
+      "name": "pikepdf",
+      "url": "https://github.com/pikepdf/pikepdf.git",
+      "commit": "d55358f2d3c0a15f613dde4c2e8babe75515d461",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "ocrmypdf",
+      "url": "https://github.com/ocrmypdf/OCRmyPDF.git",
+      "commit": "b457e9efa68c3a46be2470ffb222ed1bccc4dcbc",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "deepdoctection",
+      "url": "https://github.com/deepdoctection/deepdoctection.git",
+      "commit": "763da61497f4d8627f549bec5e03dbcb4ceb1ef2",
+      "ref": "master",
+      "status": "cloned"
+    },
+    {
+      "name": "nemo-retriever",
+      "url": "https://github.com/NVIDIA/NeMo-Retriever.git",
+      "commit": "de4190987f4c54db0b01be701bf2b0adc30b5c06",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "ragflow",
+      "url": "https://github.com/infiniflow/ragflow.git",
+      "commit": "c90fe46c56867b878c38c1b14c991ae9188c7855",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "rag-anything",
+      "url": "https://github.com/HKUDS/RAG-Anything.git",
+      "commit": "2cd2b3329c470ccb53923f8a6d320596b34e56c5",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "lightrag",
+      "url": "https://github.com/HKUDS/LightRAG.git",
+      "commit": "aaebfe1bb8d55deb6a4304d357a3bf4c92fcd40a",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "unstructured",
+      "url": "https://github.com/Unstructured-IO/unstructured.git",
+      "commit": "910d9f41e70a17e561797106ef4b9096a8554254",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "img2table",
+      "url": "https://github.com/xavctn/img2table.git",
+      "commit": "fba48730e31debb85581f45d74c5a363b0f728a7",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "mineru-refine",
+      "url": "https://github.com/LcpMarvel/mineru-refine.git",
+      "commit": "dbb64eba9ee04edced4407acf662cd7bebbda49d",
+      "ref": "master",
+      "status": "cloned"
+    },
+    {
+      "name": "nuextract",
+      "url": "https://github.com/numindai/nuextract.git",
+      "commit": "ab9e1a7d22119db76227ed5e1d4ff47f2b448ff9",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "llama-index",
+      "url": "https://github.com/run-llama/llama_index.git",
+      "commit": "619d74664e8404612038bc15a1a40c686037277c",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "neo4j-graphrag",
+      "url": "https://github.com/neo4j/neo4j-graphrag-python.git",
+      "commit": "b7803c6f16e48d4e4843a0890dffdd7dad3b35aa",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "docling-serve",
+      "url": "https://github.com/docling-project/docling-serve.git",
+      "commit": "9c058dbb58f61021e3a16e37edb8a7527b2cb2d4",
+      "ref": "main",
+      "status": "cloned"
+    },
+    {
+      "name": "olmocr",
+      "url": "https://github.com/allenai/olmocr.git",
+      "status": "cloned",
+      "commit": "f7cfe4c22098b154c76b6ec950d1c0a464eecf8d"
+    },
+    {
+      "name": "docling-eval",
+      "url": "https://github.com/docling-project/docling-eval.git",
+      "status": "cloned",
+      "commit": "f998acba3d33fe381edf597de602f7a1d3174c1a"
+    },
+    {
+      "name": "tika",
+      "url": "https://github.com/apache/tika.git",
+      "status": "cloned",
+      "commit": "20676c0c3d0abfef3122cb0c243cb831b3ea536a"
+    },
+    {
+      "name": "dangerzone",
+      "url": "https://github.com/freedomofpress/dangerzone.git",
+      "status": "cloned",
+      "commit": "084acfa90673742cb8e64763a30fcea07e6ce9a7"
+    },
+    {
+      "name": "marker",
+      "url": "https://github.com/datalab-to/marker.git",
+      "status": "cloned",
+      "commit": "71dd5fd7e51ab24f8624b6ba2fcb6014b4e40ed4"
+    },
+    {
+      "name": "table-transformer",
+      "url": "https://github.com/microsoft/table-transformer.git",
+      "status": "cloned",
+      "commit": "16d124f616109746b7785f03085100f1f6247575"
+    },
+    {
+      "name": "chonkie",
+      "url": "https://github.com/chonkie-inc/chonkie.git",
+      "status": "cloned",
+      "commit": "664454b689d68614bcfc0b1d57fc2a28b5862825"
+    },
+    {
+      "name": "dsrag",
+      "url": "https://github.com/D-Star-AI/dsRAG.git",
+      "status": "cloned",
+      "commit": "5215e9791133fc1ad383af043fb2fde0e7d4e4d4"
+    },
+    {
+      "name": "langchain",
+      "url": "https://github.com/langchain-ai/langchain.git",
+      "status": "cloned",
+      "commit": "864754c5e293fba981302408fa3e2cf2f5f2d889"
+    },
+    {
+      "name": "data-prep-kit",
+      "url": "https://github.com/IBM/data-prep-kit.git",
+      "status": "cloned",
+      "commit": "bbe6608bb1fae641ea1c2c5c62ee2c6b6a92ffbe"
+    },
+    {
+      "name": "omnidocbench",
+      "url": "https://github.com/opendatalab/OmniDocBench.git",
+      "status": "cloned",
+      "commit": "ea2d138c7d2e185feb71ef8014e97d7206820b34"
+    },
+    {
+      "name": "label-studio",
+      "url": "https://github.com/HumanSignal/label-studio.git",
+      "status": "cloned",
+      "commit": "75bdd80a29bb0fb87bfd340efb5e6c4138ede8ec"
+    },
+    {
+      "name": "llama.cpp",
+      "url": "https://github.com/ggml-org/llama.cpp.git",
+      "status": "cloned",
+      "commit": "e0f142d5ddc1461ce721644d92af33db23545105"
+    },
+    {
+      "name": "potatr",
+      "url": "https://github.com/kensho-technologies/POTATR.git",
+      "commit": "fdb8f57c5124ff27ad7c12bcb976b48a615f1131",
+      "status": "cloned"
+    },
+    {
+      "name": "witsml",
+      "url": "https://github.com/pds-technology/witsml.git",
+      "commit": "61e47ce2a0f0bf90bfaf08dc13f9bc361a6cc893",
+      "status": "cloned"
+    },
+    {
+      "name": "aws-textract-schema",
+      "url": "https://github.com/aws/aws-sdk-go-v2.git",
+      "status": "unavailable",
+      "error": "Command '['git', 'ls-remote', 'https://github.com/aws/aws-sdk-go-v2.git', 'HEAD']' timed out after 45 seconds"
+    },
+    {
+      "name": "azure-di-schema",
+      "url": "https://github.com/Azure/azure-rest-api-specs.git",
+      "status": "cloned",
+      "commit": "6e7bc5e131eede910d9eab0c2e260dbba89f8c01"
+    },
+    {
+      "name": "witsml-schema",
+      "url": "https://github.com/pds-technology/devkit-c.git",
+      "status": "cloned",
+      "commit": "f6c5ae85842f40f33d62384572a59671f82d96ff"
+    },
+    {
+      "name": "docvortex",
+      "url": "https://github.com/myhloli/DocVortex.git",
+      "commit": "2de5f42b1884495313d9df63868e6a2f3d85fea0",
+      "status": "cloned",
+      "ref": "v0.6.8"
+    }
+  ],
+  "models": [
+    {
+      "name": "mineru-pro",
+      "repo": "opendatalab/MinerU2.5-Pro-2604-1.2B",
+      "revision": "d3f5e08d073c21466bbabe21c71bb1e9c2e595da",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": []
+    },
+    {
+      "name": "mineru-gguf",
+      "repo": "mradermacher/MinerU2.5-Pro-2604-1.2B-GGUF",
+      "revision": "70429e9c728b6a5e904f358a9936c17bd3f5f4b8",
+      "card_files": [
+        "README.md"
+      ],
+      "artifacts": [
+        {
+          "file": "MinerU2.5-Pro-2604-1.2B.Q4_K_M.gguf",
+          "bytes": 397806688,
+          "sha256": "3e88fa0ee9c0379f941bd2b4ec8a9e4ffe033bae536815c703c1543554e27f06"
+        },
+        {
+          "file": "MinerU2.5-Pro-2604-1.2B.mmproj-f16.gguf",
+          "bytes": 1325099808,
+          "sha256": "8a8f21dfdde0712b7b5a403c6dee51ddac6d36554ac4ac362da39a2dc17b168a"
+        }
+      ]
+    },
+    {
+      "name": "paddle-vl",
+      "repo": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "revision": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "card_files": [
+        "LICENSE",
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "paddle-gguf",
+      "repo": "PaddlePaddle/PaddleOCR-VL-1.6-GGUF",
+      "revision": "511b09642bb324401f15f97cc23bc67e8f0a291d",
+      "card_files": [
+        "README.md"
+      ],
+      "artifacts": [
+        {
+          "file": "PaddleOCR-VL-1.6-GGUF.gguf",
+          "bytes": 935769056,
+          "sha256": "f3ae46ec885050acf4b3d31944431e1fd90d50664fb09126af4a3c050ba14ee8"
+        },
+        {
+          "file": "PaddleOCR-VL-1.6-GGUF-mmproj.gguf",
+          "bytes": 881770560,
+          "sha256": "204d757d7610d9b3faab10d506d69e5b244e32bf765e2bab2d0167e65e0a058a"
+        }
+      ]
+    },
+    {
+      "name": "tableformer-v2",
+      "repo": "docling-project/TableFormerV2",
+      "revision": "e41ba5da7ef69004f4b329168791c2987abf917c",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "docling-models",
+      "repo": "docling-project/docling-models",
+      "revision": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "docling-layout",
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "potatr",
+      "repo": "kensho/POTATR-v1.1-Pub",
+      "revision": "4f853618bb4393a191ac1cd45ae86e2774b37c3a",
+      "card_files": [
+        "README.md"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "nuextract-4b",
+      "repo": "numind/NuExtract-2.0-4B",
+      "revision": "f431a46f97b9ffb650fde4992deb58d2265e5c0d",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "layoutxlm",
+      "repo": "microsoft/layoutxlm-base",
+      "revision": "8e04ebc4d3ba0013cf943b697c0aedf19b06472a",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "artifacts": [],
+      "status": "read"
+    },
+    {
+      "name": "nuextract-2b",
+      "repo": "numind/NuExtract-2.0-2B",
+      "revision": "5eb4a99746edc2ac44900f56a5c9431d3c03b16d",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "status": "read"
+    },
+    {
+      "name": "mineru-onnx",
+      "repo": "opendatalab/MinerU-4_models_onnx",
+      "revision": "358310b4f64b95f9fefc372ad899356e4111f376",
+      "card_files": [
+        "README.md"
+      ],
+      "status": "read"
+    },
+    {
+      "name": "mineru-pro-2605",
+      "repo": "opendatalab/MinerU2.5-Pro-2605-1.2B",
+      "revision": "08aaea840498d49ce16247b6263196cf02814885",
+      "card_files": [
+        "README.md",
+        "config.json"
+      ],
+      "status": "read"
+    },
+    {
+      "name": "paddle-layout",
+      "repo": "PaddlePaddle/PP-DocLayoutV3",
+      "revision": "241f8bdfc77a7c7bee915a5057aaee58c235a8d3",
+      "card_files": [
+        "README.md"
+      ],
+      "status": "read"
+    },
+    {
+      "repo": "docling-project/docling-layout-heron",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "files": 6,
+      "name": "executed-docling-layout-heron",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "repo": "docling-project/docling-models",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "files": 12,
+      "name": "executed-docling-models",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "repo": "docling-project/TableFormerV2",
+      "revision": "e41ba5da7ef69004f4b329168791c2987abf917c",
+      "files": 8,
+      "name": "executed-TableFormerV2",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-PaddlePaddle--PP-DocLayoutV2_onnx",
+      "repo": "PaddlePaddle/PP-DocLayoutV2_onnx",
+      "revision": "7d44592493df02e28110d99de8ca4b1fbc7309bd",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-opendatalab--MinerU-4_models_torch",
+      "repo": "opendatalab/MinerU-4_models_torch",
+      "revision": "2b3afb86f4d23fa623f6b2f4b2279ed4ef93a89d",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-jinzhenj--PP-FormulaNet_plus-M_onnx",
+      "repo": "jinzhenj/PP-FormulaNet_plus-M_onnx",
+      "revision": "9eb491f62e52f45571fbf88f4d0335e4eb36f9b9",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-PaddlePaddle--PP-OCRv6_small_rec_onnx",
+      "repo": "PaddlePaddle/PP-OCRv6_small_rec_onnx",
+      "revision": "b8f84f0b80c529de40b4fbb3544b84fa7233a513",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-PaddlePaddle--PP-OCRv6_tiny_det_onnx",
+      "repo": "PaddlePaddle/PP-OCRv6_tiny_det_onnx",
+      "revision": "2ba1506c0380b8f0b03dd142459aac66d4421f6c",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-numind--NuExtract-2.0-2B",
+      "repo": "numind/NuExtract-2.0-2B",
+      "revision": "fe5b2f0b63b81150721435a3ca1129a75c59c74e",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "component-sentence-transformers--all-MiniLM-L6-v2",
+      "repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "card_files": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "paddle-component-PP-DocBlockLayout",
+      "repo": "PaddlePaddle/PP-DocBlockLayout",
+      "revision": "f270657da59d956ab69ffc2c4722fe1f557bf17b",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 5684,
+          "sha256": "77b3ed49207f2e36f3973c59c23343b4d26ce993749f15b69452fc04941658d7"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1081363,
+          "sha256": "abea237f1e53d3dc3bf7ea1321dfebe78552a6070e567dfc94028b622fd575e8"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 128841073,
+          "sha256": "0ab733dcabfee41517b68b37fde4c696129b88096a93f8b9d8feaa43c27c8942"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 1619,
+          "sha256": "3d3d5035825b1a2de3348c646e463798d85b9f8c7c5155a81757172261036e1b"
+        },
+        {
+          "file": "README.md",
+          "bytes": 3668,
+          "sha256": "b3b4c774584539a8196a51370af6970cae3a3562f36364fde5bb1d1c229201b5"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-DocBlockLayout"
+    },
+    {
+      "name": "paddle-component-PP-DocLayoutV3",
+      "repo": "PaddlePaddle/PP-DocLayoutV3",
+      "revision": "241f8bdfc77a7c7bee915a5057aaee58c235a8d3",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1196890,
+          "sha256": "2b68367c5b312a03de5a6e1642c597c8f95165a7e40cd59c6700cf4a5042f4fd"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 130806572,
+          "sha256": "70bd316b0582769ec968829fd1feb1a6a58b7c941b938327e551b6b12b45c137"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 1482,
+          "sha256": "506fcfac13b3b546ae40d7886b44126420f392adb694e3f8bb6a6286a1f90fdc"
+        },
+        {
+          "file": "README.md",
+          "bytes": 12092,
+          "sha256": "08b60d8d7a14ddfbe29bcef9e2c2c75bf012bb0412f4e41a2bdfe5687a741dc7"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-DocLayoutV3"
+    },
+    {
+      "name": "paddle-component-PP-DocLayout_plus-L",
+      "repo": "PaddlePaddle/PP-DocLayout_plus-L",
+      "revision": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 6074,
+          "sha256": "adc92346e7ecc5d54dc9ed224c754c9237f56e5d88b0c9208db08cb315d66c09"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1081621,
+          "sha256": "99bd09c0a1b9e88d35c65c305b91711d98055fc94b4a6eecd50da02e04729384"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 129307978,
+          "sha256": "24ca3e2e442164505e250deef59f7ee9a54ea12dd32875c9cd6155d959dc97da"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 1838,
+          "sha256": "d60f782a16f96afb27e8280399899a94c3e9ffc694ffb2f913ea00af1c522f1e"
+        },
+        {
+          "file": "README.md",
+          "bytes": 7121,
+          "sha256": "71ad672ce4071f97eded25c22f9c452180d034b8bd7ffad91a1f53843fb189a0"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-DocLayout_plus-L"
+    },
+    {
+      "name": "paddle-component-PP-FormulaNet_plus-L",
+      "repo": "PaddlePaddle/PP-FormulaNet_plus-L",
+      "revision": "0809597a77f735bfb35354edb632f2e6dff606f3",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 3951676,
+          "sha256": "44e0be0fd39b676cc409c2ef537b4a52509db55cc79bacbbe65b55fe8d64c6a4"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1650354,
+          "sha256": "ad259c4b896d99aa3479336b9121112fb40ff1ababfbf8765a3428a3b86df582"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 727598255,
+          "sha256": "4245c39c181d1d21e472bc85c7434df9b23f177be46552c0542bf153addbc355"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 2244564,
+          "sha256": "afc92a2737268da0499c37b0b6741da268c369fd7424667fcfeb8fa6c7b22d30"
+        },
+        {
+          "file": "README.md",
+          "bytes": 22453,
+          "sha256": "81ec2f66f8d28536523010af80d0162b9c7dc0b0497acd6216cda44a2aac224d"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-FormulaNet_plus-L"
+    },
+    {
+      "name": "paddle-component-PP-LCNet_x1_0_table_cls",
+      "repo": "PaddlePaddle/PP-LCNet_x1_0_table_cls",
+      "revision": "2fa6323e7dab88fa883081db1460995f46af2922",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 2539,
+          "sha256": "3ba2c2754d073d0e91b54fa11bcfff987dead2f94d7a8d3d57c1804071b176ab"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 104441,
+          "sha256": "43401e76ed7b0e34787533016ea4ec9193d5b5964c3f948991fc5b531651ef33"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 6743918,
+          "sha256": "d0224afd9cfddf22da17407c6c78491baaa1f25922fbb312c9b0d2037c802db0"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 762,
+          "sha256": "891b1f4b0ccddaf6aca0fce8c8a38e5ab5da9f62fb9adaa7c75e161ee03bb787"
+        },
+        {
+          "file": "README.md",
+          "bytes": 11629,
+          "sha256": "ab8d4e04a6d2d5adeae5efeed08fe3b33d1bda8f363116ce1bea8d1c22fbca38"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-LCNet_x1_0_table_cls"
+    },
+    {
+      "name": "paddle-component-PP-LCNet_x1_0_textline_ori",
+      "repo": "PaddlePaddle/PP-LCNet_x1_0_textline_ori",
+      "revision": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 2487,
+          "sha256": "c1a2576f9713adabdc4a58d9d654fcc9ea93b6efd0e2d3581d5aab409a33f14f"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 104399,
+          "sha256": "b81929eeaff8e52db0fafb49c9fbfc5bc0572f81641fe0179cc52096323fb4d4"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 6743918,
+          "sha256": "0de2bcf996cf553e2b848dd7b1769dafffc6917b1ccdf55c1d8efe7909fbf743"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 735,
+          "sha256": "8d5120d0e1a30a9df7ed46aa9119da3796ed066777089d1c1d705f132d5e90f9"
+        },
+        {
+          "file": "README.md",
+          "bytes": 3554,
+          "sha256": "c2de067422621e296f697b849b90b8f6cae090a8e0a27d8b04eeb8d68ffb8ce0"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-LCNet_x1_0_textline_ori"
+    },
+    {
+      "name": "paddle-component-PP-OCRv5_server_det",
+      "repo": "PaddlePaddle/PP-OCRv5_server_det",
+      "revision": "ca867c897ecbca8873081573a802ad70d499cb94",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 2871,
+          "sha256": "436bf19010fe3879477e8599a870a0ec8ccd14ca39056805ec4ed20ab318ec04"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 402480,
+          "sha256": "af5876933d8806a1b50d895867e0781e135cd92ff37381992828fc8d1b842d28"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 87932887,
+          "sha256": "183146fe9d9910352f68482f623bcbbb9fa7b9e8fa1463b9ad288cef00524d2d"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 903,
+          "sha256": "28fb721efc3634fc8aa677e474b9602cb815a91cf569ef357a7a553d7b3ce685"
+        },
+        {
+          "file": "README.md",
+          "bytes": 15912,
+          "sha256": "4fd4cf7c6fc3239ede7274c3877e7a0c4424ffa7f56b2775e4e7961c24b1f107"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-OCRv5_server_det"
+    },
+    {
+      "name": "paddle-component-PP-OCRv5_server_rec",
+      "repo": "PaddlePaddle/PP-OCRv5_server_rec",
+      "revision": "b26c3587fda8da3c8ec0ce357214b4d661ff1558",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 352253,
+          "sha256": "6a780e213d7a830058ae1b6899c62cc13ca9c1f0f04ae39a27ebb2610fae7c51"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 325204,
+          "sha256": "8e6e12e5d42531840310977fffb58165bf889fc5061408c5a8afdb6985f47fcb"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 84390117,
+          "sha256": "63853f062a5f4089befc16f565a68277618e0da5cb45468b49d11079de0ada77"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 148345,
+          "sha256": "2c719dba044c4e2228aef8ff92f5f575394d75d24c16de096a33b7cfd902f66d"
+        },
+        {
+          "file": "README.md",
+          "bytes": 15892,
+          "sha256": "519eba1704ddeb8d3e68c4f54221dde11074be0644197cdc4d5581b6d74bd62c"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/PP-OCRv5_server_rec"
+    },
+    {
+      "name": "paddle-component-RT-DETR-L_wired_table_cell_det",
+      "repo": "PaddlePaddle/RT-DETR-L_wired_table_cell_det",
+      "revision": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 5695,
+          "sha256": "411eaf19f4cbdfcc5bf4da8aaf15eeb57e7e98213cb721cdb890ec0fa2c1930e"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1081363,
+          "sha256": "abea237f1e53d3dc3bf7ea1321dfebe78552a6070e567dfc94028b622fd575e8"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 128841073,
+          "sha256": "357321c2845f0a035e8d118622649685a3cdb89d28b09a64e45a5a3df7a9fedc"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 1630,
+          "sha256": "edf6d6180f2b9e3e666c744ee5ded38a72c6ef9056cd193250e3e55ba268acef"
+        },
+        {
+          "file": "README.md",
+          "bytes": 14392,
+          "sha256": "400b7336ab11edafd5c00fb2ceff791f2e50bc99ccc7fbe3e3e48832ae97a463"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/RT-DETR-L_wired_table_cell_det"
+    },
+    {
+      "name": "paddle-component-RT-DETR-L_wireless_table_cell_det",
+      "repo": "PaddlePaddle/RT-DETR-L_wireless_table_cell_det",
+      "revision": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 5698,
+          "sha256": "cf38c6c63c0c5c5b1598c19019cd4d4e6af35a14667c6ec2656aeb215b7e97e1"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 1081363,
+          "sha256": "abea237f1e53d3dc3bf7ea1321dfebe78552a6070e567dfc94028b622fd575e8"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 128841073,
+          "sha256": "c0f8c9ea07be8916ece73a8acf807bd21aed3ef11969b319c2dccb2406774c34"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 1633,
+          "sha256": "f2d0f00ea42aacc162f72a35cf54330e392a7d669e9a1b43896d3bd77a512621"
+        },
+        {
+          "file": "README.md",
+          "bytes": 15124,
+          "sha256": "ddba71f68d0baeb0154ecfd7da506cf7a994403cd3628a56a6df80d1f60067a9"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/RT-DETR-L_wireless_table_cell_det"
+    },
+    {
+      "name": "paddle-component-SLANet_plus",
+      "repo": "PaddlePaddle/SLANet_plus",
+      "revision": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 4897,
+          "sha256": "de63f29e0096cbfc7dcf772ae7dabc47c3e5348f29e949d9b4dda8875e90ea31"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 315660,
+          "sha256": "aba91cd956f4a1648b0f89df94c3cf8acaa066b47e2b689d109843b40d8545a2"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 7666515,
+          "sha256": "012986b0e2bfe90410618bfb4b7cf4fcb6c978caefd84c63c2934f8387b09ab8"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 2035,
+          "sha256": "8a6372d3269a6f112fe13a2da7952a84da6e112c10a3146cbb43de5bd01d19fa"
+        },
+        {
+          "file": "README.md",
+          "bytes": 15347,
+          "sha256": "a58bdd49c26b01af9d81c5d90684e2f303a4ebe26327d73f49a1ac1e64c80c63"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/SLANet_plus"
+    },
+    {
+      "name": "paddle-component-SLANeXt_wired",
+      "repo": "PaddlePaddle/SLANeXt_wired",
+      "revision": "763069fcda6a065f2171753205a32bf899a88d15",
+      "card_files": [
+        "README.md"
+      ],
+      "cached_files": [
+        {
+          "file": ".gitattributes",
+          "bytes": 1575,
+          "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e"
+        },
+        {
+          "file": "config.json",
+          "bytes": 4948,
+          "sha256": "1379eb21de34e69e3c5e68492304751db7f139037487c2c62133cdb22233993d"
+        },
+        {
+          "file": "inference.json",
+          "bytes": 959302,
+          "sha256": "5b872f08e74f628ca1db8405db147e82e6e0c7cb358e101fd01cdafc946632d8"
+        },
+        {
+          "file": "inference.pdiparams",
+          "bytes": 364771513,
+          "sha256": "ff0362a30f707fa7d27d8453c4396b992fca287377a42d01515bca6eeb3908f5"
+        },
+        {
+          "file": "inference.yml",
+          "bytes": 2066,
+          "sha256": "abbbd1b4dc6b1a2e9cd34c035514da53a1a6b1ec267292b0b8802025650a33bf"
+        },
+        {
+          "file": "README.md",
+          "bytes": 12912,
+          "sha256": "6e5529b446ac4ece9afdbabc006407b849171921a0687665199ca6be06fdc504"
+        }
+      ],
+      "cache_path": ".cache/paddlex/official_models/SLANeXt_wired"
+    }
+  ],
+  "native": {
+    "tesseract_version": "5.4.0.20240606",
+    "extractor_version": "26.05",
+    "assets": [
+      {
+        "url": "https://github.com/ip7z/7zip/releases/download/26.05/7zr.exe",
+        "path": ".cache/native/7zr.exe",
+        "sha256": "9bf582b894dfa665f852d7e9112b02290a1c303c2d95a21fcdc41ffcb03143b7"
+      },
+      {
+        "url": "https://github.com/ip7z/7zip/releases/download/26.05/7z2605-x64.exe",
+        "path": ".cache/native/7z2605-x64.exe",
+        "sha256": "fd99e86f57d8f429ef5ed045bf98315af962e2309b0f1ba87a147a44c71647d0"
+      },
+      {
+        "url": "https://github.com/UB-Mannheim/tesseract/releases/download/v5.4.0.20240606/tesseract-ocr-w64-setup-5.4.0.20240606.exe",
+        "path": ".cache/native/tesseract-ocr-w64-setup-5.4.0.20240606.exe",
+        "sha256": "c885fff6998e0608ba4bb8ab51436e1c6775c2bafc2559a19b423e18678b60c9"
+      }
+    ],
+    "runtime_evidence": "results/native/runtime.json",
+    "code_license_evidence": "results/native/tesseract-LICENSE.txt",
+    "weight_card": "third_party/tessdata_fast/README.md"
+  },
+  "resources": [
+    {
+      "path": "third_party/osdu/LICENSE",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/LICENSE",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "fba304c4d24d01b1cd07983baf4bd33e0b66c53073c32197645cd53119d6dc85"
+    },
+    {
+      "path": "third_party/osdu/README.md",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/README.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "79edd1a32599953349a7f6b3d05dd4b4d7f93087a6af077d55d5d02102edd734"
+    },
+    {
+      "path": "third_party/osdu/Guides/README.md",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Guides/README.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "2ad7c6b4daeaebe239e2264982adac1f7d56159bec8303418f76becc2d26378b"
+    },
+    {
+      "path": "third_party/osdu/Generated/abstract/AbstractCommonResources.1.0.0.json",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Generated/abstract/AbstractCommonResources.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "9a4d2f8625ca0ab239759576e5e6ce1cb93b82d83618c4b6338a1dfe0659f4c3"
+    },
+    {
+      "path": "third_party/osdu/Generated/abstract/AbstractLegalTags.1.0.0.json",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Generated/abstract/AbstractLegalTags.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "f74b0bce76f90f1f59fb85cd9f9aaa24ce9eee3527fcb90459bfee4f20e80fc8"
+    },
+    {
+      "path": "third_party/osdu/Generated/abstract/AbstractSystemProperties.1.0.0.json",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Generated/abstract/AbstractSystemProperties.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "42820af7c7a3a208ea888689bc1ac72546ec9863afc836ff67d2f154d0497411"
+    },
+    {
+      "path": "third_party/osdu/Generated/manifest/Manifest.1.0.0.json",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Generated/manifest/Manifest.1.0.0.json",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "15e69c5fb2fa25dd057e3bd99a46c63500de3b9cc263c3a38c254bb79d4a3b16"
+    },
+    {
+      "path": "third_party/osdu/Guides/Chapters/05-Provenance.md",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Guides/Chapters/05-Provenance.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "188ff8ee7293fafb0ccd070d501e887f282401a840e13d40fd67349173ffd6b3"
+    },
+    {
+      "path": "third_party/osdu/Guides/Chapters/06-LifecycleProperties.md",
+      "url": "https://community.opengroup.org/osdu/data/data-definitions/-/raw/ff89d87caa43d05d1341dcaa6d258e1186ec8aa6/Guides/Chapters/06-LifecycleProperties.md",
+      "revision": "ff89d87caa43d05d1341dcaa6d258e1186ec8aa6",
+      "sha256": "6a53546ae9d32ca6d9f8584d8d0bbed1c2fd387c79ac59986161c581fcaeac0b"
+    },
+    {
+      "path": "third_party/aws/LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/boto/botocore/7f517a30f80daa50e2ab84c9b1cfa073c4d8cf58/LICENSE.txt",
+      "revision": "7f517a30f80daa50e2ab84c9b1cfa073c4d8cf58",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "third_party/aws/botocore/data/textract/2018-06-27/service-2.json",
+      "url": "https://raw.githubusercontent.com/boto/botocore/7f517a30f80daa50e2ab84c9b1cfa073c4d8cf58/botocore/data/textract/2018-06-27/service-2.json",
+      "revision": "7f517a30f80daa50e2ab84c9b1cfa073c4d8cf58",
+      "sha256": "5ee161c8c63c848ff4b9ba3905d3fc00245b477056ccf042c9f79273a24b8da3"
+    },
+    {
+      "path": "third_party/nuextract3/config.json",
+      "url": "https://huggingface.co/numind/NuExtract3/resolve/c99dc8f5641b866aa0192b6ea78f84bf9f3535f1/config.json",
+      "revision": "c99dc8f5641b866aa0192b6ea78f84bf9f3535f1",
+      "sha256": "e7ab2e18b0761f34cbbee2b58dc284f73825395e0c79d1f47a1089636b838e6b"
+    },
+    {
+      "path": "third_party/nuextract3/LICENSE",
+      "url": "https://huggingface.co/numind/NuExtract3/resolve/c99dc8f5641b866aa0192b6ea78f84bf9f3535f1/LICENSE",
+      "revision": "c99dc8f5641b866aa0192b6ea78f84bf9f3535f1",
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32"
+    },
+    {
+      "path": "third_party/nuextract3/README.md",
+      "url": "https://huggingface.co/numind/NuExtract3/resolve/c99dc8f5641b866aa0192b6ea78f84bf9f3535f1/README.md",
+      "revision": "c99dc8f5641b866aa0192b6ea78f84bf9f3535f1",
+      "sha256": "1478d2265297baed71b9f8a75adb843c3d123576b53af6cac765b629d6648b1d"
+    },
+    {
+      "path": "third_party/models/mineru-pro/config.json",
+      "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B/resolve/d3f5e08d073c21466bbabe21c71bb1e9c2e595da/config.json",
+      "revision": "d3f5e08d073c21466bbabe21c71bb1e9c2e595da",
+      "sha256": "22097df08750242647a513043636a8dff16820a09757e9271e220bdea378df28"
+    },
+    {
+      "path": "third_party/models/mineru-pro/README.md",
+      "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B/resolve/d3f5e08d073c21466bbabe21c71bb1e9c2e595da/README.md",
+      "revision": "d3f5e08d073c21466bbabe21c71bb1e9c2e595da",
+      "sha256": "c7859313699e858a61074e7d2ab171bea25d37504f3d530b9e0d4232c91706a5"
+    },
+    {
+      "path": "third_party/models/mineru-gguf/README.md",
+      "url": "https://huggingface.co/mradermacher/MinerU2.5-Pro-2604-1.2B-GGUF/resolve/70429e9c728b6a5e904f358a9936c17bd3f5f4b8/README.md",
+      "revision": "70429e9c728b6a5e904f358a9936c17bd3f5f4b8",
+      "sha256": "a5747081560aac0085b5b7d05ad2aa338bc8495e5ce130be1866c8c1ab71110b"
+    },
+    {
+      "path": "third_party/models/paddle-vl/config.json",
+      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6/resolve/c5630abae1d940eafe0697512a0325494b02ab42/config.json",
+      "revision": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "sha256": "ce7f4565f8b1db78532ad5d1b9ebe55c2139d49bd4cb04778b580a08a598f171"
+    },
+    {
+      "path": "third_party/models/paddle-vl/LICENSE",
+      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6/resolve/c5630abae1d940eafe0697512a0325494b02ab42/LICENSE",
+      "revision": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "sha256": "b8c4d7deccd236af023af1c88c4d4e8f0fc2f41914e0fb23a3ec9678fb5a8456"
+    },
+    {
+      "path": "third_party/models/paddle-vl/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6/resolve/c5630abae1d940eafe0697512a0325494b02ab42/README.md",
+      "revision": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "sha256": "d6c5b77a660577f6e18021defccd835bdc93a8c6538f5a479d597f3e94288abf"
+    },
+    {
+      "path": "third_party/models/paddle-gguf/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6-GGUF/resolve/511b09642bb324401f15f97cc23bc67e8f0a291d/README.md",
+      "revision": "511b09642bb324401f15f97cc23bc67e8f0a291d",
+      "sha256": "5e792c58507ad4b939eedacdd28f909f78b2dec848dafbaa1ea4d5659e287f8d"
+    },
+    {
+      "path": "third_party/models/tableformer-v2/config.json",
+      "url": "https://huggingface.co/docling-project/TableFormerV2/resolve/e41ba5da7ef69004f4b329168791c2987abf917c/config.json",
+      "revision": "e41ba5da7ef69004f4b329168791c2987abf917c",
+      "sha256": "86475d3ca5e2cf73a50c9919b8ee26412524e09699bc4a7c41be40afae77cc9b"
+    },
+    {
+      "path": "third_party/models/tableformer-v2/README.md",
+      "url": "https://huggingface.co/docling-project/TableFormerV2/resolve/e41ba5da7ef69004f4b329168791c2987abf917c/README.md",
+      "revision": "e41ba5da7ef69004f4b329168791c2987abf917c",
+      "sha256": "3291d9f8e4e0afe67401b031ab815bc8b4295fc745368b0c87f483a5e7953a4b"
+    },
+    {
+      "path": "third_party/models/docling-models/config.json",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/2199320848bb9a8a519d22e4b528185a4f9a6f64/config.json",
+      "revision": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+      "sha256": "9c34024dc28ff47b75818f415e769809798c29bf9bde6f2ccc63a4acb62396d9"
+    },
+    {
+      "path": "third_party/models/docling-models/README.md",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/2199320848bb9a8a519d22e4b528185a4f9a6f64/README.md",
+      "revision": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+      "sha256": "638053f2c976547e6d3de9f4ff1efb386715f1795e8fe9500a5150245845b591"
+    },
+    {
+      "path": "third_party/models/docling-layout/config.json",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/config.json",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "sha256": "fdea30805ce2f5666b147fca941dcdd27ad468e27d6ed21902207d3da056a97d"
+    },
+    {
+      "path": "third_party/models/docling-layout/README.md",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/README.md",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "sha256": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6"
+    },
+    {
+      "path": "third_party/models/potatr/README.md",
+      "url": "https://huggingface.co/kensho/POTATR-v1.1-Pub/resolve/4f853618bb4393a191ac1cd45ae86e2774b37c3a/README.md",
+      "revision": "4f853618bb4393a191ac1cd45ae86e2774b37c3a",
+      "sha256": "15b87d64d00efe5f2dc9fbb8df57afc77cb2348013d445f185fa879baf32a6f2"
+    },
+    {
+      "path": "third_party/models/nuextract-2b/config.json",
+      "url": "https://huggingface.co/numind/NuExtract-2.0-2B/resolve/5eb4a99746edc2ac44900f56a5c9431d3c03b16d/config.json",
+      "revision": "5eb4a99746edc2ac44900f56a5c9431d3c03b16d",
+      "sha256": "8f183ab3b63dac2f88e6a9f1d400eec8758284a417aebebc3bf4cb574d0f71f8"
+    },
+    {
+      "path": "third_party/models/nuextract-2b/README.md",
+      "url": "https://huggingface.co/numind/NuExtract-2.0-2B/resolve/5eb4a99746edc2ac44900f56a5c9431d3c03b16d/README.md",
+      "revision": "5eb4a99746edc2ac44900f56a5c9431d3c03b16d",
+      "sha256": "4bbcedba7368bd6ce4f69c22a46368400d2e5aa05a18534b368824f37206eb0a"
+    },
+    {
+      "path": "third_party/models/nuextract-4b/config.json",
+      "url": "https://huggingface.co/numind/NuExtract-2.0-4B/resolve/f431a46f97b9ffb650fde4992deb58d2265e5c0d/config.json",
+      "revision": "f431a46f97b9ffb650fde4992deb58d2265e5c0d",
+      "sha256": "9edcd5861ca6dfb590fe91cfc0a3016ef807d6f675ce65927411ee2ecb70fced"
+    },
+    {
+      "path": "third_party/models/nuextract-4b/README.md",
+      "url": "https://huggingface.co/numind/NuExtract-2.0-4B/resolve/f431a46f97b9ffb650fde4992deb58d2265e5c0d/README.md",
+      "revision": "f431a46f97b9ffb650fde4992deb58d2265e5c0d",
+      "sha256": "aceac3b9b33f0150c0fadbd26010c2dd36093778d54467a608cc0f44186f98b1"
+    },
+    {
+      "path": "third_party/models/layoutxlm/config.json",
+      "url": "https://huggingface.co/microsoft/layoutxlm-base/resolve/8e04ebc4d3ba0013cf943b697c0aedf19b06472a/config.json",
+      "revision": "8e04ebc4d3ba0013cf943b697c0aedf19b06472a",
+      "sha256": "c108f018f136a7c2d5798fb031f8b3c7ec7abb3b876df7382ffa843548dbb3b2"
+    },
+    {
+      "path": "third_party/models/layoutxlm/README.md",
+      "url": "https://huggingface.co/microsoft/layoutxlm-base/resolve/8e04ebc4d3ba0013cf943b697c0aedf19b06472a/README.md",
+      "revision": "8e04ebc4d3ba0013cf943b697c0aedf19b06472a",
+      "sha256": "97c6125c0d572ada512cd8c7ad6d1f963ffb92429faf36774feb7b6dc54079b2"
+    },
+    {
+      "path": "third_party/models/mineru-onnx/manifest.json",
+      "url": "https://huggingface.co/opendatalab/MinerU-4_models_onnx/resolve/358310b4f64b95f9fefc372ad899356e4111f376/manifest.json",
+      "revision": "358310b4f64b95f9fefc372ad899356e4111f376",
+      "sha256": "d1610c0de099706ad09a41121e3e495cb0c5acb220609963d53905b4e40623d0"
+    },
+    {
+      "path": "third_party/models/mineru-onnx/README.md",
+      "url": "https://huggingface.co/opendatalab/MinerU-4_models_onnx/resolve/358310b4f64b95f9fefc372ad899356e4111f376/README.md",
+      "revision": "358310b4f64b95f9fefc372ad899356e4111f376",
+      "sha256": "bb03afa9a76c3ccec9ecf0c92e99129eca3e0049f0c9269e8ec63446768e2449"
+    },
+    {
+      "path": "third_party/models/mineru-pro-2605/config.json",
+      "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B/resolve/08aaea840498d49ce16247b6263196cf02814885/config.json",
+      "revision": "08aaea840498d49ce16247b6263196cf02814885",
+      "sha256": "f91cad3c52a3d8f1d420b51459455b27d792db28bf5d1d08097ae96bf1c44730"
+    },
+    {
+      "path": "third_party/models/mineru-pro-2605/README.md",
+      "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B/resolve/08aaea840498d49ce16247b6263196cf02814885/README.md",
+      "revision": "08aaea840498d49ce16247b6263196cf02814885",
+      "sha256": "8f829b69be518375b02023f795b3898adec98f5ac37208239884ad88e9a21cb7"
+    },
+    {
+      "path": "third_party/models/paddle-layout/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3/resolve/241f8bdfc77a7c7bee915a5057aaee58c235a8d3/README.md",
+      "revision": "241f8bdfc77a7c7bee915a5057aaee58c235a8d3",
+      "sha256": "08b60d8d7a14ddfbe29bcef9e2c2c75bf012bb0412f4e41a2bdfe5687a741dc7"
+    },
+    {
+      "path": "third_party/models/executed-docling-layout-heron/README.md",
+      "url": "https://huggingface.co/docling-project/docling-layout-heron/resolve/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/README.md",
+      "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "sha256": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6"
+    },
+    {
+      "path": "third_party/models/executed-docling-models/README.md",
+      "url": "https://huggingface.co/docling-project/docling-models/resolve/fc0f2d45e2218ea24bce5045f58a389aed16dc23/README.md",
+      "revision": "fc0f2d45e2218ea24bce5045f58a389aed16dc23",
+      "sha256": "d17f233378eff1240b623b36da76ee8b40afcca05d505949713bf03f7e00822a"
+    },
+    {
+      "path": "third_party/models/executed-TableFormerV2/README.md",
+      "url": "https://huggingface.co/docling-project/TableFormerV2/resolve/e41ba5da7ef69004f4b329168791c2987abf917c/README.md",
+      "revision": "e41ba5da7ef69004f4b329168791c2987abf917c",
+      "sha256": "3291d9f8e4e0afe67401b031ab815bc8b4295fc745368b0c87f483a5e7953a4b"
+    },
+    {
+      "path": "third_party/models/component-PaddlePaddle--PP-DocLayoutV2_onnx/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV2_onnx/resolve/7d44592493df02e28110d99de8ca4b1fbc7309bd/README.md",
+      "revision": "7d44592493df02e28110d99de8ca4b1fbc7309bd",
+      "sha256": "84e4d0a0c7486a28794e27b1a4bf81fa05ada120df2423e3f6c5f687eae5f1ad"
+    },
+    {
+      "path": "third_party/models/component-opendatalab--MinerU-4_models_torch/README.md",
+      "url": "https://huggingface.co/opendatalab/MinerU-4_models_torch/resolve/2b3afb86f4d23fa623f6b2f4b2279ed4ef93a89d/README.md",
+      "revision": "2b3afb86f4d23fa623f6b2f4b2279ed4ef93a89d",
+      "sha256": "98b45ea81164d1e1a1dd82255207053b15cd6c69d922a1c5cf3387ce604d4b74"
+    },
+    {
+      "path": "third_party/models/component-jinzhenj--PP-FormulaNet_plus-M_onnx/README.md",
+      "url": "https://huggingface.co/jinzhenj/PP-FormulaNet_plus-M_onnx/resolve/9eb491f62e52f45571fbf88f4d0335e4eb36f9b9/README.md",
+      "revision": "9eb491f62e52f45571fbf88f4d0335e4eb36f9b9",
+      "sha256": "c336c56da89c9ea499e6315deec90baa702168bda402354272e831259ebf3f27"
+    },
+    {
+      "path": "third_party/models/component-PaddlePaddle--PP-OCRv6_small_rec_onnx/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_small_rec_onnx/resolve/b8f84f0b80c529de40b4fbb3544b84fa7233a513/README.md",
+      "revision": "b8f84f0b80c529de40b4fbb3544b84fa7233a513",
+      "sha256": "7d46dbd183ac09bd5a2e6b4577dcb29240751b1c00eb6813eca308d529f86806"
+    },
+    {
+      "path": "third_party/models/component-PaddlePaddle--PP-OCRv6_tiny_det_onnx/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det_onnx/resolve/2ba1506c0380b8f0b03dd142459aac66d4421f6c/README.md",
+      "revision": "2ba1506c0380b8f0b03dd142459aac66d4421f6c",
+      "sha256": "f48628931a5dc994ce5c67e32c94d71b4a7e96b8c5c1b00663284999c3c566bc"
+    },
+    {
+      "path": "third_party/models/component-numind--NuExtract-2.0-2B/README.md",
+      "url": "https://huggingface.co/numind/NuExtract-2.0-2B/resolve/fe5b2f0b63b81150721435a3ca1129a75c59c74e/README.md",
+      "revision": "fe5b2f0b63b81150721435a3ca1129a75c59c74e",
+      "sha256": "f5cb4578480bf54edbbb26e34f26600b799d968271e41424871ae3b1656a6bf4"
+    },
+    {
+      "path": "third_party/models/component-sentence-transformers--all-MiniLM-L6-v2/README.md",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-DocBlockLayout/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocBlockLayout/resolve/f270657da59d956ab69ffc2c4722fe1f557bf17b/README.md",
+      "revision": "f270657da59d956ab69ffc2c4722fe1f557bf17b",
+      "sha256": "b3b4c774584539a8196a51370af6970cae3a3562f36364fde5bb1d1c229201b5"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-DocLayoutV3/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayoutV3/resolve/241f8bdfc77a7c7bee915a5057aaee58c235a8d3/README.md",
+      "revision": "241f8bdfc77a7c7bee915a5057aaee58c235a8d3",
+      "sha256": "08b60d8d7a14ddfbe29bcef9e2c2c75bf012bb0412f4e41a2bdfe5687a741dc7"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-DocLayout_plus-L/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayout_plus-L/resolve/aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d/README.md",
+      "revision": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+      "sha256": "71ad672ce4071f97eded25c22f9c452180d034b8bd7ffad91a1f53843fb189a0"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-FormulaNet_plus-L/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-FormulaNet_plus-L/resolve/0809597a77f735bfb35354edb632f2e6dff606f3/README.md",
+      "revision": "0809597a77f735bfb35354edb632f2e6dff606f3",
+      "sha256": "81ec2f66f8d28536523010af80d0162b9c7dc0b0497acd6216cda44a2aac224d"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-LCNet_x1_0_table_cls/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-LCNet_x1_0_table_cls/resolve/2fa6323e7dab88fa883081db1460995f46af2922/README.md",
+      "revision": "2fa6323e7dab88fa883081db1460995f46af2922",
+      "sha256": "ab8d4e04a6d2d5adeae5efeed08fe3b33d1bda8f363116ce1bea8d1c22fbca38"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-LCNet_x1_0_textline_ori/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-LCNet_x1_0_textline_ori/resolve/cd237a44b0e359d4fe38310a416203cf7403faa5/README.md",
+      "revision": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+      "sha256": "c2de067422621e296f697b849b90b8f6cae090a8e0a27d8b04eeb8d68ffb8ce0"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-OCRv5_server_det/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det/resolve/ca867c897ecbca8873081573a802ad70d499cb94/README.md",
+      "revision": "ca867c897ecbca8873081573a802ad70d499cb94",
+      "sha256": "4fd4cf7c6fc3239ede7274c3877e7a0c4424ffa7f56b2775e4e7961c24b1f107"
+    },
+    {
+      "path": "third_party/models/paddle-component-PP-OCRv5_server_rec/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec/resolve/b26c3587fda8da3c8ec0ce357214b4d661ff1558/README.md",
+      "revision": "b26c3587fda8da3c8ec0ce357214b4d661ff1558",
+      "sha256": "519eba1704ddeb8d3e68c4f54221dde11074be0644197cdc4d5581b6d74bd62c"
+    },
+    {
+      "path": "third_party/models/paddle-component-RT-DETR-L_wired_table_cell_det/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/RT-DETR-L_wired_table_cell_det/resolve/e2bd53c06b3a815d86acbf5c6779dada58819cfe/README.md",
+      "revision": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+      "sha256": "400b7336ab11edafd5c00fb2ceff791f2e50bc99ccc7fbe3e3e48832ae97a463"
+    },
+    {
+      "path": "third_party/models/paddle-component-RT-DETR-L_wireless_table_cell_det/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/RT-DETR-L_wireless_table_cell_det/resolve/25ca86356a601c877476bb0dcc5fd09153d9d64d/README.md",
+      "revision": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+      "sha256": "ddba71f68d0baeb0154ecfd7da506cf7a994403cd3628a56a6df80d1f60067a9"
+    },
+    {
+      "path": "third_party/models/paddle-component-SLANet_plus/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/SLANet_plus/resolve/bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2/README.md",
+      "revision": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+      "sha256": "a58bdd49c26b01af9d81c5d90684e2f303a4ebe26327d73f49a1ac1e64c80c63"
+    },
+    {
+      "path": "third_party/models/paddle-component-SLANeXt_wired/README.md",
+      "url": "https://huggingface.co/PaddlePaddle/SLANeXt_wired/resolve/763069fcda6a065f2171753205a32bf899a88d15/README.md",
+      "revision": "763069fcda6a065f2171753205a32bf899a88d15",
+      "sha256": "6e5529b446ac4ece9afdbabc006407b849171921a0687665199ca6be06fdc504"
+    },
+    {
+      "path": ".cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41"
+    },
+    {
+      "path": ".cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+    },
+    {
+      "path": ".cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037"
+    },
+    {
+      "path": ".cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b"
+    },
+    {
+      "path": ".cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    },
+    {
+      "path": "third_party/tessdata/LICENSE",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata/ced78752cc61322fb554c280d13360b35b8684e4/LICENSE",
+      "revision": "ced78752cc61322fb554c280d13360b35b8684e4",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/tessdata/README.md",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata/ced78752cc61322fb554c280d13360b35b8684e4/README.md",
+      "revision": "ced78752cc61322fb554c280d13360b35b8684e4",
+      "sha256": "f751f026aba2cf21be8d68296b42f20c0b6ee29504773e09d140708bc482212d"
+    },
+    {
+      "path": "third_party/tessdata_fast/LICENSE",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/LICENSE",
+      "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/tessdata_fast/README.md",
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/README.md",
+      "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "sha256": "22fee9835bff02fb7013aa9786a2144ae3d4c219083089375985a62808e7215e"
+    }
+  ],
+  "packages": {
+    "docling": "configs/environments/docling.txt",
+    "mineru": "configs/environments/mineru.txt",
+    "paddleocr": "configs/environments/paddleocr.txt",
+    "opendataloader-pdf": "configs/environments/opendataloader-pdf.txt",
+    "pdfplumber": "configs/environments/pdfplumber.txt",
+    "camelot": "configs/environments/camelot.txt",
+    "ocrmypdf": "configs/environments/ocrmypdf.txt"
+  },
+  "tools_runtime": {
+    "path": ".cache/llama.cpp/runtime.zip",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/download/b12000/llama-b12000-bin-win-vulkan-x64.zip",
+    "sha256": "7377042036a1db75639316459accc336e8fd4b772b27ae35f7ce19a66226a95d",
+    "extract": ".cache/llama.cpp",
+    "version": "b12000",
+    "commit_prefix": "68d20b884"
+  },
+  "source_pdfs": [
+    {
+      "path": "data/raw/gdr1153_68-32_eowr.pdf",
+      "sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc"
+    },
+    {
+      "path": "data/raw/gdr1153_78-32_eowr.pdf",
+      "sha256": "7dc4d3e9ab9ba396039105c4b89475c9f34fb00525cd49fbe652317add3efa46"
+    },
+    {
+      "path": "data/raw/gdr1295_56-32_eowr.pdf",
+      "sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3"
+    },
+    {
+      "path": "data/raw/gdr1296_16a78-32_drilling_summary.pdf",
+      "sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546.pdf",
+      "sha256": "30e20d504b187f0ddfa254f2d02c681cf09b1d1ffba9eef1bc790ff90b12781e"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_02_11_costvsdepthrpt_160920152843.pdf",
+      "sha256": "f7c1a8591a56db2ae8a1c643593661d3c44e3ec1e1e495d90e9a792f952c3ca8"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_03_11_wellafeactualrpt_160913175710.pdf",
+      "sha256": "6924a4832402e9918bd184330fb388a56da4be399861472664d19255f49c6bdf"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_04_12_akutan_3.pdf",
+      "sha256": "81dc81f5962939a8b7a720bc51137d6b8585b91c4667d27128964722b5ce01b6"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_05_13_ak_3_advising_report_1_8_25_16_addendum.pdf",
+      "sha256": "cfbbf8ef9a004ecbbeab381c8abf18a9d6253fac7dd9ee32016aaac8c0ad177b"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_06_13_ak_3_advising_report_1_8_25_16.pdf",
+      "sha256": "e9bafaed1e342cfc89219ec1af040ea87915d674aa2275b521fc58cefac5e0d9"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_07_13_ak_3_advising_report_2_8_28_16.pdf",
+      "sha256": "71290cd24d349ba96acc8066ef18e3e68bc4164782630d145edb18e41ccc057f"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_08_13_ak_3_advising_report_2_8_31_16.pdf",
+      "sha256": "c86f67aaee18012e6988347a2dc1ab9ee77565a87d044852498e746b6682df18"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_09_13_ak_3_advising_report_9_2_16.pdf",
+      "sha256": "6eec5b8446344a03c1b28c1dbc2b0db1396a72f47b3f80e1e333efea3d1c8c10"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_10_14_akutan_geothermal_non_compliance.pdf",
+      "sha256": "99b436d8fef8558dfb5e37fb70b0f9b7292ff49ac75c1cea21588f8771aa543f"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_11_16_ak3_run_sheet_1a.pdf",
+      "sha256": "c2847a83c0089a4ea43d7efac6fb71297016f9c43f0ef25a493e88cc3a40a6c2"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_12_16_ak3_run_sheet_2a.pdf",
+      "sha256": "dc6c21dad5cde4a020f02a4d07dbd727282b82ce662796b4df3005daa6c5bba7"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_13_16_ak3_run_sheet_3a.pdf",
+      "sha256": "6933a4e8df3a97a209f4a19d948b6f3235d6418e9a7a8833f610881b859681eb"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_14_16_ptgraph.pdf",
+      "sha256": "125ba981f4b133303239bbb8ac78535b686b54d5a5d7cf6cf1837849799aa61a"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_15_16_summary_data_pt.pdf",
+      "sha256": "cca28f2bfdc48194cbc2e94dfba904850c90354cfb1098f75d10ab59a40f3898"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_16_1_ak_3_targeting_document_19jan15.pdf",
+      "sha256": "7f2e1edc5f80dce01b5472a7c24e7328d34b0d775782989471a5046d8c57f2fc"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_17_2_ak_3_drillingplan_11_aug_2016.pdf",
+      "sha256": "37bd90ae6d351b0e91397fb65eaea5afa67e8e05bd1dcaa6242877d8bf7ead5c"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli.pdf",
+      "sha256": "57f7311db4231ad2e91fa435ae2eea2b51d8d17b99f9c749d5de969013c07d5c"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_19_4_wellboreschemarpt_160912211330.pdf",
+      "sha256": "eba90fdf6e63951ef1a2ec0c4c619acca3f2fce249cb4269eeb4162ce19e4aaa"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_20_4_wellboreschemarpt_160920153329.pdf",
+      "sha256": "7fb95826fdfa85d98357cf968567e3b0d7e618183ee7243f00f210fb6409edff"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_21_5_daysvsdepthrpt_160920160518.pdf",
+      "sha256": "a0b11f65cfae933f1317ce7a64b2c4600cf641618eb94cdbbfa48ebfbcfff538"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_22_5_daysvsdepthrpt_160920160528.pdf",
+      "sha256": "bc6dac4aa92580bad97eae7ef103aaa3a3b48a0b843d2956b2685b7f0af6c44a"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525.pdf",
+      "sha256": "f6b0f3f13c5707eeaf4fa95344b6e7babd23c581a86a6e73eb81d1bde26211c7"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550.pdf",
+      "sha256": "353433c7a8773db58a48d307dc653b104cedc5cfb7f1db9e7df8e83a2698e303"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_25_5_wellsummaryrpt_160920160606.pdf",
+      "sha256": "7b95483d23c498c2fd2ae0b6ec4f06e0b3006851a1c0cacb9a0eb07608c67828"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_26_6_ak_3_management_summary.pdf",
+      "sha256": "c5d9aa9850f8e26aaa5eb7668a1c2737cfedfdbf9f8cf0d8f67d950391f90bf6"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309.pdf",
+      "sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_28_6_dailyreportdetailrpt_160920153612.pdf",
+      "sha256": "4f05215feea85339d2408ffa2736fed617a2c0efc56b930728c368df8f2dfdd7"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_29_6_dailyreportgraphicalrpt_160920155318.pdf",
+      "sha256": "41b0c1e42cd79364ea87f9f6db9d00f8405a6d0ba6d2694ecf16ebb57e3fb8a4"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_30_6_dailyreportsummaryrpt_160920155352.pdf",
+      "sha256": "62efbee00767a3e735dbbb210376f0e3faa116fae011b5e0be1a85a91995a9d7"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_31_7_bhasummaryrpt_160913152816.pdf",
+      "sha256": "1b4131fe5d7115b63aa304273ef2fbb96a9ca4c37f5e8fc64460d9cf957ea30f"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836.pdf",
+      "sha256": "f94a27b97910e3e246dc0f93a42cf47143df4742ab8fd28d9d67bfe4c92758b2"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_33_8_casinginforpt_160913154132.pdf",
+      "sha256": "6322f5c539c556f0936774f4530b7c92758145187a9488620f534e827ca6fa1d"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_34_8_casinginforpt_160920160134.pdf",
+      "sha256": "d2fdf80807a8422c002b7e94230a720a82cb5280b12e588fef240a6ba1ef270e"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_35_8_casinginforpt_160920160146.pdf",
+      "sha256": "e00a31a75fd3d05c9e2fddd53a0f75996a5179bfad22a07d1cfaff943cd1506b"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_36_8_casinginforpt_160920160154.pdf",
+      "sha256": "b8b918b878adf689d11c2c35b691d99fdb2cc34e37b0818894b3b36acb210c2d"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_37_8_cementjobrpt_160913175233.pdf",
+      "sha256": "2e742792d3d2aa1d316b88ebca81d71dd265fd5c5c0c5251cf6c472160a35a17"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_38_8_cementjobrpt_160913175248.pdf",
+      "sha256": "7dbd6dd1768e6bc66a08be5a77c3310922c678bbd69c6586899ebf6b4818adb1"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_39_8_cementjobrpt_160913175302.pdf",
+      "sha256": "95bc1f5b5548614f476f3afeb1c0cec19083beb1c52a76019d5ffe55bcb1fb3d"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_40_8_cementjobrpt_160913175316.pdf",
+      "sha256": "37ea8c474cab619246e99f7e8dcff22c351b3e1e5635ff932bb862c95d4fe53a"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_41_8_cementjobrpt_160913175330.pdf",
+      "sha256": "2a6db332756a712e173557b23e1db141309422beed5c2bedeca36277f9d8aee6"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_42_8_cementjobrpt_160913175344.pdf",
+      "sha256": "0a89b8323a004bd1465c4dcd47a93fb57efd4e3f7ed2674ce4b4f9c174b17b6a"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_43_8_cementjobrpt_160913175357.pdf",
+      "sha256": "8081e12bf970695865c6fb3e4cfa38175f61d5fa399b2525ee724eb2c8165f0e"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343.pdf",
+      "sha256": "e2b3126ffaad0b455a351a7a8cb55e5f3cc59744658dce79901c8d661898ee29"
+    },
+    {
+      "path": "data/raw/gdr882_ak3_eowr.pdf",
+      "sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb"
+    }
+  ],
+  "repository_commit": "2258b4dd9152b108903420ba298bbc452917e83d",
+  "comparison_model": {
+    "repo": "mradermacher/MinerU2.5-Pro-2604-1.2B-GGUF",
+    "revision": "70429e9c728b6a5e904f358a9936c17bd3f5f4b8",
+    "path": "models/mineru-gguf/MinerU2.5-Pro-2604-1.2B.Q8_0.gguf",
+    "sha256": "a2ea3c7403aecfb8ea4789879d9a9a7283091d11e274efb65b8987abb0b11acb",
+    "bytes": 531066976,
+    "projector": "models/mineru-gguf/MinerU2.5-Pro-2604-1.2B.mmproj-f16.gguf",
+    "license_card": "third_party/models/mineru-pro/README.md",
+    "gguf_card": "third_party/models/mineru-gguf/README.md"
+  },
+  "native_files": [
+    {
+      "path": ".cache/tesseract/tessdata/eng.traineddata",
+      "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+      "matches_upstream_fast": true,
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/eng.traineddata",
+      "revision": "87416418657359cb625c412a48b6e1d6d41c29bd"
+    },
+    {
+      "path": ".cache/tesseract/tessdata/osd.traineddata",
+      "sha256": "9cf5d576fcc47564f11265841e5ca839001e7e6f38ff7f7aacf46d15a96b00ff",
+      "matches_upstream_fast": true,
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/osd.traineddata",
+      "revision": "87416418657359cb625c412a48b6e1d6d41c29bd"
+    },
+    {
+      "path": ".cache/tesseract/tesseract.exe",
+      "sha256": "babb405f4366b480d02cd8ff2bac8d497170f6c1711ce6f3d5d8bf0fb7fa6ed9"
+    },
+    {
+      "path": ".cache/tesseract/doc/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

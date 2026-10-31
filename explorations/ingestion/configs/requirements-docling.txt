@@ -1,0 +1,5 @@
+docling==2.141.0
+docling-core==2.103.1
+docling-ibm-models==4.0.4
+easyocr==1.7.2
+qwen-vl-utils==0.0.14

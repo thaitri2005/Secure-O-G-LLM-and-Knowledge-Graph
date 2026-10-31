@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "file_id",
+    "doc_id",
+    "original_name",
+    "document_type",
+    "sha256",
+    "page_count",
+    "license",
+    "text"
+  ],
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    },
+    "doc_id": {
+      "type": "string"
+    },
+    "original_name": {
+      "type": "string"
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "sha256": {
+      "type": "string"
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "license": {
+      "type": "object",
+      "required": [
+        "id",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

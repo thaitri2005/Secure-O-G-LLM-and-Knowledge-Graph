@@ -1,0 +1,389 @@
+{
+  "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+  "items": [
+    {
+      "bbox": [
+        140.5,
+        80.38,
+        207.1,
+        87.77889502762434
+      ],
+      "id": "#/texts/0",
+      "section": "Mud Report",
+      "text": "Mud Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        140.5,
+        94.64499999999998,
+        173.45799999999997,
+        100.19417127071824
+      ],
+      "id": "#/texts/1",
+      "section": "Mud Report",
+      "text": "Well ID:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        176.5,
+        94.64499999999998,
+        197.49699999999999,
+        100.19417127071824
+      ],
+      "id": "#/texts/2",
+      "section": "Mud Report",
+      "text": "AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        370.4969,
+        80.38,
+        534.3929000000003,
+        87.77889502762434
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        462.5228,
+        94.64499999999998,
+        534.4868000000001,
+        100.19417127071824
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        140.5,
+        107.60500000000002,
+        534.2334000000006,
+        113.15417127071828
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Valley Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        71.86139678955078,
+        115.94931030273438,
+        539.6934204101562,
+        440.742919921875
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "52 Mud Type: Location: Density (lbs/gal): Funnel Vis (secs/qt): PV (centipoises): YP (lbs/100sq ft): Filtrate: HTHP Filtrate: Cake (1/32 in): Sand %: Low G.S. %: LCM %: Calcium: Gels - 10secs: 10mins: 30mins: Active Vol (bbls): Reserve Vol (bbls): Mud pH: Chlorides: High G.S. %: Solids %: Oil %: Water %: Mud Alkalinity Pm: Filtrate Alkalinity Pf: Filtrate Alkalinity Mf: Mud Temp In (degF): Mud Temp Out (degF): 0 Sample Depth (ft): Filtrate pH: Oil/Water Ratio: Calcium Chloride: C03: Elec. Stability: CEC: Date/Time: 18-Aug-16 12:00 Comments: Engineer: Company: Lime Content: / 90.00 Rheology - 600/300 rpm: 200/100 rpm: 6/3 rpm: Daily Mud Loss (bbls): Cumulative Mud Loss (bbls):",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        73.0,
+        712.21604,
+        166.76,
+        717.1486366850829
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "Printed: 16:03 20-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        273.9824,
+        712.21604,
+        337.96639999999985,
+        717.1486366850829
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        495.8555,
+        712.21604,
+        538.9514999999999,
+        717.1486366850829
+      ],
+      "id": "#/texts/8",
+      "section": "Geothermal Resource Group",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "c73889585fbf3366676ddabc0a24efb06936cd9de0ced3ba4b931a209c9b5714",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "e2b3126ffaad0b455a351a7a8cb55e5f3cc59744658dce79901c8d661898ee29",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 1,
+          "r": 6,
+          "text": "52"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Mud Type:"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Location:"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Density (lbs/gal):"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Funnel Vis (secs/qt):"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "PV (centipoises):"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "YP (lbs/100sq ft):"
+        },
+        {
+          "c": 0,
+          "r": 14,
+          "text": "Filtrate: HTHP Filtrate:"
+        },
+        {
+          "c": 0,
+          "r": 15,
+          "text": "Cake (1/32 in):"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "Sand %:"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "Low G.S. %:"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "text": "LCM %:"
+        },
+        {
+          "c": 2,
+          "r": 12,
+          "text": "Calcium:"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Gels - 10secs:"
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "10mins:"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "30mins:"
+        },
+        {
+          "c": 2,
+          "r": 18,
+          "text": "Active Vol (bbls):"
+        },
+        {
+          "c": 2,
+          "r": 19,
+          "text": "Reserve Vol (bbls):"
+        },
+        {
+          "c": 0,
+          "r": 16,
+          "text": "Mud pH:"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "text": "Chlorides:"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "High G.S. %:"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "Solids %:"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "Oil %:"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "Water %:"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "Mud Alkalinity Pm:"
+        },
+        {
+          "c": 2,
+          "r": 10,
+          "text": "Filtrate Alkalinity Pf:"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "text": "Filtrate Alkalinity Mf:"
+        },
+        {
+          "c": 0,
+          "r": 12,
+          "text": "Mud Temp In (degF):"
+        },
+        {
+          "c": 0,
+          "r": 13,
+          "text": "Mud Temp Out (degF):"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "0"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Sample Depth (ft):"
+        },
+        {
+          "c": 0,
+          "r": 17,
+          "text": "Filtrate pH:"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Oil/Water Ratio:"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "text": "Calcium Chloride: C03:"
+        },
+        {
+          "c": 2,
+          "r": 15,
+          "text": "Elec. Stability:"
+        },
+        {
+          "c": 2,
+          "r": 16,
+          "text": "CEC:"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Date/Time:"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "18-Aug-16 12:00"
+        },
+        {
+          "c": 0,
+          "r": 21,
+          "text": "Comments:"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Engineer:"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Company:"
+        },
+        {
+          "c": 2,
+          "r": 17,
+          "text": "Lime Content:"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "/"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "90.00"
+        },
+        {
+          "c": 0,
+          "r": 18,
+          "text": "Rheology - 600/300 rpm:"
+        },
+        {
+          "c": 0,
+          "r": 19,
+          "text": "200/100 rpm: 6/3 rpm:"
+        },
+        {
+          "c": 2,
+          "r": 20,
+          "text": "Daily Mud Loss (bbls): Cumulative Mud Loss (bbls):"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "num_cols": 4,
+      "num_rows": 22,
+      "regions": [
+        {
+          "bbox": [
+            71.86139678955078,
+            115.94931030273438,
+            539.6934204101562,
+            440.742919921875
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_fast"
+}

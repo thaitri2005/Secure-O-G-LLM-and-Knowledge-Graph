@@ -1,0 +1,840 @@
+{
+  "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+  "items": [
+    {
+      "bbox": [
+        102.816,
+        46.727999999999994,
+        220.932,
+        60.192
+      ],
+      "id": "#/texts/0",
+      "section": "Daily Drilling Report",
+      "text": "Daily Drilling Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        102.816,
+        61.776,
+        162.18,
+        72.072
+      ],
+      "id": "#/texts/1",
+      "section": "Daily Drilling Report",
+      "text": "Well ID: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        103.42800000000001,
+        74.448,
+        207.46800000000002,
+        85.536
+      ],
+      "id": "#/texts/2",
+      "section": "Daily Drilling Report",
+      "text": "Field: Hot Springs Bay Va",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        405.75600000000003,
+        47.519999999999996,
+        570.996,
+        59.4
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        496.944,
+        61.776,
+        571.6080000000001,
+        72.072
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        299.268,
+        74.448,
+        571.6080000000001,
+        85.536
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        40.392,
+        88.70400000000001,
+        99.756,
+        98.208
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "Report No: 1",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        477.36,
+        88.70400000000001,
+        571.6080000000001,
+        99.0
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "Report For 12-Aug-16",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        36.108,
+        99.792,
+        575.8919999999999,
+        256.608
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "Operator: City of Akutan Rig: Major LF90 Spud Date: 18-Aug-16 Daily Cost / Mud ($): --- Measured Depth (ft): 0 Drilling Days (act.): 0 Well Bore: Original Well Bore AFE No. AFE ($) Actual ($) Vertical Depth (ft): 0 Drilling Days (plan): 30 RKB Elevation (ft): 0.00 --- --- --- Proposed TD (ft): 1700 Days On Location: 1 Last BOP Test: --- --- --- Hole Made (ft) / Hrs: 0 / 0.0 Last Casing:  Totals: --- --- Average ROP (ft/hr): Next Casing: 5.500 at 220 Working Interest: Well Cost ($): --- Pers/Hrs: Operator: 2 / 0 Contractor: 7 / 0 Service: 8 / 0 Other: 2 / 0 Total: 19 / 0 SafetySummary: No incidents or events reported. 1 day since LTI. Current Operations: Bob, Monty, Kevin and Joe, fly to site locate hole position, fly mini excavator to site begin construction of drill pad, fly camp crew to site Planned Operations: Construct drill pad, dig and install cellar to collar the hole. Build man camp, sort and fly loads to valley. Toolpusher: Brian Walker Wellsite Supervisors: MKeown Tel No.: 907-273-0057",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        258.876,
+        258.98400000000004,
+        352.512,
+        269.28000000000003
+      ],
+      "id": "#/texts/8",
+      "section": "Geothermal Resource Group",
+      "text": "Operations Summary",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        35.496,
+        269.28000000000003,
+        575.8919999999999,
+        330.264
+      ],
+      "id": "#/tables/1",
+      "section": "Geothermal Resource Group",
+      "text": "From To Elapsed End MD(ft) Code Operations Description Non-Prod 0:00 8:00 8.00 0 WOD personnel at lodge and town on Akutan  8:00 9:30 1.50 0 MOB Meeting to discuss project fly to Valley to site hole location  9:30 19:00 9.50 0 MOB Fly loads to site, begin construction of camp and drill pad.  19:00 0:00 5.00 0 WOD Crews down for evening ",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        255.20399999999998,
+        331.848,
+        355.572,
+        342.144
+      ],
+      "id": "#/texts/9",
+      "section": "Geothermal Resource Group",
+      "text": "Management Summary",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        39.168,
+        343.728,
+        557.532,
+        363.528
+      ],
+      "id": "#/texts/10",
+      "section": "Geothermal Resource Group",
+      "text": "Stage personnel at container location to pull and sort loads. Fly city representative to location, stake hole. Fly materials and personnel to Valley to begin construction of camp.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        281.52000000000004,
+        365.904,
+        329.25600000000003,
+        374.616
+      ],
+      "id": "#/texts/11",
+      "section": "Geothermal Resource Group",
+      "text": "Comments",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        40.392,
+        376.99199999999996,
+        168.912,
+        387.288
+      ],
+      "id": "#/texts/12",
+      "section": "Geothermal Resource Group",
+      "text": "Helicopter AS 350 flight time 3.5hrs.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        264.384,
+        393.624,
+        345.16799999999995,
+        403.92
+      ],
+      "id": "#/texts/13",
+      "section": "Geothermal Resource Group",
+      "text": "Safety Information",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        39.168,
+        405.504,
+        567.936,
+        428.47200000000004
+      ],
+      "id": "#/tables/2",
+      "section": "Geothermal Resource Group",
+      "text": "First Aid Treatments: Medical Treatments: Lost Time Incidents: Days Since LTI: 1 □ BOP Test □ Crownamatic Check",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        259.488,
+        430.848,
+        348.84,
+        439.56000000000006
+      ],
+      "id": "#/texts/14",
+      "section": "Geothermal Resource Group",
+      "text": "Weather Information",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        39.168,
+        441.93600000000004,
+        410.04,
+        477.57599999999996
+      ],
+      "id": "#/tables/3",
+      "section": "Geothermal Resource Group",
+      "text": "Sky Condition: Overcast / broken Visibility: 6 Air Temperature: 58 degF Bar. Pressure:  Wind Speed/Dir: 12 / W Wind Gusts: 16",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        36.108,
+        731.0160000000001,
+        132.192,
+        741.312
+      ],
+      "id": "#/texts/15",
+      "section": "Geothermal Resource Group",
+      "text": "Printed: 15:42 20-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        272.952,
+        731.0160000000001,
+        338.43600000000004,
+        740.5200000000001
+      ],
+      "id": "#/texts/16",
+      "section": "Geothermal Resource Group",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        530.604,
+        731.0160000000001,
+        575.8919999999999,
+        741.312
+      ],
+      "id": "#/texts/17",
+      "section": "Geothermal Resource Group",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "915e45d1d893212a6bc98e5a76d2059562248fb94ef872d6dc251b41ec815b27",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Operator: City of Akutan"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Rig: Major LF90"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Spud Date: 18-Aug-16"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Daily Cost / Mud ($): ---"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Measured Depth (ft): 0"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Drilling Days (act.): 0"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "Well Bore: Original Well Bore"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "AFE No."
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "AFE ($)"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "Actual ($)"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Vertical Depth (ft): 0"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "Drilling Days (plan): 30"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "RKB Elevation (ft): 0.00"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 7,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 8,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Proposed TD (ft): 1700"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "Days On Location: 1"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "Last BOP Test:"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 7,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 8,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Hole Made (ft) / Hrs: 0 / 0.0"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "Last Casing:"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "text": "Totals:"
+        },
+        {
+          "c": 7,
+          "r": 4,
+          "text": "---"
+        },
+        {
+          "c": 8,
+          "r": 4,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Average ROP (ft/hr):"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "Next Casing: 5.500 at 220"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "text": "Working Interest:"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "text": "Well Cost ($): ---"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Pers/Hrs: Operator: 2 / 0"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "Contractor: 7 / 0"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "text": "Service: 8 / 0"
+        },
+        {
+          "c": 4,
+          "r": 6,
+          "text": "Other: 2 / 0"
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "text": "Total: 19 / 0"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "SafetySummary: No incidents or events reported. 1 day since LTI."
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "Current Operations: Bob, Monty, Kevin and Joe, fly to site locate hole position, fly mini excavator to site begin construction of drill pad, fly camp crew to site"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Planned Operations: Construct drill pad, dig and install cellar to collar the hole. Build man camp, sort and fly loads to valley."
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "Toolpusher: Brian Walker"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "Wellsite Supervisors: MKeown"
+        },
+        {
+          "c": 6,
+          "r": 11,
+          "text": "Tel No.: 907-273-0057"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "num_cols": 9,
+      "num_rows": 12,
+      "regions": [
+        {
+          "bbox": [
+            36.108,
+            99.792,
+            575.8919999999999,
+            256.608
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "From"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "To"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Elapsed"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "End MD(ft)"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Code"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Operations Description"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Non-Prod"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "0:00"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "8:00"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "8.00"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "WOD"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "personnel at lodge and town on Akutan"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "8:00"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "9:30"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "1.50"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "MOB"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "Meeting to discuss project fly to Valley to site hole location"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "9:30"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "19:00"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "9.50"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "MOB"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": "Fly loads to site, begin construction of camp and drill pad."
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "19:00"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "0:00"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "5.00"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": "WOD"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": "Crews down for evening"
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "text": ""
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "num_cols": 7,
+      "num_rows": 5,
+      "regions": [
+        {
+          "bbox": [
+            35.496,
+            269.28000000000003,
+            575.8919999999999,
+            330.264
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/1"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "First Aid Treatments:"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Medical Treatments:"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Lost Time Incidents:"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Days Since LTI:"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "1"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "□ BOP Test"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "□ Crownamatic Check"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "num_cols": 6,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            39.168,
+            405.504,
+            567.936,
+            428.47200000000004
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/2"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Sky Condition:"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Overcast / broken"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Visibility:"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "6"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Air Temperature:"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "58 degF"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Bar. Pressure:"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Wind Speed/Dir:"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "12 / W"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "Wind Gusts:"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "16"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "num_cols": 4,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            39.168,
+            441.93600000000004,
+            410.04,
+            477.57599999999996
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/3"
+    }
+  ],
+  "variant": "vlm_mineru"
+}

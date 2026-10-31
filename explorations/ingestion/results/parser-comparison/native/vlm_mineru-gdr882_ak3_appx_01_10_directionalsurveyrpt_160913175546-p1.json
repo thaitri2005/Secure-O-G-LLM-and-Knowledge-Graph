@@ -1,0 +1,1031 @@
+{
+  "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+  "items": [
+    {
+      "bbox": [
+        138.924,
+        76.032,
+        288.252,
+        88.70400000000001
+      ],
+      "id": "#/texts/0",
+      "section": "Directional Survey Report",
+      "text": "Directional Survey Report",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        370.26,
+        76.032,
+        534.888,
+        88.70400000000001
+      ],
+      "id": "#/texts/1",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        138.924,
+        90.288,
+        198.288,
+        99.792
+      ],
+      "id": "#/texts/2",
+      "section": "Geothermal Resource Group",
+      "text": "Well ID: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        461.448,
+        91.08,
+        534.888,
+        99.792
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        139.536,
+        103.75200000000001,
+        242.964,
+        114.04799999999999
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Field: Hot Springs Bay Va",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        263.15999999999997,
+        103.75200000000001,
+        535.5,
+        114.04799999999999
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        70.992,
+        116.42399999999999,
+        541.008,
+        358.776
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "Survey Type Meas. Depth (ft) Inc. (deg) Azimuth (deg) TVD (ft) Coordinates Closure (ft) Vertical Section (ft) Dog Leg Severity (deg/100) N-S (ft) E-W (ft) Well Bore: Original Well Bore Plane of Vertical Section: 0 ** Tieln 0.0 0.00 0 0.0 0.0 0.0  0.0  TOTCC 100.0 0.50        TOTCC 129.0 0.50        TOTCC 200.0 0.75        TOTCC 300.0 0.25        TOTCC 400.0 0.25        TOTCC 500.0 0.25        TOTCC 600.0 1.00        TOTCC 700.0 1.00        TOTCC 800.0 1.00        TOTCC 900.0 0.75        TOTCC 1,100.0 1.00        TOTCC 1,300.0 1.00        TOTCC 1,500.0 1.75        TOTCC 1,700.0 1.00        TOTCC 1,900.0 2.00       ",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        71.604,
+        363.528,
+        239.292,
+        373.032
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "Calculations using Minimum Curvature Method",
+      "type": "footnote"
+    },
+    {
+      "bbox": [
+        71.604,
+        700.128,
+        167.68800000000002,
+        710.424
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "Printed: 17:55 13-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        272.952,
+        700.128,
+        338.43600000000004,
+        709.6320000000001
+      ],
+      "id": "#/texts/8",
+      "section": "Geothermal Resource Group",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        494.49600000000004,
+        700.128,
+        539.172,
+        710.424
+      ],
+      "id": "#/texts/9",
+      "section": "Geothermal Resource Group",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "3bf45b5b367aaa708128aeb470b466a5f587fd2231ef70dbe30d7ac0851e7555",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "30e20d504b187f0ddfa254f2d02c681cf09b1d1ffba9eef1bc790ff90b12781e",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Survey Type"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Meas. Depth (ft)"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Inc. (deg)"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Azimuth (deg)"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "TVD (ft)"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Coordinates"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Closure (ft)"
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "Vertical Section (ft)"
+        },
+        {
+          "c": 9,
+          "r": 0,
+          "text": "Dog Leg Severity (deg/100)"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "N-S (ft)"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "E-W (ft)"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Well Bore: Original Well Bore"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "Plane of Vertical Section: 0"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "** Tieln"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "0.00"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 7,
+          "r": 3,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 3,
+          "text": "0.0"
+        },
+        {
+          "c": 9,
+          "r": 3,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "100.0"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "0.50"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "text": "129.0"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "text": "0.50"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "200.0"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "0.75"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 6,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "text": "300.0"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "text": "0.25"
+        },
+        {
+          "c": 3,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 7,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "text": "400.0"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "text": "0.25"
+        },
+        {
+          "c": 3,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 8,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "text": "500.0"
+        },
+        {
+          "c": 2,
+          "r": 9,
+          "text": "0.25"
+        },
+        {
+          "c": 3,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 9,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 10,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "text": "600.0"
+        },
+        {
+          "c": 2,
+          "r": 10,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 10,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "text": "700.0"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 11,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 12,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "text": "800.0"
+        },
+        {
+          "c": 2,
+          "r": 12,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 12,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 13,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 13,
+          "text": "900.0"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "text": "0.75"
+        },
+        {
+          "c": 3,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 13,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 14,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 14,
+          "text": "1,100.0"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 14,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 15,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 15,
+          "text": "1,300.0"
+        },
+        {
+          "c": 2,
+          "r": 15,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 15,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 16,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 16,
+          "text": "1,500.0"
+        },
+        {
+          "c": 2,
+          "r": 16,
+          "text": "1.75"
+        },
+        {
+          "c": 3,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 16,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 17,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 17,
+          "text": "1,700.0"
+        },
+        {
+          "c": 2,
+          "r": 17,
+          "text": "1.00"
+        },
+        {
+          "c": 3,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 17,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 18,
+          "text": "TOTCC"
+        },
+        {
+          "c": 1,
+          "r": 18,
+          "text": "1,900.0"
+        },
+        {
+          "c": 2,
+          "r": 18,
+          "text": "2.00"
+        },
+        {
+          "c": 3,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 4,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 6,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 8,
+          "r": 18,
+          "text": ""
+        },
+        {
+          "c": 9,
+          "r": 18,
+          "text": ""
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "num_cols": 10,
+      "num_rows": 19,
+      "regions": [
+        {
+          "bbox": [
+            70.992,
+            116.42399999999999,
+            541.008,
+            358.776
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "vlm_mineru"
+}

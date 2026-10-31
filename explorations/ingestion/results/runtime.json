@@ -1,0 +1,164 @@
+{
+  "native": {
+    "build": "5.4.0.20240606",
+    "download_lock": "configs/native.lock.json",
+    "extraction": "7zr -> 7-Zip -> NSIS payload; PE header warning, extraction completed; version command passed.",
+    "files": [
+      {
+        "matches_upstream_fast": true,
+        "path": ".cache/tesseract/tessdata/eng.traineddata",
+        "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+        "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+        "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/eng.traineddata"
+      },
+      {
+        "matches_upstream_fast": true,
+        "path": ".cache/tesseract/tessdata/osd.traineddata",
+        "revision": "87416418657359cb625c412a48b6e1d6d41c29bd",
+        "sha256": "9cf5d576fcc47564f11265841e5ca839001e7e6f38ff7f7aacf46d15a96b00ff",
+        "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/osd.traineddata"
+      },
+      {
+        "path": ".cache/tesseract/tesseract.exe",
+        "sha256": "babb405f4366b480d02cd8ff2bac8d497170f6c1711ce6f3d5d8bf0fb7fa6ed9"
+      },
+      {
+        "path": ".cache/tesseract/doc/LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    ],
+    "installer_executed": false,
+    "ocrmypdf_calls": [
+      {
+        "case": "ak3-scanned-well-schematic",
+        "command": ".venvs/ocrmypdf/Scripts/python.exe scripts/run_tool.py ocrmypdf --case ak3-scanned-well-schematic",
+        "derivative_bytes": 745024,
+        "derivative_pdf_sha256": "bdc9784e46c5af3af69e5a22490d21d0615052fa0e48867e0a10ded2f5682f51",
+        "options": {
+          "deskew": true,
+          "force_ocr": true,
+          "language": [
+            "eng"
+          ],
+          "optimize": 0,
+          "output_type": "pdf",
+          "rotate_pages": true
+        },
+        "relative_to": "explorations/ingestion for executable/script paths; commands run from repository root",
+        "sidecar": "results/ocrmypdf/ak3-scanned-well-schematic/text.txt"
+      },
+      {
+        "case": "ak3-scanned-permit-letter",
+        "command": ".venvs/ocrmypdf/Scripts/python.exe scripts/run_tool.py ocrmypdf --case ak3-scanned-permit-letter",
+        "derivative_bytes": 863184,
+        "derivative_pdf_sha256": "c8b21b4167b391b2b49906af95a0eaa9e70fde7d45bdf5721b163f6674b6a080",
+        "options": {
+          "deskew": true,
+          "force_ocr": true,
+          "language": [
+            "eng"
+          ],
+          "optimize": 0,
+          "output_type": "pdf",
+          "rotate_pages": true
+        },
+        "relative_to": "explorations/ingestion for executable/script paths; commands run from repository root",
+        "sidecar": "results/ocrmypdf/ak3-scanned-permit-letter/text.txt"
+      }
+    ],
+    "setup": "scripts/setup_native.py",
+    "version_output": "tesseract v5.4.0.20240606\n leptonica-1.84.1\n  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2\n Found AVX2\n Found AVX\n Found FMA\n Found SSE4.1\n Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6\n"
+  },
+  "parser": {
+    "assets": [
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/.gitattributes",
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/config.json",
+        "sha256": "fdea30805ce2f5666b147fca941dcdd27ad468e27d6ed21902207d3da056a97d"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/docling_heron_400.png",
+        "sha256": "e7f78610372b32a7938e480d2c7fa1c3037ee170bd82282a5bd026232f6e6f9e"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/model.safetensors",
+        "sha256": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/preprocessor_config.json",
+        "sha256": "cd38cd59999e7a95d68e487fbe5132df3d4e5c32a0836add57e6126ba0c4eaf1"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/README.md",
+        "sha256": "175700839bc7808eac6af1d0c23e4f483606ab2276fe01122f4093e61a1a65b6"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/.gitattributes",
+        "sha256": "360aba3ff7ce75396f13f0a77925fe9e79997e8d4bac064595ebb00c82700386"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/.gitignore",
+        "sha256": "b44b404189eaff3631c470946e7350c2e88cead304d332a8ad50325e6f56e95d"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/config.json",
+        "sha256": "9c34024dc28ff47b75818f415e769809798c29bf9bde6f2ccc63a4acb62396d9"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tableformer_accurate.safetensors",
+        "sha256": "2a7d6c924b3cd12fb99a09280ca9c33a89c5d60b93253617d2e088c1a40374d9"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/accurate/tm_config.json",
+        "sha256": "984e122ceb8ccf84d84c9d2882f6f2302a44b4f1e577babd6289892c36f3cffd"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/fast/tableformer_fast.safetensors",
+        "sha256": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/model_artifacts/tableformer/fast/tm_config.json",
+        "sha256": "dca6762508dddfae6d57d6cb4ef822c6000119dff0f3b6489db7413118c2622a"
+      },
+      {
+        "path": ".cache/huggingface/hub/models--docling-project--docling-models/snapshots/fc0f2d45e2218ea24bce5045f58a389aed16dc23/README.md",
+        "sha256": "d17f233378eff1240b623b36da76ee8b40afcca05d505949713bf03f7e00822a"
+      },
+      {
+        "path": "models/corpus-ocr/craft_mlt_25k.pth",
+        "sha256": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17"
+      },
+      {
+        "path": "models/corpus-ocr/english_g2.pth",
+        "sha256": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+        "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/PP-OCRv6_det_small.onnx",
+        "sha256": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f"
+      },
+      {
+        "path": "models/corpus-ocr/RapidOcr/PP-OCRv6_rec_small.onnx",
+        "sha256": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+      }
+    ],
+    "backend": "Docling CPU; tableformer fast; rapidocr provisional",
+    "inference": "local only",
+    "packages": {
+      "docling": "2.141.0",
+      "docling-core": "2.103.1",
+      "docling-ibm-models": "4.0.4",
+      "onnxruntime": "1.24.4",
+      "pypdfium2": "5.14.0",
+      "rapidocr": "3.10.0",
+      "torch": "2.14.1",
+      "transformers": "5.20.2"
+    }
+  }
+}

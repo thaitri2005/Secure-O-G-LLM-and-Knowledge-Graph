@@ -1,0 +1,130 @@
+{
+  "logical_tables": [
+    {
+      "cell_accuracy": 0.9841269841269841,
+      "cell_count": 252,
+      "cell_matches": 248,
+      "column_count_correct": true,
+      "expected_columns": 9,
+      "expected_rows": 29,
+      "header_accuracy": 0.4444444444444444,
+      "header_attached_everywhere": false,
+      "header_count": 9,
+      "header_matches": 4,
+      "id": "akutan_npt",
+      "predicted_columns": 9,
+      "predicted_rows": 29,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 252,
+      "cell_matches": 252,
+      "column_count_correct": true,
+      "expected_columns": 9,
+      "expected_rows": 29,
+      "header_accuracy": 0.4444444444444444,
+      "header_attached_everywhere": false,
+      "header_count": 9,
+      "header_matches": 4,
+      "id": "akutan_npt",
+      "predicted_columns": 9,
+      "predicted_rows": 29,
+      "row_count_correct": true,
+      "variant": "existing_cache"
+    },
+    {
+      "cell_accuracy": 0.955026455026455,
+      "cell_count": 378,
+      "cell_matches": 361,
+      "column_count_correct": true,
+      "expected_columns": 9,
+      "expected_rows": 43,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": true,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_liner_components",
+      "predicted_columns": 9,
+      "predicted_rows": 43,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 378,
+      "cell_matches": 378,
+      "column_count_correct": true,
+      "expected_columns": 9,
+      "expected_rows": 43,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": true,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_liner_components",
+      "predicted_columns": 9,
+      "predicted_rows": 43,
+      "row_count_correct": true,
+      "variant": "existing_cache"
+    }
+  ],
+  "plan": "evaluation join-only precision review and positive-table recall; native failures count as recall misses",
+  "positive_details": [
+    {
+      "caught": true,
+      "id": "akutan_npt",
+      "missing_native_pair": false,
+      "pages": [
+        1,
+        2
+      ],
+      "pair_id": "corpus_fast:gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525:#/tables/0->#/tables/1",
+      "variant": "corpus_fast"
+    },
+    {
+      "caught": true,
+      "id": "akutan_npt",
+      "missing_native_pair": false,
+      "pages": [
+        1,
+        2
+      ],
+      "pair_id": "existing_cache:gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525:#/tables/0->#/tables/1",
+      "variant": "existing_cache"
+    },
+    {
+      "caught": true,
+      "id": "akutan_liner_components",
+      "missing_native_pair": false,
+      "pages": [
+        1,
+        2
+      ],
+      "pair_id": "corpus_fast:gdr882_ak3_appx_36_8_casinginforpt_160920160154:#/tables/1->#/tables/2",
+      "variant": "corpus_fast"
+    },
+    {
+      "caught": true,
+      "id": "akutan_liner_components",
+      "missing_native_pair": false,
+      "pages": [
+        1,
+        2
+      ],
+      "pair_id": "existing_cache:gdr882_ak3_appx_36_8_casinginforpt_160920160154:#/tables/1->#/tables/2",
+      "variant": "existing_cache"
+    }
+  ],
+  "positive_pairs": 4,
+  "positive_pairs_joined": 4,
+  "precision": 1.0,
+  "precision_denominator": "manually labeled predicted joins only; coverage must be complete to pass",
+  "predicted_joins": 4,
+  "recall": 1.0,
+  "review_coverage": 1.0,
+  "reviewed_correct": 4,
+  "reviewed_wrong": 0,
+  "unreviewed_predictions": 0,
+  "verdict": "fail or incomplete review"
+}

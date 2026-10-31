@@ -1,0 +1,296 @@
+{
+  "status": "draft",
+  "selected_utc": "2026-10-31T08:50:13.232326+00:00",
+  "freeze_sha256": "0128d50b8df6f13be8bbf47373e531b7cdcf696734daccbb2ec312173688c2e3",
+  "frozen_utc": "2026-10-31T08:41:45.387149+00:00",
+  "selection_inputs": "Direct source renders and PDF text layer only; no join decisions or candidate outputs inspected for selection.",
+  "criteria": {
+    "continued_tables": "Three or four physically continued real tables; at least two report types outside NPT/liner; prefer AK-3 appendices and extended reports; include repeated and absent continuation headers where available.",
+    "forms": "Two RIMBase digital daily headers: a later nonzero-depth AK-3 day and another well from the extended reports.",
+    "exclusions": "Exclude S1-S6 and every page named in production or exploration gold; compare source SHA256 plus physical page to cover aliases."
+  },
+  "exclusion_pages": [
+    {
+      "source_sha256": "2e742792d3d2aa1d316b88ebca81d71dd265fd5c5c0c5251cf6c472160a35a17",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "30e20d504b187f0ddfa254f2d02c681cf09b1d1ffba9eef1bc790ff90b12781e",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "37bd90ae6d351b0e91397fb65eaea5afa67e8e05bd1dcaa6242877d8bf7ead5c",
+      "page": 13,
+      "references": [
+        "explorations/ingestion/configs/study-pages.json"
+      ]
+    },
+    {
+      "source_sha256": "37bd90ae6d351b0e91397fb65eaea5afa67e8e05bd1dcaa6242877d8bf7ead5c",
+      "page": 34,
+      "references": [
+        "explorations/ingestion/gold/excluded/excluded.json"
+      ]
+    },
+    {
+      "source_sha256": "37bd90ae6d351b0e91397fb65eaea5afa67e8e05bd1dcaa6242877d8bf7ead5c",
+      "page": 35,
+      "references": [
+        "explorations/ingestion/gold/excluded/excluded.json"
+      ]
+    },
+    {
+      "source_sha256": "57f7311db4231ad2e91fa435ae2eea2b51d8d17b99f9c749d5de969013c07d5c",
+      "page": 23,
+      "references": [
+        "explorations/ingestion/configs/study-pages.json",
+        "explorations/ingestion/gold/transcriptions/transcriptions.json"
+      ]
+    },
+    {
+      "source_sha256": "57f7311db4231ad2e91fa435ae2eea2b51d8d17b99f9c749d5de969013c07d5c",
+      "page": 24,
+      "references": [
+        "explorations/ingestion/gold/transcriptions/transcriptions.json"
+      ]
+    },
+    {
+      "source_sha256": "57f7311db4231ad2e91fa435ae2eea2b51d8d17b99f9c749d5de969013c07d5c",
+      "page": 25,
+      "references": [
+        "explorations/ingestion/gold/transcriptions/transcriptions.json"
+      ]
+    },
+    {
+      "source_sha256": "6322f5c539c556f0936774f4530b7c92758145187a9488620f534e827ca6fa1d",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+      "page": 2,
+      "references": [
+        "data/gold/ingestion/pages/gdr882_ak3_eowr_p2.json"
+      ]
+    },
+    {
+      "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+      "page": 4,
+      "references": [
+        "data/gold/ingestion/tables.json",
+        "explorations/ingestion/configs/study-pages.json"
+      ]
+    },
+    {
+      "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+      "page": 7,
+      "references": [
+        "data/gold/ingestion/pages/gdr882_ak3_eowr_p7.json"
+      ]
+    },
+    {
+      "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+      "page": 22,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+      "page": 31,
+      "references": [
+        "data/gold/ingestion/pages/gdr1295_56-32_eowr_p31.json"
+      ]
+    },
+    {
+      "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+      "page": 33,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "page": 17,
+      "references": [
+        "data/gold/ingestion/tables.json",
+        "explorations/ingestion/configs/study-pages.json",
+        "explorations/ingestion/gold/forms/forms.json"
+      ]
+    },
+    {
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "page": 18,
+      "references": [
+        "data/gold/ingestion/pages/gdr1153_68-32_eowr_p18.json"
+      ]
+    },
+    {
+      "source_sha256": "b8b918b878adf689d11c2c35b691d99fdb2cc34e37b0818894b3b36acb210c2d",
+      "page": 1,
+      "references": [
+        "explorations/ingestion/gold/continued_tables/continued_tables.json"
+      ]
+    },
+    {
+      "source_sha256": "b8b918b878adf689d11c2c35b691d99fdb2cc34e37b0818894b3b36acb210c2d",
+      "page": 2,
+      "references": [
+        "explorations/ingestion/gold/continued_tables/continued_tables.json"
+      ]
+    },
+    {
+      "source_sha256": "e2b3126ffaad0b455a351a7a8cb55e5f3cc59744658dce79901c8d661898ee29",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    },
+    {
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/pages/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309_p1.json",
+        "data/gold/ingestion/tables.json",
+        "explorations/ingestion/configs/study-pages.json",
+        "explorations/ingestion/gold/forms/forms.json"
+      ]
+    },
+    {
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+      "page": 2,
+      "references": [
+        "explorations/ingestion/gold/forms/forms.json"
+      ]
+    },
+    {
+      "source_sha256": "f6b0f3f13c5707eeaf4fa95344b6e7babd23c581a86a6e73eb81d1bde26211c7",
+      "page": 1,
+      "references": [
+        "explorations/ingestion/configs/study-pages.json",
+        "explorations/ingestion/gold/continued_tables/continued_tables.json"
+      ]
+    },
+    {
+      "source_sha256": "f6b0f3f13c5707eeaf4fa95344b6e7babd23c581a86a6e73eb81d1bde26211c7",
+      "page": 2,
+      "references": [
+        "explorations/ingestion/configs/study-pages.json",
+        "explorations/ingestion/gold/continued_tables/continued_tables.json"
+      ]
+    },
+    {
+      "source_sha256": "f94a27b97910e3e246dc0f93a42cf47143df4742ab8fd28d9d67bfe4c92758b2",
+      "page": 1,
+      "references": [
+        "data/gold/ingestion/tables.json"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "forge16a_td_coordinates",
+      "kind": "continued_table",
+      "doc_id": "gdr1296_16a78-32_drilling_summary",
+      "pages": [
+        7,
+        8
+      ],
+      "report_type": "16A drilling summary: Total Depth Coordinates",
+      "header_repeated_on_continuation": false,
+      "reason": "Rendered Table 2 has its three-column header alone at the bottom of p7; five rows continue at the top of p8 without a repeated header. Whole table included.",
+      "review_edge": "Header-only first part: empty inclusive data range first_row=1, last_row=0.",
+      "status": "draft",
+      "source_sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+      "renders": [
+        "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p7.png",
+        "runs/round6/heldout/gdr1296_16a78-32_drilling_summary-p8.png"
+      ],
+      "exclusions_verified": true
+    },
+    {
+      "id": "forge68_activity_detail",
+      "kind": "continued_table",
+      "doc_id": "gdr1153_68-32_eowr",
+      "pages": [
+        30,
+        31,
+        32
+      ],
+      "report_type": "RIMBase Operations Activity Detail",
+      "header_repeated_on_continuation": true,
+      "reason": "Rendered nine-column event grid spans printed pages 1 of 3 through 3 of 3, repeating the heading on each part. Last description continues on p32. Whole grid included; total excluded.",
+      "review_edge": "Last data row spans pp31-32. Both part ranges include that row; p32 adds no new event.",
+      "status": "draft",
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+      "renders": [
+        "runs/round6/heldout/gdr1153_68-32_eowr-p30.png",
+        "runs/round6/heldout/gdr1153_68-32_eowr-p31.png",
+        "runs/round6/heldout/gdr1153_68-32_eowr-p32.png"
+      ],
+      "exclusions_verified": true
+    },
+    {
+      "id": "akutan_hole_section_information",
+      "kind": "continued_table",
+      "doc_id": "gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550",
+      "pages": [
+        1,
+        2
+      ],
+      "report_type": "RIMBase Well Information Report: Hole Section Information",
+      "header_repeated_on_continuation": false,
+      "reason": "Rendered ruled Hole Section Information grid contains five section panels. The SURF panel breaks after its Casing Plan row on p1; its Weight/Grade/Thread and Notes rows finish on p2. Actual Data and AFE bands are separate tables and excluded.",
+      "review_edge": "Form-like grid with varying merged cells and no column-heading row. Review grid scope and merged anchors before scoring.",
+      "status": "draft",
+      "source_sha256": "353433c7a8773db58a48d307dc653b104cedc5cfb7f1db9e7df8e83a2698e303",
+      "renders": [
+        "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p1.png",
+        "runs/round6/heldout/gdr882_ak3_appx_24_5_wellinfojobrpt_160920160550-p2.png"
+      ],
+      "exclusions_verified": true
+    },
+    {
+      "id": "akutan_daily_header_20",
+      "kind": "form",
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "pages": [
+        28
+      ],
+      "report_type": "AK-3 Daily Drilling Report",
+      "reason": "Printed report 20, 31-Aug-16, much later than development pp1-2; MD and TVD are both 1105 ft. Visible RIMBase header with a digital text layer.",
+      "status": "draft",
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+      "renders": [
+        "runs/round6/heldout/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p28.png"
+      ],
+      "exclusions_verified": true
+    },
+    {
+      "id": "forge78_daily_header_2",
+      "kind": "form",
+      "doc_id": "gdr1153_78-32_eowr",
+      "pages": [
+        30
+      ],
+      "report_type": "78-32 Daily Drilling Report",
+      "reason": "Different well in an extended end-of-well report. Printed report 2, 14-Mar-19; MD and TVD 716 ft. RIMBase digital header; long operations values visibly clipped.",
+      "status": "draft",
+      "source_sha256": "7dc4d3e9ab9ba396039105c4b89475c9f34fb00525cd49fbe652317add3efa46",
+      "renders": [
+        "runs/round6/heldout/gdr1153_78-32_eowr-p30.png"
+      ],
+      "exclusions_verified": true
+    }
+  ],
+  "heldout_candidate_generation": false,
+  "heldout_scoring": false
+}

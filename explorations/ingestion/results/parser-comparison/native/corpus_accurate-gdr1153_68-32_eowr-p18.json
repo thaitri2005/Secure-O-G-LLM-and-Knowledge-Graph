@@ -1,0 +1,68 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        33.53734970092774,
+        34.462867736816406,
+        750.1010742187501,
+        576.4591674804686
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "Report For 02-Mar-19 2 Report No: Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Job ID: Original",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        0.0,
+        35.3886935710907,
+        88.72846519947052,
+        568.3232892751694
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "Report For 02-Mar-19 2 Report No: Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT",
+      "type": "text"
+    }
+  ],
+  "native_sha256": "b56b7d6c53c0c1c0053333c88ad6a2447012046b32969b174ab238c8b41bdd5f",
+  "page": 18,
+  "page_size": {
+    "height": 611.9999999999999,
+    "width": 792.0000000000001
+  },
+  "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Report For 02-Mar-19 2 Report No: Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT"
+        },
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Job ID: Original"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 2,
+      "num_rows": 1,
+      "regions": [
+        {
+          "bbox": [
+            33.53734970092774,
+            34.462867736816406,
+            750.1010742187501,
+            576.4591674804686
+          ],
+          "page": 18
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

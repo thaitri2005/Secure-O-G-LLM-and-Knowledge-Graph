@@ -1,0 +1,107 @@
+{
+  "amendment": "Order-independent word recall on p25 was fixed before scoring; p25 CER is diagnostic only",
+  "micro_totals": [
+    {
+      "CER": 0.3971611071682044,
+      "CER_p23_p24": 0.1273088945723217,
+      "WER": 0.5091863517060368,
+      "critical_count": 33,
+      "critical_matches": 20,
+      "critical_token_accuracy": 0.6060606060606061,
+      "engine": "tesseract_corpus",
+      "pages": 3,
+      "seconds_total": 29.305,
+      "word_recall_p25": 0.5557491289198606
+    }
+  ],
+  "per_page_ranking": {
+    "23": [
+      "tesseract_corpus"
+    ],
+    "24": [
+      "tesseract_corpus"
+    ],
+    "25": [
+      "tesseract_corpus"
+    ]
+  },
+  "ranking": [
+    "tesseract_corpus"
+  ],
+  "records": [
+    {
+      "CER": 0.18357715903728172,
+      "WER": 0.20348837209302326,
+      "character_edits": 389,
+      "critical_count": 13,
+      "critical_matches": 9,
+      "critical_token_accuracy": 0.6923076923076923,
+      "engine": "tesseract_corpus",
+      "missed_critical_tokens": [
+        "2600’",
+        "70’",
+        "10’",
+        "30’"
+      ],
+      "order_independent_word_recall": 0.9273255813953488,
+      "page": 23,
+      "reference_characters": 2119,
+      "reference_words": 344,
+      "scored": true,
+      "seconds": 23.08,
+      "word_edits": 70,
+      "word_recall_matches": 319,
+      "word_recall_reference": 344
+    },
+    {
+      "CER": 0.04214285714285714,
+      "WER": 0.06222222222222222,
+      "character_edits": 59,
+      "critical_count": 5,
+      "critical_matches": 5,
+      "critical_token_accuracy": 1.0,
+      "engine": "tesseract_corpus",
+      "missed_critical_tokens": [],
+      "order_independent_word_recall": 0.9955555555555555,
+      "page": 24,
+      "reference_characters": 1400,
+      "reference_words": 225,
+      "scored": true,
+      "seconds": 1.976,
+      "word_edits": 14,
+      "word_recall_matches": 224,
+      "word_recall_reference": 225
+    },
+    {
+      "CER": 0.6664775950085082,
+      "WER": 0.867595818815331,
+      "character_edits": 2350,
+      "critical_count": 15,
+      "critical_matches": 6,
+      "critical_token_accuracy": 0.4,
+      "engine": "tesseract_corpus",
+      "missed_critical_tokens": [
+        "10.75",
+        "8.625",
+        "J/K55",
+        "4.834",
+        "NW/HQ-4130",
+        "BQ-4130",
+        "4.04",
+        "21-Jul-15",
+        "20 AAC 25.005(g)"
+      ],
+      "order_independent_word_recall": 0.5557491289198606,
+      "page": 25,
+      "reference_characters": 3526,
+      "reference_words": 574,
+      "scored": true,
+      "seconds": 4.249,
+      "word_edits": 498,
+      "word_recall_matches": 319,
+      "word_recall_reference": 574
+    }
+  ],
+  "selected_engine": "tesseract_corpus",
+  "verdict": "selected under amended ranking"
+}

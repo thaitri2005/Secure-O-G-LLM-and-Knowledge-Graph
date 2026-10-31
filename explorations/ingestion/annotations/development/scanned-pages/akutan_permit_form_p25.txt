@@ -1,0 +1,89 @@
+STATE OF ALASKA
+ALASKA OIL AND GAS CONSERVATION COMMISSION
+PERMIT TO DRILL
+20 AAC 25.005
+
+1a. Type of Work:
+Drill Lateral
+Redrill Reentry
+1b. Proposed Well Class: Development - Oil Service - Winj Single Zone
+Stratigraphic Test Development - Gas Service - Supply Multiple Zone
+Exploratory Service - WAG Service - Disp
+1c. Specify if well is proposed for:
+Coalbed Gas Gas Hydrates
+Geothermal Shale Gas
+2. Operator Name:
+City of Akutan
+5. Bond: Blanket Single Well
+Bond No.
+11. Well Name and Number:
+AK-3
+3. Address:
+3380 C Street Suite 295 Anchorage 99503-3952
+6. Proposed Depth:
+MD: 1700 ft TVD: 1700 ft
+12. Field/Pool(s):
+Hot Springs Bay Valley
+4a. Location of Well (Governmental Section):
+Surface: ~ 2600ft from East line, 70 ft. from north lineT70S R112W S005
+Seward Meridian
+Top of Productive Horizon: Same
+Total Depth: Same
+7. Property Designation (Lease Number):
+Surface - Akutan Corporation Subsurface - The
+Aleut Corporation
+8. Land Use Permit:
+Exploration agreements attached
+13. Approximate Spud Date:
+21-Jul-15
+9. Acres in Property:
+1/4 Acre
+14. Distance to Nearest Property:
+4b. Location of Well (State Base Plane Coordinates - NAD 27):
+Surface: x- 426726.4 y- 78180.6 Zone-
+10. KB Elevation above MSL: 46 feet
+GL Elevation above MSL: 41 feet
+15. Distance to Nearest Well Open
+to Same Pool: none
+16. Deviated wells: n/a Kickoff depth: n/a feet
+Maximum Hole Angle: n/a degrees
+17. Maximum Anticipated Pressures in psig (see 20 AAC 25.035)
+Downhole: 750 Surface: 140
+18. Casing Program: Specifications Top - Setting Depth - Bottom Cement Quantity (cuft)
+Hole (") Casing (") Weight (ppf) Grade Coupling Length (ft) MD (ft) TVD (ft) MD (ft) TVD (ft) (Including stage data)
+10.75 8.625 24 J/K55 WELDED 40 0 0 40 40 18, with 100% excess, thru tremie
+7.5 5.5 17 J/K55 VFJ 220 0 0 220 220 70, with 120% excess, single stage
+4.834 4.5 11.7 J/K55 VFJ 800 0 0 800 800 30, with 120% excess, single stage
+3.789 3.5 7.7 NW/HQ-4130 ROD THREAD 1700 700 700 1700 1700 n/a-Set on bottom
+n/a 2.2 4.04 BQ-4130 ROD THREAD 800 0 0 800 800 n/a-Hang from surface if needed
+19 PRESENT WELL CONDITION SUMMARY (To be completed for Redrill and Re-Entry Operations)
+Total Depth MD (ft): Total Depth TVD (ft): Plugs (measured): Effect. Depth MD (ft): Effect. Depth TVD (ft): Junk (measured):
+Casing Length Size Cement Volume MD TVD
+Conductor/Structural
+Surface
+Intermediate
+Production
+Liner
+Perforation Depth MD (ft): Perforation Depth TVD (ft):
+20. Attachments: Property Plat BOP Sketch Drilling Program Time v. Depth Plot Shallow Hazard Analysis
+Diverter Sketch Seabed Report Drilling Fluid Program 20 AAC 25.050 requirements
+21. Verbal Approval: Commission Representative: Date 29-Jun-15
+22. I hereby certify that the foregoing is true and correct.
+Contact 907-274-7565
+Email tuna.scanlan@akutanak.us
+Printed Name Hermann Scanlan Title City Administrator
+Signature Phone Date
+Commission Use Only
+Permit to Drill Number: API Number: 50- Permit Approval Date:
+See cover letter for other requirements.
+Conditions of approval: If box is checked, well may not be used to explore for, test, or produce coalbed methane, gas hydrates, or gas contained in shales:
+Other:
+Samples req'd: Yes No Mud log req'd: Yes No
+H2S measures: Yes No Directional svy req'd: Yes No
+Spacing exception req'd: Yes No Inclination-only svy req'd: Yes No
+Approved by: COMMISSIONER APPROVED BY THE COMMISSION Date:
+Form 10-401 (Revised 10/2012)
+This permit is valid for 24 months from the date of approval (20 AAC 25.005(g))
+Submit Form and
+Attachments in Duplicate
+DUPLICATE

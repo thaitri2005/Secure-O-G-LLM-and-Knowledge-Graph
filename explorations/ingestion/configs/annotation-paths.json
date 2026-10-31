@@ -1,0 +1,30 @@
+{
+  "paths": {
+    "gold/README.md": "annotations/development/source-conventions.md",
+    "gold/REVIEW.md": "annotations/development/REVIEW.md",
+    "gold/continued_tables/akutan_liner_components.csv": "annotations/development/continued-tables/akutan_liner_components.csv",
+    "gold/continued_tables/akutan_npt.csv": "annotations/development/continued-tables/akutan_npt.csv",
+    "gold/continued_tables/continued_tables.json": "annotations/development/continued-tables/continued_tables.json",
+    "gold/excluded/akutan_account_codes.csv": "annotations/development/excluded/akutan_account_codes.csv",
+    "gold/excluded/excluded.json": "annotations/development/excluded/excluded.json",
+    "gold/forms/akutan_daily_header_1.csv": "annotations/development/forms/akutan_daily_header_1.csv",
+    "gold/forms/akutan_daily_header_2.csv": "annotations/development/forms/akutan_daily_header_2.csv",
+    "gold/forms/forge_daily_header.csv": "annotations/development/forms/forge_daily_header.csv",
+    "gold/forms/forms.json": "annotations/development/forms/forms.json",
+    "gold/heldout/REVIEW.md": "annotations/held-out/REVIEW.md",
+    "gold/heldout/continued_tables/continued_tables.json": "annotations/held-out/continued-tables/continued_tables.json",
+    "gold/heldout/continued_tables/forge16a_td_coordinates.csv": "annotations/held-out/continued-tables/forge16a_td_coordinates.csv",
+    "gold/heldout/continued_tables/forge68_activity_detail.csv": "annotations/held-out/continued-tables/forge68_activity_detail.csv",
+    "gold/heldout/excluded/akutan_hole_section_information.csv": "annotations/held-out/excluded/akutan_hole_section_information.csv",
+    "gold/heldout/excluded/excluded.json": "annotations/held-out/excluded/excluded.json",
+    "gold/heldout/forms/akutan_daily_header_20.csv": "annotations/held-out/forms/akutan_daily_header_20.csv",
+    "gold/heldout/forms/forge78_daily_header_2.csv": "annotations/held-out/forms/forge78_daily_header_2.csv",
+    "gold/heldout/forms/forms.json": "annotations/held-out/forms/forms.json",
+    "gold/heldout/provenance.json": "annotations/held-out/provenance.json",
+    "gold/heldout/selection.json": "annotations/held-out/selection.json",
+    "gold/transcriptions/akutan_permit_form_p25.txt": "annotations/development/scanned-pages/akutan_permit_form_p25.txt",
+    "gold/transcriptions/akutan_permit_letter_p23.txt": "annotations/development/scanned-pages/akutan_permit_letter_p23.txt",
+    "gold/transcriptions/akutan_permit_letter_p24.txt": "annotations/development/scanned-pages/akutan_permit_letter_p24.txt",
+    "gold/transcriptions/transcriptions.json": "annotations/development/scanned-pages/transcriptions.json"
+  }
+}

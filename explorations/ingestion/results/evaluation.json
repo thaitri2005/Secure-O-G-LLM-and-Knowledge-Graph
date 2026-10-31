@@ -1,0 +1,806 @@
+{
+  "continued_tables": [
+    {
+      "cell_accuracy": 0.9841269841269841,
+      "cell_count": 252,
+      "cell_matches": 248,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks",
+          "column": 8,
+          "expected": "Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks of portland cement from 88' as a drift plug.",
+          "row": 13
+        },
+        {
+          "actual": "of portland cement from 88' as a drift plug. Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'.",
+          "column": 8,
+          "expected": "Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'.",
+          "row": 14
+        },
+        {
+          "actual": "pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134:",
+          "column": 8,
+          "expected": "pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134: 02:00-120F",
+          "row": 18
+        }
+      ],
+      "expected_columns": 9,
+      "expected_rows": 29,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": true,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_npt",
+      "iou": 0.9946892976170499,
+      "join": {
+        "reasons": [
+          "boundary_after_furniture",
+          "continuation_margins",
+          "aligned_x_edges",
+          "similar_header",
+          "no_intervening_body_heading",
+          "identity_column_map"
+        ],
+        "status": "joined"
+      },
+      "join_pairs": [
+        {
+          "caught": true,
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ],
+      "predicted_columns": 9,
+      "predicted_rows": 29,
+      "row_count_correct": true,
+      "split": "development"
+    },
+    {
+      "cell_accuracy": 0.955026455026455,
+      "cell_count": 378,
+      "cell_matches": 361,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "",
+          "column": 0,
+          "expected": "1",
+          "row": 9
+        },
+        {
+          "actual": "",
+          "column": 1,
+          "expected": "PERF",
+          "row": 9
+        },
+        {
+          "actual": "",
+          "column": 5,
+          "expected": "7.7",
+          "row": 9
+        }
+      ],
+      "expected_columns": 9,
+      "expected_rows": 43,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": true,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_liner_components",
+      "iou": 0.9955513752459708,
+      "join": {
+        "reasons": [
+          "boundary_after_furniture",
+          "continuation_margins",
+          "aligned_x_edges",
+          "no_continuation_header",
+          "no_intervening_body_heading",
+          "column_count_or_mapping_changed"
+        ],
+        "status": "uncertain"
+      },
+      "join_pairs": [
+        {
+          "caught": true,
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ],
+      "predicted_columns": 9,
+      "predicted_rows": 43,
+      "row_count_correct": true,
+      "split": "development"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 15,
+      "cell_matches": 15,
+      "column_count_correct": true,
+      "errors": [],
+      "expected_columns": 3,
+      "expected_rows": 6,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": true,
+      "header_count": 3,
+      "header_matches": 3,
+      "id": "forge16a_td_coordinates",
+      "iou": 0.9442120036275367,
+      "join": {
+        "reasons": [
+          "header_only_extension_informed_by_review"
+        ],
+        "status": "joined"
+      },
+      "join_pairs": [
+        {
+          "caught": true,
+          "pages": [
+            7,
+            8
+          ]
+        }
+      ],
+      "predicted_columns": 3,
+      "predicted_rows": 6,
+      "row_count_correct": true,
+      "split": "held-out"
+    },
+    {
+      "cell_accuracy": 0.00205761316872428,
+      "cell_count": 486,
+      "cell_matches": 1,
+      "column_count_correct": false,
+      "errors": [
+        {
+          "actual": "Non- GRG Well Name: 68-32 26 Town: 26S Rng: 9W County: Beaver State: UT",
+          "column": 0,
+          "expected": "Rpt. No.",
+          "row": 0
+        },
+        {
+          "actual": "Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad. Waiting on day ligth Activity Description Prod.",
+          "column": 1,
+          "expected": "Date",
+          "row": 0
+        },
+        {
+          "actual": "Waiting on day light Received and unloaded 4 more loads of the rig",
+          "column": 2,
+          "expected": "Time",
+          "row": 0
+        }
+      ],
+      "expected_columns": 9,
+      "expected_rows": 55,
+      "header_accuracy": 0.0,
+      "header_attached_everywhere": false,
+      "header_count": 9,
+      "header_matches": 0,
+      "id": "forge68_activity_detail",
+      "iou": 0.9094551239018751,
+      "join": {
+        "reasons": [],
+        "status": "single"
+      },
+      "join_pairs": [
+        {
+          "caught": false,
+          "pages": [
+            30,
+            31
+          ]
+        },
+        {
+          "caught": false,
+          "pages": [
+            31,
+            32
+          ]
+        }
+      ],
+      "predicted_columns": 12,
+      "predicted_rows": 8,
+      "row_count_correct": false,
+      "split": "held-out"
+    }
+  ],
+  "format": "annotation-evaluation",
+  "forms": [
+    {
+      "annotated_bbox_coverage": 1.0,
+      "annotated_boxes": 92,
+      "bbox_pairs": 48,
+      "bbox_share": 1.0,
+      "boxes_with_positive_overlap": 92,
+      "errors": [],
+      "gold_pairs": 48,
+      "id": "akutan_daily_header_1",
+      "literal_source_absent_count": 0,
+      "literal_source_absent_values": [],
+      "matched": 48,
+      "mean_matched_bbox_iou": 0.6461011592796286,
+      "method": "rimbase_template",
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 48,
+      "split": "development"
+    },
+    {
+      "annotated_bbox_coverage": 1.0,
+      "annotated_boxes": 92,
+      "bbox_pairs": 48,
+      "bbox_share": 1.0,
+      "boxes_with_positive_overlap": 92,
+      "errors": [],
+      "gold_pairs": 48,
+      "id": "akutan_daily_header_2",
+      "literal_source_absent_count": 0,
+      "literal_source_absent_values": [],
+      "matched": 48,
+      "mean_matched_bbox_iou": 0.6515027219064382,
+      "method": "rimbase_template",
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 48,
+      "split": "development"
+    },
+    {
+      "annotated_bbox_coverage": 1.0,
+      "annotated_boxes": 83,
+      "bbox_pairs": 45,
+      "bbox_share": 1.0,
+      "boxes_with_positive_overlap": 83,
+      "errors": [],
+      "gold_pairs": 45,
+      "id": "forge_daily_header",
+      "literal_source_absent_count": 0,
+      "literal_source_absent_values": [],
+      "matched": 45,
+      "mean_matched_bbox_iou": 0.6445753943834275,
+      "method": "rimbase_template",
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 45,
+      "split": "development"
+    },
+    {
+      "annotated_bbox_coverage": 1.0,
+      "annotated_boxes": 95,
+      "bbox_pairs": 48,
+      "bbox_share": 1.0,
+      "boxes_with_positive_overlap": 95,
+      "errors": [],
+      "gold_pairs": 48,
+      "id": "akutan_daily_header_20",
+      "literal_source_absent_count": 0,
+      "literal_source_absent_values": [],
+      "matched": 48,
+      "mean_matched_bbox_iou": 0.6566011010105968,
+      "method": "rimbase_template",
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 48,
+      "split": "held-out"
+    },
+    {
+      "annotated_bbox_coverage": 1.0,
+      "annotated_boxes": 85,
+      "bbox_pairs": 45,
+      "bbox_share": 1.0,
+      "boxes_with_positive_overlap": 85,
+      "errors": [],
+      "gold_pairs": 45,
+      "id": "forge78_daily_header_2",
+      "literal_source_absent_count": 2,
+      "literal_source_absent_values": [
+        "Cutoff 9 5/8\" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625\" casing. Weld ...",
+        "Complete Nipple up. Function and test BOP's Make up 8 3/4\" assembly, Clean out cement. Test shoe track. Drill 8.75\" new hole. ..."
+      ],
+      "matched": 45,
+      "mean_matched_bbox_iou": 0.653495594019159,
+      "method": "rimbase_template",
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 45,
+      "split": "held-out"
+    }
+  ],
+  "inputs": {
+    "annotation_manifests": {
+      "data/gold/ingestion/pages/gdr1153_68-32_eowr_p18.json": "a407cac1e02ebb59afffbdf76407773b61952ebd3e07b15ba5a0f3b22642dbc0",
+      "data/gold/ingestion/pages/gdr1295_56-32_eowr_p31.json": "b0ef270d6f1e99e61df5c221951712b2ea5acb7cc7ef56d543facca29e31fd18",
+      "data/gold/ingestion/pages/gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309_p1.json": "8c78bb34b1936ad13acd38b9a40e3926160ed8dc19eb0b693326db52e5be2d2c",
+      "data/gold/ingestion/pages/gdr882_ak3_eowr_p2.json": "a86f927c7796b90bb542e4b02545044bd2724d1f54907412f0a7e44e90bbc248",
+      "data/gold/ingestion/pages/gdr882_ak3_eowr_p7.json": "550fd8c0a9d3ccf24b4d61521c7016305776be2b8a16af2270b511ab91dc72b6",
+      "data/gold/ingestion/tables.json": "0e899463cb54e49c09b2319b445508ab8f3f0a8d42526c6538b43c761eb7a4e4",
+      "explorations/ingestion/annotations/development/continued-tables/continued_tables.json": "6d5528098d0a69f10a47e4b64aaf4eab14bc9231cbeef3f7bc17374ade546fcb",
+      "explorations/ingestion/annotations/development/forms/forms.json": "1cd1c3e626b4d79e2d865b46adbfb03718eea3547963fb5ea446d23a33f57d9d",
+      "explorations/ingestion/annotations/development/scanned-pages/transcriptions.json": "37b1f2dacbaae91108038388286934bf6c1e5fcc78ab06e16c4a3da4864a1e43",
+      "explorations/ingestion/annotations/held-out/continued-tables/continued_tables.json": "cef9cd0e588f98aa48957aa7b27e0fd68309d3f04e60d99dbc42bd322975e2d5",
+      "explorations/ingestion/annotations/held-out/forms/forms.json": "1e6d08e45703a0ad9e4eab3c18d0f4f999869bb0b275b5fc8c9cd16b84dc6d83"
+    },
+    "bundle_checksums": {
+      "runs/prototype/ak3": "63e822b229632fdf6cba623efdc86ceb0790e5ff3233586f511a82451377a6a3",
+      "runs/prototype/reports": "1f2e5903970dff8ecddf18f347af61bd17766f8d3b99a16a810cade3a19b3e27"
+    }
+  },
+  "joins": {
+    "corpus_precision": null,
+    "policy": "Only annotated positive boundaries are reviewed. Corpus precision is unknown until the other predictions are labeled.",
+    "positive_pairs": 5,
+    "positive_pairs_joined": 3,
+    "precision_on_reviewed": 1.0,
+    "predicted_joins": 16,
+    "recall": 0.6,
+    "reviewed_correct": 3,
+    "reviewed_wrong": 0,
+    "unreviewed_predictions": 13
+  },
+  "limitations": [
+    "Single annotator with AI assistance; no inter-annotator agreement.",
+    "The header-only continuation extension is informed by reviewed held-out failures; its score is descriptive.",
+    "Unannotated joins are unreviewed, not false positives or true positives.",
+    "Scanned form reading order is conventional; its CER and WER are diagnostic."
+  ],
+  "quote_normalization": "Typographic single quotes and primes become ASCII apostrophes; typographic double quotes and double primes become ASCII quotation marks. Whitespace is collapsed; case is retained.",
+  "reading_order": [
+    {
+      "common_items": 1,
+      "doc_id": "gdr1153_68-32_eowr",
+      "extra_items": 0,
+      "kendall_tau": null,
+      "missing_items": 1,
+      "page": 18,
+      "section_accuracy": 1.0,
+      "section_matches": 1
+    },
+    {
+      "common_items": 1,
+      "doc_id": "gdr1295_56-32_eowr",
+      "extra_items": 2,
+      "kendall_tau": null,
+      "missing_items": 1,
+      "page": 31,
+      "section_accuracy": 1.0,
+      "section_matches": 1
+    },
+    {
+      "common_items": 87,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "extra_items": 0,
+      "kendall_tau": 0.3691526329858327,
+      "missing_items": 0,
+      "page": 1,
+      "section_accuracy": 0.6436781609195402,
+      "section_matches": 56
+    },
+    {
+      "common_items": 0,
+      "doc_id": "gdr882_ak3_eowr",
+      "extra_items": 2,
+      "kendall_tau": null,
+      "missing_items": 2,
+      "page": 2,
+      "section_accuracy": null,
+      "section_matches": 0
+    },
+    {
+      "common_items": 0,
+      "doc_id": "gdr882_ak3_eowr",
+      "extra_items": 13,
+      "kendall_tau": null,
+      "missing_items": 13,
+      "page": 7,
+      "section_accuracy": null,
+      "section_matches": 0
+    }
+  ],
+  "root_tables": [
+    {
+      "cell_accuracy": 0.98,
+      "cell_count": 50,
+      "cell_matches": 49,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "",
+          "column": 0,
+          "expected": "WOC",
+          "row": 24
+        }
+      ],
+      "expected_columns": 2,
+      "expected_rows": 25,
+      "format": "grid",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_abbreviations",
+      "iou": 0.9999717513295928,
+      "predicted_columns": 2,
+      "predicted_rows": 26,
+      "row_count_correct": false
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 190,
+      "cell_matches": 190,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "Survey",
+          "column": 0,
+          "expected": "Survey Type",
+          "row": 0
+        },
+        {
+          "actual": "Measured",
+          "column": 1,
+          "expected": "Measured Depth",
+          "row": 0
+        },
+        {
+          "actual": "",
+          "column": 2,
+          "expected": "Inc (deg)",
+          "row": 0
+        }
+      ],
+      "expected_columns": 10,
+      "expected_rows": 21,
+      "format": "grid",
+      "header_accuracy": 0.2,
+      "header_count": 20,
+      "header_matches": 4,
+      "id": "forge_directional_survey",
+      "iou": 0.9999733370758586,
+      "predicted_columns": 10,
+      "predicted_rows": 89,
+      "row_count_correct": false
+    },
+    {
+      "cell_accuracy": 0.9,
+      "cell_count": 20,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "8.6 - 9.2",
+          "column": 1,
+          "expected": "8.6 – 9.2",
+          "row": 3
+        },
+        {
+          "actual": "NA - Vertical Hole",
+          "column": 1,
+          "expected": "NA – Vertical Hole",
+          "row": 7
+        }
+      ],
+      "expected_columns": 2,
+      "expected_rows": 10,
+      "format": "grid",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "forge_fluid_parameters",
+      "iou": 0.9999667794015255,
+      "predicted_columns": 2,
+      "predicted_rows": 10,
+      "row_count_correct": true
+    },
+    {
+      "format": "form_fields",
+      "id": "forge_daily_report",
+      "value_count": 60,
+      "value_matches": 54,
+      "value_recall": 0.9
+    },
+    {
+      "cell_accuracy": 0.9882352941176471,
+      "cell_count": 170,
+      "cell_matches": 168,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "Survey",
+          "column": 0,
+          "expected": "Survey Type",
+          "row": 0
+        },
+        {
+          "actual": "Depth Meas.",
+          "column": 1,
+          "expected": "Meas. Depth (ft)",
+          "row": 0
+        },
+        {
+          "actual": "",
+          "column": 2,
+          "expected": "Inc. (deg)",
+          "row": 0
+        }
+      ],
+      "expected_columns": 10,
+      "expected_rows": 19,
+      "format": "grid",
+      "header_accuracy": 0.1,
+      "header_count": 20,
+      "header_matches": 2,
+      "id": "akutan_directional_survey",
+      "iou": 0.9999654388337762,
+      "predicted_columns": 10,
+      "predicted_rows": 19,
+      "row_count_correct": true
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 28,
+      "cell_matches": 28,
+      "column_count_correct": true,
+      "errors": [],
+      "expected_columns": 7,
+      "expected_rows": 5,
+      "format": "grid",
+      "header_accuracy": 1.0,
+      "header_count": 7,
+      "header_matches": 7,
+      "id": "akutan_daily_operations",
+      "iou": 0.999921429035764,
+      "predicted_columns": 7,
+      "predicted_rows": 5,
+      "row_count_correct": true
+    },
+    {
+      "cell_accuracy": 0.042735042735042736,
+      "cell_count": 234,
+      "cell_matches": 10,
+      "column_count_correct": false,
+      "errors": [
+        {
+          "actual": "WO Flo MW Ou In No Dia Manuf Mode Serial No Depth - ft Nozzles - 1/32 TF Hr RO RP Gradin In Out Major Loc Hole Mad Ru n Date/Time Pull Gg Oth Bit Summary Report Well ID: Geothermal Resource Group AK-3 Well Name: AK-3",
+          "column": 0,
+          "expected": "No",
+          "row": 0
+        },
+        {
+          "actual": "",
+          "column": 1,
+          "expected": "Ru n",
+          "row": 0
+        },
+        {
+          "actual": "",
+          "column": 2,
+          "expected": "Dia",
+          "row": 0
+        }
+      ],
+      "expected_columns": 26,
+      "expected_rows": 11,
+      "format": "grid",
+      "header_accuracy": 0.11538461538461539,
+      "header_count": 52,
+      "header_matches": 6,
+      "id": "akutan_bit_summary",
+      "iou": 0.9999701354350428,
+      "predicted_columns": 21,
+      "predicted_rows": 10,
+      "row_count_correct": false
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 18,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "errors": [],
+      "expected_columns": 9,
+      "expected_rows": 3,
+      "format": "grid",
+      "header_accuracy": 1.0,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_casing",
+      "iou": 0.9999275050602426,
+      "predicted_columns": 9,
+      "predicted_rows": 3,
+      "row_count_correct": true
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 48,
+      "cell_matches": 48,
+      "column_count_correct": true,
+      "errors": [],
+      "expected_columns": 4,
+      "expected_rows": 13,
+      "format": "grid",
+      "header_accuracy": 1.0,
+      "header_count": 4,
+      "header_matches": 4,
+      "id": "akutan_cement",
+      "iou": 0.9999619293645013,
+      "predicted_columns": 4,
+      "predicted_rows": 13,
+      "row_count_correct": true
+    },
+    {
+      "cell_accuracy": 0.75,
+      "cell_count": 96,
+      "cell_matches": 72,
+      "column_count_correct": true,
+      "errors": [
+        {
+          "actual": "Filtrate: HTHP Filtrate:",
+          "column": 0,
+          "expected": "Filtrate:",
+          "row": 14
+        },
+        {
+          "actual": "Calcium Chloride: C03:",
+          "column": 2,
+          "expected": "Calcium Chloride:",
+          "row": 14
+        },
+        {
+          "actual": "Cake (1/32 in):",
+          "column": 0,
+          "expected": "HTHP Filtrate:",
+          "row": 15
+        }
+      ],
+      "expected_columns": 4,
+      "expected_rows": 24,
+      "format": "grid",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_mud",
+      "iou": 0.9999782127246554,
+      "predicted_columns": 4,
+      "predicted_rows": 22,
+      "row_count_correct": false
+    }
+  ],
+  "scanned_pages": [
+    {
+      "id": "akutan_permit_letter_p23",
+      "normalized": {
+        "CER": 0.17697026899480886,
+        "WER": 0.17151162790697674,
+        "character_edits": 375,
+        "critical_count": 13,
+        "critical_matches": 12,
+        "missed_critical_tokens": [
+          "30’"
+        ],
+        "reference_characters": 2119,
+        "reference_words": 344,
+        "word_edits": 59,
+        "word_recall": 0.9476744186046512,
+        "word_recall_matches": 326
+      },
+      "page": 23,
+      "raw": {
+        "CER": 0.1793298725814063,
+        "WER": 0.18604651162790697,
+        "character_edits": 380,
+        "critical_count": 13,
+        "critical_matches": 9,
+        "missed_critical_tokens": [
+          "2600’",
+          "70’",
+          "10’",
+          "30’"
+        ],
+        "reference_characters": 2119,
+        "reference_words": 344,
+        "word_edits": 64,
+        "word_recall": 0.9331395348837209,
+        "word_recall_matches": 321
+      }
+    },
+    {
+      "id": "akutan_permit_letter_p24",
+      "normalized": {
+        "CER": 0.041428571428571426,
+        "WER": 0.057777777777777775,
+        "character_edits": 58,
+        "critical_count": 5,
+        "critical_matches": 5,
+        "missed_critical_tokens": [],
+        "reference_characters": 1400,
+        "reference_words": 225,
+        "word_edits": 13,
+        "word_recall": 0.9955555555555555,
+        "word_recall_matches": 224
+      },
+      "page": 24,
+      "raw": {
+        "CER": 0.041428571428571426,
+        "WER": 0.057777777777777775,
+        "character_edits": 58,
+        "critical_count": 5,
+        "critical_matches": 5,
+        "missed_critical_tokens": [],
+        "reference_characters": 1400,
+        "reference_words": 225,
+        "word_edits": 13,
+        "word_recall": 0.9955555555555555,
+        "word_recall_matches": 224
+      }
+    },
+    {
+      "id": "akutan_permit_form_p25",
+      "normalized": {
+        "CER": 0.5422575155984118,
+        "WER": 0.6968641114982579,
+        "character_edits": 1912,
+        "critical_count": 15,
+        "critical_matches": 12,
+        "missed_critical_tokens": [
+          "J/K55",
+          "BQ-4130",
+          "20 AAC 25.005(g)"
+        ],
+        "reference_characters": 3526,
+        "reference_words": 574,
+        "word_edits": 400,
+        "word_recall": 0.759581881533101,
+        "word_recall_matches": 436
+      },
+      "page": 25,
+      "raw": {
+        "CER": 0.5422575155984118,
+        "WER": 0.6968641114982579,
+        "character_edits": 1912,
+        "critical_count": 15,
+        "critical_matches": 12,
+        "missed_critical_tokens": [
+          "J/K55",
+          "BQ-4130",
+          "20 AAC 25.005(g)"
+        ],
+        "reference_characters": 3526,
+        "reference_words": 574,
+        "word_edits": 400,
+        "word_recall": 0.759581881533101,
+        "word_recall_matches": 436
+      }
+    }
+  ],
+  "totals": {
+    "form_pair_count": 234,
+    "form_pair_matches": 234,
+    "grid_cell_accuracy": 0.7037470725995316,
+    "grid_cell_count": 854,
+    "grid_cell_matches": 601,
+    "literal_source_absent_form_values": 2,
+    "ocr_normalized": {
+      "CER": 0.33286018452803406,
+      "WER": 0.41294838145231844,
+      "critical_count": 33,
+      "critical_matches": 29,
+      "prose_CER": 0.12304631997726627,
+      "word_recall": 0.8626421697287839
+    },
+    "ocr_raw": {
+      "CER": 0.33356990773598294,
+      "WER": 0.41732283464566927,
+      "critical_count": 33,
+      "critical_matches": 26,
+      "prose_CER": 0.12446717817561807,
+      "word_recall": 0.8582677165354331
+    }
+  }
+}

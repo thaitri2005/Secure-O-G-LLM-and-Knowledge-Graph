@@ -1,0 +1,67 @@
+{
+  "limit": "Single annotator with AI assistance; frozen source-render review, no inter-annotator agreement.",
+  "literal_flags_reviewed": 4,
+  "records": [
+    {
+      "classification": "Printed clipped value including its visible ellipsis; exact corrected gold pair.",
+      "doc_id": "gdr1153_78-32_eowr",
+      "explanation": "The source text objects place the label between the value and a separately drawn ellipsis. Literal substring matching flags this printed value even though the render and corrected gold agree.",
+      "field_index": 31,
+      "identical_across_variants": true,
+      "key": "Current Ops:",
+      "method": "generic",
+      "page": 30,
+      "review_basis": "Visual source-render review plus the frozen corrected pair; no output changed.",
+      "semantic_invention": false,
+      "source_render": "local render of gdr1153_78-32_eowr page 30",
+      "source_render_sha256": "5e0bf08eff6115457fcbb005ce6c863578e550e4129eb4d8be5edc84097ce3eb",
+      "value": "Cutoff 9 5/8\" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625\" casing. Weld ..."
+    },
+    {
+      "classification": "Printed clipped value including its visible ellipsis; exact corrected gold pair.",
+      "doc_id": "gdr1153_78-32_eowr",
+      "explanation": "The source text objects place the label between the value and a separately drawn ellipsis. Literal substring matching flags this printed value even though the render and corrected gold agree.",
+      "field_index": 32,
+      "identical_across_variants": true,
+      "key": "Planned Ops:",
+      "method": "generic",
+      "page": 30,
+      "review_basis": "Visual source-render review plus the frozen corrected pair; no output changed.",
+      "semantic_invention": false,
+      "source_render": "local render of gdr1153_78-32_eowr page 30",
+      "source_render_sha256": "5e0bf08eff6115457fcbb005ce6c863578e550e4129eb4d8be5edc84097ce3eb",
+      "value": "Complete Nipple up. Function and test BOP's Make up 8 3/4\" assembly, Clean out cement. Test shoe track. Drill 8.75\" new hole. ..."
+    },
+    {
+      "classification": "Printed clipped value including its visible ellipsis; exact corrected gold pair.",
+      "doc_id": "gdr1153_78-32_eowr",
+      "explanation": "The source text objects place the label between the value and a separately drawn ellipsis. Literal substring matching flags this printed value even though the render and corrected gold agree.",
+      "field_index": 39,
+      "identical_across_variants": true,
+      "key": "Current Ops:",
+      "method": "template",
+      "page": 30,
+      "review_basis": "Visual source-render review plus the frozen corrected pair; no output changed.",
+      "semantic_invention": false,
+      "source_render": "local render of gdr1153_78-32_eowr page 30",
+      "source_render_sha256": "5e0bf08eff6115457fcbb005ce6c863578e550e4129eb4d8be5edc84097ce3eb",
+      "value": "Cutoff 9 5/8\" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625\" casing. Weld ..."
+    },
+    {
+      "classification": "Printed clipped value including its visible ellipsis; exact corrected gold pair.",
+      "doc_id": "gdr1153_78-32_eowr",
+      "explanation": "The source text objects place the label between the value and a separately drawn ellipsis. Literal substring matching flags this printed value even though the render and corrected gold agree.",
+      "field_index": 40,
+      "identical_across_variants": true,
+      "key": "Planned Ops:",
+      "method": "template",
+      "page": 30,
+      "review_basis": "Visual source-render review plus the frozen corrected pair; no output changed.",
+      "semantic_invention": false,
+      "source_render": "local render of gdr1153_78-32_eowr page 30",
+      "source_render_sha256": "5e0bf08eff6115457fcbb005ce6c863578e550e4129eb4d8be5edc84097ce3eb",
+      "value": "Complete Nipple up. Function and test BOP's Make up 8 3/4\" assembly, Clean out cement. Test shoe track. Drill 8.75\" new hole. ..."
+    }
+  ],
+  "semantic_invented_values": 0
+}

@@ -1,0 +1,846 @@
+[
+  {
+    "bytes": 73,
+    "path": ".gitignore"
+  },
+  {
+    "bytes": 1675,
+    "path": "annotations/development/continued-tables/akutan_liner_components.csv"
+  },
+  {
+    "bytes": 5401,
+    "path": "annotations/development/continued-tables/akutan_npt.csv"
+  },
+  {
+    "bytes": 3132,
+    "path": "annotations/development/continued-tables/continued_tables.json"
+  },
+  {
+    "bytes": 608,
+    "path": "annotations/development/excluded/akutan_account_codes.csv"
+  },
+  {
+    "bytes": 431,
+    "path": "annotations/development/excluded/excluded.json"
+  },
+  {
+    "bytes": 1594,
+    "path": "annotations/development/forms/akutan_daily_header_1.csv"
+  },
+  {
+    "bytes": 1455,
+    "path": "annotations/development/forms/akutan_daily_header_2.csv"
+  },
+  {
+    "bytes": 1300,
+    "path": "annotations/development/forms/forge_daily_header.csv"
+  },
+  {
+    "bytes": 94830,
+    "path": "annotations/development/forms/forms.json"
+  },
+  {
+    "bytes": 5872,
+    "path": "annotations/development/REVIEW.md"
+  },
+  {
+    "bytes": 3528,
+    "path": "annotations/development/scanned-pages/akutan_permit_form_p25.txt"
+  },
+  {
+    "bytes": 2138,
+    "path": "annotations/development/scanned-pages/akutan_permit_letter_p23.txt"
+  },
+  {
+    "bytes": 1406,
+    "path": "annotations/development/scanned-pages/akutan_permit_letter_p24.txt"
+  },
+  {
+    "bytes": 4854,
+    "path": "annotations/development/scanned-pages/transcriptions.json"
+  },
+  {
+    "bytes": 4086,
+    "path": "annotations/development/source-conventions.md"
+  },
+  {
+    "bytes": 4377,
+    "path": "annotations/held-out/continued-tables/continued_tables.json"
+  },
+  {
+    "bytes": 242,
+    "path": "annotations/held-out/continued-tables/forge16a_td_coordinates.csv"
+  },
+  {
+    "bytes": 6503,
+    "path": "annotations/held-out/continued-tables/forge68_activity_detail.csv"
+  },
+  {
+    "bytes": 1909,
+    "path": "annotations/held-out/excluded/akutan_hole_section_information.csv"
+  },
+  {
+    "bytes": 2670,
+    "path": "annotations/held-out/excluded/excluded.json"
+  },
+  {
+    "bytes": 1490,
+    "path": "annotations/held-out/forms/akutan_daily_header_20.csv"
+  },
+  {
+    "bytes": 1521,
+    "path": "annotations/held-out/forms/forge78_daily_header_2.csv"
+  },
+  {
+    "bytes": 63074,
+    "path": "annotations/held-out/forms/forms.json"
+  },
+  {
+    "bytes": 7556,
+    "path": "annotations/held-out/provenance.json"
+  },
+  {
+    "bytes": 7752,
+    "path": "annotations/held-out/REVIEW.md"
+  },
+  {
+    "bytes": 11327,
+    "path": "annotations/held-out/selection.json"
+  },
+  {
+    "bytes": 2450,
+    "path": "annotations/README.md"
+  },
+  {
+    "bytes": 2705,
+    "path": "configs/annotation-paths.json"
+  },
+  {
+    "bytes": 13933,
+    "path": "configs/corpora.json"
+  },
+  {
+    "bytes": 421,
+    "path": "configs/document_types.json"
+  },
+  {
+    "bytes": 280,
+    "path": "configs/environments/camelot.txt"
+  },
+  {
+    "bytes": 3308,
+    "path": "configs/environments/docling.txt"
+  },
+  {
+    "bytes": 2186,
+    "path": "configs/environments/mineru.txt"
+  },
+  {
+    "bytes": 587,
+    "path": "configs/environments/ocrmypdf.txt"
+  },
+  {
+    "bytes": 2249,
+    "path": "configs/environments/opendataloader-pdf.txt"
+  },
+  {
+    "bytes": 1854,
+    "path": "configs/environments/paddleocr.txt"
+  },
+  {
+    "bytes": 159,
+    "path": "configs/environments/pdfplumber.txt"
+  },
+  {
+    "bytes": 7970,
+    "path": "configs/experiments.json"
+  },
+  {
+    "bytes": 75592,
+    "path": "configs/inputs.lock.json"
+  },
+  {
+    "bytes": 2659,
+    "path": "configs/pages.json"
+  },
+  {
+    "bytes": 1348,
+    "path": "configs/prototype.json"
+  },
+  {
+    "bytes": 19,
+    "path": "configs/requirements-camelot.txt"
+  },
+  {
+    "bytes": 107,
+    "path": "configs/requirements-docling.txt"
+  },
+  {
+    "bytes": 35,
+    "path": "configs/requirements-mineru.txt"
+  },
+  {
+    "bytes": 19,
+    "path": "configs/requirements-ocrmypdf.txt"
+  },
+  {
+    "bytes": 118,
+    "path": "configs/requirements-opendataloader-pdf.txt"
+  },
+  {
+    "bytes": 51,
+    "path": "configs/requirements-paddleocr.txt"
+  },
+  {
+    "bytes": 21,
+    "path": "configs/requirements-pdfplumber.txt"
+  },
+  {
+    "bytes": 4524,
+    "path": "configs/rimbase_form_template.json"
+  },
+  {
+    "bytes": 7904,
+    "path": "docs/design.md"
+  },
+  {
+    "bytes": 10933,
+    "path": "docs/evaluation.md"
+  },
+  {
+    "bytes": 5085,
+    "path": "docs/known-issues.md"
+  },
+  {
+    "bytes": 12445,
+    "path": "docs/papers.md"
+  },
+  {
+    "bytes": 5115,
+    "path": "docs/tool-survey.md"
+  },
+  {
+    "bytes": 1062,
+    "path": "docs/tools/azure-di-schema.md"
+  },
+  {
+    "bytes": 1435,
+    "path": "docs/tools/camelot.md"
+  },
+  {
+    "bytes": 620,
+    "path": "docs/tools/chonkie.md"
+  },
+  {
+    "bytes": 719,
+    "path": "docs/tools/dangerzone.md"
+  },
+  {
+    "bytes": 749,
+    "path": "docs/tools/data-prep-kit.md"
+  },
+  {
+    "bytes": 730,
+    "path": "docs/tools/deepdoctection.md"
+  },
+  {
+    "bytes": 9436,
+    "path": "docs/tools/docling-core.md"
+  },
+  {
+    "bytes": 1269,
+    "path": "docs/tools/docling-eval.md"
+  },
+  {
+    "bytes": 9005,
+    "path": "docs/tools/docling-ibm-models.md"
+  },
+  {
+    "bytes": 838,
+    "path": "docs/tools/docling-serve.md"
+  },
+  {
+    "bytes": 9781,
+    "path": "docs/tools/docling.md"
+  },
+  {
+    "bytes": 1156,
+    "path": "docs/tools/docvortex.md"
+  },
+  {
+    "bytes": 615,
+    "path": "docs/tools/dsrag.md"
+  },
+  {
+    "bytes": 759,
+    "path": "docs/tools/img2table.md"
+  },
+  {
+    "bytes": 867,
+    "path": "docs/tools/label-studio.md"
+  },
+  {
+    "bytes": 814,
+    "path": "docs/tools/langchain.md"
+  },
+  {
+    "bytes": 647,
+    "path": "docs/tools/lightrag.md"
+  },
+  {
+    "bytes": 1251,
+    "path": "docs/tools/llama-index.md"
+  },
+  {
+    "bytes": 4338,
+    "path": "docs/tools/llama.cpp.md"
+  },
+  {
+    "bytes": 739,
+    "path": "docs/tools/marker.md"
+  },
+  {
+    "bytes": 710,
+    "path": "docs/tools/mineru-refine.md"
+  },
+  {
+    "bytes": 3448,
+    "path": "docs/tools/mineru.md"
+  },
+  {
+    "bytes": 998,
+    "path": "docs/tools/nemo-retriever.md"
+  },
+  {
+    "bytes": 855,
+    "path": "docs/tools/neo4j-graphrag.md"
+  },
+  {
+    "bytes": 692,
+    "path": "docs/tools/nuextract.md"
+  },
+  {
+    "bytes": 1861,
+    "path": "docs/tools/ocrmypdf.md"
+  },
+  {
+    "bytes": 805,
+    "path": "docs/tools/olmocr.md"
+  },
+  {
+    "bytes": 675,
+    "path": "docs/tools/omnidocbench.md"
+  },
+  {
+    "bytes": 5150,
+    "path": "docs/tools/opendataloader-pdf.md"
+  },
+  {
+    "bytes": 4400,
+    "path": "docs/tools/paddleocr.md"
+  },
+  {
+    "bytes": 1522,
+    "path": "docs/tools/pdfplumber.md"
+  },
+  {
+    "bytes": 651,
+    "path": "docs/tools/pikepdf.md"
+  },
+  {
+    "bytes": 773,
+    "path": "docs/tools/potatr.md"
+  },
+  {
+    "bytes": 726,
+    "path": "docs/tools/rag-anything.md"
+  },
+  {
+    "bytes": 1173,
+    "path": "docs/tools/ragflow.md"
+  },
+  {
+    "bytes": 620,
+    "path": "docs/tools/table-transformer.md"
+  },
+  {
+    "bytes": 659,
+    "path": "docs/tools/tika.md"
+  },
+  {
+    "bytes": 1154,
+    "path": "docs/tools/unstructured.md"
+  },
+  {
+    "bytes": 1237,
+    "path": "docs/tools/witsml-schema.md"
+  },
+  {
+    "bytes": 781,
+    "path": "docs/tools/witsml.md"
+  },
+  {
+    "bytes": 3782,
+    "path": "docs/usage.md"
+  },
+  {
+    "bytes": 407,
+    "path": "experiments/continued_tables.py"
+  },
+  {
+    "bytes": 392,
+    "path": "experiments/form_pairing.py"
+  },
+  {
+    "bytes": 1837,
+    "path": "experiments/hard_page_selection.py"
+  },
+  {
+    "bytes": 1706,
+    "path": "experiments/parser_comparison.py"
+  },
+  {
+    "bytes": 404,
+    "path": "experiments/scanned_page_ocr.py"
+  },
+  {
+    "bytes": 824,
+    "path": "experiments/text_support.py"
+  },
+  {
+    "bytes": 25499,
+    "path": "NOTICE.md"
+  },
+  {
+    "bytes": 4135,
+    "path": "README.md"
+  },
+  {
+    "bytes": 9413,
+    "path": "results/annotation-relocation.json"
+  },
+  {
+    "bytes": 7696,
+    "path": "results/cache-normalization.json"
+  },
+  {
+    "bytes": 17075,
+    "path": "results/checks.json"
+  },
+  {
+    "bytes": 3753,
+    "path": "results/continued-tables/aligned-column-development.json"
+  },
+  {
+    "bytes": 2390,
+    "path": "results/continued-tables/aligned-column-held-out.json"
+  },
+  {
+    "bytes": 8249,
+    "path": "results/continued-tables/exact-header-development.json"
+  },
+  {
+    "bytes": 3700,
+    "path": "results/continued-tables/header-cleaning-development.json"
+  },
+  {
+    "bytes": 2390,
+    "path": "results/continued-tables/header-cleaning-held-out.json"
+  },
+  {
+    "bytes": 24795,
+    "path": "results/evaluation.json"
+  },
+  {
+    "bytes": 1871,
+    "path": "results/evaluation.md"
+  },
+  {
+    "bytes": 3344,
+    "path": "results/form-pairing/development.json"
+  },
+  {
+    "bytes": 2784,
+    "path": "results/form-pairing/held-out.json"
+  },
+  {
+    "bytes": 4088,
+    "path": "results/form-pairing/semantic-review.json"
+  },
+  {
+    "bytes": 20417,
+    "path": "results/hard-page-selection/scores.json"
+  },
+  {
+    "bytes": 124220,
+    "path": "results/hard-page-selection/signals.csv"
+  },
+  {
+    "bytes": 6031,
+    "path": "results/licenses/7zip-LICENSE.txt"
+  },
+  {
+    "bytes": 1073,
+    "path": "results/licenses/onnxruntime-LICENSE.txt"
+  },
+  {
+    "bytes": 11422,
+    "path": "results/licenses/rapidocr-LICENSE.txt"
+  },
+  {
+    "bytes": 8398,
+    "path": "results/licenses/rapidocr-MODEL_LICENSES.md.txt"
+  },
+  {
+    "bytes": 11358,
+    "path": "results/licenses/tesseract-LICENSE.txt"
+  },
+  {
+    "bytes": 11357,
+    "path": "results/licenses/vietocr-LICENSE.txt"
+  },
+  {
+    "bytes": 36459,
+    "path": "results/literature.json"
+  },
+  {
+    "bytes": 6216,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr1153_68-32_eowr-p17.json"
+  },
+  {
+    "bytes": 1845,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr1153_68-32_eowr-p18.json"
+  },
+  {
+    "bytes": 20035,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr1295_56-32_eowr-p22.json"
+  },
+  {
+    "bytes": 4666,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr1295_56-32_eowr-p31.json"
+  },
+  {
+    "bytes": 10322,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr1295_56-32_eowr-p33.json"
+  },
+  {
+    "bytes": 10688,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546-p1.json"
+  },
+  {
+    "bytes": 29842,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p1.json"
+  },
+  {
+    "bytes": 18502,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836-p1.json"
+  },
+  {
+    "bytes": 11463,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_33_8_casinginforpt_160913154132-p1.json"
+  },
+  {
+    "bytes": 12202,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_37_8_cementjobrpt_160913175233-p1.json"
+  },
+  {
+    "bytes": 8795,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343-p1.json"
+  },
+  {
+    "bytes": 1826,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_eowr-p2.json"
+  },
+  {
+    "bytes": 7592,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_eowr-p4.json"
+  },
+  {
+    "bytes": 7046,
+    "path": "results/parser-comparison/native/corpus_accurate-gdr882_ak3_eowr-p7.json"
+  },
+  {
+    "bytes": 8055,
+    "path": "results/parser-comparison/native/corpus_fast-gdr1153_68-32_eowr-p17.json"
+  },
+  {
+    "bytes": 7683,
+    "path": "results/parser-comparison/native/corpus_fast-gdr1153_68-32_eowr-p18.json"
+  },
+  {
+    "bytes": 22011,
+    "path": "results/parser-comparison/native/corpus_fast-gdr1295_56-32_eowr-p22.json"
+  },
+  {
+    "bytes": 4580,
+    "path": "results/parser-comparison/native/corpus_fast-gdr1295_56-32_eowr-p31.json"
+  },
+  {
+    "bytes": 10318,
+    "path": "results/parser-comparison/native/corpus_fast-gdr1295_56-32_eowr-p33.json"
+  },
+  {
+    "bytes": 10602,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546-p1.json"
+  },
+  {
+    "bytes": 29838,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p1.json"
+  },
+  {
+    "bytes": 17009,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836-p1.json"
+  },
+  {
+    "bytes": 11130,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_33_8_casinginforpt_160913154132-p1.json"
+  },
+  {
+    "bytes": 12280,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_37_8_cementjobrpt_160913175233-p1.json"
+  },
+  {
+    "bytes": 8787,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343-p1.json"
+  },
+  {
+    "bytes": 1822,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_eowr-p2.json"
+  },
+  {
+    "bytes": 7588,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_eowr-p4.json"
+  },
+  {
+    "bytes": 7042,
+    "path": "results/parser-comparison/native/corpus_fast-gdr882_ak3_eowr-p7.json"
+  },
+  {
+    "bytes": 23487,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr1153_68-32_eowr-p17.json"
+  },
+  {
+    "bytes": 22323,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr1153_68-32_eowr-p18.json"
+  },
+  {
+    "bytes": 21505,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr1295_56-32_eowr-p22.json"
+  },
+  {
+    "bytes": 5335,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr1295_56-32_eowr-p31.json"
+  },
+  {
+    "bytes": 10102,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr1295_56-32_eowr-p33.json"
+  },
+  {
+    "bytes": 19239,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546-p1.json"
+  },
+  {
+    "bytes": 19070,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309-p1.json"
+  },
+  {
+    "bytes": 28198,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836-p1.json"
+  },
+  {
+    "bytes": 11449,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_33_8_casinginforpt_160913154132-p1.json"
+  },
+  {
+    "bytes": 12883,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_37_8_cementjobrpt_160913175233-p1.json"
+  },
+  {
+    "bytes": 8424,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343-p1.json"
+  },
+  {
+    "bytes": 2112,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_eowr-p2.json"
+  },
+  {
+    "bytes": 7654,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_eowr-p4.json"
+  },
+  {
+    "bytes": 7320,
+    "path": "results/parser-comparison/native/vlm_mineru-gdr882_ak3_eowr-p7.json"
+  },
+  {
+    "bytes": 84193,
+    "path": "results/parser-comparison/scores.json"
+  },
+  {
+    "bytes": 2203,
+    "path": "results/parser-comparison/source-value-review.json"
+  },
+  {
+    "bytes": 3247,
+    "path": "results/pipeline-checks.json"
+  },
+  {
+    "bytes": 19009,
+    "path": "results/reviewable-files.json"
+  },
+  {
+    "bytes": 41887,
+    "path": "results/rotation-review.json"
+  },
+  {
+    "bytes": 8381,
+    "path": "results/runtime.json"
+  },
+  {
+    "bytes": 2753,
+    "path": "results/scanned-page-ocr/converter-tesseract.json"
+  },
+  {
+    "bytes": 14053,
+    "path": "results/scanned-page-ocr/engines.json"
+  },
+  {
+    "bytes": 2683,
+    "path": "results/scanned-page-ocr/text-conversion.json"
+  },
+  {
+    "bytes": 24863,
+    "path": "results/text-support/references.json"
+  },
+  {
+    "bytes": 367896,
+    "path": "results/text-support/scores.json"
+  },
+  {
+    "bytes": 505661,
+    "path": "results/tool-survey.json"
+  },
+  {
+    "bytes": 32409,
+    "path": "results/upstream-snapshot.json"
+  },
+  {
+    "bytes": 4201,
+    "path": "schemas/k1_chunk.schema.json"
+  },
+  {
+    "bytes": 1021,
+    "path": "schemas/k1_file.schema.json"
+  },
+  {
+    "bytes": 2715,
+    "path": "schemas/k1_form.schema.json"
+  },
+  {
+    "bytes": 1308,
+    "path": "schemas/k1_page.schema.json"
+  },
+  {
+    "bytes": 885,
+    "path": "schemas/k1_parent.schema.json"
+  },
+  {
+    "bytes": 2460,
+    "path": "schemas/k1_table.schema.json"
+  },
+  {
+    "bytes": 420,
+    "path": "scripts/evaluate.ps1"
+  },
+  {
+    "bytes": 863,
+    "path": "scripts/run.ps1"
+  },
+  {
+    "bytes": 2226,
+    "path": "scripts/setup.ps1"
+  },
+  {
+    "bytes": 1153,
+    "path": "scripts/tools/prepare_pages.py"
+  },
+  {
+    "bytes": 12076,
+    "path": "scripts/tools/run_tool.py"
+  },
+  {
+    "bytes": 782,
+    "path": "scripts/tools/serve-hybrid.ps1"
+  },
+  {
+    "bytes": 1136,
+    "path": "scripts/tools/serve-model.ps1"
+  },
+  {
+    "bytes": 2106,
+    "path": "scripts/tools/setup_native.py"
+  },
+  {
+    "bytes": 1103,
+    "path": "scripts/tools/verify_assets.py"
+  },
+  {
+    "bytes": 78,
+    "path": "src/ingest_prototype/__init__.py"
+  },
+  {
+    "bytes": 5188,
+    "path": "src/ingest_prototype/chunking.py"
+  },
+  {
+    "bytes": 10317,
+    "path": "src/ingest_prototype/cli.py"
+  },
+  {
+    "bytes": 1965,
+    "path": "src/ingest_prototype/convert.py"
+  },
+  {
+    "bytes": 16855,
+    "path": "src/ingest_prototype/evaluate.py"
+  },
+  {
+    "bytes": 2024,
+    "path": "src/ingest_prototype/export.py"
+  },
+  {
+    "bytes": 7670,
+    "path": "src/ingest_prototype/forms.py"
+  },
+  {
+    "bytes": 218,
+    "path": "src/ingest_prototype/ids.py"
+  },
+  {
+    "bytes": 2651,
+    "path": "src/ingest_prototype/ocr.py"
+  },
+  {
+    "bytes": 3575,
+    "path": "src/ingest_prototype/rotation.py"
+  },
+  {
+    "bytes": 2191,
+    "path": "src/ingest_prototype/runtime.py"
+  },
+  {
+    "bytes": 19547,
+    "path": "src/ingest_prototype/tables.py"
+  },
+  {
+    "bytes": 5470,
+    "path": "src/ingest_prototype/text_layer.py"
+  },
+  {
+    "bytes": 4147,
+    "path": "src/ingest_prototype/validate.py"
+  },
+  {
+    "bytes": 7388,
+    "path": "tests/test_prototype.py"
+  }
+]

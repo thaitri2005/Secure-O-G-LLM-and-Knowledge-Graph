@@ -1,0 +1,1102 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        37.224000000000004,
+        528.7679999999999,
+        73.656,
+        560.5919999999999
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "FG",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        37.224000000000004,
+        390.45599999999996,
+        63.360000000000014,
+        508.5719999999999
+      ],
+      "id": "#/texts/1",
+      "section": null,
+      "text": "Daily Drilling Report\nWell ID: Forge 68-32",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        37.224000000000004,
+        289.47599999999994,
+        63.360000000000014,
+        358.0199999999999
+      ],
+      "id": "#/texts/2",
+      "section": null,
+      "text": "Job ID: Original",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        53.85600000000001,
+        40.391999999999996,
+        76.82400000000001,
+        272.34
+      ],
+      "id": "#/texts/3",
+      "section": null,
+      "text": "Well Name: 68-32\nSect: 26 Town: 26S Rng: 9W County: Beaver State: UT",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        79.20000000000002,
+        35.495999999999995,
+        90.28800000000001,
+        573.444
+      ],
+      "id": "#/texts/4",
+      "section": null,
+      "text": "Report No: 1 Report For 01-Mar-19",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        92.66400000000002,
+        35.495999999999995,
+        175.03200000000004,
+        573.444
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "Operator: University of Utah Rig: #10031 Spud Date: 09-Mar-19 Daily Cost / Mud ($): --- Measured Depth (ft): 0 Working Interest: Wellbore: Original Wellbore AFE No. AFE ($) Actual ($) Vertical Depth (ft): 0 Last Casing: RKB Elevation (ft): 0.00 --- --- --- Proposed TD (ft): 1000 Next Casing: 14.000 at 60  --- --- --- Hole Made (ft) / Hrs: 0 / 0.0 Last BOP Test:  Totals: --- --- Average ROP (ft/hr): Next BOP Test:  Well Cost ($): --- Drilling Days (act./plan): 0/0 Flat Days (act./plan): 0/0 Total Days (act./plan): 0/0 Days On Location: 1",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        176.61600000000004,
+        35.495999999999995,
+        221.76000000000005,
+        573.444
+      ],
+      "id": "#/tables/1",
+      "section": null,
+      "text": "Current Ops: Waiting on daylight and remainder of loads for rig up. Planned Ops: Continue unloading equipment. Toolpusher: Supervisors: Randy Baldwin Tel No.: Comments: 3 loads of the rig arrived on Feb 28.",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        224.92800000000003,
+        391.0679999999999,
+        228.888,
+        573.444
+      ],
+      "id": "#/texts/5",
+      "section": null,
+      "text": "Theorem 1.2. The following are equivalent:",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        235.22400000000002,
+        35.495999999999995,
+        278.78400000000005,
+        573.444
+      ],
+      "id": "#/tables/2",
+      "section": null,
+      "text": "From To Elapsed End MD(ft) Code Operations Description Non-Prod 6:00 18:00 12.00 0 1-39 Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad.  18:00 0:00 6.00 0 2-99 Waiting on day ligth ",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        388.87200000000007,
+        264.38399999999996,
+        397.58400000000006,
+        351.2879999999999
+      ],
+      "id": "#/texts/6",
+      "section": null,
+      "text": "Bit/BHA Information",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        399.96000000000004,
+        35.495999999999995,
+        425.3040000000001,
+        573.444
+      ],
+      "id": "#/tables/3",
+      "section": null,
+      "text": "No/Run Make Model Diam Jets 1-4 Dist Hrs ROP WOB RPM Torq MudWt Flow Press J.Vel P.Drp HHP JIF No Bit Information for this report.",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        460.15200000000004,
+        525.7079999999999,
+        470.44800000000004,
+        570.996
+      ],
+      "id": "#/texts/7",
+      "section": null,
+      "text": "BHA - None",
+      "type": "footnote"
+    },
+    {
+      "bbox": [
+        472.82400000000007,
+        35.495999999999995,
+        508.4640000000001,
+        573.444
+      ],
+      "id": "#/tables/4",
+      "section": null,
+      "text": "Mud Reports Date/Time Dens. Vis. PV YP Filt. Cake pH Solids Oil Water Sand LGS CI Ca CaCI Gels Temp In/Out No Mud Records for this report.",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        521.1360000000001,
+        35.495999999999995,
+        677.1600000000001,
+        573.444
+      ],
+      "id": "#/tables/5",
+      "section": null,
+      "text": "Drilling Parameters Mud Log Depth ROP Av/Mx WOB RPM Torque Flow AV:DC AV:DP Press. Depth Gas:Back Max Conn Trip Pore Pres. No Drilling Parameters Records for this report. No Mud Log Information for this report. Inventory Safety Information Environment Item Used Invent. Item Used Invent. LTI: Days Since: Cum. Water Hauled: 0.000 acre-ft No Inventory Records for this report. Med: 1st Aid:  Accident Description: Oper: 1 Cont: 0 Serv: 0 Othr: 1 Total Personnel: 2 Hours: 0 Rig/Weather Information",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        680.3280000000001,
+        440.0279999999999,
+        689.8320000000001,
+        570.996
+      ],
+      "id": "#/texts/8",
+      "section": null,
+      "text": "No Rig Information for this report.",
+      "type": "footnote"
+    },
+    {
+      "bbox": [
+        727.8480000000002,
+        421.05599999999987,
+        737.3520000000001,
+        570.996
+      ],
+      "id": "#/texts/9",
+      "section": null,
+      "text": "No Weather Information for this report.",
+      "type": "footnote"
+    },
+    {
+      "bbox": [
+        740.5200000000001,
+        481.64399999999995,
+        750.0240000000001,
+        575.8919999999998
+      ],
+      "id": "#/texts/10",
+      "section": null,
+      "text": "Printed: 20:02 29-Apr-19",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        740.5200000000001,
+        272.34,
+        749.2320000000001,
+        338.436
+      ],
+      "id": "#/texts/11",
+      "section": null,
+      "text": "RIMBase 7.4.89.0",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        740.5200000000001,
+        35.495999999999995,
+        750.0240000000001,
+        80.17199999999998
+      ],
+      "id": "#/texts/12",
+      "section": null,
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "c0db8b7ea07ec812c875644cea6e2956ce0e50d052ddc5afcc0ce196362c5265",
+  "page": 17,
+  "page_size": {
+    "height": 611.9999999999999,
+    "width": 792.0000000000001
+  },
+  "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Operator:"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "University of Utah"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Rig:"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "#10031"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Spud Date:"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "09-Mar-19"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Daily Cost / Mud ($):"
+        },
+        {
+          "c": 10,
+          "r": 0,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Measured Depth (ft):"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "0"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "Working Interest:"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "Wellbore:"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "Original Wellbore"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "AFE No."
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "AFE ($)"
+        },
+        {
+          "c": 9,
+          "r": 1,
+          "text": "Actual ($)"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Vertical Depth (ft):"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "0"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "Last Casing:"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "RKB Elevation (ft):"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": "0.00"
+        },
+        {
+          "c": 7,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 8,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 9,
+          "r": 2,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Proposed TD (ft):"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "1000"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "Next Casing:"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "14.000 at 60"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 8,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 9,
+          "r": 3,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Hole Made (ft) / Hrs:"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "0 / 0.0"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "Last BOP Test:"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 4,
+          "text": "Totals:"
+        },
+        {
+          "c": 8,
+          "r": 4,
+          "text": "---"
+        },
+        {
+          "c": 9,
+          "r": 4,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "Average ROP (ft/hr):"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "text": "Next BOP Test:"
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "text": "Well Cost ($):"
+        },
+        {
+          "c": 10,
+          "r": 5,
+          "text": "---"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "text": "Drilling Days (act./plan):"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "text": "0/0"
+        },
+        {
+          "c": 2,
+          "r": 6,
+          "text": "Flat Days (act./plan):"
+        },
+        {
+          "c": 4,
+          "r": 6,
+          "text": "0/0"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "text": "Total Days (act./plan):"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "text": "0/0"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "text": "Days On Location:"
+        },
+        {
+          "c": 10,
+          "r": 6,
+          "text": "1"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 11,
+      "num_rows": 7,
+      "regions": [
+        {
+          "bbox": [
+            92.66400000000002,
+            35.495999999999995,
+            175.03200000000004,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Current Ops: Waiting on daylight and remainder of loads for rig up."
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Planned Ops: Continue unloading equipment."
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Toolpusher:"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "Supervisors: Randy Baldwin"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "Tel No.:"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Comments: 3 loads of the rig arrived on Feb 28."
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 3,
+      "num_rows": 4,
+      "regions": [
+        {
+          "bbox": [
+            176.61600000000004,
+            35.495999999999995,
+            221.76000000000005,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/1"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "From"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "To"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Elapsed"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "End MD(ft)"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Code"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Operations Description"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Non-Prod"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "6:00"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "18:00"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "12.00"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "1-39"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad."
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": ""
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "18:00"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "0:00"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "6.00"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "2-99"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "Waiting on day ligth"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "text": ""
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 7,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            235.22400000000002,
+            35.495999999999995,
+            278.78400000000005,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/2"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "No/Run Make"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Model"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Diam"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "Jets 1-4"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Dist"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Hrs"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "ROP"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "WOB"
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "RPM"
+        },
+        {
+          "c": 9,
+          "r": 0,
+          "text": "Torq"
+        },
+        {
+          "c": 10,
+          "r": 0,
+          "text": "MudWt"
+        },
+        {
+          "c": 11,
+          "r": 0,
+          "text": "Flow Press"
+        },
+        {
+          "c": 12,
+          "r": 0,
+          "text": "J.Vel"
+        },
+        {
+          "c": 13,
+          "r": 0,
+          "text": "P.Drp"
+        },
+        {
+          "c": 14,
+          "r": 0,
+          "text": "HHP"
+        },
+        {
+          "c": 15,
+          "r": 0,
+          "text": "JIF"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "No Bit Information for this report."
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 16,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            399.96000000000004,
+            35.495999999999995,
+            425.3040000000001,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/3"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Mud Reports"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Date/Time"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "Dens."
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Vis."
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "PV"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "YP"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "Filt."
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "Cake"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "pH"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "Solids"
+        },
+        {
+          "c": 9,
+          "r": 1,
+          "text": "Oil"
+        },
+        {
+          "c": 10,
+          "r": 1,
+          "text": "Water"
+        },
+        {
+          "c": 11,
+          "r": 1,
+          "text": "Sand"
+        },
+        {
+          "c": 12,
+          "r": 1,
+          "text": "LGS"
+        },
+        {
+          "c": 13,
+          "r": 1,
+          "text": "CI"
+        },
+        {
+          "c": 14,
+          "r": 1,
+          "text": "Ca"
+        },
+        {
+          "c": 15,
+          "r": 1,
+          "text": "CaCI"
+        },
+        {
+          "c": 16,
+          "r": 1,
+          "text": "Gels"
+        },
+        {
+          "c": 17,
+          "r": 1,
+          "text": "Temp In/Out"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "No Mud Records for this report."
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 18,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            472.82400000000007,
+            35.495999999999995,
+            508.4640000000001,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/4"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Drilling Parameters"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Mud Log"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Depth"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "ROP Av/Mx"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "WOB"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "RPM Torque"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "Flow AV:DC AV:DP Press."
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "Depth"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "Gas:Back"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "Max Conn"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "Trip Pore Pres."
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "No Drilling Parameters Records for this report."
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "No Mud Log Information for this report."
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "Inventory"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "Safety Information"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "text": "Environment"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "Item"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "Used"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "Invent."
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "Item Used"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": "Invent."
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": "LTI:"
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "text": "Days Since:"
+        },
+        {
+          "c": 7,
+          "r": 4,
+          "text": "Cum. Water Hauled:"
+        },
+        {
+          "c": 8,
+          "r": 4,
+          "text": "0.000 acre-ft"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "text": "No Inventory Records for this report."
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "text": "Med:"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "text": "1st Aid:"
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "text": ""
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "text": "Accident Description:"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "text": "Oper: 1 Cont: 0 Serv: 0 Othr: 1"
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "text": "Total Personnel: 2 Hours: 0"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "text": "Rig/Weather Information"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 9,
+      "num_rows": 10,
+      "regions": [
+        {
+          "bbox": [
+            521.1360000000001,
+            35.495999999999995,
+            677.1600000000001,
+            573.444
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/5"
+    }
+  ],
+  "variant": "vlm_mineru"
+}

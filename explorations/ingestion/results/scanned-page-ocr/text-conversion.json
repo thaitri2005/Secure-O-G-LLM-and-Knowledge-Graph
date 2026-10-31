@@ -1,0 +1,101 @@
+{
+  "amendment": "Order-independent word recall on p25 was fixed before scoring; p25 CER is diagnostic only",
+  "micro_totals": [
+    {
+      "CER": 0.33356990773598294,
+      "CER_p23_p24": 0.12446717817561807,
+      "WER": 0.41732283464566927,
+      "critical_count": 33,
+      "critical_matches": 26,
+      "critical_token_accuracy": 0.7878787878787878,
+      "engine": "ocrmypdf_docling_text",
+      "pages": 3,
+      "seconds_total": 20.04,
+      "word_recall_p25": 0.759581881533101
+    }
+  ],
+  "per_page_ranking": {
+    "23": [
+      "ocrmypdf_docling_text"
+    ],
+    "24": [
+      "ocrmypdf_docling_text"
+    ],
+    "25": [
+      "ocrmypdf_docling_text"
+    ]
+  },
+  "ranking": [
+    "ocrmypdf_docling_text"
+  ],
+  "records": [
+    {
+      "CER": 0.1793298725814063,
+      "WER": 0.18604651162790697,
+      "character_edits": 380,
+      "critical_count": 13,
+      "critical_matches": 9,
+      "critical_token_accuracy": 0.6923076923076923,
+      "engine": "ocrmypdf_docling_text",
+      "missed_critical_tokens": [
+        "2600’",
+        "70’",
+        "10’",
+        "30’"
+      ],
+      "order_independent_word_recall": 0.9331395348837209,
+      "page": 23,
+      "reference_characters": 2119,
+      "reference_words": 344,
+      "scored": true,
+      "seconds": 20.04,
+      "word_edits": 64,
+      "word_recall_matches": 321,
+      "word_recall_reference": 344
+    },
+    {
+      "CER": 0.041428571428571426,
+      "WER": 0.057777777777777775,
+      "character_edits": 58,
+      "critical_count": 5,
+      "critical_matches": 5,
+      "critical_token_accuracy": 1.0,
+      "engine": "ocrmypdf_docling_text",
+      "missed_critical_tokens": [],
+      "order_independent_word_recall": 0.9955555555555555,
+      "page": 24,
+      "reference_characters": 1400,
+      "reference_words": 225,
+      "scored": true,
+      "seconds": 0,
+      "word_edits": 13,
+      "word_recall_matches": 224,
+      "word_recall_reference": 225
+    },
+    {
+      "CER": 0.5422575155984118,
+      "WER": 0.6968641114982579,
+      "character_edits": 1912,
+      "critical_count": 15,
+      "critical_matches": 12,
+      "critical_token_accuracy": 0.8,
+      "engine": "ocrmypdf_docling_text",
+      "missed_critical_tokens": [
+        "J/K55",
+        "BQ-4130",
+        "20 AAC 25.005(g)"
+      ],
+      "order_independent_word_recall": 0.759581881533101,
+      "page": 25,
+      "reference_characters": 3526,
+      "reference_words": 574,
+      "scored": true,
+      "seconds": 0,
+      "word_edits": 400,
+      "word_recall_matches": 436,
+      "word_recall_reference": 574
+    }
+  ],
+  "selected_engine": "ocrmypdf_docling_text",
+  "verdict": "selected under amended ranking"
+}

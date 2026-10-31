@@ -1,0 +1,262 @@
+{
+  "doc_id": "gdr1295_56-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        71.604,
+        50.688,
+        97.308,
+        84.744
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "U",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        97.92,
+        55.440000000000005,
+        224.60399999999998,
+        82.368
+      ],
+      "id": "#/texts/1",
+      "section": null,
+      "text": "TAH FORGE\nU.S. Department of Energy",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        244.8,
+        34.848,
+        559.368,
+        86.328
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "End of Well Report Ref. GRG-10230 Utah FORGE Ver. Final Page 31 of 86 Seismic Monitoring Well 56-32 Issued: 22 July 2021",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        69.768,
+        106.128,
+        332.31600000000003,
+        119.592
+      ],
+      "id": "#/texts/2",
+      "section": null,
+      "text": "Table 6: Basic drilling parameters for 17-1/2 in. section",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        54.467999999999996,
+        123.552,
+        558.756,
+        211.464
+      ],
+      "id": "#/tables/1",
+      "section": null,
+      "text": "Bit #/Run Hole made (ft) Bit Size (in.) IADC Code Ave. WOB (klbs) Ave. RPM Jet Size (32nd) Ave. flow rate (gpm) Ave. ROP (fph) 1/1 252 17.5 S422 12 50 20-20-20-20-20 800 206",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        70.38000000000001,
+        735.768,
+        111.996,
+        748.4399999999999
+      ],
+      "id": "#/texts/3",
+      "section": null,
+      "text": "Page | 31",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        533.052,
+        722.304,
+        578.952,
+        770.616
+      ],
+      "id": "#/texts/4",
+      "section": null,
+      "text": "FG",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "8337f3d9472d683af92f1bd9cf810b354e2d31cc90741bb0b7d546e9c1f2f157",
+  "page": 31,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "End of Well Report"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Ref. GRG-10230"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Utah FORGE"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "Ver. Final"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "Page 31 of 86"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "Seismic Monitoring Well 56-32"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "Issued: 22 July 2021"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 3,
+      "num_rows": 3,
+      "regions": [
+        {
+          "bbox": [
+            244.8,
+            34.848,
+            559.368,
+            86.328
+          ],
+          "page": 31
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Bit #/Run"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Hole made (ft)"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Bit Size (in.)"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "IADC Code"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Ave. WOB (klbs)"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Ave. RPM"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Jet Size (32nd)"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Ave. flow rate (gpm)"
+        },
+        {
+          "c": 8,
+          "r": 0,
+          "text": "Ave. ROP (fph)"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "1/1"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "252"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "17.5"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "S422"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "12"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "50"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "20-20-20-20-20"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "800"
+        },
+        {
+          "c": 8,
+          "r": 1,
+          "text": "206"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 9,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            54.467999999999996,
+            123.552,
+            558.756,
+            211.464
+          ],
+          "page": 31
+        }
+      ],
+      "table_id": "#/tables/1"
+    }
+  ],
+  "variant": "vlm_mineru"
+}

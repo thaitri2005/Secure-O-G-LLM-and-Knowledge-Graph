@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "type",
+    "text",
+    "section",
+    "section_path",
+    "page",
+    "pages",
+    "regions",
+    "source_spans",
+    "table_id",
+    "row_start",
+    "row_end",
+    "language",
+    "ocr",
+    "quality",
+    "char_start",
+    "char_end",
+    "sha256",
+    "parent_id",
+    "file_id",
+    "child_index",
+    "form_id",
+    "context"
+  ],
+  "properties": {
+    "chunk_id": {
+      "type": "string"
+    },
+    "doc_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+    },
+    "type": {
+      "enum": [
+        "text",
+        "table",
+        "form"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "section": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "section_path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "page": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "bbox"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "left, top, right, bottom in PDF points, top-left origin"
+          }
+        }
+      }
+    },
+    "source_spans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_ref",
+          "page",
+          "start",
+          "end",
+          "source_start",
+          "source_end"
+        ],
+        "properties": {
+          "source_ref": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_end": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "table_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "row_start": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "row_end": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "language": {
+      "enum": [
+        "vi",
+        "en",
+        "und"
+      ]
+    },
+    "ocr": {
+      "type": "boolean"
+    },
+    "quality": {
+      "enum": [
+        "ok",
+        "review"
+      ]
+    },
+    "char_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "char_end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parent_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}:[stf][1-9][0-9]*$"
+    },
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    },
+    "child_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "form_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "report_date": {
+          "type": "string"
+        },
+        "well": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

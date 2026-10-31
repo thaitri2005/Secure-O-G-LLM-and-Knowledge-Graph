@@ -1,0 +1,78 @@
+{
+  "records": [
+    {
+      "bbox_pairs": 41,
+      "bbox_share": 1.0,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "gold_pairs": 48,
+      "invented_value_count": 0,
+      "invented_value_policy": "literal source-absent candidates; semantic review required",
+      "invented_values": [],
+      "matched": 34,
+      "method": "generic",
+      "page": 28,
+      "pair_accuracy": 0.6181818181818182,
+      "pair_precision": 0.8292682926829268,
+      "pair_recall": 0.7083333333333334,
+      "predicted_pairs": 41,
+      "scored": true
+    },
+    {
+      "bbox_pairs": 37,
+      "bbox_share": 1.0,
+      "doc_id": "gdr1153_78-32_eowr",
+      "gold_pairs": 45,
+      "invented_value_count": 2,
+      "invented_value_policy": "literal source-absent candidates; semantic review required",
+      "invented_values": [
+        "Cutoff 9 5/8\" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625\" casing. Weld ...",
+        "Complete Nipple up. Function and test BOP's Make up 8 3/4\" assembly, Clean out cement. Test shoe track. Drill 8.75\" new hole. ..."
+      ],
+      "matched": 31,
+      "method": "generic",
+      "page": 30,
+      "pair_accuracy": 0.6078431372549019,
+      "pair_precision": 0.8378378378378378,
+      "pair_recall": 0.6888888888888889,
+      "predicted_pairs": 37,
+      "scored": true
+    },
+    {
+      "bbox_pairs": 48,
+      "bbox_share": 1.0,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "gold_pairs": 48,
+      "invented_value_count": 0,
+      "invented_value_policy": "literal source-absent candidates; semantic review required",
+      "invented_values": [],
+      "matched": 48,
+      "method": "template",
+      "page": 28,
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 48,
+      "scored": true
+    },
+    {
+      "bbox_pairs": 45,
+      "bbox_share": 1.0,
+      "doc_id": "gdr1153_78-32_eowr",
+      "gold_pairs": 45,
+      "invented_value_count": 2,
+      "invented_value_policy": "literal source-absent candidates; semantic review required",
+      "invented_values": [
+        "Cutoff 9 5/8\" casing and laid down. Lay over mast. Cut off conductor pipe with rotating head. Cutoff and Dress 9.625\" casing. Weld ...",
+        "Complete Nipple up. Function and test BOP's Make up 8 3/4\" assembly, Clean out cement. Test shoe track. Drill 8.75\" new hole. ..."
+      ],
+      "matched": 45,
+      "method": "template",
+      "page": 30,
+      "pair_accuracy": 1.0,
+      "pair_precision": 1.0,
+      "pair_recall": 1.0,
+      "predicted_pairs": 45,
+      "scored": true
+    }
+  ]
+}

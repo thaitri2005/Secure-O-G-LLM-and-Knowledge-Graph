@@ -1,0 +1,85 @@
+{
+  "logical_tables": [
+    {
+      "cell_accuracy": 0.0,
+      "cell_count": 15,
+      "cell_matches": 0,
+      "column_count_correct": true,
+      "expected_columns": 3,
+      "expected_rows": 6,
+      "header_accuracy": 1.0,
+      "header_attached_everywhere": false,
+      "header_count": 3,
+      "header_matches": 3,
+      "id": "forge16a_td_coordinates",
+      "predicted_columns": 3,
+      "predicted_rows": 1,
+      "row_count_correct": false,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.00205761316872428,
+      "cell_count": 486,
+      "cell_matches": 1,
+      "column_count_correct": false,
+      "expected_columns": 9,
+      "expected_rows": 55,
+      "header_accuracy": 0.0,
+      "header_attached_everywhere": false,
+      "header_count": 9,
+      "header_matches": 0,
+      "id": "forge68_activity_detail",
+      "predicted_columns": 12,
+      "predicted_rows": 8,
+      "row_count_correct": false,
+      "variant": "corpus_fast"
+    }
+  ],
+  "plan": "evaluation join-only precision review and positive-table recall; native failures count as recall misses",
+  "positive_details": [
+    {
+      "caught": false,
+      "id": "forge16a_td_coordinates",
+      "missing_native_pair": false,
+      "pages": [
+        7,
+        8
+      ],
+      "pair_id": "corpus_fast:gdr1296_16a78-32_drilling_summary:#/tables/4->#/tables/5",
+      "variant": "corpus_fast"
+    },
+    {
+      "caught": false,
+      "id": "forge68_activity_detail",
+      "missing_native_pair": false,
+      "pages": [
+        30,
+        31
+      ],
+      "pair_id": "corpus_fast:gdr1153_68-32_eowr:#/tables/23->#/tables/24",
+      "variant": "corpus_fast"
+    },
+    {
+      "caught": false,
+      "id": "forge68_activity_detail",
+      "missing_native_pair": false,
+      "pages": [
+        31,
+        32
+      ],
+      "pair_id": "corpus_fast:gdr1153_68-32_eowr:#/tables/24->#/tables/25",
+      "variant": "corpus_fast"
+    }
+  ],
+  "positive_pairs": 3,
+  "positive_pairs_joined": 0,
+  "precision": null,
+  "precision_denominator": "manually labeled predicted joins only; coverage must be complete to pass",
+  "predicted_joins": 2,
+  "recall": 0.0,
+  "review_coverage": 0.0,
+  "reviewed_correct": 0,
+  "reviewed_wrong": 0,
+  "unreviewed_predictions": 2,
+  "verdict": "fail or incomplete review"
+}

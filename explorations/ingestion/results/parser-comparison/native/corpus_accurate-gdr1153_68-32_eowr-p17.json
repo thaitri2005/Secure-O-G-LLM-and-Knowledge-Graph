@@ -1,0 +1,73 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        33.56480026245118,
+        34.492759704589844,
+        749.9544677734376,
+        576.6166381835936
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "Report For 01-Mar-19 1 No: Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Job ID: Original Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: #10031 Last Casing: Rig: 0 Vertical Depth (ft): Measured Depth (ft): 0 Operator: University of Utah Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- --- Report 3 loads of the rig arrived on Feb 28. Randy Baldwin Supervisors: Continue unloading equipment. Waiting on daylight and remainder of loads for rig up. Comments: Toolpusher: Planned Ops: Current Ops: Tel No.: Last BOP Test: 14.000 at 60 1 0/0 Next Casing: Days On Location: Flat Days (act./plan): 0 / 0.0 Average ROP (ft/hr): Hole Made (ft) / Hrs: 1000 Proposed TD (ft): --- --- --- --- --- Totals: Well Cost ($): --- Drilling Days (act./plan): 0/0 Next BOP Test: 0/0 Total Days (act./plan): Operations Summary From To Elapsed End MD(ft) Code Operations Description Non-Prod 6:00 18:00 12.00 0 1-39 Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad. 18:00 0:00 6.00 0 2-99 Waiting on day ligth Bit/BHA Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB ROP Hrs Dist Jets 1-4 Diam Model No/Run Make Flow No Bit Information for this report. BHA - None Mud Reports Gels Temp In/Out Cl Sand Oil Water Solids pH YP PV Cake Filt. Vis. Dens. Date/Time Ca LGS CaCl No Mud Records for this report. Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow Press. AV:DC AV:DP No Drilling Parameters Records for this report. Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Safety Information 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 2 Hours: 0 1 0 Cont: 0 Serv: 1 Othr: Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. Environment Cum. Water Hauled: acre-ft 0.000 Rig/Weather Information No Rig Information for this report. No Weather Information for this report. Printed: 20:02 29-Apr-19 Page: 1 of 1 RIMBase 7.4.89.0",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        0.0,
+        26.34278553724289,
+        121.68004500865936,
+        557.3337622284889
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "Report For 01-Mar-19 1 No: Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Job ID: Original Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: #10031 Last Casing: Rig: 0 Vertical Depth (ft): Measured Depth (ft): 0 Operator: University of Utah Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- ---",
+      "type": "text"
+    }
+  ],
+  "native_sha256": "d4937fa0d2a4c85ea51d2b294806dc89ac14927697362be37be3b3620a50c1d0",
+  "page": 17,
+  "page_size": {
+    "height": 611.9999999999999,
+    "width": 792.0000000000001
+  },
+  "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Report For 01-Mar-19 1 No: Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Job ID: Original Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: #10031 Last Casing: Rig: 0 Vertical Depth (ft): Measured Depth (ft): 0 Operator: University of Utah Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- ---"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Report"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "3 loads of the rig arrived on Feb 28. Randy Baldwin Supervisors: Continue unloading equipment. Waiting on daylight and remainder of loads for rig up. Comments: Toolpusher: Planned Ops: Current Ops: Tel No.: Last BOP Test: 14.000 at 60 1 0/0 Next Casing: Days On Location: Flat Days (act./plan): 0 / 0.0 Average ROP (ft/hr): Hole Made (ft) / Hrs: 1000 Proposed TD (ft): --- --- --- --- --- Totals: Well Cost ($): --- Drilling Days (act./plan): 0/0 Next BOP Test: 0/0 Total Days (act./plan): Operations Summary From To Elapsed End MD(ft) Code Operations Description Non-Prod 6:00 18:00 12.00 0 1-39 Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad. 18:00 0:00 6.00 0 2-99 Waiting on day ligth Bit/BHA Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB ROP Hrs Dist Jets 1-4 Diam Model No/Run Make Flow No Bit Information for this report. BHA - None Mud Reports Gels Temp In/Out Cl Sand Oil Water Solids pH YP PV Cake Filt. Vis. Dens. Date/Time Ca LGS CaCl No Mud Records for this report. Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow Press. AV:DC AV:DP No Drilling Parameters Records for this report. Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Safety Information 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 2 Hours: 0 1 0 Cont: 0 Serv: 1 Othr: Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. Environment Cum. Water Hauled: acre-ft 0.000 Rig/Weather Information No Rig Information for this report. No Weather Information for this report. Printed: 20:02 29-Apr-19 Page: 1 of 1 RIMBase 7.4.89.0"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "num_cols": 3,
+      "num_rows": 1,
+      "regions": [
+        {
+          "bbox": [
+            33.56480026245118,
+            34.492759704589844,
+            749.9544677734376,
+            576.6166381835936
+          ],
+          "page": 17
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_accurate"
+}

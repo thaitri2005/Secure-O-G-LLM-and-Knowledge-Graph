@@ -1,0 +1,117 @@
+{
+  "parser-comparison": {
+    "status": "registered before conversion",
+    "criteria": [
+      "Keep standard as main parser if its arithmetic mean data-cell accuracy across nine grid tables is at most 0.05 below VLM.",
+      "List each table where VLM data-cell accuracy is at least 0.10 above standard."
+    ],
+    "primary_standard": "corpus_fast; corpus_accurate evaluated separately against the same criterion",
+    "runs": [
+      "corpus_fast",
+      "corpus_accurate",
+      "vlm_mineru"
+    ],
+    "model": "MinerU2.5-Pro-2604-1.2B Q8_0, existing f16 projector, loopback only",
+    "coverage": "Union of all table-gold and page-gold physical pages; nine grid targets and one form target, five page annotations.",
+    "page_score_policy": "Existing page gold uses parser-local IDs: report raw score_order values for transparency and a separate deterministic geometric alignment score. One-to-one same-type highest-IoU matching with threshold 0.20, ties by native iteration order; no content or gold-order optimization. Context headings outside the converted page are unavailable and section misses remain misses."
+  },
+  "hard-page-selection": {
+    "status": "registered before signals or selections",
+    "criteria": [
+      "Catch every gold-table page where VLM data-cell accuracy is strictly greater than corpus_fast in parser comparison, plus forge68-rotated-daily-report and ak3-daily-operations; also report the >=0.10 improvement subset separately.",
+      "Selected pages <= 15% of the full measured portfolio."
+    ],
+    "rule_limit": 3,
+    "missing_confidence": "Null does not trigger low-score tests; no imputation.",
+    "rules": [
+      {
+        "id": "R1",
+        "expression": "rotation != 0 OR landscape OR mode == ocr OR largest_table_share >= 0.60 OR empty_columns >= 3 OR table_score < 0.50 OR form_pairs >= 8"
+      },
+      {
+        "id": "R2",
+        "expression": "rotation != 0 OR mode == ocr OR (landscape AND form_pairs >= 4) OR largest_table_share >= 0.80 OR empty_columns >= 5 OR table_score < 0.35 OR form_pairs >= 12"
+      },
+      {
+        "id": "R3",
+        "expression": "rotation != 0 OR (mode == ocr AND form_pairs >= 4) OR (form_pairs >= 8 AND largest_table_share >= 0.35) OR (empty_columns >= 3 AND largest_table_share >= 0.50) OR table_score < 0.20"
+      }
+    ],
+    "form_signal": "Count native text or table-cell strings ending in colon with a nonempty native text/cell value to the right (<=180pt, vertical overlap) or below (<=30pt, horizontal overlap). Distinct label anchors count once. Inline label:value strings also count if label <=80 characters. Geometry from native cells/items; no parser output used as draft gold.",
+    "false_positive_sample": "For each rule, choose up to five selected non-required pages in doc_id/page order; inspect source render and describe why selection may be unnecessary, without claiming confirmed false positives.",
+    "clarification_log": [
+      "Before any VLM conversion or hard-page selection rule selection, the required-page wording was corrected to all positive cell-accuracy wins; the captured >=0.10 wording incorrectly conflated the parser comparison routing-type report with the hard-page selection acceptance criterion. Signals were already computed but selection outcomes and VLM scores were not examined. Rule formulas are unchanged."
+    ]
+  },
+  "text-support": {
+    "status": "registered before VLM outputs",
+    "criteria": [
+      "Flag the retained forge68-rotated-daily-report invented Theorem 1.2 sentence.",
+      "On visually reviewed correct parser comparison VLM pages, falsely flag <= 0.10 of pages; if no correct-page cohort exists report not evaluable."
+    ],
+    "normalization": "Use existing ingestion.evaluation.tokens: case-folded alphanumeric token set after whitespace-between-digits collapse; token occurrence support also reported.",
+    "page_thresholds": [
+      0.9,
+      0.95,
+      0.98
+    ],
+    "span_rules": [
+      {
+        "id": "strict_zero",
+        "min_tokens": 1,
+        "max_support_share": 0
+      },
+      {
+        "id": "long_zero",
+        "min_tokens": 4,
+        "max_support_share": 0
+      },
+      {
+        "id": "low_support",
+        "min_tokens": 4,
+        "max_support_share": 0.25
+      }
+    ],
+    "correct_page_definition": "Visual review finds no material addition, omission, number/identifier substitution, row/cell or reading-order error. Typography normalization alone is allowed. Review labels fixed before threshold effects are inspected.",
+    "scan_policy": "If no PDF text layer, report agreement with corpus OCR text only; do not accept/reject scans.",
+    "historical_positive_control": "Retained study forge68-rotated-daily-report Docling VLM output is included explicitly as a positive control even if the Q8 rerun does not invent the same sentence."
+  },
+  "form-pairing": {
+    "registered_utc": "2026-10-31T08:39:33.951071+00:00",
+    "status": "development; freeze before held-out selection",
+    "criterion": "Pair accuracy >=0.90 on each development and each held-out form; zero invented values; bbox coverage 100%. Report per-form and micro/macro aggregates.",
+    "generic": "Labels are geometric runs ending in colon; no lexicon. Values right on same baseline until next label, vertical ruling or cell edge; wrapped/below text inside same ruled cell. Empty values retained.",
+    "template": "Same geometry, with label vocabulary and per-label direction learned only from three development forms. Cost-column headings point down the column; Actual includes totals, AFE headings stop before totals. No stored gold values or absolute field regions.",
+    "source": "PDFium glyphs with coordinates and vector path rulings; respect source clipping paths. Rotate 270-degree physical pages upright for pairing, return boxes in displayed physical frame.",
+    "scope": "Digital daily-report header strictly before visible Operations Summary; unsupported if boundary absent.",
+    "normalization": "Original visible glyphs only, source spaces; no spelling, punctuation or value repair.",
+    "scorer": "experiments/form pairing/score.py unchanged; report literal invention flags and source semantic review.",
+    "freeze": "Code, shared source reader, template and registration hash-locked before any held-out page selection; no post-lock fixes.",
+    "development_refinement": {
+      "registered_utc": "2026-10-31T08:40:32.111118+00:00",
+      "basis": "Development score inspection only; held-out selection not started",
+      "changes": "Split alphabetic label:Value into separate source words at colon; cost-column boundaries from row below heading; Totals direction extends through the following ruled value cell."
+    }
+  },
+  "scanned-page-ocr": {
+    "status": "registered before candidate generation; annotations inaccessible",
+    "criteria": [
+      "Choose lowest CER, prioritizing numeric and technical critical-token accuracy; elapsed time is secondary."
+    ],
+    "engines": [
+      "tesseract",
+      "rapidocr",
+      "easyocr",
+      "vietocr",
+      "paddleocr_vl",
+      "docling_vlm"
+    ],
+    "pages": [
+      23,
+      24,
+      25
+    ],
+    "document": "gdr882_ak3_appx_18_3_memorandum_re_transmittal_of_permits_drilli",
+    "scorer": "CER and WER use Levenshtein distance after whitespace-only collapse and strip; case/punctuation preserved. Corpus-micro rates divide summed edits by summed reference characters/words. Critical-token accuracy is exact normalized-whitespace substring presence per listed token, case preserved. Also report numeric/technical tokens separately when the manifest supplies categories. Rank critical-token accuracy descending then CER ascending; time only breaks equal accuracy. Missing/failed outputs remain missing, never empty successful transcriptions. All outputs unscored this round."
+  }
+}

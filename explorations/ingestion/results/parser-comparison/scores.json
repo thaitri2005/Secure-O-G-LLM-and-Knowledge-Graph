@@ -1,0 +1,3028 @@
+{
+  "complete": true,
+  "means": {
+    "corpus_accurate": {
+      "grid_tables": 9,
+      "mean_cell_accuracy": 0.689186542063219,
+      "mean_seconds": 3.0309285714285714,
+      "pages": 14
+    },
+    "corpus_fast": {
+      "grid_tables": 9,
+      "mean_cell_accuracy": 0.8512189263169655,
+      "mean_seconds": 4.003571428571429,
+      "pages": 14
+    },
+    "vlm_mineru": {
+      "grid_tables": 9,
+      "mean_cell_accuracy": 0.7267824722481585,
+      "mean_seconds": 156.3067142857143,
+      "pages": 14
+    }
+  },
+  "method": "Native cells, anchor spans, top-left PDF boxes, highest positive IoU; no repair. Frozen score_grid/score_values/score_order imported unchanged. Page IDs are parser-local; raw scores are diagnostic only. Geometric scores use registered same-type IoU>=0.20 alignment.",
+  "pages": [
+    {
+      "aligned": {
+        "common_items": 1,
+        "extra_items": 0,
+        "kendall_tau": null,
+        "missing_items": 1,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/8",
+          "iou": 1.0,
+          "predicted_id": "#/tables/0"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "gold_items": 2,
+      "page": 18,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 1,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_fast"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 3,
+        "kendall_tau": -1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/27",
+          "iou": 1.0,
+          "predicted_id": "#/tables/0"
+        },
+        {
+          "gold_id": "#/texts/223",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "gold_items": 2,
+      "page": 31,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 5,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_fast"
+    },
+    {
+      "aligned": {
+        "common_items": 87,
+        "extra_items": 4,
+        "kendall_tau": 0.3691526329858327,
+        "missing_items": 0,
+        "section_accuracy": 0.21839080459770116,
+        "section_matches": 19
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/0",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/1",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/3",
+          "iou": 1.0,
+          "predicted_id": "#/texts/3"
+        },
+        {
+          "gold_id": "#/texts/4",
+          "iou": 1.0,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/5",
+          "iou": 1.0,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/6",
+          "iou": 1.0,
+          "predicted_id": "#/texts/6"
+        },
+        {
+          "gold_id": "#/texts/7",
+          "iou": 1.0,
+          "predicted_id": "#/texts/7"
+        },
+        {
+          "gold_id": "#/texts/8",
+          "iou": 1.0,
+          "predicted_id": "#/texts/8"
+        },
+        {
+          "gold_id": "#/texts/9",
+          "iou": 1.0,
+          "predicted_id": "#/texts/9"
+        },
+        {
+          "gold_id": "#/texts/10",
+          "iou": 1.0,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/11",
+          "iou": 1.0,
+          "predicted_id": "#/texts/11"
+        },
+        {
+          "gold_id": "#/texts/12",
+          "iou": 1.0,
+          "predicted_id": "#/texts/12"
+        },
+        {
+          "gold_id": "#/texts/13",
+          "iou": 1.0,
+          "predicted_id": "#/texts/13"
+        },
+        {
+          "gold_id": "#/texts/14",
+          "iou": 1.0,
+          "predicted_id": "#/texts/14"
+        },
+        {
+          "gold_id": "#/texts/15",
+          "iou": 1.0,
+          "predicted_id": "#/texts/15"
+        },
+        {
+          "gold_id": "#/texts/16",
+          "iou": 1.0,
+          "predicted_id": "#/texts/16"
+        },
+        {
+          "gold_id": "#/texts/18",
+          "iou": 1.0,
+          "predicted_id": "#/texts/18"
+        },
+        {
+          "gold_id": "#/texts/19",
+          "iou": 1.0,
+          "predicted_id": "#/texts/19"
+        },
+        {
+          "gold_id": "#/texts/20",
+          "iou": 1.0,
+          "predicted_id": "#/texts/20"
+        },
+        {
+          "gold_id": "#/texts/21",
+          "iou": 1.0,
+          "predicted_id": "#/texts/21"
+        },
+        {
+          "gold_id": "#/texts/22",
+          "iou": 1.0,
+          "predicted_id": "#/texts/22"
+        },
+        {
+          "gold_id": "#/texts/23",
+          "iou": 1.0,
+          "predicted_id": "#/texts/23"
+        },
+        {
+          "gold_id": "#/texts/24",
+          "iou": 1.0,
+          "predicted_id": "#/texts/24"
+        },
+        {
+          "gold_id": "#/texts/25",
+          "iou": 1.0,
+          "predicted_id": "#/texts/25"
+        },
+        {
+          "gold_id": "#/texts/26",
+          "iou": 1.0,
+          "predicted_id": "#/texts/26"
+        },
+        {
+          "gold_id": "#/texts/27",
+          "iou": 1.0,
+          "predicted_id": "#/texts/27"
+        },
+        {
+          "gold_id": "#/texts/28",
+          "iou": 1.0,
+          "predicted_id": "#/texts/28"
+        },
+        {
+          "gold_id": "#/texts/29",
+          "iou": 1.0,
+          "predicted_id": "#/texts/29"
+        },
+        {
+          "gold_id": "#/texts/30",
+          "iou": 1.0,
+          "predicted_id": "#/texts/30"
+        },
+        {
+          "gold_id": "#/texts/31",
+          "iou": 1.0,
+          "predicted_id": "#/texts/31"
+        },
+        {
+          "gold_id": "#/texts/32",
+          "iou": 1.0,
+          "predicted_id": "#/texts/32"
+        },
+        {
+          "gold_id": "#/texts/33",
+          "iou": 1.0,
+          "predicted_id": "#/texts/33"
+        },
+        {
+          "gold_id": "#/texts/34",
+          "iou": 1.0,
+          "predicted_id": "#/texts/34"
+        },
+        {
+          "gold_id": "#/texts/35",
+          "iou": 1.0,
+          "predicted_id": "#/texts/35"
+        },
+        {
+          "gold_id": "#/texts/36",
+          "iou": 1.0,
+          "predicted_id": "#/texts/36"
+        },
+        {
+          "gold_id": "#/texts/37",
+          "iou": 1.0,
+          "predicted_id": "#/texts/37"
+        },
+        {
+          "gold_id": "#/texts/38",
+          "iou": 1.0,
+          "predicted_id": "#/texts/38"
+        },
+        {
+          "gold_id": "#/texts/39",
+          "iou": 1.0,
+          "predicted_id": "#/texts/39"
+        },
+        {
+          "gold_id": "#/texts/40",
+          "iou": 1.0,
+          "predicted_id": "#/texts/40"
+        },
+        {
+          "gold_id": "#/texts/41",
+          "iou": 1.0,
+          "predicted_id": "#/texts/41"
+        },
+        {
+          "gold_id": "#/texts/42",
+          "iou": 1.0,
+          "predicted_id": "#/texts/42"
+        },
+        {
+          "gold_id": "#/texts/43",
+          "iou": 1.0,
+          "predicted_id": "#/texts/43"
+        },
+        {
+          "gold_id": "#/texts/44",
+          "iou": 1.0,
+          "predicted_id": "#/texts/44"
+        },
+        {
+          "gold_id": "#/texts/45",
+          "iou": 1.0,
+          "predicted_id": "#/texts/45"
+        },
+        {
+          "gold_id": "#/texts/46",
+          "iou": 1.0,
+          "predicted_id": "#/texts/46"
+        },
+        {
+          "gold_id": "#/texts/47",
+          "iou": 1.0,
+          "predicted_id": "#/texts/47"
+        },
+        {
+          "gold_id": "#/texts/48",
+          "iou": 1.0,
+          "predicted_id": "#/texts/48"
+        },
+        {
+          "gold_id": "#/texts/49",
+          "iou": 1.0,
+          "predicted_id": "#/texts/49"
+        },
+        {
+          "gold_id": "#/texts/50",
+          "iou": 1.0,
+          "predicted_id": "#/texts/50"
+        },
+        {
+          "gold_id": "#/texts/51",
+          "iou": 1.0,
+          "predicted_id": "#/texts/51"
+        },
+        {
+          "gold_id": "#/texts/52",
+          "iou": 1.0,
+          "predicted_id": "#/texts/52"
+        },
+        {
+          "gold_id": "#/texts/53",
+          "iou": 1.0,
+          "predicted_id": "#/texts/53"
+        },
+        {
+          "gold_id": "#/texts/54",
+          "iou": 1.0,
+          "predicted_id": "#/texts/54"
+        },
+        {
+          "gold_id": "#/texts/55",
+          "iou": 1.0,
+          "predicted_id": "#/texts/55"
+        },
+        {
+          "gold_id": "#/texts/56",
+          "iou": 1.0,
+          "predicted_id": "#/texts/56"
+        },
+        {
+          "gold_id": "#/texts/57",
+          "iou": 1.0,
+          "predicted_id": "#/texts/57"
+        },
+        {
+          "gold_id": "#/texts/58",
+          "iou": 1.0,
+          "predicted_id": "#/texts/58"
+        },
+        {
+          "gold_id": "#/texts/59",
+          "iou": 1.0,
+          "predicted_id": "#/texts/59"
+        },
+        {
+          "gold_id": "#/texts/60",
+          "iou": 1.0,
+          "predicted_id": "#/texts/60"
+        },
+        {
+          "gold_id": "#/texts/61",
+          "iou": 1.0,
+          "predicted_id": "#/texts/61"
+        },
+        {
+          "gold_id": "#/texts/62",
+          "iou": 1.0,
+          "predicted_id": "#/texts/62"
+        },
+        {
+          "gold_id": "#/texts/63",
+          "iou": 1.0,
+          "predicted_id": "#/texts/63"
+        },
+        {
+          "gold_id": "#/texts/64",
+          "iou": 1.0,
+          "predicted_id": "#/texts/64"
+        },
+        {
+          "gold_id": "#/texts/65",
+          "iou": 1.0,
+          "predicted_id": "#/texts/65"
+        },
+        {
+          "gold_id": "#/texts/66",
+          "iou": 1.0,
+          "predicted_id": "#/texts/66"
+        },
+        {
+          "gold_id": "#/texts/67",
+          "iou": 1.0,
+          "predicted_id": "#/texts/67"
+        },
+        {
+          "gold_id": "#/texts/68",
+          "iou": 1.0,
+          "predicted_id": "#/texts/68"
+        },
+        {
+          "gold_id": "#/texts/69",
+          "iou": 1.0,
+          "predicted_id": "#/texts/69"
+        },
+        {
+          "gold_id": "#/texts/70",
+          "iou": 1.0,
+          "predicted_id": "#/texts/70"
+        },
+        {
+          "gold_id": "#/texts/71",
+          "iou": 1.0,
+          "predicted_id": "#/texts/71"
+        },
+        {
+          "gold_id": "#/texts/72",
+          "iou": 1.0,
+          "predicted_id": "#/texts/72"
+        },
+        {
+          "gold_id": "#/texts/73",
+          "iou": 1.0,
+          "predicted_id": "#/texts/73"
+        },
+        {
+          "gold_id": "#/texts/74",
+          "iou": 1.0,
+          "predicted_id": "#/texts/74"
+        },
+        {
+          "gold_id": "#/texts/75",
+          "iou": 1.0,
+          "predicted_id": "#/texts/75"
+        },
+        {
+          "gold_id": "#/texts/76",
+          "iou": 1.0,
+          "predicted_id": "#/texts/76"
+        },
+        {
+          "gold_id": "#/texts/77",
+          "iou": 1.0,
+          "predicted_id": "#/texts/77"
+        },
+        {
+          "gold_id": "#/texts/78",
+          "iou": 1.0,
+          "predicted_id": "#/texts/78"
+        },
+        {
+          "gold_id": "#/texts/79",
+          "iou": 1.0,
+          "predicted_id": "#/texts/79"
+        },
+        {
+          "gold_id": "#/texts/80",
+          "iou": 1.0,
+          "predicted_id": "#/texts/80"
+        },
+        {
+          "gold_id": "#/texts/81",
+          "iou": 1.0,
+          "predicted_id": "#/texts/81"
+        },
+        {
+          "gold_id": "#/texts/82",
+          "iou": 1.0,
+          "predicted_id": "#/texts/82"
+        },
+        {
+          "gold_id": "#/texts/83",
+          "iou": 1.0,
+          "predicted_id": "#/texts/83"
+        },
+        {
+          "gold_id": "#/texts/84",
+          "iou": 1.0,
+          "predicted_id": "#/texts/84"
+        },
+        {
+          "gold_id": "#/texts/85",
+          "iou": 1.0,
+          "predicted_id": "#/texts/85"
+        },
+        {
+          "gold_id": "#/texts/86",
+          "iou": 1.0,
+          "predicted_id": "#/texts/86"
+        },
+        {
+          "gold_id": "#/tables/0",
+          "iou": 0.9999999009242507,
+          "predicted_id": "#/tables/0"
+        },
+        {
+          "gold_id": "#/texts/17",
+          "iou": 0.9999998178304215,
+          "predicted_id": "#/texts/17"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "gold_items": 89,
+      "page": 1,
+      "raw": {
+        "common_items": 87,
+        "extra_items": 4,
+        "kendall_tau": 0.3691526329858327,
+        "missing_items": 0,
+        "section_accuracy": 0.21839080459770116,
+        "section_matches": 19
+      },
+      "variant": "corpus_fast"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 1,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 1.0,
+        "section_matches": 2
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/5",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/6",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 2,
+      "page": 2,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 3,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_fast"
+    },
+    {
+      "aligned": {
+        "common_items": 13,
+        "extra_items": 1,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.5384615384615384,
+        "section_matches": 7
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/27",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/28",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/29",
+          "iou": 1.0,
+          "predicted_id": "#/texts/2"
+        },
+        {
+          "gold_id": "#/texts/30",
+          "iou": 1.0,
+          "predicted_id": "#/texts/3"
+        },
+        {
+          "gold_id": "#/texts/31",
+          "iou": 1.0,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/32",
+          "iou": 1.0,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/33",
+          "iou": 1.0,
+          "predicted_id": "#/texts/6"
+        },
+        {
+          "gold_id": "#/texts/34",
+          "iou": 1.0,
+          "predicted_id": "#/texts/7"
+        },
+        {
+          "gold_id": "#/texts/35",
+          "iou": 1.0,
+          "predicted_id": "#/texts/8"
+        },
+        {
+          "gold_id": "#/texts/36",
+          "iou": 1.0,
+          "predicted_id": "#/texts/9"
+        },
+        {
+          "gold_id": "#/texts/37",
+          "iou": 1.0,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/38",
+          "iou": 1.0,
+          "predicted_id": "#/texts/11"
+        },
+        {
+          "gold_id": "#/texts/39",
+          "iou": 1.0,
+          "predicted_id": "#/texts/12"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 13,
+      "page": 7,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 14,
+        "kendall_tau": null,
+        "missing_items": 13,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_fast"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 0,
+        "kendall_tau": -1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/8",
+          "iou": 1.0,
+          "predicted_id": "#/tables/0"
+        },
+        {
+          "gold_id": "#/texts/172",
+          "iou": 0.9999991572878937,
+          "predicted_id": "#/texts/0"
+        }
+      ],
+      "doc_id": "gdr1153_68-32_eowr",
+      "gold_items": 2,
+      "page": 18,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 2,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_accurate"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 3,
+        "kendall_tau": -1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/27",
+          "iou": 1.0,
+          "predicted_id": "#/tables/0"
+        },
+        {
+          "gold_id": "#/texts/223",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "gold_items": 2,
+      "page": 31,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 5,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_accurate"
+    },
+    {
+      "aligned": {
+        "common_items": 87,
+        "extra_items": 4,
+        "kendall_tau": 0.3691526329858327,
+        "missing_items": 0,
+        "section_accuracy": 0.21839080459770116,
+        "section_matches": 19
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/0",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/1",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/3",
+          "iou": 1.0,
+          "predicted_id": "#/texts/3"
+        },
+        {
+          "gold_id": "#/texts/4",
+          "iou": 1.0,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/5",
+          "iou": 1.0,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/6",
+          "iou": 1.0,
+          "predicted_id": "#/texts/6"
+        },
+        {
+          "gold_id": "#/texts/7",
+          "iou": 1.0,
+          "predicted_id": "#/texts/7"
+        },
+        {
+          "gold_id": "#/texts/8",
+          "iou": 1.0,
+          "predicted_id": "#/texts/8"
+        },
+        {
+          "gold_id": "#/texts/9",
+          "iou": 1.0,
+          "predicted_id": "#/texts/9"
+        },
+        {
+          "gold_id": "#/texts/10",
+          "iou": 1.0,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/11",
+          "iou": 1.0,
+          "predicted_id": "#/texts/11"
+        },
+        {
+          "gold_id": "#/texts/12",
+          "iou": 1.0,
+          "predicted_id": "#/texts/12"
+        },
+        {
+          "gold_id": "#/texts/13",
+          "iou": 1.0,
+          "predicted_id": "#/texts/13"
+        },
+        {
+          "gold_id": "#/texts/14",
+          "iou": 1.0,
+          "predicted_id": "#/texts/14"
+        },
+        {
+          "gold_id": "#/texts/15",
+          "iou": 1.0,
+          "predicted_id": "#/texts/15"
+        },
+        {
+          "gold_id": "#/texts/16",
+          "iou": 1.0,
+          "predicted_id": "#/texts/16"
+        },
+        {
+          "gold_id": "#/texts/18",
+          "iou": 1.0,
+          "predicted_id": "#/texts/18"
+        },
+        {
+          "gold_id": "#/texts/19",
+          "iou": 1.0,
+          "predicted_id": "#/texts/19"
+        },
+        {
+          "gold_id": "#/texts/20",
+          "iou": 1.0,
+          "predicted_id": "#/texts/20"
+        },
+        {
+          "gold_id": "#/texts/21",
+          "iou": 1.0,
+          "predicted_id": "#/texts/21"
+        },
+        {
+          "gold_id": "#/texts/22",
+          "iou": 1.0,
+          "predicted_id": "#/texts/22"
+        },
+        {
+          "gold_id": "#/texts/23",
+          "iou": 1.0,
+          "predicted_id": "#/texts/23"
+        },
+        {
+          "gold_id": "#/texts/24",
+          "iou": 1.0,
+          "predicted_id": "#/texts/24"
+        },
+        {
+          "gold_id": "#/texts/25",
+          "iou": 1.0,
+          "predicted_id": "#/texts/25"
+        },
+        {
+          "gold_id": "#/texts/26",
+          "iou": 1.0,
+          "predicted_id": "#/texts/26"
+        },
+        {
+          "gold_id": "#/texts/27",
+          "iou": 1.0,
+          "predicted_id": "#/texts/27"
+        },
+        {
+          "gold_id": "#/texts/28",
+          "iou": 1.0,
+          "predicted_id": "#/texts/28"
+        },
+        {
+          "gold_id": "#/texts/29",
+          "iou": 1.0,
+          "predicted_id": "#/texts/29"
+        },
+        {
+          "gold_id": "#/texts/30",
+          "iou": 1.0,
+          "predicted_id": "#/texts/30"
+        },
+        {
+          "gold_id": "#/texts/31",
+          "iou": 1.0,
+          "predicted_id": "#/texts/31"
+        },
+        {
+          "gold_id": "#/texts/32",
+          "iou": 1.0,
+          "predicted_id": "#/texts/32"
+        },
+        {
+          "gold_id": "#/texts/33",
+          "iou": 1.0,
+          "predicted_id": "#/texts/33"
+        },
+        {
+          "gold_id": "#/texts/34",
+          "iou": 1.0,
+          "predicted_id": "#/texts/34"
+        },
+        {
+          "gold_id": "#/texts/35",
+          "iou": 1.0,
+          "predicted_id": "#/texts/35"
+        },
+        {
+          "gold_id": "#/texts/36",
+          "iou": 1.0,
+          "predicted_id": "#/texts/36"
+        },
+        {
+          "gold_id": "#/texts/37",
+          "iou": 1.0,
+          "predicted_id": "#/texts/37"
+        },
+        {
+          "gold_id": "#/texts/38",
+          "iou": 1.0,
+          "predicted_id": "#/texts/38"
+        },
+        {
+          "gold_id": "#/texts/39",
+          "iou": 1.0,
+          "predicted_id": "#/texts/39"
+        },
+        {
+          "gold_id": "#/texts/40",
+          "iou": 1.0,
+          "predicted_id": "#/texts/40"
+        },
+        {
+          "gold_id": "#/texts/41",
+          "iou": 1.0,
+          "predicted_id": "#/texts/41"
+        },
+        {
+          "gold_id": "#/texts/42",
+          "iou": 1.0,
+          "predicted_id": "#/texts/42"
+        },
+        {
+          "gold_id": "#/texts/43",
+          "iou": 1.0,
+          "predicted_id": "#/texts/43"
+        },
+        {
+          "gold_id": "#/texts/44",
+          "iou": 1.0,
+          "predicted_id": "#/texts/44"
+        },
+        {
+          "gold_id": "#/texts/45",
+          "iou": 1.0,
+          "predicted_id": "#/texts/45"
+        },
+        {
+          "gold_id": "#/texts/46",
+          "iou": 1.0,
+          "predicted_id": "#/texts/46"
+        },
+        {
+          "gold_id": "#/texts/47",
+          "iou": 1.0,
+          "predicted_id": "#/texts/47"
+        },
+        {
+          "gold_id": "#/texts/48",
+          "iou": 1.0,
+          "predicted_id": "#/texts/48"
+        },
+        {
+          "gold_id": "#/texts/49",
+          "iou": 1.0,
+          "predicted_id": "#/texts/49"
+        },
+        {
+          "gold_id": "#/texts/50",
+          "iou": 1.0,
+          "predicted_id": "#/texts/50"
+        },
+        {
+          "gold_id": "#/texts/51",
+          "iou": 1.0,
+          "predicted_id": "#/texts/51"
+        },
+        {
+          "gold_id": "#/texts/52",
+          "iou": 1.0,
+          "predicted_id": "#/texts/52"
+        },
+        {
+          "gold_id": "#/texts/53",
+          "iou": 1.0,
+          "predicted_id": "#/texts/53"
+        },
+        {
+          "gold_id": "#/texts/54",
+          "iou": 1.0,
+          "predicted_id": "#/texts/54"
+        },
+        {
+          "gold_id": "#/texts/55",
+          "iou": 1.0,
+          "predicted_id": "#/texts/55"
+        },
+        {
+          "gold_id": "#/texts/56",
+          "iou": 1.0,
+          "predicted_id": "#/texts/56"
+        },
+        {
+          "gold_id": "#/texts/57",
+          "iou": 1.0,
+          "predicted_id": "#/texts/57"
+        },
+        {
+          "gold_id": "#/texts/58",
+          "iou": 1.0,
+          "predicted_id": "#/texts/58"
+        },
+        {
+          "gold_id": "#/texts/59",
+          "iou": 1.0,
+          "predicted_id": "#/texts/59"
+        },
+        {
+          "gold_id": "#/texts/60",
+          "iou": 1.0,
+          "predicted_id": "#/texts/60"
+        },
+        {
+          "gold_id": "#/texts/61",
+          "iou": 1.0,
+          "predicted_id": "#/texts/61"
+        },
+        {
+          "gold_id": "#/texts/62",
+          "iou": 1.0,
+          "predicted_id": "#/texts/62"
+        },
+        {
+          "gold_id": "#/texts/63",
+          "iou": 1.0,
+          "predicted_id": "#/texts/63"
+        },
+        {
+          "gold_id": "#/texts/64",
+          "iou": 1.0,
+          "predicted_id": "#/texts/64"
+        },
+        {
+          "gold_id": "#/texts/65",
+          "iou": 1.0,
+          "predicted_id": "#/texts/65"
+        },
+        {
+          "gold_id": "#/texts/66",
+          "iou": 1.0,
+          "predicted_id": "#/texts/66"
+        },
+        {
+          "gold_id": "#/texts/67",
+          "iou": 1.0,
+          "predicted_id": "#/texts/67"
+        },
+        {
+          "gold_id": "#/texts/68",
+          "iou": 1.0,
+          "predicted_id": "#/texts/68"
+        },
+        {
+          "gold_id": "#/texts/69",
+          "iou": 1.0,
+          "predicted_id": "#/texts/69"
+        },
+        {
+          "gold_id": "#/texts/70",
+          "iou": 1.0,
+          "predicted_id": "#/texts/70"
+        },
+        {
+          "gold_id": "#/texts/71",
+          "iou": 1.0,
+          "predicted_id": "#/texts/71"
+        },
+        {
+          "gold_id": "#/texts/72",
+          "iou": 1.0,
+          "predicted_id": "#/texts/72"
+        },
+        {
+          "gold_id": "#/texts/73",
+          "iou": 1.0,
+          "predicted_id": "#/texts/73"
+        },
+        {
+          "gold_id": "#/texts/74",
+          "iou": 1.0,
+          "predicted_id": "#/texts/74"
+        },
+        {
+          "gold_id": "#/texts/75",
+          "iou": 1.0,
+          "predicted_id": "#/texts/75"
+        },
+        {
+          "gold_id": "#/texts/76",
+          "iou": 1.0,
+          "predicted_id": "#/texts/76"
+        },
+        {
+          "gold_id": "#/texts/77",
+          "iou": 1.0,
+          "predicted_id": "#/texts/77"
+        },
+        {
+          "gold_id": "#/texts/78",
+          "iou": 1.0,
+          "predicted_id": "#/texts/78"
+        },
+        {
+          "gold_id": "#/texts/79",
+          "iou": 1.0,
+          "predicted_id": "#/texts/79"
+        },
+        {
+          "gold_id": "#/texts/80",
+          "iou": 1.0,
+          "predicted_id": "#/texts/80"
+        },
+        {
+          "gold_id": "#/texts/81",
+          "iou": 1.0,
+          "predicted_id": "#/texts/81"
+        },
+        {
+          "gold_id": "#/texts/82",
+          "iou": 1.0,
+          "predicted_id": "#/texts/82"
+        },
+        {
+          "gold_id": "#/texts/83",
+          "iou": 1.0,
+          "predicted_id": "#/texts/83"
+        },
+        {
+          "gold_id": "#/texts/84",
+          "iou": 1.0,
+          "predicted_id": "#/texts/84"
+        },
+        {
+          "gold_id": "#/texts/85",
+          "iou": 1.0,
+          "predicted_id": "#/texts/85"
+        },
+        {
+          "gold_id": "#/texts/86",
+          "iou": 1.0,
+          "predicted_id": "#/texts/86"
+        },
+        {
+          "gold_id": "#/tables/0",
+          "iou": 0.9999999009242507,
+          "predicted_id": "#/tables/0"
+        },
+        {
+          "gold_id": "#/texts/17",
+          "iou": 0.9999998178304215,
+          "predicted_id": "#/texts/17"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "gold_items": 89,
+      "page": 1,
+      "raw": {
+        "common_items": 87,
+        "extra_items": 4,
+        "kendall_tau": 0.3691526329858327,
+        "missing_items": 0,
+        "section_accuracy": 0.21839080459770116,
+        "section_matches": 19
+      },
+      "variant": "corpus_accurate"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 1,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 1.0,
+        "section_matches": 2
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/5",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/6",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 2,
+      "page": 2,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 3,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_accurate"
+    },
+    {
+      "aligned": {
+        "common_items": 13,
+        "extra_items": 1,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.5384615384615384,
+        "section_matches": 7
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/27",
+          "iou": 1.0,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/28",
+          "iou": 1.0,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/29",
+          "iou": 1.0,
+          "predicted_id": "#/texts/2"
+        },
+        {
+          "gold_id": "#/texts/30",
+          "iou": 1.0,
+          "predicted_id": "#/texts/3"
+        },
+        {
+          "gold_id": "#/texts/31",
+          "iou": 1.0,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/32",
+          "iou": 1.0,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/33",
+          "iou": 1.0,
+          "predicted_id": "#/texts/6"
+        },
+        {
+          "gold_id": "#/texts/34",
+          "iou": 1.0,
+          "predicted_id": "#/texts/7"
+        },
+        {
+          "gold_id": "#/texts/35",
+          "iou": 1.0,
+          "predicted_id": "#/texts/8"
+        },
+        {
+          "gold_id": "#/texts/36",
+          "iou": 1.0,
+          "predicted_id": "#/texts/9"
+        },
+        {
+          "gold_id": "#/texts/37",
+          "iou": 1.0,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/38",
+          "iou": 1.0,
+          "predicted_id": "#/texts/11"
+        },
+        {
+          "gold_id": "#/texts/39",
+          "iou": 1.0,
+          "predicted_id": "#/texts/12"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 13,
+      "page": 7,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 14,
+        "kendall_tau": null,
+        "missing_items": 13,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "corpus_accurate"
+    },
+    {
+      "aligned": {
+        "common_items": 0,
+        "extra_items": 24,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "alignment": [],
+      "doc_id": "gdr1153_68-32_eowr",
+      "gold_items": 2,
+      "page": 18,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 24,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "vlm_mineru"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 5,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/27",
+          "iou": 0.9679412961172041,
+          "predicted_id": "#/tables/1"
+        },
+        {
+          "gold_id": "#/texts/223",
+          "iou": 0.7017463711875833,
+          "predicted_id": "#/texts/2"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "gold_items": 2,
+      "page": 31,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 7,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "vlm_mineru"
+    },
+    {
+      "aligned": {
+        "common_items": 7,
+        "extra_items": 15,
+        "kendall_tau": 0.9047619047619048,
+        "missing_items": 80,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "alignment": [
+        {
+          "gold_id": "#/tables/0",
+          "iou": 0.94654470124926,
+          "predicted_id": "#/tables/1"
+        },
+        {
+          "gold_id": "#/texts/42",
+          "iou": 0.7078665884044986,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/3",
+          "iou": 0.5194737866277684,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/4",
+          "iou": 0.49586857694675046,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/48",
+          "iou": 0.47478585891658276,
+          "predicted_id": "#/texts/12"
+        },
+        {
+          "gold_id": "#/texts/1",
+          "iou": 0.46514172258626885,
+          "predicted_id": "#/texts/2"
+        },
+        {
+          "gold_id": "#/texts/0",
+          "iou": 0.3444036674771817,
+          "predicted_id": "#/texts/0"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "gold_items": 89,
+      "page": 1,
+      "raw": {
+        "common_items": 18,
+        "extra_items": 4,
+        "kendall_tau": 0.6601307189542484,
+        "missing_items": 69,
+        "section_accuracy": 0.0,
+        "section_matches": 0
+      },
+      "variant": "vlm_mineru"
+    },
+    {
+      "aligned": {
+        "common_items": 2,
+        "extra_items": 2,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 1.0,
+        "section_matches": 2
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/6",
+          "iou": 0.9457634332090075,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/5",
+          "iou": 0.8726772031647396,
+          "predicted_id": "#/texts/0"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 2,
+      "page": 2,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 4,
+        "kendall_tau": null,
+        "missing_items": 2,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "vlm_mineru"
+    },
+    {
+      "aligned": {
+        "common_items": 13,
+        "extra_items": 2,
+        "kendall_tau": 1.0,
+        "missing_items": 0,
+        "section_accuracy": 0.5384615384615384,
+        "section_matches": 7
+      },
+      "alignment": [
+        {
+          "gold_id": "#/texts/38",
+          "iou": 0.9540155312949621,
+          "predicted_id": "#/texts/11"
+        },
+        {
+          "gold_id": "#/texts/31",
+          "iou": 0.940401580641882,
+          "predicted_id": "#/texts/4"
+        },
+        {
+          "gold_id": "#/texts/30",
+          "iou": 0.9297820304423319,
+          "predicted_id": "#/texts/3"
+        },
+        {
+          "gold_id": "#/texts/32",
+          "iou": 0.9230836383774735,
+          "predicted_id": "#/texts/5"
+        },
+        {
+          "gold_id": "#/texts/29",
+          "iou": 0.9119391035113009,
+          "predicted_id": "#/texts/2"
+        },
+        {
+          "gold_id": "#/texts/39",
+          "iou": 0.9111668413179198,
+          "predicted_id": "#/texts/12"
+        },
+        {
+          "gold_id": "#/texts/36",
+          "iou": 0.9108476563969674,
+          "predicted_id": "#/texts/9"
+        },
+        {
+          "gold_id": "#/texts/28",
+          "iou": 0.9106443588691495,
+          "predicted_id": "#/texts/1"
+        },
+        {
+          "gold_id": "#/texts/37",
+          "iou": 0.8934399118501543,
+          "predicted_id": "#/texts/10"
+        },
+        {
+          "gold_id": "#/texts/27",
+          "iou": 0.8932488489884756,
+          "predicted_id": "#/texts/0"
+        },
+        {
+          "gold_id": "#/texts/33",
+          "iou": 0.8682836725811106,
+          "predicted_id": "#/texts/6"
+        },
+        {
+          "gold_id": "#/texts/35",
+          "iou": 0.772283260900715,
+          "predicted_id": "#/texts/8"
+        },
+        {
+          "gold_id": "#/texts/34",
+          "iou": 0.7177461939102885,
+          "predicted_id": "#/texts/7"
+        }
+      ],
+      "doc_id": "gdr882_ak3_eowr",
+      "gold_items": 13,
+      "page": 7,
+      "raw": {
+        "common_items": 0,
+        "extra_items": 15,
+        "kendall_tau": null,
+        "missing_items": 13,
+        "section_accuracy": null,
+        "section_matches": 0
+      },
+      "variant": "vlm_mineru"
+    }
+  ],
+  "runs": [
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17,
+      "seconds": 36.856,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 18,
+      "seconds": 1.255,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 22,
+      "seconds": 3.175,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 31,
+      "seconds": 1.192,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 33,
+      "seconds": 1.48,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "page": 1,
+      "seconds": 2.098,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 1,
+      "seconds": 1.021,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "page": 1,
+      "seconds": 2.385,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "page": 1,
+      "seconds": 1.344,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "page": 1,
+      "seconds": 1.478,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "page": 1,
+      "seconds": 1.408,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 2,
+      "seconds": 0.546,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 4,
+      "seconds": 1.194,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "seconds": 0.618,
+      "status": "success",
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17,
+      "seconds": 9.395,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 18,
+      "seconds": 0.899,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 22,
+      "seconds": 4.891,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 31,
+      "seconds": 1.466,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 33,
+      "seconds": 2.029,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "page": 1,
+      "seconds": 4.6,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 1,
+      "seconds": 1.803,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "page": 1,
+      "seconds": 6.21,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "page": 1,
+      "seconds": 2.462,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "page": 1,
+      "seconds": 2.662,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "page": 1,
+      "seconds": 2.817,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 2,
+      "seconds": 0.555,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 4,
+      "seconds": 2.03,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "seconds": 0.614,
+      "status": "success",
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17,
+      "seconds": 246.609,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 18,
+      "seconds": 289.582,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 22,
+      "seconds": 121.728,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 31,
+      "seconds": 94.929,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 33,
+      "seconds": 137.654,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "page": 1,
+      "seconds": 145.773,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 1,
+      "seconds": 271.215,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "page": 1,
+      "seconds": 144.496,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "page": 1,
+      "seconds": 118.572,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "page": 1,
+      "seconds": 189.632,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "page": 1,
+      "seconds": 112.922,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 2,
+      "seconds": 63.291,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 4,
+      "seconds": 57.081,
+      "status": "success",
+      "variant": "vlm_mineru"
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "seconds": 194.81,
+      "status": "success",
+      "variant": "vlm_mineru"
+    }
+  ],
+  "scorer_sha256": "0b581510fa452457ca47d68631a31c92a801bbba90fffcd281256702420254f0",
+  "tables": [
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "format": "form_fields",
+      "gold_csv": "data/gold/ingestion/tables/forge_daily_report.csv",
+      "gold_sha256": "7d25a0de547218c3c4f3c67c3bb9e9798298ca863d58fb256db677584a45e1d8",
+      "id": "forge_daily_report",
+      "invented_count_policy": "Unique native cells and text items with any source-absent normalized token; candidates require visual review, not a semantic hallucination count.",
+      "invented_numeric_values": 0,
+      "invented_text_spans": 0,
+      "missing_gold_values": [
+        [
+          "Well",
+          "Operator:",
+          "University of Utah"
+        ],
+        [
+          "Well",
+          "Current Ops:",
+          "Waiting on daylight and remainder of loads for rig up."
+        ],
+        [
+          "Well",
+          "Planned Ops:",
+          "Continue unloading equipment."
+        ],
+        [
+          "Operations Summary",
+          "Operations Description",
+          "Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad."
+        ],
+        [
+          "Operations Summary",
+          "Operations Description",
+          "Waiting on day ligth"
+        ],
+        [
+          "Drilling Parameters",
+          "",
+          "No Drilling Parameters Records for this report."
+        ],
+        [
+          "Mud Log",
+          "",
+          "No Mud Log Information for this report."
+        ],
+        [
+          "Environment",
+          "Cum. Water Hauled:",
+          "0.000 acre-ft"
+        ],
+        [
+          "Rig/Weather Information",
+          "",
+          "No Weather Information for this report."
+        ]
+      ],
+      "page": 17,
+      "source_audit": "results/parser-comparison/source-value-review.json",
+      "unsupported_value_candidate_count": 1,
+      "unsupported_value_candidates": [
+        {
+          "id": "#/tables/0:r0c0",
+          "text": "Report For 01-Mar-19 GRG Well Name: 68-32 26S Rng: 9W County: Beaver State: UT Wellbore 0.00 09-Mar-19 Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- ---",
+          "unsupported_tokens": [
+            "0009",
+            "3226s"
+          ]
+        }
+      ],
+      "value_count": 60,
+      "value_matches": 51,
+      "value_recall": 0.85,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 190,
+      "cell_matches": 190,
+      "column_count_correct": true,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 10,
+      "expected_rows": 21,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_directional_survey.csv",
+      "gold_sha256": "7f80f7096dcb8e00a34c57defb8f8a46fec27c0a9ecddb2c63faa251c5f953c5",
+      "header_accuracy": 0.2,
+      "header_count": 20,
+      "header_matches": 4,
+      "id": "forge_directional_survey",
+      "iou": 0.999999836868342,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 22,
+      "predicted_columns": 10,
+      "predicted_rows": 21,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.9,
+      "cell_count": 20,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 2,
+      "expected_rows": 10,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_fluid_parameters.csv",
+      "gold_sha256": "c16419527d1e2b067f8c046c2d66764f1a1869055e5f62eaf0d52f61af5cd9fc",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "forge_fluid_parameters",
+      "iou": 0.9999998213995808,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 1,
+          "expected": "8.6 – 9.2",
+          "predicted": "8.6 - 9.2",
+          "row": 3
+        },
+        {
+          "column": 1,
+          "expected": "NA – Vertical Hole",
+          "predicted": "NA - Vertical Hole",
+          "row": 7
+        }
+      ],
+      "page": 33,
+      "predicted_columns": 2,
+      "predicted_rows": 10,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.9882352941176471,
+      "cell_count": 170,
+      "cell_matches": 168,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "expected_columns": 10,
+      "expected_rows": 19,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_directional_survey.csv",
+      "gold_sha256": "656572eed4b30d7b6c166023b08418dd8d7e1defa23f3858c85d4c1918f58e13",
+      "header_accuracy": 0.1,
+      "header_count": 20,
+      "header_matches": 2,
+      "id": "akutan_directional_survey",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well Bore: Original Well Bore Plane of Vertical Section: 0",
+          "predicted": "Original Well Bore 0 Well Bore: Plane of Vertical Section:",
+          "row": 2
+        },
+        {
+          "column": 0,
+          "expected": "** TieIn",
+          "predicted": "TieIn **",
+          "row": 3
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 10,
+      "predicted_rows": 19,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 28,
+      "cell_matches": 28,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "expected_columns": 7,
+      "expected_rows": 5,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_daily_operations.csv",
+      "gold_sha256": "24eb787f87507f1bc2260e094d0b67f052574e6156ae5b843760ddd519806011",
+      "header_accuracy": 1.0,
+      "header_count": 7,
+      "header_matches": 7,
+      "id": "akutan_daily_operations",
+      "iou": 0.9999999009242507,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 7,
+      "predicted_rows": 5,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.042735042735042736,
+      "cell_count": 234,
+      "cell_matches": 10,
+      "column_count_correct": false,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "expected_columns": 26,
+      "expected_rows": 11,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_bit_summary.csv",
+      "gold_sha256": "761503dc80dfc3fc57a3fb24f77173ecbe8441219aa0485504bd9c15a707adab",
+      "header_accuracy": 0.11538461538461539,
+      "header_count": 52,
+      "header_matches": 6,
+      "id": "akutan_bit_summary",
+      "iou": 0.9999997046136163,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well ID: AK-3 Well Name: AK-3",
+          "predicted": "16:30",
+          "row": 2
+        },
+        {
+          "column": 1,
+          "expected": "",
+          "predicted": "1",
+          "row": 2
+        },
+        {
+          "column": 2,
+          "expected": "",
+          "predicted": "10.750 MAJOR",
+          "row": 2
+        },
+        {
+          "column": 3,
+          "expected": "",
+          "predicted": "Hole Opener",
+          "row": 2
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 21,
+      "predicted_rows": 10,
+      "row_count_correct": false,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 18,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "expected_columns": 9,
+      "expected_rows": 3,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_casing.csv",
+      "gold_sha256": "5899ae4cba08ef1815f09c009c43c41c72988c9e6561766e8b2b0b319d05fb6e",
+      "header_accuracy": 1.0,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_casing",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/1",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 9,
+      "predicted_rows": 3,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 48,
+      "cell_matches": 48,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "expected_columns": 4,
+      "expected_rows": 13,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_cement.csv",
+      "gold_sha256": "84c9e739192d2f145ca822fe5976501672b1e64af97aaaa2f84328400759b21d",
+      "header_accuracy": 1.0,
+      "header_count": 4,
+      "header_matches": 4,
+      "id": "akutan_cement",
+      "iou": 0.9999996909661322,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 4,
+      "predicted_rows": 13,
+      "row_count_correct": true,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.75,
+      "cell_count": 96,
+      "cell_matches": 72,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "expected_columns": 4,
+      "expected_rows": 24,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_mud.csv",
+      "gold_sha256": "9653c394b9cc7da15f662cfaa14db021b0b8ac7fc098e26c849fdef14d6d8a4c",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_mud",
+      "iou": 0.9999992471332475,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Filtrate:",
+          "predicted": "Filtrate: HTHP Filtrate:",
+          "row": 14
+        },
+        {
+          "column": 2,
+          "expected": "Calcium Chloride:",
+          "predicted": "Calcium Chloride: C03:",
+          "row": 14
+        },
+        {
+          "column": 0,
+          "expected": "HTHP Filtrate:",
+          "predicted": "Cake (1/32 in):",
+          "row": 15
+        },
+        {
+          "column": 2,
+          "expected": "C03:",
+          "predicted": "Elec. Stability:",
+          "row": 15
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 4,
+      "predicted_rows": 22,
+      "row_count_correct": false,
+      "variant": "corpus_fast"
+    },
+    {
+      "cell_accuracy": 0.98,
+      "cell_count": 50,
+      "cell_matches": 49,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_eowr",
+      "expected_columns": 2,
+      "expected_rows": 25,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_abbreviations.csv",
+      "gold_sha256": "54adbb592a449337f984c26505c4c24bdc577b44c4b6f634ebdfee3251ba46ef",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_abbreviations",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "WOC",
+          "predicted": "",
+          "row": 24
+        }
+      ],
+      "page": 4,
+      "predicted_columns": 2,
+      "predicted_rows": 26,
+      "row_count_correct": false,
+      "variant": "corpus_fast"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "format": "form_fields",
+      "gold_csv": "data/gold/ingestion/tables/forge_daily_report.csv",
+      "gold_sha256": "7d25a0de547218c3c4f3c67c3bb9e9798298ca863d58fb256db677584a45e1d8",
+      "id": "forge_daily_report",
+      "invented_count_policy": "Unique native cells and text items with any source-absent normalized token; candidates require visual review, not a semantic hallucination count.",
+      "invented_numeric_values": 0,
+      "invented_text_spans": 0,
+      "missing_gold_values": [
+        [
+          "Environment",
+          "Cum. Water Hauled:",
+          "0.000 acre-ft"
+        ]
+      ],
+      "page": 17,
+      "source_audit": "results/parser-comparison/source-value-review.json",
+      "unsupported_value_candidate_count": 2,
+      "unsupported_value_candidates": [
+        {
+          "id": "#/texts/0",
+          "text": "Report For 01-Mar-19 1 No: Daily Drilling Report Well ID: GRG Forge 68-32 Well Name: 68-32 Sect: 26 Town: 26S Rng: 9W County: Beaver State: UT Job ID: Original Original Wellbore Wellbore: 0.00 09-Mar-19 RKB Elevation (ft): Spud Date: #10031 Last Casing: Rig: 0 Vertical Depth (ft): Measured Depth (ft): 0 Operator: University of Utah Working Interest: Daily Cost / Mud ($): --- AFE No. AFE ($) Actual ($) --- --- ---",
+          "unsupported_tokens": [
+            "0009"
+          ]
+        },
+        {
+          "id": "#/tables/0:r0c2",
+          "text": "3 loads of the rig arrived on Feb 28. Randy Baldwin Supervisors: Continue unloading equipment. Waiting on daylight and remainder of loads for rig up. Comments: Toolpusher: Planned Ops: Current Ops: Tel No.: Last BOP Test: 14.000 at 60 1 0/0 Next Casing: Days On Location: Flat Days (act./plan): 0 / 0.0 Average ROP (ft/hr): Hole Made (ft) / Hrs: 1000 Proposed TD (ft): --- --- --- --- --- Totals: Well Cost ($): --- Drilling Days (act./plan): 0/0 Next BOP Test: 0/0 Total Days (act./plan): Operations Summary From To Elapsed End MD(ft) Code Operations Description Non-Prod 6:00 18:00 12.00 0 1-39 Rollins graded road to rig. Spotted 2 each 500 bbl baker tanks. Unloaded 45 joints of 5-1/2\" 17# casing and 21 joints of 9-5/8\" 36# casing on 58 pad. 18:00 0:00 6.00 0 2-99 Waiting on day ligth Bit/BHA Information JIF HHP P.Drp J.Vel Press MudWt Torq RPM WOB ROP Hrs Dist Jets 1-4 Diam Model No/Run Make Flow No Bit Information for this report. BHA - None Mud Reports Gels Temp In/Out Cl Sand Oil Water Solids pH YP PV Cake Filt. Vis. Dens. Date/Time Ca LGS CaCl No Mud Records for this report. Drilling Parameters Depth ROP Av/Mx WOB RPM Torque Flow Press. AV:DC AV:DP No Drilling Parameters Records for this report. Mud Log Depth Gas:Back Max Conn Trip Pore Pres. No Mud Log Information for this report. Safety Information 1st Aid: Med: LTI: Accident Description: Days Since: Oper: Total Personnel: 2 Hours: 0 1 0 Cont: 0 Serv: 1 Othr: Inventory Item Used Invent. Item Used Invent. No Inventory Records for this report. Environment Cum. Water Hauled: acre-ft 0.000 Rig/Weather Information No Rig Information for this report. No Weather Information for this report. Printed: 20:02 29-Apr-19 Page: 1 of 1 RIMBase 7.4.89.0",
+          "unsupported_tokens": [
+            "010",
+            "6010"
+          ]
+        }
+      ],
+      "value_count": 60,
+      "value_matches": 59,
+      "value_recall": 0.9833333333333333,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 0.04736842105263158,
+      "cell_count": 190,
+      "cell_matches": 9,
+      "column_count_correct": false,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 10,
+      "expected_rows": 21,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_directional_survey.csv",
+      "gold_sha256": "7f80f7096dcb8e00a34c57defb8f8a46fec27c0a9ecddb2c63faa251c5f953c5",
+      "header_accuracy": 0.3,
+      "header_count": 20,
+      "header_matches": 6,
+      "id": "forge_directional_survey",
+      "iou": 0.999999836868342,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "**TieIn",
+          "predicted": "**TieIn 0.0",
+          "row": 2
+        },
+        {
+          "column": 1,
+          "expected": "0.0",
+          "predicted": "0.00 0",
+          "row": 2
+        },
+        {
+          "column": 2,
+          "expected": "0.00",
+          "predicted": "0.0",
+          "row": 2
+        },
+        {
+          "column": 3,
+          "expected": "0",
+          "predicted": "",
+          "row": 2
+        }
+      ],
+      "page": 22,
+      "predicted_columns": 9,
+      "predicted_rows": 21,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 0.9,
+      "cell_count": 20,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 2,
+      "expected_rows": 10,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_fluid_parameters.csv",
+      "gold_sha256": "c16419527d1e2b067f8c046c2d66764f1a1869055e5f62eaf0d52f61af5cd9fc",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "forge_fluid_parameters",
+      "iou": 0.9999998213995808,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 1,
+          "expected": "8.6 – 9.2",
+          "predicted": "8.6 - 9.2",
+          "row": 3
+        },
+        {
+          "column": 1,
+          "expected": "NA – Vertical Hole",
+          "predicted": "NA - Vertical Hole",
+          "row": 7
+        }
+      ],
+      "page": 33,
+      "predicted_columns": 2,
+      "predicted_rows": 10,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 0.9705882352941176,
+      "cell_count": 170,
+      "cell_matches": 165,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "expected_columns": 10,
+      "expected_rows": 19,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_directional_survey.csv",
+      "gold_sha256": "656572eed4b30d7b6c166023b08418dd8d7e1defa23f3858c85d4c1918f58e13",
+      "header_accuracy": 0.2,
+      "header_count": 20,
+      "header_matches": 4,
+      "id": "akutan_directional_survey",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well Bore: Original Well Bore Plane of Vertical Section: 0",
+          "predicted": "Original Well Bore Well Bore:",
+          "row": 2
+        },
+        {
+          "column": 4,
+          "expected": "",
+          "predicted": "Plane of",
+          "row": 2
+        },
+        {
+          "column": 0,
+          "expected": "** TieIn",
+          "predicted": "TieIn **",
+          "row": 3
+        },
+        {
+          "column": 5,
+          "expected": "0.0",
+          "predicted": "Vertical Section: 0.0",
+          "row": 3
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 10,
+      "predicted_rows": 19,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 28,
+      "cell_matches": 28,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "expected_columns": 7,
+      "expected_rows": 5,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_daily_operations.csv",
+      "gold_sha256": "24eb787f87507f1bc2260e094d0b67f052574e6156ae5b843760ddd519806011",
+      "header_accuracy": 1.0,
+      "header_count": 7,
+      "header_matches": 7,
+      "id": "akutan_daily_operations",
+      "iou": 0.9999999009242507,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 7,
+      "predicted_rows": 5,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 0.05555555555555555,
+      "cell_count": 234,
+      "cell_matches": 13,
+      "column_count_correct": false,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "expected_columns": 26,
+      "expected_rows": 11,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_bit_summary.csv",
+      "gold_sha256": "761503dc80dfc3fc57a3fb24f77173ecbe8441219aa0485504bd9c15a707adab",
+      "header_accuracy": 0.3076923076923077,
+      "header_count": 52,
+      "header_matches": 16,
+      "id": "akutan_bit_summary",
+      "iou": 0.9999997046136163,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well ID: AK-3 Well Name: AK-3",
+          "predicted": "1",
+          "row": 2
+        },
+        {
+          "column": 1,
+          "expected": "",
+          "predicted": "1",
+          "row": 2
+        },
+        {
+          "column": 2,
+          "expected": "",
+          "predicted": "4.835 ADT Field:",
+          "row": 2
+        },
+        {
+          "column": 3,
+          "expected": "",
+          "predicted": "6AO Hot",
+          "row": 2
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 20,
+      "predicted_rows": 10,
+      "row_count_correct": false,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 18,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "expected_columns": 9,
+      "expected_rows": 3,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_casing.csv",
+      "gold_sha256": "5899ae4cba08ef1815f09c009c43c41c72988c9e6561766e8b2b0b319d05fb6e",
+      "header_accuracy": 1.0,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_casing",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/1",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 9,
+      "predicted_rows": 3,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 48,
+      "cell_matches": 48,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "expected_columns": 4,
+      "expected_rows": 13,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_cement.csv",
+      "gold_sha256": "84c9e739192d2f145ca822fe5976501672b1e64af97aaaa2f84328400759b21d",
+      "header_accuracy": 1.0,
+      "header_count": 4,
+      "header_matches": 4,
+      "id": "akutan_cement",
+      "iou": 0.9999996909661322,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 4,
+      "predicted_rows": 13,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 0.22916666666666666,
+      "cell_count": 96,
+      "cell_matches": 22,
+      "column_count_correct": false,
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "expected_columns": 4,
+      "expected_rows": 24,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_mud.csv",
+      "gold_sha256": "9653c394b9cc7da15f662cfaa14db021b0b8ac7fc098e26c849fdef14d6d8a4c",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_mud",
+      "iou": 0.9999992471332475,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 1,
+          "expected": "18-Aug-16 12:00",
+          "predicted": "Oil/Water Ratio: 18-Aug-16 12:00",
+          "row": 0
+        },
+        {
+          "column": 2,
+          "expected": "Oil/Water Ratio:",
+          "predicted": "/",
+          "row": 0
+        },
+        {
+          "column": 3,
+          "expected": "/",
+          "predicted": null,
+          "row": 0
+        },
+        {
+          "column": 1,
+          "expected": "",
+          "predicted": "Company:",
+          "row": 1
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 3,
+      "predicted_rows": 23,
+      "row_count_correct": false,
+      "variant": "corpus_accurate"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 50,
+      "cell_matches": 50,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_eowr",
+      "expected_columns": 2,
+      "expected_rows": 25,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_abbreviations.csv",
+      "gold_sha256": "54adbb592a449337f984c26505c4c24bdc577b44c4b6f634ebdfee3251ba46ef",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_abbreviations",
+      "iou": 1.0,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 4,
+      "predicted_columns": 2,
+      "predicted_rows": 25,
+      "row_count_correct": true,
+      "variant": "corpus_accurate"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "format": "form_fields",
+      "gold_csv": "data/gold/ingestion/tables/forge_daily_report.csv",
+      "gold_sha256": "7d25a0de547218c3c4f3c67c3bb9e9798298ca863d58fb256db677584a45e1d8",
+      "id": "forge_daily_report",
+      "invented_count_policy": "Unique native cells and text items with any source-absent normalized token; candidates require visual review, not a semantic hallucination count.",
+      "invented_numeric_values": 0,
+      "invented_text_spans": 1,
+      "missing_gold_values": [],
+      "page": 17,
+      "source_audit": "results/parser-comparison/source-value-review.json",
+      "unsupported_value_candidate_count": 5,
+      "unsupported_value_candidates": [
+        {
+          "id": "#/texts/0",
+          "text": "FG",
+          "unsupported_tokens": [
+            "fg"
+          ]
+        },
+        {
+          "id": "#/texts/5",
+          "text": "Theorem 1.2. The following are equivalent:",
+          "unsupported_tokens": [
+            "are",
+            "equivalent",
+            "following",
+            "theorem"
+          ]
+        },
+        {
+          "id": "#/tables/2:r1c2",
+          "text": "12.00",
+          "unsupported_tokens": [
+            "12"
+          ]
+        },
+        {
+          "id": "#/tables/4:r1c13",
+          "text": "CI",
+          "unsupported_tokens": [
+            "ci"
+          ]
+        },
+        {
+          "id": "#/tables/4:r1c15",
+          "text": "CaCI",
+          "unsupported_tokens": [
+            "caci"
+          ]
+        }
+      ],
+      "value_count": 60,
+      "value_matches": 60,
+      "value_recall": 1.0,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 190,
+      "cell_matches": 190,
+      "column_count_correct": true,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 10,
+      "expected_rows": 21,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_directional_survey.csv",
+      "gold_sha256": "7f80f7096dcb8e00a34c57defb8f8a46fec27c0a9ecddb2c63faa251c5f953c5",
+      "header_accuracy": 1.0,
+      "header_count": 20,
+      "header_matches": 20,
+      "id": "forge_directional_survey",
+      "iou": 0.9946347533413022,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 22,
+      "predicted_columns": 10,
+      "predicted_rows": 21,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.95,
+      "cell_count": 20,
+      "cell_matches": 19,
+      "column_count_correct": true,
+      "doc_id": "gdr1295_56-32_eowr",
+      "expected_columns": 2,
+      "expected_rows": 10,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/forge_fluid_parameters.csv",
+      "gold_sha256": "c16419527d1e2b067f8c046c2d66764f1a1869055e5f62eaf0d52f61af5cd9fc",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "forge_fluid_parameters",
+      "iou": 0.7157828049507203,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 1,
+          "expected": "< 100ºF",
+          "predicted": "< 100°F",
+          "row": 9
+        }
+      ],
+      "page": 33,
+      "predicted_columns": 2,
+      "predicted_rows": 11,
+      "row_count_correct": false,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.8941176470588236,
+      "cell_count": 170,
+      "cell_matches": 152,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_01_10_directionalsurveyrpt_160913175546",
+      "expected_columns": 10,
+      "expected_rows": 19,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_directional_survey.csv",
+      "gold_sha256": "656572eed4b30d7b6c166023b08418dd8d7e1defa23f3858c85d4c1918f58e13",
+      "header_accuracy": 1.0,
+      "header_count": 20,
+      "header_matches": 20,
+      "id": "akutan_directional_survey",
+      "iou": 0.9866685133382781,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well Bore: Original Well Bore Plane of Vertical Section: 0",
+          "predicted": "Well Bore: Original Well Bore",
+          "row": 2
+        },
+        {
+          "column": 4,
+          "expected": "",
+          "predicted": "Plane of Vertical Section: 0",
+          "row": 2
+        },
+        {
+          "column": 0,
+          "expected": "** TieIn",
+          "predicted": "** Tieln",
+          "row": 3
+        },
+        {
+          "column": 0,
+          "expected": "TOTCO",
+          "predicted": "TOTCC",
+          "row": 4
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 10,
+      "predicted_rows": 19,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.9642857142857143,
+      "cell_count": 28,
+      "cell_matches": 27,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "expected_columns": 7,
+      "expected_rows": 5,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_daily_operations.csv",
+      "gold_sha256": "24eb787f87507f1bc2260e094d0b67f052574e6156ae5b843760ddd519806011",
+      "header_accuracy": 1.0,
+      "header_count": 7,
+      "header_matches": 7,
+      "id": "akutan_daily_operations",
+      "iou": 0.94654470124926,
+      "matched_table_id": "#/tables/1",
+      "mismatch_examples": [
+        {
+          "column": 5,
+          "expected": "Fly loads to site , begin construction of camp and drill pad.",
+          "predicted": "Fly loads to site, begin construction of camp and drill pad.",
+          "row": 3
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 7,
+      "predicted_rows": 5,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.3888888888888889,
+      "cell_count": 234,
+      "cell_matches": 91,
+      "column_count_correct": false,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "expected_columns": 26,
+      "expected_rows": 11,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_bit_summary.csv",
+      "gold_sha256": "761503dc80dfc3fc57a3fb24f77173ecbe8441219aa0485504bd9c15a707adab",
+      "header_accuracy": 0.5961538461538461,
+      "header_count": 52,
+      "header_matches": 31,
+      "id": "akutan_bit_summary",
+      "iou": 0.9886084262399292,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Well ID: AK-3 Well Name: AK-3",
+          "predicted": "Well ID: AK-3",
+          "row": 2
+        },
+        {
+          "column": 22,
+          "expected": "",
+          "predicted": "Well Name: AK-3",
+          "row": 2
+        },
+        {
+          "column": 8,
+          "expected": "18-Aug-16 12:00",
+          "predicted": "",
+          "row": 3
+        },
+        {
+          "column": 9,
+          "expected": "0",
+          "predicted": "",
+          "row": 3
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 31,
+      "predicted_rows": 11,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 18,
+      "cell_matches": 18,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_33_8_casinginforpt_160913154132",
+      "expected_columns": 9,
+      "expected_rows": 3,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_casing.csv",
+      "gold_sha256": "5899ae4cba08ef1815f09c009c43c41c72988c9e6561766e8b2b0b319d05fb6e",
+      "header_accuracy": 1.0,
+      "header_count": 9,
+      "header_matches": 9,
+      "id": "akutan_casing",
+      "iou": 0.748554271250512,
+      "matched_table_id": "#/tables/1",
+      "mismatch_examples": [],
+      "page": 1,
+      "predicted_columns": 9,
+      "predicted_rows": 4,
+      "row_count_correct": false,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.125,
+      "cell_count": 48,
+      "cell_matches": 6,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_appx_37_8_cementjobrpt_160913175233",
+      "expected_columns": 4,
+      "expected_rows": 13,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_cement.csv",
+      "gold_sha256": "84c9e739192d2f145ca822fe5976501672b1e64af97aaaa2f84328400759b21d",
+      "header_accuracy": 0.0,
+      "header_count": 4,
+      "header_matches": 0,
+      "id": "akutan_cement",
+      "iou": 0.9365307215860335,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Start Date/Time:",
+          "predicted": "Job Type:",
+          "row": 1
+        },
+        {
+          "column": 1,
+          "expected": "29-Aug-16 22:30",
+          "predicted": "SECONDARY",
+          "row": 1
+        },
+        {
+          "column": 2,
+          "expected": "Well Bore:",
+          "predicted": "String OD (ins):",
+          "row": 1
+        },
+        {
+          "column": 3,
+          "expected": "Original Well Bore",
+          "predicted": "4.500",
+          "row": 1
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 4,
+      "predicted_rows": 12,
+      "row_count_correct": false,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 0.21875,
+      "cell_count": 96,
+      "cell_matches": 21,
+      "column_count_correct": false,
+      "doc_id": "gdr882_ak3_appx_44_9_mudreportdrillingrpt_160920160343",
+      "expected_columns": 4,
+      "expected_rows": 24,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_mud.csv",
+      "gold_sha256": "9653c394b9cc7da15f662cfaa14db021b0b8ac7fc098e26c849fdef14d6d8a4c",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_mud",
+      "iou": 0.9878674910388623,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [
+        {
+          "column": 0,
+          "expected": "Date/Time:",
+          "predicted": "Date/Time: 18-Aug-16 12:00",
+          "row": 0
+        },
+        {
+          "column": 1,
+          "expected": "18-Aug-16 12:00",
+          "predicted": "Oil/Water Ratio: /",
+          "row": 0
+        },
+        {
+          "column": 2,
+          "expected": "Oil/Water Ratio:",
+          "predicted": null,
+          "row": 0
+        },
+        {
+          "column": 3,
+          "expected": "/",
+          "predicted": null,
+          "row": 0
+        }
+      ],
+      "page": 1,
+      "predicted_columns": 2,
+      "predicted_rows": 24,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    },
+    {
+      "cell_accuracy": 1.0,
+      "cell_count": 50,
+      "cell_matches": 50,
+      "column_count_correct": true,
+      "doc_id": "gdr882_ak3_eowr",
+      "expected_columns": 2,
+      "expected_rows": 25,
+      "format": "grid",
+      "gold_csv": "data/gold/ingestion/tables/akutan_abbreviations.csv",
+      "gold_sha256": "54adbb592a449337f984c26505c4c24bdc577b44c4b6f634ebdfee3251ba46ef",
+      "header_accuracy": null,
+      "header_count": 0,
+      "header_matches": 0,
+      "id": "akutan_abbreviations",
+      "iou": 0.9892950592875128,
+      "matched_table_id": "#/tables/0",
+      "mismatch_examples": [],
+      "page": 4,
+      "predicted_columns": 2,
+      "predicted_rows": 25,
+      "row_count_correct": true,
+      "variant": "vlm_mineru"
+    }
+  ],
+  "verdicts": {
+    "corpus_accurate": {
+      "gap_vlm_minus_standard": 0.03759593018493945,
+      "keep_standard": true
+    },
+    "corpus_fast": {
+      "gap_vlm_minus_standard": -0.12443645406880699,
+      "keep_standard": true
+    }
+  },
+  "vlm_large_wins": [
+    {
+      "delta": 0.34615384615384615,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "id": "akutan_bit_summary",
+      "page": 1
+    }
+  ],
+  "vlm_wins": [
+    {
+      "delta": 0.04999999999999993,
+      "doc_id": "gdr1295_56-32_eowr",
+      "id": "forge_fluid_parameters",
+      "page": 33
+    },
+    {
+      "delta": 0.34615384615384615,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "id": "akutan_bit_summary",
+      "page": 1
+    },
+    {
+      "delta": 0.020000000000000018,
+      "doc_id": "gdr882_ak3_eowr",
+      "id": "akutan_abbreviations",
+      "page": 4
+    }
+  ]
+}

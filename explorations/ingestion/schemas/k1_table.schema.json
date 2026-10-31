@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "logical_id",
+    "doc_id",
+    "pages",
+    "grid",
+    "header_rows",
+    "num_cols",
+    "cells",
+    "parts",
+    "join",
+    "num_rows",
+    "rows_text",
+    "regions",
+    "table_id",
+    "file_id"
+  ],
+  "properties": {
+    "logical_id": {
+      "type": "string"
+    },
+    "doc_id": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "uniqueItems": true
+    },
+    "grid": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "header_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "num_cols": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cells": {
+      "type": "array"
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1
+    },
+    "join": {
+      "type": "object",
+      "required": [
+        "status",
+        "reasons"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "joined",
+            "uncertain",
+            "single"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "num_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rows_text": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "bbox"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "left, top, right, bottom in PDF points, top-left origin"
+          }
+        }
+      }
+    },
+    "table_id": {
+      "type": "string"
+    },
+    "file_id": {
+      "type": "string",
+      "pattern": "^f[0-9a-f]{16}$"
+    }
+  }
+}

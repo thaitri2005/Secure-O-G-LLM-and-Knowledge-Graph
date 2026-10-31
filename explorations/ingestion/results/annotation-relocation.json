@@ -1,0 +1,187 @@
+{
+  "files": [
+    {
+      "old_path": "gold/README.md",
+      "new_path": "annotations/development/source-conventions.md",
+      "old_sha256": "bab29b263d75bbd6707b7656ea55df92870fe9a5522533cb24a7c019f929ee59",
+      "new_sha256": "bab29b263d75bbd6707b7656ea55df92870fe9a5522533cb24a7c019f929ee59",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/REVIEW.md",
+      "new_path": "annotations/development/REVIEW.md",
+      "old_sha256": "88030aee8cac3dc3d9b42a321254c8a60bda691b3e9e009a911bb5c0a09e894c",
+      "new_sha256": "88030aee8cac3dc3d9b42a321254c8a60bda691b3e9e009a911bb5c0a09e894c",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/continued_tables/akutan_liner_components.csv",
+      "new_path": "annotations/development/continued-tables/akutan_liner_components.csv",
+      "old_sha256": "75a59383fd756bb31e6db7347e2272470604b29bfc574f1a54d026cc3678c3e5",
+      "new_sha256": "75a59383fd756bb31e6db7347e2272470604b29bfc574f1a54d026cc3678c3e5",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/continued_tables/akutan_npt.csv",
+      "new_path": "annotations/development/continued-tables/akutan_npt.csv",
+      "old_sha256": "474a70168d796a7d72f1c5313cca9c195a07c7e0c4c6d4bd8944458c31a2bb23",
+      "new_sha256": "474a70168d796a7d72f1c5313cca9c195a07c7e0c4c6d4bd8944458c31a2bb23",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/continued_tables/continued_tables.json",
+      "new_path": "annotations/development/continued-tables/continued_tables.json",
+      "old_sha256": "6d5528098d0a69f10a47e4b64aaf4eab14bc9231cbeef3f7bc17374ade546fcb",
+      "new_sha256": "6d5528098d0a69f10a47e4b64aaf4eab14bc9231cbeef3f7bc17374ade546fcb",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/excluded/akutan_account_codes.csv",
+      "new_path": "annotations/development/excluded/akutan_account_codes.csv",
+      "old_sha256": "9731501b4cf0012d125d566bc58dd3cbff6e5964238d624cb351c152902acc4a",
+      "new_sha256": "9731501b4cf0012d125d566bc58dd3cbff6e5964238d624cb351c152902acc4a",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/excluded/excluded.json",
+      "new_path": "annotations/development/excluded/excluded.json",
+      "old_sha256": "ad2103deb1d5a6f325a9d942ed8be7b3953adcbddf11c608b78233e829b53b38",
+      "new_sha256": "ad2103deb1d5a6f325a9d942ed8be7b3953adcbddf11c608b78233e829b53b38",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/forms/akutan_daily_header_1.csv",
+      "new_path": "annotations/development/forms/akutan_daily_header_1.csv",
+      "old_sha256": "5b18d36dd9d5a263019aa39676edbc4b9da248a5e6789a381a9b5a77fdd3893b",
+      "new_sha256": "5b18d36dd9d5a263019aa39676edbc4b9da248a5e6789a381a9b5a77fdd3893b",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/forms/akutan_daily_header_2.csv",
+      "new_path": "annotations/development/forms/akutan_daily_header_2.csv",
+      "old_sha256": "e633d7813d1e637349c430d0206b507f20198db3c21dc162953fa3f79d450d67",
+      "new_sha256": "e633d7813d1e637349c430d0206b507f20198db3c21dc162953fa3f79d450d67",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/forms/forge_daily_header.csv",
+      "new_path": "annotations/development/forms/forge_daily_header.csv",
+      "old_sha256": "800a29e03c46ba0c4ee4398bb5c29140d17ba314107711984ca05bd99d5e822c",
+      "new_sha256": "800a29e03c46ba0c4ee4398bb5c29140d17ba314107711984ca05bd99d5e822c",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/forms/forms.json",
+      "new_path": "annotations/development/forms/forms.json",
+      "old_sha256": "1cd1c3e626b4d79e2d865b46adbfb03718eea3547963fb5ea446d23a33f57d9d",
+      "new_sha256": "1cd1c3e626b4d79e2d865b46adbfb03718eea3547963fb5ea446d23a33f57d9d",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/provenance.json",
+      "new_path": "annotations/held-out/provenance.json",
+      "old_sha256": "28afcc761b8fd6bcb5e9feb599fc7aa43358d961d9e4e1ff0e06d1c5ff445157",
+      "new_sha256": "28afcc761b8fd6bcb5e9feb599fc7aa43358d961d9e4e1ff0e06d1c5ff445157",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/REVIEW.md",
+      "new_path": "annotations/held-out/REVIEW.md",
+      "old_sha256": "9f423de4bc7ea8dd359afc0ea6f9ad133a8d9e92519b714f9d259a3e410b8139",
+      "new_sha256": "9f423de4bc7ea8dd359afc0ea6f9ad133a8d9e92519b714f9d259a3e410b8139",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/selection.json",
+      "new_path": "annotations/held-out/selection.json",
+      "old_sha256": "a294e16e355aa5209c734bcd9675302835bd093ec6ccb51021afc4c225f2c719",
+      "new_sha256": "a294e16e355aa5209c734bcd9675302835bd093ec6ccb51021afc4c225f2c719",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/transcriptions/akutan_permit_form_p25.txt",
+      "new_path": "annotations/development/scanned-pages/akutan_permit_form_p25.txt",
+      "old_sha256": "db827d79d144d894f547b81d3956d18ed11670d221fad2a37a54f9434849bba4",
+      "new_sha256": "db827d79d144d894f547b81d3956d18ed11670d221fad2a37a54f9434849bba4",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/transcriptions/akutan_permit_letter_p23.txt",
+      "new_path": "annotations/development/scanned-pages/akutan_permit_letter_p23.txt",
+      "old_sha256": "e4e4e4987df32e758779914af779c103de43ea54a84439686f0eb4aad46ad074",
+      "new_sha256": "e4e4e4987df32e758779914af779c103de43ea54a84439686f0eb4aad46ad074",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/transcriptions/akutan_permit_letter_p24.txt",
+      "new_path": "annotations/development/scanned-pages/akutan_permit_letter_p24.txt",
+      "old_sha256": "72f76de2de54bc6821cd3a74312bc1571294a9f53a54be00d220d0ae8411c146",
+      "new_sha256": "72f76de2de54bc6821cd3a74312bc1571294a9f53a54be00d220d0ae8411c146",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/transcriptions/transcriptions.json",
+      "new_path": "annotations/development/scanned-pages/transcriptions.json",
+      "old_sha256": "37b1f2dacbaae91108038388286934bf6c1e5fcc78ab06e16c4a3da4864a1e43",
+      "new_sha256": "37b1f2dacbaae91108038388286934bf6c1e5fcc78ab06e16c4a3da4864a1e43",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/continued_tables/continued_tables.json",
+      "new_path": "annotations/held-out/continued-tables/continued_tables.json",
+      "old_sha256": "cef9cd0e588f98aa48957aa7b27e0fd68309d3f04e60d99dbc42bd322975e2d5",
+      "new_sha256": "cef9cd0e588f98aa48957aa7b27e0fd68309d3f04e60d99dbc42bd322975e2d5",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/continued_tables/forge16a_td_coordinates.csv",
+      "new_path": "annotations/held-out/continued-tables/forge16a_td_coordinates.csv",
+      "old_sha256": "0147b8e888dd242cda4b66c5e4f8523562d76e4b8ed5f6da0910e65b580131ed",
+      "new_sha256": "0147b8e888dd242cda4b66c5e4f8523562d76e4b8ed5f6da0910e65b580131ed",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/continued_tables/forge68_activity_detail.csv",
+      "new_path": "annotations/held-out/continued-tables/forge68_activity_detail.csv",
+      "old_sha256": "abe4bda1ddb86599fec8f4174537b990d8ef7038980406e261876316154d97db",
+      "new_sha256": "abe4bda1ddb86599fec8f4174537b990d8ef7038980406e261876316154d97db",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/excluded/akutan_hole_section_information.csv",
+      "new_path": "annotations/held-out/excluded/akutan_hole_section_information.csv",
+      "old_sha256": "0689b9515cb7a51a66f0e8bd1ba0c33f9973557366d1f67b5ac81bc3392c8107",
+      "new_sha256": "0689b9515cb7a51a66f0e8bd1ba0c33f9973557366d1f67b5ac81bc3392c8107",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/excluded/excluded.json",
+      "new_path": "annotations/held-out/excluded/excluded.json",
+      "old_sha256": "090ca95a90bc4bae5412f09287a58f99636353d0a137126333839ae68a14b334",
+      "new_sha256": "090ca95a90bc4bae5412f09287a58f99636353d0a137126333839ae68a14b334",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/forms/akutan_daily_header_20.csv",
+      "new_path": "annotations/held-out/forms/akutan_daily_header_20.csv",
+      "old_sha256": "0ca1c9ae5dcff8d52b445744a006abc86ec4940f80aa21f69fdb2778f863b805",
+      "new_sha256": "0ca1c9ae5dcff8d52b445744a006abc86ec4940f80aa21f69fdb2778f863b805",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/forms/forge78_daily_header_2.csv",
+      "new_path": "annotations/held-out/forms/forge78_daily_header_2.csv",
+      "old_sha256": "e7e610c98b189e1440b10172708dc75f6232645ed78be9fcdaf9c7d33e7eee0d",
+      "new_sha256": "e7e610c98b189e1440b10172708dc75f6232645ed78be9fcdaf9c7d33e7eee0d",
+      "identical_bytes": true
+    },
+    {
+      "old_path": "gold/heldout/forms/forms.json",
+      "new_path": "annotations/held-out/forms/forms.json",
+      "old_sha256": "1e6d08e45703a0ad9e4eab3c18d0f4f999869bb0b275b5fc8c9cd16b84dc6d83",
+      "new_sha256": "1e6d08e45703a0ad9e4eab3c18d0f4f999869bb0b275b5fc8c9cd16b84dc6d83",
+      "identical_bytes": true
+    }
+  ],
+  "all_identical": true
+}

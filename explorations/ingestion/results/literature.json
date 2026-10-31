@@ -1,0 +1,288 @@
+{
+  "evidence": [
+    {
+      "evidence": [
+        {
+          "excerpt": "382 0.2757 0.0218 0.2658 0.2246 DeepSeek-OCR 0.4548 0.4068 0.3649 0.0921 0.5565 0.5091 DeepSeek-OCR 2 0.4920 0.4527 0.3661 0.0933 0.5628 0.5176 dots.ocr 0.6054 0.5768 0.3958 0.1180 0.6179 0.5876 ResultsaregiveninTab.4.Amongthezero-shotmodels,frontierMLLMssig- nificantly outperform smaller specialized VLMs, with Gemini 3.1 Pro achieving the highest GriTSCon of 0.942. However, POTATR [21] with text extracted di- rectly from the document achieves GriTSCon of 0.964—",
+          "page": 12,
+          "term": "0.5768"
+        },
+        {
+          "excerpt": "oposed system where we use a second (ViT) model to predict when to merge tables across pages. Model GriTS Top GriTSCon AccTop AccCon TEDSS TEDS dots.ocr 0.6054 0.5768 0.39580.11800.6179 0.5876 dots.ocr + merging0.7206 0.6844 0.3979 0.1180 0.7534 0.7141 5 Conclusion In this work, we introduced PubTables-v2, a new large-scale dataset that unifies TE across three levels of context. Notably, PubTables-v2 is the first benchmark for the challenging task of multi-page ",
+          "page": 14,
+          "term": "0.5768"
+        },
+        {
+          "excerpt": " when to merge tables across pages. Model GriTS Top GriTSCon AccTop AccCon TEDSS TEDS dots.ocr 0.6054 0.5768 0.39580.11800.6179 0.5876 dots.ocr + merging0.7206 0.6844 0.3979 0.1180 0.7534 0.7141 5 Conclusion In this work, we introduced PubTables-v2, a new large-scale dataset that unifies TE across three levels of context. Notably, PubTables-v2 is the first benchmark for the challenging task of multi-page table extraction, with tables spanning up to 13 pages in l",
+          "page": 14,
+          "term": "0.6844"
+        },
+        {
+          "excerpt": "o help address the context gap, we used PubTables-v2 to develop the first data-driven approach to cross-page table continuation prediction. We found that image classifiers can predict table contin- uations with near-perfect accuracy and that model-based merging significantly improves document-level TE for single-page-context models. Altogether, these findings suggest a number of important directions remain, including continuing to improve the state of the art and de",
+          "page": 14,
+          "term": "classifier"
+        }
+      ],
+      "name": "pubtables-v2"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "rameters, hundreds of autoregressive steps, or costly API inference. Motivated by this, we introduce the Page- Object Table Transformer (POTATR), a lightweight 29M parameter image-to-graph model that extends the Table Transformer (TATR) for contextualizedpage-levelTE.POTATRoutperformsallmodelstestedon thePubTables-v2SinglePagesbenchmark—includingfrontierMLLMs— achieving GriTSCon of 0.964 while running over 130×faster at roughly 300×lower cost. Further, POTATR",
+          "page": 1,
+          "term": "29M"
+        },
+        {
+          "excerpt": "nd geometric text assignment. As a result, POTATR performs unified page-level TE while composing with other models, enabling extension to scanned documents via external OCR and to full-document TE via techniques like cross-page merging. Code and models will be released. Keywords:Page-level table extraction·Image-to-graph 1,000 10,000 Pages / hour (log scale) 0.0 0.2 0.4 0.6 0.8 1.0 GriTSCon POTATR-29M GraniteDocling-258M SmolDocling-256M Qwen2.5-VL-3b DeepSeek-OCR 2 d",
+          "page": 1,
+          "term": "external OCR"
+        },
+        {
+          "excerpt": "ative models [11]. Motivated by these limitations, we explore an alternative paradigm. We in- troduce the Page-Object Table Transformer (POTATR), a lightweight 29M- parameter image-to-graph model for contextually aware page-level TE. Rather than autoregressive text generation, POTATR frames page-level TE as parallel- decoded spatial graph prediction. It extends TATR [22,23]—a proven architec- ture for table structure recognition (TSR) on cropped tables—to the",
+          "page": 2,
+          "term": "29M"
+        }
+      ],
+      "name": "potatr"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "a render-and-compare alignment, improving structural accuracy without manual annotations. Additionally, two specialized modules,Image-Decoupled Table ParsingandType-Guided Table Merging, are introduced to enable reliable parsing of tables containing embedded images and recon- struction of tables crossing pages or columns. Comprehensive experiments onOmniDocBench v1.5 demonstrate that MonkeyOCR v1.5 achieves state-of-the-art performance, outperforming PPOCR-VL and Min",
+          "page": 1,
+          "term": "Type-Guided"
+        },
+        {
+          "excerpt": "-based Reinforcement Learning . . . . . . . . . . . . . . . . . 6 2.3 Image-Decoupled Table Parsing . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 2.4 Type-Guided Table Merging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7 3 Experiments 8 3.1 Comparison with Other Methods on Different Tasks . . . . . . . . . . . . . . . . . 8 3.2 Comparison with Other Methods on Different Document Types . . . . . . . . . . . 9 3.3 Comparison with Other Methods ",
+          "page": 2,
+          "term": "Type-Guided"
+        },
+        {
+          "excerpt": "ency-based Reinforcement Learning . . . . . . . . . . . . . . . . . 6 2.3 Image-Decoupled Table Parsing . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 2.4 Type-Guided Table Merging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7 3 Experiments 8 3.1 Comparison with Other Methods on Different Tasks . . . . . . . . . . . . . . . . . 8 3.2 Comparison with Other Methods on Different Document Types . . . . . . . . . . . 9 3.3 Comparison with Ot",
+          "page": 2,
+          "term": "2.4"
+        },
+        {
+          "excerpt": "ure 6:Three cross-page/cross-column patterns.Pattern 1: full header duplication. Pattern 2: continued table without headers. Pattern 3: row-split continuation. 2.4 Type-Guided Table Merging In practice, long tables are often split across pages or columns due to layout constraints. We propose a systematic merging strategy to reconstruct a single coherent table from such fragments, targeting three common patterns (Fig. 6): • Pattern 1: Full header duplication.I",
+          "page": 7,
+          "term": "2.4"
+        }
+      ],
+      "name": "monkeyocr"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "hallenges such as complex layouts, cross-page structural discontinuities, and cell-level referencing capability,LingDT-VL-OCRcombines (1) a Cross-page Contents Consolidation algorithm to restore continuity across pages and a Document-level Heading Hierarchy Reconstruction (DHR) module to build a globally consistent Table of Contents (TOC) tree for structure-aware retrieval, and (2) a difficulty-adaptive curriculum learning training strategy for table parsing, together ",
+          "page": 1,
+          "term": "Consolidation"
+        },
+        {
+          "excerpt": "le of Contents (TOC) tree for structure-aware retrieval, and (2) a difficulty-adaptive curriculum learning training strategy for table parsing, together with a CellBBoxRegressor module that uses structural anchor tokens to localize table cells from decoder hidden states without external detectors. Experiments demonstrate that our model shows high performance on the Overall metric of OmniDocBench. To enable realistic evaluation in the financial vertical, we further introduc",
+          "page": 1,
+          "term": "CellBBoxRegressor"
+        },
+        {
+          "excerpt": "le the structural complexity of financial documents, we propose a document-level content reconstruction algorithm with two core components: cross-page contents consolidation, which semantically concatenates cross-page text blocks and tables; and document-level heading hierarchy reconstruction, which reassigns heading levels across the entire document to ensure structural consistency. • Precision Table Parsing with Visual Reference.To address the structural complexity o",
+          "page": 3,
+          "term": "Consolidation"
+        },
+        {
+          "excerpt": ", 𝑦\",𝑤,ℎ 𝐿=𝐿!\"#+ 𝐿$%&' TokenizerTokenizer\"<td\"+* or \"><\"+\"td\"…… Anchor tokenP! Anchor tokenP! H!!H!!\"# H!!H!!\"# H!!H!!\"# LingDT-VL-OCR Figure 3:Architecture of CellBBoxRegressor. CellBBoxRegressor grounds each table cell by regressing its bounding box from decoder hidden states anchored at cell-start tokens. parsing models focus on recovering the table structure (e.g., HTML) and do not provide reliable cell-level grounding that maps each predicted cell back to its precise ",
+          "page": 10,
+          "term": "CellBBoxRegressor"
+        }
+      ],
+      "name": "agentar-fin-ocr"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": " a diagnostic benchmark of 916 real-world tables organized into five challenging scenarios and nine failure types. The strongest evaluated parser achieves only 85.03 TEDS, showing that aggregate benchmark scores conceal substantial weaknesses. Our analysis attributes these failures to three complementary limitations: large tables exceed the reliable processing scale of a single pass, weak or ambiguous visual cues hinder structure perception, and the reconstruct",
+          "page": 1,
+          "term": "85.03"
+        },
+        {
+          "excerpt": "al-world tables. To quantify this gap, we introduceTableParseMap, a diagnostic benchmark of 916 real-world tables organized into five challenging scenarios and nine failure types. The strongest evaluated parser achieves only 85.03 TEDS, showing that aggregate benchmark scores conceal substantial weaknesses. Our analysis attributes these failures to three complementary limitations: large tables exceed the reliable processing scale of a single pass, weak or ambiguous vi",
+          "page": 1,
+          "term": "nine failure"
+        },
+        {
+          "excerpt": "nsistency. two complementary perspectives: input scenarios and output failures. On this benchmark, MinerU2.5- Pro, the strongest evaluated model, achieves only 85.03 TEDS and falls below 80 on the Implicit Semantic scenario. The failures revealed by TableParseMap point to three complementary limitations. First, finite input resolution, visual-token capacity, and output length make large tables difficult to process completely in a single pass. Second, weak or am",
+          "page": 2,
+          "term": "85.03"
+        },
+        {
+          "excerpt": "2: Overview of TableParseMap. The benchmark contains 916 real-world table images and characterizes parser behavior through five challenging input scenarios and nine failure types. The scenario taxonomy describes where parsers struggle, while the structure-first error taxonomy describes how they fail. heterogeneous parsers. We apply it to 4,556 candidate samples drawn from public benchmarks, real- world data, and TableParseMap, yielding a Consensus-Hard Set of 1,977 ta",
+          "page": 3,
+          "term": "nine failure"
+        }
+      ],
+      "name": "tableparsemap"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "ion (OCR) engines with downstream models for struc- tured information extraction, leading to multi-stage error propagation. We fine-tune SmolDocling, a compact 256M-parameter vision-language model (VLM), to perform end-to-end key-value extraction directly from document images, jointly solving identification, localization, and associ- ation in a single pass without OCR preprocessing. We extend DocTags with specialized key, value, region, and link tags, enabling",
+          "page": 1,
+          "term": "256M"
+        },
+        {
+          "excerpt": "Identify, Locate, Link: End-to-End Key-Value Extraction from Document Images A. Said Gurbuz1,2, Ahmed Nassar1, Christoph Auer1, Maksym Lysak1, Lucas Morin1, Matteo Omenetti1, Tim Strohmeyer1, Panagiotis Vagenas1, Nikolaos Livathinos1, Michele Dolfi1, and Peter Staar1 1 IBM Research Zurich, Rüschlikon, Switz",
+          "page": 1,
+          "term": "Identify"
+        },
+        {
+          "excerpt": "tperforms larger zero- shot VLM baselines under layout-aware evaluation, while being 27× smaller than Qwen2.5-VL (7B) and over 5×faster at inference. The model weights will be released publicly after publication. Keywords:Key-value extraction·Document understanding·Vision- language models·End-to-end·Layout-aware evaluation 1 Introduction Over 80% of enterprise information resides in unstructured documents [16], rang- ing from invoices and contracts to medical for",
+          "page": 1,
+          "term": "weights"
+        },
+        {
+          "excerpt": "[24]× × ×399M XFormParser [7]× × ×370M Decoder-only DocLLM [32]× × ×7B LayTextLLM [23]×✓×7B End-to-end Donut [15]✓×✓ * 200M End-to-end Ours (SmolDocling) ✓ ✓ ✓ 256M ∗ structured output, but no complex key-value relationship support. 1.End-to-end key-value extraction.We fine-tune a 256M VLM to per- form identification, localization, and association of key-value pairs in a sin- gle forward pass without OCR or layout analysis, showing that our model is competitiv",
+          "page": 3,
+          "term": "256M"
+        },
+        {
+          "excerpt": "Identify, Locate, Link: End-to-End Key-Value Extraction 3 Table 1: Overview of key-value extraction models. OCR-free = no external OCR needed; Loc. = predicts bounding boxes; Struct. = structured output format. Paradigm Model OCR-free Loc. Struct. Params Multimodal enc. LayoutLMv3 [13]× × ×133M/368M LayoutX",
+          "page": 3,
+          "term": "Identify"
+        }
+      ],
+      "name": "smoldocling-kv"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "ng token utilization and processing efficiency. In retrieval benchmarks, STC improves MRR from 0.3576 to 0.5945 in a hybrid setting and increases Recall@1 from 0.366 to 0.754 in BM25-only retrieval. These results demonstrate that preserving structure during chunking improves retrieval performance, highlighting the im- portance of structure-aware chunking for RAG over tabular data. I. INTRODUCTION Document chunking is a critical design component in re- trieval a",
+          "page": 1,
+          "term": "0.366"
+        },
+        {
+          "excerpt": "utilization and processing efficiency. In retrieval benchmarks, STC improves MRR from 0.3576 to 0.5945 in a hybrid setting and increases Recall@1 from 0.366 to 0.754 in BM25-only retrieval. These results demonstrate that preserving structure during chunking improves retrieval performance, highlighting the im- portance of structure-aware chunking for RAG over tabular data. I. INTRODUCTION Document chunking is a critical design component in re- trieval augmented ",
+          "page": 1,
+          "term": "0.754"
+        },
+        {
+          "excerpt": "Strategy R@1 R@3 R@5 MRR Recursive 0.3470 0.3660 0.3720 0.3576 KV + Recursive 0.3200 0.3390 0.3390 0.3296 STC 0.5390 0.6200 0.6550 0.5945 TABLE III: Retrieval performance under the hybrid setting combining dense (bi-encoder) and sparse (BM25) retrieval with cross-encoder reranking. STC consistently outperforms both baselines across Re- call@k an",
+          "page": 5,
+          "term": "0.366"
+        },
+        {
+          "excerpt": "ance in both dense and sparse retrieval settings. Strategy R@1 R@3 R@5 MRR Recursive 0.3660 0.3760 0.3790 0.3720 KV + Recursive 0.3260 0.3340 0.3370 0.3305 STC 0.7540 0.7890 0.8030 0.7757 TABLE IV: Retrieval performance under the BM25-only setting. STC achieves substantially higher Recall@k and MRR, demonstrating that STC produces more lexically coherent chunks that benefit sparse retrieval. Although the evaluation is conducted on a legal dataset, the underlyin",
+          "page": 5,
+          "term": "0.754"
+        }
+      ],
+      "name": "tabular-chunking"
+    },
+    {
+      "evidence": [
+        {
+          "excerpt": "l content preservation. To address these gaps, we propose MPDocBench-Parse, a benchmark for multi-page document parsing in real-world applications. It contains 433 manually annotated documents with 3,246 pages, covering 15 document types in English and Chinese, with diverse layout styles, and supports document-level end-to-end evaluation. We further design a comprehensive protocol for content fidelity and logical structure, covering text, table, and formula r",
+          "page": 1,
+          "term": "433"
+        },
+        {
+          "excerpt": "se gaps, we propose MPDocBench-Parse, a benchmark for multi-page document parsing in real-world applications. It contains 433 manually annotated documents with 3,246 pages, covering 15 document types in English and Chinese, with diverse layout styles, and supports document-level end-to-end evaluation. We further design a comprehensive protocol for content fidelity and logical structure, covering text, table, and formula recognition, truncated text and table mer",
+          "page": 1,
+          "term": "3,246"
+        },
+        {
+          "excerpt": " We further design a comprehensive protocol for content fidelity and logical structure, covering text, table, and formula recognition, truncated text and table merging, figure extraction, reading order, and heading hierarchy recovery. Experiments show that, while existing models perform well on basic text extraction, they still suffer clear limitations in semantic continuity integration, visual content parsing, and hierarchical structure recovery. MPDocBench-P",
+          "page": 1,
+          "term": "merg"
+        },
+        {
+          "excerpt": " Fidelity3Textual content completeness Figure extraction Semantic continuity Formula Table Text Chart UI Screenshot Seal … crosspage within page Truncated text merging Truncated table merging 4Logical Structural CorrectnessReading OrderHierarchical Structure abc de fhj klm no p q gi headingparagraphtablefigure a b c d e m gif hj k n p q l o Node Types 中文 2 Broad Document DiversityDomains: 15 Research Report Textbook Newspaper Magazine HandwrittenProspectus … L",
+          "page": 2,
+          "term": "merg"
+        },
+        {
+          "excerpt": "n contributions are summarized as follows: • We introduce MPDocBench-Parse, an end-to-end benchmark for practical multi-page doc- ument parsing. It consists of 433 manually annotated PDF documents, comprising 3,246 pages, spanning 15 diverse document types in both English and Chinese. • We propose a comprehensive evaluation protocol for multi-page document parsing that jointly measures parsing content fidelity and logical structural correctness, covering cont",
+          "page": 3,
+          "term": "433"
+        },
+        {
+          "excerpt": "ntroduce MPDocBench-Parse, an end-to-end benchmark for practical multi-page doc- ument parsing. It consists of 433 manually annotated PDF documents, comprising 3,246 pages, spanning 15 diverse document types in both English and Chinese. • We propose a comprehensive evaluation protocol for multi-page document parsing that jointly measures parsing content fidelity and logical structural correctness, covering content completeness, semantic continuity, multimodal p",
+          "page": 3,
+          "term": "3,246"
+        }
+      ],
+      "name": "mpdocbench"
+    }
+  ],
+  "retrieval": [
+    {
+      "arxiv": "2512.10888",
+      "name": "pubtables-v2",
+      "opening": "PAGE 1\nPubTables-v2: A new large-scale dataset for\nfull-page and multi-page table extraction\nBrandon Smock, Valerie Faucon-Morin, Max Sokolov, Libin Liang, Tayyibah\nKhanam, Amrit Ramesh, and Maury Courtland\nKensho Technologies\n{brandon.smock,maury.courtland}@kensho.com\nAbstract.Table extraction (TE) is a key challenge in document un-\nderstanding. Traditional approaches detect tables first, then recognize\ntheir structure. Recently, interest has surged in developing methods,\nsuch as vision-language models (VLMs), to extract tables directly in\ntheir full page or document context. However, a lack of annotated data\nhas made progress difficult to demonstrate. To address this, we cre-\nate a new large-scale dataset, PubTables-v2. PubTables-v2 unifies TE\nacross various levels of surrounding context and, notably, is the first\nbenchmark for multi-page TE. Our evaluations reveal that while cur-\nrent frontier models strongly outperform (+0.354GriTSCon) small mod-\nels on the most complex task (full-document multi-page TE), this gap\ncan be closed or evenreversed(−0.056GriTS Con) on narrower tasks\n(cropped table extraction) with targeted training. Data is available at\nhttps://huggingface.co/datasets/kensho/PubTables-v2. Code and\nmodels will be released.\nKeywords:Table extraction·Multi-page table recognition\n1 Introduction\nTable extraction (TE) has a long history as one of the most-studied problems in\nvisual document understanding (VDU). Traditionally, TE approaches have taken\nFig.1:Among the more than 500k tables in PubTables-v2 are 9,492 multi-page tables,\nby far the largest set to-date. PubTables-v2 includes tables spanning up to 13 pages.\narXiv:2512.10888v3  [cs.CV]  2 Jun 2026\nPAGE 2\n2 B. Smock et al.\nRow (odd)\nColumn (even)\nColumn header\nRow (even)\nSpanning cell\nCaption\nColumn (od",
+      "pages": 28,
+      "sha256": "74a1a84fc4be22840e14876d55825ba1864d3e22b574af7ad22d7534bdb86080",
+      "status": "downloaded",
+      "version": "2512.10888v3"
+    },
+    {
+      "arxiv": "2606.09788",
+      "name": "potatr",
+      "opening": "PAGE 1\nPOTATR: A Lightweight Image-to-Graph Model\nfor Page-Level Table Extraction\nBrandon Smock, Libin Liang, Max Sokolov, Amrit Ramesh, Valerie\nFaucon-Morin, Tayyibah Khanam, and Maury Courtland\nKensho Technologies\n{brandon.smock,maury.courtland}@kensho.com\nAbstract.Large-scale document processing requires contextually aware\ntable extraction (TE) that is both accurate and efficient. Yet current\napproaches require billions of parameters, hundreds of autoregressive\nsteps, or costly API inference. Motivated by this, we introduce the Page-\nObject Table Transformer (POTATR), a lightweight 29M parameter\nimage-to-graph model that extends the Table Transformer (TATR) for\ncontextualizedpage-levelTE.POTATRoutperformsallmodelstestedon\nthePubTables-v2SinglePagesbenchmark—includingfrontierMLLMs—\nachieving GriTSCon of 0.964 while running over 130×faster at roughly\n300×lower cost. Further, POTATR’s output is spatially grounded: ev-\nery recognized element has a bounding box, enabling visual verification\nand geometric text assignment. As a result, POTATR performs unified\npage-level TE while composing with other models, enabling extension\nto scanned documents via external OCR and to full-document TE via\ntechniques like cross-page merging. Code and models will be released.\nKeywords:Page-level table extraction·Image-to-graph\n1,000 10,000\nPages / hour (log scale)\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nGriTSCon\nPOTATR-29M\nGraniteDocling-258M\nSmolDocling-256M\nQwen2.5-VL-3b\nDeepSeek-OCR 2\ndots.ocr\nGemini 3.1 Pro\nGPT-5.4\nClaude Opus 4.6\nAccuracy vs. Throughput\n30 100 1,000 10,000\nPages / $1 (log scale)\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nGriTSCon\nPOTATR-29M\nGraniteDocling-258M\nSmolDocling-256M\nQwen2.5-VL-3b\nDeepSeek-OCR 2\ndots.ocr\nGemini 3.1 Pro\nGPT-5.4\nClaude Opus 4.6\nAccuracy vs. Cost Efficiency\nPOTATR (ours) Small VL",
+      "pages": 16,
+      "sha256": "b129a3434f0a00842403cf1f2ca3235a95a6b3e1525423441994bcb0a1d93fe7",
+      "status": "downloaded",
+      "version": "2606.09788v1"
+    },
+    {
+      "arxiv": "2511.10390",
+      "name": "monkeyocr",
+      "opening": "PAGE 1\nMonkeyOCR v1.5 Technical Report: Unlocking\nRobust Document Parsing for Complex Patterns\nJiarui Zhang1, Yuliang Liu2, Zijun Wu1, Guosheng Pang1, Zhili Ye1, Yupei Zhong1,\nJunteng Ma1,Tao Wei1,Haiyang Xu1,Weikai Chen1,Zeen Wang1,Qiangjun Ji1,\nFanxi Zhou1,Qi Zhang1,Yuanrui Hu1,Jiahao Liu1,Zhang Li2,Ziyang Zhang2,\nQiang Liu1,Xiang Bai2\n1 KingSoft Office Zhuiguang AI Lab, 2 Huazhong University of Science and Technology\nFigure 1: Performance comparison of MonkeyOCR v1.5 and other SOTA models.\nAbstract\nDocument parsing is a core task in document intelligence, supporting applications such as information\nextraction, retrieval-augmented generation, and automated document analysis. However, real-world\ndocuments often feature complex layouts with multi-level tables, embedded images or formulas, and\ncross-page structures, which remain challenging for existing OCR systems. We introduceMonkey-\nOCR v1.5, a unified vision–language framework that enhances both layout understanding and content\nrecognition through a two-stage pipeline. The first stage employs a large multimodal model to jointly\npredict layout and reading order, leveraging visual information to ensure sequential consistency. The\nsecond stage performs localized recognition of text, formulas, and tables within detected regions,\nmaintaining high visual fidelity while reducing error propagation. To address complex table structures,\nwe propose avisual consistency–based reinforcement learningscheme that evaluates recognition\nquality via render-and-compare alignment, improving structural accuracy without manual annotations.\nAdditionally, two specialized modules,Image-Decoupled Table ParsingandType-Guided Table\nMerging, are introduced to enable reliable parsing of tables containing embedded images and recon-\nstruction of tabl",
+      "pages": 18,
+      "sha256": "0d98ab4480ffa4d58eb020230bf5a09e955920cec1023ee5112ea69097529ecd",
+      "status": "downloaded",
+      "version": "2511.10390v2"
+    },
+    {
+      "arxiv": "2603.11044",
+      "name": "agentar-fin-ocr",
+      "opening": "PAGE 1\nT E C H N O L O G I E SD I G I T A L\nLingDT-VL-OCR: Structure-Aware Document-Level Parsing\nwith Fine-Grained Visual Reference\nSiyi Qian∗ Xiongfei Bai∗ Bingtao Fu Yichen Lu Gaoyang Zhang Xudong Yang\nPeng Zhang†\nAnt Group\n{siyi.qsy, baixiongfei.bxf, biaotao.bf, luyichen.lyc, zgy528076, jiegang.yxd,\nminghua.zp}@antgroup.com\nAbstract\nIn this paper, we proposeLingDT-VL-OCR, a document parsing system tailored to\nfinancial-domain documents, transforming ultra-long financial PDFs into semantically\nconsistent, highly accurate, structured outputs with auditing-grade provenance. To\naddress finance-specific challenges such as complex layouts, cross-page structural\ndiscontinuities, and cell-level referencing capability,LingDT-VL-OCRcombines (1)\na Cross-page Contents Consolidation algorithm to restore continuity across pages\nand a Document-level Heading Hierarchy Reconstruction (DHR) module to build a\nglobally consistent Table of Contents (TOC) tree for structure-aware retrieval, and (2)\na difficulty-adaptive curriculum learning training strategy for table parsing, together\nwith a CellBBoxRegressor module that uses structural anchor tokens to localize table\ncells from decoder hidden states without external detectors. Experiments demonstrate\nthat our model shows high performance on the Overall metric of OmniDocBench. To\nenable realistic evaluation in the financial vertical, we further introduceFinDocBench,\na benchmark that includes six financial document categories with expert-verified\nannotations and evaluation metrics including Table of Contents edit-distance-based\nsimilarity (TocEDS), cross-page concatenated TEDS, and Table Cell Intersection over\nUnion (C-IoU). We evaluate a wide range of state-of-the-art models onFinDocBench\nto assess their capabilities and remaining limita",
+      "pages": 27,
+      "sha256": "366ef80d5faf3e61d3edacb523c31b5a1fbf201503d506c66a7e912dfe2b9c48",
+      "status": "downloaded",
+      "version": "2603.11044v2"
+    },
+    {
+      "arxiv": "2608.09842",
+      "name": "tableparsemap",
+      "opening": "PAGE 1\nFrom Diagnosis to Correction: Benchmarking and Improving\nReal-World Table Parsing\nJutao Xiao1,2∗,Yuan Qu 2∗,Dongsheng Ma 3∗,Fan Wu 2,Tianyao He 2,Weihong Li 2,Jie Yang 2,\nYu Qiao2\u0000 ,Bin Wang 2\u0000 ,Conghui He 2\u0000\n1Zhejiang University, 2Shanghai Artificial Intelligence Laboratory, 3Peking University\nxiaojutao@zju.edu.cn, heconghui@pjlab.org.cn\nRecent document parsers achieve table TEDS scores above 93 on OmniDocBench v1.6, yet\ncommunity feedback and our audit reveal persistent failures on complex real-world tables. To\nquantify this gap, we introduceTableParseMap, a diagnostic benchmark of 916 real-world\ntables organized into five challenging scenarios and nine failure types. The strongest evaluated\nparser achieves only 85.03 TEDS, showing that aggregate benchmark scores conceal substantial\nweaknesses. Our analysis attributes these failures to three complementary limitations: large\ntables exceed the reliable processing scale of a single pass, weak or ambiguous visual cues\nhinder structure perception, and the reconstructed table may remain visually inconsistent with\nthe image. We therefore proposeDEC(Decompose–Enhance–Correct), a visual-consistency-\nguided agentic framework that improves frozen table parsers without retraining. DEC uses\na general VLM as the controller: Decompose partitions large tables along structure-aware\nboundaries, Enhance exposes weak visual evidence and reparses transformed views, and\nCorrect diagnoses and repairs residual errors. A Visual Consistency Gate (VC-Gate) selectively\ntriggers intervention, while a Visual Consistency Ranker (VC-Ranker) verifies candidate up-\ndates and supports rollback without ground-truth HTML at inference time. We further derive a\n1,977-table Consensus-Hard Set from 4,556 candidates through offline metrics and cross-mo",
+      "pages": 25,
+      "sha256": "02dedb391616328baedb923eb1b716d7a7072d5a3c7136039561cadca3d9ff83",
+      "status": "downloaded",
+      "version": "2608.09842v1"
+    },
+    {
+      "arxiv": "2608.20868",
+      "name": "smoldocling-kv",
+      "opening": "PAGE 1\nIdentify, Locate, Link: End-to-End Key-Value\nExtraction from Document Images\nA. Said Gurbuz1,2, Ahmed Nassar1, Christoph Auer1, Maksym Lysak1, Lucas\nMorin1, Matteo Omenetti1, Tim Strohmeyer1, Panagiotis Vagenas1, Nikolaos\nLivathinos1, Michele Dolfi1, and Peter Staar1\n1 IBM Research Zurich, Rüschlikon, Switzerland\n2 ETH Zurich, Zurich, Switzerland\nsaid.guerbuez@inf.ethz.ch\nAbstract.Document processing pipelines traditionally cascade optical\ncharacter recognition (OCR) engines with downstream models for struc-\ntured information extraction, leading to multi-stage error propagation.\nWe fine-tune SmolDocling, a compact 256M-parameter vision-language\nmodel (VLM), to perform end-to-end key-value extraction directly from\ndocument images, jointly solving identification, localization, and associ-\nation in a single pass without OCR preprocessing. We extend DocTags\nwith specialized key, value, region, and link tags, enabling many-to-many\nrelationships in a unified output sequence. To address data limitations,\nwe design an augmentation pipeline combining synthetic form filling\nand graph-based crops that preserve complete key-value subgraphs. We\nfurther introduce a layout-aware evaluation framework extending text\nmatching with spatial bounding box verification. On FUNSD, XFUND,\nand a large-scale private dataset, our model outperforms larger zero-\nshot VLM baselines under layout-aware evaluation, while being 27×\nsmaller than Qwen2.5-VL (7B) and over 5×faster at inference. The\nmodel weights will be released publicly after publication.\nKeywords:Key-value extraction·Document understanding·Vision-\nlanguage models·End-to-end·Layout-aware evaluation\n1 Introduction\nOver 80% of enterprise information resides in unstructured documents [16], rang-\ning from invoices and contracts to medic",
+      "pages": 17,
+      "sha256": "6b31fef1f3556cd84c77d0f2cad503c68884eec7e9fd41a98098fd76161bcf13",
+      "status": "downloaded",
+      "version": "2608.20868v1"
+    },
+    {
+      "arxiv": "2605.00318",
+      "name": "tabular-chunking",
+      "opening": "PAGE 1\nStructure-Aware Chunking for Tabular Data in\nRetrieval-Augmented Generation\nPooja Guttal Varun Magotra Vasudeva Mahavishnu Natasha Chanto\nSidharth Sivaprasad Manas Gaur\n{pooja, varun, vasu, natasha, sidharth}@altumatim.com\nmanas@umbc.edu\nAltumatim, University of Maryland, Baltimore County\nAbstract—Tabular documents such as CSV and Excel files are\nwidely used in enterprise data pipelines, yet existing chunking\nstrategies for retrieval-augmented generation (RAG) are primar-\nily designed for unstructured text and do not account for tabular\nstructure. We propose a structure-aware tabular chunking (STC)\nframework that operates on row-level units by constructing a\nhierarchical Row Tree representation, where each row is encoded\nas a key-value block.\nSTC performs token-constrained splitting aligned with struc-\ntural boundaries and applies overlap-free greedy merging to\nproduce dense, non-overlapping chunks. This design preserves\nsemantic relationships between fields within a row while improv-\ning token utilization and reducing fragmentation.\nAcross evaluations on the MAUD dataset, STC reduces chunk\ncount by up to 40% and 56% compared to standard recursive and\nkey-value–based baselines, respectively, while improving token\nutilization and processing efficiency. In retrieval benchmarks,\nSTC improves MRR from 0.3576 to 0.5945 in a hybrid setting and\nincreases Recall@1 from 0.366 to 0.754 in BM25-only retrieval.\nThese results demonstrate that preserving structure during\nchunking improves retrieval performance, highlighting the im-\nportance of structure-aware chunking for RAG over tabular data.\nI. INTRODUCTION\nDocument chunking is a critical design component in re-\ntrieval augmented systems, as it determines how information\nis segmented, represented, and retrieved. Existing ch",
+      "pages": 5,
+      "sha256": "88236b95070bd348fc84fcbe72de3dfa0a76ba0d8d305eb171781bfaf351309f",
+      "status": "downloaded",
+      "version": "2605.00318v1"
+    },
+    {
+      "arxiv": "2605.22100",
+      "name": "mpdocbench",
+      "opening": "PAGE 1\nMPDocBench-Parse: Benchmarking Practical\nMulti-page Document Parsing\nBangbang Zhou1∗, Hangdi Xing2, Yifan Chen1, Jianjun Xu1, Qi Zheng2†, Feiyu Gao2,\nZhibo Yang2,Shuai Bai 2,Ming Yan 2,Jieping Ye 2,Hongtao Xie 1‡\n1 University of Science and Technology of China 2 Tongyi Lab, Alibaba Group\nProject Page: https://github.com/Tongyi-Zhiwen/Qwen-Doc\nAbstract\nDocument parsing converts visually rich documents into machine-readable struc-\ntured representations, forming a crucial foundation for information systems. Al-\nthough many benchmarks have been proposed for document parsing, they remain\ninadequate for realistic scenarios. Existing benchmarks either focus on specific\ntasks or assess only single-page, text-centric settings, making them insufficient for\npractical multi-page parsing. Moreover, they lack fine-grained evaluation of seman-\ntic continuity, hierarchical structure recovery, and visual content preservation. To\naddress these gaps, we propose MPDocBench-Parse, a benchmark for multi-page\ndocument parsing in real-world applications. It contains 433 manually annotated\ndocuments with 3,246 pages, covering 15 document types in English and Chinese,\nwith diverse layout styles, and supports document-level end-to-end evaluation. We\nfurther design a comprehensive protocol for content fidelity and logical structure,\ncovering text, table, and formula recognition, truncated text and table merging,\nfigure extraction, reading order, and heading hierarchy recovery. Experiments show\nthat, while existing models perform well on basic text extraction, they still suffer\nclear limitations in semantic continuity integration, visual content parsing, and\nhierarchical structure recovery. MPDocBench-Parse provides a unified foundation\nfor advancing document parsing toward more realistic sc",
+      "pages": 29,
+      "sha256": "d31c5f14ba810cf8e36fb0444671ccd3df53c252ea0331d2f63e8d3ae87e61a7",
+      "status": "downloaded",
+      "version": "2605.22100v2"
+    }
+  ]
+}

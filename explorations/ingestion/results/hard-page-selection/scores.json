@@ -1,0 +1,489 @@
+{
+  "large_vlm_wins": [
+    {
+      "delta": 0.34615384615384615,
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "id": "akutan_bit_summary",
+      "page": 1
+    }
+  ],
+  "recommendation": null,
+  "required": [
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17
+    },
+    {
+      "doc_id": "gdr1295_56-32_eowr",
+      "page": 33
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 1
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+      "page": 1
+    },
+    {
+      "doc_id": "gdr882_ak3_eowr",
+      "page": 4
+    }
+  ],
+  "rules": [
+    {
+      "catches": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "page": 17
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+          "page": 1
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+          "page": 1
+        }
+      ],
+      "coverage_pass": false,
+      "expression": "rotation != 0 OR landscape OR mode == ocr OR largest_table_share >= 0.60 OR empty_columns >= 3 OR table_score < 0.50 OR form_pairs >= 8",
+      "id": "R1",
+      "misses": [
+        {
+          "doc_id": "gdr1295_56-32_eowr",
+          "page": 33
+        },
+        {
+          "doc_id": "gdr882_ak3_eowr",
+          "page": 4
+        }
+      ],
+      "pages": 788,
+      "passed": false,
+      "review": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated cover with End of Well Report, 68-32, a partner map and prepared-for text; no data grid or daily-report form. Selection is caused by document rotation. This is a possible unnecessary VLM call if ordinary orientation handling preserves the cover text.",
+          "page": 1,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p1.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "1",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "1",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "196",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated approval sheet with Sam Abraham, Mary Mann, Ernesto Rivas and W. M. Rickard in a simple three-column reviewer table. It has no dense operations grid. Rotation alone routes a small structured table that may already be usable from standard extraction.",
+          "page": 2,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p2.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0.271216",
+            "mode": "text",
+            "page": "2",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "265",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated table of contents lists Summary, Well Data, Casing Properties and Well Profiles, and Appendices. The body is an outline with dot leaders rather than a hard data table; the rotation trigger does not distinguish this page from forge68-rotated-daily-report.",
+          "page": 3,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p3.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "3",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "1934",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated prose Summary, Achieved Well Objectives and Health and Safety Program, with short bullet lists. No form-value pairing or dense table is present. The metadata rotation selects ordinary narrative content.",
+          "page": 4,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p4.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "5",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "4",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "2002",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated satellite map locates wells 68-32, 78-32 and 58-32, with one figure caption. The map may need image-text review, so this is a weaker false-positive candidate; rotation alone gives no evidence that VLM extraction improves the required caption or well labels.",
+          "page": 5,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p5.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "3",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "hybrid",
+            "page": "5",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "147",
+            "width": "792.12"
+          }
+        }
+      ],
+      "selected_pages": 453,
+      "share": 0.5748730964467005,
+      "share_pass": false
+    },
+    {
+      "catches": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "page": 17
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+          "page": 1
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+          "page": 1
+        }
+      ],
+      "coverage_pass": false,
+      "expression": "rotation != 0 OR mode == ocr OR (landscape AND form_pairs >= 4) OR largest_table_share >= 0.80 OR empty_columns >= 5 OR table_score < 0.35 OR form_pairs >= 12",
+      "id": "R2",
+      "misses": [
+        {
+          "doc_id": "gdr1295_56-32_eowr",
+          "page": 33
+        },
+        {
+          "doc_id": "gdr882_ak3_eowr",
+          "page": 4
+        }
+      ],
+      "pages": 788,
+      "passed": false,
+      "review": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated cover with End of Well Report, 68-32, a partner map and prepared-for text; no data grid or daily-report form. Selection is caused by document rotation. This is a possible unnecessary VLM call if ordinary orientation handling preserves the cover text.",
+          "page": 1,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p1.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "1",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "1",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "196",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated approval sheet with Sam Abraham, Mary Mann, Ernesto Rivas and W. M. Rickard in a simple three-column reviewer table. It has no dense operations grid. Rotation alone routes a small structured table that may already be usable from standard extraction.",
+          "page": 2,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p2.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0.271216",
+            "mode": "text",
+            "page": "2",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "265",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated table of contents lists Summary, Well Data, Casing Properties and Well Profiles, and Appendices. The body is an outline with dot leaders rather than a hard data table; the rotation trigger does not distinguish this page from forge68-rotated-daily-report.",
+          "page": 3,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p3.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "3",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "1934",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated prose Summary, Achieved Well Objectives and Health and Safety Program, with short bullet lists. No form-value pairing or dense table is present. The metadata rotation selects ordinary narrative content.",
+          "page": 4,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p4.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "5",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "4",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "2002",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated satellite map locates wells 68-32, 78-32 and 58-32, with one figure caption. The map may need image-text review, so this is a weaker false-positive candidate; rotation alone gives no evidence that VLM extraction improves the required caption or well labels.",
+          "page": 5,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p5.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "3",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "hybrid",
+            "page": "5",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "147",
+            "width": "792.12"
+          }
+        }
+      ],
+      "selected_pages": 429,
+      "share": 0.5444162436548223,
+      "share_pass": false
+    },
+    {
+      "catches": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "page": 17
+        }
+      ],
+      "coverage_pass": false,
+      "expression": "rotation != 0 OR (mode == ocr AND form_pairs >= 4) OR (form_pairs >= 8 AND largest_table_share >= 0.35) OR (empty_columns >= 3 AND largest_table_share >= 0.50) OR table_score < 0.20",
+      "id": "R3",
+      "misses": [
+        {
+          "doc_id": "gdr1295_56-32_eowr",
+          "page": 33
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+          "page": 1
+        },
+        {
+          "doc_id": "gdr882_ak3_appx_32_7_bitsummaryrpt_160913152836",
+          "page": 1
+        },
+        {
+          "doc_id": "gdr882_ak3_eowr",
+          "page": 4
+        }
+      ],
+      "pages": 788,
+      "passed": false,
+      "review": [
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated cover with End of Well Report, 68-32, a partner map and prepared-for text; no data grid or daily-report form. Selection is caused by document rotation. This is a possible unnecessary VLM call if ordinary orientation handling preserves the cover text.",
+          "page": 1,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p1.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "1",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "1",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "196",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated approval sheet with Sam Abraham, Mary Mann, Ernesto Rivas and W. M. Rickard in a simple three-column reviewer table. It has no dense operations grid. Rotation alone routes a small structured table that may already be usable from standard extraction.",
+          "page": 2,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p2.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0.271216",
+            "mode": "text",
+            "page": "2",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "265",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated table of contents lists Summary, Well Data, Casing Properties and Well Profiles, and Appendices. The body is an outline with dot leaders rather than a hard data table; the rotation trigger does not distinguish this page from forge68-rotated-daily-report.",
+          "page": 3,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p3.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "4",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "3",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "1934",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated prose Summary, Achieved Well Objectives and Health and Safety Program, with short bullet lists. No form-value pairing or dense table is present. The metadata rotation selects ordinary narrative content.",
+          "page": 4,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p4.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "5",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "text",
+            "page": "4",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "2002",
+            "width": "792.12"
+          }
+        },
+        {
+          "doc_id": "gdr1153_68-32_eowr",
+          "observation": "Rotated satellite map locates wells 68-32, 78-32 and 58-32, with one figure caption. The map may need image-text review, so this is a weaker false-positive candidate; rotation alone gives no evidence that VLM extraction improves the required caption or well labels.",
+          "page": 5,
+          "render": "runs/experiments/hard-page selection/false-positive-review/gdr1153_68-32_eowr-p5.png",
+          "review_status": "visually inspected",
+          "signals": {
+            "cache_page_missing": "False",
+            "doc_id": "gdr1153_68-32_eowr",
+            "empty_columns": "0",
+            "form_pairs": "3",
+            "height": "612.12",
+            "landscape": "True",
+            "largest_table_share": "0",
+            "mode": "hybrid",
+            "page": "5",
+            "rotation": "270",
+            "table_score": "",
+            "table_score_reason": "existing cache has document only; no ConversionResult confidence",
+            "text_chars": "147",
+            "width": "792.12"
+          }
+        }
+      ],
+      "selected_pages": 139,
+      "share": 0.17639593908629442,
+      "share_pass": false
+    }
+  ],
+  "verdict": "fail"
+}

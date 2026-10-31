@@ -1,0 +1,45 @@
+{
+  "doc_id": "gdr1153_68-32_eowr",
+  "page": 17,
+  "records": [
+    {
+      "invented_numeric_values": 0,
+      "invented_text_spans": 0,
+      "observation": "The source-absent tokens 0009 and 3226s arise from source values 0.00 / 09-Mar-19 and 68-32 / 26S being concatenated by normalization inside a broad merged cell. No new semantic statement or numeric value was found. The merged cell still loses layout and recall.",
+      "variant": "corpus_fast"
+    },
+    {
+      "invented_numeric_values": 0,
+      "invented_text_spans": 0,
+      "observation": "Candidates 0009, 010 and 6010 are digit-whitespace collapse across adjacent source values in flattened form cells; no extra semantic statement or numeric value was found. Broad merged regions and reordered labels remain.",
+      "variant": "corpus_accurate"
+    },
+    {
+      "invented_numeric_values": 0,
+      "invented_text": [
+        "Theorem 1.2. The following are equivalent:"
+      ],
+      "invented_text_spans": 1,
+      "label_substitutions": [
+        {
+          "output": "CI",
+          "source": "Cl"
+        },
+        {
+          "output": "CaCI",
+          "source": "CaCl"
+        }
+      ],
+      "observation": "Value recall is complete while an unsupported theorem statement replaces the Operations Summary heading. Two chemical-column labels also substitute capital I for lowercase l.",
+      "other_candidates": [
+        "FG is a damaged reading of a decorative logo, not an added field value.",
+        "12.00 is printed in the source operations grid; its token 12 is absent only because numeric-whitespace collapse merges adjacent PDF text fragments."
+      ],
+      "source_text": "Operations Summary",
+      "variant": "vlm_mineru"
+    }
+  ],
+  "render": "runs/experiments/parser comparison/pages/gdr1153_68-32_eowr-p17.png",
+  "scope": "Review native text and cells against the source render and direct PDFium text. Count distinct added semantic statements and distinct invented numeric values separately from extraction loss, label substitutions and normalization artifacts.",
+  "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc"
+}

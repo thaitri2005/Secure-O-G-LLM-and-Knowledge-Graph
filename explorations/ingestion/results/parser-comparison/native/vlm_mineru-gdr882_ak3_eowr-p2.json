@@ -1,0 +1,62 @@
+{
+  "doc_id": "gdr882_ak3_eowr",
+  "items": [
+    {
+      "bbox": [
+        69.78168000000001,
+        73.66716,
+        200.16324,
+        88.71744
+      ],
+      "id": "#/texts/0",
+      "section": "Executive Summary",
+      "text": "Executive Summary",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        67.94532,
+        88.71744,
+        550.908,
+        200.40636
+      ],
+      "id": "#/texts/1",
+      "section": "Executive Summary",
+      "text": "Akutan Well AK-3 well was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days, including rig-up and rig-down time. The well was completed with blank and perforated liner from 755 feet to 1,955 feet. The well was planned as a continuous core well, and designed to intersect the resource so that it could be flowed for resource characterization. Three pressure and temperature surveys were conducted, with a maximum measured temperature of  \\( 329^{\\circ} \\) F at about 500 feet. Horner calculations based on thermal recovery indicate a maximum formation temperature of  \\( 340^{\\circ} \\) F at 400 feet,  \\( 334^{\\circ} \\) F at 850 feet, and  \\( 310^{\\circ} \\) F at the bottom of the hole. A flow test is planned for summer 2017.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        70.3938,
+        737.4637200000001,
+        78.96348,
+        748.5534
+      ],
+      "id": "#/texts/2",
+      "section": "Executive Summary",
+      "text": "2",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        542.33832,
+        727.16616,
+        581.514,
+        767.5642799999999
+      ],
+      "id": "#/texts/3",
+      "section": "Executive Summary",
+      "text": "F",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "40426792d8909f4517aa66a4ed274e4f52bb05a78dc99c94eaa62ec4aa3d1a4c",
+  "page": 2,
+  "page_size": {
+    "height": 792.12,
+    "width": 612.12
+  },
+  "source_sha256": "673c77409ffeafb77821fc67df412e46962162a42a34808ea2e98bb1f627befb",
+  "tables": [],
+  "variant": "vlm_mineru"
+}

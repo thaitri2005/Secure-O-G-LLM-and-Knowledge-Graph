@@ -1,0 +1,213 @@
+{
+  "doc_id": "gdr1295_56-32_eowr",
+  "items": [
+    {
+      "bbox": [
+        246.6,
+        42.01152000000002,
+        386.75759999999997,
+        80.63740707692307
+      ],
+      "id": "#/texts/0",
+      "section": null,
+      "text": "End of Well Report Utah FORGE Seismic Monitoring Well 56-32",
+      "type": "page_header"
+    },
+    {
+      "bbox": [
+        54.64848327636719,
+        124.75361633300781,
+        557.1921997070312,
+        210.1426239013672
+      ],
+      "id": "#/tables/0",
+      "section": null,
+      "text": "Bit #/Run Hole made (ft) Bit Size (in.) IADC Code Ave. WOB (klbs) Ave. RPM Jet Size (32nd) Ave. flow rate (gpm) Ave. ROP (fph) 1/1 252 17.5 S422 12 50 20-20-20- 20-20 800 206",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        72.0,
+        109.21151999999995,
+        330.97852800000004,
+        118.79005818181815
+      ],
+      "id": "#/texts/1",
+      "section": null,
+      "text": "Table 6: Basic drilling parameters for 17-1/2 in. section",
+      "type": "caption"
+    },
+    {
+      "bbox": [
+        416.9547424316406,
+        36.04701232910156,
+        558.5014038085938,
+        85.76213836669922
+      ],
+      "id": "#/tables/1",
+      "section": null,
+      "text": "Ref. GRG-10230 Ver. Final Page 31 of 86 Issued: 22 July 2021",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        72.0,
+        738.49152,
+        111.962592,
+        747.9574070769231
+      ],
+      "id": "#/texts/2",
+      "section": null,
+      "text": "Page | 31",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "be1289d9048feec392d8274bfe37fae22a0a0fc577956ec55b99b8433f42acd1",
+  "page": 31,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "95be3fe8e669bc39bc1b0e688b565584032d3c8ac0c227870870c384552704b3",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Bit #/Run"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Hole made (ft)"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Bit Size (in.)"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "IADC Code"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Ave. WOB (klbs)"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Ave. RPM"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Jet Size (32nd) Ave. flow rate (gpm)"
+        },
+        {
+          "c": 7,
+          "r": 0,
+          "text": "Ave. ROP (fph)"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "1/1"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "252"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "17.5"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "S422"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "12"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "50"
+        },
+        {
+          "c": 6,
+          "r": 1,
+          "text": "20-20-20- 20-20 800"
+        },
+        {
+          "c": 7,
+          "r": 1,
+          "text": "206"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 8,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            54.64848327636719,
+            124.75361633300781,
+            557.1921997070312,
+            210.1426239013672
+          ],
+          "page": 31
+        }
+      ],
+      "table_id": "#/tables/0"
+    },
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "Ref. GRG-10230 Ver. Final"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "Page 31 of 86"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "Issued: 22 July"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "2021"
+        }
+      ],
+      "doc_id": "gdr1295_56-32_eowr",
+      "num_cols": 2,
+      "num_rows": 2,
+      "regions": [
+        {
+          "bbox": [
+            416.9547424316406,
+            36.04701232910156,
+            558.5014038085938,
+            85.76213836669922
+          ],
+          "page": 31
+        }
+      ],
+      "table_id": "#/tables/1"
+    }
+  ],
+  "variant": "corpus_fast"
+}

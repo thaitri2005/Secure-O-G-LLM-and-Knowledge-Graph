@@ -1,0 +1,94 @@
+[
+  {
+    "status": "corrected",
+    "id": "akutan_npt",
+    "doc_id": "gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525",
+    "pages": [
+      1,
+      2
+    ],
+    "parts": [
+      {
+        "status": "corrected",
+        "page": 1,
+        "bbox": [
+          36,
+          113,
+          576,
+          722
+        ],
+        "first_row": 1,
+        "last_row": 22,
+        "render": "runs/spikes/gold-review/gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525-p1.png"
+      },
+      {
+        "status": "corrected",
+        "page": 2,
+        "bbox": [
+          36,
+          95,
+          576,
+          329
+        ],
+        "first_row": 23,
+        "last_row": 28,
+        "render": "runs/spikes/gold-review/gdr882_ak3_appx_23_5_nonproductivetimerpt_160927143525-p2.png"
+      }
+    ],
+    "header_rows": 1,
+    "header_repeated_on_continuation": true,
+    "csv": "gold/continued_tables/akutan_npt.csv",
+    "notes": "Only the nine-column event grid is included. All Dates, Criteria and total bands are outside the logical grid. Printed Well Total and Report Total are both 115.00. Source spelling, including floe and trough, is retained.",
+    "format": "grid",
+    "source_sha256": "f6b0f3f13c5707eeaf4fa95344b6e7babd23c581a86a6e73eb81d1bde26211c7",
+    "provenance": "Reviewed source render and direct PDF text layer; no parser output.",
+    "annotator": "Drafted from the source render and PDF text layer; second pass checked against the renders with AI assistance; scope decisions approved by the repository owner.",
+    "reviewed": "2026-10-31"
+  },
+  {
+    "status": "corrected",
+    "id": "akutan_liner_components",
+    "doc_id": "gdr882_ak3_appx_36_8_casinginforpt_160920160154",
+    "pages": [
+      1,
+      2
+    ],
+    "parts": [
+      {
+        "status": "corrected",
+        "page": 1,
+        "bbox": [
+          72,
+          302,
+          540,
+          700
+        ],
+        "first_row": 1,
+        "last_row": 34,
+        "render": "runs/spikes/gold-review/gdr882_ak3_appx_36_8_casinginforpt_160920160154-p1.png"
+      },
+      {
+        "status": "corrected",
+        "page": 2,
+        "bbox": [
+          72,
+          117,
+          540,
+          207
+        ],
+        "first_row": 35,
+        "last_row": 42,
+        "render": "runs/spikes/gold-review/gdr882_ak3_appx_36_8_casinginforpt_160920160154-p2.png"
+      }
+    ],
+    "header_rows": 1,
+    "header_repeated_on_continuation": false,
+    "csv": "gold/continued_tables/akutan_liner_components.csv",
+    "notes": "String Component Details only. Torque column is printed but empty throughout. Total band excluded: Total Items 45 and 1,200.00 ft. The row with 4 PERF is one printed row, not four duplicated rows.",
+    "format": "grid",
+    "source_sha256": "b8b918b878adf689d11c2c35b691d99fdb2cc34e37b0818894b3b36acb210c2d",
+    "provenance": "Reviewed source render and direct PDF text layer; no parser output.",
+    "annotator": "Drafted from the source render and PDF text layer; second pass checked against the renders with AI assistance; scope decisions approved by the repository owner.",
+    "reviewed": "2026-10-31"
+  }
+]

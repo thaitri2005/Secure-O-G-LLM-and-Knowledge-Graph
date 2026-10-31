@@ -1,0 +1,49 @@
+block,key,value
+identity,Well ID:,AK-3
+identity,Well Name:,AK-3
+location,Field:,Hot Springs Bay Va
+location,Sect:,5
+location,Town:,112W
+location,Rng:,S005
+location,County:,Aleutians East
+location,State:,AK
+report,Report No:,2
+report,Report For,13-Aug-16
+well,Operator:,City of Akutan
+well,Rig:,Major LF90
+well,Spud Date:,18-Aug-16
+well,Daily Cost / Mud ($):,---
+well,Measured Depth (ft):,0
+well,Drilling Days (act.):,0
+well,Well Bore:,Original Well Bore
+well,Vertical Depth (ft):,0
+well,Drilling Days (plan):,30
+well,RKB Elevation (ft):,0.00
+well,Proposed TD (ft):,1700
+well,Days On Location:,2
+well,Last BOP Test:,
+well,Hole Made (ft) / Hrs:,0 / 0.0
+well,Last Casing:,
+well,Average ROP (ft/hr):,
+well,Next Casing:,5.500 at 220
+well,Working Interest:,
+well,Well Cost ($):,---
+cost row 1,AFE No.,---
+cost row 1,AFE ($),---
+cost row 1,Actual ($),---
+cost row 2,AFE No.,---
+cost row 2,AFE ($),---
+cost row 2,Actual ($),---
+cost totals,Totals:,---
+cost totals,Actual ($),---
+Pers/Hrs:,Operator:,2 / 0
+Pers/Hrs:,Contractor:,6 / 0
+Pers/Hrs:,Service:,5 / 0
+Pers/Hrs:,Other:,2 / 0
+Pers/Hrs:,Total:,15 / 0
+safety,SafetySummary:,No incidents or events reported. 2 days since LTI.
+operations,Current Operations:,"Weather clearing up, should be able to fly. Hold planning meeting."
+operations,Planned Operations:,Continue to rig up camp and fly loads to valley
+personnel,Toolpusher:,Brian Walker
+personnel,Wellsite Supervisors:,MKeown
+personnel,Tel No.:,907-273-0057

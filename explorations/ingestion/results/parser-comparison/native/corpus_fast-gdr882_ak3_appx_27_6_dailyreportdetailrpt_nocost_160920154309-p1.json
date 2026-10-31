@@ -1,0 +1,1281 @@
+{
+  "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+  "items": [
+    {
+      "bbox": [
+        104.5,
+        51.58000000000004,
+        219.71200000000005,
+        71.39417127071829
+      ],
+      "id": "#/texts/0",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "text": "Daily Drilling Report Well ID: AK-3",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        104.5,
+        78.80499999999995,
+        220.9509999999999,
+        84.35417127071821
+      ],
+      "id": "#/texts/1",
+      "section": "Daily Drilling Report Well ID: AK-3",
+      "text": "Field: Hot Springs Bay Valley",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        406.4969,
+        51.58000000000004,
+        570.3929000000003,
+        58.97889502762439
+      ],
+      "id": "#/texts/2",
+      "section": "Geothermal Resource Group",
+      "text": "Geothermal Resource Group",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        498.5228,
+        65.84500000000003,
+        570.4868000000004,
+        71.39417127071829
+      ],
+      "id": "#/texts/3",
+      "section": "Geothermal Resource Group",
+      "text": "Well Name: AK-3",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        300.3954,
+        78.80499999999995,
+        570.2334000000009,
+        84.35417127071821
+      ],
+      "id": "#/texts/4",
+      "section": "Geothermal Resource Group",
+      "text": "Sect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        41.536,
+        92.64440000000002,
+        87.994,
+        98.19357127071828
+      ],
+      "id": "#/texts/5",
+      "section": "Geothermal Resource Group",
+      "text": "Report No:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        95.536,
+        93.09500000000003,
+        100.54,
+        98.64417127071829
+      ],
+      "id": "#/texts/6",
+      "section": "Geothermal Resource Group",
+      "text": "1",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        104.50440000000003,
+        75.42399999999999,
+        109.43699668508293
+      ],
+      "id": "#/texts/7",
+      "section": "Geothermal Resource Group",
+      "text": "Operator:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        116.54039999999998,
+        116.728,
+        121.47299668508288
+      ],
+      "id": "#/texts/8",
+      "section": "Geothermal Resource Group",
+      "text": "Measured Depth (ft):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        128.55240000000003,
+        108.27999999999999,
+        133.48499668508293
+      ],
+      "id": "#/texts/9",
+      "section": "Geothermal Resource Group",
+      "text": "Vertical Depth (ft):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        140.58839999999998,
+        104.26400000000001,
+        145.52099668508288
+      ],
+      "id": "#/texts/10",
+      "section": "Geothermal Resource Group",
+      "text": "Proposed TD (ft):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        152.61239999999998,
+        114.49599999999997,
+        157.54499668508288
+      ],
+      "id": "#/texts/11",
+      "section": "Geothermal Resource Group",
+      "text": "Hole Made (ft) / Hrs:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        164.63639999999998,
+        115.83999999999997,
+        169.56899668508288
+      ],
+      "id": "#/texts/12",
+      "section": "Geothermal Resource Group",
+      "text": "Average ROP (ft/hr):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        176.66039999999998,
+        74.552,
+        181.59299668508288
+      ],
+      "id": "#/texts/13",
+      "section": "Geothermal Resource Group",
+      "text": "Pers/Hrs:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        89.4,
+        176.66039999999998,
+        125.82399999999998,
+        181.59299668508288
+      ],
+      "id": "#/texts/14",
+      "section": "Geothermal Resource Group",
+      "text": "Operator:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        190.18439999999998,
+        102.104,
+        195.11699668508288
+      ],
+      "id": "#/texts/15",
+      "section": "Geothermal Resource Group",
+      "text": "SafetySummary:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        128.9992,
+        104.51639999999998,
+        200.336,
+        109.44899668508288
+      ],
+      "id": "#/texts/16",
+      "section": "Geothermal Resource Group",
+      "text": "Rig: City of Akutan Major LF90",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        173.8705596923828,
+        113.85774230957031,
+        257.63200000000006,
+        122.73416900634766
+      ],
+      "id": "#/texts/17",
+      "section": "Geothermal Resource Group",
+      "text": "0 Drilling Days (act.):",
+      "type": "checkbox_unselected"
+    },
+    {
+      "bbox": [
+        173.6931915283203,
+        125.86553955078125,
+        260.2800000000001,
+        134.62229919433594
+      ],
+      "id": "#/texts/18",
+      "section": "Geothermal Resource Group",
+      "text": "Drilling Days (plan): 0",
+      "type": "checkbox_unselected"
+    },
+    {
+      "bbox": [
+        161.0031,
+        140.57640000000004,
+        255.40800000000004,
+        145.52099668508288
+      ],
+      "id": "#/texts/19",
+      "section": "Geothermal Resource Group",
+      "text": "Days On Location: 1700",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        156.5617,
+        152.61239999999998,
+        232.76800000000003,
+        157.54499668508288
+      ],
+      "id": "#/texts/20",
+      "section": "Geothermal Resource Group",
+      "text": "Last Casing: 0 / 0.0",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        184.8,
+        164.63639999999998,
+        233.66400000000004,
+        169.56899668508288
+      ],
+      "id": "#/texts/21",
+      "section": "Geothermal Resource Group",
+      "text": "Next Casing:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        152.4336,
+        176.66039999999998,
+        217.52799999999996,
+        181.59299668508288
+      ],
+      "id": "#/texts/22",
+      "section": "Geothermal Resource Group",
+      "text": "2 / 0 Contractor:",
+      "type": "list_item"
+    },
+    {
+      "bbox": [
+        248.75582885742188,
+        162.06964111328125,
+        293.6735534667969,
+        169.56899668508288
+      ],
+      "id": "#/texts/23",
+      "section": "Geothermal Resource Group",
+      "text": "5.500 at 220",
+      "type": "checkbox_selected"
+    },
+    {
+      "bbox": [
+        253.2336,
+        176.66039999999998,
+        268.7776,
+        181.59299668508288
+      ],
+      "id": "#/texts/24",
+      "section": "Geothermal Resource Group",
+      "text": "7 / 0",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        299.64,
+        104.51639999999998,
+        341.8239999999999,
+        109.44899668508288
+      ],
+      "id": "#/texts/25",
+      "section": "Geothermal Resource Group",
+      "text": "Spud Date:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        288.7412414550781,
+        113.76339721679688,
+        339.15999999999997,
+        121.47299668508288
+      ],
+      "id": "#/texts/26",
+      "section": "Geothermal Resource Group",
+      "text": "Well Bore: 0",
+      "type": "checkbox_unselected"
+    },
+    {
+      "bbox": [
+        378.1046,
+        104.51639999999998,
+        415.44859999999983,
+        109.44899668508288
+      ],
+      "id": "#/texts/27",
+      "section": "Geothermal Resource Group",
+      "text": "18-Aug-16",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        352.9992,
+        116.52840000000003,
+        417.41519999999986,
+        121.46099668508293
+      ],
+      "id": "#/texts/28",
+      "section": "Geothermal Resource Group",
+      "text": "Original Well Bore",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        284.7415,
+        128.56439999999998,
+        370.2479999999999,
+        133.49699668508288
+      ],
+      "id": "#/texts/29",
+      "section": "Geothermal Resource Group",
+      "text": "RKB Elevation (ft): 30",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        289.1907,
+        140.58839999999998,
+        356.93599999999986,
+        145.52099668508288
+      ],
+      "id": "#/texts/30",
+      "section": "Geothermal Resource Group",
+      "text": "Last BOP Test: 1",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        299.64,
+        164.62440000000004,
+        365.3599999999999,
+        169.55699668508294
+      ],
+      "id": "#/texts/31",
+      "section": "Geothermal Resource Group",
+      "text": "Working Interest:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        274.8,
+        176.66039999999998,
+        305.9119999999999,
+        181.59299668508288
+      ],
+      "id": "#/texts/32",
+      "section": "Geothermal Resource Group",
+      "text": "Service:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        111.088,
+        190.19640000000004,
+        283.0480000000001,
+        195.12899668508294
+      ],
+      "id": "#/texts/33",
+      "section": "Geothermal Resource Group",
+      "text": "No incidents or events reported. 1 day since LTI.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        204.75400000000002,
+        567.1119999999996,
+        218.88579668508294
+      ],
+      "id": "#/texts/34",
+      "section": "Geothermal Resource Group",
+      "text": "Current Operations: Bob, Monty, Kevin and Joe, fly to site locate hole position, fly mini excavator to site begin construction of drill pad, fly camp crew to site",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.07201,
+        225.15239999999994,
+        493.00799999999987,
+        230.48549668508292
+      ],
+      "id": "#/texts/35",
+      "section": "Geothermal Resource Group",
+      "text": "Planned Operations: Construct drill pad, dig and install cellar to collar the hole. Build man camp, sort and fly loads to valley.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        237.60080000000005,
+        85.16800000000002,
+        242.53339668508295
+      ],
+      "id": "#/texts/36",
+      "section": "Geothermal Resource Group",
+      "text": "Toolpusher:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        132.6,
+        237.20039999999995,
+        178.36000000000004,
+        242.13299668508284
+      ],
+      "id": "#/texts/37",
+      "section": "Geothermal Resource Group",
+      "text": "Brian Walker",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        39.0,
+        249.62480000000005,
+        163.71200000000002,
+        254.5693966850829
+      ],
+      "id": "#/texts/38",
+      "section": "Geothermal Resource Group",
+      "text": "Wellsite Supervisors: MKeown Tel No.:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        462.216,
+        249.6368,
+        512.0239999999998,
+        254.5693966850829
+      ],
+      "id": "#/texts/39",
+      "section": "Geothermal Resource Group",
+      "text": "907-273-0057",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        37.282020568847656,
+        268.2668762207031,
+        576.3217163085938,
+        332.44146728515625
+      ],
+      "id": "#/tables/0",
+      "section": "Geothermal Resource Group",
+      "text": "From To Elapsed End MD(ft) Code Operations Description Non-Prod 0:00 8:00 8.00 0 WOD personnel at lodge and town on Akutan 8:00 9:30 1.50 0 MOB Meeting to discuss project fly to Valley to site hole location 9:30 19:00 9.50 0 MOB Fly loads to site , begin construction of camp and drill pad. 19:00 0:00 5.00 0 WOD Crews down for evening",
+      "type": "table"
+    },
+    {
+      "bbox": [
+        260.5219,
+        262.99490000000003,
+        351.4759000000001,
+        268.5440712707183
+      ],
+      "id": "#/texts/40",
+      "section": "Operations Summary",
+      "text": "Operations Summary",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        256.4111,
+        335.3669,
+        354.8801000000001,
+        340.9160712707182
+      ],
+      "id": "#/texts/41",
+      "section": "Management Summary",
+      "text": "Management Summary",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        41.5,
+        347.4144,
+        555.6039999999997,
+        361.5462966850829
+      ],
+      "id": "#/texts/42",
+      "section": "Management Summary",
+      "text": "Stage personnel at container location to pull and sort loads. Fly city representative to location, stake hole. Fly materials and personnel to Valley to begin construction of camp.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        282.4223,
+        369.2373,
+        328.9073,
+        374.7864712707182
+      ],
+      "id": "#/texts/43",
+      "section": "Comments",
+      "text": "Comments",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        260.6602,
+        396.7197,
+        351.2361999999999,
+        402.83847127071823
+      ],
+      "id": "#/texts/44",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        170.536,
+        409.8672,
+        247.84,
+        414.7997966850829
+      ],
+      "id": "#/texts/45",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Medical Treatments:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        305.5359,
+        409.8672,
+        383.2398999999999,
+        414.7997966850829
+      ],
+      "id": "#/texts/46",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Lost Time Incidents:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        440.536,
+        409.8672,
+        500.0479999999999,
+        414.7997966850829
+      ],
+      "id": "#/texts/47",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Days Since LTI:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        41.5,
+        381.2849,
+        169.00400000000002,
+        386.2174966850829
+      ],
+      "id": "#/texts/48",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Helicopter AS 350 flight time 3.5hrs.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        41.536,
+        409.8672,
+        121.92799999999998,
+        414.7997966850829
+      ],
+      "id": "#/texts/49",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "First Aid Treatments:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        40.28994369506836,
+        418.1183166503906,
+        90.78809356689453,
+        427.6690979003906
+      ],
+      "id": "#/texts/50",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "BOP Test",
+      "type": "checkbox_unselected"
+    },
+    {
+      "bbox": [
+        126.48207092285156,
+        417.8678283691406,
+        216.79940795898438,
+        427.8789978027344
+      ],
+      "id": "#/texts/51",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Crownamatic Check",
+      "type": "checkbox_unselected"
+    },
+    {
+      "bbox": [
+        41.5,
+        446.7073,
+        97.87599999999998,
+        451.6398966850829
+      ],
+      "id": "#/texts/52",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Sky Condition:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        41.5,
+        458.7073,
+        105.91599999999998,
+        463.6398966850829
+      ],
+      "id": "#/texts/53",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Air Temperature:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        41.536,
+        470.7553,
+        103.23999999999998,
+        475.6878966850829
+      ],
+      "id": "#/texts/54",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Wind Speed/Dir:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        113.5,
+        446.7073,
+        176.59600000000003,
+        451.6398966850829
+      ],
+      "id": "#/texts/55",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "Overcast / broken",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        113.5,
+        458.7073,
+        142.836,
+        463.6398966850829
+      ],
+      "id": "#/texts/56",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "58 degF",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        113.5,
+        470.7553,
+        136.58800000000002,
+        475.6878966850829
+      ],
+      "id": "#/texts/57",
+      "section": "Bulk Inventory Water / Fluids Inventory Water / Fluids Hauled Safety Information",
+      "text": "12 / W",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        261.132,
+        434.2253,
+        348.5580000000001,
+        439.7744712707182
+      ],
+      "id": "#/texts/58",
+      "section": "Weather Information",
+      "text": "Weather Information",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        309.25,
+        446.7073,
+        344.76199999999994,
+        451.6398966850829
+      ],
+      "id": "#/texts/59",
+      "section": "Weather Information",
+      "text": "Visibility:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        309.49,
+        458.7073,
+        364.14599999999996,
+        463.6398966850829
+      ],
+      "id": "#/texts/60",
+      "section": "Weather Information",
+      "text": "Bar. Pressure:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        309.52,
+        470.7553,
+        356.5759999999999,
+        475.6878966850829
+      ],
+      "id": "#/texts/61",
+      "section": "Weather Information",
+      "text": "Wind Gusts:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        354.0336,
+        176.66039999999998,
+        369.57759999999996,
+        181.59299668508288
+      ],
+      "id": "#/texts/62",
+      "section": "Weather Information",
+      "text": "8 / 0",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        399.8938,
+        128.56439999999998,
+        415.45379999999994,
+        133.49699668508288
+      ],
+      "id": "#/texts/63",
+      "section": "Weather Information",
+      "text": "0.00",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        375.6,
+        176.66039999999998,
+        399.584,
+        181.59299668508288
+      ],
+      "id": "#/texts/64",
+      "section": "Weather Information",
+      "text": "Other:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        404.0508,
+        446.7073,
+        408.49879999999996,
+        451.6398966850829
+      ],
+      "id": "#/texts/65",
+      "section": "Weather Information",
+      "text": "6",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        399.6016,
+        470.7553,
+        408.4976,
+        475.6878966850829
+      ],
+      "id": "#/texts/66",
+      "section": "Weather Information",
+      "text": "16",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        478.5277,
+        92.64440000000002,
+        570.4627,
+        98.19357127071828
+      ],
+      "id": "#/texts/67",
+      "section": "Report For 12-Aug-16",
+      "text": "Report For 12-Aug-16",
+      "type": "section_header"
+    },
+    {
+      "bbox": [
+        421.464,
+        104.50440000000003,
+        498.2799999999999,
+        109.43699668508293
+      ],
+      "id": "#/texts/68",
+      "section": "Report For 12-Aug-16",
+      "text": "Daily Cost / Mud ($):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        564.9359,
+        104.50440000000003,
+        572.9278999999999,
+        109.43699668508293
+      ],
+      "id": "#/texts/69",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        421.464,
+        116.52840000000003,
+        452.536,
+        121.46099668508293
+      ],
+      "id": "#/texts/70",
+      "section": "Report For 12-Aug-16",
+      "text": "AFE No.",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        489.568,
+        116.52840000000003,
+        570.0073999999998,
+        121.46099668508293
+      ],
+      "id": "#/texts/71",
+      "section": "Report For 12-Aug-16",
+      "text": "AFE ($) Actual ($)",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        421.464,
+        128.55240000000003,
+        429.45599999999996,
+        133.48499668508293
+      ],
+      "id": "#/texts/72",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        421.464,
+        140.57640000000004,
+        429.45599999999996,
+        145.50899668508293
+      ],
+      "id": "#/texts/73",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        421.464,
+        152.60040000000004,
+        447.66399999999993,
+        157.53299668508294
+      ],
+      "id": "#/texts/74",
+      "section": "Report For 12-Aug-16",
+      "text": "Totals:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        421.464,
+        164.62440000000004,
+        472.5279999999999,
+        169.55699668508294
+      ],
+      "id": "#/texts/75",
+      "section": "Report For 12-Aug-16",
+      "text": "Well Cost ($):",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        454.8336,
+        176.66039999999998,
+        470.3776,
+        181.59299668508288
+      ],
+      "id": "#/texts/76",
+      "section": "Report For 12-Aug-16",
+      "text": "2 / 0",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        516.6959,
+        128.55240000000003,
+        524.6879,
+        133.48499668508293
+      ],
+      "id": "#/texts/77",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        516.6957,
+        140.57640000000004,
+        524.6877,
+        145.50899668508293
+      ],
+      "id": "#/texts/78",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        516.6958,
+        152.60040000000004,
+        524.6877999999999,
+        157.53299668508294
+      ],
+      "id": "#/texts/79",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        564.9358,
+        128.55240000000003,
+        572.9277999999999,
+        133.48499668508293
+      ],
+      "id": "#/texts/80",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        564.9358,
+        140.57640000000004,
+        572.9277999999999,
+        145.50899668508293
+      ],
+      "id": "#/texts/81",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        564.9358,
+        152.60040000000004,
+        572.9277999999999,
+        157.53299668508294
+      ],
+      "id": "#/texts/82",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        564.9359,
+        164.62440000000004,
+        572.9278999999999,
+        169.55699668508294
+      ],
+      "id": "#/texts/83",
+      "section": "Report For 12-Aug-16",
+      "text": "---",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        552.9124,
+        176.66039999999998,
+        572.9044,
+        181.59299668508288
+      ],
+      "id": "#/texts/84",
+      "section": "Report For 12-Aug-16",
+      "text": "19 / 0",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        476.4,
+        176.66039999999998,
+        498.15199999999993,
+        181.59299668508288
+      ],
+      "id": "#/texts/85",
+      "section": "Report For 12-Aug-16",
+      "text": "Total:",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        563.0868,
+        409.8672,
+        567.5348,
+        414.7997966850829
+      ],
+      "id": "#/texts/86",
+      "section": "Report For 12-Aug-16",
+      "text": "1",
+      "type": "text"
+    },
+    {
+      "bbox": [
+        37.0,
+        735.04007,
+        130.76000000000002,
+        739.9726666850829
+      ],
+      "id": "#/texts/87",
+      "section": "Report For 12-Aug-16",
+      "text": "Printed: 15:42 20-Sep-16",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        273.9824,
+        735.04007,
+        337.96639999999985,
+        739.9726666850829
+      ],
+      "id": "#/texts/88",
+      "section": "Report For 12-Aug-16",
+      "text": "RIMBase 7.2.44.1",
+      "type": "page_footer"
+    },
+    {
+      "bbox": [
+        531.8555,
+        735.04007,
+        574.9514999999999,
+        739.9726666850829
+      ],
+      "id": "#/texts/89",
+      "section": "Report For 12-Aug-16",
+      "text": "Page: 1 of 1",
+      "type": "page_footer"
+    }
+  ],
+  "native_sha256": "d6e0bd84c57f1328297a44ee23f5518e822b85a2793d64223440717fcd4a33f3",
+  "page": 1,
+  "page_size": {
+    "height": 792.0,
+    "width": 612.0
+  },
+  "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0",
+  "tables": [
+    {
+      "cells": [
+        {
+          "c": 0,
+          "r": 0,
+          "text": "From"
+        },
+        {
+          "c": 1,
+          "r": 0,
+          "text": "To"
+        },
+        {
+          "c": 2,
+          "r": 0,
+          "text": "Elapsed"
+        },
+        {
+          "c": 3,
+          "r": 0,
+          "text": "End MD(ft)"
+        },
+        {
+          "c": 4,
+          "r": 0,
+          "text": "Code"
+        },
+        {
+          "c": 5,
+          "r": 0,
+          "text": "Operations Description"
+        },
+        {
+          "c": 6,
+          "r": 0,
+          "text": "Non-Prod"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "text": "0:00"
+        },
+        {
+          "c": 1,
+          "r": 1,
+          "text": "8:00"
+        },
+        {
+          "c": 2,
+          "r": 1,
+          "text": "8.00"
+        },
+        {
+          "c": 3,
+          "r": 1,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 1,
+          "text": "WOD"
+        },
+        {
+          "c": 5,
+          "r": 1,
+          "text": "personnel at lodge and town on Akutan"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "text": "8:00"
+        },
+        {
+          "c": 1,
+          "r": 2,
+          "text": "9:30"
+        },
+        {
+          "c": 2,
+          "r": 2,
+          "text": "1.50"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 2,
+          "text": "MOB"
+        },
+        {
+          "c": 5,
+          "r": 2,
+          "text": "Meeting to discuss project fly to Valley to site hole location"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "text": "9:30"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "text": "19:00"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "text": "9.50"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 3,
+          "text": "MOB"
+        },
+        {
+          "c": 5,
+          "r": 3,
+          "text": "Fly loads to site , begin construction of camp and drill pad."
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "text": "19:00"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "text": "0:00"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "text": "5.00"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "text": "0"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "text": "WOD"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "text": "Crews down for evening"
+        }
+      ],
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "num_cols": 7,
+      "num_rows": 5,
+      "regions": [
+        {
+          "bbox": [
+            37.282020568847656,
+            268.2668762207031,
+            576.3217163085938,
+            332.44146728515625
+          ],
+          "page": 1
+        }
+      ],
+      "table_id": "#/tables/0"
+    }
+  ],
+  "variant": "corpus_fast"
+}

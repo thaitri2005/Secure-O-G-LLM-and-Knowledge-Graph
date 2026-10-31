@@ -1,0 +1,2 @@
+mineru==4.0.12
+docvortex==0.5.16
