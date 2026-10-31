@@ -430,3 +430,10 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 
 - The graph part is extraction (any base that keeps chunk provenance) followed by validation in code; nothing unvalidated reaches an answer.
 - To confirm on the expert question set before it becomes the chosen base. Improve extraction recall next (K2 slice, table rows mapped deterministically), and add people and projects (p05) and document counts (p07), which the 14-property profile does not cover.
+
+**B-F26 (finding; from E20).** neo4j-graphrag extraction with Qwen3-4B is not stable across server restarts, even with identical requests.
+
+- AK-3 alone, library prompt, one request at a time: recall 0.561 under `-c 16384 -np 1` and again 0.561 under E16's `-c 32768 -np 4` on a fresh server (`--fresh`, no cache). E16 recorded 0.854 with the same 113,964 prompt tokens.
+- Only decoding differs (11,360 against 11,269 completion tokens); most of the gap is one survey table (26 against 12 inclination facts). The E16 result file predates the concurrency flag, so its exact run conditions cannot be reconstructed.
+- Consequence: a single extraction run is not a measurement. Report extraction recall as a range over runs, and never let extracted facts reach answers unvalidated (B-C15).
+

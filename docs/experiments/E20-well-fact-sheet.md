@@ -22,7 +22,7 @@
 | Recall of the 41 AK-3 gold facts | 0.56 | 0.85 |
 | Right where gold has the key | 47% | 72% |
 
-- The same library prompt and model gave much lower AK-3 recall here. Differences: the pool (three reports in one build), the server (`-c 16384` on a second port). B-F19 and B-F20 already showed this extractor is fragile; this run does not separate the causes.
+- The same library prompt and model gave much lower AK-3 recall here. Two follow-up runs on AK-3 alone, with no cache, gave 0.561 again under `-c 16384 -np 1` and under E16's own `-c 32768 -np 4` (`E20_graph_ak3_*.json`): neither the pool nor the server settings explain it. The prompts are identical to E16's (113,964 tokens); only decoding differs, and most of the gap is one survey table. The extractor is unstable across server restarts (B-F26).
 - The 68-32 report's daily-report tables produce junk: 364 of 737 facts are about 68-32, including `api_number = 10031` (a job number) on 11 chunks. Well names also come back in many forms (`68-32 26S 9W`, `Akutan Well AK-3`).
 
 ## Answers with the fact sheet

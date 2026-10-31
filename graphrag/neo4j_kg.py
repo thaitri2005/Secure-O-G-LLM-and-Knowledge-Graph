@@ -246,7 +246,7 @@ async def build(args) -> dict:
     chunks = pool(args.pool)
     profile = json.loads(PROFILE.read_text(encoding="utf-8"))
     endpoints = load_endpoints()
-    llm = ModelClient(endpoints[args.endpoint], args.model)
+    llm = ModelClient(endpoints[args.endpoint], args.model, **({"cache_dir": None} if args.fresh else {}))
     embedder = ModelClient(endpoints["local-embed"], args.embed_model, cache_dir=None)
     driver = neo4j.GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH)
     driver.execute_query("MATCH (n) DETACH DELETE n")
@@ -299,6 +299,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--max-tokens", type=int, default=3000)
     parser.add_argument("--concurrency", type=int, default=1,
                         help="parallel extraction calls; above 1, llama.cpp batching makes runs non-repeatable (B-F19)")
+    parser.add_argument("--fresh", action="store_true", help="bypass the request cache, e.g. to re-measure under new "
+                                                            "server settings")
     parser.add_argument("--resolve", action="store_true", help="merge same-name entities (needs APOC); off keeps "
                         "one node per chunk so each fact keeps its chunk")
     parser.add_argument("--name", required=True)
