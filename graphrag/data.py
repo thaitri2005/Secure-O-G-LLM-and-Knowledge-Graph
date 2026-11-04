@@ -10,7 +10,8 @@ CHUNKS = ROOT / "data/processed/gdr_chunks_full.jsonl"
 QUESTIONS = ROOT / "prototype/gold/questions.json"
 FACTS = ROOT / "prototype/gold/ak3_facts.json"
 PROBE = ROOT / "graphrag/gold/cross_report_probe.json"
-QUESTION_SETS = ("prototype", "probe")
+SIMULATED = ROOT / "graphrag/gold/simulated_expert_v0.json"
+QUESTION_SETS = ("prototype", "probe", "simulated")
 AK3 = "gdr882_ak3_eowr"
 # The 15 chunks the prototype extracted from (prototype/kgproto/extract.py SLICE).
 PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
@@ -50,8 +51,8 @@ def load_questions(name: str = "prototype") -> tuple[list[dict], dict[str, dict]
 
     "prototype": the prototype's 31 questions on AK-3. "probe": Track B's cross-report probe (not an
     evaluation set, D-49), whose facts already carry full chunk IDs."""
-    if name == "probe":
-        probe = json.loads(PROBE.read_text(encoding="utf-8"))
+    if name in ("probe", "simulated"):
+        probe = json.loads((PROBE if name == "probe" else SIMULATED).read_text(encoding="utf-8"))
         return probe["questions"], {f["id"]: f for f in probe["facts"]}
     facts = json.loads(FACTS.read_text(encoding="utf-8"))
     gold = {}

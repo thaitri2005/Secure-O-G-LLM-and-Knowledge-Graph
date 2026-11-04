@@ -318,5 +318,23 @@ class Neo4jKgTests(unittest.TestCase):
         self.assertEqual((score["gold_found"], score["facts_with_gold_key"], score["right_where_keyed"]), (1, 2, 1))
 
 
+class SimulatedSetTests(unittest.TestCase):
+    def test_gold_values_are_written_in_their_chunks(self):
+        from graphrag.data import load_chunks, load_questions
+
+        text = {c.id: c.text.replace(",", "") for c in load_chunks()}
+        questions, gold = load_questions("simulated")
+        self.assertEqual({g for q in questions for g in q["gold"]}, set(gold))
+        for fact in gold.values():
+            for chunk in fact["chunks"]:
+                self.assertIn(chunk, text)
+                if fact.get("derived"):
+                    continue
+                values = [str(v).replace(",", "") for v in [fact["value"], *fact.get("alternatives", [])]]
+                values += ["9 March 2021"] if fact["value"] == "2021-03-09" else []
+                values += [v.rstrip("0").rstrip(".") for v in values if "." in v]
+                self.assertTrue(any(v in text[chunk] for v in values), (fact["id"], chunk))
+
+
 if __name__ == "__main__":
     unittest.main()

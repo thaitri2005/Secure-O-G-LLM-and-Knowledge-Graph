@@ -26,7 +26,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Next | The expert question set (or 30+ cross-well questions) to judge the graph; people, projects and documents in the fact graph; K1 version 1 tables from Track A | B-D21 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
-| Questions | Prototype 31 for development; a 9-question cross-report probe (not an evaluation set) for graph-worthy questions | B-C14 |
+| Questions | Prototype 31 for development; a 9-question cross-report probe; **a 40-question simulated expert set, not yet run** (not expert-reviewed) | B-C14, B-D22 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -474,3 +474,30 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 1. **No GraphRAG base is adopted wholesale.** The working design (B-D19, B-D20) is plain RAG routed by well, plus a per-well fact graph from K2 table mappings and LLM extraction (neo4j-graphrag as the extractor), validated in code: 30/31 on the development questions.
 2. **LightRAG with K2** is kept as the candidate for document, project and people structure (p05, p07), to be tested again when expert questions ask for it.
 3. The open decision moves to the supervisor: graph-worthy questions (30 or more) are needed to judge the graph's value across wells (B-F29). Until they arrive, Track B works on what does not depend on them: fact-graph coverage of people, projects and documents, and running on Track A's K1 version 1.
+
+## 2026-11-04: simulated expert questions
+
+**B-D22 (decision; narrows D-49).** The supervisor asked the team to wait for the expert questions, so Track B uses a simulated set until they arrive: [`graphrag/gold/simulated_expert_v0.json`](../../../graphrag/gold/simulated_expert_v0.json).
+
+- *Who wrote it:* Claude, at Tri's request. No drilling expert has reviewed it, so results must always be reported as "simulated set", never as expert validation.
+- *Contents:* 40 questions on the three end-of-well reports.
+
+  | Kind | Count |
+  |---|---:|
+  | Single-fact lookups in prose or tables | 22 |
+  | Daily reports (from the 68-32 appendices) | 4 |
+  | Comparison, cross-report, multi-hop, count | 8 |
+  | A depth stated two ways in one report | 1 |
+  | Must not answer (not stated, off-topic, injection) | 5 |
+
+- *Frozen before any run:* a result never changes a question or gold value; changes go into a new version.
+- *Checked:* a test confirms each non-derived gold value is written in its cited chunk. The "not stated" questions were checked by search: 68-32 cost fields are empty, and H2S appears in 56-32 only as an abbreviation.
+- *Limits:* it comes from the same reports as the table mappings, so it does not test them on unseen reports. It is also larger than the probe but still small, so differences of a question or two are noise.
+- *Why:* the graph's value and the pipeline's general quality cannot be judged on the 31 lookups (B-F29).
+
+**Next runs, on the desktop (not yet run; the laptop has no GPU or models):**
+
+1. **E23:** the working design and plain RAG on this set, one request at a time.
+2. **E24:** the four AK-3 daily-report attachments, which are in ignored `data/corpora/ak3_appendices/`; on the desktop they must first be regenerated with `scripts/run_ak3_appendices.py`. Record where the pipeline breaks, as a list for Track A.
+3. **E25:** the table mappings on an end-of-well report they were not written from.
+

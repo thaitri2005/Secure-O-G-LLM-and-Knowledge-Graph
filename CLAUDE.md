@@ -25,7 +25,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 | **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin ontology, cited answers, cost per page; publishes K2, K4 |
 | C. Storage, IDs and the end-to-end run | Khai | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
 
-The tracks meet only through versioned files K1 to K5 (specification §4.5). The team writes no question set of its own: the expert group will supply one, and until then the prototype's 31 questions are the development check.
+The tracks meet only through versioned files K1 to K5 (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and a simulated 40-question set (`--questions simulated`, B-D22), which no expert has reviewed and which must never be reported as expert validation.
 
 ## Standing rules from the user
 
@@ -83,7 +83,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. Ask the supervisor for questions where a graph should help (across wells and reports, counts, comparisons), or for the expert question set. The 31 development questions are mostly single-fact lookups that plain RAG with Qwen3-8B already answers.
+1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). **Run next, on the desktop:** E23 (working design vs plain RAG on `--pool three --questions simulated`), E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.
