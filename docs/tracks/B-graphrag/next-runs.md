@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 4 November 2026: **none of these has been run.** Do them on the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question set: [log](log.md), B-D22.
+Status on 4 November 2026: **E23 is done ([record](../../experiments/E23-simulated-set.md)); E24 and E25 have not been run.** Do them on the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question set: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -19,23 +19,9 @@ Tests should print `OK` (3 skipped in `.venv`). Then start the servers ([command
 
 Send one request at a time, and record the server settings with each run (B-F19).
 
-## E23: does the graph help on the simulated set?
+## E23: does the graph help on the simulated set? (done)
 
-No new code is needed. Run both setups on the same 40 questions.
-
-```powershell
-# Plain RAG
-python -m graphrag.baseline answer --pool three --questions simulated --retriever wells:bm25 --k 5 --endpoint local-llama --model qwen3-8b --name E23_plain
-
-# Working design. Rebuild my_graph and my_tables first if they are not in graphrag/results/ (README, "The working design")
-python -m graphrag.baseline answer --pool three --questions simulated --retriever wells:bm25 --k 5 --fact-sheet <graph> <tables> --validate --sheet-properties 3 --endpoint local-llama --model qwen3-8b --name E23_design
-```
-
-`<graph>` and `<tables>` are result names. E22 used `E20_graph_three_qwen3-4b` and `E22_tables_three`; check them against [E22](../../experiments/E22-table-facts.md).
-
-Report, overall and per `kind`: correct, wrong values, refusals, prompt tokens and seconds per question. Questions naming several wells may do better with `--retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --k 10 --answer-format evidence_first --max-tokens 700`; if you try that, report it as a separate setup.
-
-Do not edit the question file after seeing results. Differences of one or two questions are noise.
+Not on this set: 29/40 for both with top 5, and 31 and 30 with per-well retrieval. See the [record](../../experiments/E23-simulated-set.md).
 
 ## E24: AK-3 daily reports
 
@@ -49,7 +35,7 @@ Do not edit the question file after seeing results. Differences of one or two qu
 
 2. Add a loader for `data/corpora/ak3_appendices/exports/v1/chunks.jsonl`, keeping the four daily-report documents (`doc_id` containing `dailyreport`), and a new pool in `graphrag/baseline.py`.
 3. Write new questions in a new file, from those reports' pages, before any run. Do not change `simulated_expert_v0.json`.
-4. Run plain RAG, then list every failure that comes from parsing: wrong cells, lost headers, split tables. Send that list to Hung.
+4. Run plain RAG, then list every failure that comes from parsing: wrong cells, lost headers, split tables. Send that list to Hung. Also count failures from picking the wrong day among near-identical forms (E23, s27), which come from retrieval and not from parsing.
 
 ## E25: table mappings on an unseen report
 

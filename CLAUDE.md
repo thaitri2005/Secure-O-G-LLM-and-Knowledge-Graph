@@ -74,6 +74,10 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / 28/31 |
   | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the working design; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
 
+  | [E23](docs/experiments/E23-simulated-set.md) | **Simulated 40 questions, not expert-reviewed**: plain RAG / working design, top 5; then per-well fusion, evidence first | 29/40 / 29/40; 31/40 / 30/40 (5 wrong values each) |
+
+  On the simulated set the fact graph does not help (B-F30), its sheet rarely holds what is asked (B-F31), and the validator passes facts with the wrong meaning (B-F32).
+
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
@@ -83,7 +87,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E23 (working design vs plain RAG on `--pool three --questions simulated`), E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
+1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). E23 has run on it. **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.

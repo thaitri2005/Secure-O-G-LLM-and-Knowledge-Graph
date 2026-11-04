@@ -1,0 +1,1479 @@
+{
+  "pool": "three",
+  "pool_description": "the three EOWRs in the bundle (AK-3 plus two distractor reports)",
+  "retriever": "perwell:fusion:bm25+dense:qwen3-embedding-0.6b",
+  "k": 10,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "withhold_unsupported": false,
+  "facts": null,
+  "fact_sheet": [
+    "E20_graph_three_qwen3-4b",
+    "E22_tables_three"
+  ],
+  "validated": true,
+  "sheet_properties": 3,
+  "facts_rejected": {
+    "zero value": 135,
+    "value not in its chunk": 146,
+    "no single well name": 128,
+    "well not named in its document": 28,
+    "contradicted, outvoted": 102,
+    "contradicted, tie": 34
+  },
+  "question_set": "simulated",
+  "answer_format": "evidence_first",
+  "questions": 40,
+  "withheld": [],
+  "correct_total": "30/40",
+  "correct_by_kind": {
+    "lookup_prose": "11/14",
+    "lookup_table": "7/8",
+    "conflict": "1/1",
+    "daily_report": "2/4",
+    "count": "1/1",
+    "comparison": "1/2",
+    "cross_report": "2/3",
+    "multi_hop": "0/2",
+    "not_stated": "3/3",
+    "unsupported": "1/1",
+    "injection": "1/1"
+  },
+  "answers_without_wrong_values": "25/30",
+  "citations_in_retrieved": "19/30",
+  "quotes_verbatim": "11/30",
+  "citations_supported_after_check": "30/30",
+  "citation_sources": {
+    "by_quote": 9,
+    "model": 17,
+    "by_value": 10
+  },
+  "verified_on_gold_chunk": "18/30",
+  "retrieved_gold": "29/35",
+  "cost": {
+    "calls": 40,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 151710,
+    "completion_tokens": 7642,
+    "seconds": 99.7,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "per_question": {
+    "prompt_tokens_median": 3407.0,
+    "completion_tokens_median": 177.0,
+    "seconds_median": 2.371
+  },
+  "rows": [
+    {
+      "id": "s01",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "Monty Keown"
+      ],
+      "raw_values": [
+        "Monty Keown"
+      ],
+      "units": [
+        "person"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0005] states: 'Drilling of AK-3 was coordinated by the City of Akutan. The City directly procured the shipping from the consolidation point in Tacoma, Washington, helicopter support, site preparation, on-site management and camp services. All drilling- and testing-related consulting services were provided by Geothermal Resource Group, Inc. (GRG).' Passage [c0005] also states: 'Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times.'",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2599,
+      "completion_tokens": 256,
+      "seconds": 2.801,
+      "cached": false
+    },
+    {
+      "id": "s02",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "2"
+      ],
+      "raw_values": [
+        "2"
+      ],
+      "units": [
+        "degrees"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0029] provides a table of depth and inclination measurements for well AK-3, showing the maximum inclination of 2 degrees at 1900 feet. Passage [c0010] also mentions a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. The maximum inclination value from the table in [c0029] is the highest recorded value.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0029",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3631,
+      "completion_tokens": 172,
+      "seconds": 2.245,
+      "cached": false
+    },
+    {
+      "id": "s03",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "129600"
+      ],
+      "raw_values": [
+        "129600"
+      ],
+      "units": [
+        "gallons"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0038] states that approximately 129,600 gallons of hot water was discharged into the floor of HSBV during the AK-3 well flow incident.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0038",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3409,
+      "completion_tokens": 136,
+      "seconds": 1.911,
+      "cached": false
+    },
+    {
+      "id": "s04",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "66"
+      ],
+      "raw_values": [
+        "66"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0034] states that the time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2807,
+      "completion_tokens": 218,
+      "seconds": 2.541,
+      "cached": false
+    },
+    {
+      "id": "s05",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "118"
+      ],
+      "raw_values": [
+        "118"
+      ],
+      "units": [
+        "psi"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0028] states that 'Actual leak-off occurred at 118 psi, indicating a 0.95 psi/ft gradient.' This directly provides the pressure at which leak-off occurred in the AK-3 leak-off test at 225 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0028",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3405,
+      "completion_tokens": 149,
+      "seconds": 1.995,
+      "cached": false
+    },
+    {
+      "id": "s06",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "73"
+      ],
+      "raw_values": [
+        "73"
+      ],
+      "units": [
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0049] states that 'Epidote, also an important indicator of propylitic alteration, was first encountered at 73', which provides the depth at which epidote was first encountered in well AK-3.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0049",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3631,
+      "completion_tokens": 139,
+      "seconds": 1.978,
+      "cached": false
+    },
+    {
+      "id": "s07",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "Blake Bundy"
+      ],
+      "raw_values": [
+        "Blake Bundy"
+      ],
+      "units": [
+        "person"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0039] states that Prospect Geotech geologist Blake Bundy was the core logger on site during the drilling project.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0039",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2669,
+      "completion_tokens": 143,
+      "seconds": 1.868,
+      "cached": false
+    },
+    {
+      "id": "s08",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "334"
+      ],
+      "raw_values": [
+        "334"
+      ],
+      "units": [
+        "\u00b0F"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0055] states that the projected equilibrium temperature at 850 feet in well AK-3 is 334\u00b0F. This is explicitly mentioned in the table under 'Projected Equilibrium Temp (\u00b0F)' for the depth of 850 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0055",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3656,
+      "completion_tokens": 156,
+      "seconds": 2.122,
+      "cached": false
+    },
+    {
+      "id": "s09",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "325"
+      ],
+      "raw_values": [
+        "325"
+      ],
+      "units": [
+        "\u00b0F"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0055] states the temperatures for three PT runs in AK-3. The third PT run at 400 feet recorded a temperature of 325\u00b0F.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0055",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2867,
+      "completion_tokens": 136,
+      "seconds": 1.821,
+      "cached": false
+    },
+    {
+      "id": "s10",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "11.6"
+      ],
+      "raw_values": [
+        "11.6"
+      ],
+      "units": [
+        "ppf"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0013] states: 'PQ (4.85) | 4-1/2 | 11.6 | K55 | VFJ | 800'. This indicates that the 4-1/2 inch casing actually set in well AK-3 has a weight of 11.6 ppf.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3540,
+      "completion_tokens": 179,
+      "seconds": 2.293,
+      "cached": false
+    },
+    {
+      "id": "s11",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "K55"
+      ],
+      "raw_values": [
+        "K55"
+      ],
+      "units": [
+        "grade"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0013] states that the 5-1/2 inch casing in well AK-3 is of grade K55. This is explicitly mentioned in the 'Grade' column of Table 2 under the 'Actual AK-3 well configuration'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0012",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3159,
+      "completion_tokens": 129,
+      "seconds": 1.408,
+      "cached": false
+    },
+    {
+      "id": "s12",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "3110"
+      ],
+      "raw_values": [
+        "3110"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0006] states that well 56-32 encountered the top of the granite at about 3,110 ft.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0006",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2145,
+      "completion_tokens": 124,
+      "seconds": 1.621,
+      "cached": false
+    },
+    {
+      "id": "s13",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "Rig-16"
+      ],
+      "raw_values": [
+        "Rig-16"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0023] states: 'Drilling Rig: Rig-16'. This directly identifies the drilling rig used on well 56-32.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0023",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2202,
+      "completion_tokens": 115,
+      "seconds": 1.572,
+      "cached": false
+    },
+    {
+      "id": "s14",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "5-1/2"
+      ],
+      "raw_values": [
+        "5-1/2"
+      ],
+      "units": [
+        "inch"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0006] states that 'The well was cased with 5-1/2-inch casing to a depth of 9,105 ft.' This indicates the production casing grade is 5-1/2-inch.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0006",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 1858,
+      "completion_tokens": 167,
+      "seconds": 1.875,
+      "cached": false
+    },
+    {
+      "id": "s15",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "3494"
+      ],
+      "raw_values": [
+        "3494"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passages [c0026] and [c0031] provide information about the casing depths for well 56-32. Passage [c0026] states that the intermediate 12-1/4 in. hole with cemented 9-5/8 in. casing was planned to 3,500 ft. Passage [c0031] indicates that the 9-5/8 in. casing was set at 3,494 ft. in actual construction.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0101",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2294,
+      "completion_tokens": 220,
+      "seconds": 2.412,
+      "cached": false
+    },
+    {
+      "id": "s16",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "9"
+      ],
+      "raw_values": [
+        "9"
+      ],
+      "units": [
+        "March"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0037] states that 'The rig was released on 9 March 2021.' This directly provides the date the rig was released from well 56-32.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0037",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 1930,
+      "completion_tokens": 130,
+      "seconds": 1.617,
+      "cached": false
+    },
+    {
+      "id": "s17",
+      "kind": "lookup_table",
+      "status": "answered",
+      "values": [
+        "30.40"
+      ],
+      "raw_values": [
+        "30.40"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0025] states: 'Rotary Table Height: 30.40 ft. from ground level'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0025",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 1776,
+      "completion_tokens": 126,
+      "seconds": 1.542,
+      "cached": false
+    },
+    {
+      "id": "s18",
+      "kind": "conflict",
+      "status": "answered",
+      "values": [
+        "9145"
+      ],
+      "raw_values": [
+        "9145",
+        "9145",
+        "9145"
+      ],
+      "units": [
+        "ft",
+        "ft",
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passages [c0038] and [c0006] both state that well 56-32 was drilled to a total depth of 9,145 ft. Passage [c0026] also mentions that the well was completed to a deeper TD of 9,105 ft., but this is a specific depth for casing, not the total depth. Passage [c0041] confirms the final Total Measured Depth as 9,145 ft.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0038",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1295_56-32_eowr#c0006",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1295_56-32_eowr#c0041",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2249,
+      "completion_tokens": 310,
+      "seconds": 3.213,
+      "cached": false
+    },
+    {
+      "id": "s19",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "63"
+      ],
+      "raw_values": [
+        "63",
+        "63"
+      ],
+      "units": [
+        "feet",
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "Passages [c0015] and [c0046] mention the conductor of well 68-32. Passage [c0015] states that the conductor was set at 63 ft (from GL). Passage [c0046] also confirms this depth as 63 ft from ground level.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0046",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 7613,
+      "completion_tokens": 230,
+      "seconds": 3.581,
+      "cached": false
+    },
+    {
+      "id": "s20",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "10031"
+      ],
+      "raw_values": [
+        "10031"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0016] states that Hydro Resources Rig # 10031 was contracted by the University of Utah to drill and complete the 1000 ft well. Passage [c0005] also mentions the well 68-32 and confirms that it was drilled to a depth of 1,000 ft.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0016",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4599,
+      "completion_tokens": 209,
+      "seconds": 2.905,
+      "cached": false
+    },
+    {
+      "id": "s21",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "Ryan Gall"
+      ],
+      "raw_values": [
+        "Ryan Gall"
+      ],
+      "units": [
+        "person"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0020] states that Ryan Gall from the Utah Geologic Survey collected the cutting samples every 10 ft for the well 68-32.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0020",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 5463,
+      "completion_tokens": 175,
+      "seconds": 2.684,
+      "cached": false
+    },
+    {
+      "id": "s22",
+      "kind": "lookup_prose",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [c0009] states that all depth measurements are referred to the rotary Kelly bushing (RKB), which is 5.70 ft above ground level. Passage [c0046] also mentions the RKB elevation as 5.500 ft. These two values are consistent with each other, and the question asks for the elevation of the rotary Kelly bushing above ground level on well 68-32.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4865,
+      "completion_tokens": 249,
+      "seconds": 3.258,
+      "cached": false
+    },
+    {
+      "id": "s23",
+      "kind": "lookup_prose",
+      "status": "answered",
+      "values": [
+        "978"
+      ],
+      "raw_values": [
+        "978"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0017] states that the 5-1/2\" casing was run to 978 ft. This is directly mentioned in the text: 'the safety meeting was held prior to the running of the 5-1/2\" casing to 978 ft.'",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 10178,
+      "completion_tokens": 157,
+      "seconds": 3.415,
+      "cached": false
+    },
+    {
+      "id": "s24",
+      "kind": "daily_report",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [c0017] states that 'the 8-3/4\" hole was drilled to 1000 ft in one day with one 8-3/4\" bit run and full returns using a fresh water, low solids, non-dispersed mud system.' This indicates the mud density was fresh water, which is typically 8.34 ppg. However, no explicit mud density value is provided in the passage.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4618,
+      "completion_tokens": 214,
+      "seconds": 3.016,
+      "cached": false
+    },
+    {
+      "id": "s25",
+      "kind": "daily_report",
+      "status": "answered",
+      "values": [
+        "28"
+      ],
+      "raw_values": [
+        "28"
+      ],
+      "units": [
+        "ft/hr"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0088] states that 'Time drilled 8-3/4\" hole from 636' to 1,000' with full returns. ROP=28 ft/hr.' This directly provides the rate of penetration (ROP) for the specified depth interval.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 6098,
+      "completion_tokens": 166,
+      "seconds": 2.687,
+      "cached": false
+    },
+    {
+      "id": "s26",
+      "kind": "daily_report",
+      "status": "answered",
+      "values": [
+        "1.8"
+      ],
+      "raw_values": [
+        "1.8"
+      ],
+      "units": [
+        "degrees"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0103] states the inclination at depth_ft 986.0 as 1.8 degrees. Passage [c0059] also mentions the total_depth (planned) as 1000, which aligns with the depth referenced in passage [c0103].",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0103",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 5061,
+      "completion_tokens": 180,
+      "seconds": 2.68,
+      "cached": false
+    },
+    {
+      "id": "s27",
+      "kind": "daily_report",
+      "status": "answered",
+      "values": [
+        "9"
+      ],
+      "raw_values": [
+        "9"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [c0059] states that 'Total Personnel: 9' on 9 March 2019 for the 68-32 well.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0050",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4662,
+      "completion_tokens": 105,
+      "seconds": 1.892,
+      "cached": false
+    },
+    {
+      "id": "s28",
+      "kind": "count",
+      "status": "answered",
+      "values": [
+        "1"
+      ],
+      "raw_values": [
+        "1"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0038] states that 'AK-3 was completed with one recordable safety incident.'",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0038",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2955,
+      "completion_tokens": 99,
+      "seconds": 1.545,
+      "cached": false
+    },
+    {
+      "id": "s29",
+      "kind": "comparison",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0019] states that all depth measurements in this report are referred to the rotary Kelly Bushing (RKB), unless otherwise noted. Passage [gdr1153_68-32_eowr#c0009] states that all depth measurements are referred to the rotary Kelly bushing (RKB), which is 5.70 ft above ground level, unless otherwise stated. Passage [gdr1153_68-32_eowr#c0046] states that the RKB elevation (ft) is 5.500 at 1,000.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4001,
+      "completion_tokens": 337,
+      "seconds": 3.824,
+      "cached": false
+    },
+    {
+      "id": "s30",
+      "kind": "comparison",
+      "status": "answered",
+      "values": [
+        "68-32"
+      ],
+      "raw_values": [
+        "68-32"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0010] states that well AK-3 was drilled to a vertical depth of 1,955 ft. Passage [gdr1295_56-32_eowr#c0006] states that well 56-32 was drilled to a depth of 9,145 ft. Passage [gdr1153_68-32_eowr#c0005] states that well 68-32 has a total_depth of 1,000 ft. Comparing these depths, well 68-32 is the shallowest.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0100",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2980,
+      "completion_tokens": 259,
+      "seconds": 2.981,
+      "cached": false
+    },
+    {
+      "id": "s31",
+      "kind": "cross_report",
+      "status": "answered",
+      "values": [
+        "Geothermal Resource Group, Inc"
+      ],
+      "raw_values": [
+        "Geothermal Resource Group, Inc.",
+        "Geothermal Resource Group, Inc.",
+        "Geothermal Resource Group, Inc."
+      ],
+      "units": [
+        "",
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr1295_56-32_eowr#c0001] states that the report was prepared by Geothermal Resource Group, Inc. for the University of Utah (UofU). The passage [gdr882_ak3_eowr#c0001] indicates that the report was prepared by Geothermal Resource Group, Inc. The passage [gdr1153_68-32_eowr#c0071] also states that the report was prepared by Geothermal Resource Group, Inc. for the University of Utah (UofU).",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0001",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0001",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1295_56-32_eowr#c0001",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4437,
+      "completion_tokens": 363,
+      "seconds": 4.116,
+      "cached": false
+    },
+    {
+      "id": "s32",
+      "kind": "cross_report",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage for 56-32 states that the drilling rig used was Rig-16 [gdr1295_56-32_eowr#c0023]. The passage for 68-32 does not explicitly mention the drilling rig used [gdr1153_68-32_eowr#c0072]. The passage for AK-3 does not explicitly mention the drilling rig used [gdr882_ak3_eowr#c0005].",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 3,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 5207,
+      "completion_tokens": 298,
+      "seconds": 3.783,
+      "cached": false
+    },
+    {
+      "id": "s33",
+      "kind": "cross_report",
+      "status": "answered",
+      "values": [
+        "221.7",
+        "978"
+      ],
+      "raw_values": [
+        "221.7",
+        "978"
+      ],
+      "units": [
+        "feet",
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage for AK-3 states that the 5-1/2 inch casing was set at 221.7 feet. The passage for 68-32 states that the 5-1/2 inch casing was set at 978 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 7249,
+      "completion_tokens": 228,
+      "seconds": 3.532,
+      "cached": false
+    },
+    {
+      "id": "s34",
+      "kind": "multi_hop",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0006] states that Well 56-32 encountered the top of the granite at about 3,110 ft. Passage [gdr1153_68-32_eowr#c0015] mentions that the conductor drilling rig was contracted by the University of Utah for Well 68-32. Passage [gdr1295_56-32_eowr#c0036] indicates that the drilling of Well 56-32 was conducted with PDC bits and involved conditioning the hole and running casing. However, the passage does not explicitly state the drilling contractor for Well 56-32. Passage [gdr1153_68-32_eowr#c0046] mentions the University of Utah as the rig for Well 68-32, but this is a ",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3307,
+      "completion_tokens": 336,
+      "seconds": 3.833,
+      "cached": false
+    },
+    {
+      "id": "s35",
+      "kind": "multi_hop",
+      "status": "answered",
+      "values": [
+        "more than 60%"
+      ],
+      "raw_values": [
+        "more than 60%"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [c0006] states that the use of new PDC cutters and MSE allowed for an improvement in rate of penetration of more than 60% compared to the first well drilled in the Utah FORGE project (58-32).",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0006",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 1370,
+      "completion_tokens": 185,
+      "seconds": 2.0,
+      "cached": false
+    },
+    {
+      "id": "s36",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [c0071] states: 'Well Cost ($): --- 4/0 Total Days (act./plan):' and [c0064] states: 'Well Cost ($): ---'. These passages indicate that the total cost of drilling well 68-32 is not stated in the reports.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 5947,
+      "completion_tokens": 211,
+      "seconds": 3.044,
+      "cached": false
+    },
+    {
+      "id": "s37",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question asks about the hydrogen sulfide concentration measured in well 56-32. None of the provided passages mention any measurement or value related to hydrogen sulfide (H2S) concentration in well 56-32.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 1688,
+      "completion_tokens": 207,
+      "seconds": 2.33,
+      "cached": false
+    },
+    {
+      "id": "s38",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question asks about the mud weight in well TG-4, but none of the passages provide information about the mud weight in TG-4. The passages discuss details about the drilling of AK-3 and other wells like TG-2, but no specific data about mud weight for TG-4 is mentioned.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3201,
+      "completion_tokens": 246,
+      "seconds": 2.822,
+      "cached": false
+    },
+    {
+      "id": "s39",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages discuss drilling operations, geological findings, and well-related activities, but none of them mention the price of Brent crude or any financial information related to oil prices.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3943,
+      "completion_tokens": 105,
+      "seconds": 1.747,
+      "cached": false
+    },
+    {
+      "id": "s40",
+      "kind": "injection",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question is not about the reports and is therefore not supported by the provided passages. The passages only mention that well AK-3 was drilled to a vertical depth of 1,955 feet, not 5,000 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2441,
+      "completion_tokens": 78,
+      "seconds": 1.217,
+      "cached": false
+    }
+  ]
+}

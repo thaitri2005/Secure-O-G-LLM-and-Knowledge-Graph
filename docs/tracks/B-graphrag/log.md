@@ -16,17 +16,17 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)). With a validated fact sheet from LLM and table facts: **30/31** ([E22](../../experiments/E22-table-facts.md)); on the cross-report probe 2 to 5/9 against 3/9, within noise ([E20](../../experiments/E20-well-fact-sheet.md), E22) | B-D03, B-C08, B-D14, B-D16, B-D19, B-D20 |
+| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)). With a validated fact sheet from LLM and table facts: **30/31** ([E22](../../experiments/E22-table-facts.md)); on the cross-report probe 2 to 5/9 against 3/9, within noise ([E20](../../experiments/E20-well-fact-sheet.md), E22). **On the simulated 40 the sheet does not help: 29/40 for both, or 31 and 30 with per-well retrieval** ([E23](../../experiments/E23-simulated-set.md)) | B-D03, B-C08, B-D14, B-D16, B-D19, B-D20, B-F30 |
 | Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; the working design uses neo4j-graphrag as an extractor only | B-D14, B-D18, B-D21 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Next | The expert question set (or 30+ cross-well questions) to judge the graph; people, projects and documents in the fact graph; K1 version 1 tables from Track A | B-D21 |
+| Next | E24 (AK-3 daily reports) and E25 (unseen report); Tri to decide the order of routing by number of wells, validator checks and fact-graph coverage; the expert question set when it arrives; K1 version 1 tables from Track A | B-D21, B-F30 to B-F33 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
-| Questions | Prototype 31 for development; a 9-question cross-report probe; **a 40-question simulated expert set, not yet run** (not expert-reviewed) | B-C14, B-D22 |
+| Questions | Prototype 31 for development; a 9-question cross-report probe; a 40-question simulated expert set, run in E23 (not expert-reviewed; s02's gold to fix in the next version) | B-C14, B-D22, B-F34 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -495,9 +495,35 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 - *Limits:* it comes from the same reports as the table mappings, so it does not test them on unseen reports. It is also larger than the probe but still small, so differences of a question or two are noise.
 - *Why:* the graph's value and the pipeline's general quality cannot be judged on the 31 lookups (B-F29).
 
-**Next runs, on the desktop (not yet run; the laptop has no GPU or models). Exact commands: [next-runs.md](next-runs.md).**
+**E23 (experiment).** Working design against plain RAG on the simulated set: [E23](../../experiments/E23-simulated-set.md). Results are on the simulated set, not expert-validated.
 
-1. **E23:** the working design and plain RAG on this set, one request at a time.
-2. **E24:** the four AK-3 daily-report attachments, which are in ignored `data/corpora/ak3_appendices/`; on the desktop they must first be regenerated with `scripts/run_ak3_appendices.py`. Record where the pipeline breaks, as a list for Track A.
-3. **E25:** the table mappings on an end-of-well report they were not written from.
+| | Plain | Design | Plain, per well | Design, per well |
+|---|---:|---:|---:|---:|
+| Correct of 40 | 29 | 29 | 31 | 30 |
+| Wrong values given | 0 | 1 | 5 | 5 |
+| Prompt tokens per question, median | 1,438 | 1,580 | 3,117 | 3,407 |
+
+**B-F30 (finding; from E23).** The fact graph does not improve answers on the simulated set: the top-5 setups tie with the same 11 misses, and the per-well setups differ by one question. E22's gain on the 31 questions does not carry over. Building the graph costs 2.48 LLM calls per page.
+
+**B-F31 (finding; from E23).** The sheet rarely holds what is asked: 4 of 35 gold values are in it on a gold chunk. K2's facts have no rigs, people, companies, rotary Kelly bushing heights or casing grades. This supports the coverage work in B-D21, but it does not show that coverage would help.
+
+**B-F32 (finding; from E23).** `validate.py` passes facts with the wrong meaning, because it checks only that the value is in the chunk. All 13 of 68-32's kept `casing_depth` facts come from the LLM, none gives the true 978 ft, and their casing sizes include `10031` (the rig number) and `1-39` (a time code). s33's wrong answer comes from such a fact and from AK-3's planned depth. B-C15's checks need to cover the context and the qualifier.
+
+**B-F33 (finding; from E23).** Per-well fusion with evidence first trades errors: cross-report questions go from 0/3 to 2/3, wrong values from 0 to 5, prompt tokens up about 2.3 times. Using it only for questions naming several wells would give 31/40 with 1 wrong (plain) and 32/40 with 0 wrong (design). Those two figures are computed from existing rows, with the rule chosen after seeing them, and need a real run on new questions.
+
+**B-F34 (finding; from E23).** Two flaws in how the simulated set is measured.
+
+- s02's gold (1.75°, from prose) conflicts with the report's survey table, which ends at 2° at 1,900 ft. The set stays frozen; fix it in the next version.
+- `gold_facts_retrieved` counts a fact as found when any one of its chunks is retrieved, so it overstates retrieval on comparison questions.
+
+**Open, for Tri (recommendation from E23).** No decision changes yet: D-50 stays the baseline, and the working design is neither confirmed nor dropped. Recommended order:
+
+1. Route by the number of wells named, and test it on new questions.
+2. Tighten the validator (B-F32).
+3. Add coverage to the fact graph only after those two, since coverage alone would feed more unchecked facts to the model.
+
+**Next runs, on the desktop. Exact commands: [next-runs.md](next-runs.md).**
+
+1. **E24:** the four AK-3 daily-report attachments, which are in ignored `data/corpora/ak3_appendices/`; on the desktop they must first be regenerated with `scripts/run_ak3_appendices.py`. Record where the pipeline breaks, as a list for Track A. E23 adds a check: picking the right day among near-identical forms.
+2. **E25:** the table mappings on an end-of-well report they were not written from.
 
