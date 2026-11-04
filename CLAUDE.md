@@ -42,7 +42,7 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today is plain RAG with routing by well and date (B-D23, [specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)). The fact graph is optional for now (B-D24), and the supervisor has yet to confirm that. The direction is still GraphRAG.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is optional (B-D24). The supervisor has yet to see these decisions.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -58,6 +58,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions; `strict` also checks their context) |
   | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
+  | `events.py` | Event graph from operations tables, with no model call: the model plans, code runs the plan (E28) |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
@@ -84,7 +85,9 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E26](docs/experiments/E26-routing-and-strict-facts.md) | **36 new simulated questions**: top 5 / routed by number of wells (**baseline**) / fact sheet, routed, strict | 20/36 / **23/36** / 23/36 |
   | [E27](docs/experiments/E27-date-filter-and-coverage.md) | **26 new daily-report questions**: no filter / **date filter** / top 10, evidence first | 7/26 / **14/26** (2 wrong) / 17/26 (6 wrong) |
 
-  On questions written after it was designed, the fact graph does not beat plain RAG (B-F30, B-D24). On daily reports the date filter gives the largest gain, and scrambled form headers remain for Track A (B-F36).
+  | [E28](docs/experiments/E28-event-graph.md) | **Daily reports, totals over time, chosen to suit the graph**: **event graph** / best plain RAG. Frozen 35; then new 23 | **22/35** / 5/35; **19/23** / 4/23 |
+
+  The shape of the graph has to match the questions (B-F47). The per-well fact graph does not beat plain RAG on new questions (B-F30, B-D24); a graph of events does on totals over time (B-D26). Scrambled form headers remain for Track A (B-F36).
 
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
@@ -95,7 +98,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E27 are done. What is left is [waiting on others or on a choice](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on a graph in the main pipeline (B-D24, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store with Khai; and whether to run the proposed event graph, E28 (B-F45).
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E28 are done. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on an unseen report (E25). More fact-graph coverage stopped (B-D24).
@@ -130,7 +133,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
 ## Useful facts
 
 - Data: `data/processed/gdr_chunks_full.jsonl` holds the K1 version 0 chunks: AK-3 EOWR (`gdr882_ak3_eowr`, 60 chunks) plus two other EOWRs (372 chunks in total). Gold data: `prototype/gold/questions.json` (31 questions) and `ak3_facts.json` (41 facts, chunk IDs like `c0002`).
-- AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`. They are frozen: changes go into a new version.
+- AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`, `ak3_events_v0`, `ak3_events_heldout_v0`. They are frozen: changes go into a new version.
 - The prototype (`prototype/`) is the baseline to beat (E10). Do not change it.
 - Diagrams: Mermaid source sits in the documents. SVGs are regenerated with mermaid-cli 11.17.0 (see `docs/diagrams/README.md`).
 - Tests: `python -m unittest discover -s tests`. The line-ending test needs LF files.

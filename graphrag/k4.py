@@ -22,7 +22,7 @@ def records(run: str) -> list[dict]:
     question_set = result.get("question_set", "prototype")
     text = {q["id"]: q["question"] for q in load_questions(question_set)[0]}
     model = (result["cost"].get("models") or [f"{result.get('endpoint', '?')}:{result['model']}"])[0]
-    pipeline = {"base": "lightrag" if "index" in result else "plain_rag",
+    pipeline = {"base": "lightrag" if "index" in result else "event_graph" if "events" in result else "plain_rag",
                 "retriever": result.get("retriever") or f"lightrag:{result.get('mode')}",
                 "k": result.get("k"), "fact_sheet": result.get("fact_sheet"),
                 "validated": bool(result.get("validated")), "answer_format": result.get("answer_format", "status_first")}
@@ -37,7 +37,9 @@ def records(run: str) -> list[dict]:
             "k4_version": "0.1", "run": run, "question_set": question_set, "question_id": row["id"],
             "question": text.get(row["id"], ""), "status": row["status"],
             "answers": [{"value": str(v), **({"unit": u} if u else {})} for v, u in zip(row["values"], units)],
-            "citations": [{"chunk_id": c["chunk"], "how": c["how"]} for c in row["citations"]],
+            # An event-graph answer rests on its source events; a total is written in no passage (E28).
+            "citations": [{"chunk_id": c, "how": "event_graph"} for c in row["graph_source_chunks"]] if row.get("graph_result")
+            else [{"chunk_id": c["chunk"], "how": c["how"]} for c in row["citations"]],
             "pipeline": {k: v for k, v in record_pipeline.items() if v is not None},
             "models": {"answer": model},
             "cost": {"calls": 1, "prompt_tokens": row["prompt_tokens"], "completion_tokens": row["completion_tokens"],

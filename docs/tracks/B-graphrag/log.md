@@ -16,18 +16,18 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | AK-3, 56-32 and 68-32 end-of-well reports; four AK-3 daily-report attachments; 78-32 as an unseen report | B-D01, E24, E25 |
 | Quality yardstick | Development only: the prototype's 31 questions and simulated sets. The expert set, when it arrives, is the real one | B-D01, B-D22 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG with Qwen3-8B (thinking off), citations and values checked in code. BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)); daily reports 14/26 ([E27](../../experiments/E27-date-filter-and-coverage.md)) | B-D23 |
-| Fact graph | **Optional, not in the baseline.** Does not beat plain RAG on new questions (E23, E26, E27); expert questions decide for good | B-D24 |
+| What runs | Questions over time on daily reports: event graph ([E28](../../experiments/E28-event-graph.md)). Others: retrieval with Qwen3-8B (thinking off), citations and values checked in code; BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)) | B-D23, B-D26 |
+| Graphs | **Event graph in use:** 22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. **Per-well fact graph optional:** does not beat plain RAG on new questions (E23, E26, E27). The expert questions decide for good | B-D24, B-D26 |
 | Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; neo4j-graphrag is the extractor for the optional fact sheet | B-D14, B-D18, B-D21, B-D24 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well; per-well fusion with Qwen3-Embedding-0.6B for questions naming several wells; date filter on daily reports | B-D23, B-C21, B-C22 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Daily reports | No filter 7/26, **date filter 14/26** on unseen questions ([E27](../../experiments/E27-date-filter-and-coverage.md)); form headers, inventory and parameters need K1 version 1 ([note for Hung](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22 |
-| Next | Waiting on the expert question set, the supervisor's view on a graph in the main pipeline, K1 version 1 from Track A, and the vector store with Track C. E28 proposed, not started | B-D24, B-D25, B-F45, [next-runs](next-runs.md) |
+| Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Hung](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
+| Next | Waiting on the expert question set, the supervisor's view on the event graph, K1 version 1 from Track A, and the vector store and Neo4j loading with Track C | B-D24, B-D25, B-D26, [next-runs](next-runs.md) |
 | Ontology (K2) | Version 1.1: adds `rig`, `drilling_contractor`, and casing-spec and key-value mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17, E27 |
-| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files from the baseline: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl` | B-C18, B-C21 |
+| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
 | Vector store | Open; decided with Track C after the base | — |
 
@@ -612,4 +612,22 @@ The PDFs are not kept in the repository, because of their copyright terms.
 - *Added:* specification §8.4 (what the first build runs today, with the architecture diagram) and version 3.2, D-52, and an architecture section in `graphrag/README.md`.
 - *Removed as superseded:* "working design" as the current design, in the specification's §9, the plan and `CLAUDE.md`; "LightRAG with K2 next"; "the team writes no question set of its own"; the `-np 4` server command and the separate multi-report command in `graphrag/README.md`, replaced by `-np 1` and "The baseline".
 - *Kept:* specification §8.1 to §8.3 as the GraphRAG target, because the direction has not changed.
+
+## 2026-11-05: the event graph
+
+**B-C24 (design choice).** `graphrag/events.py`: well → report date → event → activity code and non-productive code, built with no model call from operations tables merged across attachments and joined with appx-23 by date and time. The model writes a JSON plan, code runs it, and the model writes the answer from the result and the source passages. Kept in memory, not in Neo4j; no new ontology (B-D25). K4 gains `how: event_graph` for chunks holding the source events of a computed result. `page_dates` is fixed: 145 of 145 pages.
+
+**E28 (experiment).** Event graph on questions over time: [E28](../../experiments/E28-event-graph.md). Simulated questions, chosen to suit it. 161 of 161 events match the PDFs' text layer. Frozen 35: **22** against 5 at best for plain RAG. New 23, after a planner fix: **19** against 4. 26 daily lookups: 17 against 14.
+
+**B-F47 (finding; from E28, answers B-F45).** The shape of the graph has to match the questions. Static per-well facts duplicate what retrieval finds; events add what it cannot do, because plain RAG sees five to ten passages and cannot add up 27 days.
+
+**B-F48 (finding; from E28).** The final model step garbles right results: on the new 23, the graph's result held the gold value on 19 of 20, and 16 were answered correctly (g07: result 6.5, answer 4). Reporting the result in code would give 22/23, computed and not run.
+
+**B-F49 (finding; from E28).** No single daily-report source is complete. Summaries omit rows ("1 record not printed"), each attachment loses some, and the parser loses `X` marks and turned a one-row table into text. Merging them and joining appx-23 recovers all 161 rows.
+
+**B-D26 (decision, by Claude, delegated by Tri; revises B-D24 for this kind of question).** Questions over time on daily reports are answered from the event graph, and other questions fall back to retrieval. This is D-53.
+
+- *Why:* a wide margin on two question sets, no LLM call to build, and no harm to lookups. It also fits the supervisor's GraphRAG direction.
+- *Cost accepted:* 2 LLM calls per question and about 900 more prompt tokens.
+- *Limit:* the questions were chosen to suit it, and it covers one well and one report system. **Whether users ask such questions is for the supervisor and the expert set.** B-D24 stands for the per-well fact graph.
 

@@ -16,7 +16,10 @@ AK3_DAILY = ROOT / "graphrag/gold/ak3_daily_v0.json"
 AK3_APPENDIX_EXPORT = ROOT / "data/corpora/ak3_appendices/exports/v1"
 HELDOUT = ROOT / "graphrag/gold/simulated_heldout_v0.json"
 AK3_DAILY_HELDOUT = ROOT / "graphrag/gold/ak3_daily_heldout_v0.json"
-QUESTION_SETS = ("prototype", "probe", "simulated", "heldout", "ak3_daily", "ak3_daily_heldout")
+AK3_EVENTS = ROOT / "graphrag/gold/ak3_events_v0.json"
+AK3_EVENTS_HELDOUT = ROOT / "graphrag/gold/ak3_events_heldout_v0.json"
+QUESTION_SETS = ("prototype", "probe", "simulated", "heldout", "ak3_daily", "ak3_daily_heldout", "ak3_events",
+                 "ak3_events_heldout")
 AK3 = "gdr882_ak3_eowr"
 # The 15 chunks the prototype extracted from (prototype/kgproto/extract.py SLICE).
 PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
@@ -83,8 +86,10 @@ def load_questions(name: str = "prototype") -> tuple[list[dict], dict[str, dict]
     "prototype": the prototype's 31 questions on AK-3. "probe": Track B's cross-report probe (not an
     evaluation set, D-49), whose facts already carry full chunk IDs. "ak3_daily": E24's questions on the AK-3
     daily reports, whose facts name pages."""
-    if name in ("ak3_daily", "ak3_daily_heldout"):
-        daily = json.loads((AK3_DAILY if name == "ak3_daily" else AK3_DAILY_HELDOUT).read_text(encoding="utf-8"))
+    if name in ("ak3_daily", "ak3_daily_heldout", "ak3_events", "ak3_events_heldout"):
+        files = {"ak3_daily": AK3_DAILY, "ak3_daily_heldout": AK3_DAILY_HELDOUT, "ak3_events": AK3_EVENTS,
+                 "ak3_events_heldout": AK3_EVENTS_HELDOUT}
+        daily = json.loads(files[name].read_text(encoding="utf-8"))
         rows = daily_rows()
         return daily["questions"], {f["id"]: dict(f, chunks=chunks_on_pages(f["sources"], rows)) for f in daily["facts"]}
     if name in ("probe", "simulated", "heldout"):

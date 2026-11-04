@@ -33,7 +33,7 @@
         "required": ["chunk_id", "how"],
         "properties": {
           "chunk_id": {"type": ["string", "null"], "description": "Child chunk the answer is verified against; null when no retrieved passage supports it"},
-          "how": {"enum": ["model", "by_quote", "by_value", "unsupported"], "description": "How the citation was checked in code (B-C08)"}
+          "how": {"enum": ["model", "by_quote", "by_value", "unsupported", "event_graph"], "description": "How the citation was checked in code (B-C08); event_graph: a chunk holding a source event of a result computed in code (E28)"}
         }
       }
     },

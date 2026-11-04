@@ -140,14 +140,20 @@ def page_dates(chunks: list[Chunk]) -> dict[tuple[str, int], str]:
     its report number takes the date another attachment gives that number; this assumes one well's reports in the
     pool. A stand-in until K1 version 1 carries a report date."""
     stated: dict[tuple[str, int], str] = {}
+    in_section: dict[tuple[str, int], str] = {}
     numbers: dict[tuple[str, int], str] = {}
     for c in chunks:
         text = f"{c.section or ''} {c.text}"
-        found, number = REPORT_DATE.search(text), REPORT_NUMBER.search(text)
+        found, number = REPORT_DATE.search(c.text), REPORT_NUMBER.search(text)
         if found:
             stated.setdefault((c.doc_id, c.page), normalize(found.group(1)))
+        # A page's first chunk can carry the previous page's section title, so the last section on the page wins (E28).
+        heading = REPORT_DATE.search(c.section or "")
+        if heading:
+            in_section[(c.doc_id, c.page)] = normalize(heading.group(1))
         if number:
             numbers.setdefault((c.doc_id, c.page), number.group(1))
+    stated = in_section | stated
     by_number = {numbers[page]: date for page, date in stated.items() if page in numbers}
     for page, number in numbers.items():
         if page not in stated and number in by_number:

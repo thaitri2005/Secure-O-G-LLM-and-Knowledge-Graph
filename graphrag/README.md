@@ -4,19 +4,26 @@ Track B's code for the first build: the model client, the baseline, and the Grap
 
 ## Architecture
 
-Solid lines are the baseline (B-D23). Dotted lines are the optional fact sheet (B-D24).
+Solid lines are what runs (B-D23, B-D26). Dotted lines are the optional fact sheet (B-D24). Which reports are asked about is chosen per run, by the command you use.
 
 ```mermaid
 flowchart TD
     PDF[PDF reports] --> K1[Docling chunks: K1 version 0]
     K1 --> IDX[BM25 index and embeddings]
-    Q[Question] --> ROUTE{Wells named}
+    K1 --> EV[Event graph, no LLM: well, date, event, codes]
+    Q[Question] --> KIND{Reports asked about}
+    KIND -- "end-of-well" --> ROUTE{Wells named}
+    KIND -- "daily" --> PLAN[Qwen3-8B writes a query plan]
+    PLAN -- "totals, counts, dates, depth" --> RUN[Code runs the plan on the graph]
+    EV --> RUN
+    PLAN -- "other" --> DATE[BM25 by well, pages of the date named, top 5]
     IDX --> ROUTE
+    IDX --> DATE
     ROUTE -- "one or none" --> ONE[BM25 by well, top 5, status first]
     ROUTE -- "several" --> MANY[Per-well fusion, top 10, evidence first]
-    ONE -- "daily reports" --> DATE[Keep the pages of the date named]
-    ONE --> LLM[Qwen3-8B with a JSON schema]
+    RUN --> LLM[Qwen3-8B with a JSON schema]
     DATE --> LLM
+    ONE --> LLM
     MANY --> LLM
     LLM --> CHECK[Citations and values checked in code]
     CHECK --> K4[Cited answer: K4 record]
@@ -36,6 +43,7 @@ flowchart TD
 | `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages; `--strict-facts` also checks their context (E26) |
 | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22): `python -m graphrag.tables --pool three --name my_tables` |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
+| `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |
 | `lightrag_run.py` | LightRAG 1.5.7 (MIT, as a library, `.venv-lightrag`) on our chunks, client and answer harness (E19) |
 | `ontology.py` | K2 ontology slice: glossary from the reports' tables, rendering as extractor guidance |
@@ -83,13 +91,15 @@ Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`. The tests m
 
 ## The baseline
 
-Adopted in B-D23: plain RAG, with no fact graph.
+Adopted in B-D23 and B-D26: retrieval routed by well and date, and the event graph for questions over time on daily reports.
 
 ```powershell
 # End-of-well reports: BM25 by well; questions naming several wells use per-well fusion and evidence first (E26)
 python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --multi-well-retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --endpoint local-llama --model qwen3-8b --name my_answers
 # Daily reports: also filtered by the report date the question names (E27)
 python -m graphrag.baseline answer --pool ak3_daily --questions ak3_daily_heldout --retriever dates:wells:bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_daily_answers
+# Daily reports, questions over time: the event graph, which falls back to retrieval (E28)
+python -m graphrag.events answer --questions ak3_events_heldout --endpoint local-llama --model qwen3-8b --name my_event_answers
 # K4 answer records for Track C
 python -m graphrag.k4 my_answers
 ```

@@ -1,0 +1,1266 @@
+{
+  "pool": "ak3_daily+appx-23",
+  "retriever": "event graph; fallback dates:wells:bm25",
+  "k": 5,
+  "question_set": "ak3_daily_heldout",
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "answer_format": "status_first",
+  "events": 161,
+  "build": {
+    "from operations tables": 160,
+    "added from the non-productive report": 1,
+    "non-productive events": 28
+  },
+  "planner_tokens": {
+    "prompt": 24015,
+    "completion": 2560
+  },
+  "questions": 26,
+  "withheld": [],
+  "correct_total": "17/26",
+  "correct_by_kind": {
+    "form_header": "4/6",
+    "operations_table": "4/4",
+    "survey_table": "2/2",
+    "parameters_table": "0/2",
+    "mud_table": "2/3",
+    "bit_table": "1/3",
+    "inventory_table": "0/1",
+    "across_days": "1/2",
+    "not_stated": "3/3"
+  },
+  "answers_without_wrong_values": "14/15",
+  "citations_in_retrieved": "11/15",
+  "quotes_verbatim": "11/15",
+  "citations_supported_after_check": "15/15",
+  "citation_sources": {
+    "model": 12,
+    "by_value": 1,
+    "by_quote": 3
+  },
+  "verified_on_gold_chunk": "15/15",
+  "retrieved_gold": "23/23",
+  "cost": {
+    "calls": 52,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 76027,
+    "completion_tokens": 4358,
+    "seconds": 55.0,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "per_question": {
+    "prompt_tokens_median": 2075.0,
+    "completion_tokens_median": 79.5,
+    "seconds_median": 0.9844999999999999
+  },
+  "rows": [
+    {
+      "id": "e01",
+      "kind": "form_header",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2057,
+      "completion_tokens": 21,
+      "seconds": 0.609,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e02",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "176"
+      ],
+      "raw_values": [
+        "176"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00061",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1285,
+      "completion_tokens": 90,
+      "seconds": 1.136,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e03",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "9"
+      ],
+      "raw_values": [
+        "9"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00072",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1343,
+      "completion_tokens": 86,
+      "seconds": 1.094,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e04",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "STUCK"
+      ],
+      "raw_values": [
+        "STUCK"
+      ],
+      "units": [
+        "Code"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 3,
+      "prompt_tokens": 2093,
+      "completion_tokens": 133,
+      "seconds": 1.682,
+      "cached": false,
+      "plan": {
+        "operation": "list_dates",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "code",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "dates for code DRIL from 2016-08-20 to 2016-08-20 = 2016-08-20",
+      "graph_source_chunks": [
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+      ]
+    },
+    {
+      "id": "e05",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "60"
+      ],
+      "raw_values": [
+        "60",
+        "60"
+      ],
+      "units": [
+        "gpm",
+        "gpm"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2282,
+      "completion_tokens": 205,
+      "seconds": 2.292,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "KILL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e06",
+      "kind": "survey_table",
+      "status": "answered",
+      "values": [
+        "0.5"
+      ],
+      "raw_values": [
+        "0.5"
+      ],
+      "units": [
+        "degrees"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2216,
+      "completion_tokens": 98,
+      "seconds": 1.275,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "SURV",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 129
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e07",
+      "kind": "parameters_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1284,
+      "completion_tokens": 21,
+      "seconds": 0.469,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e08",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "805"
+      ],
+      "raw_values": [
+        "805"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00162",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1930,
+      "completion_tokens": 57,
+      "seconds": 0.949,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e09",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "43"
+      ],
+      "raw_values": [
+        "43"
+      ],
+      "units": [
+        "jts"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3082,
+      "completion_tokens": 110,
+      "seconds": 1.577,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e10",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "8.50"
+      ],
+      "raw_values": [
+        "8.50"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00169",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2266,
+      "completion_tokens": 152,
+      "seconds": 1.803,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e11",
+      "kind": "mud_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2768,
+      "completion_tokens": 17,
+      "seconds": 0.586,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e12",
+      "kind": "bit_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1845,
+      "completion_tokens": 24,
+      "seconds": 0.633,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e13",
+      "kind": "inventory_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1824,
+      "completion_tokens": 14,
+      "seconds": 0.518,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e14",
+      "kind": "survey_table",
+      "status": "answered",
+      "values": [
+        "1"
+      ],
+      "raw_values": [
+        "1"
+      ],
+      "units": [
+        "degree"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2724,
+      "completion_tokens": 77,
+      "seconds": 1.239,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "SURV",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 800
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e15",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2230,
+      "completion_tokens": 105,
+      "seconds": 1.408,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e16",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "15"
+      ],
+      "raw_values": [
+        "15"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1192,
+      "completion_tokens": 99,
+      "seconds": 1.165,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e17",
+      "kind": "bit_table",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00240",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 1,
+      "prompt_tokens": 746,
+      "completion_tokens": 82,
+      "seconds": 0.983,
+      "cached": false,
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-09-04 = 1955 ft",
+      "graph_source_chunks": [
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00240"
+      ]
+    },
+    {
+      "id": "e18",
+      "kind": "bit_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2385,
+      "completion_tokens": 24,
+      "seconds": 0.651,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e19",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "80"
+      ],
+      "raw_values": [
+        "80"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00266",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3012,
+      "completion_tokens": 100,
+      "seconds": 1.481,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e20",
+      "kind": "parameters_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1939,
+      "completion_tokens": 17,
+      "seconds": 0.556,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 1919.1955
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e21",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "DRIL"
+      ],
+      "raw_values": [
+        "DRIL"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00240",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 1,
+      "prompt_tokens": 768,
+      "completion_tokens": 82,
+      "seconds": 0.986,
+      "cached": false,
+      "plan": {
+        "operation": "list_dates",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "code",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "dates for code DRIL from 2016-09-04 to 2016-09-04 = 2016-09-04",
+      "graph_source_chunks": [
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00240"
+      ]
+    },
+    {
+      "id": "e22",
+      "kind": "across_days",
+      "status": "answered",
+      "values": [
+        "629"
+      ],
+      "raw_values": [
+        "629"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3390,
+      "completion_tokens": 104,
+      "seconds": 1.567,
+      "cached": false,
+      "plan": {
+        "operation": "depth_gain",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "end measured depth rose by 629 ft from 2016-08-20 (176 ft) to 2016-08-29 (805 ft)",
+      "graph_source_chunks": [
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00164",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00171",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00141",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00165"
+      ]
+    },
+    {
+      "id": "e23",
+      "kind": "across_days",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2671,
+      "completion_tokens": 21,
+      "seconds": 0.668,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e24",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1640,
+      "completion_tokens": 21,
+      "seconds": 0.515,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-04",
+        "date_to": "2016-09-04",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e25",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2104,
+      "completion_tokens": 14,
+      "seconds": 0.506,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-29",
+        "date_to": "2016-08-29",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "e26",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 936,
+      "completion_tokens": 24,
+      "seconds": 0.509,
+      "cached": false,
+      "plan": {
+        "operation": "not_answerable",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-10-10",
+        "date_to": "2016-10-10",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    }
+  ]
+}

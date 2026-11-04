@@ -16,6 +16,7 @@ Plain RAG scored 5/30. Given the right page, the model scored 19/30. The 30 ques
 | 4 | **Values kept on the last row of the form** | Printed values are missing from the chunks | Report 1's `Vis.: 6 Temp: 58` is in the PDF's text layer, but 58 is in no chunk of that page |
 | 5 | Correct section titles | Report 17's header chunk is filed under `Rig/Weather Information`, and the first chunk of report 7 in attachment 30 carries the previous day's `Report For 17-Aug-16` | Section titles cannot be used to filter |
 | 6 | Merged table headers split | Two columns become one | `Operations Description Non-Prod`, `Used Invent.` |
+| 7 | **Keep the operations tables' rows and their last column** | Track B's event graph is built from them ([E28](../../experiments/E28-event-graph.md)). The `X` in `Non-Prod` is lost on some rows, and the one-row table on 13 August comes out as text | Report 9 prints `X` on 17:00-18:00; the parsed row has none |
 
 On item 4, our suspicion is the footer filter: the row lies 7.1% from the page bottom, inside `margin_band` 0.08. This is not confirmed, because other pages keep parts of the same row.
 
@@ -41,7 +42,7 @@ python -m graphrag.oracle --answer-format evidence_first --max-tokens 700 --name
 
 19/30 is the number to beat with that command.
 
-Track B now works around priority 2 with a date filter ([E27](../../experiments/E27-date-filter-and-coverage.md)): it guesses each page's date from `Report For` and `Report No`, and gets 143 of 145 pages right. That doubled the score on unseen questions, so a real report-date field is worth having: it would replace the guess and work on other report series. Priorities 1 and 3 have no workaround on our side.
+Track B now works around priority 2 with a date filter ([E27](../../experiments/E27-date-filter-and-coverage.md)): it guesses each page's date from `Report For` and `Report No`, and gets all 145 pages right. That doubled the score on unseen questions, so a real report-date field is worth having: it would replace the guess and work on other report series. Priorities 1 and 3 have no workaround on our side. Operations tables are now the most valuable thing you parse for us: the event graph, our best result on daily reports, rests on them (all 161 rows recovered, by merging attachments).
 
 Table mappings on an unseen report ([E25](../../experiments/E25-table-mappings-unseen-report.md)) had a similar lesson: 78-32's forms come out as mixed grids too.
 

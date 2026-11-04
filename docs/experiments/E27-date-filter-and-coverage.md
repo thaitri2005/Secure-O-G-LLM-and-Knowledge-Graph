@@ -20,7 +20,7 @@
 2. The date another attachment gives the page's `Report No`, for pages whose header lost the date in parsing.
 3. The date of the page before, for continuation pages.
 
-It is a stand-in until K1 version 1 carries report dates. Checked against the text layer of the PDFs, it dates **143 of 145 pages correctly**, and all 898 chunks get a date (268 had one in E24). The two wrong pages are report 7 in attachments 29 and 30. The parser gives the first chunk of attachment 30's page 7 the previous day's section title, `page_dates` trusts the first date it finds on a page, and attachment 29 then inherits the wrong date through its report number. So the error is partly ours. No question uses that day.
+It is a stand-in until K1 version 1 carries report dates. Checked against the text layer of the PDFs, it dates **143 of 145 pages correctly**, and all 898 chunks get a date (268 had one in E24). The two wrong pages are report 7 in attachments 29 and 30. The parser gives the first chunk of attachment 30's page 7 the previous day's section title, `page_dates` trusts the first date it finds on a page, and attachment 29 then inherits the wrong date through its report number. So the error is partly ours. No question uses that day. Fixed in [E28](E28-event-graph.md): 145 of 145.
 
 Results on the 26 unseen questions:
 

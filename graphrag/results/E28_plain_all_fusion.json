@@ -1,0 +1,1204 @@
+{
+  "pool": "ak3_all",
+  "pool_description": "the AK-3 end-of-well report and all its appendices (E28)",
+  "retriever": "dates:wells:fusion:bm25+dense:qwen3-embedding-0.6b",
+  "k": 10,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "withhold_unsupported": false,
+  "multi_well_retriever": null,
+  "multi_well_k": null,
+  "multi_well_format": null,
+  "strict_facts": false,
+  "facts": null,
+  "fact_sheet": null,
+  "validated": false,
+  "sheet_properties": null,
+  "facts_rejected": {},
+  "question_set": "ak3_events",
+  "answer_format": "evidence_first",
+  "questions": 35,
+  "withheld": [],
+  "correct_total": "4/35",
+  "correct_by_kind": {
+    "sum_code": "0/6",
+    "sum_range": "0/3",
+    "npt": "2/5",
+    "npt_days": "0/2",
+    "count": "0/3",
+    "list_dates": "0/3",
+    "first_last": "0/3",
+    "depth": "0/4",
+    "top": "0/3",
+    "not_stated": "2/3"
+  },
+  "answers_without_wrong_values": "2/17",
+  "citations_in_retrieved": "2/17",
+  "quotes_verbatim": "1/17",
+  "citations_supported_after_check": "17/17",
+  "citation_sources": {
+    "by_value": 9,
+    "by_quote": 12,
+    "model": 2
+  },
+  "verified_on_gold_chunk": "0/0",
+  "retrieved_gold": "0/0",
+  "cost": {
+    "calls": 35,
+    "cached_calls": 3,
+    "invalid_json": 0,
+    "prompt_tokens": 119686,
+    "completion_tokens": 8096,
+    "seconds": 85.9,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "per_question": {
+    "prompt_tokens_median": 3592,
+    "completion_tokens_median": 220,
+    "seconds_median": 2.477
+  },
+  "rows": [
+    {
+      "id": "t01",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not provide any information about activity code DRIL or the number of hours logged under that code. The reports mention non-productive time, drilling operations, and other activities, but no specific data on activity code DRIL is provided.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3820,
+      "completion_tokens": 80,
+      "seconds": 1.54,
+      "cached": false
+    },
+    {
+      "id": "t02",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not mention any activity code 'WOC' or provide information about hours logged under that code. Therefore, it is not possible to determine the number of hours under activity code WOC based on the provided data.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3618,
+      "completion_tokens": 73,
+      "seconds": 1.346,
+      "cached": false
+    },
+    {
+      "id": "t03",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any specific activity code 'CIRC' or provide data on hours logged under that code. Therefore, it is not possible to determine the total hours under activity code CIRC based on the given information.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4028,
+      "completion_tokens": 77,
+      "seconds": 1.421,
+      "cached": false
+    },
+    {
+      "id": "t04",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any activity code 'SURV' or provide information about hours logged under that code in the AK-3 daily reports.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3617,
+      "completion_tokens": 58,
+      "seconds": 1.182,
+      "cached": false
+    },
+    {
+      "id": "t05",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any activity code TRPO or provide data on hours logged under that code. The reports detail non-productive time, drilling operations, and other activities, but no specific reference to TRPO is found.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3975,
+      "completion_tokens": 77,
+      "seconds": 1.392,
+      "cached": false
+    },
+    {
+      "id": "t06",
+      "kind": "sum_code",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00139] states that the well was 'Waiting on cement at 0600 hours after secondary cement top job.' and the passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00029] mentions 'Waiting on cement.' Additionally, the passage [gdr882_ak3_eowr#c0005] describes the process of waiting on cement and the time spent waiting on cement during the drilling operations. The passage [gdr882_ak3_eowr#c0026] provides details about the cementing process and the time spent waiting on cement.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4641,
+      "completion_tokens": 415,
+      "seconds": 4.687,
+      "cached": false
+    },
+    {
+      "id": "t07",
+      "kind": "sum_range",
+      "status": "answered",
+      "values": [
+        "3.50",
+        "0.50",
+        "7.00"
+      ],
+      "raw_values": [
+        "3.50",
+        "0.50",
+        "7.00"
+      ],
+      "units": [
+        "hours",
+        "hours",
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00122] (page 21) provides the elapsed hours for each activity code DRIL. The DRIL activities from 28-Aug-16 to 1-Sep-16 are as follows: 3.50 hours, 0.50 hours, 7.00 hours, 0.50 hours, 6.00 hours, and 0.50 hours. The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00209] (page 32) adds an additional 3.50 hours for DRIL on 1-Sep-16.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00122",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00122",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00122",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 5116,
+      "completion_tokens": 566,
+      "seconds": 6.256,
+      "cached": false
+    },
+    {
+      "id": "t08",
+      "kind": "sum_range",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00001] (page 1) and [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00030] (page 6) mention activity code WOD. The first passage shows 8.00 hours on 12 August 2016 and 5.00 hours on 17 August 2016. The second passage shows 9.00 hours on 12 August 2016 and 5.00 hours on 17 August 2016. The total hours logged under activity code WOD on well AK-3 from 12 August 2016 to 17 August 2016 inclusive is 8.00 + 5.00 + 9.00 + 5.00 = 27.00 hours.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3719,
+      "completion_tokens": 405,
+      "seconds": 4.473,
+      "cached": false
+    },
+    {
+      "id": "t09",
+      "kind": "sum_range",
+      "status": "answered",
+      "values": [
+        "9.50",
+        "2.00",
+        "1.50"
+      ],
+      "raw_values": [
+        "9.50",
+        "2.00",
+        "1.50"
+      ],
+      "units": [
+        "hours",
+        "hours",
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051] (page 10) provides the operations log for well AK-3 on 20 August 2016. It lists the elapsed time under activity code DRIL, which is 9.50 hours for the first entry, 2.00 hours for the third entry, 1.50 hours for the fifth entry, and 1.50 hours for the seventh entry. These values are summed to determine the total hours logged under DRIL.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4244,
+      "completion_tokens": 531,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "t10",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "115.0"
+      ],
+      "raw_values": [
+        "115.0"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0037] (page 20) states that the total non-productive time for well AK-3 is 115.0 hours.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2641,
+      "completion_tokens": 234,
+      "seconds": 2.693,
+      "cached": false
+    },
+    {
+      "id": "t11",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "66"
+      ],
+      "raw_values": [
+        "66"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0034] (page 19) states that 'the time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.' This directly indicates that 66 hours of non-productive time were associated with the kick at 176'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2563,
+      "completion_tokens": 276,
+      "seconds": 2.989,
+      "cached": false
+    },
+    {
+      "id": "t12",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "66"
+      ],
+      "raw_values": [
+        "66"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882_ak3_eowr#c0034] (page 19) states that 'the time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.' This indicates that 66 hours of non-productive time were associated with well control issues, which may be coded as WOE (Well Control Event).",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 1210,
+      "completion_tokens": 280,
+      "seconds": 2.811,
+      "cached": false
+    },
+    {
+      "id": "t13",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "2.75"
+      ],
+      "raw_values": [
+        "2.75"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00019] (page 12) states that 'Days On Location: 0' and 'Non-Prod: 0'. The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00091] (page 14) indicates 'Elapsed: 2.75' hours for non-productive time on 23-Aug-16.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00091",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2902,
+      "completion_tokens": 225,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "t14",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "9"
+      ],
+      "raw_values": [
+        "9"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00037] (page 21) states that 'Hole Drilled / Ave ROP: 1,385 / 1,385' and 'Drilling Days: 15 actual / 30 plan'. The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00051] (page 27) indicates that 'Total Depth 1955ft'. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00257] (page 45) provides a table with 'Elapsed' hours for non-productive time (WOD) as 9.00 hours.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00257",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3572,
+      "completion_tokens": 351,
+      "seconds": 3.836,
+      "cached": false
+    },
+    {
+      "id": "t15",
+      "kind": "npt_days",
+      "status": "answered",
+      "values": [
+        "3"
+      ],
+      "raw_values": [
+        "3"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882_ak3_eowr#c0034] (page 19) states that the time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time, which is 66 hours. Another instance of non-productive time was due to weather during the move to the well site on 13 August, which lasted 24 hours. Additionally, the overnight from 16-17 August (14 hours) was counted as non-productive time. The passage [gdr882_ak3_eowr#c0037] (page 20) provides a table showing total non-productive time as 115 hours. These instances indicate that non-productive time was recorded on multiple days.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2771,
+      "completion_tokens": 340,
+      "seconds": 3.625,
+      "cached": false
+    },
+    {
+      "id": "t16",
+      "kind": "npt_days",
+      "status": "answered",
+      "values": [
+        "1"
+      ],
+      "raw_values": [
+        "1"
+      ],
+      "units": [
+        "day"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882_ak3_eowr#c0034] states that there was a loss of 24 hours due to weather during the move to the well site on 13 August. This indicates that 24 hours of non-productive time was recorded on one day (13 August).",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2775,
+      "completion_tokens": 168,
+      "seconds": 2.046,
+      "cached": false
+    },
+    {
+      "id": "t17",
+      "kind": "count",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any activity code 'SURV' or related operations logged in the AK-3 daily reports. The passage discussing the daily report (gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00033) only lists operations such as drilling, casing installation, and safety summaries, but no mention of 'SURV' or any separate operations under that code.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2072,
+      "completion_tokens": 132,
+      "seconds": 1.648,
+      "cached": false
+    },
+    {
+      "id": "t18",
+      "kind": "count",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question asks about the number of separate days activity code CASE was logged in the AK-3 daily reports. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00256] (page 45) states that the well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00194] (page 34) mentions that the well was reached TD with all HQ core pipe on location in the hole. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00239] (page 42) states that the well was drilled to a TD. ",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3703,
+      "completion_tokens": 391,
+      "seconds": 4.282,
+      "cached": false
+    },
+    {
+      "id": "t19",
+      "kind": "count",
+      "status": "answered",
+      "values": [
+        "1700"
+      ],
+      "raw_values": [
+        "1700"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00210] (page 37) states that the well was drilled to a vertical depth of 1,955' and that drilling operations were conducted 24-hours a day, in two shifts. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00256] (page 45) indicates that the well was completed 3 days ahead of schedule. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00194] (page 34) mentions that the well reached TD with all HQ core pipe on location in the hole. The passage [gdr882-ak3-appx-27-6-dailyreportetail",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00210",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3907,
+      "completion_tokens": 314,
+      "seconds": 3.553,
+      "cached": false
+    },
+    {
+      "id": "t20",
+      "kind": "list_dates",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not mention any activity code CMTP or related logging in the AK-3 daily reports. The provided passages describe drilling operations, safety summaries, and other activities but do not reference the CMTP activity code.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 3,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3492,
+      "completion_tokens": 192,
+      "seconds": 2.477,
+      "cached": false
+    },
+    {
+      "id": "t21",
+      "kind": "list_dates",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any activity code 'LOG' or specific dates when such activity was logged in the AK-3 daily reports. The passages describe drilling operations, personnel, and reports but do not reference the logging of activity codes.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 3,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3841,
+      "completion_tokens": 76,
+      "seconds": 1.415,
+      "cached": false
+    },
+    {
+      "id": "t22",
+      "kind": "list_dates",
+      "status": "answered",
+      "values": [
+        "2016-08-23",
+        "2016-08-26"
+      ],
+      "raw_values": [
+        "23-Aug-16",
+        "26-Aug-16"
+      ],
+      "units": [
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00071] (page 13) mentions 'Last BOP Test: 6.00' and the passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00094] (page 17) mentions 'Last BOP Test: 15'. These entries indicate the dates of BOP tests, which are related to activity code BOPT.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00071",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00094",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3611,
+      "completion_tokens": 273,
+      "seconds": 3.158,
+      "cached": false
+    },
+    {
+      "id": "t23",
+      "kind": "first_last",
+      "status": "answered",
+      "values": [
+        "2016-08-23"
+      ],
+      "raw_values": [
+        "23-Aug-16"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211] (page 37) states that the operations summary includes a DRIL code from 0:00 to 5:00 on 23-Aug-16. This indicates that the activity code DRIL was first logged on 23-Aug-16.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00071",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3672,
+      "completion_tokens": 177,
+      "seconds": 2.253,
+      "cached": false
+    },
+    {
+      "id": "t24",
+      "kind": "first_last",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00210] (page 37) and [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00050] (page 10) mention the daily reports for AK-3, but they do not specify the date when activity code DRIL was last logged. The passage [gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00007] (page 2) mentions activity code WOO, but not DRIL. No passage provides the date when activity code DRIL was last logged.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3264,
+      "completion_tokens": 223,
+      "seconds": 2.523,
+      "cached": false
+    },
+    {
+      "id": "t25",
+      "kind": "first_last",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question asks for the date when activity code CASE was first logged in the AK-3 daily reports. None of the provided passages mention the activity code CASE or any date associated with it. The passages discuss various activities and dates related to the drilling operations, but there is no specific information about the activity code CASE.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3356,
+      "completion_tokens": 91,
+      "seconds": 1.352,
+      "cached": false
+    },
+    {
+      "id": "t26",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00035] (page 20) states that the Total Depth is 1955ft. This is the deepest end measured depth logged in the operations of well AK-3 on 31 August 2016.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00035",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3875,
+      "completion_tokens": 170,
+      "seconds": 2.323,
+      "cached": false
+    },
+    {
+      "id": "t27",
+      "kind": "depth",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00033] (page 7) states that the well was spud on 18-Aug-16 and that the drilling days (act.) were 49. The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00087] (page 14) indicates that the well was drilled to a vertical depth of 1700 feet. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00064] (page 12) states that the well was spud on 18-Aug-16 and that the drilling days (act.) were 176. The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00087] (page 14) (1",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3184,
+      "completion_tokens": 369,
+      "seconds": 4.046,
+      "cached": false
+    },
+    {
+      "id": "t28",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "2016-08-18"
+      ],
+      "raw_values": [
+        "18-Aug-16"
+      ],
+      "units": [
+        "date"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00273] (page 43) states that the well was drilled to a vertical depth of 1,955 feet. Passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00256] (page 45) indicates that the well was completed with a vertical depth of 1,955 feet. Passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00293] (page 46) also mentions the vertical depth of 1,955 feet. The spud date for the well is listed as 18-Aug-16 in passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00273].",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00273",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3100,
+      "completion_tokens": 356,
+      "seconds": 3.83,
+      "cached": false
+    },
+    {
+      "id": "t29",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "200",
+        "265"
+      ],
+      "raw_values": [
+        "200",
+        "265"
+      ],
+      "units": [
+        "ft",
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage for 26 August 2016 (page 17) states that the end measured depth (MD) was 265 ft. The passage for 27 August 2016 (page 19) states that the end measured depth (MD) was 465 ft. The difference between these two values is 200 feet.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00107",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00094",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4190,
+      "completion_tokens": 203,
+      "seconds": 0.0,
+      "cached": true
+    },
+    {
+      "id": "t30",
+      "kind": "top",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages do not mention any activity codes or their associated hours in the AK-3 daily reports. The information available pertains to drilling operations, geologists, permits, and safety summaries, but not activity codes or their duration.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2513,
+      "completion_tokens": 78,
+      "seconds": 1.253,
+      "cached": false
+    },
+    {
+      "id": "t31",
+      "kind": "top",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00143] (page 22) states that the well was drilled to a measured depth of 770 ft with an average rate of penetration (ROP) of 13.56 ft/hr. This indicates that the drilling activity was logged on 18-Aug-16, which is the spud date for the well. No other passage provides information about the most hours logged under activity code DRIL.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2940,
+      "completion_tokens": 220,
+      "seconds": 2.575,
+      "cached": false
+    },
+    {
+      "id": "t32",
+      "kind": "top",
+      "status": "answered",
+      "values": [
+        "MOB"
+      ],
+      "raw_values": [
+        "MOB"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00002] (page 1) provides the operations details for well AK-3. It lists the following activities with their elapsed hours: 'WOD' with 8.00 hours, 'MOB' with 9.50 hours, and 'WOD' with 5.00 hours. The 'MOB' code has the most hours with 9.50 hours.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00001",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3592,
+      "completion_tokens": 213,
+      "seconds": 2.615,
+      "cached": false
+    },
+    {
+      "id": "t33",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The question asks for the total hours logged under activity code DRIL on well 56-32. The passages provide multiple entries with the code DRIL, but none specifically mention well 56-32. Therefore, the answer cannot be determined from the given passages.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3987,
+      "completion_tokens": 233,
+      "seconds": 2.952,
+      "cached": false
+    },
+    {
+      "id": "t34",
+      "kind": "not_stated",
+      "status": "answered",
+      "values": [
+        "115.0"
+      ],
+      "raw_values": [
+        "115.0"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882_ak3_eowr#c0037] (page 20) states that the total non-productive time was 115.0 hours. This is directly stated in the table provided.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2818,
+      "completion_tokens": 138,
+      "seconds": 1.873,
+      "cached": false
+    },
+    {
+      "id": "t35",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The provided passages discuss various non-productive times and activities related to the AK-3 well, including well control issues, weather delays, and time spent on specific tasks. However, there is no mention of activity code SIDETRACK or any specific hours logged under that code in the daily reports.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3357,
+      "completion_tokens": 91,
+      "seconds": 1.443,
+      "cached": false
+    }
+  ]
+}

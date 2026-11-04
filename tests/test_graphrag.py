@@ -381,6 +381,80 @@ class CoverageMappingTests(unittest.TestCase):
         self.assertEqual({f["property"]: f["value"] for f in facts}, {"drilling_contractor": "Frontier", "rig": "Rig-16"})
 
 
+class EventGraphTests(unittest.TestCase):
+    def events(self):
+        from graphrag.events import Event
+
+        return [Event("2016-08-20", "0:00", "9:30", 9.5, 100, "DRIL", "", ["a"]),
+                Event("2016-08-20", "9:30", "10:00", 0.5, 100, "SURV", "", ["b"]),
+                Event("2016-08-20", "17:00", "18:00", 1.0, 176, "STUCK", "", ["c"], "KICK"),
+                Event("2016-08-21", "0:00", "0:00", 24.0, 176, "KICK", "", ["d"], "KICK"),
+                Event("2016-08-22", "0:00", "6:00", 6.0, 300, "DRIL", "", ["e"])]
+
+    def plan(self, operation, **fields):
+        return {"operation": operation, "well": "AK-3", **fields}
+
+    def test_totals_filters_and_empty_results(self):
+        from graphrag.events import run_plan
+
+        self.assertIn("= 15.5 (2 events on 2 dates)", run_plan(self.plan("total_hours", code="dril"), self.events())[0])
+        self.assertIn("= 25 ", run_plan(self.plan("total_hours", non_productive=True), self.events())[0])
+        self.assertIn("= 9.5 ", run_plan(self.plan("total_hours", code="DRIL", date_to="2016-08-20", date_from="2016-08-20"), self.events())[0])
+        self.assertEqual(run_plan(self.plan("total_hours", code="SIDETRACK"), self.events()), ("", []))
+        self.assertEqual(run_plan({"operation": "total_hours", "well": "56-32", "code": "DRIL"}, self.events()), ("", []))
+        self.assertEqual(run_plan(self.plan("total_hours", non_productive=True, date_from="2017-01-01"), self.events()), ("", []))
+
+    def test_non_productive_plans_with_a_stray_code(self):
+        from graphrag.events import run_plan
+
+        self.assertIn("= 25 ", run_plan(self.plan("total_hours", code="non_productive", non_productive=True), self.events())[0])
+        self.assertIn("= 25 ", run_plan(self.plan("total_hours", code="KICK", npt_code="KICK"), self.events())[0])
+        self.assertIn("= 1 ", run_plan(self.plan("total_hours", code="STUCK", non_productive=True), self.events())[0])
+        self.assertEqual(run_plan(self.plan("total_hours", code="non_productive"), self.events()), ("", []))
+
+    def test_days_dates_and_groups(self):
+        from graphrag.events import run_plan
+
+        self.assertIn("= 2", run_plan(self.plan("count_days", code="DRIL"), self.events())[0])
+        self.assertIn("at least 24 hours = 1", run_plan(self.plan("count_days", non_productive=True, min_hours_per_day=24), self.events())[0])
+        self.assertIn("2016-08-20, 2016-08-22", run_plan(self.plan("list_dates", code="DRIL"), self.events())[0])
+        self.assertIn("= 2016-08-22", run_plan(self.plan("last_date", code="DRIL"), self.events())[0])
+        self.assertIn("= KICK (24 hours)", run_plan(self.plan("top_group", group_by="code"), self.events())[0])
+
+    def test_depth_ignores_code_filters_and_rests_on_its_events(self):
+        from graphrag.events import run_plan
+
+        self.assertIn("= 176 ft", run_plan(self.plan("depth_on_date", date_from="2016-08-21", code="DRIL"), self.events())[0])
+        self.assertIn("rose by 124 ft", run_plan(self.plan("depth_gain", date_from="2016-08-21", date_to="2016-08-22"), self.events())[0])
+        result, rows = run_plan(self.plan("first_date_depth_at_least", depth_ft=150), self.events())
+        self.assertIn("= 2016-08-20", result)
+        self.assertEqual(rows[0].chunks, ["c"])
+
+    def test_rows_merge_across_attachments_and_join_the_non_productive_report(self):
+        from graphrag.data import Chunk
+        from graphrag.events import build_events
+
+        def cells(rows):
+            return [{"r": r, "c": c, "text": t} for r, row in enumerate(rows) for c, t in enumerate(row)]
+
+        head = ["From", "To", "Elapsed", "End MD(ft)", "Code", "Operations Description"]
+        chunks = [Chunk("a#c1", "a", 1, "text", "Report For 20-Aug-16", "Well AK-3"),
+                  Chunk("a#c2", "a", 1, "table", None, "t", "a#t1", 0, 2),
+                  Chunk("b#c1", "b", 1, "text", None, "Report For 20-Aug-16 Well AK-3"),
+                  Chunk("b#c2", "b", 1, "table", None, "t", "b#t1", 0, 2),
+                  Chunk("n#c1", "n", 1, "table", None, "t", "n#t1", 0, 2)]
+        tables = [{"table_id": "a#t1", "doc_id": "a", "cells": cells([head, ["0:00", "1:00", "1.00", "10", "DRIL", "x"]])},
+                  {"table_id": "b#t1", "doc_id": "b", "cells": cells([head, ["0:00", "1:00", "1.00", "10", "DRIL", "x"]])},
+                  {"table_id": "n#t1", "doc_id": "n", "cells": cells([["NPT Code", "Rpt No", "Report Date", "Time From", "Time To", "Hours", "End MD", "Ops Code", "Activity"],
+                                                                     ["KICK", "9", "20-Aug-16", "0:00", "1:00", "1.00", "10", "DRIL", "x"],
+                                                                     ["WAIT", "9", "20-Aug-16", "1:00", "2:00", "1.00", "10", "WOW", "y"]])}]
+        events, stats = build_events(chunks, tables)
+        self.assertEqual(len(events), 2)
+        self.assertEqual((events[0].npt_code, events[0].chunks), ("KICK", ["a#c2", "b#c2", "n#c1"]))
+        self.assertEqual((events[1].code, events[1].npt_code), ("WOW", "WAIT"))
+        self.assertEqual(stats["added from the non-productive report"], 1)
+
+
 class DateRouterTests(unittest.TestCase):
     def chunks(self):
         from graphrag.data import Chunk

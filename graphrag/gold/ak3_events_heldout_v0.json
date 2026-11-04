@@ -1,0 +1,346 @@
+{
+ "status": "SIMULATED: not the expert set and not an evaluation result (B-D22). Written by Claude on 5 November 2026 at Tri's request, to test the event graph's planner fix on questions it was not fixed on. No drilling expert has reviewed it. Frozen before any run: do not change a question or gold value because of a result; add a new version instead.",
+ "version": "0.1",
+ "gold_source": "As ak3_events_v0.json: computed by code from the PDF text layer of attachments 30 and 28 and of appx-23, independent of the parsed chunks.",
+ "known_limits": [
+  "Same kinds of question as ak3_events_v0.json, by the same author, so held out from the fix but not independent of it.",
+  "Chosen to suit a graph of events."
+ ],
+ "questions": [
+  {
+   "id": "g01",
+   "kind": "sum_code",
+   "question": "How many hours in total were logged under activity code TRPI in the AK-3 daily reports?",
+   "gold": [
+    "u01a"
+   ]
+  },
+  {
+   "id": "g02",
+   "kind": "sum_code",
+   "question": "How many hours in total were logged under activity code MOB in the AK-3 daily reports?",
+   "gold": [
+    "u02a"
+   ]
+  },
+  {
+   "id": "g03",
+   "kind": "sum_code",
+   "question": "How many hours in total were logged under activity code OPEN in the AK-3 daily reports?",
+   "gold": [
+    "u03a"
+   ]
+  },
+  {
+   "id": "g04",
+   "kind": "sum_range",
+   "question": "How many hours were logged under activity code WOC on well AK-3 from 22 August 2016 to 25 August 2016 inclusive?",
+   "gold": [
+    "u04a"
+   ]
+  },
+  {
+   "id": "g05",
+   "kind": "sum_range",
+   "question": "How many hours were logged under activity code DRIL on well AK-3 on 2 September 2016?",
+   "gold": [
+    "u05a"
+   ]
+  },
+  {
+   "id": "g06",
+   "kind": "npt",
+   "question": "How many hours of non-productive time on well AK-3 are coded WAIT?",
+   "gold": [
+    "u06a"
+   ]
+  },
+  {
+   "id": "g07",
+   "kind": "npt",
+   "question": "How many hours of non-productive time on well AK-3 are coded WOO?",
+   "gold": [
+    "u07a"
+   ]
+  },
+  {
+   "id": "g08",
+   "kind": "npt",
+   "question": "How many hours of non-productive time did well AK-3 have on 21 August 2016?",
+   "gold": [
+    "u08a"
+   ]
+  },
+  {
+   "id": "g09",
+   "kind": "npt",
+   "question": "How many hours of non-productive time did well AK-3 have from 16 August 2016 to 18 August 2016 inclusive?",
+   "gold": [
+    "u09a"
+   ]
+  },
+  {
+   "id": "g10",
+   "kind": "npt_days",
+   "question": "On how many separate days from 20 August 2016 to 23 August 2016 did well AK-3 record non-productive time?",
+   "gold": [
+    "u10a"
+   ]
+  },
+  {
+   "id": "g11",
+   "kind": "count",
+   "question": "How many separate operations were logged under activity code CIRC in the AK-3 daily reports?",
+   "gold": [
+    "u11a"
+   ]
+  },
+  {
+   "id": "g12",
+   "kind": "count",
+   "question": "On how many separate days was activity code LOG logged in the AK-3 daily reports?",
+   "gold": [
+    "u12a"
+   ]
+  },
+  {
+   "id": "g13",
+   "kind": "list_dates",
+   "question": "On which dates was activity code CASE logged in the AK-3 daily reports?",
+   "gold": [
+    "u13a",
+    "u13b",
+    "u13c",
+    "u13d"
+   ]
+  },
+  {
+   "id": "g14",
+   "kind": "list_dates",
+   "question": "On which dates was activity code OPEN logged in the AK-3 daily reports?",
+   "gold": [
+    "u14a",
+    "u14b",
+    "u14c"
+   ]
+  },
+  {
+   "id": "g15",
+   "kind": "first_last",
+   "question": "On what date was activity code LOG first logged in the AK-3 daily reports?",
+   "gold": [
+    "u15a"
+   ]
+  },
+  {
+   "id": "g16",
+   "kind": "first_last",
+   "question": "On what date was activity code WOC last logged in the AK-3 daily reports?",
+   "gold": [
+    "u16a"
+   ]
+  },
+  {
+   "id": "g17",
+   "kind": "depth",
+   "question": "What was the deepest end measured depth in feet logged in the operations of well AK-3 on 2 September 2016?",
+   "gold": [
+    "u17a"
+   ]
+  },
+  {
+   "id": "g18",
+   "kind": "depth",
+   "question": "On what date did the end measured depth logged in the operations of well AK-3 first reach 500 feet or more?",
+   "gold": [
+    "u18a"
+   ]
+  },
+  {
+   "id": "g19",
+   "kind": "depth",
+   "question": "By how many feet did the end measured depth logged in the operations of well AK-3 increase on 31 August 2016 compared with 30 August 2016?",
+   "gold": [
+    "u19a"
+   ]
+  },
+  {
+   "id": "g20",
+   "kind": "top",
+   "question": "Which activity code has the most hours on well AK-3 from 20 August 2016 to 23 August 2016 inclusive?",
+   "gold": [
+    "u20a"
+   ]
+  },
+  {
+   "id": "g21",
+   "kind": "not_stated",
+   "question": "How many hours in total were logged under activity code DRIL on well 68-32?",
+   "gold": []
+  },
+  {
+   "id": "g22",
+   "kind": "not_stated",
+   "question": "How many hours of non-productive time did well AK-3 have in January 2015?",
+   "gold": []
+  },
+  {
+   "id": "g23",
+   "kind": "not_stated",
+   "question": "How many hours in total were logged under activity code COILTBG in the AK-3 daily reports?",
+   "gold": []
+  }
+ ],
+ "facts": [
+  {
+   "id": "u01a",
+   "value": 13.0,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u02a",
+   "value": 47.5,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u03a",
+   "value": 23.0,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u04a",
+   "value": 29.75,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u05a",
+   "value": 23.5,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u06a",
+   "value": 24.0,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u07a",
+   "value": 6.5,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u08a",
+   "value": 24.0,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u09a",
+   "value": 18.0,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u10a",
+   "value": 4,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u11a",
+   "value": 9,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u12a",
+   "value": 3,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u13a",
+   "value": "2016-08-19",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u13b",
+   "value": "2016-08-24",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u13c",
+   "value": "2016-08-29",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u13d",
+   "value": "2016-09-05",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u14a",
+   "value": "2016-08-18",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u14b",
+   "value": "2016-08-23",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u14c",
+   "value": "2016-08-24",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u15a",
+   "value": "2016-09-05",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u16a",
+   "value": "2016-08-30",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u17a",
+   "value": 1645,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u18a",
+   "value": "2016-08-28",
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u19a",
+   "value": 300,
+   "sources": [],
+   "derived": true
+  },
+  {
+   "id": "u20a",
+   "value": "WELLHD",
+   "sources": [],
+   "derived": true
+  }
+ ]
+}

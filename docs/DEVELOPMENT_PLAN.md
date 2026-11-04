@@ -216,21 +216,22 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
    Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
 6. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
 
-**Progress (4 November).** Details in the [track log](tracks/B-graphrag/log.md); what runs today is in [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
+**Progress (5 November).** Details in the [track log](tracks/B-graphrag/log.md); what runs today is in [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
 
 | Work item | State | Evidence |
 |---|---|---|
 | 1. Model client | Done: JSON-schema output, cache, cost ledger, private-data guard | `graphrag/client.py` |
 | 2. Vector baseline | Done: Qwen3-8B, citations checked in code; BM25 routed by well, per-well fusion for questions naming several wells, date filter on daily reports (D-50). 28/31, 31/40, 23/36 and, on daily reports, 14/26 | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md) |
-| 3. Base comparison | Closed for this stint: neo4j-graphrag-python and LightRAG (also with K2) not adopted, and no base chosen. A per-well fact graph from K2 table mappings and LLM extraction does not beat the baseline on new questions, so it is optional (D-51). Supervisor to confirm | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md), [E21](experiments/E21-lightrag-k2.md), [E22](experiments/E22-table-facts.md), [E23](experiments/E23-simulated-set.md), [E26](experiments/E26-routing-and-strict-facts.md) |
+| 3. Base comparison | Closed for this stint: neo4j-graphrag-python and LightRAG (also with K2) not adopted, and no base chosen. A per-well fact graph does not beat retrieval on new questions, so it is optional (D-51). A thin **event graph** of our own beats retrieval on totals over time on daily reports, 22/35 and 19/23 against 5/35 and 4/23, on questions chosen to suit it (D-53). Supervisor to confirm | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md), [E21](experiments/E21-lightrag-k2.md), [E22](experiments/E22-table-facts.md), [E23](experiments/E23-simulated-set.md), [E26](experiments/E26-routing-and-strict-facts.md), [E28](experiments/E28-event-graph.md) |
 | 4. Models | Answer LLM: Qwen3-8B (thinking off). Extraction, when used: Qwen3-4B. Embeddings: Qwen3-Embedding-0.6B, used in fusion. Vector store still open, with Track C | [E17](experiments/E17-model-sweep.md) |
 | 5. Ontology slice | K2 version 1.1 published, with table mappings checked on an unseen report. No further ontology work for now (D-52) | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), [E25](experiments/E25-table-mappings-unseen-report.md) |
 | 6. Answers | Cited answers on all question sets, with cost per run; K4 version 0.1 published, with current files from the baseline | [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), `graphrag/k4.py` |
-| Daily reports (added) | First runs done: date filter added, parsing failures sent to Track A | [E24](experiments/E24-ak3-daily-reports.md), [E27](experiments/E27-date-filter-and-coverage.md), [note](tracks/B-graphrag/note-for-track-A-daily-reports.md) |
+| Daily reports (added) | Date filter, then the event graph for questions over time; parsing failures written up for Track A | [E24](experiments/E24-ak3-daily-reports.md), [E27](experiments/E27-date-filter-and-coverage.md), [E28](experiments/E28-event-graph.md), [note](tracks/B-graphrag/note-for-track-A-daily-reports.md) |
 
-The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Judging a graph needs questions across wells, reports and days, which only the expert set can settle. A graph shaped around such questions (events from daily-report operations tables, B-F45) is proposed and not yet tested.
+The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Which questions users really ask is what the expert set must settle; the event graph's questions over time were chosen to suit it.
 
-**Exit status (4 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a base (none beats the baseline on current questions); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores.
+
+**Exit status (4 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a third-party base (none beats the baseline on current questions; the first build's graph is our own event graph, D-53); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores, including loading the event graph into Neo4j.
 
 **Exit.**
 
@@ -406,7 +407,7 @@ Keep:
 | 4 | A: Docling baseline and VLM comparison on the gold-table pages | Parser chosen with table scores | Open |
 | 5 | A: multi-page tables, key-value forms, parent/child chunks; K1 version 1 | EOWR by week 3, DDR by week 5 | Open |
 | 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Done (`graphrag/client.py`) |
-| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Closed for this stint with no base chosen: none beats the D-50 baseline (E16 to E27); fact graph optional (D-51); supervisor to confirm |
+| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Closed for this stint with no third-party base chosen: none beats the D-50 baseline (E16 to E27). Our event graph handles questions over time (D-53, E28); supervisor to confirm |
 | 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | Done: Qwen3-8B (E17), Qwen3-Embedding-0.6B in fusion (E26); K4 version 0.1 published |
 | 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | K2 version 1.1 published, EOWR only; DDR sections and the off-ontology rate not done, and no more ontology work for now (D-52) |
 | 10 | C: MinIO, PostgreSQL, vector store (chosen with B) and Neo4j in Docker Compose; loader from K1; page-rebuild check | AK-3 EOWR loaded; every chunk resolves to file and page | Open |

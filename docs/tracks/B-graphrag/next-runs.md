@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 4 November 2026: **E23 to E27 are done.** The next runs depend on other people's work, or on a choice by Tri; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
+Status on 5 November 2026: **E23 to E28 are done.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -52,6 +52,17 @@ python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
 
 [E26](../../experiments/E26-routing-and-strict-facts.md): routing and strict fact checks. [E27](../../experiments/E27-date-filter-and-coverage.md): the date filter and added coverage. The settings adopted from them are in the [README](../../../graphrag/README.md#the-baseline) (B-D23, B-D24).
 
+## E28: the event graph (done)
+
+22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. See the [record](../../experiments/E28-event-graph.md).
+
+```powershell
+python -m graphrag.events build --name my_events
+python -m graphrag.events answer --questions ak3_events_heldout --endpoint local-llama --model qwen3-8b --name my_graph_answers
+```
+
+Next on our side, when the work resumes: let code report the event graph's result directly, since the model garbles some right results (computed 22/23, not run), and load the graph into Neo4j with Track C.
+
 ## Waiting on
 
 | What | From whom | Then |
@@ -60,7 +71,7 @@ python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
 | K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Hung, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
 | Vector store | Khai, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
-| Whether to run the proposed E28: a thin event graph from operations tables, with no new ontology (B-F45, B-D25) | Tri | Freeze questions on totals over time first, then compare with the baseline. Not started |
+| Whether users ask questions over time (B-D26, Q3) | Supervisor and the expert group | Confirm or reverse the event graph |
 
 ## After each run
 
