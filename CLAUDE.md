@@ -32,6 +32,7 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 - **Log everything the same day.** Every finding (B-F), decision (B-D), design choice (B-C) and experiment (E14 onward) goes into [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) and, for measurements, into a `docs/experiments/E<n>-*.md` record with a row in the register. Update the log's "Current state" table. Project-level decisions also go into specification §13.1.
 - **Start small; efficiency is a headline metric.** Every run reports LLM calls, tokens, seconds and cost per page and per question, next to quality.
 - **Reuse before writing.** Look only at ready-made GitHub solutions close to the supervisor's description, then improve them. Any licence is fine with proper credit: keep the copyright notice and add a `NOTICE` file next to copied code.
+- **No ontology work for now:** anh Tuấn's direction is GraphRAG (B-D25). Keep K2 thin; the ontology papers he sent are background only.
 - **Ignore `explorations/kg-builder/`.** It is a teammate's separate exploration; do not build on it or recommend it.
 - **Commits are authored as the user, with no `Co-Authored-By: Claude` or other AI attribution.** Push to `main`. Others push too, so run `git pull --rebase` before pushing.
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
