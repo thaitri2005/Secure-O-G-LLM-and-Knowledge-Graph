@@ -585,3 +585,18 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 
 **Track B has no run waiting.** What comes next depends on others: [next-runs.md](next-runs.md).
 
+
+## 2026-11-04: papers from the supervisor
+
+The PDFs are not kept in the repository, because of their copyright terms.
+
+**B-F43 (finding).** Queiroz et al., "An Ontology of Well Engineering Entities to Extract and Structure Text Data from Daily Reports", SPE/IADC-223801-MS, 2025 (Petrobras, UNESP, Unicamp). DOI 10.2118/223801-MS.
+
+- *What it builds:* a knowledge graph of **events**, not of per-well properties. Each operational log entry becomes an Activity linked to the components, fluids and properties observed in it. `Observed{Class}` nodes let one entity have different values at different times.
+- *How it extracts:* regular expressions per class (stored in the ontology), part-of-speech tagging checked against a lookup table for activities, and relationship heuristics. They chose regex over Transformer models for accuracy. LLMs only propose candidates for humans to review, and LLM extraction is future work.
+- *How it evaluates:* Competency Questions written first, for example incident counts per intervention, trip time rates, and well status at a given moment. They are answered with SPARQL.
+- *Limits:* it gives no numbers, only "high levels of recall and precision" and "improved" against raw text. It does not compare answer quality with plain RAG, so it neither supports nor contradicts B-D24. About 2,300 classes, from 129 wells and about 145,000 log entries, took experts several months. Reports are in Portuguese, and the paper gives no link to the ontology.
+
+**B-F44 (finding).** Maucec and Khawaja, "Knowledge Graph-based Petroleum Engineering Ontological Framework for Well Performance Assessment", 87th EAGE Annual Conference (Saudi Aramco). An OWL ontology with SWRL rules and a reasoner, classifying 300+ wells from a performance study into 6 classes. Reservoir side only: it names drilling as out of scope. No documents, retrieval or LLM, and no accuracy figures. One idea applies: derived values are computed at query time by rules, not stored.
+
+**B-F45 (finding; our reading of B-F43 against E23 to E27).** Our fact graph may have been tested on the wrong shape of graph and question: per-well static properties against mostly single-fact lookups, which retrieval already answers. The paper's graph targets counts, rates and states across many log entries, which retrieval cannot assemble. Our operations tables are the part of daily reports that parses well (E24). Not tested yet. A proposed test: events from operations-table rows with no model call, and competency questions frozen first (hours by activity code, non-productive time, depth on a date).
