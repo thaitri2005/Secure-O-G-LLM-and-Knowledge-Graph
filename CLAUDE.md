@@ -37,11 +37,11 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
 - Write documentation in plain English, with short tables and lists. Vietnamese reports keep technical terms in English.
 
-## Track B: where things stand (1 November 2026)
+## Track B: where things stand (4 November 2026)
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). The working design is plain RAG plus a validated per-well fact graph (E22). Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **The baseline is plain RAG with routing by well and date (B-D23); the fact graph is optional until the expert questions decide (B-D24).** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -79,7 +79,11 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
   | [E24](docs/experiments/E24-ak3-daily-reports.md) | **AK-3 daily reports, 30 simulated questions, not expert-reviewed**: plain RAG / fusion, evidence first / right page given, evidence first (diagnostic) | 5/30 / 9/30 / 19/30 |
 
-  On the simulated set the fact graph does not help (B-F30), its sheet rarely holds what is asked (B-F31), and the validator passes facts with the wrong meaning (B-F32). On daily reports retrieval loses the most, and scrambled form headers set the ceiling (B-F35, B-F36).
+  | [E25](docs/experiments/E25-table-mappings-unseen-report.md) | K2 table mappings on unseen 78-32, as written / after two fixes | 3 facts, 2 with the wrong size, survey missed / 23 correct |
+  | [E26](docs/experiments/E26-routing-and-strict-facts.md) | **36 new simulated questions**: top 5 / routed by number of wells (**baseline**) / fact sheet, routed, strict | 20/36 / **23/36** / 23/36 |
+  | [E27](docs/experiments/E27-date-filter-and-coverage.md) | **26 new daily-report questions**: no filter / **date filter** / top 10, evidence first | 7/26 / **14/26** (2 wrong) / 17/26 (6 wrong) |
+
+  On questions written after it was designed, the fact graph does not beat plain RAG (B-F30, B-D24). On daily reports the date filter gives the largest gain, and scrambled form headers remain for Track A (B-F36).
 
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
@@ -90,10 +94,10 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). E23 and E24 have run. **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E25 (table mappings on an unseen end-of-well report; choose one first). Details are at the end of the Track B log.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E27 are done, and no Track B run is waiting ([what we are waiting on](docs/tracks/B-graphrag/next-runs.md)):** the expert questions, K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)), and the vector store with Khai. Tell the supervisor about B-D24 at the next check-in.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
-4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.
+4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on an unseen report (E25). More fact-graph coverage stopped (B-D24).
 5. Choose the vector store with Khai (Track C) once the base is chosen.
 
 ## Setting up a machine for Track B runs

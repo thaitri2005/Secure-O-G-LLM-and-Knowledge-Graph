@@ -1,0 +1,968 @@
+{
+  "pool": "ak3_daily",
+  "pool_description": "the four AK-3 daily-report attachments (E24)",
+  "retriever": "dates:wells:bm25",
+  "k": 5,
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "withhold_unsupported": false,
+  "multi_well_retriever": null,
+  "multi_well_k": null,
+  "strict_facts": false,
+  "facts": null,
+  "fact_sheet": null,
+  "validated": false,
+  "sheet_properties": null,
+  "facts_rejected": {},
+  "question_set": "ak3_daily_heldout",
+  "answer_format": "evidence_first",
+  "questions": 26,
+  "withheld": [],
+  "correct_total": "16/26",
+  "correct_by_kind": {
+    "form_header": "4/6",
+    "operations_table": "4/4",
+    "survey_table": "2/2",
+    "parameters_table": "0/2",
+    "mud_table": "2/3",
+    "bit_table": "1/3",
+    "inventory_table": "0/1",
+    "across_days": "0/2",
+    "not_stated": "3/3"
+  },
+  "answers_without_wrong_values": "13/18",
+  "citations_in_retrieved": "3/18",
+  "quotes_verbatim": "3/18",
+  "citations_supported_after_check": "18/18",
+  "citation_sources": {
+    "by_value": 4,
+    "by_quote": 15,
+    "model": 4
+  },
+  "verified_on_gold_chunk": "18/18",
+  "retrieved_gold": "23/23",
+  "cost": {
+    "calls": 26,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 56307,
+    "completion_tokens": 6184,
+    "seconds": 66.2,
+    "cost_usd": 0.0,
+    "models": [
+      "local-llama:qwen3-8b"
+    ]
+  },
+  "per_question": {
+    "prompt_tokens_median": 2227.0,
+    "completion_tokens_median": 219.0,
+    "seconds_median": 2.3535000000000004
+  },
+  "rows": [
+    {
+      "id": "e01",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "11"
+      ],
+      "raw_values": [
+        "11"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00062] (page 10) states: 'Pers/Hrs: 2 / 0 Contractor: 6 / 0 Other: 3 / 0'. This indicates the total number of personnel is 2 (Operators) + 6 (Contractors) + 3 (Other) = 11.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00061",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2061,
+      "completion_tokens": 216,
+      "seconds": 2.361,
+      "cached": false
+    },
+    {
+      "id": "e02",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "176"
+      ],
+      "raw_values": [
+        "176"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00061] (page 10) states that the 'Measured Depth (ft): 176'. This is the value provided in the header of the daily report for AK-3 on 20 August 2016.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00061",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1289,
+      "completion_tokens": 174,
+      "seconds": 1.871,
+      "cached": false
+    },
+    {
+      "id": "e03",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "9"
+      ],
+      "raw_values": [
+        "9",
+        "9"
+      ],
+      "units": [
+        "days",
+        "days"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00072] (page 11) states, 'Days Since LTI: 9'. Additionally, the passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00050] (page 10) also mentions '9 days since LTI'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00072",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00050",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1347,
+      "completion_tokens": 342,
+      "seconds": 3.291,
+      "cached": false
+    },
+    {
+      "id": "e04",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "STUCK"
+      ],
+      "raw_values": [
+        "STUCK"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00050] (page 10) contains the daily report for AK-3 on 20 August 2016. It includes an entry for the time period from 17:00 to 18:00 with the activity code 'STUCK'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2792,
+      "completion_tokens": 290,
+      "seconds": 3.146,
+      "cached": false
+    },
+    {
+      "id": "e05",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "60"
+      ],
+      "raw_values": [
+        "60"
+      ],
+      "units": [
+        "gpm"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00066] (page 10) states: 'Pump 60 gpm cold water 56 degrees trough core rods to cool hole.' This directly provides the rate of cold water pumped through the core rods.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2286,
+      "completion_tokens": 190,
+      "seconds": 2.118,
+      "cached": false
+    },
+    {
+      "id": "e06",
+      "kind": "survey_table",
+      "status": "answered",
+      "values": [
+        "0.5"
+      ],
+      "raw_values": [
+        "0.5",
+        "0.5"
+      ],
+      "units": [
+        "degrees",
+        "degrees"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051] (page 10) states that at 129 ft, the inclination was recorded as 0.5 degrees. Another passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065] (page 10) also mentions the same inclination of 0.5 degrees at 129 ft.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2220,
+      "completion_tokens": 358,
+      "seconds": 3.558,
+      "cached": false
+    },
+    {
+      "id": "e07",
+      "kind": "parameters_table",
+      "status": "answered",
+      "values": [
+        "10.0"
+      ],
+      "raw_values": [
+        "10.0"
+      ],
+      "units": [
+        "tons"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00082] (page 9) states: 'ROP Av/Mx WOB RPM Torque Flow 100-176 10.0 / 10.0 3,000 450 2,250'. This indicates that the weight on bit (WOB) for the range 100-176 ft is 10.0.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00082",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1288,
+      "completion_tokens": 274,
+      "seconds": 2.695,
+      "cached": false
+    },
+    {
+      "id": "e08",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "805"
+      ],
+      "raw_values": [
+        "805"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00139] (page 24) states that 'Hole Made (ft) / Hrs: 805'. This indicates that 805 feet of hole were made.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00162",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1934,
+      "completion_tokens": 213,
+      "seconds": 2.305,
+      "cached": false
+    },
+    {
+      "id": "e09",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "43"
+      ],
+      "raw_values": [
+        "43"
+      ],
+      "units": [
+        "joints"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140] (page 24) states: 'Run 43 jts of 4.5\" casing, bakerlok'd first three joints.' This indicates that 43 joints of 4.5 inch casing were run on well AK-3.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3086,
+      "completion_tokens": 196,
+      "seconds": 2.346,
+      "cached": false
+    },
+    {
+      "id": "e10",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "8.50"
+      ],
+      "raw_values": [
+        "8.50"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00169] (page 26) and [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00144] (page 25) both state that at 29-Aug-16 00:30 at Depth 775 ft, the mud density was recorded as 8.50.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00169",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2270,
+      "completion_tokens": 260,
+      "seconds": 2.812,
+      "cached": false
+    },
+    {
+      "id": "e11",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "110",
+        "125"
+      ],
+      "raw_values": [
+        "110",
+        "125"
+      ],
+      "units": [
+        "F",
+        "F"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00144] (page 25) states that on 29-Aug-16 at 03:00 at Depth 785 ft, the mud temperature in and out was recorded as 110 and 125 respectively.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00144",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00144",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2772,
+      "completion_tokens": 289,
+      "seconds": 3.138,
+      "cached": false
+    },
+    {
+      "id": "e12",
+      "kind": "bit_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00144] (page 25) states: 'BHA - No. 5 - BIT, NBS, CORE, 2 OTHER = 8.52'. This indicates that bit number 5 was used, and the depth is 8.52 ft. However, the passage does not provide the number of hours for bit number 5. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00139] (page 24) mentions 'Average ROP (ft/hr):' but does not specify the hours for bit number 5.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1849,
+      "completion_tokens": 274,
+      "seconds": 2.856,
+      "cached": false
+    },
+    {
+      "id": "e13",
+      "kind": "inventory_table",
+      "status": "answered",
+      "values": [
+        "28"
+      ],
+      "raw_values": [
+        "28"
+      ],
+      "units": [
+        "sacks"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00141] (page 24) states that 14 sacks of Thermolite cement were mixed. Another passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00165] (page 25) also mentions 14 sacks of Thermolite cement were mixed. The total number of sacks used is 14 + 14 = 28.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00032",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1828,
+      "completion_tokens": 234,
+      "seconds": 2.466,
+      "cached": false
+    },
+    {
+      "id": "e14",
+      "kind": "survey_table",
+      "status": "answered",
+      "values": [
+        "1"
+      ],
+      "raw_values": [
+        "1"
+      ],
+      "units": [
+        "degrees"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140] (page 24) states: 'Run single shot survey at 800': 1 degree inclination, MRT 300 F (maxed tool out - mercury was above the 300 mark).'",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00140",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2728,
+      "completion_tokens": 191,
+      "seconds": 2.233,
+      "cached": false
+    },
+    {
+      "id": "e15",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226] (page 40) states that the 'Measured Depth (ft): 1955'. This is the value provided in the header of the daily report for AK-3 on 4 September 2016.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2234,
+      "completion_tokens": 172,
+      "seconds": 2.021,
+      "cached": false
+    },
+    {
+      "id": "e16",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "15"
+      ],
+      "raw_values": [
+        "15"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226] (page 40) states: '15 days since LTI.'",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1196,
+      "completion_tokens": 132,
+      "seconds": 1.469,
+      "cached": false
+    },
+    {
+      "id": "e17",
+      "kind": "bit_table",
+      "status": "answered",
+      "values": [
+        "1955"
+      ],
+      "raw_values": [
+        "1955",
+        "1955",
+        "1955"
+      ],
+      "units": [
+        "feet",
+        "feet",
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226] (page 40) states that the well name is AK-3 and the depth of the hole made is 1955 feet. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227] (page 40) and [gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00240] (page 24) describe operations where the HQ core bit (#8) was used to core ahead from 1919' to 1955' (TD). The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00043] (page 24) also states that the total depth is 1955 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00043",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3228,
+      "completion_tokens": 477,
+      "seconds": 4.803,
+      "cached": false
+    },
+    {
+      "id": "e18",
+      "kind": "bit_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226] (page 40) states that the average ROP (ft/hr) is 3.500 at 1,700. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227] (page 40) provides a detailed operations summary, but it does not mention bit number 7 or its specific rate of penetration.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2389,
+      "completion_tokens": 234,
+      "seconds": 2.57,
+      "cached": false
+    },
+    {
+      "id": "e19",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "80"
+      ],
+      "raw_values": [
+        "80"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00266] states that at 04-Sep-16 01:00 at Depth 1,875 ft, the mud viscosity was recorded as 80.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00266",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3016,
+      "completion_tokens": 156,
+      "seconds": 2.012,
+      "cached": false
+    },
+    {
+      "id": "e20",
+      "kind": "parameters_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227] (page 40) states that during the drilling operations from 1919' to 1955', the bit torquing up and pressure building when on bottom. The passage also mentions that there were partial losses since 1878-1888.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1943,
+      "completion_tokens": 188,
+      "seconds": 2.04,
+      "cached": false
+    },
+    {
+      "id": "e21",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "DRIL"
+      ],
+      "raw_values": [
+        "DRIL"
+      ],
+      "units": [
+        "Activity Code"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227] (page 40) states that from 14:45 to 17:45, the activity code is DRIL, which corresponds to 'Core ahead HQ from 1919' to 1955' (TD).",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00227",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2449,
+      "completion_tokens": 186,
+      "seconds": 2.122,
+      "cached": false
+    },
+    {
+      "id": "e22",
+      "kind": "across_days",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not provide any information about the measured depth in the header of the AK-3 daily reports on 20 August 2016 or 29 August 2016. Therefore, it is not possible to determine the increase in measured depth between these two dates.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2735,
+      "completion_tokens": 243,
+      "seconds": 2.483,
+      "cached": false
+    },
+    {
+      "id": "e23",
+      "kind": "across_days",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00013] (page 9) states that on 19-Aug-16, 8.650ins FULL set. The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00043] (page 24) states that on 19-Aug-16, 8.650ins FULL set. The passage [gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00226] (page 40) states that on 18-Aug-16, the Spud Date was recorded. The passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00043] (page 24) states that on 04-Sep-16, the Daily Cost was $30,492.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2675,
+      "completion_tokens": 443,
+      "seconds": 4.451,
+      "cached": false
+    },
+    {
+      "id": "e24",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00246] (page 24) states that there is 'No Mud Log Information for this report.' This indicates that no gas reading was recorded in the AK-3 daily report of 4 September 2016.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1644,
+      "completion_tokens": 170,
+      "seconds": 1.898,
+      "cached": false
+    },
+    {
+      "id": "e25",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages provided do not mention any barometric pressure readings for the AK-3 daily report of 29 August 2016.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2108,
+      "completion_tokens": 60,
+      "seconds": 0.968,
+      "cached": false
+    },
+    {
+      "id": "e26",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not mention the mud weight on well AK-3 on 10 October 2016. The closest information is from passage [gdr882-ak3-appx-29-6-dailyreportgraphicalrpt-160-41b0c1e4#c00028] (page 16), which states 'Managing fluid loss by decreasing mud weight.' However, this does not provide the actual mud weight value. No other passage provides the mud weight for the specified date.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 940,
+      "completion_tokens": 222,
+      "seconds": 2.215,
+      "cached": false
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "pool": "three",
+  "run": "e25_78-32",
+  "method": "K2 table mappings, no model call",
+  "llm_calls": 0,
+  "facts_by_property": {
+    "casing_depth": 3
+  },
+  "facts": [
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "14"
+      },
+      "value": "69",
+      "source": "gdr1153_78-32_eowr#t005"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9"
+      },
+      "value": "704",
+      "source": "gdr1153_78-32_eowr#t005"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5"
+      },
+      "value": "3269",
+      "source": "gdr1153_78-32_eowr#t005"
+    }
+  ]
+}

@@ -16,18 +16,19 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
 | Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| Baseline | Plain RAG: Qwen3-8B (thinking off), BM25 routed by the well the question names, top 5, citations and values checked in code: 28/31 on AK-3 and on three reports ([E18](../../experiments/E18-well-routing.md)). With a validated fact sheet from LLM and table facts: **30/31** ([E22](../../experiments/E22-table-facts.md)); on the cross-report probe 2 to 5/9 against 3/9, within noise ([E20](../../experiments/E20-well-fact-sheet.md), E22). **On the simulated 40 the sheet does not help: 29/40 for both, or 31 and 30 with per-well retrieval** ([E23](../../experiments/E23-simulated-set.md)) | B-D03, B-C08, B-D14, B-D16, B-D19, B-D20, B-F30 |
+| Baseline | Plain RAG with Qwen3-8B (thinking off), citations and values checked in code. BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)); daily reports 14/26 ([E27](../../experiments/E27-date-filter-and-coverage.md)) | B-D23 |
+| Fact graph | **Optional, not in the baseline.** Does not beat plain RAG on new questions (E23, E26, E27); expert questions decide for good | B-D24 |
 | Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; the working design uses neo4j-graphrag as an extractor only | B-D14, B-D18, B-D21 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
-| Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
+| Retrieval | BM25 routed by well; per-well fusion with Qwen3-Embedding-0.6B for questions naming several wells; date filter on daily reports | B-D23, B-C21, B-C22 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Daily reports | Plain RAG 5/30, 19/30 with the right page given ([E24](../../experiments/E24-ak3-daily-reports.md)); needs date filtering in Track B, and form key-value pairs and report dates in K1 version 1 | B-F35, B-F36 |
-| Next | E25 (unseen report; choose one first); Tri to decide the order of routing by number of wells, validator checks and fact-graph coverage; the expert question set when it arrives; K1 version 1 from Track A | B-D21, B-F30 to B-F36 |
-| Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
-| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
-| Questions | Prototype 31 for development; a 9-question cross-report probe; a 40-question simulated expert set, run in E23 (not expert-reviewed; s02's gold to fix in the next version) | B-C14, B-D22, B-F34 |
+| Daily reports | No filter 7/26, **date filter 14/26** on unseen questions ([E27](../../experiments/E27-date-filter-and-coverage.md)); form headers, inventory and parameters need K1 version 1 ([note for Hung](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22 |
+| Next | No Track B run is waiting: the expert question set, K1 version 1 from Track A, and the vector store with Track C | B-D24, [next-runs](next-runs.md) |
+| Ontology (K2) | Version 1.1: adds `rig`, `drilling_contractor`, and casing-spec and key-value mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17, E27 |
+| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files from the baseline: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl` | B-C18, B-C21 |
+| Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
 | Vector store | Open; decided with Track C after the base | — |
 
 ## 2026-10-30
@@ -542,9 +543,45 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 
 **B-F38 (finding; from E24).** One answer changed between the first run and the uncached repeat with one request at a time (d20, from a wrong `1955` to an abstention; the score stayed 5/30). B-F19's rule is necessary, but it does not guarantee identical answers here.
 
-**Open, for Tri (recommendation from E24).** Ask Hung for form key-value pairs and report dates in K1 version 1, then rerun this set. Meanwhile, Track B can try reading dates from the question and filtering chunks by report date, but it needs new questions to measure, because these 30 have now been seen.
+**B-C20 (design choice).** The request to Track A is written as a file: [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md).
 
-**Next run, on the desktop. Exact commands: [next-runs.md](next-runs.md).**
+**E25 (experiment).** Table mappings on an unseen report, 78-32: [E25](../../experiments/E25-table-mappings-unseen-report.md). As written: 3 facts, right depths, 2 with the wrong size, and a 20-row survey missed. After two general fixes: 23 correct facts, no change on the original three reports.
 
-1. **E25:** the table mappings on an end-of-well report they were not written from. A public report must be chosen first.
+**B-F39 (finding; from E25).** E22's caveat was real: written from AK-3, the mappings got most keys wrong or missed the table on an unseen report. One unseen report from the same project is one sample.
+
+**B-C21 (design choice).** Routing and strict facts, both opt-in flags so earlier runs stay reproducible. `--multi-well-retriever`: questions naming several wells use per-well fusion, top 10, evidence first. `--strict-facts`: a casing size must look like one and be in the fact's chunk, the value must differ from it, a depth context must be in the chunk, and planned facts are hidden unless the question asks about a plan. K4 records now give the pipeline each question actually used.
+
+**E26 (experiment).** Routing and strict facts on 36 new questions, simulated: [E26](../../experiments/E26-routing-and-strict-facts.md). Top 5: 20. Always per well: 23. **Routed: 23, with 30% fewer prompt tokens.** Fact sheet, routed: 21; with strict facts: 23.
+
+**B-F40 (finding; from E26).** Comparison questions are unsolved: 0/5 in every setup. The model abstains, returns the numbers instead of the well, or picks the wrong well. Comparing values in code is the candidate; it has not been tried.
+
+**B-F41 (finding; from E26).** `WELL_NAME` does not match a well name followed by a period ("Well 68-32."), so such a mention is not routed. Not fixed, because a fix could change baseline results; it should be tested on its own.
+
+**B-C22 (design choice).** `dates:<retriever>` filters by the report date a question names. `page_dates` reads `Report For`, then the date another attachment gives the page's `Report No`, then the previous page's date. 143 of 145 pages are right against the PDFs' text. A stand-in until K1 version 1 carries report dates.
+
+**E27 (experiment).** Date filter and added coverage: [E27](../../experiments/E27-date-filter-and-coverage.md). Daily reports, 26 unseen simulated questions: 7 without the filter, **14 with it (wrong values 3 to 2)**, 17 with top 10 and evidence first (6 wrong). K2 version 1.1 added 24 facts with no model call and changed nothing measurable.
+
+**B-F42 (finding; from E27; corrects a sentence in E24).** E24's right-page diagnostic is not an upper limit for better retrieval: 21/30 exceeds its 19/30, because the filter shows several attachments' copies of a day and one copy may parse better than another.
+
+**B-D23 (decision, by Claude, delegated by Tri on 4 November).** The baseline for this stint, replacing D-50's retrieval settings:
+
+| Reports | Questions | Setting |
+|---|---|---|
+| End-of-well | Naming one well, or none | BM25 routed by well, top 5, status first |
+| End-of-well | Naming several wells | Per-well fusion, top 10, evidence first |
+| Daily | Naming a date | The same, with the date filter |
+
+- *Why routing:* same score as always per well at 30% fewer tokens, 3 more right than top 5.
+- *Why status first on daily reports:* evidence first gains 3 of 26 but gives 3 times the wrong values, and a wrong number is worse than "not stated".
+- *Cost accepted:* routing raises wrong values on held-out questions from 5 to 7.
+- *Revisit when* the expert questions arrive, or K1 version 1 changes what forms look like.
+
+**B-D24 (decision, by Claude, delegated by Tri on 4 November; replaces B-D19 to B-D21's working design).** The fact graph leaves the baseline and stays as an option.
+
+- *Why:* on questions written after it was designed, it does not beat plain RAG (E23: 29 and 29; E26: 23 and 23; E27: 23 and 23), and it costs 2.48 LLM calls per page. Its gain appears only on the prototype's questions, which shaped it. Efficiency is a headline metric, so it must earn that cost.
+- *Kept:* the code, `--strict-facts`, and table mappings, which cost no model calls.
+- *Stopped:* further LLM extraction and more coverage.
+- *Limit:* this is a capstone GraphRAG application, and the supervisor's direction expects a graph. This decision is about the answer pipeline on the questions we have, all simulated. It is not a verdict on graphs across wells, and **the expert question set decides it for good.** Tell the supervisor at the next check-in.
+
+**Track B has no run waiting.** What comes next depends on others: [next-runs.md](next-runs.md).
 

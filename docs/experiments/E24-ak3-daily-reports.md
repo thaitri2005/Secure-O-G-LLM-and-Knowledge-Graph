@@ -21,7 +21,7 @@
 | Right page given, status first | 11 | 8 | 1 | 18 | n/a |
 | **Right page given, evidence first** | **19** | 16 | 4 | 7 | n/a |
 
-The last two rows bypass retrieval and read the gold data, so they are a diagnostic and not a pipeline. They bound what better retrieval alone could reach.
+The last two rows bypass retrieval and read the gold data, so they are a diagnostic and not a pipeline. They show what one page of the right day allows. They are not an upper limit for better retrieval: the date filter reached 21/30 on these questions, showing several attachments' copies of the day ([E27](E27-date-filter-and-coverage.md)).
 
 Correct by kind:
 

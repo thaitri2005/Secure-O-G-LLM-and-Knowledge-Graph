@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 4 November 2026: **E23 and E24 are done ([E23](../../experiments/E23-simulated-set.md), [E24](../../experiments/E24-ak3-daily-reports.md)); E25 has not been run.** Do it on the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question set: [log](log.md), B-D22.
+Status on 4 November 2026: **E23 to E27 are done, and no run is waiting.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -39,15 +39,26 @@ python scripts/run_ak3_appendices.py --workers 2
 - `process --workers 2` hangs after 40 documents ([E24](../../experiments/E24-ak3-daily-reports.md)). Stop it and run `process` again, then `export --name v1`.
 - Chunks are in the release folder named by `exports/v1/CURRENT.json`; `graphrag/data.py` follows it.
 
-## E25: table mappings on an unseen report
+## E25: table mappings on an unseen report (done)
 
-**A new report is needed:** one public end-of-well report outside the three, not yet chosen ([Data sources](../../DATA_SOURCES.md)).
+Written from AK-3, the mappings found 3 facts on 78-32, with the wrong size on 2, and missed its 20-row survey. Two small fixes gave 23 correct facts without changing the original three reports. See the [record](../../experiments/E25-table-mappings-unseen-report.md).
 
-1. Parse it with the current pipeline.
-2. Add it to the chunk input without changing the existing three reports.
-3. Run `python -m graphrag.tables` on it and hand-check a sample of the facts. Do not edit the mappings first.
+```powershell
+python -m graph_builder.ingestion run --sources configs/sources/gdr_e25_78-32.json --config configs/ingestion/default.json --run-name e25_78-32
+python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
+```
 
-Report how many facts it found, how many are right, and what was missed. Then record any mapping fixes as a separate run.
+## E26 and E27 (done)
+
+[E26](../../experiments/E26-routing-and-strict-facts.md): routing and strict fact checks. [E27](../../experiments/E27-date-filter-and-coverage.md): the date filter and added coverage. The settings adopted from them are in the [README](../../../graphrag/README.md#the-baseline) (B-D23, B-D24).
+
+## Waiting on
+
+| What | From whom | Then |
+|---|---|---|
+| The expert question set | Supervisor and the expert group | Rerun the baseline and the fact sheet on it; decide the fact graph for good (B-D24) |
+| K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Hung, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
+| Vector store | Khai, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
 
 ## After each run
 

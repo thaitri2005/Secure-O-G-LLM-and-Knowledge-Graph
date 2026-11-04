@@ -336,6 +336,130 @@ class SimulatedSetTests(unittest.TestCase):
                 self.assertTrue(any(v in text[chunk] for v in values), (fact["id"], chunk))
 
 
+class TableMappingFixTests(unittest.TestCase):
+    def test_section_row_is_not_a_header(self):
+        from graphrag.tables import header_count
+
+        rows = [["Survey", "Meas."], ["Type", "Depth (ft)", "Inc. (deg)"], ["Wellbore:", "Original Wellbore"], ["MSS", "500", "0.9"]]
+        self.assertEqual(header_count(rows), 2)
+
+    def test_decimal_casing_size_is_kept_whole(self):
+        from graphrag.tables import SIZE, first
+
+        self.assertEqual(first(SIZE, "9.625"), "9.625")
+        self.assertEqual(first(SIZE, "5-1/2"), "5-1/2")
+
+
+class CoverageMappingTests(unittest.TestCase):
+    def extract(self, cells):
+        from graphrag.data import Chunk
+        from graphrag.ontology import load
+        from graphrag.tables import extract
+
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "tables.jsonl"
+            cell_list = [{"r": r, "c": c, "text": t} for r, row in enumerate(cells) for c, t in enumerate(row)]
+            path.write_text(json.dumps({"table_id": "d#t1", "doc_id": "d", "cells": cell_list}), encoding="utf-8")
+            chunk = Chunk("d#c1", "d", 1, "table", None, "XY-1 table", "d#t1", 0, len(cells))
+            return extract([chunk], load(), path)
+
+    def test_specification_column_gives_weight_and_grade(self):
+        facts = self.extract([["Section", "Casing Size (in.)", "Specifications", "Actual Depth (ft.)"],
+                              ["Production", "5-1/2", "17 ppf, L-80, BTC", "9,135"]])
+        got = {f["property"]: (f["value"], f["context"]) for f in facts if f["property"] != "casing_depth"}
+        self.assertEqual(got, {"casing_weight": ("17", {"casing_size_in": "5-1/2"}),
+                               "casing_grade": ("L-80", {"casing_size_in": "5-1/2"})})
+
+    def test_own_columns_give_weight_and_grade(self):
+        facts = self.extract([["Hole (inches)", "Casing (inches)", "Weight (ppf)", "Grade", "Depth (feet)"],
+                              ["7-1/2", "5-1/2", "15.5", "K55", "221.7"]])
+        got = {f["property"]: f["value"] for f in facts if f["property"] != "casing_depth"}
+        self.assertEqual(got, {"casing_weight": "15.5", "casing_grade": "K55"})
+
+    def test_key_value_rows(self):
+        facts = self.extract([["Field:", "FORGE UTAH"], ["Drilling Contractor (PM):", "Frontier"], ["Drilling Rig:", "Rig-16"]])
+        self.assertEqual({f["property"]: f["value"] for f in facts}, {"drilling_contractor": "Frontier", "rig": "Rig-16"})
+
+
+class DateRouterTests(unittest.TestCase):
+    def chunks(self):
+        from graphrag.data import Chunk
+
+        return [Chunk("d#c1", "d", 1, "text", "Report For 28-Aug-16", "Well AK-3 mud 8.6"),
+                Chunk("d#c2", "d", 2, "text", None, "Well AK-3 mud 8.6 continued"),
+                Chunk("d#c3", "d", 3, "text", None, "Report For 29-Aug-16 Well AK-3 mud 8.6"),
+                Chunk("n#c1", "n", 1, "text", None, "Report No: 8 Report For 29-Aug-16"),
+                Chunk("g#c1", "g", 1, "text", None, "Report No: 8 Graphical Summary, Printed: 20-Sep-16")]
+
+    def test_continuation_pages_inherit_the_date(self):
+        from graphrag.retrieval import page_dates
+
+        self.assertEqual(page_dates(self.chunks()), {("d", 1): "2016-08-28", ("d", 2): "2016-08-28", ("d", 3): "2016-08-29",
+                                                     ("n", 1): "2016-08-29", ("g", 1): "2016-08-29"})
+
+    def test_filters_only_on_dates_a_report_has(self):
+        from graphrag.retrieval import BM25, DateRouter
+
+        router = DateRouter(BM25(self.chunks()), self.chunks())
+        self.assertEqual({c for c, _ in router.search("AK-3 mud on 28 August 2016", 5)}, {"d#c1", "d#c2"})
+        everything = {c.id for c in self.chunks()}
+        self.assertEqual({c for c, _ in router.search("AK-3 mud on 1 January 2020", 9)}, everything)
+        self.assertEqual({c for c, _ in router.search("AK-3 mud", 9)}, everything)
+
+
+class StrictFactTests(unittest.TestCase):
+    def fact(self, size, value="978"):
+        return {"chunk": "d#c1", "well": "68-32", "property": "casing_depth", "qualifier": "actual",
+                "context": {"casing_size_in": size}, "value": value}
+
+    def test_casing_sizes(self):
+        from graphrag.validate import casing_size
+
+        self.assertEqual(casing_size("5-1/2"), 5.5)
+        self.assertEqual(casing_size('5-1/2"'), 5.5)
+        self.assertEqual(casing_size("5.500"), 5.5)
+        self.assertEqual(casing_size("13 3/8"), 13.375)
+        for junk in ("10031", "8.33", "1-39", "2-99", "69", "2", "HRQ", "blank", '6-35"'):
+            self.assertIsNone(casing_size(junk), junk)
+
+    def test_strict_rejects_what_the_value_check_passes(self):
+        from graphrag.validate import validate
+
+        text = {"d#c1": "Well 68-32 with Rig #10031 ran 5-1/2 casing to 978 ft."}
+        junk, rejected = validate([self.fact("10031")], text, strict=True)
+        self.assertEqual((junk, rejected), ([], {"context is not a casing size": 1}))
+        self.assertEqual(len(validate([self.fact("10031")], text)[0]), 1)
+        self.assertEqual(len(validate([self.fact("5-1/2")], text, strict=True)[0]), 1)
+        self.assertEqual(validate([self.fact("9-5/8")], text, strict=True)[1], {"context not in its chunk": 1})
+        self.assertEqual(validate([self.fact("5-1/2", "5.5")], {"d#c1": text["d#c1"] + " 5.5"}, strict=True)[1],
+                         {"value repeats its casing size": 1})
+
+
+class RoutingTests(unittest.TestCase):
+    def test_routing_and_plan_rules(self):
+        from graphrag.baseline import asks_about_plan, names_several_wells
+
+        self.assertTrue(names_several_wells("Which is deeper, AK-3 or 68-32?"))
+        self.assertFalse(names_several_wells("How deep is AK-3?"))
+        self.assertTrue(asks_about_plan("What was the planned depth?"))
+        self.assertFalse(asks_about_plan("What was the depth?"))
+
+
+class HeldOutSetTests(unittest.TestCase):
+    def test_gold_values_are_written_in_their_chunks(self):
+        from graphrag.data import load_chunks, load_questions
+        from graphrag.validate import written_in
+
+        text = {c.id: c.text for c in load_chunks()}
+        questions, gold = load_questions("heldout")
+        self.assertEqual({g for q in questions for g in q["gold"]}, set(gold))
+        for fact in gold.values():
+            self.assertTrue(all(c in text for c in fact["chunks"]), fact["id"])
+            if not fact.get("derived"):
+                forms = [fact["value"], *fact.get("alternatives", [])]
+                self.assertTrue(any(written_in(v, text[c]) for v in forms for c in fact["chunks"]), fact["id"])
+
+
 class DailySetTests(unittest.TestCase):
     def test_gold_pages_map_to_chunks_of_that_attachment_and_page(self):
         from graphrag.data import chunks_on_pages

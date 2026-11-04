@@ -10,6 +10,7 @@ from typing import Protocol
 import numpy as np
 
 from .data import Chunk
+from .scoring import normalize
 
 QUERY_INSTRUCTION = "Instruct: Given a question about a drilling report, retrieve passages that answer it\nQuery: "
 
@@ -121,6 +122,64 @@ WELL_NAME = re.compile(r"(?<![\w/.-])(?:[A-Z]{1,4}-\d{1,3}[A-Z]?|\d{1,3}-\d{1,3}
 
 def well_names(text: str) -> set[str]:
     return {m.upper() for m in WELL_NAME.findall(text)}
+
+
+REPORT_DATE = re.compile(r"Report For\s+(\d{2}-[A-Z][a-z]{2}-\d{2})")
+REPORT_NUMBER = re.compile(r"Report No:\s*(\d+)")
+QUESTION_DATE = re.compile(r"\b\d{1,2} (?:January|February|March|April|May|June|July|August|September|October|November|"
+                           r"December) \d{4}\b")
+
+
+def question_dates(question: str) -> set[str]:
+    return {normalize(m) for m in QUESTION_DATE.findall(question)}
+
+
+def page_dates(chunks: list[Chunk]) -> dict[tuple[str, int], str]:
+    """The report date of each page of each document, as YYYY-MM-DD. Daily reports print it once, in the header of
+    their first page, so continuation pages inherit it. Parsing loses some headers (E24), so a page that keeps only
+    its report number takes the date another attachment gives that number; this assumes one well's reports in the
+    pool. A stand-in until K1 version 1 carries a report date."""
+    stated: dict[tuple[str, int], str] = {}
+    numbers: dict[tuple[str, int], str] = {}
+    for c in chunks:
+        text = f"{c.section or ''} {c.text}"
+        found, number = REPORT_DATE.search(text), REPORT_NUMBER.search(text)
+        if found:
+            stated.setdefault((c.doc_id, c.page), normalize(found.group(1)))
+        if number:
+            numbers.setdefault((c.doc_id, c.page), number.group(1))
+    by_number = {numbers[page]: date for page, date in stated.items() if page in numbers}
+    for page, number in numbers.items():
+        if page not in stated and number in by_number:
+            stated[page] = by_number[number]
+    dates: dict[tuple[str, int], str] = {}
+    current: dict[str, str] = {}
+    for doc, page in sorted({(c.doc_id, c.page) for c in chunks}):
+        current[doc] = stated.get((doc, page), current.get(doc))
+        if current[doc]:
+            dates[(doc, page)] = current[doc]
+    return dates
+
+
+class DateRouter:
+    """Keeps only the pages of the report dates a question names (E27). Filtering by well cannot separate the days of
+    one well. A question that names no date, or only dates no report has, is not filtered."""
+
+    def __init__(self, retriever, chunks: list[Chunk]):
+        self.retriever, self.index_seconds = retriever, retriever.index_seconds
+        self.name = f"dates:{retriever.name}"
+        dates = page_dates(chunks)
+        self.chunks_by_date: dict[str, set[str]] = {}
+        for c in chunks:
+            if (c.doc_id, c.page) in dates:
+                self.chunks_by_date.setdefault(dates[(c.doc_id, c.page)], set()).add(c.id)
+
+    def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
+        known = [d for d in question_dates(question) if d in self.chunks_by_date]
+        if not known:
+            return self.retriever.search(question, k, allowed)
+        routed = set().union(*(self.chunks_by_date[d] for d in known))
+        return self.retriever.search(question, k, routed if allowed is None else allowed & routed)
 
 
 class WellRouter:

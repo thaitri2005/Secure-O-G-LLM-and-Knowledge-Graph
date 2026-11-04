@@ -14,7 +14,9 @@ SIMULATED = ROOT / "graphrag/gold/simulated_expert_v0.json"
 AK3_DAILY = ROOT / "graphrag/gold/ak3_daily_v0.json"
 # Ignored by git; regenerate with scripts/run_ak3_appendices.py.
 AK3_APPENDIX_EXPORT = ROOT / "data/corpora/ak3_appendices/exports/v1"
-QUESTION_SETS = ("prototype", "probe", "simulated", "ak3_daily")
+HELDOUT = ROOT / "graphrag/gold/simulated_heldout_v0.json"
+AK3_DAILY_HELDOUT = ROOT / "graphrag/gold/ak3_daily_heldout_v0.json"
+QUESTION_SETS = ("prototype", "probe", "simulated", "heldout", "ak3_daily", "ak3_daily_heldout")
 AK3 = "gdr882_ak3_eowr"
 # The 15 chunks the prototype extracted from (prototype/kgproto/extract.py SLICE).
 PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
@@ -81,12 +83,12 @@ def load_questions(name: str = "prototype") -> tuple[list[dict], dict[str, dict]
     "prototype": the prototype's 31 questions on AK-3. "probe": Track B's cross-report probe (not an
     evaluation set, D-49), whose facts already carry full chunk IDs. "ak3_daily": E24's questions on the AK-3
     daily reports, whose facts name pages."""
-    if name == "ak3_daily":
-        daily = json.loads(AK3_DAILY.read_text(encoding="utf-8"))
+    if name in ("ak3_daily", "ak3_daily_heldout"):
+        daily = json.loads((AK3_DAILY if name == "ak3_daily" else AK3_DAILY_HELDOUT).read_text(encoding="utf-8"))
         rows = daily_rows()
         return daily["questions"], {f["id"]: dict(f, chunks=chunks_on_pages(f["sources"], rows)) for f in daily["facts"]}
-    if name in ("probe", "simulated"):
-        probe = json.loads((PROBE if name == "probe" else SIMULATED).read_text(encoding="utf-8"))
+    if name in ("probe", "simulated", "heldout"):
+        probe = json.loads({"probe": PROBE, "simulated": SIMULATED, "heldout": HELDOUT}[name].read_text(encoding="utf-8"))
         return probe["questions"], {f["id"]: f for f in probe["facts"]}
     facts = json.loads(FACTS.read_text(encoding="utf-8"))
     gold = {}

@@ -1,0 +1,265 @@
+{
+  "pool": "three",
+  "run": "e25_78-32",
+  "method": "K2 table mappings, no model call",
+  "llm_calls": 0,
+  "facts_by_property": {
+    "casing_depth": 3,
+    "inclination": 20
+  },
+  "facts": [
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "14"
+      },
+      "value": "69",
+      "source": "gdr1153_78-32_eowr#t005"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9.625"
+      },
+      "value": "704",
+      "source": "gdr1153_78-32_eowr#t005"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0012",
+      "well": "78-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5.5"
+      },
+      "value": "3269",
+      "source": "gdr1153_78-32_eowr#t005"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "300.0"
+      },
+      "value": "0.90",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "500.0"
+      },
+      "value": "0.90",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "700.0"
+      },
+      "value": "1.80",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "980.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1150.0"
+      },
+      "value": "3.90",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1267.0"
+      },
+      "value": "3.70",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1387.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1417.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1537.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1550.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0258",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1650.0"
+      },
+      "value": "4.10",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1747.0"
+      },
+      "value": "3.70",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2400.0"
+      },
+      "value": "4.70",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2500.0"
+      },
+      "value": "4.50",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2617.0"
+      },
+      "value": "4.50",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2640.0"
+      },
+      "value": "4.30",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2763.0"
+      },
+      "value": "4.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2880.0"
+      },
+      "value": "4.20",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "3063.0"
+      },
+      "value": "2.00",
+      "source": "gdr1153_78-32_eowr#t075"
+    },
+    {
+      "chunk": "gdr1153_78-32_eowr#c0259",
+      "well": "78-32",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "3213.0"
+      },
+      "value": "2.50",
+      "source": "gdr1153_78-32_eowr#t075"
+    }
+  ]
+}

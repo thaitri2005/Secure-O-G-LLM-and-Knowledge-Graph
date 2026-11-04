@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 
-from .baseline import RESULTS
+from .baseline import RESULTS, names_several_wells
 from .data import ROOT, load_questions
 
 SCHEMA = ROOT / "schemas/k4_answer_record.schema.json"
@@ -26,15 +26,19 @@ def records(run: str) -> list[dict]:
                 "retriever": result.get("retriever") or f"lightrag:{result.get('mode')}",
                 "k": result.get("k"), "fact_sheet": result.get("fact_sheet"),
                 "validated": bool(result.get("validated")), "answer_format": result.get("answer_format", "status_first")}
+    # A routed run (E26) answers questions naming several wells with another retriever and format.
+    routed = {"retriever": result.get("multi_well_retriever"), "k": result.get("multi_well_k"),
+              "answer_format": result.get("multi_well_format")}
     out = []
     for row in result["rows"]:
         units = row.get("units") or [None] * len(row["values"])
+        record_pipeline = pipeline | routed if routed["retriever"] and names_several_wells(text.get(row["id"], "")) else pipeline
         out.append({
             "k4_version": "0.1", "run": run, "question_set": question_set, "question_id": row["id"],
             "question": text.get(row["id"], ""), "status": row["status"],
             "answers": [{"value": str(v), **({"unit": u} if u else {})} for v, u in zip(row["values"], units)],
             "citations": [{"chunk_id": c["chunk"], "how": c["how"]} for c in row["citations"]],
-            "pipeline": {k: v for k, v in pipeline.items() if v is not None},
+            "pipeline": {k: v for k, v in record_pipeline.items() if v is not None},
             "models": {"answer": model},
             "cost": {"calls": 1, "prompt_tokens": row["prompt_tokens"], "completion_tokens": row["completion_tokens"],
                      "seconds": row["seconds"], "cost_usd": 0.0 if model.startswith("local") else row.get("cost_usd", 0.0)},

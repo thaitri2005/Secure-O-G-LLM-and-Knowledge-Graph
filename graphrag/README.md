@@ -6,11 +6,11 @@ Track B's code for the first build: the model client, the plain-RAG baseline, an
 |---|---|
 | `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the prototype's 15-chunk slice, its 31 questions and its gold facts |
-| `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18) |
+| `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
 | `baseline.py` | Command line for retrieval and answer runs; it writes `graphrag/results/<name>.json`. `--facts` adds a graph's extracted facts under each passage; `--withhold-unsupported` drops answers without a supported citation |
-| `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages |
+| `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages; `--strict-facts` also checks their context (E26) |
 | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22): `python -m graphrag.tables --pool three --name my_tables` |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |
@@ -60,9 +60,22 @@ Each build clears the Neo4j database first. Neo4j Browser is at http://127.0.0.1
 
 Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`. The tests make no model calls; the `neo4j_kg` tests run only in `.venv-graphrag`.
 
-## The working design (E22, B-D19 to B-D21)
+## The baseline
 
-Plain RAG routed by well, plus a per-well fact graph from two sources, validated in code before it reaches the answer model. 30/31 on the prototype's questions.
+Adopted in B-D23: plain RAG, with no fact graph.
+
+```powershell
+# End-of-well reports: BM25 by well; questions naming several wells use per-well fusion and evidence first (E26)
+python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --multi-well-retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --endpoint local-llama --model qwen3-8b --name my_answers
+# Daily reports: also filtered by the report date the question names (E27)
+python -m graphrag.baseline answer --pool ak3_daily --questions ak3_daily_heldout --retriever dates:wells:bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_daily_answers
+# K4 answer records for Track C
+python -m graphrag.k4 my_answers
+```
+
+## The optional fact sheet (E22, E26, E27; B-D24)
+
+A per-well fact graph from two sources, checked in code before it reaches the answer model. Kept as an option: it has not beaten the baseline on new questions, so it waits for the expert question set. Use `--strict-facts` with it.
 
 ```powershell
 # 1. Table facts by K2's mappings (no model call)
@@ -70,12 +83,10 @@ python -m graphrag.tables --pool three --name my_tables
 # 2. Prose facts by neo4j-graphrag with Qwen3-4B (llama-server on port 8082, endpoint local-llama-2; Neo4j running)
 .venv-graphrag\Scripts\python -m graphrag.neo4j_kg --pool three --endpoint local-llama-2 --model qwen3-4b --prompt library --name my_graph
 # 3. Answers: both fact sources, validated, the 3 most relevant K2 properties per question
-python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --fact-sheet my_graph my_tables --validate --sheet-properties 3 --endpoint local-llama --model qwen3-8b --name my_answers
-# 4. K4 answer records for Track C
-python -m graphrag.k4 my_answers
+python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --multi-well-retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --fact-sheet my_graph my_tables --validate --strict-facts --sheet-properties 3 --endpoint local-llama --model qwen3-8b --name my_answers
 ```
 
-For questions that name several wells, use `--retriever perwell:fusion:bm25+dense:qwen3-embedding-0.6b --k 10 --answer-format evidence_first --max-tokens 700`. The cross-report probe runs with `--questions probe`.
+The cross-report probe runs with `--questions probe`.
 
 ## LightRAG (E19, E21)
 

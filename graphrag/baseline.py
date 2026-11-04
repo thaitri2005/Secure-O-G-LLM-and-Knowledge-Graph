@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import statistics
 import time
 from collections import Counter
@@ -16,7 +17,7 @@ from typing import Any
 from .citations import resolve
 from .client import ModelClient, load_endpoints
 from .data import AK3, QUESTION_SETS, ROOT, Chunk, load_chunks, load_daily_chunks, load_questions, prototype_slice
-from .retrieval import BM25, Dense, Fusion, WellRouter, well_names
+from .retrieval import BM25, DateRouter, Dense, Fusion, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
 from .validate import validate
 
@@ -56,6 +57,7 @@ ANSWER_FORMATS = {
         "required": ["evidence", "answers", "status"], "additionalProperties": False,
     },
 }
+MULTI_WELL_TOKENS = 700
 EVIDENCE_NOTE = ("\nFirst write the evidence: which passages bear on the question and what they say, in one or two "
                  "sentences. To compare, count or combine, use the values the passages state. When the question asks "
                  "which well, person or organization, each answer value is that name, not a number.")
@@ -85,6 +87,9 @@ def build(spec: str, chunks) -> Any:
         return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None))
     if spec.startswith("fusion:"):
         return Fusion([build(part, chunks) for part in spec.removeprefix("fusion:").split("+")])
+    if spec.startswith("dates:"):
+        # dates:<retriever> keeps only the pages of the report dates the question names (E27).
+        return DateRouter(build(spec.removeprefix("dates:"), chunks), chunks)
     if spec.startswith("perwell:"):
         # perwell:<retriever> also searches each named well's documents separately when a question names several.
         return WellRouter(build(spec.removeprefix("perwell:"), chunks), chunks, per_well=True)
@@ -148,23 +153,41 @@ def evaluate_answers(args) -> dict:
         sheet_facts = [f for name in args.fact_sheet
                        for f in json.loads((RESULTS / f"{name}.json").read_text(encoding="utf-8"))["facts"]]
         if args.validate:
-            sheet_facts, rejected = validate(sheet_facts, {c.id: c.text for c in chunks})
+            sheet_facts, rejected = validate(sheet_facts, {c.id: c.text for c in chunks}, strict=args.strict_facts)
     ranker = PropertyRanker(args.sheet_embed_model) if args.fact_sheet and args.sheet_properties else None
+    multi_retriever = build(args.multi_well_retriever, chunks) if args.multi_well_retriever else None
 
     def retrieve(question: str) -> tuple[list[str], str]:
-        hits = [cid for cid, _ in retriever.search(question, args.k)]
+        if multi_retriever and names_several_wells(question):
+            hits = [cid for cid, _ in multi_retriever.search(question, args.multi_well_k)]
+        else:
+            hits = [cid for cid, _ in retriever.search(question, args.k)]
         if not args.fact_sheet:
             return hits, ""
-        sheet = fact_sheet(sheet_facts, properties=ranker.top(question, args.sheet_properties) if ranker else None)
+        shown = sheet_facts if not args.strict_facts or asks_about_plan(question) else \
+            [f for f in sheet_facts if f["qualifier"] != "planned"]
+        sheet = fact_sheet(shown, properties=ranker.top(question, args.sheet_properties) if ranker else None)
         return hits, "\n".join(sheet[w] for w in sorted(well_names(question)) if w in sheet)
 
     rows = answer_questions(retrieve, chunks, client,
                             facts=facts, withhold_unsupported=args.withhold_unsupported, max_tokens=args.max_tokens,
-                            questions=args.questions, answer_format=args.answer_format)
+                            questions=args.questions, answer_format=args.answer_format,
+                            multi_well_format=args.multi_well_format if multi_retriever else None)
     return {"pool": args.pool, "pool_description": POOLS[args.pool], "retriever": retriever.name, "k": args.k,
             "endpoint": args.endpoint, "model": args.model, "withhold_unsupported": args.withhold_unsupported,
+            "multi_well_retriever": args.multi_well_retriever, "multi_well_k": args.multi_well_k if multi_retriever else None,
+            "multi_well_format": args.multi_well_format if multi_retriever else None,
+            "strict_facts": args.strict_facts,
             "facts": args.facts, "fact_sheet": args.fact_sheet, "validated": args.validate, "sheet_properties": args.sheet_properties,
             "facts_rejected": rejected, "question_set": args.questions, "answer_format": args.answer_format, **summarize(rows, client)}
+
+
+def names_several_wells(question: str) -> bool:
+    return len(well_names(question)) >= 2
+
+
+def asks_about_plan(question: str) -> bool:
+    return bool(re.search(r"\b(plan|planned|plans|proposed|design|designed|estimated)\b", question, re.I))
 
 
 def fact_lines(facts: list[dict]) -> dict[str, list[tuple[str, str]]]:
@@ -208,9 +231,11 @@ class PropertyRanker:
 
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
                      withhold_unsupported: bool = False, max_tokens: int = 400,
-                     questions: str = "prototype", answer_format: str = "status_first") -> list[dict]:
+                     questions: str = "prototype", answer_format: str = "status_first",
+                     multi_well_format: str | None = None) -> list[dict]:
     """Answers a question set. `retrieve(question)` gives the passage chunk IDs and optional graph context
-    (text placed before the passages); citations are checked against those passages only."""
+    (text placed before the passages); citations are checked against those passages only. With `multi_well_format`,
+    questions naming several wells use that format and at least MULTI_WELL_TOKENS completion tokens (E26)."""
     by_id = {c.id: c for c in chunks}
     questions, gold = load_questions(questions)
     facts = facts or {}
@@ -226,10 +251,12 @@ def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, lis
             + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
             for cid in hits)
         graph = f"Knowledge graph extracted from the reports (may be incomplete; cite passages only):\n{graph}\n\n" if graph else ""
-        system = SYSTEM + (EVIDENCE_NOTE if answer_format == "evidence_first" else "")
+        routed = multi_well_format is not None and names_several_wells(q["question"])
+        chosen = multi_well_format if routed else answer_format
+        system = SYSTEM + (EVIDENCE_NOTE if chosen == "evidence_first" else "")
         call = client.chat([{"role": "system", "content": system},
                             {"role": "user", "content": f"{graph}Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
-                           schema=ANSWER_FORMATS[answer_format], max_tokens=max_tokens)
+                           schema=ANSWER_FORMATS[chosen], max_tokens=max(max_tokens, MULTI_WELL_TOKENS) if routed else max_tokens)
         parsed = call.parsed or {"status": "invalid", "answers": []}
         status = parsed.get("status", "invalid")
         answers = parsed.get("answers", []) if status == "answered" else []
@@ -311,6 +338,11 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--max-tokens", type=int, default=400)
     a.add_argument("--questions", choices=QUESTION_SETS, default="prototype")
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
+    a.add_argument("--multi-well-retriever", help="questions naming several wells use this retriever (E26)")
+    a.add_argument("--multi-well-k", type=int, default=10)
+    a.add_argument("--multi-well-format", choices=ANSWER_FORMATS, default="evidence_first")
+    a.add_argument("--strict-facts", action="store_true", help="check facts' context too (validate strict), and hide "
+                                                               "planned facts unless the question asks about the plan (E26)")
     a.add_argument("--sheet-properties", type=int, help="show only the facts of the N K2 properties whose "
                                                         "definitions best match the question (E22)")
     a.add_argument("--sheet-embed-model", default="qwen3-embedding-0.6b")

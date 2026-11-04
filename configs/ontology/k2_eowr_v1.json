@@ -1,7 +1,7 @@
 {
   "k2": "eowr",
-  "version": "1.0",
-  "date": "2026-10-31",
+  "version": "1.1",
+  "date": "2026-11-04",
   "status": "Thin slice for end-of-well reports (D-49). Authored by Track B from the section headings and table columns of the three K1 version 0 end-of-well reports (AK-3, 56-32, 68-32) and the prototype's 14 properties (prototype/profiles/oil_wells.json, unchanged). The glossary is generated from the reports' abbreviation and unit tables by `python -m graphrag.ontology glossary`. Not reviewed by a domain expert.",
   "sources": {
     "headings": [
@@ -389,6 +389,22 @@
         "actual"
       ],
       "definition": "Total rig time, productive plus non-productive"
+    },
+    "rig": {
+      "of": "Well",
+      "unit": null,
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Drilling rig that drilled the well"
+    },
+    "drilling_contractor": {
+      "of": "Well",
+      "unit": null,
+      "qualifiers": [
+        "actual"
+      ],
+      "definition": "Company contracted to drill the well"
     }
   },
   "glossary": [
@@ -1499,6 +1515,32 @@
           "total rig time": "total_rig_time"
         }
       }
-    ]
+    ],
+    "casing_specs": {
+      "note": "Casing weight and grade per casing size (E27). Each property reads the first listed column the table has; the pattern's group is the value.",
+      "when": "depth",
+      "size": "casing",
+      "properties": {
+        "casing_weight": {
+          "columns": [
+            "weight",
+            "specifications"
+          ],
+          "pattern": "(\\d+(?:\\.\\d+)?)\\s*(?:ppf|#|$)"
+        },
+        "casing_grade": {
+          "columns": [
+            "grade",
+            "specifications"
+          ],
+          "pattern": "\\b([A-Z]{1,2}-?\\d{2,3}[A-Z]?)\\b"
+        }
+      }
+    },
+    "key_value": {
+      "drilling rig": "rig",
+      "drilling contractor (pm)": "drilling_contractor",
+      "drilling contractor": "drilling_contractor"
+    }
   }
 }
