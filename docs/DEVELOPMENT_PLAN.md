@@ -231,7 +231,7 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
 The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Which questions users really ask is what the expert set must settle; the event graph's questions over time were chosen to suit it.
 
 
-**Exit status (4 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a third-party base (none beats the baseline on current questions; the first build's graph is our own event graph, D-53); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores, including loading the event graph into Neo4j.
+**Exit status (5 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a third-party base (none beats the baseline on current questions; the first build's graph is our own event graph, D-53); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores, including loading the event graph into Neo4j.
 
 **Exit.**
 

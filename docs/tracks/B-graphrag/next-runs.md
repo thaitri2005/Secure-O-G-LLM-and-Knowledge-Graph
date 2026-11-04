@@ -85,7 +85,7 @@ Worth doing when the work resumes:
 
 | What | From whom | Then |
 |---|---|---|
-| The expert question set | Supervisor and the expert group | Rerun the baseline and the fact sheet on it; decide the fact graph for good (B-D24) |
+| The expert question set, or a specification for development questions, asked for in the [5 November update](supervisor-update-2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
 | K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Hung, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
 | Vector store | Khai, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |

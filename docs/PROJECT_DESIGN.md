@@ -1166,7 +1166,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | # | Question | Current assumption | Affects |
 |---|---|---|---|
 | Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and may it be processed on school GPUs? | Public data only until then; a private document runs on local models only | §10.1, final evaluation |
-| Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct; team writes development questions meanwhile | G5, §12 |
+| Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct. Simulated sets stand in for development (D-49). On 5 Nov Tri asked for a specification to write better development questions from | G5, §12 |
 | Q3 | Which GraphRAG base pipeline, and is the event graph the right main graph? | No base beats retrieval on current questions (E16 to E27), but a graph of events does on totals over time (E28), so the first build uses it for those (D-53) and keeps the fact graph optional (D-51). Tri is to raise this with the supervisor, including whether users ask such questions | D-36, D-50, D-51, D-53, §8.4, §9 |
 | Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |

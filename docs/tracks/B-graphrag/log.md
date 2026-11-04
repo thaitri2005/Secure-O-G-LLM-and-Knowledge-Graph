@@ -645,3 +645,7 @@ The PDFs are not kept in the repository, because of their copyright terms.
 
 **B-C25 (design choice).** `graphrag/table_eval.py` scores table facts against independent gold, raw and after strict validation. K2 version 1.2: `casing_items`, `number_cells`, `max_step`, and `depth|md`. `WELL_NAME` reads names with several parts (`TNT-GT-01`, `HON-GT-01-S2`). Well names on the original three reports are unchanged, and those reports lose only 4 junk facts.
 
+**B-C26 (design choice).** Tri's status update for the supervisor is kept in the repository: [supervisor-update-2026-11-05.md](supervisor-update-2026-11-05.md). It reports E23 to E29, the limits, and that all questions are AI-written. It asks for a specification to write development questions from, and raises whether users ask questions over time.
+
+**Stint closed on 5 November.** No Track B run is waiting. Next steps depend on the supervisor's reply, Track A's K1 version 1 and Track C's stores ([next-runs.md](next-runs.md)). On our side, when work resumes: let code report the event graph's result directly, try the event graph on 58-32's daily reports, and try a different author's modern report.
+

@@ -10,9 +10,10 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | [survey.md](survey.md) | Ready-made GraphRAG repositories: what each does, whether to run it, learn from it or skip it, and what to copy |
 | [next-runs.md](next-runs.md) | Commands to reproduce the runs, and what Track B is waiting on |
 | [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md) | What Track B needs from K1 version 1 |
+| [supervisor-update-2026-11-05.md](supervisor-update-2026-11-05.md) | Tri's status update for the supervisor, in Vietnamese |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
 
-**Where things stand on 4 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today.
+**Where things stand on 5 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today.
 
 Measurements go into experiment records in [`docs/experiments/`](../../experiments/README.md) (E14 onward). The log links to them and does not copy their numbers.
 

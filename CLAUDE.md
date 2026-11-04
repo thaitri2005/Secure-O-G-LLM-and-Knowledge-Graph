@@ -38,7 +38,7 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
 - Write documentation in plain English, with short tables and lists. Vietnamese reports keep technical terms in English.
 
-## Track B: where things stand (4 November 2026)
+## Track B: where things stand (5 November 2026)
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
@@ -100,7 +100,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). More fact-graph coverage stopped (B-D24).
@@ -123,6 +123,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
    | Dropped (E17) | `bartowski/Qwen2.5-7B-Instruct-GGUF`, `bartowski/Meta-Llama-3.1-8B-Instruct-GGUF` (Q4_K_M) |
 
    Server commands are in [graphrag/README.md](graphrag/README.md): `-c 32768 -np 4 -ngl 99` up to E18; **`-np 1` from E19 on** (LightRAG needs a 32k slot; the baseline gives the same 28/31 either way). Qwen3-4B for extraction can run on port 8082 (endpoint `local-llama-2`). On a laptop with an integrated GPU, use `--device none -ngl 0` instead.
+   Tools used in this stint, installed with `winget --source winget` on the desktop: Poppler (`oschwartz10612.Poppler`, reading PDF pages) and Node.js (`OpenJS.NodeJS.LTS`, rendering Mermaid).
 4. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Public data only; the client refuses private data on hosted endpoints.
 5. Check the setup by reproducing E17's baseline:
 
