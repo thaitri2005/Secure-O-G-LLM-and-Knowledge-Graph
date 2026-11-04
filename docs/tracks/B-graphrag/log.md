@@ -495,7 +495,7 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 - *Limits:* it comes from the same reports as the table mappings, so it does not test them on unseen reports. It is also larger than the probe but still small, so differences of a question or two are noise.
 - *Why:* the graph's value and the pipeline's general quality cannot be judged on the 31 lookups (B-F29).
 
-**Next runs, on the desktop (not yet run; the laptop has no GPU or models):**
+**Next runs, on the desktop (not yet run; the laptop has no GPU or models). Exact commands: [next-runs.md](next-runs.md).**
 
 1. **E23:** the working design and plain RAG on this set, one request at a time.
 2. **E24:** the four AK-3 daily-report attachments, which are in ignored `data/corpora/ak3_appendices/`; on the desktop they must first be regenerated with `scripts/run_ak3_appendices.py`. Record where the pipeline breaks, as a list for Track A.

@@ -83,7 +83,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). **Run next, on the desktop:** E23 (working design vs plain RAG on `--pool three --questions simulated`), E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
+1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E23 (working design vs plain RAG on `--pool three --questions simulated`), E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.
