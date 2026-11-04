@@ -22,17 +22,17 @@ This file briefs any Claude session on any machine. Read it first, then the file
 | Track | Owner | Does |
 |---|---|---|
 | A. Ingestion and tables | Hung | Docling compared with document VLMs, multi-page tables, key-value forms, chunking; publishes K1 |
-| **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin ontology, cited answers, cost per page; publishes K2, K4 |
+| **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin K2, cited answers, cost per page; publishes K2, K4 |
 | C. Storage, IDs and the end-to-end run | Khai | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
 
-The tracks meet only through versioned files K1 to K5 (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and a simulated 40-question set (`--questions simulated`, B-D22), which no expert has reviewed and which must never be reported as expert validation.
+The tracks meet only through versioned files K1 to K5 (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
 
 ## Standing rules from the user
 
 - **Log everything the same day.** Every finding (B-F), decision (B-D), design choice (B-C) and experiment (E14 onward) goes into [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) and, for measurements, into a `docs/experiments/E<n>-*.md` record with a row in the register. Update the log's "Current state" table. Project-level decisions also go into specification §13.1.
 - **Start small; efficiency is a headline metric.** Every run reports LLM calls, tokens, seconds and cost per page and per question, next to quality.
 - **Reuse before writing.** Look only at ready-made GitHub solutions close to the supervisor's description, then improve them. Any licence is fine with proper credit: keep the copyright notice and add a `NOTICE` file next to copied code.
-- **No ontology work for now:** anh Tuấn's direction is GraphRAG (B-D25). Keep K2 thin; the ontology papers he sent are background only.
+- **No ontology work for now:** anh Tuấn's direction is GraphRAG (B-D25, D-52). Keep K2 thin. The two ontology papers he sent came before this direction and are background only.
 - **Ignore `explorations/kg-builder/`.** It is a teammate's separate exploration; do not build on it or recommend it.
 - **Commits are authored as the user, with no `Co-Authored-By: Claude` or other AI attribution.** Push to `main`. Others push too, so run `git pull --rebase` before pushing.
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
@@ -42,26 +42,26 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **The baseline is plain RAG with routing by well and date (B-D23); the fact graph is optional until the expert questions decide (B-D24).** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today is plain RAG with routing by well and date (B-D23, [specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)). The fact graph is optional for now (B-D24), and the supervisor has yet to confirm that. The direction is still GraphRAG.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
   |---|---|
   | `client.py` | One OpenAI-compatible client with JSON-schema output, embeddings, a request cache, a cost ledger and the private-data guard |
-  | `retrieval.py` | BM25, dense and fusion retrieval; `WellRouter` keeps only documents that name the asked-about well |
+  | `retrieval.py` | BM25, dense and fusion retrieval; `WellRouter` keeps only documents that name the asked-about well; `DateRouter` keeps only the pages of the date asked about |
   | `scoring.py` | The prototype's answer rules, plus date and number normalization |
   | `citations.py` | Citations checked against the retrieved chunks in code |
-  | `baseline.py` | Command line for retrieval and answer runs (`--facts`, `--withhold-unsupported`) |
+  | `baseline.py` | Command line for retrieval and answer runs (`--multi-well-retriever`, `--fact-sheet`, `--strict-facts`, `--withhold-unsupported`) |
   | `neo4j_kg.py` | neo4j-graphrag-python with the ontology file as its schema (runs in `.venv-graphrag`) |
   | `lightrag_run.py` | LightRAG 1.5.7 on our chunks, client and answer harness (runs in `.venv-lightrag`) |
   | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
-  | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions) |
+  | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions; `strict` also checks their context) |
   | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
-- **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
+- **Results so far** (up to E22: AK-3 EOWR and the prototype's 31 questions, E10 prototype 23/31; later rows name their questions):
 
   | Run | Setup | Correct |
   |---|---|---:|
@@ -70,13 +70,13 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E16](docs/experiments/E16-neo4j-graphrag-python.md) | neo4j-graphrag facts added under the passages (Qwen3-4B / Qwen3-8B) | 21/31 / 28/31 |
   | [E17](docs/experiments/E17-model-sweep.md) | BM25, top 5, **Qwen3-8B** (thinking off) | **28/31** |
   | E17 | Three reports, fusion retrieval, Qwen3-8B | 26/31 |
-| [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
+  | [E18](docs/experiments/E18-well-routing.md) | Three reports, **BM25 routed by well**, Qwen3-8B (the baseline, D-50) | **28/31** |
   | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
   | [E21](docs/experiments/E21-lightrag-k2.md) | LightRAG with K2 injected, `mix` | 26/31 |
   | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / 28/31 |
-  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the working design; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
+  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the fact sheet, now optional; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
 
-  | [E23](docs/experiments/E23-simulated-set.md) | **Simulated 40 questions, not expert-reviewed**: plain RAG / working design, top 5; then per-well fusion, evidence first | 29/40 / 29/40; 31/40 / 30/40 (5 wrong values each) |
+  | [E23](docs/experiments/E23-simulated-set.md) | **Simulated 40 questions, not expert-reviewed**: plain RAG / fact sheet, top 5; then per-well fusion, evidence first | 29/40 / 29/40; 31/40 / 30/40 (5 wrong values each) |
 
   | [E24](docs/experiments/E24-ak3-daily-reports.md) | **AK-3 daily reports, 30 simulated questions, not expert-reviewed**: plain RAG / fusion, evidence first / right page given, evidence first (diagnostic) | 5/30 / 9/30 / 19/30 |
 
@@ -95,11 +95,11 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E27 are done, and no Track B run is waiting ([what we are waiting on](docs/tracks/B-graphrag/next-runs.md)):** the expert questions, K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)), and the vector store with Khai. Tell the supervisor about B-D24 at the next check-in.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E27 are done. What is left is [waiting on others or on a choice](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on a graph in the main pipeline (B-D24, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store with Khai; and whether to run the proposed event graph, E28 (B-F45).
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on an unseen report (E25). More fact-graph coverage stopped (B-D24).
-5. Choose the vector store with Khai (Track C) once the base is chosen.
+5. Choose the vector store with Khai (Track C); it no longer has to wait for a base.
 
 ## Setting up a machine for Track B runs
 
@@ -130,6 +130,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
 ## Useful facts
 
 - Data: `data/processed/gdr_chunks_full.jsonl` holds the K1 version 0 chunks: AK-3 EOWR (`gdr882_ak3_eowr`, 60 chunks) plus two other EOWRs (372 chunks in total). Gold data: `prototype/gold/questions.json` (31 questions) and `ak3_facts.json` (41 facts, chunk IDs like `c0002`).
+- AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`. They are frozen: changes go into a new version.
 - The prototype (`prototype/`) is the baseline to beat (E10). Do not change it.
 - Diagrams: Mermaid source sits in the documents. SVGs are regenerated with mermaid-cli 11.17.0 (see `docs/diagrams/README.md`).
 - Tests: `python -m unittest discover -s tests`. The line-ending test needs LF files.

@@ -1,11 +1,34 @@
 # graphrag: Track B code
 
-Track B's code for the first build: the model client, the plain-RAG baseline, and later the GraphRAG candidates (specification §4.5). Findings, decisions and runs are logged in [docs/tracks/B-graphrag/log.md](../docs/tracks/B-graphrag/log.md).
+Track B's code for the first build: the model client, the baseline, and the GraphRAG candidates we compared with it (specification §4.5, §8.4). Findings, decisions and runs are logged in [docs/tracks/B-graphrag/log.md](../docs/tracks/B-graphrag/log.md).
+
+## Architecture
+
+Solid lines are the baseline (B-D23). Dotted lines are the optional fact sheet (B-D24).
+
+```mermaid
+flowchart TD
+    PDF[PDF reports] --> K1[Docling chunks: K1 version 0]
+    K1 --> IDX[BM25 index and embeddings]
+    Q[Question] --> ROUTE{Wells named}
+    IDX --> ROUTE
+    ROUTE -- "one or none" --> ONE[BM25 by well, top 5, status first]
+    ROUTE -- "several" --> MANY[Per-well fusion, top 10, evidence first]
+    ONE -- "daily reports" --> DATE[Keep the pages of the date named]
+    ONE --> LLM[Qwen3-8B with a JSON schema]
+    DATE --> LLM
+    MANY --> LLM
+    LLM --> CHECK[Citations and values checked in code]
+    CHECK --> K4[Cited answer: K4 record]
+    MAP[K2 table mappings, no LLM] -.-> VAL[Strict fact checks]
+    EXT[neo4j-graphrag with Qwen3-4B] -.-> VAL
+    VAL -.->|optional fact sheet| LLM
+```
 
 | Module | What it does |
 |---|---|
 | `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard |
-| `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the prototype's 15-chunk slice, its 31 questions and its gold facts |
+| `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the AK-3 daily-report chunks, and every question set with its gold data |
 | `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
@@ -26,13 +49,11 @@ Models live in ignored `data/interim/models/`. Start the servers with llama.cpp'
 
 ```powershell
 llama-server -m data/interim/models/Qwen3-Embedding-0.6B-Q8_0.gguf --embedding --pooling last --port 8081 -c 8192 -b 2048 -ub 2048 -ngl 99 --alias qwen3-embedding-0.6b
-# The baseline answer model (E17). Thinking stays off. 8k context per slot; extraction prompts need it.
-llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 32768 -np 4 -ngl 99 --jinja --chat-template-kwargs '{"enable_thinking":false}' --alias qwen3-8b
+# The answer model (E17). Thinking stays off. One slot, 32k: LightRAG needs it, and the baseline scores the same (E19).
+llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 32768 -np 1 -ngl 99 --jinja --chat-template-kwargs '{"enable_thinking":false}' --alias qwen3-8b
 
 python -m graphrag.baseline retrieval --pool ak3 --retrievers bm25 dense:qwen3-embedding-0.6b fusion:bm25+dense:qwen3-embedding-0.6b --name my_run
 python -m graphrag.baseline answer --pool ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_answers
-# The multi-report baseline (E18, D-50)
-python -m graphrag.baseline answer --pool three --retriever wells:bm25 --k 5 --endpoint local-llama --model qwen3-8b --name my_three
 ```
 
 Pools:

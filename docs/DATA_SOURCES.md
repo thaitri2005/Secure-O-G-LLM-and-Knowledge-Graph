@@ -2,7 +2,7 @@
 
 **Current direction (28 October 2026):** a GraphRAG application for drilling reports ([meeting](requirements/supervisor-meeting-2026-10-28.md)). Data is scoped **by document type**, not by sub-domain (specification D-40): everything in end-of-well reports and daily drilling reports, including their short geology sections at summary level. BSEE supplies well identity. Work starts on one document (D-44).
 
-**Updated:** 29 October 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
+**Updated:** 4 November 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
 This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. VPI will not supply datasets, because its domain data falls under confidentiality rules (specification D-33). Development therefore uses public proxies chosen by the supervisor (D-13):
 
@@ -17,6 +17,8 @@ BSEE provides authoritative identifiers and attributes: identity, reference data
 1. The AK-3 end-of-well report.
 2. One AK-3 daily report.
 3. 5–10 documents: the other AK-3 daily reports, the Utah FORGE end-of-well reports, and public oil-and-gas reports when found.
+
+In use by Track B on 4 November 2026: the AK-3, 56-32 and 68-32 end-of-well reports; the four AK-3 daily-report attachments ([E24](experiments/E24-ak3-daily-reports.md)); and Utah FORGE 78-32, as an unseen report for the table mappings ([E25](experiments/E25-table-mappings-unseen-report.md), registry `configs/sources/gdr_e25_78-32.json`).
 
 Freeze a held-out document split before tuning. The supervisor's drilling expert group is preparing the evaluation question set (Q2).
 

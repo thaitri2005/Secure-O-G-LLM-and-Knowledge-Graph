@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 4 November 2026: **E23 to E27 are done, and no run is waiting.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
+Status on 4 November 2026: **E23 to E27 are done.** The next runs depend on other people's work, or on a choice by Tri; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -59,6 +59,8 @@ python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
 | The expert question set | Supervisor and the expert group | Rerun the baseline and the fact sheet on it; decide the fact graph for good (B-D24) |
 | K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Hung, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
 | Vector store | Khai, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
+| Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
+| Whether to run the proposed E28: a thin event graph from operations tables, with no new ontology (B-F45, B-D25) | Tri | Freeze questions on totals over time first, then compare with the baseline. Not started |
 
 ## After each run
 

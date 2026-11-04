@@ -8,6 +8,11 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 |---|---|
 | [log.md](log.md) | **Every finding, decision, design choice and experiment**, dated and numbered (B-F, B-D, B-C, and E links) |
 | [survey.md](survey.md) | Ready-made GraphRAG repositories: what each does, whether to run it, learn from it or skip it, and what to copy |
+| [next-runs.md](next-runs.md) | Commands to reproduce the runs, and what Track B is waiting on |
+| [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md) | What Track B needs from K1 version 1 |
+| [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
+
+**Where things stand on 4 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today.
 
 Measurements go into experiment records in [`docs/experiments/`](../../experiments/README.md) (E14 onward). The log links to them and does not copy their numbers.
 
@@ -15,8 +20,8 @@ Measurements go into experiment records in [`docs/experiments/`](../../experimen
 
 1. **Start small (D-44).**
    - Begin with the 15 AK-3 end-of-well report (EOWR) chunks the prototype used, then move to the whole AK-3 EOWR.
-   - Daily drilling reports come only after a base is chosen.
-   - Check answers against the prototype's 31 questions and the E10 gold facts.
+   - Daily drilling reports came after the base comparison closed for this stint (E24, E27).
+   - Check answers against the prototype's 31 questions and E10's gold facts, then the labelled simulated sets (B-D22). Freeze new questions before running them.
 2. **Efficiency is a headline metric.** Every run records:
    - LLM calls;
    - input and output tokens;

@@ -2,6 +2,8 @@
 
 Draft by Track B, 31 October 2026, for Tri to send to anh Tuấn (B-D15 step 1). Translate as needed; keep the technical terms in English.
 
+**Status, 4 November:** historical. The supervisor asked the team to wait for the expert questions (B-D22). The figures below are as of 31 October; for current ones see the [log](log.md). In particular, the fact graph's gain did not hold on new questions (B-D24).
+
 ## Why we ask
 
 - On the prototype's 31 questions, plain RAG (Qwen3-8B, BM25 routed by well, cited answers checked in code) already answers 28/31, on one report and on three ([E18](../../experiments/E18-well-routing.md)). These questions each name one well and ask for one value.

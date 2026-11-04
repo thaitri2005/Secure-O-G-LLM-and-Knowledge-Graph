@@ -2,14 +2,14 @@
 
 ## Project specification and system design
 
-**Document version:** 3.1 · **Baseline date:** 23 October 2026 · **Last revised:** 30 October 2026 (first build split into three tracks, §4.5)<br>
+**Document version:** 3.2 · **Baseline date:** 23 October 2026 · **Last revised:** 4 November 2026 (first-build results from Track B, §8.4)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** design baseline for a GraphRAG application on drilling reports; ingestion, structured-data import, the entity registry and an extraction/QA prototype exist<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md) and [28 October](requirements/supervisor-meeting-2026-10-28.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
 
 > **This document is the project's single source of truth.** It decides what the project builds, for whom, how the parts fit together, and how completion is judged. The [stakeholder requirements](requirements/README.md) and supervisor meetings are inputs; §1.2 states how each requirement is met, narrowed or dropped. The [development plan](DEVELOPMENT_PLAN.md) schedules this specification and must not add scope of its own. Component guides describe implemented behavior, and experiment records hold measurements. If any of them disagrees with this document, this document wins until it is changed. Items still to settle with the supervisors are in [§13.2](#132-open-questions-for-supervisor-meetings).
 
-**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). Domain depth is kept thin (D-49). The API and frontend are deferred to M2.
+**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). Domain depth is kept thin (D-49). The API and frontend are deferred to M2. **Version 3.2 (4 November)** records Track B's first-build results: what is built (§8.4), the revised baseline (D-50), the fact graph as an option (D-51) and no ontology work for now (D-52). §8.1 to §8.3 remain the GraphRAG target.
 
 ### Reading guide
 
@@ -472,9 +472,9 @@ flowchart LR
 | Contract | From → to | Content | Version 0 (exists today) |
 |---|---|---|---|
 | **K1 Chunk package** | A → B, C | Per document: the file record (`file_id`, name, document type, page count); pages (`file_id:p<n>`, parser and model); tables (`file_id:t<n>`, page span, header, cells); parent and child chunks (§5.11 IDs, text, pages, table ID and row range) | AK-3 chunks from the current corpus pipeline (`data/processed/gdr_chunks_full.jsonl`, [`corpus_chunk.schema.json`](../schemas/corpus_chunk.schema.json)), converted to K1 IDs |
-| **K2 Ontology slice** | B (its own input) | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) (14 properties, [E10](experiments/E10-profile-driven-prototype.md)) |
-| **K3 Question set** | Specialists → B | Question, gold answer, file and page | The prototype's 31 questions ([`prototype/gold/questions.json`](../prototype/gold/questions.json), `ak3_facts.json`) as a development check, until the drilling expert group's set arrives (Q2). A labelled simulated set (Track B log B-D22) stands in for development only |
-| **K4 Answer record** | B → C | Question ID, answer, cited child chunk IDs, base pipeline, models and versions, calls, tokens, cost | Version 0.1: [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), written by `graphrag/k4.py`; first file from E22 |
+| **K2 Ontology slice** | B (its own input) | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | Version 1.1: [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), with table mappings; started from [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) |
+| **K3 Question set** | Specialists → B | Question, gold answer, file and page | Until the drilling expert group's set arrives (Q2), development only: the prototype's 31 questions ([`prototype/gold/questions.json`](../prototype/gold/questions.json), `ak3_facts.json`) and labelled simulated sets in `graphrag/gold/` (Track B log B-D22), never reported as expert validation |
+| **K4 Answer record** | B → C | Question ID, answer, cited child chunk IDs, base pipeline, models and versions, calls, tokens, cost | Version 0.1: [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), written by `graphrag/k4.py`; current files from the D-50 baseline ([E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md)) |
 | **K5 Table gold** | A (its own input) | One CSV per labelled table, with file and page span | [`data/gold/ingestion/tables/`](../data/gold/ingestion/tables/) (10 tables) and page annotations in [`data/gold/ingestion/pages/`](../data/gold/ingestion/pages/); extended only if A needs it |
 
 Track C writes the contract schemas in `schemas/` next to the existing ones, with validators.
@@ -929,6 +929,45 @@ sequenceDiagram
 - The E4 template answers for property lookups remain as the baseline. Run them on the same questions; if GraphRAG is worse on exact numeric lookups, the templates may serve those questions.
 - Compare against a plain vector-RAG baseline (same chunks and model, no graph) to measure what the graph adds (SR-16).
 
+### 8.4 What the first build runs today
+
+§8.1 to §8.3 are the target. As of 4 November 2026 the first build answers without a graph in the main path, because no graph has yet beaten this on questions written after it was designed (D-50, D-51). All these questions are simulated or development questions, and most are single-fact lookups. **This is a result on those questions, not a change of direction:** the project remains a GraphRAG application, and the expert question set decides (Q2, Q3).
+
+```mermaid
+flowchart TD
+    PDF[PDF reports] --> K1[Docling chunks: K1 version 0]
+    K1 --> IDX[BM25 index and embeddings]
+    Q[Question] --> ROUTE{Wells named}
+    IDX --> ROUTE
+    ROUTE -- "one or none" --> ONE[BM25 by well, top 5, status first]
+    ROUTE -- "several" --> MANY[Per-well fusion, top 10, evidence first]
+    ONE -- "daily reports" --> DATE[Keep the pages of the date named]
+    ONE --> LLM[Qwen3-8B with a JSON schema]
+    DATE --> LLM
+    MANY --> LLM
+    LLM --> CHECK[Citations and values checked in code]
+    CHECK --> K4[Cited answer: K4 record]
+    MAP[K2 table mappings, no LLM] -.-> VAL[Strict fact checks]
+    EXT[neo4j-graphrag with Qwen3-4B] -.-> VAL
+    VAL -.->|optional fact sheet| LLM
+```
+
+| Question set (none expert-reviewed) | Baseline | With the fact sheet |
+|---|---:|---:|
+| Prototype's 31 | 28 | 30 to 31; this set shaped the fact sheet |
+| Simulated 40, end-of-well | 31 | 31 |
+| New simulated 36, end-of-well, mostly two wells | 23 | 23 |
+| New simulated 26, daily reports | 14 (7 without the date filter) | Not run |
+
+**Cost:** the baseline makes no LLM call at index time and 1 per question, with about 2,200 prompt tokens per question. The optional fact sheet adds 2.48 LLM calls per page. Details: [Track B log](tracks/B-graphrag/log.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md).
+
+**Known gaps:**
+
+- comparison questions (0/5, [E26](experiments/E26-routing-and-strict-facts.md));
+- daily-report form headers and form tables, which need K1 version 1 ([note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md));
+- steps 1 and 3 to 5 of §8.1 are not built;
+- the run on Track C's stores has not happened.
+
 ## 9. Technology choices and alternatives
 
 Everything not yet in the repository is a proposal. Pin exact versions and licenses when adopting.
@@ -936,11 +975,11 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Area | Choice | Status and notes |
 |---|---|---|
 | Language | Python 3.12 | Existing |
-| GraphRAG base (D-36) | Chosen in M1 by Track B (§4.5) from a one-document comparison of candidates: [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python) (schema-guided KG builder, Neo4j-native, vector and hybrid retrievers), [LightRAG](https://github.com/HKUDS/LightRAG) (light, graph + vector retrieval), [Microsoft GraphRAG](https://github.com/microsoft/graphrag) (community summaries; heavy LLM use), LlamaIndex property graphs (schema-constrained extractors). Criteria: works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema and lets us inject an ontology slice; keeps chunk provenance; uses Neo4j or allows it; extraction calls and tokens per page; license; maintenance | Compared in M1 (E16 to E22): no base adopted wholesale. Working design: plain RAG routed by well plus a per-well fact graph from K2 table mappings and neo4j-graphrag extraction, validated in code (30/31). LightRAG with K2 (E21) kept for document, project and people structure. To confirm on the expert question set (D-50, log B-D21). Survey: [Track B survey](tracks/B-graphrag/survey.md) |
+| GraphRAG base (D-36) | Chosen in M1 by Track B (§4.5) from a one-document comparison of candidates: [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python) (schema-guided KG builder, Neo4j-native, vector and hybrid retrievers), [LightRAG](https://github.com/HKUDS/LightRAG) (light, graph + vector retrieval), [Microsoft GraphRAG](https://github.com/microsoft/graphrag) (community summaries; heavy LLM use), LlamaIndex property graphs (schema-constrained extractors). Criteria: works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema and lets us inject an ontology slice; keeps chunk provenance; uses Neo4j or allows it; extraction calls and tokens per page; license; maintenance | Compared in M1 (E16 to E27): no base adopted wholesale, and none beats the D-50 baseline on these questions. neo4j-graphrag is kept as an optional extractor for the fact graph (D-51), and LightRAG with K2 (E21) as the candidate for document, project and people structure. Open until the expert question set (Q3). Survey: [Track B survey](tracks/B-graphrag/survey.md) |
 | LLM (D-37) | Open-weight instruction models, **about 7B or smaller**, e.g. Qwen3-4B-Instruct-2507, Qwen3-8B, Qwen2.5-3B (prototype). 8B models count as about 7B (Track B log B-D06). Measure JSON compliance, extraction precision and recall, answer quality, tokens per page | **Answer model: Qwen3-8B, thinking off** (28/31, E17); Qwen3-4B second (23/31); Qwen2.5-7B and Llama-3.1-8B abstain under a JSON schema and are dropped (D-50) |
 | Page parsing (D-39) | Document VLMs of about 7B or smaller, compared with Docling's table model on the table set: e.g. granite-docling / SmolDocling (inside Docling's VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL-3B/7B | Proposed; selected in M1 (Track A) |
 | Existing parser | Docling + pypdf; corpus pipeline with per-page OCR (VietOCR/RapidOCR) | Existing; Docling is the baseline; OCR engines are kept only for reproduction |
-| Embeddings | Open embedding models, e.g. BAAI bge-m3, Qwen3-Embedding-0.6B, nomic-embed-text; optionally a reranker (bge-reranker-v2-m3) | BM25 routed by well reaches hit@5 1.00 on three reports (E18); Qwen3-Embedding-0.6B is used in fusion for questions that name no well (hit@5 0.91 against 0.78 for BM25, E15). Other embedding models are compared once questions need them |
+| Embeddings | Open embedding models, e.g. BAAI bge-m3, Qwen3-Embedding-0.6B, nomic-embed-text; optionally a reranker (bge-reranker-v2-m3) | BM25 routed by well reaches hit@5 1.00 on three reports for one-well questions (E18); Qwen3-Embedding-0.6B is used in fusion for questions naming several wells (E26). Other embedding models are compared once questions need them |
 | Model client (FR-28) | One OpenAI-compatible client for LLM, VLM and embeddings. Development: hosted open models (OpenRouter) on public data. Large runs and deployment: local serving with vLLM or llama.cpp on a school GPU | Proposed |
 | Object store | MinIO (S3 API); a local directory behind the same interface in development | Proposed |
 | Metadata DB | PostgreSQL | Proposed |
@@ -1088,7 +1127,8 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-48 | **First build in three independent tracks** joined only by versioned files (§4.5): A ingestion and tables, B GraphRAG engine and models, C storage, IDs and the end-to-end run. The API and frontend wait for M2. **Work is divided again at the end of every one- to two-week stint**; the D-46 data/backend/frontend split is used once the application work starts | Team decision, 30 Oct; refines D-45 and D-46 for the first phase | Contracts keep breaking, or a track is blocked for more than a week |
 | D-49 | **Domain depth is kept thin**: the ontology slice comes from the reports' own headings, table columns and abbreviation table; the expert group supplies the evaluation question set (§4.5). Until it arrives, a clearly labelled simulated set is used for development, never reported as expert validation (Track B log B-D22, 4 Nov) | Team decision, 30 Oct, after the first split loaded one person with domain work | Supervisor asks for deeper domain modelling |
 | D-50 | **Baseline every GraphRAG base must beat**: plain RAG with Qwen3-8B (thinking off) as the answer model, citations and values checked in code. BM25 routed by the well the question names, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by the date named. neo4j-graphrag-python and LightRAG are not adopted as the base: neither improves answers on these questions (E16, E19, E20). Qwen2.5-7B and Llama-3.1-8B are dropped as answer models (E17) | Track B, 31 Oct to 4 Nov (log B-D14, B-D16, B-D18, B-D23; E17, E18, E26, E27) | A base beats it on the expert question set, or questions across wells need more than retrieval |
-| D-51 | **The per-well fact graph is optional, not part of the baseline.** It is validated in code and built from K2 table mappings and LLM extraction (2.48 LLM calls per page). On simulated questions written after it was designed it does not beat plain RAG (E23: 29 and 29 of 40; E26: 23 and 23 of 36; E27). The code stays; further LLM extraction stops. Not a verdict on graphs across wells: all these questions are simulated | Track B, 4 Nov; decided by Claude, delegated by Tri (log B-D24, replacing B-D19 to B-D21's working design) | The expert question set shows the graph helps, or the supervisor asks for it |
+| D-51 | **The per-well fact graph is optional, not part of the baseline, for now.** It is validated in code and built from K2 table mappings and LLM extraction (2.48 LLM calls per page). On simulated questions written after it was designed it does not beat plain RAG (E23: 29 and 29 of 40; E26: 23 and 23 of 36; E27). The code stays; further LLM extraction stops. Not a verdict on graphs across wells, and not a change of direction (D-36, D-52): all these questions are simulated | Track B, 4 Nov; decided by Claude, delegated by Tri (log B-D24, replacing B-D19 to B-D21's working design); the supervisor has yet to confirm it | The expert question set shows a graph helps, or the supervisor asks for a graph in the main pipeline |
+| D-52 | **No ontology work for now; the direction is GraphRAG.** K2 stays thin (D-49). The two papers from the supervisor (SPE-223801, EAGE well performance) were sent before this direction and are background only | Supervisor, relayed by Tri, 4 Nov (log B-D25) | Supervisor asks for deeper domain modelling |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1113,7 +1153,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 |---|---|---|---|
 | Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and may it be processed on school GPUs? | Public data only until then; a private document runs on local models only | §10.1, final evaluation |
 | Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct; team writes development questions meanwhile | G5, §12 |
-| Q3 | Which GraphRAG base pipeline? | Track B compares candidates in M1 against the D-50 baseline; neo4j-graphrag-python and LightRAG run and not adopted (E16, E19, E20). Questions across wells are needed to judge a graph fairly | D-36, D-50, §9 |
+| Q3 | Which GraphRAG base pipeline, and should a graph be in the main pipeline before the expert questions arrive? | No base beats the D-50 baseline on current questions (E16 to E27), so the fact graph is optional (D-51). Tri is to raise this with the supervisor. Questions across wells are needed to judge a graph fairly | D-36, D-50, D-51, §8.4, §9 |
 | Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |
 | Q6 | How is the OpenRouter (or similar) account funded and capped, and who holds it? | Supervisor supports the cost; team sets a monthly cap | D-38 |

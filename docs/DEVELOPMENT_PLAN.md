@@ -52,7 +52,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - **Data:** public only.
   - Development order: the AK-3 end-of-well report, then one AK-3 daily report, then 5–10 documents.
   - The supervisor's petroleum document, if supplied, is processed on local models only.
-- **Questions:** the supervisor has asked a drilling expert group for an evaluation question set (Q2). The team writes development questions until it arrives.
+- **Questions:** the supervisor has asked a drilling expert group for an evaluation question set (Q2). Until it arrives, development uses the prototype's questions and labelled simulated sets (D-49).
 - **Estimates:** plan week by week. Re-plan at every weekly check-in from what was actually finished. There is no fixed hour budget.
 
 ## 2. Team split
@@ -67,7 +67,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, model client, a thin ontology slice and its injection, graph build, retrieval and cited answers, cost per page; publishes K2, K4 | Parsing, storage layout |
 | **C. Storage, IDs and the end-to-end run** | Khai | ID scheme and contract schemas with validators; MinIO, PostgreSQL, the vector store (chosen with Tri) and Neo4j in Docker Compose; loader from K1; run log; one command that runs A → B; a debugging viewer | Parsing, models |
 
-There is no team-written question set (D-49). Tri checks answers against the prototype's 31 questions until the drilling expert group's set arrives (Q2).
+The expert group supplies the evaluation question set (Q2). Until then Tri checks answers against the prototype's 31 questions and labelled simulated sets, never reported as expert validation (D-49).
 
 When the application work starts (M2), the split follows the data/backend/frontend lines the supervisor asked for (D-46). Who takes which is decided at that stint's split, not now. Everyone joins integration, demos and documentation.
 
@@ -216,18 +216,21 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
    Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
 6. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
 
-**Progress (31 October).** Details in the [track log](tracks/B-graphrag/log.md).
+**Progress (4 November).** Details in the [track log](tracks/B-graphrag/log.md); what runs today is in [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
 
 | Work item | State | Evidence |
 |---|---|---|
 | 1. Model client | Done: JSON-schema output, cache, cost ledger, private-data guard | `graphrag/client.py` |
-| 2. Vector baseline | Done and strengthened: Qwen3-8B, BM25 routed by well, citations checked in code; 28/31 on one report and on three (D-50) | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md) |
-| 3. Base comparison | Closed for this stint (B-D21): neo4j-graphrag-python and LightRAG (also with K2, [E21](experiments/E21-lightrag-k2.md)) not adopted wholesale. Working design (B-D19, B-D20): baseline plus a per-well fact graph from K2 table mappings and LLM extraction, validated in code: 30/31, and 4 to 5/9 on the cross-report probe against 3/9 ([E22](experiments/E22-table-facts.md)). LightRAG with K2 next | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md) |
-| 4. Models | Answer LLM: Qwen3-8B (thinking off). Embeddings: Qwen3-Embedding-0.6B, used only in fusion | [E17](experiments/E17-model-sweep.md) |
-| 5. Ontology slice | K2 version 1 published: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json) |
-| 6. Answers | Cited answers to the 31 questions; K4 version 0.1 published (schema and writer), first file from the E22 run | [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), `graphrag/k4.py` |
+| 2. Vector baseline | Done: Qwen3-8B, citations checked in code; BM25 routed by well, per-well fusion for questions naming several wells, date filter on daily reports (D-50). 28/31, 31/40, 23/36 and, on daily reports, 14/26 | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md) |
+| 3. Base comparison | Closed for this stint: neo4j-graphrag-python and LightRAG (also with K2) not adopted, and no base chosen. A per-well fact graph from K2 table mappings and LLM extraction does not beat the baseline on new questions, so it is optional (D-51). Supervisor to confirm | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md), [E21](experiments/E21-lightrag-k2.md), [E22](experiments/E22-table-facts.md), [E23](experiments/E23-simulated-set.md), [E26](experiments/E26-routing-and-strict-facts.md) |
+| 4. Models | Answer LLM: Qwen3-8B (thinking off). Extraction, when used: Qwen3-4B. Embeddings: Qwen3-Embedding-0.6B, used in fusion. Vector store still open, with Track C | [E17](experiments/E17-model-sweep.md) |
+| 5. Ontology slice | K2 version 1.1 published, with table mappings checked on an unseen report. No further ontology work for now (D-52) | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), [E25](experiments/E25-table-mappings-unseen-report.md) |
+| 6. Answers | Cited answers on all question sets, with cost per run; K4 version 0.1 published, with current files from the baseline | [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), `graphrag/k4.py` |
+| Daily reports (added) | First runs done: date filter added, parsing failures sent to Track A | [E24](experiments/E24-ak3-daily-reports.md), [E27](experiments/E27-date-filter-and-coverage.md), [note](tracks/B-graphrag/note-for-track-A-daily-reports.md) |
 
-The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Judging a graph needs questions across wells and reports: a 9-question probe (not an evaluation set) shows plain RAG and LightRAG each at 3/9, on different questions (E19).
+The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Judging a graph needs questions across wells, reports and days, which only the expert set can settle. A graph shaped around such questions (events from daily-report operations tables, B-F45) is proposed and not yet tested.
+
+**Exit status (4 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a base (none beats the baseline on current questions); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores.
 
 **Exit.**
 
@@ -369,7 +372,7 @@ Keep:
 | R-05 | School GPU slots hard to get or too short | No booking, long queue | Ask early; checkpointed jobs; hosted open models for development | All |
 | R-06 | Hosted endpoint used on non-public data | Private file in a run | Permission field enforced by the model client; test it | Backend |
 | R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Track A |
-| R-08 | Expert question set arrives late | None by M3 | Keep checking against the prototype's 31 questions; ask the supervisor at each check-in | Track B |
+| R-08 | Expert question set arrives late | None by M3 | Keep checking against the prototype's questions and labelled simulated sets; ask the supervisor at each check-in | Track B |
 | R-09 | Scope too large for three people | Milestones slip two weeks running | Cut in the order of §4; keep a thin working path end to end | All |
 | R-10 | Direction drifts without anyone noticing | Week without supervisor contact | Weekly check-in; group-chat updates every few days (D-46) | All |
 | R-11 | Wrong entity merges corrupt answers | Two wells joined | Identifier and scoped-name matching only; merges always by a person | Backend |
@@ -403,9 +406,9 @@ Keep:
 | 4 | A: Docling baseline and VLM comparison on the gold-table pages | Parser chosen with table scores | Open |
 | 5 | A: multi-page tables, key-value forms, parent/child chunks; K1 version 1 | EOWR by week 3, DDR by week 5 | Open |
 | 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Done (`graphrag/client.py`) |
-| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | In progress: baseline D-50; neo4j-graphrag and LightRAG not adopted (E16, E19, E20); LightRAG with K2 next |
-| 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | LLM chosen (Qwen3-8B, E17); retrieval E14 to E18; K4 version 0.1 published |
-| 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | Prototype ontology of 14 properties exists ([E10](experiments/E10-profile-driven-prototype.md)) |
+| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Closed for this stint with no base chosen: none beats the D-50 baseline (E16 to E27); fact graph optional (D-51); supervisor to confirm |
+| 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | Done: Qwen3-8B (E17), Qwen3-Embedding-0.6B in fusion (E26); K4 version 0.1 published |
+| 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | K2 version 1.1 published, EOWR only; DDR sections and the off-ontology rate not done, and no more ontology work for now (D-52) |
 | 10 | C: MinIO, PostgreSQL, vector store (chosen with B) and Neo4j in Docker Compose; loader from K1; page-rebuild check | AK-3 EOWR loaded; every chunk resolves to file and page | Open |
 | 11 | C: run log, one-command runner (A → B), debugging viewer | Week-5 full pass runs through it; viewer in the demo | Open |
 | 12 | M1 dry run (week 3) and first full pass (week 5) | Shown to the supervisor | Open |
@@ -427,4 +430,4 @@ The main [README](../README.md) stays the setup entry point. Do not rerun `publi
 | VLM (Track A), embedding model and ~7B LLM (Track B) (Q4) | M1 | Quality and cost |
 | GraphRAG base (Q3) | M1 week 3 (Track B) | Everything after M1 builds on it |
 | Public DDR sources (Q5) | M1 (Track A) | Daily reports are half of the document scope |
-| Expert question set (Q2) | M3 | Evaluation; the team writes none of its own |
+| Expert question set (Q2) | M3 | Evaluation; simulated sets stand in for development only |

@@ -13,19 +13,19 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 
 | Topic | Current answer | Entry |
 |---|---|---|
-| Data this stint | 15 AK-3 EOWR chunks, then the whole AK-3 EOWR | B-D01 |
-| Quality yardstick | Prototype's 31 questions and E10 gold facts | B-D01 |
+| Data this stint | AK-3, 56-32 and 68-32 end-of-well reports; four AK-3 daily-report attachments; 78-32 as an unseen report | B-D01, E24, E25 |
+| Quality yardstick | Development only: the prototype's 31 questions and simulated sets. The expert set, when it arrives, is the real one | B-D01, B-D22 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
 | Baseline | Plain RAG with Qwen3-8B (thinking off), citations and values checked in code. BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)); daily reports 14/26 ([E27](../../experiments/E27-date-filter-and-coverage.md)) | B-D23 |
 | Fact graph | **Optional, not in the baseline.** Does not beat plain RAG on new questions (E23, E26, E27); expert questions decide for good | B-D24 |
-| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; the working design uses neo4j-graphrag as an extractor only | B-D14, B-D18, B-D21 |
+| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; neo4j-graphrag is the extractor for the optional fact sheet | B-D14, B-D18, B-D21, B-D24 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well; per-well fusion with Qwen3-Embedding-0.6B for questions naming several wells; date filter on daily reports | B-D23, B-C21, B-C22 |
-| Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
+| Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Daily reports | No filter 7/26, **date filter 14/26** on unseen questions ([E27](../../experiments/E27-date-filter-and-coverage.md)); form headers, inventory and parameters need K1 version 1 ([note for Hung](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22 |
-| Next | No Track B run is waiting: the expert question set, K1 version 1 from Track A, and the vector store with Track C | B-D24, [next-runs](next-runs.md) |
+| Next | Waiting on the expert question set, the supervisor's view on a graph in the main pipeline, K1 version 1 from Track A, and the vector store with Track C. E28 proposed, not started | B-D24, B-D25, B-F45, [next-runs](next-runs.md) |
 | Ontology (K2) | Version 1.1: adds `rig`, `drilling_contractor`, and casing-spec and key-value mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17, E27 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files from the baseline: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl` | B-C18, B-C21 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
@@ -604,3 +604,12 @@ The PDFs are not kept in the repository, because of their copyright terms.
 **B-D25 (decision; from the supervisor, relayed by Tri, 4 November).** No ontology work for now: the direction is GraphRAG. The papers in B-F43 and B-F44 are background only. Their ontology methods (OWL, Protégé, reasoners, large class hierarchies, upper-ontology alignment) are not to be adopted, and D-49's thin K2 stays as it is. B-F45's event idea, if tried, must be a thin graph for GraphRAG answers, with no new ontology.
 
 **Open, for Tri and the supervisor.** "GraphRAG for now" sits uneasily with B-D24, which takes the fact graph out of the baseline. B-D24 stands on the numbers until the supervisor has seen them; he may prefer a graph in the main pipeline regardless.
+
+**B-F46 (finding; corrects a reading in the session of B-F43).** The supervisor sent the two papers before his GraphRAG direction, so they do not signal what he expects now. B-D25 stands: they are background.
+
+**B-C23 (design choice; documents brought up to date).** The sources of truth now state what runs today.
+
+- *Added:* specification §8.4 (what the first build runs today, with the architecture diagram) and version 3.2, D-52, and an architecture section in `graphrag/README.md`.
+- *Removed as superseded:* "working design" as the current design, in the specification's §9, the plan and `CLAUDE.md`; "LightRAG with K2 next"; "the team writes no question set of its own"; the `-np 4` server command and the separate multi-report command in `graphrag/README.md`, replaced by `-np 1` and "The baseline".
+- *Kept:* specification §8.1 to §8.3 as the GraphRAG target, because the direction has not changed.
+
