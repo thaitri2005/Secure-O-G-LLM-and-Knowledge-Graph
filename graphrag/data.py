@@ -11,7 +11,10 @@ QUESTIONS = ROOT / "prototype/gold/questions.json"
 FACTS = ROOT / "prototype/gold/ak3_facts.json"
 PROBE = ROOT / "graphrag/gold/cross_report_probe.json"
 SIMULATED = ROOT / "graphrag/gold/simulated_expert_v0.json"
-QUESTION_SETS = ("prototype", "probe", "simulated")
+AK3_DAILY = ROOT / "graphrag/gold/ak3_daily_v0.json"
+# Ignored by git; regenerate with scripts/run_ak3_appendices.py.
+AK3_APPENDIX_EXPORT = ROOT / "data/corpora/ak3_appendices/exports/v1"
+QUESTION_SETS = ("prototype", "probe", "simulated", "ak3_daily")
 AK3 = "gdr882_ak3_eowr"
 # The 15 chunks the prototype extracted from (prototype/kgproto/extract.py SLICE).
 PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
@@ -41,6 +44,32 @@ def load_chunks(docs: list[str] | None = None, path: Path = CHUNKS) -> list[Chun
     return out
 
 
+def appendix_chunks_path(export: Path = AK3_APPENDIX_EXPORT) -> Path:
+    """The chunk file of the export's current release (CURRENT.json names it)."""
+    release = json.loads((export / "CURRENT.json").read_text(encoding="utf-8"))["release"]
+    return export / "releases" / release / "chunks.jsonl"
+
+
+def daily_rows(path: Path | None = None) -> list[dict]:
+    """The chunk rows of the four AK-3 daily-report attachments, in the corpus chunk format (E24)."""
+    path = path or appendix_chunks_path()
+    rows = (json.loads(line) for line in path.read_text(encoding="utf-8").splitlines())
+    return [row for row in rows if "dailyreport" in row["doc_id"]]
+
+
+def load_daily_chunks(path: Path | None = None) -> list[Chunk]:
+    path = path or appendix_chunks_path()
+    return load_chunks(sorted({row["doc_id"] for row in daily_rows(path)}), path)
+
+
+def chunks_on_pages(sources: list[dict], rows: list[dict]) -> list[str]:
+    """Chunks on the given attachment pages. E24's gold names pages, not chunks, so that it does not inherit
+    parsing errors; a source is {"appx": "30", "page": 17}, matched against doc IDs like gdr882-ak3-appx-30-..."""
+    wanted = {(s["appx"], s["page"]) for s in sources}
+    return [row["chunk_id"] for row in rows
+            if any((row["doc_id"].split("-appx-")[1][:2], page) in wanted for page in row["pages"])]
+
+
 def prototype_slice(chunks: list[Chunk]) -> list[Chunk]:
     wanted = {f"{AK3}#{c}" for c in PROTOTYPE_SLICE}
     return [c for c in chunks if c.id in wanted]
@@ -50,7 +79,12 @@ def load_questions(name: str = "prototype") -> tuple[list[dict], dict[str, dict]
     """Questions, and gold facts keyed by ID with chunk IDs expanded to full chunk IDs.
 
     "prototype": the prototype's 31 questions on AK-3. "probe": Track B's cross-report probe (not an
-    evaluation set, D-49), whose facts already carry full chunk IDs."""
+    evaluation set, D-49), whose facts already carry full chunk IDs. "ak3_daily": E24's questions on the AK-3
+    daily reports, whose facts name pages."""
+    if name == "ak3_daily":
+        daily = json.loads(AK3_DAILY.read_text(encoding="utf-8"))
+        rows = daily_rows()
+        return daily["questions"], {f["id"]: dict(f, chunks=chunks_on_pages(f["sources"], rows)) for f in daily["facts"]}
     if name in ("probe", "simulated"):
         probe = json.loads((PROBE if name == "probe" else SIMULATED).read_text(encoding="utf-8"))
         return probe["questions"], {f["id"]: f for f in probe["facts"]}

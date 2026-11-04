@@ -1,0 +1,1182 @@
+{
+ "status": "SIMULATED: not the expert set and not an evaluation result (B-D22). Written by Claude on 4 November 2026 at Tri's request, from the rendered PDF pages of the four AK-3 daily-report attachments, before those attachments had been parsed in this run. No drilling expert has reviewed it. Frozen before any run: do not change a question or gold value because of a result; add a new version instead.",
+ "version": "0.1",
+ "known_limits": [
+  "Written from four sampled days (reports 1, 13, 17 and 21) of 27.",
+  "Gold sources name the day's pages in all four attachments, so retrieval counts any attachment's copy of that day, even when the value is printed on only one of them.",
+  "d14: the form's vertical depth (465) lags its measured depth (770); the question asks for the printed field."
+ ],
+ "questions": [
+  {
+   "id": "d01",
+   "kind": "form_header",
+   "question": "Who was the toolpusher on well AK-3 according to the daily report of 12 August 2016?",
+   "gold": [
+    "z01"
+   ]
+  },
+  {
+   "id": "d02",
+   "kind": "form_header",
+   "question": "What was the total number of personnel on well AK-3 in the daily report of 12 August 2016?",
+   "gold": [
+    "z02"
+   ]
+  },
+  {
+   "id": "d03",
+   "kind": "form_comment",
+   "question": "How many hours of helicopter flight time does the AK-3 daily report of 12 August 2016 record?",
+   "gold": [
+    "z03"
+   ]
+  },
+  {
+   "id": "d04",
+   "kind": "form_header",
+   "question": "What air temperature in degF does the AK-3 daily report of 12 August 2016 record?",
+   "gold": [
+    "z04"
+   ]
+  },
+  {
+   "id": "d05",
+   "kind": "form_header",
+   "question": "What was the daily cost in dollars in the AK-3 daily report of 12 August 2016?",
+   "gold": [
+    "z05"
+   ]
+  },
+  {
+   "id": "d06",
+   "kind": "graphic_form",
+   "question": "What hole size in inches does the AK-3 daily graphical summary of 12 August 2016 plan for the production section to 800 ft?",
+   "gold": [
+    "z06"
+   ]
+  },
+  {
+   "id": "d07",
+   "kind": "graphic_form",
+   "question": "Who is named as engineer on the AK-3 daily graphical summary of 12 August 2016?",
+   "gold": [
+    "z07"
+   ]
+  },
+  {
+   "id": "d08",
+   "kind": "form_header",
+   "question": "What measured depth in feet does the AK-3 daily report of 24 August 2016 give in its header?",
+   "gold": [
+    "z08"
+   ]
+  },
+  {
+   "id": "d09",
+   "kind": "form_header",
+   "question": "What leak-off test value in lbs/gal does the AK-3 daily report of 24 August 2016 give?",
+   "gold": [
+    "z09"
+   ]
+  },
+  {
+   "id": "d10",
+   "kind": "form_header",
+   "question": "How many days since a lost time incident does the AK-3 daily report of 24 August 2016 give?",
+   "gold": [
+    "z10"
+   ]
+  },
+  {
+   "id": "d11",
+   "kind": "operations_table",
+   "question": "How many sacks of Thermolite HT were pumped on well AK-3 on 24 August 2016?",
+   "gold": [
+    "z11"
+   ]
+  },
+  {
+   "id": "d12",
+   "kind": "operations_table",
+   "question": "What activity code covers 19:00 to 21:30 in the AK-3 daily report of 24 August 2016?",
+   "gold": [
+    "z12"
+   ]
+  },
+  {
+   "id": "d13",
+   "kind": "form_header",
+   "question": "What measured depth in feet does the AK-3 daily report of 28 August 2016 give in its header?",
+   "gold": [
+    "z13"
+   ]
+  },
+  {
+   "id": "d14",
+   "kind": "form_header",
+   "question": "What vertical depth in feet does the AK-3 daily report of 28 August 2016 give in its header?",
+   "gold": [
+    "z14"
+   ]
+  },
+  {
+   "id": "d15",
+   "kind": "survey_table",
+   "question": "What inclination in degrees was recorded for the survey at 500 ft in the AK-3 daily report of 28 August 2016?",
+   "gold": [
+    "z15"
+   ]
+  },
+  {
+   "id": "d16",
+   "kind": "mud_table",
+   "question": "What mud density was recorded at 00:30 on 28 August 2016 on well AK-3?",
+   "gold": [
+    "z16"
+   ]
+  },
+  {
+   "id": "d17",
+   "kind": "bit_table",
+   "question": "What is the depth out of bit number 5 in the AK-3 daily report of 28 August 2016, in feet?",
+   "gold": [
+    "z17"
+   ]
+  },
+  {
+   "id": "d18",
+   "kind": "inventory_table",
+   "question": "How many units of POLY VIS were left in inventory in the AK-3 daily report of 28 August 2016?",
+   "gold": [
+    "z18"
+   ]
+  },
+  {
+   "id": "d19",
+   "kind": "form_header",
+   "question": "What was the visibility in the AK-3 daily report of 28 August 2016?",
+   "gold": [
+    "z19"
+   ]
+  },
+  {
+   "id": "d20",
+   "kind": "form_header",
+   "question": "What measured depth in feet does the AK-3 daily report of 1 September 2016 give in its header?",
+   "gold": [
+    "z20"
+   ]
+  },
+  {
+   "id": "d21",
+   "kind": "form_header",
+   "question": "At what depth in feet was the last casing set according to the AK-3 daily report of 1 September 2016?",
+   "gold": [
+    "z21"
+   ]
+  },
+  {
+   "id": "d22",
+   "kind": "operations_table",
+   "question": "What is the serial number of the new HQ core bit installed on well AK-3 on 1 September 2016?",
+   "gold": [
+    "z22"
+   ]
+  },
+  {
+   "id": "d23",
+   "kind": "bit_table",
+   "question": "What rate of penetration in ft/hr is recorded for bit number 7 in the AK-3 daily report of 1 September 2016?",
+   "gold": [
+    "z23"
+   ]
+  },
+  {
+   "id": "d24",
+   "kind": "mud_table",
+   "question": "What mud density was recorded at 00:00 on 1 September 2016 on well AK-3?",
+   "gold": [
+    "z24"
+   ]
+  },
+  {
+   "id": "d25",
+   "kind": "parameters_table",
+   "question": "What maximum rate of penetration in ft/hr do the drilling parameters give for 1300-1385 ft in the AK-3 daily report of 1 September 2016?",
+   "gold": [
+    "z25"
+   ]
+  },
+  {
+   "id": "d26",
+   "kind": "across_days",
+   "question": "By how many feet did the measured depth in the header of the AK-3 daily reports increase from 24 August 2016 to 1 September 2016?",
+   "gold": [
+    "z26"
+   ]
+  },
+  {
+   "id": "d27",
+   "kind": "across_days",
+   "question": "Which date had more total personnel on well AK-3, 12 August 2016 or 24 August 2016?",
+   "gold": [
+    "z27"
+   ]
+  },
+  {
+   "id": "d28",
+   "kind": "not_stated",
+   "question": "What gas reading did the mud log record in the AK-3 daily report of 28 August 2016?",
+   "gold": []
+  },
+  {
+   "id": "d29",
+   "kind": "not_stated",
+   "question": "What barometric pressure does the AK-3 daily report of 12 August 2016 record?",
+   "gold": []
+  },
+  {
+   "id": "d30",
+   "kind": "not_stated",
+   "question": "What was the mud weight on well AK-3 on 13 August 2015?",
+   "gold": []
+  }
+ ],
+ "facts": [
+  {
+   "id": "z01",
+   "value": "Brian Walker",
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z02",
+   "value": 19,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z03",
+   "value": 3.5,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z04",
+   "value": 58,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z05",
+   "value": 675276,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z06",
+   "value": 4.834,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z07",
+   "value": "Monty Keown",
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    }
+   ],
+   "reports": [
+    "12-Aug-16"
+   ]
+  },
+  {
+   "id": "z08",
+   "value": 220,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "24-Aug-16"
+   ]
+  },
+  {
+   "id": "z09",
+   "value": 18.26,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "24-Aug-16"
+   ]
+  },
+  {
+   "id": "z10",
+   "value": 4,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "24-Aug-16"
+   ]
+  },
+  {
+   "id": "z11",
+   "value": 52,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "24-Aug-16"
+   ]
+  },
+  {
+   "id": "z12",
+   "value": "CMTP",
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "24-Aug-16"
+   ]
+  },
+  {
+   "id": "z13",
+   "value": 770,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z14",
+   "value": 465,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z15",
+   "value": 0.25,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z16",
+   "value": 8.6,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z17",
+   "value": 805,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z18",
+   "value": 9,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z19",
+   "value": 0,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 21
+    },
+    {
+     "appx": "27",
+     "page": 22
+    },
+    {
+     "appx": "27",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 22
+    },
+    {
+     "appx": "28",
+     "page": 23
+    },
+    {
+     "appx": "28",
+     "page": 24
+    },
+    {
+     "appx": "29",
+     "page": 17
+    },
+    {
+     "appx": "30",
+     "page": 17
+    }
+   ],
+   "reports": [
+    "28-Aug-16"
+   ]
+  },
+  {
+   "id": "z20",
+   "value": 1385,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z21",
+   "value": 800,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z22",
+   "value": "6B3981",
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z23",
+   "value": 24.3,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z24",
+   "value": 8.4,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z25",
+   "value": 15,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "01-Sep-16"
+   ]
+  },
+  {
+   "id": "z26",
+   "value": 1165,
+   "sources": [
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    },
+    {
+     "appx": "27",
+     "page": 31
+    },
+    {
+     "appx": "27",
+     "page": 32
+    },
+    {
+     "appx": "27",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 32
+    },
+    {
+     "appx": "28",
+     "page": 33
+    },
+    {
+     "appx": "28",
+     "page": 34
+    },
+    {
+     "appx": "29",
+     "page": 21
+    },
+    {
+     "appx": "30",
+     "page": 21
+    }
+   ],
+   "reports": [
+    "24-Aug-16",
+    "01-Sep-16"
+   ],
+   "derived": true
+  },
+  {
+   "id": "z27",
+   "value": "2016-08-12",
+   "sources": [
+    {
+     "appx": "27",
+     "page": 1
+    },
+    {
+     "appx": "28",
+     "page": 1
+    },
+    {
+     "appx": "29",
+     "page": 1
+    },
+    {
+     "appx": "30",
+     "page": 1
+    },
+    {
+     "appx": "27",
+     "page": 15
+    },
+    {
+     "appx": "28",
+     "page": 16
+    },
+    {
+     "appx": "29",
+     "page": 13
+    },
+    {
+     "appx": "30",
+     "page": 13
+    }
+   ],
+   "reports": [
+    "12-Aug-16",
+    "24-Aug-16"
+   ],
+   "derived": true
+  }
+ ]
+}

@@ -23,7 +23,8 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Retrieval | BM25 routed by well (hit@5 1.00 on three reports); fusion with Qwen3-Embedding-0.6B only for questions that name no well | B-F14, B-D12, B-D16 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (-c 32768 -np 4), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
-| Next | E24 (AK-3 daily reports) and E25 (unseen report); Tri to decide the order of routing by number of wells, validator checks and fact-graph coverage; the expert question set when it arrives; K1 version 1 tables from Track A | B-D21, B-F30 to B-F33 |
+| Daily reports | Plain RAG 5/30, 19/30 with the right page given ([E24](../../experiments/E24-ak3-daily-reports.md)); needs date filtering in Track B, and form key-value pairs and report dates in K1 version 1 | B-F35, B-F36 |
+| Next | E25 (unseen report; choose one first); Tri to decide the order of routing by number of wells, validator checks and fact-graph coverage; the expert question set when it arrives; K1 version 1 from Track A | B-D21, B-F30 to B-F36 |
 | Ontology (K2) | Version 1: 9 entity types, 13 relations, 19 properties, 104 generated glossary entries ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; first file from the E22 ranked-sheet run | B-C18 |
 | Questions | Prototype 31 for development; a 9-question cross-report probe; a 40-question simulated expert set, run in E23 (not expert-reviewed; s02's gold to fix in the next version) | B-C14, B-D22, B-F34 |
@@ -522,8 +523,28 @@ How to set up a new machine, and the exact next steps, are in [CLAUDE.md](../../
 2. Tighten the validator (B-F32).
 3. Add coverage to the fact graph only after those two, since coverage alone would feed more unchecked facts to the model.
 
-**Next runs, on the desktop. Exact commands: [next-runs.md](next-runs.md).**
+**B-C19 (design choice).** E24's gold names PDF pages, not chunks, and was written from the rendered pages before the attachments were parsed, so it does not inherit parsing errors. `data.chunks_on_pages` maps pages to whatever chunks a parser produces. `graphrag/oracle.py` answers with retrieval bypassed, giving the model the gold value's source page, to separate parsing, retrieval and model failures. It reads the gold data, so it is a diagnostic only.
 
-1. **E24:** the four AK-3 daily-report attachments, which are in ignored `data/corpora/ak3_appendices/`; on the desktop they must first be regenerated with `scripts/run_ak3_appendices.py`. Record where the pipeline breaks, as a list for Track A. E23 adds a check: picking the right day among near-identical forms.
-2. **E25:** the table mappings on an end-of-well report they were not written from.
+**E24 (experiment).** Plain RAG on the AK-3 daily reports: [E24](../../experiments/E24-ak3-daily-reports.md). Simulated questions, not expert-validated.
+
+| Setup | Correct of 30 | Wrong values |
+|---|---:|---:|
+| Plain: BM25 routed by well, top 5 | 5 | 2 |
+| Fusion, top 10, evidence first | 9 | 13 |
+| Right page given, status first | 11 | 1 |
+| Right page given, evidence first | 19 | 4 |
+
+**B-F35 (finding; from E24).** On daily reports, retrieval and the answer format lose the most. Filtering by well does not separate days, questions write dates differently from the forms, and 630 of 898 chunks have no date in their text or section. 5/30 rises to 19/30 with the right page and evidence first. Confirms B-F22 on forms (11/30 status first, 19/30 evidence first on the same pages).
+
+**B-F36 (finding; from E24).** Parsing sets the ceiling on daily reports: 9 of the 27 gold questions fail even with the right page, because form headers are read in the wrong order, form regions lose their table structure, and some printed values are missing. Operations, mud and survey tables work (6/6 with the right page). The list for Hung is in the record. K1 version 1 needs key-value pairs from form headers and a report date on every chunk.
+
+**B-F37 (finding; from E24).** Corpus pipeline problems for its owners: `process --workers 2` hung after exactly 40 documents in two runs (`max_tasks_per_child=20`; the cause is inferred, not traced); `scripts/run_ak3_appendices.py` prints "done" after every document fails and does not retry failed ones; `appx-04` now fails validation, though E8 processed it on an earlier commit.
+
+**B-F38 (finding; from E24).** One answer changed between the first run and the uncached repeat with one request at a time (d20, from a wrong `1955` to an abstention; the score stayed 5/30). B-F19's rule is necessary, but it does not guarantee identical answers here.
+
+**Open, for Tri (recommendation from E24).** Ask Hung for form key-value pairs and report dates in K1 version 1, then rerun this set. Meanwhile, Track B can try reading dates from the question and filtering chunks by report date, but it needs new questions to measure, because these 30 have now been seen.
+
+**Next run, on the desktop. Exact commands: [next-runs.md](next-runs.md).**
+
+1. **E25:** the table mappings on an end-of-well report they were not written from. A public report must be chosen first.
 

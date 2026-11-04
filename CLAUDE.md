@@ -57,6 +57,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions) |
   | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
+  | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (AK-3 EOWR, 60 chunks, the prototype's 31 questions; E10 prototype: 23/31):
@@ -76,7 +77,9 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
   | [E23](docs/experiments/E23-simulated-set.md) | **Simulated 40 questions, not expert-reviewed**: plain RAG / working design, top 5; then per-well fusion, evidence first | 29/40 / 29/40; 31/40 / 30/40 (5 wrong values each) |
 
-  On the simulated set the fact graph does not help (B-F30), its sheet rarely holds what is asked (B-F31), and the validator passes facts with the wrong meaning (B-F32).
+  | [E24](docs/experiments/E24-ak3-daily-reports.md) | **AK-3 daily reports, 30 simulated questions, not expert-reviewed**: plain RAG / fusion, evidence first / right page given, evidence first (diagnostic) | 5/30 / 9/30 / 19/30 |
+
+  On the simulated set the fact graph does not help (B-F30), its sheet rarely holds what is asked (B-F31), and the validator passes facts with the wrong meaning (B-F32). On daily reports retrieval loses the most, and scrambled form headers set the ceiling (B-F35, B-F36).
 
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
@@ -87,7 +90,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). E23 has run on it. **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E24 (AK-3 daily reports, listing failures for Track A), E25 (table mappings on an unseen end-of-well report). Details are at the end of the Track B log.
+1. The supervisor asked us to wait for the expert questions, so a simulated set stands in (B-D22). E23 and E24 have run. **Run next, on the desktop ([runbook](docs/tracks/B-graphrag/next-runs.md)):** E25 (table mappings on an unseen end-of-well report; choose one first). Details are at the end of the Track B log.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Next: check the mappings on reports they were not written from, and add people, projects and document counts to the fact graph.

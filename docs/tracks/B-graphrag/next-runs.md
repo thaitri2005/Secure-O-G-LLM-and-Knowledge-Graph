@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 4 November 2026: **E23 is done ([record](../../experiments/E23-simulated-set.md)); E24 and E25 have not been run.** Do them on the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question set: [log](log.md), B-D22.
+Status on 4 November 2026: **E23 and E24 are done ([E23](../../experiments/E23-simulated-set.md), [E24](../../experiments/E24-ak3-daily-reports.md)); E25 has not been run.** Do it on the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question set: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -23,19 +23,21 @@ Send one request at a time, and record the server settings with each run (B-F19)
 
 Not on this set: 29/40 for both with top 5, and 31 and 30 with per-well retrieval. See the [record](../../experiments/E23-simulated-set.md).
 
-## E24: AK-3 daily reports
+## E24: AK-3 daily reports (done)
 
-**Code is needed first:** no `--pool` covers these reports yet, and they use the corpus chunk format.
+5/30 with plain RAG, 19/30 when the model is given the right page. See the [record](../../experiments/E24-ak3-daily-reports.md), which holds the list for Hung.
 
-1. Regenerate the chunks, because `data/corpora/` is ignored by git:
+To regenerate the chunks on a new machine (`data/corpora/` is ignored by git):
 
-   ```powershell
-   python scripts/run_ak3_appendices.py --workers 2
-   ```
+```powershell
+python -m pip install --no-deps vietocr==0.3.13
+python -m graph_builder.corpus models
+python scripts/run_ak3_appendices.py --workers 2
+```
 
-2. Add a loader for `data/corpora/ak3_appendices/exports/v1/chunks.jsonl`, keeping the four daily-report documents (`doc_id` containing `dailyreport`), and a new pool in `graphrag/baseline.py`.
-3. Write new questions in a new file, from those reports' pages, before any run. Do not change `simulated_expert_v0.json`.
-4. Run plain RAG, then list every failure that comes from parsing: wrong cells, lost headers, split tables. Send that list to Hung. Also count failures from picking the wrong day among near-identical forms (E23, s27), which come from retrieval and not from parsing.
+- Docling's models must be cached once. If every document fails with `LocalEntryNotFoundError`, run `process` on one document with `HF_HUB_OFFLINE=0`, then `process --retry-failed`.
+- `process --workers 2` hangs after 40 documents ([E24](../../experiments/E24-ak3-daily-reports.md)). Stop it and run `process` again, then `export --name v1`.
+- Chunks are in the release folder named by `exports/v1/CURRENT.json`; `graphrag/data.py` follows it.
 
 ## E25: table mappings on an unseen report
 

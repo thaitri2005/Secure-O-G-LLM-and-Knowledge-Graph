@@ -336,5 +336,24 @@ class SimulatedSetTests(unittest.TestCase):
                 self.assertTrue(any(v in text[chunk] for v in values), (fact["id"], chunk))
 
 
+class DailySetTests(unittest.TestCase):
+    def test_gold_pages_map_to_chunks_of_that_attachment_and_page(self):
+        from graphrag.data import chunks_on_pages
+
+        rows = [{"chunk_id": "a", "doc_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-1", "pages": [17]},
+                {"chunk_id": "b", "doc_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-1", "pages": [17]},
+                {"chunk_id": "c", "doc_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-1", "pages": [22, 23]}]
+        self.assertEqual(chunks_on_pages([{"appx": "30", "page": 17}, {"appx": "28", "page": 23}], rows), ["a", "c"])
+
+    def test_question_file_is_consistent(self):
+        from graphrag.data import AK3_DAILY
+
+        daily = json.loads(AK3_DAILY.read_text(encoding="utf-8"))
+        self.assertIn("SIMULATED", daily["status"])
+        self.assertEqual({g for q in daily["questions"] for g in q["gold"]}, {f["id"] for f in daily["facts"]})
+        for fact in daily["facts"]:
+            self.assertTrue(fact["sources"], fact["id"])
+
+
 if __name__ == "__main__":
     unittest.main()
