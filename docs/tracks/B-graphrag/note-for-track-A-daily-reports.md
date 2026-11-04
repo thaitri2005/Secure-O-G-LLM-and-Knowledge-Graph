@@ -46,4 +46,6 @@ Track B now works around priority 2 with a date filter ([E27](../../experiments/
 
 Table mappings on an unseen report ([E25](../../experiments/E25-table-mappings-unseen-report.md)) had a similar lesson: 78-32's forms come out as mixed grids too.
 
-Tell us when K1 version 1 is ready, and Track B will rerun E24 and E27.
+Dense survey tables on other reports ([E29](../../experiments/E29-table-mappings-across-reports.md)): the parser merges neighbouring rows into one (`114.20 125.50` over `0.20 0.10`) and shifts columns, on TNT-GT-01 and TNT-GT-02. We get half the rows at best, and 8% of those are wrong. Scanned reports such as Raft River RRGE-3 come out column by column, with no rows to read. Both matter if the corpus grows.
+
+Tell us when K1 version 1 is ready, and Track B will rerun E24, E27 and E29.

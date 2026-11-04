@@ -1,0 +1,2111 @@
+{
+  "pool": "three",
+  "run": "e29_all",
+  "method": "K2 table mappings, no model call",
+  "llm_calls": 0,
+  "facts_by_property": {
+    "casing_depth": 24,
+    "inclination": 156,
+    "drilling_contractor": 1,
+    "rig": 1,
+    "casing_grade": 4,
+    "casing_weight": 3
+  },
+  "facts": [
+    {
+      "chunk": "nl_hon-gt-01-s2_eowr#c0007",
+      "well": "HON-GT-01-S2",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5"
+      },
+      "value": "2354",
+      "source": "nl_hon-gt-01-s2_eowr#t003",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hon-gt-01-s2_eowr#c0010",
+      "well": "HON-GT-01-S2",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "1103",
+      "source": "nl_hon-gt-01-s2_eowr#t004",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hon-gt-01-s2_eowr#c0010",
+      "well": "HON-GT-01-S2",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "2386",
+      "source": "nl_hon-gt-01-s2_eowr#t004",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hon-gt-01-s2_eowr#c0010",
+      "well": "HON-GT-01-S2",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "5"
+      },
+      "value": "2606",
+      "source": "nl_hon-gt-01-s2_eowr#t004",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0018",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "24"
+      },
+      "value": "68",
+      "source": "nl_tnt-gt-01_eowr#t010",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0018",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "1275",
+      "source": "nl_tnt-gt-01_eowr#t010",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0027",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "24"
+      },
+      "value": "68",
+      "source": "nl_tnt-gt-01_eowr#t015",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0027",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "1275",
+      "source": "nl_tnt-gt-01_eowr#t015",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0027",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2857",
+      "source": "nl_tnt-gt-01_eowr#t015",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0028",
+      "well": "TNT-GT-01",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "135",
+      "source": "nl_tnt-gt-01_eowr#t016",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0079",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "0.00"
+      },
+      "value": "0.00",
+      "source": "nl_tnt-gt-01_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0079",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "114.20"
+      },
+      "value": "0.20",
+      "source": "nl_tnt-gt-01_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0079",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "125.50"
+      },
+      "value": "0.10",
+      "source": "nl_tnt-gt-01_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0092",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1859.90"
+      },
+      "value": "30.30",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0092",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1872.70"
+      },
+      "value": "30.40",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0092",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1885.30"
+      },
+      "value": "30.50",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0092",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1898.40"
+      },
+      "value": "30.60",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1911.00"
+      },
+      "value": "30.70",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1923.80"
+      },
+      "value": "30.70",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1936.70"
+      },
+      "value": "31.00",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1949.30"
+      },
+      "value": "31.00",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1962.50"
+      },
+      "value": "31.10",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0093",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1975.20"
+      },
+      "value": "31.20",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0094",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1987.80"
+      },
+      "value": "31.30",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0094",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2000.60"
+      },
+      "value": "31.30",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0094",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2051.90"
+      },
+      "value": "32.20",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0095",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2077.60"
+      },
+      "value": "32.40",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0095",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2089.80"
+      },
+      "value": "32.70",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0095",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2103.20"
+      },
+      "value": "32.90",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0095",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2117.50"
+      },
+      "value": "32.90",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0096",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2128.90"
+      },
+      "value": "32.70",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0096",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2141.30"
+      },
+      "value": "32.60",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0096",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2154.20"
+      },
+      "value": "32.60",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0096",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2166.70"
+      },
+      "value": "32.60",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0096",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2180.10"
+      },
+      "value": "33.00",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0097",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2192.97"
+      },
+      "value": "33.00",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0097",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2205.80"
+      },
+      "value": "32.50",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0097",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2231.30"
+      },
+      "value": "32.50",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0097",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2244.00"
+      },
+      "value": "32.50",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0097",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2257.00"
+      },
+      "value": "32.80",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0098",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2282.70"
+      },
+      "value": "33.00",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0098",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2295.30"
+      },
+      "value": "32.70",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0098",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2308.40"
+      },
+      "value": "32.90",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0098",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2321.30"
+      },
+      "value": "32.50",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0099",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2346.90"
+      },
+      "value": "1.46",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0099",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "2359.80"
+      },
+      "value": "0.94",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-01_eowr#c0099",
+      "well": "TNT-GT-01",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "32.30"
+      },
+      "value": "13.07",
+      "source": "nl_tnt-gt-01_eowr#t028"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0018",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "24"
+      },
+      "value": "68",
+      "source": "nl_tnt-gt-02_eowr#t009",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0018",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "1309",
+      "source": "nl_tnt-gt-02_eowr#t009",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0019",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2706",
+      "source": "nl_tnt-gt-02_eowr#t009",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0026",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "24"
+      },
+      "value": "68",
+      "source": "nl_tnt-gt-02_eowr#t013",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0026",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "1309",
+      "source": "nl_tnt-gt-02_eowr#t013",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0026",
+      "well": "TNT-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2707",
+      "source": "nl_tnt-gt-02_eowr#t013",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0089",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "0.00"
+      },
+      "value": "0.00",
+      "source": "nl_tnt-gt-02_eowr#t023"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0089",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "120.50"
+      },
+      "value": "0.40",
+      "source": "nl_tnt-gt-02_eowr#t023"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0089",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "127.50"
+      },
+      "value": "0.40",
+      "source": "nl_tnt-gt-02_eowr#t023"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0089",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "145.50"
+      },
+      "value": "0.30",
+      "source": "nl_tnt-gt-02_eowr#t023"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0091",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "164.20"
+      },
+      "value": "1.40",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0091",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "173.30"
+      },
+      "value": "1.80",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0091",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "182.60"
+      },
+      "value": "2.10",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0091",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "191.90"
+      },
+      "value": "1.80",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0091",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "201.20"
+      },
+      "value": "1.90",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "210.70"
+      },
+      "value": "2.10",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "219.80"
+      },
+      "value": "1.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "229.70"
+      },
+      "value": "1.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "242.30"
+      },
+      "value": "1.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "255.10"
+      },
+      "value": "1.40",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0092",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "267.80"
+      },
+      "value": "1.30",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0093",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "280.60"
+      },
+      "value": "1.00",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0093",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "306.10"
+      },
+      "value": "0.80",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0093",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "319.10"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0093",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "331.90"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0093",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "344.60"
+      },
+      "value": "0.90",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0094",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "395.90"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0095",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "434.30"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0095",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "447.10"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0095",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "459.90"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0095",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "472.80"
+      },
+      "value": "0.40",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0096",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "498.20"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0096",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "524.30"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0096",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "536.80"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0096",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "549.50"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0096",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "562.40"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0097",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "575.30"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0097",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "587.80"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0097",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "600.70"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0097",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "626.60"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0098",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "151.50"
+      },
+      "value": "6.43",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0098",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "0.60"
+      },
+      "value": "0.23",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0098",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "639.40"
+      },
+      "value": "12.90",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0098",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "-0.23"
+      },
+      "value": "20.47",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0098",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "0.50"
+      },
+      "value": "12.90",
+      "source": "nl_tnt-gt-02_eowr#t024"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0099",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "690.80"
+      },
+      "value": "0.80",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0099",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "703.50"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0099",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "716.50"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0099",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "729.60"
+      },
+      "value": "0.80",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0099",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "742.00"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0100",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "754.80"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0100",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "767.70"
+      },
+      "value": "0.80",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0100",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "780.40"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0100",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "793.20"
+      },
+      "value": "0.50",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0100",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "806.10"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0101",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "819.90"
+      },
+      "value": "0.70",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0101",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "831.70"
+      },
+      "value": "0.80",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0101",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "844.60"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0102",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "895.70"
+      },
+      "value": "6.95",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0102",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "908.50"
+      },
+      "value": "0.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0102",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "934.40"
+      },
+      "value": "1.30",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0103",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "947.10"
+      },
+      "value": "2.50",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0103",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "985.50"
+      },
+      "value": "5.00",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0103",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "998.00"
+      },
+      "value": "6.00",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0104",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1011.50"
+      },
+      "value": "7.20",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0104",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1049.40"
+      },
+      "value": "10.30",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0104",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1088.30"
+      },
+      "value": "10.40",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0105",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1101.10"
+      },
+      "value": "11.30",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0105",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1114.00"
+      },
+      "value": "12.30",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0105",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1126.70"
+      },
+      "value": "13.30",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0105",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1139.40"
+      },
+      "value": "14.20",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0106",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1177.90"
+      },
+      "value": "16.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0106",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1190.70"
+      },
+      "value": "17.60",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0106",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "147.30"
+      },
+      "value": "12.80",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0107",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1216.30"
+      },
+      "value": "56.04",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0107",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1229.10"
+      },
+      "value": "18.00",
+      "source": "nl_tnt-gt-02_eowr#t025"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0108",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1254.90"
+      },
+      "value": "19.00",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0108",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1267.60"
+      },
+      "value": "19.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0108",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1293.60"
+      },
+      "value": "19.30",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0108",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1333.80"
+      },
+      "value": "19.70",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0109",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1346.50"
+      },
+      "value": "20.00",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0109",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1359.50"
+      },
+      "value": "20.10",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0109",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1385.40"
+      },
+      "value": "20.10",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0109",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "0.65"
+      },
+      "value": "20.30",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0109",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1397.90"
+      },
+      "value": "20.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0110",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1410.60"
+      },
+      "value": "20.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0110",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1449.20"
+      },
+      "value": "20.90",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0111",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1526.40"
+      },
+      "value": "21.20",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0111",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1539.30"
+      },
+      "value": "21.20",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0112",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1577.40"
+      },
+      "value": "21.80",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0112",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1590.10"
+      },
+      "value": "21.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0112",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1603.10"
+      },
+      "value": "21.20",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0113",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1628.70"
+      },
+      "value": "21.20",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0113",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1641.40"
+      },
+      "value": "20.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0113",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1654.10"
+      },
+      "value": "19.50",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0113",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1679.80"
+      },
+      "value": "19.00",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0113",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1692.70"
+      },
+      "value": "19.00",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0114",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1718.50"
+      },
+      "value": "17.80",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0115",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "1795.30"
+      },
+      "value": "17.80",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0115",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "141.30"
+      },
+      "value": "0.23",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0115",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "17.80"
+      },
+      "value": "0.49",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0116",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_ft": "17.80"
+      },
+      "value": "1.40",
+      "source": "nl_tnt-gt-02_eowr#t026"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0117",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2384.40"
+      },
+      "value": "44.70",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0117",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2397.60"
+      },
+      "value": "45.30",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0117",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2410.30"
+      },
+      "value": "45.80",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0117",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2423.10"
+      },
+      "value": "45.80",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0117",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2436.20"
+      },
+      "value": "45.70",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0118",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2449.00"
+      },
+      "value": "45.70",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0118",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2461.80"
+      },
+      "value": "46.30",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0118",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2474.40"
+      },
+      "value": "46.20",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0118",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2487.30"
+      },
+      "value": "46.10",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0119",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2500.10"
+      },
+      "value": "46.50",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0119",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2513.00"
+      },
+      "value": "46.60",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0119",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2525.80"
+      },
+      "value": "46.50",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0119",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2538.50"
+      },
+      "value": "46.50",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0120",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2551.20"
+      },
+      "value": "46.70",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0121",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2615.40"
+      },
+      "value": "46.30",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0121",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2628.00"
+      },
+      "value": "46.10",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0121",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2640.90"
+      },
+      "value": "46.00",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0121",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2653.80"
+      },
+      "value": "45.30",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0122",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2666.70"
+      },
+      "value": "45.20",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0122",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "2679.20"
+      },
+      "value": "45.10",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0122",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "412.50"
+      },
+      "value": "0.00",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0123",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "-160.13"
+      },
+      "value": "12.70",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "nl_tnt-gt-02_eowr#c0123",
+      "well": "TNT-GT-02",
+      "property": "inclination",
+      "qualifier": "actual",
+      "context": {
+        "depth_m": "147.33"
+      },
+      "value": "22.90",
+      "source": "nl_tnt-gt-02_eowr#t027"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0017",
+      "well": "58-32",
+      "property": "drilling_contractor",
+      "qualifier": "actual",
+      "context": null,
+      "value": "Kenai",
+      "source": "gdr1006_58-32_eowr#t008"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0017",
+      "well": "58-32",
+      "property": "rig",
+      "qualifier": "actual",
+      "context": null,
+      "value": "Rig-10",
+      "source": "gdr1006_58-32_eowr#t008"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "20"
+      },
+      "value": "83.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "337.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2172",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "7374",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "20"
+      },
+      "value": "A53B",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "54.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "N-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "40",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "L-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "29",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "L-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "nl_hek-gt-02_eowr#c0009",
+      "well": "HEK-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "20"
+      },
+      "value": "84",
+      "source": "nl_hek-gt-02_eowr#t002",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hek-gt-02_eowr#c0009",
+      "well": "HEK-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "1424",
+      "source": "nl_hek-gt-02_eowr#t002",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hek-gt-02_eowr#c0009",
+      "well": "HEK-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2659",
+      "source": "nl_hek-gt-02_eowr#t002",
+      "unit": "m"
+    },
+    {
+      "chunk": "nl_hek-gt-02_eowr#c0010",
+      "well": "HEK-GT-02",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "6-5/8"
+      },
+      "value": "2954",
+      "source": "nl_hek-gt-02_eowr#t002",
+      "unit": "m"
+    }
+  ]
+}

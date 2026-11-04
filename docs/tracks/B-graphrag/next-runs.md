@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 5 November 2026: **E23 to E28 are done.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
+Status on 5 November 2026: **E23 to E29 are done.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -62,6 +62,24 @@ python -m graphrag.events answer --questions ak3_events_heldout --endpoint local
 ```
 
 Next on our side, when the work resumes: let code report the event graph's result directly, since the model garbles some right results (computed 22/23, not run), and load the graph into Neo4j with Track C.
+
+## E29: table mappings across reports (done)
+
+Held-out casing 4/16 as written, 13/16 with no wrong fact after fixes. See the [record](../../experiments/E29-table-mappings-across-reports.md).
+
+```powershell
+python -m graph_builder.ingestion run --sources configs/sources/gdr_e29_unseen.json --config configs/ingestion/default.json --run-name e29_all
+python -m graphrag.tables --run e29_all --name my_tables
+python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
+python -m graphrag.table_eval --facts my_tables my_tables_78-32 --runs e29_all e25_78-32 --name my_score
+```
+
+The registry's local PDFs come from each entry's `source_url` (58-32: the attachment `58-32_EOWR_DOE.pdf` of the binder), saved as `data/raw/<doc_id>.pdf`; the SHA256 in the registry checks them.
+
+Worth doing when the work resumes:
+
+- A different author's modern digital report, the real remaining test for the mappings (B-F54).
+- The event graph on 58-32's `DailyDrillingReport.pdf`, also in that binder, as its first unseen report.
 
 ## Waiting on
 

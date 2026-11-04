@@ -1,0 +1,109 @@
+{
+  "facts": [
+    "E29_tables_fixed",
+    "E29_tables_78-32"
+  ],
+  "reports": {
+    "nl_tnt-gt-01_eowr": {
+      "role": "dev",
+      "casing": {
+        "strings": 3,
+        "right": 3,
+        "wrong_facts": [
+          "{'casing_size_in': '13-3/8'} = 135 m"
+        ]
+      },
+      "wells": [
+        "TNT-GT-01"
+      ],
+      "facts": 43,
+      "survey": {
+        "rows": 210,
+        "right": 33,
+        "wrong_facts": 4
+      }
+    },
+    "nl_tnt-gt-02_eowr": {
+      "role": "held out, same template as dev",
+      "casing": {
+        "strings": 3,
+        "right": 3,
+        "wrong_facts": []
+      },
+      "wells": [
+        "TNT-GT-02"
+      ],
+      "facts": 125,
+      "survey": {
+        "rows": 198,
+        "right": 99,
+        "wrong_facts": 20
+      }
+    },
+    "nl_hon-gt-01-s2_eowr": {
+      "role": "held out, same consultant",
+      "casing": {
+        "strings": 3,
+        "right": 3,
+        "wrong_facts": [
+          "{'casing_size_in': '5'} = 2354 m"
+        ]
+      },
+      "wells": [
+        "HON-GT-01-S2"
+      ],
+      "facts": 4
+    },
+    "nl_hek-gt-02_eowr": {
+      "role": "held out, same consultant",
+      "casing": {
+        "strings": 4,
+        "right": 4,
+        "wrong_facts": []
+      },
+      "wells": [
+        "HEK-GT-02"
+      ],
+      "facts": 4
+    },
+    "gdr1006_58-32_eowr": {
+      "role": "held out, GRG layout",
+      "casing": {
+        "strings": 4,
+        "right": 4,
+        "wrong_facts": []
+      },
+      "wells": [
+        "58-32"
+      ],
+      "facts": 13
+    },
+    "osti_rrge-3_completion": {
+      "role": "held out, different author, scanned 1976",
+      "casing": {
+        "strings": 2,
+        "right": 0,
+        "wrong_facts": []
+      },
+      "wells": [],
+      "facts": 0
+    },
+    "gdr1153_78-32_eowr": {
+      "role": "E25's report, regression",
+      "casing": {
+        "strings": 3,
+        "right": 3,
+        "wrong_facts": []
+      },
+      "wells": [
+        "78-32"
+      ],
+      "facts": 28,
+      "survey": {
+        "rows": 20,
+        "right": 20,
+        "wrong_facts": 0
+      }
+    }
+  }
+}

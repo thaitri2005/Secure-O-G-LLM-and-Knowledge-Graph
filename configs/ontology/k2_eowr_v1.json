@@ -1,7 +1,7 @@
 {
   "k2": "eowr",
-  "version": "1.1",
-  "date": "2026-11-04",
+  "version": "1.2",
+  "date": "2026-11-05",
   "status": "Thin slice for end-of-well reports (D-49). Authored by Track B from the section headings and table columns of the three K1 version 0 end-of-well reports (AK-3, 56-32, 68-32) and the prototype's 14 properties (prototype/profiles/oil_wells.json, unchanged). The glossary is generated from the reports' abbreviation and unit tables by `python -m graphrag.ontology glossary`. Not reviewed by a domain expert.",
   "sources": {
     "headings": [
@@ -1474,9 +1474,12 @@
         ],
         "value": "inclination|inc",
         "context": {
-          "depth_ft": "depth"
+          "depth_ft": "depth|md"
         },
-        "qualifier": "actual"
+        "qualifier": "actual",
+        "number_cells": true,
+        "max_value": 100,
+        "max_step": 10
       },
       {
         "property": "projected_formation_temperature",
@@ -1541,6 +1544,19 @@
       "drilling rig": "rig",
       "drilling contractor (pm)": "drilling_contractor",
       "drilling contractor": "drilling_contractor"
+    },
+    "casing_items": {
+      "note": "Casing strings named in an item column (E29). `depth` lists column words in order of preference.",
+      "item": "item",
+      "depth": [
+        "bottom",
+        "mdrt",
+        "mdbrt",
+        "md"
+      ],
+      "strings": "\\b(casing|liner|conductor|stove ?pipe)\\b",
+      "exclude": "\\b(hanger|shoe|hole|top|tally)\\b",
+      "not_depth": "toc|cement|slurry"
     }
   }
 }

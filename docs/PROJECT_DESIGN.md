@@ -472,7 +472,7 @@ flowchart LR
 | Contract | From → to | Content | Version 0 (exists today) |
 |---|---|---|---|
 | **K1 Chunk package** | A → B, C | Per document: the file record (`file_id`, name, document type, page count); pages (`file_id:p<n>`, parser and model); tables (`file_id:t<n>`, page span, header, cells); parent and child chunks (§5.11 IDs, text, pages, table ID and row range) | AK-3 chunks from the current corpus pipeline (`data/processed/gdr_chunks_full.jsonl`, [`corpus_chunk.schema.json`](../schemas/corpus_chunk.schema.json)), converted to K1 IDs |
-| **K2 Ontology slice** | B (its own input) | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | Version 1.1: [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), with table mappings; started from [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) |
+| **K2 Ontology slice** | B (its own input) | Entity and relation types with definitions, properties with units, document sections they apply to, short examples, glossary entries | Version 1.2: [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), with table mappings checked on unseen reports ([E29](experiments/E29-table-mappings-across-reports.md)); started from [`prototype/profiles/oil_wells.json`](../prototype/profiles/oil_wells.json) |
 | **K3 Question set** | Specialists → B | Question, gold answer, file and page | Until the drilling expert group's set arrives (Q2), development only: the prototype's 31 questions ([`prototype/gold/questions.json`](../prototype/gold/questions.json), `ak3_facts.json`) and labelled simulated sets in `graphrag/gold/` (Track B log B-D22), never reported as expert validation |
 | **K4 Answer record** | B → C | Question ID, answer, cited child chunk IDs, base pipeline, models and versions, calls, tokens, cost | Version 0.1: [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), written by `graphrag/k4.py`; current files from the D-50 baseline ([E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md)) |
 | **K5 Table gold** | A (its own input) | One CSV per labelled table, with file and page span | [`data/gold/ingestion/tables/`](../data/gold/ingestion/tables/) (10 tables) and page annotations in [`data/gold/ingestion/pages/`](../data/gold/ingestion/pages/); extended only if A needs it |
@@ -975,6 +975,7 @@ The totals-over-time questions were chosen to suit the event graph ([E28](experi
 **Known gaps:**
 
 - comparison questions across end-of-well reports (0/5, [E26](experiments/E26-routing-and-strict-facts.md));
+- table mappings: casing works on the layouts tried (13/16 on unseen reports with no wrong fact), surveys are unreliable, and a different author's modern report is untested ([E29](experiments/E29-table-mappings-across-reports.md));
 - the event graph covers AK-3's daily reports only, in memory and not in Neo4j, and the final model step sometimes garbles a right result ([E28](experiments/E28-event-graph.md));
 - daily-report form headers and form tables, which need K1 version 1 ([note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md));
 - steps 1 and 3 to 5 of §8.1 are not built;

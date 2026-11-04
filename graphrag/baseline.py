@@ -68,7 +68,8 @@ def render(fact: dict) -> str:
     """One extracted fact (graphrag.neo4j_kg) as a line under its passage in the answer prompt."""
     qualifier = "" if fact["qualifier"] in ("actual", "none") else f" ({fact['qualifier']})"
     context = "".join(f" at {k} {v}" for k, v in (fact["context"] or {}).items())
-    return f"{fact['well'] or 'unnamed well'} {fact['property']}{qualifier}{context} = {fact['value']}"
+    unit = f" {fact['unit']}" if fact.get("unit") else ""
+    return f"{fact['well'] or 'unnamed well'} {fact['property']}{qualifier}{context} = {fact['value']}{unit}"
 
 
 def pool(name: str):

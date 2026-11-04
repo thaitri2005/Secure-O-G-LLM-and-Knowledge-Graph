@@ -26,7 +26,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Hung](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
 | Next | Waiting on the expert question set, the supervisor's view on the event graph, K1 version 1 from Track A, and the vector store and Neo4j loading with Track C | B-D24, B-D25, B-D26, [next-runs](next-runs.md) |
-| Ontology (K2) | Version 1.1: adds `rig`, `drilling_contractor`, and casing-spec and key-value mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)) | B-D17, E27 |
+| Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
 | Vector store | Open; decided with Track C after the base | — |
@@ -630,4 +630,18 @@ The PDFs are not kept in the repository, because of their copyright terms.
 - *Why:* a wide margin on two question sets, no LLM call to build, and no harm to lookups. It also fits the supervisor's GraphRAG direction.
 - *Cost accepted:* 2 LLM calls per question and about 900 more prompt tokens.
 - *Limit:* the questions were chosen to suit it, and it covers one well and one report system. **Whether users ask such questions is for the supervisor and the expert set.** B-D24 stands for the per-well fact graph.
+
+**E29 (experiment).** Table mappings across reports from other authors: [E29](../../experiments/E29-table-mappings-across-reports.md). Fixes from one report, tested on the others. Held-out casing strings: 4/16 as written, 14/16 after fixes (1 wrong fact), **13/16 after validation (0 wrong facts)**. Survey rows on the held-out report: 81 of 198 after validation, 7 wrong.
+
+**B-F50 (finding; from E29).** As written, the mappings found nothing outside GRG's layout, though they stated nothing false. The causes were general: well names with several parts, an `Item` column, Unicode fractions, and a depth column named `MD`.
+
+**B-F51 (finding; from E29).** Metre depths would have been labelled as feet. Facts now carry `unit`, and metre surveys use `depth_m`.
+
+**B-F52 (finding; from E29).** The strict validator (B-C21) discarded right facts, because it looked for `13-3/8` in text saying `13 ⅜"`. The raw score looked good while almost nothing reached the model. Table results must be scored after validation as well.
+
+**B-F53 (finding; from E29).** Surveys from these reports are not reliable: half the rows at best, and 8% of validated rows wrong on the held-out report, because the parser merges dense tables. Scanned reports are out of reach: Raft River comes out column by column. Both are for Track A.
+
+**B-F54 (finding; from E29).** There is still no evidence on a different author's modern digital report. Three of the five held-out reports share a consultant with the dev report, and the one different author is a scanned 1976 report, which fails.
+
+**B-C25 (design choice).** `graphrag/table_eval.py` scores table facts against independent gold, raw and after strict validation. K2 version 1.2: `casing_items`, `number_cells`, `max_step`, and `depth|md`. `WELL_NAME` reads names with several parts (`TNT-GT-01`, `HON-GT-01-S2`). Well names on the original three reports are unchanged, and those reports lose only 4 junk facts.
 

@@ -117,7 +117,7 @@ class Fusion:
 
 
 # Well names as reports write them: AK-3, TG-2, 56-32, 68-32. The lookarounds skip casing sizes such as 4-1/2.
-WELL_NAME = re.compile(r"(?<![\w/.-])(?:[A-Z]{1,4}-\d{1,3}[A-Z]?|\d{1,3}-\d{1,3})(?![\w/.-])")
+WELL_NAME = re.compile(r"(?<![\w/.-])(?:[A-Z]{2,4}-[A-Z]{2,3}-\d{1,3}(?:-S\d{1,2})?|[A-Z]{1,4}-\d{1,3}[A-Z]?|\d{1,3}-\d{1,3})(?![\w/.-])")
 
 
 def well_names(text: str) -> set[str]:

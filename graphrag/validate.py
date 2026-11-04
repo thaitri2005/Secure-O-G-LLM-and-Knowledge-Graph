@@ -48,6 +48,21 @@ def casing_size(text: str) -> float | None:
     return size if 2.375 <= size <= 36 else None
 
 
+FRACTION_SYMBOLS = {"1/4": "¼", "1/2": "½", "3/4": "¾", "1/8": "⅛", "3/8": "⅜", "5/8": "⅝", "7/8": "⅞"}
+
+
+def size_forms(size: str) -> list[str]:
+    """The ways a report may write a size: 13-3/8, 13 3/8, 13 ⅜, 13⅜."""
+    forms = [size]
+    if "-" in size:
+        whole, fraction = size.split("-", 1)
+        forms += [f"{whole} {fraction}"]
+        if fraction in FRACTION_SYMBOLS:
+            symbol = FRACTION_SYMBOLS[fraction]
+            forms += [f"{whole} {symbol}", f"{whole}{symbol}", f"{whole}-{symbol}"]
+    return forms
+
+
 def context_problem(fact: dict, text: str) -> str | None:
     """Why a fact's context cannot be trusted, or None."""
     for key, value in (fact.get("context") or {}).items():
@@ -57,9 +72,10 @@ def context_problem(fact: dict, text: str) -> str | None:
                 return "context is not a casing size"
             if re.fullmatch(r"\d+(\.\d+)?", str(fact["value"])) and float(fact["value"]) == size:
                 return "value repeats its casing size"
-            if not written_in(str(value).strip().rstrip('"').removesuffix("in.").strip(), text):
+            plain = str(value).strip().rstrip('"').removesuffix("in.").strip()
+            if not any(written_in(form, text) for form in size_forms(plain)):
                 return "context not in its chunk"
-        elif key == "depth_ft" and not written_in(value, text):
+        elif key in ("depth_ft", "depth_m") and not written_in(value, text):
             return "context not in its chunk"
     return None
 

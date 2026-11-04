@@ -481,6 +481,88 @@ class DateRouterTests(unittest.TestCase):
         self.assertEqual({c for c, _ in router.search("AK-3 mud", 9)}, everything)
 
 
+class UnseenReportMappingTests(unittest.TestCase):
+    def extract(self, cells, text="Well TNT-GT-01 report"):
+        from graphrag.data import Chunk
+        from graphrag.ontology import load
+        from graphrag.tables import extract
+
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "tables.jsonl"
+            cell_list = [{"r": r, "c": c, "text": t} for r, row in enumerate(cells) for c, t in enumerate(row)]
+            path.write_text(json.dumps({"table_id": "d#t1", "doc_id": "d", "cells": cell_list}), encoding="utf-8")
+            chunk = Chunk("d#c1", "d", 1, "table", None, text, "d#t1", 0, len(cells))
+            return extract([chunk], load(), path)
+
+    def test_well_names_with_several_parts(self):
+        from graphrag.retrieval import well_names
+
+        self.assertEqual(well_names("Well TNT-GT-01 and HON-GT-01-S2, AK-3 and 56-32, J-55"), {"TNT-GT-01", "HON-GT-01-S2", "AK-3", "56-32", "J-55"})
+
+    def test_sizes_in_one_form(self):
+        from graphrag.tables import casing_size_text
+
+        self.assertEqual(casing_size_text('13 ⅜" Casing'), "13-3/8")
+        self.assertEqual(casing_size_text("13 3/8 casing"), "13-3/8")
+        self.assertEqual(casing_size_text('9-⅝"'), "9-5/8")
+        self.assertEqual(casing_size_text('24" Conductor'), "24")
+
+    def test_item_tables_take_the_deepest_bottom_and_label_metres(self):
+        facts = self.extract([["Item", "Top (m MDRT)", "Bottom (m MDRT)", "Weight", "Grade"],
+                              ['13 ⅜" Casing', "0", "1275", "68 ppf", "K55"],
+                              ['9 ⅝" mixed string liner', "1218", "2383", "51.9 ppf", "L80"],
+                              ["2393", "2821", "47 ppf", "13Cr L80"],
+                              ["2821", "2857", "47 ppf", "L80"],
+                              ['8 ½" Hole', "0", "3000", "", ""]])
+        got = {f["context"]["casing_size_in"]: (f["value"], f["unit"]) for f in facts if f["property"] == "casing_depth"}
+        self.assertEqual(got, {"13-3/8": ("1275", "m"), "9-5/8": ("2857", "m")})
+        self.assertEqual({f["well"] for f in facts}, {"TNT-GT-01"})
+
+    def test_item_tables_in_feet_have_no_unit_label(self):
+        facts = self.extract([["Item", "MD", "Comments"], ['7" Liner', "4,000", "ok"]], "Well AK-3")
+        self.assertEqual([(f["value"], f.get("unit")) for f in facts], [("4000", None)])
+
+    def test_merged_survey_rows_split_only_when_they_pair_up(self):
+        from graphrag.tables import paired_numbers
+
+        self.assertEqual(paired_numbers("114.20 125.50", "0.20 0.10"), [("114.20", "0.20"), ("125.50", "0.10")])
+        self.assertEqual(paired_numbers("1834.10 1847.20", "30.30"), [])
+        self.assertEqual(paired_numbers("m", "° 30.20"), [])
+        self.assertEqual(paired_numbers("1,100", "1"), [("1100", "1")])
+
+    def test_metre_surveys_are_labelled(self):
+        facts = self.extract([["MD", "Inc", "Azi"], ["m", "°", "°"], ["114.20 125.50", "0.20 0.10", "301 327"], ["bad", "1.0", "2"]])
+        self.assertEqual([(f["context"], f["value"]) for f in facts],
+                         [({"depth_m": "114.20"}, "0.20"), ({"depth_m": "125.50"}, "0.10")])
+
+
+class SecondRoundMappingTests(unittest.TestCase):
+    def test_unit_row_merged_into_data_still_means_metres(self):
+        facts = UnseenReportMappingTests().extract([["MD", "Inc"], ["m", "° 30.20"], ["1834.10", "30.30"], ["1847.20", "30.40"]])
+        self.assertEqual([f["context"] for f in facts], [{"depth_m": "1834.10"}, {"depth_m": "1847.20"}])
+
+    def test_shifted_columns_are_dropped(self):
+        from graphrag.tables import steady_readings
+
+        readings = [(i, str(1800 + 10 * i), "30.0") for i in range(8)] + [(8, "1880", "1.46"), (9, "32.30", "30.1")]
+        kept = steady_readings(readings, 10)
+        self.assertEqual(len(kept), 8)
+        self.assertNotIn("1.46", [r[2] for r in kept])
+        self.assertNotIn("32.30", [r[1] for r in kept])
+
+    def test_cement_tables_give_no_casing_depth(self):
+        facts = UnseenReportMappingTests().extract([["Item", "TOC (m MDRT)", "Lead Slurry Volume"], ['13 ⅜" Casing', "135", "97"]])
+        self.assertEqual(facts, [])
+
+    def test_strict_check_reads_every_way_of_writing_a_size(self):
+        from graphrag.validate import size_forms, validate, written_in
+
+        self.assertTrue(any(written_in(f, '13 ⅜" Casing') for f in size_forms("13-3/8")))
+        fact = {"chunk": "d#c1", "well": "TNT-GT-01", "property": "casing_depth", "qualifier": "actual",
+                "context": {"casing_size_in": "13-3/8"}, "value": "1275", "unit": "m"}
+        self.assertEqual(len(validate([fact], {"d#c1": 'Well TNT-GT-01: 13 ⅜" Casing at 1275'}, strict=True)[0]), 1)
+
+
 class StrictFactTests(unittest.TestCase):
     def fact(self, size, value="978"):
         return {"chunk": "d#c1", "well": "68-32", "property": "casing_depth", "qualifier": "actual",

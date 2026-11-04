@@ -1,0 +1,154 @@
+{
+  "pool": "three",
+  "run": "e29_all",
+  "method": "K2 table mappings, no model call",
+  "llm_calls": 0,
+  "facts_by_property": {
+    "drilling_contractor": 1,
+    "rig": 1,
+    "casing_depth": 4,
+    "casing_grade": 4,
+    "casing_weight": 3
+  },
+  "facts": [
+    {
+      "chunk": "gdr1006_58-32_eowr#c0017",
+      "well": "58-32",
+      "property": "drilling_contractor",
+      "qualifier": "actual",
+      "context": null,
+      "value": "Kenai",
+      "source": "gdr1006_58-32_eowr#t008"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0017",
+      "well": "58-32",
+      "property": "rig",
+      "qualifier": "actual",
+      "context": null,
+      "value": "Rig-10",
+      "source": "gdr1006_58-32_eowr#t008"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "20"
+      },
+      "value": "83.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "337.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "2172",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_depth",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "7374",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "20"
+      },
+      "value": "A53B",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "54.5",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "13-3/8"
+      },
+      "value": "N-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "40",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "9-5/8"
+      },
+      "value": "L-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_weight",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "29",
+      "source": "gdr1006_58-32_eowr#t009"
+    },
+    {
+      "chunk": "gdr1006_58-32_eowr#c0023",
+      "well": "58-32",
+      "property": "casing_grade",
+      "qualifier": "actual",
+      "context": {
+        "casing_size_in": "7"
+      },
+      "value": "L-80",
+      "source": "gdr1006_58-32_eowr#t009"
+    }
+  ]
+}

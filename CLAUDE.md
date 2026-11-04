@@ -57,6 +57,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `ontology.py` | K2: glossary generated from the reports' tables; rendering as extractor guidance |
   | `validate.py` | Checks extracted facts before they reach an answer (value in chunk, one well, no zeros, no contradictions; `strict` also checks their context) |
   | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call |
+  | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
   | `events.py` | Event graph from operations tables, with no model call: the model plans, code runs the plan (E28) |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
@@ -86,6 +87,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E27](docs/experiments/E27-date-filter-and-coverage.md) | **26 new daily-report questions**: no filter / **date filter** / top 10, evidence first | 7/26 / **14/26** (2 wrong) / 17/26 (6 wrong) |
 
   | [E28](docs/experiments/E28-event-graph.md) | **Daily reports, totals over time, chosen to suit the graph**: **event graph** / best plain RAG. Frozen 35; then new 23 | **22/35** / 5/35; **19/23** / 4/23 |
+  | [E29](docs/experiments/E29-table-mappings-across-reports.md) | K2 table mappings on held-out reports from other authors: casing as written / after fixes and validation | 4/16 / **13/16**, no wrong fact; surveys unreliable |
 
   The shape of the graph has to match the questions (B-F47). The per-well fact graph does not beat plain RAG on new questions (B-F30, B-D24); a graph of events does on totals over time (B-D26). Scrambled form headers remain for Track A (B-F36).
 
@@ -98,10 +100,10 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E28 are done. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
-4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on an unseen report (E25). More fact-graph coverage stopped (B-D24).
+4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). More fact-graph coverage stopped (B-D24).
 5. Choose the vector store with Khai (Track C); it no longer has to wait for a base.
 
 ## Setting up a machine for Track B runs

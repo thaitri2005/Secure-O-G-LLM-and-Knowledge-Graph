@@ -18,7 +18,7 @@ BSEE provides authoritative identifiers and attributes: identity, reference data
 2. One AK-3 daily report.
 3. 5–10 documents: the other AK-3 daily reports, the Utah FORGE end-of-well reports, and public oil-and-gas reports when found.
 
-In use by Track B on 4 November 2026: the AK-3, 56-32 and 68-32 end-of-well reports; the four AK-3 daily-report attachments ([E24](experiments/E24-ak3-daily-reports.md)); and Utah FORGE 78-32, as an unseen report for the table mappings ([E25](experiments/E25-table-mappings-unseen-report.md), registry `configs/sources/gdr_e25_78-32.json`).
+In use by Track B on 4 November 2026: the AK-3, 56-32 and 68-32 end-of-well reports; the four AK-3 daily-report attachments ([E24](experiments/E24-ak3-daily-reports.md)); and unseen reports for the table mappings: Utah FORGE 78-32 ([E25](experiments/E25-table-mappings-unseen-report.md)), and 58-32, 16A(78)-32, the Dutch geothermal wells TNT-GT-01, TNT-GT-02, HON-GT-01-S2 and HEK-GT-02, and Raft River RRGE-3 ([E29](experiments/E29-table-mappings-across-reports.md), registry `configs/sources/gdr_e29_unseen.json`). The Dutch reports are public on NLOG and geothermie.nl, but their licence terms were not checked: development only, not redistributed.
 
 Freeze a held-out document split before tuning. The supervisor's drilling expert group is preparing the evaluation question set (Q2).
 

@@ -41,7 +41,8 @@ flowchart TD
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
 | `baseline.py` | Command line for retrieval and answer runs; it writes `graphrag/results/<name>.json`. `--facts` adds a graph's extracted facts under each passage; `--withhold-unsupported` drops answers without a supported citation |
 | `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages; `--strict-facts` also checks their context (E26) |
-| `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22): `python -m graphrag.tables --pool three --name my_tables` |
+| `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22, E29): `python -m graphrag.tables --pool three --name my_tables` |
+| `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
 | `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |

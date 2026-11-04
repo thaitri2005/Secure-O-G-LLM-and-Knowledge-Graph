@@ -1,0 +1,94 @@
+[
+  {
+    "doc_id": "nl_hon-gt-01-s2_eowr",
+    "title": "Dutch geothermal well HON-GT-01-S2 End of Well Report",
+    "well": "HON-GT-01-S2",
+    "license": {
+      "id": "public-unverified",
+      "url": "https://www.nlog.nl/en/data"
+    },
+    "sha256": "3066af38d7caa2f61b9e75afe2475e2767e4052c6d65cf88d5dc149bef7dfb4f",
+    "bytes": 1357341,
+    "source_url": "https://geothermie.nl/images/Onderzoeken-en-rapporten/31_07_15_Verstoppingen/E15014_appx_4.1_GWW_HON-GT-01-S2__EOWR_v1.0.pdf",
+    "path": "../../data/raw/nl_hon-gt-01-s2_eowr.pdf"
+  },
+  {
+    "doc_id": "nl_tnt-gt-01_eowr",
+    "title": "Dutch geothermal well TNT-GT-01 End of Well Report",
+    "well": "TNT-GT-01",
+    "license": {
+      "id": "public-unverified",
+      "url": "https://www.nlog.nl/en/data"
+    },
+    "sha256": "30216ee1073ba4e26961d60b3936eba02c27633c495f01bb11954c93d1eb9481",
+    "bytes": 2821288,
+    "source_url": "https://www.nlog.nl/sites/default/files/2021-08/200721_bijlage_vi_-_extern_eowr_-_tnt-gt-01_v1.0.pdf",
+    "path": "../../data/raw/nl_tnt-gt-01_eowr.pdf"
+  },
+  {
+    "doc_id": "nl_tnt-gt-02_eowr",
+    "title": "Dutch geothermal well TNT-GT-02 End of Well Report",
+    "well": "TNT-GT-02",
+    "license": {
+      "id": "public-unverified",
+      "url": "https://www.nlog.nl/en/data"
+    },
+    "sha256": "cce5a6ecf2949d67a7dd1e08b1fc68cbe4e1669990f642bc6d6811403f3f90fe",
+    "bytes": 3958587,
+    "source_url": "https://www.nlog.nl/sites/default/files/2021-08/200721_bijlage_vii_-_extern_eowr_-_tnt-gt-02_v1.0.pdf",
+    "path": "../../data/raw/nl_tnt-gt-02_eowr.pdf"
+  },
+  {
+    "doc_id": "gdr1006_58-32_eowr",
+    "title": "Utah FORGE deep well 58-32 End of Well Report (attachment 58-32_EOWR_DOE.pdf of the binder)",
+    "well": "58-32",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "73a7ce87e7dbed66bc2b38caacbe50b111a39d5c0c78c7be8c745ba1c1d60a49",
+    "bytes": 4117360,
+    "source_url": "https://gdr.openei.org/files/1006/58-32_EOWR_DOE_22Feb_BinderComplete%20(1).pdf",
+    "path": "../../data/raw/gdr1006_58-32_eowr.pdf"
+  },
+  {
+    "doc_id": "gdr1296_16a78-32_drilling_summary",
+    "title": "Utah FORGE Well 16A(78)-32 Drilling Summary",
+    "well": "16A(78)-32",
+    "gdr_submission": 1296,
+    "url": "https://gdr.openei.org/files/1296/Drilling%20Summary%20Well%2016A(78)-32.pdf",
+    "landing_page": "https://gdr.openei.org/submissions/1296",
+    "license": {
+      "id": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "sha256": "2b1886f8fceb8c83cbbb524bc27beaeb2e832116b4496bdf53cfa26bc65cdceb",
+    "bytes": 10992572
+  },
+  {
+    "doc_id": "nl_hek-gt-02_eowr",
+    "title": "Dutch geothermal well HEK-GT-02 End of Well Report",
+    "well": "HEK-GT-02",
+    "source_url": "https://www.nlog.nl/brh-web/rest/brh/document/1592204230",
+    "path": "../../data/raw/nl_hek-gt-02_eowr.pdf",
+    "license": {
+      "id": "public-unverified",
+      "url": "https://www.nlog.nl/en/data"
+    },
+    "sha256": "752883152b7247d9b38db41c2e02c69903cbb59c78472ee1f56756f93b592f2e",
+    "bytes": 723189
+  },
+  {
+    "doc_id": "osti_rrge-3_completion",
+    "title": "Raft River RRGE-3 geothermal well completion report",
+    "well": "RRGE-3",
+    "source_url": "https://www.osti.gov/servlets/purl/7287357",
+    "path": "../../data/raw/osti_rrge-3_completion.pdf",
+    "license": {
+      "id": "public-domain-us-government-report",
+      "url": "https://www.osti.gov/"
+    },
+    "sha256": "0973ac82e13e82ed6ee8a138c553db14a89b326c3480f1755ac5bafae49a6dd4",
+    "bytes": 3619130
+  }
+]
