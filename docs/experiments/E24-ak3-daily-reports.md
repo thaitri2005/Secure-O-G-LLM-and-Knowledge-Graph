@@ -60,7 +60,7 @@ Cost per question, with cost in dollars 0 because the runs are local:
 
 **Parsing sets the ceiling.** With the right page, 11 of the 27 gold questions still fail, and the 9 listed below trace to parsing.
 
-## For Track A (Hung): parsing failures
+## For Track A (Khai): parsing failures
 
 The PDFs have a good text layer (0 OCR pages), so all of this is about layout and reading order. Examples are from `gdr882-ak3-appx-30` unless noted.
 

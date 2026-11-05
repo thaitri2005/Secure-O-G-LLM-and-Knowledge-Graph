@@ -25,7 +25,7 @@ Not on this set: 29/40 for both with top 5, and 31 and 30 with per-well retrieva
 
 ## E24: AK-3 daily reports (done)
 
-5/30 with plain RAG, 19/30 when the model is given the right page. See the [record](../../experiments/E24-ak3-daily-reports.md), which holds the list for Hung.
+5/30 with plain RAG, 19/30 when the model is given the right page. See the [record](../../experiments/E24-ak3-daily-reports.md), which holds the list for Khai.
 
 To regenerate the chunks on a new machine (`data/corpora/` is ignored by git):
 
@@ -86,8 +86,8 @@ Worth doing when the work resumes:
 | What | From whom | Then |
 |---|---|---|
 | The expert question set, or a specification for development questions, asked for in the [5 November update](supervisor-update-2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
-| K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Hung, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
-| Vector store | Khai, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
+| K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Khai, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
+| Vector store | Hung, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
 | Whether users ask questions over time (B-D26, Q3) | Supervisor and the expert group | Confirm or reverse the event graph |
 

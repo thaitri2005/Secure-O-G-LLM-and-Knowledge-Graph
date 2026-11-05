@@ -17,13 +17,13 @@ This file briefs any Claude session on any machine. Read it first, then the file
 3. Track logs in `docs/tracks/`, with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.
 
-## The team split (first stint, from 30 October 2026; redone every one to two weeks)
+## The team split (from 5 November 2026; redone every one to two weeks)
 
 | Track | Owner | Does |
 |---|---|---|
-| A. Ingestion and tables | Hung | Docling compared with document VLMs, multi-page tables, key-value forms, chunking; publishes K1 |
+| A. Ingestion and tables | Khai | Docling compared with document VLMs, multi-page tables, key-value forms, chunking; publishes K1 |
 | **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin K2, cited answers, cost per page; publishes K2, K4 |
-| C. Storage, IDs and the end-to-end run | Khai | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
+| C. Storage, IDs and the end-to-end run | Hung | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
 
 The tracks meet only through versioned files K1 to K5 (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
 
@@ -100,11 +100,11 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Hung ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Khai.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Khai ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Hung.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). More fact-graph coverage stopped (B-D24).
-5. Choose the vector store with Khai (Track C); it no longer has to wait for a base.
+5. Choose the vector store with Hung (Track C); it no longer has to wait for a base.
 
 ## Setting up a machine for Track B runs
 

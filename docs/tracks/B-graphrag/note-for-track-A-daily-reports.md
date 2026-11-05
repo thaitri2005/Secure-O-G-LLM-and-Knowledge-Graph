@@ -1,4 +1,4 @@
-# Note for Hung (Track A): what Track B needs for daily reports
+# Note for Khai (Track A): what Track B needs for daily reports
 
 From Tri, Track B, 4 November 2026. Full evidence: [E24](../../experiments/E24-ak3-daily-reports.md).
 
