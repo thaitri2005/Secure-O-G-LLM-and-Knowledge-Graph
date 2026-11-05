@@ -1,6 +1,6 @@
 # Note for Khai (Track A): what Track B needs for daily reports
 
-From Tri, Track B, 4 November 2026. Full evidence: [E24](../../experiments/E24-ak3-daily-reports.md).
+From Tri, Track B, 4 November 2026, updated 5 November. Full evidence: [E24](../../experiments/E24-ak3-daily-reports.md).
 
 We ran the current K1 version 0 pipeline on the four AK-3 daily-report attachments. These PDFs have a good text layer (0 OCR pages), so the problems below come from layout and reading order, not OCR.
 
@@ -46,6 +46,22 @@ Track B now works around priority 2 with a date filter ([E27](../../experiments/
 
 Table mappings on an unseen report ([E25](../../experiments/E25-table-mappings-unseen-report.md)) had a similar lesson: 78-32's forms come out as mixed grids too.
 
-Dense survey tables on other reports ([E29](../../experiments/E29-table-mappings-across-reports.md)): the parser merges neighbouring rows into one (`114.20 125.50` over `0.20 0.10`) and shifts columns, on TNT-GT-01 and TNT-GT-02. We get half the rows at best, and 8% of those are wrong. Scanned reports such as Raft River RRGE-3 come out column by column, with no rows to read. Both matter if the corpus grows.
+Key-value tables in end-of-well reports have the same need as priority 1: 78-32 has `Total Depth (ft): 3,280 ft.` on page 5 and `Casing Shoe MD (ft): 704.47` in t071 and t073, and our mappings do not read them. The parser's table header counts are also wrong on 56-32 and 68-32 (B-C17).
+
+Dense survey tables on other reports ([E29](../../experiments/E29-table-mappings-across-reports.md)): the parser merges neighbouring rows into one (`114.20 125.50` over `0.20 0.10`) and shifts columns, on TNT-GT-01 and TNT-GT-02. We get half the rows at best, and 8% of those are wrong. Scanned reports such as Raft River RRGE-3 come out column by column, with no rows to read. Both matter if the corpus grows. TNT-GT-02 page 29 and Raft River page 7 also fail the ingestion's page-coverage check, with output still produced.
+
+## What Track B's code reads from K1
+
+Track B's code reads these directly, so K1 version 1 should keep them or announce the change as a new version (specification §4.5):
+
+- **Chunk fields:** `chunk_id`, `doc_id`, `page`, `pages`, `type`, `section`, `text`, `table_id`, `row_start`, `row_end` (`graphrag/data.py`).
+- **Table rows:** the event graph (`graphrag/events.py`) and the table mappings (`graphrag/tables.py`).
+- **Text inside `doc_id`:** `dailyreport`, `-appx-23-` and `-appx-` find the daily reports and the non-productive-time report.
+
+## How far to trust these results
+
+- All questions are AI-written and not expert-reviewed, so they show failure types, not how much each fix is worth to users.
+- The supervisor has yet to confirm the event graph (B-D26). Priority 7 is cheap to keep either way, but do not build on it as settled.
+- We sampled pages and did not audit every table. The event graph's 161 rows are the exception: all match the PDFs' text layer.
 
 Tell us when K1 version 1 is ready, and Track B will rerun E24, E27 and E29.

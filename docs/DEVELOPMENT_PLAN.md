@@ -140,6 +140,12 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 **Goal.** Drilling-report pages become correct text, tables and chunks, each with a stable ID back to its file and page.
 
+**What Track B found (5 November).** Parsing sets the ceiling on daily reports: 9 of 27 gold questions fail even with the right page ([E24](experiments/E24-ak3-daily-reports.md)). The ordered list of needs is in the [note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md).
+
+- **Needed most:** form-header key-value pairs and a report date on every chunk. Track B's `page_dates` guess stands in for the date until K1 version 1.
+- **Keep working:** operations, mud and survey tables on the AK-3 daily reports. The event graph is built from the operations tables ([E28](experiments/E28-event-graph.md)), though the parser loses some `X` marks in their last column.
+- **Fails on other reports:** dense survey tables merge rows, and scanned reports come out column by column ([E29](experiments/E29-table-mappings-across-reports.md)). Forms on 68-32 and 78-32 come out as mixed grids ([E25](experiments/E25-table-mappings-unseen-report.md)).
+
 **Research questions.**
 
 1. Which document VLM of about 7B or smaller parses drilling-report tables better than Docling, and at what seconds and tokens per page?
@@ -149,7 +155,7 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 **Work.**
 
-1. **Baseline.** Run the current Docling pipeline on the AK-3 EOWR and the four AK-3 DDR attachments. Score its tables against the 10 existing gold tables (K5).
+1. **Baseline.** Track B has already run the current Docling pipeline on the four AK-3 DDR attachments: 0 OCR pages, no LLM calls, about 0.93 seconds per page (E24). Run it on the AK-3 EOWR if needed, and score its tables against the 10 existing gold tables (K5).
 2. **VLM comparison.** Run two or three VLMs from the spec §9 list through OpenRouter on the pages of the gold tables. Measure:
    - cell accuracy;
    - header and row correctness;
@@ -157,17 +163,19 @@ Each track below lists its goal, the questions it researches, its work, its chec
    - continuation joins;
    - seconds and tokens per page.
 
-   Pick one parser, or keep Docling.
-3. **Multi-page tables and key-value forms.** Join continued tables, record the page span, and flag uncertain joins.
-4. **Chunks.** Build parent/child chunks in the K1 format, with the spec §5.11 IDs from Track C's schema. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
+   Also run Track B's right-page check, `graphrag.oracle` (19/30 to beat, [command in the note](tracks/B-graphrag/note-for-track-A-daily-reports.md#how-to-check-your-output)). Pick one parser, or keep Docling.
+3. **Multi-page tables and key-value forms.** Join continued tables, record the page span, and flag uncertain joins. Join each form label to its value, on daily reports and on key-value tables in end-of-well reports (78-32).
+4. **Chunks.** Build parent/child chunks in the K1 format, with the spec §5.11 IDs from Track C's schema and a report date on every daily-report chunk. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
 
 **Exit.**
 
 - A parser choice with table scores against K5.
 - K1 version 1 for both documents.
+- Track B's reruns of E24, E27 and E29 on K1 version 1, with the operations tables still whole.
 
 **Starts from.**
 
+- The [note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md), with Track B's failure lists and known pipeline problems.
 - The corpus pipeline and its tests ([guide](components/corpus-ingestion.md), [E8](experiments/E8-ak3-appendices-corpus-run.md)).
 - Code stays in `src/graph_builder/`.
 - Compute: a laptop for Docling and OpenRouter for the VLMs.
@@ -250,23 +258,26 @@ The 31 development questions each name one well and are mostly single-fact looku
 
 **Goal.** Every piece the other two tracks produce is linked by one ID scheme, stored where spec §4.2 says, and runnable in one command.
 
+**What Track B found (5 November).** No third-party base was adopted (B-D21), so the stores serve Track B's own code: retrieval routed by well and date, and an in-memory event graph, which the supervisor has yet to confirm (D-53). The per-well fact graph is optional (D-51). What this asks of the stores, and which code depends on today's IDs, is in the [note to Track C](tracks/B-graphrag/note-for-track-C-storage.md).
+
 **Research questions.**
 
 1. How to write the §5.11 ID scheme so that every chunk, vector and answer resolves to its file and page, and so that rechunking never breaks old citations.
 2. How to lay out MinIO keys and PostgreSQL tables for files, pages, tables, chunks and runs.
-3. Which vector store to use: Neo4j's index, pgvector or Qdrant? Decide with Tri, based on what the chosen GraphRAG base supports.
-4. How do the candidate GraphRAG pipelines store their own data, and how do we keep our IDs through them?
+3. Which vector store to use: Neo4j's index, pgvector or Qdrant? Decide with Tri. BM25 alone serves one-well questions, embeddings are needed only for several wells, and retrieval filters by well and report date.
+4. How to load the event graph into Neo4j so that each event keeps its source chunks and E28's results stay the same?
 
 **Work.**
 
-1. **IDs and schemas.** Write the K1 and K4 schemas in `schemas/`, with validators, starting from the E12 evidence contract and the current chunk schemas. Convert the existing AK-3 chunks into K1 version 0 for Khai and Tri.
-2. **Stores.** Bring up MinIO, PostgreSQL, the vector store and Neo4j with Docker Compose, extending the prototype's compose file.
+1. **IDs and schemas.** Write the K1 schema in `schemas/`, with validators, starting from the E12 evidence contract and the current chunk schemas. K4 version 0.1 already exists from Track B; add a validator if needed. Agree with Tri how old chunk IDs map to the §5.11 IDs, because gold data and `graphrag/` depend on them. Convert the existing AK-3 chunks into K1 version 0 for Khai and Tri.
+2. **Stores.** Bring up MinIO, PostgreSQL, the vector store and Neo4j with Docker Compose, extending the prototype's compose file or Track B's (`configs/graphrag/docker-compose.yml`). Keep well and report date in the vector payload.
 3. **Loader and run log.**
    - Load K1 into the stores with its IDs.
    - Rebuild a page from its chunks to prove nothing is detached.
-   - Record each run's models, versions, calls, tokens and cost from K4.
-4. **Runner.** One command that runs Khai's parser and then Tri's engine on a document and loads the results.
-5. **Viewer.** A simple local page that shows a page image beside its chunks and the answers that cite them. Use Streamlit or plain HTML; it is a debugging tool first.
+   - Record each run's models, versions, calls, tokens and cost from K4, index-time cost from the run's result file, and the llama.cpp server settings (B-F19).
+   - Load the event graph into Neo4j, kept easy to leave out until the supervisor confirms it.
+4. **Runner.** One command that runs Khai's parser and then Tri's engine on a document and loads the results. It covers both of Track B's paths and writes K4.
+5. **Viewer.** A simple local page that shows a page image beside its chunks and the answers that cite them, and the source events of a computed total. Use Streamlit or plain HTML; it is a debugging tool first.
 
 **Exit.**
 
@@ -278,10 +289,11 @@ The 31 development questions each name one well and are mostly single-fact looku
 
 **Starts from.**
 
-- The E12 evidence contract and the existing chunk schemas.
-- The prototype's Neo4j compose file.
+- The [note to Track C](tracks/B-graphrag/note-for-track-C-storage.md).
+- The E12 evidence contract, the existing chunk schemas and K4 version 0.1.
+- The prototype's Neo4j compose file and Track B's.
 - New code in `platform/`.
-- Compute: a laptop.
+- Compute: a laptop for the stores and loader. Answers need a GPU or, on public data, OpenRouter (B-F16).
 
 ### M2: integration on the stores
 
