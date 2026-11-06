@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "k1_chunk.v0.schema.json",
+  "title": "K1 chunk, version 0",
+  "description": "One chunk row of the K1 chunk package, version 0: the fields Track B reads today (graphrag/data.py). Version 0 is today's corpus output; version 1 adds the spec 5.11 IDs, file and page records and report dates. Extra fields are allowed.",
+  "type": "object",
+  "required": ["chunk_id", "doc_id", "page", "type", "text", "section", "table_id", "row_start", "row_end"],
+  "properties": {
+    "chunk_id": {
+      "description": "Today's chunk ID: <doc_id>#c<4 digits>. Gold facts and K4 citations name these IDs.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*#c[0-9]{4}$"
+    },
+    "doc_id": {
+      "description": "The document the chunk comes from.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+    },
+    "page": {
+      "description": "First PDF page of the chunk, counted from 1.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "pages": {
+      "description": "Every PDF page the chunk covers. Only daily-report chunks carry it today.",
+      "type": "array",
+      "items": {"type": "integer", "minimum": 1},
+      "minItems": 1
+    },
+    "type": {
+      "description": "A text passage or a table part.",
+      "enum": ["text", "table"]
+    },
+    "text": {
+      "description": "The chunk's text, never empty.",
+      "type": "string",
+      "minLength": 1
+    },
+    "section": {
+      "description": "Heading the chunk sits under, or null when there is none.",
+      "type": ["string", "null"]
+    },
+    "table_id": {
+      "description": "Table the chunk belongs to: <doc_id>#t<3 digits>. Null for text chunks.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9][a-z0-9_-]*#t[0-9]{3}$"
+    },
+    "row_start": {
+      "description": "First table row in the chunk. Null for text chunks.",
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "row_end": {
+      "description": "Last table row in the chunk. Null for text chunks.",
+      "type": ["integer", "null"],
+      "minimum": 0
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"type": {"const": "table"}}},
+      "then": {"properties": {"table_id": {"type": "string"}, "row_start": {"type": "integer"}, "row_end": {"type": "integer"}}}
+    },
+    {
+      "if": {"properties": {"type": {"const": "text"}}},
+      "then": {"properties": {"table_id": {"type": "null"}, "row_start": {"type": "null"}, "row_end": {"type": "null"}}}
+    }
+  ]
+}
