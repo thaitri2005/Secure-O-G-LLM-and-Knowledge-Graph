@@ -17,6 +17,7 @@ from ..ingestion.chunking import split_table
 from ..ingestion.filters import clean_text, dropped_item_reasons, filter_running_lines
 from ..ingestion.provenance import item_regions
 from ..ingestion.tables import table_views
+from .config import keep_pattern
 from .vietnamese import is_vietnamese_marked
 
 BOUNDARY = re.compile(r"[.!?…]+[\"'”’)\]]*\s+|\n+")
@@ -88,7 +89,8 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
         doc, running_drops = filter_running_lines(doc, filters["margin_band"], filters["frequency"],
                                                   filters["running_block_max_gap_lines"],
                                                   filters["running_block_alignment_lines"],
-                                                  filters["running_line_fragment_gap_lines"])
+                                                  filters["running_line_fragment_gap_lines"],
+                                                  keep_pattern(filters.get("keep_line_patterns", [])))
     exclusions = dropped_item_reasons(doc)
     dropped = Counter(running_line=running_drops)
     chunks: list[dict] = []
