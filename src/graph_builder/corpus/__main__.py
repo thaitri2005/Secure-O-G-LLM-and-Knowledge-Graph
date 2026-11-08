@@ -7,6 +7,8 @@
     python -m graph_builder.corpus process data/corpora/demo [--workers 2] [--retry-failed]
     python -m graph_builder.corpus status data/corpora/demo
     python -m graph_builder.corpus export data/corpora/demo --name v1 [--hold-review]
+    python -m graph_builder.corpus k1 data/corpora/demo --name v1 [--only DOC_ID...] [--k1-config configs/corpus/k1.json]
+                                                        [--legacy-chunks data/processed/gdr_chunks_full.jsonl]
     python -m graph_builder.corpus models [--engine vietocr]          # download OCR models while online
 """
 from __future__ import annotations
@@ -25,7 +27,7 @@ DEFAULT_MODELS = Path("data/interim/ocr_models")
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m graph_builder.corpus", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=("init", "add", "analyze", "process", "status", "export", "retire", "models"))
+    parser.add_argument("command", choices=("init", "add", "analyze", "process", "status", "export", "k1", "retire", "models"))
     parser.add_argument("corpus", nargs="?", type=Path)
     parser.add_argument("paths", nargs="*", type=Path)
     parser.add_argument("--config", type=Path, default=Path("configs/corpus/default.json"))
@@ -42,6 +44,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--only", nargs="*")
     parser.add_argument("--name")
     parser.add_argument("--hold-review", action="store_true")
+    parser.add_argument("--k1-config", type=Path, default=Path("configs/corpus/k1.json"))
+    parser.add_argument("--legacy-chunks", type=Path)
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args(argv)
@@ -129,6 +133,14 @@ def main(argv: list[str] | None = None) -> int:
                 raise ValueError("export requires --name")
             from .export import export
             print(json.dumps(export(corpus, args.name, args.models, allow_review=not args.hold_review)))
+            return 0
+        if args.command == "k1":
+            if not args.name:
+                raise ValueError("k1 requires --name")
+            from .k1_config import load_k1_config
+            from .k1_export import export_k1
+            print(json.dumps(export_k1(corpus, args.name, args.models, load_k1_config(args.k1_config), only=args.only,
+                                       legacy_chunks=args.legacy_chunks)))
             return 0
         if args.command == "retire":
             for doc_id in args.only or []:

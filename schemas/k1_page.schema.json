@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "k1_page.schema.json",
+  "title": "K1 page",
+  "description": "One page of a K1 file: size, extraction mode, parser and OCR provenance, quality status and the digest of the text the page must rebuild to. Track A proposal for Track C review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["page_id", "file_id", "page", "width", "height", "mode", "conversion_mode", "parser", "ocr",
+               "rotation_attempts", "status", "filtered_text_sha256"],
+  "properties": {
+    "page_id": {"type": "string", "pattern": "^f[0-9a-f]{16}:p[1-9][0-9]*$"},
+    "file_id": {"type": "string", "pattern": "^f[0-9a-f]{16}$"},
+    "page": {"type": "integer", "minimum": 1},
+    "width": {"type": "number", "exclusiveMinimum": 0, "description": "PDF points, displayed orientation"},
+    "height": {"type": "number", "exclusiveMinimum": 0, "description": "PDF points, displayed orientation"},
+    "mode": {"enum": ["text", "hybrid", "ocr"]},
+    "conversion_mode": {"enum": ["text", "hybrid", "ocr"]},
+    "parser": {"type": "object"},
+    "ocr": {"type": ["object", "null"]},
+    "rotation_attempts": {"type": "array"},
+    "status": {"enum": ["ok", "review", "missing"]},
+    "filtered_text_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
