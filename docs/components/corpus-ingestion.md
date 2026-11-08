@@ -28,6 +28,7 @@ python -m graph_builder.corpus analyze data/corpora/vpi               # page pla
 python -m graph_builder.corpus process data/corpora/vpi               # convert, chunk, check, validate
 python -m graph_builder.corpus status data/corpora/vpi                # done / failed / pending, rejected files
 python -m graph_builder.corpus export data/corpora/vpi --name v1      # one bundle of everything done
+python -m graph_builder.corpus k1 data/corpora/vpi --name k1 --models data/interim/ocr_models   # K1 chunk package of the PDFs done
 ```
 
 - **`add`** registers files or folders, and also accepts `--url` for HTTPS hosts listed in `allowed_hosts`. Each file is checked from its bytes, not its extension. A copy is stored once under its SHA256 in `store/`, so identical files are registered once and reported as `duplicate`. Rejected files (legacy `.doc`/`.xls`, ZIP archives, encrypted PDFs, files over the limits) are recorded with a reason that says what to do.
@@ -35,6 +36,7 @@ python -m graph_builder.corpus export data/corpora/vpi --name v1      # one bund
   - Re-running skips complete documents (manifest digests verified) and resumes partly converted ones from their cached segments.
   - `--workers N` runs N worker processes. Each loads its own models (about 2–3 GB of RAM), so use 1–2 on a 16 GB machine. A worker that crashes fails only the documents it held.
 - **`export`** stages a complete bundle, checks it against its `SHA256SUMS`, and only then publishes it as an immutable release, `exports/<name>/releases/<UTC time>-<digest>/`. `exports/<name>/CURRENT.json` names the current release and is switched with one atomic file replacement. An interruption at any step leaves the previous release current and complete, and the previous release is kept so a reader that resolved it can finish ([`publication.py`](../../src/graph_builder/publication.py)). Readers resolve the current release once with `graph_builder.publication.current_release(exports/<name>)`; an export written before this change (flat files in `exports/<name>/`) is still read until the next export of that name. Documents that failed or were never processed are listed under `held_back`. `--hold-review` also holds back documents with pages that need review.
+- **`k1`** writes the PDF documents that are done as a K1 chunk package in the same release layout as `export` (see [K1 chunk package](#k1-chunk-package)). `--only DOC_ID...` selects documents, `--k1-config` names the settings file, and `--legacy-chunks data/processed/gdr_chunks_full.jsonl` adds the old-to-new chunk id map. Use the same `--models` as for `process`, so that the processed documents are found.
 - **`retire --only DOC_ID`** removes a document from future exports.
 - **Run logs.** Every command also writes a timestamped log to `<corpus>/logs/`. `process` logs one line per finished document (pages, OCR pages, chunks, tables, review and missing pages, time), elapsed time, pages done and an ETA, plus a heartbeat every minute naming the documents still in progress.
 - **AK-3 appendix example.** [`scripts/run_ak3_appendices.py`](../../scripts/run_ak3_appendices.py) downloads and verifies the AK-3 appendix portfolio, splits it into 44 PDFs, and runs `init`, `add`, `process`, `export` and `status` on `data/corpora/ak3_appendices`. Use `--workers 2` to run faster, and `--scanned-only` to process only the PDFs with scanned pages. Results: [E8](../experiments/E8-ak3-appendices-corpus-run.md).
@@ -99,6 +101,48 @@ The fingerprint hashes the configuration, the Docling versions and the OCR model
 It does not yet include the collected OCR runtime versions or complete pipeline/layout/table-model identity. Process-local converter reuse also keys only on format/mode. Changed runtimes or repeated library calls with different configurations can therefore reuse stale work; complete fingerprinting and configuration-aware reuse are open fixes ([E9](../experiments/E9-repository-review.md)).
 
 Record schemas: [`corpus_document`](../../schemas/corpus_document.schema.json), [`corpus_chunk`](../../schemas/corpus_chunk.schema.json), [`corpus_table`](../../schemas/corpus_table.schema.json). Chunk offsets index `text.txt`, which is the chunks joined by two newlines. Every document is validated before its manifest is written: schemas, offsets, digests, regions inside the page, and table references.
+
+## K1 chunk package
+
+`k1` turns finished corpus output into the package that Track B reads (specification §5.11). It runs after `process` and changes nothing in the corpus chunk format, the fingerprint or the existing exports. Only PDFs are exported; other formats, and documents that failed or were not processed, are listed under `held_back` in the manifest with a reason. This is a Track A proposal; Track C reviews the schemas. Results and measurements: [E30](../experiments/E30-k1-version-1-candidate.md).
+
+| Module | Job |
+|---|---|
+| [`k1_build.py`](../../src/graph_builder/corpus/k1_build.py) | Builds the records of one document: ids, parents, forms, report context, page rebuild text |
+| [`forms.py`](../../src/graph_builder/corpus/forms.py), [`text_layer.py`](../../src/graph_builder/corpus/text_layer.py) | Pairs form labels with values from the PDF text layer, using a template |
+| [`report_context.py`](../../src/graph_builder/corpus/report_context.py) | Finds the report date and well of each daily-report page |
+| [`k1_export.py`](../../src/graph_builder/corpus/k1_export.py) | Writes and publishes the package, with `SHA256SUMS` |
+| [`k1_validate.py`](../../src/graph_builder/corpus/k1_validate.py) | Checks schemas, references, offsets, checksums, page rebuild and context coverage before the release becomes current |
+| [`legacy_ids.py`](../../src/graph_builder/corpus/legacy_ids.py) | Maps old chunk ids to K1 ids by text |
+| [`k1_config.py`](../../src/graph_builder/corpus/k1_config.py) | Loads `configs/corpus/k1.json` |
+
+**Files in a package.** `files.jsonl`, `pages.jsonl`, `tables.jsonl`, `forms.jsonl`, `parents.jsonl` and `chunks.jsonl` (one JSON record per line), `text/<file_id>.txt` (the text that chunk offsets index), `manifest.json`, `SHA256SUMS`, and `legacy_chunk_ids.json` when `--legacy-chunks` is given. The package has no timestamps or absolute paths, so the same inputs give byte-identical `SHA256SUMS`.
+
+**Ids.**
+
+| Id | Form | Example |
+|---|---|---|
+| File | `f` + first 16 hex digits of the PDF SHA256 | `f673c77409ffeafb7` |
+| Page, table, section parent, form parent | `<file_id>:p<n>`, `:t<n>`, `:s<n>`, `:f<n>` | `f673c77409ffeafb7:t3` |
+| Chunk | `<parent id>:c<n>` | `f673c77409ffeafb7:s5:c0` |
+
+K1 ids contain no `#`. Tables are one logical table per corpus table (`parts` has one element); joining tables across pages is not done yet. Table chunks keep the `row_start` and `row_end` the corpus wrote.
+
+**`doc_id` policy.** The end-of-well report keeps its registry id (`add --doc-id gdr882_ak3_eowr`). The daily-report attachments keep the catalog default, a slug of the file name plus 8 hex digits of the SHA256. These ids are hyphenated and keep `dailyreport` and `-appx-NN-`, which Track B uses to find the daily reports and their appendix number.
+
+**Forms.** A form is paired only when a page matches the RIMBase template (`configs/corpus/rimbase_form_template.json`: at least 40% of its labels and the text `Operations Summary`). Generic colon pairing is off (`forms.generic` in `configs/corpus/k1.json`) because it reached about 61% exact pairs in the exploration; pages that do not match the template get no form chunk. Each form is a parent of type `form` with one chunk of `Key: value` lines.
+
+**Report context.** Chunks of daily reports (`report_context.document_types` in `configs/corpus/k1.json`) carry `context.report_date` and `context.well`. The verified template form supplies them first. Pages without a form use the regular expressions in `report_context.date_patterns` and `well_patterns` on the PDF text layer. When both exist and disagree, the form wins and the manifest lists the page under `form_conflicts`. A passage that crosses a change of report date is split. A daily-report page with no context must be listed under `pages_without_context`, or validation fails.
+
+**Footer lines.** The corpus filter removes lines that repeat on many pages, which also removed the weather line `Vis.: 6 Temp: 58 ...` of the daily reports. `filters.keep_line_patterns` (optional list of regular expressions; absent means the old behavior) protects matching lines. [`configs/corpus/daily_reports.json`](../../configs/corpus/daily_reports.json) sets it for the weather labels. It is a corpus setting, so `process` must run with it; `k1` only reads the result.
+
+**Old-to-new chunk ids.** `--legacy-chunks` maps the 60 chunks of `gdr882_ak3_eowr` in the main bundle to K1 chunk ids. Chunks match first on exact text with whitespace collapsed, then on token Jaccard similarity of at least 0.9; each new chunk is used once, and the rest are `unmapped`. `legacy_chunk_ids.json` holds one record per old chunk (`old_chunk_id`, `new_chunk_id`, `method`, `jaccard`, `old_page`, `new_page`) and is covered by `SHA256SUMS`. It is a migration aid, not a drop-in: a chunk the new parser split or merged stays unmapped.
+
+**Committed sample.** [`data/processed/k1/ak3-k1-candidate/`](../../data/processed/k1/ak3-k1-candidate/README.md) holds the end-of-well report and two daily-report attachments (about 2.2 MB) with a README that says how to regenerate it. The full five-document package stays in the ignored corpus folder.
+
+**Schemas.** [`k1_file`](../../schemas/k1_file.schema.json), [`k1_page`](../../schemas/k1_page.schema.json), [`k1_table`](../../schemas/k1_table.schema.json), [`k1_form`](../../schemas/k1_form.schema.json), [`k1_parent`](../../schemas/k1_parent.schema.json), [`k1_chunk`](../../schemas/k1_chunk.schema.json).
+
+**Check against Track B's readers.** `python scripts/check_k1_graphrag_compat.py --k1 <release dir>` loads a package through `graphrag` (read-only), checks the daily-report and table rules, and runs BM25 over the end-of-well report through the id map. It needs no GPU and no model server.
 
 ## Limitations
 

@@ -26,7 +26,7 @@ flowchart LR
 | Local VLM | Not used automatically: no tested page-selection or text-support rule met its criterion, and the VLM inserted text absent from the page | [Hard-page selection](docs/evaluation.md#hard-page-selection), [VLM text support](docs/evaluation.md#vlm-text-support) |
 | Key/value forms | Template pairing on the text layer: 141/141 development and 93/93 held-out pairs exact, every pair with key and value boxes | [Form pairing](docs/evaluation.md#form-pairing) |
 | Scanned pages | OCRmyPDF (Tesseract) then text-mode conversion: 29/33 critical tokens with typographic quotes normalized (26/33 raw) | [Scanned-page OCR](docs/evaluation.md#scanned-page-ocr) |
-| Continued tables | 3 of 4 annotated tables joined with headers on every part; the rotated 68-32 activity table is not | [Continued tables](docs/evaluation.md#continued-tables) |
+| Continued tables | 3 of 4 annotated tables joined with headers on every part; the rotated 68-32 activity table is not. The header-only rule was written after seeing the held-out errors, and the frozen rule joined 0/3 held-out boundaries | [Continued tables](docs/evaluation.md#continued-tables) |
 | Structure and determinism | 817 pages in two corpora: schemas, references and page rebuild pass; independent and interrupted-then-resumed runs give identical checksums | [Resume and determinism](docs/evaluation.md#resume-identity-and-structural-checks) |
 
 All annotations are single-annotator and AI-assisted, with a second review against the source renders. The samples are small and English only. Limits and open next steps are listed in [known issues](docs/known-issues.md#next-steps).

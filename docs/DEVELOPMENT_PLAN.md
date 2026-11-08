@@ -177,6 +177,7 @@ Each track below lists its goal, the questions it researches, its work, its chec
 
 - The [note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md), with Track B's failure lists and known pipeline problems.
 - The corpus pipeline and its tests ([guide](components/corpus-ingestion.md), [E8](experiments/E8-ak3-appendices-corpus-run.md)).
+- The ingestion prototype and its evaluation ([`explorations/ingestion/README.md`](../explorations/ingestion/README.md)): parser comparison, form pairing, continued tables.
 - Code stays in `src/graph_builder/`.
 - Compute: a laptop for Docling and OpenRouter for the VLMs.
 
