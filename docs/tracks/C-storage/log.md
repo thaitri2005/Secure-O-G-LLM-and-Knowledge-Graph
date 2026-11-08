@@ -50,3 +50,5 @@ No third-party GraphRAG base was adopted (B-D21), so the stores serve Track B's 
 
 - `platform/` has no `__init__.py` on purpose. A package named `platform` would hide Python's own `platform` module, so the folder holds scripts run by path.
 - Daily-report chunks are not checked yet: they sit in ignored `data/corpora/` and need a local regeneration first ([next-runs](../B-graphrag/next-runs.md)).
+
+**C-C03 (design choice; fix by Tri, 8 November).** `doc_id` in the K1 schema now also states `maxLength: 64`, as `tests/test_contracts.py` requires of every non-corpus schema. The pattern already enforced the limit, so no chunk changes: 372 of 372 still pass.

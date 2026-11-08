@@ -14,7 +14,8 @@
     "doc_id": {
       "description": "The document the chunk comes from.",
       "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "maxLength": 64
     },
     "page": {
       "description": "First PDF page of the chunk, counted from 1.",
