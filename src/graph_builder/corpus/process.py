@@ -85,27 +85,28 @@ def convert_segment(source: Path, kind: str, mode: str, pages: tuple[int, int] |
     from docling.datamodel.base_models import ConversionStatus
     from docling_core.types.doc import DoclingDocument
     meta_path = cache.with_suffix(".meta.json")
-    if cache.is_file() and meta_path.is_file():
-        with gzip.open(cache, "rt", encoding="utf-8") as stream:
-            return DoclingDocument.model_validate_json(stream.read()), json.loads(meta_path.read_text(encoding="utf-8"))
-    started = time.perf_counter()
-    arguments = {"page_range": pages} if pages else {}
-    result = converter(kind, mode, config, models).convert(source, raises_on_error=False, **arguments)
-    if result.status not in (ConversionStatus.SUCCESS, ConversionStatus.PARTIAL_SUCCESS):
-        errors = "; ".join(str(getattr(error, "error_message", error)) for error in result.errors)[:500]
-        raise RuntimeError(f"Conversion {result.status.value} for pages {pages}: {errors}")
-    meta = {"mode": mode, "pages": pages, "status": result.status.value,
-            "seconds": round(time.perf_counter() - started, 2), "confidence": page_confidence(result),
-            "errors": [str(getattr(error, "error_message", error))[:300] for error in result.errors]}
-    cache.parent.mkdir(parents=True, exist_ok=True)
-    partial = cache.with_name(cache.name + ".partial")
-    with gzip.open(partial, "wt", encoding="utf-8", compresslevel=6) as stream:
-        stream.write(result.document.model_dump_json())
-    os.replace(partial, cache)
-    atomic_write_json(meta_path, meta)
-    LOGGER.info("  %s pages %s (%s): %s in %.1f s", source.parent.parent.name, pages or "all", mode,
-                meta["status"], meta["seconds"])
-    return result.document, meta
+    if not (cache.is_file() and meta_path.is_file()):
+        started = time.perf_counter()
+        arguments = {"page_range": pages} if pages else {}
+        result = converter(kind, mode, config, models).convert(source, raises_on_error=False, **arguments)
+        if result.status not in (ConversionStatus.SUCCESS, ConversionStatus.PARTIAL_SUCCESS):
+            errors = "; ".join(str(getattr(error, "error_message", error)) for error in result.errors)[:500]
+            raise RuntimeError(f"Conversion {result.status.value} for pages {pages}: {errors}")
+        meta = {"mode": mode, "pages": pages, "status": result.status.value,
+                "seconds": round(time.perf_counter() - started, 2), "confidence": page_confidence(result),
+                "errors": [str(getattr(error, "error_message", error))[:300] for error in result.errors]}
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        partial = cache.with_name(cache.name + ".partial")
+        with gzip.open(partial, "wt", encoding="utf-8", compresslevel=6) as stream:
+            stream.write(result.document.model_dump_json())
+        os.replace(partial, cache)
+        atomic_write_json(meta_path, meta)
+        LOGGER.info("  %s pages %s (%s): %s in %.1f s", source.parent.parent.name, pages or "all", mode,
+                    meta["status"], meta["seconds"])
+    # Both paths read the cache back so a cold run and a cached run give the same document and metadata.
+    with gzip.open(cache, "rt", encoding="utf-8") as stream:
+        document = DoclingDocument.model_validate_json(stream.read())
+    return document, json.loads(meta_path.read_text(encoding="utf-8"))
 
 
 def page_texts(chunks: list[dict]) -> dict[int, str]:
