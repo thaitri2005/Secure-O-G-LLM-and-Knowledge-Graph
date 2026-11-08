@@ -1,0 +1,28 @@
+{
+  "document_types": {
+    "default": "other",
+    "rules": [
+      {"document_type": "eowr", "pattern": "_eowr$"},
+      {"document_type": "daily_report", "pattern": "dailyreport"},
+      {"document_type": "casing_report", "pattern": "casinginforpt"},
+      {"document_type": "survey_report", "pattern": "directional|survey"},
+      {"document_type": "drilling_plan", "pattern": "drillingplan"},
+      {"document_type": "permit", "pattern": "permit"}
+    ]
+  },
+  "forms": {
+    "generic": false,
+    "minimum_label_share": 0.4,
+    "template": "configs/corpus/rimbase_form_template.json"
+  },
+  "report_context": {
+    "date_patterns": [
+      "Report For\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})",
+      "Graphical Summary\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})"
+    ],
+    "document_types": ["daily_report"],
+    "well_patterns": [
+      "Well (?:ID|Name):\\s*([A-Z0-9][A-Za-z0-9-]*\\d[A-Za-z0-9-]*)"
+    ]
+  }
+}

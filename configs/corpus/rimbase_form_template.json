@@ -1,0 +1,181 @@
+{
+  "learned_from": [
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 1,
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0"
+    },
+    {
+      "doc_id": "gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
+      "page": 2,
+      "source_sha256": "f5e766b8670b35daeb2b92b091aa3d19c8d5f7969a7b86a1dda243e42aab67a0"
+    },
+    {
+      "doc_id": "gdr1153_68-32_eowr",
+      "page": 17,
+      "source_sha256": "a9246ba468a5dc8ecd28fbcd98063d5fafb737c3d9bb995ed147056a9d98d5cc"
+    }
+  ],
+  "allowed_learning": "Label lexicon and value direction only; no values, field coordinates or page-specific positions.",
+  "labels": {
+    "AFE ($)": {
+      "direction": "below_column_until_totals"
+    },
+    "AFE No.": {
+      "direction": "below_column_until_totals"
+    },
+    "Actual ($)": {
+      "direction": "below_column_including_totals"
+    },
+    "Average ROP (ft/hr):": {
+      "direction": "right_then_below"
+    },
+    "Comments:": {
+      "direction": "right_then_below"
+    },
+    "Contractor:": {
+      "direction": "right_then_below"
+    },
+    "County:": {
+      "direction": "right_then_below"
+    },
+    "Current Operations:": {
+      "direction": "right_then_below"
+    },
+    "Current Ops:": {
+      "direction": "right_then_below"
+    },
+    "Daily Cost / Mud ($):": {
+      "direction": "right_then_below"
+    },
+    "Days On Location:": {
+      "direction": "right_then_below"
+    },
+    "Drilling Days (act.):": {
+      "direction": "right_then_below"
+    },
+    "Drilling Days (act./plan):": {
+      "direction": "right_then_below"
+    },
+    "Drilling Days (plan):": {
+      "direction": "right_then_below"
+    },
+    "Field:": {
+      "direction": "right_then_below"
+    },
+    "Flat Days (act./plan):": {
+      "direction": "right_then_below"
+    },
+    "Hole Made (ft) / Hrs:": {
+      "direction": "right_then_below"
+    },
+    "Job ID:": {
+      "direction": "right_then_below"
+    },
+    "Last BOP Test:": {
+      "direction": "right_then_below"
+    },
+    "Last Casing:": {
+      "direction": "right_then_below"
+    },
+    "Measured Depth (ft):": {
+      "direction": "right_then_below"
+    },
+    "Next BOP Test:": {
+      "direction": "right_then_below"
+    },
+    "Next Casing:": {
+      "direction": "right_then_below"
+    },
+    "Operator:": {
+      "direction": "right_then_below"
+    },
+    "Other:": {
+      "direction": "right_then_below"
+    },
+    "Planned Operations:": {
+      "direction": "right_then_below"
+    },
+    "Planned Ops:": {
+      "direction": "right_then_below"
+    },
+    "Proposed TD (ft):": {
+      "direction": "right_then_below"
+    },
+    "RKB Elevation (ft):": {
+      "direction": "right_then_below"
+    },
+    "Report For": {
+      "direction": "right_then_below"
+    },
+    "Report No:": {
+      "direction": "right_then_below"
+    },
+    "Rig:": {
+      "direction": "right_then_below"
+    },
+    "Rng:": {
+      "direction": "right_then_below"
+    },
+    "SafetySummary:": {
+      "direction": "right_then_below"
+    },
+    "Sect:": {
+      "direction": "right_then_below"
+    },
+    "Service:": {
+      "direction": "right_then_below"
+    },
+    "Spud Date:": {
+      "direction": "right_then_below"
+    },
+    "State:": {
+      "direction": "right_then_below"
+    },
+    "Supervisors:": {
+      "direction": "right_then_below"
+    },
+    "Tel No.:": {
+      "direction": "right_then_below"
+    },
+    "Toolpusher:": {
+      "direction": "right_then_below"
+    },
+    "Total Days (act./plan):": {
+      "direction": "right_then_below"
+    },
+    "Total:": {
+      "direction": "right_then_below"
+    },
+    "Totals:": {
+      "direction": "right_next_cell"
+    },
+    "Town:": {
+      "direction": "right_then_below"
+    },
+    "Vertical Depth (ft):": {
+      "direction": "right_then_below"
+    },
+    "Well Bore:": {
+      "direction": "right_then_below"
+    },
+    "Well Cost ($):": {
+      "direction": "right_then_below"
+    },
+    "Well ID:": {
+      "direction": "right_then_below"
+    },
+    "Well Name:": {
+      "direction": "right_then_below"
+    },
+    "Wellbore:": {
+      "direction": "right_then_below"
+    },
+    "Wellsite Supervisors:": {
+      "direction": "right_then_below"
+    },
+    "Working Interest:": {
+      "direction": "right_then_below"
+    }
+  }
+}
