@@ -5,6 +5,7 @@ import hashlib
 from importlib.metadata import version
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 from .analysis import analysis_config
@@ -14,12 +15,23 @@ KEYS = {"chunking", "filters", "table_mode", "ocr", "analysis", "quality", "segm
         "allowed_hosts", "document_timeout"}
 FILTER_KEYS = {"margin_band", "frequency", "running_block_max_gap_lines", "running_block_alignment_lines",
                "running_line_fragment_gap_lines"}
+OPTIONAL_FILTER_KEYS = {"keep_line_patterns"}
 QUALITY_KEYS = {"review_invalid_vietnamese_rate", "review_foreign_letter_rate", "min_ocr_page_chars"}
 PIPELINE_VERSION = "corpus-1"
 
 
 def load_config(path: Path) -> dict[str, Any]:
     return validate_config(json.loads(path.read_text(encoding="utf-8")))
+
+
+def keep_pattern(patterns: Any) -> re.Pattern[str] | None:
+    """Compile ``keep_line_patterns`` into one case-insensitive regex; None when no patterns are given."""
+    if not isinstance(patterns, list) or any(not isinstance(pattern, str) or not pattern for pattern in patterns):
+        raise ValueError("keep_line_patterns must be a list of non-empty regular expressions")
+    try:
+        return re.compile("|".join(f"(?:{pattern})" for pattern in patterns), re.IGNORECASE) if patterns else None
+    except re.error as error:
+        raise ValueError(f"keep_line_patterns contains an invalid regular expression: {error}") from error
 
 
 def validate_config(config: Any) -> dict[str, Any]:
@@ -31,9 +43,11 @@ def validate_config(config: Any) -> dict[str, Any]:
             or chunking["strategy"] not in ("paragraph", "page")):
         raise ValueError("chunking needs max_chars (200-20000) and strategy paragraph or page")
     filters = config["filters"]
-    if not isinstance(filters, dict) or set(filters) != FILTER_KEYS or any(
-            type(value) not in (int, float) or value < 0 for value in filters.values()):
-        raise ValueError(f"filters must contain nonnegative {sorted(FILTER_KEYS)}")
+    if not isinstance(filters, dict) or not FILTER_KEYS <= set(filters) <= FILTER_KEYS | OPTIONAL_FILTER_KEYS or any(
+            type(filters[key]) not in (int, float) or filters[key] < 0 for key in FILTER_KEYS):
+        raise ValueError(f"filters must contain nonnegative {sorted(FILTER_KEYS)} and optionally {sorted(OPTIONAL_FILTER_KEYS)}")
+    if "keep_line_patterns" in filters:
+        keep_pattern(filters["keep_line_patterns"])
     if config["table_mode"] not in ("fast", "accurate"):
         raise ValueError("table_mode must be fast or accurate")
     config["ocr"] = ocr_config(config["ocr"])

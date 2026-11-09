@@ -1,0 +1,32 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - patterns taken from the hits of 94 public PDFs (A-414 scan, 2 report templates); other templates, other languages and image-only text are NOT EVALUATED",
+  "patterns": [
+    {"name": "records_not_printed", "regex": "\\b(?P<n>\\d[\\d,]*)\\s+records?\\s+not\\s+printed\\b", "unit": "N = number of table records (rows) the source report says it did not print", "status": "observed (form 'N records not printed' / '1 record not printed', left of a table title)"},
+    {"name": "n_not_shown", "regex": "\\(\\s*(?P<n>\\d[\\d,]*)\\s+not\\s+shown\\s*\\)", "unit": "N = number of entries the source report says it did not show (parenthesised form on a table title line)", "status": "observed (form '(N not shown)' beside the title 'Surveys')"}
+  ],
+  "probes": {
+    "regexes": ["not\\s+printed", "omitted", "truncated", "not\\s+shown", "not\\s+displayed", "not\\s+listed", "records?\\s+not\\b"],
+    "unit": "case-insensitive phrases counted per page by the scan script to look for variants of the annotation; a probe hit that no pattern matches is a candidate variant to read, never an annotation"
+  },
+  "geometry": {
+    "line_tolerance_ratio": {"value": 0.5, "unit": "fraction of the median word height; words whose vertical centres differ by less belong to one line", "status": "setting"},
+    "segment_gap_em": {"value": 3.0, "unit": "em (word height); a horizontal gap wider than this splits a line into separate segments (title, annotation, header cell)", "status": "setting"},
+    "max_context_words": {"value": 4, "unit": "words allowed in the segment besides the matched annotation (a title such as 'Operations Summary'); longer segments are prose and are rejected", "status": "setting"},
+    "title_line_overlap": {"value": 0.5, "unit": "fraction of the annotation height that a title segment must share vertically to count as on the same line", "status": "setting"},
+    "title_max_gap_pt": {"value": 30.0, "unit": "pt; a title segment above the annotation farther away than this is not its title", "status": "setting"},
+    "table_max_gap_pt": {"value": 40.0, "unit": "pt; a table part must start within this distance below the annotation (or contain it)", "status": "setting"},
+    "table_slack_pt": {"value": 3.0, "unit": "pt added around a table part box when testing whether it contains or follows the annotation", "status": "setting"}
+  },
+  "families": [
+    {"family": "operations_summary", "title_regex": "operations\\s+summary", "unit": "title text of the table"},
+    {"family": "mud_reports", "title_regex": "mud\\b", "unit": "title text of the table"},
+    {"family": "surveys", "title_regex": "surveys?\\b", "unit": "title text of the table"}
+  ],
+  "unknown_family": "other_or_unknown",
+  "max_listed_hits": {"value": 20, "unit": "annotation hits copied into one scan summary list", "status": "setting"},
+  "pdf_search": [
+    "{corpus}/store/{sha2}/{sha4}/{sha}",
+    "data/raw/{original_name}"
+  ]
+}

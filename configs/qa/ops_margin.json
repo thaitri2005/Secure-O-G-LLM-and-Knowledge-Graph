@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - parameters set on one document family (Operations Summary tables of 5 documents of one report); generalisation NOT EVALUATED",
+  "thresholds": {
+    "deviation_k": {"value": 3.0, "unit": "robust deviations (median/scale of the release family) by which a table margin may fall below the family median before the table is flagged", "status": "proposal"},
+    "scale_floor_em": {"value": 0.1, "unit": "em; lower bound of the family scale. Marks and header label are positioned independently, so print/measurement noise of 0.1 em on each gives a relative scatter up to 0.2 em; a family whose marks all sit at one offset (MAD = 0) must not flag that scatter", "status": "proposal"},
+    "min_family_values": {"value": 20, "unit": "margin values a release needs for a family distribution; below it the table gets an INFO signal and no judgement", "status": "proposal"},
+    "mark_window_em": {"value": 2.0, "unit": "em around the Non-Prod label span in which a lone mark glyph counts as a mark that left or reached the column", "status": "proposal"}
+  },
+  "geometry": {
+    "header_label": {"value": "Non-Prod", "unit": "text of the mark-column header word in the text layer", "status": "setting"},
+    "mark_glyph": {"value": "X", "unit": "token that is a mark when it sits at the mark column", "status": "setting"},
+    "ignored_tokens": {"value": ["..."], "unit": "tokens printed inside the mark column that are neither mark nor description", "status": "setting"},
+    "source_ref_prefix": {"value": "textlayer:operations_summary:", "unit": "prefix of the table part source_ref written by the table rebuild", "status": "setting"},
+    "band_slack_pt": {"value": 1.0, "unit": "pt added above and below the table part box when selecting words", "status": "setting"}
+  },
+  "max_listed_values": {"value": 8, "unit": "per-row margins copied into signal evidence", "status": "setting"},
+  "pdf_search": [
+    "{corpus}/store/{sha2}/{sha4}/{sha}",
+    "data/raw/{original_name}"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "k1_table.schema.json",
+  "title": "K1 table",
+  "description": "One logical table of a K1 file with its grid, cells and the physical parts it was assembled from. Track A proposal for Track C review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["table_id", "logical_id", "file_id", "doc_id", "pages", "grid", "header_rows", "num_rows", "num_cols",
+               "cells", "parts", "join", "rows_text", "regions"],
+  "properties": {
+    "table_id": {"type": "string", "pattern": "^f[0-9a-f]{16}:t[1-9][0-9]*$"},
+    "logical_id": {"type": "string"},
+    "file_id": {"type": "string", "pattern": "^f[0-9a-f]{16}$"},
+    "doc_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"},
+    "pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "uniqueItems": true},
+    "grid": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+    "header_rows": {"type": "integer", "minimum": 0},
+    "num_rows": {"type": "integer", "minimum": 0},
+    "num_cols": {"type": "integer", "minimum": 0},
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["r", "c", "row_span", "col_span", "text", "is_header"],
+        "properties": {
+          "r": {"type": "integer", "minimum": 0},
+          "c": {"type": "integer", "minimum": 0},
+          "row_span": {"type": "integer", "minimum": 1},
+          "col_span": {"type": "integer", "minimum": 1},
+          "text": {"type": "string"},
+          "is_header": {"type": "boolean"}
+        }
+      }
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_ref", "page", "bbox", "row_start", "row_end", "header"],
+        "properties": {
+          "source_ref": {"type": "string"},
+          "page": {"type": "integer", "minimum": 1},
+          "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+          "row_start": {"type": "integer", "minimum": 0},
+          "row_end": {"type": "integer", "minimum": 0},
+          "header": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}
+        }
+      }
+    },
+    "join": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reasons"],
+      "properties": {
+        "status": {"enum": ["joined", "uncertain", "single"]},
+        "reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "rows_text": {"type": "array", "items": {"type": "string"}},
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["page", "bbox"],
+        "properties": {
+          "page": {"type": "integer", "minimum": 1},
+          "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4,
+                   "description": "left, top, right, bottom in PDF points, top-left origin"}
+        }
+      }
+    }
+  }
+}

@@ -16,13 +16,17 @@ def clean_text(text: str) -> str:
 
 def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: float,
                          block_max_gap_lines: float, block_alignment_lines: float,
-                         fragment_gap_lines: float) -> tuple[DoclingDocument, int]:
+                         fragment_gap_lines: float, keep: re.Pattern[str] | None = None) -> tuple[DoclingDocument, int]:
     """Remove repeated margin lines and adjacent repeated lines in an anchored block.
 
     Frequency keys normalize whitespace, case, and digit runs. Block members
     must align at the left edge and be separated by at most the configured
     number of line heights. A block needs an entire line inside a margin band.
     The full document exports remain intact because filtering uses a copy.
+
+    A line, or a restored logical line made of horizontal fragments, whose
+    cleaned text matches ``keep`` is data that happens to repeat; it and its
+    fragments are never removed on that page.
     """
     doc = doc.model_copy(deep=True)
     records = []
@@ -59,7 +63,7 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
             if key:
                 pages_by_line.setdefault(key, set()).update(located_pages)
             occurrences.append({"record": record_index, "start": offset, "end": end, "key": key, "members": [],
-                                "pages": located_pages, "boxes": boxes})
+                                "pages": located_pages, "boxes": boxes, "text": clean_text(line)})
             offset = end
     # Restore a logical line when layout extraction puts its horizontal
     # fragments in separate cells. Keep the original cells for serialization.
@@ -85,7 +89,14 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
                 key = " ".join(occurrences[member]["key"] for member in members)
                 pages_by_line.setdefault(key, set()).add(page_no)
                 occurrences.append({"record": None, "key": key, "pages": {page_no}, "members": members,
-                                    "boxes": {page_no: [box.model_copy(update={"r": right})]}})
+                                    "boxes": {page_no: [box.model_copy(update={"r": right})]},
+                                    "text": " ".join(occurrences[member]["text"] for member in members)})
+    protected: set[tuple[int, int]] = set()
+    if keep is not None:
+        for index, occurrence in enumerate(occurrences):
+            if keep.search(occurrence["text"]):
+                for page_no in occurrence["pages"]:
+                    protected.update((member, page_no) for member in (index, *occurrence["members"]))
     frequent = {key for key, pages in pages_by_line.items() if len(pages) >= len(doc.pages) * frequency}
     candidates: dict[int, list[tuple[int, float, float, float]]] = {}
     selected: set[tuple[int, int]] = set()
@@ -93,6 +104,8 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
         if occurrence["key"] not in frequent:
             continue
         for page_no, boxes in occurrence["boxes"].items():
+            if (index, page_no) in protected:
+                continue
             top, bottom, left = min(b.t for b in boxes), max(b.b for b in boxes), min(b.l for b in boxes)
             candidates.setdefault(page_no, []).append((index, top, bottom, left))
             height = doc.pages[page_no].size.height
@@ -118,6 +131,7 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
         for page_no in occurrence["pages"]:
             if (index, page_no) in selected:
                 selected.update((member, page_no) for member in occurrence["members"])
+    selected -= protected
     removed_by_record: dict[int, list[tuple[int, int]]] = {}
     for index, occurrence in enumerate(occurrences):
         if occurrence["record"] is not None and occurrence["pages"] and all((index, page_no) in selected for page_no in occurrence["pages"]):

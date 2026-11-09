@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "k1_file.schema.json",
+  "title": "K1 file",
+  "description": "One source file of a K1 package: identity, document type, licence and the path of its extracted text. Track A proposal for Track C review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["file_id", "doc_id", "original_name", "document_type", "sha256", "page_count", "license", "text"],
+  "properties": {
+    "file_id": {"type": "string", "pattern": "^f[0-9a-f]{16}$", "description": "'f' plus the first 16 hex digits of the source SHA256"},
+    "doc_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"},
+    "original_name": {"type": "string"},
+    "document_type": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "page_count": {"type": "integer", "minimum": 1},
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "url"],
+      "properties": {"id": {"type": "string"}, "url": {"type": "string"}}
+    },
+    "text": {"type": "string", "pattern": "^text/f[0-9a-f]{16}\\.txt$", "description": "Path of the extracted text; chunk offsets index this file"}
+  }
+}

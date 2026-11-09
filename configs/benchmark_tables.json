@@ -1,0 +1,16 @@
+{
+  "_doc": "Parameters of scripts/benchmark_tables.py (A-501). Units in the key names. Proposals, not tuned on results.",
+  "iou_match": 0.5,
+  "token_f1_match": 0.5,
+  "containment_char_recall": 0.95,
+  "leading_row_offsets_d2": [0, 1],
+  "ruling": {"min_rule_length_pt": 10.0, "max_rule_thickness_pt": 1.5, "min_h_rules": 2, "min_v_rules": 2, "margin_pt": 2.0},
+  "negative_pages": {"max_pages": 150, "min_text_chars": 400, "max_rule_items": 12, "max_columnar_lines": 2,
+                     "columnar_gap_pt": 12.0, "columnar_min_segments": 3, "per_document_first_round": 1},
+  "other_family_pages": {"max_pages": 60, "min_text_chars": 200},
+  "min_text_layer_chars": 30,
+  "accurate_sample_pages": {"D2": 27, "D3": 30, "D4": 20},
+  "timeout_seconds_per_run": 1200,
+  "memory_sample_interval_seconds": 0.2,
+  "determinism_dataset": "D1"
+}

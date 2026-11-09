@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "thresholds": {
+    "char_ratio_low": {"value": 0.5, "unit": "ratio extracted_characters / pdf text_chars, text-mode pages only", "status": "proposal"},
+    "char_ratio_high": {"value": 1.1, "unit": "ratio extracted_characters / pdf text_chars, text-mode pages only", "status": "proposal"},
+    "min_pdf_text_chars": {"value": 30, "unit": "characters; pages with fewer PDF text characters are not ratio-checked", "status": "proposal"},
+    "confidence_low": {"value": 0.5, "unit": "Docling mean_score, range 0..1", "status": "proposal"},
+    "max_listed_validator_errors": {"value": 50, "unit": "errors copied into the ledger", "status": "setting"}
+  },
+  "exclusion_rules": {
+    "toc_leader_pattern": "\\.{3,}\\s*\\d*\\s*(?:$|\\n)",
+    "toc_title_pattern": "(?:table\\s+of\\s+contents|contents)\\s*[:.]?",
+    "min_explained_fraction": {"value": 0.8, "unit": "fraction of the PDF text characters of a page that table-of-contents items removed by the pipeline must cover before an empty K1 page is reported as an explained exclusion (INFO) instead of PAGE_EMPTY_EXTRACTION (WARN)", "status": "proposal"}
+  },
+  "a107_sidecar_search": [
+    "{export_dir}/table_repairs.json",
+    "{export_dir}/table_repairs.{export}.json",
+    "{corpus}/../../ops-rebuild-r2/table_repairs.{export}.json",
+    "data/interim/ops-rebuild-r2/table_repairs.{export}.json"
+  ]
+}
