@@ -1,0 +1,49 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL (A-108a measurement) - thresholds are starting settings for a candidate scan, not tuned values; not used by the pipeline",
+  "page_bands": {
+    "header_band_frac": {"value": 0.08, "unit": "fraction of page height; words fully inside the top band are running header text and ignored when asking whether text precedes a table", "status": "setting (same 8% band as the running-line filter)"},
+    "footer_band_frac": {"value": 0.08, "unit": "fraction of page height; words fully inside the bottom band are running footer text and ignored when asking whether text follows a table", "status": "setting"}
+  },
+  "running_text": {
+    "cell_pt": {"value": 4.0, "unit": "pt; word start positions are rounded to this grid to find template text", "status": "setting"},
+    "min_pages_frac": {"value": 0.5, "unit": "fraction of document pages on which a grid cell must hold a word to count as running template text (same 50% rule as the running-line filter, but position based)", "status": "setting"},
+    "top_zone_frac": {"value": 0.30, "unit": "fraction of page height; running text is searched only in this top zone", "status": "setting"},
+    "bottom_zone_frac": {"value": 0.10, "unit": "fraction of page height; running text is searched only in this bottom zone", "status": "setting"}
+  },
+  "running_text": {
+    "cell_pt": {"value": 4.0, "unit": "pt; word start positions are rounded to this grid to find template text", "status": "setting"},
+    "min_pages_frac": {"value": 0.5, "unit": "fraction of document pages on which a grid cell must hold a word to count as running template text (position based, text ignored)", "status": "setting"},
+    "top_zone_frac": {"value": 0.30, "unit": "fraction of page height; running text is searched only in this top zone", "status": "setting"},
+    "bottom_zone_frac": {"value": 0.10, "unit": "fraction of page height; running text is searched only in this bottom zone", "status": "setting"}
+  },
+  "boundary": {
+    "bottom_gap_max_frac": {"value": 0.12, "unit": "fraction of page height; a table is 'ending the page body' only if nothing but running footer follows and the free space above the footer band is at most this", "status": "setting"},
+    "top_gap_max_frac": {"value": 0.12, "unit": "fraction of page height; a table is 'starting the page body' only if nothing but running header precedes and the free space below the header band is at most this", "status": "setting"},
+    "word_slack_pt": {"value": 2.0, "unit": "pt; vertical slack when deciding whether a word lies below / above a table box", "status": "setting"}
+  },
+  "compatibility": {
+    "x_tolerance_rel": {"value": 0.03, "unit": "fraction of the wider table; left and right edges of the two tables may differ by at most this", "status": "setting"},
+    "column_edge_tolerance_rel": {"value": 0.02, "unit": "fraction of the wider table; column start positions derived from the text layer may differ by at most this (informational evidence, not part of the score)", "status": "setting"},
+    "segment_gap_em": {"value": 1.0, "unit": "em (word height); a horizontal gap wider than this starts a new cell segment inside a text line", "status": "setting"},
+    "column_start_min_support_frac": {"value": 0.3, "unit": "fraction of the table text lines; a cell-start x position must occur on at least this share of lines (and on 2 lines) to count as a column start", "status": "setting"},
+    "numeric_cell_min_alnum": {"value": 1, "unit": "characters; a cell with fewer alphanumeric characters is ignored when judging whether a first row looks like data", "status": "setting"}
+  },
+  "score": {
+    "weights": {
+      "ends_page_body": 0.25,
+      "starts_page_body": 0.25,
+      "columns_equal": 0.20,
+      "x_extent_match": 0.15,
+      "header_repeated": 0.15
+    },
+    "high_min": {"value": 0.85, "unit": "score 0..1; candidates at or above are HIGH", "status": "setting"},
+    "medium_min": {"value": 0.60, "unit": "score 0..1; candidates at or above are MEDIUM, below are LOW", "status": "setting"},
+    "structural_minimum": ["ends_page_body", "starts_page_body"],
+    "note": "a pair that meets the structural minimum but has a different column count or x extent is reported as LOOKALIKE (the 'looks consecutive but is not the same table' error class), not as a candidate"
+  },
+  "pymupdf_cross_check": {
+    "enabled_by_flag": "--pymupdf-cross",
+    "unit": "page tables detected by PyMuPDF find_tables, used only to count pairs with the same rules; not ground truth"
+  }
+}
