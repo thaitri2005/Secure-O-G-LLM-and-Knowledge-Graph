@@ -687,3 +687,9 @@ Khai pushed Track A's work to the branch `track-a-k1-package` (14 commits, 81 fi
 
 **B-C30 (design choice; from B-F56).** Track B runs read a K1 package from outside the repository: `--pool k1_ak3` (the end-of-well report) and `--pool k1_daily` (the four daily-report attachments) load `data/interim/k1/chunks.jsonl`, or the file `GRAPHRAG_K1_CHUNKS` names, and stop with a clear message when it is missing. Gold chunk IDs of the prototype set are old IDs, so the retrieval hit flags in answer runs on these pools are not meaningful until they go through the legacy map; answer correctness is scored by value and is unaffected. E28's event graph still reads the old appendix tables and needs a K1 loader before it can run on the package.
 
+**B-F57 (finding; from Track C's C-F04 and C-F05).** Hung loaded Khai's AK-3 package into Track C's PostgreSQL on his machine: 1,042 chunks, all 174 pages rebuilt from the database. His questions to Khai that matter for Track B:
+
+- **No legacy ID map in the package.** Without `legacy_chunk_ids.json`, the prototype gold's old chunk IDs cannot be mapped, so retrieval hit rates on the package cannot be scored by chunk. Answer correctness is scored by value and is unaffected.
+- **Which OCR engine.** E30's map covers 15 of the 17 cited chunks with `rapidocr` and 17 of 17 with `easyocr`, so the engine decides how much gold carries over.
+- **End-of-well chunks have no well or date field.** Track B does not need one: `WellRouter` collects each document's well names from its own text, so well by file is enough, and only daily reports need a date. Track C can copy the file's well into the vector payload.
+
