@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - thresholds set on one document family (5 documents); generalisation NOT EVALUATED",
+  "thresholds": {
+    "word_recall_min": {"value": 0.90, "unit": "fraction of PDF word tokens (after furniture exclusion) found in the K1 page text", "status": "proposal"},
+    "numeric_recall_min": {"value": 0.98, "unit": "fraction of PDF numeric tokens (after furniture exclusion) found in the K1 page text", "status": "proposal"},
+    "numeric_novel_max": {"value": 0, "unit": "count of K1 numeric tokens that do not occur anywhere on the PDF page; a count above this value warns", "status": "proposal"},
+    "min_page_words": {"value": 10, "unit": "PDF word tokens needed on a page before word recall is judged", "status": "proposal"},
+    "empty_page_min_words": {"value": 5, "unit": "PDF word tokens on a page that make an empty K1 page a warning", "status": "proposal"}
+  },
+  "furniture": {
+    "margin_band": {"value": 0.08, "unit": "fraction of page height at top and bottom searched for repeated lines (same value as the pipeline filter margin_band)", "status": "proposal"},
+    "frequency": {"value": 0.5, "unit": "fraction of pages of a document on which a margin line (digits masked) must appear to count as furniture", "status": "proposal"},
+    "min_pages": {"value": 3, "unit": "pages a document needs before repeated margin lines are used", "status": "proposal"}
+  },
+  "max_listed_tokens": {"value": 12, "unit": "missing/novel tokens copied into signal evidence per category", "status": "setting"},
+  "pdf_search": [
+    "{corpus}/store/{sha2}/{sha4}/{sha}",
+    "data/raw/{original_name}"
+  ]
+}

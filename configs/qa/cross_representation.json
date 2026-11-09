@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - calibrated on two releases of one document family (5 documents); generalisation NOT EVALUATED",
+  "limits": {
+    "max_listed_items": {"value": 8, "unit": "mismatching rows, pages, lines or chunk ids copied into the evidence of one signal", "status": "setting"},
+    "max_listed_tokens": {"value": 12, "unit": "missing/extra tokens copied into the evidence of one mismatch", "status": "setting"},
+    "max_evidence_chars": {"value": 160, "unit": "characters of one copied cell, line or token list entry", "status": "setting"}
+  }
+}

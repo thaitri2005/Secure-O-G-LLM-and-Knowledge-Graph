@@ -9,6 +9,7 @@
     python -m graph_builder.corpus export data/corpora/demo --name v1 [--hold-review]
     python -m graph_builder.corpus k1 data/corpora/demo --name v1 [--only DOC_ID...] [--k1-config configs/corpus/k1.json]
                                                         [--legacy-chunks data/processed/gdr_chunks_full.jsonl]
+    python -m graph_builder.corpus qa data/corpora/demo --release RELEASE_DIR [--out DIR]   # QA sidecar, read-only
     python -m graph_builder.corpus models [--engine vietocr]          # download OCR models while online
 """
 from __future__ import annotations
@@ -27,7 +28,7 @@ DEFAULT_MODELS = Path("data/interim/ocr_models")
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m graph_builder.corpus", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=("init", "add", "analyze", "process", "status", "export", "k1", "retire", "models"))
+    parser.add_argument("command", choices=("init", "add", "analyze", "process", "status", "export", "k1", "retire", "models", "qa"))
     parser.add_argument("corpus", nargs="?", type=Path)
     parser.add_argument("paths", nargs="*", type=Path)
     parser.add_argument("--config", type=Path, default=Path("configs/corpus/default.json"))
@@ -46,6 +47,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--hold-review", action="store_true")
     parser.add_argument("--k1-config", type=Path, default=Path("configs/corpus/k1.json"))
     parser.add_argument("--legacy-chunks", type=Path)
+    parser.add_argument("--release", type=Path)
+    parser.add_argument("--out", type=Path)
+    parser.add_argument("--a107-sidecar", type=Path)
+    parser.add_argument("--qa-config", type=Path)
+    parser.add_argument("--fidelity", action="store_true", help="qa: add the A-402 source fidelity check (reads the source PDFs)")
+    parser.add_argument("--crossrep", action="store_true", help="qa: add the A-403 cross-representation checks (reads only the release)")
+    parser.add_argument("--ops-margin", action="store_true", help="qa: add the A-401a Operations table mark-margin check (reads the source PDFs)")
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args(argv)
@@ -72,6 +80,10 @@ def main(argv: list[str] | None = None) -> int:
             from .config import load_config
             Corpus.create(args.corpus, load_config(args.config))
             print(f"Created corpus {args.corpus}")
+            return 0
+        if args.command == "qa":  # read-only sidecar; never opens the catalog or writes into the corpus
+            from .qa.cli import run as run_qa
+            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin), sort_keys=True))
             return 0
         corpus = Corpus(args.corpus)
         if args.command == "add":
@@ -170,7 +182,7 @@ def setup_logging(args: argparse.Namespace) -> Path | None:
     console.corpus_cli = True
     root.addHandler(console)
     logging.getLogger("graph_builder").setLevel(logging.DEBUG if args.verbose else logging.INFO)
-    if args.corpus is None or args.command in ("init", "models", "status"):
+    if args.corpus is None or args.command in ("init", "models", "status", "qa"):
         return None
     directory = args.corpus / "logs"
     directory.mkdir(parents=True, exist_ok=True)
