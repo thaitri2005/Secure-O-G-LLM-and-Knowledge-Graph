@@ -26,6 +26,30 @@ PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054"
                    "c0004", "c0005", "c0008", "c0022", "c0026", "c0028", "c0031"]
 
 
+def document_key(chunk_id: str) -> str:
+    """The part of a chunk ID that names its document: `<doc_id>` of `<doc_id>#c0005` (K1 version 0), or the file
+    ID `f<hex>` of `f<hex>:s6:c0` (Track A's K1 version 1 candidate, E30). Chunks of one document share it."""
+    return chunk_id.split("#", 1)[0] if "#" in chunk_id else chunk_id.split(":", 1)[0]
+
+
+def short_id(chunk_id: str) -> str:
+    """A chunk ID without its document part, unique within one document: `c0005`, or `s6:c0` for K1 version 1."""
+    return chunk_id.split("#", 1)[1] if "#" in chunk_id else chunk_id.split(":", 1)[-1]
+
+
+def cited_id(raw: str, hits: list[str], doc_id: str) -> str:
+    """The chunk ID a model's citation names, in either ID format. A full ID or a short one that matches a retrieved
+    chunk resolves to it; anything else becomes `<doc_id>#<label>`, as before K1 version 1 (B-C07)."""
+    label = raw.strip("[] ")
+    if label in hits:
+        return label
+    # Version 0 short labels always meant `<doc_id>#<label>`; keeping that leaves earlier runs unchanged.
+    found = [h for h in hits if short_id(h) == label and ("#" not in h or document_key(h) == doc_id)]
+    if len(found) == 1:
+        return found[0]
+    return raw if "#" in raw else f"{doc_id}#{label}"
+
+
 @dataclass(frozen=True)
 class Chunk:
     id: str

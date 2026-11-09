@@ -16,7 +16,8 @@ from typing import Any
 
 from .citations import resolve
 from .client import ModelClient, load_endpoints
-from .data import AK3, QUESTION_SETS, ROOT, Chunk, appendix_chunks_path, load_chunks, load_daily_chunks, load_questions, prototype_slice
+from .data import (AK3, QUESTION_SETS, ROOT, Chunk, appendix_chunks_path, cited_id, load_chunks, load_daily_chunks,
+                   load_questions, prototype_slice, short_id)
 from .retrieval import BM25, DateRouter, Dense, Fusion, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
 from .validate import validate
@@ -249,7 +250,7 @@ def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, lis
         # Passages from one report are labelled by chunk number; mixed reports need the full chunk ID (B-C12).
         docs = {by_id[cid].doc_id for cid in hits}
         doc = next(iter(docs)) if len(docs) == 1 else AK3
-        label = (lambda cid: cid.split("#")[-1]) if len(docs) <= 1 else (lambda cid: cid)
+        label = short_id if len(docs) <= 1 else (lambda cid: cid)
         passages = "\n\n".join(
             f"[{label(cid)}] (page {by_id[cid].page}) {by_id[cid].text}"
             + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
@@ -278,7 +279,7 @@ def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, lis
         expected = [gold[g] for g in q["gold"]]
         result = score_answer(q, expected, status, values)
         wanted = gold_chunks(q, gold)
-        cited = [f"{doc}#{a['chunk'].strip('[] ')}" if "#" not in a["chunk"] else a["chunk"] for a in answers]
+        cited = [cited_id(a["chunk"], hits, doc) for a in answers]
         rows.append({
             "id": q["id"], "kind": q["kind"], "status": status, "values": values,
             "raw_values": [a["value"] for a in answers], "units": [a["unit"] for a in answers],

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 
+from .data import cited_id
 from .scoring import squash
 
 
@@ -22,7 +23,7 @@ def _contains(text: str, needle: str) -> bool:
 
 def resolve(answer: dict, hits: list[str], texts: dict[str, str], doc_id: str) -> tuple[str | None, str]:
     """Return (chunk ID or None, how): "model", "by_quote", "by_value" or "unsupported"."""
-    cited = answer["chunk"] if "#" in answer["chunk"] else f"{doc_id}#{answer['chunk'].strip('[] ')}"
+    cited = cited_id(answer["chunk"], hits, doc_id)
     if cited in hits and _contains(texts[cited], answer["quote"]):
         return cited, "model"
     for how, needle in (("by_quote", answer["quote"]), ("by_value", answer["value"])):

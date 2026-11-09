@@ -35,6 +35,9 @@ def glossary(k2: dict, tables: Path = TABLES) -> list[dict]:
     entries: dict[str, dict] = {}
     for line in tables.read_text(encoding="utf-8").splitlines():
         table = json.loads(line)
+        # K2 names K1 version 0 table IDs. Track A's K1 version 1 keeps that ID as `logical_id` (E30); it matches
+        # only when the new run numbers tables as the old bundle did, so check the glossary after regenerating.
+        table = dict(table, table_id=table.get("logical_id") or table["table_id"])
         if table["table_id"] not in wanted:
             continue
         units = table["table_id"] in k2["sources"]["unit_tables"]

@@ -20,6 +20,7 @@ import re
 from collections import Counter, defaultdict
 
 from .citations import _contains
+from .data import document_key
 from .retrieval import well_names
 from .scoring import normalize
 
@@ -89,10 +90,11 @@ def written_in(value, text: str) -> bool:
 
 
 def validate(facts: list[dict], texts: dict[str, str], strict: bool = False) -> tuple[list[dict], dict[str, int]]:
-    """`texts` maps chunk IDs (`<document>#<chunk>`) to chunk text, for the whole pool."""
+    """`texts` maps chunk IDs (`<document>#<chunk>`, or K1 version 1 `f<hex>:s<n>:c<n>`) to chunk text, for the
+    whole pool."""
     named: dict[str, set[str]] = defaultdict(set)
     for chunk_id, text in texts.items():
-        named[chunk_id.split("#")[0]] |= well_names(text)
+        named[document_key(chunk_id)] |= well_names(text)
     rejected: Counter = Counter()
     candidates = []
     for fact in facts:
@@ -100,7 +102,7 @@ def validate(facts: list[dict], texts: dict[str, str], strict: bool = False) -> 
         if len(wells) != 1:
             rejected["no single well name"] += 1
             continue
-        if not wells <= named[fact["chunk"].split("#")[0]]:
+        if not wells <= named[document_key(fact["chunk"])]:
             rejected["well not named in its document"] += 1
             continue
         if re.fullmatch(r"-?0+(\.0+)?", str(fact["value"])):

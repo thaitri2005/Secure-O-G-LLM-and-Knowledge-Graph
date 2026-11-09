@@ -129,11 +129,16 @@ def check_retrieval(chunks: list[Chunk], legacy_map: list[dict]) -> None:
 def report_id_format_gaps(sample_id: str) -> None:
     print("(5) K1 id-format gaps in graphrag (read-only; graphrag is not modified)")
     print(f"    example K1 id: {sample_id}; has '#': {'#' in sample_id}")
+    found = 0
     for relative, pattern, effect in ID_FORMAT_GAPS:
         lines = (ROOT / relative).read_text(encoding="utf-8").splitlines()
         for number, line in enumerate(lines, start=1):
             if pattern in line:
+                found += 1
                 print(f"    {relative}:{number}: {effect}")
+    if not found:
+        # Track B fixed all four with graphrag.data.document_key, short_id and cited_id (B-C28).
+        print("    none: graphrag reads K1 ids through graphrag.data.document_key, short_id and cited_id")
 
 
 def main() -> int:

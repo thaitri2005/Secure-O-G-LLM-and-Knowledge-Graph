@@ -86,7 +86,8 @@ Worth doing when the work resumes:
 | What | From whom | Then |
 |---|---|---|
 | The expert question set, or a specification for development questions, asked for in the [5 November update](supervisor-update-2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
-| K1 version 1: form key-value pairs, report dates, form tables ([note](note-for-track-A-daily-reports.md)) | Khai, Track A | Rerun E24 and E27; replace `page_dates` with the real field |
+| The K1 version 1 package itself: the candidate is merged ([E30](../../experiments/E30-k1-version-1-candidate.md)), but its files are not in the repository (B-F55) | Khai, Track A | Rerun E17's baseline (hit@5 was 0.913 in E30), E24, E27 and E28; replace `page_dates` with the report date field |
+| The ID scheme: Track A's `<file_id>:s<n>:c<n>` or another (B-F55) | Hung, Track C | `graphrag` reads either format (B-C28) |
 | Vector store and Neo4j loading ([note](note-for-track-C-storage.md)) | Hung, Track C | Choose together; the baseline needs only BM25 for one-well questions and embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
 | Whether users ask questions over time (B-D26, Q3) | Supervisor and the expert group | Confirm or reverse the event graph |

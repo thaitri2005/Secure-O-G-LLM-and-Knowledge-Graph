@@ -10,7 +10,7 @@ import httpx
 
 from graphrag.baseline import fact_sheet, render
 from graphrag.client import Endpoint, ModelClient, PrivateDataError
-from graphrag.data import Chunk, load_questions
+from graphrag.data import Chunk, cited_id, document_key, load_questions, short_id
 from graphrag.ontology import glossary, guidance, load as load_k2
 from graphrag.k4 import SCHEMA as K4_SCHEMA, records as k4_records
 from graphrag.tables import column, extract as extract_tables
@@ -164,6 +164,35 @@ class CitationTests(unittest.TestCase):
         answer = {"value": "3000", "chunk": "c0002", "quote": "3000 ft"}
         self.assertEqual(resolve(answer, self.hits, self.texts, "d"), (None, "unsupported"))
 
+    def test_k1_version_1_ids_resolve_full_or_short(self):
+        # Track A's K1 version 1 candidate (E30) has IDs with no '#': f<hex>:s<n>:c<n>.
+        texts = {"f62e:s6:c0": "Vis.: 6 Temp: 58", "f62e:s7:c0": "Total depth 1,955 ft MD was reached."}
+        hits = list(texts)
+        for chunk in ("f62e:s7:c0", "s7:c0", "[s7:c0]"):
+            answer = {"value": "1955", "chunk": chunk, "quote": "Total depth 1,955 ft"}
+            self.assertEqual(resolve(answer, hits, texts, "gdr882_ak3_eowr"), ("f62e:s7:c0", "model"))
+
+    def test_version_0_short_label_in_a_mixed_pool_still_means_the_default_report(self):
+        hits = ["a#c0005", "b#c0005"]
+        self.assertEqual(cited_id("c0005", hits, "b"), "b#c0005")
+        self.assertEqual(cited_id("c0005", hits, "z"), "z#c0005")
+
+
+class ChunkIdTests(unittest.TestCase):
+    def test_document_key_and_short_id_in_both_formats(self):
+        self.assertEqual((document_key("gdr882_ak3_eowr#c0005"), short_id("gdr882_ak3_eowr#c0005")),
+                         ("gdr882_ak3_eowr", "c0005"))
+        self.assertEqual((document_key("f62efbee00767a3e7:s6:c0"), short_id("f62efbee00767a3e7:s6:c0")),
+                         ("f62efbee00767a3e7", "s6:c0"))
+
+    def test_validation_groups_k1_chunks_by_file(self):
+        texts = {"f1:s1:c0": "Well AK-3 daily report.", "f1:s2:c0": "Casing set at 800 ft."}
+        fact = {"well": "AK-3", "property": "casing_depth", "qualifier": "actual", "context": None, "value": "800",
+                "unit": "ft", "chunk": "f1:s2:c0"}
+        _, rejected = validate([fact], texts)
+        self.assertNotIn("well not named in its document", rejected)
+
+
 class OntologyTests(unittest.TestCase):
     def test_glossary_merges_expansions_and_flags_merged_cells(self):
         table = {"table_id": "d#t1", "cells": [
@@ -179,6 +208,15 @@ class OntologyTests(unittest.TestCase):
         self.assertEqual(entries["TD"]["expansions"], ["Total Depth"])
         self.assertEqual(entries["TD"]["tables"], ["d#t1", "d#t2"])
         self.assertIn("check", entries["JSA jt"])
+
+    def test_glossary_finds_k1_version_1_tables_by_their_logical_id(self):
+        table = {"table_id": "f62e:t3", "logical_id": "d#t1", "cells": [
+            {"r": 0, "c": 0, "text": "TD"}, {"r": 0, "c": 1, "text": "Total Depth"}]}
+        k2 = {"sources": {"glossary_tables": ["d#t1"], "unit_tables": []}}
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "tables.jsonl"
+            path.write_text(json.dumps(table), encoding="utf-8")
+            self.assertEqual(glossary(k2, path)[0]["tables"], ["d#t1"])
 
     def test_k2_renders_as_lightrag_guidance(self):
         text = guidance(load_k2())

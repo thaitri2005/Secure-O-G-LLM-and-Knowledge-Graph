@@ -88,10 +88,12 @@ class SyntheticPackageTests(unittest.TestCase):
     def test_hit_rates_count_ranks_up_to_each_cutoff(self):
         self.assertEqual(CHECK.rates([1, 4, None, 12]), {"hit@1": 0.25, "hit@3": 0.25, "hit@5": 0.5, "hit@10": 0.5})
 
-    def test_id_format_gaps_are_found_in_graphrag_with_their_lines(self):
+    def test_graphrag_has_no_id_format_gaps_left(self):
+        # The four gaps E30 listed were fixed in graphrag (Track B log B-C28).
         output = self.run_check(CHECK.report_id_format_gaps, ROWS[0]["chunk_id"])[1]
         for name in ("graphrag/citations.py", "graphrag/baseline.py", "graphrag/validate.py"):
-            self.assertIn(name, output)
+            self.assertNotIn(name, output)
+        self.assertIn("none:", output)
 
 
 if __name__ == "__main__":
