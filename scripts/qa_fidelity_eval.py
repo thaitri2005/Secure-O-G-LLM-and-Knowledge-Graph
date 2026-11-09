@@ -6,6 +6,7 @@ Writes data/interim/overnight/a402/eval.json (counts with denominators). Read-on
 from __future__ import annotations
 
 from collections import Counter
+import argparse
 import json
 from pathlib import Path
 import re
@@ -157,6 +158,18 @@ def corruptions(config: dict, state: fid.FidelityState, rows: list[dict]) -> dic
 
 
 def main() -> int:
+    global CORPUS, RELEASES, OUT
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--corpus", type=Path, help="corpus folder (default: the K1 run corpus)")
+    parser.add_argument("--release", action="append", default=[], metavar="NAME=PATH", help="release to evaluate; repeatable (default: the two K1 run releases)")
+    parser.add_argument("--out", type=Path, help="output folder (default: data/interim/overnight/a402)")
+    args = parser.parse_args()
+    if args.corpus:
+        CORPUS = args.corpus
+    if args.release:
+        RELEASES = {name: Path(path) for name, path in (item.split("=", 1) for item in args.release)}
+    if args.out:
+        OUT = args.out
     config = fid.load_config(ROOT / "configs/qa/source_fidelity.json")
     OUT.mkdir(parents=True, exist_ok=True)
     report: dict = {"config_sha256": fid.sha256_file(ROOT / "configs/qa/source_fidelity.json"), "releases": {}, "synthetic": {}}

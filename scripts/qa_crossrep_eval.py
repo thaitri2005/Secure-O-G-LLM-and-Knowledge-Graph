@@ -299,9 +299,11 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=Path("data/interim/overnight/a403/eval.json"))
     parser.add_argument("--samples", type=int, default=60)
+    parser.add_argument("--release", action="append", default=[], metavar="NAME=PATH", help="release to evaluate; repeatable (default: the two K1 run releases)")
     args = parser.parse_args()
+    releases = dict(item.split("=", 1) for item in args.release) or RELEASES
     report: dict = {"check": f"{xr.CHECK_NAME}@{xr.CHECK_VERSION}", "releases": {}}
-    for name, relative in RELEASES.items():
+    for name, relative in releases.items():
         release = Path(relative)
         if not release.is_dir():
             report["releases"][name] = {"status": "release directory missing", "path": relative}
