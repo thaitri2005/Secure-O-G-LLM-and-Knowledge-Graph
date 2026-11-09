@@ -4,7 +4,7 @@ Track B's code for the first build: the model client, the baseline, and the Grap
 
 ## Architecture
 
-Solid lines are what runs (B-D23, B-D26). Dotted lines are the optional fact sheet (B-D24). Which reports are asked about is chosen per run, by the command you use.
+Solid lines are what runs (B-D23, B-D26). The fact sheet from the per-well fact graph is part of the end-of-well path (B-D29). Which reports are asked about is chosen per run, by the command you use.
 
 ```mermaid
 flowchart TD
@@ -29,7 +29,7 @@ flowchart TD
     CHECK --> K4[Cited answer: K4 record]
     MAP[K2 table mappings, no LLM] -.-> VAL[Strict fact checks]
     EXT[neo4j-graphrag with Qwen3-4B] -.-> VAL
-    VAL -.->|optional fact sheet| LLM
+    VAL -->|fact sheet, end-of-well| LLM
 ```
 
 | Module | What it does |
@@ -105,9 +105,9 @@ python -m graphrag.events answer --questions ak3_events_heldout --endpoint local
 python -m graphrag.k4 my_answers
 ```
 
-## The optional fact sheet (E22, E26, E27; B-D24)
+## The per-well fact graph and its fact sheet (E22, E26, E27; B-D29)
 
-A per-well fact graph from two sources, checked in code before it reaches the answer model. Kept as an option: it has not beaten the baseline on new questions, so it waits for the expert question set. Use `--strict-facts` with it.
+A per-well fact graph from two sources, checked in code before it reaches the answer model. Part of the design and of the end-of-well answer path (B-D29). On new lookup questions it ties the baseline so far; the expert questions are to show where it helps. Use `--strict-facts` with it.
 
 ```powershell
 # 1. Table facts by K2's mappings (no model call)

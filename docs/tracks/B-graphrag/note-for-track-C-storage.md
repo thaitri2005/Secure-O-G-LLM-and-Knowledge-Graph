@@ -11,7 +11,7 @@ Track B's experiments changed some assumptions in the Track C plan. No third-par
 | One well | BM25, filtered by well and, on daily reports, by date | In memory, rebuilt from the chunk files |
 | Several wells | BM25 and embeddings (Qwen3-Embedding-0.6B) fused per well | In memory |
 | Totals over time on daily reports | Event graph ([E28](../../experiments/E28-event-graph.md)): well → report date → event → activity code and non-productive code | In memory, not in Neo4j |
-| Optional: per-well fact sheet | Facts from K2 table mappings and extraction | Optional (B-D24), so it does not need a store now |
+| End-of-well facts | Per-well fact graph from K2 table mappings and extraction, validated in code; part of the design (B-D29) | In files today; needs Neo4j like the event graph |
 
 The questions behind these results are simulated and not expert-reviewed. The supervisor has yet to confirm the event graph or say whether users ask questions over time (B-D26), so keep it easy to leave out of the run.
 

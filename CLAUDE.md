@@ -1,4 +1,4 @@
-# CLAUDE.md: start here
+﻿# CLAUDE.md: start here
 
 This file briefs any Claude session on any machine. Read it first, then the files it points to. The repository is the project's memory: if something is not written in it, it did not happen.
 
@@ -12,7 +12,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-54). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-55). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
 2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan. M1 is the first build, and each track's section lives there.
 3. Track logs in `docs/tracks/`, with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.
@@ -42,7 +42,7 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is optional (B-D24). The supervisor has yet to see these decisions.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is part of the design and of the end-of-well answer path (B-D29, which reverses B-D24). Plain RAG is the baseline the graphs are measured against, not the system. The supervisor has yet to see these decisions.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -76,7 +76,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E19](docs/experiments/E19-lightrag.md) | LightRAG `mix` with Qwen3-8B, one report or three | 25/31 |
   | [E21](docs/experiments/E21-lightrag-k2.md) | LightRAG with K2 injected, `mix` | 26/31 |
   | [E20](docs/experiments/E20-well-fact-sheet.md) | Baseline plus extracted per-well facts (neo4j-graphrag, Qwen3-4B), raw / **validated in code** | 21/31 / 28/31 |
-  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the fact sheet, now optional; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
+  | [E22](docs/experiments/E22-table-facts.md) | Baseline plus validated facts from **K2 table mappings and LLM extraction** (the fact graph's sheet; `--sheet-properties 3` keeps it at 1,793 prompt tokens per question) | **30/31** |
 
   | [E23](docs/experiments/E23-simulated-set.md) | **Simulated 40 questions, not expert-reviewed**: plain RAG / fact sheet, top 5; then per-well fusion, evidence first | 29/40 / 29/40; 31/40 / 30/40 (5 wrong values each) |
 
@@ -89,7 +89,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | [E28](docs/experiments/E28-event-graph.md) | **Daily reports, totals over time, chosen to suit the graph**: **event graph** / best plain RAG. Frozen 35; then new 23 | **22/35** / 5/35; **19/23** / 4/23 |
   | [E29](docs/experiments/E29-table-mappings-across-reports.md) | K2 table mappings on held-out reports from other authors: casing as written / after fixes and validation | 4/16 / **13/16**, no wrong fact; surveys unreliable |
 
-  The shape of the graph has to match the questions (B-F47). The per-well fact graph does not beat plain RAG on new questions (B-F30, B-D24); a graph of events does on totals over time (B-D26). Scrambled form headers remain for Track A (B-F36).
+  The shape of the graph has to match the questions (B-F47). On new lookup questions the per-well fact graph ties plain RAG so far (B-F30), and it stays in the design (B-D29); a graph of events wins on totals over time (B-D26). Scrambled form headers remain for Track A (B-F36).
 
   On the 9-question cross-report probe (`graphrag/gold/cross_report_probe.json`, not an evaluation set), plain RAG and LightRAG each reach 3/9, on different questions; with validated per-well facts it scores 2 to 5 of 9 depending on the sheet, which 9 questions cannot tell from noise (B-F29). Use `--answer-format evidence_first` there: a status-first schema makes the model abstain (B-F22).
 
@@ -103,7 +103,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Khai ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Hung ([note](docs/tracks/B-graphrag/note-for-track-C-storage.md)).
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
-4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). More fact-graph coverage stopped (B-D24).
+4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). Fact-graph work resumes (B-D29 reverses B-D24's stop).
 5. Choose the vector store with Hung (Track C); it no longer has to wait for a base.
 
 ## Setting up a machine for Track B runs

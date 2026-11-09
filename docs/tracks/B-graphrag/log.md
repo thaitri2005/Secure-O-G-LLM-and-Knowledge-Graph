@@ -17,7 +17,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Quality yardstick | Development only: the prototype's 31 questions and simulated sets. The expert set, when it arrives, is the real one | B-D01, B-D22 |
 | Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
 | What runs | Questions over time on daily reports: event graph ([E28](../../experiments/E28-event-graph.md)). Others: retrieval with Qwen3-8B (thinking off), citations and values checked in code; BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)) | B-D23, B-D26 |
-| Graphs | **Event graph in use:** 22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. **Per-well fact graph optional:** does not beat plain RAG on new questions (E23, E26, E27). The expert questions decide for good | B-D24, B-D26 |
+| Graphs | **Event graph in use:** 22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. **Per-well fact graph in use for end-of-well answers:** ties plain RAG on new lookup questions so far (E23, E26, E27); questions across wells are where it should help | B-D26, B-D29 |
 | Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; neo4j-graphrag is the extractor for the optional fact sheet | B-D14, B-D18, B-D21, B-D24 |
 | What to adopt | Solutions close to our description, which we then improve | B-D08 |
 | Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
@@ -674,3 +674,12 @@ Khai pushed Track A's work to the branch `track-a-k1-package` (14 commits, 81 fi
 - *Cost accepted:* gold data written against version 0 IDs (`prototype/gold/ak3_facts.json`) goes through the old-to-new map, which E30 measured at 15 of 17 cited chunks with `rapidocr`. Version 0 runs keep their IDs.
 - *Ownership:* Tri chose; who owns the scheme matters less than having one. Track C builds the stores and loader on it.
 - *Retrieval:* a lower hit rate on the new chunks (B-F55 item 1) is expected after rechunking and is not a reason to change the IDs.
+
+**B-D29 (decision, by Tri; reverses B-D24, which Claude made under delegation). This is D-55.** The per-well fact graph is part of the design, not optional. Tri did not decide to drop it.
+
+- The system is GraphRAG with two graphs: the per-well fact graph for end-of-well reports and the event graph for daily reports (B-D26). Retrieval routed by well and date (B-D23) feeds both.
+- Plain RAG is the baseline the graphs are measured against (D-50), not the system. Reports and documents describe it that way from now on.
+- Validated facts go back into end-of-well answers (`--fact-sheet --strict-facts --sheet-properties 3`), and fact-graph work resumes: coverage, and loading into Neo4j with Track C.
+- B-D24's measurements stand: on new lookup questions the fact graph ties retrieval (E23 29 and 29; E26 23 and 23) at 2.48 LLM calls per page. They show the lookup questions we have do not need it, not that the design should drop it. Questions across wells, which the expert set should bring, are where it is expected to help (B-F29).
+- Removed: "optional" for the fact graph in `CLAUDE.md`, the plan, specification §8.4, Q3 and D-51 (marked replaced), `graphrag/README.md` and the note to Track C. Historical records (E28, E29, the old supervisor request) keep their wording.
+
