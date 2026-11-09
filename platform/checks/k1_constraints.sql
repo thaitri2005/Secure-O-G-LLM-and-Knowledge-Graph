@@ -22,8 +22,8 @@ VALUES ('f62efbee00767a3e7:p2', 'f62efbee00767a3e7', 2, 'ok', repeat('0', 64), '
 INSERT INTO parents (parent_id, file_id, type, pages, document_type, record)
 VALUES ('f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'section', '{2}', 'eowr', '{}');
 
-INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, page, pages, text, sha256, quality, record)
-VALUES ('f62efbee00767a3e7:s6:c0', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 0, 2, '{2}',
+INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, seq, page, pages, text, sha256, quality, record)
+VALUES ('f62efbee00767a3e7:s6:c0', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 0, 0, 2, '{2}',
         'drilled to 1,955 feet', repeat('0', 64), 'ok', '{}');
 
 DO $$ BEGIN RAISE NOTICE 'PASS  valid rows load'; END $$;
@@ -49,18 +49,18 @@ SELECT pg_temp.expect_refused('page ID that does not match its page number',
        VALUES ('f62efbee00767a3e7:p9', 'f62efbee00767a3e7', 3, 'ok', repeat('0', 64), '{}')$s$);
 
 SELECT pg_temp.expect_refused('chunk ID that does not match its child index',
-    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, pages, text, sha256, quality, record)
-       VALUES ('f62efbee00767a3e7:s6:c5', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 1, '{2}',
+    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, seq, pages, text, sha256, quality, record)
+       VALUES ('f62efbee00767a3e7:s6:c5', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 1, 1, '{2}',
                'x', repeat('0', 64), 'ok', '{}')$s$);
 
 SELECT pg_temp.expect_refused('chunk whose parent does not exist',
-    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, pages, text, sha256, quality, record)
-       VALUES ('f62efbee00767a3e7:s7:c0', 'f62efbee00767a3e7:s7', 'f62efbee00767a3e7', 'text', 0, '{2}',
+    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, seq, pages, text, sha256, quality, record)
+       VALUES ('f62efbee00767a3e7:s7:c0', 'f62efbee00767a3e7:s7', 'f62efbee00767a3e7', 'text', 0, 1, '{2}',
                'x', repeat('0', 64), 'ok', '{}')$s$);
 
 SELECT pg_temp.expect_refused('chunk ID in the old version 0 format',
-    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, pages, text, sha256, quality, record)
-       VALUES ('gdr882_ak3_eowr#c0002', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 1, '{2}',
+    $s$INSERT INTO chunks (chunk_id, parent_id, file_id, type, child_index, seq, pages, text, sha256, quality, record)
+       VALUES ('gdr882_ak3_eowr#c0002', 'f62efbee00767a3e7:s6', 'f62efbee00767a3e7', 'text', 1, 1, '{2}',
                'x', repeat('0', 64), 'ok', '{}')$s$);
 
 SELECT pg_temp.expect_refused('vector with the wrong number of dimensions',

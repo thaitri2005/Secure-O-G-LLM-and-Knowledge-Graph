@@ -18,7 +18,9 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 | ID scheme (spec §5.11) | Chosen: §5.11 in the format of Track A's K1 version 1 (`<file_id>:s<n>:c<n>`, D-54). Build the stores on it | C-D02 |
 | Vector store | Proposed: pgvector inside PostgreSQL ([comparison](vector-store.md)); to decide with Tri. BM25 stays either way | C-D03 (proposed) |
 | Stores | Drafted: [`platform/docker-compose.yml`](../../../platform/docker-compose.yml) (PostgreSQL with pgvector, Neo4j, optional MinIO) and the K1 tables [`platform/sql/001_k1.sql`](../../../platform/sql/001_k1.sql). Running under Docker on Hung's Mac: the check [`platform/checks/k1_constraints.sql`](../../../platform/checks/k1_constraints.sql) passes 9 of 9 against the Docker PostgreSQL; both images pinned by digest | C-C04 to C-C07 |
-| Loader, runner, viewer | Not started. The loader needs a K1 version 1 package, which is not in the repository yet (B-F55) | — |
+| K1 version 1 package | Received from Track A as a zip, kept out of the repository in ignored `data/interim/k1/`: AK-3 EOWR and 4 daily reports, 1,042 chunks; checksums and Track A's validator pass on Hung's Mac. Proposed, not an agreed interface; no legacy ID map | C-F04 |
+| Loader | [`platform/load_k1.py`](../../../platform/load_k1.py): validates, loads one release in one transaction, reads it back and rebuilds every page from the database. Passes on a sample package; real package next | C-C08 |
+| Runner, viewer | Not started | — |
 | Next | Decide the vector store with Tri; run the stores on a laptop; get the K1 package from Khai; loader and page rebuild from the database for the week-3 dry run | — |
 
 ## 2026-11-05
@@ -73,3 +75,21 @@ No third-party GraphRAG base was adopted (B-D21), so the stores serve Track B's 
 **C-C06 (design choice).** [`platform/checks/k1_constraints.sql`](../../../platform/checks/k1_constraints.sql) checks the K1 tables in one transaction that is rolled back, so it changes nothing. It loads one valid file, page, section and chunk (`f62efbee00767a3e7:s6:c0`), then expects six bad rows to be refused: a file ID that does not match the SHA-256, a page ID that does not match its page, a chunk ID that does not match its child index, a chunk with no parent, a version 0 chunk ID, and a vector that is not 1,024 long. It also traces the chunk back to its file and page, and checks that deleting the release removes its rows. On a local PostgreSQL 16 with pgvector 0.6.0, all nine checks pass. Run it against the Docker database with the command at the top of the file.
 
 **C-C07 (design choice).** The stores run under Docker Compose on Hung's laptop (macOS, Docker Desktop). Against the Docker PostgreSQL, `platform/checks/k1_constraints.sql` passes all nine checks. The PostgreSQL image is now pinned by digest (`pgvector/pgvector:pg16@sha256:0dd3149a…`), as the Neo4j image already was, so every machine runs the same build. MinIO stays unpinned and optional (C-C04).
+
+**C-F04 (finding).** Track A sent a K1 version 1 package as a zip (`ak3-k1-v1-proposed.zip`, dated 8 November, Track A base commit `54d3e23`, which is on `main`). It is kept out of the repository, in ignored `data/interim/k1/ak3-k1v1-proposed/`, because pushed data is hard to remove. On Hung's Mac:
+
+- Contents: 5 files (AK-3 end-of-well report, daily-report appendices 27 to 30), 174 pages, 930 parents, 195 tables, 81 forms, 1,042 chunks (755 text, 206 table, 81 form, per Track A's note). E30 counted 1,040 chunks; the difference is to confirm with Khai.
+- All 12 files match `SHA256SUMS`, and Track A's validator passes with page rebuild 174 / 174.
+- The release folder must hold only the files `SHA256SUMS` lists: the validator reports any other file, so Track A's `README-share.md` is kept beside the folder, not inside it.
+- Status: proposed, not an agreed interface. No `legacy_chunk_ids.json`, so old gold chunk IDs cannot be mapped from this package; asked of Khai. Chunks carry no QA status (a separate sidecar), and end-of-well chunks have no well or date context yet.
+- Running Track A's validator needs only four packages, not the full lock file: `docling-core==2.103.1`, `jsonschema==4.26.0`, `pypdf==6.1.1`, `pypdfium2==5.14.0`, with `PYTHONPATH=src`.
+
+**C-C08 (design choice).** [`platform/load_k1.py`](../../../platform/load_k1.py) loads one K1 package into the Track C PostgreSQL, all or nothing:
+
+1. It refuses a package that fails Track A's validator.
+2. In one transaction it deletes the release if loaded before, then inserts every record type and the legacy ID map when present.
+3. It reads the release back and checks that row counts equal the manifest's and that every page rebuilds from the stored chunks to the package's digest. Any difference rolls the load back.
+
+Two changes to the tables of C-C05 came with it. `chunks.seq` keeps each chunk's line in `chunks.jsonl`, because page rebuild joins chunks in reading order and IDs alone do not give that order. `chunk_id_map` now follows Track A's legacy map: methods `exact`, `near` and `unmapped`, the `jaccard` score, and the release it came with. A database created before these changes must be recreated (`docker compose down -v`, then `up -d`).
+
+Tested on a sample package built with Track A's own test helpers (2 files, 4 pages, 6 chunks, 3 legacy IDs): it loads, loads again in place, rebuilds 4 / 4 pages from the database and maps 2 old IDs exactly and 1 as unmapped. A package with one changed chunk is refused with five named problems. Known limit: two releases that contain the same PDF cannot be loaded side by side (`files.sha256` is unique). The loader needs `psycopg[binary]==3.3.8`.

@@ -3,7 +3,7 @@
 -- columns and the whole K1 row in `record`, so nothing in the release is lost and the schema can grow without a
 -- migration. IDs follow spec §5.11 as K1 version 1 writes them (D-54): file f<16 hex>, page <file>:p<n>,
 -- table <file>:t<n>, parents <file>:s<n> / :t<n> / :f<n>, child chunk <parent>:c<n>.
--- A load replaces one release completely (delete the release, insert again); see platform/load_k1.py (to come).
+-- A load replaces one release completely (delete the release, insert again): platform/load_k1.py.
 
 CREATE EXTENSION IF NOT EXISTS vector;
 
@@ -77,6 +77,7 @@ CREATE TABLE chunks (
     form_id      text REFERENCES forms ON DELETE CASCADE,
     type         text NOT NULL CHECK (type IN ('text', 'table', 'form')),
     child_index  integer NOT NULL CHECK (child_index >= 0),
+    seq          integer NOT NULL CHECK (seq >= 0),          -- line in chunks.jsonl: reading order, which page rebuild needs
     page         integer,
     pages        integer[] NOT NULL,
     text         text NOT NULL,
@@ -90,16 +91,18 @@ CREATE TABLE chunks (
     CHECK (starts_with(parent_id, file_id || ':'))
 );
 
-CREATE INDEX chunks_file ON chunks (file_id);
+CREATE INDEX chunks_file ON chunks (file_id, seq);
 CREATE INDEX chunks_well_date ON chunks (well, report_date);
 
--- Map from K1 version 0 chunk IDs (<doc_id>#c<nnnn>) to version 1, from E30's legacy map. Gold data and old
--- runs cite version 0 IDs; an old ID with no match stays unmapped (method = 'none').
+-- Map from K1 version 0 chunk IDs (<doc_id>#c<nnnn>) to version 1: a release's legacy_chunk_ids.json (E30).
+-- Gold data and old runs cite version 0 IDs; an old ID with no match is kept with method 'unmapped'.
 CREATE TABLE chunk_id_map (
     old_chunk_id  text PRIMARY KEY CHECK (old_chunk_id ~ '#c[0-9]{4}$'),
+    release       text NOT NULL REFERENCES k1_releases ON DELETE CASCADE,
     chunk_id      text REFERENCES chunks ON DELETE SET NULL,
-    method        text NOT NULL CHECK (method IN ('exact', 'near', 'none')),
-    score         real
+    method        text NOT NULL CHECK (method IN ('exact', 'near', 'unmapped')),
+    jaccard       real,
+    CHECK ((method = 'unmapped') = (chunk_id IS NULL))
 );
 
 -- Vector store, if pgvector is chosen (C-D03, open). One row per chunk and embedding model, with the filter
