@@ -15,6 +15,48 @@
     "minimum_label_share": 0.4,
     "template": "configs/corpus/rimbase_form_template.json"
   },
+  "table_rules": {
+    "operations_summary": {
+      "document_types": ["daily_report"],
+      "schema": {
+        "title_words": ["Operations", "Summary"],
+        "columns": [
+          {"label": "From", "kind": "time"},
+          {"label": "To", "kind": "time"},
+          {"label": "Elapsed", "kind": "hours"},
+          {"label": "End MD(ft)", "kind": "depth"},
+          {"label": "Code", "kind": "code"},
+          {"label": "Operations Description", "kind": "text"},
+          {"label": "Non-Prod", "kind": "mark"}
+        ],
+        "patterns": {
+          "time": "^(\\d{1,2}):([0-5]\\d)$",
+          "hours": "^\\d{1,2}\\.\\d{2}$",
+          "depth": "^-?\\d[\\d,]*(?:\\.\\d+)?$",
+          "code": "^[A-Za-z][A-Za-z0-9/&_-]*$"
+        },
+        "mark": {"glyph": "X", "lookalikes": "×✓✔✗✘√•*■●☐☑☒"},
+        "annotation_kinds": [
+          {"kind": "records_not_printed", "pattern": "^(\\d+) records? not printed$", "sample": "2 records not printed"}
+        ]
+      },
+      "recognition": {
+        "phrase_gap_em_title": 0.8,
+        "annotation_min_gap_em_title": 3.0,
+        "annotation_max_tokens": 12,
+        "title_header_gap_em_header": 1.0
+      },
+      "tolerances": {
+        "line_gap_em_header": 0.55991,
+        "continuation_indent_em_header": 0.447928,
+        "band_margin_em_header": 1.119821,
+        "code_zone_extension": 0.5,
+        "elapsed_tolerance_minutes": 1.0,
+        "docling_overlap": 0.5,
+        "section_title": {"centre_tolerance_page_width": 0.019608, "max_words": 4, "word_pattern": "^[A-Z][A-Za-z/&-]*$"}
+      }
+    }
+  },
   "report_context": {
     "date_patterns": [
       "Report For\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})",

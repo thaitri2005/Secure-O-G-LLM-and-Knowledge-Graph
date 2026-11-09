@@ -17,6 +17,7 @@ from typing import Any
 from .catalog import Corpus
 from .forms import extract_auto, load_template
 from .k1_config import document_type, template_path
+from .ops_tables import RULE, repair_document
 from .process import output_directory, page_texts
 from .report_context import report_contexts
 from .store import read_jsonl
@@ -121,13 +122,15 @@ def map_children(fid: str, doc_id: str, dtype: str, chunks: list[dict], tables: 
 def logical_tables(tables: list[dict], document: Any, fid: str, doc_id: str) -> list[dict]:
     """One K1 table per corpus table: a single part, the grid from the Docling table, ids ``<file_id>:t<n>``.
 
-    ``document`` is the DoclingDocument that produced ``tables``. Tables that continue across pages are not joined.
+    ``document`` is the DoclingDocument that produced ``tables`` (None when every table was rebuilt from the text
+    layer). Tables that continue across pages are not joined.
     """
     from ..ingestion.tables import table_views
-    native = {table.self_ref: table for table in document.tables}
+    native = {table.self_ref: table for table in document.tables} if document is not None else {}
     result = []
     for number, table in enumerate(tables, 1):
-        grid = table_views(native[table["source_ref"]])[0]
+        # A table rebuilt from the text layer (ops_tables) brings its own grid and has no Docling item.
+        grid = table["grid"] if "grid" in table else table_views(native[table["source_ref"]])[0]
         regions = table["regions"]
         pages = sorted({region["page"] for region in regions})
         part = dict(source_ref=table["source_ref"], page=pages[0], bbox=regions[0]["bbox"], row_start=0,
@@ -163,7 +166,8 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
     """Build every K1 record of one processed PDF document.
 
     Returns the lists ``files``, ``pages``, ``tables``, ``forms``, ``parents`` and ``chunks``, the extracted
-    ``text``, and the report-context findings ``form_conflicts`` and ``pages_without_context``.
+    ``text``, and the report-context findings ``form_conflicts`` and ``pages_without_context``. ``table_repairs``
+    lists, for each table the ``table_rules`` looked at, whether it was rebuilt or why Docling's table was kept.
     """
     from docling_core.types.doc import DoclingDocument
     directory = output_directory(corpus, doc["doc_id"], fingerprint)
@@ -183,11 +187,21 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
             forms.append(dict(form, page=number))
     contexts, conflicts, missing = report_contexts(pdf, numbers, {form["page"]: form for form in forms}, dtype,
                                                    k1_config["report_context"])
+    repairs = []
+    rule = k1_config.get("table_rules", {}).get(RULE)
+    if rule and dtype in rule["document_types"]:
+        repaired = repair_document(pdf, numbers, chunks, corpus_tables, doc["doc_id"], fid, corpus.config["chunking"]["max_chars"],
+                                   rule)
+        chunks, corpus_tables = repaired["chunks"], repaired["tables"]
+        repairs = [dict(record, document_type=dtype, rule=RULE) for record in repaired["records"]]
     expected = page_texts(chunks + [{"page": form["page"], "source_spans": [], "text": form_text(form)} for form in forms])
     tables = []
     if corpus_tables:
-        with gzip.open(directory / "docling.json.gz", "rt", encoding="utf-8") as stream:
-            tables = logical_tables(corpus_tables, DoclingDocument.model_validate_json(stream.read()), fid, doc["doc_id"])
+        document = None
+        if any("grid" not in table for table in corpus_tables):
+            with gzip.open(directory / "docling.json.gz", "rt", encoding="utf-8") as stream:
+                document = DoclingDocument.model_validate_json(stream.read())
+        tables = logical_tables(corpus_tables, document, fid, doc["doc_id"])
     children, parents = map_children(fid, doc["doc_id"], dtype, chunks, tables, forms, contexts)
     pages = page_records(fid, record, expected, corpus.config["table_mode"])
     flagged = {page["page"] for page in pages if page["status"] != "ok"}
@@ -198,6 +212,6 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
                 sha256=doc["sha256"], page_count=len(pages), text=f"text/{fid}.txt",
                 license={"id": doc["license_id"], "url": doc["license_url"]})
     return dict(files=[file], pages=pages, tables=tables, forms=forms, parents=parents, chunks=children,
-                text="\n\n".join(child["text"] for child in children),
+                text="\n\n".join(child["text"] for child in children), table_repairs=repairs,
                 form_conflicts=[dict(conflict, doc_id=doc["doc_id"]) for conflict in conflicts],
                 pages_without_context=[{"doc_id": doc["doc_id"], "page": page} for page in missing])

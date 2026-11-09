@@ -85,7 +85,7 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
     jobs = corpus.jobs(fingerprint)
     sets: dict[str, list[dict]] = {group: [] for group in GROUPS}
     texts: dict[str, str] = {}
-    included, held, conflicts, missing, coverage = [], [], [], [], {}
+    included, held, conflicts, missing, coverage, repairs = [], [], [], [], {}, []
     for doc in documents:
         job = jobs.get(doc["doc_id"])
         if not job or job["status"] != "done" or not is_complete(output_directory(corpus, doc["doc_id"], fingerprint)):
@@ -101,6 +101,7 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
         texts[file["text"]] = built["text"]
         conflicts += built["form_conflicts"]
         missing += built["pages_without_context"]
+        repairs += built["table_repairs"]
         if file["document_type"] in k1_config["report_context"]["document_types"]:
             coverage[doc["doc_id"]] = context_coverage(built["chunks"])
         included.append({"doc_id": doc["doc_id"], "file_id": file["file_id"], "sha256": doc["sha256"],
@@ -132,6 +133,9 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
         shutil.rmtree(staging, ignore_errors=True)
         raise
     result = {"export": str(release), "release": release.name, **manifest["counts"], "held_back": len(held)}
+    if k1_config.get("table_rules"):
+        # Outside the package on purpose: which tables were rebuilt and why Docling's table was kept (ops_tables).
+        result["table_repairs"] = repairs
     if legacy_records is not None:
         result["legacy_map"] = summarize_legacy_map(legacy_records)
     return result
