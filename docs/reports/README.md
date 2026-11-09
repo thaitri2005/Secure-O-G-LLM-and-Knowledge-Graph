@@ -1,4 +1,10 @@
-# Progress report
+# Reports
+
+## Current: project report, 9 November 2026
+
+[`PROJECT_REPORT_2026-11-09.md`](PROJECT_REPORT_2026-11-09.md), in English, for the supervisors: purpose and scope, how the project got here, the target architecture, the first build's three tracks in detail (ingestion, the GraphRAG engine with its two graphs, storage), results, roadmap and what the team needs. Diagrams are Mermaid in the text. A shared web copy is at https://claude.ai/artifact/J3cK4LfXiAfKD7J3ZSt3CE; this file is the record.
+
+## Historical: progress report, 27 October 2026
 
 **Historical snapshot (27 October 2026).** This report predates the [28 October direction](../requirements/supervisor-meeting-2026-10-28.md): GraphRAG, open models of about 7B, VLM parsing and a full application. Its "builder first, QA second" framing, OCR-engine plan and research workstream are superseded; see the [specification](../PROJECT_DESIGN.md) for the current design. The supervisor asked for lighter reporting from now on: a weekly slide plan and short group-chat updates (D-46), not reports of this length.
 

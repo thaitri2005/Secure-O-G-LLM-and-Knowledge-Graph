@@ -697,3 +697,4 @@ Khai pushed Track A's work to the branch `track-a-k1-package` (14 commits, 81 fi
 
 **B-D31 (decision, by Tri). This is D-57.** Khai's K1 version 1 proposal (E30) is the team's chunk-package interface, not only its ID format (D-54): the six `k1_*` schemas, forms as their own record, report date and well on daily-report chunks, and the QA sidecar next to each release. Packages are shared as files. Still asked of Khai: the legacy ID map with each package and the OCR engine used (B-F57).
 
+**B-C31 (design choice).** The project report for the supervisors, 9 November, is kept in the repository as [docs/reports/PROJECT_REPORT_2026-11-09.md](../../reports/PROJECT_REPORT_2026-11-09.md), with Mermaid diagrams, in English. It describes the system as GraphRAG with two graphs (B-D29) and covers all three tracks, the roadmap and what the team needs from the supervisors. A web copy was shared from Claude; the file is the record.
