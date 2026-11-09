@@ -1,0 +1,57 @@
+# Track C stores for the first build (C-C04): PostgreSQL with pgvector, Neo4j, and an optional MinIO object store.
+# Local only: ports bound to 127.0.0.1, throwaway credentials. Not the production deployment (spec §11).
+# Neo4j uses the same ports as configs/graphrag/docker-compose.yml and prototype/docker-compose.yml: run one at a time.
+#
+#   docker compose -f platform/docker-compose.yml up -d                         # PostgreSQL + Neo4j
+#   docker compose -f platform/docker-compose.yml --profile objectstore up -d   # also MinIO
+#
+# PostgreSQL creates the K1 tables from platform/sql/ on its first start (empty volume only).
+# In development the object store can be a plain directory instead of MinIO (spec §4.2); MinIO stays optional
+# until its licence and the state of its community images are checked (Plan tab, "Ideas to consider").
+name: kg-platform
+
+services:
+  postgres:
+    # TODO: pin by digest after the first pull on a laptop (docker image inspect --format '{{index .RepoDigests 0}}').
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: kg
+      POSTGRES_PASSWORD: platform-dev
+      POSTGRES_DB: kg
+    ports:
+      - "127.0.0.1:5434:5432"   # 5433 is the prototype's PostgreSQL
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+
+  neo4j:
+    image: neo4j:5.26-community@sha256:adaa077a3ab023015143b8f73f7076a7d053f12985f5b06f4c6a128c3a2f7240
+    environment:
+      NEO4J_AUTH: neo4j/platform-dev
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_server_memory_heap_max__size: 2G
+      NEO4J_server_memory_pagecache_size: 1G
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - neo4j-data:/data
+
+  minio:
+    profiles: ["objectstore"]
+    # TODO before use: choose and pin an image after checking MinIO's licence and community-image status.
+    image: minio/minio
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: kg
+      MINIO_ROOT_PASSWORD: platform-dev
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    volumes:
+      - minio-data:/data
+
+volumes:
+  postgres-data:
+  neo4j-data:
+  minio-data:
