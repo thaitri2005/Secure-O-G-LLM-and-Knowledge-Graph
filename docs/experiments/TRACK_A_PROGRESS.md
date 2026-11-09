@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Status date** | 9 November 2026 |
-| **Branch** | `track-a-k1-package` (a work-in-progress branch for review; not merged to `main`) |
+| **Branch** | `track-a-k1-package`, merged into `main` on 9 November 2026 after review by Track B (614 tests pass) |
 | **Owner** | Track A (Khai) |
-| **Contract status** | The K1 version 1 schemas and chunk ids on this branch are a **proposed** K1 v1, developed by Track A. They are not an integrated interface: they have not been agreed with Track B or Track C, and nothing on `main` depends on them |
+| **Contract status** | The chunk and table id format of K1 v1 is **adopted** (specification D-54, 9 November 2026), and Track B's `graphrag` reads it (Track B log B-C28). The six `k1_*` schemas are still for Track C to review |
 | **Requirement** | Track A in the [development plan](../DEVELOPMENT_PLAN.md); chunk package K1 version 1 (specification §5.10, §5.11) |
 | **Scope of this report** | What is implemented, what was measured on which data, what is open. Every number states its dataset; "seen" data was used to build the method, so it is a regression check and not evidence of generalization |
 
@@ -78,7 +78,7 @@ Median seconds per page: Docling fast 2.6 on pages converted fresh, Docling accu
 
 | Task | State |
 |---|---|
-| K1 v1 package, forms, report context (E30) | Implemented; consistency verified on one family; contract not yet agreed with Track B/C |
+| K1 v1 package, forms, report context (E30) | Implemented; consistency verified on one family; id format adopted (D-54), schemas awaiting Track C's review |
 | A-107 Operations Summary reconstruction | Implemented; conditionally accepted by the owner for the template and data above |
 | A-501 parser comparison | Done within the limits above |
 | A-401, A-402, A-403, A-401a, A-412, A-414 QA checks | Implemented; warning-only; thresholds not calibrated across families |
@@ -97,7 +97,7 @@ Median seconds per page: Docling fast 2.6 on pages converted fresh, Docling accu
 - **Source fidelity.** The checks compare K1 with the PDF text layer. They cannot detect swapped or reordered content, a wrong label-value pairing, an error inside the text layer itself, OCR errors without a reference, or a table whose structure is wrong while its words are right. "Consistent with the text layer" is not "correct".
 - **Source completeness.** A PDF may state that records were not printed. K1 v1 does not carry this; the QA ledger does, as a partial-source marker. A table without that marker is not proven complete.
 - **Ground truth.** The gold tables are 10; annotation is by one person with AI assistance; the unused-document precision estimate rests on 20 pages.
-- **Contract and integration.** The K1 v1 schemas and chunk ids (specification §5.11) are Track A's proposal. They do not match Track C's version 0 chunk schema pattern, and Track B's `graphrag` code still splits chunk ids on `#`; both need an agreed contract before integration. No code of Track B or Track C is changed on this branch.
+- **Contract and integration.** The id format is adopted (D-54) and `graphrag` reads it (B-C28); Track C's `k1_chunk.v0` schema stays for version 0. Still open: Track C's review of the six schemas, and a quality or verification status, source completeness and annotations in the contract. *(Updated by Track B on 9 November after the merge.)*
 - **Scale.** Timings are single-machine measurements (for example about 5 seconds per page for the end-to-end conversion of four unused documents on CPU). No scalability claim is made.
 - **Reviews.** The reviews so far were done with the same development tooling; no independent human code review has taken place yet.
 
@@ -124,4 +124,5 @@ Tests that need local data skip themselves with a stated reason: the source PDFs
 2. Calibrate the QA checks on more than one family and re-measure on data not used for the calibration.
 3. Multi-page tables (FR-25): measure on the end-of-well reports and other families first, then implement against written acceptance criteria.
 4. Section context, forms outside the template, form areas that are tables.
-5. Agree the K1 contract points with Track B and Track C (chunk id format, a quality or verification status, source completeness, annotations).
+5. Agree the remaining K1 contract points with Track B and Track C (a quality or verification status, source completeness, annotations); the id format is settled (D-54).
+6. Share the K1 package, which is not in the repository, so Track B can rerun its baseline and daily-report runs on it.
