@@ -5,7 +5,7 @@
 | **Status date** | 9 November 2026 |
 | **Branch** | `track-a-k1-package`, merged into `main` on 9 November 2026 after review by Track B (614 tests pass) |
 | **Owner** | Track A (Khai) |
-| **Contract status** | The chunk and table id format of K1 v1 is **adopted** (specification D-54, 9 November 2026), and Track B's `graphrag` reads it (Track B log B-C28). The six `k1_*` schemas are still for Track C to review |
+| **Contract status** | The chunk and table id format of K1 v1 is **adopted** (specification D-54, 9 November 2026), and Track B's `graphrag` reads it (Track B log B-C28). The whole K1 v1 proposal (schemas, forms, report context, QA sidecar beside each release) is the agreed interface (D-57, 9 November) |
 | **Requirement** | Track A in the [development plan](../DEVELOPMENT_PLAN.md); chunk package K1 version 1 (specification §5.10, §5.11) |
 | **Scope of this report** | What is implemented, what was measured on which data, what is open. Every number states its dataset; "seen" data was used to build the method, so it is a regression check and not evidence of generalization |
 
@@ -78,7 +78,7 @@ Median seconds per page: Docling fast 2.6 on pages converted fresh, Docling accu
 
 | Task | State |
 |---|---|
-| K1 v1 package, forms, report context (E30) | Implemented; consistency verified on one family; id format adopted (D-54), schemas awaiting Track C's review |
+| K1 v1 package, forms, report context (E30) | Implemented; consistency verified on one family; adopted as the interface (D-54, D-57) |
 | A-107 Operations Summary reconstruction | Implemented; conditionally accepted by the owner for the template and data above |
 | A-501 parser comparison | Done within the limits above |
 | A-401, A-402, A-403, A-401a, A-412, A-414 QA checks | Implemented; warning-only; thresholds not calibrated across families |

@@ -29,7 +29,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
-| Vector store | Open; decided with Track C after the base | — |
+| Vector store | pgvector inside Track C's PostgreSQL, Hung's proposal; BM25 stays alongside it | B-D30 |
 
 ## 2026-10-30
 
@@ -692,4 +692,8 @@ Khai pushed Track A's work to the branch `track-a-k1-package` (14 commits, 81 fi
 - **No legacy ID map in the package.** Without `legacy_chunk_ids.json`, the prototype gold's old chunk IDs cannot be mapped, so retrieval hit rates on the package cannot be scored by chunk. Answer correctness is scored by value and is unaffected.
 - **Which OCR engine.** E30's map covers 15 of the 17 cited chunks with `rapidocr` and 17 of 17 with `easyocr`, so the engine decides how much gold carries over.
 - **End-of-well chunks have no well or date field.** Track B does not need one: `WellRouter` collects each document's well names from its own text, so well by file is enough, and only daily reports need a date. Track C can copy the file's well into the vector payload.
+
+**B-D30 (decision, by Tri). This is D-56.** The vector store is pgvector inside the PostgreSQL that holds K1, as Hung proposed (Track C log C-D03, [comparison](../C-storage/vector-store.md)). It adds no service, filters by well and report date in the same query, and is rebuilt from the system of record. BM25 stays alongside it for one-well questions.
+
+**B-D31 (decision, by Tri). This is D-57.** Khai's K1 version 1 proposal (E30) is the team's chunk-package interface, not only its ID format (D-54): the six `k1_*` schemas, forms as their own record, report date and well on daily-report chunks, and the QA sidecar next to each release. Packages are shared as files. Still asked of Khai: the legacy ID map with each package and the OCR engine used (B-F57).
 

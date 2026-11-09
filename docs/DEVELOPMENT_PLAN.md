@@ -197,7 +197,7 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
 1. Which open-source GraphRAG base fits our needs? Run neo4j-graphrag-python, then LightRAG (B-D04), judged on the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
 2. Which ~7B LLM extracts reliably (JSON compliance, precision, recall)?
 3. Which embedding model retrieves the right chunks for the questions?
-4. Which vector store suits the chosen base: Neo4j's index, pgvector or Qdrant? Decided with Track C.
+4. Which vector store? Decided: pgvector inside PostgreSQL, as Track C proposed (D-56).
 5. Which retrieval mode answers best: vector, graph or hybrid?
 6. How many calls and tokens per page does each option need?
 
@@ -232,7 +232,7 @@ This stint starts small and treats efficiency as a headline metric (B-D01, B-D02
 | 1. Model client | Done: JSON-schema output, cache, cost ledger, private-data guard | `graphrag/client.py` |
 | 2. Vector baseline | Done: Qwen3-8B, citations checked in code; BM25 routed by well, per-well fusion for questions naming several wells, date filter on daily reports (D-50). 28/31, 31/40, 23/36 and, on daily reports, 14/26 | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md) |
 | 3. Base comparison | Closed for this stint: neo4j-graphrag-python and LightRAG (also with K2) not adopted, and no base chosen. Our own design has two graphs: a per-well fact graph for end-of-well reports, which ties retrieval on new lookup questions so far and stays in the answer path (D-55), and an **event graph** that beats retrieval on totals over time on daily reports, 22/35 and 19/23 against 5/35 and 4/23, on questions chosen to suit it (D-53). Supervisor to confirm | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md), [E21](experiments/E21-lightrag-k2.md), [E22](experiments/E22-table-facts.md), [E23](experiments/E23-simulated-set.md), [E26](experiments/E26-routing-and-strict-facts.md), [E28](experiments/E28-event-graph.md) |
-| 4. Models | Answer LLM: Qwen3-8B (thinking off). Extraction, when used: Qwen3-4B. Embeddings: Qwen3-Embedding-0.6B, used in fusion. Vector store still open, with Track C | [E17](experiments/E17-model-sweep.md) |
+| 4. Models | Answer LLM: Qwen3-8B (thinking off). Extraction, when used: Qwen3-4B. Embeddings: Qwen3-Embedding-0.6B, used in fusion. Vector store: pgvector, proposed by Track C (D-56) | [E17](experiments/E17-model-sweep.md) |
 | 5. Ontology slice | K2 version 1.2 published. Casing mappings checked on 6 unseen reports: 13/16 with no wrong fact, up from 4/16; surveys unreliable. No further ontology work for now (D-52) | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), [E25](experiments/E25-table-mappings-unseen-report.md), [E29](experiments/E29-table-mappings-across-reports.md) |
 | 6. Answers | Cited answers on all question sets, with cost per run; K4 version 0.1 published, with current files from the baseline | [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), `graphrag/k4.py` |
 | Daily reports (added) | Date filter, then the event graph for questions over time; parsing failures written up for Track A | [E24](experiments/E24-ak3-daily-reports.md), [E27](experiments/E27-date-filter-and-coverage.md), [E28](experiments/E28-event-graph.md), [note](tracks/B-graphrag/note-for-track-A-daily-reports.md) |
@@ -265,7 +265,7 @@ The 31 development questions each name one well and are mostly single-fact looku
 
 1. How to write the §5.11 ID scheme so that every chunk, vector and answer resolves to its file and page, and so that rechunking never breaks old citations.
 2. How to lay out MinIO keys and PostgreSQL tables for files, pages, tables, chunks and runs.
-3. Which vector store to use: Neo4j's index, pgvector or Qdrant? Decide with Tri. BM25 alone serves one-well questions, embeddings are needed only for several wells, and retrieval filters by well and report date.
+3. Which vector store to use? Decided on 9 November: pgvector inside PostgreSQL, as Hung proposed (D-56). BM25 stays alongside it, and retrieval filters by well and report date.
 4. How to load the event graph into Neo4j so that each event keeps its source chunks and E28's results stay the same?
 
 **Work.**

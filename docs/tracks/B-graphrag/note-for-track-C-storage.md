@@ -19,7 +19,7 @@ The questions behind these results are simulated and not expert-reviewed. The su
 
 | Priority | Need | Why |
 |---|---|---|
-| 1 | **Choose the vector store together** | BM25 alone serves one-well questions, and embeddings are needed only for several wells. BM25 has to stay either way, in the store or in our code |
+| 1 | **Vector store: decided, pgvector (D-56, your proposal)** | BM25 alone serves one-well questions, and embeddings are needed only for several wells. BM25 has to stay either way, in the store or in our code |
 | 2 | **Well and report date in the vector payload** | Retrieval is filtered by both. Each document's well names stand in for registry IDs (`WellRouter`), and `page_dates` guesses each page's date until K1 version 1 has the field. Registry linking is not in the first build, so plain well names are enough for now |
 | 3 | **Load the event graph into Neo4j**, keeping each event's source chunks | Answers cite those chunks. Rerun E28 afterwards and expect the same results: 22/35 and 19/23 |
 | 4 | **A runner with both paths** | It runs the parser, builds the indexes and the event graph, answers, and writes K4 |

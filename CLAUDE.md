@@ -12,7 +12,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-55). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-57). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
 2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan. M1 is the first build, and each track's section lives there.
 3. Track logs in `docs/tracks/`, with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.
@@ -100,11 +100,11 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 ### Next steps (B-D15)
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Khai ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); the vector store and Neo4j loading with Hung ([note](docs/tracks/B-graphrag/note-for-track-C-storage.md)).
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Khai ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); reading chunks from Hung's PostgreSQL and loading both graphs into Neo4j ([note](docs/tracks/B-graphrag/note-for-track-C-storage.md)).
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). Fact-graph work resumes (B-D29 reverses B-D24's stop).
-5. Choose the vector store with Hung (Track C); it no longer has to wait for a base.
+5. ~~Choose the vector store~~: pgvector inside PostgreSQL, Hung's proposal (D-56). K1 version 1 is the agreed chunk-package interface, Khai's proposal (D-57).
 
 ## Setting up a machine for Track B runs
 
