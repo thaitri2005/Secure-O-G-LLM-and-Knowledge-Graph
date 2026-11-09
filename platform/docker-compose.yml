@@ -12,8 +12,8 @@ name: kg-platform
 
 services:
   postgres:
-    # TODO: pin by digest after the first pull on a laptop (docker image inspect --format '{{index .RepoDigests 0}}').
-    image: pgvector/pgvector:pg16
+    # Pinned by digest (C-C07), read with: docker image inspect --format '{{index .RepoDigests 0}}' pgvector/pgvector:pg16
+    image: pgvector/pgvector:pg16@sha256:0dd3149a06e4579a0d70d8fef9945636cd514005e7237deb27f9b67886f8dc4f
     environment:
       POSTGRES_USER: kg
       POSTGRES_PASSWORD: platform-dev
