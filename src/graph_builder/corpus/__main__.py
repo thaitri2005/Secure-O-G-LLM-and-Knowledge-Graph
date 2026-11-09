@@ -54,6 +54,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fidelity", action="store_true", help="qa: add the A-402 source fidelity check (reads the source PDFs)")
     parser.add_argument("--crossrep", action="store_true", help="qa: add the A-403 cross-representation checks (reads only the release)")
     parser.add_argument("--ops-margin", action="store_true", help="qa: add the A-401a Operations table mark-margin check (reads the source PDFs)")
+    parser.add_argument("--annotations", action="store_true", help="qa: add the A-414 'N records not printed' annotation check (reads the source PDFs)")
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args(argv)
@@ -83,7 +84,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "qa":  # read-only sidecar; never opens the catalog or writes into the corpus
             from .qa.cli import run as run_qa
-            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin), sort_keys=True))
+            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin, annotations=args.annotations), sort_keys=True))
             return 0
         corpus = Corpus(args.corpus)
         if args.command == "add":

@@ -40,6 +40,7 @@ REASONS = (
     ("FIDELITY_NUMERIC_RECALL_LOW", "WARN", "Numeric-token recall of the PDF page in K1 (after furniture exclusion) is below the proposed threshold.", CHECK_NAME),
     ("FIDELITY_WORD_RECALL_LOW", "WARN", "Word-token recall of the PDF page in K1 (after furniture exclusion) is below the proposed threshold.", CHECK_NAME),
     ("FIDELITY_PAGE_EMPTY", "WARN", "K1 has no text for a page whose PDF text layer has words.", CHECK_NAME),
+    ("FIDELITY_PAGE_EMPTY_EXPLAINED", "INFO", "K1 has no text for a page whose PDF text layer has words, and the pipeline recorded the removal of table-of-contents items covering most of it; nothing was compared and no level is granted.", CHECK_NAME),
     ("FIDELITY_NOT_APPLICABLE", "INFO", "OCR page: no independent text reference exists; the level stays STRUCTURAL_ONLY.", CHECK_NAME),
     ("FIDELITY_PARTIAL_REFERENCE", "INFO", "Hybrid page: only PDF-word recall was compared; OCR text has no reference; no level granted.", CHECK_NAME),
     ("FIDELITY_NO_REFERENCE", "INFO", "The source PDF was not found or its SHA-256 differs from the release; nothing was compared.", CHECK_NAME),
@@ -304,12 +305,14 @@ class FidelityState:
             raise LookupError(self._reference_error)
         return self._reference.page_text(page)
 
-def judge(raw: dict, mode: str, k1_empty: bool, config: dict) -> list[tuple[str, dict]]:
+def judge(raw: dict, mode: str, k1_empty: bool, config: dict, exclusion: dict | None = None) -> list[tuple[str, dict]]:
     """Pure decision: (reason code, evidence) pairs for one compared page. Mode is the release conversion mode."""
     metrics = public_metrics(raw, config["max_listed_tokens"]["value"])
     words, numbers = metrics["word"], metrics["numeric"]
     enough = words["reference_tokens"] >= _value(config, "thresholds", "min_page_words")
     if k1_empty and words["pdf_tokens"] >= _value(config, "thresholds", "empty_page_min_words"):
+        if exclusion and exclusion.get("explained"):
+            return [("FIDELITY_PAGE_EMPTY_EXPLAINED", {**metrics, "exclusion": exclusion, "grant_withheld": True})]
         return [("FIDELITY_PAGE_EMPTY", metrics)]
     out: list[tuple[str, dict]] = []
     if mode == "hybrid":
@@ -336,7 +339,7 @@ def evaluate_page(state: FidelityState, registry: Registry, ids: dict, entity: d
     if raw is None:
         return [registry.signal("FIDELITY_NO_REFERENCE", "page", ids, evidence={"reason": error, "grant_withheld": True})]
     k1_empty = state.k1_text(ids["file_id"], ids["page"]).strip() == ""
-    return [registry.signal(code, "page", ids, evidence=evidence) for code, evidence in judge(raw, str(mode), k1_empty, state.config)]
+    return [registry.signal(code, "page", ids, evidence=evidence) for code, evidence in judge(raw, str(mode), k1_empty, state.config, entity.get("page_exclusion"))]
 
 def register_fidelity(registry: Registry, corpus_dir: Path | None = None, config_path: Path | None = None) -> Registry:
     """Add the reason codes and the page-scope check to a quality-ledger registry.

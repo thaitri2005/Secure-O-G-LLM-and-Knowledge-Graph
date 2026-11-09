@@ -9,7 +9,7 @@ from .ledger import build_qa
 DEFAULT_OUT_ROOT = Path("data/interim/qa")
 
 
-def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config: Path | None, sidecar: Path | None, fidelity: bool = False, crossrep: bool = False, ops_margin: bool = False) -> dict:
+def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config: Path | None, sidecar: Path | None, fidelity: bool = False, crossrep: bool = False, ops_margin: bool = False, annotations: bool = False) -> dict:
     if release is None:
         raise ValueError("qa requires --release <release_dir>")
     if not (release / "manifest.json").is_file():
@@ -30,6 +30,10 @@ def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config:
         from .ledger import default_registry
         from .opsmargin import register_ops_margin
         registry = register_ops_margin(registry or default_registry(), corpus_dir=corpus_dir)
+    if annotations:  # opt-in: reads the source PDFs (A-414); INFO signals and completeness PARTIAL_IN_SOURCE only
+        from .annotations import register_annotations
+        from .ledger import default_registry
+        registry = register_annotations(registry or default_registry(), corpus_dir=corpus_dir)
     try:
         return build_qa(release, out_dir, corpus_dir=corpus_dir, config_path=config, sidecar_path=sidecar, registry=registry)
     finally:

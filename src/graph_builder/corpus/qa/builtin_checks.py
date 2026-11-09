@@ -67,7 +67,10 @@ def check_char_ratio(context: CheckContext, entity: dict) -> list[dict]:
         return []
     evidence = {"pdf_text_chars": pdf, "extracted_characters": extracted, "ratio": entity["char_ratio"]}
     if extracted == 0:
-        return [_sig(context, "PAGE_EMPTY_EXTRACTION", "page", entity, evidence)]
+        exclusion = entity.get("page_exclusion")
+        if exclusion and exclusion["explained"]:  # table of contents removed on purpose and recorded; not a verification of the exclusion
+            return [_sig(context, "PAGE_EMPTY_EXPLAINED_BY_EXCLUSION", "page", entity, {**evidence, "exclusion": exclusion})]
+        return [_sig(context, "PAGE_EMPTY_EXTRACTION", "page", entity, {**evidence, **({"exclusion_partial": exclusion} if exclusion else {})})]
     if entity["char_ratio"] < _threshold(context, "char_ratio_low"):
         return [_sig(context, "CHAR_RATIO_LOW", "page", entity, {**evidence, "threshold": _threshold(context, "char_ratio_low")})]
     if entity["char_ratio"] > _threshold(context, "char_ratio_high"):

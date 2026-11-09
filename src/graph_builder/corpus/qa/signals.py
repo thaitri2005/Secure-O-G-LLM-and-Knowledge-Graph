@@ -18,6 +18,7 @@ NOT_APPLICABLE = "NOT_APPLICABLE"
 ALL_LEVELS = LEVELS + (NOT_APPLICABLE,)
 GRANTABLE = ("TEXT_LAYER_CONSISTENT", "CROSS_REPRESENTATION_CONSISTENT", NOT_APPLICABLE)
 COMPLETENESS_VALUES = ("UNKNOWN", "PARTIAL_IN_SOURCE")  # a "complete" value is deliberately not available
+PARTIAL_IN_SOURCE_CODES = ("ANNOTATION_RECORDS_NOT_PRINTED",)  # signals that set completeness of their scope to PARTIAL_IN_SOURCE
 
 LIMITATIONS = (
     "The ledger records signals produced by pipeline metadata and registered checks; the absence of a signal is not evidence of correct content.",
@@ -66,6 +67,7 @@ BUILTIN_REASONS = _reasons(
     ("PAGE_STATUS_OTHER", "WARN", "Page status has a value other than ok, review or missing.", "page_status"),
     ("PAGE_NOT_IN_WORK_DATA", "WARN", "The page exists in the release but not in the corpus work document.", "work_folder"),
     ("PAGE_EMPTY_EXTRACTION", "WARN", "A text-mode page has PDF text characters but zero extracted characters.", "char_ratio"),
+    ("PAGE_EMPTY_EXPLAINED_BY_EXCLUSION", "INFO", "A text-mode page has zero extracted characters, and the pipeline recorded the removal of table-of-contents items covering most of its PDF text (the exclusion itself is not verified).", "char_ratio"),
     ("CHAR_RATIO_LOW", "WARN", "Extracted/pdf text-char ratio of a text-mode page is below the proposed threshold.", "char_ratio"),
     ("CHAR_RATIO_HIGH", "WARN", "Extracted/pdf text-char ratio of a text-mode page is above the proposed threshold (text not in the text layer).", "char_ratio"),
     ("CONFIDENCE_LOW", "WARN", "Docling mean_score of the page is below the proposed threshold.", "docling_confidence"),

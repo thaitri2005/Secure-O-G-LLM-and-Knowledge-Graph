@@ -11,8 +11,9 @@ from pathlib import Path
 from typing import Any, Iterator
 
 from .builtin_checks import register_builtin
-from .signals import (ALL_LEVELS, COMPLETENESS_VALUES, KNOWN_BLIND_SPOTS, LEVELS, LIMITATIONS, NOT_APPLICABLE, SCHEMA_VERSION,
-                      CheckContext, Registry, final_level, initial_level)
+from .exclusions import explain_page, load_page_exclusions
+from .signals import (ALL_LEVELS, COMPLETENESS_VALUES, KNOWN_BLIND_SPOTS, LEVELS, LIMITATIONS, NOT_APPLICABLE, PARTIAL_IN_SOURCE_CODES,
+                      SCHEMA_VERSION, CheckContext, Registry, final_level, initial_level)
 
 DEFAULT_CONFIG = Path("configs/qa/ledger.json")
 LEDGER_NAME = "qa-ledger.json"
@@ -164,7 +165,7 @@ def base_level(context: CheckContext, signals: list[dict]) -> str:
 
 
 def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page: dict | None, document_has_work: bool,
-               chunk_count: int) -> dict:
+               chunk_count: int, exclusion: dict | None = None) -> dict:
     registry = context.registry
     work_page = work_page or {}
     ids = {"file_id": file_row["file_id"], "page": page_row["page"], "page_id": page_row.get("page_id")}
@@ -173,12 +174,14 @@ def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page:
               "status": page_row.get("status"), "ocr": page_row.get("ocr"), "parser": page_row.get("parser"),
               "pdf_text_chars": pdf, "extracted_characters": extracted, "char_ratio": ratio(extracted, pdf),
               "confidence": work_page.get("confidence"), "analysis_reasons": work_page.get("reasons"),
-              "chunk_count": chunk_count, "work_present": bool(work_page), "document_has_work": document_has_work}
+              "chunk_count": chunk_count, "work_present": bool(work_page), "document_has_work": document_has_work,
+              "page_exclusion": exclusion}
     signals, ran, granted = registry.run("page", context, entity, ids)
     entity["signals"] = sorted_signals(signals)
     entity["checks"] = ran
+    entity["completeness"] = "PARTIAL_IN_SOURCE" if any(s["code"] in PARTIAL_IN_SOURCE_CODES for s in signals) else "UNKNOWN"
     entity["verification_level"] = final_level(base_level(context, signals), granted, signals)
-    del entity["ids"], entity["work_present"], entity["document_has_work"]
+    del entity["ids"], entity["work_present"], entity["document_has_work"], entity["page_exclusion"]
     entity["page_id"] = ids["page_id"]
     return entity
 
@@ -194,6 +197,8 @@ def build_table(context: CheckContext, file_row: dict, table: dict) -> dict:
     signals, ran, granted = context.registry.run("table", context, entity, ids)
     entity["signals"] = sorted_signals(signals)
     entity["checks"] = ran
+    if any(s["code"] in PARTIAL_IN_SOURCE_CODES for s in signals):
+        entity["completeness"] = "PARTIAL_IN_SOURCE"  # never upgraded: no signal ever sets a complete value
     entity["verification_level"] = final_level(base_level(context, signals), granted, signals)
     del entity["ids"]
     return entity
@@ -223,8 +228,12 @@ def build_document(registry: Registry, config: dict, release_dir: Path, manifest
                             "groups": {name: {"count": group["count"], "by_quality": counter_dict(group["by_quality"])}
                                        for name, group in sorted(chunks["groups"].items())}}
         pages = sorted(release["pages"].get(file_id, []), key=lambda row: row["page"])
+        excluded, _ = load_page_exclusions(corpus_dir / "work" / file_row.get("doc_id", "") / work_fp if work_doc and corpus_dir else None,
+                                           config["exclusion_rules"])
         record["pages"] = [build_page(context, file_row, row, work_pages.get(row["page"]), work_doc is not None,
-                                      release["page_chunks"].get((file_id, row["page"]), 0)) for row in pages]
+                                      release["page_chunks"].get((file_id, row["page"]), 0),
+                                      explain_page(excluded.get(row["page"]), (work_pages.get(row["page"]) or {}).get("text_chars"),
+                                                   config["exclusion_rules"])) for row in pages]
         record["tables"] = [build_table(context, file_row, table) for table in release["tables"].get(file_id, [])]
         entity = {"ids": ids, "work": record["work"], "chunks": record["chunks"]}
         signals, ran, granted = registry.run("document", context, entity, ids)
