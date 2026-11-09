@@ -178,6 +178,24 @@ class CitationTests(unittest.TestCase):
         self.assertEqual(cited_id("c0005", hits, "z"), "z#c0005")
 
 
+class K1PoolTests(unittest.TestCase):
+    def test_k1_pools_read_the_package_from_outside_the_repository(self):
+        from graphrag.baseline import pool
+        rows = [{"chunk_id": "f1:s1:c0", "doc_id": "gdr882_ak3_eowr", "page": 1, "type": "text", "section": None,
+                 "text": "AK-3 total depth."},
+                {"chunk_id": "f2:s1:c0", "doc_id": "gdr882-ak3-appx-30-dailyreport", "page": 1, "type": "text",
+                 "section": None, "text": "Report For 18-Aug-16"}]
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "chunks.jsonl"
+            path.write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
+            with patch.dict("os.environ", {"GRAPHRAG_K1_CHUNKS": str(path)}):
+                self.assertEqual([c.id for c in pool("k1_ak3")], ["f1:s1:c0"])
+                self.assertEqual([c.id for c in pool("k1_daily")], ["f2:s1:c0"])
+            with patch.dict("os.environ", {"GRAPHRAG_K1_CHUNKS": str(Path(temporary) / "missing.jsonl")}):
+                with self.assertRaisesRegex(FileNotFoundError, "B-F56"):
+                    pool("k1_ak3")
+
+
 class ChunkIdTests(unittest.TestCase):
     def test_document_key_and_short_id_in_both_formats(self):
         self.assertEqual((document_key("gdr882_ak3_eowr#c0005"), short_id("gdr882_ak3_eowr#c0005")),

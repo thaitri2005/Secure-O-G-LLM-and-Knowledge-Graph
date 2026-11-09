@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -21,6 +22,16 @@ AK3_EVENTS_HELDOUT = ROOT / "graphrag/gold/ak3_events_heldout_v0.json"
 QUESTION_SETS = ("prototype", "probe", "simulated", "heldout", "ak3_daily", "ak3_daily_heldout", "ak3_events",
                  "ak3_events_heldout")
 AK3 = "gdr882_ak3_eowr"
+# Track A's K1 version 1 package is shared as a zip, not committed (B-F56). Unzip it so that this file exists, or set
+# GRAPHRAG_K1_CHUNKS to its chunks.jsonl. data/interim/ is ignored by git.
+K1_CHUNKS = ROOT / "data/interim/k1/chunks.jsonl"
+
+
+def k1_chunks_path() -> Path:
+    path = Path(os.environ.get("GRAPHRAG_K1_CHUNKS") or K1_CHUNKS)
+    if not path.is_file():
+        raise FileNotFoundError(f"No K1 package at {path}: unzip Track A's package there or set GRAPHRAG_K1_CHUNKS (B-F56)")
+    return path
 # The 15 chunks the prototype extracted from (prototype/kgproto/extract.py SLICE).
 PROTOTYPE_SLICE = ["c0002", "c0010", "c0012", "c0013", "c0029", "c0037", "c0054", "c0055",
                    "c0004", "c0005", "c0008", "c0022", "c0026", "c0028", "c0031"]

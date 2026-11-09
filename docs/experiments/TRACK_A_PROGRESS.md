@@ -116,7 +116,7 @@ python -m graph_builder.corpus init <corpus> ; add ; process ; k1 <corpus> --nam
 python -m graph_builder.corpus qa <corpus> --release <release> --fidelity --crossrep --ops-margin --annotations --out <dir>
 ```
 
-Tests that need local data skip themselves with a stated reason: the source PDFs (3 groups), the corpus work folder or a real K1 release, optional packages (`PyMuPDF`, `requirements-graphrag.lock.txt`). The sample K1 package mentioned in E30 is **not** published on this branch; it can be regenerated from the PDFs.
+Tests that need local data skip themselves with a stated reason: the source PDFs (3 groups), the corpus work folder or a real K1 release, optional packages (`PyMuPDF`, `requirements-graphrag.lock.txt`). The K1 package is not in the repository by design: it was shared with the team as a zip on 9 November, and it can be regenerated from the PDFs.
 
 ## 7. Next priorities
 
@@ -125,4 +125,4 @@ Tests that need local data skip themselves with a stated reason: the source PDFs
 3. Multi-page tables (FR-25): measure on the end-of-well reports and other families first, then implement against written acceptance criteria.
 4. Section context, forms outside the template, form areas that are tables.
 5. Agree the remaining K1 contract points with Track B and Track C (a quality or verification status, source completeness, annotations); the id format is settled (D-54).
-6. Share the K1 package, which is not in the repository, so Track B can rerun its baseline and daily-report runs on it.
+6. The K1 package was shared as a zip on 9 November (not committed). Confirm the chunk count (1,042 in the message, 1,040 in E30) and that its ids are the D-54 format.

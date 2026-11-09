@@ -9,7 +9,7 @@
 | **Code** | `src/graph_builder/corpus/{k1_build,k1_export,k1_validate,k1_config,forms,text_layer,form_scoring,report_context,legacy_ids}.py`, `configs/corpus/{k1,daily_reports}.json`, `schemas/k1_*.schema.json`, `scripts/evaluate_form_pairing.py`, `scripts/check_k1_graphrag_compat.py` |
 | **Gold data** | Form annotations of the [ingestion exploration](../../explorations/ingestion/README.md) (single annotator, AI-assisted, five forms); the prototype's fact gold [`ak3_facts.json`](../../prototype/gold/ak3_facts.json) for the id map and retrieval check. Neither was edited |
 | **Models** | Docling layout and fast TableFormer; `rapidocr` 3.10.0 for the 11 hybrid pages of the end-of-well report (`easyocr` 1.7.2 for the comparison). No language model, no GPU |
-| **Outputs** | Sample [`data/processed/k1/ak3-k1-candidate/`](../../data/processed/k1/ak3-k1-candidate/README.md) (about 2.2 MB, three documents). The full five-document package stays in the ignored corpus folder |
+| **Outputs** | The five-document package, shared with the team as a zip on 9 November and **not committed**: data pushed to git is hard to remove. Track B reads it from ignored `data/interim/k1/` (Track B log B-F56). The sample this row first named was never committed |
 | **Status** | Done for the version 1 candidate. Open items are listed at the end |
 
 ## Parser choice

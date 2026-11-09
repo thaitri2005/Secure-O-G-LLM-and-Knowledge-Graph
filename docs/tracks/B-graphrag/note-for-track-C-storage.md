@@ -55,3 +55,5 @@ The daily-report gold names PDF pages instead of chunks, so it survives rechunki
 - The first check of a load is a known score: BM25 hit@5 of 1.00 and about 28/31 on the prototype's questions, as in `CLAUDE.md`.
 
 Tell us when the stores can take K1 version 0, and Track B will run on them.
+
+**Update, 9 November: the K1 package.** Khai shared Track A's K1 version 1 package for AK-3 (five documents) as a zip with the team rather than committing it, because data pushed to git is hard to remove. Track B keeps its copy in the ignored folder `data/interim/k1/`. Its IDs follow D-54, which is now agreed, so the loader can be built on them. Khai's QA output is a separate sidecar file next to the package.

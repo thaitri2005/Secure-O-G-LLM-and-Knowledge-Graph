@@ -136,6 +136,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
 ## Useful facts
 
 - Data: `data/processed/gdr_chunks_full.jsonl` holds the K1 version 0 chunks: AK-3 EOWR (`gdr882_ak3_eowr`, 60 chunks) plus two other EOWRs (372 chunks in total). Gold data: `prototype/gold/questions.json` (31 questions) and `ak3_facts.json` (41 facts, chunk IDs like `c0002`).
+- Track A's K1 version 1 package is shared as a zip, never committed (B-F56): unzip it into ignored `data/interim/k1/` (or set `GRAPHRAG_K1_CHUNKS`) and use `--pool k1_ak3` or `--pool k1_daily`.
 - AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`, `ak3_events_v0`, `ak3_events_heldout_v0`. They are frozen: changes go into a new version.
 - The prototype (`prototype/`) is the baseline to beat (E10). Do not change it.
 - Diagrams: Mermaid source sits in the documents. SVGs are regenerated with mermaid-cli 11.17.0 (see `docs/diagrams/README.md`).
