@@ -12,7 +12,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-49).
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-54). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
 2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan. M1 is the first build, and each track's section lives there.
 3. Track logs in `docs/tracks/`, with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.

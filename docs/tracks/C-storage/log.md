@@ -15,10 +15,10 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 |---|---|---|
 | What Track C must build | ID scheme and K1 schema with validators; MinIO, PostgreSQL, the vector store and Neo4j in Docker Compose; loader and run log; runner; viewer ([plan](../../DEVELOPMENT_PLAN.md), [Tri's note](../B-graphrag/note-for-track-C-storage.md)) | C-F01 |
 | K1 version 0 | Schema [`k1_chunk.v0.schema.json`](../../../schemas/k1_chunk.v0.schema.json) and checker `platform/validate_k1.py`: 372 of 372 corpus chunks pass | C-C01, C-C02 |
-| ID scheme (spec §5.11) | Not started. Draft and agree with Tri before any IDs change | C-F02 |
+| ID scheme (spec §5.11) | Chosen: §5.11 in the format of Track A's K1 version 1 (`<file_id>:s<n>:c<n>`, D-54). Build the stores on it | C-D02 |
 | Vector store | Open: Neo4j's index, pgvector or Qdrant, chosen with Tri. BM25 stays either way | C-F01 |
 | Stores, loader, runner, viewer | Not started | — |
-| Next | ID scheme draft for Tri; vector store choice; stores for the week-3 dry run | — |
+| Next | Review Track A's six `k1_*` schemas; vector store choice; stores for the week-3 dry run | — |
 
 ## 2026-11-05
 
@@ -52,3 +52,7 @@ No third-party GraphRAG base was adopted (B-D21), so the stores serve Track B's 
 - Daily-report chunks are not checked yet: they sit in ignored `data/corpora/` and need a local regeneration first ([next-runs](../B-graphrag/next-runs.md)).
 
 **C-C03 (design choice; fix by Tri, 8 November).** `doc_id` in the K1 schema now also states `maxLength: 64`, as `tests/test_contracts.py` requires of every non-corpus schema. The pattern already enforced the limit, so no chunk changes: 372 of 372 still pass.
+
+## 2026-11-09
+
+**C-D02 (decision, by Tri, recorded here by Track B).** The ID scheme is §5.11 in the format Track A's K1 version 1 candidate writes ([E30](../../experiments/E30-k1-version-1-candidate.md)): file `f<16 hex of the PDF's SHA-256>`, then `:p<n>`, `:t<n>`, `:s<n>`, `:f<n>` and `<parent>:c<n>`. This replaces drafting a scheme (C-F02's open item). Specification D-54, Track B log B-D28. [`k1_chunk.v0.schema.json`](../../../schemas/k1_chunk.v0.schema.json) still describes version 0, which stays readable; Track A's `k1_*` schemas describe version 1 and are Track C's to review.

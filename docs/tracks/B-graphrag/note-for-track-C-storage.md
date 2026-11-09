@@ -36,7 +36,7 @@ E28's win is for structured events, and it says nothing about graph databases: t
 
 ## What will break when IDs change
 
-These depend on today's IDs, so please tell us before the §5.11 IDs land. Track B will update its side.
+**Update, 9 November:** the IDs are now chosen (B-D28, D-54): §5.11 in the format Track A's K1 version 1 writes, for example `f62efbee00767a3e7:s6:c0`. Track B's code reads both formats (B-C28), so the first row below is handled by the old-to-new map and the others by `graphrag`. The table is kept as the record of what depended on version 0.
 
 | Depends on | Where | What it does |
 |---|---|---|

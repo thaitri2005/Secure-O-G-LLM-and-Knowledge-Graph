@@ -719,7 +719,17 @@ The rules:
 3. From any vector hit, the system can reach its parent chunk, page, file and the entities it mentions; from any entity, every chunk and document that mentions it.
 4. A page can be rebuilt as text from its child chunks in order, or directly from its stored parser output.
 
-The existing evidence contract ([E12](experiments/E12-shared-evidence-contract.md)) and corpus chunk IDs are the starting point. Parent IDs, table page spans and vector payloads are new.
+**The format in use (D-54, 9 November 2026).** Track A's K1 version 1 candidate ([E30](experiments/E30-k1-version-1-candidate.md)) writes the IDs of the table above, and that format is the one used from now on:
+
+| Level | Format | Example |
+|---|---|---|
+| File | `f` and the first 16 hex digits of the SHA-256 of the PDF bytes; `doc_id` is the document ID | `f62efbee00767a3e7` |
+| Page | `<file_id>:p<n>` | `f62efbee00767a3e7:p1` |
+| Table | `<file_id>:t<n>`; the corpus table ID stays as `logical_id` | `f62efbee00767a3e7:t3` |
+| Parent | `<file_id>:s<n>` (section), `<file_id>:f<n>` (form) or the table ID | `f62efbee00767a3e7:s6` |
+| Child chunk | `<parent_id>:c<n>` | `f62efbee00767a3e7:s6:c0` |
+
+K1 version 0 IDs (`<doc_id>#c<nnnn>`, tables `<doc_id>#t<nnn>`) stay valid for runs made on version 0. `export --legacy-chunks` maps them to the new IDs by text, and Track B's code reads both (Track B log B-C28). The rest of the table above, such as `document_id` grouping versions and vector payloads, is not built yet.
 
 ## 6. Ontology layer and domain modules
 
@@ -1143,6 +1153,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-51 | **The per-well fact graph is optional, not part of the baseline, for now.** It is validated in code and built from K2 table mappings and LLM extraction (2.48 LLM calls per page). On simulated questions written after it was designed it does not beat plain RAG (E23: 29 and 29 of 40; E26: 23 and 23 of 36; E27). The code stays; further LLM extraction stops. Not a verdict on graphs across wells, and not a change of direction (D-36, D-52): all these questions are simulated | Track B, 4 Nov; decided by Claude, delegated by Tri (log B-D24, replacing B-D19 to B-D21's working design); the supervisor has yet to confirm it | The expert question set shows a graph helps, or the supervisor asks for a graph in the main pipeline |
 | D-52 | **No ontology work for now; the direction is GraphRAG.** K2 stays thin (D-49). The two papers from the supervisor (SPE-223801, EAGE well performance) were sent before this direction and are background only | Supervisor, relayed by Tri, 4 Nov (log B-D25) | Supervisor asks for deeper domain modelling |
 | D-53 | **Questions over time on daily reports are answered from a graph of events**, built with no LLM from operations tables and the non-productive report. The model plans, code runs the plan, the model writes the answer; other questions fall back to retrieval. 22/35 and 19/23 against 5/35 and 4/23 for retrieval, and no harm on lookups (17/26 against 14/26). No new ontology (D-52). Replaces the first clause of D-51 for this kind of question | Track B, 5 Nov; decided by Claude, delegated by Tri (log B-D26, E28); the supervisor has yet to see it. The questions are simulated and were chosen to suit it | The expert question set does not ask such questions, or other report series cannot be read into events |
+| D-54 | **Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them:** `f<first 16 hex of the PDF's SHA-256>` for the file, then `:p<n>` page, `:t<n>` table, `:s<n>` section parent, `:f<n>` form parent, and `<parent>:c<n>` child chunk. The file part comes from the PDF bytes, so it does not change when a report is renamed or rechunked; version 0's `<doc_id>#c<nnnn>` counted chunks in order and did. Version 0 IDs stay readable, mapped by `export --legacy-chunks`. Chosen by Tri on 9 November 2026 from Track A's proposal (E30); Track C builds the stores on it | 9 Nov 2026 | §5.11; Track B log B-D28; [E30](experiments/E30-k1-version-1-candidate.md) |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
