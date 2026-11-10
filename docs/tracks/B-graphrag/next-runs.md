@@ -86,7 +86,7 @@ Worth doing when the work resumes:
 | What | From whom | Then |
 |---|---|---|
 | The expert question set, or a specification for development questions, asked for in the [5 November update](supervisor-update-2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
-| Shared hosting of the stores on a free cloud tier, with credentials for each teammate (B-D35) | Hung, Track C | Read K1 packages and chunks from the shared store instead of zips |
+| **High priority:** shared hosting of the stores on a free cloud tier, owned by Track C, with Tri and Khai added as users (B-D35) | Hung, Track C | Read K1 packages and chunks from the shared store instead of zips |
 | Appendix 23 (the non-productive-time report) inside the K1 package, so the event graph reads only K1 (E31) | Khai, Track A | Drop the old-corpus fallback in `events.npt_report_inputs` |
 | Reading chunks from Track C's PostgreSQL, and both graphs in Neo4j ([note](note-for-track-C-storage.md)); vector store is pgvector (D-56) | Hung, Track C | Point the baseline at the store; BM25 stays for one-well questions, pgvector embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
