@@ -114,7 +114,7 @@ From the [9 November meeting](requirements/supervisor-meeting-2026-11-09.md) (D-
 
 - **Report to the professor on Wednesday 11 November**, 10 to 15 minutes: two or three slides of core architecture, each track as a diagram with a short evaluation per module and its weak points; one data sample walked through the whole pipeline; what the input looks like, what it looks like after processing, and what the application will look like; then needs, next steps and support wanted. No long text.
 - **Connect the three tracks and put a simple UI on top** (D-60): question, answer, cited source text and what was retrieved. It comes before the rest of M2, so the team can show domain experts and ask what they would ask.
-- **Track C before Wednesday:** store vectors and load Neo4j.
+- **Track C before Wednesday:** store vectors and load Neo4j. Done on 10 November: 1,042 vectors in pgvector and the event graph in Neo4j, each checked ([Track C log](tracks/C-storage/log.md) C-F06).
 - **Track A:** try documents other than the five AK-3 files.
 - Message the supervisor whenever there is a result worth showing.
 

@@ -18,10 +18,13 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 | ID scheme (spec §5.11) | Chosen: §5.11 in the format of Track A's K1 version 1 (`<file_id>:s<n>:c<n>`, D-54). Build the stores on it | C-D02 |
 | Vector store | **Decided: pgvector inside PostgreSQL** ([comparison](vector-store.md)); BM25 stays alongside it | C-D03, C-D04 |
 | Stores | Drafted: [`platform/docker-compose.yml`](../../../platform/docker-compose.yml) (PostgreSQL with pgvector, Neo4j, optional MinIO) and the K1 tables [`platform/sql/001_k1.sql`](../../../platform/sql/001_k1.sql). Running under Docker on Hung's Mac: the check [`platform/checks/k1_constraints.sql`](../../../platform/checks/k1_constraints.sql) passes 9 of 9 against the Docker PostgreSQL; both images pinned by digest | C-C04 to C-C07 |
-| K1 version 1 package | Received from Track A as a zip, kept out of the repository in ignored `data/interim/k1/`: AK-3 EOWR and 4 daily reports, 1,042 chunks; checksums and Track A's validator pass on Hung's Mac. Proposed, not an agreed interface; no legacy ID map | C-F04 |
+| K1 version 1 package | Received from Track A as a zip, kept out of the repository in ignored `data/interim/k1/`: AK-3 EOWR and 4 daily reports, 1,042 chunks; checksums and Track A's validator pass on Hung's Mac. The agreed interface (D-57); no legacy ID map yet | C-F04, C-D04 |
 | Loader | [`platform/load_k1.py`](../../../platform/load_k1.py): validates, loads one release in one transaction, reads it back and rebuilds every page from the database. Track A's AK-3 package loaded on Hung's Mac: 1,042 chunks, 174 / 174 pages rebuilt from the database | C-C08, C-F05 |
-| Runner, viewer | Not started | — |
-| Next | Decide the vector store with Tri; run the stores on a laptop; get the K1 package from Khai; loader and page rebuild from the database for the week-3 dry run | — |
+| Reading the store | [`platform/k1_store.py`](../../../platform/k1_store.py): `read_chunks()` returns a release's chunks as the package wrote them, in order; `export` writes a `chunks.jsonl` that `graphrag` reads. The store equals the package, 1,042 / 1,042 | C-C09, C-F06 |
+| Vectors | [`platform/embed_k1.py`](../../../platform/embed_k1.py): 1,042 Qwen3-Embedding-0.6B vectors in pgvector, each with its well and report date; 67 / 67 searches give the same top 5 from SQL as in memory. About 1,170 tokens and 0.5 s per page on Hung's Mac | C-C10, C-F06 |
+| Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. Its source chunks still use the corpus export's IDs, not K1 version 1's. The fact graph is not in Neo4j yet | C-C11, C-F06 |
+| Runner, viewer | Not started. Track B's local UI (B-C32, D-60) is the viewer for now | — |
+| Next | Track B reads chunks from the store (`k1_store.py`); link the event graph to K1 version 1 chunks (legacy map from Khai, or the event graph built from K1); agree the fact graph's nodes and relationships with Tri; runner | — |
 
 ## 2026-11-05
 
@@ -97,3 +100,34 @@ Tested on a sample package built with Track A's own test helpers (2 files, 4 pag
 **C-F05 (finding).** Track A's AK-3 package (C-F04) loads into the Docker PostgreSQL on Hung's Mac with `platform/load_k1.py`, after the database was recreated for C-C08's table changes. Every count matches the manifest (5 files, 174 pages, 930 parents, 195 tables, 81 forms, 1,042 chunks, no legacy map), and all 174 pages rebuild from the stored chunks to the package's digests. The release is recorded with the SHA-256 of its `SHA256SUMS` (starts `e34a87c780d866cd`). This is the week-3 dry run's first link: Track A's package into Track C's store. Next on that path: Track B reads chunks from the store.
 
 **C-D04 (decision, by Tri, recorded here by Track B on 9 November).** C-D03 is accepted: the vector store is pgvector inside the PostgreSQL that holds K1 (specification D-56, Track B log B-D30). Track A's K1 version 1 is also accepted as the team's interface (D-57), so the package in C-F04 is no longer only a proposal.
+
+## 2026-11-10
+
+Before the professor's review on 11 November, Track C stored vectors and loaded Neo4j, as Hung said at the 9 November meeting ([digest](../../requirements/supervisor-meeting-2026-11-09.md)).
+
+**C-C09 (design choice).** [`platform/k1_store.py`](../../../platform/k1_store.py) is how Track B reads the store. `read_chunks(release)` returns the chunk records of one release from `chunks.record`, ordered by `chunks.seq`, so they equal the package's `chunks.jsonl` line for line. `compare <package>` checks that; `export --out <file>` writes the records as a `chunks.jsonl`, which `graphrag` already reads through `GRAPHRAG_K1_CHUNKS` with no code change. JSONB does not keep key order, so the export equals the package as JSON, not byte for byte.
+
+**C-C10 (design choice).** [`platform/embed_k1.py`](../../../platform/embed_k1.py) fills `chunk_vectors` (D-56):
+
+- Qwen3-Embedding-0.6B served by llama.cpp (`--embedding --pooling last`, alias `qwen3-embedding-0.6b`, endpoint `local-embed`), called through `graphrag/client.py`, on the passage text `graphrag.retrieval.Dense` embeds (section heading, then text), normalised to unit length as `Dense` does.
+- Each vector keeps its chunk's well and report date. End-of-well chunks carry no well (B-F57), so they take their file's well: the one the file's report context names, or else the well name its text mentions most.
+- `embed` replaces one model's vectors for a release in one transaction. `check` compares an exact cosine search in SQL (`<=>`) with numpy on the same stored vectors, for the prototype's 31 questions unfiltered and filtered by well, and for five report dates. It shows that SQL search and filtering agree with search in memory; it does not compare the vectors with ones Track B computes.
+
+**C-C11 (design choice).** [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py) loads Track B's recorded event graph (`graphrag/results/E28_events.json`) into Neo4j, the graph E28 measured. Nodes and relationships:
+
+- `(:Well)-[:HAS_DAY]->(:ReportDay)-[:HAS_EVENT]->(:Event)`, with `(:Event)-[:HAS_CODE]->(:ActivityCode)`, `(:Event)-[:NPT]->(:NptCode)` for non-productive events, and `(:Event)-[:FROM {rank}]->(:Chunk)` for the passages each event was read from.
+- A `Chunk` node holds only its ID; text and page stay in PostgreSQL, so Neo4j stays derived (D-06). `Event.seq` keeps the recorded order, which the plan runner relies on for first and last dates.
+- One write transaction replaces the well's days and events, reads them back, replays every recorded query plan of the two E28 runs (`E28_graph_fixed_seen`, `E28_heldout_graph`; 58 plans) with `graphrag.events.run_plan`, and computes hours per activity code and the non-productive totals in Cypher. Any difference rolls the load back.
+- Limit: the recorded events cite the chunk IDs of the corpus export E28 read (`<doc_id>#c<nnnnn>`), not K1 version 1 IDs, so their `Chunk` nodes do not yet match chunks in PostgreSQL. `Chunk.id_format` names the scheme. Linking needs Track A's legacy map for the daily reports, or the event graph built from K1 version 1 by Track B.
+
+**C-F06 (finding).** On Hung's Mac (Docker PostgreSQL and Neo4j, llama.cpp from Homebrew with Metal), with Track A's AK-3 package (C-F05):
+
+| Check | Result |
+|---|---|
+| Store against package (`k1_store.py compare`) | 1,042 / 1,042 chunks identical |
+| Vectors stored (`embed_k1.py embed`) | 1,042, all with a well (AK-3 for all five files) and 981 with a report date; the 61 without are end-of-well chunks |
+| Embedding cost | 66 calls, 203,630 tokens, 91 s: about 1,170 tokens and 0.52 s per page over 174 pages; no hosted call, no money |
+| Search from the store (`embed_k1.py check`) | 67 / 67 searches give the same top 5 from pgvector as in memory (31 unfiltered, 31 filtered by well, 5 by report date) |
+| Event graph in Neo4j (`load_events_neo4j.py`) | 27 report days, 161 events, 88 source chunks; 161 / 161 events read back identical; 58 / 58 recorded query plans give their recorded results; hours of 30 / 30 activity codes match in Cypher; non-productive time 115 hours in 28 events on 10 days |
+
+Before this run the three scripts were tested in the cloud: `k1_store.py` and `embed_k1.py` on a sample package with a stand-in embedding server, `load_events_neo4j.py` with a stand-in Neo4j transaction, as no Neo4j server could be installed there. Neo4j Browser draws relationships between returned nodes only when its "connect result nodes" setting is on; returning a path (`MATCH p = ... RETURN p`) always draws them.
