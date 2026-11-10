@@ -61,6 +61,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
   | `events.py` | Event graph from operations tables, with no model call: the model plans, code runs the plan (E28) |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
+  | `ui.py`, `ui.html` | Local UI (D-60): replays recorded runs with citations, events and side-by-side comparison, and answers new questions when llama.cpp runs. `python -m graphrag.ui`, then http://127.0.0.1:8765 |
 
   Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
 - **Results so far** (up to E22: AK-3 EOWR and the prototype's 31 questions, E10 prototype 23/31; later rows name their questions):

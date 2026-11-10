@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drilling Report Q&amp;A</title>
+<style>
+/* Layout: a question list on the left, the selected answer traced through the pipeline on the right */
+:root{
+  --bg:#f6f5f1; --panel:#ffffff; --ink:#1d2329; --muted:#5d6871; --rule:#dcdfdb; --soft:#eef0ec;
+  --accent:#1f5f74; --accent-soft:#e1edf1; --mud:#a8692c; --good:#2f6b3a; --good-soft:#e3f0e4; --bad:#a3382c; --bad-soft:#f6e3e0;
+  --mono:ui-monospace, "Cascadia Mono", Consolas, monospace; --sans:"Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#14181b; --panel:#1b2125; --ink:#e5e8e6; --muted:#98a3ab; --rule:#2d353a; --soft:#222a2f;
+  --accent:#72b6cb; --accent-soft:#1d3037; --mud:#d79a5a; --good:#7fc28c; --good-soft:#1d2e21; --bad:#e58a7d; --bad-soft:#35201d; color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;border-bottom:1px solid var(--rule);background:var(--panel);flex-wrap:wrap}
+header h1{font-size:17px;margin:0;font-weight:650}
+header .sub{color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:4px;margin-left:auto}
+.tabs button{border:1px solid var(--rule);background:transparent;color:var(--ink);padding:6px 14px;border-radius:5px;cursor:pointer;font:inherit}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+main{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);min-height:calc(100vh - 56px)}
+aside{border-right:1px solid var(--rule);background:var(--panel);display:flex;flex-direction:column;min-width:0}
+aside .controls{padding:12px;display:grid;gap:8px;border-bottom:1px solid var(--rule)}
+label{font-size:12px;color:var(--muted);display:grid;gap:4px}
+select,textarea,input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:5px;padding:6px 8px;width:100%}
+textarea{min-height:90px;resize:vertical}
+button.primary{background:var(--accent);color:var(--panel);border:0;border-radius:5px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+button.primary:disabled{opacity:.5;cursor:default}
+.qlist{overflow-y:auto;flex:1}
+.q{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;padding:9px 12px;border-bottom:1px solid var(--rule);cursor:pointer;font-size:13px}
+.q:hover{background:var(--soft)} .q[aria-current="true"]{background:var(--accent-soft)}
+.q .mark{font-weight:700} .ok{color:var(--good)} .no{color:var(--bad)}
+.q .id{color:var(--muted);font-family:var(--mono);font-size:11px}
+section.view{padding:20px;display:grid;gap:16px;align-content:start;min-width:0}
+.empty{color:var(--muted);padding:40px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}
+.step{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;min-width:0;flex:1 1 150px}
+.step .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.step .v{font-size:13px;overflow-wrap:anywhere}
+.arrow{align-self:center;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.card h2{font-size:14px;margin:0;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.question{font-size:18px;font-weight:600}
+.answer{font-size:24px;font-weight:650}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600}
+.pill.ok{background:var(--good-soft)} .pill.no{background:var(--bad-soft)} .pill.info{background:var(--accent-soft);color:var(--accent)}
+.meta{color:var(--muted);font-size:12px}
+.passage{border-left:3px solid var(--mud);padding:6px 10px;background:var(--soft);border-radius:0 5px 5px 0;white-space:pre-wrap;font-size:13px;max-height:260px;overflow:auto}
+.chunkid{font-family:var(--mono);font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+pre.plan{margin:0;font-family:var(--mono);font-size:12px;background:var(--soft);padding:8px;border-radius:5px;overflow:auto}
+.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.status{font-size:12px;padding:6px 8px;border-radius:5px;background:var(--soft)}
+@media (max-width:820px){main{grid-template-columns:1fr} aside{border-right:0;border-bottom:1px solid var(--rule)} .qlist{max-height:40vh} .compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Drilling Report Q&amp;A</h1>
+  <span class="sub">Track B · AK-3 end-of-well and daily reports · every answer cites its source</span>
+  <div class="tabs" role="tablist">
+    <button id="tab-replay" role="tab" aria-selected="true">Recorded runs</button>
+    <button id="tab-ask" role="tab" aria-selected="false">Ask a question</button>
+  </div>
+</header>
+<main>
+  <aside>
+    <div class="controls" id="replay-controls">
+      <label>Question set
+        <select id="set"></select>
+      </label>
+      <label>Run (method · score)
+        <select id="run"></select>
+      </label>
+      <label>Compare with
+        <select id="compare"><option value="">None</option></select>
+      </label>
+    </div>
+    <div class="controls" id="ask-controls" hidden>
+      <label>Question
+        <textarea id="question" placeholder="How many non-productive hours were logged in the AK-3 daily reports?"></textarea>
+      </label>
+      <label>Lane
+        <select id="lane">
+          <option value="auto">Choose from the question</option>
+          <option value="eowr">End-of-well reports: retrieval and fact sheet</option>
+          <option value="daily">Daily reports: event graph, then retrieval</option>
+        </select>
+      </label>
+      <button class="primary" id="ask" disabled>Ask</button>
+      <div class="status" id="endpoint">Checking the model server…</div>
+    </div>
+    <div class="qlist" id="qlist"></div>
+  </aside>
+  <section class="view" id="view"><div class="empty">Pick a question on the left.</div></section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let runs = [], current = null, other = null, selected = null;
+
+async function getJSON(url, opts) {
+  const r = await fetch(url, opts); return r.json();
+}
+
+function setTab(name) {
+  $("#tab-replay").setAttribute("aria-selected", name === "replay");
+  $("#tab-ask").setAttribute("aria-selected", name === "ask");
+  $("#replay-controls").hidden = name !== "replay";
+  $("#ask-controls").hidden = name !== "ask";
+  $("#qlist").hidden = name !== "replay";
+  $("#view").innerHTML = '<div class="empty">' + (name === "ask" ? "Ask a question on the left." : "Pick a question on the left.") + "</div>";
+  if (name === "ask") checkEndpoint(); else if (selected) show(selected);
+}
+$("#tab-replay").onclick = () => setTab("replay");
+$("#tab-ask").onclick = () => setTab("ask");
+
+async function init() {
+  runs = await getJSON("/api/runs");
+  const sets = [...new Set(runs.map(r => r.question_set))];
+  $("#set").innerHTML = sets.map(s => `<option>${esc(s)}</option>`).join("");
+  const start = sets.includes("ak3_events_heldout") ? "ak3_events_heldout" : sets[0];
+  $("#set").value = start; fillRuns();
+}
+function fillRuns() {
+  const list = runs.filter(r => r.question_set === $("#set").value);
+  const opts = list.map(r => `<option value="${esc(r.name)}">${esc(r.method)} · ${esc(r.correct)} · ${esc(r.name)}</option>`).join("");
+  $("#run").innerHTML = opts;
+  $("#compare").innerHTML = '<option value="">None</option>' + opts;
+  // Default to the design: the event graph, else the fact graph, else retrieval; the latest run of that method.
+  for (const m of ["Event graph", "Per-well fact graph", "Retrieval (plain RAG)"]) {
+    const found = list.filter(r => r.method === m).pop();
+    if (found) { $("#run").value = found.name; break; }
+  }
+  loadRun();
+}
+$("#set").onchange = fillRuns;
+$("#run").onchange = loadRun;
+$("#compare").onchange = async () => {
+  other = $("#compare").value ? await getJSON("/api/run?name=" + encodeURIComponent($("#compare").value)) : null;
+  if (selected) show(selected);
+};
+async function loadRun() {
+  current = await getJSON("/api/run?name=" + encodeURIComponent($("#run").value));
+  if ($("#compare").value) other = await getJSON("/api/run?name=" + encodeURIComponent($("#compare").value));
+  $("#qlist").innerHTML = current.rows.map((r, i) => `
+    <div class="q" data-i="${i}" role="button" tabindex="0">
+      <span class="mark ${r.correct ? "ok" : "no"}">${r.correct ? "✓" : "✗"}</span>
+      <span><span class="id">${esc(r.id)} · ${esc(r.kind)}</span><br>${esc(r.question)}</span>
+    </div>`).join("");
+  document.querySelectorAll(".q").forEach(el => {
+    el.onclick = () => select(+el.dataset.i);
+    el.onkeydown = e => { if (e.key === "Enter") select(+el.dataset.i); };
+  });
+  select(0);
+}
+function select(i) {
+  selected = current.rows[i];
+  document.querySelectorAll(".q").forEach(el => el.setAttribute("aria-current", +el.dataset.i === i));
+  show(selected);
+}
+
+function answerText(r) {
+  if (r.status !== "answered" || !r.values?.length) return r.status === "withheld" ? "Withheld: no passage supports it" : "Not stated in the reports";
+  return r.values.map((v, i) => v + (r.units?.[i] ? " " + r.units[i] : "")).join(", ");
+}
+function flow(r, method) {
+  const graph = r.graph_result ? `Code computed: ${r.graph_result}` :
+                method.includes("fact") ? "Validated well facts added to the passages" : "Top passages by BM25";
+  const lane = method.startsWith("Event") ? "Daily reports" : "End-of-well reports";
+  const cite = r.citations?.length ? `${r.citations.length} citation(s), ${r.citations.map(c => c.how).join(", ")}` : "none";
+  const steps = [["Question", r.question], ["Lane", `${lane} · ${method}`], ["Retrieval / graph", graph],
+                 ["Model answer", answerText(r)], ["Checked in code", cite]];
+  return '<div class="flow">' + steps.map(([k, v], i) => (i ? '<span class="arrow">→</span>' : "") +
+    `<div class="step"><div class="k">${k}</div><div class="v">${esc(v)}</div></div>`).join("") + "</div>";
+}
+function passage(c) {
+  const where = c.page ? `page ${c.page}` : "page unknown";
+  const text = c.text ? `<div class="passage">${esc(c.text)}</div>` :
+    '<div class="meta">Passage text is not on this machine (the daily-report corpus is regenerated locally).</div>';
+  return `<div><div class="chunkid">${esc(c.doc)} · ${where} · ${esc(c.id)}${c.how ? " · cited " + esc(c.how.replace("_", " ")) : ""}</div>${text}</div>`;
+}
+function events(list) {
+  if (!list?.length) return "";
+  const rows = list.map(e => `<tr><td>${esc(e.date)}</td><td>${esc(e.start)}–${esc(e.end)}</td><td>${esc(e.hours)}</td>
+    <td>${esc(e.code)}</td><td>${esc(e.npt_code || "")}</td><td>${esc(e.end_md)}</td><td>${esc(e.description)}</td></tr>`).join("");
+  return `<div class="card"><h2>Events the result was computed from (${list.length})</h2><div class="tablewrap"><table>
+    <tr><th>Date</th><th>Time</th><th>Hours</th><th>Code</th><th>NPT</th><th>Depth ft</th><th>Description</th></tr>${rows}</table></div></div>`;
+}
+function detail(r, method, extra) {
+  const verdict = r.correct === undefined ? "" :
+    `<span class="pill ${r.correct ? "ok" : "no"}">${r.correct ? "Correct" : "Not correct"}</span>`;
+  const expected = r.expected?.length ? `<div class="meta">Expected: ${esc(r.expected.map(e => e.value + (e.unit ? " " + e.unit : "")).join(", "))}</div>` : "";
+  const plan = r.plan ? `<div class="card"><h2>Query plan written by the model</h2><pre class="plan">${esc(JSON.stringify(r.plan, null, 2))}</pre></div>` : "";
+  const cites = r.citations?.length ? r.citations.map(passage).join("") : '<div class="meta">No citation.</div>';
+  return `<div class="card"><h2>Answer ${extra || ""}</h2><div class="answer">${esc(answerText(r))}</div>
+      <div>${verdict} <span class="pill info">${esc(method)}</span></div>${expected}
+      <div class="meta">${r.prompt_tokens ?? "?"} prompt + ${r.completion_tokens ?? "?"} completion tokens · ${r.seconds ?? "?"} s</div></div>
+    <div class="card"><h2>Cited source</h2>${cites}</div>${events(r.events)}${plan}`;
+}
+function show(r) {
+  let html = `<div class="card"><h2>Question ${esc(r.id)}</h2><div class="question">${esc(r.question)}</div>
+    <div class="meta">Run ${esc(current.name)} · ${esc(current.model)} · ${esc(current.retriever || "")} · ${esc(current.correct)} correct on this set</div></div>`;
+  html += flow(r, current.method);
+  const twin = other && other.rows.find(x => x.id === r.id);
+  html += twin ? `<div class="compare"><div style="display:grid;gap:12px;align-content:start">${detail(r, current.method, "· " + esc(current.name))}</div>
+    <div style="display:grid;gap:12px;align-content:start">${detail(twin, other.method, "· " + esc(other.name))}</div></div>` : detail(r, current.method);
+  $("#view").innerHTML = html;
+}
+
+async function checkEndpoint() {
+  const s = await getJSON("/api/status?endpoint=local-llama");
+  $("#endpoint").textContent = s.up ? `Model server ready: ${s.detail}` : `No model server: ${s.detail}. Recorded runs still work.`;
+  $("#ask").disabled = !s.up;
+}
+$("#ask").onclick = async () => {
+  const q = $("#question").value.trim(); if (!q) return;
+  $("#ask").disabled = true; $("#view").innerHTML = '<div class="empty">Answering… a local 8B model takes a few seconds.</div>';
+  const r = await getJSON("/api/ask", {method: "POST", headers: {"Content-Type": "application/json"},
+                                       body: JSON.stringify({question: q, lane: $("#lane").value})});
+  $("#ask").disabled = false;
+  if (r.error) { $("#view").innerHTML = `<div class="card"><h2>Could not answer</h2><div>${esc(r.error)}</div></div>`; return; }
+  $("#view").innerHTML = `<div class="card"><h2>Question</h2><div class="question">${esc(r.question)}</div></div>` +
+    flow(r, r.method) + detail(r, r.method);
+};
+init();
+</script>
+</body>
+</html>

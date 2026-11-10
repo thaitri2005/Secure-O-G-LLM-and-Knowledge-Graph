@@ -52,6 +52,16 @@ flowchart TD
 
 Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
 
+## The UI (D-60)
+
+```powershell
+python -m graphrag.ui        # then open http://127.0.0.1:8765
+```
+
+- **Recorded runs:** pick a question set and a run (E19 to E28); each question shows its path through the pipeline, the answer and whether it is correct, the cited passage with its page, and, for the event graph, the query plan and the events the total was computed from. "Compare with" puts a second run of the same questions beside it, for example the event graph against plain RAG. Needs no model, so it works on a laptop; passage text shows only where that corpus is on the machine.
+- **Ask a question:** answers a new question with the same code as the runs: retrieval routed by well with the fact sheet for end-of-well questions, the event graph with its fallback for daily-report questions. The lane is chosen from the question's words, or by hand. Needs llama.cpp on port 8080; hosted endpoints are off in the UI.
+- Standard library only, listening on 127.0.0.1. Tests: `tests/test_graphrag_ui.py`.
+
 ## Running locally
 
 Models live in ignored `data/interim/models/`. Start the servers with llama.cpp's `llama-server`. On an Nvidia GPU, use the CUDA build from the [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) (E15 used b12015, `win-cuda-12.4-x64` plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`) and `-ngl 99`. On a laptop with an integrated GPU, use `--device none -ngl 0` instead: the Vulkan backend runs out of device memory.

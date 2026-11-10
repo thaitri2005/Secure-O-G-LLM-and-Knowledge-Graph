@@ -709,3 +709,12 @@ Khai pushed Track A's work to the branch `track-a-k1-package` (14 commits, 81 fi
 
 **B-D34 (decision, from the supervisor). This is D-61.** Reasoning about the causes of a drilling problem is a target question type. No question set covers it yet, and AK-3's reports alone likely cannot answer it. The supervisor also asked that node and relationship logic of both graphs be stated clearly; the per-well fact graph's LLM step today extracts only the 14 properties of `oil_wells.json`, not K2's relations.
 
+## 2026-11-10: a simple UI
+
+**B-C32 (design choice; from D-60).** `graphrag/ui.py` and `graphrag/ui.html`: a local UI over Track B's answers, standard library only, on 127.0.0.1.
+
+- **Recorded runs:** any answer run in `graphrag/results/` with its questions, expected values, correctness, the path through the pipeline (lane, retrieval or graph, answer, citation check), the cited passage with its page, and tokens and time. For the event graph it shows the query plan and the events the total came from, by rerunning the recorded plan on the recorded graph (`E28_events.json`) with no model call: E28's TRPI question gives 8 events summing to 13 hours. A second run can be shown beside the first.
+- **Live:** a new question goes through the same code as the runs. The lane is chosen from the question's words (dates, hours, NPT, activity codes mean daily reports), standing in for the coordinator of D-58. End-of-well questions use BM25 routed by well with the strict, validated fact sheet (12 lines per well, no property ranker, so no embedding server is needed); daily questions use the event graph's planner with its fallback. Hosted endpoints are refused, since the pools mix sources.
+- `answer_questions` now also takes a list of questions with no gold; question sets work as before.
+- Checked on the laptop: replay works for all 78 recorded runs, and live mode reports that no model server is running. A live answer was tested only with a stand-in model; it needs the desktop's llama.cpp.
+- Not yet: reading chunks from Track C's PostgreSQL, the page image beside a citation, and answers on Khai's K1 package.

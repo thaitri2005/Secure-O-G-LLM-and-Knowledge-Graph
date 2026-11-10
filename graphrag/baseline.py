@@ -242,13 +242,14 @@ class PropertyRanker:
 
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
                      withhold_unsupported: bool = False, max_tokens: int = 400,
-                     questions: str = "prototype", answer_format: str = "status_first",
+                     questions: str | list[dict] = "prototype", answer_format: str = "status_first",
                      multi_well_format: str | None = None, system_note: str = "") -> list[dict]:
     """Answers a question set. `retrieve(question)` gives the passage chunk IDs and optional graph context
     (text placed before the passages); citations are checked against those passages only. With `multi_well_format`,
     questions naming several wells use that format and at least MULTI_WELL_TOKENS completion tokens (E26)."""
     by_id = {c.id: c for c in chunks}
-    questions, gold = load_questions(questions)
+    # A set name loads questions and gold; a list of questions (the UI's live mode) is answered without gold.
+    questions, gold = load_questions(questions) if isinstance(questions, str) else (questions, {})
     facts = facts or {}
     rows = []
     for q in questions:
