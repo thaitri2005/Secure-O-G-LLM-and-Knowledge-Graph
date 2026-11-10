@@ -108,6 +108,16 @@ flowchart TB
 
 **Figure 7 — Milestone dependencies.** M1 runs three tracks in parallel; nothing after M1 starts until its exit demo. The critical path is Track A's chunk package → Track B's engine on it, run and stored by Track C → integration into a worker → quality on several documents → scale run.
 
+### After the 9 November meeting
+
+From the [9 November meeting](requirements/supervisor-meeting-2026-11-09.md) (D-58 to D-63):
+
+- **Report to the professor on Wednesday 11 November**, 10 to 15 minutes: two or three slides of core architecture, each track as a diagram with a short evaluation per module and its weak points; one data sample walked through the whole pipeline; what the input looks like, what it looks like after processing, and what the application will look like; then needs, next steps and support wanted. No long text.
+- **Connect the three tracks and put a simple UI on top** (D-60): question, answer, cited source text and what was retrieved. It comes before the rest of M2, so the team can show domain experts and ask what they would ask.
+- **Track C before Wednesday:** store vectors and load Neo4j.
+- **Track A:** try documents other than the five AK-3 files.
+- Message the supervisor whenever there is a result worth showing.
+
 ### M0: this week
 
 - **Weekly plan.** Hung drafts it this week as a short slide deck: tracks and owners for this stint, M1 checkpoints, this week's tasks. Share it with the supervisor and in the group chat. Tell the supervisor why the first phase is split by track instead of data/backend/frontend (D-48).

@@ -8,11 +8,11 @@ This file briefs any Claude session on any machine. Read it first, then the file
 - It is built on an **existing open-source GraphRAG pipeline**, which we take over and improve.
 - It uses **open-weight models of about 7B or smaller**. 8B models are allowed (Track B log B-D06). Commercial APIs are never used, not even for development.
 - Development runs on **OpenRouter, on public data only**. Large runs use the school GPUs.
-- Supervisor: MSc. Nguyen Anh Tuan ("anh Tuấn"). His 28 October 2026 direction is in [docs/requirements/supervisor-meeting-2026-10-28.md](docs/requirements/supervisor-meeting-2026-10-28.md). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
+- Supervisor: MSc. Nguyen Anh Tuan ("anh Tuấn"). His 28 October 2026 direction is in [docs/requirements/supervisor-meeting-2026-10-28.md](docs/requirements/supervisor-meeting-2026-10-28.md); the [9 November meeting](docs/requirements/supervisor-meeting-2026-11-09.md) added a coordinator for routing, a simple UI early, a reasoning question type and short reporting (D-58 to D-63). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-57). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-63). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
 2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan. M1 is the first build, and each track's section lives there.
 3. Track logs in `docs/tracks/`, with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.

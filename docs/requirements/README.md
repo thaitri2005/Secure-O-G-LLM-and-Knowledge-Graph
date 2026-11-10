@@ -1,6 +1,6 @@
 # Stakeholder requirements
 
-**Updated:** 29 October 2026 (28 October meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
+**Updated:** 10 November 2026 (9 November meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
 
 This folder holds the two VPI documents that define what the project is asked to do, an English digest of them with requirement IDs (SR-xx), and digests of the supervisor meetings. They are inputs. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or dropped ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to agree ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new document or a meeting changes direction, update the digest here first, then the specification.
 
@@ -26,6 +26,7 @@ The [7 October meeting](supervisor-meeting-2026-10-07.md) still holds where 28 O
 | `originals/capstone-proposal-vpi.pdf` | Capstone project proposal, Vietnam Petroleum Institute (VPI) | Title, supervisors, company, one-page project description, team size |
 | `originals/KGinEP-vi.docx` | "Xây dựng Đồ thị tri thức cho tài liệu chuyên ngành lĩnh vực Dầu khí" (Building knowledge graphs for oil-and-gas technical documents), in Vietnamese | VPI's view of why oil-and-gas knowledge needs knowledge graphs, the main difficulties, and the intended three-layer approach |
 | [`supervisor-meeting-2026-10-07.md`](supervisor-meeting-2026-10-07.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 7 October 2026 (digest of the Teams transcript) | Graph builder first, user-supplied ontology, builder difficulties, admin application, data and domain, schedule |
+| [`supervisor-meeting-2026-11-09.md`](supervisor-meeting-2026-11-09.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 9 November 2026 (digest of the Teams transcript) | Reasoning question type, a coordinator for routing, a user switch for exact answers, a simple UI early, swappable models, human review, how to report to the professor |
 | [`supervisor-meeting-2026-10-28.md`](supervisor-meeting-2026-10-28.md) | Supervisor meeting with MSc. Nguyen Anh Tuan, 28 October 2026 (digest of the Teams transcript) | GraphRAG, open models ≤ ~7B, compute, VLM parsing, tables, data scope by document type, storage and IDs, ontology control, process; list of removed design content |
 
 The originals are **not committed**: the repository is public, and `originals/` is in `.gitignore` until VPI agrees to publication. Share them through the team drive. The digest below paraphrases them.
