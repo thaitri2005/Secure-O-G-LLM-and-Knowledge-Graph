@@ -1,0 +1,2434 @@
+{
+  "method": "operations tables and the non-productive report, no model call",
+  "llm_calls": 0,
+  "source": "K1 version 1 package, appx-23 from the corpus",
+  "wells": [
+    "AK-3"
+  ],
+  "build": {
+    "from operations tables": 160,
+    "added from the non-productive report": 1,
+    "non-productive events": 28
+  },
+  "events": [
+    {
+      "date": "2016-08-12",
+      "start": "0:00",
+      "end": "8:00",
+      "hours": 8.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "personnel at lodge and town on Akutan",
+      "chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-12",
+      "start": "8:00",
+      "end": "9:30",
+      "hours": 1.5,
+      "end_md": 0,
+      "code": "MOB",
+      "description": "Meeting to discuss project fly to Valley to site hole location",
+      "chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-12",
+      "start": "9:30",
+      "end": "19:00",
+      "hours": 9.5,
+      "end_md": 0,
+      "code": "MOB",
+      "description": "Fly loads to site , begin construction of camp and drill pad.",
+      "chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-12",
+      "start": "19:00",
+      "end": "0:00",
+      "hours": 5.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Crews down for evening",
+      "chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-13",
+      "start": "0:00",
+      "end": "0:00",
+      "hours": 24.0,
+      "end_md": 0,
+      "code": "WOW",
+      "description": "Weather Delay",
+      "chunks": [
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "WAIT"
+    },
+    {
+      "date": "2016-08-14",
+      "start": "0:00",
+      "end": "9:00",
+      "hours": 9.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Wait on daylight and weather report to determine if capable of flight, hold plan meeting from 08:00-09:00",
+      "chunks": [
+        "f4f05215feea85339:t2:c0",
+        "f62efbee00767a3e7:t2:c0",
+        "ff5e766b8670b35da:t2:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-14",
+      "start": "9:00",
+      "end": "19:00",
+      "hours": 10.0,
+      "end_md": 0,
+      "code": "MOB",
+      "description": "Fly 52 loads to site of rig systems and camp boxes and lumber and equipment",
+      "chunks": [
+        "f4f05215feea85339:t2:c0",
+        "f62efbee00767a3e7:t2:c0",
+        "ff5e766b8670b35da:t2:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-14",
+      "start": "19:00",
+      "end": "0:00",
+      "hours": 5.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Fly crews to lodge for evening meals and rest, 19:00 hrs to 00:00, rest for night",
+      "chunks": [
+        "f4f05215feea85339:t2:c0",
+        "f62efbee00767a3e7:t2:c0",
+        "ff5e766b8670b35da:t2:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-15",
+      "start": "0:00",
+      "end": "8:00",
+      "hours": 8.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Wait on daylight , morning planning meeting at 08:00",
+      "chunks": [
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-15",
+      "start": "8:00",
+      "end": "15:00",
+      "hours": 7.0,
+      "end_md": 0,
+      "code": "MOB",
+      "description": "Fly drill loads to site and stage prior to assembling rig, fly diesel drums and gasoline camp, camp continue to be built making frames for tents, Kitchen up, stores tent complete.",
+      "chunks": [
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-15",
+      "start": "15:00",
+      "end": "18:00",
+      "hours": 3.0,
+      "end_md": 0,
+      "code": "RIGU",
+      "description": "Assemble rig with helicopter, continue to stage and set auxiliary equipment, water set, rig generator , rig complete set up at 18:00 hours.",
+      "chunks": [
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-15",
+      "start": "18:00",
+      "end": "19:30",
+      "hours": 1.5,
+      "end_md": 0,
+      "code": "OTHER",
+      "description": "Fly crews to lodge for evening, will resume work at daylight on Tuesday",
+      "chunks": [
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-15",
+      "start": "19:30",
+      "end": "0:00",
+      "hours": 4.5,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Crews at lodge",
+      "chunks": [
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-16",
+      "start": "0:00",
+      "end": "9:00",
+      "hours": 9.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Crews at lodge for evening planning meeting at 08:00",
+      "chunks": [
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-16",
+      "start": "9:00",
+      "end": "19:00",
+      "hours": 10.0,
+      "end_md": 0,
+      "code": "RIGU",
+      "description": "Continue rig up of drill site, complete core shack, construct frame for operations tent. Camp generator went down at 10:00 hrs, fly standby gen. to site, get operational at 12:00 hrs, standby generator has oil leak from rear main seal, questionable to maintain camp. Complete drill pad site, core tent and operations tent complete, fuel in all tanks on site.",
+      "chunks": [
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-16",
+      "start": "19:00",
+      "end": "20:00",
+      "hours": 1.0,
+      "end_md": 0,
+      "code": "OTHER",
+      "description": "Fly crews to lodge for evening, Unable to stay on site due to failed generators",
+      "chunks": [
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "WOE"
+    },
+    {
+      "date": "2016-08-16",
+      "start": "20:00",
+      "end": "0:00",
+      "hours": 4.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Crews at lodge for night",
+      "chunks": [
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "WOE"
+    },
+    {
+      "date": "2016-08-17",
+      "start": "0:00",
+      "end": "9:00",
+      "hours": 9.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Rig crews down for night at lodge.",
+      "chunks": [
+        "f4f05215feea85339:t8:c0",
+        "ff5e766b8670b35da:t5:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "WOE"
+    },
+    {
+      "date": "2016-08-17",
+      "start": "9:00",
+      "end": "19:00",
+      "hours": 10.0,
+      "end_md": 0,
+      "code": "RIGU",
+      "description": "Completed move and rig up, ready to spud, moved in and rigged up third generator. Heavy rain all day.",
+      "chunks": [
+        "f4f05215feea85339:t8:c0",
+        "ff5e766b8670b35da:t5:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-17",
+      "start": "19:00",
+      "end": "0:00",
+      "hours": 5.0,
+      "end_md": 0,
+      "code": "OTHER",
+      "description": "moved into camp",
+      "chunks": [
+        "f4f05215feea85339:t8:c0",
+        "ff5e766b8670b35da:t5:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-18",
+      "start": "0:00",
+      "end": "8:00",
+      "hours": 8.0,
+      "end_md": 0,
+      "code": "WOD",
+      "description": "Crews at lodge for night.",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-18",
+      "start": "8:00",
+      "end": "12:00",
+      "hours": 4.0,
+      "end_md": 0,
+      "code": "WOW",
+      "description": "Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill water tanks.",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "WOO"
+    },
+    {
+      "date": "2016-08-18",
+      "start": "12:00",
+      "end": "16:00",
+      "hours": 4.0,
+      "end_md": 49,
+      "code": "DRIL",
+      "description": "PQ core from bottom of cellar 4' to 49', cored 45'. shot core at 35' with laser thermometer, 105.5 degrees F. R",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-18",
+      "start": "16:00",
+      "end": "19:00",
+      "hours": 3.0,
+      "end_md": 49,
+      "code": "OPEN",
+      "description": "Install 4.75\"x 10 3/4\" hole opener, ream hole from cellar floor -4' to 42', condition mud circulate bottoms up. let set to check for fill.30 minutes, 8' of fill try to circulate, plugged bit",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-18",
+      "start": "19:00",
+      "end": "21:00",
+      "hours": 2.0,
+      "end_md": 49,
+      "code": "TRPO",
+      "description": "Pull hole opener to surface plugged bit, break off bit, lay down, clean bit, Run back hole, tag fill at 32'",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-18",
+      "start": "21:00",
+      "end": "0:00",
+      "hours": 3.0,
+      "end_md": 49,
+      "code": "REAM",
+      "description": "Ream 10 3/4\" hole to 42' mix mud to 65 -70 vis, circulate and work hole,formation sluffing off from 25-30 ' continue to work and pump hole to 42'",
+      "chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "0:00",
+      "end": "6:00",
+      "hours": 6.0,
+      "end_md": 49,
+      "code": "CASE",
+      "description": "pick up 8 5/8\" casing , weld together total of 41.2' , run in hole hit bridge at 22'-26' wash and work pipe to bottom",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "6:00",
+      "end": "8:00",
+      "hours": 2.0,
+      "end_md": 49,
+      "code": "CIRC",
+      "description": "Complete getting casing to bottom at 40' from ground surface, circulate hole with 55 vis, 9.0 mud.",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "8:00",
+      "end": "9:30",
+      "hours": 1.5,
+      "end_md": 49,
+      "code": "CMTP",
+      "description": "Mix 12 -94 lbs sack of #2 portland cement with 96 gallons , 14.2 ppg cement,pump cement, returns to surface. plug down at 09:30",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "9:30",
+      "end": "21:30",
+      "hours": 12.0,
+      "end_md": 49,
+      "code": "WOC",
+      "description": "Wait on Cement, sound annulus after 8 hrs. 3' below cellar floor, mix 1 sk cement with 6 gallons of water fill to cellar floor. Lay plywood on site for walk way due to muddy site. Prepare tooling to drill ahead, install new 8AM- PQ core bit onto core barrel SN-6B2837, new PQ reamer shell #2B4814 .",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "21:30",
+      "end": "22:00",
+      "hours": 0.5,
+      "end_md": 49,
+      "code": "TRPI",
+      "description": "Trip in hole with PQ core barrel, tag top of cement at 28'.",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-19",
+      "start": "22:00",
+      "end": "0:00",
+      "hours": 2.0,
+      "end_md": 49,
+      "code": "CMTD",
+      "description": "Core ahead through cement to bottom of casing, 40' BGS, core rubble to previous TD of 49' Circulate hole clean, prior to begin coring ahead.",
+      "chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "0:00",
+      "end": "9:30",
+      "hours": 9.5,
+      "end_md": 100,
+      "code": "DRIL",
+      "description": "Core PQ from 49' to 100', core temp at 100' -104 degrees F,",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "9:30",
+      "end": "10:00",
+      "hours": 0.5,
+      "end_md": 100,
+      "code": "SURV",
+      "description": "Run Totco inclination tool, 0.5 degrees at 100', Run MRT 190F,",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "10:00",
+      "end": "12:00",
+      "hours": 2.0,
+      "end_md": 129,
+      "code": "DRIL",
+      "description": "Core ahead to 130' with PQ, prepare to run MRT and Temperature logging probe on Totco.",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "12:00",
+      "end": "12:30",
+      "hours": 0.5,
+      "end_md": 129,
+      "code": "SURV",
+      "description": "Run survey MRT on survey tool along with down loadable temperature probe, Inclination .5 Degrees. MRT reading 145 F. Probe reading 140 F",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "12:30",
+      "end": "14:00",
+      "hours": 1.5,
+      "end_md": 149,
+      "code": "DRIL",
+      "description": "Core ahead PQ to 149'.Take steam kick, 190F coming out of annulus. Pump cold 56 F down rods, cool hole break joint lay down inner barrel,",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "14:00",
+      "end": "15:30",
+      "hours": 1.5,
+      "end_md": 149,
+      "code": "CIRC",
+      "description": "Pump cold water through core pipe, flow check, no flow from annulus, drop inner barrel. mix new mud 2 bags gel, pump barrel down, begin coring",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "15:30",
+      "end": "17:00",
+      "hours": 1.5,
+      "end_md": 176,
+      "code": "DRIL",
+      "description": "Core ahead, while coring from 176, high torque, stuck pipe, taking steam kick.",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-20",
+      "start": "17:00",
+      "end": "18:00",
+      "hours": 1.0,
+      "end_md": 176,
+      "code": "STUCK",
+      "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump cold water to hole.",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-20",
+      "start": "18:00",
+      "end": "0:00",
+      "hours": 6.0,
+      "end_md": 176,
+      "code": "KILL",
+      "description": "Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+      "chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-21",
+      "start": "0:00",
+      "end": "7:00",
+      "hours": 7.0,
+      "end_md": 176,
+      "code": "OTHER",
+      "description": "Well kicked. Steam flow to surface. Lost rod due to foot clamp slipping. Top of HWT rod 2' below foot clamp.",
+      "chunks": [
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-21",
+      "start": "7:00",
+      "end": "15:30",
+      "hours": 8.5,
+      "end_md": 176,
+      "code": "FISH",
+      "description": "fly fishing tool from lay down yard,connect inside grapple ,run in on new HWT core rod, catch fish bring through foot camp. secure in head, break down fishing joint. Well blowing and flowing 66 gpm,",
+      "chunks": [
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-21",
+      "start": "15:30",
+      "end": "17:30",
+      "hours": 2.0,
+      "end_md": 176,
+      "code": "WELLHD",
+      "description": "Rig up and install10' joint to string , shut in flow, secure well from blowing, begin pumping cold water into well bore. 60 degree in 136 F out,",
+      "chunks": [
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-21",
+      "start": "17:30",
+      "end": "0:00",
+      "hours": 6.5,
+      "end_md": 176,
+      "code": "WELLHD",
+      "description": "Secure poor boy packoff from HWT to 8\" casing begin pumping 60 gpm of 60 degree water through string into hole. Hole secure.",
+      "chunks": [
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "0:00",
+      "end": "7:00",
+      "hours": 7.0,
+      "end_md": 176,
+      "code": "WELLHD",
+      "description": "Continue pumping 35 gpm 60 degree cold water into 8\" casing , packed off on top with poor boy packer.",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "7:00",
+      "end": "15:00",
+      "hours": 8.0,
+      "end_md": 176,
+      "code": "WELLHD",
+      "description": "Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks of portland cement from 88' as a drift plug.",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "15:00",
+      "end": "15:30",
+      "hours": 0.5,
+      "end_md": 176,
+      "code": "TRPO",
+      "description": "Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'.",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "15:30",
+      "end": "16:30",
+      "hours": 1.0,
+      "end_md": 176,
+      "code": "CMTPL",
+      "description": "Mix and pump 10- 92.4 lbs sacks of portland cement into 77 gallons of water, pump through string as drift plug, chasing with 70 gallons of displacement. shut hole in monitor discharge, clean equipment.",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "16:30",
+      "end": "17:30",
+      "hours": 1.0,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "Rotate pipe each 15 minutes, to ensure free. initial static hole with top of fluid 3' below top of 8\" casing , after 1 hour, approx. .5-1 gallon flowing out of hole.",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-22",
+      "start": "17:30",
+      "end": "0:00",
+      "hours": 6.5,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "Wait on cement, grab sample placed in warm laundry tent to cure. Flow from 8\" casing measured at 11-13 gpm, temp. building to 186 degrees at 00:00",
+      "chunks": [
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "0:00",
+      "end": "3:00",
+      "hours": 3.0,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134: 02:00-120F",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "3:00",
+      "end": "3:30",
+      "hours": 0.5,
+      "end_md": 176,
+      "code": "WELLHD",
+      "description": "Take off poor boy packoff, prior to lowering rod into hole to tag top of cement. Starting temp of discharge 120F",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "3:30",
+      "end": "4:00",
+      "hours": 0.5,
+      "end_md": 176,
+      "code": "TRPI",
+      "description": "RUN 20' into hole start temp. 115 F- joint down 142F, at 109'",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "4:00",
+      "end": "4:15",
+      "hours": 0.25,
+      "end_md": 176,
+      "code": "TRPI",
+      "description": "run in hole with 80' of rod temp begin at 115F end at 126F, tag top of cement at 172' BGS, circulating hole at top of cement fluid temp out 114F, pumping 30 gpm.",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "4:15",
+      "end": "6:00",
+      "hours": 1.75,
+      "end_md": 176,
+      "code": "PUMP",
+      "description": "Pumping cold water to cool hole,Discuss with GRG, Bill Rickard , plan to re cement hole to stop flow.",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "6:00",
+      "end": "7:00",
+      "hours": 1.0,
+      "end_md": 176,
+      "code": "PUMP",
+      "description": "Continue to pump cold water, change out stripping rubbers on packoff, attempt to gain shut in pressure, estimate at 4-9 psi, out floe from 8\" now at 11-13 gpm,",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "7:00",
+      "end": "8:30",
+      "hours": 1.5,
+      "end_md": 176,
+      "code": "PUMP",
+      "description": "Continue to pump cold water through core rod into hole with bottom of rod at 170', pull rod to 168' prepare to mix and pump 9sks of cement in a balance plug.",
+      "chunks": [
+        "f4f05215feea85339:t25:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "8:30",
+      "end": "9:15",
+      "hours": 0.75,
+      "end_md": 176,
+      "code": "CMTPL",
+      "description": "Mix 9 bags of cement in 70 gallons of water, 14.5 lb/gal cement mix, pump into core rod and displace with 37 gallons of water, trip out with core rod to 49'. shut down,",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "9:15",
+      "end": "11:00",
+      "hours": 1.75,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "wait on cement to set, rotate and lift rods every 15 min,begin time to see when fluid level returns to top of 8\" casing . took 1 hour and 15 min to see any water flow out of casing after cement down. minimum flow, less than 0.25 gpm.",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "KICK"
+    },
+    {
+      "date": "2016-08-23",
+      "start": "11:00",
+      "end": "13:00",
+      "hours": 2.0,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "Pull core rod from hole lay down core barrel. wait on cement to set, pick up 7.5\" tricone button bit hole opener, assemble onto string, set in hole. continue to wait on cement.",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-23",
+      "start": "13:00",
+      "end": "15:15",
+      "hours": 2.25,
+      "end_md": 176,
+      "code": "OPEN",
+      "description": "Open hole 4.835\" to 7.5\" from 40' to 90' , catching chip samples, no set cement in samples, rock chips caught by mud logger, circulate hole clean, no flow, hole static at 90' BGS, continue to wait on cement to advance hole further.",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-23",
+      "start": "15:15",
+      "end": "21:15",
+      "hours": 6.0,
+      "end_md": 176,
+      "code": "WOC",
+      "description": "continue to wait on cement for full 12 hrs prior to opening hole to 7.5\"",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-23",
+      "start": "21:15",
+      "end": "0:00",
+      "hours": 2.75,
+      "end_md": 176,
+      "code": "OPEN",
+      "description": "Tag hole at 90', begin reaming ahead with 7.5\" hole opener to 125' at 00:00 hours.",
+      "chunks": [
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "0:00",
+      "end": "15:00",
+      "hours": 15.0,
+      "end_md": 225,
+      "code": "OPEN",
+      "description": "Drill ahead with 7.5\" hole opener from 125' to 225', circulating hole with 9.2-9.5 salt weighted water and bentonite gell, mud temps in 105 F mud tempps out 150-165F. Circulate hole to cool with cold water 60F and gell 45 vis each hour to keep hole cool.",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "15:00",
+      "end": "15:30",
+      "hours": 0.5,
+      "end_md": 225,
+      "code": "CIRC",
+      "description": "Circulate hole with 60 F 9.4 mud to cool hole prior to tripping out with 7.5\" hole opener",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "15:30",
+      "end": "16:00",
+      "hours": 0.5,
+      "end_md": 225,
+      "code": "TRPO",
+      "description": "Trip out of hole with PQ rod and lay down 7.5\" hole opener",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "16:00",
+      "end": "19:00",
+      "hours": 3.0,
+      "end_md": 225,
+      "code": "CASE",
+      "description": "Rig up and run 5.5\" od. casing from ground surface to 220' below ground surface. Circulating and filling each three joints as run in hole, circulate last joint to bottom( install landing joint set at 6\" above cellar floor.",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "19:00",
+      "end": "21:30",
+      "hours": 2.5,
+      "end_md": 225,
+      "code": "CMTP",
+      "description": "rig up cementing tubs, mix and pump 52 sacks of Thermolite HT, pump cement, drop plug, pump plug to bottom with fresh water, bump plug at 21:30 hrs with 800 psi. shut valve. Cement returns to surface, captured discharge.",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-24",
+      "start": "21:30",
+      "end": "0:00",
+      "hours": 2.5,
+      "end_md": 225,
+      "code": "CMTS",
+      "description": "Mixed and pumped to keep hole full as cement shrank and settled in annulus of 8\" casing. hole stopped taking any cement by 23:30, Cleaned all hoses and cementing equipment as hole monitoring from plug down to time cement remained at top of 8\"",
+      "chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-25",
+      "start": "0:00",
+      "end": "9:30",
+      "hours": 9.5,
+      "end_md": 225,
+      "code": "WOC",
+      "description": "Wait on Cement 12 hrs.",
+      "chunks": [
+        "f4f05215feea85339:t31:c0",
+        "f62efbee00767a3e7:t13:c0",
+        "ff5e766b8670b35da:t20:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-25",
+      "start": "9:30",
+      "end": "17:30",
+      "hours": 8.0,
+      "end_md": 225,
+      "code": "BOPNU",
+      "description": "Cut off 8\" casing, bleed down pressure from 5 1/2\" casing , remove and laydown landing joint. Sling well head equipment from staging area. begin nipple up 5 1/2\" casing riser, 5\" well head, 6\" master valve, Determine there is not sufficient clearance between master valve and rig foot clamp, foot clamp 2.5' below rig floor, crew to take off top flange from valve,",
+      "chunks": [
+        "f4f05215feea85339:t31:c0",
+        "f62efbee00767a3e7:t13:c0",
+        "ff5e766b8670b35da:t20:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-25",
+      "start": "17:30",
+      "end": "0:00",
+      "hours": 6.5,
+      "end_md": 225,
+      "code": "BOPNU",
+      "description": "Continue nipple up BOP, raise rig 4\" with jack screw legs, install annular bag, 2 side valves,",
+      "chunks": [
+        "f4f05215feea85339:t31:c0",
+        "f62efbee00767a3e7:t13:c0",
+        "ff5e766b8670b35da:t20:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "0:00",
+      "end": "8:30",
+      "hours": 8.5,
+      "end_md": 225,
+      "code": "BOPNU",
+      "description": "Complete nipple up of BOP, chain and secure to sub base, hook up all hoses, and line to side valve. Pressure test Bag to 600 psi. hold 5 min.",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "8:30",
+      "end": "10:00",
+      "hours": 1.5,
+      "end_md": 225,
+      "code": "TRPI",
+      "description": "Run in hole with new PQ core bit, pumping cold water as each rod lowered into Temp 60F, out flow up to 139F, tag top of cement at 218' , circulate to cool hole running Totco at 200'.",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "10:00",
+      "end": "11:30",
+      "hours": 1.5,
+      "end_md": 225,
+      "code": "BOPNU",
+      "description": "Pull out of hole with PQ rod, Cut wire line, take off overshot, run line through pack up side port and valve in core Tee, Re swedge overshot to wire line.",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "11:30",
+      "end": "12:00",
+      "hours": 0.5,
+      "end_md": 225,
+      "code": "SURV",
+      "description": "Break core rod at joint to run MRT and Totco survey at 200' below ground surface. Degrees inclination, MRT 140 F",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "12:00",
+      "end": "14:00",
+      "hours": 2.0,
+      "end_md": 225,
+      "code": "BOPT",
+      "description": "Close gate valve, pump to fill stack and annular Diverter on HWT core rod with swivel attatched. pump with rig pump to 200 psi, hold 5 min, pump to 600 psi hold min. leaking gage.",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "14:00",
+      "end": "15:00",
+      "hours": 1.0,
+      "end_md": 225,
+      "code": "BOPT",
+      "description": "Change out valves, tighten connections, install valve at pump discharge to isolate Re-test at 200 psi 5 min. good, at 750 psi 5 min. dropped to 719 psi. 5 min.",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "15:00",
+      "end": "16:00",
+      "hours": 1.0,
+      "end_md": 225,
+      "code": "TRPI",
+      "description": "Trip in hole to 218' (top of cement plug).",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "16:00",
+      "end": "17:00",
+      "hours": 1.0,
+      "end_md": 225,
+      "code": "BOPT",
+      "description": "BOPE test , pump through core rod to fill annular diverter and circulate hole. Close pump to 200 psi hold for 5 min, testing annular and side valves, pump to 750 psi 5 min drop to 690 hold for 5 min. testing annular and side valves. no leaks, test",
+      "chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "17:00",
+      "end": "18:00",
+      "hours": 1.0,
+      "end_md": 225,
+      "code": "DRILC",
+      "description": "Core out cement from 218' to 220'. retrieve core barrel. lay out float plug, float shoe, cement. Drop new inner barrel. core ahead to 225'. clean out and pump bottoms",
+      "chunks": [
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "18:00",
+      "end": "18:15",
+      "hours": 0.25,
+      "end_md": 225,
+      "code": "FIT",
+      "description": "Circulate fresh 8.33 ppg water and polymer with 45 vis, pumping bottoms up and prepare to perform LOT.",
+      "chunks": [
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "18:45",
+      "end": "19:30",
+      "hours": 0.75,
+      "end_md": 225,
+      "code": "FIT",
+      "description": "Perform LOT (leak off at 118 psi, .95 psi/ft).",
+      "chunks": [
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "19:30",
+      "end": "20:00",
+      "hours": 0.5,
+      "end_md": 225,
+      "code": "DRIL",
+      "description": "Drop inner barrel, wait to latch, pumping down (wait for bag to release: 15 min).",
+      "chunks": [
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-26",
+      "start": "20:00",
+      "end": "0:00",
+      "hours": 4.0,
+      "end_md": 265,
+      "code": "DRIL",
+      "description": "227',",
+      "chunks": [
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-27",
+      "start": "0:00",
+      "end": "4:30",
+      "hours": 4.5,
+      "end_md": 300,
+      "code": "DRIL",
+      "description": "Continue core ahead PQ from 265' to 300'. Minor steam kick at 275' while pulling barrel. Increased mud weight to 9.2 lbs with salt and maintained in system re-circulating mud",
+      "chunks": [
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-27",
+      "start": "4:30",
+      "end": "5:00",
+      "hours": 0.5,
+      "end_md": 300,
+      "code": "SURV",
+      "description": "pits. Pull inner barrel at 300' and run survey: .25 degrees inclination, MRT 228F.",
+      "chunks": [
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-27",
+      "start": "5:00",
+      "end": "12:30",
+      "hours": 7.5,
+      "end_md": 400,
+      "code": "DRIL",
+      "description": "Core ahead from 300' to 400' with PQ core. Fluid loss of 5-7 gpm , with mud wt. of 8.6ppg, lowering mud wt with water at each batch mix of drilling fluid.",
+      "chunks": [
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-27",
+      "start": "12:30",
+      "end": "13:00",
+      "hours": 0.5,
+      "end_md": 400,
+      "code": "SURV",
+      "description": "Run survey tool at 400' with MRT: .25 degree inclination, MRT: 238F.",
+      "chunks": [
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-27",
+      "start": "13:00",
+      "end": "0:00",
+      "hours": 11.0,
+      "end_md": 465,
+      "code": "DRIL",
+      "description": "Core ahead with PQ from 400' to 465' at 00:00 hrs, minimum fluid loss to hole, mud wt. 8.4ppg, at 20:00, 22:00 est partial losses at 3-5 gpm.",
+      "chunks": [
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "0:00",
+      "end": "3:30",
+      "hours": 3.5,
+      "end_md": 500,
+      "code": "DRIL",
+      "description": "Core ahead PQ to 500'. Maximun Flow line temp out 145 F, mud temp in average 70, mixing cold (60 F) water with poly mud to maintain fluid temperatures.",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "3:30",
+      "end": "4:00",
+      "hours": 0.5,
+      "end_md": 500,
+      "code": "SURV",
+      "description": "Run single shot Totco survey at 500', .25 degree inclination, MRT 250F",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "4:00",
+      "end": "11:00",
+      "hours": 7.0,
+      "end_md": 600,
+      "code": "DRIL",
+      "description": "Core ahead with PQ to 600'. Maximum Flow line temp out 156 F, mud temp in avg. 72F",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "11:00",
+      "end": "11:30",
+      "hours": 0.5,
+      "end_md": 600,
+      "code": "SURV",
+      "description": "Run single shot survey at 600', 1 degree inclination, MRT 280 F",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "11:30",
+      "end": "17:30",
+      "hours": 6.0,
+      "end_md": 700,
+      "code": "DRIL",
+      "description": "Core ahead with PQ to 700' , maximum flow line temp out 156 F , average mud temp in 71 F",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "17:30",
+      "end": "18:00",
+      "hours": 0.5,
+      "end_md": 700,
+      "code": "SURV",
+      "description": "Run single shot survey at 700' 1 degree inclination, MRT 275 F",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-28",
+      "start": "18:00",
+      "end": "0:00",
+      "hours": 6.0,
+      "end_md": 770,
+      "code": "DRIL",
+      "description": "Core ahead with PQ to 770'. Maximum flow line temp 165 F, average mud temp in 71 F. Pumped to waste sump 500 gal and added 500 gal of cold mud 60 F to cool fluid and hole.",
+      "chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "0:00",
+      "end": "6:00",
+      "hours": 6.0,
+      "end_md": 800,
+      "code": "DRIL",
+      "description": "Core PQ ahead from 770' to 800' pull inner tube, prepare to run Totco. Core from 783 (highly broken formation).",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "6:00",
+      "end": "6:30",
+      "hours": 0.5,
+      "end_md": 800,
+      "code": "SURV",
+      "description": "Run single shot survey at 800': 1 degree inclination, MRT 300 F (maxed tool out - mercury was above the 300 mark).",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "6:30",
+      "end": "7:30",
+      "hours": 1.0,
+      "end_md": 805,
+      "code": "DRIL",
+      "description": "Drop inner barrel, core ahead from 800' to 805'.",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "7:30",
+      "end": "9:00",
+      "hours": 1.5,
+      "end_md": 805,
+      "code": "CIRC",
+      "description": "Circulate the hole from 805' TD for 4.5\" casing. Mud temp. out 121 F at beginning circulation, 113 F out at end of circ. Mud temp in 87 F to 97 F",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "9:00",
+      "end": "11:00",
+      "hours": 2.0,
+      "end_md": 805,
+      "code": "TRPO",
+      "description": "Pull out of hole with PQ rod from 805' BGS (pulling singles - 10'). Maintain the hole while tripping out by pumping through the side wing valve.",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "11:00",
+      "end": "12:00",
+      "hours": 1.0,
+      "end_md": 805,
+      "code": "CASE",
+      "description": "Rig up to run 4.5\", K55, 111.6 ppf casing with Valley Flush Joint thread. Weld on float shoe. Mix 1 cup Bakerlok joint compound.",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "12:00",
+      "end": "14:30",
+      "hours": 2.5,
+      "end_md": 805,
+      "code": "CASE",
+      "description": "Run 43 jts of 4.5\" casing, bakerlok'd first three joints. Fill each three joints as run in circulating with 8.4 ppg mud (mud temp at landing of casing 132 F).",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "14:30",
+      "end": "15:30",
+      "hours": 1.0,
+      "end_md": 805,
+      "code": "CIRC",
+      "description": "Circulate hole with 25 gpm 8.4 ppg mud (cooling hole prior to cementing: mud temp 120 F , mud temp in 97F)",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "15:30",
+      "end": "16:30",
+      "hours": 1.0,
+      "end_md": 805,
+      "code": "CMTP",
+      "description": "Mix 2 ea. 14 sack (ft3) slurries in mix tubs: 4.16 gallons /sack with 1 pint of retarder each batch. Cement wt 13.5 ppg. Pump slurry into casing, install plug, pump down 510 gallons of water. Pump pressure at displacement: 580 psi. Full returns during cement job, only saw cement colored water at return - no cement. Immediately flushed the annulus with 75 gallons of fresh water. Shut in pressure of annulus: 120 psi.",
+      "chunks": [
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "16:30",
+      "end": "22:30",
+      "hours": 6.0,
+      "end_md": 805,
+      "code": "WOC",
+      "description": "Wait on cement to set. Place cement samples in water bath at 180",
+      "chunks": [
+        "f4f05215feea85339:t45:c1",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-29",
+      "start": "22:30",
+      "end": "0:00",
+      "hours": 1.5,
+      "end_md": 805,
+      "code": "CMTS",
+      "description": "F. Mix 14 sks of Thermolite cement with 60 gallons of fresh water (13.5 ppg) and additives. Pump 10 sack volume at .5 bpm. Initial pump pressure to 170 psi, fall back to 100. Wait 10 min. Pump 2 sks volume, pressure to 150 psi. Shut in side valve. Clean pump and discharge hoses. Set grab sample in water bath at 180 F.",
+      "chunks": [
+        "f4f05215feea85339:t45:c1",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "0:00",
+      "end": "6:00",
+      "hours": 6.0,
+      "end_md": 805,
+      "code": "WOC",
+      "description": "At 03:00 annular pressure holding at 120 psi, casing pressure holding at 650 psi. Cement samples hard on casing job, firm on top job. Waiting on cement top job completed.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "6:00",
+      "end": "10:30",
+      "hours": 4.5,
+      "end_md": 805,
+      "code": "BOPNU",
+      "description": "Release annular. Back off and lay down landing joint. Close master valve. Raise rig to remove Annular to change out BOP rubber to HQ size.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "10:30",
+      "end": "11:30",
+      "hours": 1.0,
+      "end_md": 805,
+      "code": "BOPNU",
+      "description": "Nipple up Annular to stack. Clean and check wing valves. Adjust rig to previous level. Cycle BOP.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "11:30",
+      "end": "14:30",
+      "hours": 3.0,
+      "end_md": 805,
+      "code": "BOPT",
+      "description": "Close master valve. Install test stump in BOP. Close BOP. Test at 200 psi: OK, test at 700 psi: OK, 5 minutes each. Bleed off. Run in hole with 40' HQ core barrel and 2 joints. Fill pipe and hole. Close annular. Test BOP and 2 1/16 side valves at 200 psi, 5 min: OK; 700 psi, 5 min: OK.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "14:30",
+      "end": "17:30",
+      "hours": 3.0,
+      "end_md": 805,
+      "code": "TRPI",
+      "description": "Trip in hole with HQ core assembly (BHA #6), on new HQ core rod to 580'. Tag up. Begin coring out cement strings and wiper plug.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-30",
+      "start": "17:30",
+      "end": "0:00",
+      "hours": 6.5,
+      "end_md": 805,
+      "code": "DRILC",
+      "description": "Drill out cement to float shoe at 800'.",
+      "chunks": [
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "0:00",
+      "end": "1:00",
+      "hours": 1.0,
+      "end_md": 810,
+      "code": "DRIL",
+      "description": "Core ahead through float shoe 800' to 810' retrieve core, drop new inner barrel,",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "1:00",
+      "end": "1:30",
+      "hours": 0.5,
+      "end_md": 810,
+      "code": "FIT",
+      "description": "Conduct LOT at 810' w/ 8.34 ppg mud. Fill pipe with water, close annular. Pump 2.5 gallon, pressure 80 psi. Pump 2.5 gal, 170 psi. Pump 2.5 gal, 600 psi (holding each pressure for 2 min). No leak off. Pump would not start against 600 psi. Retest with 1 gallon increments. Pump 1 gallon, 80 psi. Pump 1 gallon, 420 psi. Pump 1 gallon, 640 psi. No leak off after 5 min. Exceed1 psi/ft (500 psi surface pressure). End test. Bleed off.",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "1:30",
+      "end": "6:30",
+      "hours": 5.0,
+      "end_md": 900,
+      "code": "DRIL",
+      "description": "Core ahead with HQ to 900'. 100% recovery. Prepare to run single shot.",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "6:30",
+      "end": "7:00",
+      "hours": 0.5,
+      "end_md": 900,
+      "code": "SURV",
+      "description": "Run single shot survey and MRT: 0.75 inclination, MRT: 300 - 310 F (max reading on MRT).",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "7:00",
+      "end": "23:00",
+      "hours": 16.0,
+      "end_md": 1100,
+      "code": "DRIL",
+      "description": "Core ahead with HQ from 900' to 1100'. 100% recovery. Mud temp in average 112F out 150 F Max reading at 1100' mud temp in 114F out 162F. Full returns through out coring run. Rod chatter beginning at 920' increase amount of polymer in drill fluid. Reduce chatter.",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "23:00",
+      "end": "23:30",
+      "hours": 0.5,
+      "end_md": 1100,
+      "code": "SURV",
+      "description": "Run single shot survey at 1100': 1 degree inclination, no MRT.",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-08-31",
+      "start": "23:30",
+      "end": "0:00",
+      "hours": 0.5,
+      "end_md": 1105,
+      "code": "DRIL",
+      "description": "Core ahead with HQ from 1100' to 1105'. Mud temp: in 114F out 165F.",
+      "chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-01",
+      "start": "0:00",
+      "end": "15:30",
+      "hours": 15.5,
+      "end_md": 1300,
+      "code": "DRIL",
+      "description": "Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to",
+      "chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-01",
+      "start": "15:30",
+      "end": "16:00",
+      "hours": 0.5,
+      "end_md": 1300,
+      "code": "SURV",
+      "description": "Run Totco single shot survey, 1 degree inclination.",
+      "chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-01",
+      "start": "16:00",
+      "end": "18:00",
+      "hours": 2.0,
+      "end_md": 1300,
+      "code": "TRPO",
+      "description": "Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+      "chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-01",
+      "start": "18:00",
+      "end": "20:30",
+      "hours": 2.5,
+      "end_md": 1300,
+      "code": "TRPI",
+      "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+      "chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-01",
+      "start": "20:30",
+      "end": "0:00",
+      "hours": 3.5,
+      "end_md": 1385,
+      "code": "DRIL",
+      "description": "Break in new bit and core ahead from 1300' to 1385'.",
+      "chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-02",
+      "start": "0:00",
+      "end": "6:00",
+      "hours": 6.0,
+      "end_md": 1425,
+      "code": "DRIL",
+      "description": "Coring ahead HQ fom 1385' to 1425' with full returns.",
+      "chunks": [
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-02",
+      "start": "6:00",
+      "end": "17:00",
+      "hours": 11.0,
+      "end_md": 1500,
+      "code": "DRIL",
+      "description": "Core ahead HQ from 1425' to 1500'. Mud temp in/ out 98/ 136 F. Full returns.",
+      "chunks": [
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-02",
+      "start": "17:00",
+      "end": "17:30",
+      "hours": 0.5,
+      "end_md": 1500,
+      "code": "SURV",
+      "description": "Run Totco at 1500': 1.75 degree inclination.",
+      "chunks": [
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-02",
+      "start": "17:30",
+      "end": "0:00",
+      "hours": 6.5,
+      "end_md": 1645,
+      "code": "DRIL",
+      "description": "Core ahead HQ from 1500' to 1645'. Full returns.",
+      "chunks": [
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-03",
+      "start": "0:00",
+      "end": "5:00",
+      "hours": 5.0,
+      "end_md": 1705,
+      "code": "DRIL",
+      "description": "Core ahead HQ core from 1645' to 1705' (*Planned TD), full returns. Mud temp in/out 112F/156F.",
+      "chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-03",
+      "start": "5:00",
+      "end": "5:30",
+      "hours": 0.5,
+      "end_md": 1705,
+      "code": "SURV",
+      "description": "Run Totco single shot survey tool, 1 degree inclination.",
+      "chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-03",
+      "start": "5:30",
+      "end": "6:30",
+      "hours": 1.0,
+      "end_md": 1725,
+      "code": "DRIL",
+      "description": "Core ahead with HQ core from 1705' to 1725'. Out of rod on site.",
+      "chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-03",
+      "start": "6:30",
+      "end": "11:00",
+      "hours": 4.5,
+      "end_md": 1725,
+      "code": "CIRC",
+      "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 jts of used rod from village yard at 11:00 hrs.",
+      "chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "WOE"
+    },
+    {
+      "date": "2016-09-03",
+      "start": "11:00",
+      "end": "0:00",
+      "hours": 13.0,
+      "end_md": 1865,
+      "code": "DRIL",
+      "description": "Core ahead from 1725' to 1865'. Average fluid temp in/out: 102/55 F.",
+      "chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "0:00",
+      "end": "6:00",
+      "hours": 6.0,
+      "end_md": 1919,
+      "code": "DRIL",
+      "description": "Core ahead HQ from 1865' to 1919', bit torquing up and pressure building when on bottom. Partial losses since 1878-1888.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "6:00",
+      "end": "7:00",
+      "hours": 1.0,
+      "end_md": 1919,
+      "code": "CIRC",
+      "description": "Circulate hole with fresh water to cool hole prior to trip out for bit. Partial losses.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "7:00",
+      "end": "10:45",
+      "hours": 3.75,
+      "end_md": 1919,
+      "code": "TRPO",
+      "description": "Trip out of hole with HQ to change bit.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "10:45",
+      "end": "14:30",
+      "hours": 3.75,
+      "end_md": 1919,
+      "code": "TRPI",
+      "description": "Trip in hole with new HQ core bit (#8) to 1919'. No losses.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "14:30",
+      "end": "14:45",
+      "hours": 0.25,
+      "end_md": 1919,
+      "code": "CIRC",
+      "description": "Circulate hole and mix poly into fluid (mud wt 8.4 vis 80). Circulate hole and break in bit.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "14:45",
+      "end": "17:45",
+      "hours": 3.0,
+      "end_md": 1955,
+      "code": "DRIL",
+      "description": "Core ahead HQ from 1919' to 1955' (TD).",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "17:45",
+      "end": "19:15",
+      "hours": 1.5,
+      "end_md": 1955,
+      "code": "CIRC",
+      "description": "Circulate hole with 2 bottoms up with fresh cold water (56 degree in out at 19:15 (1.5 hrs) 90 F. Shut pump off at 19:15 hrs.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-04",
+      "start": "19:15",
+      "end": "0:00",
+      "hours": 4.75,
+      "end_md": 1955,
+      "code": "TRPO",
+      "description": "Trip out of hole with HQ core string from 1955' to surface. Lay down BHA. Prepare to rig up wire line.",
+      "chunks": [
+        "f62efbee00767a3e7:t40:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "0:00",
+      "end": "1:30",
+      "hours": 1.5,
+      "end_md": 1955,
+      "code": "SERV",
+      "description": "Complete wire line equipment set up, install crossover to wire line logging lubricator. Assist in bringing wire line logging tool to rig floor. Hang lubricator with hoist line.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "1:30",
+      "end": "6:00",
+      "hours": 4.5,
+      "end_md": 1955,
+      "code": "LOG",
+      "description": "Run pressure/temperature survey from ground surface to 1955'. Start log tool at 01:40 - set in hole zero at ground surface. Begin logging at 2:20 hours from 0' making stops at various times at 20 fpm to TD of 1955'. Log out at 40fpm. Tool on surface at 04:50 hours. Download data.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "6:00",
+      "end": "6:30",
+      "hours": 0.5,
+      "end_md": 1955,
+      "code": "CASE",
+      "description": "Pick up and run in hole with 150' of HQ perforated pipe and 1 joint blank.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "6:30",
+      "end": "9:00",
+      "hours": 2.5,
+      "end_md": 1955,
+      "code": "WOO",
+      "description": "Waiting on well design after PT data review. Receive well plan: From the current run 4 perforated / 1 blank alternating 4 to 1 until run out of perf pipe, then 50 blank. Top of lap joint (TOL): 755' BGS.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+      ],
+      "npt_code": "WOO"
+    },
+    {
+      "date": "2016-09-05",
+      "start": "9:00",
+      "end": "15:30",
+      "hours": 6.5,
+      "end_md": 1955,
+      "code": "CASE",
+      "description": "Continue run in hole with HQ perforated and blank tubing per plan: Alternate 4 joints / 1 blank joint to 805' and 50' of blank HQ tubing inside 4-1/2\" casing. Top of 755' BGS. Lower string in hole on 75 joints of HQ pipe, set on bottom. Back off of blank (755') - Top 5 blank joints (805'-755') were tack welded and the backoff (755'-745') was greased instead of dope. Trip out of hole.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "15:30",
+      "end": "19:30",
+      "hours": 4.0,
+      "end_md": 1955,
+      "code": "MOB",
+      "description": "RIG RELEASED and master valve closed at 15:30 hrs. Rig crews breaking down helicopter flying loads (bundles of rods, support equipment) out. Crew lay down and disassemble power unit. Control unit, hoist, and engine flown away. Sub base sub pad off site at and crews supended work at 19:30 hrs.",
+      "chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-05",
+      "start": "19:30",
+      "end": "0:00",
+      "hours": 4.5,
+      "end_md": 1955,
+      "code": "OTHER",
+      "description": "Re-install the top master valve flange. Install top connection to hook up to wire lubricator. Rig up pressure gauge to side valve.",
+      "chunks": [
+        "f4f05215feea85339:t73:c1",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c1"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "0:00",
+      "end": "2:00",
+      "hours": 2.0,
+      "end_md": 1955,
+      "code": "LOG",
+      "description": "Prepare P/T tooling, install lubricator, run out slick line",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "2:00",
+      "end": "5:30",
+      "hours": 3.5,
+      "end_md": 1955,
+      "code": "LOG",
+      "description": "Conduct P/T survey from 0' to 1955' at 20 fpm. with down stops at 20' 50', 100' 300', 500', 1000', 1500' and 1955' with 2 minutes at each stop. Log up at 60' fpm. with same stop at 3 min. inclination.",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "5:30",
+      "end": "6:30",
+      "hours": 1.0,
+      "end_md": 1955,
+      "code": "LOG",
+      "description": "Down load data confirm results. transmit data, rig down survey tools.",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "6:30",
+      "end": "9:30",
+      "hours": 3.0,
+      "end_md": 1955,
+      "code": "WOD",
+      "description": "Crew waiting on Daylight to continue cleanup of site and removal of remainder of equipment to staging area. Helicopter on site at 09:30. sending 2 crew to staging",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "9:30",
+      "end": "19:00",
+      "hours": 9.5,
+      "end_md": 1955,
+      "code": "MOB",
+      "description": "Make up loads to fly out, Assemble well head with flow Tee, side 4: valve and 2\" top valve and lubricator bonnet , construct fence posts around sumps and retention pond. begin excavating ditch for drain line from cellar. crews at staging area receiving loads and sorting into container,",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-06",
+      "start": "19:00",
+      "end": "0:00",
+      "hours": 5.0,
+      "end_md": 1955,
+      "code": "WOD",
+      "description": "Crew will only work 12 hrs from this time forward to storing of equipment into",
+      "chunks": [
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-07",
+      "start": "0:00",
+      "end": "9:00",
+      "hours": 9.0,
+      "end_md": 1955,
+      "code": "WOD",
+      "description": "Waiting on daylight, kitchen now opening at 07:00 hrs, still dark, helicopter at site at 08:30, load crew take to staging area at 09:00",
+      "chunks": [
+        "f4f05215feea85339:t79:c0",
+        "f62efbee00767a3e7:t46:c0",
+        "ff5e766b8670b35da:t57:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-07",
+      "start": "9:00",
+      "end": "13:00",
+      "hours": 4.0,
+      "end_md": 1955,
+      "code": "LOG",
+      "description": "Hook up, program and run P/T survey tool from 0 to 1955' BGS, casing pressure gauge reading 10 psi, however upon loading the tool, appears to be 0 casing pressure. Joe, Ray and Darren cut ditch to cellar floor and laid poly pipe to drain cellar through winter.",
+      "chunks": [
+        "f4f05215feea85339:t79:c0",
+        "f62efbee00767a3e7:t46:c0",
+        "ff5e766b8670b35da:t57:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-07",
+      "start": "13:00",
+      "end": "19:00",
+      "hours": 6.0,
+      "end_md": 1955,
+      "code": "MOB",
+      "description": "Joe ,Ray, Darren and helicopter crew broke down the job site tent and core tent. Strung out barbed wire around sump and retention pond.Helicopter flew Monty from Job site at 14:30 hrs over the staging area, appear the crew has 90% of the Major container loaded, was loading the rig stack into container. Estimate loading will be complete by end of day.",
+      "chunks": [
+        "f4f05215feea85339:t79:c0",
+        "f62efbee00767a3e7:t46:c0",
+        "ff5e766b8670b35da:t57:c0"
+      ],
+      "npt_code": null
+    },
+    {
+      "date": "2016-09-07",
+      "start": "19:00",
+      "end": "0:00",
+      "hours": 5.0,
+      "end_md": 1955,
+      "code": "WOD",
+      "description": "Suspend activities for the day. Crew remaining in camp tonight, working 12 hr days. Tear down of camp to begin tomorrow.",
+      "chunks": [
+        "f4f05215feea85339:t79:c0",
+        "f62efbee00767a3e7:t46:c0",
+        "ff5e766b8670b35da:t57:c0"
+      ],
+      "npt_code": null
+    }
+  ]
+}

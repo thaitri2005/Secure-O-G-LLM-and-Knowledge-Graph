@@ -89,6 +89,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
   | [E28](docs/experiments/E28-event-graph.md) | **Daily reports, totals over time, chosen to suit the graph**: **event graph** / best plain RAG. Frozen 35; then new 23 | **22/35** / 5/35; **19/23** / 4/23 |
   | [E29](docs/experiments/E29-table-mappings-across-reports.md) | K2 table mappings on held-out reports from other authors: casing as written / after fixes and validation | 4/16 / **13/16**, no wrong fact; surveys unreliable |
+  | [E31](docs/experiments/E31-event-graph-on-k1.md) | Event graph rebuilt from **Track A's K1 version 1** (report dates from K1), no model call | 161 / 161 events identical to E28; plans replay 35/35 and 23/23 |
 
   The shape of the graph has to match the questions (B-F47). On new lookup questions the per-well fact graph ties plain RAG so far (B-F30), and it stays in the design (B-D29); a graph of events wins on totals over time (B-D26). Scrambled form headers remain for Track A (B-F36).
 
@@ -137,7 +138,7 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
 ## Useful facts
 
 - Data: `data/processed/gdr_chunks_full.jsonl` holds the K1 version 0 chunks: AK-3 EOWR (`gdr882_ak3_eowr`, 60 chunks) plus two other EOWRs (372 chunks in total). Gold data: `prototype/gold/questions.json` (31 questions) and `ak3_facts.json` (41 facts, chunk IDs like `c0002`).
-- Track A's K1 version 1 package is shared as a zip, never committed (B-F56): unzip it into ignored `data/interim/k1/` (or set `GRAPHRAG_K1_CHUNKS`) and use `--pool k1_ak3` or `--pool k1_daily`.
+- Track A's K1 version 1 package is shared as a zip, never committed (B-F56): unzip it into ignored `data/interim/k1/` or a folder inside it (or set `GRAPHRAG_K1_CHUNKS`); `python -m graphrag.events build --k1` builds the event graph from it (E31) and use `--pool k1_ak3` or `--pool k1_daily`.
 - AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`, `ak3_events_v0`, `ak3_events_heldout_v0`. They are frozen: changes go into a new version.
 - The prototype (`prototype/`) is the baseline to beat (E10). Do not change it.
 - Diagrams: Mermaid source sits in the documents. SVGs are regenerated with mermaid-cli 11.17.0 (see `docs/diagrams/README.md`).

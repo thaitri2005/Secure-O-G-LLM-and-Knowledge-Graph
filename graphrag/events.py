@@ -16,13 +16,14 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from pathlib import Path
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
 from .baseline import ANSWER_FORMATS, RESULTS, answer_questions, build, summarize
 from .client import ModelClient, load_endpoints
-from .data import appendix_chunks_path, load_chunks
+from .data import ROOT, appendix_chunks_path, k1_chunks_path, load_chunks
 from .ontology import table_rows
 from .retrieval import page_dates, well_names
 from .scoring import normalize
@@ -93,10 +94,11 @@ def _chunk_for(parts: list, row: int) -> list[str]:
     return match[:1] or [parts[0].id]
 
 
-def build_events(chunks: list, tables: list[dict]) -> tuple[list[Event], dict[str, int]]:
+def build_events(chunks: list, tables: list[dict], dates: dict | None = None) -> tuple[list[Event], dict[str, int]]:
     """Events from operations tables, then joined with the non-productive report. The attachments repeat the same
-    rows and each loses some ("1 record not printed", tables read as text), so rows are merged by date and time."""
-    dates = page_dates(chunks)
+    rows and each loses some ("1 record not printed", tables read as text), so rows are merged by date and time.
+    `dates` maps (doc_id, page) to a report date; without it, dates are read from the page text (`page_dates`)."""
+    dates = dates if dates is not None else page_dates(chunks)
     by_table: dict[str, list] = {}
     for c in chunks:
         if c.table_id:
@@ -240,9 +242,49 @@ def load_inputs() -> tuple[list, list[dict]]:
     return load_chunks(wanted, path), [t for t in tables if t["doc_id"] in wanted]
 
 
-def answer(args) -> dict:
+OLD_EXPORT = ROOT / "data/corpora/ak3_appendices/exports/v1"
+
+
+def npt_report_inputs() -> tuple[list, list[dict]]:
+    """The non-productive-time report (appx-23), which K1 version 1 does not include yet: from the corpus release
+    when there is one, else from the older export (E8). Its chunks keep version 0 IDs."""
+    try:
+        path = appendix_chunks_path()
+    except (FileNotFoundError, OSError, KeyError):
+        path = OLD_EXPORT / "chunks.jsonl"
+    rows = (json.loads(line) for line in path.read_text(encoding="utf-8").splitlines())
+    wanted = sorted({r["doc_id"] for r in rows if "-appx-23-" in r["doc_id"]})
+    tables = [json.loads(line) for line in (path.parent / "tables.jsonl").read_text(encoding="utf-8").splitlines()]
+    return load_chunks(wanted, path), [t for t in tables if t["doc_id"] in wanted]
+
+
+def load_k1_inputs(path: Path | None = None) -> tuple[list, list[dict], dict]:
+    """Track A's K1 version 1 package (D-57): its daily-report chunks and tables, with each page's report date taken
+    from the chunks' `context.report_date` instead of guessed from the text (B-C22), plus the non-productive report."""
+    path = path or k1_chunks_path()
+    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    daily = sorted({r["doc_id"] for r in rows if "dailyreport" in r["doc_id"]})
+    dates = {}
+    for r in rows:
+        date = (r.get("context") or {}).get("report_date")
+        if r["doc_id"] in daily and date:
+            for page in r.get("pages") or [r["page"]]:
+                dates.setdefault((r["doc_id"], page), normalize(date))
+    tables = [json.loads(line) for line in (path.parent / "tables.jsonl").read_text(encoding="utf-8").splitlines()]
+    npt_chunks, npt_tables = npt_report_inputs()
+    return (load_chunks(daily, path) + npt_chunks, [t for t in tables if t["doc_id"] in daily] + npt_tables, dates)
+
+
+def inputs(k1: bool) -> tuple[list, list[dict], dict | None]:
+    if k1:
+        return load_k1_inputs()
     chunks, tables = load_inputs()
-    events, stats = build_events(chunks, tables)
+    return chunks, tables, None
+
+
+def answer(args) -> dict:
+    chunks, tables, dates = inputs(args.k1)
+    events, stats = build_events(chunks, tables, dates)
     client = ModelClient(load_endpoints()[args.endpoint], args.model)
     fallback = build("dates:wells:bm25", chunks)
     system = PLAN_SYSTEM + code_list(events)
@@ -269,7 +311,7 @@ def answer(args) -> dict:
         row["plan"], row["graph_result"] = plan["plan"], plan["result"]
         row["graph_source_chunks"] = plan["source_chunks"]
     result = summarize(rows, client)
-    return {"pool": "ak3_daily+appx-23", "retriever": "event graph; fallback dates:wells:bm25", "k": args.k,
+    return {"pool": "k1 daily+appx-23" if args.k1 else "ak3_daily+appx-23", "retriever": "event graph; fallback dates:wells:bm25", "k": args.k,
             "question_set": args.questions, "endpoint": args.endpoint, "model": args.model,
             "answer_format": args.answer_format, "events": len(events), "build": stats,
             "planner_tokens": {"prompt": sum(p["plan_prompt_tokens"] for p in plans),
@@ -289,10 +331,13 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--answer-format", choices=ANSWER_FORMATS, default="status_first")
     for p in (a, b):
         p.add_argument("--name", required=True)
+        p.add_argument("--k1", action="store_true",
+                       help="build from Track A's K1 version 1 package (data/interim/k1/) instead of the corpus release")
     args = parser.parse_args(argv)
     if args.command == "build":
-        events, stats = build_events(*load_inputs())
+        events, stats = build_events(*inputs(args.k1))
         out: dict[str, Any] = {"method": "operations tables and the non-productive report, no model call", "llm_calls": 0,
+                               "source": "K1 version 1 package, appx-23 from the corpus" if args.k1 else "corpus release",
                                "wells": sorted(well_names(WELL)), "build": stats, "events": [asdict(e) for e in events]}
     else:
         out = answer(args)

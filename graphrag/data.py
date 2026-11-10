@@ -29,6 +29,13 @@ K1_CHUNKS = ROOT / "data/interim/k1/chunks.jsonl"
 
 def k1_chunks_path() -> Path:
     path = Path(os.environ.get("GRAPHRAG_K1_CHUNKS") or K1_CHUNKS)
+    if not os.environ.get("GRAPHRAG_K1_CHUNKS") and not path.is_file():
+        # A package unzipped into its own folder, e.g. data/interim/k1/ak3-k1-v1-candidate/; exactly one is taken.
+        found = sorted(K1_CHUNKS.parent.glob("*/chunks.jsonl"))
+        if len(found) == 1:
+            path = found[0]
+        elif len(found) > 1:
+            raise FileNotFoundError(f"Several K1 packages under {K1_CHUNKS.parent}: set GRAPHRAG_K1_CHUNKS (B-F56)")
     if not path.is_file():
         raise FileNotFoundError(f"No K1 package at {path}: unzip Track A's package there or set GRAPHRAG_K1_CHUNKS (B-F56)")
     return path

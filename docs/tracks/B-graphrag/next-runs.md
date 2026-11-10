@@ -86,7 +86,8 @@ Worth doing when the work resumes:
 | What | From whom | Then |
 |---|---|---|
 | The expert question set, or a specification for development questions, asked for in the [5 November update](supervisor-update-2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
-| The K1 version 1 zip on this machine: Khai shared it with the team on 9 November; it is not in the repository by design (B-F56). Also its `legacy_chunk_ids.json` and which OCR engine it used, both asked by Hung (B-F57) | Khai, Track A | Unzip so that `data/interim/k1/chunks.jsonl` exists, run `python scripts/check_k1_graphrag_compat.py --k1 data/interim/k1`, then rerun E17's baseline with `--pool k1_ak3` (hit@5 was 0.913 in E30) and E24 and E27 with `--pool k1_daily`; replace `page_dates` with the report date field. E28's event graph still reads the old appendix tables, so it needs a K1 loader first |
+| Shared hosting of the stores on a free cloud tier, with credentials for each teammate (B-D35) | Hung, Track C | Read K1 packages and chunks from the shared store instead of zips |
+| Appendix 23 (the non-productive-time report) inside the K1 package, so the event graph reads only K1 (E31) | Khai, Track A | Drop the old-corpus fallback in `events.npt_report_inputs` |
 | Reading chunks from Track C's PostgreSQL, and both graphs in Neo4j ([note](note-for-track-C-storage.md)); vector store is pgvector (D-56) | Hung, Track C | Point the baseline at the store; BM25 stays for one-well questions, pgvector embeddings for several |
 | Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
 | Whether users ask questions over time (B-D26, Q3) | Supervisor and the expert group | Confirm or reverse the event graph |
@@ -98,3 +99,16 @@ Worth doing when the work resumes:
 3. Update the results table in [CLAUDE.md](../../../CLAUDE.md).
 4. Commit as yourself, with no AI attribution, then `git pull --rebase` and push.
 5. Mark the run done in this file.
+
+## Answers on K1 version 1 (desktop)
+
+The package `ak3-k1-v1-candidate` is in ignored `data/interim/k1/` on the laptop; copy that folder to the desktop. The compatibility check and the event graph (E31) are done and need no model. These need Qwen3-8B on the GPU:
+
+```powershell
+python -m graphrag.baseline answer --pool k1_ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name E32_k1_prototype
+python -m graphrag.events answer --k1 --questions ak3_events --name E32_k1_events
+python -m graphrag.events answer --k1 --questions ak3_events_heldout --name E32_k1_events_heldout
+python -m graphrag.baseline answer --pool k1_daily --retriever dates:wells:bm25 --k 5 --questions ak3_daily_heldout --endpoint local-llama --model qwen3-8b --name E32_k1_daily_heldout
+```
+
+Compare with E17 (28/31), E28 (22/35, 19/23) and E27 (14/26). On `k1_ak3` the retrieval hit flags use old gold chunk IDs and are not meaningful; scores are by value. `DateRouter` still guesses dates from text; swapping in K1's report date field is the next small change.

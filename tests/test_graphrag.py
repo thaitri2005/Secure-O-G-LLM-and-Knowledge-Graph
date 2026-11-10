@@ -510,6 +510,39 @@ class EventGraphTests(unittest.TestCase):
         self.assertEqual((events[1].code, events[1].npt_code), ("WOW", "WAIT"))
         self.assertEqual(stats["added from the non-productive report"], 1)
 
+    def test_k1_report_dates_replace_dates_guessed_from_text(self):
+        from graphrag.data import Chunk
+        from graphrag.events import build_events
+
+        def cells(rows):
+            return [{"r": r, "c": c, "text": t} for r, row in enumerate(rows) for c, t in enumerate(row)]
+
+        head = ["From", "To", "Elapsed", "End MD(ft)", "Code", "Operations Description"]
+        # The page text names no date at all, so only the K1 report date can place the row.
+        chunks = [Chunk("f1:t1:c0", "x-dailyreport", 3, "table", None, "t", "f1:t1", 0, 1)]
+        tables = [{"table_id": "f1:t1", "doc_id": "x-dailyreport", "cells": cells([head, ["0:00", "2:00", "2.00", "40", "DRIL", "x"]])}]
+        self.assertEqual(build_events(chunks, tables)[0], [])
+        events, _ = build_events(chunks, tables, {("x-dailyreport", 3): "2016-08-21"})
+        self.assertEqual((events[0].date, events[0].chunks), ("2016-08-21", ["f1:t1:c0"]))
+
+    def test_k1_inputs_take_daily_reports_and_their_report_dates(self):
+        from graphrag import events as ev
+        rows = [{"chunk_id": "f1:t1:c0", "doc_id": "a-dailyreport", "page": 2, "pages": [2], "type": "table",
+                 "section": None, "text": "t", "table_id": "f1:t1", "row_start": 0, "row_end": 1,
+                 "context": {"report_date": "21-Aug-16", "well": "AK-3"}},
+                {"chunk_id": "f2:s1:c0", "doc_id": "gdr882_ak3_eowr", "page": 1, "type": "text", "section": None,
+                 "text": "e", "context": None}]
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "chunks.jsonl"
+            path.write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
+            (Path(temporary) / "tables.jsonl").write_text(json.dumps({"table_id": "f1:t1", "doc_id": "a-dailyreport",
+                                                                      "cells": []}), encoding="utf-8")
+            with patch.object(ev, "npt_report_inputs", return_value=([], [])):
+                chunks, tables, dates = ev.load_k1_inputs(path)
+        self.assertEqual([c.id for c in chunks], ["f1:t1:c0"])
+        self.assertEqual([t["table_id"] for t in tables], ["f1:t1"])
+        self.assertEqual(dates, {("a-dailyreport", 2): "2016-08-21"})
+
 
 class DateRouterTests(unittest.TestCase):
     def chunks(self):
