@@ -9,7 +9,7 @@
 | **Code** | `graphrag/events.py`; `graphrag/retrieval.py` (`page_dates` fix) |
 | **Gold data** | [`ak3_events_v0.json`](../../graphrag/gold/ak3_events_v0.json) (35 questions, frozen before the graph was built) and [`ak3_events_heldout_v0.json`](../../graphrag/gold/ak3_events_heldout_v0.json) (23, frozen before the planner fix was run). Gold is computed by code from the PDFs' text layer, independent of the parsed chunks. **Simulated: no drilling expert has reviewed them** |
 | **Models** | Qwen3-8B (thinking off), `-c 32768 -np 1 -ngl 99`, one request at a time; Qwen3-Embedding-0.6B for fusion runs |
-| **Outputs** | [`graphrag/results/`](../../graphrag/results/): `E28_*.json`; K4 records in `E28_heldout_graph.k4.jsonl` |
+| **Outputs** | [`graphrag/results/`](../../graphrag/results/): `E28_*.json`; K4 records in `E28_heldout_graph.k4.jsonl`. Side-by-side tables for reading: [E28-answers/](E28-answers/README.md) |
 | **Status** | Done |
 
 ## How it works

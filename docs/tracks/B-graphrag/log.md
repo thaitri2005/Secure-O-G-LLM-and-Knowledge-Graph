@@ -730,3 +730,7 @@ Tri put Track A's package on the laptop: `ak3-k1-v1-candidate`, moved into ignor
 **E31 (experiment).** The event graph on K1: [E31](../../experiments/E31-event-graph-on-k1.md). 161 / 161 events identical to E28 in every field, 160 now linked to K1 chunk IDs, and E28's final recorded plans replay 35 / 35 and 23 / 23. No model call. The answer reruns need the desktop.
 
 **B-D35 (decision, by Tri; a request to Track C).** Stop passing data between machines through chat. Track C (Hung) hosts the shared stores (PostgreSQL with pgvector, Neo4j, and a file store for K1 packages) on a free cloud tier, such as AWS or Azure through the GitHub Student Developer Pack, with credentials for each teammate, so all three tracks read and write the same data. High priority; Track C owns it, since it builds the database side, and adds Tri and Khai once the resources exist. Only public data goes there (AK-3, BSEE, GDR reports); private documents stay on local models and machines (specification §10, D-37). Credentials stay out of the repository.
+
+### 12 November 2026
+
+**B-C34 (design choice).** `graphrag/compare_runs.py` turns recorded answer runs into one side-by-side table per question set (gold, each method's answer and result, cost per method), as Markdown and CSV, with no model call. Written for anh Tuấn, who asked for the questions, both methods' answers and the benchmark method. Output: [E28-answers/](../../experiments/E28-answers/README.md); totals match E28 (22/35, 19/23 for the event graph).

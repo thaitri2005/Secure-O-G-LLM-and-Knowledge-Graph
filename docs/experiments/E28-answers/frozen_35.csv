@@ -1,0 +1,36 @@
+﻿id,kind,question,gold answer,Event graph: answer,Event graph: result,"Plain RAG, daily reports: answer","Plain RAG, daily reports: result","Plain RAG, all AK-3 docs: answer","Plain RAG, all AK-3 docs: result"
+t01,sum_code,How many hours in total were logged under activity code DRIL in the AK-3 daily reports?,168.5,168.5 hours,correct,3.5 hours; 7 hours,wrong,(not_stated),abstained
+t02,sum_code,How many hours in total were logged under activity code WOC in the AK-3 daily reports?,53.75,53.75 hours,correct,(not_stated),abstained,(not_stated),abstained
+t03,sum_code,How many hours in total were logged under activity code CIRC in the AK-3 daily reports?,13.75,13.75 hours,correct,1.50 hours; 1.00 hours; 3.75 hours,wrong,(not_stated),abstained
+t04,sum_code,How many hours in total were logged under activity code SURV in the AK-3 daily reports?,7.0,(invalid),abstained,1.50 hours; 0.50 hours,wrong,(not_stated),abstained
+t05,sum_code,How many hours in total were logged under activity code TRPO in the AK-3 daily reports?,15.5,15.5 hours,correct,2 hours,wrong,(not_stated),abstained
+t06,sum_code,How many hours in total were spent waiting on cement in the AK-3 daily reports?,53.75,53.75 hours,correct,(not_stated),abstained,12 hours,wrong
+t07,sum_range,How many hours were logged under activity code DRIL on well AK-3 from 28 August 2016 to 1 September 2016 inclusive?,71.0,71 hours,correct,(not_stated),abstained,(not_stated),abstained
+t08,sum_range,How many hours were logged under activity code WOD on well AK-3 from 12 August 2016 to 17 August 2016 inclusive?,61.5,61.5 hours,correct,(not_stated),abstained,(not_stated),abstained
+t09,sum_range,How many hours were logged under activity code DRIL on well AK-3 on 20 August 2016?,14.5,14.5 hours,correct,(not_stated),abstained,(not_stated),abstained
+t10,npt,How many hours of non-productive time did well AK-3 have in total?,115.0,(not_stated),abstained,5 hours,wrong,115.0 hours,correct
+t11,npt,How many hours of non-productive time on well AK-3 are coded KICK?,66.0,8.50 hours; 2.00 hours; 6.50 hours,wrong,(not_stated),abstained,(not_stated),abstained
+t12,npt,How many hours of non-productive time on well AK-3 are coded WOE?,18.5,10.00 hours; 4.00 hours; 9.00 hours,wrong,(not_stated),abstained,(not_stated),abstained
+t13,npt,How many hours of non-productive time did well AK-3 have on 23 August 2016?,11.0,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t14,npt,How many hours of non-productive time did well AK-3 have from 1 September 2016 to 7 September 2016 inclusive?,7.0,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t15,npt_days,On how many separate days did well AK-3 record non-productive time?,10,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t16,npt_days,On how many days did well AK-3 record 24 hours of non-productive time?,3,(not_stated),abstained,(not_stated),abstained,1 day,wrong
+t17,count,How many separate operations were logged under activity code SURV in the AK-3 daily reports?,14,14,correct,3,wrong,(not_stated),abstained
+t18,count,On how many separate days was activity code CASE logged in the AK-3 daily reports?,4,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t19,count,On how many separate days was activity code DRIL logged in the AK-3 daily reports?,11,11,correct,(not_stated),abstained,(not_stated),abstained
+t20,list_dates,On which dates was activity code CMTP logged in the AK-3 daily reports?,2016-08-19; 2016-08-24; 2016-08-29,2016-08-19; 2016-08-24; 2016-08-29,correct,(not_stated),abstained,(not_stated),abstained
+t21,list_dates,On which dates was activity code LOG logged in the AK-3 daily reports?,2016-09-05; 2016-09-06; 2016-09-07,2016-09-05; 2016-09-06; 2016-09-07,correct,(not_stated),abstained,(not_stated),abstained
+t22,list_dates,On which dates was activity code BOPT logged in the AK-3 daily reports?,2016-08-26; 2016-08-30,2016-08-26; 2016-08-30,correct,(not_stated),abstained,(not_stated),abstained
+t23,first_last,On what date was activity code DRIL first logged in the AK-3 daily reports?,2016-08-18,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t24,first_last,On what date was activity code DRIL last logged in the AK-3 daily reports?,2016-09-04,2016-09-04,correct,(not_stated),abstained,(not_stated),abstained
+t25,first_last,On what date was activity code CASE first logged in the AK-3 daily reports?,2016-08-19,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t26,depth,What was the deepest end measured depth in feet logged in the operations of well AK-3 on 31 August 2016?,1105,1105 ft,correct,1100 ft,correct,1100 ft,correct
+t27,depth,"On what date did the end measured depth logged in the operations of well AK-3 first reach 1,000 feet or more?",2016-08-31,2016-08-31,correct,(not_stated),abstained,(not_stated),abstained
+t28,depth,"On what date did the end measured depth logged in the operations of well AK-3 first reach 1,955 feet?",2016-09-04,2016-09-04,correct,(not_stated),abstained,(not_stated),abstained
+t29,depth,By how many feet did the end measured depth logged in the operations of well AK-3 increase on 27 August 2016 compared with 26 August 2016?,200,200 ft,correct,200 ft; 265 ft,wrong,200 ft; 265 ft,wrong
+t30,top,Which activity code has the most hours in total in the AK-3 daily reports?,DRIL,168.5 hours,wrong,(not_stated),abstained,(not_stated),abstained
+t31,top,On which date were the most hours logged under activity code DRIL in the AK-3 daily reports?,2016-09-02,2016-09-02,correct,(not_stated),abstained,(not_stated),abstained
+t32,top,Which activity code has the most hours on well AK-3 from 12 August 2016 to 17 August 2016 inclusive?,WOD,(not_stated),abstained,(not_stated),abstained,(not_stated),abstained
+t33,not_stated,How many hours in total were logged under activity code DRIL on well 56-32?,,(not_stated),correct,(not_stated),correct,(not_stated),correct
+t34,not_stated,How many hours of non-productive time did well AK-3 have in 2017?,,(not_stated),correct,(not_stated),correct,(not_stated),correct
+t35,not_stated,How many hours in total were logged under activity code SIDETRACK in the AK-3 daily reports?,,(not_stated),correct,(not_stated),correct,(not_stated),correct
