@@ -1,0 +1,36 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL (A-446 measurement) - settings for source-structure evidence about a table that may continue on the next page; evidence for a human reviewer, not used by the pipeline, never joins anything",
+  "lines": {
+    "line_tol_rel_height": {"value": 0.5, "unit": "fraction of the median word height; words whose vertical centres differ by at most this belong to one text line", "status": "setting"},
+    "bbox_slack_pt": {"value": 2.0, "unit": "pt; slack when deciding whether a word or a drawn segment lies inside / on the edge of a table box", "status": "setting"}
+  },
+  "header_repeat": {
+    "min_words": {"value": 2, "unit": "words; the first body line of the later table must have at least this many words to count as a repeated header", "status": "setting"},
+    "x_tol_rel": {"value": 0.03, "unit": "fraction of the wider table; the repeated line must start at the same x position within this tolerance", "status": "setting"}
+  },
+  "numbering": {
+    "min_series_lines": {"value": 3, "unit": "lines; a numbering series (ranges 'a-b' or an integer counter in the first column) must be seen on at least this many lines of a table to be used", "status": "setting"},
+    "range_tolerance": {"value": 0.0, "unit": "value units; last range end of the first table must equal first range start of the next table within this tolerance", "status": "setting"},
+    "counter_step": {"value": 1, "unit": "integer; first counter value of the next table minus last value of the first table", "status": "setting"},
+    "counter_column_frac": {"value": 0.06, "unit": "fraction of table width; an integer counts as a first-column counter only if it starts within this distance of the table left edge", "status": "setting"}
+  },
+  "columns": {
+    "min_rule_len_frac": {"value": 0.5, "unit": "fraction of table height; a vertical drawn segment at least this long is a column rule", "status": "setting"},
+    "rule_x_tol_rel": {"value": 0.02, "unit": "fraction of the wider table; column rule x positions of the two tables must agree within this tolerance", "status": "setting"},
+    "cluster_tol_pt": {"value": 1.5, "unit": "pt; vertical segments closer than this are one rule", "status": "setting"}
+  },
+  "borders": {
+    "min_rule_width_frac": {"value": 0.9, "unit": "fraction of table width; a horizontal drawn segment at least this wide on the table edge is a closed border", "status": "setting"}
+  },
+  "markers": {
+    "continued_pattern": {"value": "\\bcontinued\\b|\\(\\s*cont(?:inued|\\.|'d)?\\s*\\)|\\bcont'd\\b", "unit": "case-insensitive regex searched in the words of the table box and in the strip of strip_frac page height above / below it", "status": "setting"},
+    "strip_frac": {"value": 0.04, "unit": "fraction of page height", "status": "setting"}
+  },
+  "page_counter": {
+    "pattern": {"value": "page\\s*_*\\s*(\\d+)\\s*_*\\s*of\\s*_*\\s*(\\d+)", "unit": "case-insensitive regex on the page text; counters whose total equals the PDF page count are the running page footer and are ignored", "status": "setting"}
+  },
+  "decision": {
+    "note": "STRUCTURE_SUPPORTS_CONTINUATION needs a layout match (equal column rules) AND a continuity signal (numbering continuous, or an explicit 'continued' marker, or both borders open across the break) AND, unless a marker is present, a repeated header. A repeated header alone (same report title on different days) is never enough. STRUCTURE_CONFLICT: columns differ or numbering restarts. Otherwise UNDETERMINED. Closed borders on both sides are reported as a caveat (each page has its own frame)."
+  }
+}

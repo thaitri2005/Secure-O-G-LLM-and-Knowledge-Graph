@@ -7,15 +7,12 @@
   },
   "running_text": {
     "cell_pt": {"value": 4.0, "unit": "pt; word start positions are rounded to this grid to find template text", "status": "setting"},
-    "min_pages_frac": {"value": 0.5, "unit": "fraction of document pages on which a grid cell must hold a word to count as running template text (same 50% rule as the running-line filter, but position based)", "status": "setting"},
-    "top_zone_frac": {"value": 0.30, "unit": "fraction of page height; running text is searched only in this top zone", "status": "setting"},
-    "bottom_zone_frac": {"value": 0.10, "unit": "fraction of page height; running text is searched only in this bottom zone", "status": "setting"}
-  },
-  "running_text": {
-    "cell_pt": {"value": 4.0, "unit": "pt; word start positions are rounded to this grid to find template text", "status": "setting"},
     "min_pages_frac": {"value": 0.5, "unit": "fraction of document pages on which a grid cell must hold a word to count as running template text (position based, text ignored)", "status": "setting"},
     "top_zone_frac": {"value": 0.30, "unit": "fraction of page height; running text is searched only in this top zone", "status": "setting"},
-    "bottom_zone_frac": {"value": 0.10, "unit": "fraction of page height; running text is searched only in this bottom zone", "status": "setting"}
+    "bottom_zone_frac": {"value": 0.15, "unit": "fraction of page height; running text is searched only in this bottom zone (B3/A-433: raised from 0.10 because a 2-page report keeps its footer at 12% of the page height; measured on dev/seen data only)", "status": "setting"}
+  },
+  "frames": {
+    "frame_slack_pt": {"value": 2.0, "unit": "pt; a detected table lying completely above the running header limit or below the running footer limit (within this slack) is page furniture such as a title block or 'Page n of N' frame and is not used as a boundary table", "status": "setting"}
   },
   "boundary": {
     "bottom_gap_max_frac": {"value": 0.12, "unit": "fraction of page height; a table is 'ending the page body' only if nothing but running footer follows and the free space above the footer band is at most this", "status": "setting"},

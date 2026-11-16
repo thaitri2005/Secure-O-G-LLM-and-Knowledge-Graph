@@ -130,6 +130,51 @@ class TableTests(unittest.TestCase):
         self.assertEqual(codes(xr.analyse_table(table(grid), [chunk(0, 1, 2, grid=grid)], CONFIG)), [])
 
 
+class MergedCellTests(unittest.TestCase):
+    """A merged cell's text is repeated in the record grid; a span_once chunk leaves the covered positions empty (A-415)."""
+    GRID = [["Name", "Ref", "Ref"], ["a", "x", "y"], ["Totals", "1", "2"], ["Totals", "3", "4"]]
+    CELLS = [{"r": 0, "c": 0, "row_span": 1, "col_span": 1}, {"r": 0, "c": 1, "row_span": 1, "col_span": 2},
+             {"r": 2, "c": 0, "row_span": 2, "col_span": 1}]
+
+    def record(self) -> dict:
+        record = table(self.GRID)
+        record["cells"] = copy.deepcopy(self.CELLS)
+        return record
+
+    def once(self) -> dict:
+        grid = [["Name", "Ref", ""], ["a", "x", "y"], ["Totals", "1", "2"], ["", "3", "4"]]
+        return chunk(0, 1, 4, grid=grid)
+
+    def test_covered_positions_follow_the_cells_of_the_record(self) -> None:
+        self.assertEqual(xr.covered_positions(self.record()), {(0, 2): (0, 1), (3, 0): (2, 0)})
+        self.assertEqual(xr.covered_positions(table()), {})
+
+    def test_chunk_that_repeats_or_blanks_the_merged_text_is_consistent(self) -> None:
+        self.assertEqual(codes(xr.analyse_table(self.record(), [chunk(0, 1, 4, grid=self.GRID)], CONFIG)), [])
+        self.assertEqual(codes(xr.analyse_table(self.record(), [self.once()], CONFIG)), [])
+
+    def test_blank_at_a_position_that_is_not_covered_is_still_flagged(self) -> None:
+        blanked = self.once()
+        blanked["text"] = blanked["text"].replace("| a | x | y |", "| a |  | y |")
+        self.assertEqual(codes(xr.analyse_table(self.record(), [blanked], CONFIG)), ["XREP_TABLE_CHUNK_MISMATCH"])
+        no_spans = table(self.GRID)  # same chunk, record without merged cells: the blank is a mismatch
+        no_spans["cells"] = []
+        self.assertEqual(codes(xr.analyse_table(no_spans, [self.once()], CONFIG)), ["XREP_TABLE_CHUNK_MISMATCH"])
+
+    def test_changed_copy_of_the_merged_text_in_the_record_is_still_flagged(self) -> None:
+        record = self.record()
+        record["grid"][3][0] = "Totalz"  # the repeated copy no longer equals its origin
+        self.assertEqual(codes(xr.analyse_table(record, [self.once()], CONFIG)), ["XREP_TABLE_CHUNK_MISMATCH"])
+
+    def test_changed_value_in_a_merged_table_is_still_flagged(self) -> None:
+        changed = self.once()
+        changed["text"] = changed["text"].replace("| 3 | 4 |", "| 3 | 5 |")
+        self.assertEqual(codes(xr.analyse_table(self.record(), [changed], CONFIG)), ["XREP_TABLE_CHUNK_MISMATCH"])
+        moved = self.once()
+        moved["text"] = moved["text"].replace("| Totals | 1 | 2 |", "| Total | 1 | 2 |")
+        self.assertEqual(codes(xr.analyse_table(self.record(), [moved], CONFIG)), ["XREP_TABLE_CHUNK_MISMATCH"])
+
+
 FORM = {"form_id": "f1:f1", "file_id": "f1", "page": 1, "fields": [{"key": "Well ID:", "value": "AK-3"}, {"key": "Depth", "value": "1700"}, {"key": "Note:", "value": ""}]}
 
 

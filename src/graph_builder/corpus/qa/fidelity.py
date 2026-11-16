@@ -20,10 +20,13 @@ from .signals import CheckContext, Registry
 
 DEFAULT_CONFIG = Path("configs/qa/source_fidelity.json")
 CHECK_NAME = "source_fidelity"
-CHECK_VERSION = "1"
+CHECK_VERSION = "4"
+MARKER_CODE = "FIDELITY_ENUMERATOR_MARKERS_NOT_KEPT"
+MARKER_SEVERITIES = ("WARN", "INFO")
 WORD = re.compile(r"[^\W\d_]\w*")
 NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
-PAGE_NUMBER = re.compile(r"^#{1,4}$")  # line_key of a bare number of up to four digits
+DIGIT_RUN = re.compile(r"\d+")
+PAGE_NUMBER = re.compile(r"^#$")  # line_key of a bare number; its digit count is limited by furniture.page_number_max_digits
 
 FIDELITY_LIMITATIONS = (
     "Second reader over the SAME PDF text layer: errors present in the text layer itself are invisible.",
@@ -41,6 +44,7 @@ REASONS = (
     ("FIDELITY_WORD_RECALL_LOW", "WARN", "Word-token recall of the PDF page in K1 (after furniture exclusion) is below the proposed threshold.", CHECK_NAME),
     ("FIDELITY_PAGE_EMPTY", "WARN", "K1 has no text for a page whose PDF text layer has words.", CHECK_NAME),
     ("FIDELITY_PAGE_EMPTY_EXPLAINED", "INFO", "K1 has no text for a page whose PDF text layer has words, and the pipeline recorded the removal of table-of-contents items covering most of it; nothing was compared and no level is granted.", CHECK_NAME),
+    ("FIDELITY_ENUMERATOR_MARKERS_NOT_KEPT", "WARN", "List or outline numbers at the start of PDF lines (a numbered series) are missing from the K1 page text although the words after them are present (a lost number is lost information: appendix numbers, step and section references). They are reported under this code instead of FIDELITY_NUMERIC_RECALL_LOW, and the page is not granted TEXT_LAYER_CONSISTENT. Severity comes from enumerators.marker_severity of the config (A-445: WARN; the B3 INFO downgrade was withdrawn by owner direction D2).", CHECK_NAME),
     ("FIDELITY_NOT_APPLICABLE", "INFO", "OCR page: no independent text reference exists; the level stays STRUCTURAL_ONLY.", CHECK_NAME),
     ("FIDELITY_PARTIAL_REFERENCE", "INFO", "Hybrid page: only PDF-word recall was compared; OCR text has no reference; no level granted.", CHECK_NAME),
     ("FIDELITY_NO_REFERENCE", "INFO", "The source PDF was not found or its SHA-256 differs from the release; nothing was compared.", CHECK_NAME),
@@ -56,6 +60,15 @@ def _value(config: dict, section: str, name: str) -> Any:
     return config[section][name]["value"]
 
 
+def marker_severity(config: dict) -> str:
+    """Severity of FIDELITY_ENUMERATOR_MARKERS_NOT_KEPT. A lost list/outline number is lost information, so the default is
+    WARN (also when the key is missing); only an explicit, valid ``enumerators.marker_severity`` can change it (A-445)."""
+    value = ((config.get("enumerators") or {}).get("marker_severity") or {}).get("value", "WARN")
+    if value not in MARKER_SEVERITIES:
+        raise ValueError(f"enumerators.marker_severity must be one of {MARKER_SEVERITIES}, got {value!r}")
+    return value
+
+
 def normalise(text: str) -> str:
     return unicodedata.normalize("NFKC", text).casefold()
 
@@ -67,8 +80,9 @@ def tokens(text: str) -> tuple[Counter, Counter]:
 
 
 def line_key(line: str) -> str:
-    """Margin line identity for furniture detection: digits masked, case and spaces folded."""
-    return " ".join(re.sub(r"\d", "#", normalise(line)).split())
+    """Margin line identity for furniture detection: every run of digits masked ("Page 8 of 74" and "Page 12 of 74" share a
+    key), case and spaces folded."""
+    return " ".join(DIGIT_RUN.sub("#", normalise(line)).split())
 
 
 def furniture_keys(band_lines: list[list[str]], frequency: float, min_pages: int) -> set[str]:
@@ -90,7 +104,21 @@ def _take(missing: Counter, pool: Counter) -> Counter:
     return Counter({token: min(count, pool[token]) for token, count in missing.items() if pool[token] > 0})
 
 
-def compare_page(pdf_text: str, k1_text: str, margin_text: str, repeated_text: str, config: dict, credit_text: str = "") -> dict:
+def _enumerated(missing: Counter, items: list[tuple[str, list[str]]], k1_text: str) -> Counter:
+    """Numeric tokens of ``missing`` that are list/outline markers: the PDF line starts with the number and the words after
+    it stand next to each other, in that order, in the K1 text (the item text was kept, only its marker is missing).
+    Each marker explains one missing occurrence at most; the order of ``items`` is the PDF order."""
+    stream = " " + " ".join(WORD.findall(normalise(k1_text))) + " "
+    left, taken = Counter(missing), Counter()
+    for number, words in items:
+        if left[number] > 0 and words and f" {' '.join(words)} " in stream:
+            left[number] -= 1
+            taken[number] += 1
+    return taken
+
+
+def compare_page(pdf_text: str, k1_text: str, margin_text: str, repeated_text: str, config: dict, credit_text: str = "",
+                 enumerator_items: list[tuple[str, list[str]]] | None = None) -> dict:
     """Pure comparison of one page.
 
     Furniture explains only tokens that are actually missing from K1: missing tokens are first attributed to repeated
@@ -106,16 +134,19 @@ def compare_page(pdf_text: str, k1_text: str, margin_text: str, repeated_text: s
         raw_missing = _missing(pdf, k1)
         by_margin = _take(raw_missing, margin)
         by_repeated = _take(_missing(raw_missing, by_margin), repeated)
-        content_missing = _missing(_missing(raw_missing, by_margin), by_repeated)
-        explained = sum(by_margin.values()) + sum(by_repeated.values())
+        after_furniture = _missing(_missing(raw_missing, by_margin), by_repeated)
+        by_enumerator = _enumerated(after_furniture, enumerator_items or [], k1_text + "\n" + credit_text) if kind == "numeric" else Counter()
+        content_missing = _missing(after_furniture, by_enumerator)
+        explained = sum(by_margin.values()) + sum(by_repeated.values()) + sum(by_enumerator.values())
         ref_total = total - explained
         result[kind] = {
             "pdf_tokens": total, "reference_tokens": ref_total, "k1_tokens": sum(k1.values()),
             "missing_raw": sum(raw_missing.values()), "missing_content": sum(content_missing.values()),
             "missing_furniture_margin": sum(by_margin.values()), "missing_furniture_repeated_line": sum(by_repeated.values()),
+            "missing_enumerator_marker": sum(by_enumerator.values()),
             "recall_raw": round(1 - sum(raw_missing.values()) / total, 4) if total else None,
             "recall_after_exclusion": round(1 - sum(content_missing.values()) / ref_total, 4) if ref_total else None,
-            "_content_missing": content_missing, "_margin": by_margin, "_repeated": by_repeated}
+            "_content_missing": content_missing, "_margin": by_margin, "_repeated": by_repeated, "_enumerator": by_enumerator}
     novel_numeric = sorted(set(k_nums) - set(p_nums))
     result["novel_numeric"] = novel_numeric
     result["novel_numeric_occurrences"] = sum(k_nums[token] for token in novel_numeric)
@@ -132,7 +163,7 @@ def public_metrics(raw: dict, limit: int) -> dict:
     out.update({"novel_numeric": raw["novel_numeric"][:limit], "novel_numeric_types": len(raw["novel_numeric"]),
                 "novel_numeric_occurrences": raw["novel_numeric_occurrences"], "novel_word_types": raw["novel_word_types"]})
     for name, key in (("missing_content_candidate", "_content_missing"), ("missing_furniture_margin", "_margin"),
-                      ("missing_furniture_repeated_line", "_repeated")):
+                      ("missing_furniture_repeated_line", "_repeated"), ("missing_enumerator_marker", "_enumerator")):
         out[name] = {kind: _listed(raw[kind][key], limit) for kind in ("word", "numeric")}
     return out
 
@@ -184,7 +215,11 @@ class PdfReference:
         self.config = config
         self.page_count = len(self.document)
         self._keys: set[str] | None = None
+        self._margin_furniture: set[str] = set()
+        self._counters = [re.compile(pattern, re.IGNORECASE) for pattern in config["furniture"]["page_counter_patterns"]["value"]]
         self._margin_keys: list[set[str]] = []
+        self._edge_keys: list[set[str]] = []
+        self._block_furniture: set[str] = set()
 
     def close(self) -> None:
         self.document.close()
@@ -198,7 +233,9 @@ class PdfReference:
                 full = textpage.get_text_range()
                 margins = ""
                 if band is not None:
-                    width, height = page.get_size()
+                    width, height = page.get_size()  # size AFTER /Rotate, but text coordinates are in the unrotated page space
+                    if page.get_rotation() % 180:
+                        width, height = height, width  # /Rotate 90/270: use the unrotated extent so the bands sit on the text's own top and bottom
                     margins = (textpage.get_text_bounded(0, height * (1 - band), width, height) + "\n"
                                + textpage.get_text_bounded(0, 0, width, height * band))
             finally:
@@ -217,9 +254,26 @@ class PdfReference:
                 keys = {line_key(line) for line in full.splitlines()} - {""}
                 seen.update(keys)
                 self._margin_keys.append({line_key(line) for line in margins.splitlines()} - {""})
+                ordered = [key for key in map(line_key, full.splitlines()) if key]
+                edge = self._block_edge()
+                self._edge_keys.append(set(ordered[:edge]) | set(ordered[-edge:]) if edge else set())
             frequency, min_pages = _value(self.config, "furniture", "frequency"), _value(self.config, "furniture", "min_pages")
             self._keys = set() if self.page_count < min_pages else {key for key, n in seen.items() if n / self.page_count >= frequency}
+            if self.page_count >= min_pages:  # a margin line of a sub-report: repeats in the margin of part of the pages only
+                in_margin = Counter(key for keys in self._margin_keys for key in keys)
+                needed = max(_value(self.config, "furniture", "margin_min_pages"),
+                             _value(self.config, "furniture", "margin_frequency") * self.page_count)
+                self._margin_furniture = {key for key, n in in_margin.items() if n >= needed}
+                if self._block_edge():  # title block of a sub-report: stands at the page edge on part of the pages, outside the margin band
+                    at_edge = Counter(key for keys in self._edge_keys for key in keys if key != "#")
+                    needed = max(_value(self.config, "furniture", "block_min_pages"), _value(self.config, "furniture", "block_frequency") * self.page_count)
+                    self._block_furniture = {key for key, n in at_edge.items() if n >= needed}
         return self._keys
+
+    def _block_edge(self) -> int:
+        """Lines searched at the page edges for repeated blocks; 0 (feature off) when the config has no block_* keys."""
+        furniture = self.config["furniture"]
+        return furniture["block_edge_lines"]["value"] if {"block_edge_lines", "block_min_pages", "block_frequency"} <= set(furniture) else 0
 
     def page_text(self, page_number: int) -> tuple[str, str, str]:
         """(full page text, repeated margin lines, other repeated lines) for a 1-based page number."""
@@ -227,14 +281,50 @@ class PdfReference:
         keys = self._scan()
         full, _ = self._read(index, None)
         lines = [line for line in full.splitlines() if line_key(line)]
+        edge = _value(self.config, "furniture", "page_counter_edge_lines")
         margin, repeated = [], []
         for position, line in enumerate(lines):
             key = line_key(line)
-            if PAGE_NUMBER.match(key) and (position in (0, len(lines) - 1) or key in self._margin_keys[index]):
+            in_margin = key in self._margin_keys[index]
+            if (PAGE_NUMBER.match(key) and len(normalise(line).strip()) <= _value(self.config, "furniture", "page_number_max_digits")
+                    and (position in (0, len(lines) - 1) or in_margin)):
                 margin.append(line)  # a bare number as first/last line or in a margin band: page number
-            elif key in keys:
-                (margin if key in self._margin_keys[index] else repeated).append(line)
+            elif key in keys or (in_margin and key in self._margin_furniture):
+                (margin if in_margin else repeated).append(line)
+            elif (key in self._block_furniture and key in self._edge_keys[index]
+                  and (position < self._block_edge() or position >= len(lines) - self._block_edge())):
+                repeated.append(line)  # header/footer block line repeated at the page edge of several pages
+            elif self._counters and (position < edge or position >= len(lines) - edge) and any(p.search(line) for p in self._counters):
+                margin.append(line)  # "Page 1 of 3" style counter at the first/last lines: furniture even in a one-page document
         return full, "\n".join(margin), "\n".join(repeated)
+
+
+def enumerator_items(pdf_text: str, config: dict) -> list[tuple[str, list[str]]]:
+    """(number token, following words) of the PDF lines that start a numbered series (list or outline markers).
+
+    A line counts only when its number has a sibling: another line-leading number on the same page with the same parent
+    (all but the last dotted part) and a different last part. A lone '8.5 in. hole' is therefore never a marker. An old
+    config without an ``enumerators`` section switches the feature off."""
+    section = config.get("enumerators")
+    if not section:
+        return []
+    patterns = [re.compile(section["hierarchical_pattern"]["value"]), re.compile(section["flat_pattern"]["value"])]
+    wanted = section["following_words"]["value"]
+    found: list[tuple[str, tuple[str, str], list[str]]] = []
+    for line in pdf_text.splitlines():
+        for pattern in patterns:
+            match = pattern.match(line)
+            if match:
+                number = match.group(1)
+                parent, _, last = number.rpartition(".")
+                words = WORD.findall(normalise(line[match.end():]))[:wanted]
+                found.append((number, (parent, last), words))
+                break
+    siblings: dict[str, set[str]] = {}
+    for _, (parent, last), _ in found:
+        siblings.setdefault(parent, set()).add(last)
+    needed = section["min_series"]["value"]
+    return [(NUMBER.findall(number)[0], words) for number, (parent, _), words in found if len(siblings[parent]) >= needed and len(words) >= 1]
 
 
 class FidelityState:
@@ -293,7 +383,8 @@ class FidelityState:
         if not 1 <= page <= self._reference.page_count:
             return None, f"page {page} outside the PDF ({self._reference.page_count} pages)"
         pdf_text, margin, repeated = self._reference.page_text(page)
-        return compare_page(pdf_text, self._k1.get(page, ""), margin, repeated, self.config, self._sections.get(page, "")), None
+        return compare_page(pdf_text, self._k1.get(page, ""), margin, repeated, self.config, self._sections.get(page, ""),
+                            enumerator_items(pdf_text, self.config)), None
 
     def k1_text(self, file_id: str, page: int) -> str:
         self.select(file_id)
@@ -324,6 +415,8 @@ def judge(raw: dict, mode: str, k1_empty: bool, config: dict, exclusion: dict | 
     recall = numbers["recall_after_exclusion"]
     if recall is not None and recall < _value(config, "thresholds", "numeric_recall_min"):
         out.append(("FIDELITY_NUMERIC_RECALL_LOW", metrics))
+    if numbers.get("missing_enumerator_marker"):  # recorded, not hidden: a marker is lost although its text was kept
+        out.append(("FIDELITY_ENUMERATOR_MARKERS_NOT_KEPT", {**metrics, "grant_withheld": True}))
     recall = words["recall_after_exclusion"]
     if enough and recall is not None and recall < _value(config, "thresholds", "word_recall_min"):
         out.append(("FIDELITY_WORD_RECALL_LOW", metrics))
@@ -348,7 +441,7 @@ def register_fidelity(registry: Registry, corpus_dir: Path | None = None, config
     config = load_config(config_path)
     holder: dict[str, FidelityState] = {}
     for code, severity, meaning, emitter in REASONS:
-        registry.register_reason(code, severity, meaning, emitter)
+        registry.register_reason(code, marker_severity(config) if code == MARKER_CODE else severity, meaning, emitter)
 
     def check(context: CheckContext, entity: dict) -> list[dict]:
         state = holder.get("state")

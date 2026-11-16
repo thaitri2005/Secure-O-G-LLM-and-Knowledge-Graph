@@ -9,7 +9,7 @@ from .ledger import build_qa
 DEFAULT_OUT_ROOT = Path("data/interim/qa")
 
 
-def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config: Path | None, sidecar: Path | None, fidelity: bool = False, crossrep: bool = False, ops_margin: bool = False, annotations: bool = False) -> dict:
+def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config: Path | None, sidecar: Path | None, fidelity: bool = False, crossrep: bool = False, ops_margin: bool = False, annotations: bool = False, label_value: bool = False, form_conflict: bool = False, orientation: bool = False) -> dict:
     if release is None:
         raise ValueError("qa requires --release <release_dir>")
     if not (release / "manifest.json").is_file():
@@ -34,12 +34,26 @@ def run(corpus_dir: Path | None, release: Path | None, out: Path | None, config:
         from .annotations import register_annotations
         from .ledger import default_registry
         registry = register_annotations(registry or default_registry(), corpus_dir=corpus_dir)
+    if label_value:  # opt-in (A-432): reads the source PDFs; WARN signal only
+        from .labelvalue import register_label_value
+        from .ledger import default_registry
+        registry = register_label_value(registry or default_registry(), corpus_dir=corpus_dir)
+    if form_conflict:  # opt-in (A-435): reads only the release; WARN signal only
+        from .formconflict import register_form_conflict
+        from .ledger import default_registry
+        registry = register_form_conflict(registry or default_registry())
+    if orientation:  # opt-in (C-03): reads the orientation records stored in the work folder; WARN/INFO signals only
+        from .ledger import default_registry
+        from .orientation import register_orientation
+        registry = register_orientation(registry or default_registry())
     try:
         return build_qa(release, out_dir, corpus_dir=corpus_dir, config_path=config, sidecar_path=sidecar, registry=registry)
     finally:
         if registry is not None:
             from .fidelity import close_fidelity
+            from .labelvalue import close_label_value
             close_fidelity(registry)
+            close_label_value(registry)
 
 
 def main_text(result: dict) -> str:

@@ -51,6 +51,15 @@ def main(argv: list[str] | None = None) -> int:
     result = export_k1(Corpus(args.corpus), args.name, args.models, load_k1_config(args.config))
     repairs = result.pop("table_repairs")
     args.sidecar_dir.mkdir(parents=True, exist_ok=True)
+    if "label_value" in result:  # optional chunking.label_value: QA sidecar with changes and abstentions (never part of the package)
+        (args.sidecar_dir / f"label_value.{args.name}.json").write_text(
+            json.dumps(result.pop("label_value"), indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    if "quarantine" in result:  # optional chunking.quarantine: findings, page status, dropped items, chunk_id join (never part of the package)
+        (args.sidecar_dir / f"quarantine.{args.name}.json").write_text(
+            json.dumps(result.pop("quarantine"), indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    if "table_join" in result:  # optional table_join (FR-25): decisions per page pair, absorbed tables and old-to-new chunk ids (never part of the package)
+        (args.sidecar_dir / f"table_join.{args.name}.json").write_text(
+            json.dumps(result.pop("table_join"), indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     out = args.sidecar_dir / f"table_repairs.{args.name}.json"
     out.write_text(json.dumps(repairs, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     summary = family_summary(repairs)

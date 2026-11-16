@@ -1,6 +1,12 @@
 {
   "schema_version": "1",
   "status": "PROPOSAL - calibrated on two releases of one document family (5 documents); generalisation NOT EVALUATED",
+  "markdown_syntax": {
+    "separator_cell_pattern": ":?-{3,}:?",
+    "placeholder_patterns": ["<!--\\s*image\\s*-->"],
+    "entities": {"&#124;": "|"},
+    "unit": "cell text is compared after replacing entities and dropping placeholders on both sides (A-416); the chunker writes a pipe inside a cell as &#124; and a picture inside a cell as <!-- image -->, neither is page content"
+  },
   "limits": {
     "max_listed_items": {"value": 8, "unit": "mismatching rows, pages, lines or chunk ids copied into the evidence of one signal", "status": "setting"},
     "max_listed_tokens": {"value": 12, "unit": "missing/extra tokens copied into the evidence of one mismatch", "status": "setting"},

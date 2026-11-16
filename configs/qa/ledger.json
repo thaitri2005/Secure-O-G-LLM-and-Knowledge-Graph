@@ -7,6 +7,12 @@
     "confidence_low": {"value": 0.5, "unit": "Docling mean_score, range 0..1", "status": "proposal"},
     "max_listed_validator_errors": {"value": 50, "unit": "errors copied into the ledger", "status": "setting"}
   },
+  "markdown_syntax": {
+    "separator_cell_pattern": ":?-{3,}:?",
+    "placeholder_patterns": ["<!--\\s*image\\s*-->"],
+    "entities": {"&#124;": "|"},
+    "unit": "characters of Markdown table syntax subtracted from the extracted character count before the char-ratio check (A-416); patterns are regular expressions, entities map text to the character it stands for"
+  },
   "exclusion_rules": {
     "toc_leader_pattern": "\\.{3,}\\s*\\d*\\s*(?:$|\\n)",
     "toc_title_pattern": "(?:table\\s+of\\s+contents|contents)\\s*[:.]?",

@@ -12,6 +12,7 @@ from typing import Any, Iterator
 
 from .builtin_checks import register_builtin
 from .exclusions import explain_page, load_page_exclusions
+from .markdown_syntax import syntax_chars
 from .signals import (ALL_LEVELS, COMPLETENESS_VALUES, KNOWN_BLIND_SPOTS, LEVELS, LIMITATIONS, NOT_APPLICABLE, PARTIAL_IN_SOURCE_CODES,
                       SCHEMA_VERSION, CheckContext, Registry, final_level, initial_level)
 
@@ -114,8 +115,10 @@ def sorted_signals(signals: list[dict]) -> list[dict]:
     return sorted(signals, key=lambda s: (s["code"], dumps(s["scope"]), dumps(s["evidence"])))
 
 
-def read_release(release_dir: Path) -> dict:
-    """Load the small release groups; chunks are streamed into counters (their text is never kept)."""
+def read_release(release_dir: Path, syntax_rules: dict | None = None) -> dict:
+    """Load the small release groups; chunks are streamed into counters (their text is never kept).
+
+    ``syntax_rules`` (configs/qa/ledger.json ``markdown_syntax``) turns on the per-page count of Markdown table syntax characters."""
     pages: dict[str, list[dict]] = {}
     for row in iter_jsonl(release_dir / "pages.jsonl"):
         pages.setdefault(row["file_id"], []).append(row)
@@ -125,6 +128,7 @@ def read_release(release_dir: Path) -> dict:
     parent_type = {row["parent_id"]: row.get("type") for row in iter_jsonl(release_dir / "parents.jsonl")}
     chunk_stats: dict[str, dict] = {}
     page_chunks: Counter = Counter()
+    page_syntax: Counter = Counter()
     for chunk in iter_jsonl(release_dir / "chunks.jsonl"):
         stats = chunk_stats.setdefault(chunk["file_id"], {"count": 0, "by_quality": Counter(), "groups": {}})
         stats["count"] += 1
@@ -133,8 +137,15 @@ def read_release(release_dir: Path) -> dict:
         group["count"] += 1
         group["by_quality"][str(chunk.get("quality"))] += 1
         page_chunks[(chunk["file_id"], chunk.get("page"))] += 1
+        if syntax_rules and chunk.get("text"):
+            text = chunk["text"]  # same page attribution as process.page_texts: source spans, else the chunk page
+            if chunk.get("source_spans"):
+                for span in chunk["source_spans"]:
+                    page_syntax[(chunk["file_id"], span["page"])] += syntax_chars(text[span["start"]:span["end"]], syntax_rules)
+            elif chunk.get("page") is not None:
+                page_syntax[(chunk["file_id"], chunk["page"])] += syntax_chars(text, syntax_rules)
     return {"files": list(iter_jsonl(release_dir / "files.jsonl")), "pages": pages, "tables": tables,
-            "chunk_stats": chunk_stats, "page_chunks": page_chunks}
+            "chunk_stats": chunk_stats, "page_chunks": page_chunks, "page_syntax": page_syntax}
 
 
 def counter_dict(counter: Counter) -> dict:
@@ -165,7 +176,7 @@ def base_level(context: CheckContext, signals: list[dict]) -> str:
 
 
 def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page: dict | None, document_has_work: bool,
-               chunk_count: int, exclusion: dict | None = None) -> dict:
+               chunk_count: int, exclusion: dict | None = None, syntax: int = 0) -> dict:
     registry = context.registry
     work_page = work_page or {}
     ids = {"file_id": file_row["file_id"], "page": page_row["page"], "page_id": page_row.get("page_id")}
@@ -173,15 +184,20 @@ def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page:
     entity = {"ids": ids, "page": page_row["page"], "release_mode": page_row.get("conversion_mode", page_row.get("mode")),
               "status": page_row.get("status"), "ocr": page_row.get("ocr"), "parser": page_row.get("parser"),
               "pdf_text_chars": pdf, "extracted_characters": extracted, "char_ratio": ratio(extracted, pdf),
+              "markdown_syntax_chars": syntax,
+              "char_ratio_content": ratio(max(extracted - syntax, 0), pdf) if isinstance(extracted, (int, float)) else None,
               "confidence": work_page.get("confidence"), "analysis_reasons": work_page.get("reasons"),
               "chunk_count": chunk_count, "work_present": bool(work_page), "document_has_work": document_has_work,
               "page_exclusion": exclusion}
+    if work_page.get("orientation") is not None:  # C-03: only present when analysis.page_orientation was configured
+        entity["orientation"] = work_page["orientation"]
     signals, ran, granted = registry.run("page", context, entity, ids)
     entity["signals"] = sorted_signals(signals)
     entity["checks"] = ran
     entity["completeness"] = "PARTIAL_IN_SOURCE" if any(s["code"] in PARTIAL_IN_SOURCE_CODES for s in signals) else "UNKNOWN"
     entity["verification_level"] = final_level(base_level(context, signals), granted, signals)
     del entity["ids"], entity["work_present"], entity["document_has_work"], entity["page_exclusion"]
+    entity.pop("orientation", None)  # evidence is carried by the signals; the ledger record keeps its shape
     entity["page_id"] = ids["page_id"]
     return entity
 
@@ -233,7 +249,8 @@ def build_document(registry: Registry, config: dict, release_dir: Path, manifest
         record["pages"] = [build_page(context, file_row, row, work_pages.get(row["page"]), work_doc is not None,
                                       release["page_chunks"].get((file_id, row["page"]), 0),
                                       explain_page(excluded.get(row["page"]), (work_pages.get(row["page"]) or {}).get("text_chars"),
-                                                   config["exclusion_rules"])) for row in pages]
+                                                   config["exclusion_rules"]),
+                                      release["page_syntax"].get((file_id, row["page"]), 0)) for row in pages]
         record["tables"] = [build_table(context, file_row, table) for table in release["tables"].get(file_id, [])]
         entity = {"ids": ids, "work": record["work"], "chunks": record["chunks"]}
         signals, ran, granted = registry.run("document", context, entity, ids)
@@ -346,7 +363,7 @@ def build_qa(release_dir: Path, out_dir: Path, corpus_dir: Path | None = None, c
     validator = run_validator(release_dir, config["thresholds"]["max_listed_validator_errors"]["value"])
     found, searched = find_sidecar(config, release_dir, corpus_dir, sidecar_path)
     sidecar, duplicates = load_sidecar(found) if found else (None, 0)
-    release = read_release(release_dir)
+    release = read_release(release_dir, config.get("markdown_syntax"))
     known_tables = {table["table_id"] for rows in release["tables"].values() for table in rows}
     unmatched = sorted(set(sidecar) - known_tables) if sidecar is not None else []
     context = CheckContext(registry, config, release_dir, manifest, validator=validator, sidecar=sidecar)

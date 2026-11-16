@@ -24,7 +24,12 @@ RELEASES = {
     "k1_legacy": CORPUS / "exports/k1-legacy/releases/20261106T181142Z-67e8a9a1c73b",
 }
 OUT = ROOT / "data/interim/overnight/a402"
-WARN_CODES = {"FIDELITY_NUMERIC_NOVEL", "FIDELITY_NUMERIC_RECALL_LOW", "FIDELITY_WORD_RECALL_LOW", "FIDELITY_PAGE_EMPTY"}
+BASE_WARN_CODES = {"FIDELITY_NUMERIC_NOVEL", "FIDELITY_NUMERIC_RECALL_LOW", "FIDELITY_WORD_RECALL_LOW", "FIDELITY_PAGE_EMPTY"}
+
+
+def warn_codes(config: dict) -> set[str]:
+    """Codes that count as a flag. The lost-list-number code counts when the config gives it WARN (A-445; B3 had INFO)."""
+    return BASE_WARN_CODES | ({fid.MARKER_CODE} if fid.marker_severity(config) == "WARN" else set())
 
 
 def release_pages(release: Path) -> list[dict]:
@@ -67,14 +72,15 @@ def evaluate_release(name: str, release: Path, config: dict) -> tuple[dict, list
     ordered = sorted(per_page_ms)
     codes = Counter(code for row in rows for code in row["codes"])
     checked = [r for r in rows if r["mode"] == "text" and "word" in r]
-    flagged = [r for r in rows if WARN_CODES & set(r["codes"])]
-    granted = [r for r in checked if not (WARN_CODES & set(r["codes"])) and not (set(r["codes"]) & {"FIDELITY_INSUFFICIENT_TOKENS", "FIDELITY_NO_REFERENCE"})]
+    warn = warn_codes(config)
+    flagged = [r for r in rows if warn & set(r["codes"])]
+    granted = [r for r in checked if not (warn & set(r["codes"])) and not (set(r["codes"]) & {"FIDELITY_INSUFFICIENT_TOKENS", "FIDELITY_NO_REFERENCE"})]
     summary = {
         "pages_total": len(rows), "pages_by_mode": dict(sorted(Counter(r["mode"] for r in rows).items())),
         "text_pages_compared": len(checked), "hybrid_pages_recall_only": sum(r["mode"] == "hybrid" for r in rows),
         "ocr_pages_not_applicable": codes["FIDELITY_NOT_APPLICABLE"], "no_reference": codes["FIDELITY_NO_REFERENCE"],
         "insufficient_tokens": codes["FIDELITY_INSUFFICIENT_TOKENS"],
-        "pages_flagged_warn": len(flagged), "flag_codes": {c: codes[c] for c in sorted(WARN_CODES) if codes[c]},
+        "pages_flagged_warn": len(flagged), "flag_codes": {c: codes[c] for c in sorted(warn) if codes[c]},
         "flagged_by_mode": dict(sorted(Counter(r["mode"] for r in flagged).items())),
         "text_pages_eligible_for_TEXT_LAYER_CONSISTENT": len(granted),
         "unmodified_release_flag_rate_text_pages": f"{sum(r['mode'] == 'text' for r in flagged)}/{len(checked)}",
@@ -91,8 +97,8 @@ def make_texts(state: fid.FidelityState, row: dict) -> tuple[str, str, str, str]
 
 
 def flagged(config: dict, pdf: str, margin: str, repeated: str, k1: str, credit: str, k1_empty: bool = False) -> bool:
-    raw = fid.compare_page(pdf, k1, margin, repeated, config, credit)
-    return any(code in WARN_CODES for code, _ in fid.judge(raw, "text", k1_empty, config))
+    raw = fid.compare_page(pdf, k1, margin, repeated, config, credit, fid.enumerator_items(pdf, config))
+    return any(code in warn_codes(config) for code, _ in fid.judge(raw, "text", k1_empty, config))
 
 
 def numeric_in(text: str) -> list[str]:
@@ -163,6 +169,8 @@ def main() -> int:
     parser.add_argument("--corpus", type=Path, help="corpus folder (default: the K1 run corpus)")
     parser.add_argument("--release", action="append", default=[], metavar="NAME=PATH", help="release to evaluate; repeatable (default: the two K1 run releases)")
     parser.add_argument("--out", type=Path, help="output folder (default: data/interim/overnight/a402)")
+    parser.add_argument("--only-pages", type=Path, help="eval.json of an earlier run: the synthetic corruptions use only the clean pages listed there (same pool for a before/after comparison)")
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/qa/source_fidelity.json", help="fidelity config (a config without the block_* and enumerators keys reproduces the A-416 behaviour)")
     args = parser.parse_args()
     if args.corpus:
         CORPUS = args.corpus
@@ -170,13 +178,18 @@ def main() -> int:
         RELEASES = {name: Path(path) for name, path in (item.split("=", 1) for item in args.release)}
     if args.out:
         OUT = args.out
-    config = fid.load_config(ROOT / "configs/qa/source_fidelity.json")
+    config = fid.load_config(args.config)
     OUT.mkdir(parents=True, exist_ok=True)
-    report: dict = {"config_sha256": fid.sha256_file(ROOT / "configs/qa/source_fidelity.json"), "releases": {}, "synthetic": {}}
+    report: dict = {"config_sha256": fid.sha256_file(args.config), "releases": {}, "synthetic": {}}
     all_rows = []
     for name, release in RELEASES.items():
         summary, rows, clean = evaluate_release(name, release, config)
         report["releases"][name] = summary
+        report.setdefault("clean_page_keys", {})[name] = sorted(f"{row['file_id']}:{row['page']}" for row in clean)
+        if args.only_pages:
+            pool = set(json.loads(args.only_pages.read_text(encoding="utf-8"))["clean_page_keys"].get(name, []))
+            report["pool_restricted_to"] = str(args.only_pages.name)
+            clean = [row for row in clean if f"{row['file_id']}:{row['page']}" in pool]
         all_rows += rows
         state = fid.FidelityState(release, CORPUS, config)
         report["synthetic"][name] = {"clean_text_pages_used": len(clean), **corruptions(config, state, clean)}

@@ -20,6 +20,9 @@ Round 2 (all 27 report dates are development data now; label every number "regre
         --lock data/interim/ops-rebuild-r2/heldout-run.json --seed-lock data/interim/ops-rebuild/heldout-run.json \
         --freeze data/interim/ops-rebuild-r2/freeze.json --out data/interim/ops-rebuild-r2/R3-evaluation.json
 The lock of Round 1 is copied to the Round 2 lock file and never modified; ``--new-round`` records the run as not independent.
+``--freeze`` accepts both layouts: ``sources_sha256`` (``--write-freeze``) and ``files_sha256`` (the Round 2 ``freeze.json``;
+only the files it lists are compared). An unusable freeze file is a clear error before anything is read. Always pass
+``--lock``: without it ``--new-round`` appends to the Round 1 lock.
 
 Document-level scan (forced mode: every page of the PDFs is read by the recogniser and the reader, whatever the document
 type; aggregate counts per family; no table is merged, so ``read_ok`` is not "validated"):
@@ -547,6 +550,33 @@ def check_lock(new_round: bool) -> list[dict]:
     return []
 
 
+FREEZE_KEYS = ("sources_sha256", "files_sha256")
+
+
+def load_freeze(path: Path) -> tuple[dict[str, str], str]:
+    """Source hashes of a freeze file and the key that held them; a clear ``SystemExit`` for any unusable file.
+
+    Two layouts exist: ``sources_sha256`` (written by ``--write-freeze``: every source file of ``SOURCE_GLOBS``) and
+    ``files_sha256`` (the Round 2 code freeze: the list of files that make up the frozen implementation). Anything else
+    (missing file, not JSON, no known key, hashes that are not a name -> text map) is reported with the file name and the
+    keys that were found, never as a ``KeyError``.
+    """
+    if not path.is_file():
+        raise SystemExit(f"freeze file {path} not found (give --freeze FILE written by --write-freeze, or a Round 2 freeze.json)")
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (OSError, UnicodeDecodeError, ValueError) as failure:
+        raise SystemExit(f"freeze file {path} is not readable JSON ({type(failure).__name__}: {failure})") from failure
+    found = sorted(data) if isinstance(data, dict) else type(data).__name__
+    key = next((k for k in FREEZE_KEYS if isinstance(data, dict) and k in data), None)
+    if key is None:
+        raise SystemExit(f"freeze file {path} has none of the keys {list(FREEZE_KEYS)} (found: {found})")
+    hashes = data[key]
+    if not isinstance(hashes, dict) or not all(isinstance(n, str) and isinstance(h, str) for n, h in hashes.items()):
+        raise SystemExit(f"freeze file {path}: '{key}' must map file names to SHA256 text")
+    return hashes, key
+
+
 def write_lock(release: Path, new_round: bool) -> None:
     rounds = check_lock(new_round)
     digests = source_digests()
@@ -554,9 +584,14 @@ def write_lock(release: Path, new_round: bool) -> None:
              "release_sha256sums": sha256(release / "SHA256SUMS"), "sources_sha256": digests,
              "independent": not new_round}
     if FREEZE.exists():
-        frozen = json.loads(FREEZE.read_text(encoding="utf-8"))["sources_sha256"]
-        entry["changed_since_dev_freeze"] = sorted(name for name in set(frozen) | set(digests)
-                                                   if frozen.get(name) != digests.get(name))
+        frozen, key = load_freeze(FREEZE)
+        entry["freeze_file"], entry["freeze_key"] = FREEZE.name, key
+        # sources_sha256 covers every source file (compare the union); files_sha256 lists only the frozen implementation
+        # files, so files outside the list are not compared and the lock says so.
+        names = set(frozen) | set(digests) if key == "sources_sha256" else set(frozen)
+        entry["changed_since_dev_freeze"] = sorted(name for name in names if frozen.get(name) != digests.get(name))
+        if key == "files_sha256":
+            entry["freeze_scope"] = f"only the {len(frozen)} files listed in the freeze are compared"
     else:
         entry["changed_since_dev_freeze"] = "no dev-freeze.json: code state at the end of development is not proven"
     if new_round:
@@ -663,6 +698,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.split != "dev":
         if not args.final:
             parser.error("--split heldout/all needs --final")
+        if FREEZE.exists():  # a missing freeze stays allowed: the lock then records that no freeze was compared
+            load_freeze(FREEZE)  # an unusable freeze file stops the run now: before the seed copy, the PDFs and the results
         if args.seed_lock and args.new_round and not LOCK.exists():
             if not args.seed_lock.is_file():
                 raise SystemExit(f"--seed-lock {args.seed_lock} does not exist")

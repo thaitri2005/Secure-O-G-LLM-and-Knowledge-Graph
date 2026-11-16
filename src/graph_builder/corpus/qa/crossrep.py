@@ -19,6 +19,7 @@ from pathlib import Path
 import re
 from typing import Any, Iterator
 
+from .markdown_syntax import normalise_cell
 from .signals import CheckContext, Registry
 
 DEFAULT_CONFIG = Path("configs/qa/cross_representation.json")
@@ -75,17 +76,17 @@ def clip(text: str, config: dict) -> str:
     return text if len(text) <= size else text[:size] + "..."
 
 
-def split_cells(line: str) -> list[str]:
+def split_cells(line: str, rules: dict | None = None) -> list[str]:
     """Cells of one Markdown table line; ``\\|`` is a literal pipe, other blanks are collapsed."""
     body = line.strip()
     if body.startswith("|"):
         body = body[1:]
     if body.endswith("|") and not body.endswith("\\|"):
         body = body[:-1]
-    return [collapse(cell.replace("\\|", "|")) for cell in UNESCAPED_PIPE.split(body)]
+    return [normalise_cell(cell.replace("\\|", "|"), rules) for cell in UNESCAPED_PIPE.split(body)]
 
 
-def parse_table_chunk(text: str) -> dict:
+def parse_table_chunk(text: str, rules: dict | None = None) -> dict:
     """Split a table chunk into caption lines, header cells, body rows and lines that could not be parsed."""
     caption, table_lines, stray = [], [], []
     for line in text.split("\n"):
@@ -97,9 +98,9 @@ def parse_table_chunk(text: str) -> dict:
             stray.append(collapse(line))
         else:
             caption.append(collapse(line))
-    header = split_cells(table_lines[0]) if table_lines else None
-    separator_ok = len(table_lines) > 1 and all(SEPARATOR_CELL.fullmatch(cell) for cell in split_cells(table_lines[1]))
-    rows = [split_cells(line) for line in table_lines[2:]] if separator_ok else [split_cells(line) for line in table_lines[1:]]
+    header = split_cells(table_lines[0], rules) if table_lines else None
+    separator_ok = len(table_lines) > 1 and all(SEPARATOR_CELL.fullmatch(cell) for cell in split_cells(table_lines[1], rules))
+    rows = [split_cells(line, rules) for line in table_lines[2:]] if separator_ok else [split_cells(line, rules) for line in table_lines[1:]]
     return {"caption": caption, "header": header, "separator_ok": separator_ok, "rows": rows, "stray": stray}
 
 
@@ -118,12 +119,36 @@ def token_diff(left: list[str], right: list[str], config: dict) -> dict:
             "in_chunk_not_in_record": [clip(token, config) for token in sorted((b - a).elements())[:size]]}
 
 
+def covered_positions(table: dict) -> dict[tuple[int, int], tuple[int, int]]:
+    """Grid positions covered by a merged cell but not its top-left origin, each with the origin position.
+
+    The grid of a table record repeats a merged cell's text in each position it covers. A chunk rendered with
+    ``chunking.table_markdown = span_once`` leaves those positions empty, an older one repeats the text; both are
+    consistent with the record, so an empty chunk cell at such a position is not a mismatch, provided the record repeats
+    the origin text there (a changed copy in the record is still a difference)."""
+    found = {}
+    for cell in table.get("cells") or []:
+        r, c, rows, cols = cell.get("r"), cell.get("c"), cell.get("row_span") or 1, cell.get("col_span") or 1
+        if isinstance(r, int) and isinstance(c, int) and isinstance(rows, int) and isinstance(cols, int) and rows * cols > 1:
+            found.update({(r + i, c + j): (r, c) for i in range(rows) for j in range(cols) if i or j})
+    return found
+
+
+def repeats_origin(grid: list[list[str]], covered: dict, position: tuple[int, int]) -> bool:
+    """True if ``position`` is covered by a merged cell and the grid holds the origin text there."""
+    origin = covered.get(position)
+    try:
+        return origin is not None and grid[position[0]][position[1]] == grid[origin[0]][origin[1]]
+    except IndexError:
+        return False
+
+
 def compare_table_chunk(table: dict, chunk: dict, parsed: dict, config: dict, range_ok: bool, rendered_header_rows: int) -> list[dict]:
     """Mismatches between one table chunk and the grid of its table record (empty list = consistent).
 
     ``rendered_header_rows`` is the number of grid rows the chunker rendered as the Markdown header: row_start of the
     first chunk (K1 does not store Docling's rendered header count, and it can differ from header_rows)."""
-    grid = [[collapse(cell) for cell in row] for row in table.get("grid") or []]
+    grid = [[normalise_cell(cell, config.get("markdown_syntax")) for cell in row] for row in table.get("grid") or []]
     num_cols = table.get("num_cols") or 0
     out: list[dict] = []
     if parsed["header"] is None:
@@ -144,7 +169,12 @@ def compare_table_chunk(table: dict, chunk: dict, parsed: dict, config: dict, ra
         out.append({"chunk_id": chunk["chunk_id"], "kind": "row_count", "expected_rows": len(expected), "actual_rows": len(actual)})
         return out
     bad = []
+    covered = covered_positions(table)
     for offset, (want, got) in enumerate(zip(expected, actual)):
+        if covered and len(want) == len(got):
+            row = chunk["row_start"] + offset
+            want = ["" if got[index] == "" and repeats_origin(grid, covered, (row, index)) else cell
+                    for index, cell in enumerate(want)]
         if want != got:
             same = Counter(token for cell in want for token in cell.split()) == Counter(token for cell in got for token in cell.split())
             bad.append({"row": chunk["row_start"] + offset, "kind": "same_tokens_different_cells" if same else "cell_text",
@@ -194,7 +224,7 @@ def analyse_table(table: dict, chunks: list[dict], config: dict) -> list[tuple[s
         found.append(("XREP_ROW_RANGE_INVALID", {"chunks": invalid[:_limit(config, "max_listed_items")]}))
     if coverage:
         found.append(("XREP_ROW_RANGE_COVERAGE", {"problems": coverage[:_limit(config, "max_listed_items")], "num_rows": table.get("num_rows")}))
-    parsed = [parse_table_chunk(chunk.get("text") or "") for chunk in chunks]
+    parsed = [parse_table_chunk(chunk.get("text") or "", config.get("markdown_syntax")) for chunk in chunks]
     mismatches: list[dict] = []
     rendered = chunks[0]["row_start"] if range_ok else 0
     for chunk, parts in zip(chunks, parsed):
@@ -203,9 +233,15 @@ def analyse_table(table: dict, chunks: list[dict], config: dict) -> list[tuple[s
     if len(captions) > 1:
         mismatches.append({"kind": "caption_differs_between_chunks", "captions": [clip(" / ".join(c), config) for c in sorted(captions)][:_limit(config, "max_listed_items")]})
     if not range_ok:  # compare all cells (header included) as one multiset; header lines repeat, so expect extra tokens only from them
-        record_cells = [collapse(cell) for row in grid for cell in row]
+        record_cells = [normalise_cell(cell, config.get("markdown_syntax")) for row in grid for cell in row]
         chunk_cells = [cell for cell in (parsed[0]["header"] or [])] + [cell for parts in parsed for row in parts["rows"] for cell in row]
         diff = token_diff(record_cells, chunk_cells, config)
+        covered = covered_positions(table)
+        if covered and (diff["in_record_not_in_chunk"] or diff["in_chunk_not_in_record"]):
+            origin_only = [normalise_cell(cell, config.get("markdown_syntax")) for r, row in enumerate(grid) for c, cell in enumerate(row)
+                           if not repeats_origin(grid, covered, (r, c))]
+            if not any(token_diff(origin_only, chunk_cells, config).values()):
+                diff = {"in_record_not_in_chunk": [], "in_chunk_not_in_record": []}
         if diff["in_record_not_in_chunk"] or diff["in_chunk_not_in_record"]:
             mismatches.append({"kind": "table_tokens", **diff})
     if mismatches:
