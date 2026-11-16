@@ -55,6 +55,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--crossrep", action="store_true", help="qa: add the A-403 cross-representation checks (reads only the release)")
     parser.add_argument("--ops-margin", action="store_true", help="qa: add the A-401a Operations table mark-margin check (reads the source PDFs)")
     parser.add_argument("--annotations", action="store_true", help="qa: add the A-414 'N records not printed' annotation check (reads the source PDFs)")
+    parser.add_argument("--label-value", action="store_true", help="qa: add the optional A-432 label-value geometry check (reads the source PDFs; WARN signal only)")
+    parser.add_argument("--form-conflict", action="store_true", help="qa: add the optional A-435 form-versus-text-chunk pairing conflict check (reads only the release; WARN signal only)")
+    parser.add_argument("--orientation", action="store_true", help="qa: add the optional C-03 page-orientation check (reads the orientation records of the work folder, not the PDFs; needs analysis.page_orientation)")
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args(argv)
@@ -84,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "qa":  # read-only sidecar; never opens the catalog or writes into the corpus
             from .qa.cli import run as run_qa
-            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin, annotations=args.annotations), sort_keys=True))
+            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin, annotations=args.annotations, label_value=args.label_value, form_conflict=args.form_conflict, orientation=args.orientation), sort_keys=True))
             return 0
         corpus = Corpus(args.corpus)
         if args.command == "add":
@@ -122,22 +125,30 @@ def main(argv: list[str] | None = None) -> int:
             counts = run(corpus, args.models, workers=args.workers, retry_failed=args.retry_failed, only=args.only,
                          report=print)
             print(json.dumps(counts))
-            return 1 if counts["failed"] else 0
+            return 1 if counts["failed"] or counts["not_started"] else 0
         if args.command == "status":
             from .config import fingerprint
             from .ocr_engines import engine_fingerprint
+            from .process import document_state, output_directory
             ocr = engine_fingerprint(args.models, corpus.config["ocr"])
             current = fingerprint(corpus.config, ocr["models"])
             jobs = corpus.jobs(current)
             documents = corpus.documents()
             states = Counter(jobs[doc["doc_id"]]["status"] if doc["doc_id"] in jobs else "pending" for doc in documents)
+            # manifest presence only (no digest check): `status` stays cheap; `process` verifies the digests
+            derived = {doc["doc_id"]: document_state(output_directory(corpus, doc["doc_id"], current),
+                                                     jobs.get(doc["doc_id"]), verify=False) for doc in documents}
             with corpus.connect() as connection:
                 rejected = connection.execute("SELECT path, reason FROM rejected").fetchall()
             print(json.dumps({"fingerprint": current, "documents": len(documents), "jobs": states,
+                              "states": Counter(state for state, _ in derived.values()),
                               "rejected": len(rejected)}))
             for doc_id, job in sorted(jobs.items()):
                 if job["status"] == "failed":
                     print(f"failed {doc_id}: {job['error']}")
+            for doc_id, (state, reason) in sorted(derived.items()):
+                if state == "interrupted":
+                    print(f"interrupted {doc_id}: {reason}")
             for row in rejected:
                 print(f"rejected {row['path']}: {row['reason']}")
             return 0

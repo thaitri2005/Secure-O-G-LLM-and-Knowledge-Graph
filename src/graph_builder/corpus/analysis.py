@@ -48,14 +48,21 @@ class PageAnalysis:
         return asdict(self)
 
 
+OPTIONAL_ANALYSIS_KEYS = ("page_orientation",)  # C-03: absent unless supplied, so existing fingerprints do not change
+
+
 def analysis_config(supplied: dict[str, Any] | None) -> dict[str, Any]:
     supplied = supplied or {}
-    if not isinstance(supplied, dict) or set(supplied) - DEFAULT_ANALYSIS.keys():
-        raise ValueError(f"analysis accepts only {sorted(DEFAULT_ANALYSIS)}")
-    settings = {**DEFAULT_ANALYSIS, **supplied}
+    if not isinstance(supplied, dict) or set(supplied) - DEFAULT_ANALYSIS.keys() - set(OPTIONAL_ANALYSIS_KEYS):
+        raise ValueError(f"analysis accepts only {sorted(DEFAULT_ANALYSIS)} and optionally {list(OPTIONAL_ANALYSIS_KEYS)}")
+    plain = {key: value for key, value in supplied.items() if key not in OPTIONAL_ANALYSIS_KEYS}
+    settings = {**DEFAULT_ANALYSIS, **plain}
     for key, value in settings.items():
         if type(value) not in (int, float) or value < 0:
             raise ValueError(f"analysis.{key} must be a nonnegative number")
+    if "page_orientation" in supplied:
+        from .orientation import orientation_settings
+        settings["page_orientation"] = orientation_settings(supplied["page_orientation"])
     return settings
 
 

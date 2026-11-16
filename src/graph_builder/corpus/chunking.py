@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from collections import Counter
 import hashlib
+from pathlib import Path
 import re
 from typing import Any
 
@@ -16,8 +17,10 @@ from ..ingestion.attribution import source_spans
 from ..ingestion.chunking import split_table
 from ..ingestion.filters import clean_text, dropped_item_reasons, filter_running_lines
 from ..ingestion.provenance import item_regions
-from ..ingestion.tables import table_views
+from ..ingestion.tables import table_markdown, table_views
 from .config import keep_pattern
+from .label_value import correct_document, label_value_settings
+from .quarantine import dropped_items, empty_report as empty_quarantine, quarantine_settings, scan_document, scan_tables
 from .vietnamese import is_vietnamese_marked
 
 BOUNDARY = re.compile(r"[.!?…]+[\"'”’)\]]*\s+|\n+")
@@ -66,6 +69,22 @@ def pack(text: str, max_chars: int) -> list[tuple[int, int]]:
     return packed
 
 
+def table_parts(item: TableItem, doc: DoclingDocument, caption: str, max_chars: int, mode: str) -> list[str]:
+    """Table chunk texts. ``span_once_keyed`` renders merged cells once but keeps the row boundaries (hence the
+    number of chunks and their ids) of the Docling rendering; if those cannot be reproduced the Docling text is used."""
+    markdown = table_markdown(item, doc, mode)
+    if mode != "span_once_keyed":
+        return split_table(markdown, caption, max_chars)
+    reference = split_table(table_markdown(item, doc, "docling"), caption, max_chars)
+    if markdown == table_markdown(item, doc, "docling"):
+        return reference
+    groups = [max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2) for part in reference]
+    try:
+        return split_table(markdown, caption, max_chars, row_groups=groups)
+    except ValueError:
+        return reference
+
+
 def language(text: str) -> str:
     """Rough tag: vi if many words carry Vietnamese marks, en if all words are plain ASCII, else und."""
     words = re.findall(r"[^\W\d_]{2,}", text)
@@ -78,20 +97,50 @@ def language(text: str) -> str:
 
 
 def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
-                   ocr_pages: set[int]) -> tuple[list[dict], list[dict], dict[str, Any]]:
-    """Return (chunks, tables, statistics). Chunk text is cleaned; offsets refer to the joined document text."""
+                   ocr_pages: set[int], source: Path | None = None) -> tuple[list[dict], list[dict], dict[str, Any]]:
+    """Return (chunks, tables, statistics). Chunk text is cleaned; offsets refer to the joined document text.
+
+    ``source`` (the PDF) is only read when ``chunking.label_value`` is configured (see ``label_value``)."""
     max_chars = config["chunking"]["max_chars"]
     paragraph = config["chunking"]["strategy"] == "paragraph"
+    table_mode = config["chunking"].get("table_markdown", "docling")
     paginated = bool(doc.pages)
     filters = config["filters"]
     running_drops = 0
+    unfiltered = doc  # only read for chunking.quarantine.list_dropped_items
     if paginated:
         doc, running_drops = filter_running_lines(doc, filters["margin_band"], filters["frequency"],
                                                   filters["running_block_max_gap_lines"],
                                                   filters["running_block_alignment_lines"],
                                                   filters["running_line_fragment_gap_lines"],
-                                                  keep_pattern(filters.get("keep_line_patterns", [])))
-    exclusions = dropped_item_reasons(doc)
+                                                  keep_pattern(filters.get("keep_line_patterns", [])),
+                                                  filters.get("running_line_position_tolerance"),
+                                                  filters.get("running_line_min_pages"))
+    exclusions = dropped_item_reasons(doc, filters.get("toc_leader_min_dots"))
+    label_value = None
+    if "label_value" in config["chunking"]:
+        # The exclusions (running lines, dotted-leader TOC lines, ...) are decided on the text as converted; the corrected text must not
+        # change them, and excluded items are neither corrected nor used as a value source.
+        if paginated:
+            doc, label_value = correct_document(doc, source, label_value_settings(config["chunking"]["label_value"]), ocr_pages,
+                                                frozenset(exclusions))
+        else:
+            label_value = {"method": "cell_geometry_v1", "skipped": "not_paginated"}
+    quarantine = None
+    if "quarantine" in config["chunking"]:
+        # Optional (P2-WP1): detection and listing only, the text is never changed. Scans the document as it is chunked (after label_value).
+        settings = quarantine_settings(config["chunking"]["quarantine"])
+        quarantine = empty_quarantine(settings)
+        if not paginated:
+            quarantine["skipped"] = "not_paginated"
+        else:
+            if settings["list_dropped_items"]:
+                quarantine["dropped_items"] = dropped_items(unfiltered, doc, exclusions, settings)
+            if settings["scan_visibility"] or settings["scan_value_before_label"] or settings["list_page_status"]:
+                reported = label_value or {}
+                claimed = frozenset([change["ref"] for change in reported.get("changes", [])]
+                                    + [ref for abstention in reported.get("abstentions", []) for ref in abstention["items"]])
+                scan_document(doc, source, settings, ocr_pages, frozenset(exclusions), claimed, quarantine)
     dropped = Counter(running_line=running_drops)
     chunks: list[dict] = []
     tables: list[dict] = []
@@ -171,7 +220,7 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
             # Rows are counted as the Markdown serializer renders them; cap at the grid in case it differs.
             next_row = min(_count_header_rows(item), item.data.num_rows)
             items = [(item, None), *[(ref.resolve(doc), None) for ref in item.captions]]
-            for part in split_table(item.export_to_markdown(doc=doc), caption, max_chars):
+            for part in table_parts(item, doc, caption, max_chars, table_mode):
                 rows = max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2)
                 end = min(next_row + rows, item.data.num_rows)
                 emit("table", part, items, table_id=table_id, row_start=next_row, row_end=end)
@@ -185,6 +234,8 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
             else:
                 add_text(item.text, item, page)
     flush()
+    if quarantine is not None and settings["scan_tables"] and paginated:
+        scan_tables(tables, doc, source, ocr_pages, settings, quarantine)  # optional (P2-WP3): table cells against the PDF geometry
     position = 0
     for chunk in chunks:
         chunk["char_start"], chunk["char_end"] = position, position + len(chunk["text"])
@@ -193,4 +244,8 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
     statistics = {"text_chunks": sum(c["type"] == "text" for c in chunks),
                   "table_chunks": sum(c["type"] == "table" for c in chunks), "tables": len(tables),
                   "characters": sum(len(c["text"]) for c in chunks), "dropped": dict(sorted(dropped.items()))}
+    if label_value is not None:
+        statistics["label_value"] = label_value
+    if quarantine is not None:
+        statistics["quarantine"] = quarantine
     return chunks, tables, statistics
