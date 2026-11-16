@@ -69,6 +69,7 @@ pydantic-settings==2.16.1
 pydantic_core==2.50.1
 Pygments==2.21.0
 pylatexenc==2.11
+PyMuPDF==1.28.2
 pypdf==6.1.1
 pypdfium2==5.14.0
 python-bidi==0.6.12
@@ -77,7 +78,7 @@ python-docx==1.2.0
 python-dotenv==1.2.4
 python-oxmsg==0.0.2
 python-pptx==1.0.2
-pywin32==312
+pywin32==312 ; sys_platform == "win32"
 PyYAML==6.0.3
 RapidFuzz==3.14.6
 rapidocr==3.10.0

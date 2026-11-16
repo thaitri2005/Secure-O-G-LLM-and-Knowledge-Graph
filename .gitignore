@@ -19,3 +19,10 @@ data/corpora/
 
 # Report renderer dependencies and preview images (scripts/render_progress_report.py)
 tmp/
+
+# Generated K1 chunk packages (python -m graph_builder.corpus k1 ... and scripts/export_k1_ops_rebuild.py write under ignored
+# data/interim/ or a corpus folder). A package kept for review is regenerated, never edited by hand.
+data/processed/k1/
+
+# Rendered copies of the project report; the Markdown source is tracked
+docs/reports/PROJECT_REPORT_*.pdf
