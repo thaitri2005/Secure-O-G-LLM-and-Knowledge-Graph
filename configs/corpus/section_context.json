@@ -1,0 +1,16 @@
+{
+  "furniture": {
+    "header_band_page_height": 0.12,
+    "footer_band_page_height": 0.08,
+    "min_pages": 3,
+    "min_page_share": 0.3
+  },
+  "value_patterns": [
+    {"kind": "report_date", "pattern": "^(?:[A-Za-z]+ ){0,2}(?:\\d{1,2}[-/ ][A-Za-z]{3,9}[-/ ]\\d{2,4}|\\d{4}-\\d{2}-\\d{2})$"},
+    {"kind": "email", "pattern": "^\\S+@\\S+\\.\\S+$"}
+  ],
+  "numbered_hierarchy": [
+    {"scheme": "decimal", "pattern": "^(\\d+(?:\\.\\d+)*)\\.?\\s"},
+    {"scheme": "roman", "pattern": "^([IVXL]+(?:\\.\\d+)*)\\.?\\s"}
+  ]
+}

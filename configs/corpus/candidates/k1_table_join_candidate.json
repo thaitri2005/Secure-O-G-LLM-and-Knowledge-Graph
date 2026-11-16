@@ -1,0 +1,163 @@
+{
+  "document_types": {
+    "default": "other",
+    "rules": [
+      {
+        "document_type": "eowr",
+        "pattern": "_eowr$"
+      },
+      {
+        "document_type": "daily_report",
+        "pattern": "dailyreport"
+      },
+      {
+        "document_type": "casing_report",
+        "pattern": "casinginforpt"
+      },
+      {
+        "document_type": "survey_report",
+        "pattern": "directional|survey"
+      },
+      {
+        "document_type": "drilling_plan",
+        "pattern": "drillingplan"
+      },
+      {
+        "document_type": "permit",
+        "pattern": "permit"
+      }
+    ]
+  },
+  "forms": {
+    "generic": false,
+    "minimum_label_share": 0.4,
+    "template": "configs/corpus/rimbase_form_template.json"
+  },
+  "table_rules": {
+    "operations_summary": {
+      "document_types": [
+        "daily_report"
+      ],
+      "schema": {
+        "title_words": [
+          "Operations",
+          "Summary"
+        ],
+        "columns": [
+          {
+            "label": "From",
+            "kind": "time"
+          },
+          {
+            "label": "To",
+            "kind": "time"
+          },
+          {
+            "label": "Elapsed",
+            "kind": "hours"
+          },
+          {
+            "label": "End MD(ft)",
+            "kind": "depth"
+          },
+          {
+            "label": "Code",
+            "kind": "code"
+          },
+          {
+            "label": "Operations Description",
+            "kind": "text"
+          },
+          {
+            "label": "Non-Prod",
+            "kind": "mark"
+          }
+        ],
+        "patterns": {
+          "time": "^(\\d{1,2}):([0-5]\\d)$",
+          "hours": "^\\d{1,2}\\.\\d{2}$",
+          "depth": "^-?\\d[\\d,]*(?:\\.\\d+)?$",
+          "code": "^[A-Za-z][A-Za-z0-9/&_-]*$"
+        },
+        "mark": {
+          "glyph": "X",
+          "lookalikes": "\u00d7\u2713\u2714\u2717\u2718\u221a\u2022*\u25a0\u25cf\u2610\u2611\u2612"
+        },
+        "annotation_kinds": [
+          {
+            "kind": "records_not_printed",
+            "pattern": "^(\\d+) records? not printed$",
+            "sample": "2 records not printed"
+          }
+        ]
+      },
+      "recognition": {
+        "phrase_gap_em_title": 0.8,
+        "annotation_min_gap_em_title": 3.0,
+        "annotation_max_tokens": 12,
+        "title_header_gap_em_header": 1.0
+      },
+      "tolerances": {
+        "line_gap_em_header": 0.55991,
+        "continuation_indent_em_header": 0.447928,
+        "band_margin_em_header": 1.119821,
+        "code_zone_extension": 0.5,
+        "elapsed_tolerance_minutes": 1.0,
+        "docling_overlap": 0.5,
+        "section_title": {
+          "centre_tolerance_page_width": 0.019608,
+          "max_words": 4,
+          "word_pattern": "^[A-Z][A-Za-z/&-]*$"
+        }
+      }
+    }
+  },
+  "report_context": {
+    "date_patterns": [
+      "Report For\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})",
+      "Graphical Summary\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})"
+    ],
+    "document_types": [
+      "daily_report"
+    ],
+    "well_patterns": [
+      "Well (?:ID|Name):\\s*([A-Z0-9][A-Za-z0-9-]*\\d[A-Za-z0-9-]*)"
+    ]
+  },
+  "table_join": {
+    "sources": [
+      "docling"
+    ],
+    "rotations": [
+      0,
+      270
+    ],
+    "page": {
+      "header_band_frac": 0.08,
+      "footer_band_frac": 0.08,
+      "frame_slack_pt": 2.0,
+      "page_size_tolerance_pt": 1.0
+    },
+    "running_text": {
+      "cell_pt": 4.0,
+      "min_pages_frac": 0.5,
+      "top_zone_frac": 0.3,
+      "bottom_zone_frac": 0.15,
+      "max_pages": 120
+    },
+    "boundary": {
+      "bottom_gap_max_frac": 0.12,
+      "top_gap_max_frac": 0.12,
+      "word_slack_pt": 2.0
+    },
+    "structure": {
+      "x_tolerance_rel": 0.03,
+      "min_region_words": 3
+    },
+    "continuity": {
+      "header_x_tolerance_rel": 0.03,
+      "header_min_words": 2,
+      "series_min_rows": 5
+    }
+  }
+}

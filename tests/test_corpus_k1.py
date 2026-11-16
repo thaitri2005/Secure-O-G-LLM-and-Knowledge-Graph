@@ -18,7 +18,7 @@ from graph_builder.corpus.catalog import Corpus
 from graph_builder.corpus.config import fingerprint as make_fingerprint, load_config
 from graph_builder.corpus.k1_build import canonical, file_id, map_children, separate_contexts
 from graph_builder.corpus.k1_config import load_k1_config
-from graph_builder.corpus.k1_export import export_k1
+from graph_builder.corpus.k1_export import K1CompletenessError, export_k1
 from graph_builder.corpus.k1_validate import GROUPS, LEGACY_MAP, summary, validate_k1
 from graph_builder.corpus.legacy_ids import LEGACY_DOCUMENT
 from graph_builder.corpus.process import page_texts, process_document
@@ -236,15 +236,19 @@ class ExportTests(PackageCase):
         manifest = json.loads((self.export("one", only=["sample-second"]) / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual([d["doc_id"] for d in manifest["documents"]], ["sample-second"])
         self.assertEqual(manifest["held_back"], [])
-        with self.assertRaisesRegex(ValueError, "Unknown documents: nothing"):
+        with self.assertRaises(K1CompletenessError) as caught:
             export_k1(self.corpus, "three", Path("models"), K1_CONFIG, only=["nothing"])
+        self.assertEqual(caught.exception.report["blocked_documents"][0]["reason"], "unknown_required_document")
 
-    def test_unprocessed_documents_are_listed_as_held_back(self):
+    def test_unprocessed_required_document_blocks_publication(self):
         add_sample(self.corpus, self.root, "sample-first", self.fingerprint)
         add_sample(self.corpus, self.root, "sample-pending", self.fingerprint, process=False, width=700)
-        manifest = json.loads((self.export().joinpath("manifest.json")).read_text(encoding="utf-8"))
-        self.assertEqual(manifest["held_back"], [{"doc_id": "sample-pending", "reason": "not processed"}])
-        self.assertEqual([d["doc_id"] for d in manifest["documents"]], ["sample-first"])
+        with self.assertRaises(K1CompletenessError) as caught:
+            self.export()
+        report = caught.exception.report
+        self.assertEqual(report["missing_document_ids"], ["sample-pending"])
+        self.assertEqual(report["blocked_documents"][0]["status"], "NOT_PROCESSED")
+        self.assertFalse((self.corpus.exports/"one/CURRENT.json").exists())
 
     def test_names_and_legacy_map_without_its_document_are_refused(self):
         with self.assertRaises(ValueError):
@@ -271,6 +275,142 @@ class ExportTests(PackageCase):
         self.assertEqual(validate_k1(release), [])
         chunk_ids = {json.loads(line)["chunk_id"] for line in (release / "chunks.jsonl").read_text(encoding="utf-8").splitlines()}
         self.assertTrue({r["new_chunk_id"] for r in records if r["new_chunk_id"]} <= chunk_ids)
+
+
+class CompletenessGateTests(PackageCase):
+    def test_guard_blocks_and_preserves_previous_current_and_source_counts(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError
+        doc = add_sample(self.corpus, self.root, "sample-report", self.fingerprint)
+        release = self.export()
+        pointer = self.corpus.exports / "one/CURRENT.json"
+        previous = pointer.read_bytes()
+        old_releases = list((pointer.parent / "releases").iterdir())
+        with patch("graph_builder.corpus.k1_export.build_document", side_effect=ReportBoundaryError("ambiguous", page=1)), \
+             patch("graph_builder.corpus.k1_export.publish") as publish:
+            with self.assertRaises(K1CompletenessError) as caught:
+                self.export()
+        publish.assert_not_called()
+        self.assertEqual(pointer.read_bytes(), previous)
+        self.assertEqual(list((pointer.parent / "releases").iterdir()), old_releases)
+        self.assertEqual(validate_k1(release), [])
+        report = json.loads(caught.exception.report_path.read_text(encoding="utf-8"))
+        self.assertFalse(report["published"])
+        held = report["blocked_documents"][0]
+        self.assertEqual(held["status"], "BLOCKED")
+        self.assertEqual(held["sha256"], doc["sha256"])
+        self.assertEqual(held["source"], doc["source"])
+        self.assertEqual(held["detail"], dict(reason="ambiguous", page=1))
+        self.assertEqual(held["pages_held"], 2)
+        original = (self.corpus.work / doc["doc_id"] / self.fingerprint / "chunks.jsonl").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(held["corpus_chunks_held"], len(original))
+        self.assertEqual(report["counts"]["corpus_chunks_held_known"],len(original))
+        self.assertEqual(report["counts"]["pages_held_known"],2)
+        self.assertEqual(report["counts"]["k1_chunks_held_unknown_documents"],1)
+        self.assertIsNone(held["k1_chunks_held"])
+        self.assertTrue(held["source_references"][0]["source_spans"])
+
+    def test_zero_chunks_explicit_block_and_page_or_identity_loss_block(self):
+        import copy
+        from graph_builder.corpus.k1_build import build_document
+        doc = add_sample(self.corpus, self.root, "sample-report", self.fingerprint)
+        built = build_document(self.corpus,doc,self.fingerprint,K1_CONFIG)
+        for label in ("zero_chunks", "explicit_block", "missing_page", "missing_page_content", "wrong_identity"):
+            with self.subTest(label=label):
+                changed = copy.deepcopy(built)
+                if label == "zero_chunks":
+                    changed["chunks"] = []
+                elif label == "explicit_block":
+                    changed["status"] = "UNSUPPORTED"
+                elif label == "missing_page":
+                    changed["pages"].pop()
+                elif label == "missing_page_content":
+                    changed["pages"][0]["status"] = "missing"
+                else:
+                    changed["files"][0]["sha256"] = "0" * 64
+                with patch("graph_builder.corpus.k1_export.build_document", return_value=changed), \
+                     patch("graph_builder.corpus.k1_export.publish") as publish:
+                    with self.assertRaises(K1CompletenessError) as caught:
+                        self.export(label)
+                publish.assert_not_called()
+                held = caught.exception.report["blocked_documents"][0]
+                self.assertEqual(held["k1_chunks_held"],len(changed["chunks"]))
+                self.assertFalse((self.corpus.exports / label / "CURRENT.json").exists())
+
+    def test_schema_valid_empty_package_cannot_bypass_required_document_gate(self):
+        add_sample(self.corpus, self.root, "sample-report", self.fingerprint)
+        source = self.export()
+        empty = self.root / "valid-empty"
+        shutil.copytree(source,empty)
+        for group in GROUPS:
+            (empty / f"{group}.jsonl").write_text("",encoding="utf-8")
+        manifest = json.loads((empty / "manifest.json").read_text(encoding="utf-8"))
+        manifest.update(counts={g:0 for g in GROUPS},documents=[])
+        (empty / "manifest.json").write_text(json.dumps(manifest),encoding="utf-8")
+        ValidationTests.rewrite_sums(empty)
+        self.assertEqual(validate_k1(empty), [])
+        built = {g:[] for g in GROUPS}
+        with patch("graph_builder.corpus.k1_export.build_document",return_value=built), \
+             patch("graph_builder.corpus.k1_export.validate_k1",return_value=[]), \
+             patch("graph_builder.corpus.k1_export.publish") as publish:
+            with self.assertRaises(K1CompletenessError):
+                self.export("missing")
+        publish.assert_not_called()
+
+    def test_failed_job_build_error_and_unknown_required_document_are_reported(self):
+        doc = add_sample(self.corpus, self.root, "sample-report", self.fingerprint)
+        self.corpus.record_job(doc["doc_id"],self.fingerprint,"failed","fixture failure","start",1,{})
+        with self.assertRaises(K1CompletenessError) as caught:
+            self.export("failed")
+        self.assertEqual(caught.exception.report["blocked_documents"][0]["detail"],"fixture failure")
+        self.assertEqual(caught.exception.report["blocked_documents"][0]["status"],"FAILED")
+        self.corpus.record_job(doc["doc_id"],self.fingerprint,"done",None,"start",1,{})
+        with patch("graph_builder.corpus.k1_export.build_document",side_effect=ValueError("bad source")):
+            with self.assertRaises(K1CompletenessError) as caught:
+                self.export("builder")
+        self.assertEqual(caught.exception.report["blocked_documents"][0]["reason"],"k1_build_failed")
+        with self.assertRaises(K1CompletenessError) as caught:
+            self.export("unknown",only=[doc["doc_id"],"absent-source"])
+        self.assertEqual(caught.exception.report["missing_document_ids"],["absent-source"])
+        self.assertIsNone(caught.exception.report["blocked_documents"][0]["pages_held"])
+
+    def test_cli_returns_nonzero_and_keeps_current_on_block(self):
+        from graph_builder.corpus.__main__ import main
+        from graph_builder.corpus.k1_build import ReportBoundaryError
+        add_sample(self.corpus,self.root,"sample-report",self.fingerprint)
+        self.export()
+        pointer = self.corpus.exports / "one/CURRENT.json"
+        previous = pointer.read_bytes()
+        with patch("graph_builder.corpus.__main__.setup_logging",return_value=None), \
+             patch("graph_builder.corpus.k1_export.build_document",side_effect=ReportBoundaryError("ambiguous")):
+            result = main(["k1",str(self.corpus.root),"--name","one","--models","models"])
+        self.assertEqual(result,1)
+        self.assertEqual(pointer.read_bytes(),previous)
+        self.assertEqual(len(list((self.corpus.exports/".k1-failures").glob("*/failure.json"))),1)
+
+    def test_unsupported_format_and_broken_builder_report_without_publish(self):
+        doc = add_sample(self.corpus,self.root,"sample-report",self.fingerprint)
+        unsupported = dict(doc,format="text")
+        with patch.object(self.corpus,"documents",return_value=[unsupported]):
+            with self.assertRaises(K1CompletenessError) as caught:
+                self.export("unsupported")
+        held = caught.exception.report["blocked_documents"][0]
+        self.assertEqual(held["status"],"UNSUPPORTED")
+        self.assertEqual(held["reason"],"unsupported_format")
+        with patch("graph_builder.corpus.k1_export.build_document",return_value={}):
+            with self.assertRaises(K1CompletenessError) as caught:
+                self.export("broken")
+        self.assertEqual(caught.exception.report["blocked_documents"][0]["reason"],"k1_build_failed")
+
+    def test_failure_before_first_release_does_not_poison_later_complete_export(self):
+        add_sample(self.corpus,self.root,"sample-report",self.fingerprint,process=False)
+        with self.assertRaises(K1CompletenessError):
+            self.export("retry")
+        self.assertFalse((self.corpus.exports/"retry").exists())
+        # Reuse a separate processed fixture as the explicit required scope.
+        add_sample(self.corpus,self.root,"sample-ready",self.fingerprint,width=700)
+        release = self.export("retry",only=["sample-ready"])
+        self.assertEqual(validate_k1(release),[])
+        self.assertTrue((self.corpus.exports/"retry/CURRENT.json").exists())
 
 
 class ValidationTests(PackageCase):

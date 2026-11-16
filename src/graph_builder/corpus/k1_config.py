@@ -6,10 +6,14 @@ from pathlib import Path
 import re
 from typing import Any
 
+from .form_blocks import validate_form_blocks
+from .section_context import validate_section_context
+from .table_join import validate_table_join
+
 REPO = Path(__file__).resolve().parents[3]
 DEFAULT_K1_CONFIG = REPO / "configs/corpus/k1.json"
 KEYS = {"forms", "document_types", "report_context"}
-OPTIONAL_KEYS = {"table_rules"}  # absent means no table rule is applied
+OPTIONAL_KEYS = {"table_rules", "section_context", "form_blocks", "table_join", "report_boundaries", "form_recognition"}  # all are opt-in
 TABLE_RULES = {"operations_summary"}
 OPERATIONS_RULE_KEYS = {"document_types", "schema", "recognition", "tolerances"}
 SCHEMA_KEYS = {"title_words", "columns", "patterns", "mark", "annotation_kinds"}
@@ -63,6 +67,23 @@ def validate_k1_config(config: Any) -> dict[str, Any]:
         raise ValueError("report_context document_types must be a list of document type names")
     regex_list("report_context date_patterns", context["date_patterns"], groups=1)
     regex_list("report_context well_patterns", context["well_patterns"], groups=1)
+    if "section_context" in config:
+        validate_section_context(config["section_context"])
+    if "form_blocks" in config:
+        validate_form_blocks(config["form_blocks"])
+    if "form_recognition" in config:
+        from .form_recognition import validate_form_recognition
+        validate_form_recognition(config["form_recognition"])
+        if "form_blocks" in config:
+            raise ValueError("form_recognition and form_blocks cannot be combined")
+    if "table_join" in config:
+        validate_table_join(config["table_join"])
+    if "report_boundaries" in config:
+        boundaries = config["report_boundaries"]
+        if (not isinstance(boundaries, dict) or set(boundaries) != {"well_label", "report_label", "date_label"}
+                or any(not isinstance(v, str) or not v.strip() or not v.endswith(":") for v in boundaries.values())
+                or len(set(boundaries.values())) != 3):
+            raise ValueError("report_boundaries needs three distinct colon-terminated well_label, report_label and date_label strings")
     rules = config.get("table_rules", {})
     if not isinstance(rules, dict) or set(rules) - TABLE_RULES:
         raise ValueError(f"table_rules may only contain {sorted(TABLE_RULES)}")
