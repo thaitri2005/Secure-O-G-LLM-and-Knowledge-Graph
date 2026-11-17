@@ -37,18 +37,22 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 
 ## Quick start
 
-Use Python 3.12. The lock file pins the complete Windows CPU environment.
+Use Python 3.12. The lock file pins the complete Windows CPU environment. It includes the OCR packages and PyMuPDF, which the test suite and the QA scripts need (the `qa` extra in `pyproject.toml`).
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python -m pip install -e . --no-deps
 .\.venv\Scripts\Activate.ps1
-python -m unittest discover -s tests          # 136 tests, a few minutes with the cached PDF regression
+python -m unittest discover -s tests          # about 1,190 tests, a few minutes with the cached PDF regression
 python -m unittest prototype.test_ontology    # 14 prototype tests (profiles, validator, duplicate search, generation check)
 ```
 
-The lock file is the verified Windows CPU environment. A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment.
+The lock file is the verified Windows CPU environment (`pywin32` is marked Windows-only). A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment. Without the lock, `pip install -e ".[ocr,qa]"` installs the same pinned packages.
+
+**PyMuPDF licence.** PyMuPDF is licensed under AGPL-3.0 or a commercial Artifex licence. Only tests and QA scripts import it; nothing under `src/graph_builder` does. Build any environment you deploy or distribute without it (`pip install ".[ocr]"`), and see [dependencies](docs/components/dependencies.md) before shipping anything that includes it. Model files and their digests are in [model provenance](docs/components/model-provenance.md).
+
+Three tests in `tests/test_graphrag.py` skip because they need the separate `requirements-graphrag.lock.txt` environment (Track B). Tests that need the public PDFs in `data/raw`, cached Docling conversions or earlier K1 releases skip when those files are absent.
 
 **Ingest documents** with the current Docling-based pipeline (any mix of PDFs, scans and Office files; OCR needs the extra and a one-time model download). VLM parsing replaces OCR for new work once M1 selects a model:
 

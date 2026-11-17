@@ -14,21 +14,73 @@ def load_template(path: Path = TEMPLATE) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def extract_auto(path: Path, number: int, template: dict, minimum_share: float = 0.4, generic: bool = False) -> dict | None:
+def extract_auto(path: Path, number: int, template: dict, minimum_share: float = 0.4, generic: bool = False, blocks: dict | None = None,
+                 findings: list | None = None, recognition: dict | None = None,
+                 recognition_findings: list | None = None, excluded_boxes: list | None = None) -> dict | None:
     """Pair a page with the template when enough distinct labels occur visibly.
 
     Pages that do not match return None unless ``generic`` is true, which pairs any colon-terminated
     label and marks the result as not verified.
+
+    ``blocks`` (the optional ``form_blocks`` configuration, default None = off) adds the label-value pairs of the lower blocks of the page
+    (see ``form_blocks``); ambiguous labels are appended to ``findings`` as {page, label, phrases} and never become fields.
     """
+    if recognition is not None:
+        from .form_recognition import validate_form_recognition
+        validate_form_recognition(recognition)
+        if blocks is not None:
+            raise ValueError("form_recognition and form_blocks cannot be combined")
     layer = source_page(path, number, upright=True)
     present = {label["key"] for row in sorted({w["row"] for w in layer["words"]}) for label in find_labels([w for w in layer["words"] if w["row"] == row], template["labels"])}
     share = len(present) / len(template["labels"])
     matching = share >= minimum_share and "Operations Summary" in layer["text"]
     if not matching and (not generic or sum((w["text"].endswith(":") for w in layer["words"])) < 3):
-        return None
+        if recognition is not None:
+            from .form_recognition import append_candidate
+            return append_candidate(layer, recognition, None, share, minimum_share, number, recognition_findings, excluded_boxes)
+        return _block_page(layer, share, minimum_share, blocks, number, findings) if blocks else None
     result = extract(path, number, "template" if matching else "generic", template)
     result.update(method="rimbase_template" if matching else "generic", verified=matching, template_label_share=share, template_minimum_share=minimum_share)
-    return result if result["fields"] else None
+    if blocks and matching:
+        from .form_blocks import extract_block_fields
+        boundary = next((row for row in sorted({w["row"] for w in layer["words"]})
+                         if " ".join(w["text"] for w in layer["words"] if w["row"] == row) == "Operations Summary"), None)
+        try:
+            added, found = extract_block_fields(layer, blocks, boundary, True)
+        except Exception as error:  # a page the block reader cannot handle keeps its header fields
+            added, found = [], {"ambiguous": [], "error": f"{type(error).__name__}: {error}"}
+        result["fields"] = result["fields"] + added
+        _record(findings, number, found)
+    result = result if result["fields"] else None
+    if recognition is not None:
+        from .form_recognition import append_candidate
+        return append_candidate(layer, recognition, result, share, minimum_share, number, recognition_findings, excluded_boxes)
+    return result
+
+
+def _block_page(layer: dict, share: float, minimum_share: float, blocks: dict, number: int, findings: list | None) -> dict | None:
+    """A page that is not a template page but carries enough configured block labels: an unverified form of those labels only."""
+    from .form_blocks import extract_block_fields
+    try:
+        fields, found = extract_block_fields(layer, blocks, None, False, blocks["min_block_labels"])
+    except Exception as error:
+        fields, found = [], {"ambiguous": [], "error": f"{type(error).__name__}: {error}"}
+    _record(findings, number, found)
+    if not fields:
+        return None
+    if findings is not None:
+        findings.append({"page": number, "block_only": True})  # lets the K1 builder number these forms after the template forms
+    return {"status": "success", "fields": fields, "reference_text": layer["text"], "header_boundary": layer["height"],
+            "bbox_frame": "displayed physical page, top-left PDF points", "rotation": layer["rotation"], "text_layer_only": True,
+            "visible_glyph_clipping": True, "method": "generic", "verified": False, "template_label_share": share,
+            "template_minimum_share": minimum_share}
+
+
+def _record(findings: list | None, number: int, found: dict) -> None:
+    if findings is not None:
+        findings.extend({"page": number, **item} for item in found["ambiguous"])
+        if found.get("error"):
+            findings.append({"page": number, "error": found["error"]})
 
 
 def horizontal(layer: dict, x: float, y: float) -> tuple[float, float]:

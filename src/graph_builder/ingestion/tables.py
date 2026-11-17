@@ -51,6 +51,73 @@ def compact_markdown(table) -> str:
     return "\n".join("| " + " | ".join(value.replace("|", "\\|") for value in row) + " |" for row in rows)
 
 
+TABLE_MARKDOWN_MODES = ("docling", "span_once", "span_once_keyed")
+
+
+def table_markdown(table, doc, mode: str = "docling") -> str:
+    """Markdown of a table as ``export_to_markdown`` renders it, or with each merged cell's text written once.
+
+    ``docling`` returns Docling's own output. ``span_once`` keeps the text of a cell that spans several rows or
+    columns at its top-left grid position and leaves the other covered positions empty. A header cell that spans
+    columns of a table with a stacked header (more than one header row) keeps its text in each spanned column,
+    because the flattened column label ("Group - Sub") is then the column's meaning, not a duplicate. Row and
+    column counts, header rows and the Markdown line count never change. The text is returned unchanged when the
+    table has no merged cell, holds a nested (rich) cell, has overlapping cells or Docling's table text cannot be
+    reproduced exactly from the grid (a guard against a different serializer version).
+
+    ``span_once_keyed`` renders like ``span_once`` but keeps the text of a row-spanning *key* cell on every row it
+    covers: a body cell that starts in the first column or is flagged as a row header. The decision uses only the
+    span structure and the cell's position, never text equality. A row-spanning value cell elsewhere is still
+    written once. ``corpus.chunking`` also keeps the chunk row boundaries of the ``docling`` rendering in this mode.
+    """
+    if mode not in TABLE_MARKDOWN_MODES:
+        raise ValueError(f"table_markdown mode must be one of {TABLE_MARKDOWN_MODES}")
+    original = table.export_to_markdown(doc=doc)
+    if mode == "docling":
+        return original
+    from docling_core.transforms.serializer.markdown import _count_header_rows, _flatten_header_rows
+    from docling_core.types.doc.document import RichTableCell
+    from tabulate import _column_type, tabulate
+    grid = table.data.grid
+    cells = table.data.table_cells
+    if (not grid or not any(c.end_row_offset_idx - c.start_row_offset_idx > 1
+                            or c.end_col_offset_idx - c.start_col_offset_idx > 1 for c in cells)
+            or any(isinstance(cell, RichTableCell) for row in grid for cell in row)):
+        return original
+    inside = [c for c in cells if c.start_row_offset_idx < table.data.num_rows
+              and c.start_col_offset_idx < table.data.num_cols]
+    if any(grid[c.start_row_offset_idx][c.start_col_offset_idx] is not c for c in inside):
+        return original  # overlapping cells: a covered position holds another cell
+    headers = _count_header_rows(table)
+    keyed = mode == "span_once_keyed"
+
+    def text_of(row: int, column: int, once: bool) -> str:
+        cell = grid[row][column]
+        origin = (cell.start_row_offset_idx, cell.start_col_offset_idx) == (row, column)
+        keep = origin or not once or (row < headers and headers > 1 and cell.start_row_offset_idx == row)
+        if keyed and not keep and row >= headers and column == cell.start_col_offset_idx and cell.row_span > 1:
+            keep = cell.start_col_offset_idx == 0 or bool(cell.row_header)  # row key of a row-spanning cell
+        return (cell.text or "").replace("\n", " ").replace("|", "&#124;") if keep else ""
+
+    def rows_of(once: bool) -> list[list[str]]:
+        return [[text_of(r, c, once) for c in range(len(grid[r]))] for r in range(len(grid))]
+
+    def render(once: bool, alignment_rows: list[list[str]]) -> str:
+        rows = rows_of(once)
+        header = _flatten_header_rows(rows[:headers], len(rows[0]))
+        body = alignment_rows[headers:]
+        # Column alignment is decided on the unmodified body so that only cell texts change, not the separator row.
+        colalign = tuple("right" if _column_type([row[c] if c < len(row) else "" for row in body]) in (int, float)
+                         else "left" for c in range(len(rows[0]))) if body else None
+        return tabulate(rows[headers:], headers=header, tablefmt="github", disable_numparse=True, colalign=colalign)
+
+    plain_rows = rows_of(False)
+    reference = render(False, plain_rows)
+    if original.count(reference) != 1:
+        return original
+    return original.replace(reference, render(True, plain_rows))
+
+
 def merge_adjacent_tables(document):
     document = document.model_copy(deep=True)
     merged, previous = [], None

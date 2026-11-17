@@ -1,0 +1,61 @@
+{
+  "chunking": {
+    "max_chars": 1500,
+    "strategy": "paragraph",
+    "label_value": {
+      "split_label_cells": true,
+      "rebuild_item_order": true,
+      "review_unverified": true
+    },
+    "quarantine": {
+      "list_dropped_items": true,
+      "list_page_status": true,
+      "scan_visibility": true,
+      "scan_value_before_label": true,
+      "mark_review": true
+    }
+  },
+  "filters": {
+    "margin_band": 0.08,
+    "frequency": 0.5,
+    "running_block_max_gap_lines": 1.0,
+    "running_block_alignment_lines": 0.5,
+    "running_line_fragment_gap_lines": 3.0,
+    "keep_line_patterns": [
+      "\\b(?:Vis\\.|Temp|Pressure|Wind|Gusts):"
+    ]
+  },
+  "table_mode": "fast",
+  "ocr": {
+    "engine": "rapidocr",
+    "languages": [
+      "en"
+    ],
+    "model_size": "small",
+    "scale": 2.5,
+    "confidence_threshold": 0.5
+  },
+  "analysis": {
+    "min_text_chars": 30,
+    "scan_image_coverage": 0.05,
+    "vector_text_paths": 400,
+    "hybrid_image_coverage": 0.15,
+    "bad_char_rate": 0.02,
+    "foreign_letter_rate": 0.08,
+    "invalid_vietnamese_rate": 0.2,
+    "min_profile_words": 15,
+    "hidden_text_ratio": 0.5
+  },
+  "quality": {
+    "review_invalid_vietnamese_rate": 0.08,
+    "review_foreign_letter_rate": 0.05,
+    "min_ocr_page_chars": 40
+  },
+  "segment_pages": 40,
+  "limits": {
+    "max_bytes": 209715200,
+    "max_pages": 3000
+  },
+  "allowed_hosts": [],
+  "document_timeout": 3600
+}

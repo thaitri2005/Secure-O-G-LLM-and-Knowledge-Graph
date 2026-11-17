@@ -39,6 +39,7 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
         "running_min_pages_frac": cfg["running_text"]["min_pages_frac"]["value"],
         "running_top_zone": cfg["running_text"]["top_zone_frac"]["value"],
         "running_bottom_zone": cfg["running_text"]["bottom_zone_frac"]["value"],
+        "frame_slack_pt": cfg.get("frames", {}).get("frame_slack_pt", {}).get("value", 0.0),
         "weights": cfg["score"]["weights"],
         "high_min": cfg["score"]["high_min"]["value"],
         "medium_min": cfg["score"]["medium_min"]["value"],
@@ -57,7 +58,7 @@ def norm_row(row) -> tuple:
 
 def ends_page_body(bbox, words, page_height: float, cfg: dict, limit: float | None = None) -> dict:
     """Does the table end the page body? words are (x0, y0, x1, y1, text) in top-left page coordinates."""
-    limit = page_height * (1.0 - cfg["footer_band"])
+    limit = page_height * (1.0 - cfg["footer_band"]) if limit is None else limit
     below = [w for w in words if w[1] >= bbox[3] - cfg["slack"] and w[3] <= limit]
     gap = max(0.0, (limit - bbox[3]) / page_height)
     return {"words_below": len(below), "gap_frac": round(gap, 4),
@@ -203,6 +204,39 @@ def running_limits(pages: dict, cfg: dict) -> dict:
     return limits
 
 
+def is_frame_table(bbox, top_limit: float, bottom_limit: float, cfg: dict) -> str | None:
+    """A 'table' lying completely inside the running header zone (above top_limit) or inside the running footer zone
+    (below bottom_limit) is page furniture (title block, 'Page n of N' frame), not a body table. Position only.
+    Returns 'header', 'footer' or None. Limits come from running_limits (points, display orientation)."""
+    slack = cfg.get("frame_slack_pt", 0.0)
+    if bbox[3] <= top_limit + slack:
+        return "header"
+    if bbox[1] >= bottom_limit - slack:
+        return "footer"
+    return None
+
+
+def drop_frame_tables(tables: list, limits: dict, cfg: dict) -> tuple:
+    """Split tables into (body, frames); frames carry the zone name. limits: {page: (top, bottom)}."""
+    body, frames = [], []
+    for table in tables:
+        top, bottom = limits.get(table["page"], (0.0, float("inf")))
+        zone = is_frame_table(table["bbox"], top, bottom, cfg)
+        (frames if zone else body).append(dict(table, frame=zone) if zone else table)
+    return body, frames
+
+
+def to_display_rect(rect, matrix) -> tuple:
+    """Map an unrotated-page rectangle (x0, y0, x1, y1) through a PyMuPDF rotation_matrix (a, b, c, d, e, f) into the
+    displayed orientation used by K1 table boxes; the result is normalised so x0 <= x1 and y0 <= y1."""
+    a, b, c, d, e, f = matrix
+    xs, ys = [], []
+    for x, y in ((rect[0], rect[1]), (rect[2], rect[1]), (rect[0], rect[3]), (rect[2], rect[3])):
+        xs.append(x * a + y * c + e)
+        ys.append(x * b + y * d + f)
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
 def pair_boundaries(tables: list) -> list:
     """(last table of page p, first table of page p+1) for every consecutive page pair of one document."""
     by_page: dict = {}
@@ -271,6 +305,9 @@ def find_pdfs(files: dict, raw: Path) -> dict:
 def page_words(doc, index: int) -> tuple:
     page = doc[index]
     words = [(w[0], w[1], w[2], w[3], w[4]) for w in page.get_text("words")]
+    if page.rotation:  # text-layer words are in unrotated coordinates, K1 table boxes in displayed orientation
+        matrix = tuple(page.rotation_matrix)
+        words = [to_display_rect(w[:4], matrix) + (w[4],) for w in words]
     return words, page.rect.height, page.rotation
 
 
@@ -298,7 +335,12 @@ def scan(release: Path, raw: Path, cfg: dict, pymupdf_cross: bool) -> dict:
         if pdf is None:
             doc_record["errors"].append("PDF_NOT_FOUND_BY_SHA256")
             continue
-        with fitz.open(pdf) as doc:
+        try:
+            opened = fitz.open(pdf)
+        except Exception as exc:  # per-document isolation: a broken PDF never loses the other documents
+            doc_record["errors"].append(f"PDF_OPEN_FAILED: {type(exc).__name__}: {exc}")
+            continue
+        with opened as doc:
             cache: dict = {}
 
             def words_of(page_number: int):
@@ -307,9 +349,14 @@ def scan(release: Path, raw: Path, cfg: dict, pymupdf_cross: bool) -> dict:
                 return cache[page_number]
 
             for page_number in range(1, len(doc) + 1):
-                words_of(page_number)
+                try:
+                    words_of(page_number)
+                except Exception as exc:
+                    doc_record["errors"].append(f"page {page_number} words: {type(exc).__name__}: {exc}")
             limits = running_limits({n: (v[0], v[1]) for n, v in cache.items()}, cfg)
-            for a, b in pair_boundaries(tables):
+            body, frames = drop_frame_tables(tables, limits, cfg)
+            doc_record["frame_tables_skipped"] = [{"id": t["id"], "page": t["page"], "zone": t["frame"]} for t in frames]
+            for a, b in pair_boundaries(body):
                 try:
                     words_a, height_a, rotation_a = words_of(a["page"])
                     words_b, height_b, rotation_b = words_of(b["page"])
@@ -332,7 +379,7 @@ def scan(release: Path, raw: Path, cfg: dict, pymupdf_cross: bool) -> dict:
                     for index in range(len(doc)):
                         found.extend(pymupdf_tables(doc, index))
                     doc_record["pymupdf_tables"] = len(found)
-                    for a, b in pair_boundaries(found):
+                    for a, b in pair_boundaries(drop_frame_tables(found, limits, cfg)[0]):
                         words_a, height_a, _ = words_of(a["page"])
                         words_b, height_b, _ = words_of(b["page"])
                         record = evaluate_pair(a, b, words_a, words_b, height_a, height_b, cfg,
@@ -365,6 +412,7 @@ def summarize(result: dict) -> dict:
         "candidates_header_repeated": sum(1 for p in candidates if p["evidence"]["header_repeated"]),
         "candidates_by_document": dict(sorted(Counter(p["file_id"] for p in candidates).items())),
         "candidates_by_source": dict(sorted(Counter("+".join(p["sources"]) for p in candidates).items())),
+        "frame_tables_skipped": sum(len(d.get("frame_tables_skipped", [])) for d in result["documents"].values()),
         "rotated_pairs": sum(1 for p in pairs if any(p["rotation"])),
         "pair_errors": sum(len(d["errors"]) for d in result["documents"].values()),
         "pymupdf_pairs": dict(sorted(Counter(p["kind"] for p in result["pymupdf_pairs"]).items())),

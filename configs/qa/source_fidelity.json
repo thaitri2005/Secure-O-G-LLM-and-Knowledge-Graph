@@ -11,7 +11,22 @@
   "furniture": {
     "margin_band": {"value": 0.08, "unit": "fraction of page height at top and bottom searched for repeated lines (same value as the pipeline filter margin_band)", "status": "proposal"},
     "frequency": {"value": 0.5, "unit": "fraction of pages of a document on which a margin line (digits masked) must appear to count as furniture", "status": "proposal"},
-    "min_pages": {"value": 3, "unit": "pages a document needs before repeated margin lines are used", "status": "proposal"}
+    "min_pages": {"value": 3, "unit": "pages a document needs before repeated margin lines are used", "status": "proposal"},
+    "margin_frequency": {"value": 0.1, "unit": "fraction of pages of a document in whose top/bottom margin band a line (digit runs masked) must appear to count as furniture even when it is not repeated on `frequency` of all pages (footer of a sub-report inside a longer PDF); A-416, set on development data", "status": "proposal"},
+    "margin_min_pages": {"value": 4, "unit": "pages; a margin line must appear in the margin band of at least this many pages (and margin_frequency of the pages) to count as furniture", "status": "proposal"},
+    "page_counter_patterns": {"value": ["\\bpage\\s*[:|]?\\s*\\d+\\s*(?:of|/)\\s*\\d+\\b", "^\\s*\\d+\\s*\\|\\s*p\\s*a\\s*g\\s*e\\s*$", "^\\s*page\\s*[:|]?\\s*\\d+\\s*$"], "unit": "regular expressions (case-insensitive) for page counters such as 'Page 3 of 12', 'Page: 1 of 1', '9 | P a g e', 'Page | 2'; a line that matches at one of the first/last page_counter_edge_lines lines is furniture (A-416)", "status": "proposal"},
+    "page_counter_edge_lines": {"value": 2, "unit": "non-empty lines at the top and at the bottom of the page text searched for page counters", "status": "proposal"},
+    "page_number_max_digits": {"value": 4, "unit": "digits; a line that is only a number of at most this many digits at the first/last line or in a margin band counts as page number", "status": "proposal"},
+    "block_edge_lines": {"value": 8, "unit": "non-empty text lines at the top and at the bottom of the page searched for a repeated header/footer block that lies outside the margin band (title block of a sub-report); A-432, set on development data", "status": "proposal"},
+    "block_min_pages": {"value": 4, "unit": "pages; a line (digit runs masked) must stand within the block_edge_lines top or bottom lines of at least this many pages (and block_frequency of the pages) to count as block furniture", "status": "proposal"},
+    "block_frequency": {"value": 0.1, "unit": "fraction of the pages of a document; see block_min_pages", "status": "proposal"}
+  },
+  "enumerators": {
+    "hierarchical_pattern": {"value": "^\\s*\\(?(\\d{1,2}(?:\\.\\d{1,2})+)\\.?\\s+(?=[^\\W\\d_])", "unit": "regular expression for a line-leading outline number such as '16.3 Casing' (each part 1-2 digits, so '9.625 in.' is not matched)", "status": "proposal"},
+    "flat_pattern": {"value": "^\\s*\\(?(\\d{1,3})[.)]\\s+(?=[^\\W\\d_])", "unit": "regular expression for a line-leading list number with a closing dot or parenthesis such as '1. Daily reports' or '2) Final log'", "status": "proposal"},
+    "min_series": {"value": 2, "unit": "line-leading numbers with the same parent (all but the last dotted part) and different last parts that must stand on the PDF page before they count as list/outline markers; a single number at a line start is never one", "status": "proposal"},
+    "marker_severity": {"value": "WARN", "unit": "severity (WARN or INFO) of FIDELITY_ENUMERATOR_MARKERS_NOT_KEPT; WARN restores the pre-B3 flagging of pages that lost list/outline numbers (A-445, owner direction D2: no mass WARN->INFO; no sub-class was shown harmless on viewed crops: appendix numbers, step numbers and section numbers are references)", "status": "policy"},
+    "following_words": {"value": 2, "unit": "words after the number that must stand next to each other, in order, in the K1 page text (the item text was kept, only its marker is missing)", "status": "proposal"}
   },
   "max_listed_tokens": {"value": 12, "unit": "missing/novel tokens copied into signal evidence per category", "status": "setting"},
   "pdf_search": [

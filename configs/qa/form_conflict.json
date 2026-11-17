@@ -1,0 +1,8 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - OPTIONAL check (CLI flag --form-conflict), development data only; behaviour on other layouts NOT EVALUATED",
+  "comparison": {
+    "min_conflicts_for_page_signal": {"value": 1, "unit": "conflicting pairs on a page needed for the page signal", "status": "proposal"},
+    "max_listed_pairs": {"value": 8, "unit": "conflicting pairs copied into the signal evidence", "status": "setting"}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "labels": {
+    "First Aid Treatments:": {"multiline": false},
+    "Medical Treatments:": {"multiline": false},
+    "Lost Time Incidents:": {"multiline": false},
+    "Days Since LTI:": {"multiline": false},
+    "Sky Condition:": {"multiline": false},
+    "Visibility:": {"multiline": false},
+    "Air Temperature:": {"multiline": false},
+    "Bar. Pressure:": {"multiline": false},
+    "Wind Speed/Dir:": {"multiline": false},
+    "Wind Gusts:": {"multiline": false},
+    "Equipment Problems:": {"multiline": false},
+    "Location Condition:": {"multiline": false},
+    "Transport:": {"multiline": false},
+    "Comments:": {"multiline": true}
+  },
+  "free_text_titles": ["Operations Summary", "Management Summary", "Comments"],
+  "title": {
+    "centre_tolerance_page_width": 0.03,
+    "max_width_page_width": 0.35
+  },
+  "geometry": {
+    "label_start_gap_em": 1.0,
+    "value_phrase_gap_em": 2.5,
+    "continuation_max_gap_lines": 1.8,
+    "continuation_indent_tolerance_em": 1.0
+  },
+  "min_block_labels": 4
+}

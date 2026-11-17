@@ -1,0 +1,330 @@
+{
+  "document_types": {
+    "default": "other",
+    "rules": [
+      {
+        "document_type": "eowr",
+        "pattern": "_eowr$"
+      },
+      {
+        "document_type": "daily_report",
+        "pattern": "dailyreport"
+      },
+      {
+        "document_type": "casing_report",
+        "pattern": "casinginforpt"
+      },
+      {
+        "document_type": "survey_report",
+        "pattern": "directional|survey"
+      },
+      {
+        "document_type": "drilling_plan",
+        "pattern": "drillingplan"
+      },
+      {
+        "document_type": "permit",
+        "pattern": "permit"
+      }
+    ]
+  },
+  "forms": {
+    "generic": false,
+    "minimum_label_share": 0.4,
+    "template": "configs/corpus/rimbase_form_template.json"
+  },
+  "table_rules": {
+    "operations_summary": {
+      "document_types": [
+        "daily_report"
+      ],
+      "schema": {
+        "title_words": [
+          "Operations",
+          "Summary"
+        ],
+        "columns": [
+          {
+            "label": "From",
+            "kind": "time"
+          },
+          {
+            "label": "To",
+            "kind": "time"
+          },
+          {
+            "label": "Elapsed",
+            "kind": "hours"
+          },
+          {
+            "label": "End MD(ft)",
+            "kind": "depth"
+          },
+          {
+            "label": "Code",
+            "kind": "code"
+          },
+          {
+            "label": "Operations Description",
+            "kind": "text"
+          },
+          {
+            "label": "Non-Prod",
+            "kind": "mark"
+          }
+        ],
+        "patterns": {
+          "time": "^(\\d{1,2}):([0-5]\\d)$",
+          "hours": "^\\d{1,2}\\.\\d{2}$",
+          "depth": "^-?\\d[\\d,]*(?:\\.\\d+)?$",
+          "code": "^[A-Za-z][A-Za-z0-9/&_-]*$"
+        },
+        "mark": {
+          "glyph": "X",
+          "lookalikes": "\u00d7\u2713\u2714\u2717\u2718\u221a\u2022*\u25a0\u25cf\u2610\u2611\u2612"
+        },
+        "annotation_kinds": [
+          {
+            "kind": "records_not_printed",
+            "pattern": "^(\\d+) records? not printed$",
+            "sample": "2 records not printed"
+          }
+        ]
+      },
+      "recognition": {
+        "phrase_gap_em_title": 0.8,
+        "annotation_min_gap_em_title": 3.0,
+        "annotation_max_tokens": 12,
+        "title_header_gap_em_header": 1.0
+      },
+      "tolerances": {
+        "line_gap_em_header": 0.55991,
+        "continuation_indent_em_header": 0.447928,
+        "band_margin_em_header": 1.119821,
+        "code_zone_extension": 0.5,
+        "elapsed_tolerance_minutes": 1.0,
+        "docling_overlap": 0.5,
+        "section_title": {
+          "centre_tolerance_page_width": 0.019608,
+          "max_words": 4,
+          "word_pattern": "^[A-Z][A-Za-z/&-]*$"
+        }
+      }
+    }
+  },
+  "report_context": {
+    "date_patterns": [
+      "Report For\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})",
+      "Graphical Summary\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})"
+    ],
+    "document_types": [
+      "daily_report"
+    ],
+    "well_patterns": [
+      "Well (?:ID|Name):\\s*([A-Z0-9][A-Za-z0-9-]*\\d[A-Za-z0-9-]*)"
+    ]
+  },
+  "form_recognition": {
+    "version": "v1",
+    "labels": {
+      "Average ROP (ft/hr):": [
+        "Average ROP (ft/hr):"
+      ],
+      "Comments:": [
+        "Comments:"
+      ],
+      "Contractor:": [
+        "Contractor:"
+      ],
+      "County:": [
+        "County:"
+      ],
+      "Current Operations:": [
+        "Current Operations:"
+      ],
+      "Current Ops:": [
+        "Current Ops:"
+      ],
+      "Daily Cost / Mud ($):": [
+        "Daily Cost / Mud ($):"
+      ],
+      "Days On Location:": [
+        "Days On Location:"
+      ],
+      "Drilling Days (act.):": [
+        "Drilling Days (act.):"
+      ],
+      "Drilling Days (act./plan):": [
+        "Drilling Days (act./plan):"
+      ],
+      "Drilling Days (plan):": [
+        "Drilling Days (plan):"
+      ],
+      "Field:": [
+        "Field:"
+      ],
+      "Flat Days (act./plan):": [
+        "Flat Days (act./plan):"
+      ],
+      "Hole Made (ft) / Hrs:": [
+        "Hole Made (ft) / Hrs:"
+      ],
+      "Job ID:": [
+        "Job ID:"
+      ],
+      "Last BOP Test:": [
+        "Last BOP Test:"
+      ],
+      "Last Casing:": [
+        "Last Casing:"
+      ],
+      "Measured Depth (ft):": [
+        "Measured Depth (ft):"
+      ],
+      "Next BOP Test:": [
+        "Next BOP Test:"
+      ],
+      "Next Casing:": [
+        "Next Casing:"
+      ],
+      "Operator:": [
+        "Operator:"
+      ],
+      "Other:": [
+        "Other:"
+      ],
+      "Planned Operations:": [
+        "Planned Operations:"
+      ],
+      "Planned Ops:": [
+        "Planned Ops:"
+      ],
+      "Proposed TD (ft):": [
+        "Proposed TD (ft):"
+      ],
+      "RKB Elevation (ft):": [
+        "RKB Elevation (ft):"
+      ],
+      "Report For": [
+        "Report For"
+      ],
+      "Report No:": [
+        "Report No:"
+      ],
+      "Rig:": [
+        "Rig:"
+      ],
+      "Rng:": [
+        "Rng:"
+      ],
+      "Sect:": [
+        "Sect:"
+      ],
+      "Service:": [
+        "Service:"
+      ],
+      "Spud Date:": [
+        "Spud Date:"
+      ],
+      "State:": [
+        "State:"
+      ],
+      "Supervisors:": [
+        "Supervisors:"
+      ],
+      "Tel No.:": [
+        "Tel No.:"
+      ],
+      "Toolpusher:": [
+        "Toolpusher:"
+      ],
+      "Total Days (act./plan):": [
+        "Total Days (act./plan):"
+      ],
+      "Total:": [
+        "Total:"
+      ],
+      "Town:": [
+        "Town:"
+      ],
+      "Vertical Depth (ft):": [
+        "Vertical Depth (ft):"
+      ],
+      "Well Bore:": [
+        "Well Bore:"
+      ],
+      "Well Cost ($):": [
+        "Well Cost ($):"
+      ],
+      "Well ID:": [
+        "Well ID:"
+      ],
+      "Well Name:": [
+        "Well Name:"
+      ],
+      "Wellbore:": [
+        "Wellbore:"
+      ],
+      "Wellsite Supervisors:": [
+        "Wellsite Supervisors:"
+      ],
+      "Working Interest:": [
+        "Working Interest:"
+      ],
+      "Safety Summary:": [
+        "Safety Summary:",
+        "SafetySummary:"
+      ],
+      "Job Reference RKB (ft):": [
+        "Job Reference RKB (ft):"
+      ],
+      "LOT (lbs/gal):": [
+        "LOT (lbs/gal):"
+      ],
+      "Sky Condition:": [
+        "Sky Condition:"
+      ],
+      "Visibility:": [
+        "Visibility:"
+      ],
+      "Air Temperature:": [
+        "Air Temperature:"
+      ],
+      "Bar. Pressure:": [
+        "Bar. Pressure:"
+      ],
+      "Wind Speed/Dir:": [
+        "Wind Speed/Dir:"
+      ],
+      "Wind Gusts:": [
+        "Wind Gusts:"
+      ]
+    },
+    "geometry": {
+      "label_start_gap_em": 1.0,
+      "value_phrase_gap_em": 2.5,
+      "row_gap_lines": 1.8
+    },
+    "eligibility": {
+      "min_labels": 4,
+      "min_rows": 2,
+      "min_nonempty": 2
+    },
+    "excluded_titles": [
+      "Operations Summary",
+      "Management Summary",
+      "Comments"
+    ],
+    "table_headers": [
+      "AFE No.",
+      "AFE ($)",
+      "Actual ($)",
+      "From To",
+      "Type Size",
+      "Dens. Vis",
+      "No Run",
+      "Depth (ft)"
+    ],
+    "non_header_regions": false
+  }
+}

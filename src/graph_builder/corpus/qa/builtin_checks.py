@@ -66,6 +66,10 @@ def check_char_ratio(context: CheckContext, entity: dict) -> list[dict]:
     if entity["release_mode"] != "text" or pdf is None or extracted is None or pdf < _threshold(context, "min_pdf_text_chars"):
         return []
     evidence = {"pdf_text_chars": pdf, "extracted_characters": extracted, "ratio": entity["char_ratio"]}
+    syntax = entity.get("markdown_syntax_chars") or 0
+    if syntax:  # Markdown table syntax is not page text: judge the ratio of the content characters (A-416)
+        evidence.update({"markdown_syntax_chars": syntax, "ratio_content": entity["char_ratio_content"]})
+        entity = {**entity, "char_ratio": entity["char_ratio_content"]}
     if extracted == 0:
         exclusion = entity.get("page_exclusion")
         if exclusion and exclusion["explained"]:  # table of contents removed on purpose and recorded; not a verification of the exclusion
@@ -124,8 +128,9 @@ def register_builtin(registry: Registry) -> Registry:
     registry.register_check("chunk_quality", check_chunk_quality, "document", version,
                             limitations=("quality 'ok' is only counted, never treated as evidence of correct content.",))
     registry.register_check("page_status", check_page_status, "page", version)
-    registry.register_check("char_ratio", check_char_ratio, "page", version,
-                            limitations=("Compares the pipeline's own extracted-char count with its own PDF text-char count; furniture removal lowers the ratio legitimately.",))
+    registry.register_check("char_ratio", check_char_ratio, "page", "2",
+                            limitations=("Compares the pipeline's own extracted-char count with its own PDF text-char count; furniture removal lowers the ratio legitimately.",
+                                         "From version 2 the Markdown table syntax of the release chunks (cell pipes, separator rows, image placeholders, entities) is subtracted from the extracted count; the syntax is counted in the release chunks while the extracted count comes from the work folder, so a work folder from another run can shift the ratio.",))
     registry.register_check("docling_confidence", check_confidence, "page", version,
                             limitations=("Docling scores are model heuristics, not measured accuracy.",))
     registry.register_check("ocr_flags", check_ocr_flags, "page", version)

@@ -16,8 +16,13 @@ from .sources import write_checksums, write_json, write_text
 from .provenance import rounded_geometry
 from .text_packing import chunk_spans
 
-def split_table(markdown: str, caption: str, max_chars: int) -> list[str]:
-    """Repeat the caption and Markdown header when splitting on row boundaries."""
+def split_table(markdown: str, caption: str, max_chars: int, row_groups: list[int] | None = None) -> list[str]:
+    """Repeat the caption and Markdown header when splitting on row boundaries.
+
+    ``row_groups`` (body rows per part) replaces the size rule: the parts then hold exactly those numbers of rows,
+    so a differently rendered table keeps the row boundaries of a reference rendering. It must add up to the number
+    of body rows, otherwise ``ValueError`` is raised.
+    """
     # In docling-core 2.103.1 export_to_markdown(doc=doc) includes captions.
     # Keep only the Markdown grid here; add the caption exactly once below.
     lines = [re.sub(r"[ \t]+", " ", line).strip() for line in markdown.splitlines()
@@ -34,6 +39,14 @@ def split_table(markdown: str, caption: str, max_chars: int) -> list[str]:
         ) + " |"
     header = ([caption] if caption else []) + lines[:2]
     rows = lines[2:]
+    if row_groups is not None:
+        if sum(row_groups) != len(rows) or any(size < 1 for size in row_groups):
+            raise ValueError("row_groups must be positive and add up to the number of body rows")
+        parts, start = [], 0
+        for size in row_groups:
+            parts.append("\n".join(header + rows[start:start + size]))
+            start += size
+        return parts
     parts, current = [], []
     for row in rows:
         candidate = "\n".join(header + current + [row])

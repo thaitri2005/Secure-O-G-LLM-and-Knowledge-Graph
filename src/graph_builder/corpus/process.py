@@ -25,6 +25,9 @@ from typing import Any, Callable
 from .analysis import analyze_pdf, segments
 from .catalog import Corpus, now
 from .chunking import chunk_document
+from .label_value import label_value_settings, mark_unverified
+from .orientation import UPRIGHT_COPY, apply_page_orientation
+from .quarantine import mark_quarantine, quarantine_settings
 from .store import atomic_write_json, atomic_write_jsonl, atomic_write_text, file_sha256
 from .vietnamese import text_profile
 
@@ -49,6 +52,68 @@ def is_complete(directory: Path) -> bool:
         return all(file_sha256(directory / name) == digest for name, digest in recorded.items())
     except (OSError, ValueError, KeyError):
         return False
+
+
+MARKER = "job.running.json"
+STATES = ("completed", "failed", "interrupted", "not_started")
+
+
+def marker_path(directory: Path) -> Path:
+    return directory / MARKER
+
+
+def read_marker(directory: Path) -> dict[str, Any] | None:
+    """The marker a worker leaves while it processes a document, or None. An unreadable marker still means it started."""
+    path = marker_path(directory)
+    if not path.is_file():
+        return None
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        return value if isinstance(value, dict) else {"state": "running"}
+    except (OSError, ValueError):
+        return {"state": "running", "unreadable": True}
+
+
+def write_marker(directory: Path, doc_id: str, fingerprint: str, state: str) -> None:
+    atomic_write_json(marker_path(directory), {"doc_id": doc_id, "fingerprint": fingerprint, "state": state,
+                                               "pid": os.getpid(), "at": now()})
+
+
+def clear_marker(directory: Path) -> None:
+    try:
+        marker_path(directory).unlink(missing_ok=True)
+    except OSError:
+        pass  # a leftover marker next to a complete manifest is ignored (see document_state)
+
+
+def document_state(directory: Path, job: dict[str, Any] | None, verify: bool = True) -> tuple[str, str]:
+    """One of ``STATES`` for a document and fingerprint, with a machine-readable reason.
+
+    completed: the manifest and every output digest are intact. failed: the catalog holds a failure. interrupted: a
+    worker started the document and never reported (killed, or the whole run died). not_started: nothing usable exists.
+    ``verify=False`` only checks that the manifest exists (cheap, for ``status``); ``run`` always verifies the digests.
+    """
+    complete = is_complete(directory) if verify else (directory / "manifest.json").is_file()
+    if complete:
+        return "completed", "recorded" if job and job["status"] == "done" else "unrecorded"
+    if read_marker(directory) is not None:
+        return "interrupted", "started_without_finishing"
+    if job and job["status"] == "failed":
+        return "failed", "recorded_failure"
+    return "not_started", "output_missing_or_changed" if job else "pending"
+
+
+def summarize(record: dict[str, Any]) -> dict[str, Any]:
+    """The catalog summary of a processed document, derived from its document.json record."""
+    return {"pages": record["page_count"], "chunks": record["chunk_count"], "tables": record["table_count"],
+            "ocr_pages": sum(page["mode"] in ("ocr", "hybrid") for page in record["pages"]),
+            "review_pages": len(record["review_pages"]), "missing_pages": len(record["missing_pages"]),
+            "seconds": record["processing"]["seconds"]}
+
+
+def completed_summary(directory: Path) -> dict[str, Any]:
+    """Summary of an intact output directory whose catalog record is missing (the process died before writing it)."""
+    return summarize(json.loads((directory / "document.json").read_text(encoding="utf-8")))
 
 
 def converter(kind: str, mode: str | None, config: dict[str, Any], models: Path):
@@ -138,6 +203,51 @@ def assess_pages(pages: list[dict], chunks: list[dict], quality: dict[str, Any])
         page.update(extracted_characters=characters, extracted_profile=profile, status=status)
 
 
+class SourceChecksumError(ValueError):
+    """The working copy of a source cannot be made to match the SHA256 in the catalog.
+
+    ``reason`` is a stable code; the message starts with it (``SourceChecksumError: <reason>: ...`` in the catalog's
+    job error and in ``status``): ``source_checksum_mismatch_store`` means the blob in the store itself is wrong,
+    ``source_work_copy_replace_failed`` means the stale working copy could not be replaced (for example it is locked).
+    """
+
+    def __init__(self, reason: str, detail: str):
+        super().__init__(f"{reason}: {detail}")
+        self.reason, self.detail = reason, detail
+
+    def __reduce__(self):  # survives a trip between worker and parent process
+        return type(self), (self.reason, self.detail)
+
+
+def ensure_source(corpus: Corpus, doc: dict[str, Any], source: Path) -> None:
+    """Make ``source`` (the working copy in the output directory) a file whose SHA256 equals the catalogued one.
+
+    A copy left by an earlier attempt (a failed or killed run) is reused only if it still matches; otherwise it is
+    rebuilt from the store through ``<source>.partial`` and published with ``os.replace``, so the name ``source``
+    never holds an unchecked file. If the store's own blob does not match, no wrong file is left behind and the
+    blob is not touched (a hard link is only unlinked).
+    """
+    expected, blob = doc["sha256"], corpus.blob(doc["sha256"])
+    if source.is_file() and file_sha256(source) == expected:
+        return
+    partial = source.with_name(source.name + ".partial")
+    partial.unlink(missing_ok=True)
+    try:
+        os.link(blob, partial)
+    except OSError:
+        shutil.copyfile(blob, partial)
+    actual = file_sha256(partial)
+    try:
+        if actual != expected:
+            partial.unlink(missing_ok=True)
+            source.unlink(missing_ok=True)  # a derived file already known to be wrong; the blob is not this path
+            raise SourceChecksumError("source_checksum_mismatch_store",
+                                      f"store blob {blob.as_posix()} has sha256 {actual}, catalog expects {expected}")
+        os.replace(partial, source)
+    except OSError as error:
+        raise SourceChecksumError("source_work_copy_replace_failed", f"{type(error).__name__}: {error}") from error
+
+
 def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fingerprint: str,
                      ocr: dict[str, Any], models: str) -> dict[str, Any]:
     """Process one catalogued document; runs in a worker process. Returns a summary for the catalog."""
@@ -149,13 +259,7 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
     directory.mkdir(parents=True, exist_ok=True)
     kind = doc["format"]
     source = directory / ("input" + SUFFIXES.get(kind, Path(doc["original_name"]).suffix.lower()))
-    if not source.exists():
-        try:
-            os.link(corpus.blob(doc["sha256"]), source)
-        except OSError:
-            shutil.copyfile(corpus.blob(doc["sha256"]), source)
-    if file_sha256(source) != doc["sha256"]:
-        raise ValueError("Stored source does not match its catalogued SHA256")
+    ensure_source(corpus, doc, source)
     started = time.perf_counter()
     if kind == "pdf":
         analysis = [page.to_dict() for page in analyze_pdf(source, config["analysis"])]
@@ -165,17 +269,21 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
         plan = [("ocr", 1, len(analysis))]
     else:
         analysis, plan = [], [("text", 0, 0)]
+    conversion_source = source
+    orientation_settings = config["analysis"].get("page_orientation") if kind == "pdf" else None
+    if orientation_settings:  # optional (C-03): record page orientation; "normalize" converts a copy with upright pages
+        conversion_source = apply_page_orientation(source, directory, analysis, orientation_settings)
     documents, metas = [], []
     for mode, first, last in plan:
         cache = directory / "segments" / f"{first:05d}-{last:05d}-{mode}.json.gz"
         pages = (first, last) if kind == "pdf" else None
-        document, meta = convert_segment(source, kind if kind in ("pdf", "image") else "office", mode, pages,
+        document, meta = convert_segment(conversion_source, kind if kind in ("pdf", "image") else "office", mode, pages,
                                          cache, config, models_path)
         documents.append(document)
         metas.append(meta)
     merged = documents[0] if len(documents) == 1 else DoclingDocument.concatenate(documents)
     ocr_pages = {page["page"] for page in analysis if page["mode"] in ("ocr", "hybrid")}
-    chunks, tables, statistics = chunk_document(merged, doc["doc_id"], config, ocr_pages)
+    chunks, tables, statistics = chunk_document(merged, doc["doc_id"], config, ocr_pages, source if kind == "pdf" else None)
     confidence = {page: scores for meta in metas for page, scores in meta["confidence"].items()}
     for page in analysis:
         converted = merged.pages.get(page["page"])
@@ -188,6 +296,10 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
     flagged = {page["page"] for page in analysis if page["status"] != "ok"}
     for chunk in chunks:
         chunk["quality"] = "review" if set(chunk["pages"]) & flagged else "ok"
+    if "label_value" in config["chunking"]:  # optional (C-01c): chunks with a label-value item left unverified are marked "review"
+        mark_unverified(chunks, statistics, label_value_settings(config["chunking"]["label_value"]))
+    if "quarantine" in config["chunking"]:  # optional (P2-WP1): chunks with a quarantine finding are marked "review" when mark_review is on
+        mark_quarantine(chunks, statistics, quarantine_settings(config["chunking"]["quarantine"]))
     text = "\n\n".join(chunk["text"] for chunk in chunks)
     record = {key: doc[key] for key in ("doc_id", "sha256", "bytes", "format", "media_type", "original_name",
                                         "title", "source", "license_id", "license_url")}
@@ -218,42 +330,74 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
                                                     "completed_at": now(),
                                                     "files": {name: file_sha256(directory / name) for name in OUTPUTS}})
     source.unlink(missing_ok=True)
-    return {"pages": record["page_count"], "chunks": len(chunks), "tables": len(tables),
-            "ocr_pages": len(ocr_pages), "review_pages": len(record["review_pages"]),
-            "missing_pages": len(record["missing_pages"]), "seconds": record["processing"]["seconds"]}
+    (directory / UPRIGHT_COPY).unlink(missing_ok=True)
+    return summarize(record)
+
+
+def guarded_call(task: Callable[..., dict[str, Any]], root: str, doc: dict[str, Any], config: dict[str, Any],
+                 fingerprint: str, ocr: dict[str, Any], models: str) -> tuple[str, dict[str, Any] | None, str | None]:
+    """Run ``task`` for one document, isolating its exceptions and leaving a marker while it runs.
+
+    The marker is removed when the task returns or raises an ordinary exception. If the process is killed (out of
+    memory, the machine stops) or interrupted by the user, the marker stays and the document reads as ``interrupted``.
+    """
+    directory = None
+    try:
+        directory = output_directory(Corpus(Path(root)), doc["doc_id"], fingerprint)
+        write_marker(directory, doc["doc_id"], fingerprint, "running")
+        outcome = "done", task(root, doc, config, fingerprint, ocr, models), None
+    except Exception as error:  # isolate any failure to this document
+        LOGGER.debug("Failure detail for %s:\n%s", doc["doc_id"], traceback.format_exc())
+        outcome = "failed", None, f"{type(error).__name__}: {error}"[:1000]
+    if directory is not None:
+        clear_marker(directory)
+    return outcome
 
 
 def _guarded(root: str, doc: dict[str, Any], config: dict[str, Any], fingerprint: str, ocr: dict[str, Any],
              models: str) -> tuple[str, dict[str, Any] | None, str | None]:
-    try:
-        return "done", process_document(root, doc, config, fingerprint, ocr, models), None
-    except Exception as error:  # isolate any failure to this document
-        LOGGER.debug("Failure detail for %s:\n%s", doc["doc_id"], traceback.format_exc())
-        return "failed", None, f"{type(error).__name__}: {error}"[:1000]
+    return guarded_call(process_document, root, doc, config, fingerprint, ocr, models)
 
 
 def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = False, only: list[str] | None = None,
         report: Callable[[str], None] = print, heartbeat: float = 60.0) -> dict[str, int]:
-    """Process every pending document. Returns counts of done, failed and skipped documents."""
+    """Process every incomplete document and return counts.
+
+    done, failed and skipped as before; ``not_started`` counts the documents no worker could start (the pool died
+    before they began). Only completed documents are skipped; a failed one is retried with ``retry_failed``;
+    interrupted and not-started ones are always picked up again by the next run.
+    """
     from .config import fingerprint as make_fingerprint
     from .ocr_engines import engine_fingerprint
     config = corpus.config
     ocr = engine_fingerprint(models, config["ocr"])
     fingerprint = make_fingerprint(config, ocr["models"])
     jobs = corpus.jobs(fingerprint)
-    pending, counts = [], {"done": 0, "failed": 0, "skipped": 0}
+    pending, counts = [], {"done": 0, "failed": 0, "skipped": 0, "not_started": 0}
+    resumed = adopted = 0
     for doc in corpus.documents():
         if only and doc["doc_id"] not in only:
             continue
-        job = jobs.get(doc["doc_id"])
-        complete = job and job["status"] == "done" and is_complete(output_directory(corpus, doc["doc_id"], fingerprint))
-        if complete or (job and job["status"] == "failed" and not retry_failed):
+        directory = output_directory(corpus, doc["doc_id"], fingerprint)
+        state, reason = document_state(directory, jobs.get(doc["doc_id"]))
+        if state == "completed":
+            if reason == "unrecorded":  # finished, but the process died before the catalog was updated: keep the output
+                summary = completed_summary(directory)
+                corpus.record_job(doc["doc_id"], fingerprint, "done", None, now(), summary["seconds"], summary)
+                clear_marker(directory)
+                adopted += 1
             counts["skipped"] += 1
             continue
+        if state == "failed" and not retry_failed:
+            counts["skipped"] += 1
+            continue
+        resumed += state == "interrupted"
         pending.append(doc)
     total_pages = sum(doc["pages"] or 1 for doc in pending)
     report(f"fingerprint {fingerprint}: {len(pending)} documents ({total_pages} pages) to process, "
-           f"{counts['skipped']} already done, {workers} worker(s)")
+           f"{counts['skipped']} already done, {workers} worker(s)"
+           + (f"; {resumed} were interrupted by an earlier run and start again" if resumed else "")
+           + (f"; {adopted} complete outputs had no catalog record and were recorded" if adopted else ""))
     recorded: set[str] = set()
     clock = time.perf_counter()
     done_pages = 0
@@ -301,43 +445,113 @@ def run(corpus: Corpus, models: Path, workers: int = 1, retry_failed: bool = Fal
                 status, summary, error = _guarded(*arguments, doc, config, fingerprint, ocr, str(models))
                 record(doc, status, summary, error, started, time.perf_counter() - began)
         else:
-            _run_pool(pending, workers, arguments, config, fingerprint, ocr, str(models), record, recorded, active)
+            counts["not_started"] = len(_run_pool(pending, workers, arguments, config, fingerprint, ocr, str(models),
+                                                  record, recorded, active, report))
     finally:
         stop.set()
     return counts
 
 
-def _run_pool(pending, workers, arguments, config, fingerprint, ocr, models, record, recorded, active) -> None:
-    remaining = list(pending)
-    while remaining:
-        context = multiprocessing.get_context("spawn")
-        with ProcessPoolExecutor(max_workers=workers, mp_context=context, max_tasks_per_child=20) as pool:
-            started = {}
-            futures = {}
-            for doc in remaining:
-                started[doc["doc_id"]] = (now(), time.perf_counter())
-                futures[pool.submit(_guarded, *arguments, doc, config, fingerprint, ocr, models)] = doc
-            remaining = []
-            try:
-                waiting = set(futures)
-                while waiting:
-                    finished, waiting = wait(waiting, timeout=5, return_when=FIRST_COMPLETED)
-                    for future in waiting:
-                        doc = futures[future]
-                        if future.running() and doc["doc_id"] not in active:
-                            active[doc["doc_id"]] = (time.perf_counter(), doc["pages"] or 1)
-                    for future in finished:
-                        doc = futures[future]
+def _outcome(future) -> tuple[str, dict[str, Any] | None, str | None] | None:
+    """What a finished future holds; None if it holds no result of its own (cancelled or the pool broke under it)."""
+    if not future.done() or future.cancelled():
+        return None
+    error = future.exception()
+    if error is None:
+        return future.result()
+    if isinstance(error, BrokenProcessPool):
+        return None
+    return "failed", None, f"{type(error).__name__}: {error}"[:1000]
+
+
+def _run_batch(batch, width, alone, arguments, config, fingerprint, ocr, models, record, recorded, active, report):
+    """Run ``batch`` in one pool of ``width`` workers. Returns (ran, unstarted) when a worker died, else ([], []).
+
+    ``ran`` are documents a worker had started (marker present) that never reported; ``unstarted`` never began.
+    Documents whose result was already available are recorded as they are, never as failed. With ``alone`` the single
+    document that was running is the cause of the death and is recorded as failed.
+    """
+    started, futures, broken = {}, {}, False
+    with ProcessPoolExecutor(max_workers=width, mp_context=multiprocessing.get_context("spawn"),
+                             max_tasks_per_child=20) as pool:
+        for doc in batch:
+            started[doc["doc_id"]] = (now(), time.perf_counter())
+            futures[pool.submit(_guarded, *arguments, doc, config, fingerprint, ocr, models)] = doc
+        try:
+            waiting = set(futures)
+            while waiting:
+                finished, waiting = wait(waiting, timeout=5, return_when=FIRST_COMPLETED)
+                for future in waiting:
+                    doc = futures[future]
+                    if future.running() and doc["doc_id"] not in active:
+                        active[doc["doc_id"]] = (time.perf_counter(), doc["pages"] or 1)
+                for future in finished:
+                    doc = futures[future]
+                    try:
                         status, summary, error = future.result()
-                        record(doc, status, summary, error, started[doc["doc_id"]][0],
-                               time.perf_counter() - active.get(doc["doc_id"], (started[doc["doc_id"]][1], 0))[0])
-            except BrokenProcessPool:
-                # A worker died (for example out of memory). Fail the documents still running; requeue the rest.
-                for future, doc in futures.items():
-                    if doc["doc_id"] in recorded:
-                        continue
-                    if future.running() or future.done():
-                        record(doc, "failed", None, "worker process died (possibly out of memory)",
-                               started[doc["doc_id"]][0], time.perf_counter() - started[doc["doc_id"]][1])
-                    else:
-                        remaining.append(doc)
+                    except BrokenProcessPool:
+                        raise
+                    except Exception as failure:  # for example a result that cannot be sent back: this document only
+                        status, summary, error = "failed", None, f"{type(failure).__name__}: {failure}"[:1000]
+                    record(doc, status, summary, error, started[doc["doc_id"]][0],
+                           time.perf_counter() - active.get(doc["doc_id"], (started[doc["doc_id"]][1], 0))[0])
+        except BrokenProcessPool:
+            broken = True
+    if not broken:
+        return [], []
+    # Classified after the pool has shut down: its workers are gone, so the markers no longer change.
+    corpus = Corpus(Path(arguments[0]))
+    ran, unstarted = [], []
+    for future, doc in futures.items():
+        doc_id = doc["doc_id"]
+        if doc_id in recorded:
+            continue
+        active.pop(doc_id, None)
+        elapsed = time.perf_counter() - started[doc_id][1]
+        outcome = _outcome(future)
+        directory = output_directory(corpus, doc_id, fingerprint)
+        if outcome is not None:
+            record(doc, *outcome, started[doc_id][0], elapsed)
+        elif is_complete(directory):  # the worker finished writing; only its report was lost
+            record(doc, "done", completed_summary(directory), None, started[doc_id][0], elapsed)
+            clear_marker(directory)
+        elif read_marker(directory) is None:
+            unstarted.append(doc)
+        elif alone:
+            clear_marker(directory)
+            record(doc, "failed", None, "worker process died while this document ran alone (possibly out of memory)",
+                   started[doc_id][0], elapsed)
+        else:
+            write_marker(directory, doc_id, fingerprint, "interrupted")
+            report(f"INTERRUPTED {doc_id}: a worker died while it was running; it is run again alone")
+            ran.append(doc)
+    return ran, unstarted
+
+
+def _run_pool(pending, workers, arguments, config, fingerprint, ocr, models, record, recorded, active,
+              report=print) -> list[str]:
+    """Process ``pending`` with worker processes and survive worker deaths.
+
+    When a worker dies the pool breaks and every worker stops. Documents that had not begun are queued again in a
+    new pool. Documents that were running are re-run one at a time: a document that kills a worker even when it runs
+    alone is recorded as failed, the others (killed only because the pool broke) are processed normally. A pool that
+    dies before any document started is not retried. Returns the doc ids left ``not_started``.
+    """
+    left: list[str] = []
+    queue, suspects = list(pending), []
+    while queue or suspects:
+        alone = not queue
+        batch = [suspects.pop(0)] if alone else queue
+        before = len(recorded)
+        ran, unstarted = _run_batch(batch, 1 if alone else workers, alone, arguments, config, fingerprint, ocr,
+                                    models, record, recorded, active, report)
+        suspects.extend(ran)
+        if alone:
+            left.extend(doc["doc_id"] for doc in unstarted)
+            queue = []
+        elif unstarted and (ran or len(recorded) > before):
+            queue = unstarted
+        else:  # nothing ran and nothing finished: a new pool would die the same way
+            left.extend(doc["doc_id"] for doc in unstarted)
+            queue = []
+    return left

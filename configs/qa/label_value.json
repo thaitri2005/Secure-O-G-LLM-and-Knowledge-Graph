@@ -1,0 +1,20 @@
+{
+  "schema_version": "1",
+  "status": "PROPOSAL - OPTIONAL check (CLI flag --label-value), development data only; false-positive rate and recall on unseen layouts NOT EVALUATED",
+  "geometry": {
+    "phrase_gap_em": {"value": 0.9, "unit": "em (word height); words of one line closer than this form one phrase", "status": "proposal"},
+    "same_line_fraction": {"value": 0.5, "unit": "fraction of the smaller word height; vertical centres closer than this are on the same line", "status": "proposal"},
+    "max_value_gap_em": {"value": 30, "unit": "em; a phrase further right of a label than this is not its value", "status": "proposal"},
+    "below_max_gap_lines": {"value": 1.8, "unit": "line heights; a phrase below a label further away than this is not its value", "status": "proposal"},
+    "below_left_tolerance_em": {"value": 2.0, "unit": "em; a value below a label must start within this distance of the label's left edge or under the label", "status": "proposal"}
+  },
+  "labels": {
+    "max_label_words": {"value": 6, "unit": "words before the colon of a label", "status": "proposal"},
+    "min_label_letters": {"value": 3, "unit": "letters needed in a label (so '08:30' or 'a:' is not a label)", "status": "proposal"},
+    "not_a_label_patterns": {"value": ["^[^:]*://", "^[^\\s:]*\\[\\d+\\][^\\s:]*:"], "unit": "regular expressions (case-insensitive) tested on the whole phrase; a phrase that matches is not a 'Label:' phrase: (1) the first colon belongs to a URL scheme ('http://...'), (2) an index in square brackets glued to the token before the colon ('Main[3]:Up' port/cell notation; 'Pressure[psi]:' is NOT matched). A-445, set on the A-441 false alarms S005 and S013 (DEV/SEEN, one document family each)", "status": "proposal"}
+  },
+  "comparison": {
+    "min_pairs_for_page_signal": {"value": 1, "unit": "mismatching pairs on a page needed for the page signal", "status": "proposal"},
+    "max_listed_pairs": {"value": 8, "unit": "mismatching pairs copied into the signal evidence", "status": "setting"}
+  }
+}

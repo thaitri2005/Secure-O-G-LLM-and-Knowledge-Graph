@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "docling"
+  ],
+  "rotations": [
+    0,
+    270
+  ],
+  "page": {
+    "header_band_frac": 0.08,
+    "footer_band_frac": 0.08,
+    "frame_slack_pt": 2.0,
+    "page_size_tolerance_pt": 1.0
+  },
+  "running_text": {
+    "cell_pt": 4.0,
+    "min_pages_frac": 0.5,
+    "top_zone_frac": 0.3,
+    "bottom_zone_frac": 0.15,
+    "max_pages": 120
+  },
+  "boundary": {
+    "bottom_gap_max_frac": 0.12,
+    "top_gap_max_frac": 0.12,
+    "word_slack_pt": 2.0
+  },
+  "structure": {
+    "x_tolerance_rel": 0.03,
+    "min_region_words": 3
+  },
+  "continuity": {
+    "header_x_tolerance_rel": 0.03,
+    "header_min_words": 2,
+    "series_min_rows": 5
+  }
+}

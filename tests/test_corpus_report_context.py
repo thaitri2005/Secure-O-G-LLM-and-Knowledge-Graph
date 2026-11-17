@@ -128,5 +128,159 @@ class RealDailyReportTests(unittest.TestCase):
         self.assertEqual(total, 145)
 
 
+class ReportBoundaryTests(unittest.TestCase):
+    settings = dict(well_label="Well ID:", report_label="Report No:", date_label="Date:")
+
+    def layer(self):
+        words = []
+        for index, (y, well, date) in enumerate(((20, "Alpha", "01-Jan-20"), (120, "Beta", "02-Jan-20"))):
+            for row, text in ((index * 2, "Well ID: " + well),
+                              (index * 2 + 1, f"Report No: {index + 1} Date: {date}")):
+                top = y + (row % 2) * 10
+                x = 12
+                for token in text.split():
+                    words.append(dict(text=token, row=row, bbox=[x, top, x + len(token) * 3, top + 6]))
+                    x += len(token) * 3 + 3
+        return dict(page=1, rotation=0, words=words, rulings=[[10, 18, 250, 38], [10, 118, 250, 138], [10, 138, 250, 220]])
+
+    def fixture(self, ys=(50, 150, 60)):
+        from types import SimpleNamespace as NS
+        from docling_core.types.doc import BoundingBox, CoordOrigin
+        texts, spans = [], []
+        text = ""
+        for i, y in enumerate(ys):
+            value = f"value{i} "
+            ref = f"#/texts/{i}"
+            texts.append(NS(self_ref=ref, text=value, prov=[NS(page_no=1, charspan=(0,len(value)),
+                bbox=BoundingBox(l=20,t=y,r=80,b=y+5,coord_origin=CoordOrigin.TOPLEFT))]))
+            spans.append(dict(source_ref=ref,page=1,start=len(text),end=len(text)+len(value),source_start=0,source_end=len(value)))
+            text += value
+        chunk = dict(chunk_id="original",text=text,pages=[1],page=1,type="text",regions=[],source_spans=spans)
+        return chunk, NS(texts=texts,tables=[],pages={1:NS(size=NS(height=240))})
+
+    def partition(self, chunk, document, layer=None, changes=None, forms=None):
+        from graph_builder.corpus.k1_build import partition_reports
+        return partition_reports([chunk], forms or [], document, {1:layer or self.layer()}, self.settings, changes or [])
+
+    def test_interleaved_order_splits_without_losing_or_reordering_content(self):
+        chunk, document = self.fixture()
+        children, _, evidence = self.partition(chunk, document)
+        self.assertEqual([c["_report_context"]["well"] for c in children], ["Alpha", "Beta", "Alpha"])
+        self.assertEqual("".join(c["text"] for c in children),chunk["text"])
+        self.assertEqual([s["report_index"] for s in evidence["slices"]],[0,1,0])
+        for child in children:
+            self.assertEqual(child["source_spans"][0]["start"],0)
+            self.assertEqual(child["source_spans"][-1]["end"],len(child["text"]))
+
+    def test_same_report_keeps_multiple_chunks_and_distinct_report_separates(self):
+        from graph_builder.corpus.k1_build import partition_reports
+        chunk, doc = self.fixture((50,60))
+        children, _, _ = partition_reports([chunk,chunk], [], doc, {1:self.layer()},self.settings,[])
+        self.assertEqual(len(children),2)
+        self.assertTrue(all(c["_report_context"]["well"] == "Alpha" for c in children))
+        chunk, doc = self.fixture((50,150))
+        self.assertEqual(len(self.partition(chunk,doc)[0]),2)
+
+    def test_preamble_is_preserved_without_report_context(self):
+        chunk, doc = self.fixture((2,50))
+        children, _, _ = self.partition(chunk,doc)
+        self.assertEqual(children[0]["_report_context"],{})
+        self.assertEqual("".join(c["text"] for c in children),chunk["text"])
+
+    def test_ambiguous_headers_and_provenance_fail_closed(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError, report_bands
+        layer = self.layer()
+        layer["rulings"] = []
+        with self.assertRaisesRegex(ReportBoundaryError,"missing_ruled_header"):
+            report_bands(layer,self.settings)
+        chunk, doc = self.fixture((116,))
+        with self.assertRaisesRegex(ReportBoundaryError,"unassigned_box"):
+            self.partition(chunk,doc)
+        chunk, doc = self.fixture()
+        chunk["source_spans"][0]["start"] = 1
+        with self.assertRaisesRegex(ReportBoundaryError,"uncovered_text"):
+            self.partition(chunk,doc)
+
+    def test_rewrite_provenance_is_used_and_wrong_text_is_rejected(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError
+        chunk, doc = self.fixture((50,))
+        change = dict(ref="#/texts/0",page=1,text=chunk["text"],box=[20,150,80,155])
+        self.assertEqual(self.partition(chunk,doc,changes=[change])[0][0]["_report_context"]["well"],"Beta")
+        change["text"] = "unrelated"
+        with self.assertRaisesRegex(ReportBoundaryError,"source_slice_mismatch"):
+            self.partition(chunk,doc,changes=[change])
+
+    def test_cross_report_tables_and_forms_are_blocked(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError
+        chunk, doc = self.fixture((50,150))
+        chunk["type"] = "table"
+        with self.assertRaisesRegex(ReportBoundaryError,"nontext_crosses_reports"):
+            self.partition(chunk,doc)
+        chunk["type"] = "text"
+        form = dict(page=1,fields=[dict(key="a",key_bbox=[20,50,30,55],value_bbox=[40,150,50,155])])
+        with self.assertRaises(ReportBoundaryError):
+            self.partition(chunk,doc,forms=[form])
+
+    def test_option_is_fingerprinted_and_validation_is_strict(self):
+        from graph_builder.corpus.k1_export import package_identity
+        off = load_k1_config()
+        on = dict(off,report_boundaries=self.settings)
+        validate_k1_config(on)
+        self.assertNotEqual(package_identity("test",off),package_identity("test",on))
+        with self.assertRaises(ValueError):
+            validate_k1_config(dict(off,report_boundaries={}))
+
+    def test_distinct_report_numbers_with_same_k1_context_are_ambiguous(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError, report_bands
+        layer = self.layer()
+        for word in layer["words"]:
+            word["text"] = {"Beta":"Alpha", "02-Jan-20":"01-Jan-20"}.get(word["text"],word["text"])
+        with self.assertRaisesRegex(ReportBoundaryError,"duplicate_identity"):
+            report_bands(layer,self.settings)
+
+    def test_partial_headers_rotation_and_unchunked_tables_fail_closed(self):
+        from graph_builder.corpus.k1_build import ReportBoundaryError, report_bands, partition_reports
+        layer = self.layer()
+        layer["words"] = [w for w in layer["words"] if not (w["row"] == 3 and w["text"] == "Date:")]
+        with self.assertRaisesRegex(ReportBoundaryError,"incomplete_identity_headers"):
+            report_bands(layer,self.settings)
+        layer = self.layer()
+        layer["rotation"] = 90
+        with self.assertRaisesRegex(ReportBoundaryError,"rotated_frame"):
+            report_bands(layer,self.settings)
+        _, doc = self.fixture()
+        table = dict(source_ref="#/tables/0",regions=[dict(page=1,bbox=[20,50,80,160])])
+        with self.assertRaisesRegex(ReportBoundaryError,"unassigned_box"):
+            partition_reports([],[],doc,{1:self.layer()},self.settings,[],[table])
+
+    def test_export_withholds_every_representation_and_records_source(self):
+        import json
+        import tempfile
+        import test_corpus_k1 as helpers
+        from graph_builder.corpus.catalog import Corpus
+        from graph_builder.corpus.config import load_config, fingerprint
+        from graph_builder.corpus.k1_export import K1CompletenessError, export_k1
+        scratch = ROOT / "data/interim/cx-p2/dr29-tests"
+        scratch.mkdir(parents=True,exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=scratch) as temporary:
+            root = Path(temporary)
+            corpus = Corpus.create(root/"corpus",load_config(ROOT/"configs/corpus/default.json"))
+            helpers.add_sample(corpus,root,"sample-report",fingerprint(corpus.config,{}))
+            layer = self.layer()
+            layer["rulings"] = []
+            with patch("graph_builder.corpus.ocr_engines.engine_fingerprint",return_value=helpers.OCR), \
+                 patch("graph_builder.corpus.text_layer.source_page",return_value=layer):
+                with self.assertRaises(K1CompletenessError) as caught:
+                    export_k1(corpus,"guarded",Path("models"),dict(load_k1_config(),report_boundaries=self.settings))
+            report = json.loads(caught.exception.report_path.read_text(encoding="utf-8"))
+            self.assertFalse((corpus.exports/"guarded/CURRENT.json").exists())
+            self.assertFalse((corpus.exports/"guarded/releases").exists())
+            held = report["blocked_documents"][0]
+            self.assertEqual(held["detail"]["reason"],"report_boundary_missing_ruled_header")
+            self.assertTrue(held["sha256"])
+            self.assertTrue(held["source_references"][0]["source_spans"])
+            self.assertEqual(held["pages_held"],2)
+
+
 if __name__ == "__main__":
     unittest.main()
