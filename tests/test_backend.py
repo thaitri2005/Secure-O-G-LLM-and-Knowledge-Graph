@@ -347,13 +347,28 @@ class BackendTests(unittest.TestCase):
         from backend.questions import JsonlQuestionLog
         from backend.service import Service
         engine = sample_engine()
-        engine.daily_chunks.append(Chunk("f62efbee00767a3e7:s6:c0", "ak3-dailyreport", 4, "text", "Operations", "x"))
+        engine.daily_chunks = engine.daily_chunks + [
+            Chunk("f62efbee00767a3e7:s6:c0", "ak3-dailyreport", 4, "text", "Operations", "x")]
         folder = Path(self.folder.name, "pages", "f62efbee00767a3e7")
         folder.mkdir(parents=True)
         (folder / "p4.png").write_bytes(b"\x89PNG")
         service = Service(engine, None, None, JsonlQuestionLog(self.log_path), roles={}, page_images=folder.parent)
         self.assertEqual(service.page_image("ak3-dailyreport", 4), (folder / "p4.png").resolve())
         self.assertIsNotNone(service.page("ak3-dailyreport", 4)["image_url"])
+
+    def test_a_fact_on_a_package_chunk_names_its_report_as_the_file_routes_do(self):
+        from backend.questions import JsonlQuestionLog
+        from backend.service import Service
+        engine = sample_engine()
+        engine.eow_chunks = engine.eow_chunks + [
+            Chunk("f62efbee00767a3e7:s6:c0", "gdr882_ak3_eowr", 7, "text", "Summary", "TD 1,955 ft")]
+        engine.facts = engine.facts + [{"well": "AK-3", "property": "total_depth", "value": "1955", "unit": "ft",
+                                        "qualifier": "actual", "context": None, "chunk": "f62efbee00767a3e7:s6:c0"}]
+        service = Service(engine, None, None, JsonlQuestionLog(self.log_path), roles={})
+        fact = next(f for f in service.well("AK-3")["facts"]["depths_and_dates"] if f["chunk_id"].startswith("f62"))
+        self.assertEqual((fact["file_id"], fact["page"]), ("gdr882_ak3_eowr", 7))
+        self.assertEqual(service.page(fact["file_id"], fact["page"])["page"], 7)
+        self.assertNotIn("f62efbee00767a3e7", [d["file_id"] for d in service.well("AK-3")["documents"]])
 
     def test_a_blank_question_is_refused_before_any_model_call(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)

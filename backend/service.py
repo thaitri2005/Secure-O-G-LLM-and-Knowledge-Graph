@@ -235,10 +235,16 @@ class Service:
         """A chunk for display. A citation can name a chunk this machine does not hold; it is still shown, empty."""
         chunk = self.by_id.get(chunk_id)
         if chunk is None:
-            return {"chunk_id": chunk_id, "file_id": document_key(chunk_id), "page": None, "section": None,
+            return {"chunk_id": chunk_id, "file_id": self.file_of(chunk_id), "page": None, "section": None,
                     "type": None, "text": None}
         return {"chunk_id": chunk.id, "file_id": chunk.doc_id, "page": chunk.page, "section": chunk.section,
                 "type": chunk.kind, "text": chunk.text}
+
+    def file_of(self, chunk_id: str) -> str:
+        """The report a chunk belongs to, by the name the API's file routes use. A chunk this machine holds knows
+        its report; for one it does not hold, the document part of the ID is all there is."""
+        chunk = self.by_id.get(chunk_id)
+        return chunk.doc_id if chunk else document_key(chunk_id)
 
     def chunk(self, chunk_id: str) -> dict:
         if chunk_id not in self.by_id:
@@ -307,7 +313,7 @@ class Service:
 
     def well_fact(self, fact: dict) -> dict:
         chunk = self.by_id.get(fact["chunk"])
-        return dict(self.fact_view(fact), file_id=document_key(fact["chunk"]), page=chunk.page if chunk else None)
+        return dict(self.fact_view(fact), file_id=self.file_of(fact["chunk"]), page=chunk.page if chunk else None)
 
     def well(self, well_id: str) -> dict:
         """What a page about one well shows: its facts in groups, its documents, its report days and totals. Computed
@@ -317,7 +323,7 @@ class Service:
         facts = self._facts_of(well_id)
         events = self._events_of(well_id)
         # The well's reports: those its facts cite, those named after it, and the daily reports its events cite.
-        documents = {document_key(f["chunk"]): None for f in facts}
+        documents = {self.file_of(f["chunk"]): None for f in facts}
         documents |= {c.doc_id: None for c in self.engine.eow_chunks + self.engine.daily_chunks
                       if well_id in well_names(c.doc_id.replace("_", " "))}
         documents |= {(c.doc_id if (c := self.by_id.get(cid)) else document_key(cid)): "daily"
