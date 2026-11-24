@@ -135,6 +135,25 @@ class StableBoundaryTests(unittest.TestCase):
         self.assertEqual(len(chunks), len(chunk_rows(cells, 1, 2, None)[0]))
 
 
+class MergedHeaderInChunkTextTests(unittest.TestCase):
+    """D4 (note of 24 November): a merged header cell is repeated in the default chunk text and written once with
+    ``span_once_keyed``, while table records, chunk ids and row ranges stay as they are (no K1 field changes)."""
+    CELLS = [cell(0, 0, "Casing", header=True), cell(0, 1, "Setting depth (m MD)", cols=2, header=True),
+             cell(1, 0, '13 3/8"'), cell(1, 1, "1,005"), cell(1, 2, "1,010"),
+             cell(2, 0, '9 5/8"'), cell(2, 1, "2,950"), cell(2, 2, "2,955")]
+
+    def test_default_repeats_the_merged_header_and_keyed_writes_it_once(self) -> None:
+        old, old_tables = chunk_rows(self.CELLS, 3, 3, None)
+        keyed, keyed_tables = chunk_rows(self.CELLS, 3, 3, "span_once_keyed")
+        self.assertEqual(sum(c["text"].count("Setting depth (m MD)") for c in old), 2)
+        self.assertEqual(sum(c["text"].count("Setting depth (m MD)") for c in keyed), 1)
+        self.assertEqual(old_tables, keyed_tables)
+        ids = lambda chunks: [(c["chunk_id"], c["table_id"], c["row_start"], c["row_end"]) for c in chunks]
+        self.assertEqual(ids(old), ids(keyed))
+        self.assertEqual(set(old[0]), set(keyed[0]))
+        self.assertIn("2,955", keyed[0]["text"])
+
+
 class SplitTableRowGroupTests(unittest.TestCase):
     MD = "| A | B |\n|---|---|\n| 1 | 2 |\n| 3 | 4 |\n| 5 | 6 |"
 

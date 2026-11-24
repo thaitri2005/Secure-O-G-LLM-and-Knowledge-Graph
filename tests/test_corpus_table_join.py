@@ -8,7 +8,10 @@ from pathlib import Path
 import tempfile
 import unittest
 
-import fitz
+try:
+    import fitz  # PyMuPDF draws the synthetic PDF of RealPdfTests only; the other tests need no PDF
+except ImportError:
+    fitz = None
 
 from graph_builder.corpus.k1_build import map_children, table_owners
 from graph_builder.corpus.k1_config import load_k1_config, validate_k1_config
@@ -465,6 +468,7 @@ def draw_pdf(path: Path) -> None:
     document.close()
 
 
+@unittest.skipIf(fitz is None, "PyMuPDF not available")
 class RealPdfTests(unittest.TestCase):
     def test_join_tables_reads_the_pdf_text_layer(self):
         with tempfile.TemporaryDirectory() as directory:

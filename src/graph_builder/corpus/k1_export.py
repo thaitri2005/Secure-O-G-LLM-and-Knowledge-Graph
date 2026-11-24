@@ -20,7 +20,7 @@ from ..publication import publish
 from .catalog import Corpus
 from .k1_build import ReportBoundaryError, build_document, canonical, context_coverage
 from .k1_config import template_path
-from .k1_validate import GROUPS, LEGACY_MAP, MANIFEST, SUMS, validate_k1
+from .k1_validate import GROUPS, LEGACY_MAP, MANIFEST, SUMS, context_types, validate_k1
 from .legacy_ids import LEGACY_DOCUMENT, load_legacy_rows, map_legacy_chunks, summarize_legacy_map
 from .process import is_complete, output_directory
 from .store import file_sha256
@@ -174,6 +174,7 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
     held.extend(blocked_document(corpus, doc, fingerprint, "NOT_FOUND", "unknown_required_document")
                 for doc in unknown_documents)
     section_findings: dict[str, dict] = {}
+    single_findings: dict[str, dict] = {}
     block_findings: dict[str, dict] = {}
     label_findings: dict[str, dict] = {}
     quarantine_findings: dict[str, dict] = {}
@@ -221,7 +222,9 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
             section_findings[doc["doc_id"]] = built["section_context"]
         if "form_blocks" in built:
             block_findings[doc["doc_id"]] = built["form_blocks"]
-        if file["document_type"] in k1_config["report_context"]["document_types"]:
+        if "document_context" in built:
+            single_findings[doc["doc_id"]] = built["document_context"]
+        if file["document_type"] in context_types(k1_config):
             coverage[doc["doc_id"]] = context_coverage(built["chunks"])
         included.append({"doc_id": doc["doc_id"], "file_id": file["file_id"], "sha256": doc["sha256"],
                          "document_type": file["document_type"], "pages": file["page_count"],
@@ -273,6 +276,9 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
         result["form_blocks"] = block_findings
     if "report_boundaries" in k1_config:
         result["report_boundaries"] = boundary_findings
+    if k1_config.get("document_context"):
+        # Outside the package on purpose: the well found for each document and the candidates it came from (document_context).
+        result["document_context"] = single_findings
     if legacy_records is not None:
         result["legacy_map"] = summarize_legacy_map(legacy_records)
     return result

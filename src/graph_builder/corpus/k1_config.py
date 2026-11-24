@@ -13,7 +13,8 @@ from .table_join import validate_table_join
 REPO = Path(__file__).resolve().parents[3]
 DEFAULT_K1_CONFIG = REPO / "configs/corpus/k1.json"
 KEYS = {"forms", "document_types", "report_context"}
-OPTIONAL_KEYS = {"table_rules", "section_context", "form_blocks", "table_join", "report_boundaries", "form_recognition"}  # all are opt-in
+OPTIONAL_KEYS = {"table_rules", "section_context", "form_blocks", "table_join", "report_boundaries", "form_recognition",
+                 "document_context"}  # all are opt-in
 TABLE_RULES = {"operations_summary"}
 OPERATIONS_RULE_KEYS = {"document_types", "schema", "recognition", "tolerances"}
 SCHEMA_KEYS = {"title_words", "columns", "patterns", "mark", "annotation_kinds"}
@@ -23,6 +24,7 @@ TOLERANCE_KEYS = {"line_gap_em_header", "continuation_indent_em_header", "band_m
 COLUMN_KINDS = ("time", "time", "hours", "depth", "code", "text", "mark")  # the fixed row grammar of the rule
 FORM_KEYS = {"template", "minimum_label_share", "generic"}
 REPORT_CONTEXT_KEYS = {"document_types", "date_patterns", "well_patterns"}
+DOCUMENT_CONTEXT_KEYS = {"document_types", "pages", "well_patterns"}
 
 
 def load_k1_config(path: Path = DEFAULT_K1_CONFIG) -> dict[str, Any]:
@@ -67,6 +69,17 @@ def validate_k1_config(config: Any) -> dict[str, Any]:
         raise ValueError("report_context document_types must be a list of document type names")
     regex_list("report_context date_patterns", context["date_patterns"], groups=1)
     regex_list("report_context well_patterns", context["well_patterns"], groups=1)
+    if "document_context" in config:
+        # optional: one well per document (end-of-well reports) from its first pages; disjoint from report_context
+        single = config["document_context"]
+        if (not isinstance(single, dict) or set(single) != DOCUMENT_CONTEXT_KEYS or not isinstance(single["document_types"], list)
+                or not single["document_types"] or any(not isinstance(name, str) or not name for name in single["document_types"])
+                or type(single["pages"]) is not int or not 1 <= single["pages"] <= 50):
+            raise ValueError(f"document_context must contain exactly {sorted(DOCUMENT_CONTEXT_KEYS)}: a non-empty list of "
+                             "document type names, pages (an integer from 1 to 50) and well_patterns")
+        if set(single["document_types"]) & set(context["document_types"]):
+            raise ValueError("document_context and report_context cannot name the same document type")
+        regex_list("document_context well_patterns", single["well_patterns"], groups=1)
     if "section_context" in config:
         validate_section_context(config["section_context"])
     if "form_blocks" in config:

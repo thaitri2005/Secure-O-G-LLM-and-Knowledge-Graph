@@ -130,9 +130,17 @@ def rebuild_pages(sets: dict[str, list[dict]], errors: list[str]) -> tuple[int, 
     return matches, len(sets["pages"])
 
 
+def context_types(k1_config: dict) -> set[str]:
+    """Document types whose chunks need a context: report_context's, plus the optional document_context's."""
+    return (set(k1_config.get("report_context", {}).get("document_types", []))
+            | set((k1_config.get("document_context") or {}).get("document_types", [])))
+
+
 def check_context(sets: dict[str, list[dict]], index: dict[str, dict], manifest: dict, errors: list[str]) -> dict[str, dict]:
-    """Chunks of daily-report files need a report context unless the manifest names their page as an exception."""
-    required = set(manifest.get("config", {}).get("k1", {}).get("report_context", {}).get("document_types", []))
+    """Chunks of daily-report files (and of the optional document_context types) need a context unless the manifest
+    names their page as an exception."""
+    required = context_types(manifest.get("config", {}).get("k1", {}))
+    daily = set(manifest.get("config", {}).get("k1", {}).get("report_context", {}).get("document_types", []))
     exceptions = {(item["doc_id"], item["page"]) for item in manifest.get("pages_without_context", [])}
     coverage = {}
     for file in sets["files"]:
@@ -142,7 +150,8 @@ def check_context(sets: dict[str, list[dict]], index: dict[str, dict], manifest:
         coverage[file["doc_id"]] = {"chunks": len(chunks), "with_context": sum(bool(chunk["context"]) for chunk in chunks)}
         for chunk in chunks:
             if not chunk["context"] and (file["doc_id"], chunk["page"]) not in exceptions:
-                errors.append(f"chunks {chunk['chunk_id']}: daily report chunk without report_date and well")
+                label, needs = ("daily report", "report_date and well") if file["document_type"] in daily else (file["document_type"], "well")
+                errors.append(f"chunks {chunk['chunk_id']}: {label} chunk without {needs}")
     return coverage
 
 

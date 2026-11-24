@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from graph_builder.corpus.k1_config import load_k1_config, validate_k1_config
-from graph_builder.corpus.report_context import page_context, report_contexts
+from graph_builder.corpus.report_context import document_contexts, document_well, page_context, report_contexts
 
 ROOT = Path(__file__).resolve().parents[1]
 DDR_NAMES = ["gdr882_ak3_appx_27_6_dailyreportdetailrpt_nocost_160920154309",
@@ -76,6 +76,46 @@ class ReportContextsTests(unittest.TestCase):
         texts = {1: "Report For 18-Aug-16\nWell ID: AK-3"}
         with with_text(texts):
             self.assertEqual(report_contexts(Path("x.pdf"), [1], {1: form()}, "daily_report", CONFIG)[1], [])
+
+
+DEMO_CONFIG = ROOT / "configs/corpus/candidates/k1_demo_v1.json"
+
+
+class DocumentWellTests(unittest.TestCase):
+    """The optional document_context: one well per end-of-well report, read from its cover page."""
+    SETTINGS = load_k1_config(DEMO_CONFIG)["document_context"]
+    COVERS = {"AK-3": "Phone: 760-341-0186\r\nAkutan Geothermal Project\r\nAK-3\r\nEnd of Well Report\r\nOctober 14, 2016",
+              "68-32": "Palm Desert, CA 92211\r\nEnd of Well Report\r\nSeismic Monitoring Wells\r\n68-32\r\nPrepared by:",
+              "56-32": "Final Issued 22 July 21\r\nEnd of Well Report\r\nForge Seismic Monitoring Well 56-32 \r\nMilford, Utah"}
+
+    def test_the_three_cover_layouts_give_their_well(self):
+        for well, cover in self.COVERS.items():
+            self.assertEqual(document_well({1: cover}, self.SETTINGS), (well, [well]), well)
+
+    def test_other_wells_on_later_pages_are_not_read(self):
+        texts = {1: self.COVERS["AK-3"], 3: "TG-2\nTG-4\n"}
+        self.assertEqual(document_well(texts, self.SETTINGS)[0], "AK-3")
+
+    def test_two_wells_on_the_cover_give_no_well(self):
+        self.assertEqual(document_well({1: "AK-3\nTG-2\nEnd of Well Report"}, self.SETTINGS), ("", ["AK-3", "TG-2"]))
+        self.assertEqual(document_well({1: "End of Well Report"}, self.SETTINGS), ("", []))
+
+    def test_document_contexts_cover_every_page_or_none(self):
+        with with_text({1: self.COVERS["56-32"]}):
+            self.assertEqual(document_contexts(Path("x.pdf"), [1, 2], "eowr", self.SETTINGS),
+                             ({1: {"well": "56-32"}, 2: {"well": "56-32"}}, [], {"well": "56-32", "candidates": ["56-32"]}))
+        with with_text({1: "no well here"}):
+            self.assertEqual(document_contexts(Path("x.pdf"), [1, 2], "eowr", self.SETTINGS)[:2], ({}, [1, 2]))
+        self.assertEqual(document_contexts(Path("x.pdf"), [1], "daily_report", self.SETTINGS), ({}, [], None))
+        self.assertEqual(document_contexts(Path("x.pdf"), [1], "eowr", None), ({}, [], None))
+
+    def test_configuration_is_checked(self):
+        base = load_k1_config()
+        self.assertNotIn("document_context", base)
+        for broken in (dict(self.SETTINGS, pages=0), dict(self.SETTINGS, document_types=[]), dict(self.SETTINGS, extra=1),
+                       dict(self.SETTINGS, well_patterns=["AK-3"]), dict(self.SETTINGS, document_types=["daily_report"])):
+            with self.assertRaises(ValueError, msg=broken):
+                validate_k1_config(dict(base, document_context=broken))
 
 
 class ConfigTests(unittest.TestCase):
