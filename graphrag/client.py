@@ -6,8 +6,7 @@ hosted endpoint (FR-28).
 
 A model profile (`configs/graphrag/models/<name>.json`) names one model on one endpoint with what it needs there:
 extra request fields (such as how thinking is turned off), its context and its prices. Code takes a profile where it
-takes an endpoint name, and `GRAPHRAG_PROFILE` puts one profile on the roles it lists (graphrag/README.md, "The model
-socket"). A profile's calls are cached apart from every other profile's.
+takes an endpoint name, and `GRAPHRAG_PROFILE` puts one profile on the roles it lists (graphrag/README.md, "Trying a model"). A profile's calls are cached apart from every other profile's.
 """
 from __future__ import annotations
 

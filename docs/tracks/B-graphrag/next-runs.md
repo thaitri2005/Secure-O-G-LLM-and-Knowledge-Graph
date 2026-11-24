@@ -2,7 +2,7 @@
 
 **Next: E32, E33 and E34**, once there is compute ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). The team has no GPU of its own (B-D42, B-D43). The runs go on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68, B-D44). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
 
-Every run goes through the model socket (`python -m graphrag.bench`, [how it works](../../../graphrag/README.md#the-model-socket-d-62-d-68)): one command checks a model, one runs the whole suite, one compares runs.
+Every run goes through the model bench (`python -m graphrag.bench`, [how it works](../../../graphrag/README.md#trying-a-model-profiles-and-the-bench-d-62-d-68)): one command checks a model, one runs the whole suite, one compares runs.
 
 | Measurement | What | Inside `bench run --suite full` |
 |---|---|---|

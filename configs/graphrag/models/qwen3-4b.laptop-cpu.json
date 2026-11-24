@@ -1,0 +1,10 @@
+{
+  "description": "Qwen3-4B-Instruct-2507 Q4_K_M on llama.cpp on a laptop CPU, port 8080: slow (about two minutes a question), for checking that the pipeline works with a real model when no GPU is at hand. Not the baseline model: its scores are compared only with other runs of this profile",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "hosted": false,
+  "model": "qwen3-4b",
+  "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "thinking_off": "nothing to do: the 2507 Instruct model has no thinking mode",
+  "context": 16384,
+  "compare_as": "laptop-cpu:qwen3-4b"
+}

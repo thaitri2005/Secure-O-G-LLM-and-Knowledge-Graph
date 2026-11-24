@@ -35,7 +35,7 @@ flowchart TD
 | Module | What it does |
 |---|---|
 | `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard. It resolves model profiles (below) |
-| `bench.py` | The model socket: checks a model, runs the measurement suite through the commands below and compares runs ([below](#the-model-socket-d-62-d-68)) |
+| `bench.py` | The model bench: checks a model, runs the measurement suite through the commands below and compares runs ([below](#the-model-socket-d-62-d-68)) |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the AK-3 daily-report chunks, and every question set with its gold data |
 | `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
@@ -134,9 +134,19 @@ python -m graphrag.ui        # then open http://127.0.0.1:8765
 - **Ask a question:** answers a new question through the coordinator: the framing call and code choose the lane, or you force the end-of-well lanes or the event graph by hand. Needs llama.cpp on port 8080; hosted endpoints are off in the UI.
 - Standard library only, listening on 127.0.0.1. Tests: `tests/test_graphrag_ui.py`.
 
-## The model socket (D-62, D-68)
+## Trying a model: profiles and the bench (D-62, D-68)
 
-Plug in an open-weight model and measure it with one command. What to run when compute arrives, and in what order, is in [next-runs.md](../docs/tracks/B-graphrag/next-runs.md).
+Three layers let a model be swapped and tested, and the project has all three:
+
+| Layer | What it is | Here |
+|---|---|---|
+| Serving | A program that runs a model and gives it an address | llama.cpp for every recorded result. Ollama, LM Studio and vLLM work too: anything that speaks the OpenAI API |
+| One way in | Changing the model without changing code | `graphrag/client.py` speaks the OpenAI API to any address; OpenRouter is the hosted way in. A **model profile** names one model on one address |
+| Evaluation | Running our own questions through our own pipeline and comparing | The **bench**, `python -m graphrag.bench`. It runs the real coordinator, retrieval and checks, which a general prompt-comparison tool cannot |
+
+No gateway library and no outside evaluation tool is added: the first would duplicate the client, the second cannot score answers the way [`scoring.py`](scoring.py) and the citation checks do (Track B log B-D48).
+
+Point at an open-weight model and measure it with one command. What to run when compute arrives, and in what order, is in [next-runs.md](../docs/tracks/B-graphrag/next-runs.md).
 
 ```powershell
 python -m graphrag.bench check qwen3-8b.local                    # a few calls: is the model usable here?

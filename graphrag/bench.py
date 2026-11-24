@@ -1,4 +1,4 @@
-"""The model socket (D-62, D-68): check a model, measure it with the whole suite, compare runs.
+"""The model bench (D-62, D-68): check a model, measure it with the whole suite, compare runs.
 
     python -m graphrag.bench check qwen3-8b.local
     python -m graphrag.bench run qwen3-8b.local --suite quick
@@ -525,7 +525,7 @@ def lines(step_id: str, result: dict) -> list[dict]:
     """A run file as lines of a comparison: one per question set, with its cost per question."""
     ledgers = _ledgers(result)
     total = {key: sum(ledger.get(key, 0) for ledger in ledgers) for key in TOTALS}
-    # Calls answered from the cache before their seconds were kept (runs before the model socket) count 0 s.
+    # Calls answered from the cache before their seconds were kept (runs before the model bench) count 0 s.
     approximate = total["cached_calls"] > 0 and not any("cached_seconds" in ledger for ledger in ledgers)
     seconds, cost = total["seconds"] + total["cached_seconds"], total["cost_usd"] + total["cached_cost_usd"]
     if result.get("retriever") != "coordinator":

@@ -1,4 +1,4 @@
-"""The model socket (graphrag.bench, profiles in graphrag.client) against the stand-in server.
+"""The model bench (graphrag.bench, profiles in graphrag.client) against the stand-in server.
 
 scripts/stub_model_server.py runs on a free local port inside each test. It is not a model: these tests prove the
 wiring (profiles, checks, resuming, the cache, comparisons), never a score.
