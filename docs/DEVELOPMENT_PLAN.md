@@ -32,15 +32,15 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 **Not done:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: nothing new is measured with a real model, the application is not on a server, the facts and the chunks are on two ID schemes in the stores, and vector search does not run in the database.
 
-**Honest limits.** Every question set is simulated. Every method is tuned on one well and one report family. The second build was tested with stand-ins for the model only. The team has no GPU of its own (Track B log B-D43), and no supervisor contact is recorded after 9 November.
+**Honest limits.** Every question set is simulated. Every method is tuned on one well and one report family. The second build was tested with stand-ins for the model only. The team has no GPU of its own and no budget yet for a rented one (Track B log B-D43, B-D44), and no supervisor contact is recorded after 9 November.
 
 ## 1. Planning basis
 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
 - **Compute:**
   - no GPU of the team's own: the desktop that ran every measurement up to E31 was borrowed and is not planned on (Track B log B-D42, B-D43);
-  - hosted open-weight models (OpenRouter), on public data only (D-38), are now the way to measure (D-68). Who holds and funds the account is still open (Q6);
-  - school GPUs, booked through Dr. Le Duy Dung, for large runs and for measurements that must be local. The booking process is still open (Q7);
+  - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks for about US$1,000 for six months (Q6, Q7);
+  - the school's GPUs are not planned on: the supervisor advised they are slow and awkward (24 November);
   - laptops for code, tests, Docling and the stores.
 - **Data:** public only. AK-3 first, then the Utah FORGE reports already used (56-32, 68-32, 78-32). The supervisor's petroleum document, if supplied, is processed on local models only.
 - **Questions:** simulated sets stand in for the expert set (Q2, D-49) and are never reported as expert validation. The application's question log is the new route to real questions (D-65).
@@ -135,7 +135,7 @@ The design is [specification §4.6](PROJECT_DESIGN.md#46-second-build-one-connec
 
 ### M5: scale run on local models
 
-Serve the chosen model locally (vLLM or llama.cpp) on a booked school GPU. Process the corpus in checkpointed runs that stop and resume across slots, then evaluate on held-out questions. Estimate first from the measured cost per page; prepare data, containers and models before the slot starts.
+Serve the chosen model ourselves (vLLM or llama.cpp) on a rented cloud GPU (D-68). Process the corpus in checkpointed runs that stop and resume across slots, then evaluate on held-out questions. Estimate first from the measured cost per page; prepare data, containers and models before the slot starts.
 
 ### M6: second semester
 
@@ -150,9 +150,10 @@ Serve the chosen model locally (vLLM or llama.cpp) on a booked school GPU. Proce
 | Item | Approach | Control |
 |---|---|---|
 | A GPU of our own | None (Track B log B-D43). Runs up to E31 were made on a borrowed desktop | Their recorded scores stand; nothing new is planned on that machine |
-| Hosted open models (OpenRouter) | Measurements and the demo's model, public data only (D-68) | A cap on the account; cost per run reported (FR-30); never private data (spec §10.1); the baseline rerun on the same endpoint before any comparison; provider and model ID recorded with each run |
-| School GPU slots | Large runs, the local-model evaluation, and any measurement that must not leave our machines | Book early; checkpointed jobs; everything prepared before the slot |
-| Shared host for the stores | Interim: Hung's machine over a private network, if he agrees (Track C log C-D06, C-D07); then a cloud server from student credits | Public data only; credentials outside the repository; one shared password in front of the application until login exists |
+| Hosted open models (OpenRouter) | The demo's model and quick checks, public data only (D-68) | A cap on the account; cost per run reported (FR-30); never private data (spec §10.1); a hosted score is compared only with a baseline rerun on the same endpoint |
+| A cloud GPU rented by the hour | Every measurement, experiment and large run, with our own copy of the model (D-68) | Switched off after each session; hours and cost recorded with each run; model files kept on a rented disk; one request at a time; public data only |
+| School GPU slots | Not planned on (D-68) | — |
+| Shared host for the stores | A rented cloud server, from student credits or the requested budget; interim: Hung's machine over a private network, if he agrees (Track C log C-D06, C-D07) | Public data only; credentials outside the repository; one shared password in front of the application until login exists |
 
 Every run reports calls, tokens, seconds and cost per page and per question next to quality. The coordinator adds one model call to lookups; that cost is measured before it is adopted (D-64).
 
@@ -180,7 +181,7 @@ Keep:
 | R-02 | Table parsing errors propagate | Wrong cells, missing headers, lost marks | Rules for known formats with a fallback and a reason; the QA sidecar; measure on other report families | Data |
 | R-03 | Methods tuned on one well do not transfer | A second report family fails | Add one new family at a time in M3; report seen and unseen data separately | Data, Engine |
 | R-04 | The coordinator sends questions to the wrong lane | Pooled score below the hand-routed scores | Wells and dates read by code; fixed fallback; measured before adoption; a lane can be forced from the UI | Engine |
-| R-05 | School GPU slots hard to get | No booking | Local GPU for development; ask early (Q7) | All |
+| R-05 | No compute to measure with: no GPU of our own, no budget yet for a rented one | No approval of the resource plan | Ask now (Q6, Q7); about US$50 a month keeps the project moving; a hosted model for a few dollars covers the first measurements | All |
 | R-06 | Hosted endpoint used on non-public data | A private file in a run | The model client's guard; test it | Engine |
 | R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
 | R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
@@ -248,12 +249,12 @@ Hung asked Tri to do part of this for now (Track B log B-D39), and on 24 Novembe
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | A model endpoint (D-68) | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
+| E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | A rented GPU or a hosted model (D-68) | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
 | E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores. **Built 24 November** (Track B log B-C50): `graphrag/stores.py`; chunks, events and facts from the stores equal the file-loaded ones. Open: vector search in SQL, and the scores from the stores (needs E1) |
 | E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | **Done 24 November** (Track B log B-C37, B-C41): the baseline's requests are unchanged, and tests cover each lane |
 | E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | **Done 24 November** (B-C40): `graphrag/results/E27_fact_graph.graph.json`, 216 facts of 5 wells. Two doubts to check (B-F60) |
-| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, a model endpoint (D-68) | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
-| E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, a model endpoint (D-68) | The garbled answers of E28 are gone; rerun in E33 |
+| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, a rented GPU or a hosted model (D-68) | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
+| E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, a rented GPU or a hosted model (D-68) | The garbled answers of E28 are gone; rerun in E33 |
 | E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support. **Built 24 November, not measured** (Track B log B-C51, B-C52): `graphrag/reasoning.py` and ten frozen questions in `graphrag/gold/ak3_reasoning_probe_v0.json`. Open: the run, which needs a model endpoint (D-68) |
 
 ### Frontend (Tri)

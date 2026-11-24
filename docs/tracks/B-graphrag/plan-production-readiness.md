@@ -62,6 +62,6 @@ The overseeing session merges the six branches, runs the whole test suite, runs 
 | What | Who | Needs |
 |---|---|---|
 | Rent the server, set the passwords, run the runbook | Hung | The provider account |
-| E32, E33, E34 | Tri | A model to measure with: an OpenRouter key and about US$10, which also serves the demo, or a school GPU slot. The desktop was borrowed and is not planned on (B-D43) |
+| E32, E33, E34 | Tri | Compute to measure with: a rented cloud GPU, or an OpenRouter key (B-D44). The desktop was borrowed and is not planned on (B-D43) |
 | Review the K1 release and the Track A log draft | Khai | — |
 | Message anh Tuấn | Tri | — |

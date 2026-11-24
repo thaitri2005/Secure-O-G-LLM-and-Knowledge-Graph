@@ -22,7 +22,7 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 
 - **Connected:** chunk packages with stable IDs (K1 version 1) are loaded into the stores (PostgreSQL with pgvector, Neo4j) by one command; the GraphRAG engine reads the stores; a backend and a React frontend sit on top, behind one shared password, as containers.
 - **Built, not yet measured:** the coordinator that picks a lane per question, with four lanes behind one interface (passages, well facts, events, reasoning about causes).
-- **Not done:** any run of the new parts with a real model; a server. The team has no GPU of its own now, so measurements need a hosted open-weight model on public data or the school GPUs.
+- **Not done:** any run of the new parts with a real model; a server. The team has no GPU of its own now, so measurements need a rented cloud GPU or a hosted open-weight model, on public data, and there is no budget for either yet ([resource plan](docs/reports/RESOURCE_REQUEST_2026-11-24.md)).
 - **Next:** measure, then put it on a server ([task list](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now)).
 
 All question sets so far are simulated; none is expert-reviewed.

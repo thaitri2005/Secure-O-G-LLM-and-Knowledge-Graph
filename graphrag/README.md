@@ -58,7 +58,7 @@ Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/
 
 ## The coordinator (D-64)
 
-Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time. It needs a model endpoint: a hosted open-weight model on public data (OpenRouter) or the school GPUs (B-D43); on a hosted model set `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` and add `--no-embeddings`. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time. It needs a model endpoint: a rented cloud GPU running the commands as written, or a hosted open-weight model on public data (D-68); on a hosted model set `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` and add `--no-embeddings`. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
 
 ```powershell
 # Every development question in one pool, no lane given (E33)

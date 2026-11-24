@@ -13,7 +13,7 @@ One per stint, for the supervisor, in their own folder: [stints/](stints/README.
 
 ## Draft: resource plan and request, 24 November 2026
 
-[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): everything the project needs to be developed, measured and shown, what the team has, and what it asks for. From the school: GPU time (one 16 GB card, about 8 hours a week) and one small virtual machine. From the supervisor: US$10 for a hosted open-weight model, and one or two experts to try the application. It ends with the email to the school. A draft until the team checks it; the recipient of the email and the school's booking rules are assumptions. Prices are list prices found that day.
+[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): everything the project needs to be developed, measured and shown, what the team has, and what it asks for: a budget of about US$1,000 for six months of rented cloud compute (a GPU by the hour, a server that stays on, hosted open-weight models), on public data only. It ends with the email to the school. A draft until the team checks it: the recipient, the six months and one server price are assumptions, and prices are list prices found that day.
 
 ## Slides
 

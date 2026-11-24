@@ -16,7 +16,7 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | Notes to teammates, 24 November | [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md) and [for Hung](../C-storage/note-from-track-B-2026-11-24.md): what was built in their tracks with their clearance, and what is left for each |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
 
-**Where things stand on 24 November 2026:** the log's "Current state" table. The second build is coded and runs end to end on a laptop with a stand-in model: the coordinator and four lanes ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes), [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-built-not-yet-measured)), the engine on the stores, the application. What comes next is measuring it, which needs a hosted open-weight model or a school GPU (B-D43); the commands are in [next-runs.md](next-runs.md).
+**Where things stand on 24 November 2026:** the log's "Current state" table. The second build is coded and runs end to end on a laptop with a stand-in model: the coordinator and four lanes ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes), [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-built-not-yet-measured)), the engine on the stores, the application. What comes next is measuring it, which needs a rented cloud GPU or a hosted open-weight model (B-D43, B-D44); the commands are in [next-runs.md](next-runs.md).
 
 Measurements go into experiment records in [`docs/experiments/`](../../experiments/README.md) (E14 onward). The log links to them and does not copy their numbers.
 

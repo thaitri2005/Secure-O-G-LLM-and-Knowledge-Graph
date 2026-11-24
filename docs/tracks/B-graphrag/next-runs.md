@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. **The team has no GPU of its own now** (B-D42, B-D43): the desktop these runs were written for was borrowed. Run them on a hosted open-weight model on public data ([below](#on-a-hosted-model)) or on a school GPU with the local commands as written.
+Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. **The team has no GPU of its own now** (B-D42, B-D43): the desktop these runs were written for was borrowed. Run them on a rented cloud GPU with the local commands as written (our own model copy, so scores stay comparable; D-68, B-D44), or on a hosted open-weight model on public data ([below](#on-a-hosted-model)). Neither is paid for yet ([resource plan](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
 
 ## Before you start
 

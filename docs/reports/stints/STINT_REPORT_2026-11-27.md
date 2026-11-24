@@ -11,7 +11,7 @@
 - **The parts are connected.** The application answers from the stores (PostgreSQL and Neo4j), behind one shared password, and one command loads a new report package into them. It ran end to end on a laptop, with a stand-in in place of the AI model.
 - A total such as "hours of non-productive time" is **calculated by code and never written by an AI**, so it cannot be a guess.
 - A question about **the cause of a problem** now gets an answer in parts: what the reports state, other possible factors labelled as possibilities, and what is missing for a real judgement.
-- **Not done yet:** no run with the real AI model on the new parts, so we cannot say how well they answer. We have no graphics card of our own now, so these runs need a hosted model or the school's GPUs, and a server needs an account. Both are small asks (§12).
+- **Not done yet:** no run with the real AI model on the new parts, so we cannot say how well they answer. We have no graphics card and no server of our own, so both must be rented (§12).
 
 ## 2. What you asked for, and where each stands
 
@@ -192,7 +192,7 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 ## 11. Weak points
 
 - **The new parts have not run with the real model yet.** How well the coordinator chooses, and how good an answer about a cause is, are unknown until they do. Everything in this report was tested with stand-ins for the model.
-- **We have no graphics card of our own.** Every earlier result came from a borrowed machine. New runs go to a hosted open-weight model, on public data only, or to the school's GPUs. A hosted model is not the same copy as the one we measured before, so we will rerun the earlier baseline there before comparing anything with it.
+- **We have no graphics card of our own.** Every earlier result came from a borrowed machine. As you advised, we plan to rent a GPU by the hour from a cloud provider instead of using the school's machines, and run our own copy of the model there, so new results stay comparable with the earlier ones. All of it holds public data only: a private document cannot go on a rented machine without VPI's agreement.
 - **Connected on laptops, not on a server.** The steps for a real server with a real address are written but have not been run.
 - **No search vectors in the laptop's store**, so a question naming several wells searches by words only there.
 - **The well facts and the passages use two ID schemes** in the stores, so a fact's passage cannot always be shown.
@@ -205,9 +205,8 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 
 1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones.
 2. **What it is for**: which report types stay in scope, and which kinds of question users ask.
-3. **US$10** for a hosted open-weight model, on public data only. It now covers two things: the runs that measure the new parts (under US$1) and a demo that answers at any hour. Detail: [resource request](../RESOURCE_REQUEST_2026-11-24.md).
-4. **How to book the school GPUs.** This matters sooner than before: anything that must stay on our own machines waits for a slot.
-5. **A server**, if the student credits cannot be used: up to US$50 a month.
+3. **A budget for rented compute: about US$1,000 for six months.** A GPU by the hour (about 20 hours a week) for measurements and experiments, a server that stays on for the application, and pay-per-use hosted models for a demo that answers at any hour. About US$50 a month is the least that keeps the project moving. We are asking the school; your support for the request, or advice on who decides, would help. Detail: [resource plan](../RESOURCE_REQUEST_2026-11-24.md).
+4. **If a private VPI document is to be used later:** where it may be processed, since we will have no machine of our own.
 
 ## 13. What comes next
 
@@ -215,7 +214,7 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 
 | Who | What |
 |---|---|
-| Tri | With a hosted model, once there is a key: rerun the baseline, then the coordinator on all 221 development questions and the ten questions about causes, and decide whether to keep the coordinator |
+| Tri | Send the request for rented compute. Once a GPU can be rented: the coordinator on all 221 development questions and the ten questions about causes, and decide whether to keep the coordinator |
 | Hung | Review the loading command and the container setup; host the stores where all three of us reach them |
 | Khai | Review the demo package and the record written for him; decide which reading options go on |
 

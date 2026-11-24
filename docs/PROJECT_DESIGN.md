@@ -2,7 +2,7 @@
 
 ## Project specification and system design
 
-**Document version:** 3.5 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice; then what was built the same day, §3.1 and §8.4; measurements move to hosted models, D-68)<br>
+**Document version:** 3.5 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice; then what was built the same day, §3.1 and §8.4; compute is rented, D-68)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** the first build is closed (§4.5): chunk packages, the stores and a GraphRAG engine with two graphs exist as three separate parts; the second build connects them behind one application (§4.6)<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md), [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
@@ -162,7 +162,7 @@ During development the team uses hosted open-weight models through an API, **on 
 3. **A thin GraphRAG slice on one document.** On the chosen base pipeline: ontology injection, extraction, embeddings, graph, and cited answers to a few questions, checked by hand.
 4. **Quality and control.** Glossary, entity linking across documents, confidence scores and flagged items, table extraction efficiency, and evaluation on the expert question set; then 5–10 documents.
 5. **The full application.** Chat for end users, administration, governance features (versions, audit, corrections).
-6. **Scale run** on booked school GPUs with a locally deployed model; **access control** and hardening.
+6. **Scale run** on a rented cloud GPU with a model we deploy ourselves (D-68); **access control** and hardening.
 
 The plan maps steps 1–5 onto the first semester. Step 6 and improvements fall in the second (D-35).
 
@@ -279,7 +279,7 @@ The second group was built before the 28 October direction and remains the inges
 
 **Not built (24 November):**
 
-- any measurement of the second build with a real model: the coordinator against the hand-routed scores (E33), the reasoning lane (E34), answers on K1 version 1 and from the stores (E32). The team has no GPU of its own, so these need a hosted open-weight model or the school GPUs (D-68);
+- any measurement of the second build with a real model: the coordinator against the hand-routed scores (E33), the reasoning lane (E34), answers on K1 version 1 and from the stores (E32). The team has no GPU of its own, so these need a rented cloud GPU or a hosted open-weight model (D-68);
 - the application on a server: the steps are written and have run on a laptop only;
 - facts on K1 version 1 chunk IDs: the fact region cites version 0 IDs, which the stores do not hold, so a fact's passage cannot always be shown (Track B log B-F63);
 - vector search inside PostgreSQL wired into the engine: questions naming several wells search in memory;
@@ -385,7 +385,7 @@ flowchart TB
         ONT["Ontology and glossary<br/>versioned, admin-managed"] --> W & CO
     end
     DEV["Hosted open-model API (e.g. OpenRouter),<br/>public documents only: development,<br/>measurements and the demo (D-68)"] -.-> LM & VLM & EMB
-    GPU["School GPU slots, for large runs and<br/>for anything that must stay local"] -.-> LM & VLM
+    GPU["A cloud GPU rented by the hour:<br/>our own model copy, public data only (D-68)"] -.-> LM & VLM
 ```
 
 </details>
@@ -1242,7 +1242,7 @@ Retirement stops serving at once. Purging removes originals and derived chunks, 
 | Use | Compute | Notes |
 |---|---|---|
 | Daily development, one-document runs | Hosted open-weight models through an API (D-38); students' laptops for code, tests, Docling and the stores | Cost is small (about US$5–10 goes a long way, per the supervisor); the supervisor supports it; track spend per run |
-| Large runs (hundreds to thousands of pages), local-model evaluation | **School GPU machines**, booked by time slot; access through Dr. Le Duy Dung | Slots are time-limited and queued: runs must checkpoint and resume; prepare everything before the slot |
+| Measurements, experiments and large runs (hundreds to thousands of pages) | **A cloud GPU rented by the hour** (one 24 GB card), running our own copy of the model (D-68). The school's GPU machines, reached through Dr. Le Duy Dung, are not planned on: the supervisor advised they are slow and awkward | Runs must checkpoint and resume; model files are kept on a rented disk between sessions; the machine is switched off after each session; public data only |
 | Deployment target | One GPU that serves a ~7B model locally (a 16 GB-class card fits a 7B model in 4-bit, or 8B with limits) | The size limit (D-37) keeps the deployment hardware realistic |
 
 The current laptop (no usable GPU) runs only a 3B model: one 15-chunk evaluation takes about 21 minutes, and full-corpus extraction would take about 40 hours ([E10](experiments/E10-profile-driven-prototype.md)). That is why development moves to hosted models.
@@ -1256,7 +1256,7 @@ Every run reports pages, tables, chunks, LLM calls, input/output tokens, VLM sec
 | Environment | Content |
 |---|---|
 | Development | Laptops plus Docker Compose (PostgreSQL, Neo4j, MinIO, vector store), hosted model endpoints, public data |
-| GPU runs | School GPU slot: local model server (vLLM or llama.cpp), the worker and the stores, or the worker pointed at them |
+| GPU runs | A rented cloud GPU: local model server (vLLM or llama.cpp), the worker and the stores, or the worker pointed at them |
 | Demonstration | Compose on one host with local models, public data |
 
 Production operations (independent backups, restore drills, runbooks, an operator, RPO/RTO targets) are second-semester work. They are required only if the system will hold private data or serve users beyond the team.
@@ -1322,7 +1322,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-35 | Builder, application and English QA in the first semester; improvements in the second | Supervisor 7 Oct; reporting format replaced by D-46 | Calendar shows it is infeasible |
 | D-36 | **GraphRAG approach**: LLM extraction under a provided ontology plus graph-and-vector retrieval, built on an existing open-source GraphRAG pipeline; no training of custom extraction models | Supervisor direction, 28 Oct 2026 ([digest](requirements/supervisor-meeting-2026-10-28.md) §4) | Base pipeline cannot meet G3/G5 after optimization |
 | D-37 | **Open-weight models only, about 7B or smaller**, for extraction, parsing and answering; no commercial models or APIs | Supervisor direction, 28 Oct (§2) | Supervisor changes the limit |
-| D-38 | **Compute**: hosted open-model APIs (e.g. OpenRouter) for development on public data, cost supported by the supervisor; school GPU slots for large runs; the same code switches to local endpoints | Supervisor direction, 28 Oct (§2) | GPU access or budget changes |
+| D-38 | **Compute**: hosted open-model APIs (e.g. OpenRouter) for development on public data, cost supported by the supervisor; school GPU slots for large runs; the same code switches to local endpoints. **Amended by D-68 (24 November):** a rented cloud GPU replaces the school slots | Supervisor direction, 28 Oct (§2) | GPU access or budget changes |
 | D-39 | **VLM page parsing** replaces OCR-engine work; tables emitted as Markdown/HTML; Docling's table model is the baseline | Supervisor direction, 28 Oct (§3, §7) | No VLM within the limit beats Docling on the table set |
 | D-40 | **Scope by document type**: everything in end-of-well and daily drilling reports, including geology sections at summary level; supersedes the geology exclusion of D-34 | Supervisor answer, 28 Oct (§6) | Supervisor changes scope |
 | D-41 | **Capstone, not research**: deliver a full application (data, ingestion, architecture, governance, application, end user); prefer measured effectiveness; start basic and upgrade parts | Supervisor direction, 28 Oct (§5) | — |
@@ -1352,7 +1352,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-65 | **The application is built now: a FastAPI backend and a React frontend,** read path first (§4.6, §7.5). It replaces the plan of first pointing Track B's local UI at the stores; D-60's purpose stays. Every question asked is logged, so use by domain experts yields the real questions (Q2, Q13). Work is split by data, backend and frontend from this stint (D-46); who takes which is the team's to agree (Q14) | 24 Nov 2026; Tri (Track B log B-D37) | The team cannot staff a frontend, or the supervisor wants something shown sooner than it can be built |
 | D-66 | **The reasoning lane is designed and probed, not promised.** It finds the problem event, gathers what surrounds it in code, and answers in two parts: causes the reports state, and possible causes, each cited (§8.6). About ten frozen questions on AK-3's non-productive events test it. No inferred cause is stored in the graph | 24 Nov 2026; Tri, from D-61 (Track B log B-D38) | The probe shows the data supports nothing useful, or more data arrives |
 | D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is **proposed**, to agree with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35); **agreed by Hung the same day**, as relayed by Tri (B-D39). Exported as a file (B-C40); `CASED_WITH` is not written yet | Loading it shows another layout works better, or a question type needs K2's other entity types |
-| D-68 | **Measurements and the demo use a hosted open-weight model on public data; the school GPUs serve what must stay local.** The team has no GPU of its own: the desktop that ran every measurement up to E31 was borrowed. A hosted model is served at full precision by a third party, so its scores are not comparable with the recorded ones from a 4-bit local copy: the baseline is rerun on the same endpoint before any comparison, the provider and model ID are recorded with each run, and tokens, not seconds, are the efficiency measure there. Recorded scores stand as recorded. Private documents never go to a hosted endpoint (§10.1); the client refuses them | Tri, 24 November 2026; Track B log B-D42, B-D43 | D-38, §10.1, §11.3, Q6, Q7, Q15 |
+| D-68 | **The team rents its compute: a cloud GPU by the hour for measurements, a cloud server for the stores and the application, and a hosted open-weight model for the demo. All on public data only.** The team has no GPU of its own: the desktop that ran every measurement up to E31 was borrowed. The supervisor advised against the school's machines as slow and awkward (24 November), so they are no longer planned on. A rented GPU runs our own 4-bit copy of the model with llama.cpp, so its scores stay comparable with the recorded ones; a hosted model is served at another precision by a third party, so it is for the demo and quick checks, and a hosted score is compared only with a baseline rerun on the same endpoint. Every rented machine is someone else's: a private document goes on none of them without VPI's written agreement (§10.1); the client refuses private data on hosted endpoints. The budget is in the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) | Tri, 24 November 2026, on the supervisor's advice; Track B log B-D42 to B-D44 | D-38, §10.1, §11, Q6, Q7, Q15 |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1375,13 +1375,13 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 
 | # | Question | Current assumption | Affects |
 |---|---|---|---|
-| Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and may it be processed on school GPUs? | Public data only until then; a private document runs on local models only | §10.1, final evaluation |
+| Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and where may it be processed? The team will have no machine of its own (D-68), and a rented one is someone else's | Public data only until then; a private document needs VPI's written agreement to a provider, or VPI's own hardware | D-34, D-68, §10.1 |
 | Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct. Simulated sets stand in for development (D-49). On 5 Nov Tri asked for a specification to write better development questions from. On 9 Nov the supervisor proposed getting questions by showing domain experts a simple UI (D-60) | G5, §12 |
 | Q3 | Which GraphRAG base pipeline, and is the event graph the right main graph? | No base beats retrieval on current questions (E16 to E27), but a graph of events does on totals over time (E28), so the first build uses it for those (D-53) and keeps the per-well fact graph in the end-of-well answer path (D-55). On 9 November the supervisor accepted the lanes as a concept and asked for a coordinator (D-58), without judging them until the purpose of use is known (Q13). Whether users ask questions over time was not answered; the question log is to show it (D-65) | D-36, D-50, D-53, D-55, §8.4, §9 |
 | Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |
 | Q6 | How is the OpenRouter (or similar) account funded and capped, and who holds it? | Supervisor supports the cost; team sets a monthly cap | D-38 |
-| Q7 | How does the team book the school GPUs (which GPUs, slot length, software allowed)? | Ask Dr. Le Duy Dung | D-38, §11 |
+| Q7 | How is the rented compute paid for: a budget from the school, a refund, or accounts someone else holds? (Was: how to book the school GPUs, which are no longer planned on, D-68) | Ask Dr. Le Duy Dung with the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md): about US$1,000 for six months | D-38, D-68, §11 |
 | Q8 | May the two VPI requirement documents be published in this public repository? | No | `docs/requirements/` |
 | Q9 | The two papers (OnePetro 642469, EarthDoc DOI) | The supervisor's friend abroad will download and send them | [Related work](references.md) |
 | Q10 | Is the ontology assistant (FR-20) wanted? | Later | §6 |
@@ -1389,7 +1389,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q12 | Who reviews flagged items and labels the extraction sample? | The team, with the expert group's help if available | D-43, D-63, G3 |
 | Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61). The application's question log is meant to help answer it (D-65) | D-58, D-61, D-64 |
 | Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Hung agreed to backend and stores on 24 November, and asked Tri to do part of it for now (Track B log B-D39). Khai agreed to data the same day (B-D40). The roles are settled for this stint | D-65, plan §2 |
-| Q15 | Where does the demo for domain experts run, and which model serves it? | **The model: a hosted open-weight endpoint,** since the demo data is public and the team has no GPU of its own (D-68). The stores and the application: a cloud server from student credits when one is found; until then Hung's machine over a private network if he agrees (Track C log C-D06, C-D07), which cannot serve a demo at any hour | D-65, D-68, §10.1, §11.3 |
+| Q15 | Where does the demo for domain experts run, and which model serves it? | **The model: a hosted open-weight endpoint,** since the demo data is public and the team has no GPU of its own (D-68). The stores and the application: a rented cloud server, from student credits or the requested budget; until then Hung's machine over a private network if he agrees (Track C log C-D06, C-D07), which cannot serve a demo at any hour | D-65, D-68, §10.1, §11.3 |
 ### 13.3 Change process
 
 Update this document first when scope, interfaces, stores or gates change, then the plan. Record supervisor direction as a meeting digest in [`requirements/`](requirements/) and as decisions here. When a decision is superseded, move it to the superseded table and **remove** the old design text; do not leave both. Update §3 only after code and evidence exist. Measurements live in [experiment records](experiments/README.md).
