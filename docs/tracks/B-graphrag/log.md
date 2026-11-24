@@ -874,3 +874,57 @@ Tri asked for every piece of code that can be written without a model or a budge
 - **In the stores:** 1,431 chunks, 302 of 302 pages rebuilt, 161 events, 58 of 58 plans, 216 facts; 36 fact chunks are package IDs and all are in PostgreSQL. Loaded twice with the same counts.
 - **What it fixes:** with the stores as the source, an exact-mode question about AK-3's casing returned 12 facts and no passage; it now returns 12 facts and 6 passages.
 - **Open:** the 14 facts on old IDs; why 56 of 56-32's old chunks have no mapping.
+
+## 2026-11-25 (later): a design review, a code review, and the first runs with the real model
+
+Tri asked for the whole project to be gone over before people are put in front of it: the design, the code, the application, the diagrams and the documents. Hung and Khai gave clearance for their tracks. The work ran in a cloud session with review agents; that machine has 4 CPU cores, 16 GB of memory and Docker, which turned out to be enough to run Qwen3-8B itself, slowly (B-F71).
+
+**B-D49 (decision; the application is built around one model slot and around not losing a question).** Specification D-69. A design review read the second build against its code before the first deployment. Its verdict: the shape is right for this size (one process, the engine in memory, one compose file, one proxy) and nothing should be added to it: no queue service, no answer cache, no streaming. The gaps were operational: nothing bounded waiting, a failed question was lost, the stores did not come back after a reboot, and nobody would have known the demo was down.
+
+**B-C65 (design choice; waiting, failures and readiness in the backend).** `backend/`, 50 tests without a store.
+
+- **Questions take turns with limits.** A question waits at most 60 seconds for the model's slot and at most 8 wait; beyond either the reply is `503` with code `busy` and `Retry-After`. Before, waiting had no bound: a browser that had given up still held its place.
+- **The limits are ordered:** one model call 75 seconds, the wait for a turn 60, the browser 240. Before, the model client waited 900 seconds a call and the browser 180, so a hung model blocked everyone for up to half an hour after the asker had left.
+- **A failed question is logged**, with status `error` and the kind of failure, and its ID is in the error reply. Before, a question that failed left no trace, so an expert's question was lost and the error rate could not be counted.
+- **An answer is never lost to the log.** If the log cannot be written, the answer is returned and the server log has the failure. Before, a PostgreSQL that dropped after the answer was made turned the answer into a `503`.
+- **`GET /v1/ready`** asks the model endpoint and the question log, at most once every 15 seconds. `GET /v1/health` stays the cheap check that the process is up.
+- **One error shape:** a sentence, a code, and the question's log ID.
+- **One line per question in the server log**, as JSON; `python -m backend.questions stats` reads the log into seconds per question (median and 95th percentile), calls and tokens per question, and the shares of errors, "not found" and fallbacks.
+- **A reply that should be JSON and is not is not kept in the request cache** by the service, so "Try again" asks the model again. Measurements keep every reply, as before.
+- **The search indexes are built at start**, not by the first question.
+- **Not done, on purpose:** several questions at once on a hosted endpoint (the engine counts cost per client, so it stays one at a time); an idempotency key (a retried question is logged twice, and answered from the cache); a fallback to BM25 when the embedding server stops after start (the documented choice is to fail, not to search another way quietly).
+
+**B-C66 (design choice; a hosted model only sees packages named as public).** Finding of the review: the client's guard against private data on a hosted endpoint never fired in the backend, because nothing told it what a package holds, and the runbook said it did. The service now checks once, at start: with a hosted endpoint in the roles file and the stores as the source, the loaded package must be named in `BACKEND_PUBLIC_RELEASES`, or the service does not start. A person names it; that is the statement that its reports are public.
+
+**B-C67 (design choice; the stores and the server).** `platform/docker-compose.yml`, `deploy/`, `platform/server/`, with Hung's clearance.
+
+- PostgreSQL and Neo4j restart by themselves and have health checks; the backend starts when they answer. Before, a reboot left the stores down and the backend in a restart loop until someone logged in.
+- Neo4j's heap is 512 MB and its page cache 256 MB, with memory limits on every service: the graph is hundreds of nodes and is read once. APOC is no longer installed: nothing in the application calls it, and installing it made an internet download part of every first start.
+- The proxy refuses request bodies over 64 kB and sends a content security policy and HSTS.
+- `deploy/watch.sh` runs the quick smoke test from another machine every five minutes and posts to the group chat when the application goes down or comes back. `smoke_test.py --quick` asks no question.
+- `backup.sh` copies the dumps off the server when `BACKUP_REMOTE` is set, and says so in its log; `restore_check.sh` proves a dump restores. The question log is the one thing that cannot be rebuilt.
+
+**B-F68 (finding; nine of the 216 checked facts were wrong, and the check let them through).** The rule "the value is written in its chunk" was a plain text search, so digits inside a longer number counted.
+
+- Examples that had passed: TG-2 ground elevation 150, from "approximately 1500' elevation"; TG-4 non-productive time 8, from "drilled to 833'"; AK-3 highest measured temperature 180, from a map coordinate "78180.6".
+- The check now wants the number written as a number of its own, with trailing zeros allowed ("5.5" is "5.500"). **216 facts become 207:** AK-3 66 to 65, TG-2 10 to 4, TG-4 3 to 1; 56-32 and 68-32 keep theirs.
+- B-F62's fact (AK-3, 3 days from spud to release) still passes: a real 3 is written in its chunk for another reason. That kind needs a check on meaning, not on digits.
+- The fact sheets of E20, E22 and E27 were made with the old check. Their scores stand as recorded; new runs use the new check, with baselines rerun beside them.
+
+**B-F69 (finding; the scorer had three loopholes, none of which touched a recorded score).** A question with no gold fact counted as correct whenever no value came back, so a broken reply was "correct"; the probe's "fallback" outcome was correct whatever the answer said; and an empty list of causes from a broken reply was a correct "no cause stated". Checked on every recorded run: 0 rows were scored through any of them (2,657 rows, 3 of them invalid replies, all on questions with gold). The rules are now: with no gold, only "not stated" is right; the probe's fallback question must also end as "not stated"; a broken reply is never right. The probe's questions are unchanged; this is the scorer, fixed before its first run.
+
+**B-F70 (finding; other defects from the code review, each fixed with a test in `tests/test_graphrag_review_fixes.py`).**
+
+- **Plan dates were compared as text.** A plan with "20 August 2016" matched no bound and the total came out over the whole well (115 hours for a two-day question that should give 31), reported as calculated. Dates are now put in one form first; a date code cannot read, a reversed range, a negative number or an unknown operation gives "not stated".
+- **A date range in a question was read as its last day**, and "August 20, 2016", "2016-08-20" and "20 Aug 2016" as no date at all. All are read now, and a range gives each of its days.
+- **A search over no passages divided by zero** (a question naming a well and a day the well has no report for): a 500 in the application.
+- **An answer reply with a number where text was asked crashed the run** and, being cached, would have stopped every resume at the same question. Replies are now checked in shape; a wrong shape is an invalid reply.
+- **A cause was kept on a one-letter quote.** A quote now needs four letters or digits.
+- **Page images were written under the package's file ID and looked up under the report's name**, so no page image could show on a package. Both are tried now.
+- **A total could be computed on AK-3 for a question about a well the engine does not hold**, when the model left the well out of the plan. Such a question now has no plan.
+- **Rows from cached calls recorded 0 seconds.** They keep what the call took when it was made.
+- **The bench's comparison paired the coordinator with the first run of the same set it found**, which could be the quick check or a step on the package. It now takes the hand-routed step, of the same run first.
+- **`backend.questions counts` counted a question once per mark.**
+- **Left open:** value matching is looser than its description (a numeric gold accepts numbers within 0.5%, so 1955 accepts 1946; the first number in an answer wins; units are not compared). These are the prototype's rules, and changing them means rescoring every baseline: to decide with the first expert-reviewed set. A resumed bench run does not notice a server restarted with another context size or thinking setting: restart with the same command, as the README says.
+
+**B-C68 (design choice; every diagram redrawn in one style and checked against the code).** 15 diagrams. Each box and arrow was checked against the code; the ones that had drifted were redrawn (three lanes for four, MinIO as the file store, a viewer that was never built, the fallback arrow pointing at the wrong lane). One palette with five meanings: people and screens green, our code blue, stores amber, models violet, rented or outside grey and dashed. New: the deployment drawn with its ports and volumes, and "the life of a question" in the engine README in place of the first build's crowded chart. How to export them on Linux is in [docs/diagrams/README.md](../../diagrams/README.md).
