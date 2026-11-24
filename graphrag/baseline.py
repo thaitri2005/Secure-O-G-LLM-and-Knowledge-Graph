@@ -240,6 +240,63 @@ class PropertyRanker:
         return [name for name, _ in self.dense.search(question, n)]
 
 
+def answer_one(q: dict, hits: list[str], graph: str, by_id: dict[str, Chunk], client: ModelClient, gold: dict, *,
+               facts: dict[str, list[str]] | None = None, withhold_unsupported: bool = False, max_tokens: int = 400,
+               answer_format: str = "status_first", system_note: str = "") -> dict:
+    """One question, from its passages (`hits`) and optional graph context (text placed before the passages) to a
+    scored row. Citations are checked against those passages only."""
+    facts = facts or {}
+    # Passages from one report are labelled by chunk number; mixed reports need the full chunk ID (B-C12).
+    docs = {by_id[cid].doc_id for cid in hits}
+    doc = next(iter(docs)) if len(docs) == 1 else AK3
+    label = short_id if len(docs) <= 1 else (lambda cid: cid)
+    passages = "\n\n".join(
+        f"[{label(cid)}] (page {by_id[cid].page}) {by_id[cid].text}"
+        + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
+        for cid in hits)
+    if graph:
+        graph = f"{graph}\n\n" if graph.startswith("Event database result") else \
+            f"Knowledge graph extracted from the reports (may be incomplete; cite passages only):\n{graph}\n\n"
+    system = SYSTEM + (EVIDENCE_NOTE if answer_format == "evidence_first" else "") + system_note
+    call = client.chat([{"role": "system", "content": system},
+                        {"role": "user", "content": f"{graph}Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
+                       schema=ANSWER_FORMATS[answer_format], max_tokens=max_tokens)
+    parsed = call.parsed or {"status": "invalid", "answers": []}
+    status = parsed.get("status", "invalid")
+    answers = parsed.get("answers", []) if status == "answered" else []
+    resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, doc) for a in answers]
+    withheld = []
+    if withhold_unsupported:
+        # B-F17: an answer no retrieved passage supports is dropped; with none left, the question is withheld.
+        withheld = [a["value"] for a, (c, _) in zip(answers, resolved) if c is None]
+        kept = [(a, r) for a, r in zip(answers, resolved) if r[0] is not None]
+        answers, resolved = [a for a, _ in kept], [r for _, r in kept]
+        status = "withheld" if withheld and not answers else status
+    values = list(dict.fromkeys(normalize(a["value"]) for a in answers))
+    expected = [gold[g] for g in q["gold"]]
+    result = score_answer(q, expected, status, values)
+    wanted = gold_chunks(q, gold)
+    cited = [cited_id(a["chunk"], hits, doc) for a in answers]
+    return {
+        "id": q["id"], "kind": q["kind"], "status": status, "values": values,
+        "raw_values": [a["value"] for a in answers], "units": [a["unit"] for a in answers],
+        "withheld_values": withheld,
+        **({"evidence": parsed["evidence"]} if "evidence" in parsed else {}),
+        **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
+        # Questions across wells need every fact's passage, not just one (cross-report probe).
+        "gold_facts_retrieved": sum(bool(set(e["chunks"]) & set(hits)) for e in expected) if expected else None,
+        "gold_facts": len(expected),
+        "citations": [{"chunk": c, "how": how} for c, how in resolved],
+        "citations_supported": all(c is not None for c, _ in resolved),
+        "verified_on_gold_chunk": all(c in wanted for c, _ in resolved) if wanted and resolved else None,
+        "citations_in_retrieved": all(c in hits for c in cited),
+        "citations_on_gold_chunk": all(c in wanted for c in cited) if wanted and cited else None,
+        "quotes_verbatim": all(c in by_id and squash(a["quote"]) in squash(by_id[c].text)
+                               for a, c in zip(answers, cited)),
+        "passages": len(hits), "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
+        "seconds": call.seconds, "cached": call.cached}
+
+
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,
                      withhold_unsupported: bool = False, max_tokens: int = 400,
                      questions: str | list[dict] = "prototype", answer_format: str = "status_first",
@@ -250,63 +307,16 @@ def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, lis
     by_id = {c.id: c for c in chunks}
     # A set name loads questions and gold; a list of questions (the UI's live mode) is answered without gold.
     questions, gold = load_questions(questions) if isinstance(questions, str) else (questions, {})
-    facts = facts or {}
     rows = []
     for q in questions:
         hits, graph = retrieve(q["question"])
-        # Passages from one report are labelled by chunk number; mixed reports need the full chunk ID (B-C12).
-        docs = {by_id[cid].doc_id for cid in hits}
-        doc = next(iter(docs)) if len(docs) == 1 else AK3
-        label = short_id if len(docs) <= 1 else (lambda cid: cid)
-        passages = "\n\n".join(
-            f"[{label(cid)}] (page {by_id[cid].page}) {by_id[cid].text}"
-            + ("\nFacts extracted from this passage: " + "; ".join(facts[cid]) if cid in facts else "")
-            for cid in hits)
-        if graph:
-            graph = f"{graph}\n\n" if graph.startswith("Event database result") else \
-                f"Knowledge graph extracted from the reports (may be incomplete; cite passages only):\n{graph}\n\n"
         routed = multi_well_format is not None and names_several_wells(q["question"])
-        chosen = multi_well_format if routed else answer_format
-        system = SYSTEM + (EVIDENCE_NOTE if chosen == "evidence_first" else "") + system_note
-        call = client.chat([{"role": "system", "content": system},
-                            {"role": "user", "content": f"{graph}Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
-                           schema=ANSWER_FORMATS[chosen], max_tokens=max(max_tokens, MULTI_WELL_TOKENS) if routed else max_tokens)
-        parsed = call.parsed or {"status": "invalid", "answers": []}
-        status = parsed.get("status", "invalid")
-        answers = parsed.get("answers", []) if status == "answered" else []
-        resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, doc) for a in answers]
-        withheld = []
-        if withhold_unsupported:
-            # B-F17: an answer no retrieved passage supports is dropped; with none left, the question is withheld.
-            withheld = [a["value"] for a, (c, _) in zip(answers, resolved) if c is None]
-            kept = [(a, r) for a, r in zip(answers, resolved) if r[0] is not None]
-            answers, resolved = [a for a, _ in kept], [r for _, r in kept]
-            status = "withheld" if withheld and not answers else status
-        values = list(dict.fromkeys(normalize(a["value"]) for a in answers))
-        expected = [gold[g] for g in q["gold"]]
-        result = score_answer(q, expected, status, values)
-        wanted = gold_chunks(q, gold)
-        cited = [cited_id(a["chunk"], hits, doc) for a in answers]
-        rows.append({
-            "id": q["id"], "kind": q["kind"], "status": status, "values": values,
-            "raw_values": [a["value"] for a in answers], "units": [a["unit"] for a in answers],
-            "withheld_values": withheld,
-            **({"evidence": parsed["evidence"]} if "evidence" in parsed else {}),
-            **result, "retrieved_gold": bool(wanted & set(hits)) if wanted else None,
-            # Questions across wells need every fact's passage, not just one (cross-report probe).
-            "gold_facts_retrieved": sum(bool(set(e["chunks"]) & set(hits)) for e in expected) if expected else None,
-            "gold_facts": len(expected),
-            "citations": [{"chunk": c, "how": how} for c, how in resolved],
-            "citations_supported": all(c is not None for c, _ in resolved),
-            "verified_on_gold_chunk": all(c in wanted for c, _ in resolved) if wanted and resolved else None,
-            "citations_in_retrieved": all(c in hits for c in cited),
-            "citations_on_gold_chunk": all(c in wanted for c in cited) if wanted and cited else None,
-            "quotes_verbatim": all(c in by_id and squash(a["quote"]) in squash(by_id[c].text)
-                                   for a, c in zip(answers, cited)),
-            "passages": len(hits), "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
-            "seconds": call.seconds, "cached": call.cached})
-        print(f"{q['id']} {q['kind']:<11} {'OK ' if result['correct'] else 'BAD'} {status} "
-              f"{rows[-1]['values']} {call.prompt_tokens}+{call.completion_tokens} tok {call.seconds}s", flush=True)
+        row = answer_one(q, hits, graph, by_id, client, gold, facts=facts, withhold_unsupported=withhold_unsupported,
+                         max_tokens=max(max_tokens, MULTI_WELL_TOKENS) if routed else max_tokens,
+                         answer_format=multi_well_format if routed else answer_format, system_note=system_note)
+        rows.append(row)
+        print(f"{q['id']} {q['kind']:<11} {'OK ' if row['correct'] else 'BAD'} {row['status']} "
+              f"{row['values']} {row['prompt_tokens']}+{row['completion_tokens']} tok {row['seconds']}s", flush=True)
     return rows
 
 
