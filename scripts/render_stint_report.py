@@ -27,7 +27,7 @@ BROWSERS = [
     r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    "/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome",
+    "/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome", "/opt/pw-browsers/chromium",
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 ]
 MERMAID = {
@@ -138,11 +138,16 @@ def main() -> None:
         page.write_text(to_html(source.read_text(encoding="utf-8"), source.parent, work), encoding="utf-8")
         if args.keep_html:
             shutil.copy(page, source.with_suffix(".html"))
-        subprocess.run([browser(), "--headless=new", "--disable-gpu", f"--user-data-dir={work / 'profile'}",
-                        "--no-pdf-header-footer", f"--print-to-pdf={target}", page.as_uri()],
-                       capture_output=True, text=True, timeout=180)
-    if not target.is_file():
-        raise SystemExit("The browser did not write the PDF.")
+        # Printed into the working folder first: an older PDF beside the source must never pass for a new one.
+        printed = work / "report.pdf"
+        # Chromium refuses to start as root with its sandbox on (a container, a cloud machine).
+        as_root = ["--no-sandbox"] if hasattr(os, "geteuid") and os.geteuid() == 0 else []
+        done = subprocess.run([browser(), "--headless=new", "--disable-gpu", *as_root, f"--user-data-dir={work / 'profile'}",
+                               "--no-pdf-header-footer", f"--print-to-pdf={printed}", page.as_uri()],
+                              capture_output=True, text=True, timeout=180)
+        if not printed.is_file() or printed.stat().st_size == 0:
+            raise SystemExit(f"The browser did not write the PDF; the one beside the source is unchanged.\n{done.stderr[-600:]}")
+        shutil.copyfile(printed, target)
     print(f"wrote {target} ({target.stat().st_size // 1024} kB)")
 
 
