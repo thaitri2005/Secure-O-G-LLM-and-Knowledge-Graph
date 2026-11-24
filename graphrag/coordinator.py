@@ -102,6 +102,44 @@ def _date_said(day: str, question: str) -> bool:
     return bool(re.search(rf"(?<!\d)0?{int(found.group(3))}(?!\d)", question)) and _MONTH_WORDS[int(found.group(2)) - 1] in question
 
 
+# Words a model wrote into a plan's `code` that are the schema's own field names, not codes of any report.
+NOT_A_CODE = {"activity_code", "npt_code", "code", "non_productive", "nonproductive", "none", "any", "all"}
+SAYS_NON_PRODUCTIVE = re.compile(r"non[- ]?productive|\bnpt\b|lost time|down ?time", re.IGNORECASE)
+
+
+def _check_plan(frame: dict, question: str, dates: set[str], engine: Engine) -> None:
+    """Checks the plan of a frame against the question, in place (E33, B-F79). One framing call writes sloppier
+    plans than the dedicated planner did: on 58 event questions it invented a non-productive code for "non-productive
+    time", wrote a field's name where a code belongs, put the year 2020 or 2023 on dates the question gave in 2016,
+    and called "on which dates was code X logged" a lookup. Code can see each of these in the question."""
+    plan = frame["plan"]
+    if plan["operation"] == "not_answerable":
+        return
+    said = question.lower()
+    literal = lambda code: bool(code) and bool(re.search(rf"(?<![a-z0-9]){re.escape(str(code).lower())}(?![a-z0-9])", said))
+    npt_codes = {(e.npt_code or "").upper() for e in engine.events} - {""}
+    # A runnable plan is a question over time, whatever kind the model gave it.
+    if frame["kind"] in ("lookup_by_date", "lookup", "other"):
+        frame["kind"] = "over_time"
+    # The days are the question's, when it names any.
+    if dates:
+        plan["date_from"], plan["date_to"] = min(dates), max(dates)
+    # A non-productive code stands if the question writes it, or if the reports use it and the question does not
+    # speak of non-productive time in general ("waiting on equipment" may well mean WOE; "non-productive time" does
+    # not mean KICK).
+    code = str(plan["npt_code"] or "").upper()
+    if code and not literal(code) and (code not in npt_codes or SAYS_NON_PRODUCTIVE.search(question)):
+        plan["npt_code"] = ""
+    if plan["non_productive"] and not plan["npt_code"] and not SAYS_NON_PRODUCTIVE.search(question):
+        plan["non_productive"] = False
+    # An activity code that is a field name is no code; and with non-productive time asked in general, an activity
+    # code the question does not write narrows it wrongly.
+    activity = str(plan["code"] or "")
+    if activity.lower() in NOT_A_CODE or (plan["non_productive"] and activity and not literal(activity)
+                                         and activity.lower() != "non_productive"):
+        plan["code"] = ""
+
+
 def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     """The question's frame: kind, report type, query plan and problem. An answer that is not a frame gives the empty
     frame, which routes to the end-of-well lanes. What code reads in the question wins over what the model said."""
@@ -128,6 +166,7 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     elif len(wells) > 1:
         frame["kind"] = "across_wells"
     dates = question_dates(question)
+    _check_plan(frame, question, dates, engine)
     if frame["kind"] == "cause":
         # The model's date, depth and keywords are kept only where the question says them too (B-F72): they are
         # asked for as the question's own words, and Qwen3-8B added a keyword of its own ("kick") to a question
