@@ -105,7 +105,9 @@ class Service:
             "frame": out["frame"], "lanes": out["lanes"], "fallback": out["fallback"],
             "answered_from": out["answered_from"], "status": out["status"], "answers": answers,
             "answer_text": out["answer_text"], "citations": [c["chunk_id"] for c in out["citations"]],
-            "cost": out["cost"], "models": self.models})
+            "cost": out["cost"], "models": self.models,
+            # What the trust label rests on, so a logged answer can be shown later as it was shown then.
+            "checks": out["checks"], "computed": computed is not None})
         return out
 
     def feedback(self, question_id: str, verdict: str, comment: str) -> dict:
