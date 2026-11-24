@@ -29,7 +29,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Coordinator | **Built, not yet measured** (`graphrag/coordinator.py`): one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). A result computed by code is reported by code, with no answer call. Adopted only if E33 matches the hand-routed scores on the 221 pooled questions; E33 needs the desktop GPU. Replaying E28's recorded plans with code reporting gives 33 of 35 and 22 of 23, against 27 and 19 recorded (no model call) | B-D32, B-D36, B-C37 to B-C39, B-C43, B-F61 |
 | Lanes | `graphrag/lanes.py`: passages, well facts and events behind one function shape, each returning the same evidence; settings are the baseline's | B-C37 |
 | Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C). Fact region exported as nodes and relationships for Track C's loader: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), 216 facts of 5 wells | B-C35, B-C40, B-F60 |
-| Application | FastAPI backend and React frontend, read path first; `graphrag` is its library; the local UI stays a developer tool. **Backend read path built** on Hung's behalf (`backend/`, contract and example responses for the frontend); it reads files, not the stores. Frontend not started | B-D37, B-D39, B-C44 |
+| Application | FastAPI backend and React frontend, read path first; `graphrag` is its library; the local UI stays a developer tool. **Backend read path built** on Hung's behalf (`backend/`, contract and example responses for the frontend); it reads files, not the stores. **Frontend built** (`frontend/`, React), on the contract and the example responses; not yet run against a real model | B-D37, B-D39, B-C44 to B-C46 |
 | Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
 | Answer records (K4) | Version 0.2 for coordinator runs (lanes, mode, kind of question, framing model, B-C41). Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
@@ -891,3 +891,26 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - 17 tests (`tests/test_backend.py`); they skip when FastAPI is not installed.
 
 **B-D40 (decision, by Khai, told to Tri and relayed to Claude by Tri on 24 November).** Khai is fine with the data role for the second build: PDFs to K1 packages, table and form quality, the QA sidecar and new reports ([plan §2](../../DEVELOPMENT_PLAN.md#2-team-split)). With B-D39 the roles are settled for this stint: Khai data, Hung backend and stores, Tri the engine and the frontend. What is asked of Khai first is the demo release (plan task D1). Whether he has read the design itself is not known; the agreement recorded is to the role.
+
+## 2026-11-24: the frontend
+
+**B-C45 (design choice; plan tasks F1 to F4).** `frontend/`, the React application (React 19, TypeScript 5.9, Vite 8), built on `backend/openapi.json` and the example responses. It has not been run against a real model.
+
+- **Screen.** An ask bar that stays at the top. On the left the answer: the value, one sentence on where it came from, the three steps of how it was answered (understood as, read, answered) with model calls and seconds, the sources, and right or wrong. On the right the evidence, as tabs.
+- **Evidence.** For a computed number, one 24-hour strip per report day with non-productive time hatched, and the operations as a table; picking one marks the other. For a model's answer, the passages it read, cited ones first, with the answer's value marked where the report writes it (`1955` finds `1,955`), and the checked facts on their own tab. A source opens its page as text.
+- **Words.** Every sentence the application says is in `src/lib/wording.ts`, and none names a lane or a frame. A computed answer says "No model wrote this number"; an answer that fell back says the daily operations held no match.
+- **Type and colour carry meaning.** Report text is serif, the application's words sans, so the two are never confused. Amber is kept for non-productive time and warnings.
+- **Other behaviour:** the graph-answers-only switch (D-59); a waiting state that counts seconds; earlier questions folded to one line and kept for the browser session; a link that carries a question (`?q=`); `/` to type, Esc to leave a page; light and dark by the system setting.
+- **Types** are generated from the contract (`npm run types`). TypeScript is pinned to 5: the generator does not run on TypeScript 7.
+- **Examples mode** (`npm run dev:examples`) serves the committed responses with no server and no model, and says so on screen. The examples are loaded only in that mode.
+- 41 tests (`npm test`): the wording, the strip geometry, the highlighting, and the screen's flows with a stand-in API. Looked at in a browser in light and dark, wide and narrow.
+- **Not done:** the page image, report titles, login.
+
+**B-C46 (design choice; speed).**
+
+- Backend: responses over 2 kB are compressed (an answer with its evidence is tens of kilobytes); reads may be kept by the browser for a minute and answers never; the question log keeps the IDs of logged questions in memory instead of rereading the file on each mark; the engine builds its chunk index once instead of per question.
+- Frontend: the example responses are a separate file loaded on demand; fonts are bundled, so no outside request is made; the answer and the strips are not redrawn when only the question box changes.
+- None of this was measured for time: the calls that dominate are the model's, and no model ran today.
+
+**B-F62 (finding; seen in the application's "Checked facts" table).** AK-3 has a validated fact `spud_to_release_days = 3`, read by the model, while the report passage beside it says "a total of 19 days". The checks pass it because a 3 is written in its chunk: the value-in-chunk check cannot catch a small number that occurs for another reason. It is a wrong fact shown to the answer model, and one more reason to look at B-F60's doubts before the fact region is trusted. It was visible at once in the application and had not been noticed in the result files.
+

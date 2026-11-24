@@ -27,6 +27,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG. Since 24 November: lanes behind one interface, the coordinator and the fact graph export, tested with stand-in models and not yet measured | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
 | Stores | PostgreSQL with pgvector and Neo4j in Docker Compose on one laptop; K1 loader with page rebuild (174 of 174); 1,042 vectors; the event graph in Neo4j, replaying 58 of 58 query plans | [Track C log](tracks/C-storage/log.md) |
 | Backend API | The read path as a FastAPI service with its contract and example responses, built 24 November. It reads files, not the stores | [backend/README.md](../backend/README.md), Track B log B-C44 |
+| Frontend | The React application, built 24 November on the contract and the example responses. Not yet run against a real model | [frontend/README.md](../frontend/README.md), Track B log B-C45 |
 | Earlier foundation | Document pipeline, structured-data import, the entity registry (57,453 wellbores), the prototype as the measured baseline (23/31) | [Specification §3.1](PROJECT_DESIGN.md#31-what-exists) |
 
 **Not built:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: the parts are not connected, there is no coordinator, no API, no React frontend and no shared hosting.
@@ -259,10 +260,10 @@ Hung asked Tri to do part of this for now (Track B log B-D39). B4, B5 and the fi
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | Works against fixtures, then against the API |
-| F2 | The source viewer: the cited page (PDF.js) beside the cited passage | B7 | A citation opens the page |
-| F3 | The evidence panel: passages, facts, the query plan with its events | B5 | A computed total shows the events behind it |
-| F4 | "Wrong answer" button and comment | B6 | Marks arrive in the question log |
+| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | **Built 24 November** (Track B log B-C45), working on the example responses. Open: the first run against the API with a real model |
+| F2 | The source viewer: the cited page beside the cited passage | B7 | **Built as text** (B-C45): a source opens its page's text with the cited passage marked. Open: the page image (B7) |
+| F3 | The evidence panel: passages, facts, the query plan with its events | B5 | **Built** (B-C45): day strips and a table for a computed total; passages with the answer's value marked; checked facts |
+| F4 | "Wrong answer" button and comment | B6 | **Built** (B-C45): right in one click, wrong with a comment, both sent to the question log |
 
 ### After M2
 

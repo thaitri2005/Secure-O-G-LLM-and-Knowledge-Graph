@@ -281,7 +281,7 @@ The second group was built before the 28 October direction and remains the inges
 - the three parts connected: the engine and the backend API still read files, not the stores, and no single command runs a report from PDF to answer;
 - the coordinator measured against the hand-routed scores (§8.1; the code exists, experiment E33 does not);
 - the fact graph loaded into Neo4j (it is exported as a file, §8.5), and the event graph on K1 version 1 IDs in Neo4j;
-- the React frontend, and the backend beyond its read path (§4.6; the read-path API exists since 24 November);
+- the backend beyond its read path (§4.6); the read-path API and the React frontend exist since 24 November and have not yet run against a real model;
 - shared hosting of the stores;
 - VLM parsing (not run; rule-based methods come first, D-63);
 - object storage in use (MinIO is optional in the compose file);
@@ -1190,7 +1190,7 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Vector store | **pgvector inside the PostgreSQL that holds K1** (D-56), proposed by Track C; Neo4j's index stays the alternative if retrieval moves next to the graphs | Chosen |
 | Graph DB | Neo4j Community 5.26 with APOC | Exists: the event graph loaded and checked (Track C) |
 | Backend | FastAPI 0.165 + Pydantic 2, importing `graphrag` as a library | Read path built 24 November (`backend/`), reading files; the stores, the page images and the compose file follow ([backend design](tracks/C-storage/backend-design.md)). The prototype's API and Track B's standard-library UI server are not carried over |
-| Frontend | React + TypeScript; PDF.js for the source page | Second build (§4.6, D-65). Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
+| Frontend | React 19 + TypeScript, built with Vite; types generated from the API's contract | Built 24 November (`frontend/`) on the example responses; not yet run against a real model. A source page is shown as text; PDF.js or page images follow the file store. Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
 | Packaging | Docker Compose | Track C's compose file runs the stores; the backend and frontend are added to it |
 
 **Not used:**
