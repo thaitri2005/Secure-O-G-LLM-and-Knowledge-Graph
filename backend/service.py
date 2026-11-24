@@ -9,6 +9,8 @@ import json
 import threading
 import uuid
 from collections import Counter
+from pathlib import Path
+from urllib.parse import quote
 
 from graphrag import coordinator
 from graphrag.data import document_key
@@ -23,8 +25,11 @@ class NotFound(LookupError):
 
 
 class Service:
-    def __init__(self, engine: Engine, frame_client, answer_client, log: QuestionLog, roles: dict[str, dict[str, str]]):
+    def __init__(self, engine: Engine, frame_client, answer_client, log: QuestionLog, roles: dict[str, dict[str, str]],
+                 page_images: Path | None = None):
         self.engine, self.frame_client, self.answer_client, self.log = engine, frame_client, answer_client, log
+        # <page_images>/<file_id>/p<n>.png, written by platform/render_pages.py; None: no images.
+        self.page_images = page_images
         self.models = {role: f"{chosen['endpoint']}:{chosen['model']}" for role, chosen in roles.items()}
         self.by_id = engine.by_id()
         # One question at a time: the model server has one slot, and the engine's retrievers are built on first use.
@@ -99,7 +104,23 @@ class Service:
         chunks = [c for c in self.engine.eow_chunks + self.engine.daily_chunks if c.doc_id == file_id and c.page == page]
         if not chunks:
             raise NotFound(f"{file_id} page {page}")
-        return {"file_id": file_id, "page": page, "chunks": [self.chunk_view(c.id) for c in chunks], "image_url": None}
+        image = f"/v1/files/{quote(file_id, safe='')}/pages/{page}/image" if self._image_path(file_id, page) else None
+        return {"file_id": file_id, "page": page, "chunks": [self.chunk_view(c.id) for c in chunks], "image_url": image}
+
+    def _image_path(self, file_id: str, page: int) -> Path | None:
+        """The PNG of a page, or None. The path is built from a file ID the engine holds and a positive integer, never
+        from the request's text, and must stay inside the image folder."""
+        if self.page_images is None or page < 1 or file_id not in {c.doc_id for c in self.engine.eow_chunks + self.engine.daily_chunks}:
+            return None
+        root = self.page_images.resolve()
+        path = (root / file_id / f"p{page}.png").resolve()
+        return path if path.is_relative_to(root) and path.is_file() else None
+
+    def page_image(self, file_id: str, page: int) -> Path:
+        path = self._image_path(file_id, page)
+        if path is None:
+            raise NotFound(f"{file_id} page {page} image")
+        return path
 
     # ---- wells and events --------------------------------------------------------------------------------------
 

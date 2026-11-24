@@ -169,6 +169,56 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(client.get("/v1/files/ak3-dailyreport/pages/9").status_code, 404)
         self.assertEqual(client.get("/v1/files/nope/pages/1").status_code, 404)
 
+    # ---- GET /v1/files/{file_id}/pages/{n}/image ---------------------------------------------------------------
+
+    PNG = b"\x89PNG\r\n\x1a\n" + b"stand-in image bytes"
+
+    def with_images(self):
+        from backend.app import create_app
+        from backend.questions import JsonlQuestionLog
+        from backend.service import Service
+        root = Path(self.folder.name, "pages")
+        (root / "ak3-dailyreport").mkdir(parents=True)
+        (root / "ak3-dailyreport" / "p1.png").write_bytes(self.PNG)
+        Path(self.folder.name, "secret.png").write_bytes(b"outside the image folder")
+        roles = {"frame": {"endpoint": "test", "model": "stand-in"}, "answer": {"endpoint": "test", "model": "stand-in"}}
+        service = Service(sample_engine(), ScriptedClient(FRAME_EOW, None), ScriptedClient(FRAME_EOW, None),
+                          JsonlQuestionLog(self.log_path), roles, page_images=root)
+        return TestClient(create_app(service))
+
+    def test_a_page_image_is_served_and_the_page_points_to_it(self):
+        client = self.with_images()
+        image = client.get("/v1/files/ak3-dailyreport/pages/1/image")
+        self.assertEqual((image.status_code, image.headers["content-type"], image.content), (200, "image/png", self.PNG))
+        self.assertEqual(image.headers["cache-control"], "private, max-age=86400")
+        self.assertEqual(client.get("/v1/files/ak3-dailyreport/pages/1").json()["image_url"],
+                         "/v1/files/ak3-dailyreport/pages/1/image")
+        # A page with text but no rendered image: the page is there, the link is not.
+        self.assertIsNone(client.get("/v1/files/ak3-dailyreport/pages/2").json()["image_url"])
+        self.assertEqual(client.get("/v1/files/ak3-dailyreport/pages/2/image").status_code, 404)
+
+    def test_without_an_image_folder_no_page_has_an_image(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        self.assertIsNone(client.get("/v1/files/ak3-dailyreport/pages/1").json()["image_url"])
+        self.assertEqual(client.get("/v1/files/ak3-dailyreport/pages/1/image").status_code, 404)
+
+    def test_the_image_route_refuses_unknown_files_bad_pages_and_path_tricks(self):
+        client = self.with_images()
+        for path, status in (
+            ("/v1/files/nope/pages/1/image", 404),
+            ("/v1/files/ak3-dailyreport/pages/0/image", 422),
+            ("/v1/files/ak3-dailyreport/pages/-1/image", 422),
+            ("/v1/files/ak3-dailyreport/pages/one/image", 422),
+            ("/v1/files/ak3-dailyreport/pages/1.5/image", 422),
+            ("/v1/files/..%2F/pages/1/image", 404),
+            ("/v1/files/../pages/1/image", 404),
+            ("/v1/files/%2e%2e/pages/1/image", 404),
+            ("/v1/files/ak3-dailyreport%2F..%2F..%2Fsecret/pages/1/image", 404),
+            ("/v1/files/..%5Cpages/pages/1/image", 404),
+            ("/v1/files/ak3-dailyreport/pages/9/image", 404),
+        ):
+            self.assertEqual(client.get(path).status_code, status, path)
+
     # ---- wells and events --------------------------------------------------------------------------------------
 
     def test_wells_with_their_facts_documents_and_days(self):

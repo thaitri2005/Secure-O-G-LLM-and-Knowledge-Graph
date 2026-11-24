@@ -18,7 +18,8 @@ Then open http://127.0.0.1:8000/docs for the interactive description. Reading en
 | `POST /v1/questions` | The answer, the lanes that gave its evidence, the question frame, citations with their text and page, the evidence shown (passages, facts, the computed result with its events), the checks and the cost. Body: `question`, `mode` (`allow_fallback` or `exact`), optional `lane` |
 | `POST /v1/questions/{id}/feedback` | Stores `right` or `wrong` and a comment against a logged question |
 | `GET /v1/chunks/{chunk_id}` | One chunk. Chunk IDs contain `#` or `:`, so percent-encode them in the path |
-| `GET /v1/files`, `GET /v1/files/{file_id}/pages/{n}` | The loaded reports; one page as its chunks in reading order. The page image comes later (`image_url` is null) |
+| `GET /v1/files`, `GET /v1/files/{file_id}/pages/{n}` | The loaded reports; one page as its chunks in reading order. `image_url` is the image route's path when the page has been rendered, else null |
+| `GET /v1/files/{file_id}/pages/{n}/image` | The page as a PNG, from `<BACKEND_PAGE_IMAGES>/<file_id>/p<n>.png` (written by `platform/render_pages.py`). `file_id` must be a loaded file and `n` a positive integer, checked before any path is built; 404 when there is no image; cached for a day |
 | `GET /v1/wells`, `GET /v1/wells/{well_id}` | The wells; one well's facts, documents and report days |
 | `GET /v1/wells/{well_id}/events` | A well's events, optionally between `date_from` and `date_to` |
 | `GET /v1/health` | What the engine holds and which models serve |

@@ -187,6 +187,15 @@ export const EXPLAIN = {
     "Facts the system has pulled out of the reports in advance, such as depths and dates, and checked against the original text.",
   reportText: "The exact text from the reports. Yellow highlights show where the answer’s value is written.",
   code: "The short activity code the report itself uses for this operation.",
+  pageImage:
+    "The page as it appears in the original report. The text beside it is what the system read from this page; the part the answer came from is marked in blue.",
   readBy:
     "How the fact was pulled out of the report: from a table by a fixed rule, or by an AI and then checked against the text.",
+} as const;
+
+/** The credit the reports' licence asks for, shown with every page image (README, "Data attribution"). */
+export const CREDIT = {
+  author: "Geothermal Resource Group, Inc.",
+  repository: "https://gdr.openei.org",
+  licence: "https://creativecommons.org/licenses/by/4.0/",
 } as const;

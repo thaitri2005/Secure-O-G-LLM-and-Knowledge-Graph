@@ -28,5 +28,9 @@ export const exampleApi: Api = {
   feedback: async () => {},
   wells: async () => wells as WellSummary[],
   health: async () => health as Health,
-  page: async () => page as PageOut,
+  // The committed example image stands in for the API's image route (frontend/public/example-pages).
+  page: async () => {
+    const shown = page as PageOut;
+    return shown.image_url ? { ...shown, image_url: `/example-pages/${shown.file_id}/p${shown.page}.png` } : shown;
+  },
 };

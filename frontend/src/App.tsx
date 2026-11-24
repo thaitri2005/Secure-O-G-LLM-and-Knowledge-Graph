@@ -62,6 +62,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
   const [arrived, setArrived] = useState<string | null>(null);
   const [health, setHealth] = useState<Health | null>(null);
   const [unreachable, setUnreachable] = useState(false);
+  const [failed, setFailed] = useState<{ text: string; mode: Mode } | null>(null);
   const [wells, setWells] = useState<WellSummary[]>([]);
   const [page, setPage] = useState<PageOut | null>(null);
   const [pageChunk, setPageChunk] = useState<string | null>(null);
@@ -77,6 +78,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     setPending(trimmed);
     setWaited(0);
     setError(null);
+    setFailed(null);
     try {
       const answer = await api.ask(trimmed, mode);
       setAnswers((earlier) => [answer, ...earlier].slice(0, KEPT));
@@ -86,6 +88,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
       setQuestion("");
     } catch (failure) {
       setQuestion(trimmed);
+      setFailed({ text: trimmed, mode });
       setError(failure instanceof ApiError ? failure.message : "Something went wrong. Please try again.");
     } finally {
       busy.current = false;
@@ -116,12 +119,17 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     box.current?.focus();
   }, []);
 
+  const load = useCallback(() => {
+    setUnreachable(false);
+    api.health().then(setHealth).catch(() => setUnreachable(true));
+    api.wells().then(setWells).catch(() => setWells([]));
+  }, [api]);
+
   // What is loaded, and a question the link may carry: ?q=...&graph=1
   useEffect(() => {
     if (started.current) return;
     started.current = true;
-    api.health().then(setHealth).catch(() => setUnreachable(true));
-    api.wells().then(setWells).catch(() => setWells([]));
+    load();
     const params = new URLSearchParams(window.location.search);
     const linked = params.get("q");
     if (linked) {
@@ -131,7 +139,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     } else if (restore().length === 0 && firstVisit()) {
       setGuide(true); // A first visit with nothing asked: show how it works. It can always be closed.
     }
-  }, [api, ask]);
+  }, [api, ask, load]);
 
   useEffect(() => {
     try {
@@ -219,7 +227,14 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
               </label>
               <Tip about="verified data only">{EXPLAIN.verifiedOnly}</Tip>
             </div>
-            {error && <p role="alert" className="error"><Icon name="alert" size={18} /> {error}</p>}
+            {error && (
+              <p role="alert" className="error">
+                <Icon name="alert" size={18} /> <span>{error}</span>
+                {failed && (
+                  <button type="button" className="link" onClick={() => void ask(failed.text, failed.mode)}>Try again</button>
+                )}
+              </p>
+            )}
           </form>
           {examples && (
             <p className="notice">
@@ -228,7 +243,9 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
             </p>
           )}
           {unreachable && !examples && (
-            <p className="notice notice--warn"><Icon name="alert" size={16} /> We can’t reach the server right now. Please try again in a moment.</p>
+            <p className="notice notice--warn"><Icon name="alert" size={16} /> We can’t reach the server right now. Please try again in a moment.{" "}
+              <button type="button" className="link" onClick={load}>Try again</button>
+            </p>
           )}
         </div>
       </div>

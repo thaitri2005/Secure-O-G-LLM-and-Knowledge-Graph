@@ -13,9 +13,10 @@ from datetime import date
 from pathlib import Path
 
 import httpx
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Path as PathParam, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.responses import FileResponse
 
 from . import schemas
 from .service import NotFound, Service
@@ -40,6 +41,10 @@ def create_app(service: Service | None = None) -> FastAPI:
         """Reads change only when a release is loaded, so a browser may keep them for a minute. Answers, feedback
         and health are never kept."""
         response = await call_next(request)
+        if request.url.path.endswith("/image") and response.status_code == 200:
+            # A page image changes only when its report is rendered again.
+            response.headers["Cache-Control"] = "private, max-age=86400"
+            return response
         kept = request.method == "GET" and response.status_code == 200 and request.url.path != "/v1/health"             and request.url.path.startswith("/v1/")
         response.headers["Cache-Control"] = "private, max-age=60" if kept else "no-store"
         return response
@@ -82,6 +87,11 @@ def create_app(service: Service | None = None) -> FastAPI:
     def page(file_id: str, page: int):
         return found(lambda: current().page(file_id, page))
 
+    @app.get("/v1/files/{file_id}/pages/{page}/image", response_class=FileResponse, summary="One page of a report, as an image",
+             responses={200: {"content": {"image/png": {}}}})
+    def page_image(file_id: str, page: int = PathParam(ge=1)):
+        return FileResponse(found(lambda: current().page_image(file_id, page)), media_type="image/png")
+
     @app.get("/v1/wells", response_model=list[schemas.WellSummary], summary="The wells")
     def wells():
         return current().wells()
@@ -116,7 +126,8 @@ def default_service() -> Service:
     except httpx.HTTPError:
         engine = Engine.load(multi_well_retriever="perwell:bm25")
     return Service(engine, client_for("frame", roles), client_for("answer", roles), JsonlQuestionLog(QUESTION_LOG),
-                   {role: roles[role] for role in ("frame", "answer")})
+                   {role: roles[role] for role in ("frame", "answer")},
+                   page_images=Path(os.environ["BACKEND_PAGE_IMAGES"]) if os.environ.get("BACKEND_PAGE_IMAGES") else None)
 
 
 app = create_app()

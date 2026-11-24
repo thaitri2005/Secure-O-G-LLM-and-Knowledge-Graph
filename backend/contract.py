@@ -16,6 +16,8 @@ from types import SimpleNamespace
 HERE = Path(__file__).resolve().parent
 OPENAPI = HERE / "openapi.json"
 FIXTURES = HERE / "fixtures"
+# The one committed page image (scripts/make_example_page.py); it makes the page fixture carry an image_url.
+EXAMPLE_PAGES = HERE.parent / "frontend/public/example-pages"
 
 EMPTY_PLAN = {"operation": "not_answerable", "well": "", "code": "", "non_productive": False, "npt_code": "",
               "date_from": "", "date_to": "", "group_by": "", "min_hours_per_day": 0, "depth_ft": 0}
@@ -92,7 +94,8 @@ def build_fixtures() -> dict[str, object]:
     scripted = _Scripted()
     service = Service(fixture_engine(), scripted, scripted, _NoLog(),
                       {"frame": {"endpoint": "stand-in", "model": "scripted"},
-                       "answer": {"endpoint": "stand-in", "model": "scripted"}})
+                       "answer": {"endpoint": "stand-in", "model": "scripted"}},
+                      page_images=EXAMPLE_PAGES)
     client = TestClient(create_app(service))
     out: dict[str, object] = {}
     for number, (name, (body, frame, answer)) in enumerate(QUESTIONS.items(), 1):

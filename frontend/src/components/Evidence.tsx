@@ -4,6 +4,7 @@ import { highlight, readable } from "../lib/highlight";
 import { EXPLAIN, place } from "../lib/wording";
 import { DayStrips } from "./DayStrips";
 import { Icon } from "./Icon";
+import { PageImage } from "./PageImage";
 import { Tip } from "./Tip";
 
 type Tab = "timeline" | "facts" | "text";
@@ -59,6 +60,7 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
   const { computed, facts, passages } = answer.evidence;
   const [tab, setTab] = useState<Tab>(computed ? "timeline" : passages.length > 0 ? "text" : "facts");
   const [activity, setActivity] = useState<number | null>(null);
+  const [pageTab, setPageTab] = useState<"image" | "text">("image");
   const rows = useRef<(HTMLTableRowElement | null)[]>([]);
   const cited = useMemo(() => new Set(answer.citations.map((c) => c.chunk_id)), [answer.citations]);
   // Only an AI-written answer is highlighted in the text: a calculated total is written in no passage.
@@ -70,19 +72,51 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
   }, [activity]);
 
   if (page) {
+    const imageUrl = page.image_url ?? null;
+    const citedChunks = page.chunks.filter((chunk) => chunk.chunk_id === pageChunk);
+    const pageText = (chunks: ChunkOut[]) =>
+      chunks.map((chunk) => (
+        <div key={chunk.chunk_id} className={chunk.chunk_id === pageChunk ? "page__chunk page__chunk--cited" : "page__chunk"}>
+          {chunk.section && <p className="page__section">{chunk.section}</p>}
+          <ReportText text={chunk.text ?? ""} values={values} />
+        </div>
+      ));
     return (
       <section className="evidence card" aria-label="Evidence">
         <button type="button" className="back" onClick={onClosePage}><Icon name="arrowLeft" size={16} /> Back to the evidence</button>
         <h2 className="evidence__title">{place(page.file_id, page.page)}</h2>
-        <p className="note">This is the text of the page as the system read it. The part the answer came from is highlighted in blue.</p>
-        <div className="page">
-          {page.chunks.map((chunk) => (
-            <div key={chunk.chunk_id} className={chunk.chunk_id === pageChunk ? "page__chunk page__chunk--cited" : "page__chunk"}>
-              {chunk.section && <p className="page__section">{chunk.section}</p>}
-              <ReportText text={chunk.text ?? ""} values={values} />
+        {imageUrl && (
+          <div className="tabs" role="tablist" aria-label="Page view">
+            {(["image", "text"] as const).map((id) => (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                id={`pagetab-${id}`}
+                aria-selected={pageTab === id}
+                aria-controls={`pagepanel-${id}`}
+                className="tabs__tab"
+                onClick={() => setPageTab(id)}
+              >
+                {id === "image" ? "Page as printed" : "Page text"}
+              </button>
+            ))}
+          </div>
+        )}
+        {imageUrl && pageTab === "image" ? (
+          <div role="tabpanel" id="pagepanel-image" aria-labelledby="pagetab-image" className="page-view">
+            <PageImage key={imageUrl} url={imageUrl} fileId={page.file_id} page={page.page} />
+            <div className="page-view__passage">
+              <p className="note">The part the answer came from, as the system read it:</p>
+              <div className="page">{pageText(citedChunks.length > 0 ? citedChunks : page.chunks)}</div>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div role="tabpanel" id="pagepanel-text" aria-labelledby="pagetab-text">
+            <p className="note">This is the text of the page as the system read it. The part the answer came from is highlighted in blue.</p>
+            <div className="page">{pageText(page.chunks)}</div>
+          </div>
+        )}
       </section>
     );
   }
