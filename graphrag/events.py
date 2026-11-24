@@ -286,6 +286,11 @@ def load_k1_inputs(path: Path | None = None) -> tuple[list, list[dict], dict]:
             for page in r.get("pages") or [r["page"]]:
                 dates.setdefault((r["doc_id"], page), normalize(date))
     tables = [json.loads(line) for line in (path.parent / "tables.jsonl").read_text(encoding="utf-8").splitlines()]
+    # A release that holds the non-productive report itself (plan task D1) needs nothing from outside it.
+    npt = sorted({r["doc_id"] for r in rows if "-appx-23-" in r["doc_id"]})
+    if npt:
+        wanted = daily + npt
+        return load_chunks(wanted, path), [t for t in tables if t["doc_id"] in wanted], dates
     npt_chunks, npt_tables = npt_report_inputs()
     return (load_chunks(daily, path) + npt_chunks, [t for t in tables if t["doc_id"] in daily] + npt_tables, dates)
 

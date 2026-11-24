@@ -89,6 +89,7 @@ class Run:
     endpoint: str = "local-embed"
     embedding_model: str = embed_k1.MODEL
     reload: bool = False
+    replaces: str | None = None   # another release in the store that holds the same files and must go first
     written: dict[str, Path] = field(default_factory=dict)   # files the steps hand on to later steps
     notes: dict[str, str] = field(default_factory=dict)      # what a step decided, for the run record
 
@@ -117,6 +118,11 @@ def step_load_chunks(run: Run) -> dict:
             run.note("load chunks", "the store already holds this release with the same SHA256SUMS digest: kept, "
                      "with its vectors, and checked (--reload replaces it)")
         else:
+            if run.replaces and run.replaces != run.name:
+                # A file belongs to one release (files.file_id is a key), so a newer release of the same reports
+                # cannot be loaded beside the older one. Same transaction: a failed load keeps the older release.
+                cur.execute("DELETE FROM k1_releases WHERE release = %s", (run.replaces,))
+                run.note("replaces", f"release {run.replaces} removed" if cur.rowcount else f"no release {run.replaces} in the store")
             load_k1.load(cur, run.name, package)
             same = stored and stored[0] == package["sums_sha256"]
             replaced = (", replacing the same release (--reload)" if same
@@ -315,6 +321,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--skip-graphs", action="store_true", help="skip steps 4 to 7, the two Neo4j regions")
     parser.add_argument("--reload", action="store_true",
                         help="step 2: replace the release even when the store holds it unchanged (drops its vectors)")
+    parser.add_argument("--replaces", metavar="RELEASE",
+                        help="step 2: first remove this other release, which holds the same files (and its vectors)")
     parser.add_argument("--facts", choices=["recorded", "tables"], default="recorded",
                         help="step 6: the recorded E27 fact graph, or one built from the release's tables")
     parser.add_argument("--appendices", type=Path, default=event_graph.OLD_EXPORT,
@@ -327,7 +335,7 @@ def main(argv: list[str] | None = None) -> int:
     name = args.release.resolve().name
     run_id = f"{name}-{started:%Y%m%dT%H%M%SZ}"
     run = Run(args.release, name, args.out / run_id, appendices=args.appendices, facts=args.facts,
-              endpoint=args.endpoint, reload=args.reload)
+              endpoint=args.endpoint, reload=args.reload, replaces=args.replaces)
     run.out.mkdir(parents=True, exist_ok=True)
     skipped = (["embed"] if args.skip_vectors else []) + (sorted(GRAPH_STEPS) if args.skip_graphs else [])
     steps = [(n, s) for n, s in STEPS if n not in skipped]
