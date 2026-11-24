@@ -49,12 +49,12 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 The first build ran as three tracks joined by files (D-48). Those tracks are closed (§3), and K1 to K5 remain the interfaces between ingestion, engine and stores.
 
-From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Hung agreed to backend and to the design on 24 November, and asked Tri to do part of the backend for now; what Tri does and what stays with Hung is in the [backend design](tracks/C-storage/backend-design.md). Khai on data is still a proposal (Q14).**
+From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Hung agreed to backend and to the design on 24 November, and asked Tri to do part of the backend for now; what Tri does and what stays with Hung is in the [backend design](tracks/C-storage/backend-design.md). Khai agreed to data the same day (Track B log B-D40). The roles are settled for this stint (Q14).**
 
 | Role | Proposed owner | Owns | Interface it publishes |
 |---|---|---|---|
-| **Data** | Khai | PDFs to K1 packages; table and form quality; the QA sidecar; new reports | K1 releases |
-| **Backend** | Hung | Shared hosting of the stores; the runner from a K1 package to loaded stores and graphs; the FastAPI service; the question log | The OpenAPI file; the stores |
+| **Data** | Khai (agreed) | PDFs to K1 packages; table and form quality; the QA sidecar; new reports | K1 releases |
+| **Backend** | Hung (agreed; Tri helps for now) | Shared hosting of the stores; the runner from a K1 package to loaded stores and graphs; the FastAPI service; the question log | The OpenAPI file; the stores |
 | **Engine** | Tri | Lanes, coordinator, answer checks, the reasoning probe; measurements | The `graphrag` library; K4 records |
 | **Frontend** | Tri (confirmed by Tri, 24 November) | The React application | — |
 
@@ -214,7 +214,7 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 | # | Task | Done when |
 |---|---|---|
 | A1 | **Message anh Tuấn this week.** Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
-| A2 | **Agree the roles** for this stint (Q14) | Recorded in §2 and spec §13.2 |
+| A2 | **Agree the roles** for this stint (Q14) | **Done 24 November:** Khai data, Hung backend, Tri engine and frontend (Track B log B-D39, B-D40) |
 | A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung and Khai have read it; objections recorded |
 | A4 | Exit demo for the supervisor, then hand the application to domain experts | M2 exit shown; the question log has questions from someone outside the team |
 
@@ -274,7 +274,6 @@ The main [README](../README.md) stays the setup entry point.
 
 | Decision | Needed by | Why |
 |---|---|---|
-| Roles for this stint (Q14) | 28 November | Nothing else can be assigned |
 | Where the demo runs and which model serves it (Q15) | 5 December | Domain experts must reach it without the team's laptops |
 | Purpose of use and question types (Q13) | M3 | Decides how lanes are split or merged (D-58) |
 | Expert question set, or which experts try the application (Q2) | M3 | Evaluation; simulated sets stand in for development only |

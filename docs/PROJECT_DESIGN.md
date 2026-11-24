@@ -1383,7 +1383,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q11 | What answer accuracy should G5 target on ~7B models? | 80% proposed | §12 |
 | Q12 | Who reviews flagged items and labels the extraction sample? | The team, with the expert group's help if available | D-43, D-63, G3 |
 | Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61). The application's question log is meant to help answer it (D-65) | D-58, D-61, D-64 |
-| Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Hung agreed to backend and stores on 24 November, and asked Tri to do part of it for now (Track B log B-D39). Khai on data is still a proposal | D-65, plan §2 |
+| Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Hung agreed to backend and stores on 24 November, and asked Tri to do part of it for now (Track B log B-D39). Khai agreed to data the same day (B-D40). The roles are settled for this stint | D-65, plan §2 |
 | Q15 | Where does the demo for domain experts run, and which model serves it? | Stores and application on the shared host Track C sets up (B-D35); the model on Tri's desktop GPU reached over a private network, or a hosted open-weight endpoint, since the demo data is public | D-65, §10.1, §11.3 |
 ### 13.3 Change process
 

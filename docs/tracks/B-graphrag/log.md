@@ -873,7 +873,7 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 
 - **Done on his behalf:** the read-path API and its contract, and the question log (plan tasks B4, B5, B6), because the frontend, which is Tri's, cannot start without them. See B-C44.
 - **Designed for him, not built:** shared hosting (B1), the runner (B2), loading the fact region into Neo4j and the event region on K1 version 1 IDs (B3), the question log in PostgreSQL, page images (B7) and the compose file with the access gate (B8). These need the stores or accounts that only he has. The design is [backend-design.md](../C-storage/backend-design.md), in his track's folder.
-- Khai has not yet been asked about the data role.
+- Khai agreed to the data role the same day (B-D40).
 - *Why recorded here:* the agreement reached Claude through Tri, not from Hung directly, and the Track C log is Hung's; a short entry there points back to this one.
 
 **B-C44 (design choice; plan tasks B4, B5, B6, done on Hung's behalf under B-D39).** `backend/`, the read-path API of specification §7.5, as a FastAPI service.
@@ -890,3 +890,4 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **Checked without a model:** the example question "How many hours of non-productive time did AK-3 have?" computes 115 hours from 28 events on 10 dates, the figure the end-of-well report's own time table gives (115.0) and Track C counted in Neo4j (C-F06).
 - 17 tests (`tests/test_backend.py`); they skip when FastAPI is not installed.
 
+**B-D40 (decision, by Khai, told to Tri and relayed to Claude by Tri on 24 November).** Khai is fine with the data role for the second build: PDFs to K1 packages, table and form quality, the QA sidecar and new reports ([plan §2](../../DEVELOPMENT_PLAN.md#2-team-split)). With B-D39 the roles are settled for this stint: Khai data, Hung backend and stores, Tri the engine and the frontend. What is asked of Khai first is the demo release (plan task D1). Whether he has read the design itself is not known; the agreement recorded is to the role.

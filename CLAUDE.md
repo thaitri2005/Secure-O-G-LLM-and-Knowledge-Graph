@@ -25,7 +25,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 | **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin K2, cited answers, cost per page; publishes K2, K4 |
 | C. Storage, IDs and the end-to-end run | Hung | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
 
-The first build's tracks are closed (24 November). For the second build Tri takes the engine and the frontend (the React UI); the plan proposes, for the team to agree (Q14), Khai on data and Hung on backend and stores. K1 to K5 stay the interfaces (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
+The first build's tracks are closed (24 November). For the second build the roles are agreed (24 November, Q14): Khai data, Hung backend and stores (Tri does part of it for now, B-D39), Tri the engine and the frontend (the React UI). K1 to K5 stay the interfaces (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
 
 ## Standing rules from the user
 
