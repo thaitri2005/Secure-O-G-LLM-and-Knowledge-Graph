@@ -26,3 +26,6 @@ data/processed/k1/
 
 # Rendered copies of the project report; the Markdown source is tracked
 docs/reports/PROJECT_REPORT_*.pdf
+
+# Passwords for the stores (platform/.env.example lists the names). The repository is public: never commit a .env
+.env
