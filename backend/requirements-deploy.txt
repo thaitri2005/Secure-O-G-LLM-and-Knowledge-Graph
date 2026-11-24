@@ -1,0 +1,26 @@
+# What the backend container installs (backend/Dockerfile): the backend and graphrag at run time, and nothing of
+# ingestion (no Docling, no OCR, no PyMuPDF). Versions read with `pip freeze` from the tested Python 3.12 environment
+# on 24 November 2026, with every package they need for Linux; no extras except psycopg's binary build.
+annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.15.1
+certifi==2026.10.19
+click==8.5.0
+fastapi==0.165.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.20
+neo4j==6.4.1
+numpy==2.5.4
+opentelemetry-api==1.45.2
+psycopg==3.3.9
+psycopg-binary==3.3.9
+pydantic==2.14.1
+pydantic-core==2.50.1
+pypdfium2==5.14.0
+pytz==2026.6
+starlette==1.10.0
+typing-extensions==4.16.0
+typing-inspection==0.4.4
+uvicorn==0.54.0

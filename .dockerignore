@@ -1,0 +1,18 @@
+# The images are built from the repository root (backend/Dockerfile, frontend/Dockerfile). Everything is left out
+# except what the two images copy, so source PDFs, local data, environments and secrets never enter a build.
+*
+!backend/
+!configs/
+!schemas/
+!graphrag/
+!data/processed/gdr_chunks_full.jsonl
+!frontend/
+!deploy/Caddyfile
+
+# Inside what is kept: caches, local results and build output.
+**/__pycache__
+**/*.pyc
+**/.env
+**/.env.*
+frontend/node_modules
+frontend/dist

@@ -1,0 +1,52 @@
+# Runs the engine, backend and frontend tests on every push and pull request, to inform.
+# It is not a required check and blocks nobody: no branch protection, no hooks; a red run is a note, not a gate.
+# Track A's tests are not run here: they need the full ingestion stack (Docling, OCR) and the local corpus.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: graphrag, backend and stub model tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements-deploy.txt
+      # The deployed backend's packages, plus jsonschema for the K4 record tests (pinned as in requirements.lock.txt).
+      # Tests needing PostgreSQL or Neo4j skip.
+      - run: python -m pip install -r backend/requirements-deploy.txt jsonschema==4.26.0
+      - run: python -m unittest discover -s tests -p "test_graphrag*.py"
+      - run: python -m unittest discover -s tests -p "test_backend*.py"
+      - run: python -m unittest discover -s tests -p "test_stub_model_server.py"
+
+  frontend:
+    name: frontend tests and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
