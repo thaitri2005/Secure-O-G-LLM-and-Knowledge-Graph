@@ -110,7 +110,7 @@ Fonts, icons and the browser-tab icon are bundled, so the application needs no o
 
 ## Limits
 
-- **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run with a real model is still to do (it needs a model endpoint, Track B log B-D43).
+- **Run once against the real model** through the whole stack, on the stores (Track B log B-F73, B-F76). No one outside the team has used it.
 - **The steps shown while waiting are told by the clock**, not by the server, which does not report its progress: after 4 seconds "looking through the reports", after 15 "writing the answer and checking it".
 - **A short activity is a thin bar on the timeline**, narrower than the 24 pixels a thing to press should have, because a bar's width is its length in time. The same activity can be marked from its row in the list below, which is the way round this that WCAG allows; axe-core lists these bars for a person to review, not as failures.
 - A stopped question stops the browser's request. Whether the server also stops working on it is the backend's matter.
@@ -120,6 +120,6 @@ Fonts, icons and the browser-tab icon are bundled, so the application needs no o
 - Report names are file IDs made readable (`ak3 eowr`), until documents carry titles. Two of AK-3's daily reports therefore share one name on its page.
 - **The questions page cannot always give an AI-written answer its exact label:** the log does not keep whether the value was confirmed in the text, so such an answer is labelled "Written by AI" and says the check was not saved. A calculated answer is recognised by the activity log having answered it.
 - Property units the reports leave out (ft, °F, lb/ft, ...) come from `wording.ts`, after the test profile in `prototype/profiles/oil_wells.json`; casing weight in lb/ft is the usual unit, not one the facts state.
-- **Example mode** has a well page for AK-3 only, and its timeline draws the 4 days whose activities the examples hold completely (the list gives all 27). Its question log is the three entries of `admin_questions.json`; the export is put together from `admin_export.json`. Pages other than page 7 open as the text the examples hold of them.
+- **Example mode** has a well page for AK-3 only, and its timeline draws the 4 days whose activities the examples hold completely (the list gives all 27). Its question log is the entries of `admin_questions.json` (four, of which the list shows three); the export is put together from `admin_export.json`. Pages other than page 7 open as the text the examples hold of them.
 - No login: the access gate is at the proxy.
 - Answers are kept in the browser's session storage, so they include report text on that machine until the tab closes.

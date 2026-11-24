@@ -66,7 +66,7 @@ Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/
 
 ## The coordinator (D-64)
 
-Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time, and `python -m graphrag.bench run <profile> --suite full` makes it with its baselines ([the model socket](#trying-a-model-profiles-and-the-bench-d-62-d-68)). It is adopted only if it matches the scores each question set got when the lane was chosen by hand, from the same model.
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time, and `python -m graphrag.bench run <profile> --suite full` makes it with its baselines ([the bench](#trying-a-model-profiles-and-the-bench-d-62-d-68)). It is adopted only if it matches the scores each question set got when the lane was chosen by hand, from the same model.
 
 ```powershell
 # Every development question in one pool, no lane given (E33)
@@ -239,7 +239,7 @@ python -m graphrag.bench check qwen3-8b.cpu
 python -m graphrag.bench run qwen3-8b.cpu --suite quick
 ```
 
-- **Speed:** about 13 prompt tokens a second on 4 cores, so an answer from five passages takes three to four minutes. The 31 prototype questions take about two hours; the 221 pooled questions would take a day.
+- **Speed:** about 13 prompt tokens and 2.4 answer tokens a second on 4 cores: about two and a quarter minutes for a lookup from five passages, five for a question about a cause. The 31 prototype questions took 70 minutes; the 221 pooled questions, asked twice, would take a day.
 - **Memory:** start the server with `--cache-ram 0`. This release of llama.cpp keeps earlier prompts in memory, up to 8 GB by default; on a 16 GB machine the server grew from 7 GB to 12 GB over a run and was killed three times before the cause was found. With the cache off it holds about 7 GB at an 8k context. A measurement loses nothing: the run resumes from the request cache on disk
 - **Context:** 8,192 tokens is enough for every prompt the engine sends (the longest, a question about a cause, is about 4,500). The profile `qwen3-8b.cpu` says so.
 - **Comparing:** it is the same model file on another build of llama.cpp, so its scores are lined up with its own baseline rerun first (`compare_as` is `cpu:qwen3-8b`).

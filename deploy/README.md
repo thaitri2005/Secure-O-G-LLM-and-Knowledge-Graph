@@ -2,7 +2,7 @@
 
 The runbook for the shared server (backend design [§1](../docs/tracks/C-storage/backend-design.md#1-shared-hosting-b1) and [§8](../docs/tracks/C-storage/backend-design.md#8-the-compose-file-and-the-access-gate-b8)). Written for Hung, who owns the hosting; anyone on the team can follow it. Every command runs on the server unless it says otherwise.
 
-**Status (24 November 2026):** the images were built and the stack ran on a Windows laptop with Docker Desktop, behind the password, with the stub model, and `smoke_test.py` passed through the proxy. The steps on a real Ubuntu server and with a real domain have not been run yet; mark here what differed when you run them.
+**Status (25 November 2026):** the stack ran as containers on a Linux cloud machine, with Qwen3-8B answering from the stores, and the full smoke test passed 6 of 6 through the proxy (Track B log B-F76). Not yet run: a real server with a domain and its certificate. Mark here what differed when you run them.
 
 **Two runbooks, one server.** Hung's [server runbook](../docs/tracks/C-storage/server-runbook.md) covers the server itself and the stores: creating it, `platform/server/setup.sh`, the passwords, the SSH tunnel, the backup, and loading a release through the tunnel. This file adds the application on top: the backend, the proxy with the password gate, and the model endpoint. Sections 1 to 3, 6, 7 and 10 below overlap with his and are kept so the whole path can be read in one place; where the two differ on the stores or the server, follow his: it is the one that was run. Until a server exists, the stores run on a team machine over Tailscale (Track C log C-D06); the application can run there the same way, for the team only.
 
@@ -156,11 +156,11 @@ The shared user name and password go to the experts with the link, by a channel 
 
 ## 5. The model endpoint
 
-The backend reads two files, `configs/graphrag/endpoints.json` (addresses) and `roles.json` (which model serves which role), and `graphrag/client.py` takes them only from those paths. So the compose file mounts the server's own copies over them, named by `MODEL_ENDPOINTS_FILE` and `MODEL_ROLES_FILE` in `.env`. Choose one:
+The backend reads two files, `configs/graphrag/endpoints.json` (addresses) and `roles.json` (which model serves which role), at those paths unless `GRAPHRAG_ENDPOINTS` and `GRAPHRAG_ROLES` name others. The compose file mounts the server's own copies over them, named by `MODEL_ENDPOINTS_FILE` and `MODEL_ROLES_FILE` in `.env`. Choose one:
 
 ### A. A team machine with the GPU over a private network (not available now: the desktop is borrowed, Track C log C-D07)
 
-The desktop serves Qwen3-8B with llama.cpp, as for every run (CLAUDE.md, "Setting up a machine"). Tailscale is the simplest private network: no port is opened to the internet.
+The desktop serves Qwen3-8B with llama.cpp, as for every run (CLAUDE.md, "Setting up a machine with a GPU"). Tailscale is the simplest private network: no port is opened to the internet.
 
 1. Install Tailscale on the server (`curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up`) and on the desktop; note the desktop's address (`100.x.y.z`).
 2. On the desktop, start `llama-server` as usual but with `--host 0.0.0.0 --api-key <a long random key>`, and allow ports 8080 and 8081 in the Windows firewall from `100.64.0.0/10` only.
@@ -228,7 +228,7 @@ set -a; . platform/.env; set +a                 # the passwords, for the runner
 - The runner's own options and the environment variables it reads are in [platform/README.md](../platform/README.md); check them there, as the runner was written after this runbook.
 - `--skip-vectors`: the server has no embedding model. BM25 serves one-well questions; vectors can be added later from a machine with the embedding model, through the SSH tunnel of section 10.
 - Run it twice: the second run must report the same counts and change nothing.
-- Until the K1 release itself holds the non-productive-time report (appendix 23, plan task D1), the event step needs `--appendices <folder of the corpus export holding it>`; without it the runner stops at step 4 and says so.
+- A release that does not hold the non-productive-time report (appendix 23) needs `--appendices <folder of the corpus export holding it>` for the event step; without it the runner stops at step 4 and says so. `demo-v2` holds it.
 - The question-log tables (`platform/sql/002_questions.sql`) are created with the others when PostgreSQL first starts on an empty volume. On a database that existed before that file did, create them once: `BACKEND_DSN=postgresql://kg:<password>@127.0.0.1:5434/kg /srv/kg/venv/bin/python -m backend.questions init`.
 - Page images, if the source PDFs are on the server: `platform/render_pages.py` writes them into `/srv/kg/pages` (see its `--help`).
 

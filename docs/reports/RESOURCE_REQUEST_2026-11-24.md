@@ -8,7 +8,7 @@ Amounts are in Vietnamese dong, with US dollars beside them at **26,000 VND to t
 
 ## In short
 
-The application is built and runs on a laptop. It cannot yet be measured or shown, because the team owns no GPU and no server.
+The application is built and has run end to end with the real model on a machine without a GPU, where an answer takes minutes. It cannot yet be measured in full or shown, because the team owns no GPU and no server.
 
 **We ask for 5 million VND (about US$190) from the capstone funding for the next three months**, December 2026 to February 2027, spent on three rented services:
 
@@ -64,7 +64,7 @@ The application is built and runs on a laptop. It cannot yet be measured or show
 
 | Work | Amount | GPU time, estimated |
 |---|---|---|
-| The three measurements waiting now (the coordinator on 221 questions with its baselines, answers on the new report package, ten questions about causes) | About 600 questions, about 3,300 tokens each | A few hours; one 8-hour session with setup |
+| The measurements waiting now (the coordinator on 221 questions with its baselines, answers on the new report package; the short ones were made without a GPU) | About 600 questions, about 3,300 tokens each | A few hours; one 8-hour session with setup |
 | One round of measurement after a change | 200 to 300 questions | 2 to 4 hours |
 | Building the fact graph for a set of reports | 3 seconds a page: 1,000 pages is under an hour | 1 to 2 hours per 1,000 pages |
 | Comparing models or settings | The same 200 to 300 questions once per candidate | 2 to 4 hours per candidate |
@@ -73,7 +73,7 @@ The application is built and runs on a laptop. It cannot yet be measured or show
 
 These are estimates from runs on the borrowed card; a rented card may be faster or slower. **About 10 hours a week** covers the regular measurements and one experiment a week between the three of us. Over 13 weeks that is 130 hours: 1.2 to 2.3 million VND. Model files are kept on a small rented disk between sessions, inside that range. The large run belongs to the second semester and is not in this request.
 
-**The server.** Neo4j is set to 2 GB of heap and 1 GB of cache; PostgreSQL, the backend and the web application share the rest of 8 GB, which is the least that works. It needs no GPU: the model is reached over the network. Experiments on the stores stay on our laptops, so a trial never disturbs what the experts use.
+**The server.** The stores and the application are limited to about 4 GB together (Neo4j 1.5 GB, PostgreSQL 1 GB, the backend 1.5 GB), so 8 GB leaves room for the system and for loading a package; 4 GB is the least that works. It needs no GPU: the model is reached over the network. Experiments on the stores stay on our laptops, so a trial never disturbs what the experts use.
 
 | Server, 4 vCPU and 8 GB | Listed price a month | Three months |
 |---|---:|---:|
@@ -129,7 +129,7 @@ Dear anh Trường,
 
 We are a capstone team working with the Vietnam Petroleum Institute (VPI) on question answering over drilling reports: Thai Huu Tri, Nguyen Le Hung and Tran Quang Khai. Our advisors are Dr. Le Duy Dung and MSc. Nguyen Anh Tuan. Dr. Dung told us to write to you to use the capstone funding for the resources the project needs.
 
-The application is now built: a person asks a question about a well's reports and gets an answer with the page it comes from. It runs end to end on a laptop. We cannot yet measure it or show it to VPI's experts, because the project must use open-weight language models that we run ourselves, and we have no GPU and no server of our own. The machine we used until now was borrowed.
+The application is now built: a person asks a question about a well's reports and gets an answer with the page it comes from. It has run end to end with the real model on a machine without a GPU, at minutes an answer. We cannot yet measure it in full or show it to VPI's experts, because the project must use open-weight language models that we run ourselves, and we have no GPU and no server of our own. The machine we used until now was borrowed.
 
 We would like to rent these from cloud providers, paying only for the hours we use, and we would like to ask for **5 million VND (about US$190) for the next three months**, December 2026 to February 2027.
 

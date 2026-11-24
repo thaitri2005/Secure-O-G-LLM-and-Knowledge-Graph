@@ -7,7 +7,7 @@ This file briefs any Claude session on any machine. The repository is the projec
 - A VPI capstone: a **GraphRAG application for drilling reports**, covering end-of-well reports and daily drilling reports.
 - Design: a **coordinator in front of four lanes** (passages, well facts, events, reasoning about causes) over one graph with two regions (specification §8.1, §8.5). Existing open-source GraphRAG code is used as libraries and references; no base is adopted wholesale (D-50).
 - Models: **open-weight, about 8B parameters or smaller, run by the team**. Commercial APIs are never used, not even for development.
-- Compute: **the team has no GPU or server of its own**. It is rented, on public data only (D-68): a cloud GPU by the hour for measurements, OpenRouter for the demo. Not the school's machines. No budget is approved yet ([resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md)).
+- Compute: **the team has no GPU or server of its own**. It is rented, on public data only (D-68): a cloud GPU by the hour for the long measurements, OpenRouter for the demo. Not the school's machines. A machine without a GPU does the short measurements. No budget is approved yet ([resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md)).
 - People: advisors Dr. Le Duy Dung and MSc. Nguyen Anh Tuan ("anh Tuấn", who supervises the work). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
 
 | Person | Role | Track log |
@@ -47,12 +47,15 @@ Each kind of fact has one home (the table in docs/README.md). Link to it; do not
 
 ## What comes next for Track B
 
+Everything code and a machine without a GPU can do for this build is done. The next steps each start with a person or with money ([plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now)).
+
 1. Send the [resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường (capstone funding, as Dr. Dung said), and the [stint report](docs/reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn. The stint report is a draft until the stint ends on 27 November.
-2. Once there is compute, run the three measurements, with [these commands](docs/tracks/B-graphrag/next-runs.md):
-   - **E32:** answers on the demo package `demo-v2`, from files and then from the stores;
-   - **E33:** the coordinator on the 221 pooled questions; adopt it only if it matches the hand-routed scores from the same endpoint;
-   - **E34:** the reasoning lane on its ten frozen questions.
-3. Whoever has a machine that can run Qwen3-8B (Hung's Mac may) can run the measurements there today: `python -m graphrag.bench check <profile>`, then `run`. Profiles are in [configs/graphrag/models/](configs/graphrag/models/README.md).
+2. **Measured with the real model**, on a 4-core machine without a GPU (Track B log B-F71 to B-F77): the baseline, answer for answer; the reasoning lane on two probes ([E34](docs/experiments/E34-reasoning-probe.md); it stays a probe, B-D50); one question through the whole application on the stores.
+3. **Still to record**, with [these commands](docs/tracks/B-graphrag/next-runs.md):
+   - **E33:** the coordinator on the 221 pooled questions; adopt it only if it matches the hand-routed scores from the same endpoint. The full pool needs a GPU;
+   - **E32:** answers on the demo package `demo-v2`, from files and then from the stores.
+4. **Reasoning lane:** an expert's reading of ten answers, and a question set written by someone else, before more code.
+5. **Without a GPU:** profile `qwen3-8b.cpu`, with the server started with `--cache-ram 0` ([how](graphrag/README.md#without-a-gpu-on-linux)). Profiles are in [configs/graphrag/models/](configs/graphrag/models/README.md).
 
 ## Commands
 
@@ -61,9 +64,10 @@ python -m unittest discover -s tests                       # everything; store a
 python -m unittest discover -s tests -p "test_graphrag*.py" # the engine
 python -m unittest discover -s tests -p "test_backend*.py"  # the backend
 cd frontend; npm test; npm run dev:examples                 # the application on example answers, no server
-python platform/run_release.py <release> --skip-vectors     # load a report package into the stores
+python platform/run_release.py data/interim/k1/demo-v2      # load a report package into the stores; --skip-vectors with no embedding server
 python -m graphrag.bench check <profile>                    # is this model usable here? then: run, compare
 docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build   # the whole application, with a stub model
+python deploy/smoke_test.py --url <address> --user team     # check a running application from outside; --quick asks no question
 ```
 
 - The stores need `platform/.env` with the two passwords (`platform-dev` on a laptop whose stores already exist).
@@ -72,7 +76,7 @@ docker compose -f platform/docker-compose.yml --profile app --profile demo up -d
 
 ## Setting up a machine with a GPU
 
-Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Windows) with llama.cpp. New runs use a rented cloud GPU set up the same way (on Linux, take the matching llama.cpp build), or OpenRouter. The laptop is too slow for the LLM.
+Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Windows) with llama.cpp. New runs use a rented cloud GPU set up the same way (on Linux, take the matching llama.cpp build), or OpenRouter. A machine without a GPU runs Qwen3-8B at about two minutes a lookup: enough for short measurements, not for the pooled run (B-F71).
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. The engine itself needs only `httpx` and `numpy`.
 2. **llama.cpp:** release b12015 (the Windows CUDA 12.4 build plus its `cudart` zip), unpacked into ignored `data/interim/llama.cpp/`. Model files go into ignored `data/interim/models/`:
@@ -84,7 +88,7 @@ Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Window
    | Embeddings | `Qwen/Qwen3-Embedding-0.6B-GGUF`, `Qwen3-Embedding-0.6B-Q8_0.gguf` |
 
    Server commands are in [graphrag/README.md](graphrag/README.md#running-locally): `-c 32768 -np 1 -ngl 99`.
-3. **Check the setup** by reproducing the baseline; BM25 hit@5 should be 1.00 and the answers about 28/31. Delete the `check*` result files afterwards.
+3. **Check the setup** by reproducing the baseline (E17); BM25 hit@5 should be 1.00 and the answers 28/31, wrong on q07, q25 and q31. Delete the `check*` result files afterwards.
 
    ```
    python -m graphrag.baseline retrieval --pool ak3 --retrievers bm25 --name check
@@ -97,7 +101,9 @@ Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Window
 
 - **Chunk IDs** follow specification §5.11 as K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54). The engine also reads version 0's `<doc_id>#c0005`.
 - **Committed data:** `data/processed/gdr_chunks_full.jsonl` holds three end-of-well reports as K1 version 0 chunks (372 chunks; AK-3 is `gdr882_ak3_eowr`). Gold data for the prototype's 31 questions is in `prototype/gold/`.
-- **Report packages are never committed** (B-F56). They live in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` when more than one is there. Build the demo package `demo-v2` (three end-of-well reports, AK-3's daily reports) with `python scripts/build_k1_demo_release.py`; it takes about 45 minutes on a laptop.
-- **Headline results so far**, all on questions written by the team: 28/31 on the prototype's questions with Qwen3-8B (E18, the baseline); 30/31 with checked facts added (E22); 22/35 and 19/23 on totals over time with the event graph, against 5/35 and 4/23 for plain retrieval (E28).
+- **Report packages are never committed** (B-F56). They live in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` to a package's folder when more than one is there. The demo package `demo-v2` (three end-of-well reports, AK-3's daily reports) is built with `python scripts/build_k1_demo_release.py --raw data/raw --models data/interim/ocr_models`; from nothing it takes about 75 minutes ([all the steps](docs/tracks/B-graphrag/next-runs.md#building-the-demo-package-from-nothing-on-linux)). It has 1,431 chunks built on the laptop and 1,432 built on Linux, so a record names the release ID.
+- **The fact graph** the stores load is `graphrag/results/E32_fact_graph.graph.json` (207 facts).
+- **Headline results so far**, all on questions written by the team, are in the [experiment register](docs/experiments/README.md) and in the "Best scores" row of the [Track B log](docs/tracks/B-graphrag/log.md#current-state). The baseline to reproduce is E17: 28/31 on the prototype's questions with Qwen3-8B.
 - **PyMuPDF is AGPL** and must stay out of anything deployed; use `pypdfium2`.
 - **Diagrams:** the specification's are Mermaid in the text, exported with mermaid-cli 11.17.0 ([how](docs/diagrams/README.md)); the stint report's are drawn by `scripts/stint_figures.py`.
+- **Standing rule from the reviews:** what code can read from the question or the reports outranks what the model says. Every fault the real model showed was of that kind (B-F72, B-F74, B-F76).

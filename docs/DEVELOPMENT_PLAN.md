@@ -28,7 +28,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | The coordinator on all 221 pooled questions (E33). On a CPU a question takes minutes, too long for 221 questions twice over | A GPU: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
 | Not on a server that others reach | The same request, or Hung's machine in the meantime |
 | No domain expert has used the application or reviewed a question | The supervisor naming one or two people |
-| The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | Ours: a smaller unit for "the problem". Then an expert's reading |
+| The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | Ours: a smaller unit for "the problem" is built and to be scored on the second probe. Then an expert's reading |
 | Value matching in the scorer is looser than described (a numeric gold accepts numbers within 0.5%) | A decision with the first expert-reviewed set: changing it means rescoring every baseline |
 | Four benchmark manifests of Track A are referenced by scripts and records and are not in the repository | Khai committing them |
 
@@ -72,12 +72,12 @@ Weeks are counted from 2 November 2026. Windows are indicative; each check-in re
 
 | Milestone | Window | Exit demo | State |
 |---|---|---|---|
-| **M0: Plan, access, workflow demo** | Week 1 | Tracks assigned, contracts at version 0, workflow shown | Done, except the OpenRouter account (Q6) and GPU booking (Q7) |
+| **M0: Plan, access, workflow demo** | Week 1 | Tracks assigned, contracts at version 0, workflow shown | Done, except the OpenRouter account (Q6) and how rented compute is paid for (Q7) |
 | **M1: First build in three tracks** | Weeks 1–4 | One-document slice from pages to cited answers | **Closed 24 November**; see below |
 | **M2: Second build — one connected application** | Weeks 4–6 (24 November to 12 December) | A person outside the team opens the application, asks about AK-3, and sees the answer, the lane used, the cited page and the evidence. Everything is read from the shared stores, loaded by one command | **Current** |
 | **M3: Quality and control** | Weeks 6–9 | Wells linked to registry IDs; glossary in use; scores and flagged items; 5–10 documents from more than one report family; the expert or logged questions run (G3–G6) | Outline |
 | **M4: Full application** | Weeks 7–11 | A non-developer uploads a report, watches the run, corrects three flagged items, edits a glossary entry, asks a question and opens the cited page | Outline |
-| **M5: Scale run on local models** | Weeks 10–13 | The corpus processed in checkpointed runs on a booked GPU; evaluation on held-out questions; cost and throughput report (G8) | Outline |
+| **M5: Scale run on local models** | Weeks 10–13 | The corpus processed in checkpointed runs on a rented GPU; evaluation on held-out questions; cost and throughput report (G8) | Outline |
 | **M6: Access control and hardening** | Second semester | Login and roles; private-endpoint guard tested (G7); backup and restore; joint evaluation on the supervisor's document if supplied | Outline |
 
 ![Milestone dependencies](diagrams/07-milestone-dependencies.svg)
@@ -187,7 +187,7 @@ Keep:
 | R-03 | Methods tuned on one well do not transfer | A second report family fails | Add one new family at a time in M3; report seen and unseen data separately | Data, Engine |
 | R-04 | The coordinator sends questions to the wrong lane, or trusts a field the model got wrong | Pooled score below the hand-routed scores; the faults of [E34](experiments/E34-reasoning-probe.md) | Wells and dates read by code; fixed fallback; measured before adoption; a lane can be forced from the UI | Engine |
 | R-05 | No GPU for the long measurement and no server others reach: no budget yet | No approval of the resource plan | Ask now (Q6, Q7). A machine without a GPU already covers the short measurements (Track B log B-F71); a hosted model for a few dollars covers the pooled one | All |
-| R-06 | Hosted endpoint used on non-public data | A private file in a run | The model client's guard; test it | Engine |
+| R-06 | Hosted endpoint used on non-public data | A private file in a run | The backend's check at start: a hosted model only gets packages named as public, and any address outside the private network counts as hosted (specification §10.1) | Engine |
 | R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
 | R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
 | R-09 | Scope too large for three people; engine and frontend on one person | A checkpoint missed by a week | Cut in the order of §4; shrink the frontend to chat and source viewer | All |
@@ -288,7 +288,7 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 | E4 | The fact graph as nodes and relationships | Done; rebuilt after nine wrong facts were found (207 facts) | One known wrong fact (AK-3, days from spud to release) |
 | E5 | The coordinator (experiment E33) | Built | The pooled run on a GPU (G1), then the decision (G2) |
 | E6 | Totals reported by code, not retyped by the model | Built | Measured with E33 |
-| E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states | A smaller unit for "the problem"; an expert's reading |
+| E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states; rules in code remove most of it on the first probe | Score the last rule on the second probe; an expert's reading |
 | E8 | A bench for models | Done; the baseline reproduced with it on a second machine | — |
 
 ### Frontend (Tri)
@@ -317,5 +317,5 @@ The main [README](../README.md) stays the setup entry point.
 | Whether the coordinator is adopted (D-64) | After record E33 | It adds one model call to lookups |
 | Whether the reasoning lane's two-part answer is the right shape, and whether "possible factors" are wanted | When an expert reads ten answers | Decided for now: it continues as a probe ([E34](experiments/E34-reasoning-probe.md), D-66) |
 | Whether the scorer's value matching is tightened | With the first expert-reviewed set | It would change every recorded baseline (Track B log B-F70) |
-| OpenRouter account owner and cap (Q6); GPU booking (Q7) | Before M5 | Open since M0 |
+| OpenRouter account owner and cap (Q6); how rented compute is paid for (Q7) | Now | Open since M0; the resource request asks |
 | Public daily-report sources beyond AK-3 (Q5) | M3 | Daily reports are half of the document scope |

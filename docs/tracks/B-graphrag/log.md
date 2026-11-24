@@ -15,19 +15,19 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 
 | Topic | Where it stands | Entries |
 |---|---|---|
-| What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. Built; the coordinator and the reasoning lane are not measured | B-D36, B-C37, B-C38, B-C51 |
+| What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. The coordinator is not measured in full; the reasoning lane is measured and stays a probe | B-D36, B-C37, B-C38, B-C51, B-D50, [E34](../../experiments/E34-reasoning-probe.md) |
 | Passages | BM25 routed by well, top 5; per-well fusion for questions naming several wells; a date filter on daily reports. Qwen3-8B, thinking off; citations and values checked in code | B-D23, B-C21, B-C22 |
-| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 216 facts of 5 wells, 202 of them on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30 |
+| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 207 facts of 5 wells, 202 of them on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30, B-F68 |
 | Events | An event graph built from operations tables with no model call; the model writes a plan, code runs it and reports the total | B-D26, B-C39 |
 | Best scores so far | 28/31 prototype questions (baseline); 30/31 with facts; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain retrieval. All on questions written by the team | [E18](../../experiments/E18-well-routing.md), [E22](../../experiments/E22-table-facts.md), [E28](../../experiments/E28-event-graph.md) |
-| Application | A backend and a frontend on the stores, behind one password; runs end to end on a laptop with a stand-in model | B-C44 to B-C47, B-C50 to B-C57 |
+| Application | A backend and a frontend on the stores, behind one password; run end to end in containers with the real model; built for one model slot, with failures logged and told plainly | B-C44 to B-C47, B-C50 to B-C57, B-C65 to B-C69, B-F76 |
 | Models | Qwen3-8B answers best; Qwen3-4B extracts; Qwen3-Embedding-0.6B embeds. Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
 | Bases tried | neo4j-graphrag-python and LightRAG were run and not adopted as bases | B-D21 |
 | Ontology (K2) | Version 1.2, kept thin; no further ontology work | B-D17, B-D25 |
-| Compute | None of our own. Rented, on public data only; a request for 5 million VND for three months is drafted | B-D42, B-D47 |
+| Compute | None of our own. Rented, on public data only; a request for 5 million VND for three months is drafted. A machine without a GPU runs the baseline model at about two minutes a lookup | B-D42, B-D47, B-F71 |
 | Trying a model | A profile names a model on an address; `python -m graphrag.bench` checks it, runs the measurement suite and compares runs | B-D48, B-C60 |
 | Questions | All simulated except the prototype's 31; none is expert-reviewed | B-D22 |
-| Next | Compute, then the three measurements E32, E33, E34 with the bench ([commands](next-runs.md)) | B-D38, B-C60 |
+| Next | The coordinator against the hand-routed scores (E33) and the answers on the package (E32); the smaller unit for the problem on the second probe; then an expert's reading ([commands](next-runs.md)) | B-D38, B-C60, B-F77 |
 
 ## Contents
 
@@ -43,7 +43,8 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 | 24 November, midday | The backend, the frontend, the stint report | B-D39, B-D40, B-C44 to B-C49, B-F62 |
 | 24 November, afternoon | All three tracks built toward production | B-D41, B-C50 to B-C57, B-F63 to B-F65 |
 | 24 November, evening | No GPU of our own; the resource request; the documents reorganised | B-D42 to B-D47, B-C59 |
-| 25 November | Everything that needs no compute: the model bench, vector search in the database, the question log's read side, three screens, three reports in the package | B-D48, B-C60 to B-C64, B-F66, B-F67 |
+| 25 November | Everything that needs no compute: the model bench, vector search in the database, the question log's read side, three screens, three reports in the package | B-D48, B-C60 to B-C64, B-F66 |
+| 25 November, later | A design review, a code review and a security review; the first runs with the real model (E34); the whole stack run on one machine | B-D49, B-D50, B-C65 to B-C69, B-F68 to B-F77 |
 
 Search the file for an entry's number to find it.
 
@@ -824,7 +825,7 @@ An independent read-only review of the day's code confirmed the two hard constra
 
 ## 2026-11-25: everything that needs no compute
 
-Tri asked for every piece of code that can be written without a model or a budget. Built by development agents on the separate API key, each in its own worktree, reviewed and merged in Tri's session; about US$45 in all. Every result below comes from stand-in models or from loading and reading data, except B-F67.
+Tri asked for every piece of code that can be written without a model or a budget. Built by development agents on the separate API key, each in its own worktree, reviewed and merged in Tri's session; about US$45 in all. Every result below comes from stand-in models or from loading and reading data.
 
 **B-D48 (decision; no gateway library and no outside evaluation tool).** Swapping and testing models needs three layers: a server that runs a model, one way in that hides which server it is, and an evaluation that compares candidates. The project has the first two (llama.cpp, and a client that speaks the OpenAI API to any address, with OpenRouter as the hosted way in). The third was missing and is built here (B-C60).
 

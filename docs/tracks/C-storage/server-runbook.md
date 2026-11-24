@@ -17,12 +17,12 @@ The server hosts PostgreSQL with pgvector and Neo4j for the whole team. It runs 
 
 ## 0. For now: a team machine over Tailscale (no budget yet)
 
-There is no money for a server yet (Track C log C-D06). Until a free one is found (student credits, the school, a free tier), one team machine hosts the stores and the others reach it over **Tailscale**, a free private network between our computers. Nothing is opened to the internet. Proposed host: Tri's desktop, which is on most often and runs the engine; **Tri has to agree**.
+There is no money for a server yet (Track C log C-D06). Until a free one is found (student credits, the school, a free tier), one team machine hosts the stores and the others reach it over **Tailscale**, a free private network between our computers. Nothing is opened to the internet. Proposed host: Hung's machine, **if he agrees** (Track C log C-D07: Tri's desktop is borrowed and cannot be it).
 
 | | Interim (Tailscale) | Later (cloud server, sections 1 to 8) |
 |---|---|---|
 | Up | When the host machine is on | Always |
-| Reached by | Tailscale address of the host, e.g. `tri-desktop` or `100.x.y.z` | SSH tunnel to the server |
+| Reached by | Tailscale address of the host, e.g. `hung-mac` or `100.x.y.z` | SSH tunnel to the server |
 | Cost | US$0 | Student credits, or the contingency in the resource request |
 | Good for | Tasks 3 and 4, Khai's releases, one shared copy of the data | Also the demo application (Task 5) |
 
@@ -47,13 +47,13 @@ There is no money for a server yet (Track C log C-D06). Until a free one is foun
 ```bash
 export SERVER_PG="postgresql://kg:<POSTGRES_PASSWORD>@<host>:5434/kg"
 export SERVER_NEO4J_PASSWORD="<NEO4J_PASSWORD>"
-.venv/bin/python platform/k1_store.py --dsn "$SERVER_PG" compare data/interim/k1/ak3-k1v1-proposed
+.venv/bin/python platform/k1_store.py --dsn "$SERVER_PG" compare data/interim/k1/demo-v2
 .venv/bin/python platform/load_facts_neo4j.py --uri bolt://<host>:7687 --password "$SERVER_NEO4J_PASSWORD"
 ```
 
 The loaders in section 6 work the same way with these addresses. Neo4j Browser: `http://<host>:7474`.
 
-**Backups:** PostgreSQL holds the K1 release and its vectors, both rebuilt from the release folder by `load_k1.py` and `embed_k1.py`, and Neo4j is rebuilt by its loaders. Run `platform/server/backup.sh` with `OUT=<folder>` after each load (Git Bash or WSL on Windows) rather than nightly.
+**Backups:** PostgreSQL holds the K1 release and its vectors, both rebuilt from the release folder by `load_k1.py` and `embed_k1.py`, and Neo4j is rebuilt by its loaders. **The question log is the exception: once the application writes it here, it cannot be rebuilt** (set `BACKUP_REMOTE` and run `restore_check.sh`: [application runbook §11](../../../deploy/README.md#11-backup-restore-update)). Run `platform/server/backup.sh` with `OUT=<folder>` after each load (Git Bash or WSL on Windows) rather than nightly.
 
 **Done when:** from a second machine, `k1_store.py compare` reports every chunk identical through the Tailscale address. When a cloud server arrives, follow sections 1 to 8 and load the same release there.
 
@@ -123,13 +123,13 @@ Neo4j Browser: http://127.0.0.1:17474, connect to `bolt://127.0.0.1:17687` as `n
 Copy the K1 release to the server, so the team has one copy:
 
 ```bash
-rsync -av data/interim/k1/ak3-k1v1-proposed/ kg@<address>:/srv/k1/ak3-k1v1-proposed/
+rsync -av data/interim/k1/demo-v2/ kg@<address>:/srv/k1/demo-v2/
 ```
 
 Then load from your computer through the tunnel, with the project's `.venv` and the embedding model running for step 2 ([graphrag/README.md](../../../graphrag/README.md)):
 
 ```bash
-.venv/bin/python platform/load_k1.py data/interim/k1/ak3-k1v1-proposed --dsn "$SERVER_PG"
+.venv/bin/python platform/load_k1.py data/interim/k1/demo-v2 --dsn "$SERVER_PG"
 .venv/bin/python platform/embed_k1.py embed --dsn "$SERVER_PG"
 .venv/bin/python platform/embed_k1.py check --dsn "$SERVER_PG"
 .venv/bin/python platform/load_events_neo4j.py --uri bolt://127.0.0.1:17687 --password "$SERVER_NEO4J_PASSWORD"

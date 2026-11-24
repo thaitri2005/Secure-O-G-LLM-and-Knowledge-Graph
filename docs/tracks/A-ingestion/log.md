@@ -18,14 +18,14 @@ Task numbers such as A-107 or A-415 are the ones Khai's commits and documents us
 | Topic | Current answer | Entry |
 |---|---|---|
 | K1 version 1 | The agreed interface (D-54 ids, D-57 package). Six record types, validator, `k1` command, completeness gate | A-C01, A-C06 |
-| Demo release (D1) | Built (`ak3-demo-v1`: end-of-well report, appendices 23 and 27 to 30; 1,051 chunks). Validator pass, 981/981 daily chunks and 61/61 end-of-well chunks with their context, legacy map inside, 161 events from the package. Not yet shared on a store; `graphrag`'s own event command still reads appendix 23 elsewhere | A-F15, A-F16 |
+| Demo release (D1, D3) | Built (`demo-v2`: the end-of-well reports of AK-3, 56-32 and 68-32, appendices 23 and 27 to 30; 8 files, 302 pages, 1,431 chunks, and 1,432 when built on Linux). Validator pass, the legacy map inside, 161 events from the package. Loaded into the stores on a cloud machine | A-F20 to A-F22 |
 | End-of-well chunks with a well | Optional K1 key `document_context` (off by default); on in the demo configuration | A-C17 |
 | Operations Summary tables | Rebuilt from the PDF text layer when four gates pass (A-107); in `configs/corpus/k1.json` | A-C04 |
 | Merged-cell text repeated in table Markdown (D4) | Fixed by the optional mode `chunking.table_markdown = span_once_keyed` (A-431), off by default; test added on 24 November. On the demo release it clears both `CHAR_RATIO_HIGH` warnings and changes no id. Not yet switched on for any shared release | A-C08, A-F11 |
 | Options of 17 November | All off by default; none measured on the demo release yet (task D2) | A-C08 to A-C15 |
 | QA sidecar | Warning-only checks; thresholds noisy outside the family they were tuned on (8/20 precision on a sample) | A-C05, A-F06 |
-| Tests without PyMuPDF | Skip with a reason (24 November) | A-F18 |
-| Open | D2 (decide each option with a number), D3 (56-32 and 68-32), the VLM comparison, scanned pages, forms outside the RIMBase template | — |
+| Tests without PyMuPDF | Skip with a reason (24 November) | — |
+| Open | D2 (decide each option with a number), the benchmark manifests that scripts and records point to and the repository does not hold (plan task D6), the VLM comparison, scanned pages, forms outside the RIMBase template | — |
 
 ## Before 5 November (background)
 

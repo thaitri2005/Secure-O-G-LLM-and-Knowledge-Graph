@@ -17,7 +17,7 @@ own transaction, so a failed run leaves that store as it was.
 | 7. Load the fact region | platform/load_facts_neo4j.py | its counts, read-back or event region differ |
 | 8. Record the run | one row in `runs` (platform/sql/003_runs.sql, applied here) | — |
 
-Step 6 starts from the fact graph the engine answers from, `graphrag/results/E27_fact_graph.graph.json`: 216 facts
+Step 6 starts from the fact graph the engine answers from, `graphrag/results/E32_fact_graph.graph.json`: 207 facts
 of three end-of-well reports, read by Qwen3-4B (a model call, on the GPU) and by K2's table mappings, citing K1
 version 0 chunk IDs. Three choices, by `--facts`:
 

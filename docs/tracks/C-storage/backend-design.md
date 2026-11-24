@@ -6,19 +6,20 @@ This is a proposal for your part of the work. Anything here can change; say so i
 
 ## Where each task stands
 
-Updated on 24 November after everything below was built (Track B log B-D41; Track C log C-C12 to C-C18). The sections that follow are the designs as written before the build; they are kept as the reasons behind the code. Where the code differs, the Track C log says so.
+**The table says where each task stands today. The sections after it are the design as written on 24 November, before the build:** they are kept as the reasons behind the code, and their numbers and file names are those of that day (the fact graph then had 216 facts in `E27_fact_graph.graph.json`; today it has 207 in `E32_fact_graph.graph.json`, and Neo4j runs without APOC). Where the code differs, the Track C log says so.
 
 | Task | State | Where |
 |---|---|---|
-| B4. The API contract | **Done** | `backend/openapi.json`, twelve example responses in `backend/fixtures/` |
+| B4. The API contract | **Done** | `backend/openapi.json`, sixteen example responses in `backend/fixtures/` |
 | B5. The FastAPI service | **Done**, reading files or the stores | `backend/`; `BACKEND_SOURCE=stores` (§5) |
 | B6. The question log | **Done** in PostgreSQL | `platform/sql/002_questions.sql`, `backend/questions.py` (§3) |
-| B1. Shared hosting | **Prepared, no server yet** | `platform/server/`, the [server runbook](server-runbook.md); interim host to agree (C-D06, C-D07) |
-| B3. The graph in Neo4j | **Done** on laptops | `platform/load_facts_neo4j.py`, `load_events_neo4j.py` (§4). Open: the facts cite old chunk IDs (§4.2) |
-| B2. The runner | **Done**, without vectors on a machine with no embedding model | `platform/run_release.py` (§6) |
+| B1. Shared hosting | **Prepared and run on a cloud machine; no server others reach yet** | `platform/server/`, the [server runbook](server-runbook.md); interim host to agree (C-D06, C-D07) |
+| B3. The graph in Neo4j | **Done** | `platform/load_facts_neo4j.py`, `load_events_neo4j.py` (§4). 202 of the 207 facts cite the package's chunk IDs; 5 keep old IDs (Track C log C-F09) |
+| B2. The runner | **Done**, with vectors (Track C log C-F09) | `platform/run_release.py` (§6) |
 | B7. Page images | **Done**; no highlight on the image | `platform/render_pages.py`, the image route (§7) |
-| B8. Compose file and access gate | **Done**, run on a laptop only | `--profile app`, [deploy/README.md](../../../deploy/README.md) (§8) |
-| Vector search in SQL inside the engine (§5, last row) | **Not built** | Track B log B-C50 |
+| B8. Compose file and access gate | **Done**; run as containers on a cloud machine with the real model, checked from outside (Track C log C-F10) | `--profile app`, [deploy/README.md](../../../deploy/README.md) (§8) |
+| Vector search in SQL inside the engine (§5, last row) | **Done** | `graphrag.retrieval.PgVector` (Track B log B-C61) |
+| Waiting, failures, readiness, the monitor and the backup copy | **Done** | Specification §4.6 and §11.4; Track B log B-C65 to B-C67 |
 
 **What is left for Hung:** review the code against these designs, agree a host (B1), and run the server steps for real.
 

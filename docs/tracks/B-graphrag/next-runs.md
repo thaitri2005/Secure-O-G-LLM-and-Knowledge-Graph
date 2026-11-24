@@ -1,6 +1,6 @@
 # Track B: next runs
 
-**Next: E32, E33 and E34**, once there is compute ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). The team has no GPU of its own (B-D42, B-D43). The runs go on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68, B-D44). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
+**Next: E33 and E32** ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). E34 is recorded ([two probes](../../experiments/E34-reasoning-probe.md)). The team has no GPU of its own (B-D42, B-D47). The long run goes on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)). A machine without a GPU does the short runs ([how](../../../graphrag/README.md#without-a-gpu-on-linux)).
 
 Every run goes through the model bench (`python -m graphrag.bench`, [how it works](../../../graphrag/README.md#trying-a-model-profiles-and-the-bench-d-62-d-68)): one command checks a model, one runs the whole suite, one compares runs.
 
@@ -8,7 +8,7 @@ Every run goes through the model bench (`python -m graphrag.bench`, [how it work
 |---|---|---|
 | E32 | Answers on the K1 package `demo-v2` | Every step with `--k1`, and the prototype questions on the package's AK-3 report |
 | E33 | The coordinator on the 221 pooled questions, against the hand-routed scores from the same model | The hand-routed baselines of the seven sets, then the coordinator |
-| E34 | The reasoning lane on its ten frozen questions (`graphrag/gold/ak3_reasoning_probe_v0.json`) | The last step |
+| E34 | The reasoning lane on its first probe (`graphrag/gold/ak3_reasoning_probe_v0.json`); recorded on a CPU, and repeated here on the GPU | The last step |
 
 ## On a rented GPU
 
@@ -20,7 +20,7 @@ Every run goes through the model bench (`python -m graphrag.bench`, [how it work
    bash scripts/setup_gpu_box.sh /workspace/kg
    ```
 
-3. Copy the K1 package (public data) to `data/interim/k1/demo-v2/`. Build it on a laptop with `python scripts/build_k1_demo_release.py`.
+3. Copy the K1 package (public data) to `data/interim/k1/demo-v2/`. Build it with `scripts/build_k1_demo_release.py` ([the steps, below](#building-the-demo-package-from-nothing-on-linux)).
 4. Check the model, then reproduce the baseline: the quick suite should give about 28/31, as the recorded run did.
 
    ```bash
