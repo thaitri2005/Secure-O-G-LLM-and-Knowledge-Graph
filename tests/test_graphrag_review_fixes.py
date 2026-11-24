@@ -81,6 +81,18 @@ class ProblemCodeTests(unittest.TestCase):
         found = reasoning.find_problems(frame, EVENTS)
         self.assertEqual([(p.events[0].date, p.events[0].npt_code) for p in found], [("2016-08-20", "KICK")])
 
+    def test_the_day_asked_about_outranks_a_code_the_model_chose(self):
+        frame = {"plan": {"well": "AK-3"},
+                 "problem": {"date": "2016-08-25", "depth_ft": 0, "npt_code": "KICK", "keywords": []}}
+        self.assertEqual([p.events[0].npt_code for p in reasoning.find_problems(frame, EVENTS)], ["WAIT"])
+
+    def test_on_a_day_asked_about_one_keyword_names_an_activity_that_is_not_non_productive(self):
+        events = [*EVENTS, Event("2016-08-19", "9:30", "21:30", 12.0, 49, "WOC", "Lay plywood on site for walk way due to muddy site", ["p"])]
+        dated = {"plan": {"well": "AK-3"}, "problem": {"date": "2016-08-19", "depth_ft": 0, "npt_code": "", "keywords": ["plywood", "walkway"]}}
+        self.assertEqual([p.events[0].date for p in reasoning.find_problems(dated, events)], ["2016-08-19"])
+        undated = {"plan": {"well": "AK-3"}, "problem": {"date": "", "depth_ft": 0, "npt_code": "", "keywords": ["plywood", "walkway"]}}
+        self.assertEqual(reasoning.find_problems(undated, events), [])
+
     def test_a_real_non_productive_code_still_selects_by_code(self):
         frame = {"plan": {"well": "AK-3"}, "problem": {"date": "", "depth_ft": 0, "npt_code": "wait", "keywords": []}}
         self.assertEqual([p.events[0].npt_code for p in reasoning.find_problems(frame, EVENTS)], ["WAIT"])

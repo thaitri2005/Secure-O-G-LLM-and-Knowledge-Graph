@@ -182,6 +182,12 @@ def find_problems(frame: dict, events: list[Event]) -> list[Problem]:
     well = (frame.get("plan") or {}).get("well") or ""
     if (well and well.upper() != WELL) or (wanted["date"] and not ISO_DATE.fullmatch(wanted["date"])):
         return []
+    # A day read from the question outranks a code the model chose: asked about waiting for core rod on 3 September,
+    # Qwen3-8B wrote WOO where the reports say WOE, and the exact match on both found nothing (E34, second probe).
+    if wanted["date"] and wanted["npt_code"]:
+        on_the_day = [p for p in incidents(events) if _fits(p.events, dict(wanted, npt_code=""))]
+        if on_the_day and not any(_fits(p.events, wanted) for p in on_the_day):
+            wanted["npt_code"] = ""
     fitting = [p for p in incidents(events) if _fits(p.events, wanted)]
     # Every keyword must be named somewhere in the incident: "twist-off", "drill", "string" does not pick an
     # incident because one of its events says "drill" (B-F72).
@@ -192,7 +198,10 @@ def find_problems(frame: dict, events: list[Event]) -> list[Problem]:
         return fitting
     if not keywords or wanted["npt_code"]:
         return []
-    hits = [e for e in events if all(names(e, [k]) for k in keywords) and _fits([e], dict(wanted, npt_code=""))]
+    # Activities that are not non-productive time. With a day asked about, one keyword is enough to name the
+    # activity on that day ("plywood" for "walkway", which the report writes "walk way"); with none, all must be.
+    enough = any if wanted["date"] else all
+    hits = [e for e in events if enough(names(e, [k]) for k in keywords) and _fits([e], dict(wanted, npt_code=""))]
     return _runs(hits, lambda a, b: True)
 
 

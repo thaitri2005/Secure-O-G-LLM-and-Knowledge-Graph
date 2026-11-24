@@ -1,0 +1,339 @@
+[
+ {
+  "id": "r01",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-08-20",
+   "depth_ft": 0,
+   "npt_code": "STUCK",
+   "keywords": [
+    "stuck",
+    "pipe"
+   ]
+  },
+  "as_built": [],
+  "fixed": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-20",
+   "npt_code": "KICK"
+  },
+  "frame_tokens": [
+   1270,
+   155
+  ]
+ },
+ {
+  "id": "r02",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-08-21",
+   "depth_ft": 0,
+   "npt_code": "",
+   "keywords": [
+    "core",
+    "rod",
+    "lost"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-21",
+   "npt_code": "KICK"
+  },
+  "frame_tokens": [
+   1274,
+   146
+  ]
+ },
+ {
+  "id": "r03",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-08-16",
+   "depth_ft": 0,
+   "npt_code": "",
+   "keywords": [
+    "weather",
+    "delay"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-16",
+    "2016-08-17",
+    "WOE"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-16",
+    "2016-08-17",
+    "WOE"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-16",
+   "npt_code": "WOE"
+  },
+  "frame_tokens": [
+   1280,
+   143
+  ]
+ },
+ {
+  "id": "r04",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-08-18",
+   "depth_ft": 0,
+   "npt_code": "",
+   "keywords": [
+    "spud",
+    "held",
+    "up"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-18",
+    "2016-08-18",
+    "WOO"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-18",
+    "2016-08-18",
+    "WOO"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-18",
+   "npt_code": "WOO"
+  },
+  "frame_tokens": [
+   1274,
+   147
+  ]
+ },
+ {
+  "id": "r05",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-09-03",
+   "depth_ft": 1725,
+   "npt_code": "",
+   "keywords": [
+    "circulating",
+    "waiting"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-09-03",
+    "2016-09-03",
+    "WOE"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-09-03",
+    "2016-09-03",
+    "WOE"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-09-03",
+   "npt_code": "WOE"
+  },
+  "frame_tokens": [
+   1276,
+   152
+  ]
+ },
+ {
+  "id": "r06",
+  "outcome": "answer",
+  "kind": "lookup_by_date",
+  "problem": {
+   "date": "2016-09-05",
+   "depth_ft": 0,
+   "npt_code": "WOC",
+   "keywords": [
+    "waiting"
+   ]
+  },
+  "as_built": null,
+  "fixed": null,
+  "gold_problem": {
+   "date": "2016-09-05",
+   "npt_code": "WOO"
+  },
+  "frame_tokens": [
+   1270,
+   152
+  ]
+ },
+ {
+  "id": "r07",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "2016-08-13",
+   "depth_ft": 0,
+   "npt_code": "",
+   "keywords": [
+    "no work"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-13",
+    "2016-08-13",
+    "WAIT"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-13",
+    "2016-08-13",
+    "WAIT"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-13",
+   "npt_code": "WAIT"
+  },
+  "frame_tokens": [
+   1270,
+   141
+  ]
+ },
+ {
+  "id": "r08",
+  "outcome": "answer",
+  "kind": "cause",
+  "problem": {
+   "date": "",
+   "depth_ft": 0,
+   "npt_code": "KICK",
+   "keywords": [
+    "well control",
+    "kick",
+    "flow"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "gold_problem": {
+   "date": "2016-08-21",
+   "npt_code": "KICK"
+  },
+  "frame_tokens": [
+   1272,
+   122
+  ]
+ },
+ {
+  "id": "r09",
+  "outcome": "ask_which",
+  "kind": "cause",
+  "problem": {
+   "date": "",
+   "depth_ft": 0,
+   "npt_code": "KICK",
+   "keywords": [
+    "kick"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "gold_problem": null,
+  "frame_tokens": [
+   1262,
+   119
+  ]
+ },
+ {
+  "id": "r10",
+  "outcome": "fallback",
+  "kind": "cause",
+  "problem": {
+   "date": "",
+   "depth_ft": 0,
+   "npt_code": "",
+   "keywords": [
+    "twist-off",
+    "drill",
+    "string"
+   ]
+  },
+  "as_built": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "fixed": [
+   [
+    "2016-08-20",
+    "2016-08-23",
+    "KICK"
+   ]
+  ],
+  "gold_problem": null,
+  "frame_tokens": [
+   1264,
+   115
+  ]
+ }
+]
