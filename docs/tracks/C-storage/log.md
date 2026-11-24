@@ -24,7 +24,8 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 | Vectors | [`platform/embed_k1.py`](../../../platform/embed_k1.py): 1,042 Qwen3-Embedding-0.6B vectors in pgvector, each with its well and report date; 67 / 67 searches give the same top 5 from SQL as in memory. About 1,170 tokens and 0.5 s per page on Hung's Mac | C-C10, C-F06 |
 | Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. Its source chunks still use the corpus export's IDs, not K1 version 1's. The fact graph is not in Neo4j yet | C-C11, C-F06 |
 | Runner, viewer | Not started. Track B's local UI (B-C32, D-60) is the viewer for now | — |
-| Next | Track B reads chunks from the store (`k1_store.py`); link the event graph to K1 version 1 chunks (legacy map from Khai, or the event graph built from K1); agree the fact graph's nodes and relationships with Tri; runner | — |
+| Backend API | Read path built by Track B on Hung's behalf: `backend/`, with the contract and example responses for the frontend. It reads files, not the stores. The rest is designed in [backend-design.md](backend-design.md): hosting, the graph in Neo4j, the question log in PostgreSQL, the runner, page images, the compose file | C-D05 |
+| Next | In the order of [backend-design.md](backend-design.md): shared hosting (B1), the fact region in Neo4j (B3), the engine reading the stores, the runner (B2). Earlier list: Track B reads chunks from the store (`k1_store.py`); link the event graph to K1 version 1 chunks (legacy map from Khai, or the event graph built from K1); agree the fact graph's nodes and relationships with Tri; runner | — |
 
 ## 2026-11-05
 
@@ -131,3 +132,13 @@ Before the professor's review on 11 November, Track C stored vectors and loaded 
 | Event graph in Neo4j (`load_events_neo4j.py`) | 27 report days, 161 events, 88 source chunks; 161 / 161 events read back identical; 58 / 58 recorded query plans give their recorded results; hours of 30 / 30 activity codes match in Cypher; non-productive time 115 hours in 28 events on 10 days |
 
 Before this run the three scripts were tested in the cloud: `k1_store.py` and `embed_k1.py` on a sample package with a stand-in embedding server, `load_events_neo4j.py` with a stand-in Neo4j transaction, as no Neo4j server could be installed there. Neo4j Browser draws relationships between returned nodes only when its "connect result nodes" setting is on; returning a path (`MATCH p = ... RETURN p`) always draws them.
+
+## 2026-11-24
+
+**C-D05 (decision, by Hung, told to Tri; recorded here by Track B, as C-D02 was).** Hung agrees with the design of the second build ([specification §4.6](../../PROJECT_DESIGN.md#46-second-build-one-connected-application), the graph model of §8.5, D-67) and takes backend and stores. He asked Track B to do part of the backend for now. Track B log B-D39 has the detail.
+
+- **Built by Track B on Hung's behalf:** the read-path API in `backend/` (Track B log B-C44), its contract (`backend/openapi.json`, `backend/fixtures/`) and the question log as a file.
+- **Designed for Hung, not built:** [backend-design.md](backend-design.md), covering shared hosting, the question log in PostgreSQL, loading the fact region into Neo4j, the engine reading the stores, the runner, page images, and the compose file with the access gate.
+- **Nothing in `platform/` was changed.** The proposed SQL for the question log is in the design, not in `platform/sql/`, because files there run on the database's first start and it has not been run against PostgreSQL.
+- Hung has not reviewed this entry or the design; both are his to correct.
+

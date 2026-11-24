@@ -26,6 +26,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | Chunk packages (K1 version 1) | AK-3's end-of-well report and four daily-report attachments, 174 pages: validated, with a QA sidecar. Options added on 17 November, off by default: table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine, resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md) |
 | Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG. Since 24 November: lanes behind one interface, the coordinator and the fact graph export, tested with stand-in models and not yet measured | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
 | Stores | PostgreSQL with pgvector and Neo4j in Docker Compose on one laptop; K1 loader with page rebuild (174 of 174); 1,042 vectors; the event graph in Neo4j, replaying 58 of 58 query plans | [Track C log](tracks/C-storage/log.md) |
+| Backend API | The read path as a FastAPI service with its contract and example responses, built 24 November. It reads files, not the stores | [backend/README.md](../backend/README.md), Track B log B-C44 |
 | Earlier foundation | Document pipeline, structured-data import, the entity registry (57,453 wellbores), the prototype as the measured baseline (23/31) | [Specification §3.1](PROJECT_DESIGN.md#31-what-exists) |
 
 **Not built:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: the parts are not connected, there is no coordinator, no API, no React frontend and no shared hosting.
@@ -229,14 +230,16 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 ### Backend (Hung)
 
+Hung asked Tri to do part of this for now (Track B log B-D39). B4, B5 and the file version of B6 are done on his behalf; the others are designed for him in the [backend design](tracks/C-storage/backend-design.md), which also gives a suggested order.
+
 | # | Task | Needs | Done when |
 |---|---|---|---|
 | B1 | **Shared hosting of the stores** and of K1 releases (Track B log B-D35) | — | Tri and Khai connect with their own credentials; no data moves through chat |
 | B2 | **The runner**: one command from a K1 release to loaded chunks, vectors, the event region and the fact region, each step checked | D1, E4 | Run twice on the AK-3 release with the same result |
 | B3 | The fact region in Neo4j, and the event region on K1 version 1 IDs | E4 | Layout agreed (D-67); every fact and event links to a chunk that exists in PostgreSQL |
-| B4 | **The OpenAPI file** for the read path of spec §7.5, agreed with Engine and Frontend before coding | — | Committed; a fixture response for each endpoint |
-| B5 | The FastAPI service in `backend/`, calling `graphrag` | B4, E3 | Each endpoint returns real data from the stores |
-| B6 | The question log and feedback tables | B5 | Every question asked through the API is stored with its lane, answer and any mark |
+| B4 | **The OpenAPI file** for the read path of spec §7.5, agreed with Engine and Frontend before coding | — | **Done 24 November by Tri, on Hung's behalf** (Track B log B-C44): `backend/openapi.json` and ten example responses in `backend/fixtures/`. Hung to review |
+| B5 | The FastAPI service in `backend/`, calling `graphrag` | B4, E3 | **Built 24 November by Tri, on Hung's behalf** (B-C44), reading files. Open: each endpoint returns real data from the stores (after B1 and E2) |
+| B6 | The question log and feedback tables | B5 | **Done as a file** (B-C44): every question is stored with its lane, answer and any mark. Open: the PostgreSQL tables, designed in the [backend design](tracks/C-storage/backend-design.md) §3 |
 | B7 | Page images or PDF pages served for the source viewer | B1 | A citation opens the right page |
 | B8 | Compose file for the whole application; one shared password at the proxy | B5, F1 | The application runs on the shared host |
 
@@ -256,7 +259,7 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures) | Works against fixtures, then against the API |
+| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | Works against fixtures, then against the API |
 | F2 | The source viewer: the cited page (PDF.js) beside the cited passage | B7 | A citation opens the page |
 | F3 | The evidence panel: passages, facts, the query plan with its events | B5 | A computed total shows the events behind it |
 | F4 | "Wrong answer" button and comment | B6 | Marks arrive in the question log |

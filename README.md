@@ -22,7 +22,8 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 
 - **Exists as three separate parts:** chunk packages with stable IDs (K1 version 1), the stores (PostgreSQL with pgvector, Neo4j), and a GraphRAG engine with two graphs and cited answers.
 - **Built on 24 November, not yet measured:** the coordinator that picks a lane per question, with the three lanes behind one interface.
-- **Not built yet:** the parts connected, the React frontend, shared hosting.
+- **Built on 24 November:** the backend's read-path API (`backend/`), reading files for now.
+- **Not built yet:** the parts connected through the stores, the React frontend, shared hosting.
 - **Next:** one connected application, read path first ([task list](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now)).
 
 All question sets so far are simulated; none is expert-reviewed.
@@ -36,7 +37,7 @@ All question sets so far are simulated; none is expert-reviewed.
 | Structured-data import | CSV/Excel/JSON-lines to typed records with row provenance; BSEE as a mapping | Implemented ([guide](docs/components/dataset-import.md), [E6](docs/experiments/E6-generic-import-bsee.md)) |
 | Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned (M3) |
 | Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Kept as the measured baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
-| Application | Chat with citations, source page and evidence; later, admin for documents, ontology, glossary and flagged items | Second build (M2): FastAPI backend and React frontend. A local developer UI exists (`python -m graphrag.ui`) |
+| Application | Chat with citations, source page and evidence; later, admin for documents, ontology, glossary and flagged items | Second build (M2). The backend's read path exists ([backend/](backend/README.md)); the React frontend is not started. A local developer UI exists (`python -m graphrag.ui`) |
 
 ## Quick start
 
@@ -121,7 +122,8 @@ src/graph_builder/graph/       earlier BSEE linked graph (python -m graph_builde
 prototype/        experiments E4/E10: extraction and template-QA prototype on AK-3; the baseline for the GraphRAG pipeline
 explorations/     side explorations, not part of the system
 tests/            unit and regression tests (unittest)
-backend/, frontend/   planned for the second build (FastAPI service, React application); not created yet
+backend/          the read-path API (FastAPI), its OpenAPI description and example responses; python -m uvicorn backend.app:app
+frontend/         planned for the second build (React application); not created yet
 ```
 
 For the earlier PDF pipeline, Docling caches live in a per-parser-settings subdirectory of `data/interim/docling/`. A document corpus keeps everything in its own directory (catalog, stored originals, per-document outputs, exports); OCR models live in `data/interim/ocr_models/`. BSEE snapshots live in `data/raw/bsee_wells/`, and the imported bundle in `data/processed/local/datasets/bsee_wells/`.

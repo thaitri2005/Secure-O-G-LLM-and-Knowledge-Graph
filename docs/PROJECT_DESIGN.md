@@ -278,10 +278,10 @@ The second group was built before the 28 October direction and remains the inges
 
 **Not built (24 November):**
 
-- the three parts connected: the engine still reads files, not the stores, and no single command runs a report from PDF to answer;
+- the three parts connected: the engine and the backend API still read files, not the stores, and no single command runs a report from PDF to answer;
 - the coordinator measured against the hand-routed scores (§8.1; the code exists, experiment E33 does not);
 - the fact graph loaded into Neo4j (it is exported as a file, §8.5), and the event graph on K1 version 1 IDs in Neo4j;
-- the backend API and the React frontend (§4.6);
+- the React frontend, and the backend beyond its read path (§4.6; the read-path API exists since 24 November);
 - shared hosting of the stores;
 - VLM parsing (not run; rule-based methods come first, D-63);
 - object storage in use (MinIO is optional in the compose file);
@@ -919,14 +919,14 @@ Every published item cites at least one chunk (with span or table row) or a data
 
 ### 7.5 HTTP interface (design)
 
-**Read path, built in the second build (§4.6).** The exact fields are fixed in an OpenAPI file that backend and frontend agree before coding.
+**Read path, built in the second build (§4.6).** The exact fields are fixed in [`backend/openapi.json`](../backend/openapi.json), generated from the code, with one example response per endpoint in [`backend/fixtures/`](../backend/fixtures/). The service exists since 24 November ([backend/README.md](../backend/README.md)); it reads files, not yet the stores.
 
 | Endpoint | Behavior |
 |---|---|
 | `POST /v1/questions` | Body: the question, `mode` (`exact` or `allow_fallback`, D-59) and an optional lane to force. Returns the answer or an explicit "not found"; the question frame and the lanes used; citations (chunk ID, file, page); the evidence (passages, facts, the query plan with its result and source events); the checks passed; calls, tokens and seconds. The question and its result are written to the question log |
 | `POST /v1/questions/{id}/feedback` | Mark an answer right or wrong, with an optional comment |
-| `GET /v1/chunks/{id}` | Text, parent, file and page |
-| `GET /v1/files`, `GET /v1/files/{id}/pages/{n}` | The loaded reports; one page as an image or PDF page for the source viewer |
+| `GET /v1/chunks/{id}` | Text, section, file and page. Chunk IDs contain `#` or `:`, so a client percent-encodes them |
+| `GET /v1/files`, `GET /v1/files/{id}/pages/{n}` | The loaded reports; one page as its chunks in reading order. The page as an image comes with the file store ([backend design](tracks/C-storage/backend-design.md) §7) |
 | `GET /v1/wells`, `GET /v1/wells/{id}` | The wells; one well's facts, documents and report days |
 | `GET /v1/wells/{id}/events` | Events of a well between two dates |
 | `GET /v1/health` | Whether the stores and the model endpoint answer, and which models the roles map to |
@@ -1189,7 +1189,7 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Metadata DB | PostgreSQL 16 | Exists: K1 tables and loader (Track C) |
 | Vector store | **pgvector inside the PostgreSQL that holds K1** (D-56), proposed by Track C; Neo4j's index stays the alternative if retrieval moves next to the graphs | Chosen |
 | Graph DB | Neo4j Community 5.26 with APOC | Exists: the event graph loaded and checked (Track C) |
-| Backend | FastAPI + Pydantic, importing `graphrag` as a library | Second build (§4.6, D-65). The prototype's API and Track B's standard-library UI server are not carried over |
+| Backend | FastAPI 0.165 + Pydantic 2, importing `graphrag` as a library | Read path built 24 November (`backend/`), reading files; the stores, the page images and the compose file follow ([backend design](tracks/C-storage/backend-design.md)). The prototype's API and Track B's standard-library UI server are not carried over |
 | Frontend | React + TypeScript; PDF.js for the source page | Second build (§4.6, D-65). Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
 | Packaging | Docker Compose | Track C's compose file runs the stores; the backend and frontend are added to it |
 

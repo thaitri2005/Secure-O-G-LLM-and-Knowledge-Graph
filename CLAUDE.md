@@ -115,7 +115,9 @@ The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B'
 4. ~~The fact graph as nodes and relationships~~: exported (B-C40); Hung to load it, and B-F60's two doubts to check.
 5. The coordinator is built (B-C38, B-C39). **Run E33 on the desktop** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`) and adopt it only if it matches the hand-routed scores.
 6. The reasoning probe, E34: about ten frozen questions on AK-3's non-productive events.
-7. The React frontend, which Tri owns.
+7. The React frontend, which Tri owns. It can start now: the API's contract and example responses are in `backend/openapi.json` and `backend/fixtures/`.
+
+**Backend, on Hung's behalf (B-D39):** Hung agreed to the design and asked for help. The read-path API is built in [backend/](backend/README.md) (B-C44; `python -m uvicorn backend.app:app`, packages in `backend/requirements.txt`, tests `tests/test_backend.py`). It reads files, not the stores. The rest of his tasks are designed in [docs/tracks/C-storage/backend-design.md](docs/tracks/C-storage/backend-design.md); do not change `platform/` without him.
 
 Still waiting on others: the expert questions and the purpose of use (Q2, Q13); shared hosting of the stores (B-D35); appendix 23 inside the K1 package.
 

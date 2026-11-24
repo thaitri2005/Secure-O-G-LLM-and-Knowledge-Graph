@@ -6,6 +6,6 @@ The first build (30 October to 17 November 2026) ran as three tracks joined by v
 |---|---|---|---|
 | A. Ingestion and tables (data) | Khai | [A-ingestion](A-ingestion/README.md), which points to the [progress report](../experiments/TRACK_A_PROGRESS.md) | K1 version 1 is the team's chunk package; new options from 17 November are off by default |
 | B. GraphRAG engine | Tri | [B-graphrag](B-graphrag/README.md): [log](B-graphrag/log.md), survey, notes to the other tracks | Three lanes behind one interface and a coordinator over them, built and not yet measured |
-| C. Storage, IDs and the run (backend) | Hung | [C-storage](C-storage/log.md): log and the [vector store comparison](C-storage/vector-store.md) | Stores loaded and checked on one laptop; not shared yet; no runner |
+| C. Storage, IDs and the run (backend) | Hung | [C-storage](C-storage/log.md): log and the [vector store comparison](C-storage/vector-store.md) | Stores loaded and checked on one laptop; not shared yet; no runner. Read-path API built on his behalf; the rest is in the [backend design](C-storage/backend-design.md) |
 
 Entry numbers (`B-F`, `B-D`, `B-C`, `C-F`, …) are never reused or renumbered. Project-level decisions also go into [specification §13.1](../PROJECT_DESIGN.md#131-decision-register). Measurements go into [experiment records](../experiments/README.md).
