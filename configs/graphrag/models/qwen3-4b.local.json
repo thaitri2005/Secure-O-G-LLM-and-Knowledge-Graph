@@ -1,0 +1,9 @@
+{
+  "description": "Qwen3-4B-Instruct-2507 Q4_K_M, our own copy on llama.cpp (the extraction model of E16 and E20), port 8082",
+  "endpoint": "local-llama-2",
+  "model": "qwen3-4b",
+  "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "thinking_off": "nothing to do: the 2507 Instruct model has no thinking mode",
+  "context": 32768,
+  "compare_as": "local-llama-2:qwen3-4b"
+}

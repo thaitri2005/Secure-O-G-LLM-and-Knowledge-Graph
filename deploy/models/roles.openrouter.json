@@ -1,6 +1,6 @@
 {
-  "frame": {"endpoint": "openrouter", "model": "qwen/qwen3-8b"},
-  "answer": {"endpoint": "openrouter", "model": "qwen/qwen3-8b"},
-  "extract": {"endpoint": "openrouter", "model": "qwen/qwen3-8b"},
+  "frame": {"profile": "qwen3-8b.openrouter"},
+  "answer": {"profile": "qwen3-8b.openrouter"},
+  "extract": {"profile": "qwen3-8b.openrouter"},
   "embed": {"endpoint": "local-embed", "model": "qwen3-embedding-0.6b"}
 }
