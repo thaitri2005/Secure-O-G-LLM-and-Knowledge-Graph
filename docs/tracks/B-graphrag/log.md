@@ -993,3 +993,9 @@ Tri asked for the whole project to be gone over before people are put in front o
 
 - **The answer read "1955 in".** The passage says "1,955 feet in 27 days" and the model gave "in" as the unit. The value was right and was checked; the unit never was. The unit shown is now the one the cited passage writes straight after the value, when it writes one. Scores do not change: the scorer does not compare units.
 - **The one line per question never reached the container's log**: the server configures only its own loggers. The service's lines now go to the console.
+
+**B-F77 (finding; a smaller unit for "the problem" removes most of what was left).** The follow-up B-F74 named. An incident can run for days and hold several things that went wrong, and a question is usually about one of them.
+
+- **The rule:** the problem is the activities of the incident on the day asked about, and among them those the question's keywords name. A stated cause stands when its reason is written in those activities. If none is, the reason in the nearest earlier activity stands, since a cause comes before its effect. A reason from a passage stands only when no activity gives one. With no day and no keyword, the whole incident is meant, as before.
+- **Nothing the model sees changes**, so the recorded replies were scored again at no cost. First probe: 4 of 10 correct to 6, unsupported claims 8 to 5. The three still wrong: the general question about the whole incident (both reasons are fair there, and the gold names neither), the question the model answered instead of asking back, and one where the same reason is cited from an activity and from a passage.
+- **Tuned on the first probe.** Its test is the second probe, to be scored when the model is free.
