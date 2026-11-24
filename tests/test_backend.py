@@ -458,7 +458,8 @@ class BackendTests(unittest.TestCase):
     def test_health_says_what_is_loaded_and_which_models_serve(self):
         health = self.make(FRAME_EOW, DEPTH_ANSWER).get("/v1/health").json()
         self.assertEqual(health["data"], {"source": "files", "end_of_well_chunks": 372, "daily_chunks": 5, "events": 4,
-                                          "facts": 2, "wells": 3})
+                                          "facts": 2, "wells": 3, "multi_well_retriever": "perwell:bm25",
+                                          "stored_vectors": 0})
         self.assertEqual(health["models"]["answer"], "test:stand-in")
 
     # ---- speed ------------------------------------------------------------------------------------------------
