@@ -66,6 +66,39 @@ Cost: the 221 pooled questions are about 0.7 million prompt tokens, so the full 
 3. Add findings and decisions to the [log](log.md), and update its "Current state" table and the results in [CLAUDE.md](../../../CLAUDE.md).
 4. Commit as yourself, with no AI attribution, then `git pull --rebase` and push.
 
+## Building the demo package from nothing, on Linux
+
+Run on 25 November 2026 on a cloud machine with 4 cores (Track B log B-F71). It needs no GPU and about 75 minutes of processing: 56 for the AK-3 appendix corpus, most of it one scanned 91-page appendix, and 15 for the package.
+
+```bash
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -r requirements.lock.txt
+uv pip install --python .venv/bin/python -e .
+uv pip install --python .venv/bin/python -r backend/requirements.txt
+uv pip install --python .venv/bin/python --no-deps vietocr==0.3.13      # only the appendix corpus needs it
+
+# The three end-of-well reports, under the names the package expects; check them against configs/sources/gdr_end_of_well.json
+mkdir -p data/raw && cd data/raw
+curl -fsS -o gdr882_ak3_eowr.pdf    "https://gdr.openei.org/files/882/00%20AK-3%20EOW%20Report.pdf"
+curl -fsS -o gdr1295_56-32_eowr.pdf "https://gdr.openei.org/files/1295/56-32%20EOWR%20-%20Final%2022%20July%202021.pdf"
+curl -fsS -o gdr1153_68-32_eowr.pdf "https://gdr.openei.org/files/1153/Monitoring%20Well%2068-32%20-%20EOWR.pdf"
+sha256sum *.pdf; cd ../..
+
+.venv/bin/python -m graph_builder.corpus models --engine rapidocr       # OCR models into data/interim/ocr_models
+.venv/bin/python -m graph_builder.corpus models
+# Downloads AK-3's appendix portfolio, splits its 44 PDFs into data/raw, processes and exports them.
+# HF_HUB_OFFLINE=0 on the first run only: Docling's layout and table models are fetched once.
+HF_HUB_OFFLINE=0 .venv/bin/python scripts/run_ak3_appendices.py --workers 1
+.venv/bin/python scripts/build_k1_demo_release.py --raw data/raw --models data/interim/ocr_models --reuse-corpus data/corpora/ak3_appendices
+
+# Checks
+(cd data/interim/k1/demo-v2 && sha256sum -c SHA256SUMS)
+.venv/bin/python scripts/check_k1_graphrag_compat.py --k1 data/interim/k1/demo-v2 --expect-events 161
+```
+
+- **The package is not identical from machine to machine.** Built here it has 1,432 chunks, where the laptop's has 1,431: one more in the 68-32 report, whose pages are read by OCR. AK-3's report and the daily reports are the same chunk for chunk. A record names the package's release ID, not only its name.
+- `platform/validate_k1.py` checks K1 version 0 files and does not apply to a package; the package's own check runs inside the build and in the runner's first step.
+
 ## Rebuilding inputs and reproducing earlier runs
 
 The daily-report corpus (ignored `data/corpora/`), needed for daily-report runs without `--k1` ([E24](../../experiments/E24-ak3-daily-reports.md)):
