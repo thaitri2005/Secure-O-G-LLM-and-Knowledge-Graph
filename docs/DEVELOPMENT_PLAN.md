@@ -24,7 +24,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | Part | State on 24 November | Evidence |
 |---|---|---|
 | Chunk packages (K1 version 1) | AK-3's end-of-well report and four daily-report attachments, 174 pages: validated, with a QA sidecar. Options added on 17 November, off by default: table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine, resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md) |
-| Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
+| Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG. Since 24 November: lanes behind one interface, the coordinator and the fact graph export, tested with stand-in models and not yet measured | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
 | Stores | PostgreSQL with pgvector and Neo4j in Docker Compose on one laptop; K1 loader with page rebuild (174 of 174); 1,042 vectors; the event graph in Neo4j, replaying 58 of 58 query plans | [Track C log](tracks/C-storage/log.md) |
 | Earlier foundation | Document pipeline, structured-data import, the entity registry (57,453 wellbores), the prototype as the measured baseline (23/31) | [Specification §3.1](PROJECT_DESIGN.md#31-what-exists) |
 
@@ -48,7 +48,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 The first build ran as three tracks joined by files (D-48). Those tracks are closed (§3), and K1 to K5 remain the interfaces between ingestion, engine and stores.
 
-From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Khai on data and Hung on backend are a proposal for the team to agree (Q14).**
+From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Hung agreed to backend and to the design on 24 November, and asked Tri to do part of the backend for now; what Tri does and what stays with Hung is in the [backend design](tracks/C-storage/backend-design.md). Khai on data is still a proposal (Q14).**
 
 | Role | Proposed owner | Owns | Interface it publishes |
 |---|---|---|---|

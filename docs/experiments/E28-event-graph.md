@@ -107,3 +107,21 @@ The graph doubles the calls and adds about 900 prompt tokens per question, for t
 ## Corrections to earlier records
 
 `page_dates` now takes the last section title on a page and prefers a date in the text. It dates 145 of 145 pages correctly, up from E27's 143. No E27 question uses those days, so E27's scores stand.
+
+## Addendum, 24 November 2026: results reported by code
+
+**What was done.** No model call. The query plans recorded in two of this experiment's runs were run again on the recorded graph (`graphrag/results/E28_events.json`), and each computed result was taken as the answer directly, with its value and unit from `graphrag.events.plan_value`, instead of being passed to the model to write out. A question whose plan gave no result keeps its recorded answer, because it had fallen back to retrieval. This is how the coordinator reports a computed result (Track B log B-C39, specification §8.3).
+
+| Run | Questions | Recorded correct | Correct with the result reported by code |
+|---|---:|---:|---:|
+| `E28_graph_fixed_seen` (seen set, after the fixes of this experiment) | 35 | 27 | **33** |
+| `E28_heldout_graph` (new set) | 23 | 19 | **22** |
+
+- Nine answers change, all from wrong to right: t04, t13, t14, t23, t25 and t30 on the seen set; g07, g11 and g13 on the new set. None changes from right to wrong.
+- The 22 of 23 is the figure this record estimated above and had not run.
+- 31 of the 35 seen questions and 20 of the 23 new ones have a computed result; the rest are answered by the fallback.
+
+**Limits.** The plans are the ones the model wrote here, under the planner's prompt. The coordinator's framing prompt asks for two more fields and may write different plans, so this is not a measurement of the coordinator; that is E33. The questions are simulated, were chosen to suit the event graph, and the seen set's score comes after fixes made on it.
+
+**Reproduce.** `python -m unittest tests.test_graphrag_lanes.RecordedPlanTests` asserts these four numbers.
+

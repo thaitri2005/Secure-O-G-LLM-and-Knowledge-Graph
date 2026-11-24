@@ -867,3 +867,12 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - The retriever cache and the UI's engine are shared between request threads without a lock.
 - No test runs the command line's `main`.
 
+## 2026-11-24: Hung's agreement, and backend work on his behalf
+
+**B-D39 (decision, by Hung, told to Tri and relayed to Claude by Tri on 24 November).** Hung agrees with the design of the second build, including the graph model (D-67) and his role on backend and stores (Q14). He asked whether part of his work could be done for him for now, and Tri agreed: Track B does some backend tasks on his behalf and writes a detailed design for the others.
+
+- **Done on his behalf:** the read-path API and its contract, and the question log (plan tasks B4, B5, B6), because the frontend, which is Tri's, cannot start without them. See B-C44.
+- **Designed for him, not built:** shared hosting (B1), the runner (B2), loading the fact region into Neo4j and the event region on K1 version 1 IDs (B3), the question log in PostgreSQL, page images (B7) and the compose file with the access gate (B8). These need the stores or accounts that only he has. The design is [backend-design.md](../C-storage/backend-design.md), in his track's folder.
+- Khai has not yet been asked about the data role.
+- *Why recorded here:* the agreement reached Claude through Tri, not from Hung directly, and the Track C log is Hung's; a short entry there points back to this one.
+

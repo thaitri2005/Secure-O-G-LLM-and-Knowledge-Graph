@@ -2,7 +2,7 @@
 
 ## Project specification and system design
 
-**Document version:** 3.4 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice)<br>
+**Document version:** 3.4 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice; then what was built the same day, §8.4)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** the first build is closed (§4.5): chunk packages, the stores and a GraphRAG engine with two graphs exist as three separate parts; the second build connects them behind one application (§4.6)<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md), [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
@@ -254,7 +254,7 @@ Two groups of work exist. The first build (30 October to 17 November, §4.5) pro
 | Part | What exists | Evidence |
 |---|---|---|
 | **Chunk packages (Track A)** | K1 version 1: files, pages, parents, chunks, tables and forms with the D-54 IDs, report date and well on daily-report chunks, a validator and a QA sidecar. Built for AK-3's end-of-well report and four daily-report attachments (174 pages). The Operations Summary table is rebuilt from the PDF text layer. Added on 17 November as options that are off by default: joining tables across pages, section context, form recognition, label-value repair, page orientation, quarantine and resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md), [guide](components/corpus-ingestion.md) |
-| **GraphRAG engine (Track B)** | One model client; retrieval routed by well and date; a per-well fact graph from table mappings and LLM extraction, checked in code; an event graph built with no model call; cited answers checked in code; K4 answer records; a local UI. Lanes are chosen per run or from the question's words, not by a coordinator | §8.4, [Track B log](tracks/B-graphrag/log.md), E14 to E31 |
+| **GraphRAG engine (Track B)** | One model client; retrieval routed by well and date; a per-well fact graph from table mappings and LLM extraction, checked in code; an event graph built with no model call; cited answers checked in code; K4 answer records; a local UI. Since 24 November: the three lanes behind one interface, the coordinator of §8.1, and the fact graph exported as nodes and relationships. The coordinator is tested with stand-in models and **not yet measured** | §8.4, [Track B log](tracks/B-graphrag/log.md), E14 to E31 |
 | **Stores (Track C)** | PostgreSQL with pgvector and Neo4j in Docker Compose; a K1 loader with a page-rebuild check; 1,042 chunk vectors; the event graph in Neo4j. All on one laptop, not shared | [Track C log](tracks/C-storage/log.md) |
 
 The second group was built before the 28 October direction and remains the ingestion and identity foundation:
@@ -279,8 +279,8 @@ The second group was built before the 28 October direction and remains the inges
 **Not built (24 November):**
 
 - the three parts connected: the engine still reads files, not the stores, and no single command runs a report from PDF to answer;
-- a coordinator that chooses the lane for each question (§8.1);
-- the fact graph in Neo4j, and the event graph on K1 version 1 IDs in Neo4j;
+- the coordinator measured against the hand-routed scores (§8.1; the code exists, experiment E33 does not);
+- the fact graph loaded into Neo4j (it is exported as a file, §8.5), and the event graph on K1 version 1 IDs in Neo4j;
 - the backend API and the React frontend (§4.6);
 - shared hosting of the stores;
 - VLM parsing (not run; rule-based methods come first, D-63);
@@ -343,7 +343,7 @@ flowchart LR
 ### 3.3 Gaps the architecture must close
 
 1. **One system.** Three parts exist, joined by files passed by hand. The engine must read the stores, one command must run a report end to end, and one application must sit on top (§4.6).
-2. **Routing.** The lane is chosen per run. A coordinator must choose it per question (§8.1).
+2. **Routing.** The coordinator that chooses the lane per question is built (§8.1). Until it is measured, the scores of §8.4 are those of lanes chosen by hand.
 3. **Generalization.** Table rebuilding, forms and the event graph are tuned to AK-3's report family. Other authors' reports, scanned pages and tables over several pages are untested or fail (E29, Track A progress).
 4. **Real questions.** No expert question set exists, and the purpose of use is still open (Q2, Q13). The application must collect the questions people ask (§4.6).
 5. **Cross-document identity.** Report mentions are not linked to the registry, and a well's daily and end-of-well reports are linked only by a well name in the text.
@@ -1051,7 +1051,7 @@ sequenceDiagram
 
 ### 8.4 What the first build runs today
 
-The three lanes of §8.1 exist as code; the coordinator does not. As of 24 November 2026 the first build answers **questions over time on daily reports from a graph of events** (D-53), and other questions by retrieval routed by well and date (D-50). End-of-well questions also get validated facts from the per-well fact graph (D-55); on new lookup questions it ties retrieval so far, and the expert questions are to show where it helps. All these questions are simulated or development questions. **Which reports are asked about is chosen per run today, or from the question's words in the local UI; the `KIND` box below is what the coordinator replaces.** The event graph has also been rebuilt from K1 version 1 with identical events ([E31](experiments/E31-event-graph-on-k1.md)); answers on K1 version 1 have not been rerun.
+The measured results below are from before the coordinator: the lane was chosen per run. The coordinator and the lane interface of §8.1 were built on 24 November 2026 (`graphrag/coordinator.py`, `graphrag/lanes.py`) and tested with stand-in models; no model has run through them yet, so they have no row in the table. The first build answers **questions over time on daily reports from a graph of events** (D-53), and other questions by retrieval routed by well and date (D-50). End-of-well questions also get validated facts from the per-well fact graph (D-55); on new lookup questions it ties retrieval so far, and the expert questions are to show where it helps. All these questions are simulated or development questions. **In the measured runs, which reports are asked about is chosen per run; the `KIND` box below is what the coordinator's framing call replaces.** The event graph has also been rebuilt from K1 version 1 with identical events ([E31](experiments/E31-event-graph-on-k1.md)); answers on K1 version 1 have not been rerun.
 
 ```mermaid
 flowchart TD
@@ -1090,16 +1090,19 @@ flowchart TD
 
 The totals-over-time questions were chosen to suit the event graph ([E28](experiments/E28-event-graph.md)).
 
+**Reporting computed results in code (§8.3), replayed without a model.** The plans the model wrote in E28, run again with the result reported by code instead of retyped by the model, give 33 of 35 on the seen set (27 recorded for that run) and 22 of 23 on the new set (19 recorded). Nine answers change, all from wrong to right. This replays recorded plans; it is not a run of the coordinator, whose framing prompt may write other plans ([E28, addendum](experiments/E28-event-graph.md#addendum-24-november-2026-results-reported-by-code), Track B log B-F61).
+
 **Cost:** the retrieval path makes no LLM call at index time and 1 per question, with about 2,200 prompt tokens. The event graph makes no LLM call to build, and 2 per question, with about 3,100 prompt tokens. The fact graph adds 2.48 LLM calls per page at index time, for its LLM extraction; its table mappings need none. Details: [Track B log](tracks/B-graphrag/log.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md), [E28](experiments/E28-event-graph.md).
 
 **Known gaps:**
 
 - comparison questions across end-of-well reports (0/5, [E26](experiments/E26-routing-and-strict-facts.md));
 - table mappings: casing works on the layouts tried (13/16 on unseen reports with no wrong fact), surveys are unreliable, and a different author's modern report is untested ([E29](experiments/E29-table-mappings-across-reports.md));
-- the event graph covers AK-3's daily reports only, and the final model step sometimes garbles a right result ([E28](experiments/E28-event-graph.md)). Track C loaded E28's graph into Neo4j, but answers still run on the copy in memory;
+- the event graph covers AK-3's daily reports only. Track C loaded E28's graph into Neo4j, but answers still run on the copy in memory. The garbled results of E28 came from the second model call, which the coordinator no longer makes for a computed result;
 - daily-report form headers and form tables are now in K1 version 1, and no answer run has used them yet;
-- the coordinator, the common lane interface and the exact-answer switch of §8.1 are not built;
-- the fact graph is a list of fact records in files, not yet the graph of §8.5;
+- the coordinator, the lane interface and the exact-answer switch of §8.1 are built and not measured (E33);
+- a name in a question counts as a well only if the engine holds that well, because the pattern for well names also matches a date range or a tool name (Track B log B-C43);
+- the fact graph is exported as nodes and relationships (216 facts of 5 wells) and not yet loaded into Neo4j. Thirteen of its facts are about two wells the AK-3 report only describes, and one casing string may be a hole size (B-F60);
 - the engine reads files, not Track C's stores.
 
 ### 8.5 The graph: nodes and relationships
@@ -1151,7 +1154,7 @@ flowchart LR
 | `(Fact)-[:FROM]->(Chunk)`, `(Event)-[:FROM {rank}]->(Chunk)` | Where it was read. Every fact and event has at least one |
 | `(Well)-[:DESCRIBED_BY]->(Document)-[:HAS_CHUNK]->(Chunk)` | Which reports cover a well. This is what links a well's daily reports to its end-of-well report |
 
-**Status.** The event region is in Neo4j as Track C loaded it (Track C log C-C11), on the old chunk IDs. The fact region is a proposal: today the facts are records with the fields above in result files, and its layout in Neo4j is to be agreed with Track C (D-67). A fact is a node, not a property on `Well`, because one well can have several values for one property (planned and actual, two reports that disagree), and each needs its own source.
+**Status.** The event region is in Neo4j as Track C loaded it (Track C log C-C11), on the old chunk IDs. The fact region's layout is agreed with Track C (D-67) and written by `graphrag/factgraph.py` as a file of nodes and relationships; loading it into Neo4j is designed in the [backend design](tracks/C-storage/backend-design.md) and not done. A fact is a node, not a property on `Well`, because one well can have several values for one property (planned and actual, two reports that disagree), and each needs its own source.
 
 **Kept thin (D-49, D-52).** K2 declares more than this: `Project`, `Organization`, `Person`, `Rig`, `Formation` and relations such as `OPERATED_BY` and `MONITORS`. They are added when a kind of question needs them, such as questions about people or about one well monitoring another, not before. A stated cause may be stored as a relationship between events; an inferred one is never stored (§6.3).
 
@@ -1181,7 +1184,7 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Existing parser | Docling + pypdf; corpus pipeline with per-page OCR (VietOCR/RapidOCR) | Existing; Docling is the baseline; OCR engines are kept only for reproduction |
 | Embeddings | Open embedding models, e.g. BAAI bge-m3, Qwen3-Embedding-0.6B, nomic-embed-text; optionally a reranker (bge-reranker-v2-m3) | BM25 routed by well reaches hit@5 1.00 on three reports for one-well questions (E18); Qwen3-Embedding-0.6B is used in fusion for questions naming several wells (E26). Other embedding models are compared once questions need them |
 | Model client (FR-28) | One OpenAI-compatible client for LLM, VLM and embeddings. Development: llama.cpp on a local GPU, or hosted open models (OpenRouter) on public data. Large runs and deployment: local serving with vLLM or llama.cpp | Exists (`graphrag/client.py`): JSON-schema output, request cache, cost ledger, private-data guard. Model roles (§4.1) to add |
-| Coordinator (D-58, D-64) | Our own: one framing call with a JSON schema, then lanes chosen in code (§8.1). No agent framework: a fixed router needs none, and the lanes keep one interface so one can be wrapped later | Designed; not built |
+| Coordinator (D-58, D-64) | Our own: one framing call with a JSON schema, then lanes chosen in code (§8.1). No agent framework: a fixed router needs none, and the lanes keep one interface so one can be wrapped later | Built 24 November (`graphrag/coordinator.py`, `graphrag/lanes.py`), tested with stand-in models; not measured (E33) |
 | Object store | MinIO (S3 API); a local directory behind the same interface in development | Optional in Track C's compose file; a directory in use |
 | Metadata DB | PostgreSQL 16 | Exists: K1 tables and loader (Track C) |
 | Vector store | **pgvector inside the PostgreSQL that holds K1** (D-56), proposed by Track C; Neo4j's index stays the alternative if retrieval moves next to the graphs | Chosen |
@@ -1341,10 +1344,10 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-61 | **Reasoning about the causes of a drilling problem is a target question type** ("a problem happened at this point of the well; what are the likely causes?"). It needs several sources and real reasoning; the current data is likely insufficient, so it is a target, not a first-build commitment | 9 Nov 2026, supervisor | Data and question set allow it |
 | D-62 | **The model can be swapped.** The architecture must take a stronger model when infrastructure allows; model choices so far (D-37, Q4) are not fixed into the design | 9 Nov 2026, supervisor | — |
 | D-63 | **People review part of the machine-made data.** Automatic checks (Track A's QA layers, Track B's validation) stay, and human review is added on top after the pipeline is built. Non-LLM methods are pushed as far as they go before turning to OCR or vision models, which cost hardware or money | 9 Nov 2026, supervisor | — |
-| D-64 | **The coordinator is a router now; an agent comes later, in one lane.** One model call frames the question (kind, report type, plan); code reads wells and dates, chooses lanes from a fixed table and falls back in a fixed order. Every lane has the same input and evidence output, so it can later be called as a tool or through MCP. A multi-step loop is considered only inside the reasoning lane, after a run shows a model of this size can manage it. Adopted only if it matches the hand-routed scores of §8.4 on the pooled development questions (§8.1) | 24 Nov 2026; Tri, from D-58 (Track B log B-D36) | The pooled run shows the router loses answers, or the supervisor asks for a free agent |
+| D-64 | **The coordinator is a router now; an agent comes later, in one lane.** One model call frames the question (kind, report type, plan); code reads wells and dates, chooses lanes from a fixed table and falls back in a fixed order. Every lane has the same input and evidence output, so it can later be called as a tool or through MCP. A multi-step loop is considered only inside the reasoning lane, after a run shows a model of this size can manage it. Adopted only if it matches the hand-routed scores of §8.4 on the pooled development questions (§8.1) | 24 Nov 2026; Tri, from D-58 (Track B log B-D36). Built the same day (B-C37 to B-C43); E33 pending | The pooled run shows the router loses answers, or the supervisor asks for a free agent |
 | D-65 | **The application is built now: a FastAPI backend and a React frontend,** read path first (§4.6, §7.5). It replaces the plan of first pointing Track B's local UI at the stores; D-60's purpose stays. Every question asked is logged, so use by domain experts yields the real questions (Q2, Q13). Work is split by data, backend and frontend from this stint (D-46); who takes which is the team's to agree (Q14) | 24 Nov 2026; Tri (Track B log B-D37) | The team cannot staff a frontend, or the supervisor wants something shown sooner than it can be built |
 | D-66 | **The reasoning lane is designed and probed, not promised.** It finds the problem event, gathers what surrounds it in code, and answers in two parts: causes the reports state, and possible causes, each cited (§8.6). About ten frozen questions on AK-3's non-productive events test it. No inferred cause is stored in the graph | 24 Nov 2026; Tri, from D-61 (Track B log B-D38) | The probe shows the data supports nothing useful, or more data arrives |
-| D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is **proposed**, to agree with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35) | Track C proposes another layout, or a question type needs K2's other entity types |
+| D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is **proposed**, to agree with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35); **agreed by Hung the same day**, as relayed by Tri (B-D39). Exported as a file (B-C40); `CASED_WITH` is not written yet | Loading it shows another layout works better, or a question type needs K2's other entity types |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1380,7 +1383,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q11 | What answer accuracy should G5 target on ~7B models? | 80% proposed | §12 |
 | Q12 | Who reviews flagged items and labels the extraction sample? | The team, with the expert group's help if available | D-43, D-63, G3 |
 | Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61). The application's question log is meant to help answer it (D-65) | D-58, D-61, D-64 |
-| Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Proposed, for the team to agree: Khai data, Hung backend and stores | D-65, plan §2 |
+| Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Hung agreed to backend and stores on 24 November, and asked Tri to do part of it for now (Track B log B-D39). Khai on data is still a proposal | D-65, plan §2 |
 | Q15 | Where does the demo for domain experts run, and which model serves it? | Stores and application on the shared host Track C sets up (B-D35); the model on Tri's desktop GPU reached over a private network, or a hosted open-weight endpoint, since the demo data is public | D-65, §10.1, §11.3 |
 ### 13.3 Change process
 

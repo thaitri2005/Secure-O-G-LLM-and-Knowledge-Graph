@@ -21,7 +21,8 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 **24 November:** the first build is closed and the second is designed (specification 3.4, [plan](docs/DEVELOPMENT_PLAN.md#current-status)).
 
 - **Exists as three separate parts:** chunk packages with stable IDs (K1 version 1), the stores (PostgreSQL with pgvector, Neo4j), and a GraphRAG engine with two graphs and cited answers.
-- **Not built yet:** the parts connected, the coordinator that picks a lane per question, the backend API and the React frontend, shared hosting.
+- **Built on 24 November, not yet measured:** the coordinator that picks a lane per question, with the three lanes behind one interface.
+- **Not built yet:** the parts connected, the React frontend, shared hosting.
 - **Next:** one connected application, read path first ([task list](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now)).
 
 All question sets so far are simulated; none is expert-reviewed.
@@ -31,7 +32,7 @@ All question sets so far are simulated; none is expert-reviewed.
 | Document ingestion and K1 packages | Files to pages, tables, forms and chunks with stable IDs, a validator and a QA sidecar (Docling, plus rules for known table formats) | Implemented in `src/graph_builder/corpus/` ([guide](docs/components/corpus-ingestion.md), [Track A](docs/tracks/A-ingestion/README.md)); tuned on one report family |
 | VLM page parsing | Pages and tables with a document VLM | Not run; rule-based methods come first (D-63) |
 | Stores and ID scheme | PostgreSQL with pgvector for chunks and vectors, Neo4j for the graph; file → page → parent → child chunk → vector → graph | Implemented in `platform/` on one laptop ([Track C](docs/tracks/C-storage/log.md)); not shared, no runner |
-| GraphRAG engine | Retrieval by well and date, a per-well fact graph, an event graph, answers with citations checked in code | Implemented in `graphrag/` ([README](graphrag/README.md), [Track B](docs/tracks/B-graphrag/log.md)); the coordinator is designed, not built |
+| GraphRAG engine | Retrieval by well and date, a per-well fact graph, an event graph, a coordinator over them, answers with citations checked in code | Implemented in `graphrag/` ([README](graphrag/README.md), [Track B](docs/tracks/B-graphrag/log.md)); the coordinator is tested with stand-in models and not yet measured |
 | Structured-data import | CSV/Excel/JSON-lines to typed records with row provenance; BSEE as a mapping | Implemented ([guide](docs/components/dataset-import.md), [E6](docs/experiments/E6-generic-import-bsee.md)) |
 | Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned (M3) |
 | Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Kept as the measured baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
