@@ -34,11 +34,25 @@ const ASK: { icon: IconName; title: string; text: string; example: string }[] = 
  */
 export function Guide({ onClose, onTry }: { onClose: () => void; onTry: (question: string) => void }) {
   const close = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     close.current?.focus();
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
+      // The guide covers the page, so Tab stays inside it: from its last button on to its first, and back.
+      if (event.key !== "Tab" || !panel.current) return;
+      const stops = [...panel.current.querySelectorAll<HTMLElement>("button, a[href]")];
+      const first = stops[0];
+      const last = stops[stops.length - 1];
+      const inside = panel.current.contains(document.activeElement);
+      if (event.shiftKey && (!inside || document.activeElement === first)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (!inside || document.activeElement === last)) {
+        event.preventDefault();
+        first.focus();
+      }
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -46,7 +60,7 @@ export function Guide({ onClose, onTry }: { onClose: () => void; onTry: (questio
 
   return (
     <div className="guide" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <div className="guide__panel" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+      <div className="guide__panel" ref={panel} role="dialog" aria-modal="true" aria-labelledby="guide-title">
         <button type="button" ref={close} className="guide__close" aria-label="Close the guide" onClick={onClose}>
           <Icon name="close" size={20} />
         </button>
@@ -81,6 +95,10 @@ export function Guide({ onClose, onTry }: { onClose: () => void; onTry: (questio
           <li>
             <span className="badge badge--ai"><Icon name="sparkle" size={16} /> Written by AI, checked against the reports</span>
             <p>An AI read the report text and wrote the answer. The system then confirmed the value is in the text.</p>
+          </li>
+          <li>
+            <span className="badge badge--unconfirmed"><Icon name="alert" size={16} /> Written by AI, not confirmed</span>
+            <p>An AI wrote the answer, but the system could not find its value in the text. Check the sources before relying on it.</p>
           </li>
           <li>
             <span className="badge badge--none"><Icon name="empty" size={16} /> No answer found</span>

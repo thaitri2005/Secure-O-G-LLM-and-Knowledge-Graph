@@ -1,3 +1,4 @@
+import type { components } from "./schema";
 import type {
   AnswerOut, EventOut, Health, LoggedQuestionDetail, Mode, PageOut, QuestionCounts, QuestionPage, Verdict, WellOut, WellSummary,
 } from "./types";
@@ -5,6 +6,8 @@ import type {
 /** Which logged questions to read back. Every field is optional; an empty one does not filter. */
 export interface QuestionFilters {
   kind?: string;
+  /** How the question ended: "answered", or "error" for one that could not be answered. */
+  status?: "answered" | "error";
   verdict?: "right" | "wrong" | "none";
   q?: string;
   date_from?: string;
@@ -30,10 +33,28 @@ export interface Api {
   question(questionId: string): Promise<LoggedQuestionDetail>;
   questionCounts(filters: QuestionFilters): Promise<QuestionCounts>;
   exportQuestions(filters: QuestionFilters): Promise<Download>;
+  /** Whether a question could be answered now, where the server can say. */
+  ready?(): Promise<Ready>;
+  /** Gives up the question being answered, so the server is not left working on an answer nobody waits for. */
+  stop?(): void;
 }
 
-/** A failure the person can act on: the message says what happened and what to do. */
-export class ApiError extends Error {}
+/**
+ * A failure the person can act on: the message says what happened and what to do. `reload` marks the failures that
+ * asking again cannot fix (the sign-in ran out, or a page that is not the API's came back): the way out is to reload.
+ */
+export class ApiError extends Error {
+  constructor(message: string, readonly reload = false) {
+    super(message);
+  }
+}
+
+/** The person stopped the question themselves: nothing went wrong, so nothing is reported. */
+export class Stopped extends ApiError {
+  constructor() {
+    super("Stopped.");
+  }
+}
 
 /**
  * Where the API is. Empty by default: the application and `/v1` share one origin (behind the proxy, and through the
@@ -42,22 +63,53 @@ export class ApiError extends Error {}
  */
 export const API_BASE: string = (import.meta.env.VITE_API_BASE ?? "").replace(/\/+$/, "");
 
-/** An answer waits for the language model, so it may take a while; every other read should be quick. */
-export const ASK_TIMEOUT_MS = 180_000;
+export type Ready = components["schemas"]["Ready"];
+
+/**
+ * An answer waits for its turn and then for the language model, so it may take a while: the server gives up after
+ * about 210 seconds at worst, and the browser must not give up before it does. Every other read should be quick.
+ */
+export const ASK_TIMEOUT_MS = 240_000;
 export const READ_TIMEOUT_MS = 20_000;
 
-async function send(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_MS): Promise<Response> {
-  let response: Response;
+/** Why the server could not answer just now, by the word it gives the reason (`code` in its error body). */
+const UNAVAILABLE: Record<string, string> = {
+  busy: "Several people are asking at once, so your question was not answered. Try again in half a minute.",
+  model_unavailable:
+    "The answering service is not responding, so your question was not answered. Try again in a minute; if it stays like this, tell the person who runs the application.",
+  store_unavailable:
+    "The report database is not responding, so your question was not answered. Try again in a minute; if it stays like this, tell the person who runs the application.",
+};
+
+/** The word an error body gives its reason, or null: a proxy's own error page has no such body. */
+async function problemCode(response: Response): Promise<string | null> {
   try {
-    response = await fetch(API_BASE + path, { ...init, signal: AbortSignal.timeout(timeoutMs) });
+    const body = (await response.json()) as { code?: unknown } | null;
+    return typeof body?.code === "string" ? body.code : null;
+  } catch {
+    return null;
+  }
+}
+
+async function send(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_MS, stop?: AbortSignal): Promise<Response> {
+  let response: Response;
+  const timeout = AbortSignal.timeout(timeoutMs);
+  // Whichever comes first ends the request: the time limit, or the person stopping it.
+  const ended = new AbortController();
+  const end = (signal: AbortSignal) => () => ended.abort(signal.reason);
+  timeout.addEventListener("abort", end(timeout), { once: true });
+  stop?.addEventListener("abort", end(stop), { once: true });
+  try {
+    response = await fetch(API_BASE + path, { ...init, signal: stop ? ended.signal : timeout });
   } catch (failure) {
+    if (stop?.aborted) throw new Stopped();
     if (failure instanceof DOMException && failure.name === "TimeoutError") {
       throw new ApiError("The server is taking too long to answer. Please try again in a moment.");
     }
     throw new ApiError("Cannot reach the application server. Check your connection, then try again.");
   }
   if (response.status === 401 || response.status === 403) {
-    throw new ApiError("The access password was not accepted, or it has expired. Reload this page and sign in again.");
+    throw new ApiError("The access password was not accepted, or it has expired. Reload this page and sign in again.", true);
   }
   if (response.status === 404) {
     throw new ApiError("We couldn’t find that. The link may be wrong, or it is no longer here.");
@@ -66,7 +118,10 @@ async function send(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_M
     throw new ApiError("The application server is not responding. It may be restarting; please try again in a minute.");
   }
   if (response.status === 503) {
-    throw new ApiError("The language model is not running. Start the model server, then ask again.");
+    throw new ApiError(UNAVAILABLE[(await problemCode(response)) ?? ""] ?? "The language model is not running. Start the model server, then ask again.");
+  }
+  if (response.status === 500) {
+    throw new ApiError("The server ran into a problem and could not finish. Try again; if it happens again, tell the person who runs the application.");
   }
   if (response.status === 422) {
     throw new ApiError("The server did not accept that question. Keep it under 500 characters.");
@@ -80,12 +135,13 @@ async function send(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_M
 // A proxy's own page (a sign-in form, a maintenance notice) is not the API's JSON.
 const UNREADABLE = "The server sent something the application could not read. Reload this page and try again.";
 
-async function call<T>(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_MS): Promise<T> {
-  const response = await send(path, init, timeoutMs);
+async function call<T>(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_MS, stop?: AbortSignal): Promise<T> {
+  const response = await send(path, init, timeoutMs, stop);
   try {
     return (await response.json()) as T;
   } catch {
-    throw new ApiError(UNREADABLE);
+    if (stop?.aborted) throw new Stopped();
+    throw new ApiError(UNREADABLE, true);
   }
 }
 
@@ -112,8 +168,22 @@ function filename(response: Response, fallback: string): string {
   return named ? named[1] : fallback;
 }
 
+// One question is answered at a time, so one handle is enough to stop it.
+let asking: AbortController | null = null;
+
 export const liveApi: Api = {
-  ask: (question, mode) => call<AnswerOut>("/v1/questions", json({ question, mode }), ASK_TIMEOUT_MS),
+  ask: (question, mode) => {
+    asking = new AbortController();
+    return call<AnswerOut>("/v1/questions", json({ question, mode }), ASK_TIMEOUT_MS, asking.signal);
+  },
+  stop: () => asking?.abort(),
+  // "Not ready" arrives as a 503 with the same body, so the status is not treated as a failure here.
+  ready: async () => {
+    const response = await fetch(`${API_BASE}/v1/ready`, { signal: AbortSignal.timeout(READ_TIMEOUT_MS) });
+    const body = (await response.json()) as Ready;
+    if (typeof body?.ready !== "boolean") throw new ApiError(UNREADABLE, true);
+    return body;
+  },
   feedback: async (questionId, verdict, comment) => {
     await call(`/v1/questions/${encodeURIComponent(questionId)}/feedback`, json({ verdict, comment }));
   },
@@ -136,7 +206,7 @@ export const liveApi: Api = {
     try {
       JSON.parse(text);
     } catch {
-      throw new ApiError(UNREADABLE);
+      throw new ApiError(UNREADABLE, true);
     }
     return { filename: filename(response, "collected_questions.json"), text };
   },

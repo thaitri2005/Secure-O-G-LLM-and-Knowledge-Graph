@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { API_BASE, ApiError, filterQuery, liveApi } from "./client";
+import { API_BASE, ApiError, ASK_TIMEOUT_MS, filterQuery, liveApi, Stopped } from "./client";
 
 function reply(status: number, body: unknown = {}, raw = false): Response {
   return new Response(raw ? (body as string) : JSON.stringify(body), { status });
@@ -56,6 +56,60 @@ describe("the real API client", () => {
     const url = "/v1/files/gdr882_ak3_eowr/pages/7/image";
     vi.stubGlobal("fetch", vi.fn(async () => reply(200, { file_id: "gdr882_ak3_eowr", page: 2, chunks: [], image_url: url })));
     expect((await liveApi.page("gdr882_ak3_eowr", 2)).image_url).toBe(url);
+  });
+});
+
+describe("when the server cannot answer just now", () => {
+  const problem = (code: string) => reply(503, { detail: "for a program", code, question_id: "q-1" });
+
+  it("says in plain words why, by the reason the server gives", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => problem("busy")));
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/Several people are asking at once.*half a minute/);
+    vi.stubGlobal("fetch", vi.fn(async () => problem("model_unavailable")));
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/answering service is not responding/);
+    vi.stubGlobal("fetch", vi.fn(async () => problem("store_unavailable")));
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/report database is not responding/);
+  });
+
+  it("can be tried again: none of these asks for a reload, and none shows the server's own sentence", async () => {
+    for (const code of ["busy", "model_unavailable", "store_unavailable"]) {
+      vi.stubGlobal("fetch", vi.fn(async () => problem(code)));
+      const failure = await liveApi.ask("How deep is AK-3?", "allow_fallback").catch((error: unknown) => error);
+      expect(failure).toBeInstanceOf(ApiError);
+      expect((failure as ApiError).reload).toBe(false);
+      expect((failure as ApiError).message).not.toMatch(/for a program|q-1|model|queue/);
+    }
+  });
+
+  it("falls back to the older message when the reply has no reason: a proxy's own page, or a word it does not know", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => reply(503, "<html>Service Unavailable</html>", true)));
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/language model is not running/);
+    vi.stubGlobal("fetch", vi.fn(async () => problem("something_new")));
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/language model is not running/);
+  });
+
+  it("waits longer for an answer than the server can take, and marks the failures only a reload fixes", async () => {
+    expect(ASK_TIMEOUT_MS).toBe(240_000);
+    vi.stubGlobal("fetch", vi.fn(async () => reply(401)));
+    expect(((await liveApi.health().catch((error: unknown) => error)) as ApiError).reload).toBe(true);
+    vi.stubGlobal("fetch", vi.fn(async () => reply(500, { detail: "x", code: "internal" })));
+    await expect(liveApi.health()).rejects.toThrow(/ran into a problem/);
+  });
+
+  it("reads whether questions can be answered, also from a reply that says they cannot", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => reply(503, { ready: false, checks: { model: "ReadTimeout" }, waiting: 2 })));
+    expect(await liveApi.ready!()).toMatchObject({ ready: false, waiting: 2 });
+    vi.stubGlobal("fetch", vi.fn(async () => reply(200, { ready: true, checks: { model: "ok" }, waiting: 0 })));
+    expect((await liveApi.ready!()).ready).toBe(true);
+  });
+
+  it("stops a question when asked to, and reports that as a stop, not as a failure", async () => {
+    vi.stubGlobal("fetch", vi.fn((_url: string, init: RequestInit) => new Promise((_resolve, reject) => {
+      init.signal!.addEventListener("abort", () => reject(new DOMException("Aborted", "AbortError")));
+    })));
+    const waiting = liveApi.ask("How deep is AK-3?", "allow_fallback");
+    liveApi.stop!();
+    await expect(waiting).rejects.toBeInstanceOf(Stopped);
   });
 });
 

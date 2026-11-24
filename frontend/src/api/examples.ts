@@ -15,7 +15,7 @@ import health from "../../../backend/fixtures/health.json";
 import page from "../../../backend/fixtures/page.json";
 import well from "../../../backend/fixtures/well.json";
 import wells from "../../../backend/fixtures/wells.json";
-import { ApiError, type Api, type QuestionFilters } from "./client";
+import { ApiError, Stopped, type Api, type QuestionFilters } from "./client";
 import type {
   AnswerOut, EventOut, Health, LoggedQuestion, LoggedQuestionDetail, PageOut, QuestionCounts, WellOut, WellSummary,
 } from "./types";
@@ -84,6 +84,7 @@ export function exampleQuestions(filters: QuestionFilters): LoggedQuestion[] {
   return (logged.questions as LoggedQuestion[]).filter((question) => {
     const day = question.asked_at?.slice(0, 10) ?? "";
     return (!filters.kind || question.kind === filters.kind)
+      && (!filters.status || question.status === filters.status)
       && (!filters.verdict || (question.verdict ?? "none") === filters.verdict)
       && (!text || question.question.toLowerCase().includes(text))
       && (!filters.date_from || day >= filters.date_from)
@@ -98,13 +99,34 @@ function counted(questions: LoggedQuestion[], key: (question: LoggedQuestion) =>
 }
 
 let asked = 0;
+let giveUp: (() => void) | null = null;
+
+/**
+ * How long an example answer takes, in seconds: 0 unless the address says otherwise (?slow=30). A real model takes
+ * its time, and this is the way to see what waiting looks like, and to try stopping, without one.
+ */
+export function exampleDelay(search: string): number {
+  const seconds = Number(new URLSearchParams(search).get("slow"));
+  return Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds, 600) : 0;
+}
 
 export const exampleApi: Api = {
   ask: async (question, mode) => {
     const example = exampleFor(question, mode);
+    const seconds = exampleDelay(window.location.search);
+    if (seconds > 0) {
+      await new Promise<void>((resolve, reject) => {
+        const timer = window.setTimeout(resolve, seconds * 1000);
+        giveUp = () => {
+          window.clearTimeout(timer);
+          reject(new Stopped());
+        };
+      });
+    }
     asked += 1;
     return { ...example, id: `${example.id}-${asked}`, question, mode };
   },
+  stop: () => giveUp?.(),
   feedback: async () => {},
   wells: async () => wells as WellSummary[],
   health: async () => health as Health,

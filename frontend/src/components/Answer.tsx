@@ -1,7 +1,9 @@
 import { memo, useEffect, useRef, useState } from "react";
 import type { AnswerOut, Citation, Mode, Verdict } from "../api/types";
 import { reask, reasoningOf } from "../lib/cause";
-import { advice, badge, distinctSources, EXPLAIN, headline, place, sourceNote, steps, summary, technical } from "../lib/wording";
+import {
+  advice, badge, COPY, distinctSources, EXPLAIN, headline, NO_SOURCES, place, PRINTED_FROM, sourceNote, steps, summary, technical,
+} from "../lib/wording";
 import { AskWhich, CauseAnswer } from "./Cause";
 import { Icon, type IconName } from "./Icon";
 import { Tip } from "./Tip";
@@ -36,7 +38,7 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
   const [saved, setSaved] = useState<Verdict | null>(null);
   const [failed, setFailed] = useState(false);
   const [allSources, setAllSources] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<"done" | "failed" | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const trust = badge(answer);
   const next = advice(answer);
@@ -63,19 +65,29 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
     }
   }
 
+  // A link that asks this question again: what "Copy link" copies, and what is printed under the answer on paper.
+  const link = new URL(window.location.href);
+  link.search = new URLSearchParams({ q: answer.question, ...(answer.mode === "exact" ? { graph: "1" } : {}) }).toString();
+
   async function copyLink() {
-    const link = new URL(window.location.href);
-    link.search = new URLSearchParams({ q: answer.question, ...(answer.mode === "exact" ? { graph: "1" } : {}) }).toString();
     try {
       await navigator.clipboard.writeText(link.toString());
-      setCopied(true);
+      setCopied("done");
     } catch {
-      setCopied(false);
+      setCopied("failed");
     }
   }
 
+  // The confirmation shows for a few seconds, then the button is itself again.
+  useEffect(() => {
+    if (copied !== "done") return;
+    const timer = window.setTimeout(() => setCopied(null), 4000);
+    return () => window.clearTimeout(timer);
+  }, [copied]);
+
   return (
     <section className="answer card" aria-label="Answer">
+      <p className="visually-hidden">You asked:</p>
       <p className="answer__question">{answer.question}</p>
       <p className={`badge badge--${trust.tone}`}>
         <Icon name={BADGE_ICON[trust.tone]} size={16} /> {trust.label}
@@ -102,21 +114,23 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
             {sources.map((citation, index) => {
               const openable = citation.page !== null && citation.text !== null;
               return (
-                <li key={`${citation.chunk_id}-${index}`}>
-                  <button
-                    type="button"
-                    className="source"
-                    aria-label={`Source ${index + 1}: ${place(citation.file_id, citation.page)}`}
-                    disabled={!openable}
-                    onClick={() => onOpenSource(answer, citation)}
-                  >
-                    <span className="source__icon"><Icon name="document" size={18} /></span>
-                    <span className="source__where">
+                <li key={`${citation.chunk_id}-${index}`} className={openable ? "sources__item" : "sources__item sources__item--off"}>
+                  <span className="source__icon"><Icon name="document" size={18} /></span>
+                  <span className="source__where">
+                    {/* The button is the report's name, and it is pressed anywhere on the row (styles.css). */}
+                    <button
+                      type="button"
+                      className="source"
+                      aria-label={`Source ${index + 1}: ${place(citation.file_id, citation.page)}`}
+                      aria-describedby={`source-note-${answer.id}-${index}`}
+                      disabled={!openable}
+                      onClick={() => onOpenSource(answer, citation)}
+                    >
                       {place(citation.file_id, citation.page)}
-                      <small>{sourceNote(citation)}</small>
-                    </span>
-                    {openable && <span className="source__open">Open page <Icon name="open" size={14} /></span>}
-                  </button>
+                    </button>
+                    <small id={`source-note-${answer.id}-${index}`}>{sourceNote(citation)}</small>
+                  </span>
+                  {openable && <span className="source__open" aria-hidden="true">Open page <Icon name="open" size={14} /></span>}
                 </li>
               );
             })}
@@ -126,6 +140,13 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
               Show all {distinct.length} sources
             </button>
           )}
+        </div>
+      )}
+
+      {!reasoning && distinct.length === 0 && answer.status === "answered" && (
+        <div className="answer__block">
+          <h3>Where this comes from</h3>
+          <p className="note">{NO_SOURCES}</p>
         </div>
       )}
 
@@ -166,14 +187,24 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
               <span className="feedback__ask">Was this answer right?</span>
               <button type="button" className="chip" onClick={() => void save("right", "")}><Icon name="thumbUp" size={16} /> Yes</button>
               <button type="button" className="chip" onClick={() => setWriting(true)}><Icon name="thumbDown" size={16} /> No, it’s wrong</button>
-              <button type="button" className="chip chip--plain feedback__copy" onClick={() => void copyLink()}>
-                <Icon name={copied ? "check" : "link"} size={16} /> {copied ? "Link copied" : "Copy link"}
+              <button
+                type="button"
+                className={copied === "done" ? "chip chip--plain feedback__copy feedback__copy--done" : "chip chip--plain feedback__copy"}
+                onClick={() => void copyLink()}
+              >
+                <Icon name={copied === "done" ? "check" : "link"} size={16} /> {copied === "done" ? COPY.done : COPY.ask}
               </button>
             </div>
+          )}
+          {copied && (
+            <p role="status" className={copied === "failed" ? "note feedback__copy-note" : "visually-hidden"}>
+              {copied === "done" ? COPY.announced : COPY.failed}
+            </p>
           )}
           {failed && <p role="alert" className="error">We couldn’t save that. Check your connection and try again.</p>}
         </div>
       )}
+      <p className="print-only answer__printed">{PRINTED_FROM} {link.toString()}</p>
     </section>
   );
 });

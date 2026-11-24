@@ -54,7 +54,7 @@ describe("before a question", () => {
     render(<App api={api} />);
     const loaded = await screen.findByRole("table", { name: "Wells loaded" });
     expect(within(loaded).getAllByRole("row")).toHaveLength(6);
-    expect(within(loaded).getByRole("row", { name: /AK-3 66 27/ })).toBeInTheDocument();
+    expect(within(loaded).getByRole("row", { name: /AK-3 65 27/ })).toBeInTheDocument();
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: OVER_TIME }));
     expect(api.ask).toHaveBeenCalledWith(OVER_TIME, "allow_fallback");
@@ -181,7 +181,39 @@ describe("a computed answer", () => {
     await ask(OVER_TIME);
     const days = await screen.findByRole("list", { name: "Days" });
     expect(within(days).getAllByRole("listitem")).toHaveLength(10);
-    expect(within(screen.getByRole("table", { name: "Activities" })).getAllByRole("row")).toHaveLength(29);
+    // Grouped by day and folded: the first five days hold 7 of the 28 activities (a heading row, 5 day rows, 7 rows).
+    const list = screen.getByRole("table", { name: "Activities" });
+    expect(within(list).getAllByRole("row")).toHaveLength(1 + 5 + 7);
+    const day = within(list).getByText("16 Aug 2016").closest("tr")!;
+    expect(day).toHaveTextContent("2 activities, 5 hours");
+    expect(day).toHaveTextContent("5 hours non-productive");
+    expect(screen.getByText("Showing the first 7 of 28 activities.")).toBeInTheDocument();
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("button", { name: "Show all 28 activities" }));
+    expect(within(list).getAllByRole("row")).toHaveLength(1 + 10 + 28);
+    await user.click(screen.getByRole("button", { name: "Show fewer activities" }));
+    expect(within(list).getAllByRole("row")).toHaveLength(1 + 5 + 7);
+  });
+
+  it("unfolds the list when a bar of a folded activity is clicked", async () => {
+    render(<App api={fakeApi(overTime as AnswerOut)} />);
+    const user = await ask(OVER_TIME);
+    const bars = within(await screen.findByRole("list", { name: "Days" })).getAllByRole("button");
+    await user.click(bars[bars.length - 1]);
+    const list = screen.getByRole("table", { name: "Activities" });
+    expect(within(list).getAllByRole("row")).toHaveLength(1 + 10 + 28);
+    const rows = within(list).getAllByRole("row");
+    expect(rows[rows.length - 1]).toHaveClass("is-selected");
+    expect(within(rows[rows.length - 1]).getByRole("button")).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("shows every activity when the answer is printed", async () => {
+    render(<App api={fakeApi(overTime as AnswerOut)} />);
+    await ask(OVER_TIME);
+    const list = await screen.findByRole("table", { name: "Activities" });
+    fireEvent(window, new Event("beforeprint"));
+    await waitFor(() => expect(within(list).getAllByRole("row")).toHaveLength(1 + 10 + 28));
+    expect(screen.getByText(/Printed from the Drilling Reports Assistant/)).toHaveTextContent("?q=How+many+hours");
   });
 
   it("explains a bar when it is hovered, and marks its row when it is clicked", async () => {
@@ -197,13 +229,19 @@ describe("a computed answer", () => {
     await user.unhover(first);
     expect(readout).toHaveTextContent("Hover over a bar");
     await user.click(first);
+    // Row 0 is the column headings and row 1 the day's heading; the activity is row 2.
     const rows = within(screen.getByRole("table", { name: "Activities" })).getAllByRole("row");
-    expect(rows[1]).toHaveAttribute("aria-selected", "true");
+    expect(rows[2]).toHaveClass("is-selected");
+    expect(within(rows[2]).getByRole("button", { name: "0:00–0:00" })).toHaveAttribute("aria-pressed", "true");
     await user.unhover(first);
     expect(readout).toHaveTextContent("Weather Delay");
-    await user.click(rows[3]);
-    expect(rows[3]).toHaveAttribute("aria-selected", "true");
-    expect(rows[1]).toHaveAttribute("aria-selected", "false");
+    await user.click(rows[4]);
+    expect(rows[4]).toHaveClass("is-selected");
+    expect(rows[2]).not.toHaveClass("is-selected");
+    // A keyboard marks a row with the button in it.
+    within(rows[5]).getByRole("button").focus();
+    await user.keyboard("{Enter}");
+    expect(rows[5]).toHaveClass("is-selected");
   });
 
   it("lists each report once, however many passages of it were used", async () => {
@@ -216,7 +254,7 @@ describe("a computed answer", () => {
       "AK-3 daily drilling reportContains activities used in the calculation",
       "AK-3 daily drilling report (summary)Contains activities used in the calculation",
     ]);
-    expect(screen.queryByRole("button", { name: /Show all/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Show all \d+ sources/ })).not.toBeInTheDocument();
   });
 
   it("shows the first sources of a long list and the rest on request", async () => {

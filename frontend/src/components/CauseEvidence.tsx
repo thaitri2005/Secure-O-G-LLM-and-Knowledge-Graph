@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { AnswerOut, ChunkOut, Reasoning } from "../api/types";
 import { citedLabels, gathered, passageChunk } from "../lib/cause";
-import { readable } from "../lib/highlight";
 import { EXPLAIN } from "../lib/wording";
+import { ActivityList } from "./ActivityList";
 import { DayStrips } from "./DayStrips";
 import { Passage } from "./Passage";
+import { TabList } from "./Tabs";
 import { Tip } from "./Tip";
 
 /** A piece of evidence a cause answer pointed to; `at` lets the same piece be pointed to twice. */
@@ -32,9 +33,14 @@ export function CauseEvidence({ answer, reasoning, pointed, onOpenPage }: Props)
   const cited = useMemo(() => citedLabels(reasoning), [reasoning]);
   const [tab, setTab] = useState<Tab>(events.length > 0 ? "around" : "text");
   const [activity, setActivity] = useState<number | null>(null);
-  const rows = useRef<(HTMLTableRowElement | null)[]>([]);
   // The timeline needs every activity's day and hours; if a line could not be read, only the list is shown.
   const timeline = useMemo(() => (events.every((e) => e.event) ? events.map((e) => e.event!) : null), [events]);
+  const activities = useMemo(
+    () => events.map(({ item, event, problem }) => ({
+      key: item.id, event, text: item.text, problem, tags: <Tags problem={problem} cited={cited.has(item.id)} />,
+    })),
+    [events, cited],
+  );
 
   useEffect(() => {
     if (!pointed) return;
@@ -47,20 +53,19 @@ export function CauseEvidence({ answer, reasoning, pointed, onOpenPage }: Props)
     }
   }, [pointed, events, passages]);
 
-  // Bring the chosen activity, or the passage pointed to, into view once its tab is drawn.
+  // Bring the passage pointed to into view once its tab is drawn. (The list of activities does so for an activity.)
   useEffect(() => {
-    if (tab === "around" && activity !== null) rows.current[activity]?.scrollIntoView?.({ block: "nearest" });
     if (tab === "text" && pointed) {
       const passage = document.getElementById(`evidence-${pointed.label}`);
       passage?.scrollIntoView?.({ block: "nearest" });
       passage?.focus();
     }
-  }, [tab, activity, pointed]);
+  }, [tab, pointed]);
 
   if (answer.status === "ask_which") {
     return (
-      <section className="evidence card" aria-label="Evidence">
-        <h2 className="evidence__title">The evidence</h2>
+      <section className="evidence card" aria-labelledby="evidence-title">
+        <h2 id="evidence-title" tabIndex={-1} className="evidence__title">The evidence</h2>
         <p className="note">
           Choose one of the problems first. We will then gather the activities logged around it and the report text
           that mentions it, and show them here.
@@ -76,86 +81,33 @@ export function CauseEvidence({ answer, reasoning, pointed, onOpenPage }: Props)
 
   if (tabs.length === 0) {
     return (
-      <section className="evidence card" aria-label="Evidence">
-        <h2 className="evidence__title">The evidence</h2>
+      <section className="evidence card" aria-labelledby="evidence-title">
+        <h2 id="evidence-title" tabIndex={-1} className="evidence__title">The evidence</h2>
         <p className="note">Nothing was gathered around this problem, so there is nothing to show here.</p>
       </section>
     );
   }
 
   return (
-    <section className="evidence card" aria-label="Evidence">
-      <h2 className="evidence__title">The evidence</h2>
+    <section className="evidence card" aria-labelledby="evidence-title">
+      <h2 id="evidence-title" tabIndex={-1} className="evidence__title">The evidence</h2>
       <p className="evidence__lead">Check the causes yourself. This is everything the AI was shown about the problem.</p>
-      <div className="tabs" role="tablist" aria-label="Evidence">
-        {tabs.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            id={`tab-${item.id}`}
-            aria-selected={tab === item.id}
-            aria-controls={`panel-${item.id}`}
-            aria-label={`${item.label} ${item.count}`}
-            className="tabs__tab"
-            onClick={() => setTab(item.id)}
-          >
-            {item.label} <span className="tabs__count">{item.count}</span>
-          </button>
-        ))}
-      </div>
+      <TabList label="Evidence" tabs={tabs} selected={tab} onSelect={setTab} />
 
       {tab === "around" && (
-        <div role="tabpanel" id="panel-around" aria-labelledby="tab-around">
+        <div role="tabpanel" id="panel-around" aria-labelledby="tab-around" tabIndex={0}>
           <p className="note">
             The activities logged before, during and after the problem, in the daily reports’ own words.{" "}
             <Tip about="the problem’s activities">{EXPLAIN.problemEvents}</Tip>
           </p>
           {timeline && <DayStrips events={timeline} selected={activity} onSelect={setActivity} />}
           <h3 className="evidence__sub">Activities around the problem</h3>
-          <div className="scroll">
-            <table className="data data--pick" aria-label="Activities around the problem">
-              <thead>
-                <tr>
-                  <th>Date</th><th>From</th><th>To</th><th className="num">Hours</th>
-                  <th>Code <Tip about="the code">{EXPLAIN.code}</Tip></th>
-                  <th>What happened</th>
-                </tr>
-              </thead>
-              <tbody>
-                {events.map(({ item, event, problem }, index) => (
-                  <tr
-                    key={item.id}
-                    ref={(row) => { rows.current[index] = row; }}
-                    className={problem ? "around--problem" : undefined}
-                    aria-selected={activity === index}
-                    onClick={() => setActivity(index)}
-                  >
-                    {event ? (
-                      <>
-                        <td>{event.date}</td><td>{event.start}</td><td>{event.end}</td><td className="num">{event.hours}</td>
-                        <td>{event.code}{event.npt_code ? <span className="npt" title="Non-productive time">NPT</span> : null}</td>
-                        <td className="report-text">
-                          <Tags problem={problem} cited={cited.has(item.id)} />
-                          {readable(event.description)}
-                        </td>
-                      </>
-                    ) : (
-                      <td colSpan={6} className="report-text">
-                        <Tags problem={problem} cited={cited.has(item.id)} />
-                        {readable(item.text)}
-                      </td>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ActivityList label="Activities around the problem" rows={activities} selected={activity} onSelect={setActivity} />
         </div>
       )}
 
       {tab === "text" && (
-        <div role="tabpanel" id="panel-text" aria-labelledby="tab-text">
+        <div role="tabpanel" id="panel-text" aria-labelledby="tab-text" tabIndex={0}>
           <p className="note">Report text from the days of the problem, and from the end-of-well report where it mentions the problem.</p>
           {passages.map((item) => (
             <Passage

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { EventOut } from "../api/types";
 import { dayStrips } from "../lib/strips";
 import { readable } from "../lib/highlight";
@@ -36,8 +36,27 @@ interface Props {
  * explains it; clicking one marks it in the list below.
  */
 export const DayStrips = memo(function DayStrips({ events, selected, onSelect, hint = HINT }: Props) {
-  const days = dayStrips(events);
+  const days = useMemo(() => dayStrips(events), [events]);
   const [hover, setHover] = useState<number | null>(null);
+  const bars = useRef(new Map<number, HTMLButtonElement | null>());
+  // The bars in the order they are drawn. Tab reaches one bar (the marked one, or the first); the arrow keys move
+  // between them, so a keyboard does not have to step through every activity to get past the timeline.
+  const order = useMemo(() => days.flatMap((day) => day.segments.map((segment) => events.indexOf(segment.event))), [days, events]);
+  const [reached, setReached] = useState<number | null>(null);
+  const stop = reached !== null && order.includes(reached) ? reached : selected !== null && order.includes(selected) ? selected : order[0];
+
+  function onKey(event: KeyboardEvent<HTMLOListElement>) {
+    const at = order.indexOf(stop);
+    const last = order.length - 1;
+    const to = {
+      ArrowRight: Math.min(at + 1, last), ArrowDown: Math.min(at + 1, last), ArrowLeft: Math.max(at - 1, 0), ArrowUp: Math.max(at - 1, 0),
+      Home: 0, End: last,
+    }[event.key];
+    if (to === undefined) return;
+    event.preventDefault();
+    setReached(order[to]);
+    bars.current.get(order[to])?.focus();
+  }
   const shown = hover ?? selected;
   const active = shown === null ? null : events[shown];
   return (
@@ -45,9 +64,11 @@ export const DayStrips = memo(function DayStrips({ events, selected, onSelect, h
       <div className="strips__head">
         <h3>Timeline of activities <Tip about="the timeline">{EXPLAIN.timeline}</Tip></h3>
         <p className="strips__key">
-          <span className="strips__swatch strips__swatch--npt" aria-hidden="true" /> Non-productive time
-          <Tip about="non-productive time">{EXPLAIN.nonProductive}</Tip>
-          <span className="strips__swatch" aria-hidden="true" /> Other activity
+          <span className="strips__item">
+            <span className="strips__swatch strips__swatch--npt" aria-hidden="true" /> Non-productive time
+            <Tip about="non-productive time">{EXPLAIN.nonProductive}</Tip>
+          </span>
+          <span className="strips__item"><span className="strips__swatch" aria-hidden="true" /> Other activity</span>
         </p>
       </div>
       <div className="strips__scale" aria-hidden="true">
@@ -59,7 +80,7 @@ export const DayStrips = memo(function DayStrips({ events, selected, onSelect, h
         </div>
         <span />
       </div>
-      <ol className="strips__days" aria-label="Days">
+      <ol className="strips__days" aria-label="Days" onKeyDown={onKey}>
         {days.map((day, row) => (
           <li key={day.date} className="strips__day" style={{ "--row": row } as React.CSSProperties}>
             <span className="strips__date">{dayLabel(day.date)}</span>
@@ -69,7 +90,9 @@ export const DayStrips = memo(function DayStrips({ events, selected, onSelect, h
                 return (
                   <button
                     key={index}
+                    ref={(bar) => { bars.current.set(index, bar); }}
                     type="button"
+                    tabIndex={index === stop ? 0 : -1}
                     className={[
                       "strips__segment",
                       segment.event.npt_code ? "strips__segment--npt" : "",
@@ -80,7 +103,7 @@ export const DayStrips = memo(function DayStrips({ events, selected, onSelect, h
                     aria-pressed={index === selected}
                     onMouseEnter={() => setHover(index)}
                     onMouseLeave={() => setHover(null)}
-                    onFocus={() => setHover(index)}
+                    onFocus={() => { setHover(index); setReached(index); }}
                     onBlur={() => setHover(null)}
                     onClick={() => onSelect(index)}
                   />

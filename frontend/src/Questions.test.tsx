@@ -90,7 +90,7 @@ describe("the questions people asked", () => {
     expect(within(screen.getByRole("list", { name: "Questions" })).getAllByRole("button")).toHaveLength(1);
     await user.clear(screen.getByLabelText("Words in the question"));
     await user.type(screen.getByLabelText("Words in the question"), "nothing like this");
-    expect(await screen.findByText("No question matches these filters.")).toBeInTheDocument();
+    expect(await screen.findByText(/No question matches these filters\./)).toBeInTheDocument();
   });
 
   it("filters by the days asked", async () => {
@@ -198,5 +198,60 @@ describe("the questions people asked", () => {
     expect(await screen.findByRole("list", { name: "Questions" })).toBeInTheDocument();
     window.history.back();
     expect(await screen.findByRole("heading", { name: "How many hours of non-productive time did AK-3 have?" })).toBeInTheDocument();
+  });
+
+  describe("a question that could not be answered", () => {
+    const failed = {
+      id: "failed-1", asked_at: "2026-11-24T08:00:00+00:00", question: "What caused the kick on AK-3?", mode: "allow_fallback",
+      kind: null, report_type: null, status: "error", lanes: [], fallback: false, answered_from: null, answer_text: null,
+      verdict: null, feedback: [],
+    } as unknown as LoggedQuestion;
+
+    function withFailed(error: string): Fake {
+      const api = fakeApi();
+      api.questions.mockImplementation(async (filters: { status?: string }, limit: number, offset: number): Promise<QuestionPage> => {
+        const all = [failed, ...(await exampleApi.questions({}, 50, 0)).questions].filter((q) => !filters.status || q.status === filters.status);
+        return { total: all.length, limit, offset, questions: all };
+      });
+      api.questionCounts.mockImplementation(async () => (
+        { questions: 4, by_kind: {}, by_status: { answered: 2, not_found_in_graph: 1, error: 1 }, by_verdict: { right: 1, wrong: 0, none: 3 } }
+      ));
+      api.question.mockImplementation(async () => ({ ...failed, record: { error } }));
+      return api;
+    }
+
+    it("is listed plainly, counted apart from the answered ones, and can be filtered for", async () => {
+      const api = withFailed("Busy");
+      const user = await openPage(api);
+      const list = screen.getByRole("list", { name: "Questions" });
+      expect(within(list).getAllByRole("button")[0]).toHaveTextContent("Could not be answered");
+      const counts = screen.getByLabelText("Counts");
+      expect(counts).toHaveTextContent("Asked4");
+      expect(counts).toHaveTextContent("Answered2");
+      expect(counts).toHaveTextContent("Could not be answered1");
+      await user.selectOptions(screen.getByLabelText("How it ended"), "Could not be answered");
+      await waitFor(() => expect(api.questions).toHaveBeenLastCalledWith({ status: "error" }, PAGE_SIZE, 0));
+      await waitFor(() => expect(within(screen.getByRole("list", { name: "Questions" })).getAllByRole("button")).toHaveLength(1));
+    });
+
+    it("says why when opened, without the system's own name for what went wrong", async () => {
+      const user = await openPage(withFailed("Busy"));
+      await user.click(within(screen.getByRole("list", { name: "Questions" })).getAllByRole("button")[0]);
+      expect(await screen.findByText("Could not be answered: the system was busy")).toBeInTheDocument();
+      expect(screen.getByText("Not answered")).toBeInTheDocument();
+      expect(document.body).not.toHaveTextContent(/Busy\b|ReadTimeout/);
+    });
+
+    it("says the answering service did not respond for a time-out", async () => {
+      const user = await openPage(withFailed("ReadTimeout"));
+      await user.click(within(screen.getByRole("list", { name: "Questions" })).getAllByRole("button")[0]);
+      expect(await screen.findByText("Could not be answered: the answering service did not respond")).toBeInTheDocument();
+      expect(document.body).not.toHaveTextContent("ReadTimeout");
+    });
+
+    it("leaves the counts as they were when nothing failed", async () => {
+      await openPage(fakeApi());
+      expect(screen.getByLabelText("Counts")).not.toHaveTextContent("Could not be answered");
+    });
   });
 });

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChunkOut } from "../api/types";
 import { highlight, readable } from "../lib/highlight";
 import { place } from "../lib/wording";
@@ -8,16 +8,19 @@ import { Icon } from "./Icon";
 export function ReportText({ text, values }: { text: string; values: string[] }) {
   const parts = useMemo(() => highlight(readable(text), values), [text, values]);
   const box = useRef<HTMLParagraphElement>(null);
+  const [scrolls, setScrolls] = useState(false);
   // A long passage is shown in a box that scrolls; open it where the answer's value is written.
   useEffect(() => {
     const first = box.current?.querySelector("mark");
+    // A box that scrolls must be reachable with the keyboard, or its lower lines cannot be read without a mouse.
+    setScrolls(Boolean(box.current && box.current.scrollHeight > box.current.clientHeight));
     if (box.current && first instanceof HTMLElement && box.current.scrollHeight > box.current.clientHeight) {
       // The box is the mark's offset parent (it is positioned), so offsetTop is already measured from its top.
       box.current.scrollTop = Math.max(0, first.offsetTop - 48);
     }
   }, [parts]);
   return (
-    <p className="report-text" ref={box}>
+    <p className={scrolls ? "report-text report-text--scrolls" : "report-text"} ref={box} tabIndex={scrolls ? 0 : undefined}>
       {parts.map((part, index) => (part.hit ? <mark key={index}>{part.text}</mark> : part.text))}
     </p>
   );

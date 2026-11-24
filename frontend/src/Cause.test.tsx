@@ -148,11 +148,15 @@ describe("an answer about a cause", () => {
     await ask(CAUSE);
     expect(await screen.findByRole("tab", { name: "Around the problem 25" })).toHaveAttribute("aria-selected", "true");
     const rows = within(screen.getByRole("table", { name: "Activities around the problem" })).getAllByRole("row");
-    expect(rows).toHaveLength(26);
-    expect(rows.filter((row) => within(row).queryByText("The problem"))).toHaveLength(21);
-    expect(within(rows[1]).queryByText("The problem")).not.toBeInTheDocument();
-    expect(within(rows[3]).getByText("The problem")).toBeInTheDocument();
-    expect(within(rows[3]).getByText("Cited for a cause")).toBeInTheDocument();
+    // Folded to the first two days: the column headings, 2 day headings and 8 activities. Row 1 is a day heading.
+    expect(rows).toHaveLength(1 + 2 + 8);
+    expect(within(rows[2]).queryByText("The problem")).not.toBeInTheDocument();
+    expect(within(rows[4]).getByText("The problem")).toBeInTheDocument();
+    expect(within(rows[4]).getByText("Cited for a cause")).toBeInTheDocument();
+    await userEvent.setup().click(screen.getByRole("button", { name: "Show all 25 activities" }));
+    const all = within(screen.getByRole("table", { name: "Activities around the problem" })).getAllByRole("row");
+    expect(all).toHaveLength(1 + 4 + 25);
+    expect(all.filter((row) => within(row).queryByText("The problem"))).toHaveLength(21);
     expect(within(screen.getByRole("list", { name: "Days" })).getAllByRole("listitem")).toHaveLength(4);
   });
 
@@ -173,8 +177,8 @@ describe("an answer about a cause", () => {
     await user.click(screen.getByRole("button", { name: "Show in the evidence: AK-3 daily drilling report, 20 Aug 2016" }));
     expect(screen.getByRole("tab", { name: "Around the problem 25" })).toHaveAttribute("aria-selected", "true");
     const rows = within(screen.getByRole("table", { name: "Activities around the problem" })).getAllByRole("row");
-    expect(rows[3]).toHaveAttribute("aria-selected", "true");
-    expect(rows[3]).toHaveTextContent("due to plugged inner barrel");
+    expect(rows[4]).toHaveClass("is-selected");
+    expect(rows[4]).toHaveTextContent("due to plugged inner barrel");
   });
 
   it("opens the page of a cited passage the way every source opens", async () => {

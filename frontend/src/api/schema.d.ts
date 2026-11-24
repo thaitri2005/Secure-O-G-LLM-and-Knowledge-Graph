@@ -164,8 +164,32 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** What is loaded and which models serve */
+        /**
+         * What is loaded and which models serve
+         * @description Liveness: the process is up and its engine is loaded. It asks nothing of the stores or the model.
+         */
         get: operations["health_v1_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ready": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Whether a question could be answered now
+         * @description Readiness: asks the model endpoint and the question log, at most once every 15 seconds. 503 when either
+         *     does not answer. This is what a monitor and the smoke test watch.
+         */
+        get: operations["ready_v1_ready_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -846,6 +870,27 @@ export interface components {
             /** Chunks */
             chunks: string[];
         };
+        /**
+         * ProblemOut
+         * @description Every error response.
+         */
+        ProblemOut: {
+            /**
+             * Detail
+             * @description A sentence for a person
+             */
+            detail: string;
+            /**
+             * Code
+             * @description A word for a program: busy, model_unavailable, store_unavailable, not_found, invalid_request, internal
+             */
+            code: string;
+            /**
+             * Question Id
+             * @description The log ID of the question, when one was logged
+             */
+            question_id?: string | null;
+        };
         /** QuestionCounts */
         QuestionCounts: {
             /** Questions */
@@ -946,6 +991,23 @@ export interface components {
              * @description One per depth, shallowest first; context.depth_ft is the depth
              */
             facts: components["schemas"]["WellFact"][];
+        };
+        /** Ready */
+        Ready: {
+            /** Ready */
+            ready: boolean;
+            /**
+             * Checks
+             * @description `model` and `question_log`: `ok`, or what went wrong
+             */
+            checks: {
+                [key: string]: string;
+            };
+            /**
+             * Waiting
+             * @description Questions waiting for the model now
+             */
+            waiting: number;
         };
         /**
          * Reasoning
@@ -1235,6 +1297,15 @@ export interface operations {
                     "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description `busy`: too many questions are waiting; `model_unavailable`; `store_unavailable`. The question is logged with status `error`. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProblemOut"];
+                };
+            };
         };
     };
     feedback_v1_questions__question_id__feedback_post: {
@@ -1492,6 +1563,35 @@ export interface operations {
             };
         };
     };
+    ready_v1_ready_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ready"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ready"];
+                };
+            };
+        };
+    };
     logged_questions_v1_admin_questions_get: {
         parameters: {
             query?: {
@@ -1499,7 +1599,7 @@ export interface operations {
                 offset?: number;
                 /** @description The frame's kind, e.g. lookup or cause */
                 kind?: string | null;
-                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which" | "error") | null;
                 mode?: ("allow_fallback" | "exact") | null;
                 /** @description The latest mark; none: not marked */
                 verdict?: ("right" | "wrong" | "none") | null;
@@ -1543,7 +1643,7 @@ export interface operations {
             query?: {
                 /** @description The frame's kind, e.g. lookup or cause */
                 kind?: string | null;
-                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which" | "error") | null;
                 mode?: ("allow_fallback" | "exact") | null;
                 /** @description The latest mark; none: not marked */
                 verdict?: ("right" | "wrong" | "none") | null;
@@ -1589,7 +1689,7 @@ export interface operations {
                 expected_lane?: ("end_of_well" | "daily" | "events" | "reasoning") | null;
                 /** @description The frame's kind, e.g. lookup or cause */
                 kind?: string | null;
-                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which" | "error") | null;
                 mode?: ("allow_fallback" | "exact") | null;
                 /** @description The latest mark; none: not marked */
                 verdict?: ("right" | "wrong" | "none") | null;

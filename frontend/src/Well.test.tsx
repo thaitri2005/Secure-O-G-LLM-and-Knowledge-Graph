@@ -60,7 +60,7 @@ describe("a well's page", () => {
   });
 
   it("gives what we know in groups, with plain names, units and explanations", async () => {
-    await openFromStart(fakeApi());
+    const shown = await openFromStart(fakeApi());
     const depths = screen.getByRole("table", { name: "Depths and dates" });
     expect(within(depths).getByRole("row", { name: /Total depth \(planned\).*1,700 ft/ })).toBeInTheDocument();
     expect(within(depths).getByRole("row", { name: /^Total depth .*1,955 ft/ })).toBeInTheDocument();
@@ -69,7 +69,11 @@ describe("a well's page", () => {
     const casing = screen.getByRole("table", { name: "Casing strings" });
     expect(within(casing).getAllByRole("row")).toHaveLength(1 + 3 + 3 + 3 + 2);
     expect(within(casing).getByRole("row", { name: /3-1\/2 in Setting depth.*700 ft.*1,955 ft/ })).toBeInTheDocument();
-    expect(within(screen.getByRole("table", { name: "Inclination at depths" })).getAllByRole("row")).toHaveLength(19);
+    // A long list of values shows its first six and a button for the rest.
+    const inclination = screen.getByRole("table", { name: "Inclination at depths" });
+    expect(within(inclination).getAllByRole("row")).toHaveLength(1 + 6);
+    await shown.click(screen.getByRole("button", { name: "Show all 17 values" }));
+    expect(within(inclination).getAllByRole("row")).toHaveLength(18);
     const user = userEvent.setup();
     await user.hover(within(depths).getAllByRole("button", { name: "What is spud date?" })[0]);
     expect(screen.getByRole("tooltip")).toHaveTextContent("The day drilling of the well began.");
@@ -93,6 +97,9 @@ describe("a well's page", () => {
     const user = await openFromStart(fakeApi());
     expect(within(screen.getByRole("list", { name: "Days" })).getAllByRole("listitem")).toHaveLength(4);
     expect(screen.getByText(/The timeline shows the 4 days whose activities are all at hand/)).toBeInTheDocument();
+    // The first ten days are listed until the rest are asked for.
+    expect(within(screen.getByRole("table", { name: "Report days" })).getAllByRole("row")).toHaveLength(1 + 10);
+    await user.click(screen.getByRole("button", { name: "Show all 27 days" }));
     const days = within(screen.getByRole("table", { name: "Report days" })).getAllByRole("row");
     expect(days).toHaveLength(28);
     expect(days[2]).toHaveTextContent("13 Aug 2016");
@@ -101,7 +108,7 @@ describe("a well's page", () => {
     // A bar chosen on the timeline marks its day in the list.
     const bar = within(screen.getByRole("list", { name: "Days" })).getAllByRole("button")[0];
     await user.click(bar);
-    expect(days[2]).toHaveAttribute("aria-selected", "true");
+    expect(days[2]).toHaveClass("is-selected");
     expect(screen.getByRole("note", { name: "Selected activity" })).toHaveTextContent("13 Aug, 0:00 to 0:00, 24 hours, non-productive time");
   });
 

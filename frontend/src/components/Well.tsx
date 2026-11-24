@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ApiError, type Api } from "../api/client";
-import type { EventOut, PageOut, ReportDay, WellFact, WellOut } from "../api/types";
+import type { EventOut, PageOut, Readings, ReportDay, WellFact, WellOut } from "../api/types";
+import { firstRows } from "../lib/fold";
+import { useStickyColumn } from "../lib/hooks";
 import { anyPlanned, casingRows, wholeDays } from "../lib/well";
 import {
   depthLabel, documentSize, EXPLAIN, factLabel, factValue, longDate, noDays, number, place, propertyName, propertyTip,
   reportName, wellTotals,
 } from "../lib/wording";
 import { DayStrips } from "./DayStrips";
+import { FoldControl, useFold } from "./Fold";
 import { Icon } from "./Icon";
 import { PageView } from "./PageView";
 import { Tip } from "./Tip";
@@ -31,7 +34,9 @@ export function Well({ api, wellId, onBack }: Props) {
   const [pageError, setPageError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const side = useRef<HTMLDivElement>(null);
-  const dayRows = useRef(new Map<string, HTMLTableRowElement | null>());
+  /** The value that opened a page, to give the keyboard back to when the page closes. */
+  const opener = useRef<HTMLElement | null>(null);
+  useStickyColumn(side, `${well?.well_id ?? ""} ${page ? "page" : "days"}`);
 
   const load = useCallback(async () => {
     setError(null);
@@ -54,6 +59,7 @@ export function Well({ api, wellId, onBack }: Props) {
   const openFact = useCallback(async (fact: WellFact) => {
     if (fact.page === null) return;
     setPageError(null);
+    if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) opener.current = document.activeElement;
     try {
       setPage({ shown: await api.page(fact.file_id, fact.page), chunk: fact.chunk_id });
       // Only when the page view is out of sight: below the facts on a narrow screen, or above after scrolling down.
@@ -63,41 +69,47 @@ export function Well({ api, wellId, onBack }: Props) {
     }
   }, [api]);
 
+  const closePage = useCallback(() => {
+    setPage(null);
+    window.requestAnimationFrame(() => {
+      if (opener.current?.isConnected) opener.current.focus();
+      opener.current = null;
+    });
+  }, []);
+
   // Esc closes an open page, as it does beside an answer.
+  const pageOpen = page !== null;
   useEffect(() => {
+    if (!pageOpen) return;
     function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setPage(null);
+      if (event.key === "Escape") closePage();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [pageOpen, closePage]);
 
   const drawn = useMemo(() => (well ? wholeDays(events, well.report_days) : []), [events, well]);
   const chosenDay = selected === null ? null : (drawn[selected]?.date ?? null);
 
-  useEffect(() => {
-    if (chosenDay) dayRows.current.get(chosenDay)?.scrollIntoView?.({ block: "nearest" });
-  }, [chosenDay]);
-
   if (error) {
     return (
-      <main className="well">
+      <div className="well">
         <button type="button" className="back" onClick={onBack}><Icon name="arrowLeft" size={16} /> Back</button>
-        <h1 className="well__title">{wellId}</h1>
+        <h1 className="well__title" tabIndex={-1}>{wellId}</h1>
         <p role="alert" className="error">
           <Icon name="alert" size={18} /> <span>{error}</span>
           <button type="button" className="link" onClick={() => void load()}>Try again</button>
         </p>
-      </main>
+      </div>
     );
   }
 
   if (!well) {
     return (
-      <main className="well">
-        <h1 className="well__title">{wellId}</h1>
+      <div className="well">
+        <h1 className="well__title" tabIndex={-1}>{wellId}</h1>
         <p className="note" role="status">Gathering what the reports say about {wellId}…</p>
-      </main>
+      </div>
     );
   }
 
@@ -106,12 +118,13 @@ export function Well({ api, wellId, onBack }: Props) {
     + readings.reduce((sum, r) => sum + r.facts.length, 0);
   const totals = wellTotals(well.totals);
   const planned = anyPlanned(casings);
-  const drawnDays = new Set(drawn.map((event) => event.date)).size;
+  const drawnDates = new Set(drawn.map((event) => event.date));
+  const drawnDays = drawnDates.size;
 
   return (
-    <main className="well">
+    <div className="well">
       <button type="button" className="back" onClick={onBack}><Icon name="arrowLeft" size={16} /> Back</button>
-      <h1 className="well__title">Well {well.well_id}</h1>
+      <h1 className="well__title" tabIndex={-1}>Well {well.well_id}</h1>
       <p className="well__lead">
         {totals ?? "No daily reports are loaded for this well."}
         {totals && well.totals.npt_hours > 0 && <> <Tip about="these codes">{EXPLAIN.nptCodes}</Tip></>}
@@ -137,15 +150,15 @@ export function Well({ api, wellId, onBack }: Props) {
                 <table className="data" aria-label="Casing strings">
                   <thead>
                     <tr>
-                      <th>Casing</th><th>Detail</th>
-                      {planned && <th>Planned</th>}
-                      <th>Actual</th>
+                      <th scope="col">Casing</th><th scope="col">Detail</th>
+                      {planned && <th scope="col">Planned</th>}
+                      <th scope="col">Actual</th>
                     </tr>
                   </thead>
                   <tbody>
                     {casings.flatMap((casing) => casingRows(casing).map((row, index) => (
                       <tr key={`${casing.size_in}-${row.property}`} className={index === 0 ? "well__first" : undefined}>
-                        <td>{index === 0 ? `${casing.size_in} in` : ""}</td>
+                        {index === 0 ? <th scope="row">{casing.size_in} in</th> : <td />}
                         <td>{propertyName(row.property)}{propertyTip(row.property) && <Tip about={propertyName(row.property).toLowerCase()}>{propertyTip(row.property)}</Tip>}</td>
                         {planned && <td><Value fact={row.planned} onOpen={openFact} /></td>}
                         <td><Value fact={row.actual} onOpen={openFact} /></td>
@@ -157,29 +170,7 @@ export function Well({ api, wellId, onBack }: Props) {
             </div>
           )}
 
-          {readings.map((reading) => (
-            <div className="well__group" key={reading.property}>
-              <h3>
-                {propertyName(reading.property)} at depths{" "}
-                <Tip about={propertyName(reading.property).toLowerCase()}>{propertyTip(reading.property) ?? EXPLAIN.readings}</Tip>
-              </h3>
-              <div className="scroll well__readings">
-                <table className="data" aria-label={`${propertyName(reading.property)} at depths`}>
-                  <thead>
-                    <tr><th>Depth</th><th className="num">{propertyName(reading.property)}</th></tr>
-                  </thead>
-                  <tbody>
-                    {reading.facts.map((fact, index) => (
-                      <tr key={index}>
-                        <td>{depthLabel(fact.context?.depth_ft)}</td>
-                        <td className="num"><Value fact={fact} onOpen={openFact} /></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))}
+          {readings.map((reading) => <ReadingTable key={reading.property} reading={reading} onOpen={openFact} />)}
         </section>
 
         <div className="well__side" ref={side}>
@@ -189,7 +180,7 @@ export function Well({ api, wellId, onBack }: Props) {
               page={page.shown}
               pageChunk={page.chunk}
               values={NO_VALUES}
-              onClose={() => setPage(null)}
+              onClose={closePage}
               closeLabel="Back to the days and reports"
               cited="fact"
             />
@@ -212,8 +203,8 @@ export function Well({ api, wellId, onBack }: Props) {
                     <h3 className="evidence__sub">Every day of reports</h3>
                     <DayTable
                       days={well.report_days}
+                      drawn={drawnDates}
                       chosen={chosenDay}
-                      rows={dayRows.current}
                       onChoose={(date) => {
                         const first = drawn.findIndex((event) => event.date === date);
                         if (first >= 0) setSelected(first);
@@ -245,7 +236,7 @@ export function Well({ api, wellId, onBack }: Props) {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
@@ -261,6 +252,36 @@ function Value({ fact, onOpen }: { fact: WellFact | null; onOpen: (fact: WellFac
   );
 }
 
+/** Values a report gives at depths: the first few, and a button for the rest of a long list. */
+function ReadingTable({ reading, onOpen }: { reading: Readings; onOpen: (fact: WellFact) => void }) {
+  const name = propertyName(reading.property);
+  const fold = useFold(reading.facts.length, firstRows(reading.facts.length));
+  return (
+    <div className="well__group">
+      <h3>
+        {name} at depths{" "}
+        <Tip about={name.toLowerCase()}>{propertyTip(reading.property) ?? EXPLAIN.readings}</Tip>
+      </h3>
+      <div className="scroll">
+        <table className="data" aria-label={`${name} at depths`}>
+          <thead>
+            <tr><th scope="col">Depth</th><th scope="col" className="num">{name}</th></tr>
+          </thead>
+          <tbody>
+            {reading.facts.slice(0, fold.limit).map((fact, index) => (
+              <tr key={index}>
+                <th scope="row">{depthLabel(fact.context?.depth_ft)}</th>
+                <td className="num"><Value fact={fact} onOpen={onOpen} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {fold.folds && <FoldControl shown={firstRows(reading.facts.length)} total={reading.facts.length} things="values" open={fold.open} onToggle={fold.toggle} />}
+    </div>
+  );
+}
+
 function FactTable({ title, facts, onOpen }: { title: string; facts: WellFact[]; onOpen: (fact: WellFact) => void }) {
   if (facts.length === 0) return null;
   return (
@@ -271,10 +292,10 @@ function FactTable({ title, facts, onOpen }: { title: string; facts: WellFact[];
           <tbody>
             {facts.map((fact, index) => (
               <tr key={index}>
-                <td>
+                <th scope="row">
                   {factLabel(fact)}
                   {propertyTip(fact.property) && <Tip about={propertyName(fact.property).toLowerCase()}>{propertyTip(fact.property)}</Tip>}
-                </td>
+                </th>
                 <td className="num"><Value fact={fact} onOpen={onOpen} /></td>
               </tr>
             ))}
@@ -287,39 +308,68 @@ function FactTable({ title, facts, onOpen }: { title: string; facts: WellFact[];
 
 interface DayTableProps {
   days: ReportDay[];
+  /** The days the timeline draws: only these can be marked on it. */
+  drawn: Set<string>;
   chosen: string | null;
-  rows: Map<string, HTMLTableRowElement | null>;
   onChoose: (date: string) => void;
 }
 
-/** Every report day: its hours, the non-productive hours marked, how deep it reached, and its activity codes. */
-function DayTable({ days, chosen, rows, onChoose }: DayTableProps) {
+const FIRST_DAYS = 10;
+
+/**
+ * Every report day: its hours, the non-productive hours marked, how deep it reached, and its activity codes. A
+ * long list shows its first days; a day chosen on the timeline is unfolded if need be and brought into view.
+ */
+function DayTable({ days, drawn, chosen, onChoose }: DayTableProps) {
+  const first = firstRows(days.length, FIRST_DAYS);
+  const at = chosen === null ? -1 : days.findIndex((day) => day.date === chosen);
+  const fold = useFold(days.length, first, at >= first, chosen);
+  const rows = useRef(new Map<string, HTMLTableRowElement | null>());
+
+  useEffect(() => {
+    if (chosen && at < fold.limit) rows.current.get(chosen)?.scrollIntoView?.({ block: "nearest" });
+  }, [chosen, at, fold.limit]);
+
   return (
-    <div className="scroll well__daylist">
-      <table className="data data--pick" aria-label="Report days">
-        <thead>
-          <tr>
-            <th>Day</th>
-            <th className="num">Hours</th>
-            <th className="num">Non-productive <Tip about="non-productive time">{EXPLAIN.nonProductive}</Tip></th>
-            <th className="num">Deepest point</th>
-            <th>Activity codes <Tip about="the codes">{EXPLAIN.code}</Tip></th>
-          </tr>
-        </thead>
-        <tbody>
-          {days.map((day) => (
-            <tr key={day.date} ref={(row) => { rows.set(day.date, row); }} aria-selected={chosen === day.date} onClick={() => onChoose(day.date)}>
-              <td>{longDate(day.date)}</td>
-              <td className="num">{number(day.hours)}</td>
-              <td className="num">
-                {day.npt_hours > 0 ? <span className="npt" title={day.npt_codes.join(", ")}>{number(day.npt_hours)} h</span> : "–"}
-              </td>
-              <td className="num">{number(day.end_md)} ft</td>
-              <td>{[...new Set(day.codes)].join(", ")}</td>
+    <>
+      <div className="scroll well__daylist">
+        <table className="data data--pick" aria-label="Report days">
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col" className="num">Hours</th>
+              <th scope="col" className="num">Non-productive <Tip about="non-productive time">{EXPLAIN.nonProductive}</Tip></th>
+              <th scope="col" className="num">Deepest point</th>
+              <th scope="col">Activity codes <Tip about="the codes">{EXPLAIN.code}</Tip></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {days.slice(0, fold.limit).map((day) => (
+              <tr
+                key={day.date}
+                ref={(row) => { rows.current.set(day.date, row); }}
+                className={[chosen === day.date ? "is-selected" : "", drawn.has(day.date) ? "" : "is-plain"].filter(Boolean).join(" ") || undefined}
+                onClick={() => onChoose(day.date)}
+              >
+                <th scope="row">
+                  {drawn.has(day.date) ? (
+                    <button type="button" className="pick" aria-pressed={chosen === day.date} onClick={(click) => { click.stopPropagation(); onChoose(day.date); }}>
+                      {longDate(day.date)}
+                    </button>
+                  ) : longDate(day.date)}
+                </th>
+                <td className="num">{number(day.hours)}</td>
+                <td className="num">
+                  {day.npt_hours > 0 ? <span className="npt" title={day.npt_codes.join(", ")}>{number(day.npt_hours)} h</span> : <span aria-label="none">–</span>}
+                </td>
+                <td className="num">{number(day.end_md)} ft</td>
+                <td>{[...new Set(day.codes)].join(", ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {fold.folds && <FoldControl shown={first} total={days.length} things="days" open={fold.open} onToggle={fold.toggle} />}
+    </>
   );
 }

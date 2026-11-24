@@ -323,7 +323,7 @@ export const EXPLAIN = {
   nonProductive:
     "Non-productive time (NPT): hours when the rig was not making progress, for example waiting on weather or fixing a problem. The reports mark these hours themselves.",
   timeline:
-    "Each row is one day, from midnight to midnight. A coloured bar is an activity the reports logged. Hover over a bar, or click it, to see what happened.",
+    "Each row is one day, from midnight to midnight. A coloured bar is an activity the reports logged. Hover over a bar, or click it, to see what happened. With a keyboard, the arrow keys move from bar to bar.",
   keyFacts:
     "Facts the system has pulled out of the reports in advance, such as depths and dates, and checked against the original text.",
   reportText: "The exact text from the reports. Yellow highlights show where the answer’s value is written.",
@@ -467,8 +467,23 @@ interface Logged {
   fallback?: boolean | null;
 }
 
-/** The answer a logged question got, in a line. */
-export function loggedAnswer(question: Logged): string {
+/**
+ * Why a question could not be answered, from the name the log keeps of what went wrong. The names are the
+ * system's own, so they are read here and never shown.
+ */
+export function failureReason(error: unknown): string {
+  if (typeof error !== "string" || !error) return "";
+  if (/busy/i.test(error)) return "the system was busy";
+  if (/timeout|connect|network|http|protocol|unavailable/i.test(error)) return "the answering service did not respond";
+  return "something went wrong on the server";
+}
+
+/** The answer a logged question got, in a line. `record` is the full entry, when it has been read. */
+export function loggedAnswer(question: Logged, record: Record<string, unknown> = {}): string {
+  if (question.status === "error") {
+    const why = failureReason(record.error);
+    return why ? `Could not be answered: ${why}` : "Could not be answered";
+  }
   if (question.answer_text) return question.answer_text;
   if (question.status === "ask_which") return "We asked which problem was meant";
   if (question.lanes.includes("reasoning")) {
@@ -486,6 +501,13 @@ export function loggedAnswer(question: Logged): string {
  */
 export function loggedBadge(question: Logged, record: Record<string, unknown> = {}): Badge {
   if (question.status === "ask_which") return BADGES.choose;
+  if (question.status === "error") {
+    return {
+      tone: "none",
+      label: "Not answered",
+      tip: "Something stopped the system before it could answer: it was busy with other questions, or a service it depends on did not respond. Nothing was shown to the person who asked.",
+    };
+  }
   if (question.lanes.includes("reasoning") && question.status !== "invalid") {
     return question.status === "answered" ? BADGES.causes : BADGES.noCause;
   }
@@ -503,9 +525,12 @@ export function loggedBadge(question: Logged, record: Record<string, unknown> = 
 
 /** The numbers at the top of the questions page. */
 export function countTiles(counts: { questions: number; by_status: Record<string, number>; by_verdict: Record<string, number> }) {
+  const failed = counts.by_status.error ?? 0;
   return [
     { label: "Asked", value: counts.questions },
     { label: "Answered", value: counts.by_status.answered ?? 0 },
+    // Shown only when there are some, so "asked" less "answered" is not read as "no answer found".
+    ...(failed > 0 ? [{ label: "Could not be answered", value: failed }] : []),
     { label: "Marked right", value: counts.by_verdict.right ?? 0 },
     { label: "Marked wrong", value: counts.by_verdict.wrong ?? 0 },
     { label: "Not marked", value: counts.by_verdict.none ?? 0 },
@@ -513,8 +538,8 @@ export function countTiles(counts: { questions: number; by_status: Record<string
 }
 
 /** "Showing 1–20 of 45". */
-export function showing(offset: number, shown: number, total: number): string {
-  if (total === 0) return "No questions match";
+export function showing(offset: number, shown: number, total: number, filtered = true): string {
+  if (total === 0) return filtered ? "No questions match" : "No questions yet";
   return `Showing ${number(offset + 1)}–${number(offset + shown)} of ${count(total, "question", "questions")}`;
 }
 
@@ -530,3 +555,121 @@ export const CREDIT = {
   repository: "https://gdr.openei.org",
   licence: "https://creativecommons.org/licenses/by/4.0/",
 } as const;
+
+// ---- waiting for an answer ----
+
+/** What happens between asking and the answer, in order. Which one is under way is told by the time that has passed. */
+export const WAITING_STEPS = [
+  { from: 0, title: "Reading your question", detail: "Working out which well, which dates and which numbers you mean." },
+  { from: 4, title: "Looking through the reports", detail: "Finding the pages and the logged activities that match." },
+  { from: 15, title: "Writing the answer and checking it", detail: "Each value is checked against the report text before you see it." },
+] as const;
+
+/** The step under way after this many seconds. */
+export function waitingStep(seconds: number): number {
+  let current = 0;
+  WAITING_STEPS.forEach((step, index) => {
+    if (seconds >= step.from) current = index;
+  });
+  return current;
+}
+
+/** Time spent waiting, as a person says it: "8 seconds", "1 minute 5 seconds". */
+export function elapsed(seconds: number): string {
+  const secs = count(seconds % 60, "second", "seconds");
+  if (seconds < 60) return secs;
+  return `${count(Math.floor(seconds / 60), "minute", "minutes")} ${secs}`;
+}
+
+/** One calm line under the steps; it changes as the wait grows, so a long wait never looks like a fault. */
+export function waitingNote(seconds: number): string {
+  if (seconds < 40) return "This usually takes less than a minute.";
+  if (seconds < 90) return "Still working. A detailed question can take a minute or more.";
+  if (seconds < 180) return "This is taking longer than usual. You can keep waiting, or stop and ask again.";
+  return "Nearly at the limit. If no answer comes within four minutes, we stop and you can ask again.";
+}
+
+export const WAITING = {
+  title: "Reading the reports for you",
+  stop: "Stop",
+  stopped: "Stopped. Your question is still in the box, so you can change it or ask again.",
+} as const;
+
+// ---- long lists ----
+
+/** The button that unfolds a long list: "Show all 28 activities". */
+export function showAll(total: number, things: string): string {
+  return `Show all ${number(total)} ${things}`;
+}
+
+/** What a folded list says about itself: "Showing the first 7 of 28 activities." */
+export function showingFirst(shown: number, total: number, things: string): string {
+  return `Showing the first ${number(shown)} of ${number(total)} ${things}.`;
+}
+
+/** The button that folds it again. */
+export function showFewer(things: string): string {
+  return `Show fewer ${things}`;
+}
+
+/** A day's heading in a list of activities: "20 Aug 2016", "24 hours logged", "7 hours non-productive". */
+export function dayHours(hours: number): string {
+  return `${number(hours)} ${hours === 1 ? "hour" : "hours"}`;
+}
+
+// ---- the browser tab ----
+
+export const APP_NAME = "Drilling Reports Assistant";
+
+/** The title of the browser tab, so each screen can be told apart in the history and in a printed page's header. */
+export function pageTitle(screen: string | null): string {
+  return screen ? `${screen} · ${APP_NAME}` : APP_NAME;
+}
+
+/** What a day's heading says of its activities in a list: "4 activities, 8.5 hours". */
+export function daySummary(activities: number, hours: number): string {
+  return `${count(activities, "activity", "activities")}, ${dayHours(hours)}`;
+}
+
+/** The non-productive part of a day, on its heading: "7 hours non-productive". */
+export function dayLost(hours: number): string {
+  return `${dayHours(hours)} non-productive`;
+}
+
+// ---- notices ----
+
+/** Said while the application runs on prepared examples: in full on the start page, in short beside the question box. */
+export const DEMO = {
+  full: "Demo mode: no AI is connected. The report text and numbers are real; each answer shown is a prepared example.",
+  short: "Demo mode: no AI is connected. Each answer is a prepared example.",
+} as const;
+
+export const COPY = {
+  ask: "Copy link",
+  done: "Link copied",
+  announced: "A link to this answer was copied.",
+  failed: "The link could not be copied here. Copy it from the address bar instead.",
+} as const;
+
+/** Under an answer that names no page: said plainly, so the missing list is not taken for an oversight. */
+export const NO_SOURCES = "No page of a report was recorded for this answer. Check it against the evidence before relying on it.";
+
+/** What the questions page says when its list is empty. */
+export function emptyLog(filtered: boolean): string {
+  return filtered
+    ? "No question matches these filters. Clear a filter to see more."
+    : "Nobody has asked a question yet. Questions asked on the start page appear here, newest first.";
+}
+
+/** The link printed under an answer on paper, where nothing can be clicked. */
+export const PRINTED_FROM = "Printed from the Drilling Reports Assistant. This answer:";
+
+/** How a logged question ended, as the questions page lets it be chosen. */
+export const ENDED: { value: "" | "answered" | "error"; label: string }[] = [
+  { value: "", label: "Any" },
+  { value: "answered", label: "Answered" },
+  { value: "error", label: "Could not be answered" },
+];
+
+/** Said on the start page when the server says it cannot answer questions just now. */
+export const NOT_READY = "Questions cannot be answered right now: the answering service is not responding. You can still look at the wells and their reports.";

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError, type Api, type QuestionFilters } from "../api/client";
 import type { LoggedQuestion, LoggedQuestionDetail, QuestionCounts } from "../api/types";
 import {
-  askedAt, citedReports, countTiles, KIND, kindName, loggedAnswer, loggedBadge, markLabel, showing,
+  askedAt, citedReports, countTiles, emptyLog, ENDED, KIND, kindName, loggedAnswer, loggedBadge, markLabel, showing,
 } from "../lib/wording";
 import { Icon, type IconName } from "./Icon";
 import { Tip } from "./Tip";
@@ -45,6 +45,7 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState<string | null>(null);
   const latest = useRef(0);
+  const sought = useRef("");
 
   const load = useCallback(async () => {
     const asking = ++latest.current;
@@ -66,7 +67,11 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
   // The search applies a moment after typing stops, not on every key.
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setFilters((now) => ((now.q ?? "") === typed.trim() ? now : { ...now, q: typed.trim() || undefined }));
+      const words = typed.trim();
+      // Only a change of the words starts the list again from its first page; otherwise paging would be undone.
+      if ((sought.current ?? "") === words) return;
+      sought.current = words;
+      setFilters((now) => ({ ...now, q: words || undefined }));
       setOffset(0);
     }, 300);
     return () => window.clearTimeout(timer);
@@ -98,11 +103,11 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
     }
   }
 
-  const filtered = Boolean(filters.kind || filters.verdict || filters.q || filters.date_from || filters.date_to);
+  const filtered = Boolean(filters.kind || filters.status || filters.verdict || filters.q || filters.date_from || filters.date_to);
 
   return (
-    <main className="log">
-      <h1 className="log__title">Questions people asked</h1>
+    <div className="log">
+      <h1 className="log__title" tabIndex={-1}>Questions people asked</h1>
       <p className="log__lead">
         Every question asked here, the answer it got, and how people marked it. This page is for the project team and
         the advisors. It only shows: nothing here can be changed or deleted.
@@ -125,6 +130,12 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
           <select value={filters.kind ?? ""} onChange={(event) => choose({ kind: event.target.value || undefined })}>
             <option value="">Any</option>
             {Object.entries(KIND).map(([kind, name]) => <option key={kind} value={kind}>{name}</option>)}
+          </select>
+        </label>
+        <label className="log__field">
+          <span>How it ended</span>
+          <select value={filters.status ?? ""} onChange={(event) => choose({ status: (event.target.value || undefined) as QuestionFilters["status"] })}>
+            {ENDED.map((end) => <option key={end.label} value={end.value}>{end.label}</option>)}
           </select>
         </label>
         <label className="log__field">
@@ -151,6 +162,7 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
             className="link log__clear"
             onClick={() => {
               setTyped("");
+              sought.current = "";
               setFilters({});
               setOffset(0);
               setSaved(null);
@@ -182,15 +194,15 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
       {found === null && !error && <p className="note" role="status">Reading the questions…</p>}
       {found && (
         <section aria-labelledby="log-list">
-          <h2 id="log-list" className="log__showing">{showing(offset, found.questions.length, found.total)}</h2>
+          <h2 id="log-list" className="log__showing">{showing(offset, found.questions.length, found.total, filtered)}</h2>
           {found.total === 0 ? (
-            <p className="note">{filtered ? "No question matches these filters." : "Nobody has asked a question yet."}</p>
+            <p className="log__empty"><Icon name="info" size={18} /> {emptyLog(filtered)}</p>
           ) : (
             <ol className="log__list" aria-label="Questions">
               {found.questions.map((question) => (
                 <li key={question.id}>
                   <button type="button" className="logq" onClick={() => onOpen(question.id)}>
-                    <span className="logq__meta">{askedAt(question.asked_at)} · {kindName(question.kind)}</span>
+                    <span className="logq__meta">{askedAt(question.asked_at)} · {kindName(question.kind)}</span>{" "}
                     <span className="logq__question">{question.question}</span>
                     <span className="logq__answer">
                       {loggedAnswer(question)}
@@ -220,7 +232,7 @@ function List({ api, onOpen }: { api: Api; onOpen: (questionId: string) => void 
           )}
         </section>
       )}
-    </main>
+    </div>
   );
 }
 
@@ -254,7 +266,7 @@ function Opened({ api, questionId, onBack }: { api: Api; questionId: string; onB
 
   if (error || !question) {
     return (
-      <main className="log">
+      <div className="log">
         {back}
         {error ? (
           <p role="alert" className="error">
@@ -264,7 +276,7 @@ function Opened({ api, questionId, onBack }: { api: Api; questionId: string; onB
         ) : (
           <p className="note" role="status">Opening the question…</p>
         )}
-      </main>
+      </div>
     );
   }
 
@@ -273,7 +285,7 @@ function Opened({ api, questionId, onBack }: { api: Api; questionId: string; onB
   const cost = question.record.cost as { calls?: number; seconds?: number } | undefined;
 
   return (
-    <main className="log">
+    <div className="log">
       {back}
       <article className="card log__detail" aria-labelledby="log-question">
         <p className="answer__question">{askedAt(question.asked_at)} · {kindName(question.kind)}</p>
@@ -286,7 +298,7 @@ function Opened({ api, questionId, onBack }: { api: Api; questionId: string; onB
             <Icon name={BADGE_ICON[trust.tone]} size={16} /> {trust.label}
             <Tip about={trust.label.toLowerCase()}>{trust.tip}</Tip>
           </p>
-          <p className={question.status === "answered" ? "answer__value" : "answer__value answer__value--none"}>{loggedAnswer(question)}</p>
+          <p className={question.status === "answered" ? "answer__value" : "answer__value answer__value--none"}>{loggedAnswer(question, question.record)}</p>
           {question.fallback && <p className="note">The daily activity log had no match, so the report text was searched instead.</p>}
           {reports.length > 0 && <p className="note">From: {reports.join("; ")}.</p>}
         </section>
@@ -315,6 +327,6 @@ function Opened({ api, questionId, onBack }: { api: Api; questionId: string; onB
           </p>
         )}
       </article>
-    </main>
+    </div>
   );
 }

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChunkOut, PageOut } from "../api/types";
 import { place } from "../lib/wording";
 import { Icon } from "./Icon";
 import { PageImage } from "./PageImage";
 import { ReportText } from "./Passage";
+import { TabList } from "./Tabs";
 
 interface Props {
   page: PageOut;
@@ -21,6 +22,11 @@ interface Props {
 export function PageView({ page, pageChunk, values, onClose, closeLabel, cited = "answer" }: Props) {
   const [pageTab, setPageTab] = useState<"image" | "text">("image");
   const imageUrl = page.image_url ?? null;
+  const heading = useRef<HTMLHeadingElement>(null);
+  // The page takes the evidence's place: move the keyboard and a screen reader to it, and bring it into view.
+  useEffect(() => {
+    heading.current?.focus();
+  }, [page.file_id, page.page]);
   const citedChunks = page.chunks.filter((chunk) => chunk.chunk_id === pageChunk);
   const pageText = (chunks: ChunkOut[]) =>
     chunks.map((chunk) => (
@@ -30,29 +36,20 @@ export function PageView({ page, pageChunk, values, onClose, closeLabel, cited =
       </div>
     ));
   return (
-    <section className="evidence card" aria-label="Evidence">
+    <section className="evidence card" aria-labelledby="page-title">
       <button type="button" className="back" onClick={onClose}><Icon name="arrowLeft" size={16} /> {closeLabel}</button>
-      <h2 className="evidence__title">{place(page.file_id, page.page)}</h2>
+      <h2 id="page-title" ref={heading} tabIndex={-1} className="evidence__title">{place(page.file_id, page.page)}</h2>
       {imageUrl && (
-        <div className="tabs" role="tablist" aria-label="Page view">
-          {(["image", "text"] as const).map((id) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              id={`pagetab-${id}`}
-              aria-selected={pageTab === id}
-              aria-controls={`pagepanel-${id}`}
-              className="tabs__tab"
-              onClick={() => setPageTab(id)}
-            >
-              {id === "image" ? "Page as printed" : "Page text"}
-            </button>
-          ))}
-        </div>
+        <TabList
+          label="Page view"
+          ids={["pagetab", "pagepanel"]}
+          tabs={[{ id: "image", label: "Page as printed" }, { id: "text", label: "Page text" }]}
+          selected={pageTab}
+          onSelect={setPageTab}
+        />
       )}
       {imageUrl && pageTab === "image" ? (
-        <div role="tabpanel" id="pagepanel-image" aria-labelledby="pagetab-image" className="page-view">
+        <div role="tabpanel" id="pagepanel-image" aria-labelledby="pagetab-image" tabIndex={0} className="page-view">
           <PageImage key={imageUrl} url={imageUrl} fileId={page.file_id} page={page.page} />
           <div className="page-view__passage">
             <p className="note">The part the {cited} came from, as the system read it:</p>
@@ -60,7 +57,7 @@ export function PageView({ page, pageChunk, values, onClose, closeLabel, cited =
           </div>
         </div>
       ) : (
-        <div role="tabpanel" id="pagepanel-text" aria-labelledby="pagetab-text">
+        <div role={imageUrl ? "tabpanel" : undefined} id="pagepanel-text" aria-labelledby={imageUrl ? "pagetab-text" : undefined} tabIndex={imageUrl ? 0 : undefined}>
           <p className="note">This is the text of the page as the system read it. The part the {cited} came from is highlighted in blue.</p>
           <div className="page">{pageText(page.chunks)}</div>
         </div>
