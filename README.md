@@ -14,7 +14,7 @@ A capstone project for the Vietnam Petroleum Institute (VPI): ask a question abo
 
 | | |
 |---|---|
-| **Works** | All four parts, connected, on a laptop: one command loads a report package into the stores, and the application answers from them behind a password |
+| **Works** | All four parts, connected, on a laptop: one command loads a report package into the stores, and the application answers from them behind a password. A model can be swapped by naming a [profile](configs/graphrag/models/README.md) |
 | **Not measured** | The newest parts (the coordinator, answers about causes) have only run with a stand-in for the model |
 | **Not done** | A server; a GPU to measure with. The team has neither, and has asked for a [small budget](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to rent them |
 | **Caveat** | Every test question was written by the team. No domain expert has reviewed one or used the application |

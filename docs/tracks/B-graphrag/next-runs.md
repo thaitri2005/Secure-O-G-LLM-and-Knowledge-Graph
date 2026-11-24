@@ -6,7 +6,7 @@ Every run goes through the model bench (`python -m graphrag.bench`, [how it work
 
 | Measurement | What | Inside `bench run --suite full` |
 |---|---|---|
-| E32 | Answers on the K1 package `ak3-demo-v1` | Every step with `--k1`, and the prototype questions on the package's AK-3 report |
+| E32 | Answers on the K1 package `demo-v2` | Every step with `--k1`, and the prototype questions on the package's AK-3 report |
 | E33 | The coordinator on the 221 pooled questions, against the hand-routed scores from the same model | The hand-routed baselines of the seven sets, then the coordinator |
 | E34 | The reasoning lane on its ten frozen questions (`graphrag/gold/ak3_reasoning_probe_v0.json`) | The last step |
 
@@ -20,7 +20,7 @@ Every run goes through the model bench (`python -m graphrag.bench`, [how it work
    bash scripts/setup_gpu_box.sh /workspace/kg
    ```
 
-3. Copy the K1 package (public data) to `data/interim/k1/ak3-demo-v1/`. Build it on a laptop with `python scripts/build_k1_demo_release.py`.
+3. Copy the K1 package (public data) to `data/interim/k1/demo-v2/`. Build it on a laptop with `python scripts/build_k1_demo_release.py`.
 4. Check the model, then reproduce the baseline: the quick suite should give about 28/31, as the recorded run did.
 
    ```bash
@@ -32,7 +32,7 @@ Every run goes through the model bench (`python -m graphrag.bench`, [how it work
 5. Run the suite. If the machine stops or a call fails, run the same command again: finished steps are skipped and answered questions come from the request cache, at no new cost.
 
    ```bash
-   .venv/bin/python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/ak3-demo-v1
+   .venv/bin/python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2
    ```
 
 6. Copy `graphrag/results/bench_qwen3-8b.local_*` and `data/models.sha256` back, then stop the machine.
@@ -46,7 +46,7 @@ All data in these runs is public (AK-3 and the Utah FORGE reports), so a hosted 
 ```powershell
 python -m graphrag.bench check qwen3-8b.openrouter
 python -m graphrag.bench run qwen3-8b.openrouter --suite quick
-python -m graphrag.bench run qwen3-8b.openrouter --suite full --k1 data/interim/k1/ak3-demo-v1 --no-embeddings
+python -m graphrag.bench run qwen3-8b.openrouter --suite full --k1 data/interim/k1/demo-v2 --no-embeddings
 python -m graphrag.bench compare bench_qwen3-8b.openrouter_full
 ```
 

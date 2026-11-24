@@ -35,7 +35,7 @@ flowchart TD
 | Module | What it does |
 |---|---|
 | `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard. It resolves model profiles (below) |
-| `bench.py` | The model bench: checks a model, runs the measurement suite through the commands below and compares runs ([below](#the-model-socket-d-62-d-68)) |
+| `bench.py` | The model bench: checks a model, runs the measurement suite through the commands below and compares runs ([below](#trying-a-model-profiles-and-the-bench-d-62-d-68)) |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the AK-3 daily-report chunks, and every question set with its gold data |
 | `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
@@ -55,11 +55,11 @@ flowchart TD
 | `ontology.py` | K2 ontology slice: glossary from the reports' tables, rendering as extractor guidance |
 | `neo4j_kg.py` | neo4j-graphrag-python (Apache-2.0, used as a library) on the K1 chunks: the ontology profile as its schema, our client as its LLM and embedder, facts read back from Neo4j and scored against the gold facts (E16) |
 
-Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json), and model profiles in [`configs/graphrag/models/`](../configs/graphrag/models/) ([below](#the-model-socket-d-62-d-68)). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
+Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json), and model profiles in [`configs/graphrag/models/`](../configs/graphrag/models/) ([below](#trying-a-model-profiles-and-the-bench-d-62-d-68)). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
 
 ## The coordinator (D-64)
 
-Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time, and `python -m graphrag.bench run <profile> --suite full` makes it with its baselines ([the model socket](#the-model-socket-d-62-d-68)). It is adopted only if it matches the scores each question set got when the lane was chosen by hand, from the same model.
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time, and `python -m graphrag.bench run <profile> --suite full` makes it with its baselines ([the model socket](#trying-a-model-profiles-and-the-bench-d-62-d-68)). It is adopted only if it matches the scores each question set got when the lane was chosen by hand, from the same model.
 
 ```powershell
 # Every development question in one pool, no lane given (E33)
@@ -151,7 +151,7 @@ Point at an open-weight model and measure it with one command. What to run when 
 ```powershell
 python -m graphrag.bench check qwen3-8b.local                    # a few calls: is the model usable here?
 python -m graphrag.bench run qwen3-8b.local --suite quick        # the prototype's 31 questions, the setup check
-python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/ak3-demo-v1
+python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2
 python -m graphrag.bench compare bench_qwen3-8b.local_full bench_qwen3-8b.openrouter_full
 python scripts/experiment_record.py E33 bench_qwen3-8b.local_full --title "..."   # a draft record, prose left blank
 ```

@@ -5,6 +5,6 @@
   "model": "qwen3-4b",
   "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
   "thinking_off": "nothing to do: the 2507 Instruct model has no thinking mode",
-  "context": 16384,
+  "context": 8192,
   "compare_as": "laptop-cpu:qwen3-4b"
 }

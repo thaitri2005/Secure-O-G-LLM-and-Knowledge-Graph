@@ -17,7 +17,7 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 |---|---|---|
 | What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. Built; the coordinator and the reasoning lane are not measured | B-D36, B-C37, B-C38, B-C51 |
 | Passages | BM25 routed by well, top 5; per-well fusion for questions naming several wells; a date filter on daily reports. Qwen3-8B, thinking off; citations and values checked in code | B-D23, B-C21, B-C22 |
-| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 216 facts of 5 wells. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-F30 |
+| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 216 facts of 5 wells, 202 of them on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30 |
 | Events | An event graph built from operations tables with no model call; the model writes a plan, code runs it and reports the total | B-D26, B-C39 |
 | Best scores so far | 28/31 prototype questions (baseline); 30/31 with facts; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain retrieval. All on questions written by the team | [E18](../../experiments/E18-well-routing.md), [E22](../../experiments/E22-table-facts.md), [E28](../../experiments/E28-event-graph.md) |
 | Application | A backend and a frontend on the stores, behind one password; runs end to end on a laptop with a stand-in model | B-C44 to B-C47, B-C50 to B-C57 |
@@ -25,8 +25,9 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 | Bases tried | neo4j-graphrag-python and LightRAG were run and not adopted as bases | B-D21 |
 | Ontology (K2) | Version 1.2, kept thin; no further ontology work | B-D17, B-D25 |
 | Compute | None of our own. Rented, on public data only; a request for 5 million VND for three months is drafted | B-D42, B-D47 |
+| Trying a model | A profile names a model on an address; `python -m graphrag.bench` checks it, runs the measurement suite and compares runs | B-D48, B-C60 |
 | Questions | All simulated except the prototype's 31; none is expert-reviewed | B-D22 |
-| Next | Compute, then the three measurements E32, E33, E34 ([commands](next-runs.md)); then the facts rebuilt on the new chunk IDs | B-D38, B-F63 |
+| Next | Compute, then the three measurements E32, E33, E34 with the bench ([commands](next-runs.md)) | B-D38, B-C60 |
 
 ## Contents
 
@@ -42,6 +43,7 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 | 24 November, midday | The backend, the frontend, the stint report | B-D39, B-D40, B-C44 to B-C49, B-F62 |
 | 24 November, afternoon | All three tracks built toward production | B-D41, B-C50 to B-C57, B-F63 to B-F65 |
 | 24 November, evening | No GPU of our own; the resource request; the documents reorganised | B-D42 to B-D47, B-C59 |
+| 25 November | Everything that needs no compute: the model bench, vector search in the database, the question log's read side, three screens, three reports in the package | B-D48, B-C60 to B-C64, B-F66, B-F67 |
 
 Search the file for an entry's number to find it.
 
@@ -819,3 +821,56 @@ An independent read-only review of the day's code confirmed the two hard constra
 - **CLAUDE.md:** from 170 lines to about 105. Removed: the copy of the results table (the experiment register owns it), the module table (the engine README owns it), the history of the next-steps list.
 - **This log:** a short current-state table, a contents table by date, and the day's five resource decisions folded into B-D47. Earlier entries are unchanged.
 - **Not reorganised:** the specification (1,400 lines), which needs its own pass, and the Track A and Track C logs, which are their owners'.
+
+## 2026-11-25: everything that needs no compute
+
+Tri asked for every piece of code that can be written without a model or a budget. Built by development agents on the separate API key, each in its own worktree, reviewed and merged in Tri's session; about US$45 in all. Every result below comes from stand-in models or from loading and reading data, except B-F67.
+
+**B-D48 (decision; no gateway library and no outside evaluation tool).** Swapping and testing models needs three layers: a server that runs a model, one way in that hides which server it is, and an evaluation that compares candidates. The project has the first two (llama.cpp, and a client that speaks the OpenAI API to any address, with OpenRouter as the hosted way in). The third was missing and is built here (B-C60).
+
+- LiteLLM is not added: it would duplicate the client.
+- promptfoo and similar tools are not added: they compare prompts and outputs, and our scores come from our own pipeline (the coordinator, retrieval, citation and value checks in code).
+- vLLM, Ollama and LM Studio need no code: each speaks the OpenAI API, so each is a profile. Their model copies differ from ours, so their scores are compared only with a baseline rerun on the same profile.
+
+**B-C60 (design choice; model profiles and the bench).** `graphrag/bench.py`, `configs/graphrag/models/`, 33 tests against the stub server.
+
+- **A profile** is one JSON file: one model on one address, how thinking is turned off there, the context it needs, optional prices. Code takes a profile wherever it takes an endpoint name. A profile's calls are cached apart from every other profile's, so a resumed run never reuses another model's answers.
+- **`bench check <profile>`** sends three calls and reports whether the model is usable: the endpoint answers, the model ID exists, the server runs the named model file, JSON-schema output is honoured for the framing and answer schemas, thinking is off, a reasoning-size prompt fits, tokens are reported.
+- **`bench run <profile> --suite quick|full`** runs the existing commands one request at a time: the hand-routed baselines, the coordinator on the 221 pooled questions (E33), every step on the K1 package (E32), the reasoning probe (E34). It resumes after an interruption at no new cost, and records the profile, the server's settings and totals of calls, tokens, seconds and cost.
+- **`bench compare`** puts runs in one table and refuses to line up runs of different profiles as if they were comparable.
+- **`scripts/experiment_record.py`** drafts an experiment record from finished runs, with the tables filled and the prose left blank for a person.
+- **`scripts/setup_gpu_box.sh`** sets up a rented Linux GPU machine. Never run; its syntax is checked. Its llama.cpp and uv versions are unverified.
+- **[next-runs.md](next-runs.md) is rewritten around these commands.** Removed from it: the history of E23 to E29, whose records are in `docs/experiments/`, and the "waiting on" table. Two of that table's items have no other home and stay open: `DateRouter` still guesses a page's date from its text and should read K1's report date; the full suite has never run end to end.
+- **First named "the model socket"; renamed.** It is a bench.
+
+**B-C61 (design choice; vector search inside PostgreSQL).** `graphrag/retrieval.py` gains a `PgVector` retriever, and `build` a `pgvector:<model>` spec that works wherever `dense:<model>` does.
+
+- **Equal to the in-memory search:** 475 searches return the same chunks in the same order from SQL as from `Dense`, on hand-made vectors, across 19 questions, every k and five filters. About 17 ms a search over 1,042 vectors and 80 ms over 10,000, on random vectors.
+- **Chosen once, when the engine is built from the stores:** the SQL search when every chunk of the release has a vector and the embedding server answers; per-well BM25 otherwise, with a warning that names the counts. `GET /v1/health` shows the choice and the number of vectors.
+- **`Dense` now breaks exact ties by reading order.** It used to depend on an unstable sort. Only identical passage texts tie exactly; no recorded hash changed.
+- **Not run on real vectors:** the laptop's store has none.
+
+**B-F66 (finding; a well name just before a full stop is not recognised).** In "…AK-3 and TG-2." only AK-3 is found, so the question is not treated as naming several wells. Found while building B-C61. Left as it is: changing the pattern changes the recorded request hashes, so it is a deliberate change to make with a rerun, not a side effect.
+
+**B-C62 (design choice; the backend's read side for people).** `backend/`, 79 tests against the file log and PostgreSQL.
+
+- **Activities in cause answers are structured.** Each event among the reasoning lane's evidence carries its fields beside its text line. The prompt the model sees is byte-identical. The frontend no longer reads fields back out of text.
+- **The question log can be read and exported** (D-65): `GET /v1/admin/questions` with filters and paging, one question with its stored record, counts by kind, status and mark, and an export as a question-set file the coordinator can run, with empty gold for a person to fill. Read-only. No login: the application sits behind one shared password.
+- **The log keeps what each answer's trust label rested on** (the checks, and whether code computed it), so a logged answer can be shown later as it was shown then.
+- **A well page's data** in `GET /v1/wells/{id}`: facts grouped, each with its report and page; documents; report days with hours and non-productive hours; totals. On the committed data AK-3's non-productive total is 115.0 hours, which is the report's printed total.
+- **A store that drops while a question is answered** gives a 503, as a model that does not answer does.
+
+**B-C63 (design choice; three screens).** `frontend/`, 140 tests; seen in headless Edge at desktop and phone widths.
+
+- **A page per well:** what we know, in plain names with units; planned beside actual casing; the days as the existing timeline; the reports. Each value opens its page.
+- **"Questions people asked":** counts, a list with filters in plain words, an opened question with its marks and comments, and "Download these as a question set". For the team and the advisors; it changes nothing.
+- **The page view was checked in a browser** and works at both widths. One flaw found and fixed: the example answer cited page 7 and the example page shown was page 2.
+- **Visible on the well page, and wrong:** "Days from spud to rig release: 3 days" for AK-3 (B-F62). The page shows the data as it is; the fact is still to correct.
+
+**B-C64 (design choice; three reports in the package, and the facts on its chunk IDs).** Plan tasks D3 and B3, with Khai's clearance. Closes most of B-F63.
+
+- **`demo-v2`:** the end-of-well reports of AK-3, 56-32 and 68-32, AK-3's four daily-report attachments and its non-productive-time report. 8 files, 302 pages, 1,431 chunks. The validator passes; 441 of 441 end-of-well chunks carry their well; AK-3's part is identical to `ak3-demo-v1`. Converting the two new reports on this laptop's CPU took about 38 minutes.
+- **The facts moved with no model call:** `python -m graphrag.factgraph --map-to <release>` maps each fact's chunk through the package's old-to-new map and checks the value again on the new chunk's text. 202 of 216 facts now cite package IDs; 14 keep old IDs because two chunks have no mapping; none failed the check. The runner does this by default (`--facts mapped`).
+- **In the stores:** 1,431 chunks, 302 of 302 pages rebuilt, 161 events, 58 of 58 plans, 216 facts; 36 fact chunks are package IDs and all are in PostgreSQL. Loaded twice with the same counts.
+- **What it fixes:** with the stores as the source, an exact-mode question about AK-3's casing returned 12 facts and no passage; it now returns 12 facts and 6 passages.
+- **Open:** the 14 facts on old IDs; why 56 of 56-32's old chunks have no mapping.

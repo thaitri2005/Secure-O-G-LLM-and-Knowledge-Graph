@@ -25,7 +25,7 @@ docker compose -f platform/docker-compose.yml --profile app --profile demo up -d
 python deploy/smoke_test.py --url http://127.0.0.1 --user team --password '<the password>' --expect-stub
 ```
 
-The demo release to load is `ak3-demo-v1`: build it with `python scripts/build_k1_demo_release.py` (it needs the source PDFs and the E8 corpus), or ask Tri for the folder. It holds the same files as the candidate you loaded, so load it with `--replaces <the old release name>`.
+The demo release to load is `demo-v2` (three end-of-well reports and AK-3's daily reports): build it with `python scripts/build_k1_demo_release.py` (it needs the source PDFs and the E8 corpus), or ask Tri for the folder. It holds the same files as the candidate you loaded, so load it with `--replaces <the old release name>`. The runner then puts the facts on its chunk IDs by itself.
 
 ## Where things stood when the list was written
 

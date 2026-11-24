@@ -49,10 +49,10 @@ Each kind of fact has one home (the table in docs/README.md). Link to it; do not
 
 1. Send the [resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường (capstone funding, as Dr. Dung said), and the [stint report](docs/reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn. The stint report is a draft until the stint ends on 27 November.
 2. Once there is compute, run the three measurements, with [these commands](docs/tracks/B-graphrag/next-runs.md):
-   - **E32:** answers on the demo package `ak3-demo-v1`, from files and then from the stores;
+   - **E32:** answers on the demo package `demo-v2`, from files and then from the stores;
    - **E33:** the coordinator on the 221 pooled questions; adopt it only if it matches the hand-routed scores from the same endpoint;
    - **E34:** the reasoning lane on its ten frozen questions.
-3. Rebuild the facts on the new chunk IDs once the package holds three reports (B-F63).
+3. Whoever has a machine that can run Qwen3-8B (Hung's Mac may) can run the measurements there today: `python -m graphrag.bench check <profile>`, then `run`. Profiles are in [configs/graphrag/models/](configs/graphrag/models/README.md).
 
 ## Commands
 
@@ -62,6 +62,7 @@ python -m unittest discover -s tests -p "test_graphrag*.py" # the engine
 python -m unittest discover -s tests -p "test_backend*.py"  # the backend
 cd frontend; npm test; npm run dev:examples                 # the application on example answers, no server
 python platform/run_release.py <release> --skip-vectors     # load a report package into the stores
+python -m graphrag.bench check <profile>                    # is this model usable here? then: run, compare
 docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build   # the whole application, with a stub model
 ```
 
@@ -96,7 +97,7 @@ Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Window
 
 - **Chunk IDs** follow specification §5.11 as K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54). The engine also reads version 0's `<doc_id>#c0005`.
 - **Committed data:** `data/processed/gdr_chunks_full.jsonl` holds three end-of-well reports as K1 version 0 chunks (372 chunks; AK-3 is `gdr882_ak3_eowr`). Gold data for the prototype's 31 questions is in `prototype/gold/`.
-- **Report packages are never committed** (B-F56). They live in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` when more than one is there. Build the demo package with `python scripts/build_k1_demo_release.py`.
+- **Report packages are never committed** (B-F56). They live in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` when more than one is there. Build the demo package `demo-v2` (three end-of-well reports, AK-3's daily reports) with `python scripts/build_k1_demo_release.py`; it takes about 45 minutes on a laptop.
 - **Headline results so far**, all on questions written by the team: 28/31 on the prototype's questions with Qwen3-8B (E18, the baseline); 30/31 with checked facts added (E22); 22/35 and 19/23 on totals over time with the event graph, against 5/35 and 4/23 for plain retrieval (E28).
 - **PyMuPDF is AGPL** and must stay out of anything deployed; use `pypdfium2`.
 - **Diagrams:** the specification's are Mermaid in the text, exported with mermaid-cli 11.17.0 ([how](docs/diagrams/README.md)); the stint report's are drawn by `scripts/stint_figures.py`.

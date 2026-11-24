@@ -16,10 +16,10 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 | Part | State | More |
 |---|---|---|
-| Reading the reports (Khai) | A demo package of AK-3's reports builds with one command: 6 files, 176 pages, 1,051 chunks. Newer reading options exist and are off until measured | [Track A log](tracks/A-ingestion/log.md) |
-| Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 216 facts. On laptops | [platform/README.md](../platform/README.md) |
-| Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. The coordinator and the reasoning lane are not measured | [graphrag/README.md](../graphrag/README.md) |
-| Application (Tri, Hung) | A FastAPI backend, a React frontend for non-developers, a question log, one shared password, all as containers | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
+| Reading the reports (Khai) | A demo package builds with one command: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages, 1,431 chunks. Newer reading options exist and are off until measured | [Track A log](tracks/A-ingestion/log.md) |
+| Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 216 facts, 202 of them on the package's chunk IDs. Vector search runs inside the database. On laptops | [platform/README.md](../platform/README.md) |
+| Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the whole measurement suite and compares runs. The coordinator and the reasoning lane are not measured | [graphrag/README.md](../graphrag/README.md) |
+| Application (Tri, Hung) | A FastAPI backend, a React frontend for non-developers (questions, a page per well, the questions people asked), a question log that exports a test set, one shared password, all as containers | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
 
 **What is not done**
 
@@ -27,8 +27,8 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 |---|---|
 | No measurement of the new parts with a real model (E32, E33, E34) | Compute: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
 | Not on a server | The same request, or Hung's machine in the meantime |
-| Facts and chunks use two ID schemes in the stores, so a fact's passage cannot always be shown | Two more reports in the package (D3), then the facts rebuilt |
-| Vector search does not run inside the database | Vectors on a shared store |
+| 14 of the 216 facts still cite old chunk IDs, so their passage cannot be shown | Two chunks the old-to-new map does not reach |
+| No vectors in the laptop's store, so vector search in the database has only run on test vectors | An embedding model: Hung's machine has one |
 | No domain expert has used the application or reviewed a question | The supervisor naming one or two people |
 
 **Results so far** are in the [experiment register](experiments/README.md) and [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today). Every question set is written by the team, and every method is tuned on one well and one report family.
@@ -218,7 +218,7 @@ Tasks for M2. **State** says where a task stands; **Left** says what remains and
 |---|---|---|
 | 1 | Tri | Send the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường, and the [stint report](reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn with the open questions (experts to try the application, the purpose of use) |
 | 2 | Hung | Say whether his machine hosts the stores for now; review the loaders, the runner and the deployment files |
-| 3 | Khai | Review the demo package and the Track A log draft; measure the reading options (D2); add two more reports (D3) |
+| 3 | Khai | Review the demo package and the Track A log draft; measure the reading options (D2) |
 | 4 | Tri | Once there is compute: the three measurements E32, E33, E34 ([commands](tracks/B-graphrag/next-runs.md)) |
 
 ### All
@@ -234,9 +234,9 @@ Tasks for M2. **State** says where a task stands; **Left** says what remains and
 
 | # | Task | State | Left |
 |---|---|---|---|
-| D1 | A package for the demo: AK-3's end-of-well report, four daily-report attachments, the non-productive-time report, with the old-to-new ID map and a well on every end-of-well chunk | Built with Khai's clearance | Khai's review; share it on the stores |
+| D1 | A package for the demo: three end-of-well reports, AK-3's four daily-report attachments and its non-productive-time report, with the old-to-new ID map and a well on every end-of-well chunk | Built with Khai's clearance (`demo-v2`) | Khai's review; share it on the stores |
 | D2 | Decide which reading options are on by default, by measurement on this package | Not done | Khai |
-| D3 | Add the 56-32 and 68-32 end-of-well reports | Not done | Khai |
+| D3 | Add the 56-32 and 68-32 end-of-well reports | Built with Khai's clearance, in `demo-v2` | Khai's review |
 | D4 | Merged-cell text repeated in table Markdown | The fix exists as an option, with a test | Switch it on, with D2 |
 | D5 | A dated Track A log | A draft exists | Khai corrects it |
 
@@ -248,7 +248,7 @@ Built on 24 November with Hung's clearance, beside his own work of the same day.
 |---|---|---|---|
 | B1 | A host for the stores that all three reach | Scripts and a runbook ready | A host: Hung's machine or a rented server |
 | B2 | One command from a package to loaded stores | Built; run twice with the same result, without vectors | A run with the embedding model |
-| B3 | Both graph regions in Neo4j | Loaded on laptops | Facts still cite old chunk IDs |
+| B3 | Both graph regions in Neo4j | Loaded on laptops; 202 of 216 facts cite chunks the store holds | 14 facts on old IDs |
 | B4 | The API contract | Done | — |
 | B5 | The backend service | Built; reads files or the stores | First run with a real model |
 | B6 | The question log | Built, in PostgreSQL | — |
@@ -260,18 +260,20 @@ Built on 24 November with Hung's clearance, beside his own work of the same day.
 | # | Task | State | Left |
 |---|---|---|---|
 | E1 | Answers on the new package (experiment E32) | Not run | Compute |
-| E2 | The engine reads the stores | Built; equals the file-loaded engine | Vector search in the database; scores from the stores |
+| E2 | The engine reads the stores | Built; equals the file-loaded engine; vector search in the database built | Scores from the stores; a run on real vectors |
 | E3 | Lanes behind one interface; model roles in a settings file | Done | — |
 | E4 | The fact graph as nodes and relationships | Done | Two doubtful facts to check |
 | E5 | The coordinator (experiment E33) | Built, not measured | Compute. Adopt only if it matches the hand-routed scores |
 | E6 | Totals reported by code, not retyped by the model | Built | Measured with E33 |
 | E7 | The reasoning lane and its ten frozen questions (experiment E34) | Built, not measured | Compute |
 
+| E8 | A bench for models: profiles, a preflight check, the measurement suite in one command, a comparison table | Built; run against a stand-in, and its check against a small real model on a laptop | The suite on the baseline model |
+
 ### Frontend (Tri)
 
 | # | Task | State | Left |
 |---|---|---|---|
-| F1 | The question page with the trust label and "Verified data only" | Built | First run with a real model; first use by someone outside the team |
+| F1 | The question page with the trust label and "Verified data only"; a page per well; the questions people asked, with a download as a test set | Built | First run with a real model; first use by someone outside the team |
 | F2 | The source viewer: the page beside the cited passage | Built, with the page image when one exists | — |
 | F3 | The evidence panel: timeline, report text, facts, causes | Built | — |
 | F4 | Right or wrong, with a comment | Built | — |
