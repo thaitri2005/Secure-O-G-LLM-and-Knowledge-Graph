@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from graphrag import baseline, client, events, lanes
+from graphrag import baseline, client, coordinator, events, lanes
 from graphrag.data import Chunk
 from graphrag.events import Event
 
@@ -80,6 +80,30 @@ def sample_engine():
     daily = [Chunk(name, "ak3-dailyreport", page, "text", "Operations", f"Report For 2{page - 1}-Aug-16 AK-3 {name}")
              for name, page in (("a", 1), ("b", 1), ("c", 1), ("d", 2), ("e", 3))]
     return lanes.Engine(baseline.pool("three"), daily, sample_events(), FACTS, multi_well_retriever="perwell:bm25")
+
+
+def flat(frame):
+    """A frame as the model returns it: kind, report type and the plan's fields in one object."""
+    return {"kind": frame["kind"], "report_type": frame["report_type"], **frame["plan"]}
+
+
+def Q(text):  # noqa: N802 (reads as a constructor in the tests)
+    return {"id": "live", "kind": "live", "question": text, "gold": []}
+
+
+class ScriptedClient:
+    """Returns `frame` to a framing call and `answer` to an answer call, and counts each."""
+
+    def __init__(self, frame, answer):
+        self.frame, self.answer, self.frame_calls, self.answer_calls = frame, answer, 0, 0
+
+    def chat(self, messages, schema=None, max_tokens=None):
+        framing = "kind" in (schema or {}).get("properties", {})
+        self.frame_calls += framing
+        self.answer_calls += not framing
+        parsed = self.frame if framing else self.answer
+        return SimpleNamespace(parsed=parsed, content=json.dumps(parsed), prompt_tokens=100, completion_tokens=20,
+                               seconds=0.1, cached=False)
 
 
 class RoleTests(unittest.TestCase):
@@ -202,6 +226,105 @@ class LaneTests(unittest.TestCase):
 
     def test_events_lane_is_empty_when_nothing_matches(self):
         self.assertTrue(lanes.events("x", frame_with(plan("total_hours", code="NOPE")), self.engine).empty)
+
+
+class CoordinatorTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.engine = sample_engine()
+
+    def test_schema_asks_kind_and_report_type_before_the_plan(self):
+        names = list(coordinator.FRAME_SCHEMA["properties"])
+        self.assertEqual(names[:2], ["kind", "report_type"])
+        self.assertEqual(set(names[2:]), set(events.PLAN_SCHEMA["properties"]))
+        self.assertEqual(coordinator.FRAME_SCHEMA["required"], names)
+        self.assertEqual(coordinator.FRAME_SCHEMA["properties"]["kind"]["enum"],
+                         ["lookup", "lookup_by_date", "across_wells", "over_time", "reasoning", "other"])
+
+    def test_system_prompt_lists_the_wells_activity_codes(self):
+        system = coordinator.frame_system(self.engine)
+        self.assertIn("- DRIL:", system)
+        self.assertIn("over_time", system)
+
+    def test_routes(self):
+        daily = {"kind": "lookup_by_date", "report_type": "daily", "plan": plan("not_answerable")}
+        reasoning = {"kind": "reasoning", "report_type": "unknown", "plan": plan("not_answerable")}
+        self.assertEqual(coordinator.route(frame_with(plan("total_hours"))), ["events"])
+        self.assertEqual(coordinator.route(frame_with(plan("not_answerable"))), ["passages"])
+        self.assertEqual(coordinator.route(daily), ["passages"])
+        self.assertEqual(coordinator.route(FRAME_EOW), ["well_facts", "passages"])
+        self.assertEqual(coordinator.route(FRAME_EOW, mode="exact"), ["well_facts"])
+        self.assertEqual(coordinator.route(daily, mode="exact"), [])
+        self.assertEqual(coordinator.route(reasoning), ["well_facts", "passages"])
+
+    def test_computed_result_is_reported_by_code_with_one_call(self):
+        scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), None)
+        row = coordinator.answer(Q("How many hours of drilling on AK-3?"), self.engine, scripted, scripted)
+        self.assertEqual((row["status"], row["lanes"], row["calls"]), ("answered", ["events"], 1))
+        self.assertEqual((row["values"], row["units"]), (["15.5"], ["hours"]))
+        self.assertEqual(row["values"], row["computed"]["values"])
+        self.assertEqual(scripted.answer_calls, 0)
+        self.assertEqual(row["citations"], [{"chunk": "a", "how": "event_graph"}, {"chunk": "e", "how": "event_graph"}])
+        self.assertIn("= 15.5", row["answer_text"])
+
+    def test_computed_result_is_scored_against_gold(self):
+        gold = {"g1": {"id": "g1", "value": 15.5, "chunks": ["a"]}}
+        q = dict(Q("How many hours of drilling on AK-3?"), gold=["g1"])
+        scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), None)
+        self.assertTrue(coordinator.answer(q, self.engine, scripted, scripted, gold)["correct"])
+
+    def test_no_matching_events_falls_back_to_passages(self):
+        scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="NOPE"))), NOT_STATED)
+        row = coordinator.answer(Q("How many hours of NOPE on AK-3?"), self.engine, scripted, scripted)
+        self.assertTrue(row["fallback"])
+        self.assertEqual((row["lanes"], row["calls"], row["values"], row["status"]), (["passages"], 2, [], "not_stated"))
+        self.assertIsNone(row["computed"])
+
+    def test_unparseable_frame_answers_from_end_of_well_passages(self):
+        for broken in (None, DEPTH_ANSWER, {"kind": "poem", "report_type": "daily"}):
+            scripted = ScriptedClient(broken, DEPTH_ANSWER)
+            row = coordinator.answer(Q("What total depth did well AK-3 reach?"), self.engine, scripted, scripted)
+            self.assertEqual((row["frame"]["kind"], row["frame"]["report_type"]), ("other", "unknown"))
+            self.assertEqual((row["values"], row["calls"]), (["1955"], 2))
+            self.assertIn("passages", row["lanes"])
+
+    def test_end_of_well_answer_shows_the_wells_facts_before_the_passages(self):
+        recording = RecordingClient()
+        frames = ScriptedClient(flat(FRAME_EOW), None)
+        row = coordinator.answer(Q("What casing depth did well AK-3 reach?"), self.engine, frames, recording)
+        self.assertEqual(row["lanes"], ["well_facts", "passages"])
+        prompt = recording.calls[0]["messages"][1]["content"]
+        self.assertIn("AK-3 casing_depth at casing_size_in 8-5/8 = 40 [gdr882_ak3_eowr#c0013]", prompt)
+        self.assertNotIn("(planned)", prompt)
+        self.assertLess(prompt.index("casing_depth"), prompt.index("Passages:"))
+
+    def test_exact_mode_with_nothing_in_the_graph_makes_no_answer_call(self):
+        scripted = ScriptedClient(flat(FRAME_EOW), DEPTH_ANSWER)
+        row = coordinator.answer(Q("What depth did ZZ-9 reach?"), self.engine, scripted, scripted, mode="exact")
+        self.assertEqual((row["status"], row["values"], scripted.answer_calls), ("not_found_in_graph", [], 0))
+        self.assertEqual((row["lanes"], row["calls"], row["mode"]), ([], 1, "exact"))
+        self.assertIn("sources", row)
+
+    def test_exact_mode_answers_from_facts_and_their_chunks_only(self):
+        recording = RecordingClient()
+        frames = ScriptedClient(flat(FRAME_EOW), None)
+        row = coordinator.answer(Q("What casing depth did well AK-3 reach?"), self.engine, frames, recording, mode="exact")
+        self.assertEqual(row["lanes"], ["well_facts"])
+        self.assertEqual(row["passages"], 2)  # the chunks of the two facts that are not planned
+
+    def test_code_reads_the_well_and_several_wells_mean_across_wells(self):
+        wrong = flat({"kind": "lookup", "report_type": "end_of_well", "plan": plan("not_answerable", well="AK-9")})
+        frame, _ = coordinator.frame_question("Which of AK-3 and 56-32 is deeper?", self.engine, ScriptedClient(wrong, None))
+        self.assertEqual(frame["kind"], "across_wells")
+        frame, _ = coordinator.frame_question("What depth did AK-3 reach?", self.engine, ScriptedClient(wrong, None))
+        self.assertEqual((frame["kind"], frame["plan"]["well"]), ("lookup", "AK-3"))
+
+    def test_a_forced_lane_replaces_the_route(self):
+        scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), DEPTH_ANSWER)
+        row = coordinator.answer(Q("What total depth did well AK-3 reach?"), self.engine, scripted, scripted, lane="passages")
+        self.assertEqual(row["lanes"], ["passages"])
+        with self.assertRaises(KeyError):
+            coordinator.answer(Q("x"), self.engine, scripted, scripted, lane="poetry")
 
 
 if __name__ == "__main__":
