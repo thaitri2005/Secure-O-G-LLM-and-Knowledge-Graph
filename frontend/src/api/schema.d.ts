@@ -130,7 +130,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** One well's facts, documents and report days */
+        /** One well's facts in groups, its documents, report days and totals */
         get: operations["well_v1_wells__well_id__get"];
         put?: never;
         post?: never;
@@ -174,10 +174,131 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/questions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Logged questions, newest first, with their feedback
+         * @description No login yet: the application sits behind one shared password at the proxy. Read-only.
+         */
+        get: operations["logged_questions_v1_admin_questions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/questions/counts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Logged questions counted by kind, status and verdict
+         * @description No login yet: the application sits behind one shared password at the proxy. Read-only.
+         */
+        get: operations["question_counts_v1_admin_questions_counts_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/questions/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Selected questions as a question file for graphrag.coordinator, gold left empty
+         * @description No login yet: the application sits behind one shared password at the proxy. Read-only. Selects by `ids` or by the filters; every matching question, oldest first.
+         */
+        get: operations["export_questions_v1_admin_questions_export_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/questions/{question_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * One logged question with its full stored record
+         * @description No login yet: the application sits behind one shared password at the proxy. Read-only.
+         */
+        get: operations["logged_question_v1_admin_questions__question_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * Activity
+         * @description An event among the reasoning evidence, as fields: the same event as its text line, which is what the model saw.
+         */
+        Activity: {
+            /** Date */
+            date: string;
+            /** Start */
+            start: string;
+            /** End */
+            end: string;
+            /** Hours */
+            hours: number;
+            /**
+             * End Md
+             * @description End measured depth, ft
+             */
+            end_md: number;
+            /**
+             * Code
+             * @description Activity code
+             */
+            code: string;
+            /**
+             * Description
+             * @description Whole, also where the text line cuts a neighbouring event's description
+             */
+            description: string;
+            /**
+             * Npt Code
+             * @description Non-productive code, when the report marks one
+             */
+            npt_code: string | null;
+            /** Chunks */
+            chunks: string[];
+            /**
+             * Problem
+             * @description Whether it is part of the problem itself
+             */
+            problem: boolean;
+        };
         /** Answer */
         Answer: {
             /**
@@ -235,6 +356,19 @@ export interface components {
             evidence: components["schemas"]["Evidence"];
             checks: components["schemas"]["Checks"];
             cost: components["schemas"]["Cost"];
+        };
+        /** CasingString */
+        CasingString: {
+            /**
+             * Size In
+             * @description Casing size as the report writes it, for example 9-5/8
+             */
+            size_in: string;
+            /**
+             * Facts
+             * @description Its depth, weight and grade, planned and actual
+             */
+            facts: components["schemas"]["WellFact"][];
         };
         /** Cause */
         Cause: {
@@ -323,6 +457,33 @@ export interface components {
              * @enum {string}
              */
             how: "model" | "by_quote" | "by_value" | "unsupported" | "event_graph";
+        };
+        /** CollectedQuestion */
+        CollectedQuestion: {
+            /**
+             * Id
+             * @description The question's ID in the log
+             */
+            id: string;
+            /**
+             * Kind
+             * @description The frame's kind when it was asked
+             */
+            kind: string;
+            /** Question */
+            question: string;
+            /**
+             * Gold
+             * @description Empty: gold answers are not written yet
+             */
+            gold: string[];
+            /** Asked At */
+            asked_at: string | null;
+            /**
+             * Feedback
+             * @description The marks and comments the users left
+             */
+            feedback: components["schemas"]["FeedbackRecord"][];
         };
         /** Computed */
         Computed: {
@@ -462,6 +623,18 @@ export interface components {
              */
             verdict: "right" | "wrong";
         };
+        /** FeedbackRecord */
+        FeedbackRecord: {
+            /**
+             * Verdict
+             * @enum {string}
+             */
+            verdict: "right" | "wrong";
+            /** Comment */
+            comment: string;
+            /** At */
+            at: string;
+        };
         /** FileOut */
         FileOut: {
             /** File Id */
@@ -520,6 +693,95 @@ export interface components {
              */
             models: {
                 [key: string]: string;
+            };
+        };
+        /** LoggedQuestion */
+        LoggedQuestion: {
+            /** Id */
+            id: string;
+            /** Asked At */
+            asked_at: string | null;
+            /** Question */
+            question: string;
+            /** Mode */
+            mode: string | null;
+            /**
+             * Kind
+             * @description The frame's kind
+             */
+            kind: string | null;
+            /**
+             * Report Type
+             * @description The frame's report type
+             */
+            report_type: string | null;
+            /** Status */
+            status: string | null;
+            /** Lanes */
+            lanes: string[];
+            /** Fallback */
+            fallback: boolean | null;
+            /** Answered From */
+            answered_from: string | null;
+            /** Answer Text */
+            answer_text: string | null;
+            /**
+             * Verdict
+             * @description The latest mark; null when nobody marked the answer
+             */
+            verdict: ("right" | "wrong") | null;
+            /**
+             * Feedback
+             * @description Every mark, oldest first
+             */
+            feedback: components["schemas"]["FeedbackRecord"][];
+        };
+        /** LoggedQuestionDetail */
+        LoggedQuestionDetail: {
+            /** Id */
+            id: string;
+            /** Asked At */
+            asked_at: string | null;
+            /** Question */
+            question: string;
+            /** Mode */
+            mode: string | null;
+            /**
+             * Kind
+             * @description The frame's kind
+             */
+            kind: string | null;
+            /**
+             * Report Type
+             * @description The frame's report type
+             */
+            report_type: string | null;
+            /** Status */
+            status: string | null;
+            /** Lanes */
+            lanes: string[];
+            /** Fallback */
+            fallback: boolean | null;
+            /** Answered From */
+            answered_from: string | null;
+            /** Answer Text */
+            answer_text: string | null;
+            /**
+             * Verdict
+             * @description The latest mark; null when nobody marked the answer
+             */
+            verdict: ("right" | "wrong") | null;
+            /**
+             * Feedback
+             * @description Every mark, oldest first
+             */
+            feedback: components["schemas"]["FeedbackRecord"][];
+            /**
+             * Record
+             * @description The whole stored entry: frame, answers, cited chunk IDs, cost, models, forced lane
+             */
+            record: {
+                [key: string]: unknown;
             };
         };
         /** Missing */
@@ -584,6 +846,26 @@ export interface components {
             /** Chunks */
             chunks: string[];
         };
+        /** QuestionCounts */
+        QuestionCounts: {
+            /** Questions */
+            questions: number;
+            /** By Kind */
+            by_kind: {
+                [key: string]: number;
+            };
+            /** By Status */
+            by_status: {
+                [key: string]: number;
+            };
+            /**
+             * By Verdict
+             * @description right, wrong and none (not marked), by the latest mark
+             */
+            by_verdict: {
+                [key: string]: number;
+            };
+        };
         /** QuestionIn */
         QuestionIn: {
             /** Question */
@@ -600,6 +882,70 @@ export interface components {
              * @description Force one lane instead of the coordinator's route
              */
             lane?: ("passages" | "well_facts" | "events" | "reasoning") | null;
+        };
+        /** QuestionPage */
+        QuestionPage: {
+            /**
+             * Total
+             * @description Questions matching the filters, over all pages
+             */
+            total: number;
+            /** Limit */
+            limit: number;
+            /** Offset */
+            offset: number;
+            /**
+             * Questions
+             * @description Newest first
+             */
+            questions: components["schemas"]["LoggedQuestion"][];
+        };
+        /**
+         * QuestionSetFile
+         * @description A question file in the format of graphrag/gold/, which `python -m graphrag.coordinator answer --questions
+         *     <file>` runs; a person adds the gold facts later.
+         */
+        QuestionSetFile: {
+            /** Status */
+            status: string;
+            /** Version */
+            version: string;
+            /**
+             * Expected Lane
+             * @description Absent unless chosen at export: the coordinator then takes it as reasoning, so routing scores of the file mean nothing
+             */
+            expected_lane?: string | null;
+            /**
+             * Collected
+             * @description On which date, how many questions and with which filters
+             */
+            collected: {
+                [key: string]: unknown;
+            };
+            /** Known Limits */
+            known_limits: string[];
+            /** Questions */
+            questions: components["schemas"]["CollectedQuestion"][];
+            /**
+             * Facts
+             * @description Empty: the gold facts a person writes
+             */
+            facts: {
+                [key: string]: unknown;
+            }[];
+        };
+        /** Readings */
+        Readings: {
+            /**
+             * Property
+             * @description For example inclination or max_measured_temperature
+             */
+            property: string;
+            /**
+             * Facts
+             * @description One per depth, shallowest first; context.depth_ft is the depth
+             */
+            facts: components["schemas"]["WellFact"][];
         };
         /**
          * Reasoning
@@ -660,7 +1006,10 @@ export interface components {
             kind: "event" | "daily" | "end_of_well";
             /** Chunk */
             chunk: string;
-            /** Text */
+            /**
+             * Text
+             * @description The line or passage exactly as the model saw it
+             */
             text: string;
             /** Date */
             date?: string | null;
@@ -671,6 +1020,40 @@ export interface components {
              * @description For an event: whether it is part of the problem itself
              */
             problem?: boolean | null;
+            /** @description For an event: its fields; null for a passage */
+            activity?: components["schemas"]["Activity"] | null;
+        };
+        /** ReportDay */
+        ReportDay: {
+            /** Date */
+            date: string;
+            /**
+             * Hours
+             * @description Hours logged in the day's operations table
+             */
+            hours: number;
+            /**
+             * Npt Hours
+             * @description Hours of those the report marks non-productive
+             */
+            npt_hours: number;
+            /** Events */
+            events: number;
+            /**
+             * End Md
+             * @description Deepest end measured depth of the day's events, ft
+             */
+            end_md: number;
+            /**
+             * Codes
+             * @description Activity codes of the day, in the order logged
+             */
+            codes: string[];
+            /**
+             * Npt Codes
+             * @description Non-productive codes of the day, in the order logged
+             */
+            npt_codes: string[];
         };
         /** ValidationError */
         ValidationError: {
@@ -685,16 +1068,105 @@ export interface components {
             /** Context */
             ctx?: Record<string, never>;
         };
-        /** WellOut */
+        /** WellDocument */
+        WellDocument: {
+            /** File Id */
+            file_id: string;
+            /**
+             * Report Type
+             * @description Null when a fact cites a report this machine does not hold
+             */
+            report_type: ("end_of_well" | "daily") | null;
+            /**
+             * Pages
+             * @description 0 when this machine does not hold the report
+             */
+            pages: number;
+            /** Chunks */
+            chunks: number;
+        };
+        /** WellFact */
+        WellFact: {
+            /** Well */
+            well: string;
+            /** Property */
+            property: string;
+            /** Value */
+            value: string;
+            /** Unit */
+            unit?: string | null;
+            /**
+             * Qualifier
+             * @description actual, planned, projected, ...
+             */
+            qualifier: string;
+            /**
+             * Context
+             * @description For example the casing size a depth belongs to
+             */
+            context?: {
+                [key: string]: string | number;
+            } | null;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "table_mapping" | "llm";
+            /** Chunk Id */
+            chunk_id: string;
+            /**
+             * File Id
+             * @description The report the fact's chunk belongs to
+             */
+            file_id: string;
+            /**
+             * Page
+             * @description The chunk's page; null when this machine does not hold the chunk
+             */
+            page: number | null;
+        };
+        /** WellFacts */
+        WellFacts: {
+            /**
+             * General
+             * @description Rig, contractor, API number, elevation and other well-level facts
+             */
+            general: components["schemas"]["WellFact"][];
+            /**
+             * Depths And Dates
+             * @description Total depth, spud and rig release dates, days and hours
+             */
+            depths_and_dates: components["schemas"]["WellFact"][];
+            /**
+             * Casing Strings
+             * @description Largest casing first
+             */
+            casing_strings: components["schemas"]["CasingString"][];
+            /**
+             * Readings
+             * @description Values measured or projected at depths
+             */
+            readings: components["schemas"]["Readings"][];
+        };
+        /**
+         * WellOut
+         * @description What a page about one well shows, computed in code from the engine; no model call.
+         */
         WellOut: {
             /** Well Id */
             well_id: string;
-            /** Facts */
-            facts: components["schemas"]["FactOut"][];
-            /** Documents */
-            documents: string[];
-            /** Report Days */
-            report_days: string[];
+            facts: components["schemas"]["WellFacts"];
+            /**
+             * Documents
+             * @description End-of-well reports first, then daily reports, by file ID
+             */
+            documents: components["schemas"]["WellDocument"][];
+            /**
+             * Report Days
+             * @description From the event graph, oldest first; empty for a well without one
+             */
+            report_days: components["schemas"]["ReportDay"][];
+            totals: components["schemas"]["WellTotals"];
         };
         /** WellSummary */
         WellSummary: {
@@ -704,6 +1176,24 @@ export interface components {
             facts: number;
             /** Report Days */
             report_days: number;
+        };
+        /** WellTotals */
+        WellTotals: {
+            /** Days */
+            days: number;
+            /** Events */
+            events: number;
+            /** Hours */
+            hours: number;
+            /** Npt Hours */
+            npt_hours: number;
+            /**
+             * Npt Hours By Code
+             * @description Non-productive hours per non-productive code, most first
+             */
+            npt_hours_by_code: {
+                [key: string]: number;
+            };
         };
     };
     responses: never;
@@ -998,6 +1488,173 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    logged_questions_v1_admin_questions_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                offset?: number;
+                /** @description The frame's kind, e.g. lookup or cause */
+                kind?: string | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                mode?: ("allow_fallback" | "exact") | null;
+                /** @description The latest mark; none: not marked */
+                verdict?: ("right" | "wrong" | "none") | null;
+                /** @description Asked on or after this day (UTC) */
+                date_from?: string | null;
+                /** @description Asked on or before this day (UTC) */
+                date_to?: string | null;
+                /** @description Text in the question, ignoring case */
+                q?: string | null;
+                /** @description Only these question IDs */
+                ids?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionPage"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    question_counts_v1_admin_questions_counts_get: {
+        parameters: {
+            query?: {
+                /** @description The frame's kind, e.g. lookup or cause */
+                kind?: string | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                mode?: ("allow_fallback" | "exact") | null;
+                /** @description The latest mark; none: not marked */
+                verdict?: ("right" | "wrong" | "none") | null;
+                /** @description Asked on or after this day (UTC) */
+                date_from?: string | null;
+                /** @description Asked on or before this day (UTC) */
+                date_to?: string | null;
+                /** @description Text in the question, ignoring case */
+                q?: string | null;
+                /** @description Only these question IDs */
+                ids?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionCounts"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    export_questions_v1_admin_questions_export_get: {
+        parameters: {
+            query?: {
+                /** @description Written into the file only when given */
+                expected_lane?: ("end_of_well" | "daily" | "events" | "reasoning") | null;
+                /** @description The frame's kind, e.g. lookup or cause */
+                kind?: string | null;
+                status?: ("answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which") | null;
+                mode?: ("allow_fallback" | "exact") | null;
+                /** @description The latest mark; none: not marked */
+                verdict?: ("right" | "wrong" | "none") | null;
+                /** @description Asked on or after this day (UTC) */
+                date_from?: string | null;
+                /** @description Asked on or before this day (UTC) */
+                date_to?: string | null;
+                /** @description Text in the question, ignoring case */
+                q?: string | null;
+                /** @description Only these question IDs */
+                ids?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionSetFile"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    logged_question_v1_admin_questions__question_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                question_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LoggedQuestionDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

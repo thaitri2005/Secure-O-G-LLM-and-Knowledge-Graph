@@ -1,6 +1,6 @@
 // Answers to questions about causes (specification §8.6): which answers get the cause view, the activities around
-// the problem read back from the lines the system showed the AI, where each cited cause is written, and the
-// question asked again when the reader picks one of several problems.
+// the problem (their fields, or read back from the lines the system showed the AI when an answer lacks them), where
+// each cited cause is written, and the question asked again when the reader picks one of several problems.
 import type { AnswerOut, CauseCitation, ChunkOut, Citation, EventOut, Problem, Reasoning, ReasoningEvidence } from "../api/types";
 
 /** The answer's reasoning when it is shown as a cause answer: one problem found, or several to choose from. */
@@ -14,17 +14,22 @@ export function reasoningOf(answer: AnswerOut): Reasoning | null {
 /** An activity around the problem, and whether it is part of the problem itself. */
 export interface AroundEvent {
   item: ReasoningEvidence;
-  /** Null when the line could not be read back; the line is then shown as it is. */
+  /** Null when the activity came without its fields and its line could not be read; the line is then shown as it is. */
   event: EventOut | null;
   problem: boolean;
 }
 
 // The line graphrag/reasoning.py writes for an event: "* 2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity
-// STUCK, non-productive KICK: description". The star marks the problem's own events.
+// STUCK, non-productive KICK: description". The star marks the problem's own events. Read only for an answer whose
+// activities came without their fields.
 const EVENT_LINE =
   /^(\* )?(\d{4}-\d{2}-\d{2}) (\d{1,2}:\d{2})-(\d{1,2}:\d{2}), ([\d.]+) h, end depth (-?\d+) ft, activity (\S+?)(?:, non-productive (\S+?))?: ([\s\S]*)$/;
 
 export function aroundEvent(item: ReasoningEvidence): AroundEvent {
+  if (item.activity) {
+    const { problem, ...event } = item.activity;
+    return { item, event, problem: item.problem ?? problem };
+  }
   const found = EVENT_LINE.exec(item.text);
   const event: EventOut | null = found
     ? {

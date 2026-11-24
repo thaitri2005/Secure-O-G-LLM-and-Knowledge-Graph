@@ -7,6 +7,7 @@ import { Tip } from "./Tip";
 
 const HOURS = [0, 6, 12, 18, 24];
 const CLOCK = ["Midnight", "6 am", "Noon", "6 pm", "Midnight"];
+const HINT = "Hover over a bar to see what happened. Click it to find it in the list below.";
 
 export function dayLabel(date: string): string {
   return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
@@ -25,14 +26,16 @@ interface Props {
   events: EventOut[];
   selected: number | null;
   onSelect: (index: number) => void;
+  /** What the line under the bars says before one is chosen. */
+  hint?: string;
 }
 
 /**
- * The activities behind a calculated number, one bar per day from midnight to midnight: the time breakdown a
- * daily drilling report prints as a table, drawn. Hovering a block explains it; clicking one marks the same
- * activity in the table below.
+ * Logged activities (those behind a calculated number, around a problem, or of a well's days), one bar per day from
+ * midnight to midnight: the time breakdown a daily drilling report prints as a table, drawn. Hovering a block
+ * explains it; clicking one marks it in the list below.
  */
-export const DayStrips = memo(function DayStrips({ events, selected, onSelect }: Props) {
+export const DayStrips = memo(function DayStrips({ events, selected, onSelect, hint = HINT }: Props) {
   const days = dayStrips(events);
   const [hover, setHover] = useState<number | null>(null);
   const shown = hover ?? selected;
@@ -95,7 +98,7 @@ export const DayStrips = memo(function DayStrips({ events, selected, onSelect }:
             {active.description && <span className="report-text"> {readable(active.description)}</span>}
           </>
         ) : (
-          "Hover over a bar to see what happened. Click it to find it in the list below."
+          hint
         )}
       </p>
     </div>

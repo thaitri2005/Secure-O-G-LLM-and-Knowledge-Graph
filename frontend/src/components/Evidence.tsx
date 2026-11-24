@@ -2,12 +2,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AnswerOut, ChunkOut, PageOut } from "../api/types";
 import { reasoningOf } from "../lib/cause";
 import { readable } from "../lib/highlight";
-import { EXPLAIN, place } from "../lib/wording";
+import type { Route } from "../lib/route";
+import { EXPLAIN, factLabel } from "../lib/wording";
 import { CauseEvidence, type Pointer } from "./CauseEvidence";
 import { DayStrips } from "./DayStrips";
-import { Icon } from "./Icon";
-import { PageImage } from "./PageImage";
-import { Passage, ReportText } from "./Passage";
+import { PageView } from "./PageView";
+import { Passage } from "./Passage";
+import { RouteLink } from "./RouteLink";
 import { Tip } from "./Tip";
 
 type Tab = "timeline" | "facts" | "text";
@@ -20,14 +21,15 @@ interface Props {
   onClosePage: () => void;
   /** A piece of evidence a cause answer pointed to, to show. */
   pointed?: Pointer | null;
+  /** Opens another screen: a well's name links to its page. */
+  onGo?: (route: Route) => void;
 }
 
 /** What the answer rests on: the activities a number was added up from, the report text, the key facts. */
-export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage, pointed = null }: Props) {
+export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage, pointed = null, onGo }: Props) {
   const { computed, facts, passages } = answer.evidence;
   const [tab, setTab] = useState<Tab>(computed ? "timeline" : passages.length > 0 ? "text" : "facts");
   const [activity, setActivity] = useState<number | null>(null);
-  const [pageTab, setPageTab] = useState<"image" | "text">("image");
   const rows = useRef<(HTMLTableRowElement | null)[]>([]);
   const cited = useMemo(() => new Set(answer.citations.map((c) => c.chunk_id)), [answer.citations]);
   // Only an AI-written answer is highlighted in the text: a calculated total is written in no passage.
@@ -38,55 +40,7 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage, poi
     if (activity !== null) rows.current[activity]?.scrollIntoView?.({ block: "nearest" });
   }, [activity]);
 
-  if (page) {
-    const imageUrl = page.image_url ?? null;
-    const citedChunks = page.chunks.filter((chunk) => chunk.chunk_id === pageChunk);
-    const pageText = (chunks: ChunkOut[]) =>
-      chunks.map((chunk) => (
-        <div key={chunk.chunk_id} className={chunk.chunk_id === pageChunk ? "page__chunk page__chunk--cited" : "page__chunk"}>
-          {chunk.section && <p className="page__section">{chunk.section}</p>}
-          <ReportText text={chunk.text ?? ""} values={values} />
-        </div>
-      ));
-    return (
-      <section className="evidence card" aria-label="Evidence">
-        <button type="button" className="back" onClick={onClosePage}><Icon name="arrowLeft" size={16} /> Back to the evidence</button>
-        <h2 className="evidence__title">{place(page.file_id, page.page)}</h2>
-        {imageUrl && (
-          <div className="tabs" role="tablist" aria-label="Page view">
-            {(["image", "text"] as const).map((id) => (
-              <button
-                key={id}
-                type="button"
-                role="tab"
-                id={`pagetab-${id}`}
-                aria-selected={pageTab === id}
-                aria-controls={`pagepanel-${id}`}
-                className="tabs__tab"
-                onClick={() => setPageTab(id)}
-              >
-                {id === "image" ? "Page as printed" : "Page text"}
-              </button>
-            ))}
-          </div>
-        )}
-        {imageUrl && pageTab === "image" ? (
-          <div role="tabpanel" id="pagepanel-image" aria-labelledby="pagetab-image" className="page-view">
-            <PageImage key={imageUrl} url={imageUrl} fileId={page.file_id} page={page.page} />
-            <div className="page-view__passage">
-              <p className="note">The part the answer came from, as the system read it:</p>
-              <div className="page">{pageText(citedChunks.length > 0 ? citedChunks : page.chunks)}</div>
-            </div>
-          </div>
-        ) : (
-          <div role="tabpanel" id="pagepanel-text" aria-labelledby="pagetab-text">
-            <p className="note">This is the text of the page as the system read it. The part the answer came from is highlighted in blue.</p>
-            <div className="page">{pageText(page.chunks)}</div>
-          </div>
-        )}
-      </section>
-    );
-  }
+  if (page) return <PageView page={page} pageChunk={pageChunk} values={values} onClose={onClosePage} closeLabel="Back to the evidence" />;
 
   const reasoning = reasoningOf(answer);
   if (reasoning) return <CauseEvidence answer={answer} reasoning={reasoning} pointed={pointed} onOpenPage={onOpenPage} />;
@@ -191,8 +145,8 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage, poi
               <tbody>
                 {facts.map((fact, index) => (
                   <tr key={index}>
-                    <td>{fact.well}</td>
-                    <td>{fact.property.replace(/_/g, " ")}{fact.qualifier !== "actual" && fact.qualifier !== "none" ? ` (${fact.qualifier})` : ""}</td>
+                    <td>{onGo ? <RouteLink to={{ view: "well", well: fact.well }} onGo={onGo}>{fact.well}</RouteLink> : fact.well}</td>
+                    <td>{factLabel(fact)}</td>
                     <td className="num">{fact.value}{fact.unit ? ` ${fact.unit}` : ""}</td>
                     <td>{fact.context ? Object.entries(fact.context).map(([key, value]) => `${key.replace(/_/g, " ")} ${value}`).join(", ") : ""}</td>
                     <td>{fact.source === "table_mapping" ? "A table rule" : "AI, then checked"}</td>

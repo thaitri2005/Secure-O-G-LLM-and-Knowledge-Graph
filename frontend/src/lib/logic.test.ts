@@ -4,14 +4,20 @@ import causeWhich from "../../../backend/fixtures/question_cause_which.json";
 import endOfWell from "../../../backend/fixtures/question_end_of_well.json";
 import notFound from "../../../backend/fixtures/question_not_found_exact.json";
 import overTime from "../../../backend/fixtures/question_over_time.json";
-import { exampleFor } from "../api/examples";
-import type { AnswerOut, EventOut } from "../api/types";
+import adminQuestions from "../../../backend/fixtures/admin_questions.json";
+import well from "../../../backend/fixtures/well.json";
+import { exampleApi, exampleEvents, exampleFor, exampleQuestions } from "../api/examples";
+import type { AnswerOut, EventOut, LoggedQuestion, WellOut } from "../api/types";
 import { aroundEvent, causeSource, citedLabels, gathered, passageChunk, questionDate, reask, reasoningOf } from "./cause";
 import { highlight, readable } from "./highlight";
+import { HOME, readRoute, routeSearch } from "./route";
 import { dayStrips } from "./strips";
+import { anyPlanned, casingRows, wholeDays } from "./well";
 import {
-  advice, badge, causePlace, choiceLabel, dateSpan, distinctSources, EXPLAIN, headline, hiddenNote, missingText, place,
-  problemDepth, problemDescription, problemSize, problemWhen, removedNote, reportName, sourceNote, steps, summary, technical,
+  advice, askedAt, badge, causePlace, choiceLabel, citedReports, countTiles, dateSpan, depthLabel, distinctSources,
+  documentSize, EXPLAIN, factLabel, factValue, headline, hiddenNote, kindName, loggedAnswer, loggedBadge, markLabel,
+  missingText, noDays, place, problemDepth, problemDescription, problemSize, problemWhen, propertyName, propertyTip,
+  removedNote, reportName, showing, sourceNote, steps, summary, technical, wellTotals,
 } from "./wording";
 
 const computed = overTime as AnswerOut;
@@ -231,6 +237,34 @@ describe("questions about causes", () => {
     expect(events[17].event!.hours).toBe(0.25);
   });
 
+  it("take each activity's own fields when the answer carries them", () => {
+    const item = reasoning.evidence.find((e) => e.kind === "event" && e.activity)!;
+    // The line the AI saw is ignored when the fields are there: a line that cannot be read changes nothing.
+    const around = aroundEvent({ ...item, text: "not a line the pattern reads" });
+    expect(around.event).toMatchObject({ date: "2016-08-20", start: "14:00", end: "15:30", hours: 1.5, end_md: 149, code: "CIRC", npt_code: null });
+    expect(around.event).not.toHaveProperty("problem");
+    expect(around.event!.chunks).toEqual(item.activity!.chunks);
+    expect(around.problem).toBe(false);
+    expect(aroundEvent({ ...item, problem: null, activity: { ...item.activity!, problem: true } }).problem).toBe(true);
+  });
+
+  it("give a whole description where the line the AI saw cut it short", () => {
+    const cut = reasoning.evidence.find((e) => e.activity && !e.text.endsWith(e.activity.description))!;
+    expect(aroundEvent(cut).event!.description).toBe(cut.activity!.description);
+  });
+
+  it("read the same activities back from the lines when an answer lacks the fields", () => {
+    const withFields = gathered(reasoning).events;
+    const withoutFields = gathered({ ...reasoning, evidence: reasoning.evidence.map(({ activity: _activity, ...item }) => item) }).events;
+    expect(withoutFields.every((e) => e.event !== null)).toBe(true);
+    expect(withoutFields.map((e) => e.problem)).toEqual(withFields.map((e) => e.problem));
+    const fields = (e: (typeof withFields)[number]) => {
+      const { date, start, end, hours, end_md, code, npt_code } = e.event!;
+      return { date, start, end, hours, end_md, code, npt_code };
+    };
+    expect(withoutFields.map(fields)).toEqual(withFields.map(fields));
+  });
+
   it("keep a line they cannot read, as it is", () => {
     const odd = aroundEvent({ id: "E9", kind: "event", chunk: "x#c1", text: "* something else entirely", problem: null });
     expect(odd.event).toBeNull();
@@ -310,5 +344,194 @@ describe("questions about causes", () => {
   it("never use the system's own vocabulary", () => {
     const said = [caused, which].flatMap((a) => [headline(a), badge(a).label, badge(a).tip, summary(a), ...steps(a).flatMap((s) => [s.title, s.detail])]).join(" ");
     expect(said).not.toMatch(/\b(lane|frame|graph|chunk|retriev|token|model call|fallback|coordinator|reasoning)/i);
+  });
+});
+
+const page = well as WellOut;
+const SYSTEM_WORDS = /\b(lane|frame|graph|chunk|retriev|token|model call|fallback|coordinator|reasoning|property|qualifier|null)\b/i;
+
+describe("a well's page in plain words", () => {
+  it("names each property the way a reader would", () => {
+    expect(propertyName("spud_date")).toBe("Spud date");
+    expect(propertyName("api_number")).toBe("API well number");
+    expect(propertyName("max_measured_temperature")).toBe("Highest measured temperature");
+    expect(propertyName("some_new_thing")).toBe("Some new thing");
+    expect(propertyTip("spud_date")).toMatch(/drilling of the well began/);
+    expect(propertyTip("some_new_thing")).toBeNull();
+  });
+
+  it("says which values were planned, and leaves the actual ones plain", () => {
+    expect(factLabel({ property: "total_depth", qualifier: "planned" })).toBe("Total depth (planned)");
+    expect(factLabel({ property: "total_depth", qualifier: "actual" })).toBe("Total depth");
+    expect(factLabel({ property: "api_number", qualifier: "none" })).toBe("API well number");
+    expect(factLabel({ property: "projected_formation_temperature", qualifier: "projected" })).toBe("Projected formation temperature");
+  });
+
+  it("gives values with their units, dates as dates and numbers with separators", () => {
+    expect(factValue({ property: "total_depth", value: "1955", unit: null })).toBe("1,955 ft");
+    expect(factValue({ property: "spud_date", value: "2016-08-18", unit: null })).toBe("18 Aug 2016");
+    expect(factValue({ property: "inclination", value: "0.5", unit: null })).toBe("0.5°");
+    expect(factValue({ property: "max_measured_temperature", value: "186", unit: null })).toBe("186 °F");
+    expect(factValue({ property: "spud_to_release_days", value: "1", unit: null })).toBe("1 day");
+    expect(factValue({ property: "productive_time", value: "532.5", unit: null })).toBe("532.5 hours");
+    expect(factValue({ property: "api_number", value: "50-295-20005-00-00", unit: null })).toBe("50-295-20005-00-00");
+    expect(factValue({ property: "casing_grade", value: "K55", unit: null })).toBe("K55");
+    expect(factValue({ property: "total_depth", value: "600", unit: "m" })).toBe("600 m");
+    expect(depthLabel("1700")).toBe("1,700 ft");
+    expect(depthLabel(undefined)).toBe("Depth not given");
+  });
+
+  it("puts a well's days and non-productive time in one sentence", () => {
+    expect(wellTotals(page.totals)).toBe(
+      "27 days of reports, 115 hours of non-productive time: 66 hours KICK, 24 WAIT, 18.5 WOE and 6.5 WOO.",
+    );
+    expect(wellTotals({ days: 1, npt_hours: 0, npt_hours_by_code: {} })).toBe("1 day of reports, with no non-productive time marked.");
+    expect(wellTotals({ days: 3, npt_hours: 1, npt_hours_by_code: { WAIT: 1 } })).toBe("3 days of reports, 1 hour of non-productive time: 1 hour WAIT.");
+    expect(wellTotals({ days: 0, npt_hours: 0, npt_hours_by_code: {} })).toBeNull();
+  });
+
+  it("says kindly when a well has no daily reports, and when a report's text is not here", () => {
+    expect(noDays("56-32", [{ report_type: "end_of_well" }])).toBe(
+      "We have no daily reports for 56-32, so there is no day-by-day timeline. What we know about it comes from its end-of-well report.",
+    );
+    expect(noDays("TG-4", [])).toBe("We have no daily reports for TG-4, so there is no day-by-day timeline.");
+    expect(documentSize({ pages: 28 })).toBe("28 pages");
+    expect(documentSize({ pages: 0 })).toBe("Its text is not available on this computer");
+  });
+
+  it("lays out each casing string with planned beside actual", () => {
+    const rows = casingRows(page.facts.casing_strings[0]);
+    expect(page.facts.casing_strings.map((c) => c.size_in)).toEqual(["8-5/8", "5-1/2", "4-1/2", "3-1/2"]);
+    expect(rows.map((r) => [r.property, r.planned?.value, r.actual?.value])).toEqual([
+      ["casing_depth", "40", "40"], ["casing_weight", "28.55", "28.55"], ["casing_grade", "A53B", "A53B"],
+    ]);
+    expect(casingRows(page.facts.casing_strings[3]).find((r) => r.property === "casing_depth")).toMatchObject({
+      planned: { value: "700" }, actual: { value: "1955" },
+    });
+    expect(anyPlanned(page.facts.casing_strings)).toBe(true);
+    expect(anyPlanned([{ size_in: "7", facts: page.facts.casing_strings[0].facts.filter((f) => f.qualifier === "actual") }])).toBe(false);
+  });
+
+  it("draws only the days whose activities are all at hand", () => {
+    const drawn = wholeDays(exampleEvents(), page.report_days);
+    expect([...new Set(drawn.map((e) => e.date))].sort()).toEqual(["2016-08-13", "2016-08-20", "2016-08-21", "2016-08-22"]);
+    expect(wholeDays([event({ hours: 24, start: "0:00", end: "0:00" })], [{ ...page.report_days[0], date: "2016-08-20", hours: 24 }])).toHaveLength(1);
+    expect(wholeDays([event({ hours: 6 })], [{ ...page.report_days[0], date: "2016-08-20", hours: 24 }])).toHaveLength(0);
+  });
+
+  it("never uses the system's own vocabulary", () => {
+    const facts = [...page.facts.general, ...page.facts.depths_and_dates, ...page.facts.casing_strings.flatMap((c) => c.facts),
+      ...page.facts.readings.flatMap((r) => r.facts)];
+    const said = [
+      ...facts.flatMap((f) => [factLabel(f), factValue(f), propertyTip(f.property) ?? ""]),
+      wellTotals(page.totals) ?? "", noDays("TG-4", page.documents), ...page.documents.map(documentSize),
+    ].join(" ");
+    expect(said).not.toMatch(SYSTEM_WORDS);
+    expect(said).not.toMatch(/_/);
+  });
+});
+
+describe("the questions people asked, in plain words", () => {
+  const [missing4, cause3, total2] = adminQuestions.questions as LoggedQuestion[];
+
+  it("say when, what kind, and how each was marked", () => {
+    expect(askedAt("2026-11-21T09:30:00+00:00")).toBe("21 Nov 2026, 09:30 UTC");
+    expect(askedAt(null)).toBe("Time not recorded");
+    expect(kindName("over_time")).toBe("A total over a period of time");
+    expect(kindName(null)).toBe("Kind not recorded");
+    expect([markLabel("right"), markLabel("wrong"), markLabel(null)]).toEqual(["Marked right", "Marked wrong", "Not marked"]);
+  });
+
+  it("give the answer each got, in a line", () => {
+    expect(loggedAnswer(total2)).toBe("115 hours");
+    expect(loggedAnswer(cause3)).toBe("Causes stated in the reports");
+    expect(loggedAnswer(missing4)).toBe("Not in the verified data");
+    expect(loggedAnswer({ ...missing4, status: "ask_which" })).toBe("We asked which problem was meant");
+  });
+
+  it("give each the label its answer had, and claim no check that was not kept", () => {
+    expect(loggedBadge(total2).label).toBe("Calculated from the reports");
+    expect(loggedBadge(cause3).label).toBe("Written by AI, each cause checked against the reports");
+    expect(loggedBadge({ ...cause3, status: "not_stated" }).label).toBe("No stated cause found");
+    expect(loggedBadge(missing4).label).toBe("No answer found");
+    const written = { status: "answered", lanes: ["well_facts", "passages"], answer_text: "1955 ft", fallback: false };
+    expect(loggedBadge(written)).toMatchObject({ tone: "unconfirmed", label: "Written by AI" });
+    expect(loggedBadge(written).tip).toMatch(/was not saved/);
+    expect(loggedBadge(written, { checks: { citations_supported: true } }).label).toBe("Written by AI, checked against the reports");
+    expect(loggedBadge(written, { checks: { citations_supported: false } }).label).toBe("Written by AI, not confirmed");
+  });
+
+  it("count them for the top of the page, and say which are shown", () => {
+    expect(countTiles({ questions: 4, by_status: { answered: 3 }, by_verdict: { right: 2, none: 2 } })).toEqual([
+      { label: "Asked", value: 4 }, { label: "Answered", value: 3 }, { label: "Marked right", value: 2 },
+      { label: "Marked wrong", value: 0 }, { label: "Not marked", value: 2 },
+    ]);
+    expect(showing(0, 20, 45)).toBe("Showing 1–20 of 45 questions");
+    expect(showing(40, 5, 45)).toBe("Showing 41–45 of 45 questions");
+    expect(showing(0, 0, 0)).toBe("No questions match");
+  });
+
+  it("name the reports an answer cited, each once", () => {
+    expect(citedReports(["gdr882_ak3_eowr#c0010", "gdr882_ak3_eowr#c0011", "f62efbee00767a3e7:s6:c0"])).toEqual([
+      "AK-3 end-of-well report", "f62efbee00767a3e7",
+    ]);
+    expect(citedReports(undefined)).toEqual([]);
+  });
+
+  it("never use the system's own vocabulary", () => {
+    const said = (adminQuestions.questions as LoggedQuestion[]).flatMap((q) => [loggedAnswer(q), loggedBadge(q).label, loggedBadge(q).tip, kindName(q.kind), markLabel(q.verdict)]).join(" ");
+    expect(said).not.toMatch(SYSTEM_WORDS);
+  });
+});
+
+describe("screens in the address", () => {
+  it("read a well, the questions page and one question from the query string", () => {
+    expect(readRoute("")).toEqual(HOME);
+    expect(readRoute("?q=What+total+depth")).toEqual(HOME);
+    expect(readRoute("?well=AK-3")).toEqual({ view: "well", well: "AK-3" });
+    expect(readRoute("?view=questions")).toEqual({ view: "questions", question: null });
+    expect(readRoute("?view=questions&question=fixture-log-2")).toEqual({ view: "questions", question: "fixture-log-2" });
+  });
+
+  it("write them back the same way", () => {
+    for (const route of [HOME, { view: "well", well: "56-32" }, { view: "questions", question: null }, { view: "questions", question: "a b" }] as const) {
+      expect(readRoute(routeSearch(route))).toEqual(route);
+    }
+    expect(routeSearch(HOME)).toBe("");
+    expect(routeSearch({ view: "well", well: "AK-3" })).toBe("?well=AK-3");
+  });
+});
+
+describe("example responses for the newer screens", () => {
+  it("filter the example questions as the server does, newest first", () => {
+    expect(exampleQuestions({}).map((q) => q.id)).toEqual(["fixture-log-4", "fixture-log-3", "fixture-log-2"]);
+    expect(exampleQuestions({ verdict: "none" }).map((q) => q.id)).toEqual(["fixture-log-4", "fixture-log-3"]);
+    expect(exampleQuestions({ kind: "cause" }).map((q) => q.id)).toEqual(["fixture-log-3"]);
+    expect(exampleQuestions({ q: "STUCK" }).map((q) => q.id)).toEqual(["fixture-log-3"]);
+    expect(exampleQuestions({ date_from: "2026-11-22", date_to: "2026-11-22" }).map((q) => q.id)).toEqual(["fixture-log-3"]);
+  });
+
+  it("count, page, open and export them", async () => {
+    const counts = await exampleApi.questionCounts({});
+    expect(counts).toMatchObject({ questions: 3, by_status: { answered: 2, not_found_in_graph: 1 }, by_verdict: { right: 1, wrong: 0, none: 2 } });
+    expect((await exampleApi.questions({}, 2, 2)).questions.map((q) => q.id)).toEqual(["fixture-log-2"]);
+    expect((await exampleApi.question("fixture-log-2")).record).toHaveProperty("cost");
+    expect((await exampleApi.question("fixture-log-4")).record).toEqual({});
+    const file = await exampleApi.exportQuestions({ verdict: "none" });
+    const written = JSON.parse(file.text);
+    expect(file.filename).toBe("collected_2026-11-24.json");
+    expect(written.status).toMatch(/^COLLECTED/);
+    expect(written).not.toHaveProperty("expected_lane");
+    expect(written.questions.map((q: { id: string }) => q.id)).toEqual(["fixture-log-3", "fixture-log-4"]);
+    expect(written.questions[0]).toMatchObject({ gold: [], kind: "cause" });
+  });
+
+  it("hold a page for AK-3 only, and its activities", async () => {
+    expect((await exampleApi.well("AK-3")).well_id).toBe("AK-3");
+    await expect(exampleApi.well("56-32")).rejects.toThrow(/AK-3 only/);
+    expect(await exampleApi.wellEvents("56-32")).toEqual([]);
+    const events = exampleEvents();
+    expect(new Set(events.map((e) => `${e.date} ${e.start} ${e.code}`)).size).toBe(events.length);
+    expect(events.every((e) => !("problem" in e))).toBe(true);
   });
 });

@@ -9,6 +9,7 @@ import overTime from "../../backend/fixtures/question_over_time.json";
 import wells from "../../backend/fixtures/wells.json";
 import App from "./App";
 import { ApiError, type Api } from "./api/client";
+import { exampleApi } from "./api/examples";
 import type { AnswerOut, Health, PageOut, WellSummary } from "./api/types";
 
 type Fake = Api & { ask: ReturnType<typeof vi.fn>; feedback: ReturnType<typeof vi.fn>; page: ReturnType<typeof vi.fn> };
@@ -16,6 +17,7 @@ type Fake = Api & { ask: ReturnType<typeof vi.fn>; feedback: ReturnType<typeof v
 function fakeApi(...answers: (AnswerOut | Error)[]): Fake {
   let asked = 0;
   return {
+    ...exampleApi,
     ask: vi.fn(async (question: string, mode: string) => {
       const answer = answers[Math.min(asked, answers.length - 1)];
       asked += 1;
@@ -260,22 +262,22 @@ describe("a model's answer", () => {
     await user.click(await screen.findByRole("button", { name: "Source 1: AK-3 end-of-well report, page 7" }));
     const cited = (endOfWell as AnswerOut).citations[0];
     expect(api.page).toHaveBeenCalledWith(cited.file_id, cited.page);
-    expect(await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 2" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 7" })).toBeInTheDocument();
     await user.keyboard("{Escape}");
-    expect(screen.queryByRole("heading", { name: "AK-3 end-of-well report, page 2" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "AK-3 end-of-well report, page 7" })).not.toBeInTheDocument();
     expect(screen.getAllByRole("article")).toHaveLength(5);
   });
 });
 
 describe("the page of a source", () => {
-  const IMAGE = "/v1/files/gdr882_ak3_eowr/pages/2/image";
+  const IMAGE = "/v1/files/gdr882_ak3_eowr/pages/7/image";
   const openPage = async (shown: PageOut) => {
     const api = fakeApi(endOfWell as AnswerOut);
     api.page.mockResolvedValue(shown);
     render(<App api={api} />);
     const user = await ask(DEPTH);
     await user.click(await screen.findByRole("button", { name: "Source 1: AK-3 end-of-well report, page 7" }));
-    await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 2" });
+    await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 7" });
     return user;
   };
 
@@ -283,9 +285,9 @@ describe("the page of a source", () => {
     expect((page as PageOut).image_url).toBe(IMAGE);
     await openPage(page as PageOut);
     expect(screen.getByRole("status")).toHaveTextContent("Loading the page");
-    const image = screen.getByAltText("AK-3 end-of-well report, page 2, as printed in the report");
+    const image = screen.getByAltText("AK-3 end-of-well report, page 7, as printed in the report");
     expect(image).toHaveAttribute("src", IMAGE);
-    expect(screen.getByRole("link", { name: "Open AK-3 end-of-well report, page 2 at full size" })).toHaveAttribute("href", IMAGE);
+    expect(screen.getByRole("link", { name: "Open AK-3 end-of-well report, page 7 at full size" })).toHaveAttribute("href", IMAGE);
     fireEvent.load(image);
     expect(screen.queryByText("Loading the page…")).not.toBeInTheDocument();
     expect(screen.getByText(/Report by Geothermal Resource Group, Inc\./)).toBeInTheDocument();
