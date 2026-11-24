@@ -153,12 +153,15 @@ def TIME_KEY(text: str) -> int:
     return int(hours) * 60 + int(minutes)
 
 
-def run_plan(plan: dict, events: list[Event], well: str = WELL) -> tuple[str, list[Event]]:
-    """Runs a plan in code. Returns the result as text, and the events it rests on. No matching events gives an
-    empty list: an unknown well, code or period is "not stated", not zero."""
+NO_RESULT: tuple[list[str], str, str, list] = ([], "", "", [])
+
+
+def plan_value(plan: dict, events: list[Event], well: str = WELL) -> tuple[list[str], str, str, list[Event]]:
+    """Runs a plan in code. Returns the result as values with their unit, the same result as text, and the events
+    it rests on. No matching events gives no values: an unknown well, code or period is "not stated", not zero."""
     operation = plan["operation"]
     if operation == "not_answerable" or (plan.get("well") and plan["well"].upper() != well):
-        return "", []
+        return NO_RESULT
     start, end = plan.get("date_from") or "", plan.get("date_to") or ""
     code, npt_code = (plan.get("code") or "").upper(), (plan.get("npt_code") or "").upper()
     non_productive = bool(plan.get("non_productive") or npt_code)
@@ -180,18 +183,21 @@ def run_plan(plan: dict, events: list[Event], well: str = WELL) -> tuple[str, li
 
     if operation == "depth_on_date":
         value, rows = depth(start or end)
-        return (f"deepest end measured depth on {start or end} = {value} ft", rows) if rows else ("", [])
+        return ([str(value)], "ft", f"deepest end measured depth on {start or end} = {value} ft", rows) if rows \
+            else NO_RESULT
     if operation == "depth_gain":
         (first, a), (second, b) = depth(start), depth(end)
-        return (f"end measured depth rose by {second - first} ft from {start} ({first} ft) to {end} ({second} ft)",
-                a + b) if a and b else ("", [])
+        return ([str(second - first)], "ft",
+                f"end measured depth rose by {second - first} ft from {start} ({first} ft) to {end} ({second} ft)",
+                a + b) if a and b else NO_RESULT
     if operation == "first_date_depth_at_least":
         rows = [e for e in events if e.end_md >= (plan.get("depth_ft") or 0)]
-        return (f"first date with an end measured depth of at least {plan.get('depth_ft'):g} ft = {rows[0].date}",
-                rows[:1]) if rows else ("", [])
+        return ([rows[0].date], "",
+                f"first date with an end measured depth of at least {plan.get('depth_ft'):g} ft = {rows[0].date}",
+                rows[:1]) if rows else NO_RESULT
     rows = [e for e in events if in_scope(e)]
     if not rows:
-        return "", []
+        return NO_RESULT
     what = " ".join(filter(None, [f"code {code}" if code else "", f"non-productive code {npt_code}" if npt_code else "",
                                   "non-productive" if non_productive and not npt_code else "",
                                   f"from {start} to {end}" if start or end else ""])) or "all events"
@@ -199,29 +205,38 @@ def run_plan(plan: dict, events: list[Event], well: str = WELL) -> tuple[str, li
     for e in rows:
         day_hours[e.date] += e.hours
     if operation == "total_hours":
-        return f"total hours for {what} = {sum(e.hours for e in rows):g} ({len(rows)} events on {len(day_hours)} dates)", rows
+        hours = f"{sum(e.hours for e in rows):g}"
+        return [hours], "hours", f"total hours for {what} = {hours} ({len(rows)} events on {len(day_hours)} dates)", rows
     if operation == "count_events":
-        return f"number of events for {what} = {len(rows)}", rows
+        return [str(len(rows))], "", f"number of events for {what} = {len(rows)}", rows
     if operation == "count_days":
         minimum = plan.get("min_hours_per_day") or 0
         days = [d for d, h in day_hours.items() if h >= minimum]
         suffix = f" with at least {minimum:g} hours" if minimum else ""
-        return f"number of dates for {what}{suffix} = {len(days)}", [e for e in rows if e.date in days]
+        return [str(len(days))], "", f"number of dates for {what}{suffix} = {len(days)}", \
+            [e for e in rows if e.date in days]
     if operation == "list_dates":
-        return f"dates for {what} = {', '.join(sorted(day_hours))}", rows
+        return sorted(day_hours), "", f"dates for {what} = {', '.join(sorted(day_hours))}", rows
     if operation == "first_date":
-        return f"first date for {what} = {rows[0].date}", rows[:1]
+        return [rows[0].date], "", f"first date for {what} = {rows[0].date}", rows[:1]
     if operation == "last_date":
-        return f"last date for {what} = {rows[-1].date}", rows[-1:]
+        return [rows[-1].date], "", f"last date for {what} = {rows[-1].date}", rows[-1:]
     if operation == "top_group":
         group_by = plan.get("group_by") or "code"
         totals: Counter = Counter()
         for e in rows:
             totals[e.date if group_by == "date" else e.code] += e.hours
         best, hours = totals.most_common(1)[0]
-        return f"the {group_by} with the most hours for {what} = {best} ({hours:g} hours)", \
+        return [best], "", f"the {group_by} with the most hours for {what} = {best} ({hours:g} hours)", \
             [e for e in rows if (e.date if group_by == "date" else e.code) == best]
-    return "", []
+    return NO_RESULT
+
+
+def run_plan(plan: dict, events: list[Event], well: str = WELL) -> tuple[str, list[Event]]:
+    """The result of `plan_value` as text, and the events it rests on. Track C replays recorded plans against this
+    text (platform/load_events_neo4j.py), so it does not change."""
+    _, _, text, rows = plan_value(plan, events, well)
+    return text, rows
 
 
 def code_list(events: list[Event]) -> str:
