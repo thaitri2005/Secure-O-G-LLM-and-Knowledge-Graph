@@ -966,3 +966,16 @@ Tri asked for the whole project to be gone over before people are put in front o
 - A fact's value on a well page did not open its page: on a package the fact named its report by the package's file ID, and the file routes use the report's name. The example data is on the old chunk IDs, where the two are the same, so no test saw it. Fixed, with a test on a package chunk.
 - The setting `GRAPHRAG_K1_CHUNKS` given a package's folder, as CLAUDE.md suggests, said the corpus was missing. It accepts the folder now.
 - Confirmed working there: page images found under the package's file ID (B-F70), the search in the database chosen at start on real vectors, the readiness check, the proxy's size limit and headers.
+
+**E34 ([record](../../experiments/E34-reasoning-probe.md)): the reasoning lane on its probe, with the real model.** First probe, after the problem finding was corrected: 2/10 correct, the problem found on 8/10, the stated cause found and cited on 8/10, and 17 unsupported claims. Second probe, written before any run on it: 3/10, 6/10, 5/10 and 8. A cause question costs two calls, about 4,800 prompt and 660 completion tokens.
+
+**B-F74 (finding; the lane finds the stated cause and over-states).** From E34.
+
+- **What works:** when the lane reached the right problem, the model named the cause the reports state and quoted the report's words: 8 of 8 on the first probe.
+- **What does not:** it also lists things that happened nearby as stated causes, each with a true quote (17 items on 7 answers). The citation check passes them: a real quote is not a reason.
+- **Rule added in code:** a stated cause must rest on a clause that gives a reason ("due to", "because", "waiting on", "unable"), once per clause, and not on something written after the day asked about; the rest are shown as possible factors. Unsupported claims: 17 to 8 on the first probe, 8 to 5 on the unseen second one, where it also cost one true cause that the report gives as a purpose ("to stop flow").
+- **What remains:** a true reason for a neighbouring event of the same incident. AK-3's 66-hour well-control incident holds a stuck pipe and a lost rod; asked about one, the model gives both reasons. The unit of "the problem" should be an activity or a short run of them, not a whole incident. Next change to try.
+- **Two more faults in finding the problem, from the second probe:** a wrong code from the model blocked a date that was right (now the day outranks the code), and an activity that is not non-productive time was not found because every keyword had to match (now one is enough on a named day). Not yet rerun.
+- **"Possible factors" are mostly generic** ("inadequate communication"). Whether to keep that part is a question for an expert.
+
+**B-D50 (decision; the reasoning lane continues as a probe, D-66).** It is not shown as a finding to anyone yet. Before more code it needs an expert's reading of ten answers and a question set written by someone else. Ours to do next: a smaller unit for the problem.
