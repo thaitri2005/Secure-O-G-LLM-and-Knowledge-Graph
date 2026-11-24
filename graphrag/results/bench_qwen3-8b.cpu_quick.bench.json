@@ -71,11 +71,11 @@
       ],
       "run": "bench_qwen3-8b.cpu_quick_quick_prototype",
       "status": "started",
-      "started": "2026-11-24T17:57:07+00:00",
+      "started": "2026-11-24T18:22:05+00:00",
       "error": null
     }
   ],
-  "updated": "2026-11-24T17:57:07+00:00",
+  "updated": "2026-11-24T18:22:05+00:00",
   "totals": {
     "calls": 0,
     "cached_calls": 0,

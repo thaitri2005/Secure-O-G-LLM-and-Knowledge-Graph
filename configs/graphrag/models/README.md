@@ -6,6 +6,7 @@ One file per model on one address. `python -m graphrag.bench check <profile>` sa
 |---|---|---|
 | `qwen3-8b.local` | Qwen3-8B, 4-bit, llama.cpp on a GPU, port 8080 | The baseline model of every recorded result; a rented GPU runs this |
 | `qwen3-4b.local` | Qwen3-4B, 4-bit, llama.cpp, port 8082 | The extraction model |
+| `qwen3-8b.cpu` | Qwen3-8B, 4-bit, llama.cpp's CPU build, port 8080 | The baseline model file on a machine without a GPU: three to four minutes a question on 4 cores, so for the short measurements only. Compared with its own baseline rerun |
 | `qwen3-4b.laptop-cpu` | Qwen3-4B, 4-bit, llama.cpp on a laptop CPU, port 8080 | A slow check with a real model when no GPU is at hand |
 | `qwen3-8b.openrouter` | Qwen3-8B served by a third party | The demo and quick checks, public data only. Unverified until `check` has run |
 

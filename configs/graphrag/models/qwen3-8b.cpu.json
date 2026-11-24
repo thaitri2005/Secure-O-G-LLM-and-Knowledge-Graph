@@ -5,7 +5,7 @@
   "model": "qwen3-8b",
   "file": "Qwen3-8B-Q4_K_M.gguf",
   "thinking_off": "on the server: llama-server --jinja --chat-template-kwargs '{\"enable_thinking\":false}'",
-  "context": 12288,
+  "context": 8192,
   "roles": ["frame", "answer"],
   "compare_as": "cpu:qwen3-8b"
 }

@@ -216,6 +216,25 @@ Pools:
 
 Measurement runs send one request at a time: parallel requests make llama.cpp results non-repeatable (B-F19).
 
+### Without a GPU, on Linux
+
+The baseline model also runs on a CPU, which is enough to check the whole pipeline with the real model and to make the short measurements. This was done on 25 November 2026 on a cloud machine with 4 cores and 16 GB of memory (Track B log B-F71).
+
+```bash
+mkdir -p data/interim/llama.cpp data/interim/models && cd data/interim/llama.cpp
+curl -L -o l.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b12015/llama-b12015-bin-ubuntu-x64.tar.gz && tar xzf l.tar.gz && cd ../../..
+curl -L -o data/interim/models/Qwen3-8B-Q4_K_M.gguf https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf
+export LD_LIBRARY_PATH=$PWD/data/interim/llama.cpp/llama-b12015
+data/interim/llama.cpp/llama-b12015/llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 8192 -np 1 -ngl 0 -t 4 --jinja --chat-template-kwargs '{"enable_thinking":false}' --alias qwen3-8b &
+python -m graphrag.bench check qwen3-8b.cpu
+python -m graphrag.bench run qwen3-8b.cpu --suite quick
+```
+
+- **Speed:** about 13 prompt tokens a second on 4 cores, so an answer from five passages takes three to four minutes. The 31 prototype questions take about two hours; the 221 pooled questions would take a day.
+- **Memory:** the server holds about 9 GB with an 8k context. On a 16 GB machine nothing else heavy can run beside it: a build or a test run at the same time got the server killed. A 32k context does not fit.
+- **Context:** 8,192 tokens is enough for every prompt the engine sends (the longest, a question about a cause, is about 4,500). The profile `qwen3-8b.cpu` says so.
+- **Comparing:** it is the same model file on another build of llama.cpp, so its scores are lined up with its own baseline rerun first (`compare_as` is `cpu:qwen3-8b`).
+
 ## neo4j-graphrag-python (E16)
 
 It needs Neo4j with APOC and its own environment, because it requires a newer `pypdf` than the main lock file allows (B-C09):
