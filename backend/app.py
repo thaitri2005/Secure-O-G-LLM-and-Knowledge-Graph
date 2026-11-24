@@ -130,7 +130,9 @@ def default_service() -> Service:
     - `BACKEND_DSN` set: the question log is PostgreSQL's; unset: a file under ignored `data/interim/backend/`.
 
     A store that is configured but does not answer raises here; nothing falls back to files. Questions naming several
-    wells use per-well fusion when the embedding server answers, else per-well BM25."""
+    wells are searched per well: with BM25 alone when the embedding server does not answer at start; else fused with
+    the vectors, searched in memory on files and in PostgreSQL on the stores, where the release must have all its
+    vectors (graphrag.stores.choose_multi_well_retriever). The choice is made here once (`Engine.retrieval`)."""
     from graphrag.client import client_for, load_endpoints, load_roles
     from graphrag.lanes import Engine
 
@@ -140,11 +142,11 @@ def default_service() -> Service:
         raise ValueError(f"BACKEND_SOURCE is {source!r}; use 'files' or 'stores'")
     roles = load_roles()
     embed = load_endpoints()[roles["embed"]["endpoint"]]
-    settings: dict = {}
     try:
         httpx.get(f"{embed.base_url}/models", timeout=2.0).raise_for_status()
+        embedding_answers = True
     except httpx.HTTPError:
-        settings["multi_well_retriever"] = "perwell:bm25"
+        embedding_answers = False
     if source == "stores":
         from graphrag.stores import engine_from_stores
         if not dsn:
@@ -152,9 +154,10 @@ def default_service() -> Service:
         # The local stores' defaults (platform/docker-compose.yml); a server sets its own.
         engine = engine_from_stores(dsn, os.environ.get("NEO4J_URI") or "bolt://127.0.0.1:7687",
                                     os.environ.get("NEO4J_USER") or "neo4j", os.environ.get("NEO4J_PASSWORD") or "platform-dev",
-                                    release=os.environ.get("BACKEND_RELEASE") or None, **settings)
+                                    release=os.environ.get("BACKEND_RELEASE") or None, embed_model=roles["embed"]["model"],
+                                    embedding_answers=embedding_answers)
     else:
-        engine = Engine.load(**settings)
+        engine = Engine.load(**({} if embedding_answers else {"multi_well_retriever": "perwell:bm25"}))
     log = PostgresQuestionLog(dsn) if dsn else JsonlQuestionLog(QUESTION_LOG)
     return Service(engine, client_for("frame", roles), client_for("answer", roles), log,
                    {role: roles[role] for role in ("frame", "answer")},

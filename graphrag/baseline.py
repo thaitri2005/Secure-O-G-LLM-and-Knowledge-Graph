@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import statistics
 import time
@@ -18,7 +19,7 @@ from .citations import resolve
 from .client import ModelClient, load_endpoints
 from .data import (AK3, QUESTION_SETS, ROOT, Chunk, appendix_chunks_path, cited_id, k1_chunks_path, load_chunks,
                    load_daily_chunks, load_questions, prototype_slice, short_id)
-from .retrieval import BM25, DateRouter, Dense, Fusion, WellRouter, well_names
+from .retrieval import BM25, DateRouter, Dense, Fusion, PgVector, WellRouter, well_names
 from .scoring import normalize, score_answer, squash
 from .validate import validate
 
@@ -90,23 +91,33 @@ def pool(name: str):
     return prototype_slice(chunks) if name == "slice" else chunks
 
 
-def build(spec: str, chunks) -> Any:
+def build(spec: str, chunks, store: str | None = None) -> Any:
+    """A retriever from its spec. `store` is the PostgreSQL address that `pgvector:` specs search; other specs
+    ignore it."""
     if spec == "bm25":
         return BM25(chunks)
     if spec.startswith("dense:"):
         # dense:<model> is served by the local-embed endpoint (llama-server --embedding).
         return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None))
+    if spec.startswith("pgvector:"):
+        # pgvector:<model> is dense:<model> with the passage vectors and the search in PostgreSQL (chunk_vectors,
+        # C-C10). The chunks must be a release's (K1 version 1 IDs); the store is `store`, or else BACKEND_DSN.
+        dsn = store or os.environ.get("BACKEND_DSN")
+        if not dsn:
+            raise SystemExit(f"{spec!r} searches PostgreSQL: set BACKEND_DSN to the store holding the release's vectors")
+        return PgVector(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("pgvector:"),
+                                            cache_dir=None), dsn)
     if spec.startswith("fusion:"):
-        return Fusion([build(part, chunks) for part in spec.removeprefix("fusion:").split("+")])
+        return Fusion([build(part, chunks, store) for part in spec.removeprefix("fusion:").split("+")])
     if spec.startswith("dates:"):
         # dates:<retriever> keeps only the pages of the report dates the question names (E27).
-        return DateRouter(build(spec.removeprefix("dates:"), chunks), chunks)
+        return DateRouter(build(spec.removeprefix("dates:"), chunks, store), chunks)
     if spec.startswith("perwell:"):
         # perwell:<retriever> also searches each named well's documents separately when a question names several.
-        return WellRouter(build(spec.removeprefix("perwell:"), chunks), chunks, per_well=True)
+        return WellRouter(build(spec.removeprefix("perwell:"), chunks, store), chunks, per_well=True)
     if spec.startswith("wells:"):
         # wells:<retriever> keeps only the documents that name a well the question names (B-C11).
-        return WellRouter(build(spec.removeprefix("wells:"), chunks), chunks)
+        return WellRouter(build(spec.removeprefix("wells:"), chunks, store), chunks)
     raise SystemExit(f"unknown retriever {spec!r}")
 
 

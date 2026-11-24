@@ -31,7 +31,9 @@ It runs the eight steps below in order, stops at the first failed check with exi
 | 7. Load the fact region | `load_facts_neo4j.py` | See below |
 | 8. Record the run | `sql/003_runs.sql` | Release, its `SHA256SUMS` digest, git commit, embedding model, counts and seconds per step |
 
-Step 2 keeps a release the store already holds with the same `SHA256SUMS` digest and only checks it, so a second run changes nothing and its vectors stay. `--reload` replaces the release anyway; that deletes its vectors (`chunk_vectors` cascades from `chunks`), so after `--reload --skip-vectors` the release has no vectors. What a step decided (kept or loaded, which fact graph) is printed and kept in the run record's `notes`.
+Step 2 keeps a release the store already holds with the same `SHA256SUMS` digest and only checks it, so a second run changes nothing and its vectors stay. `--reload` replaces the release anyway; that deletes its vectors (`chunk_vectors` cascades from `chunks`), so after `--reload --skip-vectors` the release has no vectors.
+
+The backend on the stores searches these vectors in SQL for questions naming several wells (`graphrag.retrieval.PgVector`, [backend README](../backend/README.md#what-it-reads-today-and-what-changes)), but only when every chunk of the release has a vector of the embed role's model (`qwen3-embedding-0.6b` in `configs/graphrag/roles.json`); otherwise it uses BM25 alone and logs the counts. After a reload, run step 3 again before starting the backend. What a step decided (kept or loaded, which fact graph) is printed and kept in the run record's `notes`.
 
 ## The scripts
 

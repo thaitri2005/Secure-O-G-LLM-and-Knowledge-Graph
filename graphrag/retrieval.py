@@ -37,6 +37,13 @@ def top(ids: list[str], scores, k: int, allowed: set[str] | None) -> list[tuple[
     return [(ids[i], float(scores[i])) for i in order]
 
 
+def ranked(ids: list[str], scores, k: int, allowed: set[str] | None) -> list[tuple[str, float]]:
+    """As `top`, with equal scores in reading order (the earlier chunk first), the order the SQL search gives them.
+    `top` leaves the order of equal scores to numpy's sort, which is not stable."""
+    order = [i for i in np.argsort(-scores, kind="stable") if allowed is None or ids[i] in allowed][:k]
+    return [(ids[i], float(scores[i])) for i in order]
+
+
 class BM25:
     """Okapi BM25. With `allowed`, term statistics come from the allowed chunks only, as a separate index
     per document or well would compute them (B-C11)."""
@@ -97,7 +104,68 @@ class Dense:
 
     def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
         query = QUERY_INSTRUCTION + question if self.qwen else question
-        return top(self.ids, self.matrix @ self._embed([query])[0], k, allowed)
+        return ranked(self.ids, self.matrix @ self._embed([query])[0], k, allowed)
+
+
+# Exact cosine search over the given chunks, in their order: `position` breaks ties as `ranked` does. The chunk IDs
+# name the release, since a chunk belongs to one file and a file to one release (platform/sql/001_k1.sql).
+VECTOR_SEARCH = """
+SELECT v.chunk_id, v.embedding <=> %(query)s::vector AS distance
+FROM unnest(%(ids)s::text[]) WITH ORDINALITY AS p(chunk_id, position)
+JOIN chunk_vectors v ON v.chunk_id = p.chunk_id AND v.embedding_model = %(model)s
+WHERE (%(well)s::text IS NULL OR v.well = %(well)s) AND (%(report_date)s::text IS NULL OR v.report_date = %(report_date)s)
+ORDER BY distance, p.position
+LIMIT %(k)s
+"""
+VECTOR_COUNT = "SELECT count(*) FROM chunk_vectors WHERE embedding_model = %s AND chunk_id = ANY(%s)"
+
+
+class PgVector:
+    """`Dense` with the passage vectors and the search in PostgreSQL: `chunk_vectors` (C-C10), filled by
+    platform/embed_k1.py from the same passage text, normalised as `Dense` normalises it.
+
+    Only the question is embedded, once per search, through the same client. The search is exact (`<=>`, cosine
+    distance) and every filter is in its WHERE clause: the chunks of this pool, `allowed`, and the stored `well` and
+    `report_date` when given. For the same vectors it returns what `Dense` returns, in the same order. A pool with any
+    chunk lacking a vector is refused, since `Dense` would have searched that chunk. psycopg is imported here only, so
+    `import graphrag` does not need it.
+    """
+
+    def __init__(self, chunks: list[Chunk], client, dsn: str):
+        import psycopg
+        self.client, self.dsn, self.name = client, dsn, f"pgvector:{client.model}"
+        self.qwen = "qwen3-embedding" in client.model.lower()
+        self.ids = [c.id for c in chunks]
+        self.searches, self.sql_seconds = 0, 0.0   # PostgreSQL time only; the query embedding is in the client's ledger
+        started = time.perf_counter()
+        self.conn = psycopg.connect(dsn, autocommit=True)
+        held = self.conn.execute(VECTOR_COUNT, (client.model, self.ids)).fetchone()[0]
+        if held != len(self.ids):
+            self.close()
+            raise LookupError(f"chunk_vectors holds {client.model} vectors for {held} of these {len(self.ids)} chunks; "
+                              f"embed the release first (platform/embed_k1.py embed)")
+        self.index_seconds = time.perf_counter() - started
+
+    def search(self, question: str, k: int, allowed: set[str] | None = None, well: str | None = None,
+               report_date: str | None = None) -> list[tuple[str, float]]:
+        """`well` and `report_date` filter on the stored columns, as embed_k1.py wrote them (report date as printed,
+        e.g. 28-Aug-16). Scores are cosine similarities, as `Dense` gives."""
+        import psycopg
+        vector = np.array(self.client.embed([QUERY_INSTRUCTION + question if self.qwen else question])[0], dtype=np.float32)
+        vector /= np.linalg.norm(vector)
+        ids = self.ids if allowed is None else [cid for cid in self.ids if cid in allowed]
+        if self.conn.closed:
+            self.conn = psycopg.connect(self.dsn, autocommit=True)
+        started = time.perf_counter()
+        # Nine significant digits give back the exact float32, so PostgreSQL searches the vector `Dense` would.
+        rows = self.conn.execute(VECTOR_SEARCH, {"query": "[" + ",".join(f"{x:.9g}" for x in vector) + "]", "ids": ids,
+                                                 "model": self.client.model, "well": well, "report_date": report_date,
+                                                 "k": k}).fetchall()
+        self.searches, self.sql_seconds = self.searches + 1, self.sql_seconds + time.perf_counter() - started
+        return [(chunk_id, 1.0 - distance) for chunk_id, distance in rows]
+
+    def close(self) -> None:
+        self.conn.close()
 
 
 class Fusion:

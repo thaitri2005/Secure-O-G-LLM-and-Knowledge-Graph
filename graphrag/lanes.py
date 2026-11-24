@@ -47,6 +47,9 @@ class Engine:
     facts: list[dict]  # already validated
     multi_well_retriever: str | None = "perwell:fusion:bm25+dense:qwen3-embedding-0.6b"
     source: str = "files"  # "stores" when graphrag.stores built it; the service's health check reports it
+    # The PostgreSQL that `pgvector:` retrievers search, and how many vectors it holds for the release (stores only).
+    vector_store: str | None = field(default=None, repr=False, compare=False)
+    stored_vectors: int = 0
     _retrievers: dict[tuple[str, str], Any] = field(default_factory=dict, init=False, repr=False, compare=False)
     _by_id: dict[str, Chunk] | None = field(default=None, init=False, repr=False, compare=False)
 
@@ -95,8 +98,14 @@ class Engine:
         """Built once per engine: BM25 statistics and embeddings are index-time work."""
         key = (spec, report_type)
         if key not in self._retrievers:
-            self._retrievers[key] = build(spec, self.chunks(report_type))
+            self._retrievers[key] = build(spec, self.chunks(report_type), self.vector_store)
         return self._retrievers[key]
+
+    @property
+    def retrieval(self) -> dict[str, str | int]:
+        """What GET /v1/health shows of retrieval: the retriever of questions naming several wells, chosen when the
+        engine was loaded, and the vectors the store holds for the release (0 on files)."""
+        return {"multi_well_retriever": self.multi_well_retriever or "none", "stored_vectors": self.stored_vectors}
 
 
 def passages(question: str, frame: dict, engine: Engine) -> Evidence:

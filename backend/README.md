@@ -73,6 +73,18 @@ The service holds an `Engine` ([`graphrag/lanes.py`](../graphrag/lanes.py)), loa
 | `files` | The committed bundle (three reports, K1 version 0) | The daily-report corpus, if this machine has it | Built from that corpus | The fact runs of the current design, validated on load |
 | `stores` | The release's chunks in PostgreSQL that are not daily | Its daily-report files and the non-productive-time report (appendix 23), told apart by name as `Engine.load(k1=True)` does | The event region in Neo4j, for AK-3 | The fact region in Neo4j, validated when the graph was built |
 
+**Questions naming several wells** are searched once per well, chosen at start and kept until the service stops:
+
+| Source | Embedding server answers at start | Retriever |
+|---|---|---|
+| `files` | yes | BM25 fused with the vector search in memory (`perwell:fusion:bm25+dense:<model>`) |
+| `stores` | yes, and the store holds a vector of the embed role's model for every chunk of the release | BM25 fused with the vector search in PostgreSQL (`perwell:fusion:bm25+pgvector:<model>`, `graphrag.retrieval.PgVector`) |
+| either | otherwise | BM25 alone (`perwell:bm25`) |
+
+The search in PostgreSQL returns what the search in memory returns on the same vectors, order included (`tests/test_graphrag_vectors.py`); only the question is embedded. A release with vectors for only some of its chunks counts as having none, and the server log names the counts. Once chosen, the retriever does not change: if the embedding server or the database stops answering, questions fail instead of quietly searching another way. `GET /v1/health` should show the choice (`multi_well_retriever`) and the vectors the store holds for the release (`stored_vectors`); `service.py` does not pass them through yet.
+
+`chunk_vectors` has no vector index, only its primary key, so each search reads every vector of the release: about 17 ms for 1,042 vectors and 80 ms for 10,000 on a laptop (24 November 2026). An approximate index (HNSW) starts to matter at tens of thousands of vectors, some twenty releases the size of AK-3's (1,051 chunks), and would make the search approximate, so it would no longer equal the search in memory.
+
 **On the stores, citations follow the IDs the graph was built on.** Facts and events cite the chunk IDs of the run that built them. A cited chunk the release does not hold is counted in the server log at start and shown without its text. Today's fact region (E27) cites K1 version 0 IDs, so every fact citation is of that kind until the facts are rebuilt on a K1 version 1 release (backend design §4.2).
 
 ## Limits
@@ -82,6 +94,5 @@ The service holds an `Engine` ([`graphrag/lanes.py`](../graphrag/lanes.py)), loa
 - Responses over 2 kB are compressed. Reads may be kept by the browser for a minute; answers, feedback and health never.
 - The question log holds what users typed. It stays on the machine: in an ignored folder, or in the deployment's PostgreSQL.
 - The event graph is one well's (AK-3), so only that well has report days and events.
-- On the stores, questions naming several wells search per well in memory, as on files. The SQL vector search over `chunk_vectors` with the well filter (C-C10) is not built.
 
 Tests: `python -m unittest tests.test_backend` (no server or model needed). `python -m unittest tests.test_backend_postgres tests.test_graphrag_stores` checks the PostgreSQL log, the environment and the stores; tests needing the local PostgreSQL or Neo4j skip when those do not answer.
