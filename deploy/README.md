@@ -135,7 +135,7 @@ The shared user name and password go to the experts with the link, by a channel 
 
 The backend reads two files, `configs/graphrag/endpoints.json` (addresses) and `roles.json` (which model serves which role), and `graphrag/client.py` takes them only from those paths. So the compose file mounts the server's own copies over them, named by `MODEL_ENDPOINTS_FILE` and `MODEL_ROLES_FILE` in `.env`. Choose one:
 
-### A. Tri's desktop over a private network (the measured setup)
+### A. A team machine with the GPU over a private network (not available now: the desktop is borrowed, Track C log C-D07)
 
 The desktop serves Qwen3-8B with llama.cpp, as for every run (CLAUDE.md, "Setting up a machine"). Tailscale is the simplest private network: no port is opened to the internet.
 

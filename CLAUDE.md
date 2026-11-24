@@ -111,7 +111,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B's part, in order (B-D36 to B-D38):
 
-1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1). Decide on Hung's proposal that the desktop hosts the stores over Tailscale for now (Track C log C-D06).
+1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1). The desktop is borrowed: it hosts nothing for the team, neither the stores nor the demo's model (B-D42, Track C log C-D07); Hung to say whether his machine hosts the stores for now.
 2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)), on the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, B-C55); then the same from the stores (`BACKEND_SOURCE=stores`, B-C50).
 3. ~~The lane interface and model roles~~: done (B-C37, B-C41).
 4. ~~The fact graph as nodes and relationships~~: exported (B-C40) and loaded in Neo4j. Open: its facts cite K1 version 0 chunk IDs, which the stores do not hold (B-F63), and B-F60's two doubts.
