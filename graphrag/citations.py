@@ -57,3 +57,10 @@ def unit_in_text(value: str, text: str) -> str | None:
 def same_unit(a: str, b: str) -> bool:
     form = lambda u: next((unit for pattern, unit in _UNITS if re.fullmatch(pattern, u.strip().lower())), u.strip().lower())
     return form(a) == form(b)
+
+
+def preposition_after(value: str, text: str) -> bool:
+    """Whether the passage writes the value and then the word "in" as a preposition ("1,955 in contrast to")."""
+    plain = _plain(str(value))
+    return bool(re.fullmatch(r"-?\d+(?:\.\d+)?", plain)) and \
+        bool(re.search(rf"(?<![\d.]){re.escape(plain)}(?!\d) in [a-z]", _plain(text)))

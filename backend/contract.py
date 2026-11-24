@@ -173,6 +173,7 @@ def build_fixtures() -> dict[str, object]:
     for number, (name, (body, frame, answer)) in enumerate(QUESTIONS.items(), 1):
         scripted.frame, scripted.answer = frame, answer
         service.new_id = lambda number=number: f"fixture{number:026d}"
+        service.clock = lambda: 0.0
         out[name] = client.post("/v1/questions", json=body).json()
     for name, path in READS.items():
         out[name] = client.get(path).json()

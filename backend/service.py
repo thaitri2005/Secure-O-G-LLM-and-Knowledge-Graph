@@ -96,6 +96,7 @@ class Service:
         self.queue_seconds, self.max_waiting = queue_seconds, max_waiting
         self.waiting, self.waiting_guard = 0, threading.Lock()
         self.new_id = lambda: uuid.uuid4().hex
+        self.clock = time.perf_counter  # the example responses fix it, so they do not change from run to run
         self.today = lambda: date.today().isoformat()
 
     # ---- questions ---------------------------------------------------------------------------------------------
@@ -128,7 +129,9 @@ class Service:
             try:
                 # Counted while this question holds the slot, so another question's cache hits are not its own.
                 cached_before = self._cached_calls()
+                began = self.clock()
                 row = coordinator.answer(q, self.engine, self.frame_client, self.answer_client, mode=mode, lane=lane)
+                took = self.clock() - began
                 cached = self._cached_calls() - cached_before
             finally:
                 self.lock.release()
@@ -160,7 +163,9 @@ class Service:
                        "quotes_verbatim": bool(row["quotes_verbatim"])},
             "cost": {"calls": row["calls"], "prompt_tokens": row["prompt_tokens"] + row["frame_prompt_tokens"],
                      "completion_tokens": row["completion_tokens"] + row["frame_completion_tokens"],
-                     "seconds": round(row["seconds"] + row["frame_seconds"], 3)}}
+                     # What this asker waited for the answer, not what the model calls took when first made: an
+                     # answer from the request cache comes back at once.
+                     "seconds": round(took, 3)}}
         self._record({
             "id": question_id, "asked_at": now(), "question": question, "mode": out["mode"], "forced_lane": lane,
             "frame": out["frame"], "lanes": out["lanes"], "fallback": out["fallback"],

@@ -15,7 +15,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from .citations import same_unit, unit_in_text, resolve
+from .citations import preposition_after, resolve, same_unit, unit_in_text
 from .client import ModelClient, load_endpoints
 from .data import (AK3, QUESTION_SETS, ROOT, Chunk, appendix_chunks_path, cited_id, k1_chunks_path, load_chunks,
                    load_daily_chunks, load_questions, prototype_slice, short_id)
@@ -287,6 +287,8 @@ def answer_one(q: dict, hits: list[str], graph: str, by_id: dict[str, Chunk], cl
         written = unit_in_text(a["value"], by_id[cited_chunk].text) if cited_chunk else None
         if written and not same_unit(a["unit"], written):
             a["unit"] = written
+        elif not written and cited_chunk and same_unit(a["unit"], "in.") and preposition_after(a["value"], by_id[cited_chunk].text):
+            a["unit"] = ""  # "1,955 in contrast to the planned 1,700'": the passage gives no unit, and "in" is not one
     withheld = []
     if withhold_unsupported:
         # B-F17: an answer no retrieved passage supports is dropped; with none left, the question is withheld.
