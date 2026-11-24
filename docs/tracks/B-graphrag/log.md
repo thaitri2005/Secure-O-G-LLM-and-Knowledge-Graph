@@ -1012,3 +1012,19 @@ Tri asked for the whole project to be gone over before people are put in front o
 - **Server scripts:** the restore check ended silently with no dump, could restore into the database's temporary first start, and stopped on harmless warnings; the backup's copy never pruned the far side; the monitor saved the new state before sending the alert, so a failed alert was never sent again; the smoke test crashed, not failed, when nothing answered.
 - **Run for real on the stores of this machine:** the backup wrote a 7 MB dump, and the restore check loaded it into a throwaway database and counted 5 questions, 1 mark, 1 release and 1,432 chunks in 4 seconds. The copy off the server could not be tried: rsync is not installed here.
 - **Left as they are:** a number in a list written without spaces ("sizes 12,13 and 20") is no longer found by the fact check; "5" still passes inside "9-5/8"; an abbreviation's full stop ("approx.") can split a clause.
+
+**B-F79 (finding; the coordinator's first measurement, on the 58 event questions, E33 in part).** Qwen3-8B on the CPU profile, the package `demo-v2`, one request at a time. The hand-routed baseline was rerun on the same machine first, as the rule is.
+
+| Run | Seen set (35) | Held-out set (23) | Calls a question | Prompt tokens a question | Seconds a question |
+|---|---:|---:|---:|---:|---:|
+| Hand-routed: a planning call, code runs the plan, an answer call retypes the result | 25 | 16 | 2.0 | 3,161 | 115 |
+| The same plans, with the result reported by code (no model run) | 35 | 23 | – | – | – |
+| Coordinator, as built: one framing call, code reports the result | 26 | 18 | 1.3 | 1,884 | 51 |
+| Coordinator, with its plan checked against the question in code (same frames) | 35 | 23 | 1.1 | – | – |
+
+- **The coordinator matches the hand-routed scores on these sets, and beats them, at fewer calls and less than half the time.** That is the adoption test (D-64) for this kind of question. The other kinds are in the full run.
+- **Every loss of the hand-routed path is the answer call retyping a number wrongly:** its plans are all right. Reporting the result in code, which the coordinator does, removes those losses (B-F61 said so from recorded plans; this is the first run of it).
+- **The framing call writes worse plans than the dedicated planner:** 14 of 58 wrong as built. It invented the code KICK for "non-productive time" (5 times), wrote a field name ("npt_code", "activity_code") where a code belongs (5), put the year 2020 or 2023 on dates given in 2016 (2), and called "on which dates was code X logged" a lookup by date (5), which sent it to passages.
+- **All 14 are visible in the question, so code checks them** (`coordinator._check_plan`): a runnable plan is a question over time whatever kind the model gave; the days are the question's when it names any; a non-productive code stands only if the question writes it, or the reports use it and the question does not speak of non-productive time in general; a field name is no code. With the same recorded frames the result is 58 of 58.
+- **That last row is tuned on these 58 questions.** It shows the faults are of a kind code can catch, not how many are left on questions nobody has seen.
+- Runs: `E33_cpu_hand_ak3_events`, `E33_cpu_hand_ak3_events_heldout`, `E33_cpu_coordinator_events_first_run`, `E33_cpu_coordinator_events`.
