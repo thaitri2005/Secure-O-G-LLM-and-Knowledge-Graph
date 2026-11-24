@@ -107,7 +107,7 @@ docs/
   components/           guides to implemented subsystems
   tracks/               each track's dated record of findings and decisions (A ingestion, B GraphRAG engine, C storage)
   experiments/          one record per experiment (E1–E31) and the register
-  reports/              the project report of 9 November; the Vietnamese progress report of 27 October (historical)
+  reports/              stint reports in stints/ (one per stint); the project report of 9 November; the resource request
   diagrams/             SVG exports of the Mermaid diagrams
 graphrag/         the GraphRAG engine: model client, retrieval, both graphs, cited answers, a local developer UI (python -m graphrag.ui)
 platform/         the stores: Docker Compose (PostgreSQL with pgvector, Neo4j), SQL, loaders and checks; scripts run by path

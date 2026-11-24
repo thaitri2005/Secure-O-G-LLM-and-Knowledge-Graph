@@ -1,6 +1,13 @@
 # Reports
 
-## Current: project report, 9 November 2026
+## Stint reports
+
+One per stint, short, for the supervisor: [stints/](stints/README.md).
+
+- **Latest: [10 to 24 November 2026](stints/STINT_REPORT_2026-11-24.md).** The second build designed; the coordinator, the backend and the application built; not yet run with a real model.
+- [5 November 2026](stints/STINT_UPDATE_2026-11-05.md): Track B's status, in Vietnamese.
+
+## Project report, 9 November 2026
 
 [`PROJECT_REPORT_2026-11-09.md`](PROJECT_REPORT_2026-11-09.md), in English, for the supervisors: purpose and scope, how the project got here, the target architecture, the first build's three tracks in detail (ingestion, the GraphRAG engine with its two graphs, storage), results, roadmap and what the team needs. Diagrams are Mermaid in the text. A shared web copy is at https://claude.ai/artifact/J3cK4LfXiAfKD7J3ZSt3CE; this file is the record.
 

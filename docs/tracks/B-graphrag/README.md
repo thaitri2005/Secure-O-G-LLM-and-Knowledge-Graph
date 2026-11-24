@@ -10,7 +10,9 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | [survey.md](survey.md) | Ready-made GraphRAG repositories: what each does, whether to run it, learn from it or skip it, and what to copy |
 | [next-runs.md](next-runs.md) | Commands to reproduce the runs, and what Track B is waiting on |
 | [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md) | What Track B needs from K1 version 1 |
-| [supervisor-update-2026-11-05.md](supervisor-update-2026-11-05.md) | Tri's status update for the supervisor, in Vietnamese |
+| [Stint reports](../../reports/stints/README.md) | What each stint accomplished, for the supervisor: [24 November](../../reports/stints/STINT_REPORT_2026-11-24.md), and Tri's [5 November update](../../reports/stints/STINT_UPDATE_2026-11-05.md), in Vietnamese |
+| [plan-lanes-and-coordinator.md](plan-lanes-and-coordinator.md) | The implementation plan for the lanes and the coordinator, carried out on 24 November |
+| Notes to teammates, 24 November | [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md): what the second build needs from data. [For Hung](../C-storage/note-from-track-B-2026-11-24.md): where the backend stands and what is his next |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
 
 **Where things stand on 24 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today. What comes next is the second build: the design is in [specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes) (coordinator and lanes), [§8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships) (graph model) and [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-design-and-probe) (reasoning lane); the tasks are in the [plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now).

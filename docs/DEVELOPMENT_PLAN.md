@@ -214,9 +214,9 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 | # | Task | Done when |
 |---|---|---|
-| A1 | **Message anh Tuấn this week.** Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
+| A1 | **Message anh Tuấn this week**, with the [stint report](reports/stints/STINT_REPORT_2026-11-24.md). Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
 | A2 | **Agree the roles** for this stint (Q14) | **Done 24 November:** Khai data, Hung backend, Tri engine and frontend (Track B log B-D39, B-D40) |
-| A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung and Khai have read it; objections recorded |
+| A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung agreed to it and Khai to his role (24 November). Open: each reads his note ([Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [Hung](tracks/C-storage/note-from-track-B-2026-11-24.md)) and records objections |
 | A4 | Exit demo for the supervisor, then hand the application to domain experts | M2 exit shown; the question log has questions from someone outside the team |
 
 ### Data (Khai)
@@ -260,7 +260,7 @@ Hung asked Tri to do part of this for now (Track B log B-D39). B4, B5 and the fi
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | **Built 24 November** (Track B log B-C45), working on the example responses. Open: the first run against the API with a real model |
+| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | **Built 24 November** (Track B log B-C45), then redone for non-developers with a guide and explanations on hover (B-C47), working on the example responses. Open: the first run against the API with a real model, and a first use by someone outside the team |
 | F2 | The source viewer: the cited page beside the cited passage | B7 | **Built as text** (B-C45): a source opens its page's text with the cited passage marked. Open: the page image (B7) |
 | F3 | The evidence panel: passages, facts, the query plan with its events | B5 | **Built** (B-C45): day strips and a table for a computed total; passages with the answer's value marked; checked facts |
 | F4 | "Wrong answer" button and comment | B6 | **Built** (B-C45): right in one click, wrong with a comment, both sent to the question log |

@@ -10,6 +10,9 @@
 | How the system is designed | [Specification §4](PROJECT_DESIGN.md#4-target-architecture) and [§8](PROJECT_DESIGN.md#8-question-answering) |
 | What runs today and how it scores | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today) |
 | What each part of the team has found | [Track records](tracks/README.md) |
+| What the last stint accomplished | [Stint report, 24 November](reports/stints/STINT_REPORT_2026-11-24.md) |
+| What Khai and Hung are asked to do next | Notes of 24 November: [for Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [for Hung](tracks/C-storage/note-from-track-B-2026-11-24.md) |
+| How to run the application | [frontend/README.md](../frontend/README.md), [backend/README.md](../backend/README.md) |
 | What the supervisor asked for | [Meeting digests](requirements/README.md) |
 
 ## Document hierarchy
@@ -25,7 +28,8 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | Supporting | [Components](components/) | How each implemented subsystem works: [document ingestion](components/corpus-ingestion.md), [structured-data import](components/dataset-import.md), [entity registry](components/entity-registry.md). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion](components/bsee-ingestion.md) |
 | Supporting | [Track records](tracks/README.md) | Each track's findings, decisions and design choices, logged the same day: [A, ingestion](tracks/A-ingestion/README.md), [B, GraphRAG engine](tracks/B-graphrag/README.md), [C, storage](tracks/C-storage/log.md) |
 | Supporting | [Experiments](experiments/README.md) | Measurements, one record per experiment (E1–E31) |
-| Supporting | [Reports](reports/README.md) | What was sent to the supervisors: the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md) |
+| Supporting | [Reports](reports/README.md) | What was sent to the supervisor. [Stint reports](reports/stints/README.md), one per stint, in their own folder; the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md); the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
+| Supporting | Application guides | [backend/README.md](../backend/README.md): the read-path API and its contract. [frontend/README.md](../frontend/README.md): the application people use. [graphrag/README.md](../graphrag/README.md): the engine |
 | Supporting | [Related work](references.md) | Papers, GraphRAG repositories and model candidates |
 | Historical | [Repository assessment, 27 October](REPOSITORY_REVIEW_2026-10-27.md) · [Progress report, 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) | Snapshots from before the 28 October direction |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
@@ -47,5 +51,6 @@ Reading order for a new team member:
 - Measurements live in experiment records. Do not copy numbers between documents; link to the experiment that owns them.
 - When behavior changes, update the component guide and specification §3 in the same change.
 - Supervisor direction is recorded as a meeting digest in `requirements/` and as decisions in specification §13.1; unanswered questions stay in §13.2.
-- Reporting to the supervisor is light: short group-chat updates, and two or three slides of architecture with one sample walked through the pipeline (D-46, 9 November meeting). Long written reports are not the norm.
+- Reporting to the supervisor is light: short group-chat updates, and at the end of each stint one short [stint report](reports/stints/README.md) with a picture of the system and one question walked through it (D-46, 9 November meeting). Long written reports are not the norm.
+- A request to a teammate is written as a dated note in that teammate's track folder (`note-from-track-<x>-<date>.md`), not only said in chat.
 - Diagram sources are the Mermaid blocks in the documents; the SVGs are generated from them ([how](diagrams/README.md)).

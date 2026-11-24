@@ -115,15 +115,17 @@ The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B'
 4. ~~The fact graph as nodes and relationships~~: exported (B-C40); Hung to load it, and B-F60's two doubts to check.
 5. The coordinator is built (B-C38, B-C39). **Run E33 on the desktop** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`) and adopt it only if it matches the hand-routed scores.
 6. The reasoning probe, E34: about ten frozen questions on AK-3's non-productive events.
-7. ~~The React frontend~~: built in [frontend/](frontend/README.md) (B-C45; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do**, on the desktop.
+7. ~~The React frontend~~: built in [frontend/](frontend/README.md), for non-developers: always light, plain words, a guide, explanations on hover (B-C45, redone in B-C47; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do**, on the desktop.
 
 **Backend, on Hung's behalf (B-D39):** Hung agreed to the design and asked for help. The read-path API is built in [backend/](backend/README.md) (B-C44; `python -m uvicorn backend.app:app`, packages in `backend/requirements.txt`, tests `tests/test_backend.py`). It reads files, not the stores. The rest of his tasks are designed in [docs/tracks/C-storage/backend-design.md](docs/tracks/C-storage/backend-design.md); do not change `platform/` without him.
+
+**What was asked of teammates (24 November):** [note for Khai](docs/tracks/A-ingestion/note-from-track-B-2026-11-24.md) (the demo K1 release first) and [note for Hung](docs/tracks/C-storage/note-from-track-B-2026-11-24.md) (shared hosting first). **What the stint accomplished:** [stint report](docs/reports/stints/STINT_REPORT_2026-11-24.md). Stint reports live in `docs/reports/stints/`, one per stint.
 
 Still waiting on others: the expert questions and the purpose of use (Q2, Q13); shared hosting of the stores (B-D35); appendix 23 inside the K1 package.
 
 History of this list (B-D15):
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). E23 to E31 are done; the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) and the [project report](docs/reports/PROJECT_REPORT_2026-11-09.md) of 9 November.
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). E23 to E31 are done; the stint's status is in Tri's [update](docs/reports/stints/STINT_UPDATE_2026-11-05.md) and the [project report](docs/reports/PROJECT_REPORT_2026-11-09.md) of 9 November.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). Fact-graph work resumes (B-D29 reverses B-D24's stop).

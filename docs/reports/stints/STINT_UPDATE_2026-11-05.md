@@ -1,6 +1,6 @@
 # Track B update for the supervisor, 5 November 2026
 
-Tri's final text for anh Tuấn. Evidence: [log](log.md), [E23](../../experiments/E23-simulated-set.md) to [E29](../../experiments/E29-table-mappings-across-reports.md).
+Tri's final text for anh Tuấn. Evidence: [log](../../tracks/B-graphrag/log.md), [E23](../../experiments/E23-simulated-set.md) to [E29](../../experiments/E29-table-mappings-across-reports.md).
 
 ---
 

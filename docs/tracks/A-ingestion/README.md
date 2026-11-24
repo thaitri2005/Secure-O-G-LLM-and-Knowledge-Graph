@@ -6,6 +6,7 @@ This page was added by Track B on 24 November 2026 so that all three tracks can 
 
 | File | What it holds |
 |---|---|
+| **[Note of 24 November](note-from-track-B-2026-11-24.md)** | **What the second build needs from data, in order: the demo release first** |
 | [Track A progress report](../../experiments/TRACK_A_PROGRESS.md) | What is implemented, what was measured on which data, and what is open, as of 9 November |
 | [E30: K1 version 1 candidate](../../experiments/E30-k1-version-1-candidate.md) | The package that became the team's interface (D-54, D-57) |
 | [Document ingestion guide](../../components/corpus-ingestion.md) | How the pipeline and its options work, including those added on 17 November |

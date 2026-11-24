@@ -533,7 +533,7 @@ flowchart LR
 | Stores and runner | Backend | The stores hosted where all three teammates reach them (Track B log B-D35). One command takes a K1 package to loaded chunks, vectors and both graphs, and checks each step |
 | Engine | Engine (Track B's code) | Lanes behind one interface, reading the stores; the coordinator (§8.1); results computed by code reported by code; the reasoning probe (§8.6) |
 | API | Backend | The read-path endpoints of §7.5, agreed as an OpenAPI file before either side codes against it |
-| Frontend | Frontend | Chat with the exact-answer switch (D-59); answer with citations; the source page beside the cited passage; the evidence panel (passages, facts, the query plan and its events); a button to mark an answer wrong |
+| Frontend | Frontend | A question box with the exact-answer switch (D-59, shown as "Verified data only"); the answer with a label saying how far to trust it; its sources; the evidence beside it (the timeline of activities behind a total, the report text with the answer highlighted, the key facts); right or wrong marking; a guide. Written for people who are not developers ([frontend/README.md](../frontend/README.md)) |
 
 **Where the code lives.** Folders keep their owners; nothing is moved now.
 
@@ -1190,7 +1190,7 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Vector store | **pgvector inside the PostgreSQL that holds K1** (D-56), proposed by Track C; Neo4j's index stays the alternative if retrieval moves next to the graphs | Chosen |
 | Graph DB | Neo4j Community 5.26 with APOC | Exists: the event graph loaded and checked (Track C) |
 | Backend | FastAPI 0.165 + Pydantic 2, importing `graphrag` as a library | Read path built 24 November (`backend/`), reading files; the stores, the page images and the compose file follow ([backend design](tracks/C-storage/backend-design.md)). The prototype's API and Track B's standard-library UI server are not carried over |
-| Frontend | React 19 + TypeScript, built with Vite; types generated from the API's contract | Built 24 November (`frontend/`) on the example responses; not yet run against a real model. A source page is shown as text; PDF.js or page images follow the file store. Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
+| Frontend | React 19 + TypeScript, built with Vite; types generated from the API's contract | Built 24 November (`frontend/`) on the example responses, in plain language for non-developers, with a guide and explanations on hover; not yet run against a real model or used by anyone outside the team. A source page is shown as text; PDF.js or page images follow the file store. Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
 | Packaging | Docker Compose | Track C's compose file runs the stores; the backend and frontend are added to it |
 
 **Not used:**

@@ -141,4 +141,5 @@ Before this run the three scripts were tested in the cloud: `k1_store.py` and `e
 - **Designed for Hung, not built:** [backend-design.md](backend-design.md), covering shared hosting, the question log in PostgreSQL, loading the fact region into Neo4j, the engine reading the stores, the runner, page images, and the compose file with the access gate.
 - **Nothing in `platform/` was changed.** The proposed SQL for the question log is in the design, not in `platform/sql/`, because files there run on the database's first start and it has not been run against PostgreSQL.
 - Hung has not reviewed this entry or the design; both are his to correct.
+- What to do first, in order, is in the [note of 24 November](note-from-track-B-2026-11-24.md): shared hosting, then the well facts in Neo4j, then the engine reading the stores.
 
