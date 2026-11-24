@@ -34,7 +34,8 @@ flowchart TD
 
 | Module | What it does |
 |---|---|
-| `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard |
+| `client.py` | One OpenAI-compatible client for hosted (OpenRouter) and local (llama.cpp) endpoints. It provides chat with JSON-schema output, embeddings, a cache keyed by the full request, a per-run ledger (calls, tokens, seconds, cost) and the private-data guard. It resolves model profiles (below) |
+| `bench.py` | The model socket: checks a model, runs the measurement suite through the commands below and compares runs ([below](#the-model-socket-d-62-d-68)) |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the AK-3 daily-report chunks, and every question set with its gold data |
 | `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
 | `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
@@ -54,11 +55,11 @@ flowchart TD
 | `ontology.py` | K2 ontology slice: glossary from the reports' tables, rendering as extractor guidance |
 | `neo4j_kg.py` | neo4j-graphrag-python (Apache-2.0, used as a library) on the K1 chunks: the ontology profile as its schema, our client as its LLM and embedder, facts read back from Neo4j and scored against the gold facts (E16) |
 
-Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
+Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json), and model profiles in [`configs/graphrag/models/`](../configs/graphrag/models/) ([below](#the-model-socket-d-62-d-68)). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
 
 ## The coordinator (D-64)
 
-Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time. It needs a model endpoint: a rented cloud GPU running the commands as written, or a hosted open-weight model on public data (D-68); on a hosted model set `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` and add `--no-embeddings`. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time, and `python -m graphrag.bench run <profile> --suite full` makes it with its baselines ([the model socket](#the-model-socket-d-62-d-68)). It is adopted only if it matches the scores each question set got when the lane was chosen by hand, from the same model.
 
 ```powershell
 # Every development question in one pool, no lane given (E33)
@@ -72,7 +73,7 @@ python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three -
 ```
 
 - A question costs one framing call, plus one answer call unless code computed the result.
-- Which model serves which role (`frame`, `answer`, `extract`, `embed`) is in [`configs/graphrag/roles.json`](../configs/graphrag/roles.json).
+- Which model serves which role (`frame`, `answer`, `extract`, `embed`) is in [`configs/graphrag/roles.json`](../configs/graphrag/roles.json); `GRAPHRAG_PROFILE=<profile>` puts one profile on the roles it lists.
 - `--no-embeddings` answers questions naming several wells with per-well BM25, when the embedding server is not running.
 - Tests: `tests/test_graphrag_lanes.py`, with stand-in models.
 
@@ -133,9 +134,52 @@ python -m graphrag.ui        # then open http://127.0.0.1:8765
 - **Ask a question:** answers a new question through the coordinator: the framing call and code choose the lane, or you force the end-of-well lanes or the event graph by hand. Needs llama.cpp on port 8080; hosted endpoints are off in the UI.
 - Standard library only, listening on 127.0.0.1. Tests: `tests/test_graphrag_ui.py`.
 
+## The model socket (D-62, D-68)
+
+Plug in an open-weight model and measure it with one command. What to run when compute arrives, and in what order, is in [next-runs.md](../docs/tracks/B-graphrag/next-runs.md).
+
+```powershell
+python -m graphrag.bench check qwen3-8b.local                    # a few calls: is the model usable here?
+python -m graphrag.bench run qwen3-8b.local --suite quick        # the prototype's 31 questions, the setup check
+python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/ak3-demo-v1
+python -m graphrag.bench compare bench_qwen3-8b.local_full bench_qwen3-8b.openrouter_full
+python scripts/experiment_record.py E33 bench_qwen3-8b.local_full --title "..."   # a draft record, prose left blank
+```
+
+**A model profile** is one JSON file in [`configs/graphrag/models/`](../configs/graphrag/models/): one model on one endpoint.
+
+| Field | Meaning |
+|---|---|
+| `endpoint`, or `base_url` and `api_key_env` | An endpoint of `endpoints.json`, or an address of its own with the name of the variable holding its key. An address other than 127.0.0.1 counts as hosted: reach a rented machine through an SSH tunnel |
+| `model` | The model ID as that endpoint knows it (on llama.cpp, the server's `--alias`) |
+| `file` | The model file a llama.cpp server must run; `check` and `run` refuse a server running another |
+| `hosted` | May make an endpoint stricter, never less strict: a hosted endpoint takes public data only |
+| `thinking_off`, `request` | How thinking is turned off there, and the fields added to every request to do it (OpenRouter's `reasoning`, a pinned `provider`) |
+| `context`, `price_in`, `price_out` | The context the server must have; US$ per million tokens when the endpoint does not report cost |
+| `roles` | The roles it may serve, of `frame`, `answer` and `extract`; all three by default |
+| `compare_as` | `endpoint:model` of recorded runs made with the same model copy, so `compare` lines it up with them |
+
+Wherever a command takes `--endpoint`, it also takes a profile name, a profile file, or `endpoint:model`; `--model` must then be the profile's model. `GRAPHRAG_PROFILE=<profile>` puts a profile on every role it lists, and a role of the roles file may name one (`{"profile": "qwen3-8b.openrouter"}`, as in [`deploy/models/roles.openrouter.json`](../deploy/models/roles.openrouter.json)). `roles.json` itself is unchanged.
+
+**`check`** sends three calls: the framing schema, an answer schema on a real question, and a prompt of the size the reasoning lane sends at most. It reports in a table whether the endpoint answers, the model ID exists, the server runs the profile's file with enough context, each reply is valid under its schema, thinking is off (no reasoning block, no more completion tokens than the text explains), tokens are reported, and the seconds for one call. A required check that fails gives exit code 1 and one sentence on what to change.
+
+**`run`** runs the existing commands one after another, one request at a time, so each writes its run file in `graphrag/results/` as it always does.
+
+| Suite | Steps |
+|---|---|
+| `quick` | The baseline on the prototype's 31 questions (about 31 calls) |
+| `full` | The hand-routed baseline of each question set with the adopted settings; the coordinator on the 221 pooled questions (E33); with `--k1`, every step on the K1 package and the prototype questions on its AK-3 report (E32); the reasoning probe (E34). `--no-embeddings` replaces fusion and the fact-sheet ranking with BM25 |
+
+Beside the run files, `<name>.bench.json` records the profile, the endpoint, the server's settings (llama.cpp's `/props`: model file, build, context, slots), the date, each step and the totals of calls, tokens, seconds and cost.
+
+- **Resuming.** Run the same command again: finished steps are skipped, and answered questions come from the request cache, at no new cost. A run resumes only with the same profile, server and options.
+- **The cache never crosses models.** A profile's calls are cached under its name and the model file and build the server reports, besides the full request; `--fresh` adds the run's name, so nothing earlier is reused.
+- **`compare`** gives, per question set, the score, wrong answers, and calls, prompt and completion tokens, seconds and cost per question. For the coordinator it gives the hand-routed score from the same profile and how often it chose the expected lane. Runs of different profiles, or a hosted and a local run, go in separate tables and are never lined up. Recorded run files can be named too; a local profile lines up with those of its `compare_as`.
+- Tests: `tests/test_graphrag_bench.py`, against `scripts/stub_model_server.py` on a free port. **The stand-in proves the wiring, never a score**, and `compare` and the draft record say so when it answered.
+
 ## Running locally
 
-Models live in ignored `data/interim/models/`. Start the servers with llama.cpp's `llama-server`. On an Nvidia GPU, use the CUDA build from the [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) (E15 used b12015, `win-cuda-12.4-x64` plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`) and `-ngl 99`. On a laptop with an integrated GPU, use `--device none -ngl 0` instead: the Vulkan backend runs out of device memory.
+Models live in ignored `data/interim/models/`. Start the servers with llama.cpp's `llama-server`. On an Nvidia GPU, use the CUDA build from the [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) (E15 used b12015, `win-cuda-12.4-x64` plus its `cudart` zip, unpacked into ignored `data/interim/llama.cpp/`) and `-ngl 99`. On a laptop with an integrated GPU, use `--device none -ngl 0` instead: the Vulkan backend runs out of device memory. On a rented Linux GPU, `bash scripts/setup_gpu_box.sh` builds llama.cpp, downloads the models and starts both servers below.
 
 ```powershell
 llama-server -m data/interim/models/Qwen3-Embedding-0.6B-Q8_0.gguf --embedding --pooling last --port 8081 -c 8192 -b 2048 -ub 2048 -ngl 99 --alias qwen3-embedding-0.6b

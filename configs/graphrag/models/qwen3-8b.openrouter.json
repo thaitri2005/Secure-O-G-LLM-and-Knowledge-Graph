@@ -1,0 +1,12 @@
+{
+  "description": "Qwen3-8B on OpenRouter, served by a third party at its own precision: for the demo and quick checks on public data only (D-68). Unverified until `bench check` has run",
+  "endpoint": "openrouter",
+  "model": "qwen/qwen3-8b",
+  "thinking_off": "in the request: OpenRouter's reasoning switch; `bench check` confirms it",
+  "request": {"reasoning": {"enabled": false}, "provider": {"require_parameters": true}},
+  "context": 32768,
+  "price_in": 0.20,
+  "price_out": 0.46,
+  "prices": "US$ per million tokens, the top of the listed range in the resource request of 24 November 2026; used only when OpenRouter does not report a call's cost itself",
+  "roles": ["frame", "answer", "extract"]
+}

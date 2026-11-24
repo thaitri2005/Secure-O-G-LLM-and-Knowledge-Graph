@@ -1,33 +1,74 @@
 # Track B: next runs
 
-Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. **The team has no GPU of its own now** (B-D42, B-D43): the desktop these runs were written for was borrowed. Run them on a rented cloud GPU with the local commands as written (our own model copy, so scores stay comparable; D-68, B-D44), or on a hosted open-weight model on public data ([below](#on-a-hosted-model)). Neither is paid for yet ([resource plan](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
+**Next: E32, E33 and E34**, once there is compute ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). The team has no GPU of its own (B-D42, B-D43). The runs go on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68, B-D44). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
 
-## Before you start
+Every run goes through the model socket (`python -m graphrag.bench`, [how it works](../../../graphrag/README.md#the-model-socket-d-62-d-68)): one command checks a model, one runs the whole suite, one compares runs.
+
+| Measurement | What | Inside `bench run --suite full` |
+|---|---|---|
+| E32 | Answers on the K1 package `ak3-demo-v1` | Every step with `--k1`, and the prototype questions on the package's AK-3 report |
+| E33 | The coordinator on the 221 pooled questions, against the hand-routed scores from the same model | The hand-routed baselines of the seven sets, then the coordinator |
+| E34 | The reasoning lane on its ten frozen questions (`graphrag/gold/ak3_reasoning_probe_v0.json`) | The last step |
+
+## On a rented GPU
+
+1. Rent a 16 GB card or larger, with an Ubuntu CUDA "devel" image and a disk that is kept when the machine stops.
+2. On the machine, clone the repository and run the setup. It is untested: read it first. It installs Python 3.12 and the packages, builds llama.cpp b12015, downloads the three models, and starts the answer model (port 8080) and the embedding model (8081) with the settings of [graphrag/README.md](../../../graphrag/README.md#running-locally):
+
+   ```bash
+   git clone <repository> kg && cd kg
+   bash scripts/setup_gpu_box.sh /workspace/kg
+   ```
+
+3. Copy the K1 package (public data) to `data/interim/k1/ak3-demo-v1/`. Build it on a laptop with `python scripts/build_k1_demo_release.py`.
+4. Check the model, then reproduce the baseline: the quick suite should give about 28/31, as the recorded run did.
+
+   ```bash
+   .venv/bin/python -m graphrag.bench check qwen3-8b.local
+   .venv/bin/python -m graphrag.bench run qwen3-8b.local --suite quick
+   .venv/bin/python -m graphrag.bench compare bench_qwen3-8b.local_quick E17_answers_bm25_k5_qwen3-8b
+   ```
+
+5. Run the suite. If the machine stops or a call fails, run the same command again: finished steps are skipped and answered questions come from the request cache, at no new cost.
+
+   ```bash
+   .venv/bin/python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/ak3-demo-v1
+   ```
+
+6. Copy `graphrag/results/bench_qwen3-8b.local_*` and `data/models.sha256` back, then stop the machine.
+
+`check` and `run` refuse a server that runs another model file than the profile names. Another model is another profile: copy `configs/graphrag/models/qwen3-8b.local.json` and change `model`, `file` and the server command.
+
+## On a hosted endpoint
+
+All data in these runs is public (AK-3 and the Utah FORGE reports), so a hosted open-weight model is allowed (D-38, D-68). Set `OPENROUTER_API_KEY` first.
 
 ```powershell
-git pull --rebase
-python -m unittest discover -s tests -p "test_graphrag.py"
+python -m graphrag.bench check qwen3-8b.openrouter
+python -m graphrag.bench run qwen3-8b.openrouter --suite quick
+python -m graphrag.bench run qwen3-8b.openrouter --suite full --k1 data/interim/k1/ak3-demo-v1 --no-embeddings
+python -m graphrag.bench compare bench_qwen3-8b.openrouter_full
 ```
 
-Tests should print `OK` (3 skipped in `.venv`). Then start the servers ([commands](../../../graphrag/README.md#running-locally)):
+Rules for a hosted run (D-68):
 
-| Server | Port | Endpoint | Settings |
-|---|---|---|---|
-| Qwen3-8B, answers | 8080 | `local-llama` | `-c 32768 -np 1 -ngl 99`, thinking off |
-| Qwen3-Embedding-0.6B | 8081 | `local-embed` | Needed for the fact sheet ranking and `perwell:fusion` |
-| Qwen3-4B, extraction | 8082 | `local-llama-2` | Only if you rebuild the graph |
+1. **Rerun the baseline on the same endpoint first.** The full suite does this: its hand-routed steps are that endpoint's baseline. A hosted score is compared only with another hosted score, never with the recorded local ones; `compare` puts them in separate tables and says so.
+2. **Record the provider.** OpenRouter routes each call to one of several providers. The run records the providers that answered, and `compare` warns when there was more than one. To hold one provider, add `"order": ["<provider>"], "allow_fallbacks": false` to the profile's `request.provider`.
+3. **Check that thinking is off.** `bench check` fails if a reply carries a reasoning block or far more completion tokens than its text. The profile turns thinking off with OpenRouter's `reasoning` field; this is unverified until the first check.
+4. Without the embedding server, `--no-embeddings` answers questions naming several wells with per-well BM25. Say so in the record.
 
-Send one request at a time, and record the server settings with each run (B-F19).
+Cost: the 221 pooled questions are about 0.7 million prompt tokens, so the full suite comes to a few million tokens, under US$1 at the listed prices.
 
-## E23: does the graph help on the simulated set? (done)
+## After a run
 
-Not on this set: 29/40 for both with top 5, and 31 and 30 with per-well retrieval. See the [record](../../experiments/E23-simulated-set.md).
+1. Write a draft record. It fills in the header, the commands and the tables, and leaves the prose blank for a person: `python scripts/experiment_record.py E33 bench_qwen3-8b.local_full --title "The coordinator on the pooled questions"`.
+2. Write the parts marked **TO WRITE**, then add the row to the [register](../../experiments/README.md) by hand. The script never adds it.
+3. Add findings and decisions to the [log](log.md), and update its "Current state" table and the results in [CLAUDE.md](../../../CLAUDE.md).
+4. Commit as yourself, with no AI attribution, then `git pull --rebase` and push.
 
-## E24: AK-3 daily reports (done)
+## Rebuilding inputs and reproducing earlier runs
 
-5/30 with plain RAG, 19/30 when the model is given the right page. See the [record](../../experiments/E24-ak3-daily-reports.md), which holds the list for Khai.
-
-To regenerate the chunks on a new machine (`data/corpora/` is ignored by git):
+The daily-report corpus (ignored `data/corpora/`), needed for daily-report runs without `--k1` ([E24](../../experiments/E24-ak3-daily-reports.md)):
 
 ```powershell
 python -m pip install --no-deps vietocr==0.3.13
@@ -36,98 +77,17 @@ python scripts/run_ak3_appendices.py --workers 2
 ```
 
 - Docling's models must be cached once. If every document fails with `LocalEntryNotFoundError`, run `process` on one document with `HF_HUB_OFFLINE=0`, then `process --retry-failed`.
-- `process --workers 2` hangs after 40 documents ([E24](../../experiments/E24-ak3-daily-reports.md)). Stop it and run `process` again, then `export --name v1`.
-- Chunks are in the release folder named by `exports/v1/CURRENT.json`; `graphrag/data.py` follows it.
+- `process --workers 2` hangs after 40 documents. Stop it, run `process` again, then `export --name v1`.
+- Chunks are in the release folder that `exports/v1/CURRENT.json` names; `graphrag/data.py` follows it.
 
-## E25: table mappings on an unseen report (done)
-
-Written from AK-3, the mappings found 3 facts on 78-32, with the wrong size on 2, and missed its 20-row survey. Two small fixes gave 23 correct facts without changing the original three reports. See the [record](../../experiments/E25-table-mappings-unseen-report.md).
+Table mappings on unseen reports ([E25](../../experiments/E25-table-mappings-unseen-report.md), [E29](../../experiments/E29-table-mappings-across-reports.md)). The registry's PDFs come from each entry's `source_url` (for 58-32, the attachment `58-32_EOWR_DOE.pdf` of its binder), saved as `data/raw/<doc_id>.pdf` and checked by their SHA256:
 
 ```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_e25_78-32.json --config configs/ingestion/default.json --run-name e25_78-32
-python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
-```
-
-## E26 and E27 (done)
-
-[E26](../../experiments/E26-routing-and-strict-facts.md): routing and strict fact checks. [E27](../../experiments/E27-date-filter-and-coverage.md): the date filter and added coverage. The settings adopted from them are in the [README](../../../graphrag/README.md#the-baseline) (B-D23, B-D24).
-
-## E28: the event graph (done)
-
-22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. See the [record](../../experiments/E28-event-graph.md).
-
-```powershell
-python -m graphrag.events build --name my_events
-python -m graphrag.events answer --questions ak3_events_heldout --endpoint local-llama --model qwen3-8b --name my_graph_answers
-```
-
-Next on our side, when the work resumes: let code report the event graph's result directly, since the model garbles some right results (computed 22/23, not run), and load the graph into Neo4j with Track C.
-
-## E29: table mappings across reports (done)
-
-Held-out casing 4/16 as written, 13/16 with no wrong fact after fixes. See the [record](../../experiments/E29-table-mappings-across-reports.md).
-
-```powershell
 python -m graph_builder.ingestion run --sources configs/sources/gdr_e29_unseen.json --config configs/ingestion/default.json --run-name e29_all
 python -m graphrag.tables --run e29_all --name my_tables
 python -m graphrag.tables --run e25_78-32 --name my_tables_78-32
 python -m graphrag.table_eval --facts my_tables my_tables_78-32 --runs e29_all e25_78-32 --name my_score
 ```
 
-The registry's local PDFs come from each entry's `source_url` (58-32: the attachment `58-32_EOWR_DOE.pdf` of the binder), saved as `data/raw/<doc_id>.pdf`; the SHA256 in the registry checks them.
-
-Worth doing when the work resumes:
-
-- A different author's modern digital report, the real remaining test for the mappings (B-F54).
-- The event graph on 58-32's `DailyDrillingReport.pdf`, also in that binder, as its first unseen report.
-
-## Waiting on
-
-| What | From whom | Then |
-|---|---|---|
-| The expert question set, or a specification for development questions, asked for in the [5 November update](../../reports/stints/STINT_UPDATE_2026-11-05.md) | Supervisor and the expert group | Write or take the questions, rerun the baseline and both graphs, and decide the graphs for good (B-D24, B-D26) |
-| **High priority:** shared hosting of the stores on a free cloud tier, owned by Track C, with Tri and Khai added as users (B-D35) | Hung, Track C | Read K1 packages and chunks from the shared store instead of zips |
-| Appendix 23 (the non-productive-time report) inside the K1 package, so the event graph reads only K1 (E31) | Khai, Track A | Drop the old-corpus fallback in `events.npt_report_inputs` |
-| Reading chunks from Track C's PostgreSQL, and both graphs in Neo4j ([note](note-for-track-C-storage.md)); vector store is pgvector (D-56) | Hung, Track C | Point the baseline at the store; BM25 stays for one-well questions, pgvector embeddings for several |
-| Whether users ask questions over time (B-D26, Q3). The fact graph is in the design (B-D29), and the supervisor accepted the lanes as a concept on 9 November | Supervisor and the expert group; the application's question log (B-D37) | Confirm or reverse the event graph |
-| The purpose of use: document types and kinds of question (Q13) | Supervisor | Split, merge or add lanes (B-D32, B-D36) |
-
-## After each run
-
-1. Add a record `docs/experiments/E<n>-*.md` and a row in the [register](../../experiments/README.md).
-2. Add findings and decisions to the [log](log.md), and update its "Current state" table.
-3. Update the results table in [CLAUDE.md](../../../CLAUDE.md).
-4. Commit as yourself, with no AI attribution, then `git pull --rebase` and push.
-5. Mark the run done in this file.
-
-## On a hosted model
-
-All data in these runs is public (AK-3 and the Utah FORGE reports), so a hosted open-weight model is allowed (D-38, D-68). Set `OPENROUTER_API_KEY` first.
-
-| Local command part | Hosted |
-|---|---|
-| `--endpoint local-llama --model qwen3-8b` (`graphrag.baseline`, `graphrag.events answer`) | `--endpoint openrouter --model qwen/qwen3-8b` |
-| The coordinator and the backend, which read the roles file | `$env:GRAPHRAG_ROLES = "deploy/models/roles.openrouter.json"` before the command |
-| Questions naming several wells (they need the embedding server) | `--no-embeddings` on the coordinator, or `--multi-well-retriever perwell:bm25` on the baseline; say so in the record |
-
-Rules for a hosted run (D-68):
-
-1. **Rerun the baseline on the same endpoint first.** A hosted score is compared only with another hosted score, never with the recorded local ones.
-2. Record the provider OpenRouter routed to, the model ID and the date with the run. Report tokens and cost; seconds say little there.
-3. Check on the first run that thinking is off (answers arrive without a reasoning block and at the usual token counts); if it is not, stop and record what the provider needs.
-4. None of this has been run: the model ID and the provider's behaviour are unverified until the first call.
-
-Cost: the 221 pooled questions are about 0.7 million prompt tokens, so E33 with its baselines, E32 and E34 together come to a few million tokens, under US$1 at the listed prices ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
-
-## Answers on K1 version 1
-
-Use the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, Track B log B-C55), in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` to its `chunks.jsonl` if another package is there too. The compatibility check and the event graph need no model. These need a model, shown here with the local endpoint:
-
-```powershell
-python -m graphrag.baseline answer --pool k1_ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name E32_k1_prototype
-python -m graphrag.events answer --k1 --questions ak3_events --name E32_k1_events
-python -m graphrag.events answer --k1 --questions ak3_events_heldout --name E32_k1_events_heldout
-python -m graphrag.baseline answer --pool k1_daily --retriever dates:wells:bm25 --k 5 --questions ak3_daily_heldout --endpoint local-llama --model qwen3-8b --name E32_k1_daily_heldout
-```
-
-Compare with E17 (28/31), E28 (22/35, 19/23) and E27 (14/26). On `k1_ak3` the retrieval hit flags use old gold chunk IDs and are not meaningful; scores are by value. `DateRouter` still guesses dates from text; swapping in K1's report date field is the next small change.
+The event graph ([E28](../../experiments/E28-event-graph.md)): `python -m graphrag.events build --name my_events`.

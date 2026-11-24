@@ -1,0 +1,10 @@
+{
+  "description": "Qwen3-8B Q4_K_M, our own copy on llama.cpp (the answer model of E17 and E18): a rented GPU or any machine serving it on port 8080",
+  "endpoint": "local-llama",
+  "model": "qwen3-8b",
+  "file": "Qwen3-8B-Q4_K_M.gguf",
+  "thinking_off": "on the server: llama-server --jinja --chat-template-kwargs '{\"enable_thinking\":false}'",
+  "context": 32768,
+  "roles": ["frame", "answer"],
+  "compare_as": "local-llama:qwen3-8b"
+}
