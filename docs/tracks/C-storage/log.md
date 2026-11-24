@@ -143,3 +143,48 @@ Before this run the three scripts were tested in the cloud: `k1_store.py` and `e
 - Hung has not reviewed this entry or the design; both are his to correct.
 - What to do first, in order, is in the [note of 24 November](note-from-track-B-2026-11-24.md): shared hosting, then the well facts in Neo4j, then the engine reading the stores.
 
+
+## 2026-11-24 (later): the loaders, the runner and the deployment files
+
+Built by Track B with Hung's clearance (Track B log B-D41), from the [backend design](backend-design.md). Hung has not reviewed these entries or the code; both are his to correct. Everything ran on Tri's laptop against the Docker stores of `platform/docker-compose.yml`, not on a server.
+
+**C-C12 (design choice; the fact region in Neo4j).** `platform/load_facts_neo4j.py`, as backend design §4.1: one write transaction that clears the fact region only, merges nodes and relationships from `graphrag/results/E27_fact_graph.graph.json`, checks, and rolls back on any difference.
+
+- **Loaded:** 216 facts, 38 chunks, 3 documents, 11 casing strings, 5 wells; 216 `HAS_FACT`, 216 `FROM`, 38 `HAS_CHUNK`, 11 `HAS_CASING`, 5 `DESCRIBED_BY`. The facts read back equal the file's, 216 of 216. Loading twice gives the same result.
+- **The event region is not disturbed:** 27 days and 161 events of AK-3 before and after. The check counts the file's wells only, so another well being loaded at the same time cannot fail it.
+
+**C-C13 (design choice; the event loader takes its input and its connection from outside).** `platform/load_events_neo4j.py` gains `--events`, `--runs` and `--well`, and reads `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` and `BACKEND_DSN` from the environment; with nothing given it behaves as before. It now reports chunks with K1 version 1 IDs that are missing from PostgreSQL (backend design §4.2), without failing on them.
+
+- **The event region is now loaded from the graph built on K1** (`E31_events_k1.json`): 161 of 161 events read back identical, 58 of 58 recorded plans replay, 83 chunks carry version 1 IDs and none is missing from PostgreSQL. The non-productive report's events still cite old IDs, until the release holds appendix 23 (plan task D1).
+
+**C-C14 (design choice; the runner).** `platform/run_release.py <release>`: the eight steps of backend design §6 as functions, each with its check, and one row in a new `runs` table (`platform/sql/003_runs.sql`). [platform/README.md](../../../platform/README.md) lists the scripts, their order and the environment variables.
+
+| Run on Khai's K1 candidate | Result |
+|---|---|
+| First run, `--skip-vectors --reload` | 1,040 chunks, 174 of 174 pages rebuilt, 161 events on 27 days, 58 of 58 plans, 216 of 216 facts; a row in `runs` |
+| Second run | "counts equal those of the previous run"; the release was kept, nothing changed |
+| Without the appendix 23 export | Stops at step 4 and names it; the row says `failed`; neither graph region touched |
+
+- **A release already loaded is kept, not reloaded,** when its `SHA256SUMS` digest matches; `--reload` forces a load. Reloading deleted the release's vectors, so a rerun with `--skip-vectors` would have wiped real vectors on the server.
+- **Step 3, embedding, has only run against a stand-in:** this laptop has no embedding server.
+- **Step 6 loads the committed fact graph by default** and says so in the output and the run record. A full fact graph needs model extraction on three end-of-well reports. `--facts tables` builds one from the release's tables with no model call; it is unit-tested, not loaded.
+- **A softer rule than the design's:** appendix 29, the graphical report, has no operations table and gives no events. The runner fails a daily-report file that has an operations table but no event, and only lists the others. For Hung to confirm.
+- **Not changed:** `load_k1.py`, `embed_k1.py`, `k1_store.py`, `validate_k1.py`. Run alone they still default to the local connection string; they take `--dsn`.
+
+**C-C15 (design choice; the question log tables and the run record).** `platform/sql/002_questions.sql` holds the tables of backend design §3, safe to run twice, with `reasoning` among the lanes that can be forced. The class that writes them is in `backend/questions.py` (Track B log B-C50). Both files run by themselves when PostgreSQL first starts on an empty volume; on an existing database, `python -m backend.questions init` and the runner create them.
+
+**C-C16 (design choice; the compose file serves a laptop and a server).** Backend design §1 and §8.
+
+- **Passwords come from the environment**, with the local defaults kept, so a laptop needs no `.env` file and a server sets its own. [`platform/.env.example`](../../../platform/.env.example) lists every variable. The stores still start alone, with the same images and volumes.
+- **`--profile app`** adds the backend (built from `backend/Dockerfile`: Python 3.12, a non-root user, only what runs) and the proxy (Caddy with the built frontend, `/v1/` forwarded to the backend, one shared user name and password, automatic HTTPS when a domain is set). Without a password hash the proxy refuses to start.
+- **`--profile demo`** adds a stub model server, `scripts/stub_model_server.py`, for trying the stack without a GPU. It is not a model: every answer starts with "[stub model]".
+- **The model endpoint is a mounted file,** a server-side copy of `endpoints.json` and `roles.json`; templates for Tri's desktop over a private network and for an open-weight model at OpenRouter are in `deploy/models/`.
+- **[deploy/README.md](../../../deploy/README.md) is the runbook:** from a new Ubuntu server to the running application, with the firewall, loading a release, the SSH tunnel, backup (`deploy/backup.sh`, a nightly `pg_dump` kept seven days), updating, and troubleshooting. `deploy/smoke_test.py` checks a running deployment from outside.
+- **Run on Tri's laptop only** (Track B log B-C54). The steps on a real server with a real domain have not been run.
+- **CI:** `.github/workflows/ci.yml` runs the engine, backend and stub tests and the frontend's tests and build on each push. It informs; it is not a required check and blocks no one.
+
+**C-F07 (finding; what is still open in the stores).**
+
+- **No vectors on this laptop's store:** `chunk_vectors` is empty, and vector search in SQL is not wired into the engine (Track B log B-C50).
+- **Facts and chunks are on two ID schemes** (Track B log B-F63): the fact region cites K1 version 0 chunk IDs, which are not in `chunks`.
+- **MinIO is still unpinned and unused;** page images and K1 releases are folders on the server.

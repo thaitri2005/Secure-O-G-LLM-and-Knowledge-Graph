@@ -946,3 +946,65 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **The notes to Khai and Hung are rewritten as work lists**: for each task, what to build, the steps, and how to know it is done.
 - **Files moved out of the repository's root:** the slides of the professor's review to `docs/reports/slides/ARCHITECTURE_TODAY_2026-11-12.pdf`; the 27 October report's PDF from `output/pdf/` to `docs/reports/`, with its render script pointed there, and the empty `output/` folder removed; the English copy of VPI's requirement document, `KGinEP.docx`, to the ignored `docs/requirements/originals/KGinEP-en.docx`, beside the Vietnamese one.
 
+
+## 2026-11-24: building all three tracks toward production
+
+**B-D41 (decision; build everything that needs no key, server or GPU, in all three tracks).** Tri, with Khai's and Hung's clearance, asked for all work that can be done without new resources to be done now, whichever track it belongs to, so that at the end of the stint what is left is to rent the server, set passwords and keys, and run the measurements that need the desktop GPU.
+
+- **How:** one plan with fixed interfaces and one work package per development agent, each in its own git worktree, so no two touch the same file: [plan-production-readiness.md](plan-production-readiness.md). Tri's session (Claude) wrote the plan, reviewed and merged each package, fixed what the packages found in each other, and ran the whole application end to end.
+- **The agents are coding helpers only.** They are Claude models on a separate API key. None is part of the system: the pipeline still calls only open-weight models, and no agent wrote evaluation data. The reasoning probe's questions were written in Tri's session and are marked as simulated, like the other sets (B-D22).
+- **Cost of the agents:** about US$27 for the five packages merged so far (stores 3.05, plus one run cut off by lack of memory whose cost was not reported; engine on the stores 4.78; deployment 8.55; reasoning lane 9.22; page images 1.76).
+- **Not part of this:** anything measured with a real model. Every number below comes from tests with stand-in models or from loading and reading data.
+
+**B-C50 (design choice; the engine and the backend read the stores).** Plan tasks E2 and B6; backend design §3 and §5.
+
+- **`graphrag/stores.py`:** `read_chunks`, `read_events`, `read_facts` and `engine_from_stores` build the same `Engine` from PostgreSQL and Neo4j that `Engine.load` builds from files. `psycopg` and `neo4j` are imported only inside the functions, so `import graphrag` still needs only `httpx` and `numpy`.
+- **Checked on the real data:** on Khai's K1 candidate (1,040 chunks) the chunks from the store equal the file-loaded pools; the 161 events of E31 read back identical; the facts read back give the same graph as `to_graph` wrote.
+- **Switch by environment:** `BACKEND_SOURCE=stores` with `BACKEND_DSN` and `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`. With nothing set the service behaves as before. `GET /v1/health` reports `"source": "stores"` or `"files"` from a new `Engine.source` field.
+- **A store that is configured but unreachable stops the server at start** with its error, instead of answering from files.
+- **The question log in PostgreSQL:** `PostgresQuestionLog` in `backend/questions.py`, on the tables of `platform/sql/002_questions.sql`. It passes the 19 tests of the file log. `python -m backend.questions init` creates the tables on an existing database; `counts` runs the query the log exists for (questions by kind, answered, marked wrong).
+- **Model servers by environment:** `GRAPHRAG_ENDPOINTS` and `GRAPHRAG_ROLES` name other endpoint and role files, so a deployment points at its own model server without changing the repository.
+- **Not built: vector search in SQL.** `baseline.build` makes retrievers from a spec over chunks in memory, so a pgvector retriever does not plug in cleanly. Questions naming several wells use the in-memory retriever, as with files. To do when the vectors exist on the shared store.
+
+**B-F63 (finding; exact mode crashed on the stores).** With the stores as the source, an exact-mode lookup raised `KeyError` in `baseline.answer_one` (a 500 through the API).
+
+- **Cause:** the facts of E27 cite K1 version 0 chunk IDs (`gdr882_ak3_eowr#c0008`), and none of their 38 chunks is in the K1 version 1 release the engine holds. Normal mode hid it, because passages came from retrieval.
+- **Fix:** the coordinator now shows only passages the engine holds; the fact still counts, its passage cannot be shown. A test covers it.
+- **What it means:** on the stores, facts and passages are not yet on one ID scheme. The legacy ID map cannot bridge it: 26 of the 38 chunks belong to the two other end-of-well reports, which are not in the release. It closes when the demo release holds the three reports and the facts are rebuilt on it (plan tasks D1, D3; backend design §4.2).
+
+**B-C51 (design choice; the reasoning lane).** Plan task E7, specification §8.6. `graphrag/reasoning.py`, a fourth lane.
+
+- **Step 1, find the problem, in code.** Non-productive events with one code on consecutive days make one incident: AK-3's 28 events make 6 incidents, 115 hours. The frame gains a `problem` (date, depth, non-productive code, up to three keywords). Several matches: the answer lists them and asks which, with no answer call. None: the fixed fallback to passages.
+- **Step 2, gather, in code.** The incident's events, the events of the days before and after, three passages of the same days' reports, three end-of-well passages. At most about 13,200 characters of evidence (3,300 tokens); a question costs at most about 4,500 tokens with a 900-token answer, twice an end-of-well lookup.
+- **Step 3, one answer call under a JSON schema:** `stated` (causes a report gives) and `possible` (factors visible in the evidence), each item with citations to evidence labels. Code removes any item whose citation is not among the evidence shown, and counts what it removed. Exact mode hides `possible` and says how many.
+- **Step 4, what is missing:** the four kinds of evidence §8.6 says this corpus lacks, plus up to five the model adds.
+- **The frame's kind `reasoning` is renamed `cause`**, and the framing prompt changed once (497 characters longer; `max_tokens` 260 to 320). No recorded run depends on the framing request, because the coordinator has not been measured (E33).
+- **K4 version 0.3** carries the `reasoning` object and the status `ask_which`; versions 0.1 and 0.2 still validate.
+- **Open, for the specification:** exact mode still runs the lane, though its stated causes rest on passages and on the model's reading. D-59 says exact mode uses exact evidence only. To decide with the supervisor's "verified data only" in mind.
+
+**B-C52 (design choice; the reasoning probe's questions, frozen).** [`graphrag/gold/ak3_reasoning_probe_v0.json`](../../../graphrag/gold/ak3_reasoning_probe_v0.json): ten questions on AK-3's non-productive events, written and frozen before any run with a real model, for E34.
+
+- Eight name one problem and have a cause the event descriptions state (plugged inner barrel, the foot clamp slipping, failed generators, weather, waiting on the well design); one names none, where asking "which problem?" is right; one names a problem that did not happen.
+- **Simulated, not expert-reviewed**, written in Tri's session from the recorded events. Its limits are in the file: causes stated elsewhere in a report count as unsupported and must be read by hand; terms are matched as text; chunk IDs are left open so the probe runs on either ID scheme.
+- **Run:** `python -m graphrag.coordinator answer --questions graphrag/gold/ak3_reasoning_probe_v0.json --name E34_reasoning_probe`, on the desktop.
+
+**B-C53 (design choice; the API and the page view).** Plan tasks B7 and F2, and the contract for the reasoning lane.
+
+- **Contract:** the lane `reasoning`, the status `ask_which`, the kind `cause`, `frame.problem`, and `evidence.reasoning` (the problem, the candidates, the evidence gathered, stated and possible causes with checked citations, what was removed, what is missing). Two new example responses: `question_cause.json`, `question_cause_which.json`.
+- **Page images:** `platform/render_pages.py` writes one PNG per page with `pypdfium2` at 150 dpi (AK-3's end-of-well report: 29 pages, 13 MB, 21 s; a second run skips them all). `GET /v1/files/{file_id}/pages/{n}/image` serves one; the file ID is checked against the files the engine holds and the page number as a positive integer before any path is built.
+- **Frontend:** a source opens on "Page as printed" with the cited passage beside the image, and "Page text" keeps the earlier view. The production build calls `/v1` on its own origin, and has plain messages for a rejected password, a proxy error, a slow or unreachable server, with "Try again".
+- **Not checked in a browser** by the agent; no highlight on the image, because K1 passages carry no region.
+
+**B-C54 (design choice; the whole application run end to end on this laptop).** After merging, the stack was built and started with `docker compose --profile app --profile demo up -d --build`, with `BACKEND_SOURCE=stores`, the stub model in place of llama.cpp, and the proxy on port 8088.
+
+| Check | Result |
+|---|---|
+| The gate | A request without the password is refused (401) |
+| The frontend through the proxy | Loads |
+| Health | `"source": "stores"`: 61 end-of-well chunks, 979 daily chunks, 161 events, 216 facts, 5 wells |
+| Questions | Seven asked through the proxy in both modes, and each lane forced once: all answered with status 200 |
+| The question log | Each question is a row in PostgreSQL's `questions`; feedback is a row in `question_feedback` |
+| `deploy/smoke_test.py` | 5 of 5 checks pass |
+
+- **The stub is not a model.** Its answers start with "[stub model]" and it frames every question as a lookup, so this run proves the wiring, not one answer. The lanes themselves are covered by the tests with stand-in models.
+- **Tests after merging:** engine 196 (4 skipped), backend 56, the platform and stub suites, and the line-ending test, all passing.
