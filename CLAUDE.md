@@ -42,7 +42,7 @@ The first build's tracks are closed (24 November). For the second build the role
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Now: the second build, designed on 24 November. The engine side is coded and tested with stand-in models (lanes, coordinator, fact graph export, K4 0.2; log B-C37 to B-C42); nothing is measured yet.** One connected application: a FastAPI backend and a React frontend on the shared stores, with `graphrag` as the engine library (D-65). Before any code, read specification §4.6, §7.5, §8.1, §8.5 and §8.6, then the plan's §7. Reserved experiment numbers: E32 answers on K1 version 1, E33 the coordinator on the 221 pooled questions, E34 the reasoning probe.
+- **Now: the second build is coded in all three tracks and runs end to end on a laptop with a stand-in model (24 November, log B-D41, B-C50 to B-C57): the coordinator and four lanes, the engine and backend on the stores, the runner, the Docker deployment with a password gate, the frontend. Nothing is measured with a real model yet.** One connected application: a FastAPI backend and a React frontend on the shared stores, with `graphrag` as the engine library (D-65). Before changing it, read specification §4.6, §7.5, §8.1, §8.5 and §8.6, then the plan's §7. Reserved experiment numbers: E32 answers on K1 version 1, E33 the coordinator on the 221 pooled questions, E34 the reasoning probe.
 
 - **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is part of the design and of the end-of-well answer path (B-D29, which reverses B-D24). Plain RAG is the baseline the graphs are measured against, not the system. On 9 November the supervisor accepted the lanes as a concept and asked for a coordinator; he has not said whether users ask questions over time.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
@@ -62,8 +62,10 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
   | `events.py` | Event graph from operations tables, with no model call: the model plans, code runs the plan (E28) |
-  | `lanes.py` | The three lanes behind one shape: `passages`, `well_facts`, `events`, each returning `Evidence` (B-C37) |
-  | `coordinator.py` | One framing call, lanes chosen in code, fallback, exact mode, pooled runs (B-C38; built, not yet measured: E33) |
+  | `lanes.py` | The four lanes behind one shape: `passages`, `well_facts`, `events`, `reasoning`, each returning `Evidence` (B-C37, B-C51). `Engine.source` says files or stores |
+  | `coordinator.py` | One framing call, lanes chosen in code, fallback, exact mode, pooled runs over sets or question files (B-C38; built, not yet measured: E33) |
+  | `reasoning.py` | The reasoning lane for questions about causes (spec §8.6): finds the problem in the event graph, gathers around it in code, a two-part cited answer, scoring of the probe (B-C51; not yet measured: E34) |
+  | `stores.py` | The engine built from PostgreSQL and Neo4j instead of files: `engine_from_stores` (B-C50) |
   | `factgraph.py` | The fact graph as nodes and relationships for Track C's Neo4j loader (B-C40) |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
   | `ui.py`, `ui.html` | Local UI (D-60): replays recorded runs with citations, events and side-by-side comparison, and answers new questions when llama.cpp runs. `python -m graphrag.ui`, then http://127.0.0.1:8765 |
@@ -109,19 +111,19 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
 The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B's part, in order (B-D36 to B-D38):
 
-1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1).
-2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)); then read chunks and vectors from Hung's stores.
+1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1). Decide on Hung's proposal that the desktop hosts the stores over Tailscale for now (Track C log C-D06).
+2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)), on the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, B-C55); then the same from the stores (`BACKEND_SOURCE=stores`, B-C50).
 3. ~~The lane interface and model roles~~: done (B-C37, B-C41).
-4. ~~The fact graph as nodes and relationships~~: exported (B-C40); Hung to load it, and B-F60's two doubts to check.
+4. ~~The fact graph as nodes and relationships~~: exported (B-C40) and loaded in Neo4j. Open: its facts cite K1 version 0 chunk IDs, which the stores do not hold (B-F63), and B-F60's two doubts.
 5. The coordinator is built (B-C38, B-C39). **Run E33 on the desktop** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`) and adopt it only if it matches the hand-routed scores.
-6. The reasoning probe, E34: about ten frozen questions on AK-3's non-productive events.
-7. ~~The React frontend~~: built in [frontend/](frontend/README.md), for non-developers: always light, plain words, a guide, explanations on hover (B-C45, redone in B-C47; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do**, on the desktop.
+6. The reasoning lane and its ten frozen questions are built (B-C51, B-C52). **Run E34 on the desktop:** `python -m graphrag.coordinator answer --questions graphrag/gold/ak3_reasoning_probe_v0.json --name E34_reasoning_probe`.
+7. ~~The React frontend~~: built in [frontend/](frontend/README.md), for non-developers: always light, plain words, a guide, explanations on hover, answers about causes in parts (B-C45, B-C47, B-C57; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do**, on the desktop.
 
-**Backend, on Hung's behalf (B-D39):** Hung agreed to the design and asked for help. The read-path API is built in [backend/](backend/README.md) (B-C44; `python -m uvicorn backend.app:app`, packages in `backend/requirements.txt`, tests `tests/test_backend.py`). It reads files, not the stores. The rest of his tasks are designed in [docs/tracks/C-storage/backend-design.md](docs/tracks/C-storage/backend-design.md); do not change `platform/` without him.
+**Backend, stores and deployment (B-D39, B-D41):** built with Hung's clearance, beside his own work of the same day; the Track C log says who built what. The API is in [backend/](backend/README.md) (`python -m uvicorn backend.app:app`; `BACKEND_SOURCE=stores` with `BACKEND_DSN` and `NEO4J_*` reads the stores; tests `tests/test_backend*.py`). Scripts in [platform/](platform/README.md): `run_release.py <release>` loads a K1 release into PostgreSQL and Neo4j, each step checked. The stores need `platform/.env` with the two passwords (`platform-dev` on a laptop whose stores already exist). The whole application: `docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build`, where `demo` adds a stub model that is not a model; the runbooks are [deploy/README.md](deploy/README.md) (application) and [docs/tracks/C-storage/server-runbook.md](docs/tracks/C-storage/server-runbook.md) (server and stores). Say in the group chat what is being built before building in a teammate's track (B-F65).
 
 **What was asked of teammates (24 November):** [note for Khai](docs/tracks/A-ingestion/note-from-track-B-2026-11-24.md) (the demo K1 release first) and [note for Hung](docs/tracks/C-storage/note-from-track-B-2026-11-24.md) (shared hosting first). **What the stint accomplished:** [stint report](docs/reports/stints/STINT_REPORT_2026-11-27.md), a **draft updated until the stint ends on 27 November**. Stint reports live in `docs/reports/stints/`, one per stint; after changing one, run `python scripts/stint_figures.py` and `python scripts/render_stint_report.py <report.md>` to redraw its diagrams and PDF. In a stint report, say what each person built (the backend service is Tri's and Hung's together) and do not comment on when in the stint the work happened.
 
-Still waiting on others: the expert questions and the purpose of use (Q2, Q13); shared hosting of the stores (B-D35); appendix 23 inside the K1 package.
+Still waiting on others: the expert questions and the purpose of use (Q2, Q13); a server for shared hosting (C-D06); Khai's review of the demo release and of the Track A log draft; Hung's review of the loaders, the runner and the deployment files.
 
 History of this list (B-D15):
 
@@ -165,4 +167,4 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
 - AK-3 daily reports: `--pool ak3_daily`, 898 chunks in ignored `data/corpora/ak3_appendices/`; [next-runs](docs/tracks/B-graphrag/next-runs.md) has the regeneration steps. Simulated question sets in `graphrag/gold/`: `simulated_expert_v0`, `simulated_heldout_v0`, `ak3_daily_v0`, `ak3_daily_heldout_v0`, `ak3_events_v0`, `ak3_events_heldout_v0`. They are frozen: changes go into a new version.
 - The prototype (`prototype/`) is the baseline to beat (E10). Do not change it.
 - Diagrams: Mermaid source sits in the documents. SVGs are regenerated with mermaid-cli 11.17.0 (see `docs/diagrams/README.md`).
-- Tests: `python -m unittest discover -s tests`. The line-ending test needs LF files.
+- Tests: `python -m unittest discover -s tests`. The line-ending test needs LF files. Tests that need PostgreSQL or Neo4j skip when the stores are not running. On a machine short of memory set `OPENBLAS_NUM_THREADS=1`.

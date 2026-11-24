@@ -223,45 +223,45 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| D1 | **A K1 release for the demo set**: AK-3's end-of-well report, the four daily-report attachments and appendix 23 (the non-productive-time report), with the legacy ID map inside and a well on end-of-well chunks | — | The release validates; the event graph builds from K1 alone (drops the fallback of [E31](experiments/E31-event-graph-on-k1.md)) |
+| D1 | **A K1 release for the demo set**: AK-3's end-of-well report, the four daily-report attachments and appendix 23 (the non-productive-time report), with the legacy ID map inside and a well on end-of-well chunks | — | The release validates; the event graph builds from K1 alone (drops the fallback of [E31](experiments/E31-event-graph-on-k1.md)). **Built 24 November with Khai's clearance** (Track B log B-C55): `python scripts/build_k1_demo_release.py`, release `ak3-demo-v1`, 1,051 chunks; the five checks pass and the event graph builds from the release alone. Open: Khai's review, and sharing it on the stores |
 | D2 | Decide which 17 November options are on by default, by measurement on this release | D1 | Each option on or off with a number behind it, in Track A's record |
 | D3 | Add 56-32 and 68-32 end-of-well reports to the release | D1 | Questions across wells can run from the stores |
-| D4 | Fix duplicated merged-cell text in table Markdown | — | Track A progress §7 item 1 closed |
-| D5 | A Track A log in `docs/tracks/A-ingestion/`, like the other two | — | Findings and decisions since 9 November are in it |
+| D4 | Fix duplicated merged-cell text in table Markdown | — | Track A progress §7 item 1 closed. **The fix exists** as the table Markdown mode `span_once_keyed`, now with a test (B-C55). Open: switching it on, with D2 |
+| D5 | A Track A log in `docs/tracks/A-ingestion/`, like the other two | — | Findings and decisions since 9 November are in it. **A draft exists** ([log](tracks/A-ingestion/log.md), B-C55), written from the repository's history. Open: Khai corrects it |
 
 ### Backend (Hung)
 
-Hung asked Tri to do part of this for now (Track B log B-D39). B4, B5 and the file version of B6 are done on his behalf; the others are designed for him in the [backend design](tracks/C-storage/backend-design.md), which also gives a suggested order.
+Hung asked Tri to do part of this for now (Track B log B-D39), and on 24 November gave clearance for the rest to be built (B-D41). Each row below says where it stands; the designs are in the [backend design](tracks/C-storage/backend-design.md). What is left is what needs a server, a real model or Hung's review.
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| B1 | **Shared hosting of the stores** and of K1 releases (Track B log B-D35) | — | Tri and Khai connect with their own credentials; no data moves through chat |
-| B2 | **The runner**: one command from a K1 release to loaded chunks, vectors, the event region and the fact region, each step checked | D1, E4 | Run twice on the AK-3 release with the same result |
-| B3 | The fact region in Neo4j, and the event region on K1 version 1 IDs | E4 | Layout agreed (D-67); every fact and event links to a chunk that exists in PostgreSQL |
+| B1 | **Shared hosting of the stores** and of K1 releases (Track B log B-D35) | — | Tri and Khai connect with their own credentials; no data moves through chat. **Prepared by Hung** (Track C log C-C13, C-D06): passwords from `platform/.env`, a server setup script, a backup script, a [runbook](tracks/C-storage/server-runbook.md). Interim: one team machine over Tailscale, Tri to agree. Open: a server |
+| B2 | **The runner**: one command from a K1 release to loaded chunks, vectors, the event region and the fact region, each step checked | D1, E4 | Run twice on the AK-3 release with the same result. **Built 24 November** (Track C log C-C16; Track B log B-C56): `python platform/run_release.py <release>`. Run twice on the demo release with the same counts, without vectors. Open: a run with the embedding server |
+| B3 | The fact region in Neo4j, and the event region on K1 version 1 IDs | E4 | Layout agreed (D-67); every fact and event links to a chunk that exists in PostgreSQL. **Done on laptops 24 November** (Track C log C-C12, C-C14, C-C15): the fact region is in Neo4j, and every chunk the events cite is a K1 version 1 ID present in PostgreSQL. Open: the facts still cite old IDs (Track B log B-F63) |
 | B4 | **The OpenAPI file** for the read path of spec §7.5, agreed with Engine and Frontend before coding | — | **Done 24 November by Tri, on Hung's behalf** (Track B log B-C44): `backend/openapi.json` and ten example responses in `backend/fixtures/`. Hung to review |
-| B5 | The FastAPI service in `backend/`, calling `graphrag` | B4, E3 | **Built 24 November by Tri, on Hung's behalf** (B-C44), reading files. Open: each endpoint returns real data from the stores (after B1 and E2) |
-| B6 | The question log and feedback tables | B5 | **Done as a file** (B-C44): every question is stored with its lane, answer and any mark. Open: the PostgreSQL tables, designed in the [backend design](tracks/C-storage/backend-design.md) §3 |
-| B7 | Page images or PDF pages served for the source viewer | B1 | A citation opens the right page |
-| B8 | Compose file for the whole application; one shared password at the proxy | B5, F1 | The application runs on the shared host |
+| B5 | The FastAPI service in `backend/`, calling `graphrag` | B4, E3 | **Built 24 November by Tri, on Hung's behalf** (B-C44), reading files. Open: each endpoint returns real data from the stores (after B1 and E2). **State 24 November:** every endpoint returns data from the stores with `BACKEND_SOURCE=stores` (Track B log B-C50, B-C54), checked on a laptop with a stand-in model |
+| B6 | The question log and feedback tables | B5 | **Done as a file** (B-C44): every question is stored with its lane, answer and any mark. Open: the PostgreSQL tables, designed in the [backend design](tracks/C-storage/backend-design.md) §3. **State 24 November:** the PostgreSQL tables and the class that writes them exist (`platform/sql/002_questions.sql`, B-C50); questions asked through the proxy land in them |
+| B7 | Page images or PDF pages served for the source viewer | B1 | A citation opens the right page. **Built 24 November** (Track B log B-C53): `platform/render_pages.py` and the image route. Open: rendering the demo release's pages on the host; no highlight on the image, since K1 passages carry no region |
+| B8 | Compose file for the whole application; one shared password at the proxy | B5, F1 | The application runs on the shared host. **Built 24 November** (Track C log C-C18; Track B log B-C54): `--profile app` gives the backend and a Caddy proxy with the built frontend behind one shared password; [runbook](../deploy/README.md). Run on a laptop only. Open: a server and a domain |
 
 ### Engine (Tri)
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
 | E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | Desktop | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
-| E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores |
+| E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores. **Built 24 November** (Track B log B-C50): `graphrag/stores.py`; chunks, events and facts from the stores equal the file-loaded ones. Open: vector search in SQL, and the scores from the stores (needs E1) |
 | E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | **Done 24 November** (Track B log B-C37, B-C41): the baseline's requests are unchanged, and tests cover each lane |
 | E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | **Done 24 November** (B-C40): `graphrag/results/E27_fact_graph.graph.json`, 216 facts of 5 wells. Two doubts to check (B-F60) |
 | E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, desktop | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
 | E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, desktop | The garbled answers of E28 are gone; rerun in E33 |
-| E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support |
+| E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support. **Built 24 November, not measured** (Track B log B-C51, B-C52): `graphrag/reasoning.py` and ten frozen questions in `graphrag/gold/ak3_reasoning_probe_v0.json`. Open: the run on the desktop |
 
 ### Frontend (Tri)
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | **Built 24 November** (Track B log B-C45), then redone for non-developers with a guide and explanations on hover (B-C47), working on the example responses. Open: the first run against the API with a real model, and a first use by someone outside the team |
-| F2 | The source viewer: the cited page beside the cited passage | B7 | **Built as text** (B-C45): a source opens its page's text with the cited passage marked. Open: the page image (B7) |
+| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures): **ready** | **Built 24 November** (Track B log B-C45), then redone for non-developers with a guide and explanations on hover (B-C47), working on the example responses. Open: the first run against the API with a real model, and a first use by someone outside the team. **State 24 November:** answers about causes are shown in parts, and the application asks which problem is meant when several fit (B-C57); plain messages when the server is down or the password is wrong (B-C53) |
+| F2 | The source viewer: the cited page beside the cited passage | B7 | **Built as text** (B-C45): a source opens its page's text with the cited passage marked. Open: the page image (B7). **State 24 November:** the page image is shown when one has been rendered, with the text view kept (B-C53) |
 | F3 | The evidence panel: passages, facts, the query plan with its events | B5 | **Built** (B-C45): day strips and a table for a computed total; passages with the answer's value marked; checked facts |
 | F4 | "Wrong answer" button and comment | B6 | **Built** (B-C45): right in one click, wrong with a comment, both sent to the question log |
 

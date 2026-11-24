@@ -139,17 +139,16 @@ def architecture() -> None:
     # Connections
     s.arrow([(170, 218), (203, 218)])
     s.arrow([(475, 150), (518, 150)])
-    s.add(f'<text transform="translate(501,300) rotate(-90)" font-size="12" font-weight="600" fill="{MUTED}" text-anchor="middle">passages, as files today</text>')
+    s.add(f'<text transform="translate(501,300) rotate(-90)" font-size="12" font-weight="600" fill="{MUTED}" text-anchor="middle">passages, as files too</text>')
     s.arrow([(850, 123), (893, 123)])
     s.add(f'<text transform="translate(876,300) rotate(-90)" font-size="12" font-weight="600" fill="{MUTED}" text-anchor="middle">answers with their evidence</text>')
     s.arrow([(340, 410), (340, 478)], "passage packages", colour=GREEN, label_at=(340, 446))
-    s.arrow([(685, 478), (685, 412)], "being connected: read from the stores", dashed=True, colour=GREEN, label_at=(685, 446))
-    s.arrow([(1057, 410), (1057, 478)], "being connected", dashed=True, colour=GREEN, label_at=(1057, 446))
+    s.arrow([(685, 478), (685, 412)], "passages, activities, facts", colour=GREEN, label_at=(685, 446))
+    s.arrow([(1057, 410), (1057, 478)], "the question log", colour=GREEN, label_at=(1057, 446))
 
     s.add(f'<path d="M225,664 h44" stroke="{MUTED}" stroke-width="2.2"/>')
     s.text(277, 668, "works today", 12.5, 400, TEXT, "start")
-    s.add(f'<path d="M385,664 h44" stroke="{GREEN}" stroke-width="2.2" stroke-dasharray="7 6"/>')
-    s.text(437, 668, "being connected: the engine reads the same data from files for now", 12.5, 400, TEXT, "start")
+    s.text(385, 668, "All four parts run together on one laptop. A shared server is the next step.", 12.5, 400, TEXT, "start")
     s.save("architecture.svg")
 
 

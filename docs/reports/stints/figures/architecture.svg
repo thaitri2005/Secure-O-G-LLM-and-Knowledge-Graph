@@ -102,20 +102,19 @@
 <text x="1085.0" y="596.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">a new package (next)</text>
 <path d="M170,218 L203,218" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
 <path d="M475,150 L518,150" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<text transform="translate(501,300) rotate(-90)" font-size="12" font-weight="600" fill="#5d6d85" text-anchor="middle">passages, as files today</text>
+<text transform="translate(501,300) rotate(-90)" font-size="12" font-weight="600" fill="#5d6d85" text-anchor="middle">passages, as files too</text>
 <path d="M850,123 L893,123" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
 <text transform="translate(876,300) rotate(-90)" font-size="12" font-weight="600" fill="#5d6d85" text-anchor="middle">answers with their evidence</text>
 <path d="M340,410 L340,478" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
 <rect x="280.2" y="433" width="119.6" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
 <text x="340" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">passage packages</text>
-<path d="M685,478 L685,412" fill="none" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-14734a)"/>
-<rect x="555.9" y="433" width="258.2" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
-<text x="685" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">being connected: read from the stores</text>
-<path d="M1057,410 L1057,478" fill="none" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-14734a)"/>
-<rect x="1000.5" y="433" width="113.0" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
-<text x="1057" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">being connected</text>
+<path d="M685,478 L685,412" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<rect x="588.9" y="433" width="192.2" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="685" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">passages, activities, facts</text>
+<path d="M1057,410 L1057,478" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<rect x="997.2" y="433" width="119.6" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="1057" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">the question log</text>
 <path d="M225,664 h44" stroke="#5d6d85" stroke-width="2.2"/>
 <text x="277" y="668" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">works today</text>
-<path d="M385,664 h44" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6"/>
-<text x="437" y="668" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">being connected: the engine reads the same data from files for now</text>
+<text x="385" y="668" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">All four parts run together on one laptop. A shared server is the next step.</text>
 </svg>

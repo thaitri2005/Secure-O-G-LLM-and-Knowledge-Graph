@@ -926,7 +926,8 @@ Every published item cites at least one chunk (with span or table row) or a data
 | `POST /v1/questions` | Body: the question, `mode` (`exact` or `allow_fallback`, D-59) and an optional lane to force. Returns the answer or an explicit "not found"; the question frame and the lanes used; citations (chunk ID, file, page); the evidence (passages, facts, the query plan with its result and source events); the checks passed; calls, tokens and seconds. The question and its result are written to the question log |
 | `POST /v1/questions/{id}/feedback` | Mark an answer right or wrong, with an optional comment |
 | `GET /v1/chunks/{id}` | Text, section, file and page. Chunk IDs contain `#` or `:`, so a client percent-encodes them |
-| `GET /v1/files`, `GET /v1/files/{id}/pages/{n}` | The loaded reports; one page as its chunks in reading order. The page as an image comes with the file store ([backend design](tracks/C-storage/backend-design.md) §7) |
+| `GET /v1/files`, `GET /v1/files/{id}/pages/{n}` | The loaded reports; one page as its chunks in reading order, with `image_url` when the page has been rendered |
+| `GET /v1/files/{id}/pages/{n}/image` | The page as a PNG, rendered at load time by `platform/render_pages.py` ([backend design](tracks/C-storage/backend-design.md) §7) |
 | `GET /v1/wells`, `GET /v1/wells/{id}` | The wells; one well's facts, documents and report days |
 | `GET /v1/wells/{id}/events` | Events of a well between two dates |
 | `GET /v1/health` | Whether the stores and the model endpoint answer, and which models the roles map to |
@@ -1158,7 +1159,7 @@ flowchart LR
 
 **Kept thin (D-49, D-52).** K2 declares more than this: `Project`, `Organization`, `Person`, `Rig`, `Formation` and relations such as `OPERATED_BY` and `MONITORS`. They are added when a kind of question needs them, such as questions about people or about one well monitoring another, not before. A stated cause may be stored as a relationship between events; an inferred one is never stored (§6.3).
 
-### 8.6 Reasoning about causes (design and probe)
+### 8.6 Reasoning about causes (built, not yet measured)
 
 The supervisor's question type (D-61): a drilling problem happened at some point in the well; what are the likely causes? An experienced engineer sees which part of the drilling process is involved, reads the related documents, forms a judgement, and checks it. The lane follows the same order, with code doing the gathering.
 
@@ -1167,7 +1168,9 @@ The supervisor's question type (D-61): a drilling problem happened at some point
 3. **Answer in two parts.** *Stated in the reports:* what a report gives as the cause, with citations. *Possible, not stated:* other factors visible in the evidence, each with its citation and labelled as a possibility. A cause with no citation is not allowed.
 4. **Say what is missing.** The answer lists the kinds of evidence a real judgement needs and the reports do not hold.
 
-**The probe.** About ten questions on AK-3's own non-productive events (28 events, 115 hours on 10 days), written and frozen before any run. Each is scored on two things: is the cause the reports state found and cited, and does the answer state anything as fact that no report supports? It becomes an experiment record. The questions are simulated and not expert-reviewed.
+**Built on 24 November** as `graphrag/reasoning.py`, a fourth lane (Track B log B-C51): the frame's kind is `cause` and carries a `problem` (date, depth, non-productive code, keywords); the answer status `ask_which` covers step 1's "asks which"; code removes a cause whose citation is not among the evidence shown. Tested with stand-in models only. Open: exact mode still runs this lane and only hides the possible causes, though a stated cause rests on a passage and the model's reading; whether that fits D-59 is to decide.
+
+**The probe.** Ten questions on AK-3's own non-productive events (28 events, 115 hours on 10 days), written and frozen before any run ([`ak3_reasoning_probe_v0.json`](../graphrag/gold/ak3_reasoning_probe_v0.json), B-C52). Each is scored on two things: is the cause the reports state found and cited, and does the answer state anything as fact that no report supports? It becomes an experiment record. The questions are simulated and not expert-reviewed.
 
 **What the data cannot support.** One well's daily and end-of-well reports hold what happened and, sometimes, what the crew wrote about why. They do not hold offset wells, formation pressures, drilling parameters sampled over time, or lessons-learned reports. The supervisor expected the data to fall short (9 November). The probe's purpose is to show him a concrete answer, so the expert group can say what a useful one would need. A larger public set of daily reports is still to be found (Q5).
 

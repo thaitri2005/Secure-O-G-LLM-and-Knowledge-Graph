@@ -7,9 +7,11 @@
 ## 1. In short
 
 - On 9 November you asked for a **coordinator** that routes questions, the three parts **connected behind a simple application** that domain experts can touch, and **reasoning questions** as a target.
-- This stint we designed all three and built the first two. There is now an application: a person types a question about the drilling reports and sees the answer, a label that says how far to trust it, and the page or the activities it rests on.
-- A total such as "hours of non-productive time" is now **calculated by code and never written by an AI**, so it cannot be a guess.
-- **Still to do before the stint ends:** run the new parts with the real model, and move the application from files onto the shared stores.
+- This stint we designed and built all three. There is now one application: a person types a question about the drilling reports and sees the answer, a label that says how far to trust it, and the page or the activities it rests on.
+- **The parts are connected.** The application answers from the stores (PostgreSQL and Neo4j), behind one shared password, and one command loads a new report package into them. It ran end to end on a laptop, with a stand-in in place of the AI model.
+- A total such as "hours of non-productive time" is **calculated by code and never written by an AI**, so it cannot be a guess.
+- A question about **the cause of a problem** now gets an answer in parts: what the reports state, other possible factors labelled as possibilities, and what is missing for a real judgement.
+- **Not done yet:** no run with the real AI model on the new parts, so we cannot say how well they answer. That needs the desktop's graphics card. A shared server needs an account and a small budget (§12).
 
 ## 2. What you asked for, and where each stands
 
@@ -17,30 +19,30 @@
 |---|---|---|
 | A coordinator that routes each question; later it uses tools and connectors | **Built**, to be measured | One AI call understands the question; code then decides where to look. Each place it can look has the same interface, so it can later be offered as a tool |
 | A switch for exact answers only | **Built** | "Verified data only" in the application |
-| A simple application early, on the connected parts, for domain experts | **Built** on prepared answers; connection to the stores is next | A backend service and a web application, written for people who are not developers |
-| Reasoning about the causes of a drilling problem | **Designed** | A trial on AK-3's own non-productive events is planned (§10) |
-| The model can be swapped | **Built** | Which model does which job is one settings file |
-| People review part of the machine-made data | **Started** | Every answer can be marked right or wrong; every question is logged |
+| A simple application early, on the connected parts, for domain experts | **Built and connected** on a laptop; not yet on a server | A backend service and a web application, written for people who are not developers, reading the stores |
+| Reasoning about the causes of a drilling problem | **Built**, to be measured | A fourth place to look, for causes (§10), and ten trial questions on AK-3's own non-productive events |
+| The model can be swapped | **Built** | Which model does which job is one settings file; a server names its own |
+| People review part of the machine-made data | **Started** | Every answer can be marked right or wrong; every question is logged in the database |
 | State the node and relationship logic of the graph | **Written down** | §6 below |
 
 ## 3. The system now
 
 ![The four parts of the system and who owns each](figures/architecture.svg)
 
-**Figure 1. The four parts and who owns each.** Solid arrows work today. Dashed arrows are being connected: the engine reads the same data from files for now, and will read it from the stores.
+**Figure 1. The four parts and who owns each.** All arrows work today, on one laptop. The engine can read the same data from files or from the stores.
 
 | Part | What it does | State at the end of this stint |
 |---|---|---|
-| 1. Reading the reports | Turns a PDF into passages, tables and forms, each with a stable ID that points back to its page | Works on AK-3's end-of-well report and four daily-report attachments (174 pages). New options for tables that run across pages, section context and form recognition were added; their effect is still to be measured |
-| 2. Stores | Keeps passages and their search vectors in PostgreSQL, and the knowledge graph in Neo4j | 1,042 passages with vectors, and AK-3's daily activities, loaded and checked against their source. On one laptop; a shared server is next |
-| 3. Answering engine | Understands the question, looks in the right place, answers, and checks the answer | The coordinator and its three places to look are built and tested with stand-in models. A run with the real model is next |
-| 4. Application | Lets a person ask, read the answer, check its sources and mark it right or wrong | Backend service and web application built; they run on prepared example answers |
+| 1. Reading the reports | Turns a PDF into passages, tables and forms, each with a stable ID that points back to its page | A package for the demo: AK-3's end-of-well report, four daily-report attachments and the non-productive-time report (176 pages, 1,051 passages). New options for tables that run across pages, section context and form recognition exist; their effect is still to be measured |
+| 2. Stores | Keeps passages and their search vectors in PostgreSQL, and the knowledge graph in Neo4j | One command loads a package and checks every step: 1,051 passages, 161 daily activities, 216 well facts. The question log is in PostgreSQL. On laptops; a shared server is next |
+| 3. Answering engine | Understands the question, looks in the right place, answers, and checks the answer | The coordinator and its four places to look are built and tested with stand-in models, reading files or the stores. A run with the real model is next |
+| 4. Application | Lets a person ask, read the answer, check its sources and mark it right or wrong | Backend service and web application run together behind one password, as containers that start with one command |
 
 ## 4. How a question is answered
 
 ![How a question is answered, step by step](figures/question-flow.svg)
 
-**Figure 2. The path of a question.** Blue boxes use the AI model. Green boxes are plain code. The AI is used at most twice: once to understand the question, once to write an answer. It never chooses where to look, and it never writes a query that runs.
+**Figure 2. The path of a question.** Blue boxes use the AI model. Green boxes are plain code. The AI is used at most twice: once to understand the question, once to write an answer. It never chooses where to look, and it never writes a query that runs. A question about a cause takes the same path: code finds the problem and gathers what surrounds it, and one AI call writes the answer in parts (§10).
 
 1. **Understand.** One AI call returns the kind of question, the reports it concerns and, for a total over time, a small plan (for example: total hours, non-productive, August). Code reads the well name and the dates itself.
 2. **Choose where to look.** Code decides from a fixed table. If the first place has nothing, it falls back to the report text.
@@ -57,9 +59,9 @@
 | A fact about a well | What total depth did well AK-3 reach? | Well facts, then report text | AI, then checked by code |
 | What happened on one day | What was the mud weight on AK-3 on 20 August 2016? | Report text of that well and day | AI, then checked by code |
 | A comparison between wells | Which of AK-3, 56-32 and 68-32 was drilled deepest? | Well facts and report text of each well | AI, then checked by code |
-| The causes of a problem | AK-3 lost time on 2 September. What are the likely causes? | Designed, not built (§10) | — |
+| The cause of a problem | What caused the stuck pipe on AK-3 on 20 August 2016? | The daily activities around the problem, and the report text of those days | AI, in parts; code removes any cause without a source |
 
-## 5. Three questions, as the application shows them
+## 5. Four questions, as the application shows them
 
 ### A total, calculated by code
 
@@ -79,16 +81,26 @@
 
 **Figure 5.** With "Verified data only" on, a question about a well that is not loaded gets "Not in the verified data", advice on what to try, and the closest report text. The system says it does not know instead of guessing.
 
+### The cause of a problem
+
+![An answer about a cause, in parts, with the activities around the problem](figures/app-cause.png)
+
+**Figure 6.** "What caused the stuck pipe on AK-3 on 20 August 2016?" The application first shows the problem it found in the daily activities: 66 hours of non-productive time from 20 to 23 August at 176 ft. Then, apart: what the reports say caused it, with the report's own words; other possible factors, in a dashed box marked *Possibility, not a finding*; and, below what is shown here, what a real judgement would still need. On the right are the activities before, during and after the problem. In this screenshot the answer is a prepared example; the problem, the activities and the report's words are real.
+
+![The application asking which problem is meant](figures/app-cause-which.png)
+
+**Figure 7.** When a question fits several problems, the application asks which one is meant instead of guessing.
+
 ## 6. The knowledge graph
 
 ![The knowledge graph: one graph, two regions, joined at the well](figures/knowledge-graph.svg)
 
-**Figure 6. One graph, two regions, joined at the well.** Every fact and every activity points to the passage it was read from, so any answer can be traced to a page.
+**Figure 8. One graph, two regions, joined at the well.** Every fact and every activity points to the passage it was read from, so any answer can be traced to a page.
 
 | Region | Built from | By | State |
 |---|---|---|---|
 | Activities (amber) | The operations tables of the daily reports and the non-productive-time report | Code only, no AI | 161 activities on 27 days for AK-3, in Neo4j |
-| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 216 checked facts for 5 wells, exported as a file; loading into Neo4j is next |
+| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 216 checked facts for 5 wells, in Neo4j beside the activities |
 
 The two regions answer different questions. Activities answer "how many hours" and "on which days". Facts answer "how deep" and "which casing". A relationship that the report does not state, such as a cause, is never stored.
 
@@ -96,7 +108,7 @@ The two regions answer different questions. Activities answer "how many hours" a
 
 ![The guide that opens on a first visit](figures/app-guide.png)
 
-**Figure 7.** The guide that opens on a first visit. It can be closed at once and reopened from "How it works".
+**Figure 9.** The guide that opens on a first visit. It can be closed at once and reopened from "How it works".
 
 It is written for people who read drilling reports, not for developers. Nothing on screen names a part of the system.
 
@@ -104,13 +116,14 @@ It is written for people who read drilling reports, not for developers. Nothing 
 |---|---|
 | Ask in plain English | One search box, with example questions to click |
 | See how far to trust an answer | A coloured label: calculated, written by AI and checked, written by AI and not confirmed, or no answer found |
-| Check the answer | The evidence beside it: a timeline of activities, the report text with the answer highlighted, the key facts; any source opens its page |
+| Check the answer | The evidence beside it: a timeline of activities, the report text with the answer highlighted, the key facts; any source opens its page, as an image of the printed page when one has been made |
+| Ask what caused a problem | The answer comes in parts (Figure 6); if several problems fit, the application asks which |
 | Get an explanation | A small "i" beside each term, shown on hover or tap |
 | Ask for verified data only | One switch |
 | Say it is wrong | "Was this answer right?" Yes, or No with a note. Both are saved |
 | Learn how it works | A guide on first visit and from the top bar |
 
-Every question, how it was answered, and every right or wrong mark is logged. When domain experts use it, that log gives us their real questions.
+Every question, how it was answered, and every right or wrong mark is logged in the database. If the server is slow, unreachable or the password is wrong, the application says so in plain words and offers to try again. When domain experts use it, that log gives us their real questions.
 
 ## 8. What each of us built
 
@@ -118,25 +131,30 @@ Every question, how it was answered, and every right or wrong mark is logged. Wh
 
 - **The design of the second build**, written into the specification and the plan: the coordinator, the knowledge graph's structure, the reasoning questions, the application.
 - **The coordinator**: one AI call to understand the question; routing, fallback and "verified data only" in code.
-- **Three places to look, behind one interface**: report text, well facts, daily activities. The shared interface is what lets them be offered as tools later.
-- **Totals reported by code.** The daily-activities path now returns the number itself, so no AI retypes it.
-- **The well facts exported as a graph** for loading into Neo4j: 216 checked facts for 5 wells.
+- **Four places to look, behind one interface**: report text, well facts, daily activities, and the causes of a problem. The shared interface is what lets them be offered as tools later.
+- **Totals reported by code.** The daily-activities path returns the number itself, so no AI retypes it.
+- **Answers about causes**: code finds the problem and gathers the activities and report text around it; the AI answers in parts; code removes any cause whose source it cannot find. Ten trial questions are written and fixed before any run.
+- **The well facts exported as a graph**: 216 checked facts for 5 wells.
 - **A settings file for models**, so a stronger model replaces the current one without a code change.
-- **The web application** (§7), with 49 automated tests.
+- **The web application** (§7), with 91 automated tests: the answer screens, the cause screens, the page view, and plain messages when the server cannot be reached.
 - **An independent review** of the new engine code, which found eight faults; all are fixed, each with a test.
 
 ### Hung: stores and backend
 
-- **Passages and search vectors in PostgreSQL**: 1,042 passages of AK-3's reports, each with its well and report date, and a check that searching the store gives the same results as searching in memory (67 of 67 searches).
+- **Passages and search vectors in PostgreSQL**, each with its well and report date, and a check that searching the store gives the same results as searching in memory (67 of 67 searches).
 - **The daily activities in Neo4j**: 27 days and 161 activities for AK-3, read back identical to the source, with 58 of 58 recorded queries giving their recorded results.
+- **The well facts in Neo4j**, beside the activities: 216 facts, read back identical, the activities untouched.
 - **A reader for the store**, so the engine can take passages from PostgreSQL in the form it already reads.
+- **The stores made ready to share**: passwords kept out of the repository, a script that sets up a server, a nightly backup, and a step-by-step guide. Until a server is found, one team machine hosts the stores on a private network.
 
-### Tri and Hung together: the backend service
+### Tri and Hung together: the backend and the connection
 
-- **The service the application talks to**: asking a question, marking an answer, reading a passage, a page, a well and its activities, and a health check.
-- **A written contract** between the service and the application, with an example response for each call, so both sides can be built and tested apart.
-- **The question log**: every question, how it was answered, and every mark.
-- **A design for the rest**: shared hosting, the graph in Neo4j, one command that loads a new report package, page images, and a password in front of the demo. 21 automated tests cover the service.
+- **The service the application talks to**: asking a question, marking an answer, reading a passage, a page and its image, a well and its activities, and a health check, with a written contract and an example response for each call.
+- **The engine reads the stores.** One setting switches it from files to PostgreSQL and Neo4j; on the same data it holds the same passages, activities and facts either way.
+- **The question log in PostgreSQL**: every question, how it was answered, and every mark, with a query that counts questions by kind.
+- **One command from a report package to a loaded store**, each step checked, each run recorded. Run twice, it changes nothing the second time.
+- **The whole application as containers**: the service, a proxy that serves the web application over HTTPS behind one shared password, and a guide from a new server to a running application. A check that asks a question from outside passes on a laptop.
+- **Automatic tests on every change** pushed to the repository.
 
 ### Khai: reading the reports
 
@@ -147,27 +165,36 @@ Every question, how it was answered, and every right or wrong mark is logged. Wh
 - **More checks** on the output: tables against their passages, labels against values, conflicts between forms, structure across pages.
 - All of these are options that are off by default. Measuring each and deciding which to switch on comes next.
 
+### Khai and Tri together: the package for the demo
+
+- **One package holding everything the demo needs**: AK-3's end-of-well report, the four daily-report attachments and the non-productive-time report, with the map from old passage IDs to new ones inside, and the well's name on every passage of the end-of-well report. Built by one command; it passes the package checks, and building it twice gives the same files.
+- **The daily activities are now built from this package alone**: 161 activities, every one pointing to a passage that is in the store.
+- **A dated record** of the work on reading the reports, as a draft for Khai to correct.
+
 ## 9. What we learned
 
 - **Reporting a calculated total in code, instead of letting an AI retype it, repairs nine answers.** Replaying the plans recorded in the earlier experiment this way gives 33 of 35 and 22 of 23 right, against 27 and 19. This replays recorded plans without a model, and the questions were written by us to suit this kind of answer, so it is an indication and not a new measurement.
 - **A second pair of eyes found what tests did not.** The review found, for example, that "20-22 August" was read as a well name, which turned a right answer into "not stated". Wells are now recognised only if the system holds them.
 - **Showing the data to a person exposes errors fast.** The application's list of facts showed AK-3 with 3 days from spud to rig release, beside report text that says 19. Our automatic check passes it, because a "3" appears nearby. Two more doubtful facts are logged. This is the human review you asked for, in its first form.
+- **Building in parallel exposed mismatches early.** With the stores as the source, "Verified data only" failed, because the well facts point to passages by an older ID than the store holds. It is fixed so that such a fact still counts and only its passage is not shown; the facts themselves must be rebuilt on the new package.
 
-## 10. Reasoning about causes: the design
+## 10. Reasoning about causes
 
-For "a problem happened here; what are the likely causes?" the system will do what an engineer does, with code doing the gathering:
+For "a problem happened here; what caused it?" the system does what an engineer does, with code doing the gathering:
 
-1. **Find the problem** in the daily activities: by date, depth, non-productive code, or words such as "stuck".
-2. **Gather what surrounds it**: the activities of the days before and after, the non-productive-time report's own description, that day's report text, and the end-of-well report's account.
-3. **Answer in two parts**: what the reports state as the cause, and other possible factors, each with its source and labelled as a possibility. Nothing without a source.
+1. **Find the problem** in the daily activities: by date, depth, non-productive code, or words such as "stuck". AK-3's 28 non-productive activities form 6 problems, 115 hours together. If several fit the question, the application asks which.
+2. **Gather what surrounds it**: the activities of the days before and after, that day's report text, and the end-of-well report's account. The amount is limited, so one question costs about twice a simple lookup.
+3. **Answer in two parts**: what the reports state as the cause, and other possible factors, each with its source and labelled as a possibility. Code removes anything whose source it cannot find. With "Verified data only" on, the possible factors are hidden.
 4. **Say what is missing** for a real judgement.
 
-A first trial uses about ten questions on AK-3's own 28 non-productive events. One well's reports do not hold offset wells, formation pressures or lessons learned, so the trial's purpose is to show you a concrete answer and learn what a useful one needs.
+Ten trial questions on AK-3's own non-productive events are written and fixed. One well's reports do not hold offset wells, formation pressures or lessons learned, so the trial's purpose is to show you a concrete answer and learn what a useful one needs. It has not run with the real model yet.
 
 ## 11. Weak points
 
-- **The new parts have not run with the real model yet.** How well the coordinator chooses is unknown until they do.
-- **Not connected yet.** The stores are on one laptop, and the application reads files.
+- **The new parts have not run with the real model yet.** How well the coordinator chooses, and how good an answer about a cause is, are unknown until they do. Everything in this report was tested with stand-ins for the model.
+- **Connected on laptops, not on a server.** The steps for a real server with a real address are written but have not been run.
+- **No search vectors in the laptop's store**, so a question naming several wells searches by words only there.
+- **The well facts and the passages use two ID schemes** in the stores, so a fact's passage cannot always be shown.
 - **Every test question is written by us.** None is reviewed by an expert.
 - **One well and one report family.** Other authors' reports are untested or fail.
 - **No domain expert has used the application.** Whether it is clear to them is not known.
@@ -186,17 +213,17 @@ A first trial uses about ten questions on AK-3's own 28 non-productive events. O
 
 | Who | What |
 |---|---|
-| Tri | Run the coordinator with the real model on all 221 development questions and decide whether to keep it |
-| Hung | Stores on a shared server that all three of us reach |
-| Khai | A report package for the demo that includes the non-productive-time report |
+| Tri | Run the coordinator with the real model on all 221 development questions and decide whether to keep it; run the ten questions about causes |
+| Hung | Review the loading command and the container setup; host the stores where all three of us reach them |
+| Khai | Review the demo package and the record written for him; decide which reading options go on |
 
 **Next stint, to 12 December**
 
-1. The application reads the shared stores, and one command loads a new report package.
-2. The well facts in Neo4j, beside the activities.
-3. The reasoning trial on AK-3.
+1. The application on a server, at one address, behind the password.
+2. The two other end-of-well reports in the package, and the well facts rebuilt on it.
+3. Search vectors on the shared store, searched in the database.
 4. One question shown to you going through the whole system, live, and the application handed to whoever you name.
 
 ## Where the detail is
 
-[Specification](../../PROJECT_DESIGN.md) (design, §4.6 and §8) · [development plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) (tasks) · track records: [engine](../../tracks/B-graphrag/log.md), [stores](../../tracks/C-storage/log.md), [reading the reports](../../tracks/A-ingestion/README.md) · [backend design](../../tracks/C-storage/backend-design.md)
+[Specification](../../PROJECT_DESIGN.md) (design, §4.6 and §8) · [development plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) (tasks) · track records: [engine](../../tracks/B-graphrag/log.md), [stores](../../tracks/C-storage/log.md), [reading the reports](../../tracks/A-ingestion/log.md) · [backend design](../../tracks/C-storage/backend-design.md) · [running it on a server](../../../deploy/README.md)
