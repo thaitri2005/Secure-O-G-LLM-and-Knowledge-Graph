@@ -26,7 +26,8 @@ docker compose -f "$REPO/platform/docker-compose.yml" exec -T postgres pg_dump -
 mv "$file.part" "$file"
 find "$OUT" -maxdepth 1 -name 'kg-*.dump' -mtime +"$((KEEP_DAYS - 1))" -delete
 if [ -n "${BACKUP_REMOTE:-}" ]; then
-  rsync -a --delete "$OUT"/kg-*.dump "$BACKUP_REMOTE" && remote="copied to $BACKUP_REMOTE" || remote="COPY TO $BACKUP_REMOTE FAILED"
+  # The folder as source, so that dumps pruned here are pruned there too; only the dumps are touched.
+  rsync -a --delete --include='kg-*.dump' --exclude='*' "$OUT"/ "$BACKUP_REMOTE" && remote="copied to $BACKUP_REMOTE" || remote="COPY TO $BACKUP_REMOTE FAILED"
 else
   remote="NOT copied off the server (set BACKUP_REMOTE)"
 fi

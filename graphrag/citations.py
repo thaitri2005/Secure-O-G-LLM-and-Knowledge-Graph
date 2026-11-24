@@ -41,23 +41,49 @@ _UNITS = [(r"feet|foot|ft\.?|'(?!')", "ft"), (r"inch(?:es)?|in\.|\"", "in"), (r"
           (r"met(?:er|re)s?|m\b", "m")]
 
 
-def unit_in_text(value: str, text: str) -> str | None:
-    """The unit the passage writes straight after the value, in one form ("1,955 feet" gives "ft"); None when the
-    value is not there or nothing known follows it. A bare "in" is a preposition, not inches."""
+def units_in_text(value: str, text: str) -> list[str]:
+    """Every unit the passage writes straight after the value, each in one form ("1,955 feet" gives "ft"), in the
+    order met. A compound unit ("40 ft/hr", "5,000 ft-lbs") is not one of the simple units and gives nothing, and a
+    bare "in" is a preposition, not inches."""
     plain = _plain(str(value))
     if not re.fullmatch(r"-?\d+(?:\.\d+)?", plain):
-        return None
-    # Every place the passage writes the value: "1,955 in contrast to ... liner from 755' to 1,955'" gives "ft".
+        return []
+    out = []
     for found in re.finditer(rf"(?<![\d.]){re.escape(plain)}(?:\.0+)?(?!\d)[ \u00a0-]?(\S{{0,12}})", _plain(text)):
         after = found.group(1).lower()
-        unit = next((unit for pattern, unit in _UNITS if re.match(rf"(?:{pattern})(?![a-z])", after)), None)
-        if unit:
-            return unit
-    return None
+        unit = next((unit for pattern, unit in _UNITS if re.match(rf"(?:{pattern})(?![a-z0-9/²³-])", after)), None)
+        if unit and unit not in out:
+            out.append(unit)
+    return out
+
+
+def unit_in_text(value: str, text: str) -> str | None:
+    """The first of `units_in_text`, or None."""
+    return next(iter(units_in_text(value, text)), None)
+
+
+def simple_unit(unit: str) -> str | None:
+    """The one form of a unit the model gave, when it is one of the simple units ("feet" gives "ft"); None for
+    anything else ("ft/hr", "ft MD", ""), which is left as the model gave it."""
+    return next((form for pattern, form in _UNITS if re.fullmatch(pattern, unit.strip().lower())), None)
+
+
+def checked_unit(value: str, unit: str, text: str) -> str:
+    """The unit to show for an answer, checked against the cited passage. It changes only a simple unit that the
+    passage contradicts: the passage writes the value with units, and the model's is none of them ("in" for a depth
+    written "1,955 in contrast to ... to 1,955'"). A unit the passage gives nowhere, with "in" straight after the
+    value as a preposition, is dropped. Anything else stays as the model gave it."""
+    given = simple_unit(unit) or ("in" if unit.strip().lower() == "in" else None)  # a model writes inches as "in"
+    if given is None:
+        return unit
+    written = units_in_text(value, text)
+    if written:
+        return unit if given in written else written[0]
+    return "" if given == "in" and preposition_after(value, text) else unit
 
 
 def same_unit(a: str, b: str) -> bool:
-    form = lambda u: next((unit for pattern, unit in _UNITS if re.fullmatch(pattern, u.strip().lower())), u.strip().lower())
+    form = lambda u: simple_unit(u) or u.strip().lower()
     return form(a) == form(b)
 
 

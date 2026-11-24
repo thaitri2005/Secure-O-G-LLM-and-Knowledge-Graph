@@ -379,7 +379,9 @@ def _clause(text: str, quote: str) -> str:
     if at < 0 or any(mark in wanted.rstrip(". ") for mark in (". ", "; ", " | ")):
         return wanted  # not found as written, or already more than one clause: the quote stands for itself
     start = max(plain.rfind(mark, 0, at) for mark in (". ", "; ", " | ", "\n")) + 1
-    ends = [plain.find(mark, at + len(wanted)) for mark in (". ", "; ", " | ", "\n")]
+    # From the end of the quote without its own full stop, or a quote that ends a sentence would run on into the
+    # next one and borrow its reason.
+    ends = [plain.find(mark, at + len(wanted.rstrip(". "))) for mark in (". ", "; ", " | ", "\n")]
     end = min([e for e in ends if e >= 0], default=len(plain))
     return plain[start:end]
 

@@ -408,7 +408,7 @@ class Service:
                 endpoint = getattr(client, "endpoint", None)
                 if endpoint is None or (role == "answer_model" and client is self.frame_client):
                     continue
-                if role == "answer_model" and endpoint.base_url == self.frame_client.endpoint.base_url:
+                if role == "answer_model" and endpoint.base_url == getattr(getattr(self.frame_client, "endpoint", None), "base_url", None):
                     continue
                 try:
                     import httpx

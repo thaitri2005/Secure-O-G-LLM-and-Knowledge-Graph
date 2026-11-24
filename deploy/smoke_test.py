@@ -46,6 +46,9 @@ def request(url: str, auth: str | None, body: dict | None = None, timeout: float
             return response.status, response.read()
     except urllib.error.HTTPError as error:
         return error.code, error.read()
+    except (urllib.error.URLError, OSError) as error:
+        # Nothing answered at all: reported as status 0, so each check fails with the reason instead of a traceback.
+        return 0, f"no answer: {getattr(error, 'reason', error)}".encode("utf-8")
 
 
 def main(argv: list[str] | None = None) -> int:

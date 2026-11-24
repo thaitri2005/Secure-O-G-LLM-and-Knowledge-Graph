@@ -238,6 +238,11 @@ class BackendTests(unittest.TestCase):
             self.assertEqual(body["code"], code)
             self.assertIsInstance(body["detail"], str)
 
+    def test_an_unknown_route_or_method_has_the_same_error_shape(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        self.assertEqual(client.get("/v1/nope").json()["code"], "not_found")
+        self.assertEqual(client.put("/v1/questions", json={}).json()["code"], "method_not_allowed")
+
     def test_ready_asks_the_question_log_and_says_who_is_waiting(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)
         out = client.get("/v1/ready")
@@ -375,12 +380,13 @@ class BackendTests(unittest.TestCase):
         for url in ("http://127.0.0.1:8080/v1", "http://localhost:8080/v1", "http://stub-model:8080/v1",
                     "http://10.0.0.5:8080/v1", "http://100.101.102.103:8080/v1", "http://host.docker.internal:8080/v1"):
             self.assertTrue(on_our_network(url), url)
-        for url in ("https://openrouter.ai/api/v1", "http://203.0.113.9:8080/v1", "https://gpu.example.org/v1", ""):
+        for url in ("https://openrouter.ai/api/v1", "http://203.0.113.9:8080/v1", "https://gpu.example.org/v1", "",
+                    "http://134744072/v1", "http://0x08080808/v1"):
             self.assertFalse(on_our_network(url), url)
 
     def test_a_nul_character_is_refused_not_sent_to_the_store(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)
-        for path in ("/v1/admin/questions?q=%00", "/v1/admin/questions/%00", "/v1/chunks/a%00b"):
+        for path in ("/v1/admin/questions?q=%00", "/v1/admin/questions/%00", "/v1/chunks/a%00b"):  # decoded by the server
             out = client.get(path)
             self.assertEqual((out.status_code, out.json()["code"]), (422, "invalid_request"), path)
         self.assertEqual(client.post("/v1/questions", json={"question": "depth\u0000?"}).status_code, 422)

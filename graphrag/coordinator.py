@@ -88,6 +88,20 @@ def _problem(parsed: dict) -> dict | None:
     return out
 
 
+# Names the well pattern also matches: casing grades (K-55, L-80, P-110), tools and tests (BHA-3, DST-1).
+NOT_A_WELL = re.compile(r"(?:[HJKLNPCTQ]-\d{2,3}|(?:BHA|DST|RFT|MDT|LOT|FIT|API|ISO|PDC|BOP|BIT|RUN)-\d+[A-Z]?)")
+_MONTH_WORDS = ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec")
+
+
+def _date_said(day: str, question: str) -> bool:
+    """Whether a question (lower case) shows the model's ISO day in a form `question_dates` does not read, such as
+    "20 August" with no year: the day's number and the month's name are both in it."""
+    found = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", day)
+    if not found or not 1 <= int(found.group(2)) <= 12:
+        return False
+    return bool(re.search(rf"(?<!\d)0?{int(found.group(3))}(?!\d)", question)) and _MONTH_WORDS[int(found.group(2)) - 1] in question
+
+
 def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     """The question's frame: kind, report type, query plan and problem. An answer that is not a frame gives the empty
     frame, which routes to the end-of-well lanes. What code reads in the question wins over what the model said."""
@@ -107,7 +121,7 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     wells = named & engine.wells
     if len(wells) == 1:
         frame["plan"]["well"] = next(iter(wells))
-    elif not wells and any(name[0].isalpha() for name in named):
+    elif not wells and any(name[0].isalpha() and not NOT_A_WELL.fullmatch(name) for name in named):
         # The question names a well by letters and number (ZZ-9) and the engine holds no such well: a total must
         # not be computed on another well's events, whatever well the model wrote into the plan.
         frame["plan"]["operation"] = "not_answerable"
@@ -125,11 +139,15 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
             words = reasoning._words(str(phrase))
             return bool(words) and all(re.search(rf"\b{re.escape(w)}", said) for w in words)
 
-        problem["date"] = next(iter(dates)) if len(dates) == 1 else ("" if not dates else problem["date"])
+        if len(dates) == 1:
+            problem["date"] = next(iter(dates))
+        elif not dates and not _date_said(str(problem["date"]), said):
+            problem["date"] = ""  # the question names no day, in any form: the model's day is its own
         problem["keywords"] = [k for k in problem["keywords"] if in_question(k)]
-        if problem["depth_ft"] and not re.search(rf"(?<![\d.]){int(problem['depth_ft']):,}?(?![\d])|(?<![\d.]){int(problem['depth_ft'])}(?![\d])",
-                                                  question):
-            problem["depth_ft"] = 0
+        if problem["depth_ft"]:
+            depth = int(problem["depth_ft"])
+            if not re.search(rf"(?<![\d.,])(?:{depth:,}|{depth})(?![\d]|[.,]\d)", question):
+                problem["depth_ft"] = 0
     return frame, call
 
 

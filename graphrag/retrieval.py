@@ -200,26 +200,61 @@ MONTHS = ("January", "February", "March", "April", "May", "June", "July", "Augus
           "December")
 _MONTH = "(" + "|".join(f"{m}|{m[:3]}" for m in MONTHS) + r"|Sept)\.?"
 _DAY = r"(\d{1,2})(?:st|nd|rd|th)?"
-# "20 August 2016", "20th Aug 2016", and a range "20-22 August 2016" or "20 to 22 August 2016".
-DAY_FIRST = re.compile(rf"\b{_DAY}(?:\s*(?:-|–|to|and)\s*{_DAY})?\s+{_MONTH},?\s+(\d{{4}})\b", re.IGNORECASE)
-# "August 20, 2016".
-MONTH_FIRST = re.compile(rf"\b{_MONTH}\s+{_DAY},?\s+(\d{{4}})\b", re.IGNORECASE)
+_START = r"(?<![\w/.-])"  # not inside another token: the 3 of "AK-3 - 20 August", the 4 of "12 1/4 to 20 August"
+# "20 August 2016", "20th Aug 2016", a range "20-22 August 2016" or "20 to 22 August 2016", and "20 and 22 August 2016".
+DAY_FIRST = re.compile(rf"{_START}{_DAY}(?:\s*(-|–|to|and)\s*{_DAY})?\s+{_MONTH},?\s+(\d{{4}})\b", re.IGNORECASE)
+# "August 20, 2016" and "August 20-22, 2016".
+MONTH_FIRST = re.compile(rf"\b{_MONTH}\s+{_DAY}(?:\s*(-|–|to|and)\s*{_DAY})?,?\s+(\d{{4}})\b", re.IGNORECASE)
 ISO = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
+# The daily reports' own form, "20-Aug-16" or "20-Aug-2016".
+REPORT_FORM = re.compile(rf"{_START}(\d{{1,2}})-([A-Za-z]{{3}})-(\d{{2}}|\d{{4}})\b")
+_BETWEEN = re.compile(r"\s*(?:to|until|through|-|–)\s*", re.IGNORECASE)
 
 
 def question_dates(question: str) -> set[str]:
-    """The days a question names, as ISO dates. A range gives every day in it (at most a month's worth)."""
-    def iso(year: str, month: str, day: int) -> str | None:
-        number = next(i for i, m in enumerate(MONTHS, 1) if m[:3].lower() == month[:3].lower())
-        return f"{int(year):04d}-{number:02d}-{day:02d}" if 1 <= day <= 31 else None
+    """The days a question names, as ISO dates. A range gives every day in it, also across months ("30 August 2016
+    to 2 September 2016"), up to a month's worth; "20 and 22 August" gives the two days. A day that does not exist
+    (31 June) is not a date."""
+    from datetime import date, timedelta
+    numbers = {m[:3].lower(): n for n, m in enumerate(MONTHS, 1)}
 
-    found: set[str | None] = set()
-    for first, last, month, year in DAY_FIRST.findall(question):
-        low, high = int(first), int(last or first)
-        found |= {iso(year, month, day) for day in (range(low, high + 1) if low <= high else (low, high))}
-    found |= {iso(year, month, int(day)) for month, day, year in MONTH_FIRST.findall(question)}
-    found |= {f"{y}-{m}-{d}" for y, m, d in ISO.findall(question)}
-    return {d for d in found if d}
+    def day_of(year: str, month: str, day: str) -> date | None:
+        number = numbers.get(month[:3].lower())
+        year_number = int(year) + (2000 if len(year) == 2 else 0)
+        try:
+            return date(year_number, number, int(day)) if number and year_number >= 1900 else None
+        except ValueError:
+            return None
+
+    def span(first: date | None, last: date | None) -> list[date]:
+        if not first or not last or not first <= last <= first + timedelta(days=31):
+            return [d for d in (first, last) if d]
+        return [first + timedelta(days=n) for n in range((last - first).days + 1)]
+
+    found: list[tuple[int, int, list[date]]] = []  # where in the question, and the days written there
+    for m in DAY_FIRST.finditer(question):
+        first, joiner, last, month, year = m.groups()
+        days = [day_of(year, month, first), day_of(year, month, last)] if last else [day_of(year, month, first)]
+        found.append((m.start(), m.end(), span(*days) if last and joiner.lower() != "and" else [d for d in days if d]))
+    for m in MONTH_FIRST.finditer(question):
+        month, first, joiner, last, year = m.groups()
+        days = [day_of(year, month, first), day_of(year, month, last)] if last else [day_of(year, month, first)]
+        found.append((m.start(), m.end(), span(*days) if last and joiner.lower() != "and" else [d for d in days if d]))
+    for m in ISO.finditer(question):
+        try:
+            found.append((m.start(), m.end(), [date(int(m.group(1)), int(m.group(2)), int(m.group(3)))]))
+        except ValueError:
+            pass
+    for m in REPORT_FORM.finditer(question):
+        day = day_of(m.group(3), m.group(2), m.group(1))
+        found.append((m.start(), m.end(), [day] if day else []))
+    found.sort()
+    out = {d for _, _, days in found for d in days}
+    # Two whole dates joined by "to": every day between them.
+    for (_, end, before), (start, _, after) in zip(found, found[1:]):
+        if before and after and _BETWEEN.fullmatch(question[end:start]):
+            out |= set(span(before[-1], after[0]))
+    return {d.isoformat() for d in out}
 
 
 def page_dates(chunks: list[Chunk]) -> dict[tuple[str, int], str]:

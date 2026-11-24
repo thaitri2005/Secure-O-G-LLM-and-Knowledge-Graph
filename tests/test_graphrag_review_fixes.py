@@ -3,7 +3,8 @@ No model, store or corpus needed."""
 import unittest
 
 from graphrag import reasoning
-from graphrag.citations import resolve, same_unit, unit_in_text
+from graphrag import coordinator
+from graphrag.citations import checked_unit, resolve, same_unit, unit_in_text
 from graphrag.data import Chunk
 from graphrag.events import Event, plan_value
 from graphrag.retrieval import BM25, question_dates
@@ -167,6 +168,47 @@ class FocusTests(unittest.TestCase):
         self.assertEqual(self.stands("2016-08-21", ["fish"], [self.GENERAL]), ["well control"])
 
 
+class CheckedUnitTests(unittest.TestCase):
+    """The unit shown is changed only when a simple unit is contradicted by the cited passage (second review)."""
+
+    def test_a_preposition_taken_for_inches_becomes_the_passages_unit_or_none(self):
+        passage = "a vertical depth of 1,955 in contrast to the planned 1,700'. Liner from 755' to 1,955', set on bottom"
+        self.assertEqual(checked_unit("1955", "in", passage), "ft")
+        self.assertEqual(checked_unit("3", "in", "run 3 in the morning"), "")
+
+    def test_a_right_unit_is_never_replaced(self):
+        for value, unit, passage in (("20", "ft", "The 20 in. conductor was set at 20 ft."), ("40", "ft/hr", "ROP averaged 40 ft/hr"),
+                                     ("1955", "ft MD", "reached 1,955 ft"), ("1955", "feet", "reached 1,955 ft"),
+                                     ("8.625", "in", '8.625" casing'), ("5", "", "Bit run 5 was pulled after 5 days")):
+            self.assertEqual(checked_unit(value, unit, passage), unit, (value, unit, passage))
+
+    def test_a_compound_unit_in_the_passage_is_not_cut_to_a_simple_one(self):
+        for value, passage in (("40", "ROP averaged 40 ft/hr"), ("2500", "gradient 2500 psi/ft"), ("5000", "torque 5,000 ft-lbs")):
+            self.assertIsNone(unit_in_text(value, passage), passage)
+
+
+class ClauseTests(unittest.TestCase):
+    TEXT = "Pipe became stuck at 1725 ft. Waited on weather for 3 hrs. Resumed drilling."
+
+    def test_a_quote_that_ends_its_sentence_does_not_borrow_the_next_ones_reason(self):
+        for quote in ("Pipe became stuck at 1725 ft.", "Pipe became stuck at 1725 ft"):
+            item = {"cause": "x", "citations": [{"evidence": "E1", "quote": quote}]}
+            self.assertFalse(reasoning.stated_as_a_cause(item, {"E1": self.TEXT}), quote)
+
+
+class FrameCheckTests(unittest.TestCase):
+    def test_grades_and_tools_are_not_wells(self):
+        for name in ("K-55", "L-80", "P-110", "BHA-3", "DST-1"):
+            self.assertTrue(coordinator.NOT_A_WELL.fullmatch(name), name)
+        for name in ("ZZ-9", "AK-3", "TG-2", "MU-ESW-1"):
+            self.assertFalse(coordinator.NOT_A_WELL.fullmatch(name), name)
+
+    def test_the_models_day_is_kept_when_the_question_shows_it_without_a_year(self):
+        self.assertTrue(coordinator._date_said("2016-08-20", "what went wrong on 20 august?"))
+        self.assertFalse(coordinator._date_said("2016-08-20", "what caused the non-productive time?"))
+        self.assertFalse(coordinator._date_said("late august", "what happened in late august?"))
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):
@@ -176,6 +218,20 @@ class DateTests(unittest.TestCase):
         days = {"2016-08-20", "2016-08-21", "2016-08-22"}
         self.assertEqual(question_dates("from 20-22 August 2016"), days)
         self.assertEqual(question_dates("from 20 to 22 August 2016"), days)
+
+    def test_other_forms_and_the_edges_of_a_range(self):
+        self.assertEqual(question_dates("on 20-Aug-16"), {"2016-08-20"})
+        self.assertEqual(question_dates("on August 20-22, 2016"), {"2016-08-20", "2016-08-21", "2016-08-22"})
+        self.assertEqual(question_dates("on 20 and 22 August 2016"), {"2016-08-20", "2016-08-22"})
+        self.assertEqual(question_dates("from 30 August 2016 to 2 September 2016"),
+                         {"2016-08-30", "2016-08-31", "2016-09-01", "2016-09-02"})
+
+    def test_a_number_inside_another_token_does_not_start_a_range(self):
+        self.assertEqual(question_dates("What happened on AK-3 - 20 August 2016?"), {"2016-08-20"})
+        self.assertEqual(question_dates("hole 12 1/4 to 20 August 2016"), {"2016-08-20"})
+
+    def test_a_day_that_does_not_exist_is_not_a_date(self):
+        self.assertEqual(question_dates("on 31 June 2016 or 0016-13-45"), set())
 
     def test_numbers_that_are_not_dates_are_left_alone(self):
         self.assertEqual(question_dates("the 12-25 section in May 2016 at 1,725 ft"), set())

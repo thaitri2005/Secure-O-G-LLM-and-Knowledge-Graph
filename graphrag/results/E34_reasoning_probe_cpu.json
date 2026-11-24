@@ -53,7 +53,7 @@
     }
   },
   "questions": 10,
-  "correct_total": "6/10",
+  "correct_total": "7/10",
   "rightly_routed": "9/10",
   "fallbacks": 1,
   "per_question": {
@@ -65,7 +65,7 @@
   "by_set": {
     "ak3_reasoning_probe_v0": {
       "questions": 10,
-      "correct": "6/10",
+      "correct": "7/10",
       "rightly_routed": "9/10",
       "fallbacks": 1,
       "calls_per_question": 2.0,
@@ -76,10 +76,10 @@
   },
   "reasoning": {
     "questions": 10,
-    "correct": "6/10",
+    "correct": "7/10",
     "problem_found": "8/10",
     "stated_found_and_cited": "8/10",
-    "unsupported_claims": 5,
+    "unsupported_claims": 4,
     "removed_by_check": 3,
     "asked_which": 0
   },
@@ -3897,7 +3897,7 @@
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
@@ -3926,7 +3926,7 @@
       "completion_tokens": 631,
       "seconds": 313.668,
       "cached": true,
-      "answer_text": "Problem: non-productive time coded WOE from 2016-09-03 6:30 to 2016-09-03 11:00: 1 event, 4.5 hours, end depth 1725 ft. Stated in the reports: Waiting on weather to fly additional core rod to site (winds blowing over 35 KNTS) [E8]; Circulate hole from 1725' (non-productive WOE) [E8]. Possible, not stated in any report: Receive 8 jts of HQ in first delivery at 10:45 [E8]; 15 jts of used rod from village yard at 11:00 hrs [E8]; Partial losses since 1878-1888 [P2]; Bit torquing up and pressure building when on bottom [E10]; Cooling hole with fresh water [E11]; High mud temperatures in/out (112F/156F) [E5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the weather conditions and their impact on operations; Information about the core rod delivery logistics and timing; Data on the exact duration of the weather delay; Details about the core rod retrieval and handling procedures.",
+      "answer_text": "Problem: non-productive time coded WOE from 2016-09-03 6:30 to 2016-09-03 11:00: 1 event, 4.5 hours, end depth 1725 ft. Stated in the reports: Waiting on weather to fly additional core rod to site (winds blowing over 35 KNTS) [E8]. Possible, not stated in any report: Circulate hole from 1725' (non-productive WOE) [E8]; Receive 8 jts of HQ in first delivery at 10:45 [E8]; 15 jts of used rod from village yard at 11:00 hrs [E8]; Partial losses since 1878-1888 [P2]; Bit torquing up and pressure building when on bottom [E10]; Cooling hole with fresh water [E11]; High mud temperatures in/out (112F/156F) [E5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the weather conditions and their impact on operations; Information about the core rod delivery logistics and timing; Data on the exact duration of the weather delay; Details about the core rod retrieval and handling procedures.",
       "reasoning": {
         "problem": {
           "date_from": "2016-09-03",
@@ -4522,7 +4522,9 @@
                 "quote": "wait on weather to fly additional core rod to site (winds blowing over 35 KNTS)"
               }
             ]
-          },
+          }
+        ],
+        "possible": [
           {
             "cause": "Circulate hole from 1725' (non-productive WOE)",
             "citations": [
@@ -4533,9 +4535,7 @@
                 "quote": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS)."
               }
             ]
-          }
-        ],
-        "possible": [
+          },
           {
             "cause": "Receive 8 jts of HQ in first delivery at 10:45",
             "citations": [
@@ -4608,7 +4608,7 @@
           "stated": 0,
           "possible": 0
         },
-        "moved_to_possible": 2,
+        "moved_to_possible": 3,
         "focus": [
           "E8"
         ],
@@ -4701,9 +4701,9 @@
         "problem_found": true,
         "stated_found": "1/1",
         "stated_found_and_cited": true,
-        "unsupported_claims": 1,
+        "unsupported_claims": 0,
         "removed_by_check": 0,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v0",
       "expected": "reasoning",

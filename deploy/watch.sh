@@ -8,7 +8,7 @@
 # It runs the quick smoke test (gate, frontend, health, ready): no question is asked and nothing is logged.
 # A message is sent only when the state changes, so a long outage is one message, not one every five minutes.
 # ALERT_WEBHOOK is an incoming-webhook address of the group chat (Slack, Discord, Mattermost, Google Chat: each takes
-# a JSON body with "text" or "content"). Without it the script only writes its log.
+# a JSON body with "text", Discord "content"). Without it the script only writes its log.
 set -uo pipefail
 
 URL="${1:?usage: watch.sh <address of the application> [user]}"
@@ -21,21 +21,27 @@ output="$(python3 "$HERE/smoke_test.py" --url "$URL" --user "$USER_NAME" --quick
 before="$(cat "$STATE" 2>/dev/null || echo up)"
 echo "$(date -u +%FT%TZ) $URL $now"
 [ "$now" = "down" ] && echo "$output"
-echo "$now" > "$STATE"
 
+sent=0
 if [ "$now" != "$before" ] && [ -n "${ALERT_WEBHOOK:-}" ]; then
   if [ "$now" = "down" ]; then
-    message="Drilling reports application is DOWN at $URL: $(printf '%s' "$output" | grep '^FAIL' | head -3 | tr '\n' ' ')"
+    message="Drilling reports application is DOWN at $URL: $(printf '%s' "$output" | grep -E '^(FAIL|WARN)' | head -3 | tr '\n' ' ')"
   else
     message="Drilling reports application is back up at $URL."
   fi
-  python3 - "$ALERT_WEBHOOK" "$message" <<'PY'
+  # Discord wants "content", Slack, Mattermost and Google Chat want "text"; a browser-like agent, since some refuse
+  # the default one. If the message cannot be sent the state is not saved, so the next run tries again.
+  python3 - "$ALERT_WEBHOOK" "$message" <<'PY' || sent=1
 import json, sys, urllib.request
-body = json.dumps({"text": sys.argv[2], "content": sys.argv[2]}).encode()
+field = "content" if "discord" in sys.argv[1] else "text"
+body = json.dumps({field: sys.argv[2]}).encode()
+request = urllib.request.Request(sys.argv[1], body, {"Content-Type": "application/json", "User-Agent": "kg-watch/1.0"})
 try:
-    urllib.request.urlopen(urllib.request.Request(sys.argv[1], body, {"Content-Type": "application/json"}), timeout=15)
-except Exception as error:  # the log line above already records the state
+    urllib.request.urlopen(request, timeout=15)
+except Exception as error:
     print(f"could not send the alert: {error}")
+    sys.exit(1)
 PY
 fi
+[ "$sent" -eq 0 ] && echo "$now" > "$STATE"
 [ "$now" = "up" ]

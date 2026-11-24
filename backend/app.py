@@ -18,6 +18,7 @@ from typing import Literal
 import httpx
 from fastapi import Depends, FastAPI, HTTPException, Path as PathParam, Query
 from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse, JSONResponse
@@ -89,8 +90,9 @@ def create_app(service: Service | None = None) -> FastAPI:
         return response
 
     # Every error has one shape: {"detail": a sentence, "code": a word, "question_id": when a question was logged}.
-    @app.exception_handler(HTTPException)
-    async def problem(_request, error: HTTPException):
+    # Registered on Starlette's class, which FastAPI's extends: the router's own 404 and 405 get the shape too.
+    @app.exception_handler(StarletteHTTPException)
+    async def problem(_request, error: StarletteHTTPException):
         body = {"detail": str(error.detail), "code": getattr(error, "code", None) or CODES.get(error.status_code, "error")}
         if getattr(error, "question_id", None):
             body["question_id"] = error.question_id
@@ -116,7 +118,7 @@ def create_app(service: Service | None = None) -> FastAPI:
     @app.middleware("http")
     async def no_nul_bytes(request, call_next):
         """PostgreSQL text cannot hold a NUL byte: in a path or a filter it would end as a 500 from the store."""
-        if "%00" in request.url.path or "\x00" in request.url.path or "%00" in (request.url.query or ""):
+        if "\x00" in request.url.path or "%00" in (request.url.query or ""):
             return JSONResponse({"detail": "the request holds a NUL character", "code": "invalid_request"}, status_code=422)
         return await call_next(request)
 
@@ -314,6 +316,8 @@ def on_our_network(url: str) -> bool:
     try:
         address = ipaddress.ip_address(host)
     except ValueError:
+        if host.isdigit() or host.startswith("0x"):
+            return False  # a public address written as one number is not a service name
         return host == "localhost" or "." not in host or host.endswith((".internal", ".local"))
     ours = ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "100.64.0.0/10", "fc00::/7")
     return address.is_loopback or any(address in ipaddress.ip_network(net) for net in ours
