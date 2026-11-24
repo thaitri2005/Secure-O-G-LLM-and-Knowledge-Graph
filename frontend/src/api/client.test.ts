@@ -53,7 +53,7 @@ describe("the real API client", () => {
   });
 
   it("keeps a page’s image link as the server wrote it", async () => {
-    const url = "/v1/files/gdr882_ak3_eowr/pages/2/image";
+    const url = "/v1/files/gdr882_ak3_eowr/pages/7/image";
     vi.stubGlobal("fetch", vi.fn(async () => reply(200, { file_id: "gdr882_ak3_eowr", page: 2, chunks: [], image_url: url })));
     expect((await liveApi.page("gdr882_ak3_eowr", 2)).image_url).toBe(url);
   });
@@ -63,9 +63,9 @@ describe("the example responses", () => {
   it("show one page with an image, and the image file is committed", async () => {
     const { exampleApi } = await import("./examples");
     const shown = await exampleApi.page("gdr882_ak3_eowr", 2);
-    expect(shown.image_url).toBe("/example-pages/gdr882_ak3_eowr/p2.png");
+    expect(shown.image_url).toBe("/example-pages/gdr882_ak3_eowr/p7.png");
     const files = import.meta.glob("../../public/example-pages/**/*.png", { query: "?url", import: "default" });
-    expect(Object.keys(files)).toEqual(["../../public/example-pages/gdr882_ak3_eowr/p2.png"]);
+    expect(Object.keys(files)).toEqual(["../../public/example-pages/gdr882_ak3_eowr/p7.png"]);
   });
 });
 

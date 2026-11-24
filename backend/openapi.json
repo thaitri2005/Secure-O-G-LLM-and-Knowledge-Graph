@@ -271,7 +271,7 @@
     },
     "/v1/wells/{well_id}": {
       "get": {
-        "summary": "One well's facts, documents and report days",
+        "summary": "One well's facts in groups, its documents, report days and totals",
         "operationId": "well_v1_wells__well_id__get",
         "parameters": [
           {
@@ -402,10 +402,753 @@
           }
         }
       }
+    },
+    "/v1/admin/questions": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Logged questions, newest first, with their feedback",
+        "description": "No login yet: the application sits behind one shared password at the proxy. Read-only.",
+        "operationId": "logged_questions_v1_admin_questions_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The frame's kind, e.g. lookup or cause",
+              "title": "Kind"
+            },
+            "description": "The frame's kind, e.g. lookup or cause"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "answered",
+                    "not_stated",
+                    "not_found_in_graph",
+                    "withheld",
+                    "invalid",
+                    "ask_which"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "allow_fallback",
+                    "exact"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mode"
+            }
+          },
+          {
+            "name": "verdict",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "right",
+                    "wrong",
+                    "none"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The latest mark; none: not marked",
+              "title": "Verdict"
+            },
+            "description": "The latest mark; none: not marked"
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or after this day (UTC)",
+              "title": "Date From"
+            },
+            "description": "Asked on or after this day (UTC)"
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or before this day (UTC)",
+              "title": "Date To"
+            },
+            "description": "Asked on or before this day (UTC)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Text in the question, ignoring case",
+              "title": "Q"
+            },
+            "description": "Text in the question, ignoring case"
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 500,
+              "description": "Only these question IDs",
+              "default": [],
+              "title": "Ids"
+            },
+            "description": "Only these question IDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/questions/counts": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Logged questions counted by kind, status and verdict",
+        "description": "No login yet: the application sits behind one shared password at the proxy. Read-only.",
+        "operationId": "question_counts_v1_admin_questions_counts_get",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The frame's kind, e.g. lookup or cause",
+              "title": "Kind"
+            },
+            "description": "The frame's kind, e.g. lookup or cause"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "answered",
+                    "not_stated",
+                    "not_found_in_graph",
+                    "withheld",
+                    "invalid",
+                    "ask_which"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "allow_fallback",
+                    "exact"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mode"
+            }
+          },
+          {
+            "name": "verdict",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "right",
+                    "wrong",
+                    "none"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The latest mark; none: not marked",
+              "title": "Verdict"
+            },
+            "description": "The latest mark; none: not marked"
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or after this day (UTC)",
+              "title": "Date From"
+            },
+            "description": "Asked on or after this day (UTC)"
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or before this day (UTC)",
+              "title": "Date To"
+            },
+            "description": "Asked on or before this day (UTC)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Text in the question, ignoring case",
+              "title": "Q"
+            },
+            "description": "Text in the question, ignoring case"
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 500,
+              "description": "Only these question IDs",
+              "default": [],
+              "title": "Ids"
+            },
+            "description": "Only these question IDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionCounts"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/questions/export": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Selected questions as a question file for graphrag.coordinator, gold left empty",
+        "description": "No login yet: the application sits behind one shared password at the proxy. Read-only. Selects by `ids` or by the filters; every matching question, oldest first.",
+        "operationId": "export_questions_v1_admin_questions_export_get",
+        "parameters": [
+          {
+            "name": "expected_lane",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "end_of_well",
+                    "daily",
+                    "events",
+                    "reasoning"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Written into the file only when given",
+              "title": "Expected Lane"
+            },
+            "description": "Written into the file only when given"
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The frame's kind, e.g. lookup or cause",
+              "title": "Kind"
+            },
+            "description": "The frame's kind, e.g. lookup or cause"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "answered",
+                    "not_stated",
+                    "not_found_in_graph",
+                    "withheld",
+                    "invalid",
+                    "ask_which"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "allow_fallback",
+                    "exact"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mode"
+            }
+          },
+          {
+            "name": "verdict",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "right",
+                    "wrong",
+                    "none"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The latest mark; none: not marked",
+              "title": "Verdict"
+            },
+            "description": "The latest mark; none: not marked"
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or after this day (UTC)",
+              "title": "Date From"
+            },
+            "description": "Asked on or after this day (UTC)"
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Asked on or before this day (UTC)",
+              "title": "Date To"
+            },
+            "description": "Asked on or before this day (UTC)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Text in the question, ignoring case",
+              "title": "Q"
+            },
+            "description": "Text in the question, ignoring case"
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 500,
+              "description": "Only these question IDs",
+              "default": [],
+              "title": "Ids"
+            },
+            "description": "Only these question IDs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionSetFile"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/questions/{question_id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "One logged question with its full stored record",
+        "description": "No login yet: the application sits behind one shared password at the proxy. Read-only.",
+        "operationId": "logged_question_v1_admin_questions__question_id__get",
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Question Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoggedQuestionDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "Activity": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "start": {
+            "type": "string",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "title": "End"
+          },
+          "hours": {
+            "type": "number",
+            "title": "Hours"
+          },
+          "end_md": {
+            "type": "integer",
+            "title": "End Md",
+            "description": "End measured depth, ft"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "Activity code"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Whole, also where the text line cuts a neighbouring event's description"
+          },
+          "npt_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Npt Code",
+            "description": "Non-productive code, when the report marks one"
+          },
+          "chunks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chunks"
+          },
+          "problem": {
+            "type": "boolean",
+            "title": "Problem",
+            "description": "Whether it is part of the problem itself"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "start",
+          "end",
+          "hours",
+          "end_md",
+          "code",
+          "description",
+          "npt_code",
+          "chunks",
+          "problem"
+        ],
+        "title": "Activity",
+        "description": "An event among the reasoning evidence, as fields: the same event as its text line, which is what the model saw."
+      },
       "Answer": {
         "properties": {
           "value": {
@@ -554,6 +1297,29 @@
           "cost"
         ],
         "title": "AnswerOut"
+      },
+      "CasingString": {
+        "properties": {
+          "size_in": {
+            "type": "string",
+            "title": "Size In",
+            "description": "Casing size as the report writes it, for example 9-5/8"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/WellFact"
+            },
+            "type": "array",
+            "title": "Facts",
+            "description": "Its depth, weight and grade, planned and actual"
+          }
+        },
+        "type": "object",
+        "required": [
+          "size_in",
+          "facts"
+        ],
+        "title": "CasingString"
       },
       "Cause": {
         "properties": {
@@ -778,6 +1544,61 @@
           "how"
         ],
         "title": "Citation"
+      },
+      "CollectedQuestion": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "The question's ID in the log"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "description": "The frame's kind when it was asked"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "gold": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Gold",
+            "description": "Empty: gold answers are not written yet"
+          },
+          "asked_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asked At"
+          },
+          "feedback": {
+            "items": {
+              "$ref": "#/components/schemas/FeedbackRecord"
+            },
+            "type": "array",
+            "title": "Feedback",
+            "description": "The marks and comments the users left"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "question",
+          "gold",
+          "asked_at",
+          "feedback"
+        ],
+        "title": "CollectedQuestion"
       },
       "Computed": {
         "properties": {
@@ -1108,6 +1929,33 @@
         ],
         "title": "FeedbackOut"
       },
+      "FeedbackRecord": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "right",
+              "wrong"
+            ],
+            "title": "Verdict"
+          },
+          "comment": {
+            "type": "string",
+            "title": "Comment"
+          },
+          "at": {
+            "type": "string",
+            "title": "At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "verdict",
+          "comment",
+          "at"
+        ],
+        "title": "FeedbackRecord"
+      },
       "FileOut": {
         "properties": {
           "file_id": {
@@ -1236,6 +2084,313 @@
           "models"
         ],
         "title": "Health"
+      },
+      "LoggedQuestion": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "asked_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asked At"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind",
+            "description": "The frame's kind"
+          },
+          "report_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Report Type",
+            "description": "The frame's report type"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "lanes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Lanes"
+          },
+          "fallback": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback"
+          },
+          "answered_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answered From"
+          },
+          "answer_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Text"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "right",
+                  "wrong"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict",
+            "description": "The latest mark; null when nobody marked the answer"
+          },
+          "feedback": {
+            "items": {
+              "$ref": "#/components/schemas/FeedbackRecord"
+            },
+            "type": "array",
+            "title": "Feedback",
+            "description": "Every mark, oldest first"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "asked_at",
+          "question",
+          "mode",
+          "kind",
+          "report_type",
+          "status",
+          "lanes",
+          "fallback",
+          "answered_from",
+          "answer_text",
+          "verdict",
+          "feedback"
+        ],
+        "title": "LoggedQuestion"
+      },
+      "LoggedQuestionDetail": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "asked_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asked At"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind",
+            "description": "The frame's kind"
+          },
+          "report_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Report Type",
+            "description": "The frame's report type"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "lanes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Lanes"
+          },
+          "fallback": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback"
+          },
+          "answered_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answered From"
+          },
+          "answer_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Text"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "right",
+                  "wrong"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict",
+            "description": "The latest mark; null when nobody marked the answer"
+          },
+          "feedback": {
+            "items": {
+              "$ref": "#/components/schemas/FeedbackRecord"
+            },
+            "type": "array",
+            "title": "Feedback",
+            "description": "Every mark, oldest first"
+          },
+          "record": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Record",
+            "description": "The whole stored entry: frame, answers, cited chunk IDs, cost, models, forced lane"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "asked_at",
+          "question",
+          "mode",
+          "kind",
+          "report_type",
+          "status",
+          "lanes",
+          "fallback",
+          "answered_from",
+          "answer_text",
+          "verdict",
+          "feedback",
+          "record"
+        ],
+        "title": "LoggedQuestionDetail"
       },
       "Missing": {
         "properties": {
@@ -1381,6 +2536,44 @@
         "title": "Problem",
         "description": "A drilling problem found in the event graph: a run of non-productive events with one code."
       },
+      "QuestionCounts": {
+        "properties": {
+          "questions": {
+            "type": "integer",
+            "title": "Questions"
+          },
+          "by_kind": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "By Kind"
+          },
+          "by_status": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "By Status"
+          },
+          "by_verdict": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "By Verdict",
+            "description": "right, wrong and none (not marked), by the latest mark"
+          }
+        },
+        "type": "object",
+        "required": [
+          "questions",
+          "by_kind",
+          "by_status",
+          "by_verdict"
+        ],
+        "title": "QuestionCounts"
+      },
       "QuestionIn": {
         "properties": {
           "question": {
@@ -1423,6 +2616,126 @@
           "question"
         ],
         "title": "QuestionIn"
+      },
+      "QuestionPage": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Questions matching the filters, over all pages"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/LoggedQuestion"
+            },
+            "type": "array",
+            "title": "Questions",
+            "description": "Newest first"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "limit",
+          "offset",
+          "questions"
+        ],
+        "title": "QuestionPage"
+      },
+      "QuestionSetFile": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "expected_lane": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Lane",
+            "description": "Absent unless chosen at export: the coordinator then takes it as reasoning, so routing scores of the file mean nothing"
+          },
+          "collected": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Collected",
+            "description": "On which date, how many questions and with which filters"
+          },
+          "known_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Known Limits"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/CollectedQuestion"
+            },
+            "type": "array",
+            "title": "Questions"
+          },
+          "facts": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Facts",
+            "description": "Empty: the gold facts a person writes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "version",
+          "collected",
+          "known_limits",
+          "questions",
+          "facts"
+        ],
+        "title": "QuestionSetFile",
+        "description": "A question file in the format of graphrag/gold/, which `python -m graphrag.coordinator answer --questions\n<file>` runs; a person adds the gold facts later."
+      },
+      "Readings": {
+        "properties": {
+          "property": {
+            "type": "string",
+            "title": "Property",
+            "description": "For example inclination or max_measured_temperature"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/WellFact"
+            },
+            "type": "array",
+            "title": "Facts",
+            "description": "One per depth, shallowest first; context.depth_ft is the depth"
+          }
+        },
+        "type": "object",
+        "required": [
+          "property",
+          "facts"
+        ],
+        "title": "Readings"
       },
       "Reasoning": {
         "properties": {
@@ -1527,7 +2840,8 @@
           },
           "text": {
             "type": "string",
-            "title": "Text"
+            "title": "Text",
+            "description": "The line or passage exactly as the model saw it"
           },
           "date": {
             "anyOf": [
@@ -1562,6 +2876,17 @@
             ],
             "title": "Problem",
             "description": "For an event: whether it is part of the problem itself"
+          },
+          "activity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Activity"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For an event: its fields; null for a passage"
           }
         },
         "type": "object",
@@ -1572,6 +2897,60 @@
           "text"
         ],
         "title": "ReasoningEvidence"
+      },
+      "ReportDay": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "hours": {
+            "type": "number",
+            "title": "Hours",
+            "description": "Hours logged in the day's operations table"
+          },
+          "npt_hours": {
+            "type": "number",
+            "title": "Npt Hours",
+            "description": "Hours of those the report marks non-productive"
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events"
+          },
+          "end_md": {
+            "type": "integer",
+            "title": "End Md",
+            "description": "Deepest end measured depth of the day's events, ft"
+          },
+          "codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Codes",
+            "description": "Activity codes of the day, in the order logged"
+          },
+          "npt_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Npt Codes",
+            "description": "Non-productive codes of the day, in the order logged"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "hours",
+          "npt_hours",
+          "events",
+          "end_md",
+          "codes",
+          "npt_codes"
+        ],
+        "title": "ReportDay"
       },
       "ValidationError": {
         "properties": {
@@ -1613,6 +2992,189 @@
         ],
         "title": "ValidationError"
       },
+      "WellDocument": {
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "title": "File Id"
+          },
+          "report_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "end_of_well",
+                  "daily"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Report Type",
+            "description": "Null when a fact cites a report this machine does not hold"
+          },
+          "pages": {
+            "type": "integer",
+            "title": "Pages",
+            "description": "0 when this machine does not hold the report"
+          },
+          "chunks": {
+            "type": "integer",
+            "title": "Chunks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file_id",
+          "report_type",
+          "pages",
+          "chunks"
+        ],
+        "title": "WellDocument"
+      },
+      "WellFact": {
+        "properties": {
+          "well": {
+            "type": "string",
+            "title": "Well"
+          },
+          "property": {
+            "type": "string",
+            "title": "Property"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "qualifier": {
+            "type": "string",
+            "title": "Qualifier",
+            "description": "actual, planned, projected, ..."
+          },
+          "context": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "For example the casing size a depth belongs to"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "table_mapping",
+              "llm"
+            ],
+            "title": "Source"
+          },
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          },
+          "file_id": {
+            "type": "string",
+            "title": "File Id",
+            "description": "The report the fact's chunk belongs to"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page",
+            "description": "The chunk's page; null when this machine does not hold the chunk"
+          }
+        },
+        "type": "object",
+        "required": [
+          "well",
+          "property",
+          "value",
+          "qualifier",
+          "source",
+          "chunk_id",
+          "file_id",
+          "page"
+        ],
+        "title": "WellFact"
+      },
+      "WellFacts": {
+        "properties": {
+          "general": {
+            "items": {
+              "$ref": "#/components/schemas/WellFact"
+            },
+            "type": "array",
+            "title": "General",
+            "description": "Rig, contractor, API number, elevation and other well-level facts"
+          },
+          "depths_and_dates": {
+            "items": {
+              "$ref": "#/components/schemas/WellFact"
+            },
+            "type": "array",
+            "title": "Depths And Dates",
+            "description": "Total depth, spud and rig release dates, days and hours"
+          },
+          "casing_strings": {
+            "items": {
+              "$ref": "#/components/schemas/CasingString"
+            },
+            "type": "array",
+            "title": "Casing Strings",
+            "description": "Largest casing first"
+          },
+          "readings": {
+            "items": {
+              "$ref": "#/components/schemas/Readings"
+            },
+            "type": "array",
+            "title": "Readings",
+            "description": "Values measured or projected at depths"
+          }
+        },
+        "type": "object",
+        "required": [
+          "general",
+          "depths_and_dates",
+          "casing_strings",
+          "readings"
+        ],
+        "title": "WellFacts"
+      },
       "WellOut": {
         "properties": {
           "well_id": {
@@ -1620,25 +3182,26 @@
             "title": "Well Id"
           },
           "facts": {
-            "items": {
-              "$ref": "#/components/schemas/FactOut"
-            },
-            "type": "array",
-            "title": "Facts"
+            "$ref": "#/components/schemas/WellFacts"
           },
           "documents": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/WellDocument"
             },
             "type": "array",
-            "title": "Documents"
+            "title": "Documents",
+            "description": "End-of-well reports first, then daily reports, by file ID"
           },
           "report_days": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ReportDay"
             },
             "type": "array",
-            "title": "Report Days"
+            "title": "Report Days",
+            "description": "From the event graph, oldest first; empty for a well without one"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/WellTotals"
           }
         },
         "type": "object",
@@ -1646,9 +3209,11 @@
           "well_id",
           "facts",
           "documents",
-          "report_days"
+          "report_days",
+          "totals"
         ],
-        "title": "WellOut"
+        "title": "WellOut",
+        "description": "What a page about one well shows, computed in code from the engine; no model call."
       },
       "WellSummary": {
         "properties": {
@@ -1672,6 +3237,43 @@
           "report_days"
         ],
         "title": "WellSummary"
+      },
+      "WellTotals": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events"
+          },
+          "hours": {
+            "type": "number",
+            "title": "Hours"
+          },
+          "npt_hours": {
+            "type": "number",
+            "title": "Npt Hours"
+          },
+          "npt_hours_by_code": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Npt Hours By Code",
+            "description": "Non-productive hours per non-productive code, most first"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days",
+          "events",
+          "hours",
+          "npt_hours",
+          "npt_hours_by_code"
+        ],
+        "title": "WellTotals"
       }
     }
   }

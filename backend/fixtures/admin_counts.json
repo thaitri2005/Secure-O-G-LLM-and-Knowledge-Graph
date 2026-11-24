@@ -1,0 +1,17 @@
+{
+  "questions": 4,
+  "by_kind": {
+    "lookup": 2,
+    "cause": 1,
+    "over_time": 1
+  },
+  "by_status": {
+    "answered": 3,
+    "not_found_in_graph": 1
+  },
+  "by_verdict": {
+    "right": 2,
+    "wrong": 0,
+    "none": 2
+  }
+}

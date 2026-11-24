@@ -43,9 +43,18 @@ Both read `BACKEND_DSN`, or take `--dsn`.
 | `GET /v1/chunks/{chunk_id}` | One chunk. Chunk IDs contain `#` or `:`, so percent-encode them in the path |
 | `GET /v1/files`, `GET /v1/files/{file_id}/pages/{n}` | The loaded reports; one page as its chunks in reading order. `image_url` is the image route's path when the page has been rendered, else null |
 | `GET /v1/files/{file_id}/pages/{n}/image` | The page as a PNG, from `<BACKEND_PAGE_IMAGES>/<file_id>/p<n>.png` (written by `platform/render_pages.py`). `file_id` must be a loaded file and `n` a positive integer, checked before any path is built; 404 when there is no image; cached for a day |
-| `GET /v1/wells`, `GET /v1/wells/{well_id}` | The wells; one well's facts, documents and report days |
+| `GET /v1/wells` | The wells, with how many facts and report days each has |
+| `GET /v1/wells/{well_id}` | What a well page shows, computed in code: facts in groups (general; depths and dates; casing strings, largest first; readings at depths), each with its chunk, file and page; the well's reports with type and page count; each report day's hours, non-productive hours, depth and codes; totals with non-productive hours by code |
 | `GET /v1/wells/{well_id}/events` | A well's events, optionally between `date_from` and `date_to` |
 | `GET /v1/health` | What the engine holds and which models serve |
+| `GET /v1/admin/questions` | The question log, newest first, each question with its feedback. Filters: `kind`, `status`, `mode`, `verdict` (`right`, `wrong`, `none`; the latest mark), `date_from`, `date_to`, `q` (text in the question), `ids`; paged by `limit` (at most 200) and `offset` |
+| `GET /v1/admin/questions/{id}` | One logged question with its whole stored record |
+| `GET /v1/admin/questions/counts` | Logged questions counted by kind, status and verdict; same filters |
+| `GET /v1/admin/questions/export` | The questions the filters or `ids` select, as a question file in the format of [`graphrag/gold/`](../graphrag/gold/): status line "COLLECTED from the application's question log on <date> ...", gold left empty, each question's log ID and asked time kept, oldest first. `expected_lane` is written only when given. `python -m graphrag.coordinator answer --questions <file>` runs it |
+
+The cause answer's evidence carries each event's fields as `activity` beside the text line the model saw, so the frontend need not parse the line.
+
+**The `/v1/admin/` routes have no login yet.** They are read-only, never cached, and protected only by the shared password at the proxy, like the rest of the application: anyone past it can read every question users typed. The log is how the questions domain experts type become the project's real test set (D-65).
 
 ## The contract with the frontend
 
@@ -53,6 +62,7 @@ Both read `BACKEND_DSN`, or take `--dsn`.
 - [`fixtures/`](fixtures/) holds one real response per endpoint, to build the frontend against before the model server is up.
 - Both are generated: `python -m backend.contract`. A test fails when they fall behind the code, so regenerate and commit them with any change to `schemas.py`, then run `npm run types` in [`frontend/`](../frontend/README.md).
 - **The fixtures' model is a stand-in.** The evidence in them is real (the three end-of-well reports, E28's recorded events, the validated facts), but the frame and answer of each example question are scripted in `contract.py`. They show the shape of a response, not what a model says.
+- **The `admin_*` fixtures read a small fixed log** written by `contract.py`: four made-up entries and three marks, not questions anyone asked.
 
 ## Files
 
@@ -61,7 +71,7 @@ Both read `BACKEND_DSN`, or take `--dsn`.
 | `schemas.py` | Request and response shapes: the contract |
 | `service.py` | What the API does, without HTTP: questions through the coordinator, reads of chunks, files, wells and events |
 | `app.py` | Routes, errors, CORS for the frontend's development server; `create_app(service)` for tests |
-| `questions.py` | The question log: every question, how it was answered, and feedback. A JSON-lines file under ignored `data/interim/backend/`, or PostgreSQL's tables when `BACKEND_DSN` is set |
+| `questions.py` | The question log: every question, how it was answered, and feedback, written and read back (filters, counts, export as a question file). A JSON-lines file under ignored `data/interim/backend/`, or PostgreSQL's tables when `BACKEND_DSN` is set |
 | `contract.py` | Writes `openapi.json` and the fixtures |
 
 ## What it reads today, and what changes
@@ -89,10 +99,10 @@ The search in PostgreSQL returns what the search in memory returns on the same v
 
 ## Limits
 
-- No login. The demo holds public data only, and the access gate is a shared password at the proxy (design, B8).
+- No login, also for the `/v1/admin/` reads of the question log. The demo holds public data only, and the access gate is a shared password at the proxy (design, B8).
 - One question at a time: the model server has one slot.
-- Responses over 2 kB are compressed. Reads may be kept by the browser for a minute; answers, feedback and health never.
+- Responses over 2 kB are compressed. Reads may be kept by the browser for a minute; answers, feedback, health and the question log never.
 - The question log holds what users typed. It stays on the machine: in an ignored folder, or in the deployment's PostgreSQL.
-- The event graph is one well's (AK-3), so only that well has report days and events.
+- The event graph is one well's (AK-3), so only that well has report days, events and non-productive totals.
 
 Tests: `python -m unittest tests.test_backend` (no server or model needed). `python -m unittest tests.test_backend_postgres tests.test_graphrag_stores` checks the PostgreSQL log, the environment and the stores; tests needing the local PostgreSQL or Neo4j skip when those do not answer.

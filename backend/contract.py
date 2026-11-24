@@ -6,10 +6,12 @@ Both are generated from the code, and a test fails when they fall behind it. The
 service over committed data: the three end-of-well reports of the bundle, the event graph E28 recorded, and the
 validated facts of the current design. **The model is a stand-in:** the frame and the answer of each example
 question are scripted here, so the fixtures show the shape of a response and real evidence, not a model's output.
+The admin examples (`admin_*`) read a small fixed log written here, not questions anyone asked.
 """
 from __future__ import annotations
 
 import json
+import tempfile
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -63,12 +65,49 @@ QUESTIONS = {
 READS = {
     "chunk": "/v1/chunks/gdr882_ak3_eowr%23c0002",
     "files": "/v1/files",
-    "page": "/v1/files/gdr882_ak3_eowr/pages/2",
+    "page": "/v1/files/gdr882_ak3_eowr/pages/7",
     "wells": "/v1/wells",
     "well": "/v1/wells/AK-3",
     "events": "/v1/wells/AK-3/events?date_from=2016-08-20&date_to=2016-08-20",
     "health": "/v1/health",
 }
+
+
+# The admin examples read a small fixed log: four questions as backend/service.py logs them, and three marks.
+_ASKED = {"fixture-log-1": ("2026-11-20T08:15:00+00:00", "What total depth did well AK-3 reach?", "lookup",
+                            "end_of_well", ["well_facts", "passages"], "answered", "1955 ft"),
+          "fixture-log-2": ("2026-11-21T09:30:00+00:00", "How many hours of non-productive time did AK-3 have?",
+                            "over_time", "daily", ["events"], "answered", "115 hours"),
+          "fixture-log-3": ("2026-11-22T14:05:00+00:00", "What caused the stuck pipe on AK-3 on 20 August 2016?",
+                            "cause", "daily", ["reasoning"], "answered", None),
+          "fixture-log-4": ("2026-11-23T16:45:00+00:00", "What mud weight was used on well ZZ-9?", "lookup",
+                            "end_of_well", [], "not_found_in_graph", None)}
+_MARKS = [("fixture-log-1", "right", "", "2026-11-20T08:20:00+00:00"),
+          ("fixture-log-2", "wrong", "Expected the well total of appendix 23", "2026-11-21T09:40:00+00:00"),
+          ("fixture-log-2", "right", "Matches appendix 23 after checking", "2026-11-21T10:05:00+00:00")]
+EXPORT_DAY = "2026-11-24"
+ADMIN_READS = {
+    "admin_questions": "/v1/admin/questions?limit=3",
+    "admin_question": "/v1/admin/questions/fixture-log-2",
+    "admin_counts": "/v1/admin/questions/counts",
+    "admin_export": "/v1/admin/questions/export?ids=fixture-log-1&ids=fixture-log-4&expected_lane=end_of_well",
+}
+
+
+def fixture_log(path: Path):
+    """The fixed log of the admin examples, written to `path` as JSON lines."""
+    from .questions import JsonlQuestionLog
+    lines = [{"type": "question", "id": qid, "asked_at": at, "question": question, "mode": "allow_fallback",
+              "forced_lane": None, "frame": {"kind": kind, "report_type": report_type, "plan": {}}, "lanes": lanes,
+              "fallback": False, "answered_from": None if not lanes else report_type, "status": status, "answers": [],
+              "answer_text": text, "citations": [], "cost": {"calls": 2, "prompt_tokens": 0, "completion_tokens": 0,
+                                                              "seconds": 0.0},
+              "models": {"frame": "stand-in:scripted", "answer": "stand-in:scripted"}}
+             for qid, (at, question, kind, report_type, lanes, status, text) in _ASKED.items()]
+    lines += [{"type": "feedback", "question_id": qid, "verdict": verdict, "comment": comment, "at": at}
+              for qid, verdict, comment, at in _MARKS]
+    path.write_text("".join(json.dumps(line) + "\n" for line in lines), encoding="utf-8", newline="\n")
+    return JsonlQuestionLog(path)
 
 
 class _Scripted:
@@ -89,6 +128,15 @@ class _NoLog:
 
     def has_question(self, question_id: str) -> bool:
         return True
+
+    def questions(self, filters, limit=None, offset=0) -> tuple[int, list[dict]]:
+        return 0, []
+
+    def question(self, question_id: str) -> dict | None:
+        return None
+
+    def counts(self, filters) -> dict:
+        return {"questions": 0, "by_kind": {}, "by_status": {}, "by_verdict": {"right": 0, "wrong": 0, "none": 0}}
 
 
 def build_openapi() -> dict:
@@ -128,6 +176,14 @@ def build_fixtures() -> dict[str, object]:
         out[name] = client.post("/v1/questions", json=body).json()
     for name, path in READS.items():
         out[name] = client.get(path).json()
+    with tempfile.TemporaryDirectory() as folder:
+        logged = Service(service.engine, scripted, scripted, fixture_log(Path(folder, "questions.jsonl")),
+                         {"frame": {"endpoint": "stand-in", "model": "scripted"},
+                          "answer": {"endpoint": "stand-in", "model": "scripted"}})
+        logged.today = lambda: EXPORT_DAY
+        admin = TestClient(create_app(logged))
+        for name, path in ADMIN_READS.items():
+            out[name] = admin.get(path).json()
     return out
 
 
@@ -136,7 +192,7 @@ def main() -> None:
     FIXTURES.mkdir(exist_ok=True)
     for name, body in build_fixtures().items():
         (FIXTURES / f"{name}.json").write_text(json.dumps(body, indent=2) + "\n", encoding="utf-8", newline="\n")
-    print(f"wrote {OPENAPI.name} and {len(QUESTIONS) + len(READS)} fixtures")
+    print(f"wrote {OPENAPI.name} and {len(QUESTIONS) + len(READS) + len(ADMIN_READS)} fixtures")
 
 
 if __name__ == "__main__":

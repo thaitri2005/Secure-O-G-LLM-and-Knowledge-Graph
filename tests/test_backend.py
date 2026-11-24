@@ -29,6 +29,25 @@ FACTS = [
 ]
 
 
+def entry(question_id: str, kind: str = "lookup", status: str = "answered", asked_at: str = "2026-11-24T10:00:00+00:00",
+          question: str | None = None, mode: str = "allow_fallback") -> dict:
+    """A log entry as backend/service.py writes it."""
+    return {"id": question_id, "asked_at": asked_at, "question": question or f"Question {question_id}?",
+            "mode": mode, "forced_lane": None, "frame": {"kind": kind, "report_type": "end_of_well"},
+            "lanes": ["well_facts", "passages"], "fallback": False, "answered_from": "end_of_well", "status": status,
+            "answers": [], "answer_text": None, "citations": [], "cost": {"calls": 2, "seconds": 1.5},
+            "models": {"answer": "test:stand-in"}}
+
+
+# Five logged questions over four days, and their marks: the log the admin tests read.
+SEEDED = [entry("q1", "lookup", "answered", "2026-11-20T08:00:00+00:00", "What total depth did AK-3 reach?"),
+          entry("q2", "over_time", "answered", "2026-11-21T09:00:00+00:00", "How many hours of NPT on AK-3?"),
+          entry("q3", "cause", "ask_which", "2026-11-22T10:00:00+00:00", "What caused the NPT on AK-3?", "exact"),
+          entry("q4", "lookup", "not_stated", "2026-11-22T23:30:00+00:00", "What mud weight on 56-32?"),
+          entry("q5", "lookup", "answered", "2026-11-23T07:00:00+00:00", "Who drilled ak-3 for GRG?")]
+MARKS = [("q1", "right", ""), ("q2", "wrong", "should be 115"), ("q2", "right", "my mistake"), ("q4", "wrong", "")]
+
+
 class ScriptedClient:
     """Returns `frame` to a framing call and `answer` to an answer call."""
 
@@ -70,6 +89,19 @@ class BackendTests(unittest.TestCase):
 
     def log(self):
         return [json.loads(line) for line in self.log_path.read_text(encoding="utf-8").splitlines()]
+
+    def new_log(self):
+        from backend.questions import JsonlQuestionLog
+        return JsonlQuestionLog(self.log_path)
+
+    def seeded(self):
+        """A client over the log of SEEDED and MARKS."""
+        log = self.new_log()
+        for e in SEEDED:
+            log.add_question(e)
+        for question_id, verdict, comment in MARKS:
+            log.add_feedback(question_id, verdict, comment)
+        return self.make(FRAME_EOW, DEPTH_ANSWER)
 
     # ---- POST /v1/questions ------------------------------------------------------------------------------------
 
@@ -240,12 +272,178 @@ class BackendTests(unittest.TestCase):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)
         self.assertEqual([w["well_id"] for w in client.get("/v1/wells").json()], ["56-32", "68-32", "AK-3"])
         well = client.get("/v1/wells/AK-3").json()
-        self.assertEqual(len(well["facts"]), 2)
-        self.assertEqual(well["facts"][0]["chunk_id"], "gdr882_ak3_eowr#c0037")
-        self.assertIn("gdr882_ak3_eowr", well["documents"])
-        self.assertEqual(well["report_days"], ["2016-08-20", "2016-08-21", "2016-08-22"])
-        self.assertEqual(client.get("/v1/wells/56-32").json()["report_days"], [])
+        facts = well["facts"]
+        self.assertEqual(([f["property"] for f in facts["depths_and_dates"]], facts["general"], facts["readings"]),
+                         (["non_productive_time"], [], []))
+        npt = facts["depths_and_dates"][0]
+        self.assertEqual((npt["chunk_id"], npt["file_id"], npt["value"], npt["unit"]),
+                         ("gdr882_ak3_eowr#c0037", "gdr882_ak3_eowr", "115.0", "hours"))
+        self.assertEqual(npt["page"], sample_engine().by_id()["gdr882_ak3_eowr#c0037"].page)
+        casing, = facts["casing_strings"]
+        self.assertEqual((casing["size_in"], [f["property"] for f in casing["facts"]], casing["facts"][0]["source"]),
+                         ("8-5/8", ["casing_depth"], "table_mapping"))
+        self.assertEqual([(d["file_id"], d["report_type"], d["pages"]) for d in well["documents"]],
+                         [("gdr882_ak3_eowr", "end_of_well", 28), ("ak3-dailyreport", "daily", 3)])
+        self.assertEqual(well["report_days"], [
+            {"date": "2016-08-20", "hours": 10.5, "npt_hours": 1.0, "events": 2, "end_md": 176, "codes": ["DRIL", "STUCK"],
+             "npt_codes": ["KICK"]},
+            {"date": "2016-08-21", "hours": 24.0, "npt_hours": 24.0, "events": 1, "end_md": 176, "codes": ["KICK"],
+             "npt_codes": ["KICK"]},
+            {"date": "2016-08-22", "hours": 6.0, "npt_hours": 0.0, "events": 1, "end_md": 300, "codes": ["DRIL"],
+             "npt_codes": []}])
+        self.assertEqual(well["totals"], {"days": 3, "events": 4, "hours": 40.5, "npt_hours": 25.0,
+                                          "npt_hours_by_code": {"KICK": 25.0}})
+        other = client.get("/v1/wells/56-32").json()
+        self.assertEqual((other["report_days"], other["totals"]["days"], other["totals"]["npt_hours_by_code"]), ([], 0, {}))
+        self.assertEqual([d["file_id"] for d in other["documents"]], ["gdr1295_56-32_eowr"])
         self.assertEqual(client.get("/v1/wells/ZZ-9").status_code, 404)
+
+    def test_a_well_page_groups_casings_largest_first_and_readings_by_depth(self):
+        from backend.service import Service, inches
+        self.assertEqual(sorted(["4-1/2", "20", "9-5/8", "13 3/8", "?"], key=inches, reverse=True),
+                         ["20", "13 3/8", "9-5/8", "4-1/2", "?"])
+        fact = lambda prop, value, **context: {"well": "AK-3", "property": prop, "value": value, "qualifier": "actual",
+                                               "context": context or None, "source": "llm", "chunk_id": "x#c1",
+                                               "file_id": "x", "page": 1}
+        grouped = Service._grouped([
+            fact("rig", "Rig 1"), fact("spud_date", "2016-08-18"), fact("total_depth", "1955"),
+            fact("casing_grade", "K55", casing_size_in="4-1/2"), fact("casing_depth", "1000", casing_size_in="4-1/2"),
+            fact("casing_depth", "40", casing_size_in="8-5/8"),
+            fact("inclination", "1.5", depth_ft=900), fact("inclination", "0.5", depth_ft=100.0)])
+        self.assertEqual([f["value"] for f in grouped["general"]], ["Rig 1"])
+        self.assertEqual([f["property"] for f in grouped["depths_and_dates"]], ["total_depth", "spud_date"])
+        self.assertEqual([(c["size_in"], [f["property"] for f in c["facts"]]) for c in grouped["casing_strings"]],
+                         [("8-5/8", ["casing_depth"]), ("4-1/2", ["casing_depth", "casing_grade"])])
+        self.assertEqual([(r["property"], [f["value"] for f in r["facts"]]) for r in grouped["readings"]],
+                         [("inclination", ["0.5", "1.5"])])
+
+    def test_a_question_about_a_cause_gives_each_event_as_fields(self):
+        frame = {"kind": "cause", "report_type": "daily", **EMPTY_PLAN,
+                 "problem": {"date": "", "depth_ft": 0, "npt_code": "", "keywords": []}}
+        answer = {"stated": [], "possible": [], "missing": []}
+        body = self.make(frame, answer).post("/v1/questions", json={"question": "What caused the kick on AK-3 on 20 August 2016?"}).json()
+        evidence = body["evidence"]["reasoning"]["evidence"]
+        events = [e for e in evidence if e["kind"] == "event"]
+        self.assertEqual([(e["activity"]["date"], e["activity"]["code"], e["activity"]["npt_code"], e["activity"]["problem"])
+                          for e in events],
+                         [("2016-08-20", "DRIL", None, False), ("2016-08-20", "STUCK", "KICK", True),
+                          ("2016-08-21", "KICK", "KICK", True), ("2016-08-22", "DRIL", None, False)])
+        stuck = events[1]
+        self.assertEqual(stuck["text"], "* 2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity STUCK, non-productive KICK: ")
+        self.assertEqual({k: stuck["activity"][k] for k in ("start", "end", "hours", "end_md", "description", "chunks")},
+                         {"start": "17:00", "end": "18:00", "hours": 1.0, "end_md": 176, "description": "", "chunks": ["c"]})
+        self.assertTrue(all(e["activity"] is None for e in evidence if e["kind"] != "event"))
+
+    # ---- the question log, read side (/v1/admin/) --------------------------------------------------------------
+
+    def test_logged_questions_are_listed_newest_first_with_their_feedback(self):
+        page = self.seeded().get("/v1/admin/questions").json()
+        self.assertEqual((page["total"], page["limit"], page["offset"]), (5, 50, 0))
+        self.assertEqual([q["id"] for q in page["questions"]], ["q5", "q4", "q3", "q2", "q1"])
+        q2 = page["questions"][3]
+        self.assertEqual((q2["kind"], q2["status"], q2["verdict"], q2["question"], q2["asked_at"]),
+                         ("over_time", "answered", "right", "How many hours of NPT on AK-3?", "2026-11-21T09:00:00+00:00"))
+        self.assertEqual([(f["verdict"], f["comment"]) for f in q2["feedback"]], [("wrong", "should be 115"), ("right", "my mistake")])
+        self.assertTrue(all(f["at"] for f in q2["feedback"]))
+        self.assertEqual((page["questions"][0]["verdict"], page["questions"][0]["feedback"]), (None, []))
+
+    def test_logged_questions_are_paged_and_filtered(self):
+        client = self.seeded()
+        ids = lambda **params: [q["id"] for q in client.get("/v1/admin/questions", params=params).json()["questions"]]
+        page = client.get("/v1/admin/questions", params={"limit": 2, "offset": 2}).json()
+        self.assertEqual((page["total"], [q["id"] for q in page["questions"]]), (5, ["q3", "q2"]))
+        self.assertEqual(ids(offset=9), [])
+        self.assertEqual(ids(kind="lookup"), ["q5", "q4", "q1"])
+        self.assertEqual(ids(status="answered"), ["q5", "q2", "q1"])
+        self.assertEqual(ids(mode="exact"), ["q3"])
+        self.assertEqual(ids(verdict="right"), ["q2", "q1"])     # q2's latest mark is right
+        self.assertEqual(ids(verdict="wrong"), ["q4"])
+        self.assertEqual(ids(verdict="none"), ["q5", "q3"])
+        self.assertEqual(ids(date_from="2026-11-21", date_to="2026-11-22"), ["q4", "q3", "q2"])
+        self.assertEqual(ids(date_from="2026-11-23"), ["q5"])
+        self.assertEqual(ids(q="ak-3"), ["q5", "q3", "q2", "q1"])  # ignoring case
+        self.assertEqual(ids(q="NPT", kind="cause"), ["q3"])
+        self.assertEqual(client.get("/v1/admin/questions", params={"kind": "lookup", "limit": 1}).json()["total"], 3)
+        for params in ({"limit": 0}, {"limit": 201}, {"offset": -1}, {"verdict": "maybe"}, {"date_from": "today"},
+                       {"status": "fine"}, {"mode": "fast"}):
+            self.assertEqual(client.get("/v1/admin/questions", params=params).status_code, 422, params)
+
+    def test_one_logged_question_has_its_full_record(self):
+        client = self.seeded()
+        one = client.get("/v1/admin/questions/q2").json()
+        self.assertEqual((one["id"], one["verdict"], len(one["feedback"])), ("q2", "right", 2))
+        self.assertEqual({k: v for k, v in one["record"].items() if k != "asked_at"},
+                         {k: v for k, v in SEEDED[1].items() if k != "asked_at"})
+        self.assertEqual(client.get("/v1/admin/questions/nope").status_code, 404)
+
+    def test_logged_questions_are_counted_by_kind_status_and_verdict(self):
+        client = self.seeded()
+        self.assertEqual(client.get("/v1/admin/questions/counts").json(), {
+            "questions": 5, "by_kind": {"lookup": 3, "over_time": 1, "cause": 1},
+            "by_status": {"answered": 3, "ask_which": 1, "not_stated": 1},
+            "by_verdict": {"right": 2, "wrong": 1, "none": 2}})
+        self.assertEqual(client.get("/v1/admin/questions/counts", params={"kind": "lookup"}).json()["by_verdict"],
+                         {"right": 1, "wrong": 1, "none": 1})
+        empty = self.make(FRAME_EOW, DEPTH_ANSWER).get("/v1/admin/questions/counts", params={"q": "nothing like this"}).json()
+        self.assertEqual(empty, {"questions": 0, "by_kind": {}, "by_status": {},
+                                 "by_verdict": {"right": 0, "wrong": 0, "none": 0}})
+
+    def test_questions_asked_through_the_api_are_read_back(self):
+        client = self.make(FRAME_HOURS, None)
+        asked = client.post("/v1/questions", json={"question": "How many hours of drilling on AK-3?"}).json()
+        client.post(f"/v1/questions/{asked['id']}/feedback", json={"verdict": "wrong", "comment": "check"})
+        listed = client.get("/v1/admin/questions").json()["questions"]
+        self.assertEqual([(q["id"], q["kind"], q["status"], q["answer_text"], q["verdict"]) for q in listed],
+                         [(asked["id"], "over_time", "answered", asked["answer_text"], "wrong")])
+        record = client.get(f"/v1/admin/questions/{asked['id']}").json()["record"]
+        self.assertEqual((record["cost"], record["lanes"], record["models"]["answer"]), (asked["cost"], ["events"], "test:stand-in"))
+
+    def test_the_admin_reads_are_never_kept_by_the_browser(self):
+        client = self.seeded()
+        for path in ("/v1/admin/questions", "/v1/admin/questions/q1", "/v1/admin/questions/counts",
+                     "/v1/admin/questions/export"):
+            self.assertEqual(client.get(path).headers.get("cache-control"), "no-store", path)
+
+    def test_the_admin_routes_are_read_only(self):
+        client = self.seeded()
+        for path in ("/v1/admin/questions", "/v1/admin/questions/q1", "/v1/admin/questions/export"):
+            for method in ("post", "put", "delete"):
+                self.assertEqual(getattr(client, method)(path).status_code, 405, (method, path))
+
+    def test_selected_questions_export_as_a_question_file_the_coordinator_runs(self):
+        from graphrag import coordinator
+        client = self.seeded()
+        out = client.get("/v1/admin/questions/export", params={"kind": "lookup"})
+        self.assertEqual(out.status_code, 200)
+        self.assertRegex(out.headers["content-disposition"], r'^attachment; filename="collected_\d{4}-\d{2}-\d{2}\.json"$')
+        body = out.json()
+        self.assertRegex(body["status"], r"^COLLECTED from the application's question log on \d{4}-\d{2}-\d{2}; "
+                                         r"gold answers not yet written; not expert-reviewed unless stated$")
+        self.assertNotIn("expected_lane", body)
+        self.assertEqual((body["facts"], body["collected"]["questions"], body["collected"]["filters"]), ([], 3, {"kind": "lookup"}))
+        self.assertEqual([(q["id"], q["asked_at"], q["gold"], q["kind"]) for q in body["questions"]],
+                         [("q1", "2026-11-20T08:00:00+00:00", [], "lookup"), ("q4", "2026-11-22T23:30:00+00:00", [], "lookup"),
+                          ("q5", "2026-11-23T07:00:00+00:00", [], "lookup")])
+        self.assertEqual(body["questions"][1]["feedback"][0]["verdict"], "wrong")
+        chosen = client.get("/v1/admin/questions/export", params=[("ids", "q2"), ("ids", "q3"), ("expected_lane", "daily")]).json()
+        self.assertEqual(([q["id"] for q in chosen["questions"]], chosen["expected_lane"]), (["q2", "q3"], "daily"))
+        self.assertEqual(client.get("/v1/admin/questions/export", params={"expected_lane": "poetry"}).status_code, 422)
+        # The file is a question file: graphrag.coordinator loads it and answers it with gold left empty.
+        path = Path(self.folder.name, "collected_lookup.json")
+        path.write_text(json.dumps(body), encoding="utf-8")
+        name = coordinator.question_set(str(path))
+        questions, gold = coordinator.pooled([name])
+        self.assertEqual(([q["id"] for q in questions], gold), (["collected_lookup:q1", "collected_lookup:q4",
+                                                                 "collected_lookup:q5"], {}))
+        model = ScriptedClient(FRAME_EOW, DEPTH_ANSWER)
+        result = coordinator.run_pool(questions, gold, sample_engine(), model, model, quiet=True)
+        self.assertEqual([(r["id"], r["status"]) for r in result["rows"]],
+                         [(q["id"], "answered") for q in questions])
+
+    def test_an_empty_or_missing_log_reads_as_empty(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        self.assertEqual(client.get("/v1/admin/questions").json(), {"total": 0, "limit": 50, "offset": 0, "questions": []})
+        self.assertEqual(client.get("/v1/admin/questions/export").json()["questions"], [])
 
     def test_events_of_a_well_between_two_dates(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)

@@ -1,15 +1,39 @@
 {
   "file_id": "gdr882_ak3_eowr",
-  "page": 2,
+  "page": 7,
   "chunks": [
     {
-      "chunk_id": "gdr882_ak3_eowr#c0002",
+      "chunk_id": "gdr882_ak3_eowr#c0008",
       "file_id": "gdr882_ak3_eowr",
-      "page": 2,
-      "section": "Executive Summary",
+      "page": 7,
+      "section": "Permitting",
       "type": "text",
-      "text": "Akutan Well AK-3 well was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days, including rig-up and rig-down time. The well was completed with blank and perforated liner from 755 feet to 1,955 feet. The well was planned as a continuous core well, and designed to intersect the resource so that it could be flowed for resource characterization. Three pressure and temperature surveys were conducted, with a maximum measured temperature of 329\u00b0F at about 500 feet. Horner calculations based on thermal recovery indicate a maximum formation temperature of 340\u00b0F at 400 feet, 334\u00b0F at 850 feet, and 310\u00b0F at the bottom of the hole. A flow test is planned for summer 2017."
+      "text": "Archaeological and Historic Properties Review - The Alaska State Historic Preservation Office (SHPO) issued a finding on 20 May 2015, that no significant archaeological or historic properties would be adversely affected by the project, and that no further action was required.\nFish Habitat and Water Discharge - The Alaska Department of Fish and Game (ADF&G) issued Fish Habitat Permit 15-11-082, which sets conditions for water withdrawal and discharge in or near anadromous (i.e., salmon bearing) streams located in the project area.\nHydrostatic and Aquifer Pump Testing - The Alaska Department of Environmental Conservation (ADEC) issued General Permit Number AKG003008 for discharge of fluids from drilling operations into the impoundment structure identified in the drilling plan.\nWater Withdrawal - The Alaska Department of Natural Resources (ADNR) concurred with the water withdrawals required to support drilling and campsite operations. By policy, ADNR will generally withhold issuance of the withdrawal permit until immediately prior to the withdrawal in 2016. However, ADNR provided a letter of explanation of the permitting process, and general concurrence with the withdrawal plan. The was be issued in May 2016.\nDrilling Permit - Well design and technical specifications were submitted to the Alaska Oil and Gas Conservation Commission (AOGCC) in June 2015. On 13 August 2015, AOGCC issued Permit Number 215-080, API Number 50-295-20005-00-00, which authorized drilling of AK-3."
+    },
+    {
+      "chunk_id": "gdr882_ak3_eowr#c0009",
+      "file_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "section": "Permitting",
+      "type": "text",
+      "text": "Permit conditions were specified in the permit Letter of Transmittal. The City accepted the conditions, as stated.\nSupplemental Information - As requested by the TMT, additional geophysical data interpretation was completed, the results of which were set forth in a report from GRG (Appendix 1-Targeting Report). The City also acquired all property rights necessary for drilling operations. Copies of the exploration agreements were provided to AEA and DOE."
+    },
+    {
+      "chunk_id": "gdr882_ak3_eowr#c0010",
+      "file_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "section": "Drilling Summary",
+      "type": "text",
+      "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:\n\uf0b7 WGS-84 UTM Zone 3, 443969 E, 6000805 N,\n\uf0b7 Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.\nThese coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,\nWell AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-\u00bd\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. A comparison of planned versus actual days versus depth is shown in Figure 2.\nWhile drilling, two steam kicks occurred. The first kick was observed at 150' and was controlled by pumping cold water to cool the well (as planned). The second kick occurred at 170'."
+    },
+    {
+      "chunk_id": "gdr882_ak3_eowr#c0011",
+      "file_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "section": "Drilling Summary",
+      "type": "text",
+      "text": "Control was complicated by a plugged core inner barrel, and took almost three days and two cement plugs to\nresolve. The planned and actual completions are tabulated in Table 1 and 2 below. The actual completion is displayed graphically in Figure 3."
     }
   ],
-  "image_url": "/v1/files/gdr882_ak3_eowr/pages/2/image"
+  "image_url": "/v1/files/gdr882_ak3_eowr/pages/7/image"
 }

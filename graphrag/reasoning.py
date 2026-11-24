@@ -8,7 +8,8 @@ Four steps, in the order an engineer takes them, with code doing the gathering:
 1. Find the problem in the event graph from the frame's `problem` (date, depth, non-productive code, keywords).
    Several separate problems match: list them and ask which, with no answer call. None: the coordinator falls back.
 2. Gather what surrounds it, in code and within a fixed budget: the events of the days around it, the passages of
-   the same days' daily reports, and the end-of-well passages that mention it.
+   the same days' daily reports, and the end-of-well passages that mention it. Each event item keeps its fields
+   (`activity`) beside the line the model sees.
 3. One answer call with two lists, causes a report states and possible factors, each citing evidence IDs. Code
    drops every item that no shown evidence supports (`citations.resolve`) and counts what it dropped.
 4. Say what is missing: a fixed list of what this corpus cannot hold, plus what the model adds.
@@ -223,8 +224,15 @@ def event_items(problem: Problem, events: list[Event]) -> list[dict]:
         chosen.append((e, line))
         used += len(line)
     return [{"kind": "event", "chunk": e.chunks[0] if e.chunks else None, "chunks": list(e.chunks),
-             "date": e.date, "problem": id(e) in own, "text": line}
+             "date": e.date, "problem": id(e) in own, "text": line, "activity": activity(e, id(e) in own)}
             for e, line in sorted(chosen, key=lambda pair: _minute(pair[0]))]
+
+
+def activity(e: Event, own: bool) -> dict:
+    """An event's fields beside its text line, so whoever shows the evidence need not parse the line back. The
+    model sees only the line; the description here is whole, also where the line cuts a neighbour's."""
+    return {"date": e.date, "start": e.start, "end": e.end, "hours": e.hours, "end_md": e.end_md, "code": e.code,
+            "npt_code": e.npt_code, "description": e.description, "chunks": list(e.chunks), "problem": own}
 
 
 def _in_words(day: str) -> str:

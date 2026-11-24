@@ -16,22 +16,13 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tests.test_backend import FRAME_EOW, FRAME_HOURS, ScriptedClient, TestClient, sample_engine  # noqa: E402
+from tests.test_backend import FRAME_EOW, FRAME_HOURS, ScriptedClient, TestClient, entry, sample_engine  # noqa: E402
 from tests import test_backend  # noqa: E402
 from tests.test_graphrag_stores import (DSN, NEO4J, NO_NEO4J, NO_POSTGRES, RELEASE, sample_package,  # noqa: E402
                                         temporary_schema)
 
 ROLES = {"frame": {"endpoint": "test", "model": "stand-in"}, "answer": {"endpoint": "test", "model": "stand-in"}}
 VARIABLES = ("BACKEND_SOURCE", "BACKEND_DSN", "BACKEND_RELEASE", "NEO4J_URI", "NEO4J_USER", "NEO4J_PASSWORD")
-
-
-def entry(question_id: str, kind: str = "lookup", status: str = "answered") -> dict:
-    """A log entry as backend/service.py writes it."""
-    return {"id": question_id, "asked_at": "2026-11-24T10:00:00+00:00", "question": f"Question {question_id}?",
-            "mode": "allow_fallback", "forced_lane": None, "frame": {"kind": kind, "report_type": "end_of_well"},
-            "lanes": ["well_facts", "passages"], "fallback": False, "answered_from": "end_of_well", "status": status,
-            "answers": [], "answer_text": None, "citations": [], "cost": {"calls": 2, "seconds": 1.5},
-            "models": {"answer": "test:stand-in"}}
 
 
 @unittest.skipIf(TestClient is None or NO_POSTGRES, NO_POSTGRES or "needs backend/requirements.txt (fastapi)")
@@ -60,6 +51,21 @@ class PostgresLogBackendTests(test_backend.BackendTests):
                         for q, v, c, at in conn.execute("SELECT question_id, verdict, comment, at FROM question_feedback "
                                                         "ORDER BY feedback_id").fetchall()]
         return [line for _, _, line in sorted(questions + feedback, key=lambda row: row[:2])]
+
+    def new_log(self):
+        from backend.questions import PostgresQuestionLog
+        return PostgresQuestionLog(self.dsn)
+
+    def test_times_read_back_in_utc_whatever_the_sessions_time_zone(self):
+        from backend.questions import Filters, PostgresQuestionLog
+        # The temporary schema's DSN sets `options` already; the session's time zone joins it.
+        log = PostgresQuestionLog(self.dsn.replace("options=", "options=-ctimezone%3DAsia%2FHo_Chi_Minh%20", 1))
+        with log._connect() as conn:
+            self.assertEqual(conn.execute("SHOW timezone").fetchone()[0], "Asia/Ho_Chi_Minh")
+        log.add_question(entry("late", asked_at="2026-11-22T23:30:00+00:00"))
+        found = log.questions(Filters(date_to="2026-11-22"))[1]
+        self.assertEqual([(e["id"], e["asked_at"]) for e in found], [("late", "2026-11-22T23:30:00+00:00")])
+        self.assertEqual(log.questions(Filters(date_from="2026-11-23"))[0], 0)
 
     def test_the_question_log_knows_earlier_questions_without_rereading_the_file(self):
         # The file log's version of this test is about its in-memory index; here a second log sees the first's rows.

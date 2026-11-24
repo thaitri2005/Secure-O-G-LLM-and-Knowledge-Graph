@@ -13,14 +13,16 @@ from contextlib import asynccontextmanager
 import os
 from datetime import date
 from pathlib import Path
+from typing import Literal
 
 import httpx
-from fastapi import FastAPI, HTTPException, Path as PathParam, Query
+from fastapi import Depends, FastAPI, HTTPException, Path as PathParam, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from . import schemas
+from .questions import Filters
 from .service import NotFound, Service
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,14 +50,15 @@ def create_app(service: Service | None = None) -> FastAPI:
 
     @app.middleware("http")
     async def caching(request, call_next):
-        """Reads change only when a release is loaded, so a browser may keep them for a minute. Answers, feedback
-        and health are never kept."""
+        """Reads change only when a release is loaded, so a browser may keep them for a minute. Answers, feedback,
+        health and the question log are never kept."""
         response = await call_next(request)
         if request.url.path.endswith("/image") and response.status_code == 200:
             # A page image changes only when its report is rendered again.
             response.headers["Cache-Control"] = "private, max-age=86400"
             return response
-        kept = request.method == "GET" and response.status_code == 200 and request.url.path != "/v1/health"             and request.url.path.startswith("/v1/")
+        kept = request.method == "GET" and response.status_code == 200 and request.url.path != "/v1/health" \
+            and request.url.path.startswith("/v1/") and not request.url.path.startswith("/v1/admin/")
         response.headers["Cache-Control"] = "private, max-age=60" if kept else "no-store"
         return response
 
@@ -79,6 +82,11 @@ def create_app(service: Service | None = None) -> FastAPI:
         except httpx.HTTPError as error:
             raise HTTPException(503, f"the model endpoint did not answer ({type(error).__name__}); check GET /v1/health "
                                      f"and the model server") from None
+        except Exception as error:
+            # A store that drops while a question is being answered is the same kind of trouble: try again later.
+            if type(error).__module__.split(".")[0] in ("psycopg", "neo4j"):
+                raise HTTPException(503, f"a store did not answer ({type(error).__name__}); check GET /v1/health") from None
+            raise
 
     @app.post("/v1/questions/{question_id}/feedback", response_model=schemas.FeedbackOut, summary="Mark an answer right or wrong")
     def feedback(question_id: str, body: schemas.FeedbackIn):
@@ -106,7 +114,8 @@ def create_app(service: Service | None = None) -> FastAPI:
     def wells():
         return current().wells()
 
-    @app.get("/v1/wells/{well_id}", response_model=schemas.WellOut, summary="One well's facts, documents and report days")
+    @app.get("/v1/wells/{well_id}", response_model=schemas.WellOut,
+             summary="One well's facts in groups, its documents, report days and totals")
     def well(well_id: str):
         return found(lambda: current().well(well_id))
 
@@ -117,6 +126,50 @@ def create_app(service: Service | None = None) -> FastAPI:
     @app.get("/v1/health", response_model=schemas.Health, summary="What is loaded and which models serve")
     def health():
         return current().health()
+
+    # ---- the question log, read side (D-65). Read-only. There is no login yet: the whole application sits behind
+    # one shared password at the proxy, so anyone past it can read what every user typed.
+
+    def filters(kind: str | None = Query(None, max_length=40, description="The frame's kind, e.g. lookup or cause"),
+                status: schemas.Status | None = Query(None), mode: schemas.Mode | None = Query(None),
+                verdict: Literal["right", "wrong", "none"] | None = Query(
+                    None, description="The latest mark; none: not marked"),
+                date_from: date | None = Query(None, description="Asked on or after this day (UTC)"),
+                date_to: date | None = Query(None, description="Asked on or before this day (UTC)"),
+                q: str | None = Query(None, max_length=200, description="Text in the question, ignoring case"),
+                ids: list[str] = Query([], max_length=500, description="Only these question IDs")) -> Filters:
+        return Filters(kind=kind or None, status=status, mode=mode, verdict=verdict,
+                       date_from=date_from and date_from.isoformat(), date_to=date_to and date_to.isoformat(),
+                       text=(q or "").strip() or None, ids=tuple(ids))
+
+    ADMIN = "No login yet: the application sits behind one shared password at the proxy. Read-only."
+
+    @app.get("/v1/admin/questions", response_model=schemas.QuestionPage, tags=["admin"],
+             summary="Logged questions, newest first, with their feedback", description=ADMIN)
+    def logged_questions(chosen: Filters = Depends(filters), limit: int = Query(50, ge=1, le=200),
+                         offset: int = Query(0, ge=0)):
+        return current().logged_questions(chosen, limit, offset)
+
+    @app.get("/v1/admin/questions/counts", response_model=schemas.QuestionCounts, tags=["admin"],
+             summary="Logged questions counted by kind, status and verdict", description=ADMIN)
+    def question_counts(chosen: Filters = Depends(filters)):
+        return current().question_counts(chosen)
+
+    @app.get("/v1/admin/questions/export", response_model=schemas.QuestionSetFile, tags=["admin"],
+             summary="Selected questions as a question file for graphrag.coordinator, gold left empty",
+             description=f"{ADMIN} Selects by `ids` or by the filters; every matching question, oldest first.")
+    def export_questions(chosen: Filters = Depends(filters),
+                         expected_lane: Literal["end_of_well", "daily", "events", "reasoning"] | None = Query(
+                             None, description="Written into the file only when given")):
+        body = current().export_questions(chosen, expected_lane)
+        # Returned as it is: a null expected_lane must be absent from the file, not null (graphrag.coordinator).
+        return JSONResponse(body, headers={
+            "Content-Disposition": f'attachment; filename="collected_{body["collected"]["on"]}.json"'})
+
+    @app.get("/v1/admin/questions/{question_id}", response_model=schemas.LoggedQuestionDetail, tags=["admin"],
+             summary="One logged question with its full stored record", description=ADMIN)
+    def logged_question(question_id: str):
+        return found(lambda: current().logged_question(question_id))
 
     return app
 

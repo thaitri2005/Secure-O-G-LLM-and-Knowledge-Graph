@@ -5,7 +5,9 @@
     "daily_chunks": 0,
     "events": 161,
     "facts": 216,
-    "wells": 5
+    "wells": 5,
+    "multi_well_retriever": "perwell:bm25",
+    "stored_vectors": 0
   },
   "models": {
     "frame": "stand-in:scripted",
