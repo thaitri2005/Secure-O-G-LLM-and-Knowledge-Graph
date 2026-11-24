@@ -118,7 +118,7 @@ async function send(path: string, init?: RequestInit, timeoutMs = READ_TIMEOUT_M
     throw new ApiError("The application server is not responding. It may be restarting; please try again in a minute.");
   }
   if (response.status === 503) {
-    throw new ApiError(UNAVAILABLE[(await problemCode(response)) ?? ""] ?? "The language model is not running. Start the model server, then ask again.");
+    throw new ApiError(UNAVAILABLE[(await problemCode(response)) ?? ""] ?? "The system is not responding right now. Try again in a minute; if it keeps happening, tell the project team.");
   }
   if (response.status === 500) {
     throw new ApiError("The server ran into a problem and could not finish. Try again; if it happens again, tell the person who runs the application.");

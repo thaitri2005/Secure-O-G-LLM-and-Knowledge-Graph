@@ -360,7 +360,7 @@ function DayTable({ days, drawn, chosen, onChoose }: DayTableProps) {
                 </th>
                 <td className="num">{number(day.hours)}</td>
                 <td className="num">
-                  {day.npt_hours > 0 ? <span className="npt" title={day.npt_codes.join(", ")}>{number(day.npt_hours)} h</span> : <span aria-label="none">–</span>}
+                  {day.npt_hours > 0 ? <span className="npt" title={day.npt_codes.join(", ")}>{number(day.npt_hours)} h</span> : <><span aria-hidden="true">–</span><span className="visually-hidden">none</span></>}
                 </td>
                 <td className="num">{number(day.end_md)} ft</td>
                 <td>{[...new Set(day.codes)].join(", ")}</td>
