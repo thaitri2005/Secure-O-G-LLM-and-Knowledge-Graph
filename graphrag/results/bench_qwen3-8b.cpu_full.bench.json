@@ -1,0 +1,313 @@
+{
+  "name": "bench_qwen3-8b.cpu_full",
+  "identity": {
+    "spec": "qwen3-8b.cpu",
+    "suite": "full",
+    "model": "qwen3-8b",
+    "base_url": "http://127.0.0.1:8080/v1",
+    "served": "Qwen3-8B-Q4_K_M.gguf@b12015-a34de8618",
+    "options": {
+      "k1": "/home/user/Secure-O-G-LLM-and-Knowledge-Graph/data/interim/k1/demo-v2/chunks.jsonl",
+      "no_embeddings": false,
+      "fresh": false
+    }
+  },
+  "profile": {
+    "description": "Qwen3-8B Q4_K_M, our own copy on llama.cpp's CPU build, port 8080: the baseline model file on a machine without a GPU. Slow (minutes a question), so for the short measurements only. The same weights as qwen3-8b.local on another build, so its scores are compared with its own baseline rerun first",
+    "base_url": "http://127.0.0.1:8080/v1",
+    "hosted": false,
+    "model": "qwen3-8b",
+    "file": "Qwen3-8B-Q4_K_M.gguf",
+    "thinking_off": "on the server: llama-server --jinja --chat-template-kwargs '{\"enable_thinking\":false}'",
+    "context": 8192,
+    "roles": [
+      "frame",
+      "answer"
+    ],
+    "compare_as": "cpu:qwen3-8b",
+    "name": "qwen3-8b.cpu"
+  },
+  "model": "qwen3-8b",
+  "endpoint": {
+    "name": "qwen3-8b.cpu",
+    "base_url": "http://127.0.0.1:8080/v1",
+    "hosted": false
+  },
+  "server": {
+    "models": [
+      "qwen3-8b"
+    ],
+    "props": {
+      "model_path": "data/interim/models/Qwen3-8B-Q4_K_M.gguf",
+      "n_ctx": 8192,
+      "total_slots": 1,
+      "build_info": "b12015-a34de8618",
+      "chat_template_kwargs": null
+    }
+  },
+  "date": "2026-11-24",
+  "started": "2026-11-24T23:57:57+00:00",
+  "finished": null,
+  "one_request_at_a_time": true,
+  "steps": [
+    {
+      "id": "hand/prototype",
+      "experiment": "E33 hand-routed",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "three",
+        "--retriever",
+        "wells:bm25",
+        "--k",
+        "5",
+        "--questions",
+        "prototype",
+        "--multi-well-retriever",
+        "perwell:fusion:bm25+dense:qwen3-embedding-0.6b",
+        "--fact-sheet",
+        "E20_graph_three_qwen3-4b",
+        "E27_tables_three",
+        "--validate",
+        "--strict-facts",
+        "--sheet-properties",
+        "3",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_prototype"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_prototype",
+      "status": "started",
+      "started": "2026-11-24T23:57:57+00:00",
+      "error": null
+    },
+    {
+      "id": "hand/simulated",
+      "experiment": "E33 hand-routed",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "three",
+        "--retriever",
+        "wells:bm25",
+        "--k",
+        "5",
+        "--questions",
+        "simulated",
+        "--multi-well-retriever",
+        "perwell:fusion:bm25+dense:qwen3-embedding-0.6b",
+        "--fact-sheet",
+        "E20_graph_three_qwen3-4b",
+        "E27_tables_three",
+        "--validate",
+        "--strict-facts",
+        "--sheet-properties",
+        "3",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_simulated"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_simulated",
+      "status": "pending"
+    },
+    {
+      "id": "hand/heldout",
+      "experiment": "E33 hand-routed",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "three",
+        "--retriever",
+        "wells:bm25",
+        "--k",
+        "5",
+        "--questions",
+        "heldout",
+        "--multi-well-retriever",
+        "perwell:fusion:bm25+dense:qwen3-embedding-0.6b",
+        "--fact-sheet",
+        "E20_graph_three_qwen3-4b",
+        "E27_tables_three",
+        "--validate",
+        "--strict-facts",
+        "--sheet-properties",
+        "3",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_heldout"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_heldout",
+      "status": "pending"
+    },
+    {
+      "id": "hand/ak3_daily",
+      "experiment": "E33 hand-routed, E32",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "k1_daily",
+        "--retriever",
+        "dates:wells:bm25",
+        "--k",
+        "5",
+        "--questions",
+        "ak3_daily",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_ak3_daily"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_ak3_daily",
+      "status": "pending"
+    },
+    {
+      "id": "hand/ak3_daily_heldout",
+      "experiment": "E33 hand-routed, E32",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "k1_daily",
+        "--retriever",
+        "dates:wells:bm25",
+        "--k",
+        "5",
+        "--questions",
+        "ak3_daily_heldout",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_ak3_daily_heldout"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_ak3_daily_heldout",
+      "status": "pending"
+    },
+    {
+      "id": "hand/ak3_events",
+      "experiment": "E33 hand-routed, E32",
+      "command": "events",
+      "argv": [
+        "answer",
+        "--questions",
+        "ak3_events",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--k1",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_ak3_events"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_ak3_events",
+      "status": "pending"
+    },
+    {
+      "id": "hand/ak3_events_heldout",
+      "experiment": "E33 hand-routed, E32",
+      "command": "events",
+      "argv": [
+        "answer",
+        "--questions",
+        "ak3_events_heldout",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--k1",
+        "--name",
+        "bench_qwen3-8b.cpu_full_hand_ak3_events_heldout"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_hand_ak3_events_heldout",
+      "status": "pending"
+    },
+    {
+      "id": "coordinator",
+      "experiment": "E33",
+      "command": "coordinator",
+      "argv": [
+        "answer",
+        "--questions",
+        "prototype",
+        "simulated",
+        "heldout",
+        "ak3_daily",
+        "ak3_daily_heldout",
+        "ak3_events",
+        "ak3_events_heldout",
+        "--k1",
+        "--name",
+        "bench_qwen3-8b.cpu_full_coordinator"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_coordinator",
+      "status": "pending"
+    },
+    {
+      "id": "k1/prototype",
+      "experiment": "E32",
+      "command": "baseline",
+      "argv": [
+        "answer",
+        "--pool",
+        "k1_ak3",
+        "--retriever",
+        "bm25",
+        "--k",
+        "5",
+        "--endpoint",
+        "qwen3-8b.cpu",
+        "--model",
+        "qwen3-8b",
+        "--name",
+        "bench_qwen3-8b.cpu_full_k1_prototype"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_k1_prototype",
+      "status": "pending"
+    },
+    {
+      "id": "reasoning",
+      "experiment": "E34",
+      "command": "coordinator",
+      "argv": [
+        "answer",
+        "--questions",
+        "graphrag/gold/ak3_reasoning_probe_v0.json",
+        "--k1",
+        "--name",
+        "bench_qwen3-8b.cpu_full_reasoning"
+      ],
+      "run": "bench_qwen3-8b.cpu_full_reasoning",
+      "status": "pending"
+    }
+  ],
+  "updated": "2026-11-24T23:57:57+00:00",
+  "totals": {
+    "calls": 0,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0,
+    "cost_usd": 0,
+    "cached_seconds": 0,
+    "cached_cost_usd": 0,
+    "questions": 0,
+    "providers": []
+  }
+}

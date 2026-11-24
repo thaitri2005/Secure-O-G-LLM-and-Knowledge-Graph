@@ -38,13 +38,13 @@
     },
     "answer": {
       "calls": 10,
-      "cached_calls": 10,
+      "cached_calls": 7,
       "invalid_json": 0,
-      "prompt_tokens": 27479,
-      "completion_tokens": 2703,
-      "seconds": 0.0,
+      "prompt_tokens": 32021,
+      "completion_tokens": 4011,
+      "seconds": 668.3,
       "cost_usd": 0.0,
-      "cached_seconds": 1493.0,
+      "cached_seconds": 1359.9,
       "cached_cost_usd": 0.0,
       "models": [
         "qwen3-8b.cpu:qwen3-8b"
@@ -53,33 +53,33 @@
     }
   },
   "questions": 10,
-  "correct_total": "3/10",
+  "correct_total": "6/10",
   "rightly_routed": "10/10",
-  "fallbacks": 4,
+  "fallbacks": 1,
   "per_question": {
     "calls_per_question": 2.0,
-    "prompt_tokens": 4020.2,
-    "completion_tokens": 415.4,
-    "seconds": 207.3
+    "prompt_tokens": 4474.4,
+    "completion_tokens": 546.2,
+    "seconds": 260.8
   },
   "by_set": {
     "ak3_reasoning_probe_v1": {
       "questions": 10,
-      "correct": "3/10",
+      "correct": "6/10",
       "rightly_routed": "10/10",
-      "fallbacks": 4,
+      "fallbacks": 1,
       "calls_per_question": 2.0,
-      "prompt_tokens": 4020.2,
-      "completion_tokens": 415.4,
-      "seconds": 207.3
+      "prompt_tokens": 4474.4,
+      "completion_tokens": 546.2,
+      "seconds": 260.8
     }
   },
   "reasoning": {
     "questions": 10,
-    "correct": "3/10",
-    "problem_found": "6/10",
-    "stated_found_and_cited": "4/10",
-    "unsupported_claims": 5,
+    "correct": "6/10",
+    "problem_found": "9/10",
+    "stated_found_and_cited": "6/10",
+    "unsupported_claims": 4,
     "removed_by_check": 1,
     "asked_which": 0
   },
@@ -718,6 +718,9 @@
           "possible": 0
         },
         "moved_to_possible": 0,
+        "focus": [
+          "E5"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -1263,6 +1266,9 @@
           "possible": 0
         },
         "moved_to_possible": 0,
+        "focus": [
+          "E5"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -1367,18 +1373,18 @@
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
       "gold_facts": 0,
       "citations": [
         {
-          "chunk": "f4f05215feea85339:t16:c0",
+          "chunk": "f4f05215feea85339:t20:c0",
           "how": "model"
         },
         {
-          "chunk": "f4f05215feea85339:t20:c0",
+          "chunk": "f4f05215feea85339:t16:c0",
           "how": "model"
         },
         {
@@ -1400,7 +1406,7 @@
       "completion_tokens": 482,
       "seconds": 277.821,
       "cached": true,
-      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: plugged inner barrel [E3]; foot clamp slipping [E5]. Possible, not stated in any report: stuck pipe [E2]; inadequate circulation [E1]; high torque during coring [E2]; incomplete cementing [E10]; inadequate cooling of the hole [E15]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; specific details about the core pipe design and its susceptibility to plugging; data on the pressure and temperature readings during the coring operation; information on the cementing procedure and its effectiveness; details on the maintenance and inspection schedule for the inner barrel and foot clamp.",
+      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: foot clamp slipping [E5]. Possible, not stated in any report: plugged inner barrel [E3]; stuck pipe [E2]; hot water flowing from annulus [E3]; inadequate circulation [E1]; high torque during coring [E2]; incomplete cementing [E10]; inadequate cooling of the hole [E15]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; specific details about the core pipe design and its susceptibility to plugging; data on the pressure and temperature readings during the coring operation; information on the cementing procedure and its effectiveness; details on the maintenance and inspection schedule for the inner barrel and foot clamp.",
       "reasoning": {
         "problem": {
           "date_from": "2016-08-20",
@@ -2275,17 +2281,6 @@
         "problem_events_left_out": 0,
         "stated": [
           {
-            "cause": "plugged inner barrel",
-            "citations": [
-              {
-                "evidence": "E3",
-                "chunk": "f4f05215feea85339:t16:c0",
-                "how": "model",
-                "quote": "due to plugged inner barrel"
-              }
-            ]
-          },
-          {
             "cause": "foot clamp slipping",
             "citations": [
               {
@@ -2299,6 +2294,17 @@
         ],
         "possible": [
           {
+            "cause": "plugged inner barrel",
+            "citations": [
+              {
+                "evidence": "E3",
+                "chunk": "f4f05215feea85339:t16:c0",
+                "how": "model",
+                "quote": "due to plugged inner barrel"
+              }
+            ]
+          },
+          {
             "cause": "stuck pipe",
             "citations": [
               {
@@ -2306,6 +2312,17 @@
                 "chunk": "f4f05215feea85339:t16:c0",
                 "how": "model",
                 "quote": "stuck pipe, taking steam kick"
+              }
+            ]
+          },
+          {
+            "cause": "hot water flowing from annulus",
+            "citations": [
+              {
+                "evidence": "E3",
+                "chunk": "f4f05215feea85339:t16:c0",
+                "how": "model",
+                "quote": "free hot water flowing from annulus"
               }
             ]
           },
@@ -2359,7 +2376,10 @@
           "stated": 0,
           "possible": 0
         },
-        "moved_to_possible": 1,
+        "moved_to_possible": 3,
+        "focus": [
+          "E6"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -2450,9 +2470,9 @@
         "problem_found": true,
         "stated_found": "1/1",
         "stated_found_and_cited": true,
-        "unsupported_claims": 1,
+        "unsupported_claims": 0,
         "removed_by_check": 0,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v1",
       "expected": "reasoning",
@@ -2473,11 +2493,11 @@
       "gold_facts": 0,
       "citations": [
         {
-          "chunk": "f4f05215feea85339:t16:c0",
+          "chunk": "f4f05215feea85339:t20:c0",
           "how": "model"
         },
         {
-          "chunk": "f4f05215feea85339:t20:c0",
+          "chunk": "f4f05215feea85339:t16:c0",
           "how": "model"
         },
         {
@@ -2507,7 +2527,7 @@
       "completion_tokens": 554,
       "seconds": 282.166,
       "cached": true,
-      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: Plugged inner barrel caused the kick [E3]; Foot clamp slipping caused loss of rod [E5]. Possible, not stated in any report: Steam kick caused the well to blow [E5]; Cementing operations caused flow [E14, E23]; Inadequate casing design [P4]; Poor cementing procedure [P4]; Inadequate cooling of the hole [E3, E5]; Inefficient well control plan [P5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the initial cementing procedure and its effectiveness; Data on the temperature gradient in the hole before and after the kick; Information on the pressure testing results before and after the kick; Details on the type and quality of the cement used in the second cementing job.",
+      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: Foot clamp slipping caused loss of rod [E5]. Possible, not stated in any report: Plugged inner barrel caused the kick [E3]; Steam kick caused the well to blow [E5]; Cementing operations caused flow [E14, E23]; Inadequate casing design [P4]; Poor cementing procedure [P4]; Inadequate cooling of the hole [E3, E5]; Inefficient well control plan [P5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the initial cementing procedure and its effectiveness; Data on the temperature gradient in the hole before and after the kick; Information on the pressure testing results before and after the kick; Details on the type and quality of the cement used in the second cementing job.",
       "reasoning": {
         "problem": {
           "date_from": "2016-08-20",
@@ -3382,17 +3402,6 @@
         "problem_events_left_out": 0,
         "stated": [
           {
-            "cause": "Plugged inner barrel caused the kick",
-            "citations": [
-              {
-                "evidence": "E3",
-                "chunk": "f4f05215feea85339:t16:c0",
-                "how": "model",
-                "quote": "due to plugged inner barrel"
-              }
-            ]
-          },
-          {
             "cause": "Foot clamp slipping caused loss of rod",
             "citations": [
               {
@@ -3405,6 +3414,17 @@
           }
         ],
         "possible": [
+          {
+            "cause": "Plugged inner barrel caused the kick",
+            "citations": [
+              {
+                "evidence": "E3",
+                "chunk": "f4f05215feea85339:t16:c0",
+                "how": "model",
+                "quote": "due to plugged inner barrel"
+              }
+            ]
+          },
           {
             "cause": "Steam kick caused the well to blow",
             "citations": [
@@ -3489,7 +3509,10 @@
           "stated": 0,
           "possible": 0
         },
-        "moved_to_possible": 2,
+        "moved_to_possible": 3,
+        "focus": [
+          "E23"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -3582,7 +3605,7 @@
         "problem_found": true,
         "stated_found": "0/1",
         "stated_found_and_cited": false,
-        "unsupported_claims": 2,
+        "unsupported_claims": 1,
         "removed_by_check": 0,
         "correct": false
       },
@@ -4320,6 +4343,10 @@
           "possible": 0
         },
         "moved_to_possible": 0,
+        "focus": [
+          "E8",
+          "E9"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -4418,33 +4445,741 @@
     {
       "id": "ak3_reasoning_probe_v1:s06",
       "kind": "cause",
-      "status": "not_stated",
+      "status": "answered",
       "values": [],
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
       "gold_facts": 0,
-      "citations": [],
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t65:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:s219:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f41b0c1e42cd79364:s4:c1",
+          "how": "model"
+        }
+      ],
       "citations_supported": true,
       "verified_on_gold_chunk": null,
       "citations_in_retrieved": true,
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
-      "passages": 5,
-      "prompt_tokens": 1517,
-      "completion_tokens": 17,
-      "seconds": 31.603,
-      "cached": true,
+      "passages": 23,
+      "prompt_tokens": 3080,
+      "completion_tokens": 340,
+      "seconds": 167.801,
+      "cached": false,
+      "answer_text": "Problem: non-productive time coded WOE from 2016-09-03 6:30 to 2016-09-03 11:00: 1 event, 4.5 hours, end depth 1725 ft. Stated in the reports: Waiting for weather to deliver additional core rod [E8, P1]. Possible, not stated in any report: Inadequate core rod inventory at the site [P2]; Logistics challenges in transporting core rod from village to site [P2]; Unplanned core rod requirements due to drilling progress [E5, E7]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Core rod inventory levels at the site; Transportation logistics and capacity from village to site; Weather forecast accuracy and planning; Core rod usage rate and planning accuracy.",
+      "reasoning": {
+        "problem": {
+          "date_from": "2016-09-03",
+          "date_to": "2016-09-03",
+          "start": "6:30",
+          "end": "11:00",
+          "npt_code": "WOE",
+          "hours": 4.5,
+          "events": 1,
+          "depth_ft": [
+            1725,
+            1725
+          ],
+          "codes": [
+            "CIRC"
+          ],
+          "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 j",
+          "chunks": [
+            "f4f05215feea85339:t65:c0"
+          ]
+        },
+        "candidates": [
+          {
+            "date_from": "2016-09-03",
+            "date_to": "2016-09-03",
+            "start": "6:30",
+            "end": "11:00",
+            "npt_code": "WOE",
+            "hours": 4.5,
+            "events": 1,
+            "depth_ft": [
+              1725,
+              1725
+            ],
+            "codes": [
+              "CIRC"
+            ],
+            "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 j",
+            "chunks": [
+              "f4f05215feea85339:t65:c0"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 0:00-6:00, 6 h, end depth 1425 ft, activity DRIL: Coring ahead HQ fom 1385' to 1425' with full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "0:00",
+              "end": "6:00",
+              "hours": 6.0,
+              "end_md": 1425,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Coring ahead HQ fom 1385' to 1425' with full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E1"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 6:00-17:00, 11 h, end depth 1500 ft, activity DRIL: Core ahead HQ from 1425' to 1500'. Mud temp in/ out 98/ 136 F. Full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "6:00",
+              "end": "17:00",
+              "hours": 11.0,
+              "end_md": 1500,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1425' to 1500'. Mud temp in/ out 98/ 136 F. Full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E2"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 17:00-17:30, 0.5 h, end depth 1500 ft, activity SURV: Run Totco at 1500': 1.75 degree inclination.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "17:00",
+              "end": "17:30",
+              "hours": 0.5,
+              "end_md": 1500,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run Totco at 1500': 1.75 degree inclination.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E3"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 17:30-0:00, 6.5 h, end depth 1645 ft, activity DRIL: Core ahead HQ from 1500' to 1645'. Full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "17:30",
+              "end": "0:00",
+              "hours": 6.5,
+              "end_md": 1645,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1500' to 1645'. Full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E4"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t65:c0",
+            "chunks": [
+              "f4f05215feea85339:t65:c0",
+              "f62efbee00767a3e7:t36:c0",
+              "ff5e766b8670b35da:t46:c0"
+            ],
+            "date": "2016-09-03",
+            "problem": false,
+            "text": "2016-09-03 0:00-5:00, 5 h, end depth 1705 ft, activity DRIL: Core ahead HQ core from 1645' to 1705' (*Planned TD), full returns. Mud temp in/out 112F/156F.",
+            "activity": {
+              "date": "2016-09-03",
+              "start": "0:00",
+              "end": "5:00",
+              "hours": 5.0,
+              "end_md": 1705,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ core from 1645' to 1705' (*Planned TD), full returns. Mud temp in/out 112F/156F.",
+              "chunks": [
+                "f4f05215feea85339:t65:c0",
+                "f62efbee00767a3e7:t36:c0",
+                "ff5e766b8670b35da:t46:c0"
+              ],
+              "problem": false
+            },
+            "id": "E5"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t65:c0",
+            "chunks": [
+              "f4f05215feea85339:t65:c0",
+              "f62efbee00767a3e7:t36:c0",
+              "ff5e766b8670b35da:t46:c0"
+            ],
+            "date": "2016-09-03",
+            "problem": false,
+            "text": "2016-09-03 5:00-5:30, 0.5 h, end depth 1705 ft, activity SURV: Run Totco single shot survey tool, 1 degree inclination.",
+            "activity": {
+              "date": "2016-09-03",
+              "start": "5:00",
+              "end": "5:30",
+              "hours": 0.5,
+              "end_md": 1705,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run Totco single shot survey tool, 1 degree inclination.",
+              "chunks": [
+                "f4f05215feea85339:t65:c0",
+                "f62efbee00767a3e7:t36:c0",
+                "ff5e766b8670b35da:t46:c0"
+              ],
+              "problem": false
+            },
+            "id": "E6"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t65:c0",
+            "chunks": [
+              "f4f05215feea85339:t65:c0",
+              "f62efbee00767a3e7:t36:c0",
+              "ff5e766b8670b35da:t46:c0"
+            ],
+            "date": "2016-09-03",
+            "problem": false,
+            "text": "2016-09-03 5:30-6:30, 1 h, end depth 1725 ft, activity DRIL: Core ahead with HQ core from 1705' to 1725'. Out of rod on site.",
+            "activity": {
+              "date": "2016-09-03",
+              "start": "5:30",
+              "end": "6:30",
+              "hours": 1.0,
+              "end_md": 1725,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead with HQ core from 1705' to 1725'. Out of rod on site.",
+              "chunks": [
+                "f4f05215feea85339:t65:c0",
+                "f62efbee00767a3e7:t36:c0",
+                "ff5e766b8670b35da:t46:c0"
+              ],
+              "problem": false
+            },
+            "id": "E7"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t65:c0",
+            "chunks": [
+              "f4f05215feea85339:t65:c0",
+              "f62efbee00767a3e7:t36:c0",
+              "ff5e766b8670b35da:t46:c0",
+              "ff6b0f3f13c5707ee:t2:c0"
+            ],
+            "date": "2016-09-03",
+            "problem": true,
+            "text": "* 2016-09-03 6:30-11:00, 4.5 h, end depth 1725 ft, activity CIRC, non-productive WOE: Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 jts of used rod from village yard at 11:00 hrs.",
+            "activity": {
+              "date": "2016-09-03",
+              "start": "6:30",
+              "end": "11:00",
+              "hours": 4.5,
+              "end_md": 1725,
+              "code": "CIRC",
+              "npt_code": "WOE",
+              "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 jts of used rod from village yard at 11:00 hrs.",
+              "chunks": [
+                "f4f05215feea85339:t65:c0",
+                "f62efbee00767a3e7:t36:c0",
+                "ff5e766b8670b35da:t46:c0",
+                "ff6b0f3f13c5707ee:t2:c0"
+              ],
+              "problem": true
+            },
+            "id": "E8"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t65:c0",
+            "chunks": [
+              "f4f05215feea85339:t65:c0",
+              "f62efbee00767a3e7:t36:c0",
+              "ff5e766b8670b35da:t46:c0"
+            ],
+            "date": "2016-09-03",
+            "problem": false,
+            "text": "2016-09-03 11:00-0:00, 13 h, end depth 1865 ft, activity DRIL: Core ahead from 1725' to 1865'. Average fluid temp in/out: 102/55 F.",
+            "activity": {
+              "date": "2016-09-03",
+              "start": "11:00",
+              "end": "0:00",
+              "hours": 13.0,
+              "end_md": 1865,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead from 1725' to 1865'. Average fluid temp in/out: 102/55 F.",
+              "chunks": [
+                "f4f05215feea85339:t65:c0",
+                "f62efbee00767a3e7:t36:c0",
+                "ff5e766b8670b35da:t46:c0"
+              ],
+              "problem": false
+            },
+            "id": "E9"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 0:00-6:00, 6 h, end depth 1919 ft, activity DRIL: Core ahead HQ from 1865' to 1919', bit torquing up and pressure building when on bottom. Partial losses since 1878-1888.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "0:00",
+              "end": "6:00",
+              "hours": 6.0,
+              "end_md": 1919,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1865' to 1919', bit torquing up and pressure building when on bottom. Partial losses since 1878-1888.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E10"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 6:00-7:00, 1 h, end depth 1919 ft, activity CIRC: Circulate hole with fresh water to cool hole prior to trip out for bit. Partial losses.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "6:00",
+              "end": "7:00",
+              "hours": 1.0,
+              "end_md": 1919,
+              "code": "CIRC",
+              "npt_code": null,
+              "description": "Circulate hole with fresh water to cool hole prior to trip out for bit. Partial losses.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E11"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 7:00-10:45, 3.75 h, end depth 1919 ft, activity TRPO: Trip out of hole with HQ to change bit.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "7:00",
+              "end": "10:45",
+              "hours": 3.75,
+              "end_md": 1919,
+              "code": "TRPO",
+              "npt_code": null,
+              "description": "Trip out of hole with HQ to change bit.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E12"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 10:45-14:30, 3.75 h, end depth 1919 ft, activity TRPI: Trip in hole with new HQ core bit (#8) to 1919'. No losses.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "10:45",
+              "end": "14:30",
+              "hours": 3.75,
+              "end_md": 1919,
+              "code": "TRPI",
+              "npt_code": null,
+              "description": "Trip in hole with new HQ core bit (#8) to 1919'. No losses.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E13"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 14:30-14:45, 0.25 h, end depth 1919 ft, activity CIRC: Circulate hole and mix poly into fluid (mud wt 8.4 vis 80). Circulate hole and break in bit.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "14:30",
+              "end": "14:45",
+              "hours": 0.25,
+              "end_md": 1919,
+              "code": "CIRC",
+              "npt_code": null,
+              "description": "Circulate hole and mix poly into fluid (mud wt 8.4 vis 80). Circulate hole and break in bit.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E14"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 14:45-17:45, 3 h, end depth 1955 ft, activity DRIL: Core ahead HQ from 1919' to 1955' (TD).",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "14:45",
+              "end": "17:45",
+              "hours": 3.0,
+              "end_md": 1955,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1919' to 1955' (TD).",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E15"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 17:45-19:15, 1.5 h, end depth 1955 ft, activity CIRC: Circulate hole with 2 bottoms up with fresh cold water (56 degree in out at 19:15 (1.5 hrs) 90 F. Shut pump off at 19:15 hrs.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "17:45",
+              "end": "19:15",
+              "hours": 1.5,
+              "end_md": 1955,
+              "code": "CIRC",
+              "npt_code": null,
+              "description": "Circulate hole with 2 bottoms up with fresh cold water (56 degree in out at 19:15 (1.5 hrs) 90 F. Shut pump off at 19:15 hrs.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E16"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t69:c0",
+            "chunks": [
+              "f4f05215feea85339:t69:c0",
+              "f62efbee00767a3e7:t40:c0",
+              "ff5e766b8670b35da:t49:c0"
+            ],
+            "date": "2016-09-04",
+            "problem": false,
+            "text": "2016-09-04 19:15-0:00, 4.75 h, end depth 1955 ft, activity TRPO: Trip out of hole with HQ core string from 1955' to surface. Lay down BHA. Prepare to rig up wire line.",
+            "activity": {
+              "date": "2016-09-04",
+              "start": "19:15",
+              "end": "0:00",
+              "hours": 4.75,
+              "end_md": 1955,
+              "code": "TRPO",
+              "npt_code": null,
+              "description": "Trip out of hole with HQ core string from 1955' to surface. Lay down BHA. Prepare to rig up wire line.",
+              "chunks": [
+                "f4f05215feea85339:t69:c0",
+                "f62efbee00767a3e7:t40:c0",
+                "ff5e766b8670b35da:t49:c0"
+              ],
+              "problem": false
+            },
+            "id": "E17"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f4f05215feea85339:s219:c0",
+            "page": 38,
+            "text": "Core ahead to 1725' with HQ core with full returns (survey at 1700': 1 degree inclination). Wait on weather to deliver additional core rod from village and staging area. Core ahead to 1865' with full returns.",
+            "id": "P1"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f41b0c1e42cd79364:s4:c1",
+            "page": 23,
+            "text": "weather to deliver additional core rod from village\nand staging area. Core ahead to 1865' with full\nreturns.\nPlanned Operations:\nPull out of hole with HQ rods. Rig up and perform\npressure temperature logging. Run perforated\npipe.",
+            "id": "P2"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f41b0c1e42cd79364:s4:c0",
+            "page": 23,
+            "text": "Rig Name: Major LF90\nWell Name: AK-3\nReport No: 23\nDivision: Other, Field: Hot Springs Bay Valley\nPlan Data\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nGround Level\nSURF - 7.5ins Hole to 220ft\n5.5ins Casing to 220ft\nPROD - 4.834ins Hole to 800ft\n4.5ins Casing to 800ft\nPERF - 3.789ins Hole to\n1700ft\n3.5ins Casing from 700ft to\n1700ft\nActual Data\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nGround Level\nOpen Hole Diameter 3.825ins\nTotal Depth 1955ft\n8.650ins FULL set at 40ft on\n19-Aug-16\n5.500ins FULL set at 221.7ft\non 24-Aug-16\n4.500ins FULL set at 800.08ft\non 29-Aug-16\nDepth (f t)\nDays On Location\n0\n5\n10\n15\n20\n25\n30\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nActual\nPlanned\nCOSTS\nDaily Cost:\n37,611\nAFE $ Actual $\nAFE\n01\n1,714,090 1,315,936\nTOTALS\n1,714,090 1,315,936\nSAFETY\n/ 14 days\nLTI:\nMed:\n1st Aid:\nTotal:\n11 Hours:\n0\nPERSONNEL / HOURS\nOperators:\n2 / 0 Service:\n1 / 0\nContractors:\n7 / 0 Other:\n1 / 0\nOPERATIONS\nMD / TVD (ft):\nHole Drilled / Ave ROP:\nDrilling Days:\nSupervisor:\nEngineer:\n1,865 / 1,865\n220 / 11.6\n17 actual / 30 plan\nMKeown\nMonty ...",
+            "id": "P3"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0018",
+            "page": 12,
+            "text": "Figure 5: Completed AK-3 wellhead, 7 September 2016.\nFigure 6: Test sump under construction 5 September 2016.",
+            "id": "P4"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0033",
+            "page": 18,
+            "text": "The second PT survey was conducted on 6 September at 02:00. Subsequently, all drilling equipment was removed from the site, the flow tee was installed on the wellhead, and the site was prepared for demobilization of all project equipment and facilities.\nOn at 09:45 on 7 September, the third PT was conducted to 1955'. Crews continued the disassembly of the camp, including the operations tent and core tent, a drain line was installed from the cellar to a discharge point away from the well pad, and the mud sump and retention pond were fenced with barbed wire. The containers in the staging area were loaded with equipment. Camp services completed the camp disassembly on 8 September. The rig down and move of all equipment back to the Akutan Harbor staging area was completed on 8 September.\nAll core was boxed and labeled, and stored in a shelter in HSBV for retrieval next season, if feasible. Return shipment of the rig and equipment, including the rock chip samples from the entire length of the core, is expected to travel from Akutan to Tacoma mid-October 2016.",
+            "id": "P5"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0034",
+            "page": 19,
+            "text": "The bulk of non-productive time was due to well control issues and weather. This accounts for about 18% of the total drilling time (Table 4).\nThere was a loss of 24 hours due to weather during the move to the well site on 13 August. Overnight from 16-17 August (14 hours) was counted as non-productive time because the crews had to leave the site to accommodations provided by the City of Akutan because the camp generator was not yet operational. With better preparation they could have continued working and would likely have been ready to spud earlier.\nThe time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.\nWeather did not stop operations directly, but through the course of the drilling, 8.5 hours were required to wait for the weather to improve to allow the helicopter to deliver equipment or personnel from the harbor to the well site. After the initial pressure and temperature survey on 5 September, 2.5 hours were recorded as non-productive time for interpretation of data and developing the plan to run the ...",
+            "id": "P6"
+          }
+        ],
+        "evidence_chars": 6483,
+        "problem_events_left_out": 0,
+        "stated": [
+          {
+            "cause": "Waiting for weather to deliver additional core rod",
+            "citations": [
+              {
+                "evidence": "E8",
+                "chunk": "f4f05215feea85339:t65:c0",
+                "how": "model",
+                "quote": "Wait on weather to fly additional core rod to site (winds blowing over 35 KNTS)."
+              },
+              {
+                "evidence": "P1",
+                "chunk": "f4f05215feea85339:s219:c0",
+                "how": "model",
+                "quote": "Wait on weather to deliver additional core rod from village and staging area."
+              }
+            ]
+          }
+        ],
+        "possible": [
+          {
+            "cause": "Inadequate core rod inventory at the site",
+            "citations": [
+              {
+                "evidence": "P2",
+                "chunk": "f41b0c1e42cd79364:s4:c1",
+                "how": "model",
+                "quote": "weather to deliver additional core rod from village and staging area."
+              }
+            ]
+          },
+          {
+            "cause": "Logistics challenges in transporting core rod from village to site",
+            "citations": [
+              {
+                "evidence": "P2",
+                "chunk": "f41b0c1e42cd79364:s4:c1",
+                "how": "model",
+                "quote": "weather to deliver additional core rod from village and staging area."
+              }
+            ]
+          },
+          {
+            "cause": "Unplanned core rod requirements due to drilling progress",
+            "citations": [
+              {
+                "evidence": "E5",
+                "chunk": "f4f05215feea85339:t65:c0",
+                "how": "model",
+                "quote": "Planned TD"
+              },
+              {
+                "evidence": "E7",
+                "chunk": "f4f05215feea85339:t65:c0",
+                "how": "model",
+                "quote": "Core ahead with HQ core from 1705' to 1725'."
+              }
+            ]
+          }
+        ],
+        "possible_hidden": 0,
+        "removed": {
+          "stated": 0,
+          "possible": 0
+        },
+        "moved_to_possible": 0,
+        "focus": [
+          "E8"
+        ],
+        "citations_named_shown": true,
+        "missing": [
+          {
+            "text": "offset wells: what happened in nearby wells drilled through the same formations",
+            "from": "corpus"
+          },
+          {
+            "text": "formation pressures and temperatures measured over depth",
+            "from": "corpus"
+          },
+          {
+            "text": "drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow",
+            "from": "corpus"
+          },
+          {
+            "text": "lessons-learned or incident investigation reports",
+            "from": "corpus"
+          },
+          {
+            "text": "Core rod inventory levels at the site",
+            "from": "model"
+          },
+          {
+            "text": "Transportation logistics and capacity from village to site",
+            "from": "model"
+          },
+          {
+            "text": "Weather forecast accuracy and planning",
+            "from": "model"
+          },
+          {
+            "text": "Core rod usage rate and planning accuracy",
+            "from": "model"
+          }
+        ],
+        "valid": true
+      },
       "shown_passages": [
-        "ff5e766b8670b35da:t46:c0",
-        "f4f05215feea85339:s219:c0",
-        "ff5e766b8670b35da:s187:c0",
         "f4f05215feea85339:t65:c0",
-        "f62efbee00767a3e7:t36:c0"
+        "f4f05215feea85339:t60:c0",
+        "f4f05215feea85339:t69:c0",
+        "f4f05215feea85339:s219:c0",
+        "f41b0c1e42cd79364:s4:c1",
+        "f41b0c1e42cd79364:s4:c0",
+        "gdr882_ak3_eowr#c0018",
+        "gdr882_ak3_eowr#c0033",
+        "gdr882_ak3_eowr#c0034"
       ],
       "shown_facts": [],
       "frame": {
@@ -4474,10 +5209,10 @@
         }
       },
       "lanes": [
-        "passages"
+        "reasoning"
       ],
       "mode": "allow_fallback",
-      "fallback": true,
+      "fallback": false,
       "answered_from": "daily",
       "computed": null,
       "calls": 2,
@@ -4485,12 +5220,12 @@
       "frame_completion_tokens": 154,
       "frame_seconds": 60.107,
       "reasoning_score": {
-        "problem_found": false,
-        "stated_found": "0/1",
-        "stated_found_and_cited": false,
+        "problem_found": true,
+        "stated_found": "1/1",
+        "stated_found_and_cited": true,
         "unsupported_claims": 0,
         "removed_by_check": 0,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v1",
       "expected": "reasoning",
@@ -4499,33 +5234,742 @@
     {
       "id": "ak3_reasoning_probe_v1:s07",
       "kind": "cause",
-      "status": "not_stated",
+      "status": "answered",
       "values": [],
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
       "gold_facts": 0,
-      "citations": [],
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t56:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t52:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t56:c0",
+          "how": "by_quote"
+        }
+      ],
       "citations_supported": true,
       "verified_on_gold_chunk": null,
       "citations_in_retrieved": true,
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
-      "passages": 5,
-      "prompt_tokens": 2416,
-      "completion_tokens": 17,
-      "seconds": 51.951,
-      "cached": true,
+      "passages": 22,
+      "prompt_tokens": 3599,
+      "completion_tokens": 562,
+      "seconds": 255.768,
+      "cached": false,
+      "answer_text": "Problem: events from 2016-09-01 18:00 to 2016-09-01 20:30: 1 event, 2.5 hours, end depth 1300 ft. Stated in the reports: Hot fluid caused circulation at each joint while tripping in [E11]. Possible, not stated in any report: Bit walking and pressured up caused the crew to trip out for a new bit [E8]; Core samples whittled and bit walking caused the crew to trip out for a new bit [E8]; Full returns through out coring run caused the crew to continue coring ahead [E5]; High mud temperature may have contributed to bit walking [E5]; High inclination may have affected drilling efficiency [E4]; High mud temperature may have contributed to hot fluid [E11]; High inclination may have contributed to bit walking [E9]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the type of core bit used and its specifications; Information about the mud system and its properties; Data on the exact temperature readings at different depths; Details about the drilling parameters (RPM, weight on bit, etc.).",
+      "reasoning": {
+        "problem": {
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "start": "18:00",
+          "end": "20:30",
+          "npt_code": "",
+          "hours": 2.5,
+          "events": 1,
+          "depth_ft": [
+            1300,
+            1300
+          ],
+          "codes": [
+            "TRPI"
+          ],
+          "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each",
+          "chunks": [
+            "f4f05215feea85339:t56:c0"
+          ]
+        },
+        "candidates": [
+          {
+            "date_from": "2016-09-01",
+            "date_to": "2016-09-01",
+            "start": "18:00",
+            "end": "20:30",
+            "npt_code": "",
+            "hours": 2.5,
+            "events": 1,
+            "depth_ft": [
+              1300,
+              1300
+            ],
+            "codes": [
+              "TRPI"
+            ],
+            "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each",
+            "chunks": [
+              "f4f05215feea85339:t56:c0"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 0:00-1:00, 1 h, end depth 810 ft, activity DRIL: Core ahead through float shoe 800' to 810' retrieve core, drop new inner barrel,",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "0:00",
+              "end": "1:00",
+              "hours": 1.0,
+              "end_md": 810,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead through float shoe 800' to 810' retrieve core, drop new inner barrel,",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E1"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 1:00-1:30, 0.5 h, end depth 810 ft, activity FIT: Conduct LOT at 810' w/ 8.34 ppg mud. Fill pipe with water, close annular. Pump 2.5 gallon, pressure 80 psi. Pump 2.5 gal, 170 psi. Pump 2.5 gal, 600 psi (holding each pressure for 2 min). No leak ...",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "1:00",
+              "end": "1:30",
+              "hours": 0.5,
+              "end_md": 810,
+              "code": "FIT",
+              "npt_code": null,
+              "description": "Conduct LOT at 810' w/ 8.34 ppg mud. Fill pipe with water, close annular. Pump 2.5 gallon, pressure 80 psi. Pump 2.5 gal, 170 psi. Pump 2.5 gal, 600 psi (holding each pressure for 2 min). No leak off. Pump would not start against 600 psi. Retest with 1 gallon increments. Pump 1 gallon, 80 psi. Pump 1 gallon, 420 psi. Pump 1 gallon, 640 psi. No leak off after 5 min. Exceed1 psi/ft (500 psi surface pressure). End test. Bleed off.",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E2"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 1:30-6:30, 5 h, end depth 900 ft, activity DRIL: Core ahead with HQ to 900'. 100% recovery. Prepare to run single shot.",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "1:30",
+              "end": "6:30",
+              "hours": 5.0,
+              "end_md": 900,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead with HQ to 900'. 100% recovery. Prepare to run single shot.",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E3"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 6:30-7:00, 0.5 h, end depth 900 ft, activity SURV: Run single shot survey and MRT: 0.75 inclination, MRT: 300 - 310 F (max reading on MRT).",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "6:30",
+              "end": "7:00",
+              "hours": 0.5,
+              "end_md": 900,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run single shot survey and MRT: 0.75 inclination, MRT: 300 - 310 F (max reading on MRT).",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E4"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 7:00-23:00, 16 h, end depth 1100 ft, activity DRIL: Core ahead with HQ from 900' to 1100'. 100% recovery. Mud temp in average 112F out 150 F Max reading at 1100' mud temp in 114F out 162F. Full returns through out coring run. Rod chatter beginning at ...",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "7:00",
+              "end": "23:00",
+              "hours": 16.0,
+              "end_md": 1100,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead with HQ from 900' to 1100'. 100% recovery. Mud temp in average 112F out 150 F Max reading at 1100' mud temp in 114F out 162F. Full returns through out coring run. Rod chatter beginning at 920' increase amount of polymer in drill fluid. Reduce chatter.",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E5"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 23:00-23:30, 0.5 h, end depth 1100 ft, activity SURV: Run single shot survey at 1100': 1 degree inclination, no MRT.",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "23:00",
+              "end": "23:30",
+              "hours": 0.5,
+              "end_md": 1100,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run single shot survey at 1100': 1 degree inclination, no MRT.",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E6"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t52:c0",
+            "chunks": [
+              "f4f05215feea85339:t52:c0",
+              "f62efbee00767a3e7:t27:c0",
+              "ff5e766b8670b35da:t36:c0"
+            ],
+            "date": "2016-08-31",
+            "problem": false,
+            "text": "2016-08-31 23:30-0:00, 0.5 h, end depth 1105 ft, activity DRIL: Core ahead with HQ from 1100' to 1105'. Mud temp: in 114F out 165F.",
+            "activity": {
+              "date": "2016-08-31",
+              "start": "23:30",
+              "end": "0:00",
+              "hours": 0.5,
+              "end_md": 1105,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead with HQ from 1100' to 1105'. Mud temp: in 114F out 165F.",
+              "chunks": [
+                "f4f05215feea85339:t52:c0",
+                "f62efbee00767a3e7:t27:c0",
+                "ff5e766b8670b35da:t36:c0"
+              ],
+              "problem": false
+            },
+            "id": "E7"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t56:c0",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "date": "2016-09-01",
+            "problem": false,
+            "text": "2016-09-01 0:00-15:30, 15.5 h, end depth 1300 ft, activity DRIL: Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to trip out for new bit.",
+            "activity": {
+              "date": "2016-09-01",
+              "start": "0:00",
+              "end": "15:30",
+              "hours": 15.5,
+              "end_md": 1300,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to trip out for new bit.",
+              "chunks": [
+                "f4f05215feea85339:t56:c0",
+                "f62efbee00767a3e7:t29:c0",
+                "ff5e766b8670b35da:t39:c0"
+              ],
+              "problem": false
+            },
+            "id": "E8"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t56:c0",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "date": "2016-09-01",
+            "problem": false,
+            "text": "2016-09-01 15:30-16:00, 0.5 h, end depth 1300 ft, activity SURV: Run Totco single shot survey, 1 degree inclination.",
+            "activity": {
+              "date": "2016-09-01",
+              "start": "15:30",
+              "end": "16:00",
+              "hours": 0.5,
+              "end_md": 1300,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run Totco single shot survey, 1 degree inclination.",
+              "chunks": [
+                "f4f05215feea85339:t56:c0",
+                "f62efbee00767a3e7:t29:c0",
+                "ff5e766b8670b35da:t39:c0"
+              ],
+              "problem": false
+            },
+            "id": "E9"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t56:c0",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "date": "2016-09-01",
+            "problem": false,
+            "text": "2016-09-01 16:00-18:00, 2 h, end depth 1300 ft, activity TRPO: Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+            "activity": {
+              "date": "2016-09-01",
+              "start": "16:00",
+              "end": "18:00",
+              "hours": 2.0,
+              "end_md": 1300,
+              "code": "TRPO",
+              "npt_code": null,
+              "description": "Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+              "chunks": [
+                "f4f05215feea85339:t56:c0",
+                "f62efbee00767a3e7:t29:c0",
+                "ff5e766b8670b35da:t39:c0"
+              ],
+              "problem": false
+            },
+            "id": "E10"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t56:c0",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "date": "2016-09-01",
+            "problem": true,
+            "text": "* 2016-09-01 18:00-20:30, 2.5 h, end depth 1300 ft, activity TRPI: Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+            "activity": {
+              "date": "2016-09-01",
+              "start": "18:00",
+              "end": "20:30",
+              "hours": 2.5,
+              "end_md": 1300,
+              "code": "TRPI",
+              "npt_code": null,
+              "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+              "chunks": [
+                "f4f05215feea85339:t56:c0",
+                "f62efbee00767a3e7:t29:c0",
+                "ff5e766b8670b35da:t39:c0"
+              ],
+              "problem": true
+            },
+            "id": "E11"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t56:c0",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "date": "2016-09-01",
+            "problem": false,
+            "text": "2016-09-01 20:30-0:00, 3.5 h, end depth 1385 ft, activity DRIL: Break in new bit and core ahead from 1300' to 1385'.",
+            "activity": {
+              "date": "2016-09-01",
+              "start": "20:30",
+              "end": "0:00",
+              "hours": 3.5,
+              "end_md": 1385,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Break in new bit and core ahead from 1300' to 1385'.",
+              "chunks": [
+                "f4f05215feea85339:t56:c0",
+                "f62efbee00767a3e7:t29:c0",
+                "ff5e766b8670b35da:t39:c0"
+              ],
+              "problem": false
+            },
+            "id": "E12"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 0:00-6:00, 6 h, end depth 1425 ft, activity DRIL: Coring ahead HQ fom 1385' to 1425' with full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "0:00",
+              "end": "6:00",
+              "hours": 6.0,
+              "end_md": 1425,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Coring ahead HQ fom 1385' to 1425' with full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E13"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 6:00-17:00, 11 h, end depth 1500 ft, activity DRIL: Core ahead HQ from 1425' to 1500'. Mud temp in/ out 98/ 136 F. Full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "6:00",
+              "end": "17:00",
+              "hours": 11.0,
+              "end_md": 1500,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1425' to 1500'. Mud temp in/ out 98/ 136 F. Full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E14"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 17:00-17:30, 0.5 h, end depth 1500 ft, activity SURV: Run Totco at 1500': 1.75 degree inclination.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "17:00",
+              "end": "17:30",
+              "hours": 0.5,
+              "end_md": 1500,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run Totco at 1500': 1.75 degree inclination.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E15"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t60:c0",
+            "chunks": [
+              "f4f05215feea85339:t60:c0",
+              "f62efbee00767a3e7:t33:c0",
+              "ff5e766b8670b35da:t42:c0"
+            ],
+            "date": "2016-09-02",
+            "problem": false,
+            "text": "2016-09-02 17:30-0:00, 6.5 h, end depth 1645 ft, activity DRIL: Core ahead HQ from 1500' to 1645'. Full returns.",
+            "activity": {
+              "date": "2016-09-02",
+              "start": "17:30",
+              "end": "0:00",
+              "hours": 6.5,
+              "end_md": 1645,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead HQ from 1500' to 1645'. Full returns.",
+              "chunks": [
+                "f4f05215feea85339:t60:c0",
+                "f62efbee00767a3e7:t33:c0",
+                "ff5e766b8670b35da:t42:c0"
+              ],
+              "problem": false
+            },
+            "id": "E16"
+          },
+          {
+            "kind": "daily",
+            "chunk": "ff5e766b8670b35da:s158:c0",
+            "page": 31,
+            "text": "Continued coring ahead HQ to 1300'. Bit walking and pressured up. Run single shot survey at 1300'. 1 degree inclination. Pull HQ#6 bit out of hole and replace with new HQ 8 AM. Circulate hole to cool as tripping in. Core ahead from 1300' to 1385'.",
+            "id": "P1"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f41b0c1e42cd79364:s2:c0",
+            "page": 21,
+            "text": "Rig Name: Major LF90\nWell Name: AK-3\nReport No: 21\nDivision: Other, Field: Hot Springs Bay Valley\nPlan Data\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nGround Level\nSURF - 7.5ins Hole to 220ft\n5.5ins Casing to 220ft\nPROD - 4.834ins Hole to 800ft\n4.5ins Casing to 800ft\nPERF - 3.789ins Hole to\n1700ft\n3.5ins Casing from 700ft to\n1700ft\nActual Data\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nGround Level\nOpen Hole Diameter 3.825ins\nTotal Depth 1955ft\n8.650ins FULL set at 40ft on\n19-Aug-16\n5.500ins FULL set at 221.7ft\non 24-Aug-16\n4.500ins FULL set at 800.08ft\non 29-Aug-16\nDepth (f t)\nDays On Location\n0\n5\n10\n15\n20\n25\n30\n0\n100\n200\n300\n400\n500\n600\n700\n800\n900\n1000\n1100\n1200\n1300\n1400\n1500\n1600\n1700\n1800\n1900\nActual\nPlanned\nCOSTS\nDaily Cost:\n42,637\nAFE $ Actual $\nAFE\n01\n1,714,090 1,241,832\nTOTALS\n1,714,090 1,241,832\nSAFETY\n/ 12 days\nLTI:\nMed:\n1st Aid:\nTotal:\n12 Hours:\n0\nPERSONNEL / HOURS\nOperators:\n2 / 0 Service:\n1 / 0\nContractors:\n7 / 0 Other:\n2 / 0\nOPERATIONS\nMD / TVD (ft):\nHole Drilled / Ave ROP:\nDrilling Days:\nSupervisor:\nEngineer:\n1,385 / 1,385\n280 / 14.7\n15 actual / 30 plan\nMKeown\nMonty ...",
+            "id": "P2"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f62efbee00767a3e7:f21:c0",
+            "page": 21,
+            "text": "Well ID: AK-3\nJob ID: Original\nWell Name: AK-3\nField: Hot Springs Bay Va\nSect: 5\nTown: 112W\nRng: S005\nCounty: Aleutians East\nState: AK\nReport No: 21\nReport For: 01-Sep-16\nOperator: City of Akutan\nRig: Major LF90\nSpud Date: 18-Aug-16\nDaily Cost / Mud ($): ---\nMeasured Depth (ft): 1385\nDrilling Days (act.): 15\nWell Bore: Original Well Bore\nAFE No.: ---\nAFE No.: ---\nAFE ($): ---\nAFE ($): ---\nActual ($): ---\nActual ($): ---\nActual ($): ---\nVertical Depth (ft): 1385\nDrilling Days (plan): 30\nRKB Elevation (ft): 6.00\nProposed TD (ft): 1700\nDays On Location: 21\nLast BOP Test: 30-Aug-16\nHole Made (ft) / Hrs: 280 / 19.0\nLast Casing: 4.500 at 800\nTotals: ---\nAverage ROP (ft/hr): 14.74\nNext Casing: 3.500 at 1,700\nWorking Interest: \nWell Cost ($): ---\nCurrent Ops: Coring ahead HQ at 1410' at 06:00 hr\nPlanned Ops: Continue coring ahead HQ to Loss zones or 1700'\nToolpusher: Brian Walker\nSupervisors: \nTel No.: 907-273-0057\nComments: No losses or kicks through the daily drilling interval.",
+            "id": "P3"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0018",
+            "page": 12,
+            "text": "Figure 5: Completed AK-3 wellhead, 7 September 2016.\nFigure 6: Test sump under construction 5 September 2016.",
+            "id": "P4"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0010",
+            "page": 7,
+            "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:\n\uf0b7 WGS-84 UTM Zone 3, 443969 E, 6000805 N,\n\uf0b7 Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.\nThese coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,\nWell AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-\u00bd\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. A ...",
+            "id": "P5"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0038",
+            "page": 20,
+            "text": "AK-3 was completed with one recordable safety incident. On 21 August 2016, during the setting of the core joint to secure the top of the core pipe to shut off steam flow, hot water sprayed under the rain jacket of the Major toolpusher. He sustained 2 nd degree burns to the lower back just above his belt line. First aid was administered to cool and the cover the affected area. He returned to work after changing work clothes. An incident report was prepared. The driller refused additional care at the medical facility at the City of Akutan. The well flow incident was handled well by the drilling crew and appropriate measures were taken to kill the well as soon as the incident occurred.\nAK-3 was completed with one recordable environmental incident. The well flowed uncontrolled from a permeable zone at about 176 feet, beginning on 20 August 2016. The containment at the rig site was not sufficient to contain all of the fluids that were discharged from the well during the\nincident, and approximately 129,600 gallons of hot water was discharged into the floor of HSBV. A notification of non-compliance was delivered to the Alaska Department of Environmental Conservation, and the Alaska ...",
+            "id": "P6"
+          }
+        ],
+        "evidence_chars": 7596,
+        "problem_events_left_out": 0,
+        "stated": [
+          {
+            "cause": "Hot fluid caused circulation at each joint while tripping in",
+            "citations": [
+              {
+                "evidence": "E11",
+                "chunk": "f4f05215feea85339:t56:c0",
+                "how": "model",
+                "quote": "At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F."
+              }
+            ]
+          }
+        ],
+        "possible": [
+          {
+            "cause": "Bit walking and pressured up caused the crew to trip out for a new bit",
+            "citations": [
+              {
+                "evidence": "E8",
+                "chunk": "f4f05215feea85339:t56:c0",
+                "how": "model",
+                "quote": "Determine to trip out for new bit."
+              }
+            ]
+          },
+          {
+            "cause": "Core samples whittled and bit walking caused the crew to trip out for a new bit",
+            "citations": [
+              {
+                "evidence": "E8",
+                "chunk": "f4f05215feea85339:t56:c0",
+                "how": "model",
+                "quote": "started to see core samples whittled and bit walking."
+              }
+            ]
+          },
+          {
+            "cause": "Full returns through out coring run caused the crew to continue coring ahead",
+            "citations": [
+              {
+                "evidence": "E5",
+                "chunk": "f4f05215feea85339:t52:c0",
+                "how": "model",
+                "quote": "Full returns through out coring run."
+              }
+            ]
+          },
+          {
+            "cause": "High mud temperature may have contributed to bit walking",
+            "citations": [
+              {
+                "evidence": "E5",
+                "chunk": "f4f05215feea85339:t52:c0",
+                "how": "model",
+                "quote": "Mud temp in average 112F out 150 F Max reading at 1100' mud temp in 114F out 162F."
+              }
+            ]
+          },
+          {
+            "cause": "High inclination may have affected drilling efficiency",
+            "citations": [
+              {
+                "evidence": "E4",
+                "chunk": "f4f05215feea85339:t52:c0",
+                "how": "model",
+                "quote": "MRT: 300 - 310 F (max reading on MRT)."
+              }
+            ]
+          },
+          {
+            "cause": "High mud temperature may have contributed to hot fluid",
+            "citations": [
+              {
+                "evidence": "E11",
+                "chunk": "f4f05215feea85339:t56:c0",
+                "how": "model",
+                "quote": "mud temp out through core rod 185F."
+              }
+            ]
+          },
+          {
+            "cause": "High inclination may have contributed to bit walking",
+            "citations": [
+              {
+                "evidence": "E9",
+                "chunk": "f4f05215feea85339:t56:c0",
+                "how": "by_quote",
+                "quote": "1 degree inclination."
+              }
+            ]
+          }
+        ],
+        "possible_hidden": 0,
+        "removed": {
+          "stated": 0,
+          "possible": 0
+        },
+        "moved_to_possible": 3,
+        "focus": [
+          "E11"
+        ],
+        "citations_named_shown": true,
+        "missing": [
+          {
+            "text": "offset wells: what happened in nearby wells drilled through the same formations",
+            "from": "corpus"
+          },
+          {
+            "text": "formation pressures and temperatures measured over depth",
+            "from": "corpus"
+          },
+          {
+            "text": "drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow",
+            "from": "corpus"
+          },
+          {
+            "text": "lessons-learned or incident investigation reports",
+            "from": "corpus"
+          },
+          {
+            "text": "Specific details about the type of core bit used and its specifications",
+            "from": "model"
+          },
+          {
+            "text": "Information about the mud system and its properties",
+            "from": "model"
+          },
+          {
+            "text": "Data on the exact temperature readings at different depths",
+            "from": "model"
+          },
+          {
+            "text": "Details about the drilling parameters (RPM, weight on bit, etc.)",
+            "from": "model"
+          }
+        ],
+        "valid": true
+      },
       "shown_passages": [
-        "f41b0c1e42cd79364:s2:c0",
         "f4f05215feea85339:t56:c0",
-        "f62efbee00767a3e7:t29:c0",
-        "ff5e766b8670b35da:t39:c0",
-        "ff5e766b8670b35da:s158:c0"
+        "f4f05215feea85339:t52:c0",
+        "f4f05215feea85339:t60:c0",
+        "ff5e766b8670b35da:s158:c0",
+        "f41b0c1e42cd79364:s2:c0",
+        "f62efbee00767a3e7:f21:c0",
+        "gdr882_ak3_eowr#c0018",
+        "gdr882_ak3_eowr#c0010",
+        "gdr882_ak3_eowr#c0038"
       ],
       "shown_facts": [],
       "frame": {
@@ -4555,10 +5999,10 @@
         }
       },
       "lanes": [
-        "passages"
+        "reasoning"
       ],
       "mode": "allow_fallback",
-      "fallback": true,
+      "fallback": false,
       "answered_from": "daily",
       "computed": null,
       "calls": 2,
@@ -4566,12 +6010,12 @@
       "frame_completion_tokens": 153,
       "frame_seconds": 59.148,
       "reasoning_score": {
-        "problem_found": false,
-        "stated_found": "0/1",
-        "stated_found_and_cited": false,
+        "problem_found": true,
+        "stated_found": "1/1",
+        "stated_found_and_cited": true,
         "unsupported_claims": 0,
         "removed_by_check": 0,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v1",
       "expected": "reasoning",
@@ -4580,7 +6024,7 @@
     {
       "id": "ak3_reasoning_probe_v1:s08",
       "kind": "cause",
-      "status": "not_stated",
+      "status": "answered",
       "values": [],
       "raw_values": [],
       "units": [],
@@ -4590,23 +6034,887 @@
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
       "gold_facts": 0,
-      "citations": [],
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t13:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t9:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t16:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0019",
+          "how": "model"
+        }
+      ],
       "citations_supported": true,
       "verified_on_gold_chunk": null,
       "citations_in_retrieved": true,
       "citations_on_gold_chunk": null,
       "quotes_verbatim": true,
-      "passages": 5,
-      "prompt_tokens": 2288,
-      "completion_tokens": 21,
-      "seconds": 49.514,
-      "cached": true,
+      "passages": 27,
+      "prompt_tokens": 4084,
+      "completion_tokens": 461,
+      "seconds": 244.699,
+      "cached": false,
+      "answer_text": "Problem: events from 2016-08-19 9:30 to 2016-08-19 21:30: 1 event, 12 hours, end depth 49 ft. Stated in the reports: Wait on Cement [E10]. Possible, not stated in any report: Plugged bit [E4]; Stuck pipe [E19]; Hot water flowing from annulus [E20]; Inadequate casing cementing [E10]; Poor hole cleaning [E6]; Inefficient mud system [E6]; Weather delays [P6]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details about the cementing process and its effectiveness; Data on the temperature and pressure readings during cementing; Information on the quality and type of cement used; Details on the mud properties and circulation efficiency.",
+      "reasoning": {
+        "problem": {
+          "date_from": "2016-08-19",
+          "date_to": "2016-08-19",
+          "start": "9:30",
+          "end": "21:30",
+          "npt_code": "",
+          "hours": 12.0,
+          "events": 1,
+          "depth_ft": [
+            49,
+            49
+          ],
+          "codes": [
+            "WOC"
+          ],
+          "description": "Wait on Cement, sound annulus after 8 hrs. 3' below cellar floor, mix 1 sk cement with 6 gallons of water fill to cellar floor. Lay plywood on site for walk way",
+          "chunks": [
+            "f4f05215feea85339:t13:c0"
+          ]
+        },
+        "candidates": [
+          {
+            "date_from": "2016-08-19",
+            "date_to": "2016-08-19",
+            "start": "9:30",
+            "end": "21:30",
+            "npt_code": "",
+            "hours": 12.0,
+            "events": 1,
+            "depth_ft": [
+              49,
+              49
+            ],
+            "codes": [
+              "WOC"
+            ],
+            "description": "Wait on Cement, sound annulus after 8 hrs. 3' below cellar floor, mix 1 sk cement with 6 gallons of water fill to cellar floor. Lay plywood on site for walk way",
+            "chunks": [
+              "f4f05215feea85339:t13:c0"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 0:00-8:00, 8 h, end depth 0 ft, activity WOD: Crews at lodge for night.",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "0:00",
+              "end": "8:00",
+              "hours": 8.0,
+              "end_md": 0,
+              "code": "WOD",
+              "npt_code": null,
+              "description": "Crews at lodge for night.",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0"
+              ],
+              "problem": false
+            },
+            "id": "E1"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0",
+              "ff6b0f3f13c5707ee:t1:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 8:00-12:00, 4 h, end depth 0 ft, activity WOW, non-productive WOO: Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill water tanks.",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "8:00",
+              "end": "12:00",
+              "hours": 4.0,
+              "end_md": 0,
+              "code": "WOW",
+              "npt_code": "WOO",
+              "description": "Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill water tanks.",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0",
+                "ff6b0f3f13c5707ee:t1:c0"
+              ],
+              "problem": false
+            },
+            "id": "E2"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 12:00-16:00, 4 h, end depth 49 ft, activity DRIL: PQ core from bottom of cellar 4' to 49', cored 45'. shot core at 35' with laser thermometer, 105.5 degrees F. R",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "12:00",
+              "end": "16:00",
+              "hours": 4.0,
+              "end_md": 49,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "PQ core from bottom of cellar 4' to 49', cored 45'. shot core at 35' with laser thermometer, 105.5 degrees F. R",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0"
+              ],
+              "problem": false
+            },
+            "id": "E3"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 16:00-19:00, 3 h, end depth 49 ft, activity OPEN: Install 4.75\"x 10 3/4\" hole opener, ream hole from cellar floor -4' to 42', condition mud circulate bottoms up. let set to check for fill.30 minutes, 8' of fill try to circulate, plugged bit",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "16:00",
+              "end": "19:00",
+              "hours": 3.0,
+              "end_md": 49,
+              "code": "OPEN",
+              "npt_code": null,
+              "description": "Install 4.75\"x 10 3/4\" hole opener, ream hole from cellar floor -4' to 42', condition mud circulate bottoms up. let set to check for fill.30 minutes, 8' of fill try to circulate, plugged bit",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0"
+              ],
+              "problem": false
+            },
+            "id": "E4"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 19:00-21:00, 2 h, end depth 49 ft, activity TRPO: Pull hole opener to surface plugged bit, break off bit, lay down, clean bit, Run back in hole, tag fill at 32'",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "19:00",
+              "end": "21:00",
+              "hours": 2.0,
+              "end_md": 49,
+              "code": "TRPO",
+              "npt_code": null,
+              "description": "Pull hole opener to surface plugged bit, break off bit, lay down, clean bit, Run back in hole, tag fill at 32'",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0"
+              ],
+              "problem": false
+            },
+            "id": "E5"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t9:c0",
+            "chunks": [
+              "f4f05215feea85339:t9:c0",
+              "f62efbee00767a3e7:t5:c0",
+              "ff5e766b8670b35da:t6:c0"
+            ],
+            "date": "2016-08-18",
+            "problem": false,
+            "text": "2016-08-18 21:00-0:00, 3 h, end depth 49 ft, activity REAM: Ream 10 3/4\" hole to 42' mix mud to 65 -70 vis, circulate and work hole,formation sluffing off from 25-30 ' continue to work and pump hole to 42'",
+            "activity": {
+              "date": "2016-08-18",
+              "start": "21:00",
+              "end": "0:00",
+              "hours": 3.0,
+              "end_md": 49,
+              "code": "REAM",
+              "npt_code": null,
+              "description": "Ream 10 3/4\" hole to 42' mix mud to 65 -70 vis, circulate and work hole,formation sluffing off from 25-30 ' continue to work and pump hole to 42'",
+              "chunks": [
+                "f4f05215feea85339:t9:c0",
+                "f62efbee00767a3e7:t5:c0",
+                "ff5e766b8670b35da:t6:c0"
+              ],
+              "problem": false
+            },
+            "id": "E6"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": false,
+            "text": "2016-08-19 0:00-6:00, 6 h, end depth 49 ft, activity CASE: pick up 8 5/8\" casing , weld together total of 41.2' , run in hole hit bridge at 22'-26' wash and work pipe to bottom",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "0:00",
+              "end": "6:00",
+              "hours": 6.0,
+              "end_md": 49,
+              "code": "CASE",
+              "npt_code": null,
+              "description": "pick up 8 5/8\" casing , weld together total of 41.2' , run in hole hit bridge at 22'-26' wash and work pipe to bottom",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": false
+            },
+            "id": "E7"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": false,
+            "text": "2016-08-19 6:00-8:00, 2 h, end depth 49 ft, activity CIRC: Complete getting casing to bottom at 40' from ground surface, circulate hole with 55 vis, 9.0 mud.",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "6:00",
+              "end": "8:00",
+              "hours": 2.0,
+              "end_md": 49,
+              "code": "CIRC",
+              "npt_code": null,
+              "description": "Complete getting casing to bottom at 40' from ground surface, circulate hole with 55 vis, 9.0 mud.",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": false
+            },
+            "id": "E8"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": false,
+            "text": "2016-08-19 8:00-9:30, 1.5 h, end depth 49 ft, activity CMTP: Mix 12 -94 lbs sack of #2 portland cement with 96 gallons , 14.2 ppg cement,pump cement, returns to surface. plug down at 09:30",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "8:00",
+              "end": "9:30",
+              "hours": 1.5,
+              "end_md": 49,
+              "code": "CMTP",
+              "npt_code": null,
+              "description": "Mix 12 -94 lbs sack of #2 portland cement with 96 gallons , 14.2 ppg cement,pump cement, returns to surface. plug down at 09:30",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": false
+            },
+            "id": "E9"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": true,
+            "text": "* 2016-08-19 9:30-21:30, 12 h, end depth 49 ft, activity WOC: Wait on Cement, sound annulus after 8 hrs. 3' below cellar floor, mix 1 sk cement with 6 gallons of water fill to cellar floor. Lay plywood on site for walk way due to muddy site. Prepare tooling to drill ahead, install new 8AM- PQ core bit onto core barrel SN-6B2837, new PQ reamer shell #2B4814 .",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "9:30",
+              "end": "21:30",
+              "hours": 12.0,
+              "end_md": 49,
+              "code": "WOC",
+              "npt_code": null,
+              "description": "Wait on Cement, sound annulus after 8 hrs. 3' below cellar floor, mix 1 sk cement with 6 gallons of water fill to cellar floor. Lay plywood on site for walk way due to muddy site. Prepare tooling to drill ahead, install new 8AM- PQ core bit onto core barrel SN-6B2837, new PQ reamer shell #2B4814 .",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": true
+            },
+            "id": "E10"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": false,
+            "text": "2016-08-19 21:30-22:00, 0.5 h, end depth 49 ft, activity TRPI: Trip in hole with PQ core barrel, tag top of cement at 28'.",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "21:30",
+              "end": "22:00",
+              "hours": 0.5,
+              "end_md": 49,
+              "code": "TRPI",
+              "npt_code": null,
+              "description": "Trip in hole with PQ core barrel, tag top of cement at 28'.",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": false
+            },
+            "id": "E11"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t13:c0",
+            "chunks": [
+              "f4f05215feea85339:t13:c0",
+              "f62efbee00767a3e7:t7:c0",
+              "ff5e766b8670b35da:t7:c0"
+            ],
+            "date": "2016-08-19",
+            "problem": false,
+            "text": "2016-08-19 22:00-0:00, 2 h, end depth 49 ft, activity CMTD: Core ahead through cement to bottom of casing, 40' BGS, core rubble to previous TD of 49' Circulate hole clean, prior to begin coring ahead.",
+            "activity": {
+              "date": "2016-08-19",
+              "start": "22:00",
+              "end": "0:00",
+              "hours": 2.0,
+              "end_md": 49,
+              "code": "CMTD",
+              "npt_code": null,
+              "description": "Core ahead through cement to bottom of casing, 40' BGS, core rubble to previous TD of 49' Circulate hole clean, prior to begin coring ahead.",
+              "chunks": [
+                "f4f05215feea85339:t13:c0",
+                "f62efbee00767a3e7:t7:c0",
+                "ff5e766b8670b35da:t7:c0"
+              ],
+              "problem": false
+            },
+            "id": "E12"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 0:00-9:30, 9.5 h, end depth 100 ft, activity DRIL: Core PQ from 49' to 100', core temp at 100' -104 degrees F,",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "0:00",
+              "end": "9:30",
+              "hours": 9.5,
+              "end_md": 100,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core PQ from 49' to 100', core temp at 100' -104 degrees F,",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E13"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 9:30-10:00, 0.5 h, end depth 100 ft, activity SURV: Run Totco inclination tool, 0.5 degrees at 100', Run MRT 190F,",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "9:30",
+              "end": "10:00",
+              "hours": 0.5,
+              "end_md": 100,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run Totco inclination tool, 0.5 degrees at 100', Run MRT 190F,",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E14"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 10:00-12:00, 2 h, end depth 129 ft, activity DRIL: Core ahead to 130' with PQ, prepare to run MRT and Temperature logging probe on Totco.",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "10:00",
+              "end": "12:00",
+              "hours": 2.0,
+              "end_md": 129,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead to 130' with PQ, prepare to run MRT and Temperature logging probe on Totco.",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E15"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 12:00-12:30, 0.5 h, end depth 129 ft, activity SURV: Run survey MRT on survey tool along with down loadable temperature probe, Inclination .5 Degrees. MRT reading 145 F. Probe reading 140 F",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "12:00",
+              "end": "12:30",
+              "hours": 0.5,
+              "end_md": 129,
+              "code": "SURV",
+              "npt_code": null,
+              "description": "Run survey MRT on survey tool along with down loadable temperature probe, Inclination .5 Degrees. MRT reading 145 F. Probe reading 140 F",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E16"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 12:30-14:00, 1.5 h, end depth 149 ft, activity DRIL: Core ahead PQ to 149'.Take steam kick, 190F coming out of annulus. Pump cold water 56 F down rods, cool hole break joint lay down inner barrel,",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "12:30",
+              "end": "14:00",
+              "hours": 1.5,
+              "end_md": 149,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead PQ to 149'.Take steam kick, 190F coming out of annulus. Pump cold water 56 F down rods, cool hole break joint lay down inner barrel,",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E17"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 14:00-15:30, 1.5 h, end depth 149 ft, activity CIRC: Pump cold water through core pipe, flow check, no flow from annulus, drop inner barrel. mix new mud 2 bags gel, pump barrel down, begin coring",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "14:00",
+              "end": "15:30",
+              "hours": 1.5,
+              "end_md": 149,
+              "code": "CIRC",
+              "npt_code": null,
+              "description": "Pump cold water through core pipe, flow check, no flow from annulus, drop inner barrel. mix new mud 2 bags gel, pump barrel down, begin coring",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E18"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 15:30-17:00, 1.5 h, end depth 176 ft, activity DRIL: Core ahead, while coring from 176, high torque, stuck pipe, taking steam kick.",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "15:30",
+              "end": "17:00",
+              "hours": 1.5,
+              "end_md": 176,
+              "code": "DRIL",
+              "npt_code": null,
+              "description": "Core ahead, while coring from 176, high torque, stuck pipe, taking steam kick.",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0"
+              ],
+              "problem": false
+            },
+            "id": "E19"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0",
+              "ff6b0f3f13c5707ee:t1:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity STUCK, non-productive KICK: Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump ...",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "17:00",
+              "end": "18:00",
+              "hours": 1.0,
+              "end_md": 176,
+              "code": "STUCK",
+              "npt_code": "KICK",
+              "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump cold water to hole.",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0",
+                "ff6b0f3f13c5707ee:t1:c0"
+              ],
+              "problem": false
+            },
+            "id": "E20"
+          },
+          {
+            "kind": "event",
+            "chunk": "f4f05215feea85339:t16:c0",
+            "chunks": [
+              "f4f05215feea85339:t16:c0",
+              "f62efbee00767a3e7:t8:c0",
+              "ff5e766b8670b35da:t9:c0",
+              "ff6b0f3f13c5707ee:t1:c0"
+            ],
+            "date": "2016-08-20",
+            "problem": false,
+            "text": "2016-08-20 18:00-0:00, 6 h, end depth 176 ft, activity KILL, non-productive KICK: Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+            "activity": {
+              "date": "2016-08-20",
+              "start": "18:00",
+              "end": "0:00",
+              "hours": 6.0,
+              "end_md": 176,
+              "code": "KILL",
+              "npt_code": "KICK",
+              "description": "Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+              "chunks": [
+                "f4f05215feea85339:t16:c0",
+                "f62efbee00767a3e7:t8:c0",
+                "ff5e766b8670b35da:t9:c0",
+                "ff6b0f3f13c5707ee:t1:c0"
+              ],
+              "problem": false
+            },
+            "id": "E21"
+          },
+          {
+            "kind": "daily",
+            "chunk": "ff5e766b8670b35da:f8:c0",
+            "page": 9,
+            "text": "Well ID: AK-3\nWell Name: AK-3\nField: Hot Springs Bay Va\nSect: 5\nTown: 112W\nRng: S005\nCounty: Aleutians East\nState: AK\nReport No: 8\nReport For: 19-Aug-16\nOperator: City of Akutan\nRig: Major LF90\nSpud Date: 18-Aug-16\nDaily Cost / Mud ($): ---\nMeasured Depth (ft): 49\nDrilling Days (act.): 2\nWell Bore: Original Well Bore\nAFE No.: ---\nAFE No.: ---\nAFE ($): ---\nAFE ($): ---\nActual ($): ---\nActual ($): ---\nActual ($): ---\nVertical Depth (ft): 49\nDrilling Days (plan): 30\nRKB Elevation (ft): 6.00\nProposed TD (ft): 1700\nDays On Location: 8\nLast BOP Test: \nHole Made (ft) / Hrs: 49 / 0.0\nLast Casing: 8.650 at 40\nTotals: ---\nAverage ROP (ft/hr): \nNext Casing: 5.500 at 220\nWorking Interest: \nWell Cost ($): ---\nOperator: 2 / 0\nContractor: 6 / 0\nService: 3 / 0\nOther: 2 / 0\nTotal: 13 / 0\nSafetySummary: No incidents or events reported. 8 days since LTI.\nCurrent Operations: Coring ahead PQ size through rubble to 49'\nPlanned Operations: Cement 8 5/8\" casing in 10 3/4\" hole from -4'to 40' measured depth from ground surface.\nToolpusher: Brian Walker\nWellsite Supervisors: MKeown\nTel No.: 907-273-0057",
+            "id": "P1"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f4f05215feea85339:f8:c0",
+            "page": 9,
+            "text": "Well ID: AK-3\nWell Name: AK-3\nField: Hot Springs Bay Va\nSect: 5\nTown: 112W\nRng: S005\nCounty: Aleutians East\nState: AK\nReport No: 8\nReport For: 19-Aug-16\nOperator: City of Akutan\nRig: Major LF90\nSpud Date: 18-Aug-16\nDaily Cost / Mud ($): 23,300 / 0\nMeasured Depth (ft): 49\nDrilling Days (act.): 2\nWell Bore: Original Well Bore\nAFE No.: 01\nAFE ($): 1,714,090\nActual ($): 835,758\nActual ($): 835,758\nVertical Depth (ft): 49\nDrilling Days (plan): 30\nRKB Elevation (ft): 6.00\nProposed TD (ft): 1700\nDays On Location: 8\nLast BOP Test: \nHole Made (ft) / Hrs: 49 / 0.0\nLast Casing: 8.650 at 40\nTotals: 1,714,090\nAverage ROP (ft/hr): \nNext Casing: 5.500 at 220\nWorking Interest: \nWell Cost ($): 835,758\nOperator: 2 / 0\nContractor: 6 / 0\nService: 3 / 0\nOther: 2 / 0\nTotal: 13 / 0\nSafetySummary: No incidents or events reported. 8 days since LTI.\nCurrent Operations: Coring ahead PQ size through rubble to 49'\nPlanned Operations: Cement 8 5/8\" casing in 10 3/4\" hole from -4'to 40' measured depth from ground surface.\nToolpusher: Brian Walker\nWellsite Supervisors: MKeown\nTel No.: 907-273-0057",
+            "id": "P2"
+          },
+          {
+            "kind": "daily",
+            "chunk": "f4f05215feea85339:s48:c0",
+            "page": 9,
+            "text": "Field: Hot Springs Bay Valley\nWell Name: AK-3\nSect: 5 Town: 112W Rng: S005 County: Aleutians East State: AK\nReport No:\n8\nOperator:\nMeasured Depth (ft):\nRig: City of Akutan Major LF90\n49 Drilling Days (act.):\nVertical Depth (ft):\nProposed TD (ft):\nHole Made (ft) / Hrs:\nAverage ROP (ft/hr):\nPers/Hrs:\nOperator:\nSafetySummary:\nDrilling Days (plan): 49\nDays On Location: 1700\nLast Casing: 49 / 0.0\nNext Casing:\n2 / 0 Contractor:\nWorking Interest:\nSpud Date:\nWell Bore: 2\n18-Aug-16",
+            "id": "P3"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0010",
+            "page": 7,
+            "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:\n\uf0b7 WGS-84 UTM Zone 3, 443969 E, 6000805 N,\n\uf0b7 Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.\nThese coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,\nWell AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-\u00bd\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. A ...",
+            "id": "P4"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0038",
+            "page": 20,
+            "text": "AK-3 was completed with one recordable safety incident. On 21 August 2016, during the setting of the core joint to secure the top of the core pipe to shut off steam flow, hot water sprayed under the rain jacket of the Major toolpusher. He sustained 2 nd degree burns to the lower back just above his belt line. First aid was administered to cool and the cover the affected area. He returned to work after changing work clothes. An incident report was prepared. The driller refused additional care at the medical facility at the City of Akutan. The well flow incident was handled well by the drilling crew and appropriate measures were taken to kill the well as soon as the incident occurred.\nAK-3 was completed with one recordable environmental incident. The well flowed uncontrolled from a permeable zone at about 176 feet, beginning on 20 August 2016. The containment at the rig site was not sufficient to contain all of the fluids that were discharged from the well during the\nincident, and approximately 129,600 gallons of hot water was discharged into the floor of HSBV. A notification of non-compliance was delivered to the Alaska Department of Environmental Conservation, and the Alaska ...",
+            "id": "P5"
+          },
+          {
+            "kind": "end_of_well",
+            "chunk": "gdr882_ak3_eowr#c0019",
+            "page": 13,
+            "text": "The drilling rig and all drilling materials and equipment were consolidated at the shipping yard of Alaska Logistics in Tacoma, Washington and shipped mid-July 2016. The load, including the camp materials, were transferred to a landing craft in Cold Bay, Alaska on 5 August and arrived in Akutan Harbor on 6 August. The harbor served as the staging area for the remainder of the project. The support helicopter arrived on 10 August. The GRG supervisor, Major Drilling management personnel (tool pusher and supervisor) and the drilling crews (2 drillers, 4 helpers) arrived over the next couple of days, with slight delays waiting for luggage in Dutch Harbor. City personnel built the tent platforms in Hot Springs Bay Valley on 8-10 August. Loads were brought into the Valley starting 11 August. All materials and personnel were transported by helicopter from the barge to the well pad. Drill pad construction began on 12 August. Rig up began on 14 August. The camp was ready for occupancy on 17 August. Weather prevented operations on 13 August. The satellite Internet connection was not operational until 22 August, which hampered communications. The Internet connection was the primary means of ...",
+            "id": "P6"
+          }
+        ],
+        "evidence_chars": 10161,
+        "problem_events_left_out": 0,
+        "stated": [
+          {
+            "cause": "Wait on Cement",
+            "citations": [
+              {
+                "evidence": "E10",
+                "chunk": "f4f05215feea85339:t13:c0",
+                "how": "model",
+                "quote": "Wait on Cement, sound annulus after 8 hrs."
+              }
+            ]
+          }
+        ],
+        "possible": [
+          {
+            "cause": "Plugged bit",
+            "citations": [
+              {
+                "evidence": "E4",
+                "chunk": "f4f05215feea85339:t9:c0",
+                "how": "model",
+                "quote": "plugged bit"
+              }
+            ]
+          },
+          {
+            "cause": "Stuck pipe",
+            "citations": [
+              {
+                "evidence": "E19",
+                "chunk": "f4f05215feea85339:t16:c0",
+                "how": "model",
+                "quote": "stuck pipe, taking steam kick"
+              }
+            ]
+          },
+          {
+            "cause": "Hot water flowing from annulus",
+            "citations": [
+              {
+                "evidence": "E20",
+                "chunk": "f4f05215feea85339:t16:c0",
+                "how": "model",
+                "quote": "due to plugged inner barrel. Free pipe and gain circulation through core rods."
+              }
+            ]
+          },
+          {
+            "cause": "Inadequate casing cementing",
+            "citations": [
+              {
+                "evidence": "E10",
+                "chunk": "f4f05215feea85339:t13:c0",
+                "how": "model",
+                "quote": "mix 1 sk cement with 6 gallons of water fill to cellar floor"
+              }
+            ]
+          },
+          {
+            "cause": "Poor hole cleaning",
+            "citations": [
+              {
+                "evidence": "E6",
+                "chunk": "f4f05215feea85339:t9:c0",
+                "how": "model",
+                "quote": "formation sluffing off from 25-30 ' continue to work and pump hole to 42'"
+              }
+            ]
+          },
+          {
+            "cause": "Inefficient mud system",
+            "citations": [
+              {
+                "evidence": "E6",
+                "chunk": "f4f05215feea85339:t9:c0",
+                "how": "model",
+                "quote": "mix mud to 65 -70 vis, circulate and work hole"
+              }
+            ]
+          },
+          {
+            "cause": "Weather delays",
+            "citations": [
+              {
+                "evidence": "P6",
+                "chunk": "gdr882_ak3_eowr#c0019",
+                "how": "model",
+                "quote": "Weather prevented operations on 13 August."
+              }
+            ]
+          }
+        ],
+        "possible_hidden": 0,
+        "removed": {
+          "stated": 0,
+          "possible": 0
+        },
+        "moved_to_possible": 3,
+        "focus": [
+          "E10"
+        ],
+        "citations_named_shown": true,
+        "missing": [
+          {
+            "text": "offset wells: what happened in nearby wells drilled through the same formations",
+            "from": "corpus"
+          },
+          {
+            "text": "formation pressures and temperatures measured over depth",
+            "from": "corpus"
+          },
+          {
+            "text": "drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow",
+            "from": "corpus"
+          },
+          {
+            "text": "lessons-learned or incident investigation reports",
+            "from": "corpus"
+          },
+          {
+            "text": "Specific details about the cementing process and its effectiveness",
+            "from": "model"
+          },
+          {
+            "text": "Data on the temperature and pressure readings during cementing",
+            "from": "model"
+          },
+          {
+            "text": "Information on the quality and type of cement used",
+            "from": "model"
+          },
+          {
+            "text": "Details on the mud properties and circulation efficiency",
+            "from": "model"
+          }
+        ],
+        "valid": true
+      },
       "shown_passages": [
-        "ff5e766b8670b35da:t7:c0",
-        "f62efbee00767a3e7:t7:c0",
         "f4f05215feea85339:t13:c0",
+        "f4f05215feea85339:t9:c0",
+        "f4f05215feea85339:t16:c0",
+        "ff5e766b8670b35da:f8:c0",
+        "f4f05215feea85339:f8:c0",
         "f4f05215feea85339:s48:c0",
-        "ff5e766b8670b35da:f8:c0"
+        "gdr882_ak3_eowr#c0010",
+        "gdr882_ak3_eowr#c0038",
+        "gdr882_ak3_eowr#c0019"
       ],
       "shown_facts": [],
       "frame": {
@@ -4635,10 +6943,10 @@
         }
       },
       "lanes": [
-        "passages"
+        "reasoning"
       ],
       "mode": "allow_fallback",
-      "fallback": true,
+      "fallback": false,
       "answered_from": "daily",
       "computed": null,
       "calls": 2,
@@ -4646,10 +6954,10 @@
       "frame_completion_tokens": 145,
       "frame_seconds": 56.082,
       "reasoning_score": {
-        "problem_found": false,
+        "problem_found": true,
         "stated_found": "0/1",
         "stated_found_and_cited": false,
-        "unsupported_claims": 0,
+        "unsupported_claims": 1,
         "removed_by_check": 0,
         "correct": false
       },
@@ -5104,6 +7412,9 @@
           "possible": 0
         },
         "moved_to_possible": 0,
+        "focus": [
+          "E5"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
