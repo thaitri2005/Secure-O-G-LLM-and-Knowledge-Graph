@@ -1154,6 +1154,78 @@ mark {
   font-weight: 700;
 }
 
+/* ---- the page as an image ---- */
+
+.page-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.page-image {
+  margin: 0;
+}
+
+.page-image__frame {
+  display: block;
+  min-height: 12rem;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.page-image__frame:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.page-image__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+}
+
+.page-image__img--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.page-image__loading {
+  display: block;
+  padding: 4rem 1rem;
+  color: var(--muted);
+  font-size: var(--small);
+  text-align: center;
+}
+
+.page-image__caption {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.page-image__credit a {
+  color: var(--blue-dark);
+}
+
+.page-image__failed {
+  display: flex;
+  gap: 0.4rem;
+}
+
+@media (max-width: 62rem) {
+  .page-view {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---- tables ---- */
 
 .scroll {

@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { liveApi, type Api } from "./api/client";
+import { Fallback } from "./components/Fallback";
 import "./styles.css";
 
 // npm run dev:examples serves the committed example responses instead of calling the API. They are loaded only
@@ -14,7 +15,9 @@ const api: Promise<Api> = examples ? import("./api/examples").then((module) => m
 void api.then((chosen) => {
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
-      <App api={chosen} examples={examples} />
+      <Fallback>
+        <App api={chosen} examples={examples} />
+      </Fallback>
     </StrictMode>,
   );
 });

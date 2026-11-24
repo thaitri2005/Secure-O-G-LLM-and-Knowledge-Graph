@@ -202,6 +202,51 @@
         }
       }
     },
+    "/v1/files/{file_id}/pages/{page}/image": {
+      "get": {
+        "summary": "One page of a report, as an image",
+        "operationId": "page_image_v1_files__file_id__pages__page__image_get",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "image/png": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/wells": {
       "get": {
         "summary": "The wells",
@@ -1140,7 +1185,7 @@
               }
             ],
             "title": "Image Url",
-            "description": "The page as an image, once the file store serves pages (plan task B7)"
+            "description": "Path of the page image when it has been rendered (platform/render_pages.py), else null"
           }
         },
         "type": "object",

@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import health from "../../backend/fixtures/health.json";
@@ -264,6 +264,91 @@ describe("a model's answer", () => {
     await user.keyboard("{Escape}");
     expect(screen.queryByRole("heading", { name: "AK-3 end-of-well report, page 2" })).not.toBeInTheDocument();
     expect(screen.getAllByRole("article")).toHaveLength(5);
+  });
+});
+
+describe("the page of a source", () => {
+  const IMAGE = "/v1/files/gdr882_ak3_eowr/pages/2/image";
+  const openPage = async (shown: PageOut) => {
+    const api = fakeApi(endOfWell as AnswerOut);
+    api.page.mockResolvedValue(shown);
+    render(<App api={api} />);
+    const user = await ask(DEPTH);
+    await user.click(await screen.findByRole("button", { name: "Source 1: AK-3 end-of-well report, page 7" }));
+    await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 2" });
+    return user;
+  };
+
+  it("shows the page image beside the cited passage, with a loading state, a full-size link and the credit", async () => {
+    expect((page as PageOut).image_url).toBe(IMAGE);
+    await openPage(page as PageOut);
+    expect(screen.getByRole("status")).toHaveTextContent("Loading the page");
+    const image = screen.getByAltText("AK-3 end-of-well report, page 2, as printed in the report");
+    expect(image).toHaveAttribute("src", IMAGE);
+    expect(screen.getByRole("link", { name: "Open AK-3 end-of-well report, page 2 at full size" })).toHaveAttribute("href", IMAGE);
+    fireEvent.load(image);
+    expect(screen.queryByText("Loading the page…")).not.toBeInTheDocument();
+    expect(screen.getByText(/Report by Geothermal Resource Group, Inc\./)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "CC BY 4.0" })).toHaveAttribute("href", "https://creativecommons.org/licenses/by/4.0/");
+    expect(screen.getByText(/drilled to a vertical depth of/)).toBeInTheDocument();
+  });
+
+  it("keeps the text of the page on a second tab", async () => {
+    const user = await openPage(page as PageOut);
+    await user.click(screen.getByRole("tab", { name: "Page text" }));
+    expect(screen.queryByAltText(/as printed in the report/)).not.toBeInTheDocument();
+    expect(screen.getByText(/the text of the page as the system read it/)).toBeInTheDocument();
+    await user.click(screen.getByRole("tab", { name: "Page as printed" }));
+    expect(screen.getByAltText(/as printed in the report/)).toBeInTheDocument();
+  });
+
+  it("is text only when the page has no image", async () => {
+    await openPage({ ...(page as PageOut), image_url: null });
+    expect(screen.queryByRole("tab", { name: "Page as printed" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByText(/the text of the page as the system read it/)).toBeInTheDocument();
+  });
+
+  it("falls back to the text when the image cannot be loaded", async () => {
+    const user = await openPage(page as PageOut);
+    fireEvent.error(screen.getByAltText(/as printed in the report/));
+    expect(await screen.findByText(/picture of this page could not be loaded/)).toBeInTheDocument();
+    await user.click(screen.getByRole("tab", { name: "Page text" }));
+    expect(screen.getByText(/drilled to a vertical depth of/)).toBeInTheDocument();
+  });
+});
+
+describe("when the server is down", () => {
+  it("offers to try again, and a question that failed can be asked again with one click", async () => {
+    const api = fakeApi(new ApiError("Cannot reach the application server. Check your connection, then try again."), endOfWell as AnswerOut);
+    let up = false;
+    api.health = vi.fn(async () => {
+      if (!up) throw new ApiError("down");
+      return health as Health;
+    });
+    render(<App api={api} />);
+    expect(await screen.findByText(/can’t reach the server right now/)).toBeInTheDocument();
+    up = true;
+    await userEvent.setup().click(screen.getByRole("button", { name: "Try again" }));
+    await waitFor(() => expect(screen.queryByText(/can’t reach the server right now/)).not.toBeInTheDocument());
+
+    const user = await ask(DEPTH);
+    expect(await screen.findByRole("alert")).toHaveTextContent("Cannot reach the application server");
+    await user.click(screen.getByRole("button", { name: "Try again" }));
+    expect(await screen.findByRole("heading", { name: "1955 ft" })).toBeInTheDocument();
+    expect(api.ask).toHaveBeenCalledTimes(2);
+  });
+
+  it("shows a message and a reload button, not a blank page, if drawing the application fails", async () => {
+    const { Fallback } = await import("./components/Fallback");
+    const Broken = () => {
+      throw new Error("boom");
+    };
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    render(<Fallback><Broken /></Fallback>);
+    expect(screen.getByRole("alert")).toHaveTextContent("Something went wrong on this page");
+    expect(screen.getByRole("button", { name: "Reload the page" })).toBeInTheDocument();
+    log.mockRestore();
   });
 });
 

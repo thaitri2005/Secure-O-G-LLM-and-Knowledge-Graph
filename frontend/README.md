@@ -17,7 +17,7 @@ Then open http://localhost:5173. Node 20.19 or later.
 |---|---|
 | `npm run dev:examples` | The application on [`backend/fixtures/`](../backend/fixtures/). Evidence is real; each answer is a prepared one, and the top bar says so |
 | `npm run dev` | The application on the API. Calls to `/v1` go to port 8000 |
-| `npm test` | 49 tests, no server needed |
+| `npm test` | No server needed |
 | `npm run build` | Type-check and build into `dist/` for the proxy to serve |
 | `npm run types` | Regenerate `src/api/schema.d.ts` from `backend/openapi.json`. Run it after the backend's contract changes |
 
@@ -37,7 +37,8 @@ Everything on screen is written for someone who reads drilling reports and has n
   - *Timeline*: for a calculated number, one bar per day from midnight to midnight, non-productive time in amber. Hovering a bar says what happened; clicking it marks the same activity in the list below, and the reverse.
   - *Report text*: what the AI read, the cited passage first and flagged "The answer is here", with the answer's value highlighted in yellow. A long passage opens at the highlight.
   - *Key facts*: the checked facts the AI was given.
-- **Where this comes from** lists each report once, by a readable name ("AK-3 end-of-well report, page 7"), and opens the page as text.
+- **Where this comes from** lists each report once, by a readable name ("AK-3 end-of-well report, page 7"), and opens the page: as the printed page beside the cited text when an image exists (click it for full size; the credit line for the report's authors and licence is shown), and as text on a second tab or when there is none.
+- **When something is wrong** the person sees a plain message and a "Try again" button: server down, slow, restarting, a password that expired, or a page that is not the API's. A broken screen shows a reload button, never a blank page.
 - **Verified data only**: a switch for answers from checked numbers and facts only.
 - **Was this answer right?** Yes in one click; "No, it's wrong" asks what it should be. Both are saved.
 - **How we got this answer** is folded away for those who want it: three numbered steps, and the technical cost.
@@ -56,6 +57,8 @@ Everything on screen is written for someone who reads drilling reports and has n
 
 Fonts and icons are bundled, so the application needs no outside network.
 
+**Where it finds the API:** on its own origin (`/v1`), which is how it runs behind the proxy and through the development server. Only when `VITE_API_BASE` is set at build time does it call another address. No development address is in the production files.
+
 ## Files
 
 | Path | Holds |
@@ -69,7 +72,7 @@ Fonts and icons are bundled, so the application needs no outside network.
 ## Limits
 
 - **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run on the desktop is still to do.
-- The page view shows a page's text, not its image; the image comes with the file store ([backend design](../docs/tracks/C-storage/backend-design.md) §7).
+- A page's image shows only where the backend has rendered it (`platform/render_pages.py`, `BACKEND_PAGE_IMAGES`); there is no highlight of the cited passage on the image yet, because K1 passages carry no region ([backend design](../docs/tracks/C-storage/backend-design.md) §7).
 - Report names are file IDs made readable (`ak3 eowr`), until documents carry titles.
 - No login: the access gate is at the proxy.
 - Answers are kept in the browser's session storage, so they include report text on that machine until the tab closes.

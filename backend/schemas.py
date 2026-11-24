@@ -132,7 +132,7 @@ class PageOut(BaseModel):
     file_id: str
     page: int
     chunks: list[ChunkOut] = Field(description="The page's chunks in reading order")
-    image_url: str | None = Field(None, description="The page as an image, once the file store serves pages (plan task B7)")
+    image_url: str | None = Field(None, description="Path of the page image when it has been rendered (platform/render_pages.py), else null")
 
 
 class WellSummary(BaseModel):
