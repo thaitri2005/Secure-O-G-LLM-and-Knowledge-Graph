@@ -470,6 +470,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "maximum": 1000000,
               "minimum": 0,
               "default": 0,
               "title": "Offset"
@@ -1940,6 +1941,7 @@
           "comment": {
             "type": "string",
             "maxLength": 2000,
+            "pattern": "^[^\\x00]*$",
             "title": "Comment",
             "default": ""
           }
@@ -2656,6 +2658,7 @@
             "type": "string",
             "maxLength": 500,
             "minLength": 1,
+            "pattern": "^[^\\x00]*$",
             "title": "Question"
           },
           "mode": {

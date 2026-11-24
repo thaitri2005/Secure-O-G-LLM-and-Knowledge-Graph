@@ -70,6 +70,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{'PASS' if ok else 'FAIL'}  {name}: {detail}", flush=True)
         return ok
 
+    from urllib.parse import urlsplit
+    host = urlsplit(base).hostname or ""
+    if base.startswith("http://") and host not in ("127.0.0.1", "localhost", "::1"):
+        # Not counted as a check of the deployment's parts, but never silent: basic authentication over plain HTTP
+        # sends the shared password readable by anyone on the path.
+        print(f"WARN  transport: {base} is plain HTTP on a machine other than this one: the password travels "
+              f"readable. Use a domain (HTTPS) or an SSH tunnel (deploy/README.md, \"No domain\").", flush=True)
+
     status, _ = request(f"{base}/v1/health", None)
     check("gate", status == 401, f"without the password GET /v1/health gives {status} (want 401)")
 

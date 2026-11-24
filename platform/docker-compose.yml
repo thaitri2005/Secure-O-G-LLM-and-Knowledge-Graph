@@ -72,6 +72,7 @@ services:
     command: ["server", "/data", "--console-address", ":9001"]
     environment:
       MINIO_ROOT_USER: kg
+      # Optional and unused today. Set a real password in platform/.env before ever starting this profile.
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-platform-dev}
     ports:
       - "127.0.0.1:9000:9000"
@@ -120,6 +121,12 @@ services:
       # Page images, <file_id>/p<n>.png (backend design §7); an empty folder is fine.
       - ${PAGE_IMAGES_DIR:-../data/interim/pages}:/srv/pages:ro
     mem_limit: ${BACKEND_MEMORY:-1536m}
+    # The service writes only to its data volume and to /tmp; it needs no capability.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
     expose:
       - "8000"
     depends_on:
@@ -151,6 +158,9 @@ services:
       APP_USER: ${APP_USER:-team}
       # Without a hash the proxy refuses to start rather than run without the gate.
       APP_PASSWORD_HASH: ${APP_PASSWORD_HASH:-}
+    cap_drop: ["ALL"]
+    cap_add: ["NET_BIND_SERVICE"]
+    security_opt: ["no-new-privileges:true"]
     ports:
       # A laptop keeps the proxy on 127.0.0.1; a server sets PROXY_BIND=0.0.0.0.
       - "${PROXY_BIND:-127.0.0.1}:${PROXY_HTTP_PORT:-80}:80"

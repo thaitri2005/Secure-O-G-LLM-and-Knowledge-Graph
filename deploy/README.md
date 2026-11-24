@@ -246,7 +246,7 @@ The first start builds both images (a few minutes). With a domain, Caddy fetches
 From your own machine, with the repository checked out:
 
 ```sh
-python deploy/smoke_test.py --url https://<domain> --user team --password '<the shared password>'
+SMOKE_PASSWORD='<the shared password>' python deploy/smoke_test.py --url https://<domain> --user team
 ```
 
 Six checks: the gate refuses a request without the password, the frontend loads, health answers, the model endpoint and the question log are ready, one question is answered, one feedback is stored. Add `--expect-stub` with the stub model. The question is logged like any other, with "smoke test" as its feedback comment. Then open the address in a browser and ask a question.
@@ -295,7 +295,7 @@ Neo4j and the vectors are rebuilt by loading the release again (section 7).
 cd /srv/kg/repo
 git pull
 docker compose -f platform/docker-compose.yml up -d --build
-python3 deploy/smoke_test.py --url https://<domain> --user team --password '<password>'
+SMOKE_PASSWORD='<password>' python3 deploy/smoke_test.py --url https://<domain> --user team
 ```
 
 Volumes (databases, question log, certificates) are kept. To go back, `git checkout <previous commit>` and run the same `up -d --build`. If the new version adds a file to `platform/sql/`, it does not run on an existing database; apply it by hand with `docker compose -f platform/docker-compose.yml exec -T postgres psql -U kg -d kg < platform/sql/<file>` (the files are idempotent).

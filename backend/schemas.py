@@ -6,6 +6,7 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field, StringConstraints
 
+NO_NUL = r"^[^\x00]*$"  # the question log is PostgreSQL text, which cannot hold a NUL character
 Mode = Literal["allow_fallback", "exact"]
 Lane = Literal["passages", "well_facts", "events", "reasoning"]
 Status = Literal["answered", "not_stated", "not_found_in_graph", "withheld", "invalid", "ask_which"]
@@ -16,14 +17,14 @@ ReportType = Literal["end_of_well", "daily"]
 
 class QuestionIn(BaseModel):
     # Spaces around the question are dropped before its length is checked, so a blank question is refused.
-    question: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
+    question: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500, pattern=NO_NUL)]
     mode: Mode = Field("allow_fallback", description="exact: answer from the graphs only, no fallback to passages (D-59)")
     lane: Lane | None = Field(None, description="Force one lane instead of the coordinator's route")
 
 
 class FeedbackIn(BaseModel):
     verdict: Literal["right", "wrong"]
-    comment: str = Field("", max_length=2000)
+    comment: str = Field("", max_length=2000, pattern=NO_NUL)
 
 
 class Answer(BaseModel):

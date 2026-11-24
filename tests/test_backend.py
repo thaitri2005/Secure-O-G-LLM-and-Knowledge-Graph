@@ -370,6 +370,22 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(service.page(fact["file_id"], fact["page"])["page"], 7)
         self.assertNotIn("f62efbee00767a3e7", [d["file_id"] for d in service.well("AK-3")["documents"]])
 
+    def test_an_address_outside_our_network_counts_as_hosted_whatever_the_file_says(self):
+        from backend.app import on_our_network
+        for url in ("http://127.0.0.1:8080/v1", "http://localhost:8080/v1", "http://stub-model:8080/v1",
+                    "http://10.0.0.5:8080/v1", "http://100.101.102.103:8080/v1", "http://host.docker.internal:8080/v1"):
+            self.assertTrue(on_our_network(url), url)
+        for url in ("https://openrouter.ai/api/v1", "http://203.0.113.9:8080/v1", "https://gpu.example.org/v1", ""):
+            self.assertFalse(on_our_network(url), url)
+
+    def test_a_nul_character_is_refused_not_sent_to_the_store(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        for path in ("/v1/admin/questions?q=%00", "/v1/admin/questions/%00", "/v1/chunks/a%00b"):
+            out = client.get(path)
+            self.assertEqual((out.status_code, out.json()["code"]), (422, "invalid_request"), path)
+        self.assertEqual(client.post("/v1/questions", json={"question": "depth\u0000?"}).status_code, 422)
+        self.assertEqual(client.get("/v1/admin/questions?offset=99999999999999999999").status_code, 422)
+
     def test_a_blank_question_is_refused_before_any_model_call(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)
         self.assertEqual(client.post("/v1/questions", json={"question": "   "}).status_code, 422)

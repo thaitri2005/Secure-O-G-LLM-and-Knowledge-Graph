@@ -102,6 +102,13 @@ def create_app(service: Service | None = None) -> FastAPI:
             body["question_id"] = error.question_id
         return JSONResponse(body, status_code=500)
 
+    @app.middleware("http")
+    async def no_nul_bytes(request, call_next):
+        """PostgreSQL text cannot hold a NUL byte: in a path or a filter it would end as a 500 from the store."""
+        if "%00" in request.url.path or "\x00" in request.url.path or "%00" in (request.url.query or ""):
+            return JSONResponse({"detail": "the request holds a NUL character", "code": "invalid_request"}, status_code=422)
+        return await call_next(request)
+
     state: dict[str, Service] = {"service": service} if service else {}
 
     def current() -> Service:
@@ -202,7 +209,7 @@ def create_app(service: Service | None = None) -> FastAPI:
     @app.get("/v1/admin/questions", response_model=schemas.QuestionPage, tags=["admin"],
              summary="Logged questions, newest first, with their feedback", description=ADMIN)
     def logged_questions(chosen: Filters = Depends(filters), limit: int = Query(50, ge=1, le=200),
-                         offset: int = Query(0, ge=0)):
+                         offset: int = Query(0, ge=0, le=1_000_000)):
         return current().logged_questions(chosen, limit, offset)
 
     @app.get("/v1/admin/questions/counts", response_model=schemas.QuestionCounts, tags=["admin"],
@@ -271,8 +278,8 @@ def default_service() -> Service:
     # the browser's own limit (frontend/src/api/client.ts). A slow machine raises all three.
     timeout = float(os.environ.get("BACKEND_MODEL_TIMEOUT") or 75)
     clients = {role: client_for(role, roles, timeout=timeout, cache_unparsed=False) for role in ("frame", "answer")}
-    hosted = sorted({c.endpoint.name for c in clients.values() if c.endpoint.hosted}
-                    | ({embed.name} if embed.hosted and embedding_answers else set()))
+    used = [c.endpoint for c in clients.values()] + ([embed] if embedding_answers else [])
+    hosted = sorted({e.name for e in used if e.hosted or not on_our_network(e.base_url)})
     refuse_private_release(hosted, source, getattr(engine, "release", None))
     engine.warm()
     return Service(engine, clients["frame"], clients["answer"], question_log,
@@ -280,6 +287,24 @@ def default_service() -> Service:
                    page_images=Path(os.environ["BACKEND_PAGE_IMAGES"]) if os.environ.get("BACKEND_PAGE_IMAGES") else None,
                    queue_seconds=float(os.environ.get("BACKEND_QUEUE_SECONDS") or 60),
                    max_waiting=int(os.environ.get("BACKEND_MAX_WAITING") or 8))
+
+
+def on_our_network(url: str) -> bool:
+    """Whether a model address is this machine or its private network: loopback, a private or carrier-grade address,
+    or a bare name such as a compose service. Anything else is someone else's machine and counts as hosted, whatever
+    the endpoints file says: `"hosted": false` on a public address must not get private text out (D-68)."""
+    import ipaddress
+    from urllib.parse import urlsplit
+    host = (urlsplit(url).hostname or "").lower()
+    if not host:
+        return False
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError:
+        return host == "localhost" or "." not in host or host.endswith((".internal", ".local"))
+    ours = ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "100.64.0.0/10", "fc00::/7")
+    return address.is_loopback or any(address in ipaddress.ip_network(net) for net in ours
+                                      if ipaddress.ip_network(net).version == address.version)
 
 
 def refuse_private_release(hosted: list[str], source: str, release: str | None) -> None:
