@@ -1,6 +1,6 @@
 # Track B log
 
-Every finding, decision, design choice and experiment of Track B goes here the same day. Entries are never renumbered or deleted. When an entry is replaced, a later entry says so and names it.
+The dated record of Track B, the answering engine: what was found, decided and built, in the order it happened. For where things stand now, read the table below or the [plan](../../DEVELOPMENT_PLAN.md#current-status); for how the engine works, the [engine README](../../../graphrag/README.md).
 
 | Prefix | Kind | What it records |
 |---|---|---|
@@ -9,31 +9,41 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | **B-C** | Design choice | How a part is built: a setting, a prompt rule or an interface |
 | **E** | Experiment | A link to the record in [`docs/experiments/`](../../experiments/README.md), plus one line on the outcome |
 
+Entries keep their numbers for good. A later entry that replaces an earlier one says so; several same-day versions of one decision are folded into the last.
+
 ## Current state
 
-| Topic | Current answer | Entry |
+| Topic | Where it stands | Entries |
 |---|---|---|
-| Data this stint | AK-3, 56-32 and 68-32 end-of-well reports; four AK-3 daily-report attachments; 78-32 as an unseen report | B-D01, E24, E25 |
-| Quality yardstick | Development only: the prototype's 31 questions and simulated sets. The expert set, when it arrives, is the real one | B-D01, B-D22 |
-| Efficiency | Calls, tokens, seconds and cost per page and per question on every run | B-D02 |
-| What runs | Questions over time on daily reports: event graph ([E28](../../experiments/E28-event-graph.md)). Others: retrieval with Qwen3-8B (thinking off), citations and values checked in code; BM25 routed by well, top 5; questions naming several wells use per-well fusion, top 10, evidence first; daily reports also filter by date. 28/31 prototype, 31/40 simulated, 23/36 held out ([E26](../../experiments/E26-routing-and-strict-facts.md)) | B-D23, B-D26 |
-| Graphs | **Event graph in use:** 22/35 and 19/23 against 5/35 and 4/23 for plain RAG, on questions chosen to suit it. **Per-well fact graph in use for end-of-well answers:** ties plain RAG on new lookup questions so far (E23, E26, E27); questions across wells are where it should help | B-D26, B-D29 |
-| Bases to run | neo4j-graphrag-python ([E16](../../experiments/E16-neo4j-graphrag-python.md), [E20](../../experiments/E20-well-fact-sheet.md)) and LightRAG ([E19](../../experiments/E19-lightrag.md), with K2 [E21](../../experiments/E21-lightrag-k2.md)) run and not adopted as bases; neo4j-graphrag is the extractor for the optional fact sheet | B-D14, B-D18, B-D21, B-D24 |
-| What to adopt | Solutions close to our description, which we then improve | B-D08 |
-| Extraction defaults | One pass, constrained JSON, ontology slice only, cache by chunk hash; citations checked in code | B-C01 to B-C04, B-C07 |
-| LLM | Qwen3-8B (thinking off) answers best; Qwen3-4B second; Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
-| Retrieval | BM25 routed by well; per-well fusion with Qwen3-Embedding-0.6B for questions naming several wells; date filter on daily reports | B-D23, B-C21, B-C22 |
-| Compute | **No GPU of the team's own** (B-D43): the desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`) that ran everything up to E31 was borrowed. **Compute is rented, on public data only** (B-D44, D-68): a cloud GPU by the hour with our own model copy for measurements; a hosted open-weight model for the demo and quick checks. Not the school's machines. No budget approved yet. One request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10, B-D42 to B-D44 |
-| Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Khai](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
-| Next | **Get a model to measure with** (B-D43), then measure what is built: answers on K1 version 1 (E32), the coordinator on the 221 pooled questions (E33), the reasoning probe (E34), each from files and then from the stores. Then: the facts rebuilt on the demo release's IDs (B-F63), vector search in SQL, a server. The code for all of it exists ([plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now), [how the build was split](plan-production-readiness.md)). Still waiting on the expert questions and the purpose of use (Q13) | B-D36 to B-D38, B-D41, [next-runs](next-runs.md) |
-| Coordinator | **Built, not yet measured** (`graphrag/coordinator.py`): one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). A result computed by code is reported by code, with no answer call. Adopted only if E33 matches the hand-routed scores on the 221 pooled questions; E33 needs the desktop GPU. Replaying E28's recorded plans with code reporting gives 33 of 35 and 22 of 23, against 27 and 19 recorded (no model call) | B-D32, B-D36, B-C37 to B-C39, B-C43, B-F61 |
-| Lanes | `graphrag/lanes.py`: passages, well facts, events and reasoning behind one function shape, each returning the same evidence; settings are the baseline's. **The reasoning lane** (`graphrag/reasoning.py`, specification §8.6) is built with ten frozen probe questions and not yet measured (E34) | B-C37, B-C51, B-C52 |
-| Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C). Fact region exported as nodes and relationships for Track C's loader: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), 216 facts of 5 wells | B-C35, B-C40, B-F60 |
-| Application | FastAPI backend and React frontend; `graphrag` is its library; the local UI stays a developer tool. **Runs end to end on a laptop** with a stand-in model: the engine and the question log on the stores (`BACKEND_SOURCE=stores`), the runner loading the demo release, the Docker deployment behind one password, page images, answers about causes on screen. Not yet run with a real model, on a server, or by anyone outside the team | B-D37, B-D39, B-D41, B-C44 to B-C47, B-C50 to B-C57 |
-| Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
-| Answer records (K4) | Version 0.2 for coordinator runs (lanes, mode, kind of question, framing model, B-C41). Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
-| Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
-| Vector store | pgvector inside Track C's PostgreSQL, Hung's proposal; BM25 stays alongside it | B-D30 |
+| What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. Built; the coordinator and the reasoning lane are not measured | B-D36, B-C37, B-C38, B-C51 |
+| Passages | BM25 routed by well, top 5; per-well fusion for questions naming several wells; a date filter on daily reports. Qwen3-8B, thinking off; citations and values checked in code | B-D23, B-C21, B-C22 |
+| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 216 facts of 5 wells. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-F30 |
+| Events | An event graph built from operations tables with no model call; the model writes a plan, code runs it and reports the total | B-D26, B-C39 |
+| Best scores so far | 28/31 prototype questions (baseline); 30/31 with facts; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain retrieval. All on questions written by the team | [E18](../../experiments/E18-well-routing.md), [E22](../../experiments/E22-table-facts.md), [E28](../../experiments/E28-event-graph.md) |
+| Application | A backend and a frontend on the stores, behind one password; runs end to end on a laptop with a stand-in model | B-C44 to B-C47, B-C50 to B-C57 |
+| Models | Qwen3-8B answers best; Qwen3-4B extracts; Qwen3-Embedding-0.6B embeds. Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
+| Bases tried | neo4j-graphrag-python and LightRAG were run and not adopted as bases | B-D21 |
+| Ontology (K2) | Version 1.2, kept thin; no further ontology work | B-D17, B-D25 |
+| Compute | None of our own. Rented, on public data only; a request for 5 million VND for three months is drafted | B-D42, B-D47 |
+| Questions | All simulated except the prototype's 31; none is expert-reviewed | B-D22 |
+| Next | Compute, then the three measurements E32, E33, E34 ([commands](next-runs.md)); then the facts rebuilt on the new chunk IDs | B-D38, B-F63 |
+
+## Contents
+
+| When | What happened | Entries |
+|---|---|---|
+| 30 October | Scope, rules, the survey of ready-made GraphRAG code; first code and the retrieval baseline (E14) | B-F01 to B-F15, B-D01 to B-D10, B-C01 to B-C07 |
+| 31 October | The desktop GPU; checks in code (E15); neo4j-graphrag (E16); the model sweep (E17); routing by well (E18); LightRAG set up (E19) | B-F16 to B-F22, B-D11 to B-D17, B-C08 to B-C14 |
+| 1 November | LightRAG on three reports; per-well facts checked in code (E20, E21, E22) | B-F23 to B-F29, B-D18 to B-D21, B-C15 to B-C18 |
+| 4 November | Simulated expert questions (E23 to E27); the supervisor's papers | B-F30 to B-F46, B-D22 to B-D25, B-C19 to B-C23 |
+| 5 November | The event graph (E28, E29) | B-F47 to B-F54, B-D26 to B-D27, B-C24 to B-C27 |
+| 9 and 10 November | Track A's K1 version 1 (E30, E31); the supervisor meeting; a simple UI | B-F55 to B-F58, B-D28 to B-D35, B-C28 to B-C34 |
+| 24 November, morning | The second build designed; lanes, coordinator, fact graph export; a review | B-D36 to B-D38, B-C35 to B-C43, B-F59 to B-F61 |
+| 24 November, midday | The backend, the frontend, the stint report | B-D39, B-D40, B-C44 to B-C49, B-F62 |
+| 24 November, afternoon | All three tracks built toward production | B-D41, B-C50 to B-C57, B-F63 to B-F65 |
+| 24 November, evening | No GPU of our own; the resource request; the documents reorganised | B-D42 to B-D47, B-C59 |
+
+Search the file for an entry's number to find it.
 
 ## 2026-10-30
 
@@ -1042,48 +1052,29 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **The same work was done twice:** Hung wrote a fact loader, the password rule, a backup script and a server guide the same afternoon. Each overlap was settled on what the version does (Track C log, 24 November, later). Lesson: say in the group chat what is being built before building in a teammate's track, even with clearance.
 - **What no agent could do:** look at a screen, run a model, or notice that the store already held the same files under another release name. Those were found by running the whole thing.
 
-**B-D42 (decision; the desktop is borrowed and hosts nothing for the team).** Tri's answer to Hung's proposal (Track C log C-D06, C-D07): the desktop with the GPU is a borrowed machine. It cannot host the stores over Tailscale, and it cannot serve the demo's model to others. Hosting is Hung's machine or a server; the demo's model is a hosted open-weight one on public data (Q15, [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
+## 2026-11-24: compute and the resource request
 
-**B-D43 (decision; measurements move to a hosted open-weight model, or the school GPUs).** Tri, 24 November: the runs waiting (E32, E33, E34) "would likely need external resources". The desktop that ran every measurement up to E31 was borrowed (B-D42) and is not planned on. Project decision D-68.
+**B-D42 (decision; the desktop is borrowed and hosts nothing for the team).** Tri's answer to Hung's proposal (Track C log C-D06, C-D07): the desktop with the GPU is a borrowed machine. It cannot host the stores over Tailscale, and it cannot serve the demo's model to others. Hosting is Hung's machine or a rented server.
 
-- **Where runs go now:** OpenRouter with an open-weight model of the allowed size, on public data only, which every current run is (AK-3 and the Utah FORGE reports). The school GPUs for anything that must stay on local machines, once booking is known (Q7).
-- **What changes in a record:** a hosted model is served at full precision by a third party, and the recorded scores used a 4-bit copy on a local GPU. So the baseline is rerun on the same endpoint before anything is compared with it; the provider and model ID are recorded; tokens and cost are the efficiency numbers, and seconds are reported but not compared. Recorded scores stand as recorded.
-- **What it costs:** E33 with its baselines, E32 and E34 are a few million tokens, under US$1 at the listed prices. The US$10 of the [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md) covers them and the demo.
-- **What blocks it:** no OpenRouter key exists on the team's machines, and who holds the account is open (Q6). Nothing hosted has been run: the model ID `qwen/qwen3-8b`, whether thinking can be turned off there, and JSON-schema output are unverified until the first call. Commands: [next-runs](next-runs.md#on-a-hosted-model).
-- **Embeddings:** the hosted roles file keeps the embedding role local, so hosted runs use per-well BM25 for questions naming several wells (`--no-embeddings`), and say so.
-- **Documents brought in line the same day:** the specification (version 3.5: §3.1 lists the application as built and what is not done; D-68; Q15), the plan, CLAUDE.md, the README files, the resource request, the backend design's status table, and the notes to Khai and Hung, which now say what was built and what is left for each.
+**B-D43 to B-D46 and B-C58 (same day; folded into B-D47).** Five versions of one decision, made within hours as Tri gave more information: first a hosted model or the school GPUs (B-D43, B-C58); then rented cloud compute instead of school hardware, at about US$1,000 for six months (B-D44); then a ceiling of 10 million VND (B-D45); then three months at 7.5 million (B-D46). What they established is in B-D47.
 
-**B-C58 (design choice; one resource plan for the whole project, with the email to the school).** Tri asked for a list of every resource development needs, to send to the school. The [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md) is rewritten as that plan; the earlier text asked the supervisor for US$10 only and assumed the desktop.
+**B-D47 (decision; compute is rented, and 5 million VND is asked from the capstone funding).** Tri, 24 November. Project decision D-68.
 
-- **Asked of the school:** GPU time (one card of 16 GB or more, about 8 hours a week, and one slot of one to two days for the large run) and one virtual machine that stays on (4 vCPU, 8 GB, 80 GB disk) with an HTTPS address.
-- **Asked of the supervisor:** US$10 for a hosted open-weight model on public data; one or two domain experts.
-- **The GPU hours are estimates** from runs on the borrowed card (about 3 seconds a page for extraction, a few hours for 600 questions); the school's hardware is unknown.
-- **Whether a Claude key could stand in** (Tri's question): no. D-37 allows only open-weight models of about 8B that we run, because the real documents are private, and a score from another model would not measure this system. Claude stays a coding helper outside the system.
-- **Assumptions to check before sending:** that Dr. Le Duy Dung is the person to write to (specification §11.1, Q7), and the dates of 5 and 12 December.
+- **Why rented:** the team has no GPU or server of its own. Anh Tuấn advised that the school's machines are slow and awkward. A Claude key cannot stand in: only open-weight models of about 8B that we run are allowed (D-37), and a score from another model would not measure this system.
+- **What is rented, on public data only:**
+  - a cloud GPU by the hour, running our own 4-bit copy of the model with llama.cpp, so scores stay comparable with the recorded ones;
+  - a small server for the stores and the application;
+  - a hosted open-weight model for the demo and quick checks. A hosted score is compared only with a baseline rerun on the same endpoint.
+- **The request:** 5 million VND (about US$190 at an assumed 26,000 VND to the dollar) for December 2026 to February 2027; the rest is for next semester. A 24 GB GPU for about 10 hours a week (1.2 to 2.3 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 3.3 to 4.8 million. Detail and the email: [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md).
+- **Who is asked:** anh Trường, by email, copied to both advisors. Dr. Le Duy Dung's words, as Tri passed them on: "nếu cần tài nguyên thì email anh Trường để sử dụng funding cho capstone nhé".
+- **Unverified:** nothing hosted or rented has been run. The GPU hours are estimates from the borrowed card. The model ID `qwen/qwen3-8b` at OpenRouter, and whether thinking can be turned off there, are unknown until the first call.
+- **A limit that got sharper:** every rented machine is someone else's. A private VPI document can go on none of them without VPI's written agreement, and the team now has no machine of its own to process one.
 
-**B-D44 (decision; compute is rented from cloud providers, not school hardware; the asks are raised).** Tri, 24 November, passing on anh Tuấn's advice that the school's machines can be slow and awkward, and asking for room to experiment. This changes B-D43 and B-C58 the same day; project decision D-68 is rewritten to match.
+**B-C59 (design choice; the documents reorganised to be read).** Tri asked for documents a person can read: concise, no repetition, not a log.
 
-- **A rented GPU by the hour replaces the school GPUs** for measurements, experiments and the large run. It runs our own 4-bit copy of the model with llama.cpp, so scores stay comparable with the recorded ones, which a hosted model cannot give. The hosted model stays for the demo and quick checks.
-- **The [resource plan](../../reports/RESOURCE_REQUEST_2026-11-24.md) is rewritten as a budget request:** about US$1,000 for six months (estimated US$480 to US$1,160): a 24 GB card for about 20 hours a week and one run of three to five days; a server with 8 vCPU, 16 GB and 200 GB; US$50 of hosted calls; a domain name; a reserve. The least that keeps the project moving is about US$50 a month.
-- **Removed from the plan:** the request for school GPU slots and a school virtual machine (B-C58), and the earlier sizes as the main ask (a 16 GB card for 8 hours a week, 4 vCPU and 8 GB, US$10); they remain in it as the minimum.
-- **Unverified:** the price of the larger server is the smaller listed price doubled; six months to May 2027 is assumed; whether the school funds cloud services, and in what form, is the question the email asks. The email is addressed to Dr. Le Duy Dung on the specification's word that school resources go through him.
-- **A limit that got sharper:** a rented GPU is someone else's machine, like a hosted model. With no school or team GPU planned, there is now nowhere to process a private VPI document; that needs VPI's written agreement to a provider, or VPI's own hardware (D-68, specification §10.1).
-
-**B-D45 (decision; the budget ceiling is 10 million VND, and the request goes to the school).** Tri, 24 November. This replaces the amounts of B-D44 and the addressee of B-C58.
-
-- **Ceiling:** 10 million VND for the three of us for now, about US$385 at an assumed 26,000 VND to the dollar. The US$1,000 of B-D44 was too much.
-- **What fits in it for six months:** a 24 GB GPU for about 10 hours a week and one run of about three days (3.0 to 6.0 million VND); a server of 4 vCPU and 8 GB at Hetzner (1.6 to 2.5 million); 0.5 million of hosted calls; a domain name and a reserve. Estimated 6.2 to 10.1 million; GPU hours are cut first if prices sit high. The least that keeps the project moving is about 3 million.
-- **Dropped to fit:** 20 GPU hours a week, the 16 GB server with a second copy of the stores, the vision-model trial. They are listed in the plan as what more money would buy.
-- **Who is asked:** the school, by email, copied to both advisors. Dr. Le Duy Dung is the team's advisor and was the one who said to ask for resources; anh Tuấn advised against the school's own machines. The office to address is not known yet.
-
-**B-D46 (decision; the first request covers three months).** Tri, 24 November: ask for the near future first. This changes the period and the amount of B-D45; the 10 million VND stays the team's ceiling in total.
-
-- **The request:** up to 7.5 million VND (about US$290) for December 2026 to February 2027: a 24 GB GPU for about 20 hours a week (2.3 to 4.7 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 4.7 to 7.5 million. The least that keeps the project moving is about 1.5 million.
-- **The shorter period buys back the 20 GPU hours a week** that B-D45 had cut to 10.
-- **Left for a second request:** the second semester's server and GPU hours, and the full run over all the reports.
-
-**B-D47 (decision; 5 million VND now from the capstone funding, asked of anh Trường).** Tri, 24 November. This replaces the amount of B-D46 and the addressee of B-D45.
-
-- **Who to ask:** Dr. Le Duy Dung's words, as Tri passed them on: "nếu cần tài nguyên thì email anh Trường để sử dụng funding cho capstone nhé". The email is to anh Trường, copied to both advisors. His full name and address are to fill in.
-- **The request:** 5 million VND (about US$190) for December 2026 to February 2027; the rest is for next semester. A 24 GB GPU for about 10 hours a week (1.2 to 2.3 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 3.3 to 4.8 million.
-- **Cut to fit:** GPU hours from 20 a week back to 10.
+- **One home for each kind of fact**, written into [docs/README.md](../../README.md): design and decisions in the specification, status and tasks in the plan, numbers in experiment records, history in the track logs, how to run something next to the code.
+- **Root README:** from 155 lines to about 75, with the architecture picture. Removed from it, because they live elsewhere: the component status table (plan, current status), the ingestion, import and reproduction commands (the [component guides](../../components/)), the folder-by-folder layout (a short table now), and the workflow notes that no longer matched practice.
+- **Plan:** the status section is one paragraph and two short tables; the task list (§7) has a State and a Left column in place of paragraphs of history, and starts with what each person does next.
+- **CLAUDE.md:** from 170 lines to about 105. Removed: the copy of the results table (the experiment register owns it), the module table (the engine README owns it), the history of the next-steps list.
+- **This log:** a short current-state table, a contents table by date, and the day's five resource decisions folded into B-D47. Earlier entries are unchanged.
+- **Not reorganised:** the specification (1,400 lines), which needs its own pass, and the Track A and Track C logs, which are their owners'.

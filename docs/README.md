@@ -1,57 +1,64 @@
 # Documentation
 
-**Current direction (24 November 2026):** a **GraphRAG application for drilling reports** (end-of-well and daily drilling reports). A coordinator sends each question to a lane: text passages, facts about a well, or events over time, the last two held in one graph. It uses open-weight models of about 7B or smaller and never commercial APIs; it links stores and documents through one ID scheme; and it is delivered as a full application with chat and administration. The basis is the [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) supervisor meetings (specification D-36 to D-63) and the design choices of 24 November (D-64 to D-67).
+Start with the question you have.
 
-**Where the project stands:** the second build is coded in all three tracks: chunk packages, the stores and the engine are connected behind one application, which runs end to end on a laptop with a stand-in for the model. Nothing new is measured with a real model yet, and it is not on a server.
-
-| To find out… | Read |
+| I want to know… | Read |
 |---|---|
-| What is being built now, and who does what | [Plan §7, "What to do now"](DEVELOPMENT_PLAN.md#7-what-to-do-now) |
-| How the system is designed | [Specification §4](PROJECT_DESIGN.md#4-target-architecture) and [§8](PROJECT_DESIGN.md#8-question-answering) |
-| What runs today and how it scores | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today) |
-| What each part of the team has found | [Track records](tracks/README.md) |
-| What this stint accomplished, with diagrams of how the system works | [Stint report, 10 to 27 November](reports/stints/STINT_REPORT_2026-11-27.md) ([PDF](reports/stints/STINT_REPORT_2026-11-27.pdf)), a draft until 27 November |
-| What Khai and Hung are asked to do next | Notes of 24 November: [for Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [for Hung](tracks/C-storage/note-from-track-B-2026-11-24.md) |
-| How to run the application | [frontend/README.md](../frontend/README.md), [backend/README.md](../backend/README.md); on a server: [deploy/README.md](../deploy/README.md) and the [server runbook](tracks/C-storage/server-runbook.md) |
-| How to load a report package into the stores | [platform/README.md](../platform/README.md) |
-| What the supervisor asked for | [Meeting digests](requirements/README.md) |
+| What the system is, in pictures | [Stint report, 10 to 27 November](reports/stints/STINT_REPORT_2026-11-27.md) ([PDF](reports/stints/STINT_REPORT_2026-11-27.pdf)) |
+| Where the project stands today | [Plan, current status](DEVELOPMENT_PLAN.md#current-status) |
+| Who does what next | [Plan §7, the task list](DEVELOPMENT_PLAN.md#7-what-to-do-now) |
+| How it is designed, and why | [Specification](PROJECT_DESIGN.md): §4 architecture, §8 question answering, §13.1 decisions |
+| What the advisors asked for | [Meeting digests](requirements/README.md) |
+| How to run a part of it | The README of its folder: [engine](../graphrag/README.md), [backend](../backend/README.md), [frontend](../frontend/README.md), [stores](../platform/README.md), [server](../deploy/README.md), [reading reports](components/track-a-operation.md) |
+| What was measured, and how | [Experiments](experiments/README.md), one record each |
+| What a track found or decided, and when | [Track records](tracks/README.md) |
+| What resources the project needs | [Resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) |
 
-## Document hierarchy
+## How the documents fit together
 
-The [project specification](PROJECT_DESIGN.md) is the **single source of truth**. Every other document is an input to it, derived from it, or supports it, and it wins any disagreement.
+```mermaid
+flowchart LR
+    REQ["Requirements<br/>and meetings"] --> SPEC["Specification<br/>(source of truth)"]
+    SPEC --> PLAN["Plan<br/>(status, tasks)"]
+    LOGS["Track logs<br/>(dated record)"] --> SPEC
+    EXP["Experiments<br/>(measurements)"] --> LOGS
+    PLAN --> REP["Reports<br/>(for the advisors)"]
+```
 
-| Kind | Document | Read it for |
-|---|---|---|
-| **Inputs** | [Stakeholder requirements](requirements/README.md) | VPI's documents (SR-01 to SR-18) and the supervisor meetings: [9 November](requirements/supervisor-meeting-2026-11-09.md) and [28 October](requirements/supervisor-meeting-2026-10-28.md) (current direction), and [7 October](requirements/supervisor-meeting-2026-10-07.md) (partly superseded) |
-| **Source of truth** | [Project specification and system design](PROJECT_DESIGN.md) | Scope, architecture and stores, ID scheme, tables, the coordinator and lanes, the graph model, models and compute, acceptance gates, decisions, open questions |
-| **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, how the first build closed, roles, milestones, the task list, risks |
-| Supporting | [Data sources](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well reports (AK-3 first), daily drilling reports |
-| Supporting | [Components](components/) | How each implemented subsystem works: [document ingestion](components/corpus-ingestion.md), [structured-data import](components/dataset-import.md), [entity registry](components/entity-registry.md). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion](components/bsee-ingestion.md) |
-| Supporting | [Track records](tracks/README.md) | Each track's findings, decisions and design choices, logged the same day: [A, ingestion](tracks/A-ingestion/README.md) (with a [log](tracks/A-ingestion/log.md), a draft), [B, GraphRAG engine](tracks/B-graphrag/README.md), [C, storage](tracks/C-storage/log.md) |
-| Supporting | [Experiments](experiments/README.md) | Measurements, one record per experiment (E1–E31) |
-| Supporting | [Reports](reports/README.md) | What was sent to the supervisor. [Stint reports](reports/stints/README.md), one per stint, in their own folder; the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md); the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
-| Supporting | Application guides | [backend/README.md](../backend/README.md): the read-path API and its contract. [frontend/README.md](../frontend/README.md): the application people use. [graphrag/README.md](../graphrag/README.md): the engine. [platform/README.md](../platform/README.md): loading the stores. [deploy/README.md](../deploy/README.md): the application on a server |
-| Supporting | [Related work](references.md) | Papers, GraphRAG repositories and model candidates |
-| Historical | [Repository assessment, 27 October](REPOSITORY_REVIEW_2026-10-27.md) · [Progress report, 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) | Snapshots from before the 28 October direction |
-| Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |
+Each kind of fact has one home. Other documents link to it and do not copy it.
 
-Reading order for a new team member:
+| Kind of fact | Its home |
+|---|---|
+| Scope, design, decisions (D-xx), open questions (Q-xx) | [Specification](PROJECT_DESIGN.md) |
+| Status, milestones, tasks, risks | [Plan](DEVELOPMENT_PLAN.md) |
+| A number from a run | Its [experiment record](experiments/README.md) |
+| What a track found, decided or built on a given day | That track's log: [A, reading reports](tracks/A-ingestion/log.md) · [B, engine](tracks/B-graphrag/log.md) · [C, stores](tracks/C-storage/log.md) |
+| How to run something | The README or guide next to the code |
+| What was sent to the advisors | [Reports](reports/README.md) |
 
-1. the [9 November](requirements/supervisor-meeting-2026-11-09.md) and [28 October](requirements/supervisor-meeting-2026-10-28.md) meeting digests;
-2. the specification's §1 and §3;
-3. the specification's §4.1, §4.6 and §8.1, then the plan's §7 for your role;
-4. your track's record in [tracks/](tracks/README.md);
-5. the data sources and the component guide for your area.
+## Everything else
+
+| Folder or file | Holds |
+|---|---|
+| [requirements/](requirements/README.md) | VPI's requirement documents (SR-01 to SR-18) and the meeting digests: [9 November](requirements/supervisor-meeting-2026-11-09.md), [28 October](requirements/supervisor-meeting-2026-10-28.md), [7 October](requirements/supervisor-meeting-2026-10-07.md) (partly superseded) |
+| [components/](components/) | Guides to each implemented part of reading reports and importing data, and the [dependencies](components/dependencies.md) with their licences |
+| [tracks/](tracks/README.md) | Each track's log, its notes to the other tracks, and working plans |
+| [experiments/](experiments/README.md) | Experiment records and the register |
+| [reports/](reports/README.md) | [Stint reports](reports/stints/README.md), the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md), slides, the resource plan |
+| [DATA_SOURCES.md](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well and daily drilling reports |
+| [references.md](references.md) | Papers, GraphRAG repositories and model candidates |
+| [diagrams/](diagrams/README.md) | SVG exports of the specification's diagrams, and how to regenerate them |
+| [REPOSITORY_REVIEW_2026-10-27.md](REPOSITORY_REVIEW_2026-10-27.md) | A snapshot from before the current direction |
+
+New to the project? Read the stint report, then the specification's §1 and §3, then the plan's §7 for your role.
 
 ## Conventions
 
-- **Implemented** means code, tests and a verification record exist in this repository. **Planned** or **proposed** means design intent only.
+- **Implemented** means code, tests and a record exist in this repository. **Planned** means design intent only.
 - Change the specification first, then the plan. A plan or guide must not introduce scope the specification does not contain.
-- When the direction changes, **remove** the superseded design text instead of keeping old and new side by side. Record the removal in the meeting digest and move the old decision to the superseded table in specification §13.1.
-- Log every finding, decision, design choice and experiment the same day in the track log ([example](tracks/B-graphrag/log.md)). Project-level decisions also go into specification §13.1.
-- Measurements live in experiment records. Do not copy numbers between documents; link to the experiment that owns them.
-- When behavior changes, update the component guide and specification §3 in the same change.
-- Supervisor direction is recorded as a meeting digest in `requirements/` and as decisions in specification §13.1; unanswered questions stay in §13.2.
-- Reporting to the supervisor is light: short group-chat updates, and at the end of each stint one short [stint report](reports/stints/README.md) with a picture of the system and one question walked through it (D-46, 9 November meeting). Long written reports are not the norm.
-- A request to a teammate is written as a dated note in that teammate's track folder (`note-from-track-<x>-<date>.md`), not only said in chat.
+- When the direction changes, **remove** the superseded text instead of keeping old and new side by side, and say what was removed in the track log.
+- Log every finding, decision, design choice and experiment the same day in the track log. Project-level decisions also go into specification §13.1; unanswered questions into §13.2.
+- Do not copy numbers between documents; link to the experiment that owns them.
+- A request to a teammate is a dated note in that teammate's track folder (`note-from-track-<x>-<date>.md`), not only said in chat.
+- Reporting to the advisors is light: short group-chat updates, and one short [stint report](reports/stints/README.md) at the end of each stint (D-46).
 - Diagram sources are the Mermaid blocks in the documents; the SVGs are generated from them ([how](diagrams/README.md)).

@@ -235,7 +235,7 @@ The application shows the cited passage beside its page. `GET /v1/files/{file_id
 - **Store** as `<file store>/pages/<file_id>/p<n>.png`. On the server the file store is a folder (§1).
 - **Serve** with a new route, `GET /v1/files/{file_id}/pages/{n}/image`, returning the PNG; `PageOut.image_url` then holds that path. Validate `file_id` against the loaded files and `n` as an integer before touching the disk, so no path from the request reaches the file system.
 - **Highlighting the cited passage** needs the chunk's region on the page. K1's records carry regions for tables; whether passages do is to check with Khai. Until then the frontend shows the page and the passage side by side without a highlight.
-- The source PDFs are public (CC BY 4.0, [README](../../../README.md#data-attribution)), so serving their pages is allowed with the credit shown.
+- The source PDFs are public (CC BY 4.0, [README](../../../README.md#data)), so serving their pages is allowed with the credit shown.
 
 **Done when:** a citation in the application opens the right page image.
 

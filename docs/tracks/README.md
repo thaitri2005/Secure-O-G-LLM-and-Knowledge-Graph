@@ -1,13 +1,14 @@
 # Track records
 
-The first build (30 October to 17 November 2026) ran as three tracks joined by versioned files ([specification §4.5](../PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files)). Each track keeps its own dated record of findings, decisions and design choices. The second build splits the work by data, backend, engine and frontend ([plan §2](../DEVELOPMENT_PLAN.md#2-team-split)); these records continue under the same names.
+Each track keeps a dated log of what it found, decided and built. A log is the history; for where things stand now, read the [plan](../DEVELOPMENT_PLAN.md#current-status).
 
-| Track | Owner | Record | Current state in one line |
+| Track | Owner | Log | Also in its folder |
 |---|---|---|---|
-| A. Ingestion and tables (data) | Khai | [A-ingestion](A-ingestion/README.md): a [log](A-ingestion/log.md) (a draft for Khai to correct) and the [progress report](../experiments/TRACK_A_PROGRESS.md). To do: [note of 24 November](A-ingestion/note-from-track-B-2026-11-24.md) | K1 version 1 is the team's chunk package. A demo release with the non-productive-time report builds with one command; the options of 17 November are still to be measured |
-| B. GraphRAG engine | Tri | [B-graphrag](B-graphrag/README.md): [log](B-graphrag/log.md), survey, notes to the other tracks | Four lanes behind one interface and a coordinator over them, reading files or the stores; a backend and a frontend on top. Built, run with stand-in models, not yet measured: the team has no GPU of its own |
-| C. Storage, IDs and the run (backend) | Hung | [C-storage](C-storage/log.md): log, the [vector store comparison](C-storage/vector-store.md), the [backend design](C-storage/backend-design.md) and the [server runbook](C-storage/server-runbook.md). To do: [note of 24 November](C-storage/note-from-track-B-2026-11-24.md) | One command loads a release into PostgreSQL and Neo4j; the application runs on the stores behind one password, on laptops. No server yet |
+| A. Reading the reports | Khai | [log](A-ingestion/log.md) (a draft for Khai to correct) | [Overview](A-ingestion/README.md), the [progress report](../experiments/TRACK_A_PROGRESS.md), the [note of 24 November](A-ingestion/note-from-track-B-2026-11-24.md) on what is left |
+| B. Answering engine | Tri | [log](B-graphrag/log.md) | [Overview](B-graphrag/README.md), the [survey](B-graphrag/survey.md) of ready-made GraphRAG code, the [commands for the next runs](B-graphrag/next-runs.md) |
+| C. Stores and backend | Hung | [log](C-storage/log.md) | The [backend design](C-storage/backend-design.md), the [server runbook](C-storage/server-runbook.md), the [vector store comparison](C-storage/vector-store.md), the [note of 24 November](C-storage/note-from-track-B-2026-11-24.md) on what is left |
 
-Entry numbers (`B-F`, `B-D`, `B-C`, `C-F`, …) are never reused or renumbered. Project-level decisions also go into [specification §13.1](../PROJECT_DESIGN.md#131-decision-register). Measurements go into [experiment records](../experiments/README.md).
-
-What each stint accomplished, across tracks, is in the [stint reports](../reports/stints/README.md).
+- Entry numbers (`B-F`, `B-D`, `B-C`, `C-F`, …) are never reused.
+- A decision that affects the whole project also goes into [specification §13.1](../PROJECT_DESIGN.md#131-decision-register).
+- A measurement goes into an [experiment record](../experiments/README.md); the log links to it.
+- What each stint accomplished, across tracks, is in the [stint reports](../reports/stints/README.md).
