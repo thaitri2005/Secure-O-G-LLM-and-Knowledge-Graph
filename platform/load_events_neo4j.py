@@ -1,9 +1,14 @@
 """Load Track B's event graph into Neo4j and check it (C-C11; Track B's note to Track C, need 3).
 
     python platform/load_events_neo4j.py                      # graphrag/results/E28_events.json, AK-3
+    python platform/load_events_neo4j.py --events graphrag/results/E31_events_k1.json   # the graph built from K1
+    python platform/load_events_neo4j.py --events <file> --runs --well TEST-1          # no plan replay, other well
 
-The graph is the one E28 measured (161 events of AK-3's daily reports), as Track B recorded it. Nodes and
-relationships:
+The default graph is the one E28 measured (161 events of AK-3's daily reports), as Track B recorded it. `--runs`
+names the answer runs whose recorded plans are replayed (default: E28's two; none with a bare `--runs`), and
+`--well` loads the events under another well name (default: the file's one well). Plans name their well, so a
+replay under another name needs `--runs` with no file. The address and password come from NEO4J_URI, NEO4J_USER and
+NEO4J_PASSWORD, with the local compose values as defaults. Nodes and relationships:
 
     (:Well {name})-[:HAS_DAY]->(:ReportDay {day_id, well, date})-[:HAS_EVENT]->(:Event {event_id, seq, ...})
     (:Event)-[:HAS_CODE]->(:ActivityCode {code})
@@ -20,7 +25,10 @@ All in one write transaction, which rolls back if any check fails:
 3. replay every recorded query plan of E28 (`graphrag.events.run_plan`) on the events read back and compare with
    the result recorded in the run, with no model call;
 4. compute hours per activity code and the non-productive totals in Cypher and compare with Python.
-Needs `neo4j==6.4.1` (Track B's lock file), and numpy and httpx for `graphrag`.
+After the load, chunks whose `id_format` is K1 version 1 are looked up in PostgreSQL's `chunks` (BACKEND_DSN;
+backend design §4.2): those missing are reported by count and do not fail the load, and the check is skipped
+quietly when PostgreSQL cannot be reached.
+Needs `neo4j==6.4.1` (Track B's lock file), and numpy and httpx for `graphrag`; psycopg only for that check.
 """
 from __future__ import annotations
 
@@ -28,6 +36,7 @@ import argparse
 from collections import Counter
 from dataclasses import asdict
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -38,7 +47,10 @@ from neo4j import GraphDatabase  # noqa: E402
 
 from graphrag.events import Event, run_plan  # noqa: E402
 
-URI, USER, PASSWORD = "bolt://127.0.0.1:7687", "neo4j", "platform-dev"   # platform/docker-compose.yml
+URI = os.environ.get("NEO4J_URI", "bolt://127.0.0.1:7687")                # platform/docker-compose.yml
+USER = os.environ.get("NEO4J_USER", "neo4j")
+PASSWORD = os.environ.get("NEO4J_PASSWORD", "platform-dev")
+DSN = os.environ.get("BACKEND_DSN", "postgresql://kg:platform-dev@127.0.0.1:5434/kg")
 EVENTS = ROOT / "graphrag/results/E28_events.json"
 RUNS = [ROOT / "graphrag/results/E28_graph_fixed_seen.json", ROOT / "graphrag/results/E28_heldout_graph.json"]
 
@@ -161,34 +173,74 @@ def load_and_check(tx, events: list[Event], well: str, plans: list[tuple[str, di
     return summary
 
 
+def k1_chunk_ids(chunk_ids) -> set[str]:
+    """The IDs that follow K1 version 1, by the rule LOAD writes into `Chunk.id_format`."""
+    return {c for c in chunk_ids if "#" not in c}
+
+
+def missing_in_postgres(chunk_ids: set[str], dsn: str = DSN) -> int | None:
+    """How many of these chunk IDs PostgreSQL's `chunks` lacks (backend design §4.2); None when it cannot be asked."""
+    if not chunk_ids:
+        return 0
+    try:
+        import psycopg
+        with psycopg.connect(dsn, connect_timeout=3) as conn, conn.cursor() as cur:
+            cur.execute("SELECT chunk_id FROM chunks WHERE chunk_id = ANY(%s)", (sorted(chunk_ids),))
+            return len(chunk_ids - {row[0] for row in cur.fetchall()})
+    except Exception:  # no psycopg, no server, no K1 tables: the check is advisory, so it is skipped
+        return None
+
+
+def create_constraints(driver, constraints: list[tuple[str, str]]) -> None:
+    for label, key in constraints:
+        driver.execute_query(f"CREATE CONSTRAINT {label.lower()}_{key} IF NOT EXISTS "
+                             f"FOR (n:{label}) REQUIRE n.{key} IS UNIQUE")
+
+
+def load(events_path: Path = EVENTS, runs: list[Path] | None = None, well: str | None = None, uri: str = URI,
+         user: str = USER, password: str = PASSWORD, dsn: str = DSN) -> dict:
+    """Load one event file under one well and check it; raises CheckFailed, after rolling back, on any difference."""
+    recorded = json.loads(events_path.read_text(encoding="utf-8"))
+    (file_well,) = recorded["wells"]
+    well = well or file_well
+    events = [Event(**e) for e in recorded["events"]]
+    plans = recorded_plans(RUNS if runs is None else runs)
+    with GraphDatabase.driver(uri, auth=(user, password), notifications_min_severity="OFF") as driver:
+        driver.verify_connectivity()
+        create_constraints(driver, CONSTRAINTS)
+        with driver.session() as session:
+            summary = session.execute_write(load_and_check, events, well, plans)
+    k1 = k1_chunk_ids(c for e in events for c in e.chunks)
+    return {"well": well, **summary, "k1_chunks": len(k1), "k1_chunks_missing_in_postgres": missing_in_postgres(k1, dsn)}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--events", type=Path, default=EVENTS)
+    parser.add_argument("--runs", type=Path, nargs="*", default=RUNS,
+                        help="answer runs whose recorded plans are replayed (default: E28's two; bare --runs: none)")
+    parser.add_argument("--well", help="load under this well name (default: the file's one well)")
     parser.add_argument("--uri", default=URI)
     parser.add_argument("--user", default=USER)
     parser.add_argument("--password", default=PASSWORD)
+    parser.add_argument("--dsn", default=DSN, help="PostgreSQL holding the K1 chunks, for the chunk ID check")
     args = parser.parse_args(argv)
 
-    recorded = json.loads(args.events.read_text(encoding="utf-8"))
-    (well,) = recorded["wells"]
-    events = [Event(**e) for e in recorded["events"]]
-    plans = recorded_plans(RUNS)
-    with GraphDatabase.driver(args.uri, auth=(args.user, args.password)) as driver:
-        driver.verify_connectivity()
-        for label, key in CONSTRAINTS:
-            driver.execute_query(f"CREATE CONSTRAINT {label.lower()}_{key} IF NOT EXISTS "
-                                 f"FOR (n:{label}) REQUIRE n.{key} IS UNIQUE")
-        with driver.session() as session:
-            try:
-                s = session.execute_write(load_and_check, events, well, plans)
-            except CheckFailed as failure:
-                print(failure)
-                return 1
+    try:
+        s = load(args.events, args.runs, args.well, args.uri, args.user, args.password, args.dsn)
+    except CheckFailed as failure:
+        print(failure)
+        return 1
+    well = s["well"]
     print(f"loaded {well}: {s['days']} report days, {s['events']} events, {s['chunks']} source chunks")
     print(f"read back: {s['events_same']} / {s['events']} events identical to {args.events.name}")
     print(f"replayed: {s['plans_same']} / {s['plans']} recorded query plans give the recorded result")
     print(f"Cypher: hours for {s['codes_same']} / {s['codes']} activity codes match Python; non-productive "
           f"{s['npt'][0]:g} hours in {s['npt'][1]} events on {s['npt'][2]} days")
+    if s["k1_chunks"]:
+        missing = s["k1_chunks_missing_in_postgres"]
+        print(f"chunks with K1 version 1 IDs: {s['k1_chunks']}, " + ("PostgreSQL not reachable, not looked up"
+              if missing is None else f"{missing} of them missing from PostgreSQL's chunks"))
     return 0
 
 
