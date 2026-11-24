@@ -149,3 +149,44 @@ Compatibility check: no id-format gaps in `graphrag`; BM25 over the end-of-well 
 **A-F16 (finding).** `python -m graphrag.events build --k1` still reads appendix 23 from the corpus export `data/corpora/ak3_appendices/exports/v1` (`npt_report_inputs` in `graphrag/events.py`), with version 0 ids, even when the K1 package holds it. So the note's check "no event chunk id contains `#`" can only pass through the command after a change in `graphrag` (Track B's code), which reads appendix 23 from the package. Check (6) of the compatibility script shows that change gives 161 events with no `#`.
 
 **A-D06 (decision, proposed for Khai).** Open for Khai under task D2: whether the demo release switches on `span_once_keyed` (A-F11 is the number for it) and whether 17 of 17 cited chunks (easyocr) matters more than the prototype's text (rapidocr, A-D02).
+
+The entries below were made later on 24 November by the X4 work package, on Khai's behalf, **for Khai to correct**. X4 added the two other end-of-well reports to the demo package so that the fact graph's passages exist in the stores (Track B log B-F63).
+
+**A-C19 (design choice).** The legacy chunk map covers every document of the bundle that the export holds, not only AK-3's report. `map_legacy_document` in `k1_export.py` maps each bundle document onto its own new chunks only (the same text in two reports never crosses), in doc id order; AK-3's report is still required, as before. `load_legacy_rows` takes `None` for every document. No K1 field, schema or version changed. A test exports two bundle documents with the same text and checks that each maps onto its own (`test_legacy_map_covers_every_bundle_document_in_the_export_and_never_crosses_documents` in `tests/test_corpus_k1.py`).
+
+**A-C20 (design choice).** `scripts/build_k1_demo_release.py` now builds `demo-v2` into `data/interim/k1/demo-v2/`: the eight PDFs of `ak3-demo-v1` plus `gdr1295_56-32_eowr.pdf` and `gdr1153_68-32_eowr.pdf`. Each end-of-well report is added under its bundle doc id (`gdr882_ak3_eowr`, `gdr1295_56-32_eowr`, `gdr1153_68-32_eowr`), so the legacy map finds it. `add` runs every time and skips files already in the corpus, so a corpus built for `ak3-demo-v1` gains the two reports and keeps its conversions. `--legacy-chunks` defaults to the committed bundle. Configurations unchanged: `demo_corpus.json` and `k1_demo_v1.json` (whose cover pattern already found 56-32 and 68-32, A-C17).
+
+**A-F19 (finding).** No conversion of the end-of-well reports could be reused. The corpus of 24 November (`data/interim/k1-demo-corpus`) is no longer on the machine. `data/interim/docling/5ebba303446ca4bb` holds whole-document conversions of the three reports from the earlier pipeline, without OCR; the seeding rule (A-F13) accepts only per-segment text-mode conversions, and the hybrid pages need OCR. So the three reports were converted again, one at a time, with the appendices' segments seeded from a copy of `data/corpora/ak3_appendices`. The run took 2,698 s (45 min) in all, on a 16 GB machine at 93 to 95% memory load, with no crash:
+
+| Report | Pages (hybrid) | Segments | Conversion |
+|---|---:|---:|---|
+| 68-32 | 40 (10) | 9 | 18.5 min |
+| 56-32 | 86 (49) | 24 | 19.2 min |
+| AK-3 | 29 (11) | 18 | about 3.5 min |
+| Appendices 23, 27 to 30 | 147 (0) | seeded | none |
+
+Single segments took between 3 s and 419 s. The slowest ones came while other jobs held the memory.
+
+**A-F20 (finding).** Demo release `demo-v2`, release `20261124T164744Z-6647c02f0c85` (SHA256SUMS digest `6647c02f0c85…`): 8 files, 302 pages, 1,431 chunks, 292 tables, 94 forms, 1,139 parents, nothing held back. The checks:
+
+| Check | Result |
+|---|---|
+| Validator | pass, 0 errors, page rebuild 302/302 |
+| QA sidecar | validator pass, source validation pass. Signals (warnings): `OCR_PAGE_NO_REFERENCE` 70, `TABLE_ORIGIN_TEXTLAYER_REBUILD` 81, `CHAR_RATIO_HIGH` 16, `TABLE_CHUNK_OVER_BUDGET` 10, `DROPPED_ITEMS_RECORDED` 8, `PAGE_EMPTY_EXPLAINED_BY_EXCLUSION` 5, `CHAR_RATIO_LOW` 3, `CHUNK_QUALITY_NOT_OK` 2, `A107_SIDECAR_MISSING` 1. Not compared with `ak3-demo-v1`'s signals |
+| End-of-well chunks with a well | 441 of 441: AK-3 61, 56-32 246, 68-32 134. `document_context` found exactly one candidate on each cover |
+| Daily chunks with report date and well | 981 of 981 |
+| Same as `ak3-demo-v1` | AK-3's report and the five appendices give the same chunk ids and the same text, chunk for chunk |
+| `scripts/check_k1_graphrag_compat.py --expect-events 161` | all six checks pass: 161 events, 28 non-productive, no `#`; BM25 hit@5 0.913 on AK-3's report; gold coverage 15 of 17, as before |
+
+Not checked: whether a second export gives the same `SHA256SUMS`.
+
+**A-F21 (finding).** The legacy map of `demo-v2` covers the bundle's 372 old chunks:
+
+| Report | Old chunks | Exact | Near | Unmapped |
+|---|---:|---:|---:|---:|
+| AK-3 | 60 | 49 | 2 | 9 |
+| 56-32 | 200 | 142 | 2 | 56 |
+| 68-32 | 112 | 103 | 1 | 8 |
+| All | 372 | 294 | 5 | 73 |
+
+It reaches 36 of the 38 chunks Track B's fact graph cites. The two it does not reach are `gdr1295_56-32_eowr#c0039` and `gdr882_ak3_eowr#c0004`. Why 56-32 leaves 56 old chunks unmapped (the new parser split or merged them, or OCR on its 49 hybrid pages changed the text) was not looked into.
