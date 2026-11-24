@@ -30,7 +30,7 @@ from pypdf import PdfReader
 import pypdfium2 as pdfium
 
 SOURCE = ROOT/'docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md'
-OUTPUT = ROOT/'output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf'
+OUTPUT = ROOT/'docs/reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf'
 ASSETS = SOURCE.parent/'figures'
 QA = ROOT/'tmp/report-qa'
 ASSETS.mkdir(parents=True, exist_ok=True)

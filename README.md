@@ -107,12 +107,12 @@ docs/
   components/           guides to implemented subsystems
   tracks/               each track's dated record of findings and decisions (A ingestion, B GraphRAG engine, C storage)
   experiments/          one record per experiment (E1–E31) and the register
-  reports/              stint reports in stints/ (one per stint); the project report of 9 November; the resource request
+  reports/              stint reports in stints/ (one per stint, with a PDF); slides in slides/; the project report; the resource request
   diagrams/             SVG exports of the Mermaid diagrams
 graphrag/         the GraphRAG engine: model client, retrieval, both graphs, cited answers, a local developer UI (python -m graphrag.ui)
 platform/         the stores: Docker Compose (PostgreSQL with pgvector, Neo4j), SQL, loaders and checks; scripts run by path
 schemas/          JSON Schemas for every published record type (k1_* for chunk packages, k4 for answer records, corpus_* for the document pipeline; evidence, claim, entity for application records)
-scripts/          experiment, evaluation and QA utilities
+scripts/          experiment, evaluation and QA utilities; stint_figures.py and render_stint_report.py make a stint report's diagrams and PDF
 src/graph_builder/corpus/      document pipeline (python -m graph_builder.corpus)
 src/graph_builder/publication.py  immutable releases behind an atomic pointer (exports and dataset bundles)
 src/graph_builder/contracts.py    shared evidence, claim-revision and entity records

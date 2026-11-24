@@ -5,7 +5,7 @@
 Kỳ báo cáo: 20–27 October 2026 · Cập nhật kỹ thuật: 27 October 2026  
 Sản phẩm: Knowledge Graph Builder (pipeline + admin application, ontology do người dùng cung cấp) · Use case: oil wells (drilling, production) · Ngôn ngữ giai đoạn đầu: English · Case study: BSEE, End-of-Well reports và AK-3 · Môi trường: local/on-prem · Định hướng: buổi họp với anh Tuấn ngày 07/10
 
-[Bản PDF](../../output/pdf/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf)
+[Bản PDF](KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.pdf)
 
 ## 1. Tóm tắt tiến độ
 

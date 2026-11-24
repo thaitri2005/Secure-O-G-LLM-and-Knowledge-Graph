@@ -10,7 +10,7 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | [survey.md](survey.md) | Ready-made GraphRAG repositories: what each does, whether to run it, learn from it or skip it, and what to copy |
 | [next-runs.md](next-runs.md) | Commands to reproduce the runs, and what Track B is waiting on |
 | [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md) | What Track B needs from K1 version 1 |
-| [Stint reports](../../reports/stints/README.md) | What each stint accomplished, for the supervisor: [24 November](../../reports/stints/STINT_REPORT_2026-11-24.md), and Tri's [5 November update](../../reports/stints/STINT_UPDATE_2026-11-05.md), in Vietnamese |
+| [Stint reports](../../reports/stints/README.md) | What each stint accomplished, for the supervisor: [24 November](../../reports/stints/STINT_REPORT_2026-11-27.md), and Tri's [5 November update](../../reports/stints/STINT_UPDATE_2026-11-05.md), in Vietnamese |
 | [plan-lanes-and-coordinator.md](plan-lanes-and-coordinator.md) | The implementation plan for the lanes and the coordinator, carried out on 24 November |
 | Notes to teammates, 24 November | [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md): what the second build needs from data. [For Hung](../C-storage/note-from-track-B-2026-11-24.md): where the backend stands and what is his next |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |

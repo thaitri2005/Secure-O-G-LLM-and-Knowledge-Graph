@@ -214,7 +214,7 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 | # | Task | Done when |
 |---|---|---|
-| A1 | **Message anh Tuấn this week**, with the [stint report](reports/stints/STINT_REPORT_2026-11-24.md). Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
+| A1 | **Message anh Tuấn this week**, with the [stint report](reports/stints/STINT_REPORT_2026-11-27.md). Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
 | A2 | **Agree the roles** for this stint (Q14) | **Done 24 November:** Khai data, Hung backend, Tri engine and frontend (Track B log B-D39, B-D40) |
 | A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung agreed to it and Khai to his role (24 November). Open: each reads his note ([Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [Hung](tracks/C-storage/note-from-track-B-2026-11-24.md)) and records objections |
 | A4 | Exit demo for the supervisor, then hand the application to domain experts | M2 exit shown; the question log has questions from someone outside the team |

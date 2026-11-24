@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 580" width="1240" height="580" font-family="Segoe UI, Arial, Helvetica, sans-serif" role="img" aria-label="The knowledge graph: one graph, two regions, joined at the well">
+<title>The knowledge graph: one graph, two regions, joined at the well</title>
+<defs><marker id="head-14734a" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14734a"/></marker><marker id="head-1d5fd6" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d5fd6"/></marker><marker id="head-a45a06" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a45a06"/></marker></defs>
+<rect width="1240" height="580" fill="#ffffff"/>
+<rect x="330" y="24" width="590" height="232" rx="14" fill="#fff1da" stroke="#a45a06" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="350" y="50" font-size="14" font-weight="700" fill="#a45a06" text-anchor="start">Activities, from the daily reports (built by code, no AI)</text>
+<rect x="330" y="304" width="590" height="232" rx="14" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="350" y="522" font-size="14" font-weight="700" fill="#1d5fd6" text-anchor="start">Facts, from the end-of-well reports (by table rules and AI, then checked)</text>
+<circle cx="150" cy="280" r="74" fill="#0f1e33"/>
+<text x="150" y="276" font-size="22" font-weight="800" fill="#fff" text-anchor="middle">Well</text>
+<text x="150" y="300" font-size="13" font-weight="400" fill="#dbe6f5" text-anchor="middle">for example AK-3</text>
+<rect x="360" y="100" width="150" height="84" rx="10" fill="#fff" stroke="#a45a06" stroke-width="1.5"/>
+<text x="435.0" y="137.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Day</text>
+<text x="435.0" y="155.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">one per report day</text>
+<rect x="560" y="84" width="170" height="116" rx="10" fill="#fff" stroke="#a45a06" stroke-width="1.5"/>
+<text x="645.0" y="119.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Activity</text>
+<text x="645.0" y="137.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">from, to, hours,</text>
+<text x="645.0" y="155.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">depth reached,</text>
+<text x="645.0" y="173.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">what happened</text>
+<rect x="770" y="74" width="130" height="58" rx="10" fill="#fff" stroke="#a45a06" stroke-width="1.5"/>
+<text x="835.0" y="107.55" font-size="13" font-weight="700" fill="#0f1e33" text-anchor="middle">Activity code</text>
+<rect x="770" y="150" width="130" height="74" rx="10" fill="#fff" stroke="#a45a06" stroke-width="1.5"/>
+<text x="835.0" y="183.05" font-size="13" font-weight="700" fill="#0f1e33" text-anchor="middle">Non-productive</text>
+<text x="835.0" y="200.05" font-size="11" font-weight="400" fill="#33445c" text-anchor="middle">code, if marked</text>
+<path d="M510,142 L558,142" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
+<rect x="517.1" y="111" width="33.8" height="19" rx="9" fill="#fff" stroke="#a45a06" stroke-width="1"/>
+<text x="534" y="125" font-size="11.5" font-weight="600" fill="#a45a06" text-anchor="middle">has</text>
+<path d="M730,120 L768,104" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
+<path d="M730,164 L768,184" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
+<rect x="360" y="352" width="250" height="116" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="485.0" y="387.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Fact</text>
+<text x="485.0" y="405.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">what it is, its value and unit,</text>
+<text x="485.0" y="423.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">planned or actual,</text>
+<text x="485.0" y="441.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">what it applies to</text>
+<rect x="660" y="372" width="230" height="76" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="775.0" y="405.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Casing string</text>
+<text x="775.0" y="423.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">size, depth, weight, grade</text>
+<rect x="990" y="106" width="220" height="84" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
+<text x="1100.0" y="143.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Report</text>
+<text x="1100.0" y="161.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">one PDF file</text>
+<rect x="990" y="250" width="220" height="96" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
+<text x="1100.0" y="275.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Passage</text>
+<text x="1100.0" y="293.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">a piece of a page;</text>
+<text x="1100.0" y="311.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">its text and page stay</text>
+<text x="1100.0" y="329.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">in PostgreSQL</text>
+<path d="M1100,190 L1100,248" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<rect x="1066.6" y="206" width="66.8" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="1100" y="220" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">contains</text>
+<path d="M206,232 L300,142 L358,142" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
+<rect x="237.9" y="137" width="60.199999999999996" height="19" rx="9" fill="#fff" stroke="#a45a06" stroke-width="1"/>
+<text x="268" y="151" font-size="11.5" font-weight="600" fill="#a45a06" text-anchor="middle">has day</text>
+<path d="M206,328 L300,410 L358,410" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<rect x="234.6" y="375" width="66.8" height="19" rx="9" fill="#fff" stroke="#1d5fd6" stroke-width="1"/>
+<text x="268" y="389" font-size="11.5" font-weight="600" fill="#1d5fd6" text-anchor="middle">has fact</text>
+<path d="M170,352 V556 H936 V410 H892" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<text x="250" y="572" font-size="11.5" font-weight="600" fill="#1d5fd6" text-anchor="start">has casing</text>
+<path d="M150,206 V12 H1100 V104" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<text x="160" y="30" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="start">described by</text>
+<path d="M645,200 V238 H950 V280 H988" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<path d="M485,352 V324 H950 V310 H988" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<text x="940" y="274" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="end">read from</text>
+</svg>

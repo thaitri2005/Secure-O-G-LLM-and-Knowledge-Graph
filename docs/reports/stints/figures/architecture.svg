@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 690" width="1240" height="690" font-family="Segoe UI, Arial, Helvetica, sans-serif" role="img" aria-label="The four parts of the system and who owns each">
+<title>The four parts of the system and who owns each</title>
+<defs><marker id="head-0e7c86" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0e7c86"/></marker><marker id="head-14734a" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#14734a"/></marker><marker id="head-1d5fd6" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d5fd6"/></marker><marker id="head-5d6d85" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5d6d85"/></marker><marker id="head-6b46c1" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b46c1"/></marker></defs>
+<rect width="1240" height="690" fill="#ffffff"/>
+<rect x="20" y="170" width="150" height="96" rx="10" fill="#fff" stroke="#5d6d85" stroke-width="1.5"/>
+<text x="95.0" y="204.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Drilling reports</text>
+<text x="95.0" y="222.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">PDF files:</text>
+<text x="95.0" y="240.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">end-of-well and daily</text>
+<rect x="205" y="30" width="270" height="380" rx="14" fill="#dff3f4" stroke="#0e7c86" stroke-width="2"/>
+<path d="M205,70 v-26 a14,14 0 0 1 14,-14 h242 a14,14 0 0 1 14,14 v26 z" fill="#0e7c86"/>
+<circle cx="229" cy="50" r="12" fill="#fff"/>
+<text x="229" y="55" font-size="14" font-weight="800" fill="#0e7c86" text-anchor="middle">1</text>
+<text x="249" y="56" font-size="15" font-weight="700" fill="#fff" text-anchor="start">Reading the reports</text>
+<text x="461" y="56" font-size="14" font-weight="600" fill="#fff" text-anchor="end">Khai</text>
+<rect x="225" y="88" width="230" height="62" rx="10" fill="#fff" stroke="#0e7c86" stroke-width="1.5"/>
+<text x="340.0" y="114.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Read each page</text>
+<text x="340.0" y="132.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">text, tables and forms</text>
+<rect x="225" y="166" width="230" height="62" rx="10" fill="#fff" stroke="#0e7c86" stroke-width="1.5"/>
+<text x="340.0" y="192.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Rebuild known tables</text>
+<text x="340.0" y="210.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">from the PDF&#x27;s own text</text>
+<path d="M340,150 L340,164" fill="none" stroke="#0e7c86" stroke-width="2.2" marker-end="url(#head-0e7c86)"/>
+<rect x="225" y="244" width="230" height="62" rx="10" fill="#fff" stroke="#0e7c86" stroke-width="1.5"/>
+<text x="340.0" y="270.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Cut into passages</text>
+<text x="340.0" y="288.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">each linked to page, well, date</text>
+<path d="M340,228 L340,242" fill="none" stroke="#0e7c86" stroke-width="2.2" marker-end="url(#head-0e7c86)"/>
+<rect x="225" y="322" width="230" height="62" rx="10" fill="#fff" stroke="#0e7c86" stroke-width="1.5"/>
+<text x="340.0" y="348.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Check against the PDF</text>
+<text x="340.0" y="366.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">nothing lost, nothing invented</text>
+<path d="M340,306 L340,320" fill="none" stroke="#0e7c86" stroke-width="2.2" marker-end="url(#head-0e7c86)"/>
+<rect x="520" y="30" width="330" height="380" rx="14" fill="#e6effe" stroke="#1d5fd6" stroke-width="2"/>
+<path d="M520,70 v-26 a14,14 0 0 1 14,-14 h302 a14,14 0 0 1 14,14 v26 z" fill="#1d5fd6"/>
+<circle cx="544" cy="50" r="12" fill="#fff"/>
+<text x="544" y="55" font-size="14" font-weight="800" fill="#1d5fd6" text-anchor="middle">3</text>
+<text x="564" y="56" font-size="15" font-weight="700" fill="#fff" text-anchor="start">Answering engine</text>
+<text x="836" y="56" font-size="14" font-weight="600" fill="#fff" text-anchor="end">Tri</text>
+<rect x="540" y="86" width="290" height="74" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="685.0" y="109.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Coordinator</text>
+<text x="685.0" y="127.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">understands the question (one AI call)</text>
+<text x="685.0" y="145.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">code chooses where to look</text>
+<rect x="540" y="196" width="92" height="66" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="586.0" y="225.125" font-size="12.5" font-weight="700" fill="#0f1e33" text-anchor="middle">Report text</text>
+<text x="586.0" y="241.625" font-size="10.5" font-weight="400" fill="#33445c" text-anchor="middle">search</text>
+<path d="M586,160 L586,194" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<path d="M586,262 L586,300" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<rect x="639" y="196" width="92" height="66" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="685.0" y="225.125" font-size="12.5" font-weight="700" fill="#0f1e33" text-anchor="middle">Well facts</text>
+<text x="685.0" y="241.625" font-size="10.5" font-weight="400" fill="#33445c" text-anchor="middle">checked values</text>
+<path d="M685,160 L685,194" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<path d="M685,262 L685,300" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<rect x="738" y="196" width="92" height="66" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="784.0" y="225.125" font-size="12.5" font-weight="700" fill="#0f1e33" text-anchor="middle">Daily activities</text>
+<text x="784.0" y="241.625" font-size="10.5" font-weight="400" fill="#33445c" text-anchor="middle">totals by code</text>
+<path d="M784,160 L784,194" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<path d="M784,262 L784,300" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<rect x="540" y="302" width="290" height="86" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="685.0" y="322.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">The answer</text>
+<text x="685.0" y="340.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">a total: calculated by code</text>
+<text x="685.0" y="358.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">otherwise: written by AI (one call),</text>
+<text x="685.0" y="376.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">then checked against the text by code</text>
+<rect x="895" y="30" width="325" height="380" rx="14" fill="#eee9fb" stroke="#6b46c1" stroke-width="2"/>
+<path d="M895,70 v-26 a14,14 0 0 1 14,-14 h297 a14,14 0 0 1 14,14 v26 z" fill="#6b46c1"/>
+<circle cx="919" cy="50" r="12" fill="#fff"/>
+<text x="919" y="55" font-size="14" font-weight="800" fill="#6b46c1" text-anchor="middle">4</text>
+<text x="939" y="56" font-size="15" font-weight="700" fill="#fff" text-anchor="start">Application</text>
+<text x="1206" y="56" font-size="14" font-weight="600" fill="#fff" text-anchor="end">Tri and Hung</text>
+<rect x="915" y="86" width="285" height="74" rx="10" fill="#fff" stroke="#6b46c1" stroke-width="1.5"/>
+<text x="1057.5" y="109.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Backend service</text>
+<text x="1057.5" y="127.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">ask a question, open a source,</text>
+<text x="1057.5" y="145.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">mark an answer right or wrong</text>
+<path d="M1057,160 L1057,194" fill="none" stroke="#6b46c1" stroke-width="2.2" marker-end="url(#head-6b46c1)"/>
+<rect x="915" y="196" width="285" height="92" rx="10" fill="#fff" stroke="#6b46c1" stroke-width="1.5"/>
+<text x="1057.5" y="219.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Web application</text>
+<text x="1057.5" y="237.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">for people who are not developers:</text>
+<text x="1057.5" y="255.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">answer, trust label, evidence,</text>
+<text x="1057.5" y="273.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">a guide, explanations on hover</text>
+<path d="M1057,288 L1057,316" fill="none" stroke="#6b46c1" stroke-width="2.2" marker-end="url(#head-6b46c1)"/>
+<rect x="915" y="318" width="285" height="70" rx="10" fill="#fff" stroke="#6b46c1" stroke-width="1.5"/>
+<text x="1057.5" y="339.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Question log</text>
+<text x="1057.5" y="357.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">every question, how it was answered,</text>
+<text x="1057.5" y="375.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">and every right or wrong mark</text>
+<rect x="205" y="480" width="1015" height="150" rx="14" fill="#dcf5e8" stroke="#14734a" stroke-width="2"/>
+<path d="M205,520 v-26 a14,14 0 0 1 14,-14 h987 a14,14 0 0 1 14,14 v26 z" fill="#14734a"/>
+<circle cx="229" cy="500" r="12" fill="#fff"/>
+<text x="229" y="505" font-size="14" font-weight="800" fill="#14734a" text-anchor="middle">2</text>
+<text x="249" y="506" font-size="15" font-weight="700" fill="#fff" text-anchor="start">Stores</text>
+<text x="1206" y="506" font-size="14" font-weight="600" fill="#fff" text-anchor="end">Hung</text>
+<rect x="225" y="536" width="232" height="76" rx="10" fill="#fff" stroke="#14734a" stroke-width="1.5"/>
+<text x="341.0" y="560.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">PostgreSQL</text>
+<text x="341.0" y="578.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">passages, pages,</text>
+<text x="341.0" y="596.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">search vectors</text>
+<rect x="473" y="536" width="232" height="76" rx="10" fill="#fff" stroke="#14734a" stroke-width="1.5"/>
+<text x="589.0" y="560.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Neo4j</text>
+<text x="589.0" y="578.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">the knowledge graph:</text>
+<text x="589.0" y="596.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">facts and activities</text>
+<rect x="721" y="536" width="232" height="76" rx="10" fill="#fff" stroke="#14734a" stroke-width="1.5"/>
+<text x="837.0" y="560.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">File store</text>
+<text x="837.0" y="578.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">report packages,</text>
+<text x="837.0" y="596.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">page images (next)</text>
+<rect x="969" y="536" width="232" height="76" rx="10" fill="#fff" stroke="#14734a" stroke-width="1.5"/>
+<text x="1085.0" y="560.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Loader</text>
+<text x="1085.0" y="578.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">one command to load</text>
+<text x="1085.0" y="596.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">a new package (next)</text>
+<path d="M170,218 L203,218" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<path d="M475,150 L518,150" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<text transform="translate(501,300) rotate(-90)" font-size="12" font-weight="600" fill="#5d6d85" text-anchor="middle">passages, as files today</text>
+<path d="M850,123 L893,123" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<text transform="translate(876,300) rotate(-90)" font-size="12" font-weight="600" fill="#5d6d85" text-anchor="middle">answers with their evidence</text>
+<path d="M340,410 L340,478" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<rect x="280.2" y="433" width="119.6" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="340" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">passage packages</text>
+<path d="M685,478 L685,412" fill="none" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-14734a)"/>
+<rect x="555.9" y="433" width="258.2" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="685" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">being connected: read from the stores</text>
+<path d="M1057,410 L1057,478" fill="none" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-14734a)"/>
+<rect x="1000.5" y="433" width="113.0" height="19" rx="9" fill="#fff" stroke="#14734a" stroke-width="1"/>
+<text x="1057" y="447" font-size="11.5" font-weight="600" fill="#14734a" text-anchor="middle">being connected</text>
+<path d="M225,664 h44" stroke="#5d6d85" stroke-width="2.2"/>
+<text x="277" y="668" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">works today</text>
+<path d="M385,664 h44" stroke="#14734a" stroke-width="2.2" stroke-dasharray="7 6"/>
+<text x="437" y="668" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">being connected: the engine reads the same data from files for now</text>
+</svg>

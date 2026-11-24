@@ -931,8 +931,18 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 
 **B-C48 (design choice; documents).**
 
-- **Stint reports have their own folder**, `docs/reports/stints/`, one report per stint, as Tri asked. The [report for 10 to 24 November](../../reports/stints/STINT_REPORT_2026-11-24.md) is written for anh Tuấn in the shape he asked for on 9 November: what he asked and where each stands, one picture, one question walked through, weak points, what we need. Tri's 5 November update moved there from this folder and is now `STINT_UPDATE_2026-11-05.md`; its links were fixed.
+- **Stint reports have their own folder**, `docs/reports/stints/`, one report per stint, as Tri asked. The [report for 10 to 24 November](../../reports/stints/STINT_REPORT_2026-11-27.md) is written for anh Tuấn in the shape he asked for on 9 November: what he asked and where each stands, one picture, one question walked through, weak points, what we need. Tri's 5 November update moved there from this folder and is now `STINT_UPDATE_2026-11-05.md`; its links were fixed.
 - **Requests to teammates are dated notes in their own track folders:** [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md) (the demo K1 release with appendix 23, the legacy ID map and a well on end-of-well chunks; then the options, two more reports, the merged-cell defect, a dated log) and [for Hung](../C-storage/note-from-track-B-2026-11-24.md) (what was done on his behalf, his tasks in order with shared hosting first, four decisions that are his, and what to know before loading the well facts).
 - The documentation index, the tracks index, the reports index, the plan, the specification and `CLAUDE.md` point to them.
 - The stint report says plainly that most of the stint's work happened on 24 November, that there was no contact with the supervisor after 9 November, and that nothing new has run with a real model.
+
+**B-C49 (design choice; the stint report as a draft with diagrams, and the root folder cleared).** From Tri's review of B-C48's first version.
+
+- **The stint runs to 27 November**, so the report is `STINT_REPORT_2026-11-27.md`, marked as a draft and updated until then.
+- **Removed from the report, at Tri's request:** the remarks in B-C48's version on when in the stint the work was done and on contact with the supervisor. A stint report says what was built and what is weak, not how the days were spent.
+- **It now explains the system**, not only lists what was done: the four parts and who owns each, the path of a question step by step, and the knowledge graph, each as a diagram; three questions as the application shows them, as screenshots; and what Tri, Hung, Tri and Hung together, and Khai built. The backend service is described as Tri's and Hung's work together.
+- **Diagrams are generated.** `scripts/stint_figures.py` draws three SVG files (plain SVG with real text, no outside fonts). A first attempt with Mermaid came out too small to read on a page and was dropped for the report; Mermaid stays the rule for the specification's diagrams.
+- **A PDF is built from the Markdown** by `scripts/render_stint_report.py`: Markdown to a laid-out page, then printed by Edge or Chrome. The Markdown stays the source, and the PDF is committed beside it.
+- **The notes to Khai and Hung are rewritten as work lists**: for each task, what to build, the steps, and how to know it is done.
+- **Files moved out of the repository's root:** the slides of the professor's review to `docs/reports/slides/ARCHITECTURE_TODAY_2026-11-12.pdf`; the 27 October report's PDF from `output/pdf/` to `docs/reports/`, with its render script pointed there, and the empty `output/` folder removed; the English copy of VPI's requirement document, `KGinEP.docx`, to the ignored `docs/requirements/originals/KGinEP-en.docx`, beside the Vietnamese one.
 

@@ -10,7 +10,7 @@
 | How the system is designed | [Specification §4](PROJECT_DESIGN.md#4-target-architecture) and [§8](PROJECT_DESIGN.md#8-question-answering) |
 | What runs today and how it scores | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today) |
 | What each part of the team has found | [Track records](tracks/README.md) |
-| What the last stint accomplished | [Stint report, 24 November](reports/stints/STINT_REPORT_2026-11-24.md) |
+| What this stint accomplished, with diagrams of how the system works | [Stint report, 10 to 27 November](reports/stints/STINT_REPORT_2026-11-27.md) ([PDF](reports/stints/STINT_REPORT_2026-11-27.pdf)), a draft until 27 November |
 | What Khai and Hung are asked to do next | Notes of 24 November: [for Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [for Hung](tracks/C-storage/note-from-track-B-2026-11-24.md) |
 | How to run the application | [frontend/README.md](../frontend/README.md), [backend/README.md](../backend/README.md) |
 | What the supervisor asked for | [Meeting digests](requirements/README.md) |

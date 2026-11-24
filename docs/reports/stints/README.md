@@ -1,18 +1,33 @@
 # Stint reports
 
-One report at the end of each stint of one to two weeks: what was asked, what was done, what was learned, what is weak, and what the team needs. Written for the supervisor, short, with one picture of the system and one question walked through it ([9 November meeting](../../requirements/supervisor-meeting-2026-11-09.md), §6).
+One report per stint of one to two weeks: what was asked, what was done and by whom, how the system works now, what was learned, what is weak, and what the team needs. Written for the supervisor, with diagrams and one question walked through the system ([9 November meeting](../../requirements/supervisor-meeting-2026-11-09.md), §6).
 
-| Stint | Report | Language |
-|---|---|---|
-| 10 to 24 November 2026 | [STINT_REPORT_2026-11-24.md](STINT_REPORT_2026-11-24.md): the second build designed; coordinator, backend and application built; not yet run with a real model | English |
-| 30 October to 5 November 2026 | [STINT_UPDATE_2026-11-05.md](STINT_UPDATE_2026-11-05.md): Track B's status for the supervisor, E23 to E29. Moved here from `docs/tracks/B-graphrag/` on 24 November | Vietnamese |
+| Stint | Report | State | Language |
+|---|---|---|---|
+| 10 to 27 November 2026 | [STINT_REPORT_2026-11-27.md](STINT_REPORT_2026-11-27.md) · [PDF](STINT_REPORT_2026-11-27.pdf): the second build designed; the coordinator, the backend service and the application built | **Draft**, updated until the stint ends on 27 November | English |
+| 30 October to 5 November 2026 | [STINT_UPDATE_2026-11-05.md](STINT_UPDATE_2026-11-05.md): Track B's status for the supervisor, E23 to E29 | Sent | Vietnamese |
+
+## Updating a report and its PDF
+
+The Markdown file is the source. The PDF and the diagrams are made from it:
+
+```powershell
+python scripts/stint_figures.py                                                   # redraws figures/*.svg
+python scripts/render_stint_report.py docs/reports/stints/STINT_REPORT_2026-11-27.md   # writes the PDF beside it
+```
+
+- **Diagrams** (`figures/architecture.svg`, `question-flow.svg`, `knowledge-graph.svg`) are drawn by `scripts/stint_figures.py`. Change the text there and run it; do not edit the SVG files by hand.
+- **Screenshots** (`figures/app-*.png`) are of the application in examples mode (`npm run dev:examples` in `frontend/`), at 1360 pixels wide.
+- The PDF needs Microsoft Edge or Chrome on the machine; nothing else is installed.
+- Commit the Markdown, the figures and the PDF together, so the PDF never disagrees with its source.
 
 ## Writing the next one
 
-- Name the file `STINT_REPORT_<date of the stint's last day>.md` and add a row above.
-- Keep it to what a reader who follows many projects needs: no experiment tables, no code names. Link to the logs and experiment records for the detail.
-- State the weak points plainly, and what was not done.
+- Name the file `STINT_REPORT_<date of the stint's last day>.md` and add a row above. Start it as a draft and say so on its first line.
+- Say what each person built, in words a reader outside the team understands. Link to the logs and experiment records for the detail.
+- Explain how the system works with a diagram, not a list of module names.
+- State the weak points plainly, and what is not done.
 - Every number names what it was measured on. Questions written by the team are never called an evaluation.
 - English unless Tri asks for Vietnamese; Vietnamese reports keep technical terms in English.
 
-Reports that are not stint reports stay one level up, in [`docs/reports/`](../README.md): the project report, the resource request, the historical progress report.
+Other reports stay one level up, in [`docs/reports/`](../README.md): the project report, the resource request, slides, and the historical progress report.

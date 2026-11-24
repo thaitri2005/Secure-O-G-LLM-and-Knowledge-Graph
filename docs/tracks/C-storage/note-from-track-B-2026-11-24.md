@@ -1,51 +1,137 @@
-# Note for Hung: where the backend stands and what is yours next
+# Note for Hung: what to build next, in detail
 
-**From:** Tri (Track B), 24 November 2026 · **Goes with:** the [backend design](backend-design.md), which has the detail · **Plan tasks:** B1 to B8 in the [plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)
+**From:** Tri (Track B), 24 November 2026 · **Goes with:** the [backend design](backend-design.md), which holds the SQL, the Cypher and the reasons · **Plan tasks:** B1 to B8 in the [plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)
 
-Thank you for agreeing to the design and the backend role. You asked me to do part of it for now. This says what I did, what I left for you, and what to do first.
+This is your work list for the backend and the stores, in the order that unblocks the most. Each task says what to build, the steps, and how to know it is done. Change anything you disagree with and say so in your log.
 
-## What I did on your behalf
+## Where things stand
 
-| Task | State | Where |
-|---|---|---|
-| B4. The API contract | Done | [`backend/openapi.json`](../../../backend/openapi.json), examples in `backend/fixtures/` |
-| B5. The API service | Done, **reading files, not your stores** | [`backend/`](../../../backend/README.md), 21 tests |
-| B6. The question log | Done as a file | `backend/questions.py` |
+| Piece | State |
+|---|---|
+| PostgreSQL with pgvector, Neo4j, the K1 loader, 1,042 vectors, the daily activities in Neo4j | Built and checked by you, on your laptop |
+| The backend service, [`backend/`](../../../backend/README.md): asking, feedback, passages, pages, wells, activities, health | Built, 21 tests. **It reads files, not the stores** |
+| The contract with the application: [`backend/openapi.json`](../../../backend/openapi.json) and example responses in `backend/fixtures/` | Built |
+| The question log | Built as a file (`backend/questions.py`) |
+| The well facts as a graph file: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json) | Built by me, ready for you to load |
+| The application, [`frontend/`](../../../frontend/README.md) | Built by me, runs on the example responses |
 
-I changed nothing in `platform/`. Please read `backend/` when you can: it is your area and I wrote it without you. Change what you would have done differently.
-
-To try it:
+Nothing in `platform/` was changed. Please read `backend/` and change what you would do differently: it is your area.
 
 ```powershell
 .venv\Scripts\python -m pip install -r backend/requirements.txt
 .venv\Scripts\python -m uvicorn backend.app:app --port 8000      # then http://127.0.0.1:8000/docs
 cd frontend; npm install; npm run dev:examples                    # the application, no model needed
+python -m unittest tests.test_backend                             # 21 tests
 ```
 
-## What is yours, in order
+## Task 1 (B1): put the stores on a shared server
 
-| Order | Task | Why now | Design |
-|---|---|---|---|
-| 1 | **B1. Shared hosting** of the stores | Blocks everyone: the engine cannot read the stores, and data still moves through chat | [§1](backend-design.md#1-shared-hosting-b1) |
-| 2 | **B3. The well facts in Neo4j** | The file is ready: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), 216 facts of 5 wells | [§4](backend-design.md#4-the-graph-in-neo4j-b3) |
-| 3 | **The engine reads the stores**, with me | Turns the application from files to your stores | [§5](backend-design.md#5-the-engine-reads-the-stores-plan-task-e2-with-tri) |
-| 4 | **B2. The runner** | One command from Khai's release to a loaded store | [§6](backend-design.md#6-the-runner-b2) |
-| 5 | **B8. Compose file and password** | So domain experts can open it | [§8](backend-design.md#8-the-compose-file-and-the-access-gate-b8) |
-| 6 | **B6 in PostgreSQL, B7 page images** | Can wait: the log works as a file, and pages show as text | [§3](backend-design.md#3-the-question-log-in-postgresql-b6), [§7](backend-design.md#7-page-images-b7) |
+**Why first:** it blocks everything else. The engine cannot read the stores, and data still travels through chat.
 
-## Four decisions that are yours
+**Build**
 
-1. **Which provider** for the server, and whether teammates reach the databases by SSH tunnel or Tailscale. The [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md) assumes 4 vCPU and 8 GB from student credits; **please confirm that size** before we send the request to anh Tuấn.
-2. **Whether store-reading code moves into a module `graphrag` can import.** `platform/` is not a package on purpose (C-C02), so the engine cannot import from it by name.
-3. **Whether the question-log tables suit you.** They are in the design, not in `platform/sql/`, because files there run on the database's first start and I could not run them against PostgreSQL.
-4. **Property names in Neo4j.** I kept yours (`Well.name`, `Chunk.chunk_id`) and proposed names for the new labels.
+1. A server from GitHub Student Developer Pack credits (DigitalOcean or Azure): about 4 vCPU, 8 GB memory, 80 GB disk, Ubuntu LTS, Docker with the compose plugin. **Tell me if that size is wrong**: the [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md) to anh Tuấn assumes it.
+2. Change `platform/docker-compose.yml` so the two passwords come from the environment: `POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}` and `NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?}`. Add a `.env.example` with the variable names and no values.
+3. On the server: a `.env` with new passwords (not `platform-dev`), then `docker compose -f platform/docker-compose.yml up -d`.
+4. Firewall: only ports 22 and 443 open. Leave PostgreSQL (5434) and Neo4j (7474, 7687) bound to `127.0.0.1`, as the compose file already does.
+5. Give Khai and me access: add our SSH public keys. We reach the databases through a tunnel: `ssh -L 5434:127.0.0.1:5434 -L 7687:127.0.0.1:7687 <user>@<server>`.
+6. A folder for K1 releases on the server, `/srv/k1/<release>/`, filled with `scp` or `rsync`.
+7. Load the AK-3 release there with `platform/load_k1.py`, then `embed_k1.py embed` and `load_events_neo4j.py`, as you did on your laptop.
+8. A nightly `pg_dump` kept for 7 days (a cron line is enough).
+9. Write in your log: the provider, the address, how to connect, the release loaded. No password in the repository.
 
-## Things to know before loading the well facts
+**Done when:** from my machine, through the tunnel, `python platform/k1_store.py compare <package>` reports every chunk identical; Khai can connect too.
 
-- **Their chunk IDs are the old format** (`gdr882_ak3_eowr#c0013`), as your event graph's are. They will not match your `chunks` table until they go through the legacy map, or I rerun the facts on a K1 version 1 package.
-- **Three doubts in the data,** not for the loader to fix (Track B log B-F60, B-F62): 13 facts are about TG-2 and TG-4, wells the AK-3 report only describes; one 68-32 casing size may be a hole size; and AK-3's "spud to release days" is 3 where the report says 19.
-- **`run_plan`'s result text is unchanged.** I split it into `plan_value` and a wrapper; all 154 recorded plans give the same text and events, so your 58-plan replay still passes.
+**Yours to decide:** the provider; SSH tunnel or Tailscale.
 
-## What I need from you first
+## Task 2 (B3): load the well facts into Neo4j
 
-When the shared store is up: the address, how to connect, and the release name. Then I point the engine at it and we do step 3 together.
+**Build:** `platform/load_facts_neo4j.py`, written like your `load_events_neo4j.py`.
+
+1. **Read** [`graphrag/results/E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json). It has `nodes` (`{label, key, properties}`) and `relationships` (`{type, from: [label, key], to: [label, key]}`), plus counts at the top.
+2. **Constraints:** a uniqueness constraint per new key: `Document.file_id`, `Fact.fact_id`, `CasingString.casing_id`, `HoleSection.section_id`. Keep your existing `Well.name` and `Chunk.chunk_id`.
+3. **In one write transaction:**
+   - Clear the fact region only: delete `Fact`, `CasingString`, `HoleSection` and `Document` nodes, then any `Chunk` left with no relationship. Do not touch `Well`, `ReportDay` or `Event`.
+   - Nodes: one `UNWIND ... MERGE` per label, setting the key property from `key` and the rest from `properties`. `MERGE` for `Well` and `Chunk` too, so they join the nodes your event graph already made.
+   - Relationships: one `UNWIND ... MATCH ... MERGE` per type. Six types: `HAS_FACT`, `FROM`, `DESCRIBED_BY`, `HAS_CHUNK`, `HAS_CASING`, `HAS_SECTION`.
+4. **Check, and roll back on any difference:**
+   - counts per label and per type equal the file's: 5 wells, 3 documents, 38 chunks, 216 facts, 11 casing strings; 216 `HAS_FACT`, 216 `FROM`, 38 `HAS_CHUNK`, 5 `DESCRIBED_BY`, 11 `HAS_CASING`;
+   - every `Fact` has exactly one `HAS_FACT` coming in and one `FROM` going out;
+   - the facts read back equal the file's, field by field;
+   - the event region is untouched: still 27 days and 161 activities for AK-3.
+5. **Also:** add an `--events <file>` argument to `load_events_neo4j.py` (the path is a constant today), so the activities built from K1 version 1 can be loaded: `python -m graphrag.events build --k1 --name E31_events_k1`.
+
+The Cypher for steps 3 and 4 is in the [design, §4](backend-design.md#4-the-graph-in-neo4j-b3).
+
+**Done when:** `MATCH (w:Well {name:'AK-3'})-[:HAS_FACT|HAS_DAY]->() RETURN count(*)` covers both regions, a second load changes nothing, and your 58 recorded plans still replay.
+
+**Know before you start**
+
+- The facts' chunk IDs are the old format (`gdr882_ak3_eowr#c0013`), like your event graph's. They will not match your `chunks` table until Khai's release carries the legacy map, or I rerun the facts on K1 version 1. Report the count of unmatched chunks; do not fail on it yet.
+- Three doubtful facts are in the file, and they are mine to fix, not the loader's (Track B log B-F60, B-F62): 13 facts about TG-2 and TG-4, a 68-32 casing size that may be a hole size, and AK-3's "spud to release days" of 3 where the report says 19.
+
+## Task 3: the engine reads the stores (together with me)
+
+**Build:** a way to load `graphrag.lanes.Engine` from the stores instead of files. The backend does not change.
+
+| The engine needs | You provide |
+|---|---|
+| Passages as `graphrag.data.Chunk` objects, end-of-well and daily kept apart | `read_chunks(release)` from `platform/k1_store.py`. Daily passages are those of daily-report files |
+| Activities as `graphrag.events.Event` objects | Your `READ_BACK` query, which already returns those fields in order |
+| Facts as records with `well`, `property`, `value`, `unit`, `qualifier`, `context`, `chunk`, `source` | A read-back query on the fact region from Task 2 |
+| Search vectors, for questions that name several wells | `chunk_vectors`, filtered by well in SQL |
+
+1. Decide with me where this code lives. `platform/` is not a package (your C-C02), so `graphrag` cannot import it by name. My proposal: a small module `graphrag/stores.py` with the reading functions, which your scripts then use too.
+2. I add `Engine.from_stores(...)`; you review the queries.
+3. `backend/app.py` picks the stores when `BACKEND_DSN` and the Neo4j address are set, and files otherwise.
+
+**Done when:** `GET /v1/health` says `"source": "stores"` and the same questions give the same answers from the stores as from files.
+
+## Task 4 (B2): one command to load a new release
+
+**Build:** `platform/run_release.py <release folder> [--skip-vectors] [--skip-graphs]`.
+
+| Step | Calls | Stops the run if |
+|---|---|---|
+| 1. Validate | Khai's validator, as `load_k1.py` does | any validator error |
+| 2. Load passages | `load_k1.py` | counts differ from the manifest, or a page does not rebuild |
+| 3. Search vectors | `embed_k1.py embed`, then `check` | vectors do not equal passages, or SQL and memory searches disagree |
+| 4. Build activities | `python -m graphrag.events build --k1` | a daily-report file gives no activity |
+| 5. Load activities | `load_events_neo4j.py --events <file>` | its own read-back or plan replay fails |
+| 6. Build facts | `python -m graphrag.tables`, then `python -m graphrag.factgraph` | a relationship points to a missing node |
+| 7. Load facts | `load_facts_neo4j.py` from Task 2 | its own counts or read-back fail |
+| 8. Record the run | one row in a new `runs` table | never |
+
+- Each step is a function; a failed check exits non-zero and names the step.
+- The run record: release name and the digest of its `SHA256SUMS`, the git commit, the embedding model, counts and seconds per step, start and end time. Proposed table: `runs (run_id, release, started_at, finished_at, status, record jsonb)`.
+- No AI model is needed for any step. The AI extraction of facts is optional and stays off.
+
+**Done when:** the demo release loads on the server with one command, twice, with the same counts.
+
+## Task 5 (B8): the application on the server, behind a password
+
+**Build:** three services in `platform/docker-compose.yml`, under a profile (`--profile app`) so the stores still start alone.
+
+| Service | Built from | Notes |
+|---|---|---|
+| `backend` | A new `backend/Dockerfile`: Python 3.12, the lock file without the OCR extras, `backend/requirements.txt` | Runs `uvicorn backend.app:app --host 0.0.0.0 --port 8000`. Reads the database addresses and the model endpoint from the environment |
+| `frontend` | `npm run build` in `frontend/`; the `dist/` folder is served by the proxy | No Node at run time |
+| `proxy` | Caddy | HTTPS; serves the frontend; forwards `/v1/` to `backend`; asks for one shared user name and password |
+
+- Set `BACKEND_CORS_ORIGINS` to empty on the server: the application and the API share one address there.
+- The model is outside the compose file: my desktop over a private network, or a hosted open-weight endpoint, which is allowed because the demo data is public.
+- Use `GET /v1/health` for the health check.
+
+**Done when:** one HTTPS address shows the application after the password, and a question asked there appears in the question log.
+
+## Task 6 (B6, B7): can wait
+
+**The question log in PostgreSQL.** Two tables, `questions` and `question_feedback`; the SQL is in the [design, §3](backend-design.md#3-the-question-log-in-postgresql-b6). Then a class with the three methods of `QuestionLog` in `backend/questions.py` (`add_question`, `add_feedback`, `has_question`). Put the SQL in `platform/sql/002_questions.sql` once you have run it; I kept it out because files there run on the database's first start.
+
+**Page images.** At load time, render each PDF page to a PNG at 150 dpi with `pypdfium2` (already in the lock file; not PyMuPDF, which is AGPL). Store as `pages/<file_id>/p<n>.png`. Add a route `GET /v1/files/{file_id}/pages/{n}/image` and fill `image_url` in the page response. Check `file_id` against the loaded files before touching the disk.
+
+## What I need from you
+
+1. The server size confirmed, so the resource request can go to anh Tuấn.
+2. When the shared store is up: the address, how to connect, and the release name.
+3. Your view on `graphrag/stores.py` (Task 3, step 1).
