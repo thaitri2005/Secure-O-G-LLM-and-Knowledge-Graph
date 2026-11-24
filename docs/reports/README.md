@@ -11,9 +11,9 @@ One per stint, for the supervisor, in their own folder: [stints/](stints/README.
 
 [`PROJECT_REPORT_2026-11-09.md`](PROJECT_REPORT_2026-11-09.md), in English, for the supervisors: purpose and scope, how the project got here, the target architecture, the first build's three tracks in detail (ingestion, the GraphRAG engine with its two graphs, storage), results, roadmap and what the team needs. Diagrams are Mermaid in the text. A shared web copy is at https://claude.ai/artifact/J3cK4LfXiAfKD7J3ZSt3CE; this file is the record.
 
-## Draft: resource request, 24 November 2026
+## Draft: resource plan and request, 24 November 2026
 
-[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): what the second build needs to run where domain experts can reach it (a server for the stores and the application, a hosted open-weight model for the demo), what it costs, and what is asked of the supervisor: US$10 certain, at most US$160. A draft until Hung confirms the server size and the team sends it. Prices are list prices found that day.
+[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): everything the project needs to be developed, measured and shown, what the team has, and what it asks for. From the school: GPU time (one 16 GB card, about 8 hours a week) and one small virtual machine. From the supervisor: US$10 for a hosted open-weight model, and one or two experts to try the application. It ends with the email to the school. A draft until the team checks it; the recipient of the email and the school's booking rules are assumptions. Prices are list prices found that day.
 
 ## Slides
 

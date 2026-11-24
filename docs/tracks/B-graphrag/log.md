@@ -1052,3 +1052,11 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **What blocks it:** no OpenRouter key exists on the team's machines, and who holds the account is open (Q6). Nothing hosted has been run: the model ID `qwen/qwen3-8b`, whether thinking can be turned off there, and JSON-schema output are unverified until the first call. Commands: [next-runs](next-runs.md#on-a-hosted-model).
 - **Embeddings:** the hosted roles file keeps the embedding role local, so hosted runs use per-well BM25 for questions naming several wells (`--no-embeddings`), and say so.
 - **Documents brought in line the same day:** the specification (version 3.5: §3.1 lists the application as built and what is not done; D-68; Q15), the plan, CLAUDE.md, the README files, the resource request, the backend design's status table, and the notes to Khai and Hung, which now say what was built and what is left for each.
+
+**B-C58 (design choice; one resource plan for the whole project, with the email to the school).** Tri asked for a list of every resource development needs, to send to the school. The [resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md) is rewritten as that plan; the earlier text asked the supervisor for US$10 only and assumed the desktop.
+
+- **Asked of the school:** GPU time (one card of 16 GB or more, about 8 hours a week, and one slot of one to two days for the large run) and one virtual machine that stays on (4 vCPU, 8 GB, 80 GB disk) with an HTTPS address.
+- **Asked of the supervisor:** US$10 for a hosted open-weight model on public data; one or two domain experts.
+- **The GPU hours are estimates** from runs on the borrowed card (about 3 seconds a page for extraction, a few hours for 600 questions); the school's hardware is unknown.
+- **Whether a Claude key could stand in** (Tri's question): no. D-37 allows only open-weight models of about 8B that we run, because the real documents are private, and a score from another model would not measure this system. Claude stays a coding helper outside the system.
+- **Assumptions to check before sending:** that Dr. Le Duy Dung is the person to write to (specification §11.1, Q7), and the dates of 5 and 12 December.
