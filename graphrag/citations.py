@@ -33,3 +33,27 @@ def resolve(answer: dict, hits: list[str], texts: dict[str, str], doc_id: str) -
         if found:
             return found, how
     return None, "unsupported"
+
+
+# Units as reports write them after a value, and the one form shown for each.
+_UNITS = [(r"feet|foot|ft\.?|'(?!')", "ft"), (r"inch(?:es)?|in\.|\"", "in"), (r"lb/ft|lbs?/ft|ppf", "lb/ft"), (r"ppg|lb/gal", "ppg"),
+          (r"°\s?f|deg(?:rees)?\.? ?f\b", "°F"), (r"psi", "psi"), (r"gpm", "gpm"), (r"hours?|hrs?\.?", "hours"), (r"days?", "days"),
+          (r"met(?:er|re)s?|m\b", "m")]
+
+
+def unit_in_text(value: str, text: str) -> str | None:
+    """The unit the passage writes straight after the value, in one form ("1,955 feet" gives "ft"); None when the
+    value is not there or nothing known follows it. A bare "in" is a preposition, not inches."""
+    plain = _plain(str(value))
+    if not re.fullmatch(r"-?\d+(?:\.\d+)?", plain):
+        return None
+    found = re.search(rf"(?<![\d.]){re.escape(plain)}(?:\.0+)?(?!\d)[ \u00a0-]?(\S{{0,12}})", _plain(text))
+    if not found:
+        return None
+    after = found.group(1).lower()
+    return next((unit for pattern, unit in _UNITS if re.match(rf"(?:{pattern})(?![a-z])", after)), None)
+
+
+def same_unit(a: str, b: str) -> bool:
+    form = lambda u: next((unit for pattern, unit in _UNITS if re.fullmatch(pattern, u.strip().lower())), u.strip().lower())
+    return form(a) == form(b)

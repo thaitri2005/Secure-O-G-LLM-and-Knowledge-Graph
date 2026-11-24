@@ -3,7 +3,7 @@ No model, store or corpus needed."""
 import unittest
 
 from graphrag import reasoning
-from graphrag.citations import resolve
+from graphrag.citations import resolve, same_unit, unit_in_text
 from graphrag.data import Chunk
 from graphrag.events import Event, plan_value
 from graphrag.retrieval import BM25, question_dates
@@ -112,6 +112,23 @@ class StatedCauseTests(unittest.TestCase):
     def test_a_quote_of_something_that_only_happened_is_not(self):
         for quote in ("taking steam kick", "high torque, stuck pipe", "Crews at lodge for night"):
             self.assertFalse(reasoning.stated_as_a_cause(self.item(quote), {"E1": self.TEXT}), quote)
+
+
+class UnitTests(unittest.TestCase):
+    def test_the_unit_is_the_one_the_passage_writes_after_the_value(self):
+        for value, text, unit in (("1955", "drilled to a vertical depth of 1,955 feet in 27 days", "ft"),
+                                  ("40", "set at 40' BGS", "ft"), ("15.5", "15.5 lb/ft K55", "lb/ft"),
+                                  ("115", "115 hours of non-productive time", "hours"), ("329", "329°F at 500 feet", "°F")):
+            self.assertEqual(unit_in_text(value, text), unit, text)
+
+    def test_a_preposition_or_a_missing_value_gives_no_unit(self):
+        self.assertIsNone(unit_in_text("1955", "1955 in 2016"))
+        self.assertIsNone(unit_in_text("1955", "no number here"))
+        self.assertIsNone(unit_in_text("AK-3", "AK-3 feet"))
+
+    def test_two_spellings_of_one_unit_are_the_same(self):
+        self.assertTrue(same_unit("feet", "ft"))
+        self.assertFalse(same_unit("in", "ft"))
 
 
 class DateTests(unittest.TestCase):

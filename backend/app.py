@@ -46,7 +46,19 @@ QUESTION_LOG = ROOT / "data/interim/backend/questions.jsonl"
 DEV_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
+def log_to_the_console() -> None:
+    """The service's own lines (one per question, and failures) go to the console at INFO, where `docker compose
+    logs backend` shows them. Without this they are dropped: uvicorn configures only its own loggers."""
+    ours = logging.getLogger("backend")
+    if not ours.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
+        ours.addHandler(handler)
+    ours.setLevel(logging.INFO)
+
+
 def create_app(service: Service | None = None) -> FastAPI:
+    log_to_the_console()
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
         # A deployment on the stores must not start half-working: build the service now, so a wrong address or
