@@ -70,7 +70,7 @@ def sample_engine():
     daily = [Chunk(name, "ak3-dailyreport", page, "text", "Operations", f"Report For 2{page - 1}-Aug-16 AK-3 {name}")
              for name, page in (("a", 1), ("b", 1), ("c", 1), ("d", 2), ("e", 3))]
     events = [Event("2016-08-20", "0:00", "9:30", 9.5, 100, "DRIL", "drilling ahead", ["a"]),
-              Event("2016-08-20", "17:00", "18:00", 1.0, 176, "STUCK", "", ["c"], "KICK"),
+              Event("2016-08-20", "17:00", "18:00", 1.0, 176, "STUCK", "Stuck pipe due to plugged inner barrel", ["c"], "KICK"),
               Event("2016-08-21", "0:00", "0:00", 24.0, 176, "KICK", "", ["d"], "KICK"),
               Event("2016-08-22", "0:00", "6:00", 6.0, 300, "DRIL", "", ["e", "a"])]
     return lanes.Engine(baseline.pool("three"), daily, events, FACTS, multi_well_retriever="perwell:bm25")
@@ -140,7 +140,7 @@ class BackendTests(unittest.TestCase):
     def test_a_question_about_a_cause_returns_stated_and_possible_causes(self):
         frame = {"kind": "cause", "report_type": "daily", **EMPTY_PLAN,
                  "problem": {"date": "", "depth_ft": 0, "npt_code": "", "keywords": []}}
-        answer = {"stated": [{"cause": "The well kicked", "citations": [{"id": "E2", "quote": "STUCK"}]}],
+        answer = {"stated": [{"cause": "The well kicked", "citations": [{"id": "E2", "quote": "due to plugged inner barrel"}]}],
                   "possible": [{"cause": "Nothing shows this", "citations": [{"id": "E99", "quote": "not there"}]}],
                   "missing": ["a temperature log"]}
         body = self.make(frame, answer).post("/v1/questions", json={"question": "What caused the kick on AK-3 on 20 August 2016?"}).json()
@@ -460,9 +460,9 @@ class BackendTests(unittest.TestCase):
                          [("2016-08-20", "DRIL", None, False), ("2016-08-20", "STUCK", "KICK", True),
                           ("2016-08-21", "KICK", "KICK", True), ("2016-08-22", "DRIL", None, False)])
         stuck = events[1]
-        self.assertEqual(stuck["text"], "* 2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity STUCK, non-productive KICK: ")
+        self.assertEqual(stuck["text"], "* 2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity STUCK, non-productive KICK: Stuck pipe due to plugged inner barrel")
         self.assertEqual({k: stuck["activity"][k] for k in ("start", "end", "hours", "end_md", "description", "chunks")},
-                         {"start": "17:00", "end": "18:00", "hours": 1.0, "end_md": 176, "description": "", "chunks": ["c"]})
+                         {"start": "17:00", "end": "18:00", "hours": 1.0, "end_md": 176, "description": "Stuck pipe due to plugged inner barrel", "chunks": ["c"]})
         self.assertTrue(all(e["activity"] is None for e in evidence if e["kind"] != "event"))
 
     # ---- the question log, read side (/v1/admin/) --------------------------------------------------------------

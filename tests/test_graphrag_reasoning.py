@@ -226,16 +226,18 @@ class AnswerTests(unittest.TestCase):
 
     def test_items_without_a_supported_citation_are_removed_and_counted(self):
         result, _ = self.answer(two_part_answer)
-        self.assertEqual([i["cause"] for i in result["stated"]], ["Plugged inner barrel", "Foot clamp slipped"])
-        self.assertEqual(result["removed"], {"stated": 1, "possible": 1})
-        plugged, clamp = result["stated"]
+        # The question is about 20 August. The foot clamp slipped on 21 August: a true reason, of a later event,
+        # so it is shown as a possible factor and not as the cause of the day asked about (B-F74).
+        self.assertEqual([i["cause"] for i in result["stated"]], ["Plugged inner barrel"])
+        self.assertEqual((result["removed"], result["moved_to_possible"]), ({"stated": 1, "possible": 1}, 1))
+        plugged, clamp = result["stated"][0], result["possible"][0]
         self.assertEqual(plugged["citations"][0]["how"], "model")
         self.assertEqual(plugged["citations"][0]["chunk"], EVENT_CHUNK)
         # The quote is in another event than the one cited: the citation moves there, as citations.resolve does.
         self.assertEqual(clamp["citations"][0]["how"], "by_quote")
         self.assertIn("foot clamp slipping", next(i["text"] for i in self.evidence.reasoning["items"]
                                                   if i["id"] == clamp["citations"][0]["evidence"]))
-        self.assertEqual([i["cause"] for i in result["possible"]], ["Hot formation water"])
+        self.assertEqual([i["cause"] for i in result["possible"]], ["Foot clamp slipped", "Hot formation water"])
         self.assertTrue(result["citations_named_shown"])
 
     def test_missing_is_the_corpus_list_plus_what_the_model_adds(self):
@@ -246,7 +248,7 @@ class AnswerTests(unittest.TestCase):
     def test_exact_mode_hides_the_possible_list_and_sends_the_same_request(self):
         exact, sent_exact = self.answer(two_part_answer, mode="exact")
         free, sent_free = self.answer(two_part_answer)
-        self.assertEqual((exact["possible"], exact["possible_hidden"]), ([], 1))
+        self.assertEqual((exact["possible"], exact["possible_hidden"]), ([], 2))
         self.assertEqual(exact["stated"], free["stated"])
         self.assertEqual(sent_exact, sent_free)
 
@@ -268,7 +270,7 @@ class AnswerTests(unittest.TestCase):
 
     def test_the_fixed_interface_gathers_and_answers(self):
         ev = reasoning.reasoning(self.QUESTION, frame(date="2016-08-20"), engine(), ScriptedClient(None, two_part_answer))
-        self.assertEqual(len(ev.reasoning["answer"]["stated"]), 2)
+        self.assertEqual((len(ev.reasoning["answer"]["stated"]), len(ev.reasoning["answer"]["possible"])), (1, 2))
         self.assertNotIn("answer", reasoning.reasoning(self.QUESTION, frame(date="2016-08-20"), engine()).reasoning)
 
 
@@ -289,7 +291,8 @@ class CoordinatorReasoningTests(unittest.TestCase):
         self.assertIn(EVENT_CHUNK, {c["chunk"] for c in row["citations"]})
         self.assertTrue(row["answer_text"].startswith("Problem: non-productive time coded KICK"))
         self.assertIn("Stated in the reports: Plugged inner barrel [E", row["answer_text"])
-        self.assertIn("Possible, not stated in any report: Hot formation water", row["answer_text"])
+        self.assertIn("Possible, not stated in any report: Foot clamp slipped [E", row["answer_text"])
+        self.assertIn("; Hot formation water [E", row["answer_text"])
         self.assertEqual(row["shown_passages"][0], EVENT_CHUNK)
         self.assertEqual((row["prompt_tokens"], row["passages"]), (100, len(row["reasoning"]["evidence"])))
 
@@ -307,7 +310,7 @@ class CoordinatorReasoningTests(unittest.TestCase):
     def test_exact_mode(self):
         row, _ = self.ask("What caused the stuck pipe on AK-3 on 20 August 2016?", flat(), mode="exact")
         self.assertEqual((row["lanes"], row["reasoning"]["possible"], row["reasoning"]["possible_hidden"]),
-                         (["reasoning"], [], 1))
+                         (["reasoning"], [], 2))
         self.assertNotIn("Possible", row["answer_text"])
         row, client = self.ask("What caused the delay on AK-3 on 2 September 2016?", flat(), mode="exact")
         self.assertEqual((row["status"], row["calls"], len(client.answers)), ("not_found_in_graph", 1, 0))
@@ -370,6 +373,9 @@ GOLD_QUESTION = {"id": "r01", "kind": "cause", "question": "What caused the stuc
                  "gold": [], "outcome": "answer", "gold_problem": {"date": "2016-08-20", "npt_code": "KICK"},
                  "stated_causes": [{"cause": "plugged inner barrel", "terms": ["plugged inner barrel", "inner barrel"],
                                     "chunks": ["gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"]}]}
+# The same question with no day: nothing says the lost rod of 21 August came after the problem asked about, so a
+# reason given for it stays a stated cause, and the gold counts it as unsupported.
+UNDATED_QUESTION = dict(GOLD_QUESTION, question="What caused the stuck pipe on AK-3?")
 ASK_QUESTION = {"id": "r02", "kind": "cause", "question": "Why did AK-3 wait on equipment?", "gold": [],
                 "outcome": "ask_which", "stated_causes": []}
 
@@ -389,7 +395,7 @@ class ScoringTests(unittest.TestCase):
         return coordinator.answer(q, self.engine, client, client)
 
     def test_a_found_and_cited_cause_with_an_unsupported_one(self):
-        row = self.row(GOLD_QUESTION, flat(keywords=["stuck pipe"]), two_part_answer)
+        row = self.row(UNDATED_QUESTION, flat(keywords=["stuck pipe"]), two_part_answer)
         score = row["reasoning_score"]
         self.assertEqual((score["problem_found"], score["stated_found"], score["stated_found_and_cited"]), (True, "1/1", True))
         # "Foot clamp slipped" is said as stated, and the gold gives it as no stated cause.
@@ -415,7 +421,7 @@ class ScoringTests(unittest.TestCase):
     def test_asking_which_is_right_when_that_is_the_outcome(self):
         row = self.row(ASK_QUESTION, flat(npt_code="WOE"), two_part_answer)
         self.assertEqual((row["status"], row["reasoning_score"]["correct"]), ("ask_which", True))
-        summary = reasoning.summarize([row, self.row(GOLD_QUESTION, flat(), two_part_answer)])
+        summary = reasoning.summarize([row, self.row(UNDATED_QUESTION, flat(npt_code="KICK"), two_part_answer)])
         self.assertEqual(summary, {"questions": 2, "correct": "1/2", "problem_found": "2/2",
                                    "stated_found_and_cited": "2/2", "unsupported_claims": 1, "removed_by_check": 2,
                                    "asked_which": 1})
@@ -494,7 +500,7 @@ class K4ReasoningTests(unittest.TestCase):
         self.assertEqual([r["k4_version"] for r in records], ["0.3", "0.3", "0.2"])
         answered, ask, other = records
         self.assertEqual((answered["pipeline"]["lanes"], answered["pipeline"]["frame_kind"]), (["reasoning"], "cause"))
-        self.assertEqual([i["cause"] for i in answered["reasoning"]["stated"]], ["Plugged inner barrel", "Foot clamp slipped"])
+        self.assertEqual([i["cause"] for i in answered["reasoning"]["stated"]], ["Plugged inner barrel"])
         self.assertEqual(answered["reasoning"]["stated"][0]["citations"][0],
                          {"chunk_id": EVENT_CHUNK, "how": "model", "evidence_id": answered["reasoning"]["stated"][0]
                           ["citations"][0]["evidence_id"]})

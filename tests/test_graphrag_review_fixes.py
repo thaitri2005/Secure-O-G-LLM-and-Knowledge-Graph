@@ -86,6 +86,22 @@ class ProblemCodeTests(unittest.TestCase):
         self.assertEqual([p.events[0].npt_code for p in reasoning.find_problems(frame, EVENTS)], ["WAIT"])
 
 
+class StatedCauseTests(unittest.TestCase):
+    TEXT = ("Core ahead to 176 ft, high torque, stuck pipe, taking steam kick. Work to free stuck pipe, free hot water "
+            "flowing from annulus, due to plugged inner barrel. Crews at lodge for night | Waiting on weather to fly rods")
+
+    def item(self, quote):
+        return {"cause": "x", "citations": [{"evidence": "E1", "quote": quote}]}
+
+    def test_a_quote_in_a_clause_that_gives_a_reason_is_a_stated_cause(self):
+        for quote in ("plugged inner barrel", "due to plugged inner barrel", "Waiting on weather"):
+            self.assertTrue(reasoning.stated_as_a_cause(self.item(quote), {"E1": self.TEXT}), quote)
+
+    def test_a_quote_of_something_that_only_happened_is_not(self):
+        for quote in ("taking steam kick", "high torque, stuck pipe", "Crews at lodge for night"):
+            self.assertFalse(reasoning.stated_as_a_cause(self.item(quote), {"E1": self.TEXT}), quote)
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):

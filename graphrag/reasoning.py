@@ -304,7 +304,8 @@ def gather(question: str, frame: dict, engine: Engine) -> Evidence:
     chunks = list(dict.fromkeys(i["chunk"] for i in order if i["chunk"]))
     return Evidence("reasoning", False, chunks, report_type="daily",
                     reasoning={"problem": candidates[0], "candidates": candidates, "items": items,
-                               "chars": sum(len(i["text"]) for i in items), "problem_events_left_out": left_out})
+                               "chars": sum(len(i["text"]) for i in items), "problem_events_left_out": left_out,
+                               "asked": dict(frame.get("problem") or {})})
 
 
 # ---- steps 3 and 4: answer in two parts, check in code, say what is missing ---------------------------------------
@@ -357,6 +358,29 @@ def check(listed, items: list[dict]) -> tuple[list[dict], int, bool]:
     return kept, dropped, named_shown
 
 
+# Words with which a report gives a reason. A "stated cause" must rest on a clause that holds one (B-F74).
+GIVES_A_REASON = re.compile(r"\b(due to|because|caused|causing|cause of|as a result|result of|owing to|"
+                            r"wait(?:ing|ed)? (?:on|for)|delay\w*|unable|could not|couldn't|prevent\w*|fail\w*)\b", re.IGNORECASE)
+
+
+def _clause(text: str, quote: str) -> str:
+    """The clause of `text` around `quote`: from the sentence or table-cell break before it to the one after."""
+    plain, wanted = squash(text), squash(quote)
+    at = plain.lower().find(wanted.lower())
+    if at < 0 or any(mark in wanted.rstrip(". ") for mark in (". ", "; ", " | ")):
+        return wanted  # not found as written, or already more than one clause: the quote stands for itself
+    start = max(plain.rfind(mark, 0, at) for mark in (". ", "; ", " | ", "\n")) + 1
+    ends = [plain.find(mark, at + len(wanted)) for mark in (". ", "; ", " | ", "\n")]
+    end = min([e for e in ends if e >= 0], default=len(plain))
+    return plain[start:end]
+
+
+def stated_as_a_cause(item: dict, texts: dict[str, str]) -> bool:
+    """Whether the report gives this as a reason: one of the item's quotes sits in a clause that says "due to",
+    "because", "waiting on", "unable" or the like. A quote of something that merely happened does not count."""
+    return any(GIVES_A_REASON.search(_clause(texts.get(c["evidence"], ""), c["quote"])) for c in item["citations"])
+
+
 def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallback") -> tuple[dict, Any]:
     """Steps 3 and 4 for a gathered problem: one call, then the checks. In exact mode the `possible` list is not
     shown; how many were hidden is recorded."""
@@ -365,6 +389,26 @@ def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallbac
     parsed = call.parsed if isinstance(call.parsed, dict) else {}
     stated, dropped_stated, shown_stated = check(parsed.get("stated"), pack["items"])
     possible, dropped_possible, shown_possible = check(parsed.get("possible"), pack["items"])
+    # Qwen3-8B listed things that happened near the problem as stated causes, each with a true quote (E34): 17 such
+    # items on ten questions. An item whose quote gives no reason is shown as a possible factor instead.
+    texts = {i["id"]: i["text"] for i in pack["items"]}
+    dates = {i["id"]: i.get("date") or "" for i in pack["items"]}
+    asked = normalize((evidence.reasoning.get("asked") or {}).get("date") or "")
+    kept, moved, clauses = [], [], set()
+    for item in stated:
+        reasons = {_clause(texts.get(c["evidence"], ""), c["quote"]).lower() for c in item["citations"]
+                   if GIVES_A_REASON.search(_clause(texts.get(c["evidence"], ""), c["quote"]))}
+        # A cause comes before its effect: with a day asked about, a reason first written on a later day is not
+        # that day's cause (the lost rod of 21 August did not cause the stuck pipe of 20 August).
+        late = bool(asked) and all((dates.get(c["evidence"]) or asked) > asked for c in item["citations"])
+        if not reasons or late:
+            moved.append(item)
+        elif reasons <= clauses:
+            continue  # the same words of the report, given twice: one stated cause
+        else:
+            clauses |= reasons
+            kept.append(item)
+    stated, possible = kept, [*moved, *possible]
     corpus = [{"text": text, "from": "corpus"} for text in MISSING]
     added = [squash(m) for m in (parsed.get("missing") or []) if isinstance(m, str) and m.strip()]
     model = [{"text": text, "from": "model"} for text in dict.fromkeys(added)
@@ -375,7 +419,7 @@ def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallbac
               "problem_events_left_out": pack["problem_events_left_out"],
               "stated": stated, "possible": [] if mode == "exact" else possible, "possible_hidden": hidden,
               "removed": {"stated": dropped_stated, "possible": dropped_possible},
-              "citations_named_shown": shown_stated and shown_possible,
+              "moved_to_possible": len(moved), "citations_named_shown": shown_stated and shown_possible,
               "missing": corpus + model, "valid": bool(parsed)}
     return result, call
 
