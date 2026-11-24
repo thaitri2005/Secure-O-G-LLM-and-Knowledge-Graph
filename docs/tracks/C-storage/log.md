@@ -230,3 +230,34 @@ Built by Track B with Hung's clearance (Track B log B-D41), from the [backend de
 - **Tri's proposal:** Hung's machine hosts the stores over Tailscale, since it is the stronger one, or the team waits for a server. Hung to answer.
 - **What does not change:** everything else in C-D06 (student credits, asking the school for a small virtual machine, the resource request to anh Tuấn). The [server runbook](server-runbook.md) §0 applies to whichever machine hosts.
 - **What it also rules out:** the borrowed desktop serving the demo's model to a server over a private network (`deploy/models/endpoints.desktop.json`, option A of the [application runbook](../../../deploy/README.md)). For a demo that others reach, the model is then a hosted open-weight one on public data (option B, the US$10 of the resource request).
+
+## 2026-11-25: hardening before a first deployment, and the stores with real vectors
+
+Written by Track B with Hung's clearance, from a design review and a run of the whole stack on a cloud machine (Track B log B-D49, B-C67, B-F71).
+
+**C-C19 (design choice; the stores come back by themselves and say when they are ready).** [`platform/docker-compose.yml`](../../../platform/docker-compose.yml).
+
+- PostgreSQL and Neo4j have `restart: unless-stopped` and health checks; the backend starts once both answer. Before, a reboot left the stores down and the backend restarting in a loop.
+- Neo4j: heap 512 MB, page cache 256 MB, and a memory limit on every service (`platform/.env.example` lists the variables). The graph is a few hundred nodes and the backend reads it once, at start. Seen on the run: Neo4j healthy 16 seconds after start, holding about 840 MB.
+- **APOC is no longer installed.** Nothing in `platform/` or the application calls it; installing it made a download part of every first start. `graphrag/neo4j_kg.py --resolve` (E16) uses it with its own compose file, which is unchanged.
+
+**C-C20 (design choice; a copy of the backup off the server, and a check that it restores).** [`platform/server/backup.sh`](../../../platform/server/backup.sh) copies the dumps to `BACKUP_REMOTE` (an rsync target) when it is set and writes into its log whether it did; [`restore_check.sh`](../../../platform/server/restore_check.sh) loads a dump into a throwaway PostgreSQL container and counts what came back. The question log is the one thing in the stores that cannot be rebuilt. Neither script has run on a server yet.
+
+**C-F09 (finding; the whole runner on a new machine, with real vectors).** On a cloud machine with 4 cores, from an empty volume, with the package `demo-v2` built there (release `20261124T185223Z-ccc792161833`, 1,432 chunks):
+
+| Step | Result | Time |
+|---|---|---:|
+| Load chunks | 8 files, 302 pages, 1,432 chunks; 302 of 302 pages rebuilt from the database | 1 s |
+| Embed | **1,432 vectors of Qwen3-Embedding-0.6B on CPU; 67 of 67 searches give the same top 5 from pgvector as in memory** | 1,264 s |
+| Events | 161 events on 27 days, 58 of 58 recorded plans give their recorded results | 6 s |
+| Facts | 207 facts (the fact graph rebuilt with the corrected check, Track B log B-F68); 202 on the package's chunk IDs, 5 on old IDs with no mapping; every package chunk they cite is in PostgreSQL | 1 s |
+
+- Without the embedding step the whole load takes 12 seconds.
+- This closes two items of C-F08: the store holds real vectors, and the backend chose the search in the database at start (`perwell:fusion:bm25+pgvector`). The facts on old IDs are down from 14 to 5, because nine of the fourteen were wrong facts the corrected check removed.
+- The runner now starts from `graphrag/results/E32_fact_graph.graph.json`.
+- With the stores up, the tests that skip without them ran: engine 262, backend 106, platform 29, all passing.
+
+**C-F10 (finding; the application as containers, checked from outside).** The backend and proxy images build from the committed Dockerfiles (344 MB and 93 MB), and the stack came up healthy with `BACKEND_SOURCE=stores`. Through the proxy: the gate refuses without the password; the content security policy and the other headers are sent; a 70 kB request is refused with 413; a page image is served; `GET /v1/ready` answers. Opening the application in a browser against the stores found one fault the example data had hidden: a fact's value on a well page did not open its page, because on a package a fact named its report by the package's file ID and the file routes use the report's name. Fixed (Track B log B-F73).
+
+- **Docker Hub rate-limited the machine** (HTTP 429 on the pinned images). The images were pulled from `mirror.gcr.io` under the same tags for this run only; the compose file still pins the digests. On a server that pulls for the first time this is unlikely, but a mirror is the way out.
+- **Not done here:** a server with a domain and HTTPS; the backup and the monitor running from cron.

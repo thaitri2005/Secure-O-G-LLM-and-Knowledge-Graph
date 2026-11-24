@@ -190,3 +190,25 @@ Not checked: whether a second export gives the same `SHA256SUMS`.
 | All | 372 | 294 | 5 | 73 |
 
 It reaches 36 of the 38 chunks Track B's fact graph cites. The two it does not reach are `gdr1295_56-32_eowr#c0039` and `gdr882_ak3_eowr#c0004`. Why 56-32 leaves 56 old chunks unmapped (the new parser split or merged them, or OCR on its 49 hybrid pages changed the text) was not looked into.
+
+## 2026-11-25: the demo package built from nothing on Linux
+
+Recorded by Track B with Khai's clearance (Track B log B-F71).
+
+**A-F22 (finding).** `demo-v2` was built on a cloud Linux machine with 4 cores and no GPU, from an empty checkout: the three end-of-well reports downloaded from the Geothermal Data Repository and checked against their recorded SHA-256, AK-3's appendix corpus built first (44 PDFs, 463 pages, 1,775 chunks, none failed, 56 minutes, most of it one scanned 91-page appendix), then the package (15 minutes). The commands are in [next-runs.md](../B-graphrag/next-runs.md#building-the-demo-package-from-nothing-on-linux).
+
+| | A-F20 (laptop) | Built here |
+|---|---:|---:|
+| Release | `20261124T164744Z-6647c02f0c85` | `20261124T185223Z-ccc792161833` |
+| Files, pages | 8, 302 | 8, 302 |
+| Chunks | 1,431 | **1,432** |
+| Parents | 1,139 | **1,140** |
+| Tables, forms | 292, 94 | 292, 94 |
+| AK-3 report, 56-32, 68-32 chunks | 61, 246, 134 | 61, 246, **135** |
+| Daily-report chunks | 981 | 981 |
+| Old chunks mapped exactly, nearly, not at all (of 372) | 294, 5, 73 | **287, 9, 76** |
+
+- **The package is not the same to the chunk on another machine.** The one extra chunk is in the 68-32 report, whose hybrid pages go through OCR; AK-3's report and the daily reports are identical. Not tracked down. A record that uses a package names its release ID.
+- The package's own validator passes with 0 errors and 302 of 302 pages rebuilt; `scripts/check_k1_graphrag_compat.py` passes, with 161 events.
+- **Gaps met on the way:** the three end-of-well PDFs have no download command under the names the build expects; the first Docling run needs `HF_HUB_OFFLINE=0`, which the notes gave only as a remedy; the appendix corpus needs `vietocr`, which is outside the lock file; `platform/validate_k1.py` is the version 0 checker and does not apply to a package. The run notes now state all four.
+- `process --workers 1` did not hang; the hang after 40 documents was with two workers.
