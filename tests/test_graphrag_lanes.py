@@ -8,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from graphrag import baseline, client, coordinator, events, k4, lanes
+from graphrag import baseline, client, coordinator, events, factgraph, k4, lanes
 from graphrag.data import Chunk
 from graphrag.events import Event
 
@@ -409,6 +409,62 @@ class K4VersionTests(unittest.TestCase):
 
     def test_earlier_runs_still_write_version_0_1(self):
         self.assertEqual({r["k4_version"] for r in k4.records("E26_plain_routed")}, {"0.1"})
+
+
+class FactGraphTests(unittest.TestCase):
+    def setUp(self):
+        self.graph = factgraph.to_graph(FACTS)
+
+    def nodes(self, label):
+        return [n for n in self.graph["nodes"] if n["label"] == label]
+
+    def relationships(self, kind):
+        return [r for r in self.graph["relationships"] if r["type"] == kind]
+
+    def test_every_fact_is_a_node_under_its_well_with_its_chunk(self):
+        self.assertEqual([len(self.nodes(label)) for label in ("Well", "Fact", "Chunk", "Document")], [1, 3, 3, 1])
+        self.assertEqual([len(self.relationships(kind)) for kind in ("HAS_FACT", "FROM", "HAS_CHUNK", "DESCRIBED_BY")],
+                         [3, 3, 3, 1])
+        self.assertEqual(self.nodes("Well")[0], {"label": "Well", "key": "AK-3", "properties": {"name": "AK-3"}})
+        self.assertEqual(self.nodes("Document")[0]["key"], "gdr882_ak3_eowr")
+        self.assertEqual(self.nodes("Chunk")[0], {"label": "Chunk", "key": "gdr882_ak3_eowr#c0012", "properties": {}})
+
+    def test_planned_and_actual_values_stay_separate_and_name_their_source(self):
+        facts = self.nodes("Fact")
+        self.assertEqual(sorted(n["properties"]["qualifier"] for n in facts), ["actual", "actual", "planned"])
+        self.assertEqual({n["properties"]["source"] for n in facts}, {"table_mapping", "llm"})
+        casing = next(n for n in facts if n["properties"]["qualifier"] == "planned")
+        self.assertEqual(casing["properties"]["context"], '{"casing_size_in": "8-5/8"}')
+        self.assertEqual(casing["properties"]["value"], "40")
+
+    def test_casing_string_takes_actual_values_only(self):
+        casing = self.nodes("CasingString")
+        self.assertEqual(len(casing), 1)
+        self.assertEqual((casing[0]["key"], casing[0]["properties"]), ("AK-3|8-5/8", {"casing_size_in": "8-5/8", "depth": "40"}))
+        self.assertEqual(self.relationships("HAS_CASING")[0]["from"], ["Well", "AK-3"])
+
+    def test_hole_sections_come_from_hole_size_facts(self):
+        hole = {"chunk": "gdr882_ak3_eowr#c0013", "well": "AK-3", "property": "hole_size", "qualifier": "actual",
+                "context": None, "value": "12-1/4"}
+        graph = factgraph.to_graph(FACTS + [hole])
+        sections = [n for n in graph["nodes"] if n["label"] == "HoleSection"]
+        self.assertEqual([(n["key"], n["properties"]) for n in sections], [("AK-3|12-1/4", {"hole_size_in": "12-1/4"})])
+        self.assertEqual(sum(r["type"] == "HAS_SECTION" for r in graph["relationships"]), 1)
+
+    def test_no_dangling_relationships_and_stable_output(self):
+        keys = {(n["label"], n["key"]) for n in self.graph["nodes"]}
+        self.assertEqual(len(keys), len(self.graph["nodes"]))
+        self.assertTrue(all(tuple(r["from"]) in keys and tuple(r["to"]) in keys for r in self.graph["relationships"]))
+        self.assertEqual(self.graph, factgraph.to_graph(list(reversed(FACTS))))
+
+    def test_a_fact_without_one_well_name_is_left_out(self):
+        nameless = dict(FACTS[2], well="")
+        self.assertEqual(len([n for n in factgraph.to_graph([nameless])["nodes"] if n["label"] == "Fact"]), 0)
+
+    def test_k1_version_1_chunk_ids_give_the_file_as_the_document(self):
+        fact = dict(FACTS[2], chunk="f62efbee00767a3e7:s6:c0")
+        documents = [n["key"] for n in factgraph.to_graph([fact])["nodes"] if n["label"] == "Document"]
+        self.assertEqual(documents, ["f62efbee00767a3e7"])
 
 
 if __name__ == "__main__":
