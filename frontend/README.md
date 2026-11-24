@@ -50,7 +50,18 @@ Everything on screen is written for someone who reads drilling reports and has n
 - **Verified data only**: a switch for answers from checked numbers and facts only.
 - **Was this answer right?** Yes in one click; "No, it's wrong" asks what it should be. Both are saved.
 - **How we got this answer** is folded away for those who want it: three numbered steps, and the technical cost.
-- Earlier questions fold to one line and are kept until the tab is closed. A link can carry a question (`?q=...&graph=1`). `/` puts the cursor in the search box; Esc closes a page or the guide.
+- **A page for each well**, opened from the list of wells on the start page or from a well's name under an answer:
+  - one sentence on its days ("27 days of reports, 115 hours of non-productive time: 66 hours KICK, 24 WAIT, ...");
+  - *What we know about it*: the facts in groups (general, depths and dates, casing strings with planned beside actual, values at depths), with plain names, units and an "i" on the terms; a value opens the page it is written on, in the same page view as a source;
+  - *Day by day*: the timeline of the days whose activities are all at hand, and a list of every report day with its hours, non-productive hours, depth and codes; a bar marks its day in the list. A well with no daily reports says so instead;
+  - *Its reports*, each with its pages, or that its text is not on this computer.
+- **Questions people asked** (`?view=questions`), for the team and the advisors, linked quietly from the top bar and left out of the guide. It only reads:
+  - the counts (asked, answered, marked right, marked wrong, not marked) and the list, newest first, 20 at a time;
+  - filters: kind of question, how it was marked, words in the question, and the days asked;
+  - an opened question: when and how it was asked, the answer it got with its label, and every mark with its comment;
+  - "Download these as a question set" saves the questions the filters select as a question file, as the server wrote it. Someone writes the right answers into it, and it becomes a test.
+- Earlier questions fold to one line and are kept until the tab is closed. `/` puts the cursor in the search box; Esc closes a page or the guide.
+- **Links and the back button work without a router:** the screen is in the query string, as a question already was. `?q=...&graph=1` asks a question, `?well=AK-3` opens a well, `?view=questions&question=<id>` one logged question (`src/lib/route.ts`).
 
 ## Design
 
@@ -72,16 +83,19 @@ Fonts and icons are bundled, so the application needs no outside network.
 | Path | Holds |
 |---|---|
 | `src/api/` | `client.ts` (the real API and its error messages), `examples.ts` (the example responses, loaded only in examples mode), `schema.d.ts` (generated) |
-| `src/lib/` | Pure logic with tests: `wording.ts` (every sentence the application says, and the hover explanations), `cause.ts` (answers about causes: the activities read back, where a cited cause is written, the question asked again), `strips.ts` (operations placed on a day), `highlight.ts` (marking a value in report text) |
-| `src/components/` | `Answer.tsx`, `Cause.tsx` (an answer about a cause, and the choices), `Evidence.tsx`, `CauseEvidence.tsx` (what a cause answer rests on), `Passage.tsx` (report text), `DayStrips.tsx` (the timeline), `Guide.tsx` (how it works), `Tip.tsx` (the hover explanations), `Icon.tsx` |
-| `src/App.tsx` | State: asking, answers, selection, the page view |
+| `src/lib/` | Pure logic with tests: `wording.ts` (every sentence the application says, the plain names and units of properties, and the hover explanations), `cause.ts` (answers about causes: the activities around the problem, where a cited cause is written, the question asked again), `well.ts` (casing tables, the days the timeline can draw), `route.ts` (the screen in the address), `strips.ts` (operations placed on a day), `highlight.ts` (marking a value in report text) |
+| `src/components/` | `Answer.tsx`, `Cause.tsx` (an answer about a cause, and the choices), `Evidence.tsx`, `CauseEvidence.tsx` (what a cause answer rests on), `PageView.tsx` (a page of a report), `Passage.tsx` (report text), `DayStrips.tsx` (the timeline), `Well.tsx` (a well's page), `Questions.tsx` (the questions people asked), `RouteLink.tsx`, `Guide.tsx` (how it works), `Tip.tsx` (the hover explanations), `Icon.tsx` |
+| `src/App.tsx` | State: the screen, asking, answers, selection, the page view |
 | `src/styles.css` | One stylesheet; colours and type sizes are variables at the top |
 
 ## Limits
 
 - **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run with a real model is still to do (it needs a model endpoint, Track B log B-D43).
 - A page's image shows only where the backend has rendered it (`platform/render_pages.py`, `BACKEND_PAGE_IMAGES`); there is no highlight of the cited passage on the image yet, because K1 passages carry no region ([backend design](../docs/tracks/C-storage/backend-design.md) §7).
-- The activities around a cause's problem arrive as the lines the AI was shown, not as structured activities; the application reads them back (`src/lib/cause.ts`) and shows a line it cannot read as it is, without a timeline.
-- Report names are file IDs made readable (`ak3 eowr`), until documents carry titles.
+- The activities around a cause's problem arrive with their fields. An answer saved before they did is read back from the lines the AI was shown (`src/lib/cause.ts`); a line that cannot be read is shown as it is, without a timeline.
+- Report names are file IDs made readable (`ak3 eowr`), until documents carry titles. Two of AK-3's daily reports therefore share one name on its page.
+- **The questions page cannot always give an AI-written answer its exact label:** the log does not keep whether the value was confirmed in the text, so such an answer is labelled "Written by AI" and says the check was not saved. A calculated answer is recognised by the activity log having answered it.
+- Property units the reports leave out (ft, °F, lb/ft, ...) come from `wording.ts`, after the test profile in `prototype/profiles/oil_wells.json`; casing weight in lb/ft is the usual unit, not one the facts state.
+- **Example mode** has a well page for AK-3 only, and its timeline draws the 4 days whose activities the examples hold completely (the list gives all 27). Its question log is the three entries of `admin_questions.json`; the export is put together from `admin_export.json`. Pages other than page 7 open as the text the examples hold of them.
 - No login: the access gate is at the proxy.
 - Answers are kept in the browser's session storage, so they include report text on that machine until the tab closes.

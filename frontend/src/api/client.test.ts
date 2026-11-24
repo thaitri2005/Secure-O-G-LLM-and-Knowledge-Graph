@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { API_BASE, ApiError, liveApi } from "./client";
+import { API_BASE, ApiError, filterQuery, liveApi } from "./client";
 
 function reply(status: number, body: unknown = {}, raw = false): Response {
   return new Response(raw ? (body as string) : JSON.stringify(body), { status });
@@ -59,13 +59,72 @@ describe("the real API client", () => {
   });
 });
 
+describe("the real API client, for the newer screens", () => {
+  it("asks for a well's page and its activities, the name encoded", async () => {
+    const fetcher = vi.fn(async () => reply(200, {}));
+    vi.stubGlobal("fetch", fetcher);
+    await liveApi.well("AK-3");
+    await liveApi.wellEvents("56/32");
+    const paths = (fetcher.mock.calls as unknown[][]).map((call) => call[0]);
+    expect(paths).toEqual(["/v1/wells/AK-3", "/v1/wells/56%2F32/events"]);
+  });
+
+  it("reads the questions people asked with only the filters that are set", async () => {
+    const fetcher = vi.fn(async () => reply(200, {}));
+    vi.stubGlobal("fetch", fetcher);
+    await liveApi.questions({ kind: "cause", verdict: "wrong", q: "  stuck pipe ", date_from: "", date_to: undefined }, 20, 40);
+    await liveApi.questionCounts({});
+    await liveApi.question("log 1");
+    const paths = (fetcher.mock.calls as unknown[][]).map((call) => call[0]);
+    expect(paths).toEqual([
+      "/v1/admin/questions?kind=cause&verdict=wrong&q=stuck+pipe&limit=20&offset=40",
+      "/v1/admin/questions/counts",
+      "/v1/admin/questions/log%201",
+    ]);
+    expect(filterQuery({})).toBe("");
+  });
+
+  it("only reads: every request about the questions is a GET", async () => {
+    const fetcher = vi.fn(async (_path: string, _init?: RequestInit) => new Response("{}", { status: 200 }));
+    vi.stubGlobal("fetch", fetcher);
+    await liveApi.questions({}, 20, 0);
+    await liveApi.questionCounts({});
+    await liveApi.question("x");
+    await liveApi.exportQuestions({});
+    expect(fetcher.mock.calls.every(([, init]) => (init?.method ?? "GET") === "GET")).toBe(true);
+  });
+
+  it("keeps the question file exactly as the server wrote it, under the server's name", async () => {
+    const text = '{\n  "status": "COLLECTED",\n  "questions": []\n}\n';
+    vi.stubGlobal("fetch", vi.fn(async () => new Response(text, {
+      status: 200, headers: { "Content-Disposition": 'attachment; filename="collected_2026-11-24.json"' },
+    })));
+    expect(await liveApi.exportQuestions({ verdict: "none" })).toEqual({ filename: "collected_2026-11-24.json", text });
+    vi.stubGlobal("fetch", vi.fn(async () => reply(200, "<html>Sign in</html>", true)));
+    await expect(liveApi.exportQuestions({})).rejects.toThrow(/could not read/);
+  });
+
+  it("says plainly when something asked for is not there", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => reply(404)));
+    await expect(liveApi.well("ZZ-9")).rejects.toThrow(/couldn’t find that/);
+  });
+});
+
 describe("the example responses", () => {
-  it("show one page with an image, and the image file is committed", async () => {
+  it("show the page the example answer cites with its image, and the image file is committed", async () => {
     const { exampleApi } = await import("./examples");
-    const shown = await exampleApi.page("gdr882_ak3_eowr", 2);
+    const shown = await exampleApi.page("gdr882_ak3_eowr", 7);
     expect(shown.image_url).toBe("/example-pages/gdr882_ak3_eowr/p7.png");
     const files = import.meta.glob("../../public/example-pages/**/*.png", { query: "?url", import: "default" });
     expect(Object.keys(files)).toEqual(["../../public/example-pages/gdr882_ak3_eowr/p7.png"]);
+  });
+
+  it("show another page as the text the examples hold of it, and say so when they hold none", async () => {
+    const { exampleApi } = await import("./examples");
+    const other = await exampleApi.page("gdr882_ak3_eowr", 19);
+    expect(other).toMatchObject({ page: 19, image_url: null });
+    expect(other.chunks.map((chunk) => chunk.chunk_id)).toEqual(["gdr882_ak3_eowr#c0034"]);
+    await expect(exampleApi.page("gdr882_ak3_eowr", 28)).rejects.toThrow(/not among the examples/);
   });
 });
 

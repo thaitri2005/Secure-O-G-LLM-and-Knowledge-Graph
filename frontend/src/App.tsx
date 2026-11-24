@@ -6,7 +6,11 @@ import type { Pointer } from "./components/CauseEvidence";
 import { Evidence } from "./components/Evidence";
 import { Guide } from "./components/Guide";
 import { Icon, type IconName } from "./components/Icon";
+import { Questions } from "./components/Questions";
+import { RouteLink } from "./components/RouteLink";
 import { Tip } from "./components/Tip";
+import { Well } from "./components/Well";
+import { cameFromApp, HOME, pushRoute, readRoute, type Route } from "./lib/route";
 import { EXPLAIN, headline } from "./lib/wording";
 
 // One group per kind of question the system answers, on the reports loaded for the demonstration.
@@ -75,13 +79,35 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
   const [pageChunk, setPageChunk] = useState<string | null>(null);
   const [guide, setGuide] = useState(false);
   const [pointed, setPointed] = useState<(Pointer & { answer: string }) | null>(null);
+  const [route, setRoute] = useState<Route>(() => readRoute(window.location.search));
   const box = useRef<HTMLInputElement>(null);
   const started = useRef(false);
   const busy = useRef(false);
 
+  // Screens live in the address (src/lib/route.ts), so the back button and a copied link work.
+  const go = useCallback((next: Route) => {
+    pushRoute(next);
+    setRoute(next);
+    window.scrollTo?.({ top: 0 });
+  }, []);
+
+  useEffect(() => {
+    const onPop = () => setRoute(readRoute(window.location.search));
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  /** Back to where the reader came from inside the application, or to the start when the link was opened directly. */
+  const back = useCallback(() => {
+    if (cameFromApp()) window.history.back();
+    else go(HOME);
+  }, [go]);
+
   const ask = useCallback(async (text: string, mode: Mode) => {
     const trimmed = text.trim();
     if (!trimmed || busy.current) return;
+    // A question asked from another screen is answered on the main one.
+    if (readRoute(window.location.search).view !== "home") go(HOME);
     busy.current = true;
     setPending(trimmed);
     setWaited(0);
@@ -102,7 +128,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
       busy.current = false;
       setPending(null);
     }
-  }, [api]);
+  }, [api, go]);
 
   const openSource = useCallback(async (answer: AnswerOut, citation: Citation) => {
     if (citation.page === null) return;
@@ -145,11 +171,13 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     load();
     const params = new URLSearchParams(window.location.search);
     const linked = params.get("q");
-    if (linked) {
+    // A link to a well or to the questions page opens just that page; the guide waits for the start.
+    const onStart = readRoute(window.location.search).view === "home";
+    if (onStart && linked) {
       const exact = params.get("graph") === "1";
       setVerifiedOnly(exact);
       void ask(linked, exact ? "exact" : "allow_fallback");
-    } else if (restore().length === 0 && firstVisit()) {
+    } else if (onStart && restore().length === 0 && firstVisit()) {
       setGuide(true); // A first visit with nothing asked: show how it works. It can always be closed.
     }
   }, [api, ask, load]);
@@ -190,20 +218,25 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
 
   const current = answers.find((answer) => answer.id === selected) ?? null;
   const mode: Mode = verifiedOnly ? "exact" : "allow_fallback";
-  const fresh = answers.length === 0 && pending === null;
+  const home = route.view === "home";
+  const fresh = home && answers.length === 0 && pending === null;
 
   return (
     <div className="app">
       <header className="top">
         <div className="top__inner">
-          <p className="brand"><span className="brand__mark" aria-hidden="true" />Drilling Reports Assistant</p>
-          <button type="button" className="chip chip--plain" onClick={() => setGuide(true)}>
-            <Icon name="help" size={18} /> How it works
-          </button>
+          <RouteLink to={HOME} onGo={go} className="brand"><span className="brand__mark" aria-hidden="true" />Drilling Reports Assistant</RouteLink>
+          <nav className="top__nav" aria-label="Pages">
+            <RouteLink to={{ view: "questions", question: null }} onGo={go} className="top__quiet">Questions people asked</RouteLink>
+            <button type="button" className="chip chip--plain" onClick={() => setGuide(true)}>
+              <Icon name="help" size={18} /> How it works
+            </button>
+          </nav>
         </div>
       </header>
 
-      <div className={fresh ? "hero hero--fresh" : "hero"}>
+      {/* The questions page is for the team; it has its own search, so the question box is not shown there. */}
+      <div className={fresh ? "hero hero--fresh" : "hero"} hidden={route.view === "questions"}>
         <div className="hero__inner">
           {fresh && (
             <>
@@ -273,7 +306,11 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
         </div>
       )}
 
-      {fresh ? (
+      {route.view === "questions" ? (
+        <Questions api={api} opened={route.question} onOpen={(question) => go({ view: "questions", question })} />
+      ) : route.view === "well" ? (
+        <Well key={route.well} api={api} wellId={route.well} onBack={back} />
+      ) : fresh ? (
         <main className="start">
           <section aria-labelledby="try">
             <h2 id="try">Not sure what to ask? Try one of these</h2>
@@ -297,12 +334,15 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
           {wells.length > 0 && (
             <section aria-labelledby="loaded" className="card start__loaded">
               <h2 id="loaded">Reports you can ask about</h2>
-              {health && (
-                <p className="note">
-                  {health.data.end_of_well_chunks} passages from end-of-well reports and {health.data.events} logged
-                  daily activities are loaded.
-                </p>
-              )}
+              <p className="note">
+                {health && (
+                  <>
+                    {health.data.end_of_well_chunks} passages from end-of-well reports and {health.data.events} logged
+                    daily activities are loaded.{" "}
+                  </>
+                )}
+                Click a well’s name to see everything we know about it.
+              </p>
               <div className="scroll">
                 <table className="data" aria-label="Wells loaded">
                   <thead>
@@ -315,7 +355,8 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
                   <tbody>
                     {wells.map((well) => (
                       <tr key={well.well_id}>
-                        <td>{well.well_id}</td><td className="num">{well.facts}</td><td className="num">{well.report_days}</td>
+                        <td><RouteLink to={{ view: "well", well: well.well_id }} onGo={go}>{well.well_id}</RouteLink></td>
+                        <td className="num">{well.facts}</td><td className="num">{well.report_days}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -366,7 +407,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
               </button>
             </div>
             {current && (
-              <Evidence key={current.id} answer={current} page={page} pageChunk={pageChunk} onOpenPage={(chunk) => void openSource(current, { ...chunk, how: "model" })} onClosePage={() => setPage(null)} pointed={pointed?.answer === current.id ? pointed : null} />
+              <Evidence key={current.id} answer={current} page={page} pageChunk={pageChunk} onOpenPage={(chunk) => void openSource(current, { ...chunk, how: "model" })} onClosePage={() => setPage(null)} pointed={pointed?.answer === current.id ? pointed : null} onGo={go} />
             )}
           </main>
         )

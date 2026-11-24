@@ -97,6 +97,12 @@ export function Guide({ onClose, onTry }: { onClose: () => void; onTry: (questio
         <h3>4. Tell us when it is wrong</h3>
         <p>Use the thumbs under the answer. A wrong answer with a short note is the most useful thing you can give us.</p>
 
+        <h3>5. Look up a well</h3>
+        <p>
+          Click a well’s name to open its page: what the reports say about it, each fact with the page it is written on,
+          its reports, and its days on a timeline with the non-productive time marked.
+        </p>
+
         <p className="guide__hint">
           <Icon name="info" size={16} /> Hover over any <span className="guide__i">i</span> for an explanation.
         </p>

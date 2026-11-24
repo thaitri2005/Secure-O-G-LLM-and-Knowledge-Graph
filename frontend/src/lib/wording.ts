@@ -30,53 +30,51 @@ export interface Badge {
   tip: string;
 }
 
-export function badge(answer: AnswerOut): Badge {
-  const reasoning = reasoningOf(answer);
-  if (answer.status === "ask_which") {
-    return {
-      tone: "choose",
-      label: "Your choice is needed",
-      tip: "More than one problem in the reports fits your question. Pick the one you mean and we will look into it.",
-    };
-  }
-  if (reasoning && answer.status !== "invalid") {
-    return reasoning.stated.length > 0
-      ? {
-          tone: "ai",
-          label: "Written by AI, each cause checked against the reports",
-          tip: "An AI read the activities and report text on the right and named the causes. The system kept only the causes whose quoted words it found in that text.",
-        }
-      : {
-          tone: "none",
-          label: "No stated cause found",
-          tip: "None of the reports gives a cause for this problem. Anything listed as a possible factor is an idea to check, not a finding.",
-        };
-  }
-  if (answer.evidence.computed) {
-    return {
-      tone: "calculated",
-      label: "Calculated from the reports",
-      tip: "This number was added up directly from the activity tables in the daily reports. No AI wrote it, so it cannot be a guess or a typing mistake.",
-    };
-  }
-  if (answer.status === "answered") {
-    return answer.checks.citations_supported
-      ? {
-          tone: "ai",
-          label: "Written by AI, checked against the reports",
-          tip: "An AI read the report text shown on the right and wrote this answer. The system then confirmed that the value really appears in that text.",
-        }
-      : {
-          tone: "unconfirmed",
-          label: "Written by AI, not confirmed",
-          tip: "An AI wrote this answer, but the system could not find the value in the report text. Please check the sources yourself before relying on it.",
-        };
-  }
-  return {
+const BADGES = {
+  choose: {
+    tone: "choose",
+    label: "Your choice is needed",
+    tip: "More than one problem in the reports fits your question. Pick the one you mean and we will look into it.",
+  },
+  causes: {
+    tone: "ai",
+    label: "Written by AI, each cause checked against the reports",
+    tip: "An AI read the activities and report text on the right and named the causes. The system kept only the causes whose quoted words it found in that text.",
+  },
+  noCause: {
+    tone: "none",
+    label: "No stated cause found",
+    tip: "None of the reports gives a cause for this problem. Anything listed as a possible factor is an idea to check, not a finding.",
+  },
+  calculated: {
+    tone: "calculated",
+    label: "Calculated from the reports",
+    tip: "This number was added up directly from the activity tables in the daily reports. No AI wrote it, so it cannot be a guess or a typing mistake.",
+  },
+  checked: {
+    tone: "ai",
+    label: "Written by AI, checked against the reports",
+    tip: "An AI read the report text shown on the right and wrote this answer. The system then confirmed that the value really appears in that text.",
+  },
+  unconfirmed: {
+    tone: "unconfirmed",
+    label: "Written by AI, not confirmed",
+    tip: "An AI wrote this answer, but the system could not find the value in the report text. Please check the sources yourself before relying on it.",
+  },
+  none: {
     tone: "none",
     label: "No answer found",
     tip: "The system prefers saying it does not know over guessing. The closest report text is shown so you can look for yourself.",
-  };
+  },
+} as const satisfies Record<string, Badge>;
+
+export function badge(answer: AnswerOut): Badge {
+  const reasoning = reasoningOf(answer);
+  if (answer.status === "ask_which") return BADGES.choose;
+  if (reasoning && answer.status !== "invalid") return reasoning.stated.length > 0 ? BADGES.causes : BADGES.noCause;
+  if (answer.evidence.computed) return BADGES.calculated;
+  if (answer.status === "answered") return answer.checks.citations_supported ? BADGES.checked : BADGES.unconfirmed;
+  return BADGES.none;
 }
 
 /** One friendly sentence on what the answer is based on. */
@@ -118,7 +116,8 @@ export interface Step {
   detail: string;
 }
 
-const KIND: Record<AnswerOut["frame"]["kind"], string> = {
+/** Each kind of question in plain words. */
+export const KIND: Record<AnswerOut["frame"]["kind"], string> = {
   lookup: "A single fact about a well",
   lookup_by_date: "What happened on a particular day",
   across_wells: "A comparison between wells",
@@ -333,7 +332,197 @@ export const EXPLAIN = {
     "The page as it appears in the original report. The text beside it is what the system read from this page; the part the answer came from is marked in blue.",
   readBy:
     "How the fact was pulled out of the report: from a table by a fixed rule, or by an AI and then checked against the text.",
+  nptCodes:
+    "The short codes the daily reports themselves give non-productive time, with the hours marked under each.",
+  wellFacts:
+    "Facts the system has pulled out of this well’s reports in advance and checked against the original text. Click a value to see the page it is written on.",
+  casing:
+    "A casing string is a run of steel pipe set in the hole and cemented in place. Each is named by its outer diameter in inches, largest first.",
+  readings: "Values the reports give at depths in the hole, shallowest first.",
 } as const;
+
+// ---- a page about one well ----
+
+/** A property's plain name, its unit when the reports leave it out, and an explanation for terms that need one. */
+const PROPERTY: Record<string, { name: string; unit?: string; tip?: string }> = {
+  api_number: { name: "API well number", tip: "The number that identifies the well in the American Petroleum Institute’s numbering, as the report writes it." },
+  ground_elevation: { name: "Ground elevation", unit: "ft", tip: "The height of the ground at the well above sea level." },
+  total_depth: { name: "Total depth", unit: "ft", tip: "How deep the well was drilled, measured along the hole." },
+  spud_date: { name: "Spud date", tip: "The day drilling of the well began." },
+  rig_release_date: { name: "Rig release date", tip: "The day the drilling rig finished its work on the well and was let go." },
+  drilling_days: { name: "Days of drilling work", unit: "days", tip: "Every day of the drilling work, including setting the rig up and taking it down." },
+  spud_to_release_days: { name: "Days from spud to rig release", unit: "days" },
+  total_rig_time: { name: "Total rig time", unit: "hours" },
+  productive_time: { name: "Productive time", unit: "hours", tip: "Hours when the rig was making progress on the well." },
+  non_productive_time: { name: "Non-productive time", unit: "hours", tip: EXPLAIN.nonProductive },
+  casing_depth: { name: "Setting depth", unit: "ft", tip: "How deep the bottom of the casing string reaches." },
+  casing_weight: { name: "Weight", unit: "lb/ft", tip: "The casing’s weight per foot of pipe, which tells its wall thickness." },
+  casing_grade: { name: "Steel grade", tip: "The grade of steel the casing is made of, as the report writes it." },
+  inclination: { name: "Inclination", unit: "°", tip: "How far the hole leans from vertical, measured by a survey at that depth." },
+  max_measured_temperature: { name: "Highest measured temperature", unit: "°F", tip: "The highest temperature measured in the hole, and the depth it was measured at." },
+  projected_formation_temperature: {
+    name: "Projected formation temperature",
+    unit: "°F",
+    tip: "The temperature the rock is expected to return to once the cooling of drilling has passed, worked out from measurements.",
+  },
+};
+
+/** A property's plain name: "spud_date" is "Spud date". */
+export function propertyName(property: string): string {
+  const named = PROPERTY[property]?.name;
+  if (named) return named;
+  const words = property.replace(/_/g, " ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
+export function propertyTip(property: string): string | null {
+  return PROPERTY[property]?.tip ?? null;
+}
+
+/** A fact's name with what kind of value it is, when that is not simply what happened: "Total depth (planned)". */
+export function factLabel(fact: { property: string; qualifier: string }): string {
+  const name = propertyName(fact.property);
+  if (fact.qualifier === "actual" || fact.qualifier === "none" || name.toLowerCase().includes(fact.qualifier)) return name;
+  return `${name} (${fact.qualifier})`;
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const NUMBER = /^-?\d+(\.\d+)?$/;
+
+/** A number as a person reads it: 1955 is "1,955". */
+export function number(value: number): string {
+  return value.toLocaleString("en-US", { maximumFractionDigits: 3 });
+}
+
+/** A fact's value as a person reads it: "1,955 ft", "18 Aug 2016", "0.5°", "3 days". */
+export function factValue(fact: { property: string; value: string; unit?: string | null }): string {
+  if (ISO_DATE.test(fact.value)) return longDate(fact.value);
+  const unit = fact.unit ?? PROPERTY[fact.property]?.unit ?? null;
+  if (!NUMBER.test(fact.value)) return unit ? `${fact.value} ${unit}` : fact.value;
+  const shown = number(Number(fact.value));
+  if (!unit) return shown;
+  if (unit === "°") return `${shown}°`;
+  if ((unit === "days" || unit === "hours") && Number(fact.value) === 1) return `${shown} ${unit.slice(0, -1)}`;
+  return `${shown} ${unit}`;
+}
+
+/** A depth a reading was taken at: "1,700 ft". */
+export function depthLabel(depth: string | number | undefined): string {
+  if (depth === undefined || depth === "") return "Depth not given";
+  return NUMBER.test(String(depth)) ? `${number(Number(depth))} ft` : String(depth);
+}
+
+function listed(items: string[]): string {
+  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+}
+
+/** A well's days in one sentence: "27 days of reports, 115 hours of non-productive time: 66 hours KICK, 24 WAIT ...". */
+export function wellTotals(totals: { days: number; npt_hours: number; npt_hours_by_code: Record<string, number> }): string | null {
+  if (totals.days === 0) return null;
+  const days = count(totals.days, "day of reports", "days of reports");
+  if (totals.npt_hours === 0) return `${days}, with no non-productive time marked.`;
+  const codes = Object.entries(totals.npt_hours_by_code).map(([code, hours], index) =>
+    `${index === 0 ? `${number(hours)} ${hours === 1 ? "hour" : "hours"}` : number(hours)} ${code}`);
+  const lost = `${number(totals.npt_hours)} ${totals.npt_hours === 1 ? "hour" : "hours"} of non-productive time`;
+  return codes.length > 0 ? `${days}, ${lost}: ${listed(codes)}.` : `${days}, ${lost}.`;
+}
+
+/** What a well page says when the well has no daily reports. */
+export function noDays(wellId: string, documents: { report_type: string | null }[]): string {
+  const endOfWell = documents.some((d) => d.report_type === "end_of_well");
+  return `We have no daily reports for ${wellId}, so there is no day-by-day timeline.${endOfWell ? " What we know about it comes from its end-of-well report." : ""}`;
+}
+
+/** A report's size as a person would say it, or that its text is not here. */
+export function documentSize(document: { pages: number }): string {
+  return document.pages > 0 ? count(document.pages, "page", "pages") : "Its text is not available on this computer";
+}
+
+// ---- the questions people asked (for the team) ----
+
+/** When a question was asked: "21 Nov 2026, 09:30 UTC". Times are shown in UTC, as the date filters count days. */
+export function askedAt(iso: string | null): string {
+  if (!iso) return "Time not recorded";
+  const when = new Date(iso);
+  if (Number.isNaN(when.getTime())) return iso;
+  const day = when.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  const time = when.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC" });
+  return `${day}, ${time} UTC`;
+}
+
+export function kindName(kind: string | null): string {
+  return (kind && KIND[kind as keyof typeof KIND]) || "Kind not recorded";
+}
+
+export function markLabel(verdict: "right" | "wrong" | null): string {
+  if (verdict === "right") return "Marked right";
+  return verdict === "wrong" ? "Marked wrong" : "Not marked";
+}
+
+/** The shape of a logged question these read: what the log keeps of an answer. */
+interface Logged {
+  status: string | null;
+  lanes: string[];
+  answer_text: string | null;
+  fallback?: boolean | null;
+}
+
+/** The answer a logged question got, in a line. */
+export function loggedAnswer(question: Logged): string {
+  if (question.answer_text) return question.answer_text;
+  if (question.status === "ask_which") return "We asked which problem was meant";
+  if (question.lanes.includes("reasoning")) {
+    if (question.status === "answered") return "Causes stated in the reports";
+    if (question.status === "not_stated") return "No report states the cause";
+  }
+  if (question.status === "not_found_in_graph") return "Not in the verified data";
+  if (question.status === "not_stated") return "The reports don’t say";
+  return "No reliable answer";
+}
+
+/**
+ * How far a logged answer could be trusted, with the same labels the answer had. The log does not keep whether an
+ * AI-written value was confirmed in the text; when that is unknown the label says so instead of claiming it.
+ */
+export function loggedBadge(question: Logged, record: Record<string, unknown> = {}): Badge {
+  if (question.status === "ask_which") return BADGES.choose;
+  if (question.lanes.includes("reasoning") && question.status !== "invalid") {
+    return question.status === "answered" ? BADGES.causes : BADGES.noCause;
+  }
+  if (question.status !== "answered") return BADGES.none;
+  if (question.lanes.includes("events") && !question.fallback) return BADGES.calculated;
+  const checks = record.checks as { citations_supported?: boolean } | undefined;
+  if (checks?.citations_supported === true) return BADGES.checked;
+  if (checks?.citations_supported === false) return BADGES.unconfirmed;
+  return {
+    tone: "unconfirmed",
+    label: "Written by AI",
+    tip: "An AI wrote this answer. Whether the system confirmed its value in the report text was not saved with the question, so check it against the reports before relying on it.",
+  };
+}
+
+/** The numbers at the top of the questions page. */
+export function countTiles(counts: { questions: number; by_status: Record<string, number>; by_verdict: Record<string, number> }) {
+  return [
+    { label: "Asked", value: counts.questions },
+    { label: "Answered", value: counts.by_status.answered ?? 0 },
+    { label: "Marked right", value: counts.by_verdict.right ?? 0 },
+    { label: "Marked wrong", value: counts.by_verdict.wrong ?? 0 },
+    { label: "Not marked", value: counts.by_verdict.none ?? 0 },
+  ];
+}
+
+/** "Showing 1–20 of 45". */
+export function showing(offset: number, shown: number, total: number): string {
+  if (total === 0) return "No questions match";
+  return `Showing ${number(offset + 1)}–${number(offset + shown)} of ${count(total, "question", "questions")}`;
+}
+
+/** The reports a logged answer cited, each once, by name. Cited passages are kept as IDs, which start with the report's. */
+export function citedReports(chunkIds: unknown): string[] {
+  if (!Array.isArray(chunkIds)) return [];
+  return [...new Set(chunkIds.filter((id): id is string => typeof id === "string").map((id) => reportName(id.split(/[#:]/)[0])))];
+}
 
 /** The credit the reports' licence asks for, shown with every page image (README, "Data attribution"). */
 export const CREDIT = {

@@ -1851,6 +1851,383 @@ mark {
   margin-top: 1.25rem;
 }
 
+/* ---- the top bar's links ---- */
+
+a.brand {
+  text-decoration: none;
+}
+
+.top__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* The questions page is for the team: its link stays quiet. */
+.top__quiet {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.top__quiet:hover {
+  color: var(--blue-dark);
+  text-decoration: underline;
+}
+
+/* ---- a page about one well ---- */
+
+.well,
+.log {
+  max-width: 82rem;
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) 4rem;
+}
+
+.well .work {
+  padding: 1.25rem 0 0;
+}
+
+.well__title,
+.log__title {
+  margin-top: 0.5rem;
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.well__lead,
+.log__lead {
+  max-width: 48rem;
+  margin-top: 0.4rem;
+  font-size: 1.0625rem;
+  text-wrap: pretty;
+}
+
+.well__facts,
+.well__days,
+.well__reports {
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.well__facts h2,
+.well__days h2,
+.well__reports h2,
+.log__part h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.well__group + .well__group {
+  margin-top: 1.4rem;
+}
+
+.well__group h3 {
+  margin-bottom: 0.5rem;
+  font-size: var(--small);
+  font-weight: 700;
+}
+
+.well__value {
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.well__blank {
+  color: var(--muted);
+}
+
+.data tbody tr.well__first:not(:first-child) td {
+  border-top: 2px solid var(--line);
+}
+
+.well__readings {
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.well__side {
+  display: grid;
+  gap: 1.5rem;
+  min-width: 0;
+  scroll-margin-top: 13rem; /* below the question box, which stays at the top */
+}
+
+.well__none {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-small);
+  background: var(--soft);
+}
+
+.well__none .icon {
+  margin-top: 0.2em;
+  color: var(--blue-dark);
+}
+
+.well__partial {
+  margin: 0.75rem 0 0;
+}
+
+.well__daylist {
+  max-height: 26rem;
+  overflow-y: auto;
+}
+
+.well__daylist .npt {
+  margin-left: 0;
+}
+
+.well__daylist th,
+.well__daylist td {
+  padding-inline: 0.6rem;
+}
+
+.well__docs li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0;
+}
+
+.well__docs li + li {
+  border-top: 1px solid var(--line);
+}
+
+/* ---- the questions people asked ---- */
+
+.log__counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.log__count {
+  padding: 0.9rem 1.1rem;
+}
+
+.log__count dt {
+  color: var(--muted);
+  font-size: var(--small);
+  font-weight: 600;
+}
+
+.log__count dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.log__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: flex-end;
+  padding: 1rem 1.1rem;
+}
+
+.log__field {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--ink);
+  font-size: var(--small);
+  font-weight: 600;
+}
+
+.log__field--wide {
+  flex: 1 1 14rem;
+}
+
+.log__field select,
+.log__field input {
+  min-height: 40px;
+  padding: 0 0.7rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.log__field select:focus,
+.log__field input:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+.log__clear {
+  min-height: 40px;
+}
+
+.log__export {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.log__export .button {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.log__export .note {
+  flex: 1 1 22rem;
+  margin: 0;
+}
+
+.log__showing {
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+  font-size: var(--small);
+  font-weight: 600;
+}
+
+.log__list li + li {
+  margin-top: 0.6rem;
+}
+
+.logq {
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  text-align: left;
+  transition: border-color 160ms, background-color 160ms;
+}
+
+.logq:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.logq__meta {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.logq__question {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.logq__answer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  align-items: center;
+  font-size: var(--small);
+}
+
+.logq__comments {
+  color: var(--muted);
+}
+
+.mark {
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.mark--right {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.mark--wrong {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.mark--none {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.log__paging {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.log__paging .chip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.log__detail {
+  max-width: 52rem;
+  padding: 1.5rem;
+}
+
+.log__asked {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.log__asked:focus {
+  outline: none;
+}
+
+.log__part {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.log__part .badge {
+  margin: 0.35rem 0 0.6rem;
+}
+
+.log__part .answer__value {
+  margin-bottom: 0.5rem;
+}
+
+.log__marks li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+}
+
+.log__marks li + li {
+  border-top: 1px solid var(--line);
+}
+
+.log__when {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.log__comment {
+  flex-basis: 100%;
+  color: var(--ink);
+  font-family: var(--serif);
+}
+
 /* ---- narrow screens: the evidence follows the answer ---- */
 
 @media (max-width: 62rem) {
@@ -1870,13 +2247,21 @@ mark {
     margin-left: 0;
   }
 
+  .well__side {
+    scroll-margin-top: 1rem;
+  }
+
   .source__open {
     display: none;
   }
 
   .answer,
   .evidence,
-  .guide__panel {
+  .guide__panel,
+  .well__facts,
+  .well__days,
+  .well__reports,
+  .log__detail {
     padding: 1.1rem;
   }
 }

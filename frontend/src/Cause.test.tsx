@@ -9,6 +9,7 @@ import endOfWell from "../../backend/fixtures/question_end_of_well.json";
 import wells from "../../backend/fixtures/wells.json";
 import App from "./App";
 import type { Api } from "./api/client";
+import { exampleApi } from "./api/examples";
 import type { AnswerOut, Health, PageOut, Reasoning, WellSummary } from "./api/types";
 
 // The screens of a question about a cause (specification §8.6): the answer in parts, and the choices when several
@@ -19,6 +20,7 @@ type Fake = Api & { ask: ReturnType<typeof vi.fn>; page: ReturnType<typeof vi.fn
 function fakeApi(...answers: AnswerOut[]): Fake {
   let asked = 0;
   return {
+    ...exampleApi,
     ask: vi.fn(async (question: string, mode: string) => {
       const answer = answers[Math.min(asked, answers.length - 1)];
       asked += 1;
@@ -190,7 +192,7 @@ describe("an answer about a cause", () => {
     expect(stated).toHaveTextContent("Found by the sentence the AI quoted");
     await user.click(within(stated).getByRole("button", { name: "Open the page: AK-3 end-of-well report, page 20" }));
     expect(api.page).toHaveBeenCalledWith("gdr882_ak3_eowr", 20);
-    expect(await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 2" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "AK-3 end-of-well report, page 7" })).toBeInTheDocument();
   });
 
   it("can be found again among the earlier questions", async () => {
