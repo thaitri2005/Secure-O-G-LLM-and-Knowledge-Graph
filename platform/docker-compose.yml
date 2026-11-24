@@ -1,10 +1,19 @@
-# Track C stores for the first build (C-C04): PostgreSQL with pgvector, Neo4j, and an optional MinIO object store.
-# Local only: ports bound to 127.0.0.1, throwaway credentials. Not the production deployment (spec §11).
+# Track C stores (C-C04): PostgreSQL with pgvector, Neo4j, and an optional MinIO object store; and, under profiles,
+# the application in front of them (backend design §8): the backend, the proxy with the built frontend, and a stub
+# model server for trying the stack without a GPU. The runbook for a server is deploy/README.md.
 # Neo4j uses the same ports as configs/graphrag/docker-compose.yml and prototype/docker-compose.yml: run one at a time.
 #
-#   docker compose -f platform/docker-compose.yml up -d                         # PostgreSQL + Neo4j
-#   docker compose -f platform/docker-compose.yml --profile objectstore up -d   # also MinIO
+#   docker compose -f platform/docker-compose.yml up -d                                       # PostgreSQL + Neo4j
+#   docker compose -f platform/docker-compose.yml --profile objectstore up -d                 # also MinIO
+#   docker compose -f platform/docker-compose.yml --profile app up -d --build                 # also the application
+#   docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build  # with the stub model
 #
+# Passwords and settings come from the environment, usually platform/.env (every variable is listed in
+# platform/.env.example). Without one, the local defaults below apply, so a laptop needs no .env file.
+# A SERVER MUST SET POSTGRES_PASSWORD, NEO4J_PASSWORD AND APP_PASSWORD_HASH: the defaults are public in this repository.
+# PostgreSQL and Neo4j take their password on the first start only (empty volume); see deploy/README.md to change it.
+#
+# The stores' ports are bound to 127.0.0.1 and must stay so: only the proxy faces the network.
 # PostgreSQL creates the K1 tables from platform/sql/ on its first start (empty volume only).
 # In development the object store can be a plain directory instead of MinIO (spec §4.2); MinIO stays optional
 # until its licence and the state of its community images are checked (Plan tab, "Ideas to consider").
@@ -16,7 +25,7 @@ services:
     image: pgvector/pgvector:pg16@sha256:0dd3149a06e4579a0d70d8fef9945636cd514005e7237deb27f9b67886f8dc4f
     environment:
       POSTGRES_USER: kg
-      POSTGRES_PASSWORD: platform-dev
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-platform-dev}
       POSTGRES_DB: kg
     ports:
       - "127.0.0.1:5434:5432"   # 5433 is the prototype's PostgreSQL
@@ -27,7 +36,7 @@ services:
   neo4j:
     image: neo4j:5.26-community@sha256:adaa077a3ab023015143b8f73f7076a7d053f12985f5b06f4c6a128c3a2f7240
     environment:
-      NEO4J_AUTH: neo4j/platform-dev
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-platform-dev}
       NEO4J_PLUGINS: '["apoc"]'
       NEO4J_server_memory_heap_max__size: 2G
       NEO4J_server_memory_pagecache_size: 1G
@@ -44,14 +53,116 @@ services:
     command: ["server", "/data", "--console-address", ":9001"]
     environment:
       MINIO_ROOT_USER: kg
-      MINIO_ROOT_PASSWORD: platform-dev
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-platform-dev}
     ports:
       - "127.0.0.1:9000:9000"
       - "127.0.0.1:9001:9001"
     volumes:
       - minio-data:/data
 
+  # ---- the application (--profile app) ----------------------------------------------------------------------------
+
+  backend:
+    profiles: ["app"]
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    image: kg-platform-backend:local
+    restart: unless-stopped
+    environment:
+      # files: the committed end-of-well bundle in the image. stores: PostgreSQL and Neo4j below (plan task E2).
+      BACKEND_SOURCE: ${BACKEND_SOURCE:-files}
+      # The question log goes to PostgreSQL when BACKEND_DSN is set (backend design §3). Keep the password to letters
+      # and digits: it sits inside this URL.
+      BACKEND_DSN: ${BACKEND_DSN:-postgresql://kg:${POSTGRES_PASSWORD:-platform-dev}@postgres:5432/kg}
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD:-platform-dev}
+      BACKEND_PAGE_IMAGES: /srv/pages
+      # Behind the proxy the frontend and the API share one origin, so no other origin is allowed.
+      BACKEND_CORS_ORIGINS: ""
+      # Read only by the endpoints that name them (configs/graphrag/endpoints.json, "api_key_env").
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      DESKTOP_MODEL_KEY: ${DESKTOP_MODEL_KEY:-}
+    volumes:
+      # The question log (file version) and the model client's cache.
+      - backend-data:/app/data/interim
+      # Which model serves which role: graphrag/client.py reads these two files, so the server mounts its own copies.
+      # The default endpoints file points every local endpoint at the stub model below.
+      - ${MODEL_ENDPOINTS_FILE:-../deploy/models/endpoints.stub.json}:/app/configs/graphrag/endpoints.json:ro
+      - ${MODEL_ROLES_FILE:-../configs/graphrag/roles.json}:/app/configs/graphrag/roles.json:ro
+      # Page images, <file_id>/p<n>.png (backend design §7); an empty folder is fine.
+      - ${PAGE_IMAGES_DIR:-../data/interim/pages}:/srv/pages:ro
+    expose:
+      - "8000"
+    depends_on:
+      postgres:
+        condition: service_started
+      neo4j:
+        condition: service_started
+      stub-model:
+        condition: service_healthy
+        required: false
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/v1/health', timeout=8)"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 3
+
+  proxy:
+    profiles: ["app"]
+    # Node builds the frontend; the built files and deploy/Caddyfile go into the Caddy image.
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    image: kg-platform-proxy:local
+    restart: unless-stopped
+    environment:
+      # A domain (kg.example.org) gives automatic HTTPS; the default :80 gives plain HTTP.
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+      APP_USER: ${APP_USER:-team}
+      # Without a hash the proxy refuses to start rather than run without the gate.
+      APP_PASSWORD_HASH: ${APP_PASSWORD_HASH:-}
+    ports:
+      # A laptop keeps the proxy on 127.0.0.1; a server sets PROXY_BIND=0.0.0.0.
+      - "${PROXY_BIND:-127.0.0.1}:${PROXY_HTTP_PORT:-80}:80"
+      - "${PROXY_BIND:-127.0.0.1}:${PROXY_HTTPS_PORT:-443}:443"
+    volumes:
+      - caddy-data:/data      # certificates: keep this volume, or Let's Encrypt limits may be hit on rebuilds
+      - caddy-config:/config
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:2019/config/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ---- a stand-in model for trying the stack without a GPU (--profile demo) -----------------------------------------
+
+  stub-model:
+    profiles: ["demo"]
+    # NOT A MODEL: scripts/stub_model_server.py answers with schema-valid text starting "[stub model]".
+    image: python:3.12.16-slim@sha256:37fc60d303cb9294d3718b5b48998a0210bb1c73611c1399ef5eb7964c0536e5
+    command: ["python", "/stub/stub_model_server.py", "--host", "0.0.0.0", "--port", "8080"]
+    user: "65534:65534"
+    restart: unless-stopped
+    volumes:
+      - ../scripts/stub_model_server.py:/stub/stub_model_server.py:ro
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/v1/models', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
 volumes:
   postgres-data:
   neo4j-data:
   minio-data:
+  backend-data:
+  caddy-data:
+  caddy-config:

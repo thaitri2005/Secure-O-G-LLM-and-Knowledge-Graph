@@ -1,0 +1,46 @@
+# The proxy (backend design §8): one address for the application, behind one shared user name and password.
+# Built into the proxy image by frontend/Dockerfile; every value comes from the environment (platform/.env):
+#
+#   SITE_ADDRESS        a domain such as kg.example.org gives automatic HTTPS (Let's Encrypt, ports 80 and 443);
+#                       the default :80 gives plain HTTP, for a laptop or a test behind an SSH tunnel
+#   APP_USER            the shared user name
+#   APP_PASSWORD_HASH   its bcrypt hash: docker run --rm caddy:2.11.9-alpine caddy hash-password --plaintext '<password>'
+#
+# The gate is not a login: every question in the log stays anonymous. Login and roles are a later milestone (FR-10).
+{
+	# HTTP/1.1 and HTTP/2 only, so the firewall needs no UDP port.
+	servers {
+		protocols h1 h2
+	}
+}
+
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+
+	basic_auth {
+		{$APP_USER:team} {$APP_PASSWORD_HASH}
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy same-origin
+		X-Frame-Options DENY
+		-Server
+	}
+
+	# The API. Caddy also asks the backend's health route itself and answers 503 while the backend is down.
+	handle /v1/* {
+		reverse_proxy backend:8000 {
+			health_uri /v1/health
+			health_interval 30s
+			health_timeout 10s
+		}
+	}
+
+	# The React application: files as built, and index.html for any other path.
+	handle {
+		root * /srv/frontend
+		try_files {path} /index.html
+		file_server
+	}
+}
