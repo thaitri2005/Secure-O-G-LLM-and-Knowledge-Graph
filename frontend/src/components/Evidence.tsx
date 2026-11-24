@@ -1,16 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { AnswerOut, ChunkOut, PageOut } from "../api/types";
 import { highlight, readable } from "../lib/highlight";
-import { reportName } from "../lib/wording";
+import { EXPLAIN, place } from "../lib/wording";
 import { DayStrips } from "./DayStrips";
+import { Icon } from "./Icon";
+import { Tip } from "./Tip";
 
-type Tab = "operations" | "facts" | "passages";
+type Tab = "timeline" | "facts" | "text";
 
-function where(chunk: ChunkOut): string {
-  return `${reportName(chunk.file_id)}${chunk.page === null ? "" : `, page ${chunk.page}`}`;
-}
-
-/** Report text, in the reports' own face, with the answer's values marked where they are written. */
+/** Report text, in the reports' own typeface, with the answer's values highlighted where they are written. */
 function ReportText({ text, values }: { text: string; values: string[] }) {
   const parts = useMemo(() => highlight(readable(text), values), [text, values]);
   const box = useRef<HTMLParagraphElement>(null);
@@ -33,11 +31,11 @@ function Passage({ chunk, cited, values, onOpenPage }: { chunk: ChunkOut; cited:
   return (
     <article className={cited ? "passage passage--cited" : "passage"}>
       <header className="passage__where">
-        <span>{where(chunk)}{chunk.section ? `: ${chunk.section}` : ""}</span>
-        {cited && <span className="passage__flag">Cited in the answer</span>}
+        <span><Icon name="document" size={16} /> {place(chunk.file_id, chunk.page)}{chunk.section ? ` · ${chunk.section}` : ""}</span>
+        {cited && <span className="passage__flag"><Icon name="check" size={14} /> The answer is here</span>}
       </header>
       {chunk.text === null ? (
-        <p className="passage__missing">This report is not loaded on this machine, so its text cannot be shown.</p>
+        <p className="passage__missing">This report’s text is not available on this computer.</p>
       ) : (
         <ReportText text={chunk.text} values={values} />
       )}
@@ -56,27 +54,27 @@ interface Props {
   onClosePage: () => void;
 }
 
-/** Everything the answer rests on: the operations a number was computed from, the checked facts, the passages. */
+/** What the answer rests on: the activities a number was added up from, the report text, the key facts. */
 export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: Props) {
   const { computed, facts, passages } = answer.evidence;
-  const [tab, setTab] = useState<Tab>(computed ? "operations" : passages.length > 0 ? "passages" : "facts");
-  const [operation, setOperation] = useState<number | null>(null);
+  const [tab, setTab] = useState<Tab>(computed ? "timeline" : passages.length > 0 ? "text" : "facts");
+  const [activity, setActivity] = useState<number | null>(null);
   const rows = useRef<(HTMLTableRowElement | null)[]>([]);
   const cited = useMemo(() => new Set(answer.citations.map((c) => c.chunk_id)), [answer.citations]);
-  // Only a model's answer is marked in the text: a computed total is written in no passage.
+  // Only an AI-written answer is highlighted in the text: a calculated total is written in no passage.
   const values = useMemo(() => (computed ? [] : answer.answers.map((a) => a.value)), [computed, answer.answers]);
   const ordered = useMemo(() => [...passages].sort((a, b) => Number(cited.has(b.chunk_id)) - Number(cited.has(a.chunk_id))), [passages, cited]);
 
   useEffect(() => {
-    if (operation !== null) rows.current[operation]?.scrollIntoView?.({ block: "nearest" });
-  }, [operation]);
+    if (activity !== null) rows.current[activity]?.scrollIntoView?.({ block: "nearest" });
+  }, [activity]);
 
   if (page) {
     return (
-      <section className="evidence" aria-label="Evidence">
-        <button type="button" className="link evidence__back" onClick={onClosePage}>Back to the evidence</button>
-        <h2 className="evidence__title">{reportName(page.file_id)}, page {page.page}</h2>
-        <p className="note">The page as the report’s text was read. Press Esc to go back.</p>
+      <section className="evidence card" aria-label="Evidence">
+        <button type="button" className="back" onClick={onClosePage}><Icon name="arrowLeft" size={16} /> Back to the evidence</button>
+        <h2 className="evidence__title">{place(page.file_id, page.page)}</h2>
+        <p className="note">This is the text of the page as the system read it. The part the answer came from is highlighted in blue.</p>
         <div className="page">
           {page.chunks.map((chunk) => (
             <div key={chunk.chunk_id} className={chunk.chunk_id === pageChunk ? "page__chunk page__chunk--cited" : "page__chunk"}>
@@ -89,23 +87,26 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
     );
   }
 
-  const passagesLabel = computed ? "Source passages" : answer.status === "answered" ? "Passages" : "Closest passages";
+  const textLabel = answer.status === "answered" || computed ? "Report text" : "Closest report text";
   const tabs: { id: Tab; label: string; count: number }[] = [
-    ...(computed ? [{ id: "operations" as Tab, label: "Operations", count: computed.events.length }] : []),
-    ...(passages.length > 0 ? [{ id: "passages" as Tab, label: passagesLabel, count: passages.length }] : []),
-    ...(facts.length > 0 ? [{ id: "facts" as Tab, label: "Checked facts", count: facts.length }] : []),
+    ...(computed ? [{ id: "timeline" as Tab, label: "Timeline", count: computed.events.length }] : []),
+    ...(passages.length > 0 ? [{ id: "text" as Tab, label: textLabel, count: passages.length }] : []),
+    ...(facts.length > 0 ? [{ id: "facts" as Tab, label: "Key facts", count: facts.length }] : []),
   ];
 
   if (tabs.length === 0) {
     return (
-      <section className="evidence" aria-label="Evidence">
-        <p className="note">Nothing in the loaded reports matched this question.</p>
+      <section className="evidence card" aria-label="Evidence">
+        <h2 className="evidence__title">The evidence</h2>
+        <p className="note">Nothing in the reports matched this question, so there is nothing to show here.</p>
       </section>
     );
   }
 
   return (
-    <section className="evidence" aria-label="Evidence">
+    <section className="evidence card" aria-label="Evidence">
+      <h2 className="evidence__title">The evidence</h2>
+      <p className="evidence__lead">Check the answer yourself. This is exactly what it is based on.</p>
       <div className="tabs" role="tablist" aria-label="Evidence">
         {tabs.map((item) => (
           <button
@@ -124,25 +125,30 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
         ))}
       </div>
 
-      {tab === "operations" && computed && (
-        <div role="tabpanel" id="panel-operations" aria-labelledby="tab-operations">
-          <p className="note">The daily reports’ operations this number was added up from. Code did the adding: {computed.text}.</p>
-          <DayStrips events={computed.events} selected={operation} onSelect={setOperation} />
+      {tab === "timeline" && computed && (
+        <div role="tabpanel" id="panel-timeline" aria-labelledby="tab-timeline">
+          <DayStrips events={computed.events} selected={activity} onSelect={setActivity} />
+          <h3 className="evidence__sub">Every activity that was counted</h3>
           <div className="scroll">
-            <table className="data data--pick" aria-label="Operations">
+            <table className="data data--pick" aria-label="Activities">
               <thead>
-                <tr><th>Date</th><th>From</th><th>To</th><th className="num">Hours</th><th>Code</th><th>Non-productive</th><th>Description</th></tr>
+                <tr>
+                  <th>Date</th><th>From</th><th>To</th><th className="num">Hours</th>
+                  <th>Code <Tip about="the code">{EXPLAIN.code}</Tip></th>
+                  <th>What happened</th>
+                </tr>
               </thead>
               <tbody>
                 {computed.events.map((event, index) => (
                   <tr
                     key={index}
                     ref={(row) => { rows.current[index] = row; }}
-                    aria-selected={operation === index}
-                    onClick={() => setOperation(index)}
+                    aria-selected={activity === index}
+                    onClick={() => setActivity(index)}
                   >
                     <td>{event.date}</td><td>{event.start}</td><td>{event.end}</td><td className="num">{event.hours}</td>
-                    <td>{event.code}</td><td>{event.npt_code ?? ""}</td><td className="report-text">{event.description}</td>
+                    <td>{event.code}{event.npt_code ? <span className="npt" title="Non-productive time">NPT</span> : null}</td>
+                    <td className="report-text">{readable(event.description)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -151,14 +157,15 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
         </div>
       )}
 
-      {tab === "passages" && (
-        <div role="tabpanel" id="panel-passages" aria-labelledby="tab-passages">
+      {tab === "text" && (
+        <div role="tabpanel" id="panel-text" aria-labelledby="tab-text">
           <p className="note">
             {computed
-              ? "The report passages these operations were read from."
+              ? "The pages of the daily reports these activities were read from."
               : answer.status === "answered"
-                ? "What the model was given to read. The answer’s value is marked where it is written."
-                : "No answer was found. These are the passages closest to the question."}
+                ? "The text the AI read."
+                : "No answer was found. This is the report text closest to your question."}
+            {!computed && answer.status === "answered" && <> The answer is highlighted in <mark>yellow</mark>. <Tip about="the report text">{EXPLAIN.reportText}</Tip></>}
           </p>
           {ordered.map((chunk) => (
             <Passage key={chunk.chunk_id} chunk={chunk} cited={cited.has(chunk.chunk_id)} values={values} onOpenPage={onOpenPage} />
@@ -168,11 +175,14 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
 
       {tab === "facts" && (
         <div role="tabpanel" id="panel-facts" aria-labelledby="tab-facts">
-          <p className="note">Read from the reports’ tables and text, then checked in code: each value is written in its source passage.</p>
+          <p className="note">Facts the system pulled out of the reports in advance and checked against the original text. <Tip about="key facts">{EXPLAIN.keyFacts}</Tip></p>
           <div className="scroll">
-            <table className="data" aria-label="Checked facts">
+            <table className="data" aria-label="Key facts">
               <thead>
-                <tr><th>Well</th><th>Property</th><th className="num">Value</th><th>Applies to</th><th>Read by</th></tr>
+                <tr>
+                  <th>Well</th><th>Fact</th><th className="num">Value</th><th>Applies to</th>
+                  <th>Found by <Tip about="found by">{EXPLAIN.readBy}</Tip></th>
+                </tr>
               </thead>
               <tbody>
                 {facts.map((fact, index) => (
@@ -181,7 +191,7 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
                     <td>{fact.property.replace(/_/g, " ")}{fact.qualifier !== "actual" && fact.qualifier !== "none" ? ` (${fact.qualifier})` : ""}</td>
                     <td className="num">{fact.value}{fact.unit ? ` ${fact.unit}` : ""}</td>
                     <td>{fact.context ? Object.entries(fact.context).map(([key, value]) => `${key.replace(/_/g, " ")} ${value}`).join(", ") : ""}</td>
-                    <td>{fact.source === "table_mapping" ? "Table rule" : "Model, then checked"}</td>
+                    <td>{fact.source === "table_mapping" ? "A table rule" : "AI, then checked"}</td>
                   </tr>
                 ))}
               </tbody>

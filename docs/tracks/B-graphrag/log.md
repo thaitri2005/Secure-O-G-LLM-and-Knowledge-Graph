@@ -914,3 +914,16 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 
 **B-F62 (finding; seen in the application's "Checked facts" table).** AK-3 has a validated fact `spud_to_release_days = 3`, read by the model, while the report passage beside it says "a total of 19 days". The checks pass it because a 3 is written in its chunk: the value-in-chunk check cannot catch a small number that occurs for another reason. It is a wrong fact shown to the answer model, and one more reason to look at B-F60's doubts before the fact region is trusted. It was visible at once in the application and had not been noticed in the result files.
 
+**B-C47 (design choice; from Tri's reaction to the first screens: "the user is not a dev").** The frontend is redone for non-developers. This replaces the look and the wording of B-C45; its behaviour and structure stay.
+
+- **What was wrong.** The first version followed the system's dark setting, so it came up dark and technical on Tri's machine, and it spoke the system's language: "graph answers only", "operations", "1 model call".
+- **Look.** Always light: white cards on a pale page, one blue for things to press, a rounder typeface (Plus Jakarta Sans). Report text stays in a serif. The dark theme is removed.
+- **Words.** Rewritten in `src/lib/wording.ts`. "Graph answers only" is "Verified data only"; "operations" are "activities"; the evidence tabs are "Timeline", "Report text" and "Key facts"; reports are named as a person would ("AK-3 end-of-well report, page 7"). A test fails if the application says lane, frame, graph, chunk, token, model call, fallback or coordinator.
+- **How far to trust an answer** is a coloured label on each one: calculated from the reports; written by AI and checked; written by AI and not confirmed; no answer found.
+- **Explanations on hover.** A small "i" beside each label and term (`Tip.tsx`): hover, keyboard focus, or a tap that pins it. Bars of the timeline explain themselves on hover.
+- **A guide** (`Guide.tsx`) opens on the first visit and from the top bar: what to ask, how to read an answer, how to check it, how to say it is wrong, with example questions asked in one click. It can be closed at once.
+- **Each report is listed once** under an answer, where the first version repeated it for every passage.
+- The technical trail and cost are still there, folded under "How we got this answer", for the supervisor and the team.
+- Design guidance came from two installed design skills (a design-system search for a friendly light product, and its checklist: contrast, 40-pixel targets, visible focus, reduced motion, no emoji as icons). 49 tests; looked at in a browser, wide and narrow.
+- **Still true:** it has not been run against a real model, and no domain expert has seen it. Whether it is intuitive for them is unknown until one uses it.
+

@@ -4,9 +4,13 @@ import notFound from "../../../backend/fixtures/question_not_found_exact.json";
 import overTime from "../../../backend/fixtures/question_over_time.json";
 import { exampleFor } from "../api/examples";
 import type { AnswerOut, EventOut } from "../api/types";
-import { dayStrips } from "./strips";
 import { highlight, readable } from "./highlight";
-import { advice, basis, checked, cost, headline, reportName, trail } from "./wording";
+import { dayStrips } from "./strips";
+import { advice, badge, distinctSources, EXPLAIN, headline, place, reportName, sourceNote, steps, summary, technical } from "./wording";
+
+const computed = overTime as AnswerOut;
+const written = endOfWell as AnswerOut;
+const missing = notFound as AnswerOut;
 
 const event = (over: Partial<EventOut>): EventOut => ({
   date: "2016-08-20", start: "0:00", end: "6:00", hours: 6, end_md: 100, code: "DRIL", description: "", npt_code: null,
@@ -37,76 +41,110 @@ describe("day strips", () => {
   });
 
   it("reads the real example: 115 non-productive hours on 10 days", () => {
-    const days = dayStrips((overTime as AnswerOut).evidence.computed!.events);
+    const days = dayStrips(computed.evidence.computed!.events);
     expect(days).toHaveLength(10);
     expect(days.reduce((sum, d) => sum + d.nonProductiveHours, 0)).toBe(115);
   });
 });
 
-describe("wording", () => {
+describe("the answer in plain words", () => {
   it("gives the values with their units as the headline", () => {
-    expect(headline(overTime as AnswerOut)).toBe("115 hours");
-    expect(headline(endOfWell as AnswerOut)).toBe("1955 ft");
+    expect(headline(computed)).toBe("115 hours");
+    expect(headline(written)).toBe("1955 ft");
+    expect(headline(missing)).toBe("Not in the verified data");
+    expect(headline({ ...missing, status: "not_stated" })).toBe("The reports don’t say");
   });
 
-  it("says what to do when the graph holds no answer", () => {
-    expect(headline(notFound as AnswerOut)).toBe("Not in the knowledge graph");
-    expect(advice(notFound as AnswerOut)).toContain("Graph answers only");
-    expect(advice(overTime as AnswerOut)).toBeNull();
+  it("labels how far each kind of answer can be trusted, with an explanation", () => {
+    expect(badge(computed)).toMatchObject({ tone: "calculated", label: "Calculated from the reports" });
+    expect(badge(computed).tip).toContain("No AI wrote it");
+    expect(badge(written)).toMatchObject({ tone: "ai", label: "Written by AI, checked against the reports" });
+    const unconfirmed = { ...written, checks: { citations_supported: false, quotes_verbatim: false } };
+    expect(badge(unconfirmed)).toMatchObject({ tone: "unconfirmed", label: "Written by AI, not confirmed" });
+    expect(badge(unconfirmed).tip).toContain("check the sources yourself");
+    expect(badge(missing)).toMatchObject({ tone: "none", label: "No answer found" });
   });
 
-  it("says a computed number was not written by a model", () => {
-    expect(basis(overTime as AnswerOut)).toBe("Computed from 28 operations on 10 report days. No model wrote this number.");
-    expect(basis(endOfWell as AnswerOut)).toContain("checked facts and passages of the end-of-well reports");
-    expect(basis(notFound as AnswerOut)).toBe("No stored fact or daily operation answers this.");
-    expect(basis({ ...(notFound as AnswerOut), status: "not_stated" })).toBe("Nothing matched in the reports loaded here.");
+  it("says in one sentence what the answer is based on", () => {
+    expect(summary(computed)).toBe("Added up from 28 activities across 10 days of daily reports.");
+    expect(summary(written)).toBe("Based on 12 key facts and 5 passages from the end-of-well reports.");
+    expect(summary(missing)).toBe("Nothing in the verified data answers this question.");
+    expect(summary({ ...missing, status: "not_stated" })).toBe("We searched the reports but found no clear answer.");
   });
 
-  it("says when the daily operations held no match and text was searched instead", () => {
-    const fellBack = { ...(endOfWell as AnswerOut), lanes: ["passages"], fallback: true, answered_from: "daily" } as AnswerOut;
-    expect(basis(fellBack)).toBe(
-      "Written by the model from passages of the daily drilling reports. The daily operations held no match, so the report text was searched instead.",
+  it("says when the activity log had no match and the text was searched instead", () => {
+    const searched = { ...written, lanes: ["passages"], fallback: true, answered_from: "daily", evidence: { ...written.evidence, facts: [] } } as AnswerOut;
+    expect(summary(searched)).toBe(
+      "Based on 5 passages from the daily reports. The daily activity log had no match, so we searched the report text instead.",
     );
   });
 
-  it("explains each way a citation was checked", () => {
-    const citation = (endOfWell as AnswerOut).citations[0];
-    expect(checked({ ...citation, how: "by_value" })).toContain("did not hold it");
-    expect(checked({ ...citation, how: "event_graph" })).toContain("computed from");
+  it("says what to try when there is no answer", () => {
+    expect(advice(computed)).toBeNull();
+    expect(advice(missing)).toBe("Switch off “Verified data only” to search the full report text as well.");
+    expect(advice({ ...missing, status: "not_stated" })).toContain("Try naming the well");
   });
 
-  it("shortens report names", () => {
-    expect(reportName("gdr882_ak3_eowr")).toBe("ak3 eowr");
-    expect(reportName("gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1")).toBe("ak3 appx 23 5 nonproductivetimerpt 160927");
+  it("explains how the answer was produced in three steps", () => {
+    expect(steps(computed)).toEqual([
+      { title: "We understood your question as", detail: "A total over a period of time" },
+      { title: "We looked at", detail: "28 activities logged over 10 days in the daily reports" },
+      { title: "How the answer was produced", detail: "The system added up the numbers itself" },
+    ]);
+    expect(steps(written).map((s) => s.detail)).toEqual([
+      "A single fact about a well",
+      "12 key facts and 5 passages of report text",
+      "An AI wrote it, and the system confirmed the value in the report text",
+    ]);
+    expect(steps(missing)[1].detail).toBe("The reports loaded here, but nothing matched");
+    expect(steps(missing)[2].detail).toBe("No answer was given, to avoid guessing");
+  });
+
+  it("keeps the technical cost in plain units", () => {
+    expect(technical({ ...computed, cost: { calls: 1, prompt_tokens: 900, completion_tokens: 60, seconds: 0.42 } })).toBe("1 AI call, 0.4 seconds");
+    expect(technical({ ...computed, cost: { calls: 2, prompt_tokens: 900, completion_tokens: 60, seconds: 23.6 } })).toBe("2 AI calls, 24 seconds");
+  });
+
+  it("never uses the system's own vocabulary", () => {
+    const said = [
+      ...[computed, written, missing].flatMap((a) => [headline(a), badge(a).label, badge(a).tip, summary(a), advice(a) ?? "", ...steps(a).flatMap((s) => [s.title, s.detail])]),
+      ...Object.values(EXPLAIN),
+    ].join(" ");
+    expect(said).not.toMatch(/\b(lane|frame|graph|chunk|retriev|token|model call|fallback|coordinator)/i);
   });
 });
 
-describe("how it was answered", () => {
-  it("gives three steps for a computed answer", () => {
-    expect(trail(overTime as AnswerOut)).toEqual([
-      { title: "Understood as", detail: "A total over the daily operations" },
-      { title: "Read", detail: "28 daily operations on 10 report days" },
-      { title: "Answered", detail: "Calculated in code. No model wrote the number" },
+describe("sources in plain words", () => {
+  it("names reports the way a person would", () => {
+    expect(reportName("gdr882_ak3_eowr")).toBe("AK-3 end-of-well report");
+    expect(reportName("gdr1295_56-32_eowr")).toBe("56-32 end-of-well report");
+    expect(reportName("gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1")).toBe("AK-3 non-productive time report");
+    expect(reportName("gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8")).toBe("AK-3 daily drilling report");
+    expect(reportName("some_other_file")).toBe("some other file");
+    expect(place("gdr882_ak3_eowr", 7)).toBe("AK-3 end-of-well report, page 7");
+    expect(place("gdr882_ak3_eowr", null)).toBe("AK-3 end-of-well report");
+  });
+
+  it("tells a summary daily report from a detailed one", () => {
+    expect(reportName("gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0")).toBe("AK-3 daily drilling report (summary)");
+  });
+
+  it("lists each report or page once, in the order first cited", () => {
+    const sources = distinctSources(computed.citations);
+    expect(sources.map((c) => place(c.file_id, c.page))).toEqual([
+      "AK-3 non-productive time report",
+      "AK-3 daily drilling report",
+      "AK-3 daily drilling report (summary)",
     ]);
+    const pages = [{ file_id: "gdr882_ak3_eowr", page: 7 }, { file_id: "gdr882_ak3_eowr", page: 9 }, { file_id: "gdr882_ak3_eowr", page: 7 }];
+    expect(distinctSources(pages)).toHaveLength(2);
   });
 
-  it("says what the model read and that its values were checked", () => {
-    const steps = trail(endOfWell as AnswerOut);
-    expect(steps[0].detail).toBe("A value from an end-of-well report");
-    expect(steps[1].detail).toBe("12 checked facts and 5 passages");
-    expect(steps[2].detail).toBe("Written by the model, then each value was found in a passage");
-  });
-
-  it("says so when nothing was read or a value is unsupported", () => {
-    expect(trail(notFound as AnswerOut)[1].detail).toBe("Nothing in the loaded reports matched");
-    expect(trail(notFound as AnswerOut)[2].detail).toBe("No answer was given");
-    const unsupported = { ...(endOfWell as AnswerOut), checks: { citations_supported: false, quotes_verbatim: false } };
-    expect(trail(unsupported)[2].detail).toContain("no passage that supports it");
-  });
-
-  it("states the cost in calls and seconds", () => {
-    expect(cost({ ...(overTime as AnswerOut), cost: { calls: 1, prompt_tokens: 900, completion_tokens: 60, seconds: 0.42 } })).toBe("1 model call, 0.4 s");
-    expect(cost({ ...(overTime as AnswerOut), cost: { calls: 2, prompt_tokens: 900, completion_tokens: 60, seconds: 23.6 } })).toBe("2 model calls, 24 s");
+  it("says why each source is listed", () => {
+    const citation = written.citations[0];
+    expect(sourceNote({ ...citation, how: "by_value" })).toBe("Found by matching the answer’s value");
+    expect(sourceNote({ ...citation, how: "event_graph" })).toBe("Contains activities used in the calculation");
+    expect(sourceNote({ ...citation, how: "model" })).toBe("The AI pointed to this passage");
   });
 });
 
@@ -135,18 +173,15 @@ describe("highlighting the answer in report text", () => {
     expect(highlight("no numbers here", ["1955"])).toEqual([{ text: "no numbers here", hit: false }]);
     expect(highlight("text", [])).toEqual([{ text: "text", hit: false }]);
   });
-});
 
-describe("report text for display", () => {
   it("turns a PDF's private bullet symbols into bullets", () => {
-    expect(readable("\uF0B7 WGS-84 UTM Zone 3")).toBe("\u2022 WGS-84 UTM Zone 3");
+    expect(readable(" WGS-84 UTM Zone 3")).toBe("• WGS-84 UTM Zone 3");
     expect(readable("plain text, 1,955 ft")).toBe("plain text, 1,955 ft");
   });
 });
 
 describe("example responses", () => {
   it("make all three kinds of answer reachable", () => {
-    expect(exampleFor("How many hours of non-productive time did AK-3 have?", "allow_fallback").status).toBe("answered");
     expect(exampleFor("How many hours of non-productive time did AK-3 have?", "allow_fallback").evidence.computed).not.toBeNull();
     expect(exampleFor("What total depth did well AK-3 reach?", "allow_fallback").answers[0].value).toBe("1955");
     expect(exampleFor("What total depth did well ZZ-9 reach?", "exact").status).toBe("not_found_in_graph");

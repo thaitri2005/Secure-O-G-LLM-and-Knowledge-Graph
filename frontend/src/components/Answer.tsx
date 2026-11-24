@@ -1,8 +1,16 @@
 import { memo, useEffect, useRef, useState } from "react";
 import type { AnswerOut, Citation, Verdict } from "../api/types";
-import { advice, basis, checked, cost, headline, reportName, trail } from "../lib/wording";
+import { advice, badge, distinctSources, EXPLAIN, headline, place, sourceNote, steps, summary, technical } from "../lib/wording";
+import { Icon, type IconName } from "./Icon";
+import { Tip } from "./Tip";
 
-const SHOWN = 4;
+const SHOWN = 3;
+const BADGE_ICON: Record<ReturnType<typeof badge>["tone"], IconName> = {
+  calculated: "calculator",
+  ai: "sparkle",
+  unconfirmed: "alert",
+  none: "empty",
+};
 
 interface Props {
   answer: AnswerOut;
@@ -12,7 +20,7 @@ interface Props {
   onFeedback: (answerId: string, verdict: Verdict, comment: string) => Promise<void>;
 }
 
-/** The open answer: the value, where it came from, how it was reached, its sources, and a way to mark it. */
+/** The open answer: how far to trust it, the value, what it is based on, its sources, and a way to rate it. */
 export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFeedback }: Props) {
   const [writing, setWriting] = useState(false);
   const [comment, setComment] = useState("");
@@ -21,9 +29,11 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
   const [allSources, setAllSources] = useState(false);
   const [copied, setCopied] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
+  const trust = badge(answer);
   const next = advice(answer);
-  // A computed answer can rest on dozens of passages; the first few are enough until someone asks for all.
-  const sources = allSources ? answer.citations : answer.citations.slice(0, SHOWN);
+  // Each report or page once; the first few are enough until someone asks for all.
+  const distinct = distinctSources(answer.citations);
+  const sources = allSources ? distinct : distinct.slice(0, SHOWN);
 
   useEffect(() => {
     if (arrive) heading.current?.focus();
@@ -52,66 +62,73 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
   }
 
   return (
-    <section className="answer" aria-label="Answer">
+    <section className="answer card" aria-label="Answer">
       <p className="answer__question">{answer.question}</p>
+      <p className={`badge badge--${trust.tone}`}>
+        <Icon name={BADGE_ICON[trust.tone]} size={16} /> {trust.label}
+        <Tip about={trust.label.toLowerCase()}>{trust.tip}</Tip>
+      </p>
       <h2 ref={heading} tabIndex={-1} className={answer.status === "answered" ? "answer__value" : "answer__value answer__value--none"}>
         {headline(answer)}
       </h2>
-      <p className="answer__basis">{basis(answer)}</p>
-      {next && <p className="answer__advice">{next}</p>}
+      <p className="answer__summary">{summary(answer)}</p>
+      {next && <p className="answer__advice"><Icon name="info" size={16} /> {next}</p>}
+      {answer.mode === "exact" && (
+        <p className="answer__mode">
+          Verified data only <Tip about="verified data only">{EXPLAIN.verifiedOnly}</Tip>
+        </p>
+      )}
 
-      <div className="answer__how">
-        <h3>How this was answered</h3>
-        <ol className="trail" aria-label="How this was answered">
-          {trail(answer).map((step) => (
+      {distinct.length > 0 && (
+        <div className="answer__block">
+          <h3>Where this comes from</h3>
+          <ol className="sources" aria-label="Sources">
+            {sources.map((citation, index) => {
+              const openable = citation.page !== null && citation.text !== null;
+              return (
+                <li key={`${citation.chunk_id}-${index}`}>
+                  <button
+                    type="button"
+                    className="source"
+                    aria-label={`Source ${index + 1}: ${place(citation.file_id, citation.page)}`}
+                    disabled={!openable}
+                    onClick={() => onOpenSource(answer, citation)}
+                  >
+                    <span className="source__icon"><Icon name="document" size={18} /></span>
+                    <span className="source__where">
+                      {place(citation.file_id, citation.page)}
+                      <small>{sourceNote(citation)}</small>
+                    </span>
+                    {openable && <span className="source__open">Open page <Icon name="open" size={14} /></span>}
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+          {!allSources && distinct.length > SHOWN && (
+            <button type="button" className="link sources__more" onClick={() => setAllSources(true)}>
+              Show all {distinct.length} sources
+            </button>
+          )}
+        </div>
+      )}
+
+      <details className="how">
+        <summary>How we got this answer</summary>
+        <ol className="trail" aria-label="How we got this answer">
+          {steps(answer).map((step) => (
             <li key={step.title}>
               <span className="trail__title">{step.title}</span>
               <span className="trail__detail">{step.detail}</span>
             </li>
           ))}
         </ol>
-        <p className="answer__meta">
-          {answer.mode === "exact" && <span className="tag">Graph answers only</span>}
-          <span>{cost(answer)}</span>
-        </p>
-        {answer.evidence.model_note && answer.status === "answered" && (
-          <p className="answer__note"><span>The model’s reading:</span> {answer.evidence.model_note}</p>
-        )}
-      </div>
-
-      {answer.citations.length > 0 && (
-        <>
-          <h3>Sources</h3>
-          <ol className="sources" aria-label="Sources">
-            {sources.map((citation, index) => (
-              <li key={`${citation.chunk_id}-${index}`}>
-                <button
-                  type="button"
-                  className="source"
-                  aria-label={`Source ${index + 1}: ${reportName(citation.file_id)}${citation.page === null ? "" : `, page ${citation.page}`}`}
-                  disabled={citation.page === null || citation.text === null}
-                  onClick={() => onOpenSource(answer, citation)}
-                >
-                  <span className="source__number">{index + 1}</span>
-                  <span className="source__where">
-                    {reportName(citation.file_id)}{citation.page === null ? "" : `, page ${citation.page}`}
-                    <small>{checked(citation)}</small>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ol>
-          {!allSources && answer.citations.length > SHOWN && (
-            <button type="button" className="link sources__more" onClick={() => setAllSources(true)}>
-              Show all {answer.citations.length} sources
-            </button>
-          )}
-        </>
-      )}
+        <p className="how__technical">Technical details: {technical(answer)}.</p>
+      </details>
 
       <div className="feedback">
         {saved ? (
-          <p className="feedback__saved">Saved as {saved}.</p>
+          <p className="feedback__saved"><Icon name="check" size={16} /> Thank you. Saved as {saved === "right" ? "helpful" : "wrong"}.</p>
         ) : writing ? (
           <form
             className="feedback__form"
@@ -120,22 +137,24 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
               void save("wrong", comment.trim());
             }}
           >
-            <label htmlFor={`comment-${answer.id}`}>What should it say?</label>
+            <label htmlFor={`comment-${answer.id}`}>What should the answer be? (optional)</label>
             <textarea id={`comment-${answer.id}`} rows={2} maxLength={2000} autoFocus value={comment} onChange={(event) => setComment(event.target.value)} />
             <div className="feedback__buttons">
-              <button type="submit" className="button button--small">Save</button>
+              <button type="submit" className="button button--small">Send</button>
               <button type="button" className="link" onClick={() => setWriting(false)}>Cancel</button>
             </div>
           </form>
         ) : (
           <div className="feedback__buttons">
-            <span>Is this answer right?</span>
-            <button type="button" className="button button--quiet" onClick={() => void save("right", "")}>Right</button>
-            <button type="button" className="button button--quiet" onClick={() => setWriting(true)}>Wrong</button>
-            <button type="button" className="link feedback__copy" onClick={() => void copyLink()}>{copied ? "Link copied" : "Copy a link to this question"}</button>
+            <span className="feedback__ask">Was this answer right?</span>
+            <button type="button" className="chip" onClick={() => void save("right", "")}><Icon name="thumbUp" size={16} /> Yes</button>
+            <button type="button" className="chip" onClick={() => setWriting(true)}><Icon name="thumbDown" size={16} /> No, it’s wrong</button>
+            <button type="button" className="chip chip--plain feedback__copy" onClick={() => void copyLink()}>
+              <Icon name={copied ? "check" : "link"} size={16} /> {copied ? "Link copied" : "Copy link"}
+            </button>
           </div>
         )}
-        {failed && <p role="alert" className="error">Your mark was not saved. Check the connection and try again.</p>}
+        {failed && <p role="alert" className="error">We couldn’t save that. Check your connection and try again.</p>}
       </div>
     </section>
   );

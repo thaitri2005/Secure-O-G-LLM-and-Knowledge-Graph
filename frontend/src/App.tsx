@@ -3,28 +3,35 @@ import { ApiError, type Api } from "./api/client";
 import type { AnswerOut, Citation, Health, Mode, PageOut, Verdict, WellSummary } from "./api/types";
 import { Answer } from "./components/Answer";
 import { Evidence } from "./components/Evidence";
-import { headline } from "./lib/wording";
+import { Guide } from "./components/Guide";
+import { Icon, type IconName } from "./components/Icon";
+import { Tip } from "./components/Tip";
+import { EXPLAIN, headline } from "./lib/wording";
 
 // One group per kind of question the system answers, on the reports loaded for the demonstration.
-const TRY: { kind: string; why: string; questions: string[] }[] = [
+const TRY: { icon: IconName; kind: string; why: string; questions: string[] }[] = [
   {
-    kind: "Totals over time",
-    why: "Added up in code from the daily reports’ operations",
+    icon: "clock",
+    kind: "Totals over a period",
+    why: "Hours, days and counts, added up from the daily reports",
     questions: ["How many hours of non-productive time did AK-3 have?", "On how many days did AK-3 log drilling?"],
   },
   {
-    kind: "A value from an end-of-well report",
-    why: "Read from the well’s checked facts and the report text",
+    icon: "document",
+    kind: "A fact about a well",
+    why: "Depths, dates and sizes stated in an end-of-well report",
     questions: ["What total depth did well AK-3 reach?", "When was well AK-3 spudded?"],
   },
   {
-    kind: "Across wells",
-    why: "Compares what several reports state",
+    icon: "compare",
+    kind: "Comparing wells",
+    why: "The same fact across several wells",
     questions: ["Which of AK-3, 56-32 and 68-32 was drilled deepest?"],
   },
 ];
 
 const STORE = "drilling-reports.answers";
+const SEEN_GUIDE = "drilling-reports.guide-seen";
 const KEPT = 20;
 
 function restore(): AnswerOut[] {
@@ -36,14 +43,17 @@ function restore(): AnswerOut[] {
   }
 }
 
-function modelName(health: Health): string {
-  const answer = health.models.answer ?? "";
-  return answer.includes(":") ? answer.slice(answer.indexOf(":") + 1) : answer;
+function firstVisit(): boolean {
+  try {
+    return window.localStorage.getItem(SEEN_GUIDE) === null;
+  } catch {
+    return false;
+  }
 }
 
 export default function App({ api, examples = false }: { api: Api; examples?: boolean }) {
   const [question, setQuestion] = useState("");
-  const [graphOnly, setGraphOnly] = useState(false);
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [pending, setPending] = useState<string | null>(null);
   const [waited, setWaited] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -55,6 +65,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
   const [wells, setWells] = useState<WellSummary[]>([]);
   const [page, setPage] = useState<PageOut | null>(null);
   const [pageChunk, setPageChunk] = useState<string | null>(null);
+  const [guide, setGuide] = useState(false);
   const box = useRef<HTMLInputElement>(null);
   const started = useRef(false);
   const busy = useRef(false);
@@ -75,7 +86,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
       setQuestion("");
     } catch (failure) {
       setQuestion(trimmed);
-      setError(failure instanceof ApiError ? failure.message : "Something went wrong while asking. Try again.");
+      setError(failure instanceof ApiError ? failure.message : "Something went wrong. Please try again.");
     } finally {
       busy.current = false;
       setPending(null);
@@ -89,11 +100,21 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
       setPage(await api.page(citation.file_id, citation.page));
       setPageChunk(citation.chunk_id);
     } catch (failure) {
-      setError(failure instanceof ApiError ? failure.message : "That page could not be opened.");
+      setError(failure instanceof ApiError ? failure.message : "We couldn’t open that page.");
     }
   }, [api]);
 
   const feedback = useCallback((answerId: string, verdict: Verdict, comment: string) => api.feedback(answerId, verdict, comment), [api]);
+
+  const closeGuide = useCallback(() => {
+    setGuide(false);
+    try {
+      window.localStorage.setItem(SEEN_GUIDE, "1");
+    } catch {
+      // Without storage the guide simply opens again next time.
+    }
+    box.current?.focus();
+  }, []);
 
   // What is loaded, and a question the link may carry: ?q=...&graph=1
   useEffect(() => {
@@ -105,8 +126,10 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     const linked = params.get("q");
     if (linked) {
       const exact = params.get("graph") === "1";
-      setGraphOnly(exact);
+      setVerifiedOnly(exact);
       void ask(linked, exact ? "exact" : "allow_fallback");
+    } else if (restore().length === 0 && firstVisit()) {
+      setGuide(true); // A first visit with nothing asked: show how it works. It can always be closed.
     }
   }, [api, ask]);
 
@@ -118,7 +141,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
     }
   }, [answers]);
 
-  // A local model can take many seconds: count them, so waiting never looks like a fault.
+  // An answer can take many seconds: count them, so waiting never looks like a fault.
   useEffect(() => {
     if (pending === null) return;
     const timer = window.setInterval(() => setWaited((seconds) => seconds + 1), 1000);
@@ -141,72 +164,93 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
 
   function submit(event: FormEvent) {
     event.preventDefault();
-    void ask(question, graphOnly ? "exact" : "allow_fallback");
+    void ask(question, verifiedOnly ? "exact" : "allow_fallback");
   }
 
   const current = answers.find((answer) => answer.id === selected) ?? null;
-  const mode: Mode = graphOnly ? "exact" : "allow_fallback";
+  const mode: Mode = verifiedOnly ? "exact" : "allow_fallback";
+  const fresh = answers.length === 0 && pending === null;
 
   return (
     <div className="app">
       <header className="top">
-        <div className="top__bar">
-          <h1>Drilling reports</h1>
-          <p className={examples || unreachable ? "top__state top__state--warn" : "top__state"}>
-            {examples
-              ? "Example answers: no language model is connected. The evidence is real; each answer is a prepared one."
-              : unreachable
-                ? "The application server is not reachable."
-                : health
-                  ? `Model: ${modelName(health)}`
-                  : ""}
-          </p>
+        <div className="top__inner">
+          <p className="brand"><span className="brand__mark" aria-hidden="true" />Drilling Reports Assistant</p>
+          <button type="button" className="chip chip--plain" onClick={() => setGuide(true)}>
+            <Icon name="help" size={18} /> How it works
+          </button>
         </div>
-        <form className="ask" onSubmit={submit}>
-          <label htmlFor="question">Ask about the reports</label>
-          <div className="ask__row">
-            <input
-              id="question"
-              ref={box}
-              type="text"
-              maxLength={500}
-              autoComplete="off"
-              autoFocus
-              placeholder="For example: how many hours did AK-3 spend drilling in August 2016?"
-              value={question}
-              onChange={(event) => setQuestion(event.target.value)}
-            />
-            <button type="submit" className="button" disabled={pending !== null}>{pending !== null ? "Asking" : "Ask"}</button>
-          </div>
-          <div className="ask__options">
-            <label className="switch">
-              <input type="checkbox" checked={graphOnly} onChange={(event) => setGraphOnly(event.target.checked)} />
-              <span>
-                Graph answers only
-                <small>Answer from stored facts and daily operations. Do not fall back to searching the report text.</small>
-              </span>
-            </label>
-            <p className="ask__hint">Press <kbd>/</kbd> to type a question</p>
-          </div>
-          {error && <p role="alert" className="error">{error}</p>}
-        </form>
       </header>
+
+      <div className={fresh ? "hero hero--fresh" : "hero"}>
+        <div className="hero__inner">
+          {fresh && (
+            <>
+              <h1>Ask anything about your drilling reports</h1>
+              <p className="hero__lead">
+                Type a question in plain English. You get an answer, and you can always see exactly which page it
+                comes from.
+              </p>
+            </>
+          )}
+          {!fresh && <h1 className="visually-hidden">Drilling Reports Assistant</h1>}
+          <form className="ask" onSubmit={submit}>
+            <label htmlFor="question" className="visually-hidden">Ask about the reports</label>
+            <div className="ask__row">
+              <span className="ask__icon"><Icon name="search" size={22} /></span>
+              <input
+                id="question"
+                ref={box}
+                type="text"
+                maxLength={500}
+                autoComplete="off"
+                autoFocus
+                placeholder="For example: how many hours did AK-3 spend drilling in August 2016?"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+              />
+              <button type="submit" className="button" disabled={pending !== null}>{pending !== null ? "Asking" : "Ask"}</button>
+            </div>
+            <div className="ask__options">
+              <label className="switch">
+                <input type="checkbox" checked={verifiedOnly} onChange={(event) => setVerifiedOnly(event.target.checked)} />
+                <span className="switch__track" aria-hidden="true" />
+                <span>Verified data only</span>
+              </label>
+              <Tip about="verified data only">{EXPLAIN.verifiedOnly}</Tip>
+            </div>
+            {error && <p role="alert" className="error"><Icon name="alert" size={18} /> {error}</p>}
+          </form>
+          {examples && (
+            <p className="notice">
+              <Icon name="info" size={16} /> Demo mode: no AI is connected. The report text and numbers are real; each
+              answer shown is a prepared example.
+            </p>
+          )}
+          {unreachable && !examples && (
+            <p className="notice notice--warn"><Icon name="alert" size={16} /> We can’t reach the server right now. Please try again in a moment.</p>
+          )}
+        </div>
+      </div>
 
       {pending !== null && (
         <div className="pending" role="status">
-          <p className="pending__question">{pending}</p>
-          <p className="pending__state">Reading the reports{waited >= 3 ? `, ${waited} s` : ""}</p>
-          <div className="pending__bar" aria-hidden="true" />
+          <div className="pending__dots" aria-hidden="true"><span /><span /><span /></div>
+          <div>
+            <p className="pending__state">Reading the reports for you{waited >= 3 ? ` (${waited} seconds)` : ""}</p>
+            <p className="pending__question">“{pending}”</p>
+          </div>
         </div>
       )}
 
-      {answers.length === 0 && pending === null ? (
+      {fresh ? (
         <main className="start">
           <section aria-labelledby="try">
-            <h2 id="try">Questions to try</h2>
+            <h2 id="try">Not sure what to ask? Try one of these</h2>
             <div className="start__groups">
               {TRY.map((group) => (
-                <div key={group.kind} className="start__group">
+                <div key={group.kind} className="card start__group">
+                  <span className="start__icon"><Icon name={group.icon} size={22} /></span>
                   <h3>{group.kind}</h3>
                   <p>{group.why}</p>
                   <ul>
@@ -221,25 +265,32 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
             </div>
           </section>
           {wells.length > 0 && (
-            <section aria-labelledby="loaded" className="start__loaded">
-              <h2 id="loaded">What is loaded</h2>
+            <section aria-labelledby="loaded" className="card start__loaded">
+              <h2 id="loaded">Reports you can ask about</h2>
               {health && (
                 <p className="note">
-                  {health.data.end_of_well_chunks} passages of end-of-well reports and {health.data.events} daily operations.
+                  {health.data.end_of_well_chunks} passages from end-of-well reports and {health.data.events} logged
+                  daily activities are loaded.
                 </p>
               )}
-              <table className="data" aria-label="Wells loaded">
-                <thead>
-                  <tr><th>Well</th><th className="num">Checked facts</th><th className="num">Report days</th></tr>
-                </thead>
-                <tbody>
-                  {wells.map((well) => (
-                    <tr key={well.well_id}>
-                      <td>{well.well_id}</td><td className="num">{well.facts}</td><td className="num">{well.report_days}</td>
+              <div className="scroll">
+                <table className="data" aria-label="Wells loaded">
+                  <thead>
+                    <tr>
+                      <th>Well</th>
+                      <th className="num">Key facts <Tip about="key facts">{EXPLAIN.keyFacts}</Tip></th>
+                      <th className="num">Days of daily reports</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {wells.map((well) => (
+                      <tr key={well.well_id}>
+                        <td>{well.well_id}</td><td className="num">{well.facts}</td><td className="num">{well.report_days}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           )}
         </main>
@@ -250,7 +301,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
               {current && <Answer key={current.id} answer={current} arrive={arrived === current.id} onOpenSource={openSource} onFeedback={feedback} />}
               {answers.length > 1 && (
                 <section className="earlier" aria-labelledby="earlier">
-                  <h2 id="earlier">Earlier questions</h2>
+                  <h2 id="earlier">Your earlier questions</h2>
                   <ul>
                     {answers.filter((answer) => answer.id !== selected).map((answer) => (
                       <li key={answer.id}>
@@ -281,7 +332,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
                   setPage(null);
                 }}
               >
-                Clear all questions
+                Start over
               </button>
             </div>
             {current && (
@@ -289,6 +340,16 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
             )}
           </main>
         )
+      )}
+
+      {guide && (
+        <Guide
+          onClose={closeGuide}
+          onTry={(text) => {
+            closeGuide();
+            void ask(text, mode);
+          }}
+        />
       )}
     </div>
   );
