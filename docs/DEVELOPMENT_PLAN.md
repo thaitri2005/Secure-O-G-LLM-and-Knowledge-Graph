@@ -6,7 +6,7 @@
 
 This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q15) refer to the specification.
 
-**Version 3.3 (25 November)** records the first runs with the real model, the three reviews and what they changed, and rewrites the status and the task list (§7) around what now needs people or money. Version 3.2 closed the first build (M0 and M1) and planned the second: one connected application (specification §4.6, D-64 to D-69). What each track found stays in its own record: [Track A progress](experiments/TRACK_A_PROGRESS.md), [Track B log](tracks/B-graphrag/log.md), [Track C log](tracks/C-storage/log.md). Earlier versions are in the Git history.
+**Version 3.3 (25 November)** records the first runs with the real model and the reviews, and rewrites the status and the task list (§7) around what now needs people or money. What each track found is in its own record: [Track A progress](experiments/TRACK_A_PROGRESS.md), [Track B log](tracks/B-graphrag/log.md), [Track C log](tracks/C-storage/log.md). Earlier versions are in the Git history.
 
 ## Current status
 
@@ -53,16 +53,16 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 The first build ran as three tracks joined by files (D-48). Those tracks are closed (§3), and K1 to K5 remain the interfaces between ingestion, engine and stores.
 
-From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Hung agreed to backend and to the design on 24 November, and asked Tri to do part of the backend for now; what Tri does and what stays with Hung is in the [backend design](tracks/C-storage/backend-design.md). Khai agreed to data the same day (Track B log B-D40). The roles are settled for this stint (Q14).**
+From this stint the split follows the lines the supervisor asked for (D-46, D-65). The roles are settled for this stint (Q14): Hung and Khai agreed on 24 November, and Hung asked Tri to do part of the backend for now ([backend design](tracks/C-storage/backend-design.md); Track B log B-D40).
 
-| Role | Proposed owner | Owns | Interface it publishes |
+| Role | Owner | Owns | Interface it publishes |
 |---|---|---|---|
-| **Data** | Khai (agreed) | PDFs to K1 packages; table and form quality; the QA sidecar; new reports | K1 releases |
-| **Backend** | Hung (agreed; Tri helps for now) | Shared hosting of the stores; the runner from a K1 package to loaded stores and graphs; the FastAPI service; the question log | The OpenAPI file; the stores |
+| **Data** | Khai | PDFs to K1 packages; table and form quality; the QA sidecar; new reports | K1 releases |
+| **Backend** | Hung, with Tri for now | Shared hosting of the stores; the runner from a K1 package to loaded stores and graphs; the FastAPI service; the question log | The OpenAPI file; the stores |
 | **Engine** | Tri | Lanes, coordinator, answer checks, the reasoning probe; measurements | The `graphrag` library; K4 records |
-| **Frontend** | Tri (confirmed by Tri, 24 November) | The React application | — |
+| **Frontend** | Tri | The React application | — |
 
-Engine and frontend on one person is the weak point of this proposal. If it slips, the frontend's first version shrinks to the chat page and the source viewer.
+Engine and frontend on one person is the weak point of this split. If it slips, the frontend's first version shrinks to the chat page and the source viewer.
 
 The split is redone every one to two weeks (D-48). Everyone joins integration, demos and documentation.
 
@@ -115,11 +115,11 @@ flowchart LR
 
 The design is [specification §4.6](PROJECT_DESIGN.md#46-second-build-one-connected-application), [§7.5](PROJECT_DESIGN.md#75-http-interface-design) and [§8.1](PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes). The task list is §7 below. Three checkpoints:
 
-| When | Checkpoint |
-|---|---|
-| End of week 4 (28 November) | Roles agreed. Supervisor messaged. Stores reachable by all three, with the AK-3 release loaded. The OpenAPI file agreed. The lane interface written, with the lanes behind it. **State 25 November:** all built; the stores loaded with the three-report package and its vectors on a cloud machine; open: the message to the supervisor, a host all three reach |
-| End of week 5 (5 December) | The engine answers from the stores, with the baseline scores reproduced. The coordinator measured on the pooled questions. The API returns real answers. The frontend runs against it. **State 25 November:** the engine answers from the stores and the baseline is reproduced answer for answer on a second machine; the API returns real answers and the frontend runs against it; the coordinator's measurement on the pooled questions waits for a GPU |
-| End of week 6 (12 December) | The exit demo above, shown to the supervisor: one sample walked from PDF to answer inside the application. The reasoning probe's record written ([E34](experiments/E34-reasoning-probe.md), done). The application handed to whoever the supervisor names among the domain experts |
+| When | Checkpoint | State on 25 November |
+|---|---|---|
+| End of week 4 (28 November) | Roles agreed. Supervisor messaged. Stores reachable by all three, with the AK-3 release loaded. The OpenAPI file agreed. The lane interface written, with the lanes behind it | All built; the stores loaded with the three-report package and its vectors on a cloud machine. Open: the message to the supervisor, a host all three reach |
+| End of week 5 (5 December) | The engine answers from the stores, with the baseline scores reproduced. The coordinator measured on the pooled questions. The API returns real answers. The frontend runs against it | Done, except the coordinator's measurement on the pooled questions, which waits for a GPU |
+| End of week 6 (12 December) | The exit demo above, shown to the supervisor: one sample walked from PDF to answer inside the application. The reasoning probe's record written. The application handed to whoever the supervisor names among the domain experts | The record is written ([E34](experiments/E34-reasoning-probe.md)). The demo and the hand-over wait for a server and for names |
 
 **Order matters more than dates.** The first two things unblock everyone else: shared stores (B1) and the K1 release for the demo set (D1). The frontend does not wait for them: it starts on recorded answers as fixtures.
 
@@ -191,7 +191,7 @@ Keep:
 | R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
 | R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
 | R-09 | Scope too large for three people; engine and frontend on one person | A checkpoint missed by a week | Cut in the order of §4; shrink the frontend to chat and source viewer | All |
-| R-10 | Direction drifts without contact | **Already true: no recorded contact since 9 November** | Message the supervisor this week (task A1); short updates every few days (D-46) | All |
+| R-10 | Direction drifts without contact | **Already true: no recorded contact since 9 November** | Message the supervisor this week (§7, task 2); short updates every few days (D-46) | All |
 | R-11 | Wrong entity merges corrupt answers | Two wells joined | Identifier and scoped-name matching only; merges always by a person | Backend |
 | R-12 | The three parts drift while being connected | A K1 or API change breaks another part | K1 changes by version only; the OpenAPI file agreed first; the runner checks each step | All |
 | R-13 | Data passed by hand between machines | A zip in the chat | Shared stores and a file store for K1 releases (B1) | Backend |
@@ -243,15 +243,6 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 |---|---|
 | G1 | `python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2`: the coordinator on the 221 pooled questions against the hand-routed scores (E33), and the answers on the package (E32) |
 | G2 | Decide whether the coordinator is adopted (D-64): only if it matches the hand-routed scores |
-
-### All
-
-| # | Task | State | Left |
-|---|---|---|---|
-| A1 | Message anh Tuấn with the stint report and the open questions (Q2, Q6, Q13) | Not done | Tri |
-| A2 | Agree the roles (Q14) | Done | — |
-| A3 | Review the design: specification §4.1, §4.6, §7.5, §8, §11.4 | Hung and Khai agreed to the design of 24 November; D-69 is new | Each records objections, if any |
-| A4 | Exit demo for the supervisor, then hand the application to domain experts | Not done | A server and a model others reach |
 
 ### Data (Khai)
 

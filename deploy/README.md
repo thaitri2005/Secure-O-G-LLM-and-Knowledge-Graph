@@ -4,7 +4,14 @@ The runbook for the shared server (backend design [§1](../docs/tracks/C-storage
 
 **Status (25 November 2026):** the stack ran as containers on a Linux cloud machine, with Qwen3-8B answering from the stores, and the full smoke test passed 6 of 6 through the proxy (Track B log B-F76). Not yet run: a real server with a domain and its certificate. Mark here what differed when you run them.
 
-**Two runbooks, one server.** Hung's [server runbook](../docs/tracks/C-storage/server-runbook.md) covers the server itself and the stores: creating it, `platform/server/setup.sh`, the passwords, the SSH tunnel, the backup, and loading a release through the tunnel. This file adds the application on top: the backend, the proxy with the password gate, and the model endpoint. Sections 1 to 3, 6, 7 and 10 below overlap with his and are kept so the whole path can be read in one place; where the two differ on the stores or the server, follow his: it is the one that was run. Until a server exists, the stores run on a team machine over Tailscale (Track C log C-D06); the application can run there the same way, for the team only.
+**Two runbooks, one server.**
+
+| Runbook | Covers |
+|---|---|
+| Hung's [server runbook](../docs/tracks/C-storage/server-runbook.md) | The server itself and the stores: creating it, `platform/server/setup.sh`, the passwords, the SSH tunnel, the backup, loading a release through the tunnel |
+| This file | The application on top: the backend, the proxy with the password gate, the model endpoint, the monitor |
+
+Sections 1 to 3, 6, 7 and 10 below overlap with his, so that the whole path can be read in one place. Where the two differ on the stores or the server, follow his. Until a server exists, the stores can run on a team machine over Tailscale (Track C log C-D06), and the application the same way, for the team only.
 
 ## What runs
 

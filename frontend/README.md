@@ -25,9 +25,14 @@ Then open http://localhost:5173. Node 20.19 or later.
 
 Everything on screen is written for someone who reads drilling reports and has never seen the system. No word names a part of it: there is no "graph", "lane" or "model call" anywhere, and a test fails if one appears.
 
+### Asking
+
 - **A guide opens on the first visit** ("How it works") and can always be reopened from the top bar. It covers what to ask, how to read an answer, how to check it and how to say it is wrong, with example questions that can be asked in one click. It is skippable.
 - **Ask in plain English** from a search box that stays in reach. Before the first question, the screen offers example questions in four groups and a table of the reports that are loaded.
 - **While a question is being answered** (a real model can take a minute or more) the screen says what is happening, in three steps told by the time that has passed: reading the question, looking through the reports, writing the answer and checking it. It counts the seconds, changes its one line of reassurance as the wait grows, and has a "Stop" button; a stopped question goes back into the box. The browser waits up to four minutes, longer than the server does.
+
+### Reading an answer
+
 - **Every answer carries a label that says how far to trust it:**
   - green, *Calculated from the reports*: the system added the number up itself;
   - blue, *Written by AI, checked against the reports*: an AI wrote it and the value was found in the text;
@@ -39,6 +44,9 @@ Everything on screen is written for someone who reads drilling reports and has n
   - *The list of activities* is grouped by day, each day with one heading line (date, activities, hours, non-productive hours). A long list shows its first days and a button, "Show all 28 activities"; an activity chosen on the timeline is unfolded and brought into view. On a phone each activity is two lines instead of four columns.
   - *Report text*: what the AI read, the cited passage first and flagged "The answer is here", with the answer's value highlighted in yellow. A long passage opens at the highlight.
   - *Key facts*: the checked facts the AI was given.
+
+### Questions about a cause
+
 - **A question about a cause** ("What caused the stuck pipe on AK-3 on 20 August 2016?") is answered in parts, never as one AI sentence:
   - *The problem we found*: when, how long, the depth, the report's code (explained on hover) and its own description;
   - *What the reports say caused it*: each cause with the report's words quoted and where they are written; the page opens like any source, and an activity whose page is not on this machine is shown in the evidence instead;
@@ -47,21 +55,36 @@ Everything on screen is written for someone who reads drilling reports and has n
   - one quiet line when causes were left out because no report text supported them;
   - the evidence: the activities before, during and after the problem (those of the problem marked) on the timeline and in the same folded list, and the report text gathered around it.
 - **When several problems match**, the application lists them as choices (days, hours, depth, the report's description). Picking one asks the question again with that problem's first day written into it, since a date in the question decides which problem is meant.
+
+### Checking the source, and saying it is wrong
+
 - **Where this comes from** lists each report once, by a readable name ("AK-3 end-of-well report, page 7"), and opens the page: as the printed page beside the cited text when an image exists (click it for full size; the credit line for the report's authors and licence is shown), and as text on a second tab or when there is none.
+
+### When something is wrong
+
 - **When something is wrong** the person sees a plain message and the button that helps:
   - "Try again" when the server is down, slow or restarting, when several people are asking at once, or when the answering service or the report database does not respond (the server says which, `src/api/client.ts`);
   - "Reload the page" when the password has expired or a page that is not the API's came back;
   - a notice before the first question when the server says it cannot answer questions just now; it looks again once a minute and goes by itself;
   - an answer that names no page says so; a broken screen shows a reload button, never a blank page.
+
+### Other things on the answer
+
 - **Verified data only**: a switch for answers from checked numbers and facts only.
 - **Was this answer right?** Yes in one click; "No, it's wrong" asks what it should be. Both are saved. "Copy link" confirms that the link was copied, or says to copy it from the address bar.
 - **An answer prints with what it rests on** (or saves as a PDF): the answer and its sources, then the evidence on the open tab with every activity listed, without the buttons, and with a link back to the answer.
 - **How we got this answer** is folded away for those who want it: three numbered steps, and the technical cost.
+
+### A page for each well
+
 - **A page for each well**, opened from the list of wells on the start page or from a well's name under an answer:
   - one sentence on its days ("27 days of reports, 115 hours of non-productive time: 66 hours KICK, 24 WAIT, ...");
   - *What we know about it*: the facts in groups (general, depths and dates, casing strings with planned beside actual, values at depths), with plain names, units and an "i" on the terms; a long table of values at depths shows its first six and a button for the rest; a value opens the page it is written on, in the same page view as a source;
   - *Day by day*: the timeline of the days whose activities are all at hand, and a list of the report days with their hours, non-productive hours, depth and codes: the first ten, then "Show all 27 days". A bar marks its day in the list and unfolds the list if the day is not showing. A well with no daily reports says so instead;
   - *Its reports*, each with its pages, or that its text is not on this computer.
+
+### The questions people asked
+
 - **Questions people asked** (`?view=questions`), for the team and the advisors, linked quietly from the top bar and left out of the guide. It only reads:
   - the counts (asked, answered, marked right, marked wrong, not marked, and "could not be answered" when there are any) and the list, newest first, 20 at a time;
   - a question the system failed to answer is listed as "Could not be answered", and when opened says why in plain words (the system was busy, or the answering service did not respond);
@@ -69,6 +92,9 @@ Everything on screen is written for someone who reads drilling reports and has n
   - an opened question: when and how it was asked, the answer it got with its label, and every mark with its comment;
   - "Download these as a question set" saves the questions the filters select as a question file, as the server wrote it. Someone writes the right answers into it, and it becomes a test.
 - Earlier questions fold to one line and are kept until the tab is closed. `/` puts the cursor in the search box; Esc closes a page, the guide or an explanation.
+
+### Moving around
+
 - **Each screen names itself on the browser tab** (the question and its answer, the well, the questions page), so the history and a printed page say what they are.
 - **Links and the back button work without a router:** the screen is in the query string, as a question already was. `?q=...&graph=1` asks a question, `?well=AK-3` opens a well, `?view=questions&question=<id>` one logged question (`src/lib/route.ts`).
 
