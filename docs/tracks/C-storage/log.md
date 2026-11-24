@@ -22,10 +22,10 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 | Loader | [`platform/load_k1.py`](../../../platform/load_k1.py): validates, loads one release in one transaction, reads it back and rebuilds every page from the database. Track A's AK-3 package loaded on Hung's Mac: 1,042 chunks, 174 / 174 pages rebuilt from the database | C-C08, C-F05 |
 | Reading the store | [`platform/k1_store.py`](../../../platform/k1_store.py): `read_chunks()` returns a release's chunks as the package wrote them, in order; `export` writes a `chunks.jsonl` that `graphrag` reads. The store equals the package, 1,042 / 1,042 | C-C09, C-F06 |
 | Vectors | [`platform/embed_k1.py`](../../../platform/embed_k1.py): 1,042 Qwen3-Embedding-0.6B vectors in pgvector, each with its well and report date; 67 / 67 searches give the same top 5 from SQL as in memory. About 1,170 tokens and 0.5 s per page on Hung's Mac | C-C10, C-F06 |
-| Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. Its source chunks still use the corpus export's IDs, not K1 version 1's. The fact graph is not in Neo4j yet | C-C11, C-F06 |
+| Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. [`platform/load_facts_neo4j.py`](../../../platform/load_facts_neo4j.py): the fact region (E27 fact graph: 216 facts, 5 wells, 11 casing strings) beside it, read back identical, the event region untouched. Both regions still cite the corpus export's chunk IDs, not K1 version 1's | C-C11, C-F06, C-C12, C-F07 |
 | Runner, viewer | Not started. Track B's local UI (B-C32, D-60) is the viewer for now | — |
 | Backend API | Read path built by Track B on Hung's behalf: `backend/`, with the contract and example responses for the frontend. It reads files, not the stores. The rest is designed in [backend-design.md](backend-design.md): hosting, the graph in Neo4j, the question log in PostgreSQL, the runner, page images, the compose file | C-D05 |
-| Next | In the order of [backend-design.md](backend-design.md): shared hosting (B1), the fact region in Neo4j (B3), the engine reading the stores, the runner (B2). Earlier list: Track B reads chunks from the store (`k1_store.py`); link the event graph to K1 version 1 chunks (legacy map from Khai, or the event graph built from K1); agree the fact graph's nodes and relationships with Tri; runner | — |
+| Next | In the order of [the note of 24 November](note-from-track-B-2026-11-24.md): shared hosting (B1), the engine reading the stores (with Tri), the runner (B2). ~~The fact region in Neo4j (B3)~~: done on Hung's Mac (C-C12, C-F07); load it again on the shared server | — |
 
 ## 2026-11-05
 
@@ -143,3 +143,26 @@ Before this run the three scripts were tested in the cloud: `k1_store.py` and `e
 - Hung has not reviewed this entry or the design; both are his to correct.
 - What to do first, in order, is in the [note of 24 November](note-from-track-B-2026-11-24.md): shared hosting, then the well facts in Neo4j, then the engine reading the stores.
 
+**C-C12 (design choice).** [`platform/load_facts_neo4j.py`](../../../platform/load_facts_neo4j.py) loads Track B's fact graph (`graphrag/results/E27_fact_graph.graph.json`, from `python -m graphrag.factgraph`) into Neo4j as the fact region, following [backend-design.md §4.1](backend-design.md#41-the-fact-region). Written with Claude; Hung ran and checked it.
+
+1. Key properties: `Well.name` and `Chunk.chunk_id` as the event loader has them, so the two regions meet on the same nodes; `Document.file_id`, `Fact.fact_id`, `CasingString.casing_id`, `HoleSection.section_id`, each with a uniqueness constraint.
+2. One write transaction: delete only `Fact`, `CasingString`, `HoleSection`, `Document` and chunks left with no relationship; then `MERGE` every node and relationship, so a second load changes nothing.
+3. Checks, any failure rolls back: counts per label and type equal the file's; every `Fact` has exactly one `HAS_FACT` in and one `FROM` out; facts read back equal the file's field by field; `ReportDay` and `Event` counts are the same before and after.
+4. The file has no `HoleSection` nodes or `HAS_SECTION` relationships (no fact states a hole section today), so five relationship types, not the six the note lists. Facts carry no `unit`. The loader handles both if they appear.
+5. The Neo4j password comes from `NEO4J_PASSWORD` when set (for the shared server, Task 1), else the local development one.
+
+`load_events_neo4j.py` already had the `--events` argument the note asked for; nothing changed there.
+
+**C-F07 (finding).** On Hung's Mac (Docker Neo4j 5.26, the event graph of C-F06 already loaded):
+
+| Check | Result |
+|---|---|
+| First load | 5 wells, 3 documents, 38 chunks, 216 facts, 11 casing strings; 216 `HAS_FACT`, 216 `FROM`, 5 `DESCRIBED_BY`, 38 `HAS_CHUNK`, 11 `HAS_CASING`: all equal the file |
+| Facts read back | 216 / 216 identical to the file |
+| Event region | 27 report days and 161 events before and after |
+| Second load | Same counts; nothing changed |
+| `MATCH (w:Well {name:'AK-3'})-[:HAS_FACT\|HAS_DAY]->()` | 27 `HAS_DAY` and 66 `HAS_FACT`: both regions |
+| Event loader run again afterwards | 161 / 161 events identical, 58 / 58 plans replay; still 216 facts |
+| A copy of the file with one `FROM` removed | Refused and rolled back; 216 facts with `FROM` remain |
+
+All 38 fact chunks use the corpus export's IDs (`gdr882_ak3_eowr#c0013`), so none match the `chunks` table in PostgreSQL yet (design §4.2). The data doubts Track B named (B-F60, B-F62: facts about TG-2 and TG-4, a 68-32 casing size that may be a hole size, AK-3's spud-to-release days) are loaded as the file gives them; they are Track B's to fix.
