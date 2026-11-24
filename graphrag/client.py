@@ -18,6 +18,7 @@ import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
 ENDPOINTS = ROOT / "configs/graphrag/endpoints.json"
+ROLES = ENDPOINTS.with_name("roles.json")
 CACHE = ROOT / "data/interim/graphrag/cache"
 
 
@@ -81,6 +82,11 @@ class Ledger:
 
 def load_endpoints(path: Path = ENDPOINTS) -> dict[str, Endpoint]:
     return {e["name"]: Endpoint(**e) for e in json.loads(path.read_text(encoding="utf-8"))}
+
+
+def load_roles(path: Path = ROLES) -> dict[str, dict[str, str]]:
+    """Which endpoint and model serve each role (specification §4.1, D-62): frame, answer, extract, embed."""
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 class ModelClient:
@@ -155,6 +161,12 @@ class ModelClient:
             self.cache_dir.mkdir(parents=True, exist_ok=True)
             (self.cache_dir / f"{key}.json").write_text(json.dumps(asdict(call)), encoding="utf-8")
         return call
+
+
+def client_for(role: str, roles: dict[str, dict[str, str]] | None = None, **kwargs: Any) -> ModelClient:
+    """The client for a role. Code names the role; the roles file names the model, so a model is swapped there."""
+    chosen = (roles or load_roles())[role]
+    return ModelClient(load_endpoints()[chosen["endpoint"]], chosen["model"], **kwargs)
 
 
 def _parse(content: str) -> Any:
