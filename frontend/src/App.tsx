@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { ApiError, type Api } from "./api/client";
 import type { AnswerOut, Citation, Health, Mode, PageOut, Verdict, WellSummary } from "./api/types";
 import { Answer } from "./components/Answer";
+import type { Pointer } from "./components/CauseEvidence";
 import { Evidence } from "./components/Evidence";
 import { Guide } from "./components/Guide";
 import { Icon, type IconName } from "./components/Icon";
@@ -27,6 +28,12 @@ const TRY: { icon: IconName; kind: string; why: string; questions: string[] }[] 
     kind: "Comparing wells",
     why: "The same fact across several wells",
     questions: ["Which of AK-3, 56-32 and 68-32 was drilled deepest?"],
+  },
+  {
+    icon: "flag",
+    kind: "What caused a problem",
+    why: "The cause the reports give, with other possible factors kept apart",
+    questions: ["What caused the stuck pipe on AK-3 on 20 August 2016?", "What caused the non-productive time on AK-3?"],
   },
 ];
 
@@ -67,6 +74,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
   const [page, setPage] = useState<PageOut | null>(null);
   const [pageChunk, setPageChunk] = useState<string | null>(null);
   const [guide, setGuide] = useState(false);
+  const [pointed, setPointed] = useState<(Pointer & { answer: string }) | null>(null);
   const box = useRef<HTMLInputElement>(null);
   const started = useRef(false);
   const busy = useRef(false);
@@ -106,6 +114,11 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
       setError(failure instanceof ApiError ? failure.message : "We couldn’t open that page.");
     }
   }, [api]);
+
+  const showEvidence = useCallback((answerId: string, label: string) => {
+    setPage(null);
+    setPointed({ answer: answerId, label, at: Date.now() });
+  }, []);
 
   const feedback = useCallback((answerId: string, verdict: Verdict, comment: string) => api.feedback(answerId, verdict, comment), [api]);
 
@@ -315,7 +328,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
         answers.length > 0 && (
           <main className="work">
             <div className="answers">
-              {current && <Answer key={current.id} answer={current} arrive={arrived === current.id} onOpenSource={openSource} onFeedback={feedback} />}
+              {current && <Answer key={current.id} answer={current} arrive={arrived === current.id} onOpenSource={openSource} onFeedback={feedback} onAsk={ask} onShowEvidence={showEvidence} />}
               {answers.length > 1 && (
                 <section className="earlier" aria-labelledby="earlier">
                   <h2 id="earlier">Your earlier questions</h2>
@@ -353,7 +366,7 @@ export default function App({ api, examples = false }: { api: Api; examples?: bo
               </button>
             </div>
             {current && (
-              <Evidence key={current.id} answer={current} page={page} pageChunk={pageChunk} onOpenPage={(chunk) => void openSource(current, { ...chunk, how: "model" })} onClosePage={() => setPage(null)} />
+              <Evidence key={current.id} answer={current} page={page} pageChunk={pageChunk} onOpenPage={(chunk) => void openSource(current, { ...chunk, how: "model" })} onClosePage={() => setPage(null)} pointed={pointed?.answer === current.id ? pointed : null} />
             )}
           </main>
         )

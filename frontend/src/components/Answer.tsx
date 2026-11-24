@@ -1,6 +1,8 @@
 import { memo, useEffect, useRef, useState } from "react";
-import type { AnswerOut, Citation, Verdict } from "../api/types";
+import type { AnswerOut, Citation, Mode, Verdict } from "../api/types";
+import { reask, reasoningOf } from "../lib/cause";
 import { advice, badge, distinctSources, EXPLAIN, headline, place, sourceNote, steps, summary, technical } from "../lib/wording";
+import { AskWhich, CauseAnswer } from "./Cause";
 import { Icon, type IconName } from "./Icon";
 import { Tip } from "./Tip";
 
@@ -10,7 +12,10 @@ const BADGE_ICON: Record<ReturnType<typeof badge>["tone"], IconName> = {
   ai: "sparkle",
   unconfirmed: "alert",
   none: "empty",
+  choose: "help",
 };
+
+const NOTHING = () => {};
 
 interface Props {
   answer: AnswerOut;
@@ -18,10 +23,14 @@ interface Props {
   arrive: boolean;
   onOpenSource: (answer: AnswerOut, citation: Citation) => void;
   onFeedback: (answerId: string, verdict: Verdict, comment: string) => Promise<void>;
+  /** Ask a question: used when the reader picks one of several problems. */
+  onAsk?: (question: string, mode: Mode) => void;
+  /** Show a piece of the evidence a cause rests on. */
+  onShowEvidence?: (answerId: string, label: string) => void;
 }
 
 /** The open answer: how far to trust it, the value, what it is based on, its sources, and a way to rate it. */
-export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFeedback }: Props) {
+export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFeedback, onAsk = NOTHING, onShowEvidence = NOTHING }: Props) {
   const [writing, setWriting] = useState(false);
   const [comment, setComment] = useState("");
   const [saved, setSaved] = useState<Verdict | null>(null);
@@ -34,6 +43,10 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
   // Each report or page once; the first few are enough until someone asks for all.
   const distinct = distinctSources(answer.citations);
   const sources = allSources ? distinct : distinct.slice(0, SHOWN);
+  // A question about a cause is answered in parts, each cause with its own sources; or with choices to pick from.
+  const reasoning = reasoningOf(answer);
+  const choosing = reasoning !== null && answer.status === "ask_which";
+  const causes = reasoning !== null && !choosing && answer.status !== "invalid";
 
   useEffect(() => {
     if (arrive) heading.current?.focus();
@@ -68,7 +81,7 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
         <Icon name={BADGE_ICON[trust.tone]} size={16} /> {trust.label}
         <Tip about={trust.label.toLowerCase()}>{trust.tip}</Tip>
       </p>
-      <h2 ref={heading} tabIndex={-1} className={answer.status === "answered" ? "answer__value" : "answer__value answer__value--none"}>
+      <h2 ref={heading} tabIndex={-1} className={answer.status === "answered" && !reasoning ? "answer__value" : "answer__value answer__value--none"}>
         {headline(answer)}
       </h2>
       <p className="answer__summary">{summary(answer)}</p>
@@ -79,7 +92,10 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
         </p>
       )}
 
-      {distinct.length > 0 && (
+      {choosing && <AskWhich reasoning={reasoning} onChoose={(index) => onAsk(reask(answer.question, reasoning.candidates[index]), answer.mode)} />}
+      {causes && <CauseAnswer answer={answer} reasoning={reasoning} onOpenSource={onOpenSource} onShowEvidence={(label) => onShowEvidence(answer.id, label)} />}
+
+      {!reasoning && distinct.length > 0 && (
         <div className="answer__block">
           <h3>Where this comes from</h3>
           <ol className="sources" aria-label="Sources">
@@ -126,36 +142,38 @@ export const Answer = memo(function Answer({ answer, arrive, onOpenSource, onFee
         <p className="how__technical">Technical details: {technical(answer)}.</p>
       </details>
 
-      <div className="feedback">
-        {saved ? (
-          <p className="feedback__saved"><Icon name="check" size={16} /> Thank you. Saved as {saved === "right" ? "helpful" : "wrong"}.</p>
-        ) : writing ? (
-          <form
-            className="feedback__form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void save("wrong", comment.trim());
-            }}
-          >
-            <label htmlFor={`comment-${answer.id}`}>What should the answer be? (optional)</label>
-            <textarea id={`comment-${answer.id}`} rows={2} maxLength={2000} autoFocus value={comment} onChange={(event) => setComment(event.target.value)} />
+      {!choosing && (
+        <div className="feedback">
+          {saved ? (
+            <p className="feedback__saved"><Icon name="check" size={16} /> Thank you. Saved as {saved === "right" ? "helpful" : "wrong"}.</p>
+          ) : writing ? (
+            <form
+              className="feedback__form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                void save("wrong", comment.trim());
+              }}
+            >
+              <label htmlFor={`comment-${answer.id}`}>What should the answer be? (optional)</label>
+              <textarea id={`comment-${answer.id}`} rows={2} maxLength={2000} autoFocus value={comment} onChange={(event) => setComment(event.target.value)} />
+              <div className="feedback__buttons">
+                <button type="submit" className="button button--small">Send</button>
+                <button type="button" className="link" onClick={() => setWriting(false)}>Cancel</button>
+              </div>
+            </form>
+          ) : (
             <div className="feedback__buttons">
-              <button type="submit" className="button button--small">Send</button>
-              <button type="button" className="link" onClick={() => setWriting(false)}>Cancel</button>
+              <span className="feedback__ask">Was this answer right?</span>
+              <button type="button" className="chip" onClick={() => void save("right", "")}><Icon name="thumbUp" size={16} /> Yes</button>
+              <button type="button" className="chip" onClick={() => setWriting(true)}><Icon name="thumbDown" size={16} /> No, it’s wrong</button>
+              <button type="button" className="chip chip--plain feedback__copy" onClick={() => void copyLink()}>
+                <Icon name={copied ? "check" : "link"} size={16} /> {copied ? "Link copied" : "Copy link"}
+              </button>
             </div>
-          </form>
-        ) : (
-          <div className="feedback__buttons">
-            <span className="feedback__ask">Was this answer right?</span>
-            <button type="button" className="chip" onClick={() => void save("right", "")}><Icon name="thumbUp" size={16} /> Yes</button>
-            <button type="button" className="chip" onClick={() => setWriting(true)}><Icon name="thumbDown" size={16} /> No, it’s wrong</button>
-            <button type="button" className="chip chip--plain feedback__copy" onClick={() => void copyLink()}>
-              <Icon name={copied ? "check" : "link"} size={16} /> {copied ? "Link copied" : "Copy link"}
-            </button>
-          </div>
-        )}
-        {failed && <p role="alert" className="error">We couldn’t save that. Check your connection and try again.</p>}
-      </div>
+          )}
+          {failed && <p role="alert" className="error">We couldn’t save that. Check your connection and try again.</p>}
+        </div>
+      )}
     </section>
   );
 });

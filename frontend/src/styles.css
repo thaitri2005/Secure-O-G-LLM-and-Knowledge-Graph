@@ -814,6 +814,210 @@ mark {
   font-size: var(--small);
 }
 
+/* ---- an answer about a cause: the problem, the stated causes, possible factors kept apart ---- */
+
+.badge--choose {
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+}
+
+.problem {
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  background: var(--amber-soft);
+}
+
+.problem h3 {
+  color: var(--amber);
+}
+
+.problem__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0;
+  font-size: var(--small);
+}
+
+.problem__facts dt {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.problem__facts dd {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.problem__words-label {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.problem__words {
+  font-size: 1rem;
+}
+
+.causes {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cause {
+  padding: 0.9rem 1rem;
+  border: 1.5px solid var(--line);
+  border-left: 5px solid var(--blue);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+/* A possibility must never look like a finding: dashed, grey, labelled. */
+.cause--possible {
+  border: 1.5px dashed var(--slate-fill);
+  background: var(--soft);
+}
+
+.cause__label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.05rem 0.55rem;
+  border: 1px dashed var(--muted);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cause__text {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.cause--possible .cause__text {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cause__citations {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.cause__quote {
+  margin: 0;
+  padding-left: 0.8rem;
+  border-left: 3px solid var(--line);
+  font-size: 1rem;
+}
+
+.cause__where {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  padding-left: 0.8rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cause__where small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.cause__where .link {
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: center;
+  flex: none;
+  font-size: 0.8125rem;
+}
+
+.cause__removed {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.missing ul {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.missing li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: var(--small);
+}
+
+.missing li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0.2rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--slate-fill);
+}
+
+.missing small {
+  color: var(--muted);
+}
+
+.choices {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.choice {
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+  min-height: 56px;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+  text-align: left;
+  transition: border-color 160ms, background-color 160ms;
+}
+
+.choice:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.choice__when {
+  font-weight: 700;
+  font-size: var(--small);
+}
+
+.choice__words {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.choice__code {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
 .how {
   margin-top: 1.5rem;
   padding: 0.25rem 1rem;
@@ -1288,6 +1492,35 @@ mark {
 .data--pick tbody tr[aria-selected="true"] {
   background: var(--blue-soft);
   box-shadow: inset 4px 0 0 var(--blue);
+}
+
+.data tbody tr.around--problem td:first-child {
+  box-shadow: inset 4px 0 0 var(--amber-fill);
+}
+
+.around__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.25rem;
+  font-family: var(--sans);
+}
+
+.around__tag {
+  padding: 0 0.45rem;
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-weight: 800;
+}
+
+.around__tag--problem {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.around__tag--cited {
+  background: var(--blue-soft);
+  color: var(--blue-dark);
 }
 
 .npt {

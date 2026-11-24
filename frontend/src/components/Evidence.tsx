@@ -1,51 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { AnswerOut, ChunkOut, PageOut } from "../api/types";
-import { highlight, readable } from "../lib/highlight";
+import { reasoningOf } from "../lib/cause";
+import { readable } from "../lib/highlight";
 import { EXPLAIN, place } from "../lib/wording";
+import { CauseEvidence, type Pointer } from "./CauseEvidence";
 import { DayStrips } from "./DayStrips";
 import { Icon } from "./Icon";
 import { PageImage } from "./PageImage";
+import { Passage, ReportText } from "./Passage";
 import { Tip } from "./Tip";
 
 type Tab = "timeline" | "facts" | "text";
-
-/** Report text, in the reports' own typeface, with the answer's values highlighted where they are written. */
-function ReportText({ text, values }: { text: string; values: string[] }) {
-  const parts = useMemo(() => highlight(readable(text), values), [text, values]);
-  const box = useRef<HTMLParagraphElement>(null);
-  // A long passage is shown in a box that scrolls; open it where the answer's value is written.
-  useEffect(() => {
-    const first = box.current?.querySelector("mark");
-    if (box.current && first instanceof HTMLElement && box.current.scrollHeight > box.current.clientHeight) {
-      // The box is the mark's offset parent (it is positioned), so offsetTop is already measured from its top.
-      box.current.scrollTop = Math.max(0, first.offsetTop - 48);
-    }
-  }, [parts]);
-  return (
-    <p className="report-text" ref={box}>
-      {parts.map((part, index) => (part.hit ? <mark key={index}>{part.text}</mark> : part.text))}
-    </p>
-  );
-}
-
-function Passage({ chunk, cited, values, onOpenPage }: { chunk: ChunkOut; cited: boolean; values: string[]; onOpenPage: (chunk: ChunkOut) => void }) {
-  return (
-    <article className={cited ? "passage passage--cited" : "passage"}>
-      <header className="passage__where">
-        <span><Icon name="document" size={16} /> {place(chunk.file_id, chunk.page)}{chunk.section ? ` · ${chunk.section}` : ""}</span>
-        {cited && <span className="passage__flag"><Icon name="check" size={14} /> The answer is here</span>}
-      </header>
-      {chunk.text === null ? (
-        <p className="passage__missing">This report’s text is not available on this computer.</p>
-      ) : (
-        <ReportText text={chunk.text} values={values} />
-      )}
-      {chunk.page !== null && chunk.text !== null && (
-        <button type="button" className="link" onClick={() => onOpenPage(chunk)}>Read the whole page</button>
-      )}
-    </article>
-  );
-}
 
 interface Props {
   answer: AnswerOut;
@@ -53,10 +18,12 @@ interface Props {
   pageChunk: string | null;
   onOpenPage: (chunk: ChunkOut) => void;
   onClosePage: () => void;
+  /** A piece of evidence a cause answer pointed to, to show. */
+  pointed?: Pointer | null;
 }
 
 /** What the answer rests on: the activities a number was added up from, the report text, the key facts. */
-export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: Props) {
+export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage, pointed = null }: Props) {
   const { computed, facts, passages } = answer.evidence;
   const [tab, setTab] = useState<Tab>(computed ? "timeline" : passages.length > 0 ? "text" : "facts");
   const [activity, setActivity] = useState<number | null>(null);
@@ -120,6 +87,9 @@ export function Evidence({ answer, page, pageChunk, onOpenPage, onClosePage }: P
       </section>
     );
   }
+
+  const reasoning = reasoningOf(answer);
+  if (reasoning) return <CauseEvidence answer={answer} reasoning={reasoning} pointed={pointed} onOpenPage={onOpenPage} />;
 
   const textLabel = answer.status === "answered" || computed ? "Report text" : "Closest report text";
   const tabs: { id: Tab; label: string; count: number }[] = [

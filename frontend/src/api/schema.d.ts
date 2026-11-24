@@ -206,7 +206,7 @@ export interface components {
              * Status
              * @enum {string}
              */
-            status: "answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid";
+            status: "answered" | "not_stated" | "not_found_in_graph" | "withheld" | "invalid" | "ask_which";
             /**
              * Answer Text
              * @description A sentence to show: the computed result, or the values with their units
@@ -218,7 +218,7 @@ export interface components {
              * Lanes
              * @description The lanes that gave the evidence, in order; empty when nothing was found
              */
-            lanes: ("passages" | "well_facts" | "events")[];
+            lanes: ("passages" | "well_facts" | "events" | "reasoning")[];
             /**
              * Fallback
              * @description True when the routed lanes found nothing and passages were used instead
@@ -235,6 +235,30 @@ export interface components {
             evidence: components["schemas"]["Evidence"];
             checks: components["schemas"]["Checks"];
             cost: components["schemas"]["Cost"];
+        };
+        /** Cause */
+        Cause: {
+            /** Cause */
+            cause: string;
+            /** Citations */
+            citations: components["schemas"]["CauseCitation"][];
+        };
+        /** CauseCitation */
+        CauseCitation: {
+            /**
+             * Evidence
+             * @description The label of the evidence item
+             */
+            evidence: string;
+            /** Chunk */
+            chunk: string;
+            /**
+             * How
+             * @enum {string}
+             */
+            how: "model" | "by_quote";
+            /** Quote */
+            quote: string;
         };
         /** Checks */
         Checks: {
@@ -377,6 +401,8 @@ export interface components {
              */
             facts: components["schemas"]["FactOut"][];
             computed: components["schemas"]["Computed"] | null;
+            /** @description Set for a question about causes */
+            reasoning?: components["schemas"]["Reasoning"] | null;
             /**
              * Model Note
              * @description The model's own note on the evidence, when the answer format asks for one
@@ -456,7 +482,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "lookup" | "lookup_by_date" | "across_wells" | "over_time" | "reasoning" | "other";
+            kind: "lookup" | "lookup_by_date" | "across_wells" | "over_time" | "cause" | "other";
             /**
              * Report Type
              * @enum {string}
@@ -466,6 +492,13 @@ export interface components {
             plan: {
                 [key: string]: unknown;
             };
+            /**
+             * Problem
+             * @description For a question about causes: the date, depth, code and keywords it names
+             */
+            problem?: {
+                [key: string]: unknown;
+            } | null;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -489,6 +522,17 @@ export interface components {
                 [key: string]: string;
             };
         };
+        /** Missing */
+        Missing: {
+            /** Text */
+            text: string;
+            /**
+             * Source
+             * @description corpus: a fixed list of what these reports lack; model: added by the model
+             * @enum {string}
+             */
+            source: "corpus" | "model";
+        };
         /** PageOut */
         PageOut: {
             /** File Id */
@@ -506,6 +550,40 @@ export interface components {
              */
             image_url?: string | null;
         };
+        /**
+         * Problem
+         * @description A drilling problem found in the event graph: a run of non-productive events with one code.
+         */
+        Problem: {
+            /** Date From */
+            date_from: string;
+            /** Date To */
+            date_to: string;
+            /** Start */
+            start: string;
+            /** End */
+            end: string;
+            /** Npt Code */
+            npt_code: string | null;
+            /** Hours */
+            hours: number;
+            /** Events */
+            events: number;
+            /**
+             * Depth Ft
+             * @description Lowest and highest end depth of its events, ft
+             */
+            depth_ft: number[];
+            /**
+             * Codes
+             * @description Activity codes of its events
+             */
+            codes: string[];
+            /** Description */
+            description: string;
+            /** Chunks */
+            chunks: string[];
+        };
         /** QuestionIn */
         QuestionIn: {
             /** Question */
@@ -521,7 +599,78 @@ export interface components {
              * Lane
              * @description Force one lane instead of the coordinator's route
              */
-            lane?: ("passages" | "well_facts" | "events") | null;
+            lane?: ("passages" | "well_facts" | "events" | "reasoning") | null;
+        };
+        /**
+         * Reasoning
+         * @description The answer to a question about causes (specification §8.6).
+         */
+        Reasoning: {
+            /** @description The problem the answer is about; null when several match and the user is asked which */
+            problem: components["schemas"]["Problem"] | null;
+            /**
+             * Candidates
+             * @description Every problem that matched the question
+             */
+            candidates: components["schemas"]["Problem"][];
+            /**
+             * Evidence
+             * @description What code gathered around the problem and showed the model
+             */
+            evidence: components["schemas"]["ReasoningEvidence"][];
+            /**
+             * Stated
+             * @description Causes a report states, each with a citation that code checked
+             */
+            stated: components["schemas"]["Cause"][];
+            /**
+             * Possible
+             * @description Factors visible in the evidence that no report states as the cause; empty in exact mode
+             */
+            possible: components["schemas"]["Cause"][];
+            /**
+             * Possible Hidden
+             * @description Possible causes left out because the mode is exact
+             */
+            possible_hidden: number;
+            /**
+             * Removed
+             * @description Causes code removed because no citation supported them, by list
+             */
+            removed: {
+                [key: string]: number;
+            };
+            /**
+             * Missing
+             * @description Kinds of evidence a real judgement needs that the reports do not hold
+             */
+            missing: components["schemas"]["Missing"][];
+        };
+        /** ReasoningEvidence */
+        ReasoningEvidence: {
+            /**
+             * Id
+             * @description The label the answer cites: E1, E2, ... for events, P1, P2, ... for passages
+             */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "event" | "daily" | "end_of_well";
+            /** Chunk */
+            chunk: string;
+            /** Text */
+            text: string;
+            /** Date */
+            date?: string | null;
+            /** Page */
+            page?: number | null;
+            /**
+             * Problem
+             * @description For an event: whether it is part of the problem itself
+             */
+            problem?: boolean | null;
         };
         /** ValidationError */
         ValidationError: {
