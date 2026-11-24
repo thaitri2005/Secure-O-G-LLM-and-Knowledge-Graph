@@ -11,17 +11,17 @@
   },
   {
     "well_id": "AK-3",
-    "facts": 66,
+    "facts": 65,
     "report_days": 27
   },
   {
     "well_id": "TG-2",
-    "facts": 10,
+    "facts": 4,
     "report_days": 0
   },
   {
     "well_id": "TG-4",
-    "facts": 3,
+    "facts": 1,
     "report_days": 0
   }
 ]

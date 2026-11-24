@@ -102,9 +102,14 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     frame = {"kind": parsed["kind"], "report_type": parsed["report_type"],
              "plan": {key: parsed.get(key, empty) for key, empty in EMPTY_PLAN.items()}, "problem": problem} if valid \
         else {"kind": "other", "report_type": "unknown", "plan": dict(EMPTY_PLAN), "problem": dict(EMPTY_PROBLEM)}
-    wells = well_names(question) & engine.wells
+    named = well_names(question)
+    wells = named & engine.wells
     if len(wells) == 1:
         frame["plan"]["well"] = next(iter(wells))
+    elif not wells and any(name[0].isalpha() for name in named):
+        # The question names a well by letters and number (ZZ-9) and the engine holds no such well: a total must
+        # not be computed on another well's events, whatever well the model wrote into the plan.
+        frame["plan"]["operation"] = "not_answerable"
     elif len(wells) > 1:
         frame["kind"] = "across_wells"
     dates = question_dates(question)
@@ -144,7 +149,7 @@ def _row_without_a_call(q: dict, gold: dict, status: str, values: list[str], raw
     summarized and compared whichever way each was answered. The checks on a model's citations do not apply."""
     expected = [gold[g] for g in q["gold"]]
     return {"id": q["id"], "kind": q["kind"], "status": status, "values": values, "raw_values": raw, "units": units,
-            "withheld_values": [], **score_answer(q, expected, "answered" if values else "not_stated", values),
+            "withheld_values": [], **score_answer(q, expected, "answered" if values else status, values),
             "retrieved_gold": None, "gold_facts_retrieved": None, "gold_facts": len(expected), "citations": citations,
             "citations_supported": True, "verified_on_gold_chunk": None, "citations_in_retrieved": True,
             "citations_on_gold_chunk": None, "quotes_verbatim": True, "passages": 0, "prompt_tokens": 0,
@@ -179,7 +184,7 @@ def _reasoning_row(q: dict, evidence: Evidence, answer_client, gold: dict, mode:
     status = "answered" if kept else ("not_stated" if result["valid"] else "invalid")
     row = _row_without_a_call(q, gold, status, [], [], [], citations)
     row.update(citations_in_retrieved=result["citations_named_shown"], passages=len(result["evidence"]),
-               prompt_tokens=call.prompt_tokens, completion_tokens=call.completion_tokens, seconds=call.seconds,
+               prompt_tokens=call.prompt_tokens, completion_tokens=call.completion_tokens, seconds=(call.seconds or getattr(call, "cached_seconds", 0.0)),
                cached=call.cached)
     return {**row, "answer_text": reasoning.answer_text(result), "reasoning": result}, 1
 
@@ -237,7 +242,7 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     out = {**row, **shown, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
            "answered_from": answered_from,
            "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
-           "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}
+           "frame_completion_tokens": call.completion_tokens, "frame_seconds": (call.seconds or getattr(call, "cached_seconds", 0.0))}
     if "stated_causes" in q:
         # A reasoning question with its gold (graphrag/README.md): scored by the probe's two measures.
         out["reasoning_score"] = reasoning.score(out, q)

@@ -82,6 +82,13 @@ class Service:
         self.page_images = page_images
         self.models = {role: f"{chosen['endpoint']}:{chosen['model']}" for role, chosen in roles.items()}
         self.by_id = engine.by_id()
+        # Where a report's page images may be: under the name the API calls it by, or under its K1 file ID, which is
+        # how platform/render_pages.py names the folder of a release (the part of a chunk ID before the first ":").
+        self.image_folders: dict[str, list[str]] = {}
+        for c in engine.eow_chunks + engine.daily_chunks:
+            folders = self.image_folders.setdefault(c.doc_id, [c.doc_id])
+            if ":" in c.id and c.id.split(":", 1)[0] not in folders:
+                folders.append(c.id.split(":", 1)[0])
         # One question at a time: the model server has one slot, and the coordinator's cost counters are per client.
         # A question waits for its turn at most `queue_seconds`, and at most `max_waiting` questions wait: beyond
         # either, the asker is told the system is busy instead of holding a place nobody is watching.
@@ -115,11 +122,14 @@ class Service:
         it. A log that cannot be written never costs the asker the answer."""
         question_id = self.new_id()
         q = {"id": question_id, "kind": "live", "question": question, "gold": []}
-        started, waited, cached_before = time.perf_counter(), 0.0, self._cached_calls()
+        started, waited, cached = time.perf_counter(), 0.0, 0
         try:
             waited = self._take_turn()
             try:
+                # Counted while this question holds the slot, so another question's cache hits are not its own.
+                cached_before = self._cached_calls()
                 row = coordinator.answer(q, self.engine, self.frame_client, self.answer_client, mode=mode, lane=lane)
+                cached = self._cached_calls() - cached_before
             finally:
                 self.lock.release()
         except Exception as error:
@@ -161,7 +171,7 @@ class Service:
             "checks": out["checks"], "computed": computed is not None,
             # For the statistics: time spent waiting for the model's slot, and model calls answered from the
             # request cache (their seconds are 0, so such a question is left out of the timings).
-            "queue_seconds": round(waited, 3), "cached_calls": self._cached_calls() - cached_before})
+            "queue_seconds": round(waited, 3), "cached_calls": cached})
         return out
 
     def _cached_calls(self) -> int:
@@ -254,11 +264,14 @@ class Service:
     def _image_path(self, file_id: str, page: int) -> Path | None:
         """The PNG of a page, or None. The path is built from a file ID the engine holds and a positive integer, never
         from the request's text, and must stay inside the image folder."""
-        if self.page_images is None or page < 1 or file_id not in {c.doc_id for c in self.engine.eow_chunks + self.engine.daily_chunks}:
+        if self.page_images is None or page < 1 or file_id not in self.image_folders:
             return None
         root = self.page_images.resolve()
-        path = (root / file_id / f"p{page}.png").resolve()
-        return path if path.is_relative_to(root) and path.is_file() else None
+        for folder in self.image_folders[file_id]:
+            path = (root / folder / f"p{page}.png").resolve()
+            if path.is_relative_to(root) and path.is_file():
+                return path
+        return None
 
     def page_image(self, file_id: str, page: int) -> Path:
         path = self._image_path(file_id, page)

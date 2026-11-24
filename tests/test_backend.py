@@ -344,6 +344,23 @@ class BackendTests(unittest.TestCase):
         self.assertIsNone(client.get("/v1/files/ak3-dailyreport/pages/2").json()["image_url"])
         self.assertEqual(client.get("/v1/files/ak3-dailyreport/pages/2/image").status_code, 404)
 
+    def test_a_page_image_stored_under_the_package_file_id_is_found(self):
+        from backend.questions import JsonlQuestionLog
+        from backend.service import Service
+        engine = sample_engine()
+        engine.daily_chunks.append(Chunk("f62efbee00767a3e7:s6:c0", "ak3-dailyreport", 4, "text", "Operations", "x"))
+        folder = Path(self.folder.name, "pages", "f62efbee00767a3e7")
+        folder.mkdir(parents=True)
+        (folder / "p4.png").write_bytes(b"\x89PNG")
+        service = Service(engine, None, None, JsonlQuestionLog(self.log_path), roles={}, page_images=folder.parent)
+        self.assertEqual(service.page_image("ak3-dailyreport", 4), (folder / "p4.png").resolve())
+        self.assertIsNotNone(service.page("ak3-dailyreport", 4)["image_url"])
+
+    def test_a_blank_question_is_refused_before_any_model_call(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        self.assertEqual(client.post("/v1/questions", json={"question": "   "}).status_code, 422)
+        self.assertFalse(self.log_path.exists())
+
     def test_without_an_image_folder_no_page_has_an_image(self):
         client = self.make(FRAME_EOW, DEPTH_ANSWER)
         self.assertIsNone(client.get("/v1/files/ak3-dailyreport/pages/1").json()["image_url"])

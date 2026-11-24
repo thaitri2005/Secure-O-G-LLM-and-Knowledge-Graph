@@ -23,10 +23,12 @@ def _contains(text: str, needle: str) -> bool:
 
 def resolve(answer: dict, hits: list[str], texts: dict[str, str], doc_id: str) -> tuple[str | None, str]:
     """Return (chunk ID or None, how): "model", "by_quote", "by_value" or "unsupported"."""
-    cited = cited_id(answer["chunk"], hits, doc_id)
-    if cited in hits and _contains(texts[cited], answer["quote"]):
+    # A model without schema enforcement can return a number where text is asked: read every field as text.
+    chunk, quote, value = (str(answer.get(key) or "") for key in ("chunk", "quote", "value"))
+    cited = cited_id(chunk, hits, doc_id)
+    if cited in hits and _contains(texts[cited], quote):
         return cited, "model"
-    for how, needle in (("by_quote", answer["quote"]), ("by_value", answer["value"])):
+    for how, needle in (("by_quote", quote), ("by_value", value)):
         found = next((cid for cid in hits if _contains(texts[cid], needle)), None)
         if found:
             return found, how

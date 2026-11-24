@@ -19,10 +19,13 @@ from __future__ import annotations
 import re
 from collections import Counter, defaultdict
 
-from .citations import _contains
+from .citations import _contains, _plain
 from .data import document_key
 from .retrieval import well_names
 from .scoring import normalize
+
+
+NUMBER = re.compile(r"-?\d+(?:\.\d+)?")
 
 
 def _value_text(value) -> str:
@@ -83,6 +86,13 @@ def context_problem(fact: dict, text: str) -> str | None:
 
 def written_in(value, text: str) -> bool:
     plain = _value_text(value)
+    if NUMBER.fullmatch(plain.replace(",", "")):
+        # A number must be written as a number of its own: "8" is not in "833 ft", "150" is not in "1500'", and
+        # "180" is not in "78180.6" (B-F68). Trailing zeros are the same number: 5.5 is "5.500", 12 is "12.0".
+        digits = plain.replace(",", "")
+        tail = r"0*" if "." in digits else r"(?:\.0+)?"
+        own = re.compile(rf"(?<![\d.])(?<!\d,){re.escape(digits)}{tail}(?!\d|[.,]\d)")
+        return bool(own.search(_plain(text)))
     if _contains(text, plain):
         return True
     # Dates are extracted as YYYY-MM-DD but written as "18 August 2016" or "09-Mar-19".

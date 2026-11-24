@@ -316,6 +316,11 @@ def messages(question: str, pack: dict) -> list[dict]:
     return [{"role": "system", "content": CAUSE_SYSTEM}, {"role": "user", "content": user}]
 
 
+def _is_a_quote(quote: str) -> bool:
+    """At least four letters or digits: a report's word or code ("STUCK", "weather"), not a stray "a" or "the"."""
+    return sum(ch.isalnum() for ch in quote) >= 4
+
+
 def check(listed, items: list[dict]) -> tuple[list[dict], int, bool]:
     """Keeps the items with at least one citation that shown evidence supports, as `citations.resolve` checks an
     answer: the cited ID must be shown and hold the quote, or the quote is found in other shown evidence and the
@@ -331,6 +336,8 @@ def check(listed, items: list[dict]) -> tuple[list[dict], int, bool]:
             if not isinstance(c, dict):
                 continue
             raw, quote = str(c.get("id", "")), str(c.get("quote", ""))
+            if not _is_a_quote(quote):
+                continue  # "a" or "the" is in every text: a cause needs a word of the report behind it
             label, how = resolve({"chunk": raw, "quote": quote, "value": ""}, labels, texts, "")
             if label and label not in {x["evidence"] for x in citations}:
                 citations.append({"evidence": label, "chunk": by_label[label]["chunk"], "how": how, "quote": quote})
@@ -416,7 +423,8 @@ def score(row: dict, q: dict) -> dict:
     if outcome == "ask_which":
         problem_found = row["status"] == "ask_which"
     elif outcome == "fallback":
-        problem_found = "reasoning" not in row["lanes"]
+        # No such problem is in the reports: right only if the lane stepped aside and the answer was "not stated".
+        problem_found = "reasoning" not in row["lanes"] and row["status"] in ("not_stated", "not_found_in_graph")
     else:
         gold, found = q.get("gold_problem") or {}, result.get("problem")
         problem_found = bool(found) and (not gold.get("date") or found["date_from"] <= gold["date"] <= found["date_to"]) \
@@ -431,7 +439,8 @@ def score(row: dict, q: dict) -> dict:
 
     found_causes = [any(_mentions(i["cause"], c["terms"]) and cites(i, c) for i in stated) for c in causes]
     unsupported = sum(not any(_mentions(i["cause"], c["terms"]) for c in causes) for i in stated)
-    stated_ok = all(found_causes) if causes else not stated
+    # With no stated cause in the gold, an empty list is right only if the reply was read: a broken reply is not.
+    stated_ok = all(found_causes) if causes else (not stated and result.get("valid", True))
     removed = result.get("removed") or {}
     return {"problem_found": problem_found, "stated_found": f"{sum(found_causes)}/{len(causes)}",
             "stated_found_and_cited": stated_ok, "unsupported_claims": unsupported,

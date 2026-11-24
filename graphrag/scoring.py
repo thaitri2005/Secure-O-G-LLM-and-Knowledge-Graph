@@ -44,12 +44,14 @@ def matches(value: Any, fact: dict) -> bool:
 
 
 def score_answer(question: dict, expected: list[dict], status: str, values: list[Any]) -> dict[str, bool]:
-    """End-to-end correctness. With no expected fact, the system must not answer."""
+    """End-to-end correctness. With no expected fact, the system must say that nothing is stated: a reply that broke
+    (`invalid`), was withheld, or asked something back is not a correct refusal. No recorded run had such a row
+    (checked on 25 November 2026), so earlier scores stand."""
     answered = status == "answered" and bool(values)
     no_extra = all(any(matches(v, e) for e in expected) for v in values) if answered else True
     if expected:
         found = answered and all(any(matches(v, e) for v in values) for e in expected)
         correct = found and no_extra
     else:
-        correct = not answered
+        correct = not answered and status in ("not_stated", "not_found_in_graph")
     return {"correct": correct, "no_wrong_values": no_extra}

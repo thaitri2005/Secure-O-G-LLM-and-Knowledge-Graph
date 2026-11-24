@@ -99,6 +99,18 @@
         "chunk_id": "gdr882_ak3_eowr#c0037",
         "file_id": "gdr882_ak3_eowr",
         "page": 20
+      },
+      {
+        "well": "AK-3",
+        "property": "non_productive_time",
+        "value": "115",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "table_mapping",
+        "chunk_id": "gdr882_ak3_eowr#c0037",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 20
       }
     ],
     "casing_strings": [
@@ -564,20 +576,6 @@
           {
             "well": "AK-3",
             "property": "inclination",
-            "value": "5",
-            "unit": null,
-            "qualifier": "actual",
-            "context": {
-              "depth_ft": 833.0
-            },
-            "source": "llm",
-            "chunk_id": "gdr882_ak3_eowr#c0004",
-            "file_id": "gdr882_ak3_eowr",
-            "page": 5
-          },
-          {
-            "well": "AK-3",
-            "property": "inclination",
             "value": "0.75",
             "unit": null,
             "qualifier": "actual",
@@ -775,20 +773,6 @@
             "chunk_id": "gdr882_ak3_eowr#c0053",
             "file_id": "gdr882_ak3_eowr",
             "page": 25
-          },
-          {
-            "well": "AK-3",
-            "property": "max_measured_temperature",
-            "value": "180",
-            "unit": null,
-            "qualifier": "actual",
-            "context": {
-              "depth_ft": 1500
-            },
-            "source": "llm",
-            "chunk_id": "gdr882_ak3_eowr#c0010",
-            "file_id": "gdr882_ak3_eowr",
-            "page": 7
           }
         ]
       },

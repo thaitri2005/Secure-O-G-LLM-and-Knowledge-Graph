@@ -29,9 +29,11 @@ from typing import Protocol
 TABLES = Path(__file__).resolve().parents[1] / "platform/sql/002_questions.sql"
 # The query the log exists for (backend design §3).
 COUNTS = """
+WITH latest AS (SELECT DISTINCT ON (question_id) question_id, verdict FROM question_feedback
+                ORDER BY question_id, feedback_id DESC)
 SELECT kind, count(*) AS asked, count(*) FILTER (WHERE status = 'answered') AS answered,
-       count(f.*) FILTER (WHERE f.verdict = 'wrong') AS marked_wrong
-FROM questions q LEFT JOIN question_feedback f USING (question_id)
+       count(*) FILTER (WHERE l.verdict = 'wrong') AS marked_wrong
+FROM questions q LEFT JOIN latest l USING (question_id)
 GROUP BY kind ORDER BY asked DESC
 """
 

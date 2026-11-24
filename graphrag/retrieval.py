@@ -65,6 +65,8 @@ class BM25:
         return idf, sum(self.lengths[i] for i in rows) / n
 
     def search(self, question: str, k: int, allowed: set[str] | None = None) -> list[tuple[str, float]]:
+        if allowed is not None and not allowed:
+            return []  # the filters left no passage: nothing to rank, and no statistics to compute
         key = frozenset(allowed) if allowed is not None else None
         if key not in self.stats:
             self.stats[key] = self._stats(i for i, cid in enumerate(self.ids) if cid in key)
@@ -194,12 +196,30 @@ def well_names(text: str) -> set[str]:
 
 REPORT_DATE = re.compile(r"Report For\s+(\d{2}-[A-Z][a-z]{2}-\d{2})")
 REPORT_NUMBER = re.compile(r"Report No:\s*(\d+)")
-QUESTION_DATE = re.compile(r"\b\d{1,2} (?:January|February|March|April|May|June|July|August|September|October|November|"
-                           r"December) \d{4}\b")
+MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",
+          "December")
+_MONTH = "(" + "|".join(f"{m}|{m[:3]}" for m in MONTHS) + r"|Sept)\.?"
+_DAY = r"(\d{1,2})(?:st|nd|rd|th)?"
+# "20 August 2016", "20th Aug 2016", and a range "20-22 August 2016" or "20 to 22 August 2016".
+DAY_FIRST = re.compile(rf"\b{_DAY}(?:\s*(?:-|–|to|and)\s*{_DAY})?\s+{_MONTH},?\s+(\d{{4}})\b", re.IGNORECASE)
+# "August 20, 2016".
+MONTH_FIRST = re.compile(rf"\b{_MONTH}\s+{_DAY},?\s+(\d{{4}})\b", re.IGNORECASE)
+ISO = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
 
 
 def question_dates(question: str) -> set[str]:
-    return {normalize(m) for m in QUESTION_DATE.findall(question)}
+    """The days a question names, as ISO dates. A range gives every day in it (at most a month's worth)."""
+    def iso(year: str, month: str, day: int) -> str | None:
+        number = next(i for i, m in enumerate(MONTHS, 1) if m[:3].lower() == month[:3].lower())
+        return f"{int(year):04d}-{number:02d}-{day:02d}" if 1 <= day <= 31 else None
+
+    found: set[str | None] = set()
+    for first, last, month, year in DAY_FIRST.findall(question):
+        low, high = int(first), int(last or first)
+        found |= {iso(year, month, day) for day in (range(low, high + 1) if low <= high else (low, high))}
+    found |= {iso(year, month, int(day)) for month, day, year in MONTH_FIRST.findall(question)}
+    found |= {f"{y}-{m}-{d}" for y, m, d in ISO.findall(question)}
+    return {d for d in found if d}
 
 
 def page_dates(chunks: list[Chunk]) -> dict[tuple[str, int], str]:

@@ -154,15 +154,23 @@ def TIME_KEY(text: str) -> int:
 
 
 NO_RESULT: tuple[list[str], str, str, list] = ([], "", "", [])
+ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def plan_value(plan: dict, events: list[Event], well: str = WELL) -> tuple[list[str], str, str, list[Event]]:
     """Runs a plan in code. Returns the result as values with their unit, the same result as text, and the events
     it rests on. No matching events gives no values: an unknown well, code or period is "not stated", not zero."""
-    operation = plan["operation"]
-    if operation == "not_answerable" or (plan.get("well") and plan["well"].upper() != well):
+    operation = plan.get("operation")
+    if operation not in OPERATIONS or operation == "not_answerable" or (plan.get("well") and str(plan["well"]).upper() != well):
         return NO_RESULT
-    start, end = plan.get("date_from") or "", plan.get("date_to") or ""
+    # Dates are compared as text, so anything but a full ISO date would silently select the wrong days: a plan
+    # with such a date, a reversed range or a negative number has no result (it is "not stated", never a guess).
+    start, end = (normalize(str(plan.get(key) or "")) for key in ("date_from", "date_to"))
+    if any(d and not ISO_DATE.fullmatch(d) for d in (start, end)) or (start and end and start > end):
+        return NO_RESULT
+    for key in ("depth_ft", "min_hours_per_day"):
+        if isinstance(plan.get(key), (int, float)) and plan[key] < 0:
+            return NO_RESULT
     code, npt_code = (plan.get("code") or "").upper(), (plan.get("npt_code") or "").upper()
     non_productive = bool(plan.get("non_productive") or npt_code)
     # Planners put "non_productive" or the non-productive code in the code field too (E28). An activity code is
@@ -318,7 +326,7 @@ def answer(args) -> dict:
         sources = list(dict.fromkeys(c for e in rows for c in e.chunks))
         plans.append({"question": question, "plan": plan, "result": result, "source_chunks": sources,
                       "plan_prompt_tokens": call.prompt_tokens, "plan_completion_tokens": call.completion_tokens,
-                      "plan_seconds": call.seconds})
+                      "plan_seconds": (call.seconds or getattr(call, "cached_seconds", 0.0))})
         if plan.get("operation") == "not_answerable":
             return [c for c, _ in fallback.search(question, args.k)], ""
         if not result:

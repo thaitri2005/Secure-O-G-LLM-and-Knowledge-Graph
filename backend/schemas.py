@@ -2,9 +2,9 @@
 file in this folder is generated from them, so change them here and regenerate (`python -m backend.contract`)."""
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StringConstraints
 
 Mode = Literal["allow_fallback", "exact"]
 Lane = Literal["passages", "well_facts", "events", "reasoning"]
@@ -15,7 +15,8 @@ ReportType = Literal["end_of_well", "daily"]
 
 
 class QuestionIn(BaseModel):
-    question: str = Field(min_length=1, max_length=500)
+    # Spaces around the question are dropped before its length is checked, so a blank question is refused.
+    question: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
     mode: Mode = Field("allow_fallback", description="exact: answer from the graphs only, no fallback to passages (D-59)")
     lane: Lane | None = Field(None, description="Force one lane instead of the coordinator's route")
 

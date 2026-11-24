@@ -272,9 +272,14 @@ def answer_one(q: dict, hits: list[str], graph: str, by_id: dict[str, Chunk], cl
     call = client.chat([{"role": "system", "content": system},
                         {"role": "user", "content": f"{graph}Passages:\n\n{passages}\n\nQuestion: {q['question']}"}],
                        schema=ANSWER_FORMATS[answer_format], max_tokens=max_tokens)
-    parsed = call.parsed or {"status": "invalid", "answers": []}
+    # A reply is trusted only in shape: without schema enforcement (some hosted providers) it can be a list, lack
+    # a field, or give a number where text is asked. Anything else than the asked shape is an invalid reply.
+    parsed = call.parsed if isinstance(call.parsed, dict) else {"status": "invalid", "answers": []}
     status = parsed.get("status", "invalid")
     answers = parsed.get("answers", []) if status == "answered" else []
+    if not isinstance(answers, list) or not all(isinstance(a, dict) and "value" in a for a in answers):
+        status, answers = "invalid", []
+    answers = [{**a, **{key: str(a.get(key) or "") for key in ("value", "unit", "chunk", "quote")}} for a in answers]
     resolved = [resolve(a, hits, {cid: by_id[cid].text for cid in hits}, doc) for a in answers]
     withheld = []
     if withhold_unsupported:
@@ -305,7 +310,7 @@ def answer_one(q: dict, hits: list[str], graph: str, by_id: dict[str, Chunk], cl
         "quotes_verbatim": all(c in by_id and squash(a["quote"]) in squash(by_id[c].text)
                                for a, c in zip(answers, cited)),
         "passages": len(hits), "prompt_tokens": call.prompt_tokens, "completion_tokens": call.completion_tokens,
-        "seconds": call.seconds, "cached": call.cached}
+        "seconds": (call.seconds or getattr(call, "cached_seconds", 0.0)), "cached": call.cached}
 
 
 def answer_questions(retrieve, chunks, client: ModelClient, facts: dict[str, list[str]] | None = None,

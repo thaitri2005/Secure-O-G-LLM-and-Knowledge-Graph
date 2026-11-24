@@ -115,6 +115,16 @@
       },
       {
         "well": "AK-3",
+        "property": "non_productive_time",
+        "value": "115",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "table_mapping",
+        "chunk_id": "gdr882_ak3_eowr#c0037"
+      },
+      {
+        "well": "AK-3",
         "property": "productive_time",
         "value": "532.5",
         "unit": null,
@@ -209,18 +219,6 @@
           "casing_size_in": "4-1/2"
         },
         "source": "llm",
-        "chunk_id": "gdr882_ak3_eowr#c0013"
-      },
-      {
-        "well": "AK-3",
-        "property": "casing_grade",
-        "value": "A53B",
-        "unit": null,
-        "qualifier": "actual",
-        "context": {
-          "casing_size_in": "8-5/8"
-        },
-        "source": "table_mapping",
         "chunk_id": "gdr882_ak3_eowr#c0013"
       }
     ],

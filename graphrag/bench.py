@@ -598,12 +598,20 @@ def results_table(group: list[dict]) -> str:
 def coordinator_table(group: list[dict]) -> tuple[str, list[str]]:
     """The coordinator per question set against the hand-routed run of the same set from the same profile, and how
     often it chose the lane the set was answered from by hand. Returns the table and what could not be lined up."""
+    # Only the steps made as hand-routed baselines count (their IDs start with "hand/"): the quick check and the
+    # steps on a K1 package answer the same sets another way and are not what the coordinator is held against.
     hand: dict[str, tuple[str, dict]] = {}
     for run_ in group:
         for step in run_["steps"]:
             for line in lines(step["id"], step["result"]):
-                if not line["coordinator"]:
-                    hand.setdefault(line["set"], (run_["name"], line))
+                if line["coordinator"]:
+                    continue
+                if step["id"].startswith("hand/"):
+                    hand.setdefault((run_["name"], line["set"]), (run_["name"], line))
+                    hand.setdefault(("hand", line["set"]), (run_["name"], line))
+                elif not step["id"].startswith("k1/"):
+                    # A run made outside the bench, or the quick check: used only when no hand-routed step exists.
+                    hand.setdefault(("other", line["set"]), (run_["name"], line))
     rows, missing = [], []
     for run_ in group:
         for step in run_["steps"]:
@@ -615,7 +623,8 @@ def coordinator_table(group: list[dict]) -> tuple[str, list[str]]:
                                  f"problem found {r['problem_found']}, stated cause found and cited "
                                  f"{r['stated_found_and_cited']}, unsupported claims {r['unsupported_claims']}"])
                     continue
-                found = hand.get(line["set"])
+                found = next((hand[key] for key in ((run_["name"], line["set"]), ("hand", line["set"]),
+                                                    ("other", line["set"])) if key in hand), None)
                 if found is None:
                     missing.append(line["set"])
                 hand_score = f"{found[1]['correct']}/{found[1]['questions']} ({found[0]})" if found else "not run"
