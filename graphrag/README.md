@@ -1,6 +1,6 @@
 # graphrag: Track B code
 
-Track B's code for the first build: the model client, the baseline, and the GraphRAG candidates we compared with it (specification §4.5, §8.4). Findings, decisions and runs are logged in [docs/tracks/B-graphrag/log.md](../docs/tracks/B-graphrag/log.md).
+The answering engine: the model client, the lanes and the coordinator the application uses (specification §8.1), the baseline they are measured against, and the GraphRAG candidates compared with it in the first build (§4.5, §8.4). Findings, decisions and runs are logged in [docs/tracks/B-graphrag/log.md](../docs/tracks/B-graphrag/log.md).
 
 ## Architecture
 
@@ -86,7 +86,7 @@ python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three -
 
 ## The reasoning lane (specification §8.6, D-61)
 
-Built on 24 November 2026 with stand-in models and **not yet measured**: E34, the reasoning probe, runs it, once there is a model endpoint (B-D43).
+**Measured once, and still a probe** ([E34](../docs/experiments/E34-reasoning-probe.md)): with Qwen3-8B the lane finds the cause the reports state and quotes it, and it also lists nearby events as causes. The checks below that say "in code" came from that run.
 
 ```powershell
 # The probe: a question file of reasoning questions with the gold below (E34)
@@ -104,7 +104,16 @@ The framing call gives the kind `cause` and a `problem`: date, depth, non-produc
 | 3. Answer in two parts | One call under a JSON schema: `stated` (causes a report gives) and `possible` (factors visible in the evidence), each item with citations to IDs and a quote. Code keeps an item only if a citation passes `citations.resolve` (ID shown and quote in it, or the quote in other shown evidence) and counts the items it removed. Exact mode hides `possible` and counts the hidden items | 1 |
 | 4. What is missing | The fixed list of what one well's reports do not hold (offset wells, formation pressures, drilling parameters over time, lessons-learned reports), plus up to 5 items the model adds | 0 |
 
-**Budget.** At most about 13,200 characters of evidence (3,300 tokens): with the instructions and a 900-token answer, a question costs at most about 4,500 tokens, twice an end-of-well lookup, inside the 32k slot. On AK-3's six incidents the prompt is 1,400 to 2,900 tokens.
+**What code checks, because the real model got it wrong (E34).**
+
+| The model's output | The check |
+|---|---|
+| The problem's date, depth and keywords | Kept only where the question says them; a date read from the question always wins |
+| The problem's non-productive code | A code the reports do not use as one (an activity code such as `STUCK`) is read as a keyword. When a day is asked about and no incident of that day carries the code, the code is dropped |
+| Keywords | Every keyword must be named somewhere in an incident. For an activity that is not non-productive time, one keyword is enough on a named day, all of them otherwise |
+| A stated cause | Its quote must be in the evidence (four letters or digits at least) and sit in a clause that gives a reason: "due to", "because", "waiting on", "unable", "delay", "failed". One stated cause per clause. With a day asked about, nothing first written on a later day. Whatever fails is shown under `possible`, and counted in `moved_to_possible` |
+
+**Budget.** At most about 13,200 characters of evidence (3,300 tokens). Measured in E34: a question the lane answers costs two calls, about 4,800 prompt tokens with the framing call, and about 660 completion tokens: three times the prompt of an end-of-well lookup, inside the 8k slot. On AK-3's six incidents the answer prompt is 1,400 to 2,900 tokens.
 
 **Question file.** `--questions` takes set names or paths of question files. A file's set name is its file name without `.json`; its expected lane is `expected_lane`, by default `reasoning`. A reasoning question carries its own gold:
 
