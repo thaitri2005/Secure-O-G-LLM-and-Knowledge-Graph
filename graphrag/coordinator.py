@@ -9,9 +9,13 @@ that runs.
 """
 from __future__ import annotations
 
+import argparse
+import json
 from typing import Any
 
-from .baseline import MULTI_WELL_TOKENS, answer_one, fact_sheet
+from .baseline import MULTI_WELL_TOKENS, RESULTS, answer_one, fact_sheet
+from .client import client_for, load_roles
+from .data import QUESTION_SETS, ROOT, load_questions
 from .events import PLAN_SCHEMA, PLAN_SYSTEM, code_list
 from .lanes import LANES, SHEET_LINES, Engine, Evidence
 from .retrieval import well_names
@@ -145,3 +149,94 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     return {**row, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
             "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
             "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}
+
+
+# ---- pooled runs: every question set in one pool, with no lane given (E33) --------------------------------------
+
+# The lane each set was answered by when the lane was chosen by hand (specification §8.4). It is what the
+# coordinator's choice is judged against; it is not shown to the coordinator.
+EXPECTED = {"prototype": "end_of_well", "probe": "end_of_well", "simulated": "end_of_well", "heldout": "end_of_well",
+            "ak3_daily": "daily", "ak3_daily_heldout": "daily", "ak3_events": "events", "ak3_events_heldout": "events"}
+
+
+def pooled(sets: list[str]) -> tuple[list[dict], dict[str, dict]]:
+    """The questions and gold of several sets as one pool. IDs gain their set's name, since sets reuse them."""
+    questions, gold = [], {}
+    for name in sets:
+        set_questions, set_gold = load_questions(name)
+        gold.update({f"{name}:{key}": fact for key, fact in set_gold.items()})
+        questions += [dict(q, id=f"{name}:{q['id']}", gold=[f"{name}:{g}" for g in q["gold"]], set=name,
+                           expected=EXPECTED[name]) for q in set_questions]
+    return questions, gold
+
+
+def rightly_routed(row: dict) -> bool:
+    """Whether the coordinator sent a question where its set was answered from by hand."""
+    daily = row["frame"]["report_type"] == "daily"
+    if row["expected"] == "events":
+        return row["lanes"] == ["events"]
+    if row["expected"] == "daily":
+        return daily
+    return not daily and "events" not in row["lanes"]
+
+
+def summarize_pool(rows: list[dict]) -> dict:
+    def part(subset: list[dict]) -> dict:
+        count = lambda key: f"{sum(bool(r[key]) for r in subset)}/{len(subset)}"
+        mean = lambda keys: round(sum(r[k] for r in subset for k in keys) / len(subset), 1)
+        return {"questions": len(subset), "correct": count("correct"), "rightly_routed": count("rightly_routed"),
+                "fallbacks": sum(bool(r["fallback"]) for r in subset), "calls_per_question": mean(["calls"]),
+                "prompt_tokens": mean(["prompt_tokens", "frame_prompt_tokens"]),
+                "completion_tokens": mean(["completion_tokens", "frame_completion_tokens"]),
+                "seconds": mean(["seconds", "frame_seconds"])}
+
+    whole = part(rows)
+    return {"questions": whole["questions"], "correct_total": whole["correct"], "rightly_routed": whole["rightly_routed"],
+            "fallbacks": whole["fallbacks"],
+            "per_question": {k: whole[k] for k in ("calls_per_question", "prompt_tokens", "completion_tokens", "seconds")},
+            "by_set": {name: part([r for r in rows if r["set"] == name]) for name in dict.fromkeys(r["set"] for r in rows)}}
+
+
+def run_pool(questions: list[dict], gold: dict, engine: Engine, frame_client, answer_client,
+             mode: str = "allow_fallback", quiet: bool = False) -> dict:
+    rows = []
+    for q in questions:
+        row = answer(q, engine, frame_client, answer_client, gold, mode)
+        row.update(set=q["set"], expected=q["expected"])
+        row["rightly_routed"] = rightly_routed(row)
+        rows.append(row)
+        if not quiet:
+            print(f"{q['id']:<28} {'OK ' if row['correct'] else 'BAD'} {'route ok ' if row['rightly_routed'] else 'MISROUTED'} "
+                  f"{'+'.join(row['lanes']) or '-':<20} {row['status']} {row['values']}", flush=True)
+    return {**summarize_pool(rows), "rows": rows}
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = parser.add_subparsers(dest="command", required=True)
+    a = sub.add_parser("answer")
+    a.add_argument("--questions", nargs="+", choices=QUESTION_SETS, required=True)
+    a.add_argument("--mode", choices=MODES, default="allow_fallback")
+    a.add_argument("--k1", action="store_true", help="daily reports and events from Track A's K1 version 1 package")
+    a.add_argument("--no-embeddings", action="store_true",
+                   help="questions naming several wells use per-well BM25, for a machine without the embedding server")
+    a.add_argument("--name", required=True, help="result file name under graphrag/results/")
+    args = parser.parse_args(argv)
+    engine = Engine.load(k1=args.k1, **({"multi_well_retriever": "perwell:bm25"} if args.no_embeddings else {}))
+    roles = load_roles()
+    frame_client, answer_client = client_for("frame", roles), client_for("answer", roles)
+    questions, gold = pooled(args.questions)
+    result = run_pool(questions, gold, engine, frame_client, answer_client, args.mode)
+    out = {"question_set": args.questions, "mode": args.mode, "roles": {r: roles[r] for r in ("frame", "answer")},
+           "retriever": "coordinator", "pool": "k1" if args.k1 else "bundle and corpus release",
+           "multi_well_retriever": engine.multi_well_retriever, "events": len(engine.events), "facts": len(engine.facts),
+           "cost": {"frame": frame_client.ledger.summary(), "answer": answer_client.ledger.summary()}, **result}
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    path = RESULTS / f"{args.name}.json"
+    path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8", newline="\n")
+    print(json.dumps({k: v for k, v in out.items() if k != "rows"}, indent=2))
+    print(f"wrote {path.relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    main()

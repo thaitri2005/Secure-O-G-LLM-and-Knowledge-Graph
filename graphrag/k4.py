@@ -17,8 +17,35 @@ from .data import ROOT, load_questions
 SCHEMA = ROOT / "schemas/k4_answer_record.schema.json"
 
 
+def coordinator_records(run: str, result: dict) -> list[dict]:
+    """K4 version 0.2: a coordinator run (graphrag.coordinator). Each record names the lanes that gave its evidence,
+    the mode and the kind of question; its cost is the framing call plus the answer call, when one was made."""
+    from .coordinator import pooled
+    text = {q["id"]: q["question"] for q in pooled(result["question_set"])[0]}
+    models = {role: f"{chosen['endpoint']}:{chosen['model']}" for role, chosen in result["roles"].items()}
+    out = []
+    for row in result["rows"]:
+        units = row.get("units") or [None] * len(row["values"])
+        out.append({
+            "k4_version": "0.2", "run": run, "question_set": row["set"], "question_id": row["id"],
+            "question": text.get(row["id"], ""), "status": row["status"],
+            "answers": [{"value": str(v), **({"unit": u} if u else {})} for v, u in zip(row["values"], units)],
+            "citations": [{"chunk_id": c["chunk"], "how": c["how"]} for c in row["citations"]],
+            "pipeline": {"base": "coordinator", "lanes": row["lanes"], "mode": row["mode"],
+                         "frame_kind": row["frame"]["kind"]},
+            "models": models,
+            "cost": {"calls": row["calls"], "prompt_tokens": row["prompt_tokens"] + row["frame_prompt_tokens"],
+                     "completion_tokens": row["completion_tokens"] + row["frame_completion_tokens"],
+                     "seconds": round(row["seconds"] + row["frame_seconds"], 3),
+                     "cost_usd": 0.0 if all(m.startswith("local") for m in models.values()) else row.get("cost_usd", 0.0)},
+            "correct": row["correct"]})
+    return out
+
+
 def records(run: str) -> list[dict]:
     result = json.loads((RESULTS / f"{run}.json").read_text(encoding="utf-8"))
+    if isinstance(result.get("question_set"), list):
+        return coordinator_records(run, result)
     question_set = result.get("question_set", "prototype")
     text = {q["id"]: q["question"] for q in load_questions(question_set)[0]}
     model = (result["cost"].get("models") or [f"{result.get('endpoint', '?')}:{result['model']}"])[0]

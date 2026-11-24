@@ -2,11 +2,13 @@
 import dataclasses
 import hashlib
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
-from graphrag import baseline, client, coordinator, events, lanes
+from graphrag import baseline, client, coordinator, events, k4, lanes
 from graphrag.data import Chunk
 from graphrag.events import Event
 
@@ -325,6 +327,88 @@ class CoordinatorTests(unittest.TestCase):
         self.assertEqual(row["lanes"], ["passages"])
         with self.assertRaises(KeyError):
             coordinator.answer(Q("x"), self.engine, scripted, scripted, lane="poetry")
+
+
+class PooledRunTests(unittest.TestCase):
+    def test_pool_prefixes_ids_and_names_the_expected_lane(self):
+        questions, gold = coordinator.pooled(["prototype", "probe"])
+        self.assertEqual(len(questions), 31 + 9)
+        self.assertEqual(len({q["id"] for q in questions}), 40)
+        self.assertTrue(all(q["id"].startswith(f"{q['set']}:") and q["expected"] == "end_of_well" for q in questions))
+        self.assertTrue(all(g in gold for q in questions for g in q["gold"]))
+
+    def test_every_question_set_has_an_expected_lane(self):
+        self.assertEqual(set(coordinator.EXPECTED), set(baseline.QUESTION_SETS))
+        self.assertEqual(coordinator.EXPECTED["ak3_events_heldout"], "events")
+        self.assertEqual(coordinator.EXPECTED["ak3_daily"], "daily")
+
+    def test_routing_is_judged_against_the_source_set(self):
+        rows = [{"expected": "events", "lanes": ["events"], "frame": {"report_type": "daily"}},
+                {"expected": "events", "lanes": ["passages"], "frame": {"report_type": "daily"}},
+                {"expected": "daily", "lanes": ["passages"], "frame": {"report_type": "daily"}},
+                {"expected": "daily", "lanes": ["well_facts", "passages"], "frame": {"report_type": "end_of_well"}},
+                {"expected": "end_of_well", "lanes": ["well_facts", "passages"], "frame": {"report_type": "unknown"}},
+                {"expected": "end_of_well", "lanes": ["events"], "frame": {"report_type": "daily"}}]
+        self.assertEqual([coordinator.rightly_routed(r) for r in rows], [True, False, True, False, True, False])
+
+    def test_summary_counts_per_set_and_adds_frame_and_answer_cost(self):
+        row = lambda name, correct, routed, calls: {
+            "set": name, "correct": correct, "rightly_routed": routed, "fallback": False, "calls": calls,
+            "prompt_tokens": 1000 * (calls - 1), "completion_tokens": 50 * (calls - 1), "seconds": 1.0 * (calls - 1),
+            "frame_prompt_tokens": 600, "frame_completion_tokens": 40, "frame_seconds": 0.5}
+        summary = coordinator.summarize_pool([row("a", True, True, 2), row("a", False, True, 2), row("b", True, False, 1)])
+        self.assertEqual((summary["correct_total"], summary["rightly_routed"]), ("2/3", "2/3"))
+        self.assertEqual(summary["by_set"]["a"]["correct"], "1/2")
+        self.assertEqual(summary["by_set"]["b"]["calls_per_question"], 1.0)
+        self.assertEqual(summary["per_question"]["prompt_tokens"], round((1600 + 1600 + 600) / 3, 1))
+
+    def test_a_pooled_run_answers_through_the_coordinator_and_records_its_cost(self):
+        scripted = ScriptedClient(flat(FRAME_EOW), DEPTH_ANSWER)
+        questions, gold = coordinator.pooled(["prototype"])
+        out = coordinator.run_pool(questions[:3], gold, sample_engine(), scripted, scripted, quiet=True)
+        self.assertEqual((out["questions"], len(out["rows"]), scripted.frame_calls), (3, 3, 3))
+        self.assertTrue(all(r["set"] == "prototype" and "rightly_routed" in r for r in out["rows"]))
+
+
+class K4VersionTests(unittest.TestCase):
+    RUN = {"question_set": ["prototype"], "mode": "allow_fallback",
+           "roles": {"frame": {"endpoint": "local-llama", "model": "qwen3-8b"},
+                     "answer": {"endpoint": "local-llama", "model": "qwen3-8b"}},
+           "rows": [
+               {"id": "prototype:q01", "set": "prototype", "status": "answered", "values": ["15.5"], "units": ["hours"],
+                "correct": True, "citations": [{"chunk": "a", "how": "event_graph"}], "lanes": ["events"],
+                "frame": {"kind": "over_time"}, "mode": "allow_fallback", "calls": 1, "prompt_tokens": 0,
+                "completion_tokens": 0, "seconds": 0.0, "frame_prompt_tokens": 600, "frame_completion_tokens": 40,
+                "frame_seconds": 0.5},
+               {"id": "prototype:q02", "set": "prototype", "status": "not_found_in_graph", "values": [], "units": [],
+                "correct": False, "citations": [], "lanes": [], "frame": {"kind": "lookup"}, "mode": "exact", "calls": 1,
+                "prompt_tokens": 0, "completion_tokens": 0, "seconds": 0.0, "frame_prompt_tokens": 600,
+                "frame_completion_tokens": 40, "frame_seconds": 0.5}]}
+
+    def records(self, run):
+        with tempfile.TemporaryDirectory() as temporary:
+            Path(temporary, "r.json").write_text(json.dumps(run), encoding="utf-8")
+            with patch("graphrag.k4.RESULTS", Path(temporary)):
+                return k4.records("r")
+
+    def test_coordinator_rows_become_version_0_2_records(self):
+        import jsonschema
+        schema = json.loads(k4.SCHEMA.read_text(encoding="utf-8"))
+        records = self.records(self.RUN)
+        self.assertEqual({r["k4_version"] for r in records}, {"0.2"})
+        self.assertEqual(records[0]["pipeline"], {"base": "coordinator", "lanes": ["events"], "mode": "allow_fallback",
+                                                  "frame_kind": "over_time"})
+        self.assertEqual(records[0]["cost"], {"calls": 1, "prompt_tokens": 600, "completion_tokens": 40, "seconds": 0.5,
+                                              "cost_usd": 0.0})
+        self.assertEqual(records[0]["models"], {"frame": "local-llama:qwen3-8b", "answer": "local-llama:qwen3-8b"})
+        self.assertEqual((records[0]["question_set"], records[0]["question_id"]), ("prototype", "prototype:q01"))
+        self.assertEqual(records[0]["question"], "What total depth did well AK-3 reach?")
+        self.assertEqual(records[1]["status"], "not_found_in_graph")
+        for record in records:
+            jsonschema.validate(record, schema)
+
+    def test_earlier_runs_still_write_version_0_1(self):
+        self.assertEqual({r["k4_version"] for r in k4.records("E26_plain_routed")}, {"0.1"})
 
 
 if __name__ == "__main__":

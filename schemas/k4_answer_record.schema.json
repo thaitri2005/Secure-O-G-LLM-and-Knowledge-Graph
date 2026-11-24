@@ -2,17 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "k4_answer_record.schema.json",
   "title": "K4 answer record",
-  "description": "One answered question from a Track B run (specification §4.5, K4, B to C). Chunk IDs are K1 version 0 IDs (`<doc_id>#c<nnnn>`) until Track C's §5.11 IDs replace them. Written by `python -m graphrag.k4`, one JSON object per line.",
+  "description": "One answered question from a Track B run (specification §4.5, K4, B to C). Chunk IDs are in whichever K1 format the run read: version 0 (`<doc_id>#c<nnnn>`) or version 1 (`f<hex>:s<n>:c<n>`, D-54). Version 0.2 is written for coordinator runs (specification §8.1): it adds the lanes, the mode and the kind of question, and a framing model. Written by `python -m graphrag.k4`, one JSON object per line.",
   "type": "object",
   "additionalProperties": false,
   "required": ["k4_version", "run", "question_id", "status", "answers", "citations", "pipeline", "models", "cost"],
   "properties": {
-    "k4_version": {"const": "0.1"},
+    "k4_version": {"enum": ["0.1", "0.2"]},
     "run": {"type": "string", "minLength": 1, "description": "The result file name under graphrag/results/"},
     "question_set": {"type": "string"},
     "question_id": {"type": "string", "minLength": 1},
     "question": {"type": "string"},
-    "status": {"enum": ["answered", "not_stated", "withheld", "invalid"]},
+    "status": {"enum": ["answered", "not_stated", "withheld", "invalid", "not_found_in_graph"], "description": "not_found_in_graph: exact mode, and the graphs hold no answer (D-59)"},
     "answers": {
       "type": "array",
       "items": {
@@ -46,14 +46,18 @@
         "k": {"type": "integer"},
         "fact_sheet": {"type": ["array", "null"]},
         "validated": {"type": "boolean"},
-        "answer_format": {"type": "string"}
+        "answer_format": {"type": "string"},
+        "lanes": {"type": "array", "items": {"enum": ["passages", "well_facts", "events"]}, "description": "The lanes that gave the evidence, in order (version 0.2)"},
+        "mode": {"enum": ["allow_fallback", "exact"]},
+        "frame_kind": {"type": "string", "description": "The kind of question the framing call gave"}
       }
     },
     "models": {
       "type": "object",
       "required": ["answer"],
       "properties": {
-        "answer": {"type": "string", "description": "endpoint:model"}
+        "answer": {"type": "string", "description": "endpoint:model"},
+        "frame": {"type": "string", "description": "endpoint:model of the framing call (version 0.2)"}
       }
     },
     "cost": {
