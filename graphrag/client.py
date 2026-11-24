@@ -17,8 +17,9 @@ from typing import Any
 import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
-ENDPOINTS = ROOT / "configs/graphrag/endpoints.json"
-ROLES = ENDPOINTS.with_name("roles.json")
+# A deployment points at its own model servers by naming other files, with no change to the repository.
+ENDPOINTS = Path(os.environ.get("GRAPHRAG_ENDPOINTS") or ROOT / "configs/graphrag/endpoints.json")
+ROLES = Path(os.environ.get("GRAPHRAG_ROLES") or ROOT / "configs/graphrag/roles.json")
 CACHE = ROOT / "data/interim/graphrag/cache"
 
 
