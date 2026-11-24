@@ -275,10 +275,11 @@ class CoordinatorTests(unittest.TestCase):
     def test_schema_asks_kind_and_report_type_before_the_plan(self):
         names = list(coordinator.FRAME_SCHEMA["properties"])
         self.assertEqual(names[:2], ["kind", "report_type"])
-        self.assertEqual(set(names[2:]), set(events.PLAN_SCHEMA["properties"]))
+        self.assertEqual(set(names[2:-1]), set(events.PLAN_SCHEMA["properties"]))
+        self.assertEqual(names[-1], "problem")
         self.assertEqual(coordinator.FRAME_SCHEMA["required"], names)
         self.assertEqual(coordinator.FRAME_SCHEMA["properties"]["kind"]["enum"],
-                         ["lookup", "lookup_by_date", "across_wells", "over_time", "reasoning", "other"])
+                         ["lookup", "lookup_by_date", "across_wells", "over_time", "cause", "other"])
 
     def test_system_prompt_lists_the_wells_activity_codes(self):
         system = coordinator.frame_system(self.engine)
@@ -287,14 +288,15 @@ class CoordinatorTests(unittest.TestCase):
 
     def test_routes(self):
         daily = {"kind": "lookup_by_date", "report_type": "daily", "plan": plan("not_answerable")}
-        reasoning = {"kind": "reasoning", "report_type": "unknown", "plan": plan("not_answerable")}
+        cause = {"kind": "cause", "report_type": "unknown", "plan": plan("not_answerable")}
         self.assertEqual(coordinator.route(frame_with(plan("total_hours"))), ["events"])
         self.assertEqual(coordinator.route(frame_with(plan("not_answerable"))), ["passages"])
         self.assertEqual(coordinator.route(daily), ["passages"])
         self.assertEqual(coordinator.route(FRAME_EOW), ["well_facts", "passages"])
         self.assertEqual(coordinator.route(FRAME_EOW, mode="exact"), ["well_facts"])
         self.assertEqual(coordinator.route(daily, mode="exact"), [])
-        self.assertEqual(coordinator.route(reasoning), ["well_facts", "passages"])
+        self.assertEqual(coordinator.route(cause), ["reasoning"])
+        self.assertEqual(coordinator.route(cause, mode="exact"), ["reasoning"])
 
     def test_computed_result_is_reported_by_code_with_one_call(self):
         scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), None)

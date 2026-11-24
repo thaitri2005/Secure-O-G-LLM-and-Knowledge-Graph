@@ -2,17 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "k4_answer_record.schema.json",
   "title": "K4 answer record",
-  "description": "One answered question from a Track B run (specification §4.5, K4, B to C). Chunk IDs are in whichever K1 format the run read: version 0 (`<doc_id>#c<nnnn>`) or version 1 (`f<hex>:s<n>:c<n>`, D-54). Version 0.2 is written for coordinator runs (specification §8.1): it adds the lanes, the mode and the kind of question, and a framing model. Written by `python -m graphrag.k4`, one JSON object per line.",
+  "description": "One answered question from a Track B run (specification §4.5, K4, B to C). Chunk IDs are in whichever K1 format the run read: version 0 (`<doc_id>#c<nnnn>`) or version 1 (`f<hex>:s<n>:c<n>`, D-54). Version 0.2 is written for coordinator runs (specification §8.1): it adds the lanes, the mode and the kind of question, and a framing model. Version 0.3 is written for a question the reasoning lane answered (specification §8.6): it adds the `reasoning` object, and only version 0.3 may carry it. Written by `python -m graphrag.k4`, one JSON object per line.",
   "type": "object",
   "additionalProperties": false,
   "required": ["k4_version", "run", "question_id", "status", "answers", "citations", "pipeline", "models", "cost"],
   "properties": {
-    "k4_version": {"enum": ["0.1", "0.2"]},
+    "k4_version": {"enum": ["0.1", "0.2", "0.3"]},
     "run": {"type": "string", "minLength": 1, "description": "The result file name under graphrag/results/"},
     "question_set": {"type": "string"},
     "question_id": {"type": "string", "minLength": 1},
     "question": {"type": "string"},
-    "status": {"enum": ["answered", "not_stated", "withheld", "invalid", "not_found_in_graph"], "description": "not_found_in_graph: exact mode, and the graphs hold no answer (D-59)"},
+    "status": {"enum": ["answered", "not_stated", "withheld", "invalid", "not_found_in_graph", "ask_which"], "description": "not_found_in_graph: exact mode, and the graphs hold no answer (D-59); ask_which: several problems match a question about causes, and the user is asked which (version 0.3)"},
     "answers": {
       "type": "array",
       "items": {
@@ -47,7 +47,7 @@
         "fact_sheet": {"type": ["array", "null"]},
         "validated": {"type": "boolean"},
         "answer_format": {"type": "string"},
-        "lanes": {"type": "array", "items": {"enum": ["passages", "well_facts", "events"]}, "description": "The lanes that gave the evidence, in order (version 0.2)"},
+        "lanes": {"type": "array", "items": {"enum": ["passages", "well_facts", "events", "reasoning"]}, "description": "The lanes that gave the evidence, in order (version 0.2; reasoning from version 0.3)"},
         "mode": {"enum": ["allow_fallback", "exact"]},
         "frame_kind": {"type": "string", "description": "The kind of question the framing call gave"}
       }
@@ -72,6 +72,80 @@
         "cost_usd": {"type": "number", "minimum": 0}
       }
     },
+    "reasoning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem", "candidates", "stated", "possible", "possible_hidden", "removed", "missing"],
+      "description": "The reasoning lane's answer (version 0.3). Causes are model text; only their citations are checked in code. Nothing here is stored in a graph",
+      "properties": {
+        "problem": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/problem"}], "description": "The problem the answer is about; null when several matched and the user is asked which"},
+        "candidates": {"type": "array", "items": {"$ref": "#/$defs/problem"}, "description": "Every problem that matched the question"},
+        "stated": {"type": "array", "items": {"$ref": "#/$defs/cause"}, "description": "Causes a report gives, each with at least one citation that code checked"},
+        "possible": {"type": "array", "items": {"$ref": "#/$defs/cause"}, "description": "Factors visible in the evidence that no report gives as the cause: possibilities, not findings. Empty in exact mode"},
+        "possible_hidden": {"type": "integer", "minimum": 0, "description": "Possible causes not shown because the mode was exact"},
+        "removed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["stated", "possible"],
+          "properties": {"stated": {"type": "integer", "minimum": 0}, "possible": {"type": "integer", "minimum": 0}},
+          "description": "Items code dropped because no shown evidence supported any of their citations"
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text", "from"],
+            "properties": {"text": {"type": "string"}, "from": {"enum": ["corpus", "model"], "description": "corpus: the fixed list of what these reports cannot hold; model: added by the answer model"}}
+          },
+          "description": "Kinds of evidence a real judgement needs that the reports do not hold"
+        }
+      }
+    },
     "correct": {"type": "boolean", "description": "Development scoring against the question set's gold, when it has one"}
+  },
+  "if": {"required": ["reasoning"]},
+  "then": {"properties": {"k4_version": {"const": "0.3"}}},
+  "$defs": {
+    "problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date_from", "date_to", "start", "end", "npt_code", "hours", "events", "depth_ft", "codes", "description", "chunks"],
+      "properties": {
+        "date_from": {"type": "string"},
+        "date_to": {"type": "string"},
+        "start": {"type": "string", "description": "Start time of the problem's first event"},
+        "end": {"type": "string", "description": "End time of its last event"},
+        "npt_code": {"type": "string", "description": "Non-productive code; empty for events the question's keywords named"},
+        "hours": {"type": "number", "minimum": 0},
+        "events": {"type": "integer", "minimum": 1},
+        "depth_ft": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2, "description": "Lowest and highest end measured depth of its events"},
+        "codes": {"type": "array", "items": {"type": "string"}, "description": "Activity codes of its events"},
+        "description": {"type": "string", "description": "Its first event's description, cut to 160 characters"},
+        "chunks": {"type": "array", "items": {"type": "string"}, "description": "The chunk its first event was read from"}
+      }
+    },
+    "cause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cause", "citations"],
+      "properties": {
+        "cause": {"type": "string"},
+        "citations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["chunk_id", "how", "evidence_id"],
+            "properties": {
+              "chunk_id": {"type": ["string", "null"], "description": "The passage's chunk, or the chunk the event was read from"},
+              "how": {"enum": ["model", "by_quote"], "description": "model: the cited evidence holds the quote; by_quote: the quote was found in other shown evidence, and the citation moved there"},
+              "evidence_id": {"type": "string", "description": "The ID shown to the model: E<n> for an event, P<n> for a passage"}
+            }
+          }
+        }
+      }
+    }
   }
 }

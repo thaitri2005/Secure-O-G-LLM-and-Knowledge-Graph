@@ -1,4 +1,4 @@
-"""The lanes a question can be answered from (specification §8.1, B-D36): passages, well facts and events.
+"""The lanes a question can be answered from (specification §8.1, B-D36): passages, well facts, events and reasoning.
 
 Each lane is a function with one shape: it takes the question, its frame and the engine, and returns `Evidence`.
 That shape is what lets the coordinator choose among them in code, and what would let a later agent or an MCP
@@ -30,10 +30,12 @@ class Evidence:
     computed: dict | None = None  # plan, text, values, unit, events, source_chunks
     answer_format: str = "status_first"
     report_type: str = "end_of_well"
+    reasoning: dict | None = None  # the reasoning lane's problem, candidates and evidence items (graphrag.reasoning)
 
     @property
     def empty(self) -> bool:
-        return not self.passages and not self.facts and not (self.computed and self.computed["values"])
+        return not self.passages and not self.facts and not (self.computed and self.computed["values"]) \
+            and not self.reasoning
 
 
 @dataclass
@@ -151,4 +153,11 @@ def events(question: str, frame: dict, engine: Engine) -> Evidence:
     return Evidence("events", True, sources[:5], computed=computed, report_type="daily")
 
 
-LANES = {"passages": passages, "well_facts": well_facts, "events": events}
+def reasoning(question: str, frame: dict, engine: Engine) -> Evidence:
+    """One problem in the event graph and what surrounds it (specification §8.6): `graphrag.reasoning.gather`,
+    steps 1 and 2. The answer call is the coordinator's, as for the other lanes."""
+    from .reasoning import gather  # graphrag.reasoning imports this module
+    return gather(question, frame, engine)
+
+
+LANES = {"passages": passages, "well_facts": well_facts, "events": events, "reasoning": reasoning}
