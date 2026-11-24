@@ -29,7 +29,7 @@ from .retrieval import well_names
 from .validate import validate
 
 CASING = {"casing_depth": "depth", "casing_weight": "weight", "casing_grade": "grade"}
-RECORDED = RESULTS / "E27_fact_graph.graph.json"
+RECORDED = RESULTS / "E32_fact_graph.graph.json"  # E27's facts checked again with the number-aware rule (B-F68)
 LEGACY_MAP = "legacy_chunk_ids.json"   # written into a K1 release by Track A (graph_builder.corpus.k1_export)
 
 

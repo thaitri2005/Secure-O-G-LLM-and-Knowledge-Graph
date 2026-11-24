@@ -175,10 +175,9 @@ class BackendTests(unittest.TestCase):
     # ---- waiting, failures and readiness (specification §4.6, "When something fails") ---------------------------
 
     def service(self, fail=False, **settings):
-        from backend.questions import JsonlQuestionLog
         from backend.service import Service
         client = ScriptedClient(FRAME_EOW, DEPTH_ANSWER, fail)
-        return Service(sample_engine(), client, client, JsonlQuestionLog(self.log_path),
+        return Service(sample_engine(), client, client, self.new_log(),
                        roles={"frame": {"endpoint": "test", "model": "stand-in"},
                               "answer": {"endpoint": "test", "model": "stand-in"}}, **settings)
 
