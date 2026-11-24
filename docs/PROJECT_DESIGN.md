@@ -214,7 +214,7 @@ The run page shows page coverage, tables found, items extracted, items flagged, 
 
 **Correct flagged items.** Every extracted item has a score. The admin view lists low-score items and items with validation warnings, each beside its source page. The administrator accepts, corrects or rejects it; a correction is versioned and attributed. Possible duplicate entities, such as two spellings of one well, are listed for a person to merge or keep apart.
 
-**Ask a question.** An end user asks, for example, "What was the casing setting depth of the surface section in AK-3?" or "Which days had non-productive time on AK-3, and why?" The system links the well to its registry ID and retrieves chunks by vector and keyword search. It expands through the graph (the well's sections, casing, daily reports) and has the model answer from that context with citations. Each citation opens the source page. If the context does not support an answer, the system says so.
+**Ask a question.** An end user asks, for example, "What was the casing setting depth of the surface section in AK-3?" or "Which days had non-productive time on AK-3, and why?" The coordinator reads the question and sends it to a lane (§8.1): the well's passages, its checked facts, its daily events, or the events around a problem. A total over time is computed by code; otherwise the model answers from the evidence it was given, with citations that code checks. Each citation opens the source page. If the context does not support an answer, the system says so.
 
 **Reprocess.** When the parser, model, prompt or ontology changes, a new run produces a comparison (added, changed, removed items). The served graph changes only when the administrator activates the new generation.
 
