@@ -5,7 +5,8 @@ import overTime from "../../../backend/fixtures/question_over_time.json";
 import { exampleFor } from "../api/examples";
 import type { AnswerOut, EventOut } from "../api/types";
 import { dayStrips } from "./strips";
-import { advice, basis, checked, headline, reportName } from "./wording";
+import { highlight, readable } from "./highlight";
+import { advice, basis, checked, cost, headline, reportName, trail } from "./wording";
 
 const event = (over: Partial<EventOut>): EventOut => ({
   date: "2016-08-20", start: "0:00", end: "6:00", hours: 6, end_md: 100, code: "DRIL", description: "", npt_code: null,
@@ -77,6 +78,69 @@ describe("wording", () => {
   it("shortens report names", () => {
     expect(reportName("gdr882_ak3_eowr")).toBe("ak3 eowr");
     expect(reportName("gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1")).toBe("ak3 appx 23 5 nonproductivetimerpt 160927");
+  });
+});
+
+describe("how it was answered", () => {
+  it("gives three steps for a computed answer", () => {
+    expect(trail(overTime as AnswerOut)).toEqual([
+      { title: "Understood as", detail: "A total over the daily operations" },
+      { title: "Read", detail: "28 daily operations on 10 report days" },
+      { title: "Answered", detail: "Calculated in code. No model wrote the number" },
+    ]);
+  });
+
+  it("says what the model read and that its values were checked", () => {
+    const steps = trail(endOfWell as AnswerOut);
+    expect(steps[0].detail).toBe("A value from an end-of-well report");
+    expect(steps[1].detail).toBe("12 checked facts and 5 passages");
+    expect(steps[2].detail).toBe("Written by the model, then each value was found in a passage");
+  });
+
+  it("says so when nothing was read or a value is unsupported", () => {
+    expect(trail(notFound as AnswerOut)[1].detail).toBe("Nothing in the loaded reports matched");
+    expect(trail(notFound as AnswerOut)[2].detail).toBe("No answer was given");
+    const unsupported = { ...(endOfWell as AnswerOut), checks: { citations_supported: false, quotes_verbatim: false } };
+    expect(trail(unsupported)[2].detail).toContain("no passage that supports it");
+  });
+
+  it("states the cost in calls and seconds", () => {
+    expect(cost({ ...(overTime as AnswerOut), cost: { calls: 1, prompt_tokens: 900, completion_tokens: 60, seconds: 0.42 } })).toBe("1 model call, 0.4 s");
+    expect(cost({ ...(overTime as AnswerOut), cost: { calls: 2, prompt_tokens: 900, completion_tokens: 60, seconds: 23.6 } })).toBe("2 model calls, 24 s");
+  });
+});
+
+describe("highlighting the answer in report text", () => {
+  const hits = (text: string, values: string[]) => highlight(text, values).filter((p) => p.hit).map((p) => p.text);
+
+  it("finds a number as the report writes it", () => {
+    expect(hits("drilled to a vertical depth of 1,955 feet in 27 days", ["1955"])).toEqual(["1,955"]);
+    expect(hits("Total NPT 115.0 hours", ["115"])).toEqual(["115.0"]);
+    expect(hits("15.5 hours of drilling", ["15.5"])).toEqual(["15.5"]);
+  });
+
+  it("does not light up part of a longer number", () => {
+    expect(hits("depth 11955 ft, 1955.7 ft, 21,955 ft", ["1955"])).toEqual([]);
+  });
+
+  it("matches words whatever their case, and ignores values too short to mean anything", () => {
+    expect(hits("Drilled by Nabors rig 7", ["nabors"])).toEqual(["Nabors"]);
+    expect(hits("3 days on 3 wells", ["3"])).toEqual([]);
+  });
+
+  it("keeps the whole text, in order", () => {
+    const parts = highlight("to 1,955 feet (planned 1,700)", ["1955", "1700"]);
+    expect(parts.map((p) => p.text).join("")).toBe("to 1,955 feet (planned 1,700)");
+    expect(parts.filter((p) => p.hit)).toHaveLength(2);
+    expect(highlight("no numbers here", ["1955"])).toEqual([{ text: "no numbers here", hit: false }]);
+    expect(highlight("text", [])).toEqual([{ text: "text", hit: false }]);
+  });
+});
+
+describe("report text for display", () => {
+  it("turns a PDF's private bullet symbols into bullets", () => {
+    expect(readable("\uF0B7 WGS-84 UTM Zone 3")).toBe("\u2022 WGS-84 UTM Zone 3");
+    expect(readable("plain text, 1,955 ft")).toBe("plain text, 1,955 ft");
   });
 });
 

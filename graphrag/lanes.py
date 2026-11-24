@@ -45,6 +45,7 @@ class Engine:
     facts: list[dict]  # already validated
     multi_well_retriever: str | None = "perwell:fusion:bm25+dense:qwen3-embedding-0.6b"
     _retrievers: dict[tuple[str, str], Any] = field(default_factory=dict, init=False, repr=False, compare=False)
+    _by_id: dict[str, Chunk] | None = field(default=None, init=False, repr=False, compare=False)
 
     @classmethod
     def load(cls, fact_runs: list[str] | None = None, k1: bool = False, **settings: Any) -> "Engine":
@@ -82,7 +83,10 @@ class Engine:
         return self.daily_chunks if report_type == "daily" else self.eow_chunks
 
     def by_id(self) -> dict[str, Chunk]:
-        return {c.id: c for c in self.eow_chunks + self.daily_chunks}
+        """Every chunk by its ID, built once: each answer looks its passages up here."""
+        if self._by_id is None:
+            self._by_id = {c.id: c for c in self.eow_chunks + self.daily_chunks}
+        return self._by_id
 
     def retriever(self, spec: str, report_type: str) -> Any:
         """Built once per engine: BM25 statistics and embeddings are index-time work."""

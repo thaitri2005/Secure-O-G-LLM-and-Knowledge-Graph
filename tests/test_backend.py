@@ -198,6 +198,40 @@ class BackendTests(unittest.TestCase):
                                           "facts": 2, "wells": 3})
         self.assertEqual(health["models"]["answer"], "test:stand-in")
 
+    # ---- speed ------------------------------------------------------------------------------------------------
+
+    def test_large_answers_are_compressed_and_small_ones_are_not(self):
+        # An answer with five real passages is several kilobytes; the list of wells is a few hundred bytes.
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        big = client.post("/v1/questions", json={"question": "What total depth did well AK-3 reach?"}, headers={"Accept-Encoding": "gzip"})
+        self.assertEqual((big.status_code, big.headers.get("content-encoding")), (200, "gzip"))
+        self.assertEqual(big.json()["answers"], [{"value": "1955", "unit": "ft"}])
+        self.assertIsNone(client.get("/v1/wells", headers={"Accept-Encoding": "gzip"}).headers.get("content-encoding"))
+
+    def test_reads_may_be_kept_briefly_by_the_browser_and_answers_never(self):
+        client = self.make(FRAME_HOURS, None)
+        for path in ("/v1/chunks/a", "/v1/files", "/v1/files/ak3-dailyreport/pages/1", "/v1/wells", "/v1/wells/AK-3"):
+            self.assertEqual(client.get(path).headers.get("cache-control"), "private, max-age=60", path)
+        asked = client.post("/v1/questions", json={"question": "How many hours of drilling on AK-3?"})
+        self.assertEqual(asked.headers.get("cache-control"), "no-store")
+        self.assertEqual(client.get("/v1/health").headers.get("cache-control"), "no-store")
+
+    def test_the_question_log_knows_earlier_questions_without_rereading_the_file(self):
+        from backend.questions import JsonlQuestionLog
+        first = JsonlQuestionLog(self.log_path)
+        first.add_question({"id": "q1", "question": "x"})
+        self.assertTrue(first.has_question("q1"))
+        self.log_path.rename(self.log_path.with_suffix(".moved"))          # the file is gone; the answer is remembered
+        self.assertTrue(first.has_question("q1"))
+        self.assertFalse(first.has_question("q2"))
+        self.log_path.with_suffix(".moved").rename(self.log_path)
+        self.assertTrue(JsonlQuestionLog(self.log_path).has_question("q1"))  # a new log reads what is on disk, once
+
+    def test_the_engine_builds_its_chunk_index_once(self):
+        engine = sample_engine()
+        self.assertIs(engine.by_id(), engine.by_id())
+        self.assertEqual(len(engine.by_id()), 372 + 5)
+
     def test_the_committed_contract_and_fixtures_match_the_code(self):
         from backend.contract import FIXTURES, OPENAPI, build_fixtures, build_openapi
         self.assertEqual(json.loads(OPENAPI.read_text(encoding="utf-8")), build_openapi())

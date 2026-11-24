@@ -27,7 +27,7 @@ Then open http://127.0.0.1:8000/docs for the interactive description. Reading en
 
 - [`openapi.json`](openapi.json) is the description of every request and response.
 - [`fixtures/`](fixtures/) holds one real response per endpoint, to build the frontend against before the model server is up.
-- Both are generated: `python -m backend.contract`. A test fails when they fall behind the code, so regenerate and commit them with any change to `schemas.py`.
+- Both are generated: `python -m backend.contract`. A test fails when they fall behind the code, so regenerate and commit them with any change to `schemas.py`, then run `npm run types` in [`frontend/`](../frontend/README.md).
 - **The fixtures' model is a stand-in.** The evidence in them is real (the three end-of-well reports, E28's recorded events, the validated facts), but the frame and answer of each example question are scripted in `contract.py`. They show the shape of a response, not what a model says.
 
 ## Files
@@ -48,7 +48,8 @@ The service holds an `Engine` ([`graphrag/lanes.py`](../graphrag/lanes.py)) load
 
 - No login. The demo holds public data only, and the access gate is a shared password at the proxy (design, B8).
 - One question at a time: the model server has one slot.
+- Responses over 2 kB are compressed. Reads may be kept by the browser for a minute; answers, feedback and health never.
 - The question log holds what users typed. It stays on the machine, in an ignored folder.
 - The event graph is one well's (AK-3), so only that well has report days and events.
 
-Tests: `python -m unittest tests.test_backend` (17 tests, no server or model needed).
+Tests: `python -m unittest tests.test_backend` (21 tests, no server or model needed).

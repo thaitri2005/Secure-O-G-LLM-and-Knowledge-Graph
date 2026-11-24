@@ -15,6 +15,7 @@ from pathlib import Path
 import httpx
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
 from . import schemas
 from .service import NotFound, Service
@@ -31,6 +32,18 @@ def create_app(service: Service | None = None) -> FastAPI:
                               "gave its evidence, its citations and how it was reached. Specification §7.5.")
     app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("BACKEND_CORS_ORIGINS", ",".join(DEV_ORIGINS)).split(","),
                        allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
+    # An answer with its evidence is tens of kilobytes of JSON; compressed it is a fifth of that.
+    app.add_middleware(GZipMiddleware, minimum_size=2048)
+
+    @app.middleware("http")
+    async def caching(request, call_next):
+        """Reads change only when a release is loaded, so a browser may keep them for a minute. Answers, feedback
+        and health are never kept."""
+        response = await call_next(request)
+        kept = request.method == "GET" and response.status_code == 200 and request.url.path != "/v1/health"             and request.url.path.startswith("/v1/")
+        response.headers["Cache-Control"] = "private, max-age=60" if kept else "no-store"
+        return response
+
     state: dict[str, Service] = {"service": service} if service else {}
 
     def current() -> Service:

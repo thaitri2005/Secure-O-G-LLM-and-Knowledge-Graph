@@ -4,7 +4,7 @@ Shown to domain experts, the application yields the real questions the project i
 is a product of the build and not a debugging aid. It holds what users typed, so it stays inside the deployment:
 the file version writes under ignored `data/interim/`.
 
-`JsonlQuestionLog` is for one machine. The PostgreSQL tables that replace it on the shared stores are designed in
+`JsonlQuestionLog` is for one machine and one server process. The PostgreSQL tables that replace it on the shared stores are designed in
 docs/tracks/C-storage/backend-design.md; anything with these three methods can stand in.
 """
 from __future__ import annotations
@@ -34,6 +34,12 @@ class JsonlQuestionLog:
     def __init__(self, path: Path):
         self.path = path
         self.lock = threading.Lock()
+        # The IDs of the questions on disk, read once: feedback is checked against them on every mark.
+        self.ids: set[str] = set()
+        if path.is_file():
+            with path.open(encoding="utf-8") as file:
+                self.ids = {record["id"] for record in map(json.loads, filter(str.strip, file))
+                            if record.get("type") == "question" and "id" in record}
 
     def _append(self, record: dict) -> None:
         with self.lock:
@@ -43,14 +49,11 @@ class JsonlQuestionLog:
 
     def add_question(self, entry: dict) -> None:
         self._append({"type": "question", **entry})
+        self.ids.add(entry["id"])
 
     def add_feedback(self, question_id: str, verdict: str, comment: str) -> None:
         self._append({"type": "feedback", "question_id": question_id, "verdict": verdict, "comment": comment,
                       "at": now()})
 
     def has_question(self, question_id: str) -> bool:
-        if not self.path.is_file():
-            return False
-        with self.lock, self.path.open(encoding="utf-8") as file:
-            return any(record.get("type") == "question" and record.get("id") == question_id
-                       for record in map(json.loads, filter(str.strip, file)))
+        return question_id in self.ids
