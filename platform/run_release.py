@@ -13,15 +13,22 @@ own transaction, so a failed run leaves that store as it was.
 | 3. Embed | platform/embed_k1.py `embed`, then `check` (needs the embedding server) | vectors differ from chunks, or the SQL and in-memory searches differ |
 | 4. Build the event graph | graphrag.events.build_events on the release, no model call | a daily-report file with an operations table gives no event |
 | 5. Load the event region | platform/load_events_neo4j.py | its read-back, plan replay or Cypher totals differ |
-| 6. Build the fact graph | the recorded graph, or graphrag.tables and graphrag.factgraph on the release | a relationship is dangling, or the file breaks the region's design |
+| 6. Build the fact graph | the recorded graph moved onto the release's chunk IDs, the recorded graph as it is, or graphrag.tables and graphrag.factgraph on the release | a relationship is dangling, or the file breaks the region's design |
 | 7. Load the fact region | platform/load_facts_neo4j.py | its counts, read-back or event region differ |
 | 8. Record the run | one row in `runs` (platform/sql/003_runs.sql, applied here) | — |
 
-Step 6 loads `graphrag/results/E27_fact_graph.graph.json` by default (`--facts recorded`): the fact graph the engine
-answers from holds facts that Qwen3-4B extracted (a model call, on the GPU) from three end-of-well reports, and a
-release holds one. `--facts tables` builds the graph from the release's end-of-well tables with K2's mappings
-instead (no model call; on AK-3 that is 43 facts, with K1 version 1 chunk IDs). The non-productive report
-(appendix 23) is read from the release when it holds it, else from the corpus export named by `--appendices`.
+Step 6 starts from the fact graph the engine answers from, `graphrag/results/E27_fact_graph.graph.json`: 216 facts
+of three end-of-well reports, read by Qwen3-4B (a model call, on the GPU) and by K2's table mappings, citing K1
+version 0 chunk IDs. Three choices, by `--facts`:
+
+| `--facts` | Fact graph | Default |
+|---|---|---|
+| `mapped` | the recorded graph moved onto the release's chunk IDs through its `legacy_chunk_ids.json` and checked again on the new text (graphrag.factgraph `map_to_release`, no model call); a fact that cannot move keeps its old ID and is counted | when the release holds a legacy map |
+| `recorded` | the recorded graph as it is, on K1 version 0 IDs, so the stores hold no passage for its facts | otherwise |
+| `tables` | built from the release's end-of-well tables with K2's mappings (no model call; on AK-3 alone that was 43 facts) | — |
+
+The non-productive report (appendix 23) is read from the release when it holds it, else from the corpus export
+named by `--appendices`.
 
 `--skip-vectors` skips step 3, and `--skip-graphs` steps 4 to 7. Step 2 keeps a release the store already holds
 with the same SHA256SUMS digest and only checks it, so a second run changes nothing and keeps the vectors.
@@ -61,7 +68,7 @@ from graph_builder.corpus.k1_validate import GROUPS, SUMS, validate_k1  # noqa: 
 
 from graphrag import events as event_graph  # noqa: E402
 from graphrag.data import appendix_chunks_path, document_key, load_chunks  # noqa: E402
-from graphrag.factgraph import to_graph  # noqa: E402
+from graphrag.factgraph import LEGACY_MAP, map_to_release, to_graph  # noqa: E402
 from graphrag.ontology import load as load_k2, table_rows  # noqa: E402
 from graphrag.scoring import normalize  # noqa: E402
 from graphrag.tables import extract  # noqa: E402
@@ -221,6 +228,11 @@ def release_fact_graph(release: Path) -> tuple[dict, dict]:
     return to_graph(kept), {"facts_read": len(facts), "facts_kept": len(kept), "facts_rejected": rejected}
 
 
+def default_facts(release: Path) -> str:
+    """`mapped` when the release holds a legacy map to move the recorded facts with, else `recorded`."""
+    return "mapped" if (release / LEGACY_MAP).is_file() else "recorded"
+
+
 def step_build_facts(run: Run) -> dict:
     if run.facts == "recorded":
         path = load_facts_neo4j.GRAPH
@@ -229,6 +241,17 @@ def step_build_facts(run: Run) -> dict:
                  "it holds facts Qwen3-4B extracted (a model call) from three end-of-well reports, and its chunk IDs "
                  "are K1 version 0; --facts tables builds one from the release's tables with no model call")
         source = {"source": f"recorded: {path.relative_to(ROOT).as_posix()}"}
+    elif run.facts == "mapped":
+        graph, counts = map_to_release(run.release, load_facts_neo4j.GRAPH)
+        source = {"source": f"recorded {counts['source_graph']} moved onto release {run.name}'s chunk IDs by its "
+                            f"legacy map, no model call",
+                  **{k: counts[k] for k in ("facts", "facts_on_new_ids", "facts_on_old_ids", "chunks_cited",
+                                            "chunks_mapped")}}
+        run.note("build facts", f"recorded fact graph moved onto the release's chunk IDs, no model call: "
+                 f"{counts['facts_on_new_ids']} of {counts['facts']} facts on its IDs, the rest on their old IDs "
+                 f"({', '.join(f'{k} {v}' for k, v in counts['facts_on_old_ids'].items()) or 'none'})")
+        path = run.out / "facts.graph.json"
+        path.write_text(json.dumps({**counts, **graph}, indent=1) + "\n", encoding="utf-8", newline="\n")
     else:
         graph, source = release_fact_graph(run.release)
         source = {"source": f"K2 table mappings on release {run.name}, no model call", **source}
@@ -323,8 +346,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="step 2: replace the release even when the store holds it unchanged (drops its vectors)")
     parser.add_argument("--replaces", metavar="RELEASE",
                         help="step 2: first remove this other release, which holds the same files (and its vectors)")
-    parser.add_argument("--facts", choices=["recorded", "tables"], default="recorded",
-                        help="step 6: the recorded E27 fact graph, or one built from the release's tables")
+    parser.add_argument("--facts", choices=["mapped", "recorded", "tables"],
+                        help="step 6: the recorded E27 fact graph moved onto the release's chunk IDs (the default when "
+                             "the release holds a legacy map), as it is (the default otherwise), or one built from "
+                             "the release's tables")
     parser.add_argument("--appendices", type=Path, default=event_graph.OLD_EXPORT,
                         help="corpus export holding appendix 23, when the release does not")
     parser.add_argument("--endpoint", default="local-embed", help="embedding endpoint in configs/graphrag/endpoints.json")
@@ -334,7 +359,8 @@ def main(argv: list[str] | None = None) -> int:
     started = datetime.now(timezone.utc)
     name = args.release.resolve().name
     run_id = f"{name}-{started:%Y%m%dT%H%M%SZ}"
-    run = Run(args.release, name, args.out / run_id, appendices=args.appendices, facts=args.facts,
+    facts = args.facts or default_facts(args.release)
+    run = Run(args.release, name, args.out / run_id, appendices=args.appendices, facts=facts,
               endpoint=args.endpoint, reload=args.reload, replaces=args.replaces)
     run.out.mkdir(parents=True, exist_ok=True)
     skipped = (["embed"] if args.skip_vectors else []) + (sorted(GRAPH_STEPS) if args.skip_graphs else [])
@@ -346,7 +372,7 @@ def main(argv: list[str] | None = None) -> int:
     record = {"run_id": run_id, "release": name, "release_folder": str(run.release),
               "sha256sums_sha256": hashlib.sha256(sums.read_bytes()).hexdigest() if sums.is_file() else None,
               "git_commit": git_commit(), "embedding_model": None if args.skip_vectors else run.embedding_model,
-              "skipped": skipped, "facts": args.facts, "counts": counts, "seconds": seconds, "notes": run.notes,
+              "skipped": skipped, "facts": facts, "counts": counts, "seconds": seconds, "notes": run.notes,
               "started_at": started.isoformat(), "finished_at": datetime.now(timezone.utc).isoformat(),
               "status": "failed" if failed else "succeeded", "failed_step": failed, "error": reason}
     if failed:

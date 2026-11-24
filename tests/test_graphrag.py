@@ -724,5 +724,57 @@ class DailySetTests(unittest.TestCase):
             self.assertTrue(fact["sources"], fact["id"])
 
 
+class FactGraphMappingTests(unittest.TestCase):
+    """The recorded fact graph moved onto K1 version 1 chunk IDs through a legacy map (B-F63), no model call."""
+
+    def fact(self, chunk, value, prop="casing_depth"):
+        return {"well": "68-32", "property": prop, "value": value, "qualifier": "actual",
+                "context": {"casing_size_in": "9-5/8"}, "chunk": chunk, "source": "table_mapping"}
+
+    def test_the_recorded_graph_gives_its_facts_back(self):
+        from graphrag.factgraph import RECORDED, graph_facts, to_graph
+
+        graph = json.loads(RECORDED.read_text(encoding="utf-8"))
+        facts = graph_facts(graph)
+        self.assertEqual(len(facts), graph["facts_kept"])
+        rebuilt = to_graph(facts)
+        self.assertEqual((rebuilt["nodes"], rebuilt["relationships"]), (graph["nodes"], graph["relationships"]))
+
+    def test_moved_facts_are_checked_on_the_new_text_and_the_rest_keep_their_old_ids(self):
+        from graphrag.factgraph import map_chunks
+
+        facts = [self.fact("old#c1", "978"), self.fact("old#c2", "2150", "casing_weight"), self.fact("old#c3", "40", "hole_size")]
+        legacy = {"old#c1": "fa:s1:c0", "old#c2": "fa:s2:c0"}   # old#c3 has no mapping
+        texts = {"fa:s1:c0": "Well 68-32: 9-5/8 casing set at 978 ft.",
+                 "fa:s2:c0": "Well 68-32: 9-5/8 casing, weight not printed."}   # a near match without the value
+        moved, counts = map_chunks(facts, legacy, texts)
+        self.assertEqual([f["chunk"] for f in moved], ["fa:s1:c0", "old#c2", "old#c3"])
+        self.assertEqual(moved[0], dict(facts[0], chunk="fa:s1:c0"))
+        self.assertEqual({k: counts[k] for k in ("llm_calls", "facts", "facts_on_new_ids", "chunks_cited", "chunks_mapped")},
+                         {"llm_calls": 0, "facts": 3, "facts_on_new_ids": 1, "chunks_cited": 3, "chunks_mapped": 2})
+        self.assertEqual(counts["facts_on_old_ids"], {"failed a check on the new text": 1, "no mapping": 1})
+        self.assertEqual(counts["checks_failed_on_new_text"], {"value not in its chunk": 1})
+        self.assertEqual(counts["chunks_unmapped"], ["old#c3"])
+
+    def test_a_release_folder_is_read_for_its_legacy_map_and_chunk_texts(self):
+        from graphrag.factgraph import LEGACY_MAP, map_to_release, to_graph
+
+        with tempfile.TemporaryDirectory() as folder:
+            release, recorded = Path(folder, "test-release"), Path(folder, "recorded.graph.json")
+            release.mkdir()
+            recorded.write_text(json.dumps(to_graph([self.fact("old#c1", "978")])), encoding="utf-8")
+            (release / LEGACY_MAP).write_text(json.dumps([{"old_chunk_id": "old#c1", "new_chunk_id": "fa:s1:c0"},
+                                                          {"old_chunk_id": "old#c9", "new_chunk_id": None}]), encoding="utf-8")
+            (release / "chunks.jsonl").write_text(json.dumps(
+                {"chunk_id": "fa:s1:c0", "doc_id": "d", "page": 1, "type": "text",
+                 "text": "Well 68-32: 9-5/8 casing set at 978 ft."}) + "\n", encoding="utf-8")
+            graph, counts = map_to_release(release, recorded)
+        self.assertEqual([n["key"] for n in graph["nodes"] if n["label"] == "Chunk"], ["fa:s1:c0"])
+        self.assertEqual(next(n for n in graph["nodes"] if n["label"] == "Document")["key"], "fa")
+        self.assertEqual((counts["release"], counts["source_graph"], counts["facts_on_new_ids"]),
+                         ("test-release", "recorded.graph.json", 1))
+        self.assertIsNone(counts["sha256sums_sha256"])
+
+
 if __name__ == "__main__":
     unittest.main()

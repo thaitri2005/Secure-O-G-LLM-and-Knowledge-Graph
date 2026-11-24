@@ -145,6 +145,31 @@ class StepTests(unittest.TestCase):
         self.assertEqual(failed["sha256sums_sha256"], hashlib.sha256(b"abc  manifest.json\n").hexdigest())
         self.assertIsNone(failed["embedding_model"])
         self.assertEqual(records[1]["skipped"], ["embed", "build events", "build facts", "load events", "load facts"])
+        self.assertEqual(failed["facts"], "recorded")   # no legacy map in the release
+
+    def test_facts_are_moved_onto_the_release_ids_by_default_when_it_holds_a_legacy_map(self):
+        fact = {"well": "68-32", "property": "casing_depth", "value": "978", "qualifier": "actual",
+                "context": {"casing_size_in": "9-5/8"}, "chunk": "old#c1", "source": "table_mapping"}
+        with tempfile.TemporaryDirectory() as folder, quiet():
+            release, recorded = Path(folder) / "rel-1", Path(folder) / "recorded.graph.json"
+            release.mkdir()
+            self.assertEqual(run_release.default_facts(release), "recorded")
+            recorded.write_text(json.dumps(run_release.to_graph([fact, dict(fact, value="40", chunk="old#c2")])),
+                                encoding="utf-8")
+            (release / "legacy_chunk_ids.json").write_text(json.dumps([{"old_chunk_id": "old#c1", "new_chunk_id": "fa:s1:c0"}]),
+                                                           encoding="utf-8")
+            (release / "chunks.jsonl").write_text(json.dumps({"chunk_id": "fa:s1:c0", "doc_id": "d", "page": 1, "type": "text",
+                                                              "text": "Well 68-32: 9-5/8 casing set at 978 ft."}) + "\n",
+                                                  encoding="utf-8")
+            self.assertEqual(run_release.default_facts(release), "mapped")
+            run = run_release.Run(release, "rel-1", Path(folder), facts="mapped")
+            with mock.patch.object(run_release.load_facts_neo4j, "GRAPH", recorded):
+                counts = run_release.step_build_facts(run)
+            written = json.loads(run.written["facts"].read_text(encoding="utf-8"))
+        self.assertEqual((counts["facts"], counts["facts_on_new_ids"], counts["facts_on_old_ids"]), (2, 1, {"no mapping": 1}))
+        self.assertEqual(sorted(n["key"] for n in written["nodes"] if n["label"] == "Chunk"), ["fa:s1:c0", "old#c2"])
+        self.assertEqual(written["facts_on_new_ids"], 1)
+        self.assertIn("1 of 2 facts on its IDs", run.notes["build facts"])
 
 
 class FakeEmbeddings:
@@ -224,7 +249,12 @@ class ReleaseTests(unittest.TestCase):
             built = json.loads(run.written["events"].read_text(encoding="utf-8"))
         recorded = json.loads((ROOT / "graphrag/results/E31_events_k1.json").read_text(encoding="utf-8"))
         self.assertEqual((counts["events"], counts["days"]), (161, 27))
-        self.assertEqual(built["events"], recorded["events"])
+        # E31 was built from the candidate release and an older export of appendix 23, so its chunk IDs differ, and
+        # the demo package's Operations Summary rule recovers words in some descriptions (Track A log A-F15). What an
+        # event measures must be the same.
+        measured = ("date", "start", "end", "hours", "end_md", "code", "npt_code")
+        self.assertEqual([[e[k] for k in measured] for e in built["events"]],
+                         [[e[k] for k in measured] for e in recorded["events"]])
         self.assertEqual(built["wells"], ["AK-3"])
 
     def test_the_fact_graph_from_the_release_tables_needs_no_model(self):
@@ -234,6 +264,18 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(run_release.load_facts_neo4j.check_file(graph), [])
         chunks = [n["key"] for n in graph["nodes"] if n["label"] == "Chunk"]
         self.assertTrue(chunks and all("#" not in c for c in chunks))   # K1 version 1 IDs
+
+    def test_the_recorded_facts_move_onto_the_release_ids_and_keep_their_number(self):
+        if not (self.release / "legacy_chunk_ids.json").is_file():
+            self.skipTest("the release holds no legacy map")
+        graph, counts = run_release.map_to_release(self.release)
+        recorded = json.loads(run_release.load_facts_neo4j.GRAPH.read_text(encoding="utf-8"))
+        self.assertEqual(counts["facts"], recorded["facts_kept"])
+        self.assertEqual(sum(n["label"] == "Fact" for n in graph["nodes"]), recorded["facts_kept"])
+        self.assertEqual(run_release.load_facts_neo4j.check_file(graph), [])
+        held = {json.loads(line)["chunk_id"] for line in (self.release / "chunks.jsonl").read_text(encoding="utf-8").splitlines() if line}
+        new = {n["key"] for n in graph["nodes"] if n["label"] == "Chunk" and "#" not in n["key"]}
+        self.assertTrue(new and new <= held)
 
 
 class SqlTests(unittest.TestCase):

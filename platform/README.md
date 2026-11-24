@@ -13,10 +13,13 @@ PostgreSQL runs the files in `sql/` on its first start (empty volume only). Ever
 ## One command: the runner
 
 ```
-python platform/run_release.py data/interim/k1/ak3-k1-v1-candidate
+python platform/run_release.py data/interim/k1/demo-v2
 python platform/run_release.py <release folder> --skip-vectors        # no embedding server
 python platform/run_release.py <release folder> --skip-graphs         # PostgreSQL only
+python platform/run_release.py data/interim/k1/demo-v2 --replaces ak3-demo-v1   # first remove the older release of the same files
 ```
+
+The demo package `demo-v2` (three end-of-well reports, AK-3's daily reports and its non-productive-time report) is built by `python scripts/build_k1_demo_release.py` into the ignored `data/interim/k1/`.
 
 It runs the eight steps below in order, stops at the first failed check with exit code 1 and the step's name, and writes one row to the `runs` table either way. Run twice on the same release, the second run prints whether its counts equal the first's.
 
@@ -27,7 +30,7 @@ It runs the eight steps below in order, stops at the first failed check with exi
 | 3. Embed | `embed_k1.py` | One vector per chunk into `chunk_vectors`; SQL search must equal in-memory search. Needs the embedding server (`local-embed`) |
 | 4. Build the event graph | `graphrag.events` | Events from the release's operations tables, no model call. Appendix 23 comes from the release, or else from `--appendices` (a corpus export) |
 | 5. Load the event region | `load_events_neo4j.py` | See below |
-| 6. Build the fact graph | `graphrag.factgraph` | `--facts recorded` (default): the committed `graphrag/results/E27_fact_graph.graph.json`, because its facts need a model call and three reports. `--facts tables`: K2 table mappings on the release, no model call |
+| 6. Build the fact graph | `graphrag.factgraph` | Starts from the committed `graphrag/results/E27_fact_graph.graph.json` (216 facts of three end-of-well reports, read with a model call). `--facts mapped`, the default when the release holds `legacy_chunk_ids.json`: those facts moved onto the release's chunk IDs and checked again on the new text, no model call; a fact that cannot move keeps its old ID and is counted. `--facts recorded`, the default otherwise: the file as it is, on K1 version 0 IDs. `--facts tables`: K2 table mappings on the release, no model call |
 | 7. Load the fact region | `load_facts_neo4j.py` | See below |
 | 8. Record the run | `sql/003_runs.sql` | Release, its `SHA256SUMS` digest, git commit, embedding model, counts and seconds per step |
 

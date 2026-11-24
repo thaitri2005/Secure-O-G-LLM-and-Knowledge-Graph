@@ -157,14 +157,19 @@ def package_identity(corpus_fingerprint: str, k1_config: dict) -> str:
 
 
 def map_legacy_document(legacy_chunks: Path, chunks: list[dict]) -> list[dict]:
-    """Old-to-new chunk id records for the legacy document; form chunks have no old counterpart."""
-    new_rows = [row for row in chunks if row["doc_id"] == LEGACY_DOCUMENT and row["type"] != "form"]
-    if not new_rows:
+    """Old-to-new chunk id records for every bundle document in the export (AK-3's report is required), in doc id
+    order; each document maps only onto its own new chunks, and form chunks have no old counterpart."""
+    new_rows = [row for row in chunks if row["type"] != "form"]
+    if not any(row["doc_id"] == LEGACY_DOCUMENT for row in new_rows):
         raise ValueError(f"--legacy-chunks needs the document {LEGACY_DOCUMENT} in the export")
-    old_rows = load_legacy_rows(legacy_chunks)
-    if not old_rows:
+    old_rows = load_legacy_rows(legacy_chunks, None)
+    if not any(row["doc_id"] == LEGACY_DOCUMENT for row in old_rows):
         raise ValueError(f"{legacy_chunks} has no chunks of {LEGACY_DOCUMENT}")
-    return map_legacy_chunks(old_rows, new_rows)
+    records = []
+    for doc_id in sorted({row["doc_id"] for row in old_rows} & {row["doc_id"] for row in new_rows}):
+        records += map_legacy_chunks([row for row in old_rows if row["doc_id"] == doc_id],
+                                     [row for row in new_rows if row["doc_id"] == doc_id])
+    return records
 
 
 def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: list[str] | None = None,

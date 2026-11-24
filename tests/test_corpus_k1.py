@@ -283,6 +283,23 @@ class ExportTests(PackageCase):
         chunk_ids = {json.loads(line)["chunk_id"] for line in (release / "chunks.jsonl").read_text(encoding="utf-8").splitlines()}
         self.assertTrue({r["new_chunk_id"] for r in records if r["new_chunk_id"]} <= chunk_ids)
 
+    def test_legacy_map_covers_every_bundle_document_in_the_export_and_never_crosses_documents(self):
+        add_sample(self.corpus, self.root, LEGACY_DOCUMENT, self.fingerprint)
+        add_sample(self.corpus, self.root, "gdr1295_56-32_eowr", self.fingerprint, width=620)
+        legacy = self.root / "legacy.jsonl"
+        rows = [dict(doc_id=doc_id, chunk_id=f"{doc_id}#c0000", page=1, text="First passage on page one.")
+                for doc_id in (LEGACY_DOCUMENT, "gdr1295_56-32_eowr", "gdr1153_68-32_eowr")]
+        legacy.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8", newline="\n")
+        result = export_k1(self.corpus, "mapped", Path("models"), K1_CONFIG, legacy_chunks=legacy)
+        release = Path(result["export"])
+        records = json.loads((release / LEGACY_MAP).read_text(encoding="utf-8"))
+        chunks = {json.loads(line)["chunk_id"]: json.loads(line)["doc_id"]
+                  for line in (release / "chunks.jsonl").read_text(encoding="utf-8").splitlines()}
+        self.assertEqual([r["old_chunk_id"] for r in records], ["gdr1295_56-32_eowr#c0000", f"{LEGACY_DOCUMENT}#c0000"])
+        self.assertEqual([chunks[r["new_chunk_id"]] for r in records], ["gdr1295_56-32_eowr", LEGACY_DOCUMENT])
+        self.assertEqual(result["legacy_map"]["exact"], 2)
+        self.assertEqual(validate_k1(release), [])
+
 
 class CompletenessGateTests(PackageCase):
     def test_guard_blocks_and_preserves_previous_current_and_source_counts(self):

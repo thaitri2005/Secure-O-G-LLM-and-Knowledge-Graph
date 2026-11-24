@@ -23,9 +23,10 @@ def jaccard(left: str, right: str) -> float:
     return len(a & b) / len(a | b) if a | b else 0.0
 
 
-def load_legacy_rows(path: Path, doc_id: str = LEGACY_DOCUMENT) -> list[dict]:
+def load_legacy_rows(path: Path, doc_id: str | None = LEGACY_DOCUMENT) -> list[dict]:
+    """Bundle rows of one document, or of every document when ``doc_id`` is None."""
     rows = (json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
-    return [row for row in rows if row["doc_id"] == doc_id]
+    return [row for row in rows if doc_id is None or row["doc_id"] == doc_id]
 
 
 def map_legacy_chunks(old_rows: list[dict], new_rows: list[dict], near: float = NEAR_THRESHOLD) -> list[dict]:
