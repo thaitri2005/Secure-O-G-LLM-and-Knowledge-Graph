@@ -8,6 +8,8 @@ question log under ignored `data/interim/backend/`.
 """
 from __future__ import annotations
 
+from contextlib import asynccontextmanager
+
 import os
 from datetime import date
 from pathlib import Path
@@ -28,7 +30,15 @@ DEV_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
 def create_app(service: Service | None = None) -> FastAPI:
-    app = FastAPI(title="Drilling reports GraphRAG: read path", version="0.1.0",
+    @asynccontextmanager
+    async def lifespan(_app: FastAPI):
+        # A deployment on the stores must not start half-working: build the service now, so a wrong address or
+        # password stops the server with its error. On files the service is still built at the first request.
+        if os.environ.get("BACKEND_SOURCE") == "stores" or os.environ.get("BACKEND_DSN"):
+            current()
+        yield
+
+    app = FastAPI(lifespan=lifespan, title="Drilling reports GraphRAG: read path", version="0.1.0",
                   description="Ask a question about the loaded drilling reports and see the answer, the lanes that "
                               "gave its evidence, its citations and how it was reached. Specification §7.5.")
     app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("BACKEND_CORS_ORIGINS", ",".join(DEV_ORIGINS)).split(","),

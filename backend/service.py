@@ -24,6 +24,18 @@ class NotFound(LookupError):
     """An ID the engine does not hold."""
 
 
+def reasoning_view(found: dict | None) -> dict | None:
+    """The reasoning lane's result as the contract gives it: the engine's own bookkeeping fields are left out."""
+    if not found:
+        return None
+    keep = ("id", "kind", "chunk", "text", "date", "page", "problem")
+    return {"problem": found["problem"], "candidates": found["candidates"],
+            "evidence": [{k: item.get(k) for k in keep} for item in found["evidence"]],
+            "stated": found["stated"], "possible": found["possible"], "possible_hidden": found["possible_hidden"],
+            "removed": found["removed"],
+            "missing": [{"text": m["text"], "source": m["from"]} for m in found["missing"]]}
+
+
 class Service:
     def __init__(self, engine: Engine, frame_client, answer_client, log: QuestionLog, roles: dict[str, dict[str, str]],
                  page_images: Path | None = None):
@@ -55,7 +67,8 @@ class Service:
             "citations": [dict(self.chunk_view(c["chunk"]), how=c["how"]) for c in row["citations"] if c.get("chunk")],
             "evidence": {"passages": [self.chunk_view(c) for c in row["shown_passages"]],
                          "facts": [self.fact_view(f) for f in row["shown_facts"]],
-                         "computed": computed, "model_note": row.get("evidence")},
+                         "computed": computed, "reasoning": reasoning_view(row.get("reasoning")),
+                         "model_note": row.get("evidence") if isinstance(row.get("evidence"), str) else None},
             "checks": {"citations_supported": bool(row["citations_supported"]),
                        "quotes_verbatim": bool(row["quotes_verbatim"])},
             "cost": {"calls": row["calls"], "prompt_tokens": row["prompt_tokens"] + row["frame_prompt_tokens"],

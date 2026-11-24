@@ -457,7 +457,8 @@
               "not_stated",
               "not_found_in_graph",
               "withheld",
-              "invalid"
+              "invalid",
+              "ask_which"
             ],
             "title": "Status"
           },
@@ -486,7 +487,8 @@
               "enum": [
                 "passages",
                 "well_facts",
-                "events"
+                "events",
+                "reasoning"
               ]
             },
             "type": "array",
@@ -552,6 +554,60 @@
           "cost"
         ],
         "title": "AnswerOut"
+      },
+      "Cause": {
+        "properties": {
+          "cause": {
+            "type": "string",
+            "title": "Cause"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/CauseCitation"
+            },
+            "type": "array",
+            "title": "Citations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cause",
+          "citations"
+        ],
+        "title": "Cause"
+      },
+      "CauseCitation": {
+        "properties": {
+          "evidence": {
+            "type": "string",
+            "title": "Evidence",
+            "description": "The label of the evidence item"
+          },
+          "chunk": {
+            "type": "string",
+            "title": "Chunk"
+          },
+          "how": {
+            "type": "string",
+            "enum": [
+              "model",
+              "by_quote"
+            ],
+            "title": "How"
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          }
+        },
+        "type": "object",
+        "required": [
+          "evidence",
+          "chunk",
+          "how",
+          "quote"
+        ],
+        "title": "CauseCitation"
       },
       "Checks": {
         "properties": {
@@ -895,6 +951,17 @@
               }
             ]
           },
+          "reasoning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Reasoning"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Set for a question about causes"
+          },
           "model_note": {
             "anyOf": [
               {
@@ -1082,7 +1149,7 @@
               "lookup_by_date",
               "across_wells",
               "over_time",
-              "reasoning",
+              "cause",
               "other"
             ],
             "title": "Kind"
@@ -1101,6 +1168,19 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Plan"
+          },
+          "problem": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Problem",
+            "description": "For a question about causes: the date, depth, code and keywords it names"
           }
         },
         "type": "object",
@@ -1157,6 +1237,29 @@
         ],
         "title": "Health"
       },
+      "Missing": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "corpus",
+              "model"
+            ],
+            "title": "Source",
+            "description": "corpus: a fixed list of what these reports lack; model: added by the model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "source"
+        ],
+        "title": "Missing"
+      },
       "PageOut": {
         "properties": {
           "file_id": {
@@ -1196,6 +1299,88 @@
         ],
         "title": "PageOut"
       },
+      "Problem": {
+        "properties": {
+          "date_from": {
+            "type": "string",
+            "title": "Date From"
+          },
+          "date_to": {
+            "type": "string",
+            "title": "Date To"
+          },
+          "start": {
+            "type": "string",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "title": "End"
+          },
+          "npt_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Npt Code"
+          },
+          "hours": {
+            "type": "number",
+            "title": "Hours"
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events"
+          },
+          "depth_ft": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Depth Ft",
+            "description": "Lowest and highest end depth of its events, ft"
+          },
+          "codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Codes",
+            "description": "Activity codes of its events"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "chunks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chunks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date_from",
+          "date_to",
+          "start",
+          "end",
+          "npt_code",
+          "hours",
+          "events",
+          "depth_ft",
+          "codes",
+          "description",
+          "chunks"
+        ],
+        "title": "Problem",
+        "description": "A drilling problem found in the event graph: a run of non-productive events with one code."
+      },
       "QuestionIn": {
         "properties": {
           "question": {
@@ -1221,7 +1406,8 @@
                 "enum": [
                   "passages",
                   "well_facts",
-                  "events"
+                  "events",
+                  "reasoning"
                 ]
               },
               {
@@ -1237,6 +1423,155 @@
           "question"
         ],
         "title": "QuestionIn"
+      },
+      "Reasoning": {
+        "properties": {
+          "problem": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Problem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The problem the answer is about; null when several match and the user is asked which"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/Problem"
+            },
+            "type": "array",
+            "title": "Candidates",
+            "description": "Every problem that matched the question"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningEvidence"
+            },
+            "type": "array",
+            "title": "Evidence",
+            "description": "What code gathered around the problem and showed the model"
+          },
+          "stated": {
+            "items": {
+              "$ref": "#/components/schemas/Cause"
+            },
+            "type": "array",
+            "title": "Stated",
+            "description": "Causes a report states, each with a citation that code checked"
+          },
+          "possible": {
+            "items": {
+              "$ref": "#/components/schemas/Cause"
+            },
+            "type": "array",
+            "title": "Possible",
+            "description": "Factors visible in the evidence that no report states as the cause; empty in exact mode"
+          },
+          "possible_hidden": {
+            "type": "integer",
+            "title": "Possible Hidden",
+            "description": "Possible causes left out because the mode is exact"
+          },
+          "removed": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Removed",
+            "description": "Causes code removed because no citation supported them, by list"
+          },
+          "missing": {
+            "items": {
+              "$ref": "#/components/schemas/Missing"
+            },
+            "type": "array",
+            "title": "Missing",
+            "description": "Kinds of evidence a real judgement needs that the reports do not hold"
+          }
+        },
+        "type": "object",
+        "required": [
+          "problem",
+          "candidates",
+          "evidence",
+          "stated",
+          "possible",
+          "possible_hidden",
+          "removed",
+          "missing"
+        ],
+        "title": "Reasoning",
+        "description": "The answer to a question about causes (specification \u00a78.6)."
+      },
+      "ReasoningEvidence": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "The label the answer cites: E1, E2, ... for events, P1, P2, ... for passages"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "event",
+              "daily",
+              "end_of_well"
+            ],
+            "title": "Kind"
+          },
+          "chunk": {
+            "type": "string",
+            "title": "Chunk"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "problem": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Problem",
+            "description": "For an event: whether it is part of the problem itself"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "chunk",
+          "text"
+        ],
+        "title": "ReasoningEvidence"
       },
       "ValidationError": {
         "properties": {

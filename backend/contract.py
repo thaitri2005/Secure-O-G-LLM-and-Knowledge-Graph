@@ -21,8 +21,31 @@ EXAMPLE_PAGES = HERE.parent / "frontend/public/example-pages"
 
 EMPTY_PLAN = {"operation": "not_answerable", "well": "", "code": "", "non_productive": False, "npt_code": "",
               "date_from": "", "date_to": "", "group_by": "", "min_hours_per_day": 0, "depth_ft": 0}
+EMPTY_PROBLEM = {"date": "", "depth_ft": 0, "npt_code": "", "keywords": []}
+
+
+def _cause_answer(messages: list[dict]) -> dict:
+    """A stand-in's answer to the stuck-pipe prompt: it cites the evidence labels the prompt shows."""
+    lines = {line.split("]")[0][1:]: line for line in messages[1]["content"].splitlines() if line.startswith("[")}
+    stuck = next(label for label, line in lines.items() if "plugged inner barrel" in line)
+    hot = next(label for label, line in lines.items() if "186 degrees" in line)
+    return {"stated": [{"cause": "The inner barrel was plugged, which stuck the pipe",
+                        "citations": [{"id": stuck, "quote": "due to plugged inner barrel"}]}],
+            "possible": [{"cause": "Hot water entering the hole at shallow depth",
+                          "citations": [{"id": hot, "quote": "temp. building to 186 degrees"}]}],
+            "missing": ["a temperature log of the hole"]}
+
+
 # name -> (request body, the frame the stand-in gives, the answer the stand-in gives)
 QUESTIONS = {
+    "question_cause": (
+        {"question": "What caused the stuck pipe on AK-3 on 20 August 2016?"},
+        {"kind": "cause", "report_type": "daily", **EMPTY_PLAN, "problem": {**EMPTY_PROBLEM, "keywords": ["stuck pipe"]}},
+        _cause_answer),
+    "question_cause_which": (
+        {"question": "What caused the non-productive time on AK-3?"},
+        {"kind": "cause", "report_type": "daily", **EMPTY_PLAN, "problem": dict(EMPTY_PROBLEM)},
+        None),
     "question_end_of_well": (
         {"question": "What total depth did well AK-3 reach?"},
         {"kind": "lookup", "report_type": "end_of_well", **EMPTY_PLAN},
@@ -54,6 +77,7 @@ class _Scripted:
 
     def chat(self, messages, schema=None, max_tokens=None):
         parsed = self.frame if "kind" in (schema or {}).get("properties", {}) else self.answer
+        parsed = parsed(messages) if callable(parsed) else parsed
         return SimpleNamespace(parsed=parsed, content=json.dumps(parsed), prompt_tokens=0, completion_tokens=0,
                                seconds=0.0, cached=False)
 

@@ -1,0 +1,507 @@
+{
+  "id": "fixture00000000000000000000000001",
+  "question": "What caused the stuck pipe on AK-3 on 20 August 2016?",
+  "mode": "allow_fallback",
+  "status": "answered",
+  "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: The inner barrel was plugged, which stuck the pipe [E3]. Possible, not stated in any report: Hot water entering the hole at shallow depth [E14]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; a temperature log of the hole.",
+  "answers": [],
+  "lanes": [
+    "reasoning"
+  ],
+  "fallback": false,
+  "answered_from": "daily",
+  "frame": {
+    "kind": "cause",
+    "report_type": "daily",
+    "plan": {
+      "operation": "not_answerable",
+      "well": "AK-3",
+      "code": "",
+      "non_productive": false,
+      "npt_code": "",
+      "date_from": "",
+      "date_to": "",
+      "group_by": "",
+      "min_hours_per_day": 0,
+      "depth_ft": 0
+    },
+    "problem": {
+      "date": "2016-08-20",
+      "depth_ft": 0,
+      "npt_code": "",
+      "keywords": [
+        "stuck pipe"
+      ]
+    }
+  },
+  "citations": [
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "model"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "model"
+    }
+  ],
+  "evidence": {
+    "passages": [
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0038",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 20,
+        "section": "Health, Safety and Environment",
+        "type": "text",
+        "text": "AK-3 was completed with one recordable safety incident. On 21 August 2016, during the setting of the core joint to secure the top of the core pipe to shut off steam flow, hot water sprayed under the rain jacket of the Major toolpusher. He sustained 2 nd degree burns to the lower back just above his belt line. First aid was administered to cool and the cover the affected area. He returned to work after changing work clothes. An incident report was prepared. The driller refused additional care at the medical facility at the City of Akutan. The well flow incident was handled well by the drilling crew and appropriate measures were taken to kill the well as soon as the incident occurred.\nAK-3 was completed with one recordable environmental incident. The well flowed uncontrolled from a permeable zone at about 176 feet, beginning on 20 August 2016. The containment at the rig site was not sufficient to contain all of the fluids that were discharged from the well during the\nincident, and approximately 129,600 gallons of hot water was discharged into the floor of HSBV. A notification of non-compliance was delivered to the Alaska Department of Environmental Conservation, and the Alaska Department of Fish and Game was notified. The City of Akutan environmental consultant reported that the agencies were satisfied that the spill did not harm fish or habitat in the stream adjacent to drill site."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0015",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 9,
+        "section": "Drilling Summary",
+        "type": "text",
+        "text": "Figure 2: Drilling days vs. depth for AK-3, starting with initial move from staging area at Akutan Harbor to HSBV on 12 August 2016."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0019",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 13,
+        "section": "Mobilization",
+        "type": "text",
+        "text": "The drilling rig and all drilling materials and equipment were consolidated at the shipping yard of Alaska Logistics in Tacoma, Washington and shipped mid-July 2016. The load, including the camp materials, were transferred to a landing craft in Cold Bay, Alaska on 5 August and arrived in Akutan Harbor on 6 August. The harbor served as the staging area for the remainder of the project. The support helicopter arrived on 10 August. The GRG supervisor, Major Drilling management personnel (tool pusher and supervisor) and the drilling crews (2 drillers, 4 helpers) arrived over the next couple of days, with slight delays waiting for luggage in Dutch Harbor. City personnel built the tent platforms in Hot Springs Bay Valley on 8-10 August. Loads were brought into the Valley starting 11 August. All materials and personnel were transported by helicopter from the barge to the well pad. Drill pad construction began on 12 August. Rig up began on 14 August. The camp was ready for occupancy on 17 August. Weather prevented operations on 13 August. The satellite Internet connection was not operational until 22 August, which hampered communications. The Internet connection was the primary means of communication with the site, as there is no cellular phone service in HSBV and the satellite phone reliability at this latitude is poor. The camp services provided VOIP phone along with satellite Internet access."
+      }
+    ],
+    "facts": [],
+    "computed": null,
+    "reasoning": {
+      "problem": {
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-23",
+        "start": "17:00",
+        "end": "11:00",
+        "npt_code": "KICK",
+        "hours": 66.0,
+        "events": 21,
+        "depth_ft": [
+          176,
+          176
+        ],
+        "codes": [
+          "STUCK",
+          "KILL",
+          "OTHER",
+          "FISH",
+          "WELLHD",
+          "TRPO",
+          "CMTPL",
+          "WOC",
+          "TRPI",
+          "PUMP"
+        ],
+        "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to ",
+        "chunks": [
+          "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051"
+        ]
+      },
+      "candidates": [
+        {
+          "date_from": "2016-08-20",
+          "date_to": "2016-08-23",
+          "start": "17:00",
+          "end": "11:00",
+          "npt_code": "KICK",
+          "hours": 66.0,
+          "events": 21,
+          "depth_ft": [
+            176,
+            176
+          ],
+          "codes": [
+            "STUCK",
+            "KILL",
+            "OTHER",
+            "FISH",
+            "WELLHD",
+            "TRPO",
+            "CMTPL",
+            "WOC",
+            "TRPI",
+            "PUMP"
+          ],
+          "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to ",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "text": "2016-08-20 14:00-15:30, 1.5 h, end depth 149 ft, activity CIRC: Pump cold water through core pipe, flow check, no flow from annulus, drop inner barrel. mix new mud 2 bags gel, pump barrel down, begin coring",
+          "date": "2016-08-20",
+          "page": null,
+          "problem": false
+        },
+        {
+          "id": "E2",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "text": "2016-08-20 15:30-17:00, 1.5 h, end depth 176 ft, activity DRIL: Core ahead, while coring from 176, high torque, stuck pipe, taking steam kick.",
+          "date": "2016-08-20",
+          "page": null,
+          "problem": false
+        },
+        {
+          "id": "E3",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "text": "* 2016-08-20 17:00-18:00, 1 h, end depth 176 ft, activity STUCK, non-productive KICK: Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump cold water to hole.",
+          "date": "2016-08-20",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E4",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+          "text": "* 2016-08-20 18:00-0:00, 6 h, end depth 176 ft, activity KILL, non-productive KICK: Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+          "date": "2016-08-20",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E5",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+          "text": "* 2016-08-21 0:00-7:00, 7 h, end depth 176 ft, activity OTHER, non-productive KICK: Well kicked. Steam flow to surface. Lost rod due to foot clamp slipping. Top of HWT rod 2' below foot clamp.",
+          "date": "2016-08-21",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E6",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+          "text": "* 2016-08-21 7:00-15:30, 8.5 h, end depth 176 ft, activity FISH, non-productive KICK: fly fishing tool from lay down yard,connect inside grapple ,run in on new HWT core rod, catch fish bring through foot camp. secure in head, break down fishing joint. Well blowing and flowing 66 gpm,",
+          "date": "2016-08-21",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E7",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+          "text": "* 2016-08-21 15:30-17:30, 2 h, end depth 176 ft, activity WELLHD, non-productive KICK: Rig up and install10' joint to string , shut in flow, secure well from blowing, begin pumping cold water into well bore. 60 degree in 136 F out,",
+          "date": "2016-08-21",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E8",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+          "text": "* 2016-08-21 17:30-0:00, 6.5 h, end depth 176 ft, activity WELLHD, non-productive KICK: Secure poor boy packoff from HWT to 8\" casing begin pumping 60 gpm of 60 degree water through string into hole. Hole secure.",
+          "date": "2016-08-21",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E9",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 0:00-7:00, 7 h, end depth 176 ft, activity WELLHD, non-productive KICK: Continue pumping 35 gpm 60 degree cold water into 8\" casing , packed off on top with poor boy packer.",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E10",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 7:00-15:00, 8 h, end depth 176 ft, activity WELLHD, non-productive KICK: Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks of portland cement from 88' as a drift plug.",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E11",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 15:00-15:30, 0.5 h, end depth 176 ft, activity TRPO, non-productive KICK: Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'.",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E12",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 15:30-16:30, 1 h, end depth 176 ft, activity CMTPL, non-productive KICK: Mix and pump 10- 92.4 lbs sacks of portland cement into 77 gallons of water, pump through string as drift plug, chasing with 70 gallons of displacement. shut hole in monitor discharge, clean equipment.",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E13",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 16:30-17:30, 1 h, end depth 176 ft, activity WOC, non-productive KICK: Rotate pipe each 15 minutes, to ensure free. initial static hole with top of fluid 3' below top of 8\" casing , after 1 hour, approx. .5-1 gallon flowing out of hole.",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E14",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+          "text": "* 2016-08-22 17:30-0:00, 6.5 h, end depth 176 ft, activity WOC, non-productive KICK: Wait on cement, grab sample placed in warm laundry tent to cure. Flow from 8\" casing measured at 11-13 gpm, temp. building to 186 degrees at 00:00",
+          "date": "2016-08-22",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E15",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 0:00-3:00, 3 h, end depth 176 ft, activity WOC, non-productive KICK: pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134: 02:00-120F",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E16",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 3:00-3:30, 0.5 h, end depth 176 ft, activity WELLHD, non-productive KICK: Take off poor boy packoff, prior to lowering rod into hole to tag top of cement. Starting temp of discharge 120F",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E17",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 3:30-4:00, 0.5 h, end depth 176 ft, activity TRPI, non-productive KICK: RUN 20' into hole start temp. 115 F- joint down 142F, at 109'",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E18",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 4:00-4:15, 0.25 h, end depth 176 ft, activity TRPI, non-productive KICK: run in hole with 80' of rod temp begin at 115F end at 126F, tag top of cement at 172' BGS, circulating hole at top of cement fluid temp out 114F, pumping 30 gpm.",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E19",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 4:15-6:00, 1.75 h, end depth 176 ft, activity PUMP, non-productive KICK: Pumping cold water to cool hole,Discuss with GRG, Bill Rickard , plan to re cement hole to stop flow.",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E20",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 6:00-7:00, 1 h, end depth 176 ft, activity PUMP, non-productive KICK: Continue to pump cold water, change out stripping rubbers on packoff, attempt to gain shut in pressure, estimate at 4-9 psi, out floe from 8\" now at 11-13 gpm,",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E21",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+          "text": "* 2016-08-23 7:00-8:30, 1.5 h, end depth 176 ft, activity PUMP, non-productive KICK: Continue to pump cold water through core rod into hole with bottom of rod at 170', pull rod to 168' prepare to mix and pump 9sks of cement in a balance plug.",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E22",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+          "text": "* 2016-08-23 8:30-9:15, 0.75 h, end depth 176 ft, activity CMTPL, non-productive KICK: Mix 9 bags of cement in 70 gallons of water, 14.5 lb/gal cement mix, pump into core rod and displace with 37 gallons of water, trip out with core rod to 49'. shut down,",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E23",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+          "text": "* 2016-08-23 9:15-11:00, 1.75 h, end depth 176 ft, activity WOC, non-productive KICK: wait on cement to set, rotate and lift rods every 15 min,begin time to see when fluid level returns to top of 8\" casing . took 1 hour and 15 min to see any water flow out of casing after cement down. minimum flow, less than 0.25 gpm.",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": true
+        },
+        {
+          "id": "E24",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+          "text": "2016-08-23 11:00-13:00, 2 h, end depth 176 ft, activity WOC: Pull core rod from hole lay down core barrel. wait on cement to set, pick up 7.5\" tricone button bit hole opener, assemble onto string, set in hole. continue to wait on cement.",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": false
+        },
+        {
+          "id": "E25",
+          "kind": "event",
+          "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+          "text": "2016-08-23 13:00-15:15, 2.25 h, end depth 176 ft, activity OPEN: Open hole 4.835\" to 7.5\" from 40' to 90' , catching chip samples, no set cement in samples, rock chips caught by mud logger, circulate hole clean, no flow, hole static at 90' BGS, continue to wait on ...",
+          "date": "2016-08-23",
+          "page": null,
+          "problem": false
+        },
+        {
+          "id": "P1",
+          "kind": "end_of_well",
+          "chunk": "gdr882_ak3_eowr#c0038",
+          "text": "AK-3 was completed with one recordable safety incident. On 21 August 2016, during the setting of the core joint to secure the top of the core pipe to shut off steam flow, hot water sprayed under the rain jacket of the Major toolpusher. He sustained 2 nd degree burns to the lower back just above his belt line. First aid was administered to cool and the cover the affected area. He returned to work after changing work clothes. An incident report was prepared. The driller refused additional care at the medical facility at the City of Akutan. The well flow incident was handled well by the drilling crew and appropriate measures were taken to kill the well as soon as the incident occurred.\nAK-3 was completed with one recordable environmental incident. The well flowed uncontrolled from a permeable zone at about 176 feet, beginning on 20 August 2016. The containment at the rig site was not sufficient to contain all of the fluids that were discharged from the well during the\nincident, and approximately 129,600 gallons of hot water was discharged into the floor of HSBV. A notification of non-compliance was delivered to the Alaska Department of Environmental Conservation, and the Alaska ...",
+          "date": null,
+          "page": 20,
+          "problem": null
+        },
+        {
+          "id": "P2",
+          "kind": "end_of_well",
+          "chunk": "gdr882_ak3_eowr#c0015",
+          "text": "Figure 2: Drilling days vs. depth for AK-3, starting with initial move from staging area at Akutan Harbor to HSBV on 12 August 2016.",
+          "date": null,
+          "page": 9,
+          "problem": null
+        },
+        {
+          "id": "P3",
+          "kind": "end_of_well",
+          "chunk": "gdr882_ak3_eowr#c0019",
+          "text": "The drilling rig and all drilling materials and equipment were consolidated at the shipping yard of Alaska Logistics in Tacoma, Washington and shipped mid-July 2016. The load, including the camp materials, were transferred to a landing craft in Cold Bay, Alaska on 5 August and arrived in Akutan Harbor on 6 August. The harbor served as the staging area for the remainder of the project. The support helicopter arrived on 10 August. The GRG supervisor, Major Drilling management personnel (tool pusher and supervisor) and the drilling crews (2 drillers, 4 helpers) arrived over the next couple of days, with slight delays waiting for luggage in Dutch Harbor. City personnel built the tent platforms in Hot Springs Bay Valley on 8-10 August. Loads were brought into the Valley starting 11 August. All materials and personnel were transported by helicopter from the barge to the well pad. Drill pad construction began on 12 August. Rig up began on 14 August. The camp was ready for occupancy on 17 August. Weather prevented operations on 13 August. The satellite Internet connection was not operational until 22 August, which hampered communications. The Internet connection was the primary means of ...",
+          "date": null,
+          "page": 13,
+          "problem": null
+        }
+      ],
+      "stated": [
+        {
+          "cause": "The inner barrel was plugged, which stuck the pipe",
+          "citations": [
+            {
+              "evidence": "E3",
+              "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+              "how": "model",
+              "quote": "due to plugged inner barrel"
+            }
+          ]
+        }
+      ],
+      "possible": [
+        {
+          "cause": "Hot water entering the hole at shallow depth",
+          "citations": [
+            {
+              "evidence": "E14",
+              "chunk": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+              "how": "model",
+              "quote": "temp. building to 186 degrees"
+            }
+          ]
+        }
+      ],
+      "possible_hidden": 0,
+      "removed": {
+        "stated": 0,
+        "possible": 0
+      },
+      "missing": [
+        {
+          "text": "offset wells: what happened in nearby wells drilled through the same formations",
+          "source": "corpus"
+        },
+        {
+          "text": "formation pressures and temperatures measured over depth",
+          "source": "corpus"
+        },
+        {
+          "text": "drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow",
+          "source": "corpus"
+        },
+        {
+          "text": "lessons-learned or incident investigation reports",
+          "source": "corpus"
+        },
+        {
+          "text": "a temperature log of the hole",
+          "source": "model"
+        }
+      ]
+    },
+    "model_note": null
+  },
+  "checks": {
+    "citations_supported": true,
+    "quotes_verbatim": true
+  },
+  "cost": {
+    "calls": 2,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0.0
+  }
+}

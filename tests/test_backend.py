@@ -102,6 +102,21 @@ class BackendTests(unittest.TestCase):
         self.assertEqual([c["how"] for c in body["citations"]], ["event_graph", "event_graph"])
         self.assertEqual(body["cost"]["calls"], 1)
 
+    def test_a_question_about_a_cause_returns_stated_and_possible_causes(self):
+        frame = {"kind": "cause", "report_type": "daily", **EMPTY_PLAN,
+                 "problem": {"date": "", "depth_ft": 0, "npt_code": "", "keywords": []}}
+        answer = {"stated": [{"cause": "The well kicked", "citations": [{"id": "E2", "quote": "STUCK"}]}],
+                  "possible": [{"cause": "Nothing shows this", "citations": [{"id": "E99", "quote": "not there"}]}],
+                  "missing": ["a temperature log"]}
+        body = self.make(frame, answer).post("/v1/questions", json={"question": "What caused the kick on AK-3 on 20 August 2016?"}).json()
+        self.assertEqual((body["status"], body["lanes"], body["frame"]["kind"]), ("answered", ["reasoning"], "cause"))
+        found = body["evidence"]["reasoning"]
+        self.assertEqual(found["problem"]["npt_code"], "KICK")
+        self.assertEqual(([c["cause"] for c in found["stated"]], found["possible"], found["removed"]["possible"]),
+                         (["The well kicked"], [], 1))
+        self.assertIn({"text": "a temperature log", "source": "model"}, found["missing"])
+        self.assertTrue(body["answer_text"].startswith("Problem:"))
+
     def test_exact_mode_with_nothing_in_the_graph_is_not_found(self):
         body = self.make(FRAME_EOW, DEPTH_ANSWER).post("/v1/questions", json={"question": "What depth did ZZ-9 reach?", "mode": "exact"}).json()
         self.assertEqual((body["status"], body["answers"], body["lanes"], body["mode"]), ("not_found_in_graph", [], [], "exact"))

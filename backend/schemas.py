@@ -7,8 +7,8 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 Mode = Literal["allow_fallback", "exact"]
-Lane = Literal["passages", "well_facts", "events"]
-Status = Literal["answered", "not_stated", "not_found_in_graph", "withheld", "invalid"]
+Lane = Literal["passages", "well_facts", "events", "reasoning"]
+Status = Literal["answered", "not_stated", "not_found_in_graph", "withheld", "invalid", "ask_which"]
 ReportType = Literal["end_of_well", "daily"]
 
 
@@ -74,17 +74,73 @@ class Computed(BaseModel):
     source_chunks: list[str]
 
 
+class Problem(BaseModel):
+    """A drilling problem found in the event graph: a run of non-productive events with one code."""
+    date_from: str
+    date_to: str
+    start: str
+    end: str
+    npt_code: str | None
+    hours: float
+    events: int
+    depth_ft: list[int] = Field(description="Lowest and highest end depth of its events, ft")
+    codes: list[str] = Field(description="Activity codes of its events")
+    description: str
+    chunks: list[str]
+
+
+class ReasoningEvidence(BaseModel):
+    id: str = Field(description="The label the answer cites: E1, E2, ... for events, P1, P2, ... for passages")
+    kind: Literal["event", "daily", "end_of_well"]
+    chunk: str
+    text: str
+    date: str | None = None
+    page: int | None = None
+    problem: bool | None = Field(None, description="For an event: whether it is part of the problem itself")
+
+
+class CauseCitation(BaseModel):
+    evidence: str = Field(description="The label of the evidence item")
+    chunk: str
+    how: Literal["model", "by_quote"]
+    quote: str
+
+
+class Cause(BaseModel):
+    cause: str
+    citations: list[CauseCitation]
+
+
+class Missing(BaseModel):
+    text: str
+    source: Literal["corpus", "model"] = Field(description="corpus: a fixed list of what these reports lack; model: added by the model")
+
+
+class Reasoning(BaseModel):
+    """The answer to a question about causes (specification §8.6)."""
+    problem: Problem | None = Field(description="The problem the answer is about; null when several match and the user is asked which")
+    candidates: list[Problem] = Field(description="Every problem that matched the question")
+    evidence: list[ReasoningEvidence] = Field(description="What code gathered around the problem and showed the model")
+    stated: list[Cause] = Field(description="Causes a report states, each with a citation that code checked")
+    possible: list[Cause] = Field(description="Factors visible in the evidence that no report states as the cause; empty in exact mode")
+    possible_hidden: int = Field(description="Possible causes left out because the mode is exact")
+    removed: dict[str, int] = Field(description="Causes code removed because no citation supported them, by list")
+    missing: list[Missing] = Field(description="Kinds of evidence a real judgement needs that the reports do not hold")
+
+
 class Evidence(BaseModel):
     passages: list[ChunkOut] = Field(description="The passages shown to the model, or the closest ones when nothing was found")
     facts: list[FactOut] = Field(description="The validated facts shown to the model")
     computed: Computed | None
+    reasoning: Reasoning | None = Field(None, description="Set for a question about causes")
     model_note: str | None = Field(description="The model's own note on the evidence, when the answer format asks for one")
 
 
 class Frame(BaseModel):
-    kind: Literal["lookup", "lookup_by_date", "across_wells", "over_time", "reasoning", "other"]
+    kind: Literal["lookup", "lookup_by_date", "across_wells", "over_time", "cause", "other"]
     report_type: Literal["end_of_well", "daily", "both", "unknown"]
     plan: dict
+    problem: dict | None = Field(None, description="For a question about causes: the date, depth, code and keywords it names")
 
 
 class Checks(BaseModel):

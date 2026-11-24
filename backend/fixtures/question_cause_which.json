@@ -1,0 +1,245 @@
+{
+  "id": "fixture00000000000000000000000002",
+  "question": "What caused the non-productive time on AK-3?",
+  "mode": "allow_fallback",
+  "status": "ask_which",
+  "answer_text": "Several problems match: 1) non-productive time coded WAIT from 2016-08-13 0:00 to 2016-08-13 0:00: 1 event, 24 hours, end depth 0 ft (Weather Delay); 2) non-productive time coded WOE from 2016-08-16 19:00 to 2016-08-17 9:00: 3 events, 14 hours, end depth 0 ft (Fly crews to lodge for evening, Unable to stay on site due to failed generators); 3) non-productive time coded WOO from 2016-08-18 8:00 to 2016-08-18 12:00: 1 event, 4 hours, end depth 0 ft (Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill wa); 4) non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft (Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to ); 5) non-productive time coded WOE from 2016-09-03 6:30 to 2016-09-03 11:00: 1 event, 4.5 hours, end depth 1725 ft (Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 j); 6) non-productive time coded WOO from 2016-09-05 6:30 to 2016-09-05 9:00: 1 event, 2.5 hours, end depth 1955 ft (Waiting on well design after PT data review. Receive well plan: From the current blank run 4 perforated / 1 blank alternating 4 to 1 until run out of perf pipe,). Which one do you mean?",
+  "answers": [],
+  "lanes": [
+    "reasoning"
+  ],
+  "fallback": false,
+  "answered_from": "daily",
+  "frame": {
+    "kind": "cause",
+    "report_type": "daily",
+    "plan": {
+      "operation": "not_answerable",
+      "well": "AK-3",
+      "code": "",
+      "non_productive": false,
+      "npt_code": "",
+      "date_from": "",
+      "date_to": "",
+      "group_by": "",
+      "min_hours_per_day": 0,
+      "depth_ft": 0
+    },
+    "problem": {
+      "date": "",
+      "depth_ft": 0,
+      "npt_code": "",
+      "keywords": []
+    }
+  },
+  "citations": [],
+  "evidence": {
+    "passages": [
+      {
+        "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001",
+        "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00034",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00241",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      }
+    ],
+    "facts": [],
+    "computed": null,
+    "reasoning": {
+      "problem": null,
+      "candidates": [
+        {
+          "date_from": "2016-08-13",
+          "date_to": "2016-08-13",
+          "start": "0:00",
+          "end": "0:00",
+          "npt_code": "WAIT",
+          "hours": 24.0,
+          "events": 1,
+          "depth_ft": [
+            0,
+            0
+          ],
+          "codes": [
+            "WOW"
+          ],
+          "description": "Weather Delay",
+          "chunks": [
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date_from": "2016-08-16",
+          "date_to": "2016-08-17",
+          "start": "19:00",
+          "end": "9:00",
+          "npt_code": "WOE",
+          "hours": 14.0,
+          "events": 3,
+          "depth_ft": [
+            0,
+            0
+          ],
+          "codes": [
+            "OTHER",
+            "WOD"
+          ],
+          "description": "Fly crews to lodge for evening, Unable to stay on site due to failed generators",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023"
+          ]
+        },
+        {
+          "date_from": "2016-08-18",
+          "date_to": "2016-08-18",
+          "start": "8:00",
+          "end": "12:00",
+          "npt_code": "WOO",
+          "hours": 4.0,
+          "events": 1,
+          "depth_ft": [
+            0,
+            0
+          ],
+          "codes": [
+            "WOW"
+          ],
+          "description": "Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill wa",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00034"
+          ]
+        },
+        {
+          "date_from": "2016-08-20",
+          "date_to": "2016-08-23",
+          "start": "17:00",
+          "end": "11:00",
+          "npt_code": "KICK",
+          "hours": 66.0,
+          "events": 21,
+          "depth_ft": [
+            176,
+            176
+          ],
+          "codes": [
+            "STUCK",
+            "KILL",
+            "OTHER",
+            "FISH",
+            "WELLHD",
+            "TRPO",
+            "CMTPL",
+            "WOC",
+            "TRPI",
+            "PUMP"
+          ],
+          "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to ",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051"
+          ]
+        },
+        {
+          "date_from": "2016-09-03",
+          "date_to": "2016-09-03",
+          "start": "6:30",
+          "end": "11:00",
+          "npt_code": "WOE",
+          "hours": 4.5,
+          "events": 1,
+          "depth_ft": [
+            1725,
+            1725
+          ],
+          "codes": [
+            "CIRC"
+          ],
+          "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 j",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211"
+          ]
+        },
+        {
+          "date_from": "2016-09-05",
+          "date_to": "2016-09-05",
+          "start": "6:30",
+          "end": "9:00",
+          "npt_code": "WOO",
+          "hours": 2.5,
+          "events": 1,
+          "depth_ft": [
+            1955,
+            1955
+          ],
+          "codes": [
+            "WOO"
+          ],
+          "description": "Waiting on well design after PT data review. Receive well plan: From the current blank run 4 perforated / 1 blank alternating 4 to 1 until run out of perf pipe,",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00241"
+          ]
+        }
+      ],
+      "evidence": [],
+      "stated": [],
+      "possible": [],
+      "possible_hidden": 0,
+      "removed": {
+        "stated": 0,
+        "possible": 0
+      },
+      "missing": []
+    },
+    "model_note": null
+  },
+  "checks": {
+    "citations_supported": true,
+    "quotes_verbatim": true
+  },
+  "cost": {
+    "calls": 1,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0.0
+  }
+}

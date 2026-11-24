@@ -1,5 +1,5 @@
 {
-  "id": "fixture00000000000000000000000003",
+  "id": "fixture00000000000000000000000005",
   "question": "What total depth did well ZZ-9 reach?",
   "mode": "exact",
   "status": "not_found_in_graph",
@@ -22,6 +22,12 @@
       "group_by": "",
       "min_hours_per_day": 0,
       "depth_ft": 0
+    },
+    "problem": {
+      "date": "",
+      "depth_ft": 0,
+      "npt_code": "",
+      "keywords": []
     }
   },
   "citations": [],
@@ -70,6 +76,7 @@
     ],
     "facts": [],
     "computed": null,
+    "reasoning": null,
     "model_note": null
   },
   "checks": {

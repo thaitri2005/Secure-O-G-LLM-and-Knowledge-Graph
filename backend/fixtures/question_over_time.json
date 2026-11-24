@@ -1,5 +1,5 @@
 {
-  "id": "fixture00000000000000000000000002",
+  "id": "fixture00000000000000000000000004",
   "question": "How many hours of non-productive time did AK-3 have?",
   "mode": "allow_fallback",
   "status": "answered",
@@ -29,6 +29,12 @@
       "group_by": "",
       "min_hours_per_day": 0,
       "depth_ft": 0
+    },
+    "problem": {
+      "date": "",
+      "depth_ft": 0,
+      "npt_code": "",
+      "keywords": []
     }
   },
   "citations": [
@@ -873,6 +879,7 @@
         "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00252"
       ]
     },
+    "reasoning": null,
     "model_note": null
   },
   "checks": {

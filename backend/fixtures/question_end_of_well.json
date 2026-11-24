@@ -1,5 +1,5 @@
 {
-  "id": "fixture00000000000000000000000001",
+  "id": "fixture00000000000000000000000003",
   "question": "What total depth did well AK-3 reach?",
   "mode": "allow_fallback",
   "status": "answered",
@@ -30,6 +30,12 @@
       "group_by": "",
       "min_hours_per_day": 0,
       "depth_ft": 0
+    },
+    "problem": {
+      "date": "",
+      "depth_ft": 0,
+      "npt_code": "",
+      "keywords": []
     }
   },
   "citations": [
@@ -219,6 +225,7 @@
       }
     ],
     "computed": null,
+    "reasoning": null,
     "model_note": null
   },
   "checks": {
