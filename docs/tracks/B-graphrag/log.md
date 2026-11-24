@@ -944,7 +944,7 @@ Tri asked for the whole project to be gone over before people are put in front o
 
 - **The baseline is reproduced exactly:** BM25, top 5, AK-3, 31 prototype questions: 28/31, the same three questions wrong (q07, q25, q31), and the same status and values on all 31 as the recorded run on the borrowed GPU (E17). So a score from the CPU build stands beside the recorded ones. Run `bench_qwen3-8b.cpu_quick`.
 - **Speed:** 136 seconds a question (the GPU: 1.05), about 13 prompt tokens and 2.4 answer tokens a second while sharing the cores with other work. The 31 questions took 70 minutes of model time. The 221 pooled questions would take about a day, so E33 in full still needs a GPU; the short measurements do not.
-- **Memory:** the server holds about 9 GB with an 8k context; a 32k context does not fit in 16 GB. A frontend build beside it got the server killed twice; the bench resumed from its cache both times with no lost answer, which is what the resume was built for.
+- **Memory:** this llama.cpp release keeps earlier prompts in memory, up to 8 GB by default, so the server grew from 7 GB to 12 GB during a run and the machine killed it three times before the cause was found. `--cache-ram 0` stops it. Each time the run resumed from the request cache on disk with no lost answer, which is what the resume was built for. A 32k context does not fit in 16 GB.
 - **Everything else the measurements need was built on the same machine:** the demo package from the public PDFs (Track A log A-F22), the stores with real vectors (Track C log C-F09), the page images (302 pages in 73 seconds), and the application as containers (C-F10).
 - Profile `qwen3-8b.cpu`; the steps are in the [engine README](../../../graphrag/README.md#without-a-gpu-on-linux).
 

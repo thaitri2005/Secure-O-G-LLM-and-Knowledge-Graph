@@ -225,13 +225,13 @@ mkdir -p data/interim/llama.cpp data/interim/models && cd data/interim/llama.cpp
 curl -L -o l.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b12015/llama-b12015-bin-ubuntu-x64.tar.gz && tar xzf l.tar.gz && cd ../../..
 curl -L -o data/interim/models/Qwen3-8B-Q4_K_M.gguf https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/main/Qwen3-8B-Q4_K_M.gguf
 export LD_LIBRARY_PATH=$PWD/data/interim/llama.cpp/llama-b12015
-data/interim/llama.cpp/llama-b12015/llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 8192 -np 1 -ngl 0 -t 4 --jinja --chat-template-kwargs '{"enable_thinking":false}' --alias qwen3-8b &
+data/interim/llama.cpp/llama-b12015/llama-server -m data/interim/models/Qwen3-8B-Q4_K_M.gguf --port 8080 -c 8192 -np 1 -ngl 0 -t 4 --cache-ram 0 --jinja --chat-template-kwargs '{"enable_thinking":false}' --alias qwen3-8b &
 python -m graphrag.bench check qwen3-8b.cpu
 python -m graphrag.bench run qwen3-8b.cpu --suite quick
 ```
 
 - **Speed:** about 13 prompt tokens a second on 4 cores, so an answer from five passages takes three to four minutes. The 31 prototype questions take about two hours; the 221 pooled questions would take a day.
-- **Memory:** the server holds about 9 GB with an 8k context. On a 16 GB machine nothing else heavy can run beside it: a build or a test run at the same time got the server killed. A 32k context does not fit.
+- **Memory:** start the server with `--cache-ram 0`. This release of llama.cpp keeps earlier prompts in memory, up to 8 GB by default; on a 16 GB machine the server grew from 7 GB to 12 GB over a run and was killed three times before the cause was found. With the cache off it holds about 7 GB at an 8k context. A measurement loses nothing: the run resumes from the request cache on disk
 - **Context:** 8,192 tokens is enough for every prompt the engine sends (the longest, a question about a cause, is about 4,500). The profile `qwen3-8b.cpu` says so.
 - **Comparing:** it is the same model file on another build of llama.cpp, so its scores are lined up with its own baseline rerun first (`compare_as` is `cpu:qwen3-8b`).
 
