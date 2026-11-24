@@ -46,6 +46,7 @@ class Engine:
     events: list[Event]
     facts: list[dict]  # already validated
     multi_well_retriever: str | None = "perwell:fusion:bm25+dense:qwen3-embedding-0.6b"
+    source: str = "files"  # "stores" when graphrag.stores built it; the service's health check reports it
     _retrievers: dict[tuple[str, str], Any] = field(default_factory=dict, init=False, repr=False, compare=False)
     _by_id: dict[str, Chunk] | None = field(default=None, init=False, repr=False, compare=False)
 

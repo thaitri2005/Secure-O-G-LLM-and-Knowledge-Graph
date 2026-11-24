@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions (
     asked_at       timestamptz NOT NULL DEFAULT now(),
     question       text NOT NULL CHECK (length(question) BETWEEN 1 AND 500),
     mode           text NOT NULL CHECK (mode IN ('allow_fallback', 'exact')),
-    forced_lane    text CHECK (forced_lane IN ('passages', 'well_facts', 'events')),
+    forced_lane    text CHECK (forced_lane IN ('passages', 'well_facts', 'events', 'reasoning')),
     kind           text NOT NULL,                    -- the frame's kind, for counting question types
     report_type    text NOT NULL,                    -- the frame's report type
     lanes          text[] NOT NULL,                  -- the lanes that gave evidence

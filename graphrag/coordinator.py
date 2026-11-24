@@ -221,6 +221,9 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     else:
         facts, passages = by_lane.get("well_facts"), by_lane.get("passages")
         hits = passages.passages if passages else facts.passages
+        # A fact can cite a chunk the engine does not hold (facts built on an older package than the one loaded):
+        # the fact still counts, its passage cannot be shown.
+        hits = [cid for cid in hits if cid in engine.by_id()]
         answer_format = passages.answer_format if passages else facts.answer_format
         sheet = fact_sheet(facts.facts, limit=SHEET_LINES) if facts else {}
         graph = "\n".join(sheet[w] for w in sorted(well_names(question)) if w in sheet)

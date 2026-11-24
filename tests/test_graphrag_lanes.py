@@ -353,6 +353,14 @@ class CoordinatorTests(unittest.TestCase):
         self.assertEqual(row["lanes"], ["well_facts"])
         self.assertEqual(row["passages"], 2)  # the chunks of the two facts that are not planned
 
+    def test_a_fact_citing_a_chunk_the_engine_does_not_hold_still_answers(self):
+        facts = [dict(f, chunk="older-package#c0001") for f in self.engine.facts]
+        engine = lanes.Engine(self.engine.eow_chunks, self.engine.daily_chunks, self.engine.events, facts,
+                              multi_well_retriever=self.engine.multi_well_retriever)
+        row = coordinator.answer(Q("What casing depth did well AK-3 reach?"), engine, ScriptedClient(flat(FRAME_EOW), None),
+                                 RecordingClient(), mode="exact")
+        self.assertEqual((row["lanes"], row["passages"]), (["well_facts"], 0))
+
     def test_code_reads_the_well_and_several_wells_mean_across_wells(self):
         wrong = flat({"kind": "lookup", "report_type": "end_of_well", "plan": plan("not_answerable", well="AK-9")})
         frame, _ = coordinator.frame_question("Which of AK-3 and 56-32 is deeper?", self.engine, ScriptedClient(wrong, None))

@@ -129,6 +129,5 @@ def engine_from_stores(dsn: str, neo4j_uri: str, neo4j_user: str, neo4j_password
                         len(cited - held), len(cited), name)
     engine = Engine([c for c in chunks if not is_daily(c.doc_id)], [c for c in chunks if is_daily(c.doc_id)],
                     events, facts, **settings)
-    # backend/service.py's health reports it. `Engine` has no such field; lanes.py could gain `source: str = "files"`.
-    setattr(engine, "source", "stores")
+    engine.source = "stores"
     return engine
