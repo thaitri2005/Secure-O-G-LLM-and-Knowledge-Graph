@@ -10,6 +10,7 @@ Administrators manage documents, the ontology and the glossary, and correct low-
 
 **Start here.**
 
+- Start Track A with the [operating guide](docs/components/track-a-operation.md) and [validation report](docs/reports/track-a-validation.md).
 - The [project specification](docs/PROJECT_DESIGN.md) is the single source of truth.
 - The [development plan](docs/DEVELOPMENT_PLAN.md) has the milestones and this week's tasks.
 - The [documentation index](docs/README.md) lists everything else.
@@ -30,6 +31,7 @@ All question sets so far are simulated; none is expert-reviewed.
 | Component | Purpose | Status |
 |---|---|---|
 | Document ingestion and K1 packages | Files to pages, tables, forms and chunks with stable IDs, a validator and a QA sidecar (Docling, plus rules for known table formats) | Implemented in `src/graph_builder/corpus/` ([guide](docs/components/corpus-ingestion.md), [Track A](docs/tracks/A-ingestion/README.md)); tuned on one report family |
+| Table extraction and continuation | K1 table grids, verified continuations and source-backed cell evidence | Implemented for supported layouts ([validation](docs/reports/track-a-validation.md)); measured on development sets only, generalization NOT EVALUATED ([import note](docs/components/track-a-import-note.md)) |
 | VLM page parsing | Pages and tables with a document VLM | Not run; rule-based methods come first (D-63) |
 | Stores and ID scheme | PostgreSQL with pgvector for chunks and vectors, Neo4j for the graph; file → page → parent → child chunk → vector → graph | Implemented in `platform/` ([guide](platform/README.md), [Track C](docs/tracks/C-storage/log.md)): one command loads a release, each step checked. On laptops; no server yet |
 | GraphRAG engine | Retrieval by well and date, a per-well fact graph, an event graph, a reasoning lane for causes, a coordinator over them, answers with citations checked in code | Implemented in `graphrag/` ([README](graphrag/README.md), [Track B](docs/tracks/B-graphrag/log.md)), reading files or the stores; the coordinator and the reasoning lane are tested with stand-in models and not yet measured |
@@ -54,7 +56,7 @@ python -m unittest prototype.test_ontology    # 14 prototype tests (profiles, va
 
 The lock file is the verified Windows CPU environment (`pywin32` is marked Windows-only). A tested Linux/GPU deployment lock remains to be produced after the host is confirmed; manually omitting Windows-only packages does not establish an equivalent deployment environment. Without the lock, `pip install -e ".[ocr,qa]"` installs the same pinned packages.
 
-**PyMuPDF licence.** PyMuPDF is licensed under AGPL-3.0 or a commercial Artifex licence. Only tests and QA scripts import it; nothing under `src/graph_builder` does. Build any environment you deploy or distribute without it (`pip install ".[ocr]"`), and see [dependencies](docs/components/dependencies.md) before shipping anything that includes it. Model files and their digests are in [model provenance](docs/components/model-provenance.md).
+**PyMuPDF licence.** PyMuPDF is available under AGPL-3.0 or a commercial Artifex licence. The default K1 profile uses it for source-backed table rules. See [dependencies](docs/components/dependencies.md) for runtime requirements and distribution choices. Model files and their digests are in [model provenance](docs/components/model-provenance.md).
 
 Three tests in `tests/test_graphrag.py` skip because they need the separate `requirements-graphrag.lock.txt` environment (Track B). Tests that need the public PDFs in `data/raw`, cached Docling conversions or earlier K1 releases skip when those files are absent.
 
