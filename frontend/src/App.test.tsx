@@ -409,7 +409,7 @@ describe("when there is no answer", () => {
   it("says what went wrong and keeps the question when the model is not running", async () => {
     render(<App api={fakeApi(new ApiError("The system is not responding right now. Try again in a minute; if it keeps happening, tell the project team."))} />);
     await ask(DEPTH);
-    expect(await screen.findByRole("alert")).toHaveTextContent("The language model is not running");
+    expect(await screen.findByRole("alert")).toHaveTextContent("The system is not responding right now");
     expect(screen.getByLabelText("Ask about the reports")).toHaveValue(DEPTH);
   });
 });

@@ -83,9 +83,9 @@ describe("when the server cannot answer just now", () => {
 
   it("falls back to the older message when the reply has no reason: a proxy's own page, or a word it does not know", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => reply(503, "<html>Service Unavailable</html>", true)));
-    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/language model is not running/);
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/system is not responding right now/);
     vi.stubGlobal("fetch", vi.fn(async () => problem("something_new")));
-    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/language model is not running/);
+    await expect(liveApi.ask("How deep is AK-3?", "allow_fallback")).rejects.toThrow(/system is not responding right now/);
   });
 
   it("waits longer for an answer than the server can take, and marks the failures only a reload fixes", async () => {
