@@ -75,7 +75,11 @@
 
 ![An AI-written answer with its source highlighted](figures/app-ai-answer.png)
 
-**Figure 4.** "What total depth did well AK-3 reach?" The label is blue: *Written by AI, checked against the reports*. The passage the answer comes from is listed first and flagged, and the value is highlighted where the report writes it. The reader can open the whole page. In this screenshot the answer itself is a prepared example; the report text, the page and the highlight are real.
+**Figure 4.** "What total depth did well AK-3 reach?" **This answer is real:** our own copy of the model wrote it, in the application running on the stores. The label is blue: *Written by AI, checked against the reports*. The passage the answer comes from is listed first and flagged, and the value is highlighted where the report writes it. The model had answered "1955 in", taking the word "in" from "1,955 in contrast to"; the application now takes the unit from the report, which writes "1,955'" a line later.
+
+![The printed page of the report, opened beside the answer](figures/app-page.png)
+
+**Figure 4b.** "Open page" shows the page of the report as printed, beside the answer, so the reader checks the source without leaving the screen.
 
 ### No answer
 
@@ -87,7 +91,7 @@
 
 ![An answer about a cause, in parts, with the activities around the problem](figures/app-cause.png)
 
-**Figure 6.** "What caused the stuck pipe on AK-3 on 20 August 2016?" The application first shows the problem it found in the daily activities: 66 hours of non-productive time from 20 to 23 August at 176 ft. Then, apart: what the reports say caused it, with the report's own words; other possible factors, in a dashed box marked *Possibility, not a finding*; and, below what is shown here, what a real judgement would still need. On the right are the activities before, during and after the problem. In this screenshot the answer is a prepared example; the problem, the activities and the report's words are real.
+**Figure 6.** "What caused the stuck pipe on AK-3 on 20 August 2016?" The application first shows the problem it found in the daily activities: 66 hours of non-productive time from 20 to 23 August at 176 ft. Then, apart: what the reports say caused it, with the report's own words; other possible factors, in a dashed box marked *Possibility, not a finding*; and, below what is shown here, what a real judgement would still need. On the right are the activities before, during and after the problem. In this screenshot the answer is a prepared example; the problem, the activities and the report's words are real. What the real model answered is in §10.
 
 ![The application asking which problem is meant](figures/app-cause-which.png)
 
