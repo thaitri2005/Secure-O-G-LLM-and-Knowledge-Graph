@@ -57,7 +57,8 @@ Files in this folder:
 | `models/endpoints.desktop.json` | Template: Tri's desktop over a private network |
 | `models/roles.openrouter.json` | Template: the answer and frame roles on an open-weight model at OpenRouter |
 | `requirements-runner.txt` | Python packages on the host for loading a release |
-| `smoke_test.py` | Checks a running deployment from outside: gate, frontend, health, one question, one feedback |
+| `smoke_test.py` | Checks a running deployment from outside: gate, frontend, health, readiness, one question, one feedback. `--quick` stops before the question |
+| `watch.sh` | The monitor: runs the quick smoke test from another machine and tells the group chat when the application goes down or comes back |
 
 ## 1. The server
 
@@ -176,7 +177,7 @@ When the desktop is off, questions get a `503` that says the model did not answe
 
 ### B. OpenRouter with an open-weight model (for the demo; public data only)
 
-Only public reports (AK-3, Utah FORGE) may be served this way, and only open-weight models: commercial models are never used (CLAUDE.md). The client refuses non-public data on a hosted endpoint by itself.
+Only public reports (AK-3, Utah FORGE) may be served this way, and only open-weight models: commercial models are never used (CLAUDE.md). The backend checks this when it starts: with a hosted endpoint in the roles file it runs only on packages named in `BACKEND_PUBLIC_RELEASES` in `platform/.env`, for example `BACKEND_PUBLIC_RELEASES=demo-v2`, and refuses to start otherwise. Naming a package there is your statement that every report in it is public.
 
 ```sh
 cp configs/graphrag/endpoints.json /srv/kg/models/endpoints.json
@@ -196,7 +197,7 @@ docker compose -f platform/docker-compose.yml up -d postgres neo4j
 docker compose -f platform/docker-compose.yml ps
 ```
 
-Compose refuses to start until `platform/.env` holds the two store passwords (Track C log C-C13). PostgreSQL creates its tables from `platform/sql/` on this first start. Neo4j takes about a minute to install APOC.
+Compose refuses to start until `platform/.env` holds the two store passwords (Track C log C-C13). PostgreSQL creates its tables from `platform/sql/` on this first start. Neo4j takes up to a minute to answer; `docker compose ... ps` shows both stores "healthy" when they are ready, and the backend waits for that. Both come back by themselves after a restart of the server.
 
 ## 7. Load a release
 
@@ -248,7 +249,7 @@ From your own machine, with the repository checked out:
 python deploy/smoke_test.py --url https://<domain> --user team --password '<the shared password>'
 ```
 
-Five checks: the gate refuses a request without the password, the frontend loads, health answers, one question is answered, one feedback is stored. Add `--expect-stub` with the stub model. The question is logged like any other, with "smoke test" as its feedback comment. Then open the address in a browser and ask a question.
+Six checks: the gate refuses a request without the password, the frontend loads, health answers, the model endpoint and the question log are ready, one question is answered, one feedback is stored. Add `--expect-stub` with the stub model. The question is logged like any other, with "smoke test" as its feedback comment. Then open the address in a browser and ask a question.
 
 ## 10. Teammates: the databases through an SSH tunnel
 
@@ -268,7 +269,15 @@ and use `postgresql://kg:<POSTGRES_PASSWORD>@127.0.0.1:15434/kg`, `bolt://127.0.
 15 3 * * * /srv/kg/repo/platform/server/backup.sh >> /srv/backups/backup.log 2>&1
 ```
 
-That is Hung's `platform/server/backup.sh`. It writes `kg-<time>.dump` every night and deletes dumps older than 7 days. Copy one off the server now and then (`scp kg@<server>:/srv/backups/<dump> .`): a backup on the same disk does not survive the server.
+That is Hung's `platform/server/backup.sh`. It writes `kg-<time>.dump` every night and deletes dumps older than 7 days.
+
+**A backup on the same disk does not survive the server, so the job must copy it away.** Set `BACKUP_REMOTE` to an rsync target on another machine and every run copies the dumps there; the log line of each run says whether the copy was made:
+
+```
+15 3 * * * BACKUP_REMOTE=backup@<other host>:kg-backups/ /srv/kg/repo/platform/server/backup.sh >> /srv/backups/backup.log 2>&1
+```
+
+**Check that a backup restores**, once after setting it up and after any change to the database: `platform/server/restore_check.sh` loads the newest dump into a throwaway PostgreSQL container and prints how many questions, marks, releases and chunks came back. The running stores are not touched.
 
 **Restore** a dump into the running database (it replaces what is there):
 
@@ -277,6 +286,8 @@ docker compose -f platform/docker-compose.yml exec -T postgres pg_restore -U kg 
 ```
 
 Neo4j and the vectors are rebuilt by loading the release again (section 7).
+
+**Load a new package while the application runs:** run the runner (section 7), then `docker compose -f platform/docker-compose.yml restart backend`. The backend reads its data once, at start; until it restarts it answers from the old package, and searches by vector may come back empty.
 
 **Update to a new version:**
 
@@ -298,6 +309,25 @@ docker compose -f platform/docker-compose.yml exec neo4j cypher-shell -u neo4j -
 
 then put the new ones in `.env` and run `docker compose -f platform/docker-compose.yml up -d`. To change the shared password, write a new hash into `.env` and run the same command.
 
+## 12. Watch it
+
+Set this up before the first expert gets the link. On a machine that is **not** the server (a teammate's always-on machine, or a free scheduled job), with the repository cloned:
+
+```
+*/5 * * * * SMOKE_PASSWORD='<the shared password>' ALERT_WEBHOOK='<the group chat's incoming-webhook address>' /path/to/repo/deploy/watch.sh https://<domain> >> $HOME/kg-watch.log 2>&1
+```
+
+Every five minutes it checks the gate, the frontend, health and readiness (`GET /v1/ready`: the model endpoint and the question log answer). It asks no question and writes nothing to the question log. It posts to the chat only when the state changes: once when the application goes down, with the failed checks, and once when it is back.
+
+How the application is doing, from the question log:
+
+```sh
+set -a; . platform/.env; set +a
+BACKEND_DSN=postgresql://kg:$POSTGRES_PASSWORD@127.0.0.1:5434/kg /srv/kg/venv/bin/python -m backend.questions stats --since 2026-12-01
+```
+
+It prints seconds per question (median and 95th percentile), model calls and tokens per question, and the share of errors, of "not found" and of fallbacks ([what each field means](../backend/README.md#what-the-log-tells-the-team)). `docker compose -f platform/docker-compose.yml logs backend | grep '"event": "question"'` gives one line per question; the `question_id` in an error message a user reports is in its line.
+
 ## No domain
 
 Basic authentication over plain HTTP sends the password readable by anyone on the path, so do not open port 80 to the internet without a domain. Either:
@@ -312,12 +342,14 @@ Basic authentication over plain HTTP sends the password readable by anyone on th
 | `proxy` restarts; its log says `username and password cannot be empty` or `base64-decoding password` | `APP_PASSWORD_HASH` missing, not in single quotes, or not a bcrypt hash | Generate it again (section 4) and quote it |
 | Browser warns about the certificate, or Caddy logs `challenge failed` | DNS not pointing at the server yet, or port 80/443 closed in the cloud firewall | `dig +short <domain>`; check both firewalls; `docker compose ... logs proxy` |
 | Every API call gives `503` from the proxy | The backend is down or not healthy | `docker compose ... ps` and `logs backend` |
-| `POST /v1/questions` gives `503 ... the model endpoint did not answer` | The model is off or unreachable | `GET /v1/health` names the endpoint and model of each role; from the server, `curl http://<desktop>:8080/v1/models`; check Tailscale, the desktop's firewall and the API key |
+| `POST /v1/questions` gives `503` with code `model_unavailable` | The model is off, unreachable, or slower than `BACKEND_MODEL_TIMEOUT` | `GET /v1/ready` says whether the endpoint answers and `GET /v1/health` names the endpoint and model of each role; from the server, `curl http://<desktop>:8080/v1/models`; check Tailscale, the desktop's firewall and the API key |
 | Answers start with "[stub model]" | The stub endpoints file is in use | Set `MODEL_ENDPOINTS_FILE` and `MODEL_ROLES_FILE` (section 5), remove `demo` from `COMPOSE_PROFILES`, `up -d` |
 | Questions naming several wells are slower or worse than on the desktop | The embedding endpoint did not answer when the backend started, so it uses BM25 per well | Make the embedding endpoint reachable, then `docker compose ... restart backend` |
 | `backend` unhealthy, log shows a PostgreSQL authentication error | The password in `.env` differs from the one the volume was created with | Section 11, "Change a store password" |
 | Health says `"source": "files"` on the server | `BACKEND_SOURCE` not set to `stores` | Set it in `.env`, `up -d` |
 | Health says `"source": "stores"` but no wells or chunks | No release loaded yet | Section 7 |
 | The runner cannot connect to PostgreSQL or Neo4j | The `.env` variables were not exported into the shell | `set -a; . platform/.env; set +a`, then run it again from `/srv/kg/repo` |
+| `POST /v1/questions` gives `503` with code `busy` | More questions at once than the one model slot serves within a minute | Expected under a burst; if it is frequent, see `queue_seconds_p95` in the statistics (section 12) and use a faster model endpoint |
+| `backend` restarts; its log says a package is `not declared public` | A hosted model is configured and the loaded package is not in `BACKEND_PUBLIC_RELEASES` | Name it there if every report in it is public (section 5B); otherwise use a local model |
 | Disk filling up | Container logs, old images or dumps | `docker system df`; `docker image prune`; the log limits of section 2 |
 | `docker compose` complains about a variable | A `$` in `.env` outside single quotes | Quote the value |
