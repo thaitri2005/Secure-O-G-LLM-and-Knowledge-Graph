@@ -1,11 +1,13 @@
 """Track B's lanes and coordinator (specification §8.1), with stand-in models: no server is needed."""
+import dataclasses
 import hashlib
 import json
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from graphrag import baseline, client, events
+from graphrag import baseline, client, events, lanes
+from graphrag.data import Chunk
 from graphrag.events import Event
 
 GOLDEN = Path(__file__).parent / "fixtures/graphrag_answer_requests.json"
@@ -55,6 +57,29 @@ def sample_events():
             Event("2016-08-20", "17:00", "18:00", 1.0, 176, "STUCK", "", ["c"], "KICK"),
             Event("2016-08-21", "0:00", "0:00", 24.0, 176, "KICK", "", ["d"], "KICK"),
             Event("2016-08-22", "0:00", "6:00", 6.0, 300, "DRIL", "", ["e", "a"])]
+
+
+FACTS = [
+    {"chunk": "gdr882_ak3_eowr#c0013", "well": "AK-3", "property": "casing_depth", "qualifier": "actual",
+     "context": {"casing_size_in": "8-5/8"}, "value": "40", "source": "gdr882_ak3_eowr#t003"},
+    {"chunk": "gdr882_ak3_eowr#c0012", "well": "AK-3", "property": "casing_depth", "qualifier": "planned",
+     "context": {"casing_size_in": "8-5/8"}, "value": "40", "source": "gdr882_ak3_eowr#t002"},
+    {"chunk": "gdr882_ak3_eowr#c0037", "well": "AK-3", "property": "non_productive_time", "qualifier": "actual",
+     "context": None, "value": "115.0"},
+]
+FRAME_EOW = {"kind": "lookup", "report_type": "end_of_well", "plan": plan("not_answerable")}
+
+
+def frame_with(query_plan):
+    return {"kind": "over_time", "report_type": "daily", "plan": query_plan}
+
+
+def sample_engine():
+    """The three end-of-well reports of the bundle, five stand-in daily-report chunks (the sample events' sources)
+    and three facts about AK-3."""
+    daily = [Chunk(name, "ak3-dailyreport", page, "text", "Operations", f"Report For 2{page - 1}-Aug-16 AK-3 {name}")
+             for name, page in (("a", 1), ("b", 1), ("c", 1), ("d", 2), ("e", 3))]
+    return lanes.Engine(baseline.pool("three"), daily, sample_events(), FACTS, multi_well_retriever="perwell:bm25")
 
 
 class RoleTests(unittest.TestCase):
@@ -121,6 +146,62 @@ class AnswerOneTests(unittest.TestCase):
         self.assertEqual((row["status"], row["values"]), ("answered", ["1955"]))
         self.assertEqual(row["citations"][0]["chunk"], "gdr882_ak3_eowr#c0002")
         self.assertEqual((row["prompt_tokens"], len(recording.calls)), (100, 1))
+
+
+class LaneTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.engine = sample_engine()
+
+    def test_passages_for_one_well_come_from_its_report_only(self):
+        ev = lanes.passages("What total depth did well AK-3 reach?", FRAME_EOW, self.engine)
+        self.assertEqual((ev.lane, ev.exact, ev.answer_format, len(ev.passages)), ("passages", False, "status_first", 5))
+        self.assertTrue(all(c.startswith("gdr882_ak3_eowr#") for c in ev.passages))
+
+    def test_passages_with_no_well_and_no_date_still_answer(self):
+        self.assertEqual(len(lanes.passages("What is the mud weight?", FRAME_EOW, self.engine).passages), 5)
+
+    def test_several_wells_use_evidence_first_and_ten_passages(self):
+        ev = lanes.passages("Which of AK-3 and 56-32 was drilled deeper?", FRAME_EOW, self.engine)
+        self.assertEqual((ev.answer_format, len(ev.passages)), ("evidence_first", 10))
+        self.assertEqual({c.split("#")[0] for c in ev.passages}, {"gdr882_ak3_eowr", "gdr1295_56-32_eowr"})
+
+    def test_several_wells_without_a_multi_well_retriever_use_the_ordinary_one(self):
+        engine = dataclasses.replace(self.engine, multi_well_retriever=None)
+        ev = lanes.passages("Which of AK-3 and 56-32 was drilled deeper?", FRAME_EOW, engine)
+        self.assertEqual((ev.answer_format, len(ev.passages)), ("status_first", 5))
+
+    def test_daily_passages_keep_to_the_date_the_question_names(self):
+        frame = {"kind": "lookup_by_date", "report_type": "daily", "plan": plan("not_answerable")}
+        ev = lanes.passages("What happened on AK-3 on 21 August 2016?", frame, self.engine)
+        self.assertEqual((ev.passages, ev.report_type), (["d"], "daily"))
+
+    def test_daily_passages_without_a_daily_corpus_are_empty(self):
+        engine = dataclasses.replace(self.engine, daily_chunks=[], events=[])
+        frame = {"kind": "lookup_by_date", "report_type": "daily", "plan": plan("not_answerable")}
+        self.assertTrue(lanes.passages("What happened on 21 August 2016?", frame, engine).empty)
+
+    def test_well_facts_hide_planned_values_unless_asked(self):
+        actual = lanes.well_facts("What casing depth did AK-3 reach?", FRAME_EOW, self.engine)
+        self.assertTrue(actual.exact)
+        self.assertEqual({f["qualifier"] for f in actual.facts}, {"actual"})
+        self.assertEqual(set(actual.passages), {f["chunk"] for f in actual.facts})
+        planned = lanes.well_facts("What was the planned casing depth of AK-3?", FRAME_EOW, self.engine)
+        self.assertIn("planned", {f["qualifier"] for f in planned.facts})
+
+    def test_well_facts_are_empty_for_an_unknown_well_or_no_well(self):
+        self.assertTrue(lanes.well_facts("What depth did ZZ-9 reach?", FRAME_EOW, self.engine).empty)
+        self.assertTrue(lanes.well_facts("What is the mud weight?", FRAME_EOW, self.engine).empty)
+
+    def test_events_lane_reports_values_and_their_source_chunks(self):
+        ev = lanes.events("How many hours of drilling?", frame_with(plan("total_hours", code="DRIL")), self.engine)
+        self.assertEqual((ev.computed["values"], ev.computed["unit"]), (["15.5"], "hours"))
+        self.assertEqual(ev.computed["source_chunks"], ["a", "e"])
+        self.assertEqual((ev.passages, ev.exact, ev.report_type), (["a", "e"], True, "daily"))
+        self.assertEqual(len(ev.computed["events"]), 2)
+
+    def test_events_lane_is_empty_when_nothing_matches(self):
+        self.assertTrue(lanes.events("x", frame_with(plan("total_hours", code="NOPE")), self.engine).empty)
 
 
 if __name__ == "__main__":
