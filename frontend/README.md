@@ -26,7 +26,7 @@ Then open http://localhost:5173. Node 20.19 or later.
 Everything on screen is written for someone who reads drilling reports and has never seen the system. No word names a part of it: there is no "graph", "lane" or "model call" anywhere, and a test fails if one appears.
 
 - **A guide opens on the first visit** ("How it works") and can always be reopened from the top bar. It covers what to ask, how to read an answer, how to check it and how to say it is wrong, with example questions that can be asked in one click. It is skippable.
-- **Ask in plain English** from a search box that stays in reach. Before the first question, the screen offers example questions in three groups and a table of the reports that are loaded.
+- **Ask in plain English** from a search box that stays in reach. Before the first question, the screen offers example questions in four groups and a table of the reports that are loaded.
 - **Every answer carries a label that says how far to trust it:**
   - green, *Calculated from the reports*: the system added the number up itself;
   - blue, *Written by AI, checked against the reports*: an AI wrote it and the value was found in the text;
@@ -37,6 +37,14 @@ Everything on screen is written for someone who reads drilling reports and has n
   - *Timeline*: for a calculated number, one bar per day from midnight to midnight, non-productive time in amber. Hovering a bar says what happened; clicking it marks the same activity in the list below, and the reverse.
   - *Report text*: what the AI read, the cited passage first and flagged "The answer is here", with the answer's value highlighted in yellow. A long passage opens at the highlight.
   - *Key facts*: the checked facts the AI was given.
+- **A question about a cause** ("What caused the stuck pipe on AK-3 on 20 August 2016?") is answered in parts, never as one AI sentence:
+  - *The problem we found*: when, how long, the depth, the report's code (explained on hover) and its own description;
+  - *What the reports say caused it*: each cause with the report's words quoted and where they are written; the page opens like any source, and an activity whose page is not on this machine is shown in the evidence instead;
+  - *Other possible factors (not stated in any report)*: dashed, grey and labelled "Possibility, not a finding". With "Verified data only" they are hidden, and the answer says how many;
+  - *What a real judgement would still need*: the records these reports do not hold;
+  - one quiet line when causes were left out because no report text supported them;
+  - the evidence: the activities before, during and after the problem (those of the problem marked) on the timeline and in a list, and the report text gathered around it.
+- **When several problems match**, the application lists them as choices (days, hours, depth, the report's description). Picking one asks the question again with that problem's first day written into it, since a date in the question decides which problem is meant.
 - **Where this comes from** lists each report once, by a readable name ("AK-3 end-of-well report, page 7"), and opens the page: as the printed page beside the cited text when an image exists (click it for full size; the credit line for the report's authors and licence is shown), and as text on a second tab or when there is none.
 - **When something is wrong** the person sees a plain message and a "Try again" button: server down, slow, restarting, a password that expired, or a page that is not the API's. A broken screen shows a reload button, never a blank page.
 - **Verified data only**: a switch for answers from checked numbers and facts only.
@@ -64,8 +72,8 @@ Fonts and icons are bundled, so the application needs no outside network.
 | Path | Holds |
 |---|---|
 | `src/api/` | `client.ts` (the real API and its error messages), `examples.ts` (the example responses, loaded only in examples mode), `schema.d.ts` (generated) |
-| `src/lib/` | Pure logic with tests: `wording.ts` (every sentence the application says, and the hover explanations), `strips.ts` (operations placed on a day), `highlight.ts` (marking a value in report text) |
-| `src/components/` | `Answer.tsx`, `Evidence.tsx`, `DayStrips.tsx` (the timeline), `Guide.tsx` (how it works), `Tip.tsx` (the hover explanations), `Icon.tsx` |
+| `src/lib/` | Pure logic with tests: `wording.ts` (every sentence the application says, and the hover explanations), `cause.ts` (answers about causes: the activities read back, where a cited cause is written, the question asked again), `strips.ts` (operations placed on a day), `highlight.ts` (marking a value in report text) |
+| `src/components/` | `Answer.tsx`, `Cause.tsx` (an answer about a cause, and the choices), `Evidence.tsx`, `CauseEvidence.tsx` (what a cause answer rests on), `Passage.tsx` (report text), `DayStrips.tsx` (the timeline), `Guide.tsx` (how it works), `Tip.tsx` (the hover explanations), `Icon.tsx` |
 | `src/App.tsx` | State: asking, answers, selection, the page view |
 | `src/styles.css` | One stylesheet; colours and type sizes are variables at the top |
 
@@ -73,6 +81,7 @@ Fonts and icons are bundled, so the application needs no outside network.
 
 - **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run on the desktop is still to do.
 - A page's image shows only where the backend has rendered it (`platform/render_pages.py`, `BACKEND_PAGE_IMAGES`); there is no highlight of the cited passage on the image yet, because K1 passages carry no region ([backend design](../docs/tracks/C-storage/backend-design.md) §7).
+- The activities around a cause's problem arrive as the lines the AI was shown, not as structured activities; the application reads them back (`src/lib/cause.ts`) and shows a line it cannot read as it is, without a timeline.
 - Report names are file IDs made readable (`ak3 eowr`), until documents carry titles.
 - No login: the access gate is at the proxy.
 - Answers are kept in the browser's session storage, so they include report text on that machine until the tab closes.

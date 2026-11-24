@@ -1,6 +1,7 @@
 // Every sentence the application says. Its readers are drilling engineers and managers, not developers: nothing
 // here names a part of the system, and anything that needs explaining comes with an explanation to show on hover.
-import type { AnswerOut, Citation } from "../api/types";
+import type { AnswerOut, Citation, Problem, Reasoning } from "../api/types";
+import { gathered, reasoningOf } from "./cause";
 
 function count(n: number, one: string, many: string): string {
   return `${n} ${n === 1 ? one : many}`;
@@ -8,6 +9,12 @@ function count(n: number, one: string, many: string): string {
 
 /** The answer as a headline: the values with their units, or what happened instead. */
 export function headline(answer: AnswerOut): string {
+  const reasoning = reasoningOf(answer);
+  if (answer.status === "ask_which") return "Which problem do you mean?";
+  if (reasoning && answer.status !== "invalid") {
+    const stated = reasoning.stated.length;
+    return stated > 0 ? `${count(stated, "cause", "causes")} stated in the reports` : "No report states the cause";
+  }
   if (answer.status === "answered" && answer.answers.length > 0) {
     return answer.answers.map((a) => (a.unit ? `${a.value} ${a.unit}` : a.value)).join(", ");
   }
@@ -18,12 +25,33 @@ export function headline(answer: AnswerOut): string {
 
 /** How much to trust the answer, as a label with an explanation for hover. */
 export interface Badge {
-  tone: "calculated" | "ai" | "unconfirmed" | "none";
+  tone: "calculated" | "ai" | "unconfirmed" | "none" | "choose";
   label: string;
   tip: string;
 }
 
 export function badge(answer: AnswerOut): Badge {
+  const reasoning = reasoningOf(answer);
+  if (answer.status === "ask_which") {
+    return {
+      tone: "choose",
+      label: "Your choice is needed",
+      tip: "More than one problem in the reports fits your question. Pick the one you mean and we will look into it.",
+    };
+  }
+  if (reasoning && answer.status !== "invalid") {
+    return reasoning.stated.length > 0
+      ? {
+          tone: "ai",
+          label: "Written by AI, each cause checked against the reports",
+          tip: "An AI read the activities and report text on the right and named the causes. The system kept only the causes whose quoted words it found in that text.",
+        }
+      : {
+          tone: "none",
+          label: "No stated cause found",
+          tip: "None of the reports gives a cause for this problem. Anything listed as a possible factor is an idea to check, not a finding.",
+        };
+  }
   if (answer.evidence.computed) {
     return {
       tone: "calculated",
@@ -54,6 +82,11 @@ export function badge(answer: AnswerOut): Badge {
 /** One friendly sentence on what the answer is based on. */
 export function summary(answer: AnswerOut): string {
   const { computed, facts, passages } = answer.evidence;
+  const reasoning = reasoningOf(answer);
+  if (reasoning && answer.status === "ask_which") {
+    return `${count(reasoning.candidates.length, "problem", "problems")} in the daily reports fit your question.`;
+  }
+  if (reasoning) return `Based on ${aroundCounts(reasoning)} around the problem.`;
   if (computed) {
     const days = new Set(computed.events.map((e) => e.date)).size;
     return `Added up from ${count(computed.events.length, "activity", "activities")} across ${count(days, "day", "days")} of daily reports.`;
@@ -71,7 +104,9 @@ export function summary(answer: AnswerOut): string {
 
 /** What to try next when there is no answer. */
 export function advice(answer: AnswerOut): string | null {
-  if (answer.status === "answered") return null;
+  if (answer.status === "answered" || answer.status === "ask_which") return null;
+  // A cause answer says itself when no report states a cause.
+  if (reasoningOf(answer) && answer.status === "not_stated") return null;
   if (answer.status === "not_found_in_graph") return "Switch off “Verified data only” to search the full report text as well.";
   if (answer.status === "not_stated") return "Try naming the well, a date, or the exact thing you want to know.";
   return "The AI’s answer could not be confirmed in the reports, so we are not showing it.";
@@ -88,12 +123,39 @@ const KIND: Record<AnswerOut["frame"]["kind"], string> = {
   lookup_by_date: "What happened on a particular day",
   across_wells: "A comparison between wells",
   over_time: "A total over a period of time",
-  reasoning: "A question about causes",
+  cause: "A question about what caused a problem",
   other: "A general question about the reports",
 };
 
+/** What was gathered around a problem: "25 logged activities and 3 passages of report text". */
+function aroundCounts(reasoning: Reasoning): string {
+  const { events, passages } = gathered(reasoning);
+  return [
+    events.length > 0 ? count(events.length, "logged activity", "logged activities") : "",
+    passages.length > 0 ? `${count(passages.length, "passage", "passages")} of report text` : "",
+  ].filter(Boolean).join(" and ") || "nothing";
+}
+
 export function steps(answer: AnswerOut): Step[] {
   const { computed, facts, passages } = answer.evidence;
+  const reasoning = reasoningOf(answer);
+  if (reasoning) {
+    const asking = answer.status === "ask_which";
+    let produced = "Several problems fit, so we ask which one you mean instead of guessing";
+    if (!asking) {
+      produced = answer.status === "invalid"
+        ? "An AI was asked for the causes, but its reply could not be read, so nothing is shown"
+        : "An AI named the causes; the system kept only those whose quoted words it found in the reports";
+    }
+    return [
+      { title: "We understood your question as", detail: KIND[answer.frame.kind] },
+      {
+        title: "We looked at",
+        detail: asking ? "The problems logged in the daily reports" : `${aroundCounts(reasoning)} around the problem`,
+      },
+      { title: "How the answer was produced", detail: produced },
+    ];
+  }
   let looked = "The reports loaded here, but nothing matched";
   if (computed) {
     const days = new Set(computed.events.map((e) => e.date)).size;
@@ -175,8 +237,88 @@ export function place(fileId: string, page: number | null): string {
   return `${reportName(fileId)}${page === null ? "" : `, page ${page}`}`;
 }
 
+// ---- questions about causes ----
+
+/** A date as a person reads it: "20 Aug 2016". */
+export function longDate(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+}
+
+/** The days a problem lasted: "13 Aug 2016", "20–23 Aug 2016", "31 Aug – 2 Sept 2016". */
+export function dateSpan(from: string, to: string): string {
+  if (from === to) return longDate(from);
+  const [first, last] = [longDate(from), longDate(to)];
+  if (from.slice(0, 7) === to.slice(0, 7)) return `${first.split(" ")[0]}–${last}`;
+  return from.slice(0, 4) === to.slice(0, 4) ? `${first.replace(/ \d{4}$/, "")} – ${last}` : `${first} – ${last}`;
+}
+
+/** When a problem happened, to the hour. */
+export function problemWhen(problem: Problem): string {
+  if (problem.date_from === problem.date_to) {
+    const whole = problem.start === problem.end && problem.hours >= 24;
+    return `${longDate(problem.date_from)}, ${whole ? "the whole day" : `${problem.start} to ${problem.end}`}`;
+  }
+  return `${longDate(problem.date_from)}, ${problem.start} to ${longDate(problem.date_to)}, ${problem.end}`;
+}
+
+export function problemSize(problem: Problem): string {
+  return `${count(problem.hours, "hour", "hours")} over ${count(problem.events, "logged activity", "logged activities")}`;
+}
+
+export function problemDepth(problem: Problem): string {
+  const [low, high] = problem.depth_ft.map((ft) => ft.toLocaleString("en-US"));
+  return low === high || high === undefined ? `${low} ft` : `${low} to ${high} ft`;
+}
+
+/** The report's description of a problem; it arrives cut short, so a cut is shown as one. */
+export function problemDescription(problem: Problem): string {
+  const text = problem.description.trim();
+  return text.length >= 150 && !/[.!?]$/.test(text) ? `${text}…` : text;
+}
+
+/** One problem among several, as a choice: "20–23 Aug 2016 · 66 hours · 176 ft". */
+export function choiceLabel(problem: Problem): string {
+  return `${dateSpan(problem.date_from, problem.date_to)} · ${count(problem.hours, "hour", "hours")} · ${problemDepth(problem)}`;
+}
+
+/** Where a cited cause is written: the report and the day for a logged activity, the report and page otherwise. */
+export function causePlace(source: { file_id: string; page: number | null; item: { kind: string; date?: string | null } | null }): string {
+  if (source.item?.kind === "event" && source.item.date) return `${reportName(source.file_id)}, ${longDate(source.item.date)}`;
+  return place(source.file_id, source.page);
+}
+
+/** One quiet line when causes were left out because nothing in the reports supported them. */
+export function removedNote(removed: Record<string, number>): string | null {
+  const total = Object.values(removed).reduce((sum, n) => sum + n, 0);
+  if (total === 0) return null;
+  return total === 1
+    ? "1 more cause was left out because no report text supported it."
+    : `${total} more causes were left out because no report text supported them.`;
+}
+
+export function hiddenNote(hidden: number): string | null {
+  if (hidden === 0) return null;
+  return hidden === 1
+    ? "1 possible factor is not shown because “Verified data only” is on."
+    : `${hidden} possible factors are not shown because “Verified data only” is on.`;
+}
+
+/** An item of what a real judgement would still need, as a sentence. */
+export function missingText(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 /** Explanations shown on hover, kept in one place so the same term is always explained the same way. */
 export const EXPLAIN = {
+  problemCode: "The short code the daily report itself gives this non-productive time.",
+  stated:
+    "Causes a report itself gives. Each comes with the words quoted from the report, and the system checked that those words are really there.",
+  possible:
+    "Things an AI noticed in the activities and report text that might have played a part. No report says they caused the problem: treat them as ideas to check, not as findings.",
+  missing:
+    "One well's daily and end-of-well reports say what happened and sometimes why. Judging a cause properly usually also needs the records listed here, which these reports do not contain.",
+  problemEvents:
+    "Activities marked “The problem” are the non-productive time itself. The others were logged just before and after it, for context.",
   verifiedOnly:
     "When this is on, answers come only from numbers and facts the system has already checked in the reports. If it has none, it says so instead of searching the text and letting an AI write an answer.",
   nonProductive:

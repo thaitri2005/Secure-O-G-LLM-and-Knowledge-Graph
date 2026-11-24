@@ -17,6 +17,7 @@ const PATHS = {
   close: <><path d="M6 6l12 12M18 6 6 18" /></>,
   arrowLeft: <><path d="M19 12H5" /><path d="m11 6-6 6 6 6" /></>,
   check: <><path d="m5 12 5 5 9-10" /></>,
+  flag: <><path d="M5 21V4" /><path d="M5 4h12l-2.5 4.5L17 13H5" /></>,
   open: <><path d="M14 4h6v6" /><path d="M20 4 11 13" /><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></>,
 } as const;
 

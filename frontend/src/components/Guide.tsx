@@ -20,6 +20,12 @@ const ASK: { icon: IconName; title: string; text: string; example: string }[] = 
     text: "The same fact across several wells.",
     example: "Which of AK-3, 56-32 and 68-32 was drilled deepest?",
   },
+  {
+    icon: "flag",
+    title: "What caused a problem",
+    text: "Why a problem such as a stuck pipe happened. You see the cause a report gives, with its words quoted. Other possible factors are listed apart: they are ideas to check, not findings.",
+    example: "What caused the stuck pipe on AK-3 on 20 August 2016?",
+  },
 ];
 
 /**
