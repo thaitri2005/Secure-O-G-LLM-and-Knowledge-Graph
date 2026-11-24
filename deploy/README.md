@@ -8,16 +8,38 @@ The runbook for the shared server (backend design [§1](../docs/tracks/C-storage
 
 ## What runs
 
+![Deployment: the browser, the proxy, the backend, the stores and the model endpoint](../docs/diagrams/14-deployment.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
 ```mermaid
-flowchart LR
-    U["Experts' browsers"] -->|"HTTPS, one shared password"| P["proxy (Caddy)<br/>built frontend"]
-    P -->|"/v1/"| B["backend (FastAPI + graphrag)"]
-    B --> PG[("PostgreSQL + pgvector")]
-    B --> N[("Neo4j")]
-    B -.->|"model endpoint"| M["Tri's desktop over a private network,<br/>or OpenRouter, or the stub"]
-    T["Teammates"] -->|"SSH tunnel"| PG
-    T -->|"SSH tunnel"| N
+flowchart TB
+    U["Experts' browsers"]:::ui
+    T["Teammates, and<br/>the release runner"]:::ui
+    subgraph SRV["The server (docker compose)"]
+        P["proxy (Caddy)<br/>ports 80 and 443<br/>HTTPS, one shared<br/>password; serves the<br/>built frontend<br/>volume: caddy-data"]:::svc
+        B["backend<br/>port 8000, inside only<br/>FastAPI with graphrag<br/>volume: backend-data"]:::svc
+        subgraph LOCAL["Published on 127.0.0.1 only"]
+            PG[("postgres<br/>PostgreSQL 16<br/>with pgvector<br/>port 5434<br/>volume: postgres-data")]:::store
+            N[("neo4j 5.26<br/>ports 7474, 7687<br/>volume: neo4j-data")]:::store
+        end
+    end
+    M["Model endpoint,<br/>outside the server:<br/>a hosted open-weight<br/>endpoint, or llama.cpp<br/>on a rented GPU.<br/>For a dry run: the<br/>stub-model container"]:::model
+    U -->|"HTTPS"| P
+    P -->|"/v1/*"| B
+    B -->|"chunks, vectors,<br/>question log"| PG
+    B -->|"facts, events"| N
+    B -.->|"HTTPS, by role"| M
+    T -->|"SSH tunnel,<br/>port 22"| LOCAL
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
+
+</details>
 
 | Service | Compose profile | Reachable from |
 |---|---|---|

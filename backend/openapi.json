@@ -31,6 +31,16 @@
               }
             }
           },
+          "503": {
+            "description": "`busy`: too many questions are waiting; `model_unavailable`; `store_unavailable`. The question is logged with status `error`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemOut"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -388,6 +398,7 @@
     "/v1/health": {
       "get": {
         "summary": "What is loaded and which models serve",
+        "description": "Liveness: the process is up and its engine is loaded. It asks nothing of the stores or the model.",
         "operationId": "health_v1_health_get",
         "responses": {
           "200": {
@@ -396,6 +407,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ready": {
+      "get": {
+        "summary": "Whether a question could be answered now",
+        "description": "Readiness: asks the model endpoint and the question log, at most once every 15 seconds. 503 when either\ndoes not answer. This is what a monitor and the smoke test watch.",
+        "operationId": "ready_v1_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ready"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ready"
                 }
               }
             }
@@ -467,7 +507,8 @@
                     "not_found_in_graph",
                     "withheld",
                     "invalid",
-                    "ask_which"
+                    "ask_which",
+                    "error"
                   ],
                   "type": "string"
                 },
@@ -660,7 +701,8 @@
                     "not_found_in_graph",
                     "withheld",
                     "invalid",
-                    "ask_which"
+                    "ask_which",
+                    "error"
                   ],
                   "type": "string"
                 },
@@ -877,7 +919,8 @@
                     "not_found_in_graph",
                     "withheld",
                     "invalid",
-                    "ask_which"
+                    "ask_which",
+                    "error"
                   ],
                   "type": "string"
                 },
@@ -2536,6 +2579,39 @@
         "title": "Problem",
         "description": "A drilling problem found in the event graph: a run of non-productive events with one code."
       },
+      "ProblemOut": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "description": "A sentence for a person"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "A word for a program: busy, model_unavailable, store_unavailable, not_found, invalid_request, internal"
+          },
+          "question_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Id",
+            "description": "The log ID of the question, when one was logged"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail",
+          "code"
+        ],
+        "title": "ProblemOut",
+        "description": "Every error response."
+      },
       "QuestionCounts": {
         "properties": {
           "questions": {
@@ -2736,6 +2812,34 @@
           "facts"
         ],
         "title": "Readings"
+      },
+      "Ready": {
+        "properties": {
+          "ready": {
+            "type": "boolean",
+            "title": "Ready"
+          },
+          "checks": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Checks",
+            "description": "`model` and `question_log`: `ok`, or what went wrong"
+          },
+          "waiting": {
+            "type": "integer",
+            "title": "Waiting",
+            "description": "Questions waiting for the model now"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ready",
+          "checks",
+          "waiting"
+        ],
+        "title": "Ready"
       },
       "Reasoning": {
         "properties": {

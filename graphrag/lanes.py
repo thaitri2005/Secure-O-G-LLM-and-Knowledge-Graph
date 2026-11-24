@@ -50,6 +50,7 @@ class Engine:
     # The PostgreSQL that `pgvector:` retrievers search, and how many vectors it holds for the release (stores only).
     vector_store: str | None = field(default=None, repr=False, compare=False)
     stored_vectors: int = 0
+    release: str | None = None  # the K1 release read from the stores; None on files
     _retrievers: dict[tuple[str, str], Any] = field(default_factory=dict, init=False, repr=False, compare=False)
     _by_id: dict[str, Chunk] | None = field(default=None, init=False, repr=False, compare=False)
 
@@ -100,6 +101,14 @@ class Engine:
         if key not in self._retrievers:
             self._retrievers[key] = build(spec, self.chunks(report_type), self.vector_store)
         return self._retrievers[key]
+
+    def warm(self) -> None:
+        """Build what the first question would otherwise wait for: the chunk index and the retrievers the lanes use."""
+        self.by_id()
+        for spec, report_type in (("wells:bm25", "end_of_well"), (self.multi_well_retriever, "end_of_well"),
+                                  ("dates:wells:bm25", "daily")):
+            if spec and self.chunks(report_type):
+                self.retriever(spec, report_type)
 
     @property
     def retrieval(self) -> dict[str, str | int]:

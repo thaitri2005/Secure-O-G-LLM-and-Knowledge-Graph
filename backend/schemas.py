@@ -9,6 +9,8 @@ from pydantic import BaseModel, Field
 Mode = Literal["allow_fallback", "exact"]
 Lane = Literal["passages", "well_facts", "events", "reasoning"]
 Status = Literal["answered", "not_stated", "not_found_in_graph", "withheld", "invalid", "ask_which"]
+# In the question log only: a question that failed (the model or a store did not answer, or the system was busy).
+LoggedStatus = Literal["answered", "not_stated", "not_found_in_graph", "withheld", "invalid", "ask_which", "error"]
 ReportType = Literal["end_of_well", "daily"]
 
 
@@ -330,3 +332,17 @@ class QuestionSetFile(BaseModel):
 class Health(BaseModel):
     data: dict[str, str | int] = Field(description="Where the engine reads from and how much it holds")
     models: dict[str, str] = Field(description="role -> endpoint:model")
+
+
+class ProblemOut(BaseModel):
+    """Every error response."""
+    detail: str = Field(description="A sentence for a person")
+    code: str = Field(description="A word for a program: busy, model_unavailable, store_unavailable, not_found, "
+                                  "invalid_request, internal")
+    question_id: str | None = Field(None, description="The log ID of the question, when one was logged")
+
+
+class Ready(BaseModel):
+    ready: bool
+    checks: dict[str, str] = Field(description="`model` and `question_log`: `ok`, or what went wrong")
+    waiting: int = Field(description="Questions waiting for the model now")

@@ -51,13 +51,19 @@ To run what exists: [backend/README.md](../../../backend/README.md).
 
 ```mermaid
 flowchart LR
-    WEB["Frontend"] --> API["backend/app.py<br/>routes"]
-    API --> SVC["backend/service.py"]
-    SVC --> CO["graphrag.coordinator"]
-    SVC --> LOG["backend/questions.py<br/>question log (a file)"]
-    CO --> ENG["graphrag.lanes.Engine<br/>loaded from files today"]
-    ENG -.->|"§5: from the stores"| PG[("PostgreSQL")]
-    ENG -.-> NG[("Neo4j")]
+    WEB["Frontend"]:::ui --> API["backend/app.py<br/>routes"]:::svc
+    API --> SVC["backend/service.py<br/>one question at a time"]:::svc
+    SVC --> CO["graphrag.coordinator"]:::svc
+    SVC --> LOG[("backend/questions.py<br/>question log: a file,<br/>or PostgreSQL")]:::store
+    CO --> LM["Model clients<br/>roles frame, answer"]:::model
+    CO --> ENG["graphrag.lanes.Engine<br/>loaded from files, or<br/>from the stores (§5)"]:::svc
+    ENG -.-> PG[("PostgreSQL")]:::store
+    ENG -.-> NG[("Neo4j")]:::store
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
 
 - `Service` takes an engine, two model clients and a question log. Tests give it a small engine and stand-in models.

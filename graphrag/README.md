@@ -4,33 +4,40 @@ Track B's code for the first build: the model client, the baseline, and the Grap
 
 ## Architecture
 
-Solid lines are what runs (B-D23, B-D26). The fact sheet from the per-well fact graph is part of the end-of-well path (B-D29). In `graphrag.baseline` and `graphrag.events`, which reports are asked about is chosen per run, by the command you use. In `graphrag.coordinator`, a framing call takes the place of the `KIND` box and code picks the lane (below).
+The life of a question in `graphrag.coordinator`: one framing call, then code picks the lanes, falls back in a fixed order, and either reports a result computed by code or makes one answer call (below). Violet boxes are model calls; blue boxes are code. In `graphrag.baseline` and `graphrag.events`, which reports are asked about is chosen per run, by the command you use; that pipeline, with its retrieval settings (B-D23, B-D26, B-D29), is drawn in [specification §8.4](../docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
+
+![The life of a question in the coordinator](../docs/diagrams/15-life-of-a-question.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
 flowchart TD
-    PDF[PDF reports] --> K1[Docling chunks: K1 version 0]
-    K1 --> IDX[BM25 index and embeddings]
-    K1 --> EV[Event graph, no LLM: well, date, event, codes]
-    Q[Question] --> KIND{Reports asked about}
-    KIND -- "end-of-well" --> ROUTE{Wells named}
-    KIND -- "daily" --> PLAN[Qwen3-8B writes a query plan]
-    PLAN -- "totals, counts, dates, depth" --> RUN[Code runs the plan on the graph]
-    EV --> RUN
-    PLAN -- "other" --> DATE[BM25 by well, pages of the date named, top 5]
-    IDX --> ROUTE
-    IDX --> DATE
-    ROUTE -- "one or none" --> ONE[BM25 by well, top 5, status first]
-    ROUTE -- "several" --> MANY[Per-well fusion, top 10, evidence first]
-    RUN --> LLM[Qwen3-8B with a JSON schema]
-    DATE --> LLM
-    ONE --> LLM
-    MANY --> LLM
-    LLM --> CHECK[Citations and values checked in code]
-    CHECK --> K4[Cited answer: K4 record]
-    MAP[K2 table mappings, no LLM] -.-> VAL[Strict fact checks]
-    EXT[neo4j-graphrag with Qwen3-4B] -.-> VAL
-    VAL -->|fact sheet, end-of-well| LLM
+    Q["Question, and mode:<br/>allow fallback, or exact"]:::ui
+    Q --> F["1. Frame: one model call<br/>kind, report type,<br/>plan, problem"]:::model
+    F --> R["2. Route in code<br/>read wells and dates,<br/>pick lanes by kind"]:::svc
+    R -- "cause" --> L4["Reasoning lane<br/>a problem and what<br/>surrounds it"]:::svc
+    R -- "over time,<br/>with a plan" --> L3["Events lane<br/>code runs the plan<br/>on the event graph"]:::svc
+    R -- "daily reports" --> L1["Passages lane<br/>BM25 by well<br/>and date"]:::svc
+    R -- "anything else" --> L2["Well facts lane,<br/>then passages lane"]:::svc
+    L4 & L3 & L1 & L2 --> E{"3. Evidence<br/>found?"}
+    E -- "no, mode<br/>allows fallback" --> FB["Fallback:<br/>passages lane"]:::svc
+    E -- "no, exact mode" --> NF["No answer<br/>not stated, or not found<br/>in the graph, with the<br/>closest passages"]:::ui
+    FB -- "nothing" --> NF
+    FB -- "passages" --> H
+    E -- "yes" --> H{"4. Computed<br/>by code?"}
+    H -- "yes" --> CR["Code reports the result,<br/>cited to its events"]:::svc
+    H -- "no" --> A["Answer: one model call<br/>from the evidence only"]:::model
+    A --> C["5. Code checks<br/>citations and values"]:::svc
+    CR & C --> OUT["Answer with citations,<br/>lanes used, calls,<br/>tokens, seconds"]:::ui
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
+
+</details>
 
 | Module | What it does |
 |---|---|

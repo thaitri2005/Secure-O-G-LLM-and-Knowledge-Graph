@@ -244,8 +244,11 @@ _DEFAULT_CACHE = object()
 
 class ModelClient:
     def __init__(self, endpoint: Endpoint, model: str, cache_dir: Path | None = _DEFAULT_CACHE,  # type: ignore[assignment]
-                 timeout: float = 900):
+                 timeout: float = 900, cache_unparsed: bool = True):
         self.endpoint, self.model, self.timeout = endpoint, model, timeout
+        # A measurement keeps every reply, so a rerun reads the same run back. A service sets this to False: a reply
+        # that should be JSON and is not would otherwise be the answer to that question for ever.
+        self.cache_unparsed = cache_unparsed
         self.cache_dir = CACHE if cache_dir is _DEFAULT_CACHE else cache_dir
         self.ledger = Ledger()
 
@@ -267,6 +270,8 @@ class ModelClient:
         key = hashlib.sha256(json.dumps(keyed, sort_keys=True).encode()).hexdigest()
         call = self._cached(key) or self._post(body, key)
         call.parsed = _parse(call.content) if schema is not None else None
+        if schema is not None and call.parsed is None and not self.cache_unparsed and self.cache_dir:
+            (self.cache_dir / f"{key}.json").unlink(missing_ok=True)
         self.ledger.add(call, schema)
         return call
 

@@ -24,32 +24,38 @@ Freeze a held-out document split before tuning. The supervisor's drilling expert
 
 **Sharing with the supervisor.** He asked to see the BSEE data. Share a ZIP of the local snapshot privately (team drive); it stays out of Git (D-15).
 
-![Two development tracks](diagrams/08-source-integration.svg)
+![Two data sources and what each feeds](diagrams/08-source-integration.svg)
 
 <details>
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
 flowchart TB
-    subgraph T1["Track 1: structured well data (BSEE)"]
+    subgraph S1["Source 1: structured well data (BSEE)"]
         direction LR
-        B1["BSEE well files<br/>Boreholes, API changes"] --> B2["Mapping importer<br/>Typed rows, row provenance"]
-        B2 --> B3["Linked graph<br/>Wellbore, Well, Lease, Block, Operator, Field"]
-        B2 --> B4["Entity registry<br/>API identifiers, lease-scoped names"]
+        B1["BSEE well files<br/>boreholes, API changes"]:::ext --> B2["Mapping importer<br/>typed rows,<br/>row provenance"]:::svc
+        B2 --> B3[("Linked graph<br/>wellbore, well, lease,<br/>block, operator, field")]:::store
+        B2 --> B4[("Entity registry<br/>one ID per well")]:::store
     end
-    subgraph T2["Track 2: end-of-well reports (AK-3)"]
+    subgraph S2["Source 2: drilling reports (end-of-well and daily)"]
         direction LR
-        R0["Ontology file<br/>oil_wells profile"] --> R2
-        R1["Document pipeline<br/>Chunks, page provenance"] --> R2["Local LLM extraction<br/>Claims with quotes"]
-        R2 --> R3["Validation and review"]
-        R3 --> R4["Neo4j generation<br/>Cited question answering"]
+        R1["Public PDF reports<br/>AK-3, 56-32, 68-32"]:::ext --> R2["Document pipeline<br/>K1 chunks and tables,<br/>page provenance"]:::svc
+        R2 --> R3[("Fact region<br/>table mappings and<br/>checked extraction")]:::store
+        R2 --> R4[("Event region<br/>daily operations,<br/>no LLM")]:::store
+        R3 & R4 --> R5["Cited answers"]:::ui
     end
-    T1 ~~~ T2
+    S1 ~~~ S2
+    B4 -. "well identity,<br/>when linked (M3)" .-> R3
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
 
 </details>
 
-**Figure 8: Two development tracks.**
+**Figure 8: Two data sources and what each feeds.** The dotted arrow is planned (plan M3). The two tracks of earlier work on them:
 - **Track 1:** [import](components/dataset-import.md), a linked graph, and an [entity registry](components/entity-registry.md) ([E13](experiments/E13-entity-registry-bsee.md)).
 - **Track 2:** [document ingestion](components/corpus-ingestion.md), with the rest as an [architecture prototype](../prototype/README.md) on 15 AK-3 chunks driven by an ontology file ([E4](experiments/E4-ak3-architecture-prototype.md), [E10](experiments/E10-profile-driven-prototype.md)).
 - **Both tracks:** they publish validated releases behind an atomic pointer ([E11](experiments/E11-publication-and-import-fixes.md)) and share one evidence contract ([E12](experiments/E12-shared-evidence-contract.md)). Neither is an accepted secure production service.

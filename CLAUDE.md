@@ -21,7 +21,7 @@ This file briefs any Claude session on any machine. The repository is the projec
 | For | Read |
 |---|---|
 | Where the project stands and what is left | [Plan, current status](docs/DEVELOPMENT_PLAN.md#current-status) and [§7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now) |
-| The design | [Specification](docs/PROJECT_DESIGN.md): §4.6 the second build, §7.5 the API, §8.1 coordinator and lanes, §8.5 the graph, §8.6 the reasoning lane, §13.1 decisions (D-01 to D-68) |
+| The design | [Specification](docs/PROJECT_DESIGN.md): §4.6 the second build, §7.5 the API, §8.1 coordinator and lanes, §8.5 the graph, §8.6 the reasoning lane, §13.1 decisions (D-01 to D-69) |
 | What was found, decided and built, by date | The track logs above. Track B's top table is its current state |
 | Every measured result | [Experiment register](docs/experiments/README.md) |
 | How the engine's modules fit, and how to run it | [graphrag/README.md](graphrag/README.md) |

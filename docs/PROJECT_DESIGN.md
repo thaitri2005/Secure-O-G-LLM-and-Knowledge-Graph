@@ -2,7 +2,7 @@
 
 ## Project specification and system design
 
-**Document version:** 3.7 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 ([change history](#change-history))<br>
+**Document version:** 3.8 · **Baseline date:** 23 October 2026 · **Last revised:** 25 November 2026 ([change history](#change-history))<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** the first build is closed (§4.5); the second build connects its parts behind one application (§4.6). Current status: [plan](DEVELOPMENT_PLAN.md#current-status)<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md), [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
@@ -94,22 +94,27 @@ The core stays independent of oil terminology, and a versioned profile supplies 
 ```mermaid
 flowchart BT
     subgraph L1["Layer 1: domain knowledge"]
-        OIL["Drilling-report profile<br/>End-of-well and daily reports<br/>Ontology, glossary, table rules"]
-        DATA["Structured well data<br/>BSEE wells and wellbores"]
+        OIL["Drilling-report profile<br/>end-of-well and<br/>daily reports;<br/>ontology, glossary,<br/>table rules"]:::store
+        DATA["Structured well data<br/>BSEE wells and wellbores"]:::store
     end
     subgraph L2["Layer 2: unified entities and ontology"]
-        REG["Entity registry<br/>One ID per well across documents and stores"]
-        ONT["Versioned ontology and glossary<br/>Injected into extraction and retrieval"]
+        ONT["Versioned ontology<br/>and glossary<br/>injected into extraction<br/>and retrieval"]:::svc
+        REG["Entity registry<br/>one ID per well across<br/>documents and stores"]:::svc
     end
     subgraph L3["Layer 3: application"]
-        QA["GraphRAG chat<br/>Answers with page citations"]
-        ADM["Admin<br/>Documents, ontology, flagged items"]
+        QA["GraphRAG chat<br/>answers with<br/>page citations"]:::ui
+        ADM["Admin<br/>documents, ontology,<br/>flagged items"]:::ui
     end
     OIL --> ONT
     DATA --> REG
     ONT --> REG
-    REG --> QA & ADM
     ONT --> QA & ADM
+    REG --> QA & ADM
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
 
 </details>
@@ -307,31 +312,45 @@ The system is a modular Python backend with a separate ingestion worker, a web f
 
 ```mermaid
 flowchart TB
-    U["End users and administrators"] -->|HTTPS| G["Reverse proxy"]
-    subgraph Z["Approved deployment boundary"]
-        G --> UI["Web frontend (React)<br/>Chat with citations, source page, evidence;<br/>admin: documents, ontology, flagged items, runs"]
-        UI --> API["Backend (FastAPI)<br/>API, question log, feedback"]
-        API --> CO["Coordinator<br/>frames the question, picks lanes,<br/>checks the answer"]
-        CO --> L1["Lane: passages<br/>by well and date"]
-        CO --> L2["Lane: well facts"]
-        CO --> L3["Lane: events<br/>plan run by code"]
-        CO --> L4["Lane: causes<br/>events and passages<br/>around a problem"]
-        L1 --> PG[("PostgreSQL with pgvector<br/>Files, pages, chunks, vectors, IDs, runs,<br/>questions, ontology, corrections, audit")]
-        L2 --> NG[("Neo4j<br/>Wells, facts, days, events, chunk links")]
-        L3 --> NG
-        L4 --> NG
-        L4 --> PG
-        API --> OBJ[("File store (MinIO or a directory)<br/>Raw files, page images, K1 packages")]
-        W["Ingestion worker<br/>Parse, chunk, load, embed,<br/>build both graphs"] --> OBJ & PG & NG
-        W --> VLM["Page parser<br/>Docling and rules; a document VLM later"]
-        W --> LM["LLM endpoint<br/>open-weight, about 7B, swappable"]
-        W --> EMB["Embedding model"]
-        CO --> LM
-        L1 --> EMB
-        ONT["Ontology and glossary<br/>versioned, admin-managed"] --> W & CO
+    U["Users and administrators<br/>web frontend (React)<br/>in a browser"]:::ui
+    subgraph Z["Deployment boundary"]
+        G["Reverse proxy<br/>one shared password<br/>until login exists"]:::svc
+        subgraph BE["Backend (FastAPI)"]
+            API["API and question log"]:::svc
+            CO["Coordinator<br/>frames the question,<br/>picks lanes,<br/>checks the answer"]:::svc
+            subgraph LN["Four lanes"]
+                L1["Passages"]:::svc
+                L4["Reasoning<br/>about causes"]:::svc
+                L2["Well facts"]:::svc
+                L3["Events"]:::svc
+            end
+        end
+        W["Ingestion worker<br/>parse, chunk, embed,<br/>load, build both<br/>graph regions"]:::svc
+        MO["Model endpoints<br/>roles: frame, answer,<br/>extract, embed<br/>open-weight models,<br/>8B or smaller"]:::model
+        subgraph ST["Stores"]
+            PG[("PostgreSQL<br/>with pgvector<br/>chunks, vectors,<br/>question log")]:::store
+            NG[("Neo4j<br/>one graph:<br/>fact region,<br/>event region")]:::store
+            OBJ[("File store<br/>(a directory)<br/>raw files,<br/>page images")]:::store
+        end
     end
-    DEV["Hosted open-model API (e.g. OpenRouter),<br/>public documents only: development,<br/>measurements and the demo (D-68)"] -.-> LM & VLM & EMB
-    GPU["A cloud GPU rented by the hour:<br/>our own model copy, public data only (D-68)"] -.-> LM & VLM
+    R["Rented compute,<br/>public data only:<br/>a cloud GPU by the hour,<br/>or a hosted<br/>open-weight endpoint"]:::ext
+    U -->|HTTPS| G
+    G -->|"/v1/"| API
+    API --> CO
+    CO --> L1 & L4 & L2 & L3
+    CO -->|"frame,<br/>answer"| MO
+    L1 --> PG
+    L4 --> PG & NG
+    L2 & L3 --> NG
+    W --> MO
+    W -->|"writes"| ST
+    ST ~~~ R
+    MO -.->|"runs on"| R
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
 
 </details>
@@ -394,35 +413,37 @@ The ontology belongs to whoever runs the system (D-29). The team writes the core
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
-flowchart LR
-    PDF[("AK-3 EOWR,<br/>then one AK-3 DDR")]
+flowchart TB
+    PDF["AK-3 end-of-well report,<br/>then AK-3 daily reports"]:::ext
     subgraph TA["Track A: ingestion and tables"]
-        A1["Docling baseline vs<br/>document VLMs"] --> A2["Multi-page tables,<br/>key-value forms"] --> A3["Parent/child chunks"]
+        direction LR
+        A1["Parse pages:<br/>Docling and<br/>table rules"]:::svc --> A2["Rebuild tables<br/>and forms"]:::svc --> A3["Parent and<br/>child chunks"]:::svc
     end
     subgraph TB["Track B: GraphRAG engine and models"]
-        B0["Thin ontology slice"] -- "K2" --> B2
-        B1["Base pipeline,<br/>~7B LLM, embeddings"] --> B2["Ontology injection,<br/>graph and vectors"] --> B3["Cited answers,<br/>cost per page"]
+        direction LR
+        B1["Retrieval baseline:<br/>BM25, embeddings,<br/>an 8B LLM"]:::svc --> B2["Fact graph and<br/>event graph"]:::svc --> B3["Cited answers,<br/>cost per page"]:::svc
+        B0["K2 ontology slice"]:::svc --> B2
     end
     subgraph TC["Track C: storage, IDs and the end-to-end run"]
-        C1["ID scheme and<br/>contract schemas"]
-        C2[("MinIO, PostgreSQL,<br/>vector store, Neo4j")]
-        C3["Loader and run log"]
-        C4["Runner: A then B<br/>in one command"]
-        C5["Viewer: page beside<br/>chunks and answers"]
-        C1 --> C3 --> C2
+        direction LR
+        C1["ID scheme and<br/>contract schemas"]:::svc --> C3["Loader and<br/>run log"]:::svc --> C2[("PostgreSQL<br/>with pgvector,<br/>Neo4j")]:::store
+        C4["Runner:<br/>one command"]:::svc
     end
-    PDF --> A1
-    A3 -- "K1 chunk package" --> B1
-    A3 -- "K1" --> C3
-    B3 -- "K4 answer records" --> C3
-    C1 -. "schemas" .-> A3 & B3
-    C4 -.-> A1 & B1
-    C2 -.-> C5
+    PDF --> TA
+    TA -- "K1 chunk package" --> TB
+    TA -- "K1" --> TC
+    TB -- "K4 answer records" --> TC
+    TA -. "Track C's schemas<br/>and runner" .- TC
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
 
 </details>
 
-**Figure 10: First build.** Solid arrows are files. Dotted arrows are Track C's schemas and runner.
+**Figure 10: First build.** Solid arrows are files. The dotted line is Track C's schemas and runner, used by every track.
 
 | Contract | From → to | What it is now |
 |---|---|---|
@@ -448,18 +469,31 @@ From the second build on, the work is split by data, backend and frontend (D-46,
 
 The supervisor asked for the three parts connected behind a UI that domain experts can touch (D-60). The second build is that application: a FastAPI backend and a React frontend (D-65). It covers the **read path**: ask a question, see the answer, its sources and how it was reached. Uploading and administration come after it (plan M4).
 
+![Second build: from a K1 package to the application](diagrams/11-second-build.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
 ```mermaid
 flowchart LR
-    PKG["K1 package<br/>(Data)"] --> RUN["Runner: one command<br/>load, embed, build both graphs"]
-    RUN --> PG[("PostgreSQL<br/>with pgvector")]
-    RUN --> NG[("Neo4j")]
-    PG --> ENG["Engine library (graphrag):<br/>coordinator and lanes"]
+    PKG["K1 package<br/>(Data)"]:::svc --> RUN["Runner,<br/>one command:<br/>load, embed,<br/>build the graph"]:::svc
+    RUN --> PG[("PostgreSQL<br/>with pgvector")]:::store
+    RUN --> NG[("Neo4j")]:::store
+    PG --> ENG["Engine (graphrag):<br/>coordinator and<br/>four lanes"]:::svc
     NG --> ENG
-    ENG --> API["Backend API<br/>(FastAPI)"]
-    API --> WEB["Frontend (React):<br/>chat, sources, evidence"]
-    API --> LOG[("Question log<br/>and feedback")]
-    LOG -. "real questions (Q2, Q13)" .-> ENG
+    LM["Model endpoint:<br/>open-weight LLM"]:::model --> ENG
+    ENG --> API["Backend API<br/>(FastAPI)"]:::svc
+    API --> WEB["Frontend (React):<br/>question, answer,<br/>sources, evidence"]:::ui
+    API --> LOG[("Question log<br/>and feedback")]:::store
+    LOG -. "real questions<br/>(Q2, Q13)" .-> ENG
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
+
+</details>
 
 | Part | Role (D-46) | Content of the second build |
 |---|---|---|
@@ -486,6 +520,20 @@ flowchart LR
 **The question log is a product of this build.** It stores every question asked, the lane chosen, the answer and any "wrong answer" mark. Shown to domain experts, the application then yields the real questions that Q2 and Q13 are waiting for. The log holds what users typed, so it stays inside the deployment boundary.
 
 **Access.** The demo holds public data only. A shared host still needs a gate, so the reverse proxy asks for one shared password until login and roles exist (FR-10, plan M6). The demo's model is a hosted open-weight endpoint, on public data only (D-68, §10.1).
+
+**When something fails (D-69).** One model server answers one question at a time, so the application is built around that limit and around not losing what people type.
+
+| Situation | What happens |
+|---|---|
+| Several people ask at once | Questions take turns. A question waits at most a minute for its turn, and at most eight wait; beyond that the asker is told the system is busy and to try again shortly |
+| The model hangs or is slow | A model call ends after a set time (75 seconds by default), so one stuck call cannot hold everyone up. The limits are ordered: model call, then the wait for a turn, then the browser's own limit, so nobody waits for an answer the server has given up on |
+| The model or a store does not answer | The asker gets a plain message and a "Try again" button. The question is still written to the question log, marked as failed, with the kind of failure |
+| The question log cannot be written | The answer is still returned; the failure goes to the server log |
+| The model returns broken output | The reply is not kept, so asking again asks the model again |
+| The server restarts | The stores and the application come back by themselves, in order: the stores first, then the backend once they answer |
+| A hosted model is configured | The backend starts only if the loaded package is named as public in its settings (§10.1) |
+
+Nothing is retried automatically, and no queue, cache service or streaming is added: at a handful of users they would cost more than they give. The limits and messages are in [backend/README.md](../backend/README.md#waiting-and-failures).
 
 **Not in the second build:** upload through the UI, ontology and glossary editing, flagged items and corrections, generations, login and roles, VLM parsing.
 
@@ -817,21 +865,21 @@ table_layouts:
 
 ```mermaid
 erDiagram
-    direction LR
+    direction TB
     FILE ||--o{ PAGE : has
     FILE ||--o{ PARENT_CHUNK : has
     PAGE }o--o{ PARENT_CHUNK : spans
     PARENT_CHUNK ||--o{ CHILD_CHUNK : splits_into
     CHILD_CHUNK ||--|| VECTOR_POINT : embedded_as
+    ANSWER }o--o{ CHILD_CHUNK : cites
+    CHILD_CHUNK ||--o{ ITEM : cited_by
     CHILD_CHUNK }o--o{ ENTITY : mentions
     DATASET_RECORD }o--o{ ENTITY : identifies
     ENTITY ||--o{ ITEM : subject_of
-    ITEM }o--|| CHILD_CHUNK : cites
     ONTOLOGY_VERSION ||--o{ ITEM : constrains
     RUN ||--o{ ITEM : extracts
-    ITEM ||--o{ CORRECTION : corrected_by
     GENERATION }o--o{ ITEM : includes
-    ANSWER }o--o{ CHILD_CHUNK : cites
+    ITEM ||--o{ CORRECTION : corrected_by
 ```
 
 </details>
@@ -874,7 +922,11 @@ Every published item cites at least one chunk (with span or table row) or a data
 | `GET /v1/files/{id}/pages/{n}/image` | The page as a PNG, rendered at load time by `platform/render_pages.py` ([backend design](tracks/C-storage/backend-design.md) §7) |
 | `GET /v1/wells`, `GET /v1/wells/{id}` | The wells; one well's facts, documents and report days |
 | `GET /v1/wells/{id}/events` | Events of a well between two dates |
-| `GET /v1/health` | Whether the stores and the model endpoint answer, and which models the roles map to |
+| `GET /v1/health` | Whether the service is up, what it holds and which models the roles map to |
+| `GET /v1/ready` | Whether a question could be answered now: asks the model endpoint and the question log. The monitor watches it (§11.4) |
+| `GET /v1/admin/questions` and below | The question log, read-only: list with filters, one question, counts, and an export as a question file |
+
+Every error has one shape: a sentence for a person, a code for a program (`busy`, `model_unavailable`, `store_unavailable`, `not_found`, `invalid_request`, `internal`) and the question's log ID when one was written.
 
 **Write path and administration, later (plan M4).**
 
@@ -951,35 +1003,36 @@ sequenceDiagram
     actor User
     participant API as Backend
     participant CO as Coordinator
-    participant LLM as LLM (open-weight, about 7B)
-    participant PG as PostgreSQL with pgvector
-    participant NG as Neo4j
-    User->>API: Question, mode (exact or allow fallback)
+    participant LLM as LLM
+    participant LN as Lanes over<br/>PostgreSQL and Neo4j
+    User->>API: Question, and mode:<br/>allow fallback, or exact
     API->>CO: Question
-    CO->>CO: Read wells and dates in code
-    CO->>LLM: Frame: kind, report type, plan if over time
-    LLM-->>CO: Question frame (JSON)
-    CO->>CO: Choose lanes from the fixed table
-    opt Well facts or events
-        CO->>NG: Facts of the wells named, or run the plan
-        NG-->>CO: Facts or computed result, with chunk IDs
-    end
-    opt Passages, or fallback when a lane is empty
-        CO->>PG: BM25 and vectors, filtered by well and date
-        PG-->>CO: Chunks with IDs, file and page
+    CO->>LLM: Frame call (JSON schema)
+    LLM-->>CO: Kind, report type,<br/>plan, problem
+    Note over CO: Code reads wells and dates, then picks lanes from a fixed table
+    CO->>LN: Run the chosen lanes
+    LN-->>CO: Evidence with chunk IDs: passages,<br/>facts, or a result computed by code
+    opt No evidence, and the mode allows fallback
+        CO->>LN: Run the passages lane instead
+        LN-->>CO: Passages with chunk IDs
     end
     alt A result was computed by code
-        CO->>CO: Report the result, cite its source events
-    else
-        CO->>LLM: Question, evidence with chunk IDs, citation rules
+        Note over CO: Code reports the result, cited to its events
+    else Causes asked, several problems match
+        Note over CO: Code lists them and asks which
+    else Still no evidence
+        Note over CO: Not stated. In exact mode, not found in the graph
+    else Otherwise
+        CO->>LLM: Answer call: question and<br/>evidence with chunk IDs
         LLM-->>CO: Answer citing chunk IDs
+        Note over CO: Code checks citations and values
     end
-    CO->>CO: Check citations and numbers
-    CO->>PG: Write the answer record and the question log
-    alt No supporting evidence or checks fail
-        API-->>User: "Not found", with the closest sources
-    else Checks pass
-        API-->>User: Answer, lanes used, citations (document, page), evidence
+    CO-->>API: Answer, lanes, citations,<br/>checks, cost
+    Note over API: Writes the question log
+    API-->>User: Answer, lanes used, citations<br/>(file and page), evidence
+    opt The user marks the answer
+        User->>API: Right or wrong,<br/>with a comment
+        Note over API: Adds it to the question log
     end
 ```
 
@@ -1007,31 +1060,38 @@ Status and scores live in the [plan](DEVELOPMENT_PLAN.md#current-status) and the
 - In the measured runs, which reports are asked about is chosen per run. **The `KIND` box below is what the coordinator's framing call replaces.** The coordinator (`graphrag/coordinator.py`, `graphrag/lanes.py`) is not measured yet (E33).
 - All these questions are simulated or development questions.
 
+![The first build pipeline, with the lane chosen per run](diagrams/12-first-build-pipeline.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
 ```mermaid
 flowchart TD
-    PDF[PDF reports] --> K1[Docling chunks: K1 version 0]
-    K1 --> IDX[BM25 index and embeddings]
-    K1 --> EV[Event graph, no LLM: well, date, event, codes]
-    Q[Question] --> KIND{Reports asked about}
-    KIND -- "end-of-well" --> ROUTE{Wells named}
-    KIND -- "daily" --> PLAN[Qwen3-8B writes a query plan]
-    PLAN -- "totals, counts, dates, depth" --> RUN[Code runs the plan on the graph]
-    EV --> RUN
-    PLAN -- "other" --> DATE[BM25 by well, pages of the date named, top 5]
-    IDX --> ROUTE
-    IDX --> DATE
-    ROUTE -- "one or none" --> ONE[BM25 by well, top 5, status first]
-    ROUTE -- "several" --> MANY[Per-well fusion, top 10, evidence first]
-    RUN --> LLM[Qwen3-8B with a JSON schema]
-    DATE --> LLM
-    ONE --> LLM
-    MANY --> LLM
-    LLM --> CHECK[Citations and values checked in code]
-    CHECK --> K4[Cited answer: K4 record]
-    MAP[K2 table mappings, no LLM] -.-> VAL[Strict fact checks]
-    EXT[neo4j-graphrag with Qwen3-4B] -.-> VAL
-    VAL -->|fact sheet, end-of-well| LLM
+    Q["Question"]:::ui --> KIND{"Reports<br/>asked about<br/>(set per run)"}
+    KIND -- "end-of-well" --> ROUTE{"Wells named"}
+    KIND -- "daily" --> PLAN["Qwen3-8B writes<br/>a query plan"]:::model
+    ROUTE -- "one or none" --> ONE["BM25 by well,<br/>top 5,<br/>status first"]:::svc
+    ROUTE -- "several" --> MANY["Per-well fusion,<br/>top 10,<br/>evidence first"]:::svc
+    PLAN -- "other" --> DATE["BM25 by well,<br/>pages of the date<br/>named, top 5"]:::svc
+    PLAN -- "totals, counts,<br/>dates, depth" --> RUN["Code runs<br/>the plan on the<br/>event graph"]:::svc
+    ONE & MANY & DATE & RUN --> LLM["Qwen3-8B answers<br/>under a JSON schema"]:::model
+    LLM --> CHECK["Citations and values<br/>checked in code"]:::svc
+    CHECK --> K4["Cited answer<br/>(K4 record)"]:::ui
+    subgraph BUILD["Built once from the PDF reports, before any question"]
+        IDX[("Docling chunks<br/>(K1 version 0):<br/>BM25 index and<br/>embeddings, for<br/>every search")]:::store
+        FS[("Checked facts per well:<br/>K2 table mappings,<br/>no LLM; neo4j-graphrag<br/>with Qwen3-4B")]:::store
+        EV[("Event graph,<br/>built from the<br/>chunks, no LLM")]:::store
+    end
+    EV -.-> RUN
+    FS -. "fact sheet,<br/>end-of-well" .-> LLM
+    classDef ui fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef svc fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
+    classDef store fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef model fill:#f0e7f9,stroke:#7b52ab,color:#1b2a3a
+    classDef ext fill:#f3f4f6,stroke:#6b7280,color:#1b2a3a,stroke-dasharray:5 4
 ```
+
+</details>
 
 **Results.** On simulated totals-over-time questions the event graph beats retrieval; those questions were chosen to suit it ([E28](experiments/E28-event-graph.md)). On end-of-well lookups the fact sheet ties retrieval ([E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md)).
 
@@ -1049,30 +1109,40 @@ flowchart TD
 
 The supervisor asked for the node and relationship logic to be stated clearly (9 November). There is **one graph with two regions**, joined at `Well` and `Chunk`. No model call writes to the event region; the fact region is written by table mappings and by LLM extraction, and only after the checks of `graphrag/validate.py`.
 
+![One graph with two regions, joined at Well and Chunk](diagrams/13-graph-model.svg)
+
+<details>
+<summary>Diagram source (Mermaid)</summary>
+
 ```mermaid
 flowchart LR
-    W(("Well"))
-    D["Document"]
-    C["Chunk<br/>ID only"]
+    W(("Well")):::shared
     subgraph FACTS["Fact region: end-of-well reports"]
-        F["Fact<br/>property, value, unit,<br/>qualifier, context, source"]
-        HS["HoleSection"]
-        CS["CasingString"]
+        F["Fact<br/>property, value, unit,<br/>qualifier, context, source"]:::fact
+        HS["HoleSection"]:::fact
+        CS["CasingString"]:::fact
     end
     subgraph EVENTS["Event region: daily reports"]
-        RD["ReportDay<br/>date"] -->|HAS_EVENT| E["Event<br/>start, end, hours,<br/>depth, description, seq"]
-        E -->|HAS_CODE| AC["ActivityCode"]
-        E -->|NPT| NC["NptCode"]
+        RD["ReportDay<br/>date"]:::event -->|HAS_EVENT| E["Event<br/>start, end, hours,<br/>depth, description, seq"]:::event
+        E -->|HAS_CODE| AC["ActivityCode"]:::event
+        E -->|NPT| NC["NptCode"]:::event
     end
+    D["Document"]:::shared
+    C["Chunk<br/>ID only"]:::shared
+    W -->|HAS_DAY| RD
+    W -->|DESCRIBED_BY| D
     W -->|HAS_FACT| F
     W -->|HAS_SECTION| HS
     W -->|HAS_CASING| CS
-    W -->|HAS_DAY| RD
-    W -->|DESCRIBED_BY| D
     D -->|HAS_CHUNK| C
     F -->|FROM| C
     E -->|"FROM {rank}"| C
+    classDef shared fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef fact fill:#fdf0d0,stroke:#a67512,color:#1b2a3a
+    classDef event fill:#e8f0fa,stroke:#3d6a9c,color:#1b2a3a
 ```
+
+</details>
 
 | Node | Key | Properties | Written by |
 |---|---|---|---|
@@ -1177,7 +1247,7 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Any non-public document (a VPI document, the supervisor's evaluation document) | Local models inside the approved boundary only |
 | Any data | Never a commercial model or API |
 
-The model client enforces this rule: a file's permission field decides which endpoints may receive its content, and a hosted endpoint refuses non-public content. OpenRouter forwards requests to third-party providers. Even for public data, choose providers that do not retain or train on prompts where the option exists. Record the provider in the run.
+Two checks enforce this rule. The model client refuses to send content marked non-public to a hosted endpoint. K1 packages carry no such mark yet, so the backend adds a check at start: with a hosted endpoint in its roles, it runs only on packages a person has named as public in its settings, and refuses to start otherwise (D-69). When files carry a permission field (plan M6), the field replaces the list. OpenRouter forwards requests to third-party providers. Even for public data, choose providers that do not retain or train on prompts where the option exists. Record the provider in the run.
 
 ### 10.2 Threats and controls
 
@@ -1192,6 +1262,9 @@ The model client enforces this rule: a file's permission field decides which end
 | Lost or partial publication | Generations activated only after checks; previous generation kept |
 | Retired document still answering | Retirement filters vectors, chunks and graph items at query time immediately, then cleans up |
 | Sensitive content in logs | Logs carry IDs and reasons, not document text |
+| Oversized or flooding requests | The proxy refuses request bodies over 64 kB; a question is at most 500 characters; waiting questions are capped (§4.6) |
+| The shared password guessed | A long random password over HTTPS; it guards public data only, and login replaces it before any private data (D-45) |
+| Script or frame injection in the browser | The proxy sends a content security policy that allows only the application's own files, and forbids framing |
 
 ### 10.3 Retention
 
@@ -1221,7 +1294,22 @@ Every run reports pages, tables, chunks, LLM calls, input/output tokens, VLM sec
 | GPU runs | A rented cloud GPU: local model server (vLLM or llama.cpp), the worker and the stores, or the worker pointed at them |
 | Demonstration | Compose on one rented cloud server, a hosted open-weight model, public data (D-68) |
 
-Production operations (independent backups, restore drills, runbooks, an operator, RPO/RTO targets) are second-semester work. They are required only if the system will hold private data or serve users beyond the team.
+### 11.4 Operating the demonstration
+
+The demonstration serves a handful of experts on one small server. It needs little, but it must not fail silently, and it must not lose the question log: the questions experts type are the one thing in the system that cannot be rebuilt (D-65).
+
+| Need | How it is met |
+|---|---|
+| Know that it is down before an expert says so | A script on another machine runs the quick smoke test every five minutes against `GET /v1/ready` and posts to the group chat when the state changes (`deploy/watch.sh`) |
+| Know how it is doing | Each question writes one line to the server log; `python -m backend.questions stats` gives seconds per question (median and 95th percentile), model calls and tokens per question, the share of errors, of "not found" and of fallbacks, and the wait for the model |
+| Keep the question log | A nightly PostgreSQL dump, copied off the server by the same job; a restore check that loads a dump into a throwaway database (`platform/server/`) |
+| Survive a restart | Restart policies and health checks in the compose file; the backend starts only when the stores answer |
+| Fit a small server | Memory limits per service; Neo4j runs with a small heap, since the graph is small and is read once at start |
+| Load a new package | Run the runner, then restart the backend, which reads its data at start. A few seconds without answers is accepted at this size |
+
+**What breaks first as use grows.** The one model slot: about four questions a minute at best, against a burst of fifty users. After that, the engine held in memory and its scans over all chunks, then exact vector search without an index. None of these is designed for now; they are named so the first sign is recognised.
+
+Production operations beyond this (an operator, restore drills on a schedule, RPO and RTO targets) are second-semester work. They are required only if the system will hold private data or serve users beyond the team.
 
 ## 12. Quality and acceptance
 
@@ -1315,6 +1403,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-66 | **The reasoning lane is designed and probed, not promised.** It finds the problem event, gathers what surrounds it in code, and answers in two parts: causes the reports state, and possible causes, each cited (§8.6). About ten frozen questions on AK-3's non-productive events test it. No inferred cause is stored in the graph | 24 Nov 2026; Tri, from D-61 (Track B log B-D38) | The probe shows the data supports nothing useful, or more data arrives |
 | D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is agreed with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35); agreed by Hung, as relayed by Tri (B-D39). Exported as a file (B-C40); `CASED_WITH` is not written yet | Loading it shows another layout works better, or a question type needs K2's other entity types |
 | D-68 | **The team rents its compute: a cloud GPU by the hour for measurements, a cloud server for the stores and the application, and a hosted open-weight model for the demo. All on public data only.** The team has no GPU of its own (the desktop used up to E31 was borrowed), and the school's machines are not planned on, as the supervisor advised they are slow and awkward. A rented GPU runs our own 4-bit copy of the model with llama.cpp, so its scores stay comparable with the recorded ones. A hosted model runs at another precision at a third party: it serves the demo and quick checks, and a hosted score is compared only with a baseline rerun on the same endpoint. No private document goes on a rented machine without VPI's written agreement (§10.1); the client refuses private data on hosted endpoints. Budget: [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) | Tri, 24 November 2026, on the supervisor's advice; Track B log B-D42 to B-D44 | D-38, §10.1, §11, Q6, Q7, Q15 |
+| D-69 | **The application is built around one model slot and around not losing a question.** Questions take turns with a bounded wait and a cap on how many wait; a model call has a time limit shorter than the wait, which is shorter than the browser's; a failed question is logged as failed; an answer is never lost to a log failure; a hosted model is only given packages named as public; the stores and the application restart by themselves; an outside monitor and a copy of the question log off the server come before the first expert uses it (§4.6, §11.4). No queue service, answer cache or streaming: a design review found them unnecessary at this size | Tri, 25 November 2026, from a design review of the second build before its first deployment; Track B log B-D49, B-C65 to B-C67 | When more than a handful of people use it at once, or a hosted endpoint that answers in parallel serves it |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1396,3 +1485,4 @@ Superseded decisions are in the second table of §13.1; what each track changed,
 | 3.5 | 24 November 2026 | What was built the same day (§3.1, §8.4); compute is rented (D-68) |
 | 3.6 | 24 November 2026 | Reorganised for reading: history moved to this table, repetition removed. No change of scope or design |
 | 3.7 | 24 November 2026 | Second reading pass: numbers in decisions replaced by links to their experiments, the pre-first-build picture of section 3.1 removed, out-of-date compute, lane and model-role text corrected. No change of scope or design |
+| 3.8 | 25 November 2026 | How the application behaves when something fails (§4.6) and how the demonstration is operated (§11.4), from a design review before the first deployment (D-69); the hosted-model check at start (§10.1); three threats added (§10.2); every diagram redrawn in one style and checked against the code |

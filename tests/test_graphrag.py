@@ -45,6 +45,16 @@ class ClientTests(unittest.TestCase):
         with patch("graphrag.client.httpx.post", return_value=reply("hi")):
             self.assertEqual(client.chat([{"role": "user", "content": "x"}], data_class="private").content, "hi")
 
+    def test_a_service_does_not_keep_a_reply_that_should_be_json_and_is_not(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            messages = [{"role": "user", "content": "x"}]
+            for keep, posts in ((False, 2), (True, 1)):
+                client = ModelClient(LOCAL, f"m{keep}", cache_dir=Path(temporary), cache_unparsed=keep)
+                with patch("graphrag.client.httpx.post", return_value=reply('{"a": 1')) as post:
+                    self.assertIsNone(client.chat(messages, schema={"type": "object"}).parsed)
+                    client.chat(messages, schema={"type": "object"})
+                self.assertEqual(post.call_count, posts)
+
     def test_cost_from_prices_and_cache_hit_is_free(self):
         with tempfile.TemporaryDirectory() as temporary:
             client = ModelClient(HOSTED, "m", cache_dir=Path(temporary))

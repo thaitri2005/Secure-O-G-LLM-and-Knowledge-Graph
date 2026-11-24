@@ -15,6 +15,7 @@ feedback, and counts. A question's verdict is its latest mark, since a user may 
 from __future__ import annotations
 
 import argparse
+import math
 import json
 import os
 import sys
@@ -293,11 +294,55 @@ class PostgresQuestionLog:
                                       values).fetchall())
 
 
+def percentile(values: list[float], share: float) -> float | None:
+    """The value below which `share` of `values` lie (nearest rank); None for no values."""
+    if not values:
+        return None
+    ordered = sorted(values)
+    return ordered[min(len(ordered) - 1, max(0, math.ceil(share * len(ordered)) - 1))]
+
+
+def statistics(entries: list[dict]) -> dict:
+    """What the log says about how the application is doing (specification §11.2): how many questions, how they
+    ended, which lanes answered, and what a question costs. Timings leave out failed questions and those a model
+    call answered from the request cache, whose seconds are 0."""
+    timed = [e for e in entries if e.get("status") != "error" and not e.get("cached_calls")]
+    seconds = [float((e.get("cost") or {}).get("seconds") or 0) for e in timed]
+    waits = [float(e.get("queue_seconds") or 0) for e in entries if "queue_seconds" in e]
+    total = len(entries)
+
+    def mean(key: str) -> float | None:
+        return round(sum((e.get("cost") or {}).get(key) or 0 for e in timed) / len(timed), 1) if timed else None
+
+    def share(count: int) -> float:
+        return round(count / total, 3) if total else 0.0
+
+    statuses = Counter(e.get("status") or "unknown" for e in entries)
+    not_found = statuses["not_found_in_graph"] + statuses["not_stated"]
+    return {"questions": total, "by_status": dict(statuses.most_common()),
+            "by_lane": dict(Counter("+".join(e.get("lanes") or []) or "none" for e in entries).most_common()),
+            "by_error": dict(Counter(e["error"] for e in entries if e.get("error")).most_common()),
+            "error_rate": share(statuses["error"]), "not_found_rate": share(not_found),
+            "fallback_rate": share(sum(bool(e.get("fallback")) for e in entries)),
+            "marked_wrong": sum(verdict_of(e) == "wrong" for e in entries),
+            "timed_questions": len(timed), "seconds_p50": percentile(seconds, 0.5), "seconds_p95": percentile(seconds, 0.95),
+            "queue_seconds_p95": percentile(waits, 0.95), "calls_mean": mean("calls"),
+            "prompt_tokens_mean": mean("prompt_tokens"), "completion_tokens_mean": mean("completion_tokens")}
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("command", choices=["init", "counts"])
+    parser.add_argument("command", choices=["init", "counts", "stats"])
     parser.add_argument("--dsn", default=os.environ.get("BACKEND_DSN"), help="PostgreSQL address (default: BACKEND_DSN)")
+    parser.add_argument("--file", type=Path, help="stats only: a question log file (JSON lines) instead of PostgreSQL")
+    parser.add_argument("--since", help="stats only: questions asked on or after this day (YYYY-MM-DD)")
     args = parser.parse_args(argv)
+    if args.command == "stats":
+        if not args.file and not args.dsn:
+            parser.error("set BACKEND_DSN, or pass --dsn or --file")
+        source = JsonlQuestionLog(args.file) if args.file else PostgresQuestionLog(args.dsn)
+        print(json.dumps(statistics(source.questions(Filters(date_from=args.since))[1]), indent=2))
+        return 0
     if not args.dsn:
         parser.error("set BACKEND_DSN or pass --dsn")
     import psycopg

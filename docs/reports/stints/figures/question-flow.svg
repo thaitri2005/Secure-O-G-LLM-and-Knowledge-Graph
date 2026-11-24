@@ -14,55 +14,62 @@
 <circle cx="846" cy="34" r="15" fill="#0f1e33"/>
 <text x="846" y="39" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">4</text>
 <text x="870" y="40" font-size="17" font-weight="700" fill="#0f1e33" text-anchor="start">Answer and check</text>
-<rect x="20" y="250" width="150" height="110" rx="10" fill="#fff" stroke="#5d6d85" stroke-width="1.5"/>
-<text x="95.0" y="300.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">A person asks</text>
-<text x="95.0" y="318.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">in plain English</text>
-<path d="M170,305 L198,305" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<rect x="200" y="196" width="250" height="132" rx="10" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5"/>
-<text x="325.0" y="230.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">One AI call</text>
-<text x="325.0" y="248.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">What kind of question is it?</text>
-<text x="325.0" y="266.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">Which reports is it about?</text>
-<text x="325.0" y="284.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">For a total: a small plan,</text>
-<text x="325.0" y="302.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">such as &quot;total hours, August&quot;</text>
-<rect x="200" y="344" width="250" height="84" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
-<text x="325.0" y="363.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code</text>
-<text x="325.0" y="381.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">reads the well name and the dates,</text>
-<text x="325.0" y="399.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">and chooses where to look</text>
-<text x="325.0" y="417.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">from a fixed table</text>
-<path d="M450,262 L474,262 L474,128 L488,128" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<path d="M450,386 L474,386 L474,300 L488,300" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<path d="M474,386 V470 H488" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<rect x="490" y="82" width="300" height="92" rx="10" fill="#fff1da" stroke="#a45a06" stroke-width="1.5"/>
-<text x="640.0" y="114.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Daily activities</text>
-<text x="640.0" y="132.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">for totals over a period:</text>
-<text x="640.0" y="150.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">hours, days, counts, depth</text>
-<rect x="490" y="254" width="300" height="92" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
-<text x="640.0" y="286.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Well facts</text>
-<text x="640.0" y="304.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">checked values:</text>
-<text x="640.0" y="322.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">depths, dates, casing</text>
-<rect x="490" y="424" width="300" height="92" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
-<text x="640.0" y="456.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Report text</text>
-<text x="640.0" y="474.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">search the passages</text>
-<text x="640.0" y="492.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">of that well and date</text>
-<path d="M640,176 L640,252" fill="none" stroke="#a45a06" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-a45a06)"/>
-<rect x="537.3" y="201" width="205.39999999999998" height="19" rx="9" fill="#fff" stroke="#a45a06" stroke-width="1"/>
-<text x="640" y="215" font-size="11.5" font-weight="600" fill="#a45a06" text-anchor="middle">nothing matches: try the text</text>
-<rect x="830" y="82" width="390" height="92" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
-<text x="1025.0" y="114.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code calculates the total</text>
-<text x="1025.0" y="132.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">adds up the matching activities;</text>
-<text x="1025.0" y="150.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">no AI writes the number</text>
-<path d="M790,128 L828,128" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
-<rect x="830" y="254" width="390" height="92" rx="10" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5"/>
-<text x="1025.0" y="286.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">One AI call writes the answer</text>
-<text x="1025.0" y="304.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">only from the facts and the text</text>
-<text x="1025.0" y="322.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">it was given</text>
-<path d="M790,300 L828,300" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<path d="M790,470 L810,470 L810,320 L828,320" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<rect x="830" y="424" width="390" height="92" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
-<text x="1025.0" y="456.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code checks the answer</text>
-<text x="1025.0" y="474.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">Is the value really written</text>
-<text x="1025.0" y="492.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">in the text that was read?</text>
-<path d="M1025,346 L1025,422" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<rect x="20" y="208" width="150" height="110" rx="10" fill="#fff" stroke="#5d6d85" stroke-width="1.5"/>
+<text x="95.0" y="258.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">A person asks</text>
+<text x="95.0" y="276.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">in plain English</text>
+<path d="M170,263 L198,263" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<rect x="200" y="150" width="250" height="132" rx="10" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="325.0" y="184.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">One AI call</text>
+<text x="325.0" y="202.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">What kind of question is it?</text>
+<text x="325.0" y="220.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">Which reports is it about?</text>
+<text x="325.0" y="238.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">For a total: a small plan,</text>
+<text x="325.0" y="256.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">such as &quot;total hours, August&quot;</text>
+<rect x="200" y="298" width="250" height="84" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
+<text x="325.0" y="317.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code</text>
+<text x="325.0" y="335.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">reads the well name and the dates,</text>
+<text x="325.0" y="353.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">and chooses where to look</text>
+<text x="325.0" y="371.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">from a fixed table</text>
+<path d="M450,216 H472 M450,340 H472 M472,109 V409" fill="none" stroke="#5d6d85" stroke-width="2.2"/>
+<rect x="490" y="70" width="300" height="78" rx="10" fill="#fff1da" stroke="#a45a06" stroke-width="1.5"/>
+<text x="640.0" y="95.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Daily activities</text>
+<text x="640.0" y="113.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">for totals over a period:</text>
+<text x="640.0" y="131.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">hours, days, counts, depth</text>
+<path d="M472,109 L488,109" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<rect x="490" y="170" width="300" height="78" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="640.0" y="195.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Around one problem</text>
+<text x="640.0" y="213.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">for questions about causes:</text>
+<text x="640.0" y="231.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">its activities and report text</text>
+<path d="M472,209 L488,209" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<rect x="490" y="270" width="300" height="78" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="640.0" y="295.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Well facts</text>
+<text x="640.0" y="313.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">checked values:</text>
+<text x="640.0" y="331.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">depths, dates, casing</text>
+<path d="M472,309 L488,309" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<rect x="490" y="370" width="300" height="78" rx="10" fill="#fff" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="640.0" y="395.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Report text</text>
+<text x="640.0" y="413.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">search the passages</text>
+<text x="640.0" y="431.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">of that well and date</text>
+<path d="M472,409 L488,409" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<path d="M640,496 L640,452" fill="none" stroke="#a45a06" stroke-width="2.2" stroke-dasharray="7 6" marker-end="url(#head-a45a06)"/>
+<rect x="497" y="498" width="286" height="22" rx="11" fill="#fff" stroke="#a45a06" stroke-width="1"/>
+<text x="640" y="513" font-size="11.5" font-weight="600" fill="#a45a06" text-anchor="middle">nothing found there: the report text is searched</text>
+<rect x="830" y="70" width="390" height="78" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
+<text x="1025.0" y="95.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code calculates the total</text>
+<text x="1025.0" y="113.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">adds up the matching activities;</text>
+<text x="1025.0" y="131.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">no AI writes the number</text>
+<path d="M790,109 L828,109" fill="none" stroke="#a45a06" stroke-width="2.2" marker-end="url(#head-a45a06)"/>
+<rect x="830" y="214" width="390" height="90" rx="10" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5"/>
+<text x="1025.0" y="245.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">One AI call writes the answer</text>
+<text x="1025.0" y="263.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">only from the facts and the text</text>
+<text x="1025.0" y="281.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">it was given</text>
+<path d="M790,209 L808,209 L808,244 L828,244" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<path d="M790,309 L808,309 L808,274 L828,274" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<path d="M790,409 H808 V309" fill="none" stroke="#5d6d85" stroke-width="2.2"/>
+<rect x="830" y="370" width="390" height="78" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
+<text x="1025.0" y="395.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">Code checks the answer</text>
+<text x="1025.0" y="413.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">Is the value really written</text>
+<text x="1025.0" y="431.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">in the text that was read?</text>
+<path d="M1025,304 L1025,368" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
 <rect x="20" y="566" width="1200" height="132" rx="14" fill="#f5f8fc" stroke="#c9d4e3" stroke-width="1.5"/>
 <text x="40" y="592" font-size="15" font-weight="700" fill="#0f1e33" text-anchor="start">What the person sees</text>
 <rect x="40" y="606" width="376" height="74" rx="10" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>
@@ -74,11 +81,11 @@
 <rect x="824" y="606" width="376" height="74" rx="10" fill="#eef3fa" stroke="#5d6d85" stroke-width="1.5"/>
 <text x="1012.0" y="638.9" font-size="14" font-weight="700" fill="#0f1e33" text-anchor="middle">No answer found</text>
 <text x="1012.0" y="656.9" font-size="12" font-weight="400" fill="#33445c" text-anchor="middle">the closest report text is shown instead</text>
-<path d="M1200,128 H1228 V550 H228 V604" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
-<path d="M1025,516 V536 H620 V604" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
-<text x="815" y="531" font-size="12" font-weight="700" fill="#1d5fd6" text-anchor="middle">yes</text>
-<path d="M1100,516 V604" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
-<text x="1108" y="542" font-size="12" font-weight="700" fill="#5d6d85" text-anchor="start">no, or not found</text>
+<path d="M1220,109 H1232 V550 H228 V604" fill="none" stroke="#14734a" stroke-width="2.2" marker-end="url(#head-14734a)"/>
+<path d="M940,448 V534 H620 V604" fill="none" stroke="#1d5fd6" stroke-width="2.2" marker-end="url(#head-1d5fd6)"/>
+<text x="930" y="480" font-size="12" font-weight="700" fill="#1d5fd6" text-anchor="end">yes</text>
+<path d="M1100,448 V604" fill="none" stroke="#5d6d85" stroke-width="2.2" marker-end="url(#head-5d6d85)"/>
+<text x="1108" y="480" font-size="12" font-weight="700" fill="#5d6d85" text-anchor="start">no, or not found</text>
 <rect x="20" y="718" width="18" height="14" rx="4" fill="#e6effe" stroke="#1d5fd6" stroke-width="1.5"/>
 <text x="46" y="730" font-size="12.5" font-weight="400" fill="#33445c" text-anchor="start">uses the AI model</text>
 <rect x="177.3" y="718" width="18" height="14" rx="4" fill="#dcf5e8" stroke="#14734a" stroke-width="1.5"/>

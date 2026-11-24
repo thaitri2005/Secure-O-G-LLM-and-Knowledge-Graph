@@ -84,15 +84,17 @@ Weeks are counted from 2 November 2026. Windows are indicative; each check-in re
 <summary>Diagram source (Mermaid)</summary>
 
 ```mermaid
-flowchart TB
-    M0["M0<br/>Plan, access, workflow demo"] --> M1["M1<br/>First build: three tracks on one document"]
-    M1 --> M2["M2<br/>Second build: one connected application"]
-    M2 --> M3["M3<br/>Quality and control"]
-    M2 --> M4["M4<br/>Full application"]
+flowchart LR
+    M0["M0 (done)<br/>Plan, access,<br/>workflow demo"]:::done --> M1["M1 (closed)<br/>First build:<br/>three tracks"]:::done
+    M1 --> M2["M2 (now)<br/>Second build:<br/>one connected<br/>application"]:::now
+    M2 --> M3["M3<br/>Quality and<br/>control"]
+    M2 --> M4["M4<br/>Full<br/>application"]
     M3 --> M4
-    M3 --> M5["M5<br/>Scale run on local models"]
+    M3 --> M5["M5<br/>Scale run on<br/>local models"]
     M4 --> M5
-    M5 --> M6["M6<br/>Access control and hardening"]
+    M5 --> M6["M6<br/>Access control<br/>and hardening"]
+    classDef done fill:#e4f3ea,stroke:#3b7d57,color:#1b2a3a
+    classDef now fill:#fdf0d0,stroke:#a67512,color:#1b2a3a,stroke-width:2px
 ```
 
 </details>

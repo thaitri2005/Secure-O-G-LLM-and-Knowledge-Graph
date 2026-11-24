@@ -1,5 +1,8 @@
 """The read-path API (specification §7.5), over a small engine and stand-in models: no server, store or GPU needed."""
 import json
+import httpx
+from unittest import mock
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -168,6 +171,103 @@ class BackendTests(unittest.TestCase):
         out = self.make(FRAME_EOW, DEPTH_ANSWER, fail=True).post("/v1/questions", json={"question": "What depth did AK-3 reach?"})
         self.assertEqual(out.status_code, 503)
         self.assertIn("model", out.json()["detail"])
+
+    # ---- waiting, failures and readiness (specification §4.6, "When something fails") ---------------------------
+
+    def service(self, fail=False, **settings):
+        from backend.questions import JsonlQuestionLog
+        from backend.service import Service
+        client = ScriptedClient(FRAME_EOW, DEPTH_ANSWER, fail)
+        return Service(sample_engine(), client, client, JsonlQuestionLog(self.log_path),
+                       roles={"frame": {"endpoint": "test", "model": "stand-in"},
+                              "answer": {"endpoint": "test", "model": "stand-in"}}, **settings)
+
+    def test_a_question_that_fails_is_logged_as_an_error_with_its_id_in_the_reply(self):
+        out = self.make(FRAME_EOW, DEPTH_ANSWER, fail=True).post("/v1/questions", json={"question": "What depth did AK-3 reach?"})
+        self.assertEqual((out.status_code, out.json()["code"]), (503, "model_unavailable"))
+        entry, = self.log()
+        self.assertEqual((entry["status"], entry["error"], entry["question"]), ("error", "ConnectError", "What depth did AK-3 reach?"))
+        self.assertEqual(out.json()["question_id"], entry["id"])
+
+    def test_a_busy_system_says_so_instead_of_queueing_without_end(self):
+        from fastapi.testclient import TestClient
+        from backend.app import create_app
+        service = self.service(queue_seconds=0.05)
+        service.lock.acquire()  # another question holds the model
+        out = TestClient(create_app(service)).post("/v1/questions", json={"question": "What depth did AK-3 reach?"})
+        self.assertEqual((out.status_code, out.json()["code"], out.headers["retry-after"]), (503, "busy", "30"))
+        self.assertEqual(self.log()[0]["error"], "Busy")
+        service.max_waiting, service.waiting = 2, 2  # the queue is full: refused at once
+        out = TestClient(create_app(service)).post("/v1/questions", json={"question": "What depth did AK-3 reach?"})
+        self.assertEqual(out.json()["code"], "busy")
+        self.assertEqual(service.waiting, 2)
+        service.lock.release()
+
+    def test_the_slot_is_free_again_after_a_failure(self):
+        service = self.service(fail=True)
+        with self.assertRaises(httpx.ConnectError):
+            service.ask("What depth did AK-3 reach?")
+        self.assertFalse(service.lock.locked())
+        self.assertEqual(service.waiting, 0)
+
+    def test_an_answer_survives_a_question_log_that_cannot_be_written(self):
+        service = self.service()
+
+        def broken(_entry):
+            raise OSError("disk full")
+        service.log.add_question = broken
+        with self.assertLogs("backend.questions", level="ERROR"):
+            out = service.ask("What total depth did well AK-3 reach?")
+        self.assertEqual(out["status"], "answered")
+
+    def test_each_question_writes_one_line_to_the_server_log_and_its_wait_to_the_question_log(self):
+        service = self.service()
+        with self.assertLogs("backend.questions", level="INFO") as captured:
+            out = service.ask("What total depth did well AK-3 reach?")
+        line = json.loads(captured.records[-1].getMessage())
+        self.assertEqual((line["event"], line["question_id"], line["status"], line["logged"]), ("question", out["id"], "answered", True))
+        entry, = self.log()
+        self.assertIn("queue_seconds", entry)
+        self.assertEqual(entry["cached_calls"], 0)
+
+    def test_errors_have_one_shape(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        for response, code in ((client.get("/v1/chunks/nope"), "not_found"),
+                               (client.post("/v1/questions", json={"question": ""}), "invalid_request"),
+                               (client.post("/v1/questions/nope/feedback", json={"verdict": "right"}), "not_found")):
+            body = response.json()
+            self.assertEqual(body["code"], code)
+            self.assertIsInstance(body["detail"], str)
+
+    def test_ready_asks_the_question_log_and_says_who_is_waiting(self):
+        client = self.make(FRAME_EOW, DEPTH_ANSWER)
+        out = client.get("/v1/ready")
+        self.assertEqual((out.status_code, out.json()), (200, {"ready": True, "checks": {"model": "ok", "question_log": "ok"}, "waiting": 0}))
+        self.assertEqual(out.headers["cache-control"], "no-store")
+
+    def test_not_ready_is_a_503_that_names_what_is_down(self):
+        from fastapi.testclient import TestClient
+        from backend.app import create_app
+        service = self.service()
+
+        def down(_id):
+            raise OSError("connection refused")
+        service.log.has_question = down
+        out = TestClient(create_app(service)).get("/v1/ready")
+        self.assertEqual(out.status_code, 503)
+        self.assertIn("OSError", out.json()["checks"]["question_log"])
+
+    def test_a_hosted_model_is_refused_a_package_nobody_declared_public(self):
+        from backend.app import refuse_private_release
+        refuse_private_release([], "stores", "private-1")                 # local models: anything
+        refuse_private_release(["openrouter"], "files", None)             # the committed public bundle
+        with mock.patch.dict(os.environ, {"BACKEND_PUBLIC_RELEASES": "demo-v2, demo-v3"}):
+            refuse_private_release(["openrouter"], "stores", "demo-v2")
+            with self.assertRaisesRegex(PermissionError, "not declared public"):
+                refuse_private_release(["openrouter"], "stores", "private-1")
+        with mock.patch.dict(os.environ, {"BACKEND_PUBLIC_RELEASES": ""}):
+            with self.assertRaises(PermissionError):
+                refuse_private_release(["openrouter"], "stores", "demo-v2")
 
     # ---- the question log and feedback -------------------------------------------------------------------------
 

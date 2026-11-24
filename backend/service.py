@@ -6,8 +6,10 @@ up, only the engine's loading changes (plan task E2) and this module stays as it
 from __future__ import annotations
 
 import json
+import logging
 import re
 import threading
+import time
 import uuid
 from collections import Counter
 from datetime import date
@@ -28,8 +30,19 @@ DEPTHS_AND_DATES = ("total_depth", "spud_date", "rig_release_date", "drilling_da
                     "total_rig_time", "productive_time", "non_productive_time")
 
 
+log = logging.getLogger("backend.questions")
+
+
 class NotFound(LookupError):
     """An ID the engine does not hold."""
+
+
+class Busy(RuntimeError):
+    """The model is answering other questions and this one would wait too long. `retry_after` is in seconds."""
+
+    def __init__(self, message: str, retry_after: int):
+        super().__init__(message)
+        self.retry_after = retry_after
 
 
 def inches(size: str) -> Fraction:
@@ -63,24 +76,62 @@ def reasoning_view(found: dict | None) -> dict | None:
 
 class Service:
     def __init__(self, engine: Engine, frame_client, answer_client, log: QuestionLog, roles: dict[str, dict[str, str]],
-                 page_images: Path | None = None):
+                 page_images: Path | None = None, queue_seconds: float = 60.0, max_waiting: int = 8):
         self.engine, self.frame_client, self.answer_client, self.log = engine, frame_client, answer_client, log
         # <page_images>/<file_id>/p<n>.png, written by platform/render_pages.py; None: no images.
         self.page_images = page_images
         self.models = {role: f"{chosen['endpoint']}:{chosen['model']}" for role, chosen in roles.items()}
         self.by_id = engine.by_id()
-        # One question at a time: the model server has one slot, and the engine's retrievers are built on first use.
+        # One question at a time: the model server has one slot, and the coordinator's cost counters are per client.
+        # A question waits for its turn at most `queue_seconds`, and at most `max_waiting` questions wait: beyond
+        # either, the asker is told the system is busy instead of holding a place nobody is watching.
         self.lock = threading.Lock()
+        self.queue_seconds, self.max_waiting = queue_seconds, max_waiting
+        self.waiting, self.waiting_guard = 0, threading.Lock()
         self.new_id = lambda: uuid.uuid4().hex
         self.today = lambda: date.today().isoformat()
 
     # ---- questions ---------------------------------------------------------------------------------------------
 
+    def _take_turn(self) -> float:
+        """Wait for the model's one slot; the seconds waited. Raises `Busy` when too many already wait, or when the
+        turn does not come within `queue_seconds`."""
+        with self.waiting_guard:
+            if self.waiting >= self.max_waiting:
+                raise Busy(f"{self.waiting} questions are already waiting", retry_after=30)
+            self.waiting += 1
+        started = time.perf_counter()
+        try:
+            if not self.lock.acquire(timeout=self.queue_seconds):
+                raise Busy(f"no turn within {self.queue_seconds:.0f} seconds", retry_after=30)
+        finally:
+            with self.waiting_guard:
+                self.waiting -= 1
+        return time.perf_counter() - started
+
     def ask(self, question: str, mode: str = "allow_fallback", lane: str | None = None) -> dict:
+        """Answer one question and log it. A question that fails is logged too, with status `error`, so no question
+        an expert typed is lost and the error rate can be counted; the error is raised again with `question_id` on
+        it. A log that cannot be written never costs the asker the answer."""
         question_id = self.new_id()
         q = {"id": question_id, "kind": "live", "question": question, "gold": []}
-        with self.lock:
-            row = coordinator.answer(q, self.engine, self.frame_client, self.answer_client, mode=mode, lane=lane)
+        started, waited, cached_before = time.perf_counter(), 0.0, self._cached_calls()
+        try:
+            waited = self._take_turn()
+            try:
+                row = coordinator.answer(q, self.engine, self.frame_client, self.answer_client, mode=mode, lane=lane)
+            finally:
+                self.lock.release()
+        except Exception as error:
+            error.question_id = question_id  # type: ignore[attr-defined]
+            self._record({"id": question_id, "asked_at": now(), "question": question, "mode": mode, "forced_lane": lane,
+                          "frame": {"kind": "unknown", "report_type": "unknown"}, "lanes": [], "fallback": False,
+                          "answered_from": None, "status": "error", "answers": [], "answer_text": None, "citations": [],
+                          "cost": {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0,
+                                   "seconds": round(time.perf_counter() - started, 3)},
+                          "models": self.models, "queue_seconds": round(waited, 3),
+                          "error": type(error).__name__ if not isinstance(error, Busy) else "Busy"})
+            raise
         computed = row["computed"]
         units = row["units"] or [None] * len(row["values"])
         answers = [{"value": str(v), "unit": u or None} for v, u in zip(row["values"], units)]
@@ -100,15 +151,39 @@ class Service:
             "cost": {"calls": row["calls"], "prompt_tokens": row["prompt_tokens"] + row["frame_prompt_tokens"],
                      "completion_tokens": row["completion_tokens"] + row["frame_completion_tokens"],
                      "seconds": round(row["seconds"] + row["frame_seconds"], 3)}}
-        self.log.add_question({
+        self._record({
             "id": question_id, "asked_at": now(), "question": question, "mode": out["mode"], "forced_lane": lane,
             "frame": out["frame"], "lanes": out["lanes"], "fallback": out["fallback"],
             "answered_from": out["answered_from"], "status": out["status"], "answers": answers,
             "answer_text": out["answer_text"], "citations": [c["chunk_id"] for c in out["citations"]],
             "cost": out["cost"], "models": self.models,
             # What the trust label rests on, so a logged answer can be shown later as it was shown then.
-            "checks": out["checks"], "computed": computed is not None})
+            "checks": out["checks"], "computed": computed is not None,
+            # For the statistics: time spent waiting for the model's slot, and model calls answered from the
+            # request cache (their seconds are 0, so such a question is left out of the timings).
+            "queue_seconds": round(waited, 3), "cached_calls": self._cached_calls() - cached_before})
         return out
+
+    def _cached_calls(self) -> int:
+        """Model calls answered from the request cache so far, over the frame and answer clients."""
+        clients = {id(c): c for c in (self.frame_client, self.answer_client)}.values()
+        return sum(getattr(getattr(c, "ledger", None), "cached_calls", 0) or 0 for c in clients)
+
+    def _record(self, entry: dict) -> None:
+        """Write a question to the log and one line to the server log. Never raises: the answer matters more."""
+        try:
+            self.log.add_question(entry)
+            logged = True
+        except Exception:  # noqa: BLE001 - a log that is down must not take the answer with it
+            log.exception("question %s could not be written to the question log", entry["id"])
+            logged = False
+        cost = entry["cost"]
+        log.info(json.dumps({"event": "question", "question_id": entry["id"], "status": entry["status"],
+                             "kind": entry["frame"].get("kind"), "lanes": entry["lanes"], "fallback": entry["fallback"],
+                             "calls": cost["calls"], "prompt_tokens": cost["prompt_tokens"],
+                             "completion_tokens": cost["completion_tokens"], "seconds": cost["seconds"],
+                             "queue_seconds": entry.get("queue_seconds"), "cached_calls": entry.get("cached_calls", 0),
+                             "error": entry.get("error"), "logged": logged}))
 
     def feedback(self, question_id: str, verdict: str, comment: str) -> dict:
         if not self.log.has_question(question_id):
@@ -298,6 +373,33 @@ class Service:
                 if (not date_from or e.date >= date_from) and (not date_to or e.date <= date_to)]
 
     # ---- health ------------------------------------------------------------------------------------------------
+
+    def ready(self) -> dict:
+        """Whether a question could be answered now: the model endpoint lists its models and the question log
+        answers. Asked at most once every 15 seconds, so a monitor costs nothing."""
+        checked = getattr(self, "_ready", None)
+        if not checked or time.monotonic() - checked[0] > 15:
+            checks = {}
+            for role, client in (("model", self.frame_client), ("answer_model", self.answer_client)):
+                endpoint = getattr(client, "endpoint", None)
+                if endpoint is None or (role == "answer_model" and client is self.frame_client):
+                    continue
+                if role == "answer_model" and endpoint.base_url == self.frame_client.endpoint.base_url:
+                    continue
+                try:
+                    import httpx
+                    httpx.get(f"{endpoint.base_url}/models", headers=client._headers(), timeout=3.0).raise_for_status()
+                    checks[role] = "ok"
+                except Exception as error:  # noqa: BLE001 - whatever went wrong, the answer is "not ready"
+                    checks[role] = f"{type(error).__name__}: the model endpoint {endpoint.name} did not answer"
+            checks.setdefault("model", "ok")
+            try:
+                self.log.has_question("ready-check")
+                checks["question_log"] = "ok"
+            except Exception as error:  # noqa: BLE001
+                checks["question_log"] = f"{type(error).__name__}: the question log did not answer"
+            checked = self._ready = (time.monotonic(), checks)
+        return {"ready": all(v == "ok" for v in checked[1].values()), "checks": checked[1], "waiting": self.waiting}
 
     def health(self) -> dict:
         return {"data": {"source": getattr(self.engine, "source", "files"), "end_of_well_chunks": len(self.engine.eow_chunks),

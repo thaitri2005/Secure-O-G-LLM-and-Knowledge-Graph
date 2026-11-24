@@ -180,6 +180,9 @@ def engine_from_stores(dsn: str, neo4j_uri: str, neo4j_user: str, neo4j_password
     engine = Engine([c for c in chunks if not is_daily(c.doc_id)], [c for c in chunks if is_daily(c.doc_id)],
                     events, facts, **settings)
     engine.source, engine.vector_store, engine.stored_vectors = "stores", dsn, stored
+    import psycopg
+    with psycopg.connect(dsn) as conn, conn.cursor() as cur:
+        engine.release = release_of(conn, cur, release)
     if "pgvector:" in (engine.multi_well_retriever or ""):
         engine.retriever(engine.multi_well_retriever, "end_of_well")
     return engine

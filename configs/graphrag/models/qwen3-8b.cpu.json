@@ -1,0 +1,11 @@
+{
+  "description": "Qwen3-8B Q4_K_M, our own copy on llama.cpp's CPU build, port 8080: the baseline model file on a machine without a GPU. Slow (minutes a question), so for the short measurements only. The same weights as qwen3-8b.local on another build, so its scores are compared with its own baseline rerun first",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "hosted": false,
+  "model": "qwen3-8b",
+  "file": "Qwen3-8B-Q4_K_M.gguf",
+  "thinking_off": "on the server: llama-server --jinja --chat-template-kwargs '{\"enable_thinking\":false}'",
+  "context": 12288,
+  "roles": ["frame", "answer"],
+  "compare_as": "cpu:qwen3-8b"
+}
