@@ -200,6 +200,8 @@ set -a; . platform/.env; set +a                 # the passwords, for the runner
 - The runner's own options and the environment variables it reads are in [platform/README.md](../platform/README.md); check them there, as the runner was written after this runbook.
 - `--skip-vectors`: the server has no embedding model. BM25 serves one-well questions; vectors can be added later from a machine with the embedding model, through the SSH tunnel of section 10.
 - Run it twice: the second run must report the same counts and change nothing.
+- Until the K1 release itself holds the non-productive-time report (appendix 23, plan task D1), the event step needs `--appendices <folder of the corpus export holding it>`; without it the runner stops at step 4 and says so.
+- The question-log tables (`platform/sql/002_questions.sql`) are created with the others when PostgreSQL first starts on an empty volume. On a database that existed before that file did, create them once: `BACKEND_DSN=postgresql://kg:<password>@127.0.0.1:5434/kg /srv/kg/venv/bin/python -m backend.questions init`.
 - Page images, if the source PDFs are on the server: `platform/render_pages.py` writes them into `/srv/kg/pages` (see its `--help`).
 
 ## 8. Start the application
