@@ -1,0 +1,194 @@
+{
+ "status": "SIMULATED: a probe, not the expert set and not an evaluation result (B-D22). Version 1, written on 25 November 2026 in Tri's session for the reasoning lane of specification 8.6 (experiment E34), after the lane's problem finding was corrected on version 0's frames (Track B log B-F72) and before any run of the lane on these questions. It asks about the same well in other words, and adds causes written in activities that are not non-productive time. No drilling expert has reviewed it. Frozen: do not change a question or gold value because of a result; add a new version instead.",
+ "version": "1.0",
+ "expected_lane": "reasoning",
+ "gold_source": "The operations tables of AK-3's daily drilling reports, as the event graph reads them from the K1 package demo-v2 (161 events). Each stated cause is written in the description of an activity on the gold problem's day.",
+ "known_limits": [
+  "One well, one report author.",
+  "Six of the ten questions concern the same six non-productive incidents as version 0, asked in other words; s07 and s08 ask about causes written in activities that are not non-productive time.",
+  "The terms that count as naming a cause are short words of the report; a wrong sentence that contains one would be counted as found."
+ ],
+ "questions": [
+  {
+   "id": "s01",
+   "kind": "cause",
+   "question": "What kept the mayor and the priest from reaching the AK-3 site on 18 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-18",
+    "npt_code": "WOO"
+   },
+   "stated_causes": [
+    {
+     "cause": "waiting on weather",
+     "terms": [
+      "weather"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s02",
+   "kind": "cause",
+   "question": "Why did AK-3 lose the whole day of 13 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-13",
+    "npt_code": "WAIT"
+   },
+   "stated_causes": [
+    {
+     "cause": "a weather delay",
+     "terms": [
+      "weather"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s03",
+   "kind": "cause",
+   "question": "Why did the crew have to fish on AK-3 on 21 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-21",
+    "npt_code": "KICK"
+   },
+   "stated_causes": [
+    {
+     "cause": "a rod was lost when the foot clamp slipped",
+     "terms": [
+      "foot clamp",
+      "lost rod"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s04",
+   "kind": "cause",
+   "question": "Why was the hole on AK-3 cemented a second time on 23 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-23",
+    "npt_code": "KICK"
+   },
+   "stated_causes": [
+    {
+     "cause": "to stop the flow",
+     "terms": [
+      "stop flow",
+      "stop the flow",
+      "flow"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s05",
+   "kind": "cause",
+   "question": "Why could the crews not stay on the AK-3 site on the night of 16 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-16",
+    "npt_code": "WOE"
+   },
+   "stated_causes": [
+    {
+     "cause": "the generators had failed",
+     "terms": [
+      "generator"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s06",
+   "kind": "cause",
+   "question": "Why did AK-3 have to wait for more core rod on 3 September 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-09-03",
+    "npt_code": "WOE"
+   },
+   "stated_causes": [
+    {
+     "cause": "winds too strong to fly it to site",
+     "terms": [
+      "wind",
+      "weather"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s07",
+   "kind": "cause",
+   "question": "Why did the crew circulate at each joint while tripping in on AK-3 on 1 September 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-09-01"
+   },
+   "stated_causes": [
+    {
+     "cause": "hot fluid coming out of the hole",
+     "terms": [
+      "hot fluid",
+      "hot"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s08",
+   "kind": "cause",
+   "question": "Why was plywood laid as a walkway on the AK-3 site on 19 August 2016?",
+   "gold": [],
+   "outcome": "answer",
+   "gold_problem": {
+    "date": "2016-08-19"
+   },
+   "stated_causes": [
+    {
+     "cause": "the site was muddy",
+     "terms": [
+      "muddy",
+      "mud"
+     ],
+     "chunks": []
+    }
+   ]
+  },
+  {
+   "id": "s09",
+   "kind": "cause",
+   "question": "What caused AK-3 to wait?",
+   "gold": [],
+   "outcome": "ask_which",
+   "stated_causes": []
+  },
+  {
+   "id": "s10",
+   "kind": "cause",
+   "question": "What caused the blowout preventer to fail on AK-3 on 27 August 2016?",
+   "gold": [],
+   "outcome": "fallback",
+   "stated_causes": []
+  }
+ ],
+ "facts": []
+}
