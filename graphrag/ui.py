@@ -6,8 +6,8 @@ event graph, the events a total was computed from.
 Two modes:
 - Replay: any answer run in graphrag/results/ (E19 to E28) with its questions, gold values, citations and passages.
   Needs no model and no GPU, so it works on any machine; passage text shows where the corpus is on that machine.
-- Live: a new question, answered by the same code as the runs (retrieval routed by well, the per-well fact sheet,
-  or the event graph with its fallback). Needs a reachable model endpoint, such as llama.cpp on the desktop.
+- Live: a new question, answered through the coordinator (graphrag/coordinator.py): one framing call, then the
+  lanes code picks. Needs a reachable model endpoint, such as llama.cpp on the desktop.
 
 Standard library only; it listens on 127.0.0.1 and reads nothing but this repository's files.
 """
@@ -25,7 +25,6 @@ from typing import Any
 import httpx
 
 from .data import AK3_DAILY, AK3_DAILY_HELDOUT, AK3_EVENTS, AK3_EVENTS_HELDOUT, ROOT, load_chunks, load_questions
-from .retrieval import well_names
 
 RESULTS = ROOT / "graphrag/results"
 PAGE = Path(__file__).with_name("ui.html")
@@ -33,9 +32,6 @@ NAME = re.compile(r"^[A-Za-z0-9_.+-]{1,120}$")
 # Daily-report question sets read their questions straight from the gold file: load_questions would need the corpus.
 DAILY_SETS = {"ak3_daily": AK3_DAILY, "ak3_daily_heldout": AK3_DAILY_HELDOUT, "ak3_events": AK3_EVENTS,
               "ak3_events_heldout": AK3_EVENTS_HELDOUT}
-DAILY_WORDS = re.compile(r"\b(daily|hours?|npt|non-productive|activity code|per day|days?|\d{1,2} (january|february|"
-                         r"march|april|may|june|july|august|september|october|november|december)|\d{1,2}-[a-z]{3}-\d{2})\b",
-                         re.I)
 
 
 # ---- data -----------------------------------------------------------------------------------------------------
@@ -110,7 +106,8 @@ def list_runs() -> list[dict]:
             run = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if isinstance(run, dict) and run.get("rows") and run.get("question_set"):
+        # A pooled coordinator run names several question sets; replaying it is the application's job.
+        if isinstance(run, dict) and run.get("rows") and isinstance(run.get("question_set"), str):
             runs.append({"name": path.stem, "question_set": run["question_set"], "method": method_of(run),
                          "model": run.get("model"), "retriever": run.get("retriever"),
                          "correct": run.get("correct_total"), "questions": run.get("questions")})
@@ -170,91 +167,54 @@ def endpoint_status(endpoint: str) -> dict:
         return {"endpoint": endpoint, "up": False, "detail": f"nothing answers at {found.base_url}"}
 
 
-def choose_lane(question: str, lane: str) -> str:
-    if lane in ("eowr", "daily"):
-        return lane
-    return "daily" if DAILY_WORDS.search(question) else "eowr"
-
-
-def ask(question: str, lane: str = "auto", endpoint: str = "local-llama", model: str = "qwen3-8b") -> dict:
-    question = question.strip()[:500]
-    if not question:
-        return {"error": "Type a question first."}
-    status = endpoint_status(endpoint)
-    if not status["up"]:
-        return {"error": f"No model to answer with: {status['detail']}. Start llama.cpp (graphrag/README.md) or use "
-                         f"replay mode."}
-    from .baseline import answer_questions, build, pool
-    from .client import ModelClient, load_endpoints
-    chosen = choose_lane(question, lane)
-    client = ModelClient(load_endpoints()[endpoint], model)
-    q = [{"id": "live", "kind": "live", "question": question, "gold": []}]
-    plan_box: dict[str, Any] = {}
-    if chosen == "daily":
-        from .events import PLAN_SCHEMA, PLAN_SYSTEM, RESULT_NOTE, build_events, code_list, load_inputs, run_plan
-        try:
-            chunks, tables = load_inputs()
-        except (FileNotFoundError, OSError, KeyError):
-            return {"error": "The daily-report corpus is not on this machine (data/corpora/ak3_appendices)."}
-        events, _ = build_events(chunks, tables)
-        fallback = build("dates:wells:bm25", chunks)
-        system = PLAN_SYSTEM + code_list(events)
-
-        def retrieve(text: str) -> tuple[list[str], str]:
-            call = client.chat([{"role": "system", "content": system}, {"role": "user", "content": text}],
-                               schema=PLAN_SCHEMA, max_tokens=200)
-            plan = call.parsed or {"operation": "not_answerable"}
-            result, rows = run_plan(plan, events)
-            plan_box.update(plan=plan, result=result, events=[asdict(e) for e in rows[:60]])
-            if plan.get("operation") == "not_answerable" or not result:
-                plan_box["fallback"] = True
-                return [c for c, _ in fallback.search(text, 5)], ("" if plan.get("operation") == "not_answerable"
-                                                                  else "Event database result: no events match.")
-            sources = list(dict.fromkeys(c for e in rows for c in e.chunks))
-            return sources[:5], f"Event database result: {result}."
-
-        rows = answer_questions(retrieve, chunks, client, questions=q, system_note=RESULT_NOTE)
-        method = "Event graph" if not plan_box.get("fallback") else "Event graph planner, then retrieval by date"
-    else:
-        chunks = pool("three")
-        retriever = build("wells:bm25", chunks)
-        hits_box: dict[str, list[str]] = {}
-
-        def retrieve(text: str) -> tuple[list[str], str]:
-            hits = [cid for cid, _ in retriever.search(text, 5)]
-            hits_box["hits"] = hits
-            return hits, fact_sheet_for(text, chunks)
-
-        rows = answer_questions(retrieve, chunks, client, questions=q, answer_format="evidence_first")
-        method = "Retrieval by well, with the per-well fact sheet"
-    row = rows[0]
-    return {"lane": chosen, "method": method, "question": question, "status": row["status"], "values": row["values"],
-            "units": row["units"], "evidence": row.get("evidence"),
-            "citations": [dict(chunk_view(c["chunk"]), how=c["how"]) for c in row["citations"] if c.get("chunk")],
-            "plan": plan_box.get("plan"), "graph_result": plan_box.get("result"), "events": plan_box.get("events", []),
-            "prompt_tokens": row["prompt_tokens"], "completion_tokens": row["completion_tokens"],
-            "seconds": row["seconds"]}
+FORCED = {"eowr": ["well_facts", "passages"], "daily": ["events"]}
 
 
 @lru_cache(maxsize=1)
-def sheet_facts() -> list[dict]:
-    """The validated facts of the latest fact-sheet run (E27's design), checked strictly against the bundle."""
-    from .validate import validate
-    path = RESULTS / "E27_design_prototype.json"
-    names = json.loads(path.read_text(encoding="utf-8")).get("fact_sheet") if path.is_file() else None
-    facts = [f for n in names or [] if (RESULTS / f"{n}.json").is_file()
-             for f in json.loads((RESULTS / f"{n}.json").read_text(encoding="utf-8"))["facts"]]
-    kept, _ = validate(facts, {c.id: c.text for c in load_chunks()}, strict=True) if facts else ([], {})
-    return kept
+def engine():
+    """Loaded once: the reports, the event graph and the validated facts the lanes read."""
+    from .lanes import Engine
+    return Engine.load()
 
 
-def fact_sheet_for(question: str, chunks) -> str:
-    from .baseline import asks_about_plan, fact_sheet
-    facts = sheet_facts()
-    if not asks_about_plan(question):
-        facts = [f for f in facts if f["qualifier"] != "planned"]
-    sheet = fact_sheet(facts, limit=12)
-    return "\n".join(sheet[w] for w in sorted(well_names(question)) if w in sheet)
+def method_of_answer(row: dict) -> str:
+    if row["computed"]:
+        return "Event graph"
+    if row["fallback"] and row["frame"]["kind"] == "over_time":
+        return "Event graph planner, then retrieval by date"
+    if "well_facts" in row["lanes"]:
+        return "Retrieval by well, with the per-well fact sheet" if "passages" in row["lanes"] else "Per-well fact graph"
+    return "Retrieval (plain RAG)" if row["lanes"] else "Nothing found"
+
+
+def ask(question: str, lane: str = "auto", mode: str = "allow_fallback") -> dict:
+    """A new question, through the coordinator (specification §8.1). `lane` is "auto", or "eowr" or "daily" to force
+    the end-of-well lanes or the event graph. The models are the roles file's (configs/graphrag/roles.json)."""
+    question = question.strip()[:500]
+    if not question:
+        return {"error": "Type a question first."}
+    from .client import client_for, load_roles
+    from .coordinator import MODES, answer
+    roles = load_roles()
+    status = endpoint_status(roles["answer"]["endpoint"])
+    if not status["up"]:
+        return {"error": f"No model to answer with: {status['detail']}. Start llama.cpp (graphrag/README.md) or use "
+                         f"replay mode."}
+    q = {"id": "live", "kind": "live", "question": question, "gold": []}
+    row = answer(q, engine(), client_for("frame", roles), client_for("answer", roles),
+                 mode=mode if mode in MODES else "allow_fallback", lane=FORCED.get(lane))
+    computed = row["computed"] or {}
+    daily = row["lanes"] == ["events"] or row["frame"]["report_type"] == "daily" or row["frame"]["kind"] == "over_time"
+    return {"lane": lane if lane in FORCED else "daily" if daily else "eowr", "method": method_of_answer(row),
+            "question": question, "status": row["status"], "values": row["values"], "units": row["units"],
+            "evidence": row.get("evidence") or row.get("answer_text"),
+            "citations": [dict(chunk_view(c["chunk"]), how=c["how"]) for c in row["citations"] if c.get("chunk")],
+            "plan": row["frame"]["plan"] if row["frame"]["kind"] == "over_time" else None,
+            "graph_result": computed.get("text"), "events": computed.get("events", []),
+            "lanes": row["lanes"], "frame": row["frame"], "mode": row["mode"], "fallback": row["fallback"],
+            "prompt_tokens": row["prompt_tokens"] + row["frame_prompt_tokens"],
+            "completion_tokens": row["completion_tokens"] + row["frame_completion_tokens"],
+            "seconds": round(row["seconds"] + row["frame_seconds"], 3)}
 
 
 # ---- HTTP -----------------------------------------------------------------------------------------------------
@@ -296,7 +256,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             body = json.loads(self.rfile.read(length) or b"{}")
             self._json(ask(str(body.get("question", "")), str(body.get("lane", "auto")),
-                           str(body.get("endpoint", "local-llama")), str(body.get("model", "qwen3-8b"))))
+                           str(body.get("mode", "allow_fallback"))))
         except Exception as error:  # the page shows the message instead of a blank failure
             self._json({"error": f"{type(error).__name__}: {error}"}, 500)
 

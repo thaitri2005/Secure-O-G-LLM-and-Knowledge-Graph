@@ -26,11 +26,12 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Khai](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
 | Next | **The second build: one connected application** ([specification §4.6](../../PROJECT_DESIGN.md#46-second-build-one-connected-application)). Track B's part, in the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now): answers on K1 version 1 (E32), reading the stores, the lane interface, the fact graph as nodes for Neo4j, the coordinator (E33), computed results inserted by code, the reasoning probe (E34). Still waiting on the expert questions and the purpose of use (Q13) | B-D36 to B-D38, B-C35, [next-runs](next-runs.md) |
-| Coordinator | Designed, not built: one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). Adopted only if it matches the hand-routed scores on the 221 pooled questions | B-D32, B-D36 |
-| Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C); fact region proposed | B-C35 |
+| Coordinator | **Built, not yet measured** (`graphrag/coordinator.py`): one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). A result computed by code is reported by code, with no answer call. Adopted only if E33 matches the hand-routed scores on the 221 pooled questions; E33 needs the desktop GPU | B-D32, B-D36, B-C37 to B-C39 |
+| Lanes | `graphrag/lanes.py`: passages, well facts and events behind one function shape, each returning the same evidence; settings are the baseline's | B-C37 |
+| Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C). Fact region exported as nodes and relationships for Track C's loader: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), 216 facts of 5 wells | B-C35, B-C40, B-F60 |
 | Application | FastAPI backend and React frontend, read path first; `graphrag` is its library; the local UI stays a developer tool | B-D37 |
 | Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
-| Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
+| Answer records (K4) | Version 0.2 for coordinator runs (lanes, mode, kind of question, framing model, B-C41). Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
 | Vector store | pgvector inside Track C's PostgreSQL, Hung's proposal; BM25 stays alongside it | B-D30 |
 
@@ -779,3 +780,57 @@ No experiment was run today. This is design and documentation, done with Tri, be
 - Plan 3.2: rewritten. Removed: the M0 task list, the three tracks' research questions and work lists, the 30 October backlog and the note after the 9 November meeting. In their place: how M1 closed, the M2 checkpoints, and one task list by role.
 - `CLAUDE.md`, the documentation index, the main README's status, and a new [tracks index](../README.md) with a pointer for Track A.
 - Experiment numbers reserved: E32 answers on K1 version 1, E33 the coordinator on the pooled questions, E34 the reasoning probe.
+
+## 2026-11-24: lanes, coordinator and the fact graph export
+
+Code for plan tasks E3 to E6, written from the [implementation plan](plan-lanes-and-coordinator.md) on the laptop, with stand-in models. **No model was run and nothing was measured today**: the laptop has no GPU and no model files. E33 is the measurement, and it needs the desktop.
+
+**B-C37 (design choice; builds B-D36).** `graphrag/lanes.py` puts the three answer paths behind one shape: `lane(question, frame, engine) -> Evidence`.
+
+- `Evidence` has the lane's name, `exact` (true for facts and computed results, false for passages), `passages` (chunk IDs), `facts`, `computed` (plan, text, values, unit, events, source chunks), the answer format and the report type.
+- `Engine` holds what the lanes read: the end-of-well chunks, the daily-report chunks, the events and the validated facts. Today it loads them from files (`Engine.load`); reading the stores replaces only that method.
+- The settings are the baseline's (B-D23, B-D26), not new ones: `wells:bm25` top 5; several wells per-well fusion top 10 with evidence first; daily reports `dates:wells:bm25` top 5. No lane calls a model.
+- The well-facts lane hides planned values unless the question asks about a plan (B-C21). Its passages are the chunks of the facts a prompt shows, 12 per named well, not of every fact: one well can have over a hundred survey facts.
+- `graphrag/baseline.py` gains `answer_one`, the body of `answer_questions`' loop. The 40 requests of two baseline runs (the prototype's questions, and the probe with multi-well routing) are byte for byte what they were, checked by a test against hashes recorded from the code before the change, so the request cache and E14 to E31 still reproduce.
+
+**B-C38 (design choice; builds B-D36).** `graphrag/coordinator.py`, the coordinator of specification §8.1.
+
+- **Frame.** One call with `FRAME_SCHEMA`: `kind` and `report_type` first, then the event planner's fields (B-C24), so the plan is written knowing whether the question is one over time (the field-order lesson of B-F22). The system prompt is the planner's, plus one paragraph defining the six kinds and four report types.
+- **What code decides.** A frame whose kind, report type or operation is outside its list is discarded for the empty frame, which routes to the end-of-well lanes. One well read in the question replaces the plan's well; two or more make the kind `across_wells`.
+- **Route.** A question over time with a plan goes to `events`; a daily-report question to `passages`; anything else to `well_facts` then `passages`. `exact` mode drops `passages`.
+- **Fallback.** If no routed lane finds anything, passages run: of the daily reports for a question over time or about them, else of the end-of-well reports.
+- **Answer.** With facts and passages both found, the prompt is what E22 and E26 measured: the fact sheet before the passages lane's hits. Facts' chunks are not added to the passages.
+- **Exact mode with nothing in the graphs:** status `not_found_in_graph`, no answer call, the closest passages returned as sources.
+- `--no-embeddings` uses per-well BM25 for several wells, for a machine without the embedding server.
+
+**B-C39 (design choice; this is task E6, and changes specification §8.1 and §8.3).** A result computed by code is the answer as code wrote it. There is no second model call for it.
+
+- `graphrag.events.plan_value` returns a plan's result as values and a unit beside the text; `run_plan` wraps it and its text is unchanged, because Track C replays 58 recorded plans against that text.
+- The answer row takes its values from code and cites the source events (`how: event_graph`).
+- A computed answer now costs one model call (the frame), where E28 spent two. On E28's new set the two-call path scored 19 of 23, and E28 estimated from the rows that reporting in code would give 22; that estimate was computed, not run. E33 is to show what it gives.
+- The specification said the model would word a sentence around the number. That is dropped: the result text is already a sentence, and one call fewer is cheaper.
+
+**B-C40 (design choice; builds B-C35, D-67).** `graphrag/factgraph.py` writes the fact region as nodes and relationships for Track C's loader: `python -m graphrag.factgraph --facts <fact runs> --name <name>`.
+
+- Nodes `{label, key, properties}`: `Well`, `Document`, `Chunk`, `Fact`, `CasingString`, `HoleSection`. Relationships `{type, from, to}`: `HAS_FACT`, `FROM`, `DESCRIBED_BY`, `HAS_CHUNK`, `HAS_CASING`, `HAS_SECTION`. Sorted and free of duplicates, so the same facts give the same file.
+- Facts pass the strict checks of `graphrag/validate.py` first. A fact's `source` is `table_mapping` or `llm`.
+- A casing string takes its depth, weight and grade from actual facts only.
+- **Not written:** `CASED_WITH` between a hole section and its casing string, because no fact says which casing was set in which hole. Specification §8.5 now says `HAS_CASING` from the well instead.
+- First export, [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), from the two fact runs the current design uses (`E20_graph_three_qwen3-4b`, `E27_tables_three`): 892 facts read, 216 kept; 5 wells, 3 documents, 38 chunks, 11 casing strings, no hole section; no dangling relationship.
+
+**B-F60 (finding; from the first export, B-C40).** Two things to check before the fact region is trusted:
+
+- **Offset wells.** 13 facts are about TG-2 and TG-4, earlier Akutan wells that the AK-3 report describes. All 13 come from LLM extraction, and none is checked against gold. They are attached to the AK-3 report as their document, which is right, but a question about "the well" of that report must not pick them up.
+- **A casing string that may be a hole size.** 68-32 has a casing string of size `8-3/4`, which reads like a bit size. Not checked against the report.
+
+**B-C41 (design choice).** K4 version 0.2, written for coordinator runs only: `pipeline` gains `lanes`, `mode` and `frame_kind` with `base: "coordinator"`; `models` gains `frame`; `status` gains `not_found_in_graph`; `cost` adds the framing call to the answer call. Earlier runs still write version 0.1. Model roles (`frame`, `answer`, `extract`, `embed`) are in `configs/graphrag/roles.json` (D-62), read by `client.client_for`.
+
+**B-C42 (design choice).** The local UI's live answers go through the coordinator: `ui.ask(question, lane, mode)`. Its own lane guess from the question's words (`choose_lane`) and its own fact sheet are removed. The page is unchanged; it does not yet offer the exact-answer switch, which belongs to the React application. Pooled coordinator runs are not listed for replay.
+
+**Not done, and why.** E32 and E33 need Qwen3-8B on the desktop GPU. The command for E33:
+
+```powershell
+python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool
+```
+
+The daily-report corpus is not on the laptop either, so the daily and event lanes were tested on stand-in chunks and events only.

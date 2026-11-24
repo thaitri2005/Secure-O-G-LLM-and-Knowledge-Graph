@@ -4,7 +4,7 @@ Track B's code for the first build: the model client, the baseline, and the Grap
 
 ## Architecture
 
-Solid lines are what runs (B-D23, B-D26). The fact sheet from the per-well fact graph is part of the end-of-well path (B-D29). Which reports are asked about is chosen per run, by the command you use.
+Solid lines are what runs (B-D23, B-D26). The fact sheet from the per-well fact graph is part of the end-of-well path (B-D29). In `graphrag.baseline` and `graphrag.events`, which reports are asked about is chosen per run, by the command you use. In `graphrag.coordinator`, a framing call takes the place of the `KIND` box and code picks the lane (below).
 
 ```mermaid
 flowchart TD
@@ -44,13 +44,36 @@ flowchart TD
 | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22, E29): `python -m graphrag.tables --pool three --name my_tables` |
 | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
-| `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan |
+| `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan. `plan_value` gives a result as values and a unit |
+| `lanes.py` | The three lanes behind one shape (specification §8.1): `passages`, `well_facts`, `events`, each `(question, frame, engine) -> Evidence`. `Engine` holds what they read |
+| `coordinator.py` | One framing call, then lanes chosen in code, a fixed fallback and the exact-answer mode (D-64). Reports a computed result in code. Pooled runs over several question sets |
+| `factgraph.py` | The per-well fact graph as nodes and relationships for Track C's Neo4j loader (specification §8.5) |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |
 | `lightrag_run.py` | LightRAG 1.5.7 (MIT, as a library, `.venv-lightrag`) on our chunks, client and answer harness (E19) |
 | `ontology.py` | K2 ontology slice: glossary from the reports' tables, rendering as extractor guidance |
 | `neo4j_kg.py` | neo4j-graphrag-python (Apache-2.0, used as a library) on the K1 chunks: the ontology profile as its schema, our client as its LLM and embedder, facts read back from Neo4j and scored against the gold facts (E16) |
 
 Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/endpoints.json). Hosted endpoints read their key from the environment, for example `OPENROUTER_API_KEY`. Local endpoints refuse no data class; hosted ones accept public data only.
+
+## The coordinator (D-64)
+
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, on the desktop, one request at a time. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
+
+```powershell
+# Every development question in one pool, no lane given (E33)
+python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool
+# Graph answers only: facts and computed results, no fallback to passages (D-59)
+python -m graphrag.coordinator answer --questions ak3_events_heldout --mode exact --name my_exact
+# K4 version 0.2 records
+python -m graphrag.k4 E33_coordinator_pool
+# The fact graph as nodes and relationships for Neo4j
+python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three --name my_fact_graph
+```
+
+- A question costs one framing call, plus one answer call unless code computed the result.
+- Which model serves which role (`frame`, `answer`, `extract`, `embed`) is in [`configs/graphrag/roles.json`](../configs/graphrag/roles.json).
+- `--no-embeddings` answers questions naming several wells with per-well BM25, when the embedding server is not running.
+- Tests: `tests/test_graphrag_lanes.py`, with stand-in models.
 
 ## The UI (D-60)
 
@@ -59,7 +82,7 @@ python -m graphrag.ui        # then open http://127.0.0.1:8765
 ```
 
 - **Recorded runs:** pick a question set and a run (E19 to E28); each question shows its path through the pipeline, the answer and whether it is correct, the cited passage with its page, and, for the event graph, the query plan and the events the total was computed from. "Compare with" puts a second run of the same questions beside it, for example the event graph against plain RAG. Needs no model, so it works on a laptop; passage text shows only where that corpus is on the machine.
-- **Ask a question:** answers a new question with the same code as the runs: retrieval routed by well with the fact sheet for end-of-well questions, the event graph with its fallback for daily-report questions. The lane is chosen from the question's words, or by hand. Needs llama.cpp on port 8080; hosted endpoints are off in the UI.
+- **Ask a question:** answers a new question through the coordinator: the framing call and code choose the lane, or you force the end-of-well lanes or the event graph by hand. Needs llama.cpp on port 8080; hosted endpoints are off in the UI.
 - Standard library only, listening on 127.0.0.1. Tests: `tests/test_graphrag_ui.py`.
 
 ## Running locally

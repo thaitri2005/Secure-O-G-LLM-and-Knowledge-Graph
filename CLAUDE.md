@@ -42,7 +42,7 @@ The first build's tracks are closed (24 November). For the second build Tri take
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Now: the second build, designed on 24 November and not yet coded.** One connected application: a FastAPI backend and a React frontend on the shared stores, with `graphrag` as the engine library (D-65). Before any code, read specification §4.6, §7.5, §8.1, §8.5 and §8.6, then the plan's §7. Reserved experiment numbers: E32 answers on K1 version 1, E33 the coordinator on the 221 pooled questions, E34 the reasoning probe.
+- **Now: the second build, designed on 24 November. The engine side is coded and tested with stand-in models (lanes, coordinator, fact graph export, K4 0.2; log B-C37 to B-C42); nothing is measured yet.** One connected application: a FastAPI backend and a React frontend on the shared stores, with `graphrag` as the engine library (D-65). Before any code, read specification §4.6, §7.5, §8.1, §8.5 and §8.6, then the plan's §7. Reserved experiment numbers: E32 answers on K1 version 1, E33 the coordinator on the 221 pooled questions, E34 the reasoning probe.
 
 - **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is part of the design and of the end-of-well answer path (B-D29, which reverses B-D24). Plain RAG is the baseline the graphs are measured against, not the system. On 9 November the supervisor accepted the lanes as a concept and asked for a coordinator; he has not said whether users ask questions over time.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
@@ -62,10 +62,13 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
   | `k4.py` | K4 answer records (`schemas/k4_answer_record.schema.json`) from any answer run |
   | `events.py` | Event graph from operations tables, with no model call: the model plans, code runs the plan (E28) |
+  | `lanes.py` | The three lanes behind one shape: `passages`, `well_facts`, `events`, each returning `Evidence` (B-C37) |
+  | `coordinator.py` | One framing call, lanes chosen in code, fallback, exact mode, pooled runs (B-C38; built, not yet measured: E33) |
+  | `factgraph.py` | The fact graph as nodes and relationships for Track C's Neo4j loader (B-C40) |
   | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24; a diagnostic, it reads the gold data) |
   | `ui.py`, `ui.html` | Local UI (D-60): replays recorded runs with citations, events and side-by-side comparison, and answers new questions when llama.cpp runs. `python -m graphrag.ui`, then http://127.0.0.1:8765 |
 
-  Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag.py"`.
+  Endpoints are in `configs/graphrag/endpoints.json`; Neo4j with APOC in `configs/graphrag/docker-compose.yml`. Tests: `python -m unittest discover -s tests -p "test_graphrag*.py"`.
 - **Results so far** (up to E22: AK-3 EOWR and the prototype's 31 questions, E10 prototype 23/31; later rows name their questions):
 
   | Run | Setup | Correct |
@@ -108,9 +111,9 @@ The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B'
 
 1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1).
 2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)); then read chunks and vectors from Hung's stores.
-3. The lane interface: passages, well facts and events behind one function shape with one evidence output; model roles in configuration.
-4. The fact graph as nodes and relationships for Neo4j (specification §8.5, to agree with Hung).
-5. The coordinator, measured as E33 before it is adopted; results computed by code inserted by code.
+3. ~~The lane interface and model roles~~: done (B-C37, B-C41).
+4. ~~The fact graph as nodes and relationships~~: exported (B-C40); Hung to load it, and B-F60's two doubts to check.
+5. The coordinator is built (B-C38, B-C39). **Run E33 on the desktop** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`) and adopt it only if it matches the hand-routed scores.
 6. The reasoning probe, E34: about ten frozen questions on AK-3's non-productive events.
 7. The React frontend, which Tri owns.
 

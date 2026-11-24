@@ -328,6 +328,12 @@ class CoordinatorTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             coordinator.answer(Q("x"), self.engine, scripted, scripted, lane="poetry")
 
+    def test_several_forced_lanes_run_in_the_order_given(self):
+        scripted = ScriptedClient(None, DEPTH_ANSWER)
+        row = coordinator.answer(Q("What casing depth did well AK-3 reach?"), self.engine, scripted, scripted,
+                                 lane=["well_facts", "passages"])
+        self.assertEqual(row["lanes"], ["well_facts", "passages"])
+
 
 class PooledRunTests(unittest.TestCase):
     def test_pool_prefixes_ids_and_names_the_expected_lane(self):

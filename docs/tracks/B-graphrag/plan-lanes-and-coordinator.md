@@ -1,5 +1,7 @@
 # Lanes and coordinator: implementation plan
 
+**Status: carried out on 24 November 2026.** What was built, and where it differs from this plan, is in the [log](log.md), entries B-C37 to B-C42. Differences: activity code `DRIL` in the tests; request hashes instead of request text in the fixture; the answer prompt keeps the measured design (fact sheet before the passages lane's hits) instead of merging passages; `to_graph(facts)` takes no chunks; the real export is `E27_fact_graph`. The measurement (E33) is still to run.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Put Track B's three answer paths behind one lane interface, add the coordinator that picks a lane per question, and export the fact graph as nodes and relationships, all testable without a model server.

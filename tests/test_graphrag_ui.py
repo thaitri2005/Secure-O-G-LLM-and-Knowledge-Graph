@@ -42,11 +42,25 @@ class UiTests(unittest.TestCase):
             with self.assertRaises(FileNotFoundError):
                 ui.run_view(name)
 
-    def test_lane_is_chosen_from_the_question(self):
-        self.assertEqual(ui.choose_lane("How many non-productive hours were logged?", "auto"), "daily")
-        self.assertEqual(ui.choose_lane("What was the mud weight on 18 August 2016?", "auto"), "daily")
-        self.assertEqual(ui.choose_lane("What casing was set in well 56-32?", "auto"), "eowr")
-        self.assertEqual(ui.choose_lane("anything", "eowr"), "eowr")
+    def test_live_question_goes_through_the_coordinator(self):
+        # The stand-in answers every call the same way, so the framing call gives no frame and the coordinator
+        # takes its end-of-well route: the well's facts, then passages.
+        with patch.object(ui, "endpoint_status", return_value={"up": True, "detail": "test"}), \
+                patch("graphrag.client.ModelClient", FakeClient):
+            out = ui.ask("What total depth did well AK-3 reach?")
+        self.assertIn("passages", out["lanes"])
+        self.assertEqual((out["values"], out["mode"], out["lane"]), (["1955"], "allow_fallback", "eowr"))
+        self.assertEqual(out["frame"]["kind"], "other")
+        self.assertIn("fact", out["method"])
+
+    def test_exact_mode_is_passed_through(self):
+        with patch.object(ui, "endpoint_status", return_value={"up": True, "detail": "test"}), \
+                patch("graphrag.client.ModelClient", FakeClient):
+            out = ui.ask("What depth did well ZZ-9 reach?", mode="exact")
+        self.assertEqual((out["status"], out["values"], out["mode"]), ("not_found_in_graph", [], "exact"))
+
+    def test_pooled_coordinator_runs_are_not_listed_for_replay(self):
+        self.assertTrue(all(isinstance(r["question_set"], str) for r in ui.list_runs()))
 
     def test_live_answer_without_a_model_server_says_so(self):
         with patch.object(ui, "endpoint_status", return_value={"up": False, "detail": "nothing answers"}):

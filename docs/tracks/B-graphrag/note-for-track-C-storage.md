@@ -59,3 +59,17 @@ Tell us when the stores can take K1 version 0, and Track B will run on them.
 **Update, 9 November: the K1 package.** Khai shared Track A's K1 version 1 package for AK-3 (five documents) as a zip with the team rather than committing it, because data pushed to git is hard to remove. Track B keeps its copy in the ignored folder `data/interim/k1/`. Its IDs follow D-54, which is now agreed, so the loader can be built on them. Khai's QA output is a separate sidecar file next to the package.
 
 **Request, 10 November: shared hosting (Track B log B-D35). High priority, and Track C's to own:** whoever builds the database side owns where it runs. Once the resources are up, add Tri and Khai as users with their own credentials. Could you host the stores on a free cloud tier (AWS or Azure with the GitHub Student Developer Pack) and give each of us credentials? Then K1 packages, vectors and graphs live in one place instead of being sent around as zips. Public data only; private documents stay local (specification §10). Keep credentials out of the repository, for example in each person's environment variables.
+
+## The fact graph, ready to load (24 November 2026)
+
+For plan tasks B2 and B3. The design is [specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships); the layout is still a proposal (D-67), so say so if another shape loads or queries better.
+
+- **File:** [`graphrag/results/E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), written by `python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three --name E27_fact_graph`. No model call.
+- **Shape:** `nodes` is a list of `{label, key, properties}`; `relationships` is a list of `{type, from: [label, key], to: [label, key], properties}`. `(label, key)` is unique. Both lists are sorted, so a second export of the same facts is identical.
+- **Labels:** `Well` (key: its name), `Document` (key: the document part of a chunk ID), `Chunk` (key: the chunk ID, no properties), `Fact`, `CasingString`.
+- **Relationship types:** `HAS_FACT`, `FROM`, `DESCRIBED_BY`, `HAS_CHUNK`, `HAS_CASING`.
+- **Counts to check a load against:** 5 wells, 3 documents, 38 chunks, 216 facts, 11 casing strings; 216 `HAS_FACT`, 216 `FROM`, 38 `HAS_CHUNK`, 5 `DESCRIBED_BY`, 11 `HAS_CASING`.
+- **Joins the event region at `Well` and `Chunk`:** merge on the key, do not create a second `Well {name: "AK-3"}`.
+- **Chunk IDs are K1 version 0** (`gdr882_ak3_eowr#c0013`), because the facts were extracted from the committed bundle. They need the legacy ID map, or a fact run on a K1 version 1 package, before they match chunks in PostgreSQL. This is the same limit as the event graph's chunks (Track C log C-C11).
+- **Two doubts in the data** (Track B log B-F60): facts about TG-2 and TG-4, wells the AK-3 report only describes; and a 68-32 casing string of size `8-3/4`.
+

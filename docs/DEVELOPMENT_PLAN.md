@@ -246,10 +246,10 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 |---|---|---|---|
 | E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | Desktop | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
 | E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores |
-| E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | Existing runs reproduce through the interface; tests cover each lane |
-| E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | A file of nodes and relationships for AK-3 that B3 can load |
-| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch | E3 | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
-| E6 | Results computed by code are inserted by code | E3 | The garbled answers of E28 are gone; rerun in E33 |
+| E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | **Done 24 November** (Track B log B-C37, B-C41): the baseline's requests are unchanged, and tests cover each lane |
+| E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | **Done 24 November** (B-C40): `graphrag/results/E27_fact_graph.graph.json`, 216 facts of 5 wells. Two doubts to check (B-F60) |
+| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, desktop | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
+| E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, desktop | The garbled answers of E28 are gone; rerun in E33 |
 | E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support |
 
 ### Frontend (Tri)

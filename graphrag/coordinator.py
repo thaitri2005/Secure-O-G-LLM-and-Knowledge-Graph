@@ -110,15 +110,15 @@ def _computed_row(q: dict, computed: dict, gold: dict) -> dict:
 
 
 def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | None = None,
-           mode: str = "allow_fallback", lane: str | None = None) -> dict:
-    """One question through the coordinator. `lane` forces one lane instead of the route. The row has the keys of
+           mode: str = "allow_fallback", lane: str | list[str] | None = None) -> dict:
+    """One question through the coordinator. `lane` forces one lane, or several, instead of the route. The row has the keys of
     `baseline.answer_one`, plus the frame, the lanes that gave evidence, the mode, and whether it fell back."""
     if mode not in MODES:
         raise ValueError(f"unknown mode {mode!r}")
     gold = gold or {}
     question = q["question"]
     frame, call = frame_question(question, engine, frame_client)
-    routed = [lane] if lane else route(frame, mode)
+    routed = ([lane] if isinstance(lane, str) else list(lane)) if lane else route(frame, mode)
     found = [e for e in (LANES[name](question, frame, engine) for name in routed) if not e.empty]
     fallback = False
     if not found and mode == "allow_fallback":
