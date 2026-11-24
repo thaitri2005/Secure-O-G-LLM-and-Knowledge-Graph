@@ -58,7 +58,6 @@ def log_to_the_console() -> None:
 
 
 def create_app(service: Service | None = None) -> FastAPI:
-    log_to_the_console()
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
         # A deployment on the stores must not start half-working: build the service now, so a wrong address or
@@ -262,6 +261,8 @@ def default_service() -> Service:
     vectors (graphrag.stores.choose_multi_well_retriever). The choice is made here once (`Engine.retrieval`)."""
     from graphrag.client import client_for, load_endpoints, load_roles
     from graphrag.lanes import Engine
+
+    log_to_the_console()
 
     from .questions import JsonlQuestionLog, PostgresQuestionLog
     source, dsn = os.environ.get("BACKEND_SOURCE") or "files", os.environ.get("BACKEND_DSN")

@@ -135,6 +135,38 @@ class UnitTests(unittest.TestCase):
         self.assertFalse(same_unit("in", "ft"))
 
 
+class FocusTests(unittest.TestCase):
+    """Which stated causes stand when an incident holds more than one thing that went wrong."""
+    ITEMS = [
+        {"id": "E1", "kind": "event", "problem": True, "date": "2016-08-20", "text": "Work to free stuck pipe, due to plugged inner barrel",
+         "activity": {"code": "STUCK", "description": "Work to free stuck pipe, due to plugged inner barrel"}},
+        {"id": "E2", "kind": "event", "problem": True, "date": "2016-08-21", "text": "Well kicked. Lost rod due to foot clamp slipping",
+         "activity": {"code": "OTHER", "description": "Well kicked. Lost rod due to foot clamp slipping"}},
+        {"id": "E3", "kind": "event", "problem": True, "date": "2016-08-21", "text": "fly fishing tool, catch fish",
+         "activity": {"code": "FISH", "description": "fly fishing tool, catch fish"}},
+        {"id": "P1", "kind": "passage", "text": "The bulk of non-productive time was due to well control issues"}]
+    PLUGGED = {"cause": "plugged inner barrel", "citations": [{"evidence": "E1", "quote": "due to plugged inner barrel"}]}
+    CLAMP = {"cause": "foot clamp slipped", "citations": [{"evidence": "E2", "quote": "Lost rod due to foot clamp slipping"}]}
+    GENERAL = {"cause": "well control", "citations": [{"evidence": "P1", "quote": "due to well control issues"}]}
+
+    def stands(self, date, keywords, stated):
+        pack = {"items": self.ITEMS, "asked": {"date": date, "keywords": keywords}}
+        return [i["cause"] for i in reasoning.stated_causes(stated, pack)[0]]
+
+    def test_the_reason_written_in_the_activity_asked_about_stands_alone(self):
+        self.assertEqual(self.stands("2016-08-20", ["stuck pipe"], [self.PLUGGED, self.CLAMP, self.GENERAL]), ["plugged inner barrel"])
+
+    def test_with_no_reason_in_that_activity_the_nearest_earlier_one_stands(self):
+        self.assertEqual(reasoning.focus({"items": self.ITEMS, "asked": {"date": "2016-08-21", "keywords": ["fish"]}}), ["E3"])
+        self.assertEqual(self.stands("2016-08-21", ["fish"], [self.PLUGGED, self.CLAMP, self.GENERAL]), ["foot clamp slipped"])
+
+    def test_with_no_day_and_no_keyword_the_whole_problem_is_meant(self):
+        self.assertEqual(self.stands("", [], [self.PLUGGED, self.CLAMP]), ["plugged inner barrel", "foot clamp slipped"])
+
+    def test_a_reason_from_a_passage_stands_only_when_no_activity_gives_one(self):
+        self.assertEqual(self.stands("2016-08-21", ["fish"], [self.GENERAL]), ["well control"])
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):

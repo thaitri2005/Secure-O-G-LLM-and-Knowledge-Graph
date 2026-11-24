@@ -53,7 +53,7 @@
     }
   },
   "questions": 10,
-  "correct_total": "4/10",
+  "correct_total": "6/10",
   "rightly_routed": "9/10",
   "fallbacks": 1,
   "per_question": {
@@ -65,7 +65,7 @@
   "by_set": {
     "ak3_reasoning_probe_v0": {
       "questions": 10,
-      "correct": "4/10",
+      "correct": "6/10",
       "rightly_routed": "9/10",
       "fallbacks": 1,
       "calls_per_question": 2.0,
@@ -76,10 +76,10 @@
   },
   "reasoning": {
     "questions": 10,
-    "correct": "4/10",
+    "correct": "6/10",
     "problem_found": "8/10",
     "stated_found_and_cited": "8/10",
-    "unsupported_claims": 8,
+    "unsupported_claims": 5,
     "removed_by_check": 3,
     "asked_which": 0
   },
@@ -92,7 +92,7 @@
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
@@ -121,7 +121,7 @@
       "completion_tokens": 443,
       "seconds": 215.305,
       "cached": true,
-      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: plugged inner barrel [E3]; foot clamp slipping [P2]. Possible, not stated in any report: high torque [E2]; steam kick [E2]; inadequate cooling of the hole [E1]; inadequate mud properties [E1]; inadequate communication or coordination [P6]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; specific details about the core pipe's condition before the incident; temperature readings of the hole during the coring operation; data on the mud properties and their effectiveness in cooling the hole; information on the maintenance and inspection history of the foot clamp.",
+      "answer_text": "Problem: non-productive time coded KICK from 2016-08-20 17:00 to 2016-08-23 11:00: 21 events, 66 hours, end depth 176 ft. Stated in the reports: plugged inner barrel [E3]. Possible, not stated in any report: high torque [E2]; foot clamp slipping [P2]; steam kick [E2]; inadequate cooling of the hole [E1]; inadequate mud properties [E1]; inadequate communication or coordination [P6]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; specific details about the core pipe's condition before the incident; temperature readings of the hole during the coring operation; data on the mud properties and their effectiveness in cooling the hole; information on the maintenance and inspection history of the foot clamp.",
       "reasoning": {
         "problem": {
           "date_from": "2016-08-20",
@@ -1005,17 +1005,6 @@
                 "quote": "due to plugged inner barrel"
               }
             ]
-          },
-          {
-            "cause": "foot clamp slipping",
-            "citations": [
-              {
-                "evidence": "P2",
-                "chunk": "f41b0c1e42cd79364:s1:c13",
-                "how": "model",
-                "quote": "Lost rod due to foot clamp slipping"
-              }
-            ]
           }
         ],
         "possible": [
@@ -1027,6 +1016,17 @@
                 "chunk": "f4f05215feea85339:t16:c0",
                 "how": "model",
                 "quote": "high torque, stuck pipe"
+              }
+            ]
+          },
+          {
+            "cause": "foot clamp slipping",
+            "citations": [
+              {
+                "evidence": "P2",
+                "chunk": "f41b0c1e42cd79364:s1:c13",
+                "how": "model",
+                "quote": "Lost rod due to foot clamp slipping"
               }
             ]
           },
@@ -1080,7 +1080,10 @@
           "stated": 0,
           "possible": 1
         },
-        "moved_to_possible": 2,
+        "moved_to_possible": 3,
+        "focus": [
+          "E3"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -1172,9 +1175,9 @@
         "problem_found": true,
         "stated_found": "1/1",
         "stated_found_and_cited": true,
-        "unsupported_claims": 1,
+        "unsupported_claims": 0,
         "removed_by_check": 1,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v0",
       "expected": "reasoning",
@@ -2177,6 +2180,10 @@
           "possible": 0
         },
         "moved_to_possible": 2,
+        "focus": [
+          "E5",
+          "E6"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -2285,7 +2292,7 @@
       "raw_values": [],
       "units": [],
       "withheld_values": [],
-      "correct": false,
+      "correct": true,
       "no_wrong_values": true,
       "retrieved_gold": null,
       "gold_facts_retrieved": null,
@@ -2318,7 +2325,7 @@
       "completion_tokens": 653,
       "seconds": 282.453,
       "cached": true,
-      "answer_text": "Problem: non-productive time coded WOE from 2016-08-16 19:00 to 2016-08-17 9:00: 3 events, 14 hours, end depth 0 ft. Stated in the reports: Failed generators prevented crews from staying on site [E8, P1]; Camp generator was not yet operational [P4]; Non-productive time due to weather [P4]. Possible, not stated in any report: Heavy rain made it difficult to install internet connection [P1]; Inadequate backup generator availability [E8, P1]; Delays in transporting backup generators to the site [P1, P5]; Inefficient setup of camp infrastructure [P1, P5]; Communication issues due to lack of internet [P1, P5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details on the timeline of generator failures and backup generator deployment; Information on the number of generators initially available and their capacity; Details on the communication protocols in place during the generator failure; Data on the time required to install the backup generator and its impact on operations.",
+      "answer_text": "Problem: non-productive time coded WOE from 2016-08-16 19:00 to 2016-08-17 9:00: 3 events, 14 hours, end depth 0 ft. Stated in the reports: Failed generators prevented crews from staying on site [E8, P1]. Possible, not stated in any report: Camp generator was not yet operational [P4]; Heavy rain made it difficult to install internet connection [P1]; Non-productive time due to weather [P4]; Inadequate backup generator availability [E8, P1]; Delays in transporting backup generators to the site [P1, P5]; Inefficient setup of camp infrastructure [P1, P5]; Communication issues due to lack of internet [P1, P5]. Missing for a real judgement: offset wells: what happened in nearby wells drilled through the same formations; formation pressures and temperatures measured over depth; drilling parameters sampled over time, such as weight on bit, torque, pump pressure and flow; lessons-learned or incident investigation reports; Specific details on the timeline of generator failures and backup generator deployment; Information on the number of generators initially available and their capacity; Details on the communication protocols in place during the generator failure; Data on the time required to install the backup generator and its impact on operations.",
       "reasoning": {
         "problem": {
           "date_from": "2016-08-16",
@@ -2957,7 +2964,9 @@
                 "quote": "Camp generator went down at 11:00, fly backup set from staging area."
               }
             ]
-          },
+          }
+        ],
+        "possible": [
           {
             "cause": "Camp generator was not yet operational",
             "citations": [
@@ -2970,19 +2979,6 @@
             ]
           },
           {
-            "cause": "Non-productive time due to weather",
-            "citations": [
-              {
-                "evidence": "P4",
-                "chunk": "gdr882_ak3_eowr#c0034",
-                "how": "model",
-                "quote": "The bulk of non-productive time was due to well control issues and weather."
-              }
-            ]
-          }
-        ],
-        "possible": [
-          {
             "cause": "Heavy rain made it difficult to install internet connection",
             "citations": [
               {
@@ -2990,6 +2986,17 @@
                 "chunk": "f62efbee00767a3e7:f5:c0",
                 "how": "model",
                 "quote": "Heavy rain throughout the day, having difficulty to install internet connection"
+              }
+            ]
+          },
+          {
+            "cause": "Non-productive time due to weather",
+            "citations": [
+              {
+                "evidence": "P4",
+                "chunk": "gdr882_ak3_eowr#c0034",
+                "how": "model",
+                "quote": "The bulk of non-productive time was due to well control issues and weather."
               }
             ]
           },
@@ -3067,7 +3074,11 @@
           "stated": 0,
           "possible": 0
         },
-        "moved_to_possible": 1,
+        "moved_to_possible": 3,
+        "focus": [
+          "E8",
+          "E9"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -3155,9 +3166,9 @@
         "problem_found": true,
         "stated_found": "1/1",
         "stated_found_and_cited": true,
-        "unsupported_claims": 2,
+        "unsupported_claims": 0,
         "removed_by_check": 0,
-        "correct": false
+        "correct": true
       },
       "set": "ak3_reasoning_probe_v0",
       "expected": "reasoning",
@@ -3778,6 +3789,9 @@
           "possible": 1
         },
         "moved_to_possible": 1,
+        "focus": [
+          "E5"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -4595,6 +4609,9 @@
           "possible": 0
         },
         "moved_to_possible": 2,
+        "focus": [
+          "E8"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -5222,6 +5239,9 @@
           "possible": 0
         },
         "moved_to_possible": 0,
+        "focus": [
+          "E5"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -6372,6 +6392,17 @@
           "possible": 0
         },
         "moved_to_possible": 2,
+        "focus": [
+          "E3",
+          "E5",
+          "E6",
+          "E7",
+          "E10",
+          "E13",
+          "E14",
+          "E19",
+          "E23"
+        ],
         "citations_named_shown": true,
         "missing": [
           {
@@ -7516,6 +7547,29 @@
           "possible": 0
         },
         "moved_to_possible": 1,
+        "focus": [
+          "E3",
+          "E4",
+          "E5",
+          "E6",
+          "E7",
+          "E8",
+          "E9",
+          "E10",
+          "E11",
+          "E12",
+          "E13",
+          "E14",
+          "E15",
+          "E16",
+          "E17",
+          "E18",
+          "E19",
+          "E20",
+          "E21",
+          "E22",
+          "E23"
+        ],
         "citations_named_shown": true,
         "missing": [
           {

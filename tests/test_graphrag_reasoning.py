@@ -373,8 +373,8 @@ GOLD_QUESTION = {"id": "r01", "kind": "cause", "question": "What caused the stuc
                  "gold": [], "outcome": "answer", "gold_problem": {"date": "2016-08-20", "npt_code": "KICK"},
                  "stated_causes": [{"cause": "plugged inner barrel", "terms": ["plugged inner barrel", "inner barrel"],
                                     "chunks": ["gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"]}]}
-# The same question with no day: nothing says the lost rod of 21 August came after the problem asked about, so a
-# reason given for it stays a stated cause, and the gold counts it as unsupported.
+# The same question with no day, framed by the incident's code alone: the whole incident is meant, so the reason
+# given for the lost rod of 21 August stays a stated cause, and the gold counts it as unsupported.
 UNDATED_QUESTION = dict(GOLD_QUESTION, question="What caused the stuck pipe on AK-3?")
 ASK_QUESTION = {"id": "r02", "kind": "cause", "question": "Why did AK-3 wait on equipment?", "gold": [],
                 "outcome": "ask_which", "stated_causes": []}
@@ -395,7 +395,7 @@ class ScoringTests(unittest.TestCase):
         return coordinator.answer(q, self.engine, client, client)
 
     def test_a_found_and_cited_cause_with_an_unsupported_one(self):
-        row = self.row(UNDATED_QUESTION, flat(keywords=["stuck pipe"]), two_part_answer)
+        row = self.row(UNDATED_QUESTION, flat(npt_code="KICK"), two_part_answer)  # the whole incident is meant
         score = row["reasoning_score"]
         self.assertEqual((score["problem_found"], score["stated_found"], score["stated_found_and_cited"]), (True, "1/1", True))
         # "Foot clamp slipped" is said as stated, and the gold gives it as no stated cause.

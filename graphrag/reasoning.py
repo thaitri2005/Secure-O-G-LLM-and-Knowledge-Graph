@@ -390,6 +390,64 @@ def stated_as_a_cause(item: dict, texts: dict[str, str]) -> bool:
     return any(GIVES_A_REASON.search(_clause(texts.get(c["evidence"], ""), c["quote"])) for c in item["citations"])
 
 
+def focus(pack: dict) -> list[str]:
+    """The IDs of the activities the question is about, within the problem found: those of the day asked about,
+    and among them those the question's keywords name. An incident can run for days and hold several things that
+    went wrong (AK-3's 66 hours of well control hold a stuck pipe and, a day later, a lost rod); the question is
+    usually about one of them (B-F77). With no day and no keyword that narrows it, the whole problem is meant."""
+    asked = pack.get("asked") or {}
+    day = normalize(asked.get("date") or "")
+    keywords = [_words(k) for k in asked.get("keywords") or [] if _words(k)]
+    own = [i for i in pack["items"] if i["kind"] == "event" and i.get("problem")]
+    on_day = [i for i in own if i.get("date") == day] or own
+    def names_it(item: dict) -> bool:
+        told = f"{item['activity']['code']} {item['activity']['description']}".lower()
+        return any(all(re.search(rf"\b{re.escape(w)}", told) for w in words) for words in keywords)
+    return [i["id"] for i in ([i for i in on_day if names_it(i)] or on_day)]
+
+
+def stated_causes(stated: list[dict], pack: dict) -> tuple[list[dict], list[dict]]:
+    """Which of the model's stated causes stand, and which are moved to the possible factors (B-F74, B-F77).
+
+    A stated cause must rest on a clause in which the report gives a reason. Among those, the ones written in the
+    activities the question is about (`focus`) stand. If none is, the reason written in the nearest earlier
+    activity stands: a cause comes before its effect, and the nearest one is the likeliest to be meant. Only if no
+    activity gives a reason does a reason from a passage stand. One stated cause per clause."""
+    items = pack["items"]
+    texts, order = {i["id"]: i["text"] for i in items}, {i["id"]: n for n, i in enumerate(items)}
+    kinds = {i["id"]: i["kind"] for i in items}
+    wanted = set(focus(pack))
+    first = min((order[i] for i in wanted), default=0)
+
+    def reasons(item: dict) -> list[tuple[str, str]]:
+        found = [(c["evidence"], _clause(texts.get(c["evidence"], ""), c["quote"])) for c in item["citations"]]
+        return [(where, clause.lower()) for where, clause in found if GIVES_A_REASON.search(clause)]
+
+    with_reasons = [(item, reasons(item)) for item in stated]
+    in_focus = [(item, r) for item, r in with_reasons if any(where in wanted for where, _ in r)]
+    earlier = [(item, max(order[where] for where, _ in r if kinds.get(where) == "event" and order[where] < first))
+               for item, r in with_reasons
+               if any(kinds.get(where) == "event" and order[where] < first for where, _ in r)]
+    from_passages = [(item, r) for item, r in with_reasons if r and all(kinds.get(where) != "event" for where, _ in r)]
+    if in_focus:
+        standing = [item for item, _ in in_focus]
+    elif earlier:
+        nearest = max(position for _, position in earlier)
+        standing = [item for item, position in earlier if position == nearest]
+    else:
+        standing = [item for item, _ in from_passages]
+    kept, clauses = [], set()
+    for item, found in with_reasons:
+        told = {clause for _, clause in found}
+        if not any(item is s for s in standing):
+            continue
+        if told <= clauses:
+            continue  # the same words of the report, given twice: one stated cause
+        clauses |= told
+        kept.append(item)
+    return kept, [item for item in stated if not any(item is k for k in kept)]
+
+
 def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallback") -> tuple[dict, Any]:
     """Steps 3 and 4 for a gathered problem: one call, then the checks. In exact mode the `possible` list is not
     shown; how many were hidden is recorded."""
@@ -400,24 +458,8 @@ def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallbac
     possible, dropped_possible, shown_possible = check(parsed.get("possible"), pack["items"])
     # Qwen3-8B listed things that happened near the problem as stated causes, each with a true quote (E34): 17 such
     # items on ten questions. An item whose quote gives no reason is shown as a possible factor instead.
-    texts = {i["id"]: i["text"] for i in pack["items"]}
-    dates = {i["id"]: i.get("date") or "" for i in pack["items"]}
-    asked = normalize((evidence.reasoning.get("asked") or {}).get("date") or "")
-    kept, moved, clauses = [], [], set()
-    for item in stated:
-        reasons = {_clause(texts.get(c["evidence"], ""), c["quote"]).lower() for c in item["citations"]
-                   if GIVES_A_REASON.search(_clause(texts.get(c["evidence"], ""), c["quote"]))}
-        # A cause comes before its effect: with a day asked about, a reason first written on a later day is not
-        # that day's cause (the lost rod of 21 August did not cause the stuck pipe of 20 August).
-        late = bool(asked) and all((dates.get(c["evidence"]) or asked) > asked for c in item["citations"])
-        if not reasons or late:
-            moved.append(item)
-        elif reasons <= clauses:
-            continue  # the same words of the report, given twice: one stated cause
-        else:
-            clauses |= reasons
-            kept.append(item)
-    stated, possible = kept, [*moved, *possible]
+    stated, moved = stated_causes(stated, pack)
+    possible = [*moved, *possible]
     corpus = [{"text": text, "from": "corpus"} for text in MISSING]
     added = [squash(m) for m in (parsed.get("missing") or []) if isinstance(m, str) and m.strip()]
     model = [{"text": text, "from": "model"} for text in dict.fromkeys(added)
@@ -428,7 +470,7 @@ def answer(question: str, evidence: Evidence, client, mode: str = "allow_fallbac
               "problem_events_left_out": pack["problem_events_left_out"],
               "stated": stated, "possible": [] if mode == "exact" else possible, "possible_hidden": hidden,
               "removed": {"stated": dropped_stated, "possible": dropped_possible},
-              "moved_to_possible": len(moved), "citations_named_shown": shown_stated and shown_possible,
+              "moved_to_possible": len(moved), "focus": focus(pack), "citations_named_shown": shown_stated and shown_possible,
               "missing": corpus + model, "valid": bool(parsed)}
     return result, call
 
