@@ -1,37 +1,49 @@
 """The coordinator (specification §8.1, D-58, D-64): one model call frames the question, code picks the lanes.
 
     python -m graphrag.coordinator answer --questions prototype ak3_events --name my_pool
+    python -m graphrag.coordinator answer --questions graphrag/gold/<question file>.json --name my_probe
 
 The model says what kind of question it is, which reports it is about and, for a question over time, the query
-plan. Code reads the wells, chooses lanes from a fixed table, falls back in a fixed order, and either reports a
-result computed by code or makes one answer call. The model never chooses a lane freely and never writes a query
-that runs.
+plan; for a question about causes, the problem it is about. Code reads the wells and dates, chooses lanes from a
+fixed table, falls back in a fixed order, and either reports a result computed by code or makes one answer call.
+The model never chooses a lane freely and never writes a query that runs.
 """
 from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 from typing import Any
 
+from . import reasoning
 from .baseline import MULTI_WELL_TOKENS, RESULTS, answer_one, fact_sheet
 from .client import client_for, load_roles
 from .data import QUESTION_SETS, ROOT, load_questions
 from .events import PLAN_SCHEMA, PLAN_SYSTEM, code_list
 from .lanes import LANES, SHEET_LINES, Engine, Evidence, shown_facts
-from .retrieval import well_names
+from .reasoning import EMPTY_PROBLEM
+from .retrieval import question_dates, well_names
 from .scoring import normalize, score_answer
 
-KINDS = ("lookup", "lookup_by_date", "across_wells", "over_time", "reasoning", "other")
+KINDS = ("lookup", "lookup_by_date", "across_wells", "over_time", "cause", "other")
 REPORT_TYPES = ("end_of_well", "daily", "both", "unknown")
 MODES = ("allow_fallback", "exact")
+# The problem a question about causes is about, for the reasoning lane (specification §8.6, step 1).
+PROBLEM_SCHEMA = {
+    "type": "object",
+    "properties": {"date": {"type": "string"}, "depth_ft": {"type": "number"}, "npt_code": {"type": "string"},
+                   "keywords": {"type": "array", "maxItems": 3, "items": {"type": "string"}}},
+    "required": ["date", "depth_ft", "npt_code", "keywords"],
+    "additionalProperties": False,
+}
 # Constrained decoding writes fields in schema order (B-F22): the kind and the report type come before the plan,
-# so the plan is written knowing whether the question is one over time.
+# so the plan is written knowing whether the question is one over time; the problem comes last.
 FRAME_SCHEMA = {
     "type": "object",
     "properties": {"kind": {"type": "string", "enum": list(KINDS)},
                    "report_type": {"type": "string", "enum": list(REPORT_TYPES)},
-                   **PLAN_SCHEMA["properties"]},
-    "required": ["kind", "report_type", *PLAN_SCHEMA["properties"]],
+                   **PLAN_SCHEMA["properties"], "problem": PROBLEM_SCHEMA},
+    "required": ["kind", "report_type", *PLAN_SCHEMA["properties"], "problem"],
     "additionalProperties": False,
 }
 FRAME_NOTE = """
@@ -41,57 +53,84 @@ Before the plan, say what the question is.
 - lookup_by_date: what a daily report says for one day, such as "What was the mud weight on AK-3 on 20 August 2016?"
 - across_wells: compares or combines several wells, such as "Which of AK-3, 56-32 and 68-32 was drilled deepest?"
 - over_time: a total, count, date or depth computed over the daily operations, such as "How many hours of non-productive time did AK-3 have in August?"
-- reasoning: asks for the likely causes of a problem.
+- cause: asks why a problem happened or what its likely causes were, such as "AK-3 lost time on 21 August 2016. What are the likely causes?"
 - other: anything else.
 "report_type": end_of_well if an end-of-well report would hold the answer, daily if the daily drilling reports would, both, or unknown.
-Use operation "not_answerable" unless kind is over_time."""
+Use operation "not_answerable" unless kind is over_time.
+"problem", for kind cause only: "date" (YYYY-MM-DD) and "depth_ft" if the question gives them, "npt_code" if it names a non-productive code, and "keywords": up to three words from the question that name the problem, such as "stuck pipe", "kick" or "weather", not general words such as "problem" or "lost time". For other kinds use "", 0, "" and [].
+Non-productive codes in these reports: """
 EMPTY_PLAN = {"operation": "not_answerable", "well": "", "code": "", "non_productive": False, "npt_code": "",
               "date_from": "", "date_to": "", "group_by": "", "min_hours_per_day": 0, "depth_ft": 0}
 
 
 def frame_system(engine: Engine) -> str:
-    return PLAN_SYSTEM + code_list(engine.events) + "\n" + FRAME_NOTE
+    npt_codes = sorted({e.npt_code for e in engine.events if e.npt_code})
+    return PLAN_SYSTEM + code_list(engine.events) + "\n" + FRAME_NOTE + (", ".join(npt_codes) or "none") + "."
+
+
+def _of_type(value: Any, empty: Any) -> bool:
+    """`value` has the type of the empty field: a number for a number (not a boolean), else the same type."""
+    return type(value) in ((int, float) if type(empty) is int else (type(empty),))
+
+
+def _problem(parsed: dict) -> dict | None:
+    """The frame's problem with its field types checked, or None when a field has the wrong type. A frame without
+    one has the empty problem; at most three keywords are kept."""
+    problem = parsed.get("problem", EMPTY_PROBLEM)
+    if not isinstance(problem, dict) or not all(_of_type(problem.get(key, empty), empty)
+                                                for key, empty in EMPTY_PROBLEM.items()):
+        return None
+    if not all(isinstance(k, str) for k in problem.get("keywords", [])):
+        return None
+    out = {key: problem.get(key, empty) for key, empty in EMPTY_PROBLEM.items()}
+    out["keywords"] = [k.strip() for k in out["keywords"] if k.strip()][:3]
+    return out
 
 
 def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
-    """The question's frame: kind, report type and query plan. An answer that is not a frame gives the empty
+    """The question's frame: kind, report type, query plan and problem. An answer that is not a frame gives the empty
     frame, which routes to the end-of-well lanes. What code reads in the question wins over what the model said."""
     call = client.chat([{"role": "system", "content": frame_system(engine)}, {"role": "user", "content": question}],
-                       schema=FRAME_SCHEMA, max_tokens=260)
+                       schema=FRAME_SCHEMA, max_tokens=320)
     parsed = call.parsed if isinstance(call.parsed, dict) else {}
-    # A hosted endpoint may not enforce the schema, so the plan's field types are checked here too.
-    typed = all(type(parsed.get(key, empty)) in ((int, float) if type(empty) is int else (type(empty),))
-                for key, empty in EMPTY_PLAN.items())
-    valid = (typed and parsed.get("kind") in KINDS and parsed.get("report_type") in REPORT_TYPES
+    # A hosted endpoint may not enforce the schema, so the field types are checked here too.
+    typed = all(_of_type(parsed.get(key, empty), empty) for key, empty in EMPTY_PLAN.items())
+    problem = _problem(parsed)
+    valid = (typed and problem is not None and parsed.get("kind") in KINDS and parsed.get("report_type") in REPORT_TYPES
              and parsed.get("operation") in PLAN_SCHEMA["properties"]["operation"]["enum"]
              and parsed.get("group_by", "") in PLAN_SCHEMA["properties"]["group_by"]["enum"])
     frame = {"kind": parsed["kind"], "report_type": parsed["report_type"],
-             "plan": {key: parsed.get(key, empty) for key, empty in EMPTY_PLAN.items()}} if valid else \
-        {"kind": "other", "report_type": "unknown", "plan": dict(EMPTY_PLAN)}
+             "plan": {key: parsed.get(key, empty) for key, empty in EMPTY_PLAN.items()}, "problem": problem} if valid \
+        else {"kind": "other", "report_type": "unknown", "plan": dict(EMPTY_PLAN), "problem": dict(EMPTY_PROBLEM)}
     wells = well_names(question) & engine.wells
     if len(wells) == 1:
         frame["plan"]["well"] = next(iter(wells))
     elif len(wells) > 1:
         frame["kind"] = "across_wells"
+    dates = question_dates(question)
+    if frame["kind"] == "cause" and len(dates) == 1:
+        frame["problem"]["date"] = next(iter(dates))
     return frame, call
 
 
 def route(frame: dict, mode: str = "allow_fallback") -> list[str]:
     """The lanes for a frame, in order. `exact` mode leaves out passages (D-59)."""
-    if frame["kind"] == "over_time" and frame["plan"]["operation"] != "not_answerable":
+    if frame["kind"] == "cause":
+        lanes = ["reasoning"]
+    elif frame["kind"] == "over_time" and frame["plan"]["operation"] != "not_answerable":
         lanes = ["events"]
     elif frame["report_type"] == "daily":
         lanes = ["passages"]
     else:
-        # End-of-well, both, unknown, and reasoning until its lane exists (specification §8.6).
+        # End-of-well, both and unknown.
         lanes = ["well_facts", "passages"]
     return [lane for lane in lanes if mode != "exact" or lane != "passages"]
 
 
 def _fallback(question: str, frame: dict, engine: Engine, routed: list[str]) -> Evidence | None:
-    """Passages when no routed lane found anything: of the daily reports for a question over time or about them,
-    else of the end-of-well reports."""
-    daily_first = routed == ["events"] or frame["report_type"] == "daily"
+    """Passages when no routed lane found anything: of the daily reports for a question over time, about causes
+    or about the daily reports, else of the end-of-well reports."""
+    daily_first = routed in (["events"], ["reasoning"]) or frame["report_type"] == "daily"
     for report_type in (("daily", "end_of_well") if daily_first else ("end_of_well",)):
         found = LANES["passages"](question, dict(frame, report_type=report_type), engine)
         if not found.empty:
@@ -123,6 +162,28 @@ def _computed_row(q: dict, computed: dict, gold: dict) -> dict:
             "graph_source_chunks": sources}
 
 
+def _reasoning_row(q: dict, evidence: Evidence, answer_client, gold: dict, mode: str) -> tuple[dict, int]:
+    """A question about causes (specification §8.6). Several problems: the row lists them and asks which, with no
+    answer call. One: one call for the two lists, checked in code. Returns the row and its number of answer calls."""
+    pack = evidence.reasoning
+    if pack["problem"] is None:
+        result = {"problem": None, "candidates": pack["candidates"], "evidence": [], "evidence_chars": 0,
+                  "stated": [], "possible": [], "possible_hidden": 0, "removed": {"stated": 0, "possible": 0},
+                  "citations_named_shown": True, "missing": [], "valid": True}
+        row = _row_without_a_call(q, gold, "ask_which", [], [], [], [])
+        return {**row, "answer_text": reasoning.ask_text(pack["candidates"]), "reasoning": result}, 0
+    result, call = reasoning.answer(q["question"], evidence, answer_client, mode)
+    kept = result["stated"] + result["possible"]
+    citations = list({(c["chunk"], c["how"]): {"chunk": c["chunk"], "how": c["how"]}
+                      for item in kept for c in item["citations"]}.values())
+    status = "answered" if kept else ("not_stated" if result["valid"] else "invalid")
+    row = _row_without_a_call(q, gold, status, [], [], [], citations)
+    row.update(citations_in_retrieved=result["citations_named_shown"], passages=len(result["evidence"]),
+               prompt_tokens=call.prompt_tokens, completion_tokens=call.completion_tokens, seconds=call.seconds,
+               cached=call.cached)
+    return {**row, "answer_text": reasoning.answer_text(result), "reasoning": result}, 1
+
+
 def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | None = None,
            mode: str = "allow_fallback", lane: str | list[str] | None = None) -> dict:
     """One question through the coordinator. `lane` forces one lane, or several, instead of the route. The row has the keys of
@@ -147,6 +208,10 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     if computed:
         row = _computed_row(q, computed, gold)
         shown["shown_passages"] = computed["source_chunks"][:5]
+    elif "reasoning" in by_lane:
+        row, answer_calls = _reasoning_row(q, by_lane["reasoning"], answer_client, gold, mode)
+        calls += answer_calls
+        shown["shown_passages"] = by_lane["reasoning"].passages
     elif not found:
         # Nothing to answer from: in exact mode the graphs hold no answer, so no answer is generated.
         sources = _fallback(question, frame, engine, routed) if mode == "exact" else None
@@ -166,10 +231,15 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     # The reports the evidence came from: a daily question can fall back to end-of-well passages, and must say so.
     answered_from = next((e.report_type for e in found if e.lane != "well_facts"), "end_of_well") if found else None
     # What was shown, for whoever displays the answer: passages by ID, and the facts of the sheet.
-    return {**row, **shown, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
-            "answered_from": answered_from,
-            "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
-            "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}
+    out = {**row, **shown, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
+           "answered_from": answered_from,
+           "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
+           "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}
+    if "stated_causes" in q:
+        # A reasoning question with its gold (graphrag/README.md): scored by the probe's two measures.
+        out["reasoning_score"] = reasoning.score(out, q)
+        out["correct"] = out["reasoning_score"]["correct"]
+    return out
 
 
 # ---- pooled runs: every question set in one pool, with no lane given (E33) --------------------------------------
@@ -180,20 +250,57 @@ EXPECTED = {"prototype": "end_of_well", "probe": "end_of_well", "simulated": "en
             "ak3_daily": "daily", "ak3_daily_heldout": "daily", "ak3_events": "events", "ak3_events_heldout": "events"}
 
 
+def question_set(name: str) -> str:
+    """A question set's name, or the path of a question file (a `.json` with `questions` and, if it has gold values,
+    `facts`), given from the working folder or the repository. A file inside the repository is kept relative to it,
+    so a run's record names it the same on every machine."""
+    if name in QUESTION_SETS:
+        return name
+    path = Path(name)
+    path = path if path.is_file() else ROOT / name
+    if path.suffix != ".json" or not path.is_file():
+        raise argparse.ArgumentTypeError(f"{name!r} is neither a question set ({', '.join(QUESTION_SETS)}) "
+                                         f"nor a question file")
+    path = path.resolve()
+    return path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else str(path)
+
+
+def _question_file(name: str) -> tuple[Path, dict]:
+    path = Path(name) if Path(name).is_absolute() else ROOT / name
+    return path, json.loads(path.read_text(encoding="utf-8"))
+
+
+def expected_lane(name: str) -> str:
+    """A set's expected lane; a question file's is its `expected_lane`, by default `reasoning`."""
+    return EXPECTED[name] if name in QUESTION_SETS else _question_file(name)[1].get("expected_lane", "reasoning")
+
+
+def load_set(name: str) -> tuple[str, list[dict], dict[str, dict]]:
+    """A set's short name, its questions and its gold. A question file's short name is its file name without
+    `.json`; its facts are its gold, with `chunks` empty when a fact names none."""
+    if name in QUESTION_SETS:
+        return (name, *load_questions(name))
+    path, data = _question_file(name)
+    return path.stem, data["questions"], {f["id"]: dict(f, chunks=f.get("chunks", [])) for f in data.get("facts", [])}
+
+
 def pooled(sets: list[str]) -> tuple[list[dict], dict[str, dict]]:
     """The questions and gold of several sets as one pool. IDs gain their set's name, since sets reuse them."""
     questions, gold = [], {}
     for name in sets:
-        set_questions, set_gold = load_questions(name)
-        gold.update({f"{name}:{key}": fact for key, fact in set_gold.items()})
-        questions += [dict(q, id=f"{name}:{q['id']}", gold=[f"{name}:{g}" for g in q["gold"]], set=name,
-                           expected=EXPECTED[name]) for q in set_questions]
+        short, set_questions, set_gold = load_set(name)
+        gold.update({f"{short}:{key}": fact for key, fact in set_gold.items()})
+        questions += [dict(q, id=f"{short}:{q['id']}", gold=[f"{short}:{g}" for g in q["gold"]], set=short,
+                           expected=expected_lane(name)) for q in set_questions]
     return questions, gold
 
 
 def rightly_routed(row: dict) -> bool:
-    """Whether the coordinator sent a question where its set was answered from by hand."""
+    """Whether the coordinator sent a question where its set was answered from by hand. A question about causes is
+    routed by its kind; whether the reasoning lane then found the problem is scored apart (graphrag.reasoning)."""
     daily = row["frame"]["report_type"] == "daily"
+    if row["expected"] == "reasoning":
+        return row["frame"]["kind"] == "cause"
     if row["expected"] == "events":
         return row["lanes"] == ["events"]
     if row["expected"] == "daily":
@@ -221,7 +328,7 @@ def summarize_pool(rows: list[dict]) -> dict:
 def check_engine(engine: Engine, sets: list[str]) -> None:
     """Stops a run that would answer daily-report questions without the daily reports: every such question would
     fall back to end-of-well passages and the scores would mean nothing."""
-    needing = [name for name in sets if EXPECTED[name] in ("daily", "events")]
+    needing = [name for name in sets if expected_lane(name) in ("daily", "events", "reasoning")]
     if needing and not engine.has_daily:
         raise SystemExit(f"The daily-report corpus is not on this machine, and {', '.join(needing)} need it. "
                          f"Regenerate it (docs/tracks/B-graphrag/next-runs.md) or unzip a K1 package and use --k1.")
@@ -238,14 +345,16 @@ def run_pool(questions: list[dict], gold: dict, engine: Engine, frame_client, an
         if not quiet:
             print(f"{q['id']:<28} {'OK ' if row['correct'] else 'BAD'} {'route ok ' if row['rightly_routed'] else 'MISROUTED'} "
                   f"{'+'.join(row['lanes']) or '-':<20} {row['status']} {row['values']}", flush=True)
-    return {**summarize_pool(rows), "rows": rows}
+    scored = any("reasoning_score" in r for r in rows)
+    return {**summarize_pool(rows), **({"reasoning": reasoning.summarize(rows)} if scored else {}), "rows": rows}
 
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
     a = sub.add_parser("answer")
-    a.add_argument("--questions", nargs="+", choices=QUESTION_SETS, required=True)
+    a.add_argument("--questions", nargs="+", type=question_set, required=True,
+                   help=f"question sets ({', '.join(QUESTION_SETS)}) or question files, such as a reasoning probe")
     a.add_argument("--mode", choices=MODES, default="allow_fallback")
     a.add_argument("--k1", action="store_true", help="daily reports and events from Track A's K1 version 1 package")
     a.add_argument("--no-embeddings", action="store_true",

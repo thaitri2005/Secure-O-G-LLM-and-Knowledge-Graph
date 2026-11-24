@@ -45,8 +45,9 @@ flowchart TD
 | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
 | `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan. `plan_value` gives a result as values and a unit |
-| `lanes.py` | The three lanes behind one shape (specification §8.1): `passages`, `well_facts`, `events`, each `(question, frame, engine) -> Evidence`. `Engine` holds what they read |
-| `coordinator.py` | One framing call, then lanes chosen in code, a fixed fallback and the exact-answer mode (D-64). Reports a computed result in code. Pooled runs over several question sets |
+| `lanes.py` | The four lanes behind one shape (specification §8.1): `passages`, `well_facts`, `events`, `reasoning`, each `(question, frame, engine) -> Evidence`. `Engine` holds what they read |
+| `coordinator.py` | One framing call, then lanes chosen in code, a fixed fallback and the exact-answer mode (D-64). Reports a computed result in code. Pooled runs over several question sets or question files |
+| `reasoning.py` | The reasoning lane for questions about causes (specification §8.6): finds the problem in the event graph, gathers what surrounds it in code, asks for stated and possible causes under a JSON schema, drops causes without a supported citation, lists what is missing; scores the reasoning probe |
 | `factgraph.py` | The per-well fact graph as nodes and relationships for Track C's Neo4j loader (specification §8.5) |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |
 | `lightrag_run.py` | LightRAG 1.5.7 (MIT, as a library, `.venv-lightrag`) on our chunks, client and answer harness (E19) |
@@ -74,6 +75,53 @@ python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three -
 - Which model serves which role (`frame`, `answer`, `extract`, `embed`) is in [`configs/graphrag/roles.json`](../configs/graphrag/roles.json).
 - `--no-embeddings` answers questions naming several wells with per-well BM25, when the embedding server is not running.
 - Tests: `tests/test_graphrag_lanes.py`, with stand-in models.
+
+## The reasoning lane (specification §8.6, D-61)
+
+Built on 24 November 2026 with stand-in models and **not yet measured**: E34, the reasoning probe, runs it on the desktop.
+
+```powershell
+# The probe: a question file of reasoning questions with the gold below (E34)
+python -m graphrag.coordinator answer --questions graphrag/gold/<probe file>.json --name E34_reasoning_probe
+# Score a recorded run again against the same file
+python -m graphrag.reasoning score E34_reasoning_probe graphrag/gold/<probe file>.json
+```
+
+The framing call gives the kind `cause` and a `problem`: date, depth, non-productive code and up to three keywords. Code reads a date in the question and it wins over the model's. A `cause` question goes to the `reasoning` lane, in both modes.
+
+| Step | What happens | Model calls |
+|---|---|---:|
+| 1. Find the problem | AK-3's 28 non-productive events form 6 incidents: runs with one non-productive code and no gap of more than a day. Date, depth (within 50 ft or 5%) and code select among them; keywords narrow them. With no incident, events the keywords name form the problems (a productive day with "partial losses"). Several problems: the answer lists them and asks which (status `ask_which`). None: the coordinator's fallback to passages, daily reports first | 0 |
+| 2. Gather | The problem's own events (marked `*`), then the events of the day before and after, nearest first, in 6,000 characters; 3 passages of the problem's days from the daily reports, other than the events' own tables and repeats; 3 end-of-well passages that mention it. Each piece gets an ID: `E1`... for events, `P1`... for passages | 0 |
+| 3. Answer in two parts | One call under a JSON schema: `stated` (causes a report gives) and `possible` (factors visible in the evidence), each item with citations to IDs and a quote. Code keeps an item only if a citation passes `citations.resolve` (ID shown and quote in it, or the quote in other shown evidence) and counts the items it removed. Exact mode hides `possible` and counts the hidden items | 1 |
+| 4. What is missing | The fixed list of what one well's reports do not hold (offset wells, formation pressures, drilling parameters over time, lessons-learned reports), plus up to 5 items the model adds | 0 |
+
+**Budget.** At most about 13,200 characters of evidence (3,300 tokens): with the instructions and a 900-token answer, a question costs at most about 4,500 tokens, twice an end-of-well lookup, inside the 32k slot. On AK-3's six incidents the prompt is 1,400 to 2,900 tokens.
+
+**Question file.** `--questions` takes set names or paths of question files. A file's set name is its file name without `.json`; its expected lane is `expected_lane`, by default `reasoning`. A reasoning question carries its own gold:
+
+```json
+{"status": "SIMULATED: ...", "version": "0.1",
+ "questions": [
+   {"id": "r01", "kind": "cause", "question": "What caused the stuck pipe on AK-3 on 20 August 2016?", "gold": [],
+    "outcome": "answer", "gold_problem": {"date": "2016-08-20", "npt_code": "KICK"},
+    "stated_causes": [{"cause": "plugged inner barrel", "terms": ["plugged inner barrel", "inner barrel"],
+                       "chunks": ["<chunk IDs where a report states it>"]}]}],
+ "facts": []}
+```
+
+| Field | Meaning |
+|---|---|
+| `outcome` | `answer` (one problem is meant), `ask_which` (several are, and asking is right) or `fallback` (no problem in the event graph is meant). Default `answer` |
+| `gold_problem` | The problem meant: a `date` inside it and, if given, its `npt_code` |
+| `stated_causes` | Every cause a report states for it: `terms` that name it (any one, case-insensitive) and the `chunks` that state it; empty `chunks` accepts any kept citation. An empty list means no report states a cause |
+
+A question with `stated_causes` is scored in its row (`reasoning_score`) and in the run's `reasoning` summary, by the two measures of §8.6:
+
+- **stated cause found and cited:** every gold cause is in `stated`, naming one of its terms and cited to one of its chunks (an event citation counts all the chunks the event was read from); with no gold cause, `stated` must be empty;
+- **unsupported claims:** `stated` items that name no gold cause, that is, something said as fact that no report gives. `possible` items are labelled as possibilities and not counted; items code removed are counted apart (`removed_by_check`).
+
+A row is correct when the problem was found (or asked about, or not found, as `outcome` says), every stated cause was found and cited, and there is no unsupported claim. K4 records of these rows are version 0.3, with a `reasoning` object. Tests: `tests/test_graphrag_reasoning.py`, on the recorded AK-3 events with stand-in models.
 
 ## The UI (D-60)
 

@@ -17,9 +17,22 @@ from .data import ROOT, load_questions
 SCHEMA = ROOT / "schemas/k4_answer_record.schema.json"
 
 
+def reasoning_record(result: dict) -> dict:
+    """The reasoning part of a version 0.3 record (specification §8.6): the problem, or the candidates when the
+    user is asked which; the two lists with their checked citations; what code removed or hid; what is missing."""
+    def items(listed: list[dict]) -> list[dict]:
+        return [{"cause": i["cause"], "citations": [{"chunk_id": c["chunk"], "how": c["how"], "evidence_id": c["evidence"]}
+                                                    for c in i["citations"]]} for i in listed]
+
+    return {"problem": result["problem"], "candidates": result["candidates"], "stated": items(result["stated"]),
+            "possible": items(result["possible"]), "possible_hidden": result["possible_hidden"],
+            "removed": result["removed"], "missing": result["missing"]}
+
+
 def coordinator_records(run: str, result: dict) -> list[dict]:
     """K4 version 0.2: a coordinator run (graphrag.coordinator). Each record names the lanes that gave its evidence,
-    the mode and the kind of question; its cost is the framing call plus the answer call, when one was made."""
+    the mode and the kind of question; its cost is the framing call plus the answer call, when one was made.
+    A row of the reasoning lane gives version 0.3, which adds the `reasoning` object."""
     from .coordinator import pooled
     text = {q["id"]: q["question"] for q in pooled(result["question_set"])[0]}
     models = {role: f"{chosen['endpoint']}:{chosen['model']}" for role, chosen in result["roles"].items()}
@@ -27,7 +40,8 @@ def coordinator_records(run: str, result: dict) -> list[dict]:
     for row in result["rows"]:
         units = row.get("units") or [None] * len(row["values"])
         out.append({
-            "k4_version": "0.2", "run": run, "question_set": row["set"], "question_id": row["id"],
+            "k4_version": "0.3" if "reasoning" in row else "0.2", "run": run, "question_set": row["set"],
+            "question_id": row["id"],
             "question": text.get(row["id"], ""), "status": row["status"],
             "answers": [{"value": str(v), **({"unit": u} if u else {})} for v, u in zip(row["values"], units)],
             "citations": [{"chunk_id": c["chunk"], "how": c["how"]} for c in row["citations"]],
@@ -38,6 +52,7 @@ def coordinator_records(run: str, result: dict) -> list[dict]:
                      "completion_tokens": row["completion_tokens"] + row["frame_completion_tokens"],
                      "seconds": round(row["seconds"] + row["frame_seconds"], 3),
                      "cost_usd": 0.0 if all(m.startswith("local") for m in models.values()) else row.get("cost_usd", 0.0)},
+            **({"reasoning": reasoning_record(row["reasoning"])} if "reasoning" in row else {}),
             "correct": row["correct"]})
     return out
 
