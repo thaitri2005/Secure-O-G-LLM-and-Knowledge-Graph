@@ -2,14 +2,14 @@
 
 ## Project specification and system design
 
-**Document version:** 3.3 · **Baseline date:** 23 October 2026 · **Last revised:** 5 November 2026 (event graph, §8.4)<br>
+**Document version:** 3.4 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
-**Status:** design baseline for a GraphRAG application on drilling reports; ingestion, structured-data import, the entity registry and an extraction/QA prototype exist<br>
+**Status:** the first build is closed (§4.5): chunk packages, the stores and a GraphRAG engine with two graphs exist as three separate parts; the second build connects them behind one application (§4.6)<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md), [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
 
 > **This document is the project's single source of truth.** It decides what the project builds, for whom, how the parts fit together, and how completion is judged. The [stakeholder requirements](requirements/README.md) and supervisor meetings are inputs; §1.2 states how each requirement is met, narrowed or dropped. The [development plan](DEVELOPMENT_PLAN.md) schedules this specification and must not add scope of its own. Component guides describe implemented behavior, and experiment records hold measurements. If any of them disagrees with this document, this document wins until it is changed. Items still to settle with the supervisors are in [§13.2](#132-open-questions-for-supervisor-meetings).
 
-**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). Domain depth is kept thin (D-49). The API and frontend are deferred to M2. **Version 3.2 (4 November)** records Track B's first-build results: what is built (§8.4), the revised baseline (D-50), the fact graph as an option (D-51) and no ontology work for now (D-52). §8.1 to §8.3 remain the GraphRAG target. **Version 3.3 (5 November)** adds the event graph for daily reports (D-53).
+**Version 3.0 (29 October 2026)** applies the [28 October supervisor meeting](requirements/supervisor-meeting-2026-10-28.md), decisions D-36 to D-47. The product is now a **GraphRAG application** for drilling reports, built on an existing open-source GraphRAG pipeline and delivered as a full application for administrators and end users. Models are open-weight and about 7B or smaller; commercial models are not used. Pages are parsed with vision-language models, with tables as a dedicated workstream. Content that no longer fits was **removed**, not just marked: template-only QA, per-claim approval of everything, interpretation and expert-note workflows, OCR-engine tuning, portability runs as a deliverable, and the research workstream. The digest's [§13](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) lists each removal and its reason; superseded decisions stay in §13.1 as history. Versions 2.0–2.4 (23–27 October) introduced the three-layer target, the domain-agnostic core with an `oil_wells` profile, English-first delivery and the 7 October knowledge-graph-builder framing; their surviving parts are folded in here. **Version 3.1 (30 October)** adds §4.5. The first build is split into three tracks that are researched and built independently and joined by versioned files (D-48). Domain depth is kept thin (D-49). The API and frontend are deferred to M2. **Version 3.2 (4 November)** records Track B's first-build results: what is built (§8.4), the revised baseline (D-50), the fact graph as an option (D-51) and no ontology work for now (D-52). §8.1 to §8.3 remain the GraphRAG target. **Version 3.3 (5 November)** adds the event graph for daily reports (D-53). **Version 3.4 (24 November)** turns the [9 November meeting](requirements/supervisor-meeting-2026-11-09.md) (D-58 to D-63) into design, with Tri's choices of 24 November (D-64 to D-67): the architecture gains a coordinator in front of three lanes (§4.1, §8.1); the node and relationship model of the two graphs is written down (§8.5); a lane for reasoning about causes is designed and will be probed (§8.6); and the application is built now as a FastAPI backend and a React frontend (§4.6, §7.5). §3 now lists what the first build delivered. **Removed in 3.4:** from §8.1, graph expansion by a fixed number of hops and community summaries, which no run supported (E16, E19, E21); from §4.2, the list of vector-store candidates, settled by D-56; from §3.1, the claim that the GraphRAG parts are not built.
 
 ### Reading guide
 
@@ -21,7 +21,8 @@
 | How the system fits together and where data is stored | [4. Architecture](#4-target-architecture) |
 | How documents become chunks, vectors and graph | [5. Processing](#5-document-to-graph-processing), [5.10 Tables](#510-tables-in-drilling-reports), [5.11 IDs](#511-identifiers-and-cross-store-linking) |
 | How the ontology is defined, injected and verified | [6. Ontology](#6-ontology-layer-and-domain-modules) |
-| How questions are answered | [8. Question answering](#8-question-answering) |
+| How questions are answered: the coordinator, the lanes, the two graphs | [8. Question answering](#8-question-answering), [8.5 Graph model](#85-the-graph-nodes-and-relationships) |
+| What is being built next | [4.6 Second build](#46-second-build-one-connected-application), [development plan](DEVELOPMENT_PLAN.md) |
 | Which models and tools, and why | [9. Technology choices](#9-technology-choices-and-alternatives) |
 | Security, hosting and compute | [10. Security](#10-security-and-data-boundaries), [11. Compute and operations](#11-deployment-capacity-and-operations) |
 | How completion is measured, and what is decided | [12. Acceptance](#12-quality-and-acceptance), [13. Decisions](#13-decisions-assumptions-and-change-control) |
@@ -143,7 +144,7 @@ During development the team uses hosted open-weight models through an API, **on 
 |---|---|
 | English drilling-report PDFs: end-of-well and daily drilling reports, text and scanned pages | Vietnamese/Russian delivery; Office/email workflows; handwriting |
 | VLM page parsing to Markdown/HTML, with tables as structured output; multi-page tables joined and headers carried over (§5.10) | Tuning classic OCR engines further |
-| An existing open-source GraphRAG pipeline as the base, adapted for drilling reports (D-36) | Writing a GraphRAG framework from scratch; training extraction models |
+| Existing open-source GraphRAG pipelines used as libraries and as references (D-36); none is adopted wholesale, because none beat the baseline on our questions (D-50) | Writing a general GraphRAG framework; training extraction models |
 | Open-weight models of about 7B parameters or smaller for extraction, answering and parsing (D-37) | Commercial models or APIs; models above the size limit as the measured configuration |
 | Object storage for raw files, a metadata database, a vector store and a graph database, linked by one ID scheme (§4.2, §5.11) | Multi-region storage, high availability |
 | Admin-managed versioned ontology and glossary (abbreviations), injected into extraction and retrieval (§6) | AI-generated ontologies activated automatically |
@@ -248,7 +249,15 @@ They also maintain a **glossary**: abbreviations (TD, BOP, WOC, ROP…) with exp
 
 ### 3.1 What exists
 
-Everything below was built before the 28 October direction. It remains valid as the ingestion and identity foundation; the GraphRAG parts are not built.
+Two groups of work exist. The first build (30 October to 17 November, §4.5) produced three parts that are not yet one system:
+
+| Part | What exists | Evidence |
+|---|---|---|
+| **Chunk packages (Track A)** | K1 version 1: files, pages, parents, chunks, tables and forms with the D-54 IDs, report date and well on daily-report chunks, a validator and a QA sidecar. Built for AK-3's end-of-well report and four daily-report attachments (174 pages). The Operations Summary table is rebuilt from the PDF text layer. Added on 17 November as options that are off by default: joining tables across pages, section context, form recognition, label-value repair, page orientation, quarantine and resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md), [guide](components/corpus-ingestion.md) |
+| **GraphRAG engine (Track B)** | One model client; retrieval routed by well and date; a per-well fact graph from table mappings and LLM extraction, checked in code; an event graph built with no model call; cited answers checked in code; K4 answer records; a local UI. Lanes are chosen per run or from the question's words, not by a coordinator | §8.4, [Track B log](tracks/B-graphrag/log.md), E14 to E31 |
+| **Stores (Track C)** | PostgreSQL with pgvector and Neo4j in Docker Compose; a K1 loader with a page-rebuild check; 1,042 chunk vectors; the event graph in Neo4j. All on one laptop, not shared | [Track C log](tracks/C-storage/log.md) |
+
+The second group was built before the 28 October direction and remains the ingestion and identity foundation:
 
 - **Document ingestion** ([`graph_builder.corpus`](components/corpus-ingestion.md)).
   - Registers PDFs, scans, images and Office/HTML/Markdown files into a content-addressed store with a SQLite catalog.
@@ -267,18 +276,17 @@ Everything below was built before the 28 October direction. It remains valid as 
 
   Results: precision 0.968, recall 0.732, 23/31 questions correct end to end, on development data ([E10](experiments/E10-profile-driven-prototype.md)). It now serves as the **baseline** that the GraphRAG pipeline must match or beat on the same questions.
 
-**Not built:**
+**Not built (24 November):**
 
-- VLM parsing;
-- multi-page table joining;
-- object storage;
-- parent/child chunk IDs across stores;
-- embeddings and a vector store;
-- a GraphRAG base pipeline;
-- ontology injection beyond the prototype prompt;
-- the glossary area;
-- confidence scores and the flagged-item list;
-- the frontend;
+- the three parts connected: the engine still reads files, not the stores, and no single command runs a report from PDF to answer;
+- a coordinator that chooses the lane for each question (§8.1);
+- the fact graph in Neo4j, and the event graph on K1 version 1 IDs in Neo4j;
+- the backend API and the React frontend (§4.6);
+- shared hosting of the stores;
+- VLM parsing (not run; rule-based methods come first, D-63);
+- object storage in use (MinIO is optional in the compose file);
+- linking report mentions to the entity registry; the glossary in retrieval;
+- confidence scores, the flagged-item list and human review;
 - login and roles.
 
 ![Current implementation](diagrams/01-current-ingestion.svg)
@@ -311,7 +319,7 @@ flowchart LR
 
 </details>
 
-**Figure 1 — Current implementation.** Both pipelines publish validated releases and feed one evidence contract; the registry is built from the dataset release. The prototype is kept as the measured baseline. None of this is a production service.
+**Figure 1 — Implementation before the first build.** The first build's parts are drawn in §4.5 and §8.4. Both pipelines publish validated releases and feed one evidence contract; the registry is built from the dataset release. The prototype is kept as the measured baseline. None of this is a production service.
 
 | Responsibility | Current code |
 |---|---|
@@ -329,23 +337,24 @@ flowchart LR
 - The BSEE snapshot of 18 October 2026 parses into 57,453 boreholes, 39,518 wells and 587 API-number changes with zero errors ([E3](experiments/E3-reproduction-run-2026-10-25.md)).
 - Extraction and QA numbers are in-sample development results on one report.
 - The test suites passed on 27 October ([E11](experiments/E11-publication-and-import-fixes.md)).
-- No measurement yet covers daily drilling reports, VLM parsing, multi-page tables or retrieval quality.
+- The first build's measurements cover daily reports and retrieval quality, on simulated questions only (§8.4). No measurement yet covers VLM parsing, or the whole path from PDF to answer in one run.
+- Every question set is simulated or written by the team with AI. None is expert-reviewed, and every method was tuned on one well and one report family.
 
 ### 3.3 Gaps the architecture must close
 
-1. **Tables.** Docling parses simple tables. Daily-report tables with nested text and merged cells are not evaluated, continuation pages lose their header, and chunks of a continued table are not joined (§5.10).
-2. **LLM volume.** The prototype makes one call per table row: 50 rows means 50 calls. Rows over the 1,500-character budget exceed the model's context and are cut. Extraction cost must be bounded (§5.3).
-3. **Storage and IDs.** Chunks live in per-corpus files and SQLite. There is no object store, vector store, or ID scheme that links a chunk to its vector payload and graph evidence (§4.2, §5.11).
-4. **Ontology control.** The prototype injects one prompt template. There is no defined injection point per stage, no slicing of a large ontology to fit the context, and no verification report (§6).
-5. **Retrieval.** There are no embeddings or vector index, so questions are answered only by templates (§8).
-6. **Cross-document identity.** The registry links BSEE rows, but report mentions are not yet linked to it, and no daily report is linked to its end-of-well report.
+1. **One system.** Three parts exist, joined by files passed by hand. The engine must read the stores, one command must run a report end to end, and one application must sit on top (§4.6).
+2. **Routing.** The lane is chosen per run. A coordinator must choose it per question (§8.1).
+3. **Generalization.** Table rebuilding, forms and the event graph are tuned to AK-3's report family. Other authors' reports, scanned pages and tables over several pages are untested or fail (E29, Track A progress).
+4. **Real questions.** No expert question set exists, and the purpose of use is still open (Q2, Q13). The application must collect the questions people ask (§4.6).
+5. **Cross-document identity.** Report mentions are not linked to the registry, and a well's daily and end-of-well reports are linked only by a well name in the text.
+6. **Human control.** Checks are automatic. Scores, flagged items and review by people are not built (D-43, D-63).
 7. **Reliability and security.** Open findings from the repository review remain (cache identity, redirect checks; [E9](experiments/E9-repository-review.md)); authentication and roles are not built.
 
 ## 4. Target architecture
 
 ### 4.1 Components and trust boundary
 
-A modular Python backend with a separate ingestion worker, a web frontend, and model endpoints behind one client. The GraphRAG base pipeline (D-36) runs inside the worker and the backend as a library, wrapped by the project's ID scheme, ontology injection and storage layout. It does not run as a separate product with its own storage rules.
+A modular Python backend with a separate ingestion worker, a web frontend, and model endpoints behind one client. Inside the backend, a **coordinator** reads each question and sends it to one or more **lanes** (D-58, D-64, §8.1): passages from retrieval, facts from the per-well fact graph, or a computed result from the event graph. Each lane is a function with a fixed input and output, so more lanes, outside tools or MCP connectors can be added later without changing the rest. Open-source GraphRAG code (D-36) is used as a library inside a lane or the worker, under the project's ID scheme and storage layout; it does not run as a separate product with its own storage rules.
 
 ![Target architecture and storage](diagrams/02-target-architecture.svg)
 
@@ -356,26 +365,33 @@ A modular Python backend with a separate ingestion worker, a web frontend, and m
 flowchart TB
     U["End users and administrators"] -->|HTTPS| G["Reverse proxy"]
     subgraph Z["Approved deployment boundary"]
-        G --> UI["Web frontend<br/>Chat with citations; admin: documents,<br/>ontology, glossary, flagged items, runs"]
-        UI --> API["Backend (FastAPI)<br/>Workflows, retrieval, answers"]
-        API --> PG[("PostgreSQL<br/>Documents, pages, chunk metadata, IDs,<br/>runs, ontology, glossary, corrections, audit")]
-        API --> OBJ[("Object store (MinIO)<br/>Raw files, page images, parsed pages")]
-        API --> VEC[("Vector store<br/>Child-chunk embeddings and ID payload")]
-        API --> NG[("Neo4j<br/>Entities, relations, chunk links")]
-        W["Ingestion worker<br/>Parse, chunk, extract, embed, project"] --> OBJ & PG & VEC & NG
-        W --> VLM["Page parser<br/>Document VLM or Docling"]
-        W --> LM["LLM endpoint<br/>open-weight, about 7B"]
+        G --> UI["Web frontend (React)<br/>Chat with citations, source page, evidence;<br/>admin: documents, ontology, flagged items, runs"]
+        UI --> API["Backend (FastAPI)<br/>API, question log, feedback"]
+        API --> CO["Coordinator<br/>frames the question, picks lanes,<br/>checks the answer"]
+        CO --> L1["Lane: passages<br/>by well and date"]
+        CO --> L2["Lane: well facts"]
+        CO --> L3["Lane: events<br/>plan run by code"]
+        L1 --> PG[("PostgreSQL with pgvector<br/>Files, pages, chunks, vectors, IDs, runs,<br/>questions, ontology, corrections, audit")]
+        L2 --> NG[("Neo4j<br/>Wells, facts, days, events, chunk links")]
+        L3 --> NG
+        API --> OBJ[("File store (MinIO or a directory)<br/>Raw files, page images, K1 packages")]
+        W["Ingestion worker<br/>Parse, chunk, load, embed,<br/>build both graphs"] --> OBJ & PG & NG
+        W --> VLM["Page parser<br/>Docling and rules; a document VLM later"]
+        W --> LM["LLM endpoint<br/>open-weight, about 7B, swappable"]
         W --> EMB["Embedding model"]
-        API --> LM & EMB
-        ONT["Ontology and glossary<br/>versioned, admin-managed"] --> W & API
+        CO --> LM
+        L1 --> EMB
+        ONT["Ontology and glossary<br/>versioned, admin-managed"] --> W & CO
     end
     DEV["Development only: hosted open-model API<br/>(e.g. OpenRouter), public documents only"] -.-> LM & VLM & EMB
-    GPU["School GPU slots<br/>large runs, local deployment"] -.-> LM & VLM
+    GPU["Local GPU: Tri's desktop today,<br/>school GPU slots for large runs"] -.-> LM & VLM
 ```
 
 </details>
 
-**Figure 2 — Target components and stores.** Users never reach a database or model endpoint directly. During development, model calls may go to a hosted open-model API for public documents only; large runs and the deployed system use local models on booked GPUs.
+**Figure 2 — Target components and stores.** Users never reach a database or model endpoint directly. The coordinator and lanes are drawn inside the backend; they are Track B's engine used as a library. During development, model calls may go to a hosted open-model API for public documents only; large runs and the deployed system use local models.
+
+**Model roles (D-62).** Code names a role, not a model: `frame` (the coordinator's call), `answer`, `extract` and `embed`. A configuration file maps each role to an endpoint and a model, so a stronger model replaces Qwen3-8B without a code change. Each run records the mapping it used.
 
 ### 4.2 Which store owns what
 
@@ -384,17 +400,11 @@ The supervisor asked for raw files, chunk/metadata and vectors to be designed as
 | Store | Owns | Rule |
 |---|---|---|
 | Object store (MinIO, S3-compatible; a plain directory in development) | Original files, page images, the parser's per-page output (Markdown/HTML and layout JSON), run artifacts | Write once under content-addressed keys; never overwrite; back up originals |
-| PostgreSQL | File and page records, parent/child chunk records and text, table records, ID mappings, runs and their cost, ontology and glossary versions, extracted items and scores, corrections, merges, generations, audit | System of record; anything else can be rebuilt from it plus the object store |
-| Vector store | One point per child chunk: its embedding, plus a payload of IDs and filters (file, page, parent, document type, well IDs, ontology version, generation) | Derived; rebuildable from PostgreSQL and the pinned embedding model |
-| Neo4j | Entities, relations, chunk nodes and `MENTIONS`/evidence links, per generation | Derived; rebuildable; never the only copy of a correction |
+| PostgreSQL | File and page records, parent/child chunk records and text, table and form records, ID mappings, runs and their cost, the question log and feedback (§4.6), ontology and glossary versions, extracted items and scores, corrections, merges, generations, audit | System of record; anything else can be rebuilt from it plus the object store |
+| Vector store: **pgvector inside the same PostgreSQL** (D-56) | One vector per child chunk and embedding model, with the chunk's well and report date copied beside it for filtering | Derived; rebuildable from the chunk records and the pinned embedding model. BM25 runs alongside it |
+| Neo4j | The two graphs of §8.5: wells, facts, report days, events, codes, and `Chunk` nodes that hold only an ID | Derived; rebuildable; never the only copy of a correction. Chunk text and pages stay in PostgreSQL |
 
-**Choosing the vector store.** Start with whatever the chosen GraphRAG base supports, provided its payload can carry the ID fields in §5.11. Candidates:
-
-- Neo4j's built-in vector index (one store fewer);
-- pgvector in PostgreSQL;
-- Qdrant (payloads are first-class).
-
-Pick one in M1; do not run two.
+Built so far (Track C): the K1 tables, the loader with its page-rebuild check, `chunk_vectors`, and the event graph in Neo4j. The object store is a plain directory until a second machine needs the files.
 
 ### 4.3 Runs and publication
 
@@ -424,6 +434,8 @@ The core works on typed contracts and opaque IDs; drilling semantics enter throu
 The ontology belongs to whoever runs the system (D-29). The team writes the core and supplies the drilling-report profile as its test ontology. A synthetic second profile checks that no core code names a well type.
 
 ### 4.5 First build: three tracks joined by files
+
+**Status: closed on 24 November 2026.** The three tracks delivered their parts (§3.1) and the contracts held: K1 version 1 is the agreed interface (D-57), and Track C loaded Track A's package and Track B's event graph. Not delivered: the one-command runner, the full pass through it, and the comparison of document VLMs. These move to the second build (§4.6) and the [plan](DEVELOPMENT_PLAN.md). This section is kept because K1 to K5 remain the interfaces between ingestion, engine and stores.
 
 The target in §4.1 is not built in one go (D-48). The first phase (plan M1) builds the **one-document slice**: the AK-3 end-of-well report and then one AK-3 daily report, from pages to cited answers. The work is split into three tracks. Each track has its own owner for the stint, research questions, tools and experiment records. Tracks A and B touch each other only through versioned files. Track C provides the IDs, the stores and the runner that both use, but A and B can work without them from day one.
 
@@ -496,7 +508,48 @@ The rules:
 - local GPU runs;
 - more than two documents.
 
-The tracks are the split for the current stint. The team divides the work again every one to two weeks (D-48), and uses the data/backend/frontend split (D-46) once the application work starts (plan M2).
+The tracks were the split for the first build. The team divides the work again every one to two weeks (D-48), and uses the data/backend/frontend split (D-46) from the second build on (§4.6).
+
+### 4.6 Second build: one connected application
+
+The supervisor asked for the three parts connected behind a UI that domain experts can touch (D-60). On 24 November Tri chose to build the real application now, a FastAPI backend and a React frontend, instead of first pointing Track B's local UI at the stores (D-65). The second build is the **read path**: ask a question, see the answer, its sources and how it was reached. Uploading and administration come after it (plan M4).
+
+```mermaid
+flowchart LR
+    PKG["K1 package<br/>(Data)"] --> RUN["Runner: one command<br/>load, embed, build both graphs"]
+    RUN --> PG[("PostgreSQL<br/>with pgvector")]
+    RUN --> NG[("Neo4j")]
+    PG --> ENG["Engine library (graphrag):<br/>coordinator and lanes"]
+    NG --> ENG
+    ENG --> API["Backend API<br/>(FastAPI)"]
+    API --> WEB["Frontend (React):<br/>chat, sources, evidence"]
+    API --> LOG[("Question log<br/>and feedback")]
+    LOG -. "real questions (Q2, Q13)" .-> ENG
+```
+
+| Part | Role (D-46) | Content of the second build |
+|---|---|---|
+| Packages | Data | A K1 release for the demo set: AK-3's end-of-well report, its daily reports and its non-productive-time report, then 56-32 and 68-32. The legacy ID map ships with it. Which of the 17 November options are on is decided by measurement |
+| Stores and runner | Backend | The stores hosted where all three teammates reach them (Track B log B-D35). One command takes a K1 package to loaded chunks, vectors and both graphs, and checks each step |
+| Engine | Engine (Track B's code) | Lanes behind one interface, reading the stores; the coordinator (§8.1); results computed by code reported by code; the reasoning probe (§8.6) |
+| API | Backend | The read-path endpoints of §7.5, agreed as an OpenAPI file before either side codes against it |
+| Frontend | Frontend | Chat with the exact-answer switch (D-59); answer with citations; the source page beside the cited passage; the evidence panel (passages, facts, the query plan and its events); a button to mark an answer wrong |
+
+**Where the code lives.** Folders keep their owners; nothing is moved now.
+
+| Folder | Holds |
+|---|---|
+| `src/graph_builder/` | Ingestion and K1 packages |
+| `graphrag/` | The engine: client, lanes, coordinator, answer checks. Imported by the backend as a library |
+| `platform/` | Store scripts, SQL and the compose file. It stays a folder of scripts, because a package named `platform` would hide Python's own module (Track C log C-C02) |
+| `backend/` (new) | The FastAPI service |
+| `frontend/` (new) | The React application |
+
+**The question log is a product of this build.** Every question asked, the lane chosen, the answer and any "wrong answer" mark are stored. Shown to domain experts, the application then yields the real questions that Q2 and Q13 are waiting for. The log holds what users typed, so it stays inside the deployment boundary.
+
+**Access.** The demo holds public data only. A shared host still needs a gate, so the reverse proxy asks for one shared password until login and roles exist (FR-10, plan M6). The model stays on a local GPU, or on a hosted open-weight endpoint for public data (§10.1).
+
+**Not in the second build:** upload through the UI, ontology and glossary editing, flagged items and corrections, generations, login and roles, VLM parsing.
 
 ## 5. Document-to-graph processing
 
@@ -773,7 +826,7 @@ A customer would replace it with their own ontology through the admin applicatio
 | Temporal / activity | Daily operation on date, during section, at depth interval | Used for daily reports |
 | Evidential | Item cites a chunk; chunk mentions entity | Used |
 | Condition | Holds under stated conditions (planned vs actual, MD vs TVD) | Used, as item context |
-| Causal | Caused, resulted in (for example a stuck pipe causing non-productive time) | Allowed when the report states it; no inference |
+| Causal | Caused, resulted in (for example a stuck pipe causing non-productive time) | Stored only when the report states it; no inference is stored. The reasoning lane (§8.6) may propose causes at answer time, labelled as possible and never written to the graph |
 | Inheritance | Subtype of, between ontology types | Ontology level only |
 
 ### 6.4 Terms, abbreviations and languages
@@ -866,6 +919,20 @@ Every published item cites at least one chunk (with span or table row) or a data
 
 ### 7.5 HTTP interface (design)
 
+**Read path, built in the second build (§4.6).** The exact fields are fixed in an OpenAPI file that backend and frontend agree before coding.
+
+| Endpoint | Behavior |
+|---|---|
+| `POST /v1/questions` | Body: the question, `mode` (`exact` or `allow_fallback`, D-59) and an optional lane to force. Returns the answer or an explicit "not found"; the question frame and the lanes used; citations (chunk ID, file, page); the evidence (passages, facts, the query plan with its result and source events); the checks passed; calls, tokens and seconds. The question and its result are written to the question log |
+| `POST /v1/questions/{id}/feedback` | Mark an answer right or wrong, with an optional comment |
+| `GET /v1/chunks/{id}` | Text, parent, file and page |
+| `GET /v1/files`, `GET /v1/files/{id}/pages/{n}` | The loaded reports; one page as an image or PDF page for the source viewer |
+| `GET /v1/wells`, `GET /v1/wells/{id}` | The wells; one well's facts, documents and report days |
+| `GET /v1/wells/{id}/events` | Events of a well between two dates |
+| `GET /v1/health` | Whether the stores and the model endpoint answer, and which models the roles map to |
+
+**Write path and administration, later (plan M4).**
+
 | Endpoint | Behavior |
 |---|---|
 | `POST /v1/files` | Upload with document type and permission; returns file ID and queued run |
@@ -874,26 +941,54 @@ Every published item cites at least one chunk (with span or table row) or a data
 | `POST /v1/items/{id}/corrections` | Accept, correct or reject; stale version returns `409` |
 | `GET/PUT /v1/ontology`, `/v1/glossary` | Versions, validation, diff, activation |
 | `POST /v1/generations/{id}/activate` | Activate a checked generation |
-| `POST /v1/questions` | GraphRAG answer with citations, or an explicit "not found" |
-| `GET /v1/chunks/{id}` | Text, parent, page image link, entities |
-| `GET /v1/entities/{id}` | Facts, documents and chunks for an entity |
 | `POST /v1/files/{id}/retire` | Stop serving immediately; clean up vectors and graph items |
 
 ## 8. Question answering
 
-QA is GraphRAG (D-36): retrieval over chunks and graph, then a ~7B open-weight model writes the answer from the retrieved context with citations. The chosen base pipeline provides the retrieval machinery. The project adds:
+QA is GraphRAG (D-36): a question is answered from text chunks and from two graphs, and an open-weight model of about 7B writes the answer from that evidence with citations. The shape of a graph has to match the questions asked of it (Track B log B-F47), so the design is not one retrieval recipe. It is a **coordinator** in front of **lanes**, each good at one kind of question (D-58, D-64).
 
-- entity linking through the registry and glossary;
-- ID-preserving context assembly;
-- citation checks.
+§8.1 to §8.3, §8.5 and §8.6 are the design. §8.4 is what runs today and how it scores.
 
-### 8.1 Retrieval
+### 8.1 The coordinator and its lanes
 
-1. **Understand the question.** Expand abbreviations with the glossary. Link well names and identifiers to registry IDs; if a name matches several wells, ask which one.
-2. **Find chunks.** Vector search over child chunks, filtered by linked well IDs and document type when known, combined with keyword search (exact numbers, codes, names). The base pipeline's hybrid retrieval is used if it has one.
-3. **Expand through the graph.** From linked entities and the entities mentioned by top chunks, follow declared relations for a bounded number of hops: the well's sections, casing, daily operations, and the chunks that mention them.
-4. **Assemble context.** Child chunks with their parent context (section heading, table header, report date) and graph facts with their cited chunks, ranked, deduplicated and cut to the token budget. Every piece keeps its chunk ID.
-5. **Optional.** Community or document summaries (as in Microsoft GraphRAG) for broad questions, if the base pipeline provides them and they measure better.
+**Kinds of question.** This is the working list until the purpose of use is known (Q13).
+
+| Kind | Example | Lanes used |
+|---|---|---|
+| Lookup in an end-of-well report | "What total depth did AK-3 reach?" | Well facts, then passages |
+| Lookup by date in daily reports | "What was the mud weight on AK-3 on 20 August 2016?" | Passages of that well and date |
+| Across wells | "Which of AK-3, 56-32 and 68-32 was drilled deepest?" | Well facts for each well, with passages per well |
+| Over time | "How many hours of non-productive time did AK-3 have in August?" | Events |
+| Reasoning about causes (D-61) | "AK-3 lost time on 2 September. What are the likely causes?" | Reasoning (§8.6), which calls events and passages |
+| Anything else | | Passages; or "not found" |
+
+**The lanes.** Each lane is a function: it takes the question and its frame, and returns evidence in one common shape. That shape is what makes a lane a tool that a later agent, or an MCP server, can call.
+
+| Lane | Reads | Returns | Model calls |
+|---|---|---|---|
+| **Passages** | Chunks in PostgreSQL: BM25 over the documents that name the well; vectors fused in per well when several wells are named; only the pages of the date named, for daily reports | Ranked chunks with their IDs | 0 |
+| **Well facts** | The fact region of the graph (§8.5) for the wells named | Validated facts, each with its chunk ID | 0 |
+| **Events** | The event region of the graph (§8.5) | A query plan, its result computed by code, and the events it was computed from with their chunk IDs | 0 (the plan comes with the frame) |
+| **Reasoning** (probe) | Events and passages around one problem event | Stated causes and possible causes, each with chunk IDs (§8.6) | 0 or 1 |
+
+Evidence from every lane has the same fields: `passages`, `facts`, `computed` (plan, result, source events), the `lane` name, and `exact` (true for facts and computed results, false for passages).
+
+**The steps.**
+
+1. **Frame the question: one model call with a JSON schema.** It returns the kind of question, the report type (end-of-well, daily or both) and, for a question over time, the query plan for the event lane. Wells and dates are read by code, as today (`WellRouter`, `DateRouter`); what the code finds wins over what the model says. Later the registry and the glossary do this reading (§5.4, §6.4), and a name that matches several wells asks the user which one.
+2. **Choose lanes in code,** from the table above. The model never chooses a tool freely and never writes a query that runs: a plan is JSON, checked against a schema, and code runs it (§10.2).
+3. **Run the lanes** and merge their evidence, cut to the token budget. Every piece keeps its chunk ID.
+4. **Fall back in a fixed order.** If a lane returns nothing (no fact for the property, a plan that cannot run), the passages lane runs instead.
+5. **Answer: one model call,** from the evidence only (§8.3). A result computed by code is reported by code, with no answer call.
+6. **Check in code** (§8.3), then write the answer record (K4) and the question log.
+
+A question costs two model calls, the frame and the answer, or one when code reports a computed result (§8.3). Today an end-of-well lookup costs one and an event question two, so the coordinator adds one call to lookups and saves one on event questions. Whether that call earns its cost is measured before it is adopted: all 221 existing development questions go in one pool with no lane given, and the coordinator must match the scores of §8.4, where the lane was chosen by hand. Their source sets give the expected lane for free.
+
+**The exact-answer switch (D-59).** With `mode: exact`, only evidence marked `exact` may support an answer, and step 4's fallback is off: if the graphs hold no answer, the reply is "not found in the graph", with the closest passages shown as sources but no generated answer. With `mode: allow_fallback`, the default, passages may support the answer and the reply says which kind of evidence it used.
+
+**Later: an agent in one lane only.** The reasoning lane may need several steps: find the event, look around it, look again. If the fixed version of §8.6 proves too rigid, that lane alone becomes a loop in which the model picks among the other lanes as tools, with a step limit and read-only tools. Routing stays in code. A model of 8B is not assumed to manage a free tool loop until a run shows it.
+
+**Removed from the earlier design.** Expanding through the graph by a fixed number of hops, and community summaries: the two ready-made pipelines that do this did not beat plain retrieval on our questions (E16, E19, E21).
 
 ### 8.2 Answer sequence
 
@@ -906,34 +1001,49 @@ QA is GraphRAG (D-36): retrieval over chunks and graph, then a ~7B open-weight m
 sequenceDiagram
     actor User
     participant API as Backend
-    participant Vec as Vector store
-    participant Graph as Neo4j
-    participant Meta as PostgreSQL
+    participant CO as Coordinator
     participant LLM as LLM (open-weight, about 7B)
-    User->>API: Question
-    API->>Meta: Expand glossary terms, link wells to registry IDs
-    API->>Vec: Hybrid search over child chunks (filtered by well, document type)
-    API->>Graph: Expand linked entities through declared relations
-    Graph-->>API: Facts and the chunk IDs that support them
-    API->>Meta: Resolve chunk IDs to parent context, file and page
-    API->>API: Assemble context within the token budget
-    API->>LLM: Question, context with chunk IDs, citation rules
-    LLM-->>API: Answer citing chunk IDs
-    API->>API: Check citations are in the context and numbers occur in cited text
-    alt No supporting context or checks fail
-        API-->>User: "Not found in the documents", with the closest sources
+    participant PG as PostgreSQL with pgvector
+    participant NG as Neo4j
+    User->>API: Question, mode (exact or allow fallback)
+    API->>CO: Question
+    CO->>CO: Read wells and dates in code
+    CO->>LLM: Frame: kind, report type, plan if over time
+    LLM-->>CO: Question frame (JSON)
+    CO->>CO: Choose lanes from the fixed table
+    opt Well facts or events
+        CO->>NG: Facts of the wells named, or run the plan
+        NG-->>CO: Facts or computed result, with chunk IDs
+    end
+    opt Passages, or fallback when a lane is empty
+        CO->>PG: BM25 and vectors, filtered by well and date
+        PG-->>CO: Chunks with IDs, file and page
+    end
+    alt A result was computed by code
+        CO->>CO: Report the result, cite its source events
+    else
+        CO->>LLM: Question, evidence with chunk IDs, citation rules
+        LLM-->>CO: Answer citing chunk IDs
+    end
+    CO->>CO: Check citations and numbers
+    CO->>PG: Write the answer record and the question log
+    alt No supporting evidence or checks fail
+        API-->>User: "Not found", with the closest sources
     else Checks pass
-        API-->>User: Answer, citations (document, page), generation
+        API-->>User: Answer, lanes used, citations (document, page), evidence
     end
 ```
 
 </details>
 
-**Figure 5 — GraphRAG answer flow.** The model only writes the answer; the backend controls retrieval, citations and checks.
+**Figure 5 — Answer flow.** The model frames the question and writes the answer. Code reads wells and dates, chooses lanes, runs plans, and checks citations and numbers.
 
 ### 8.3 Answer rules
 
-- The model answers only from the supplied context and cites chunk IDs. Every cited ID must be in the context, and every number in the answer must occur in a cited chunk, or the answer falls back to showing the sources without a generated answer.
+- The model answers only from the supplied evidence and cites chunk IDs. Every cited ID must be in the evidence, and every number in the answer must occur in a cited chunk or be a result computed by code, or the answer falls back to showing the sources without a generated answer.
+- A result computed by code (a total, a count, a date from the event lane) is the answer as code wrote it, cited to the events it was computed from. No model call retypes it: retyping garbled right results in E28.
+- The answer names the lanes it used. In `exact` mode it uses facts and computed results only (§8.1).
+- A cause that no report states is labelled "possible", never stated as fact (§8.6).
 - "Not found in the documents" is not "does not exist".
 - When sources disagree, the answer gives both values with their sources.
 - The E4 template answers for property lookups remain as the baseline. Run them on the same questions; if GraphRAG is worse on exact numeric lookups, the templates may serve those questions.
@@ -941,7 +1051,7 @@ sequenceDiagram
 
 ### 8.4 What the first build runs today
 
-§8.1 to §8.3 are the target. As of 5 November 2026 the first build answers **questions over time on daily reports from a graph of events** (D-53), and other questions by retrieval routed by well and date (D-50). End-of-well questions also get validated facts from the per-well fact graph (D-55); on new lookup questions it ties retrieval so far, and the expert questions are to show where it helps. All these questions are simulated or development questions. **Which reports are asked about is chosen per run today, not detected.**
+The three lanes of §8.1 exist as code; the coordinator does not. As of 24 November 2026 the first build answers **questions over time on daily reports from a graph of events** (D-53), and other questions by retrieval routed by well and date (D-50). End-of-well questions also get validated facts from the per-well fact graph (D-55); on new lookup questions it ties retrieval so far, and the expert questions are to show where it helps. All these questions are simulated or development questions. **Which reports are asked about is chosen per run today, or from the question's words in the local UI; the `KIND` box below is what the coordinator replaces.** The event graph has also been rebuilt from K1 version 1 with identical events ([E31](experiments/E31-event-graph-on-k1.md)); answers on K1 version 1 have not been rerun.
 
 ```mermaid
 flowchart TD
@@ -986,10 +1096,77 @@ The totals-over-time questions were chosen to suit the event graph ([E28](experi
 
 - comparison questions across end-of-well reports (0/5, [E26](experiments/E26-routing-and-strict-facts.md));
 - table mappings: casing works on the layouts tried (13/16 on unseen reports with no wrong fact), surveys are unreliable, and a different author's modern report is untested ([E29](experiments/E29-table-mappings-across-reports.md));
-- the event graph covers AK-3's daily reports only, in memory and not in Neo4j, and the final model step sometimes garbles a right result ([E28](experiments/E28-event-graph.md));
-- daily-report form headers and form tables, which need K1 version 1 ([note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md));
-- steps 1 and 3 to 5 of §8.1 are not built;
-- the run on Track C's stores has not happened.
+- the event graph covers AK-3's daily reports only, and the final model step sometimes garbles a right result ([E28](experiments/E28-event-graph.md)). Track C loaded E28's graph into Neo4j, but answers still run on the copy in memory;
+- daily-report form headers and form tables are now in K1 version 1, and no answer run has used them yet;
+- the coordinator, the common lane interface and the exact-answer switch of §8.1 are not built;
+- the fact graph is a list of fact records in files, not yet the graph of §8.5;
+- the engine reads files, not Track C's stores.
+
+### 8.5 The graph: nodes and relationships
+
+The supervisor asked for the node and relationship logic to be stated clearly (9 November). There is **one graph with two regions**, joined at `Well` and `Chunk`. No model call writes to the event region; the fact region is written by table mappings and by LLM extraction, and only after the checks of `graphrag/validate.py`.
+
+```mermaid
+flowchart LR
+    W(("Well"))
+    D["Document"]
+    C["Chunk<br/>ID only"]
+    subgraph FACTS["Fact region: end-of-well reports"]
+        F["Fact<br/>property, value, unit,<br/>qualifier, context, source"]
+        HS["HoleSection"]
+        CS["CasingString"]
+    end
+    subgraph EVENTS["Event region: daily reports"]
+        RD["ReportDay<br/>date"] -->|HAS_EVENT| E["Event<br/>start, end, hours,<br/>depth, description, seq"]
+        E -->|HAS_CODE| AC["ActivityCode"]
+        E -->|NPT| NC["NptCode"]
+    end
+    W -->|HAS_FACT| F
+    W -->|HAS_SECTION| HS
+    W -->|HAS_CASING| CS
+    W -->|HAS_DAY| RD
+    W -->|DESCRIBED_BY| D
+    D -->|HAS_CHUNK| C
+    F -->|FROM| C
+    E -->|"FROM {rank}"| C
+```
+
+| Node | Key | Properties | Written by |
+|---|---|---|---|
+| `Well` | Registry ID when linked, else the scoped name | Name, aliases | Both regions |
+| `Document` | File ID (D-54) | Document type, report date if a daily report | The loader, from K1 |
+| `Chunk` | Chunk ID (D-54) | None. Text and page stay in PostgreSQL | The loader, from K1 |
+| `Fact` | Well, property, qualifier, context | Value, unit, qualifier (planned or actual), context (for example the casing size a depth belongs to), source (`table_mapping` or `llm`) | `graphrag/tables.py` (no model call) and LLM extraction, both validated |
+| `HoleSection`, `CasingString` | Well and size | Hole size; casing size, weight, grade, setting depth | Table mappings (casing: 13 of 16 on unseen reports, E29) |
+| `ReportDay` | Well and date | Date | `graphrag/events.py`, no model call |
+| `Event` | Well, date and order in the day | Start, end, hours, end depth, description, `seq` | The same |
+| `ActivityCode`, `NptCode` | Code | Code | The same |
+
+| Relationship | Meaning |
+|---|---|
+| `(Well)-[:HAS_FACT]->(Fact)` | A value the reports state about the well |
+| `(Well)-[:HAS_SECTION]->(HoleSection)`, `(Well)-[:HAS_CASING]->(CasingString)` | The well's hole sections and its casing strings. Which casing was set in which hole (`CASED_WITH`) is not written yet: no fact states it today |
+| `(Well)-[:HAS_DAY]->(ReportDay)-[:HAS_EVENT]->(Event)` | One row of a day's operations table |
+| `(Event)-[:HAS_CODE]->(ActivityCode)`, `(Event)-[:NPT]->(NptCode)` | The activity; the non-productive code when the report marks one |
+| `(Fact)-[:FROM]->(Chunk)`, `(Event)-[:FROM {rank}]->(Chunk)` | Where it was read. Every fact and event has at least one |
+| `(Well)-[:DESCRIBED_BY]->(Document)-[:HAS_CHUNK]->(Chunk)` | Which reports cover a well. This is what links a well's daily reports to its end-of-well report |
+
+**Status.** The event region is in Neo4j as Track C loaded it (Track C log C-C11), on the old chunk IDs. The fact region is a proposal: today the facts are records with the fields above in result files, and its layout in Neo4j is to be agreed with Track C (D-67). A fact is a node, not a property on `Well`, because one well can have several values for one property (planned and actual, two reports that disagree), and each needs its own source.
+
+**Kept thin (D-49, D-52).** K2 declares more than this: `Project`, `Organization`, `Person`, `Rig`, `Formation` and relations such as `OPERATED_BY` and `MONITORS`. They are added when a kind of question needs them, such as questions about people or about one well monitoring another, not before. A stated cause may be stored as a relationship between events; an inferred one is never stored (§6.3).
+
+### 8.6 Reasoning about causes (design and probe)
+
+The supervisor's question type (D-61): a drilling problem happened at some point in the well; what are the likely causes? An experienced engineer sees which part of the drilling process is involved, reads the related documents, forms a judgement, and checks it. The lane follows the same order, with code doing the gathering.
+
+1. **Find the problem.** From the frame: a date, a depth, a non-productive code, or words such as "stuck" or "lost circulation". The lane finds the matching events in the event region. If several match, the answer lists them and asks which.
+2. **Gather what surrounds it, in code.** The events of the days before and after it; the depth and activity at the time; the non-productive report's own description of the event; the passages of the same day's reports (mud, remarks); and the end-of-well report's passages that mention the problem.
+3. **Answer in two parts.** *Stated in the reports:* what a report gives as the cause, with citations. *Possible, not stated:* other factors visible in the evidence, each with its citation and labelled as a possibility. A cause with no citation is not allowed.
+4. **Say what is missing.** The answer lists the kinds of evidence a real judgement needs and the reports do not hold.
+
+**The probe.** About ten questions on AK-3's own non-productive events (28 events, 115 hours on 10 days), written and frozen before any run. Each is scored on two things: is the cause the reports state found and cited, and does the answer state anything as fact that no report supports? It becomes an experiment record. The questions are simulated and not expert-reviewed.
+
+**What the data cannot support.** One well's daily and end-of-well reports hold what happened and, sometimes, what the crew wrote about why. They do not hold offset wells, formation pressures, drilling parameters sampled over time, or lessons-learned reports. The supervisor expected the data to fall short (9 November). The probe's purpose is to show him a concrete answer, so the expert group can say what a useful one would need. A larger public set of daily reports is still to be found (Q5).
 
 ## 9. Technology choices and alternatives
 
@@ -1003,14 +1180,15 @@ Everything not yet in the repository is a proposal. Pin exact versions and licen
 | Page parsing (D-39) | Document VLMs of about 7B or smaller, compared with Docling's table model on the table set: e.g. granite-docling / SmolDocling (inside Docling's VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL-3B/7B | Proposed; selected in M1 (Track A) |
 | Existing parser | Docling + pypdf; corpus pipeline with per-page OCR (VietOCR/RapidOCR) | Existing; Docling is the baseline; OCR engines are kept only for reproduction |
 | Embeddings | Open embedding models, e.g. BAAI bge-m3, Qwen3-Embedding-0.6B, nomic-embed-text; optionally a reranker (bge-reranker-v2-m3) | BM25 routed by well reaches hit@5 1.00 on three reports for one-well questions (E18); Qwen3-Embedding-0.6B is used in fusion for questions naming several wells (E26). Other embedding models are compared once questions need them |
-| Model client (FR-28) | One OpenAI-compatible client for LLM, VLM and embeddings. Development: hosted open models (OpenRouter) on public data. Large runs and deployment: local serving with vLLM or llama.cpp on a school GPU | Proposed |
-| Object store | MinIO (S3 API); a local directory behind the same interface in development | Proposed |
-| Metadata DB | PostgreSQL | Proposed |
+| Model client (FR-28) | One OpenAI-compatible client for LLM, VLM and embeddings. Development: llama.cpp on a local GPU, or hosted open models (OpenRouter) on public data. Large runs and deployment: local serving with vLLM or llama.cpp | Exists (`graphrag/client.py`): JSON-schema output, request cache, cost ledger, private-data guard. Model roles (§4.1) to add |
+| Coordinator (D-58, D-64) | Our own: one framing call with a JSON schema, then lanes chosen in code (§8.1). No agent framework: a fixed router needs none, and the lanes keep one interface so one can be wrapped later | Designed; not built |
+| Object store | MinIO (S3 API); a local directory behind the same interface in development | Optional in Track C's compose file; a directory in use |
+| Metadata DB | PostgreSQL 16 | Exists: K1 tables and loader (Track C) |
 | Vector store | **pgvector inside the PostgreSQL that holds K1** (D-56), proposed by Track C; Neo4j's index stays the alternative if retrieval moves next to the graphs | Chosen |
-| Graph DB | Neo4j Community | Existing in the prototype |
-| Backend | FastAPI + Pydantic | Prototype API exists |
-| Frontend | React + TypeScript; PDF.js for the source page | Proposed |
-| Packaging | Docker Compose | Prototype compose file exists |
+| Graph DB | Neo4j Community 5.26 with APOC | Exists: the event graph loaded and checked (Track C) |
+| Backend | FastAPI + Pydantic, importing `graphrag` as a library | Second build (§4.6, D-65). The prototype's API and Track B's standard-library UI server are not carried over |
+| Frontend | React + TypeScript; PDF.js for the source page | Second build (§4.6, D-65). Track B's local UI (`graphrag/ui.html`) stays as a developer tool for replaying recorded runs |
+| Packaging | Docker Compose | Track C's compose file runs the stores; the backend and frontend are added to it |
 
 **Not used:**
 
@@ -1163,6 +1341,10 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-61 | **Reasoning about the causes of a drilling problem is a target question type** ("a problem happened at this point of the well; what are the likely causes?"). It needs several sources and real reasoning; the current data is likely insufficient, so it is a target, not a first-build commitment | 9 Nov 2026, supervisor | Data and question set allow it |
 | D-62 | **The model can be swapped.** The architecture must take a stronger model when infrastructure allows; model choices so far (D-37, Q4) are not fixed into the design | 9 Nov 2026, supervisor | — |
 | D-63 | **People review part of the machine-made data.** Automatic checks (Track A's QA layers, Track B's validation) stay, and human review is added on top after the pipeline is built. Non-LLM methods are pushed as far as they go before turning to OCR or vision models, which cost hardware or money | 9 Nov 2026, supervisor | — |
+| D-64 | **The coordinator is a router now; an agent comes later, in one lane.** One model call frames the question (kind, report type, plan); code reads wells and dates, chooses lanes from a fixed table and falls back in a fixed order. Every lane has the same input and evidence output, so it can later be called as a tool or through MCP. A multi-step loop is considered only inside the reasoning lane, after a run shows a model of this size can manage it. Adopted only if it matches the hand-routed scores of §8.4 on the pooled development questions (§8.1) | 24 Nov 2026; Tri, from D-58 (Track B log B-D36) | The pooled run shows the router loses answers, or the supervisor asks for a free agent |
+| D-65 | **The application is built now: a FastAPI backend and a React frontend,** read path first (§4.6, §7.5). It replaces the plan of first pointing Track B's local UI at the stores; D-60's purpose stays. Every question asked is logged, so use by domain experts yields the real questions (Q2, Q13). Work is split by data, backend and frontend from this stint (D-46); who takes which is the team's to agree (Q14) | 24 Nov 2026; Tri (Track B log B-D37) | The team cannot staff a frontend, or the supervisor wants something shown sooner than it can be built |
+| D-66 | **The reasoning lane is designed and probed, not promised.** It finds the problem event, gathers what surrounds it in code, and answers in two parts: causes the reports state, and possible causes, each cited (§8.6). About ten frozen questions on AK-3's non-productive events test it. No inferred cause is stored in the graph | 24 Nov 2026; Tri, from D-61 (Track B log B-D38) | The probe shows the data supports nothing useful, or more data arrives |
+| D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is **proposed**, to agree with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35) | Track C proposes another layout, or a question type needs K2's other entity types |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1187,7 +1369,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 |---|---|---|---|
 | Q1 | Which petroleum document will the supervisor provide for the joint final evaluation, and may it be processed on school GPUs? | Public data only until then; a private document runs on local models only | §10.1, final evaluation |
 | Q2 | When will the drilling expert group's question set arrive, and how many questions, on which documents? | Requested by the supervisor on 28 Oct. Simulated sets stand in for development (D-49). On 5 Nov Tri asked for a specification to write better development questions from. On 9 Nov the supervisor proposed getting questions by showing domain experts a simple UI (D-60) | G5, §12 |
-| Q3 | Which GraphRAG base pipeline, and is the event graph the right main graph? | No base beats retrieval on current questions (E16 to E27), but a graph of events does on totals over time (E28), so the first build uses it for those (D-53) and keeps the per-well fact graph in the end-of-well answer path (D-55). Tri is to raise this with the supervisor, including whether users ask such questions | D-36, D-50, D-53, D-55, §8.4, §9 |
+| Q3 | Which GraphRAG base pipeline, and is the event graph the right main graph? | No base beats retrieval on current questions (E16 to E27), but a graph of events does on totals over time (E28), so the first build uses it for those (D-53) and keeps the per-well fact graph in the end-of-well answer path (D-55). On 9 November the supervisor accepted the lanes as a concept and asked for a coordinator (D-58), without judging them until the purpose of use is known (Q13). Whether users ask questions over time was not answered; the question log is to show it (D-65) | D-36, D-50, D-53, D-55, §8.4, §9 |
 | Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |
 | Q6 | How is the OpenRouter (or similar) account funded and capped, and who holds it? | Supervisor supports the cost; team sets a monthly cap | D-38 |
@@ -1197,8 +1379,9 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q10 | Is the ontology assistant (FR-20) wanted? | Later | §6 |
 | Q11 | What answer accuracy should G5 target on ~7B models? | 80% proposed | §12 |
 | Q12 | Who reviews flagged items and labels the extraction sample? | The team, with the expert group's help if available | D-43, D-63, G3 |
-| Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61) | D-58, D-61 |
-
+| Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61). The application's question log is meant to help answer it (D-65) | D-58, D-61, D-64 |
+| Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Proposed, for the team to agree: Khai data, Hung backend and stores | D-65, plan §2 |
+| Q15 | Where does the demo for domain experts run, and which model serves it? | Stores and application on the shared host Track C sets up (B-D35); the model on Tri's desktop GPU reached over a private network, or a hosted open-weight endpoint, since the demo data is public | D-65, §10.1, §11.3 |
 ### 13.3 Change process
 
 Update this document first when scope, interfaces, stores or gates change, then the plan. Record supervisor direction as a meeting digest in [`requirements/`](requirements/) and as decisions here. When a decision is superseded, move it to the superseded table and **remove** the old design text; do not leave both. Update §3 only after code and evidence exist. Measurements live in [experiment records](experiments/README.md).

@@ -5,16 +5,16 @@ This file briefs any Claude session on any machine. Read it first, then the file
 ## The project in five lines
 
 - A VPI capstone: a **GraphRAG application for drilling reports**, covering end-of-well reports (EOWR) and daily drilling reports (DDR).
-- It is built on an **existing open-source GraphRAG pipeline**, which we take over and improve.
+- It uses **existing open-source GraphRAG code** as libraries and references; no base is adopted wholesale (D-50). The design is a **coordinator in front of three lanes** (passages, well facts, events) over one graph with two regions (specification §8.1, §8.5).
 - It uses **open-weight models of about 7B or smaller**. 8B models are allowed (Track B log B-D06). Commercial APIs are never used, not even for development.
 - Development runs on **OpenRouter, on public data only**. Large runs use the school GPUs.
-- Supervisor: MSc. Nguyen Anh Tuan ("anh Tuấn"). His 28 October 2026 direction is in [docs/requirements/supervisor-meeting-2026-10-28.md](docs/requirements/supervisor-meeting-2026-10-28.md); the [9 November meeting](docs/requirements/supervisor-meeting-2026-11-09.md) added a coordinator for routing, a simple UI early, a reasoning question type and short reporting (D-58 to D-63). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
+- Supervisor: MSc. Nguyen Anh Tuan ("anh Tuấn"). His 28 October 2026 direction is in [docs/requirements/supervisor-meeting-2026-10-28.md](docs/requirements/supervisor-meeting-2026-10-28.md); the [9 November meeting](docs/requirements/supervisor-meeting-2026-11-09.md) added a coordinator for routing, a simple UI early, a reasoning question type and short reporting (D-58 to D-63). Tri's design choices of 24 November turn that into the second build (D-64 to D-67). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification. §4.5 covers the first build in three tracks; §13.1 is the decision register (D-01 to D-63). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
-2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan. M1 is the first build, and each track's section lives there.
-3. Track logs in `docs/tracks/`, with dated findings and decisions.
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification (version 3.4). §4.5 covers the first build in three tracks (closed); **§4.6 the second build, §8.1 the coordinator and lanes, §8.5 the graph's nodes and relationships, §8.6 the reasoning lane**; §13.1 is the decision register (D-01 to D-67). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
+2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan (version 3.2). M1 is closed; **M2 is the second build, and §7 is the task list by role**.
+3. Track records in [docs/tracks/](docs/tracks/README.md), with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.
 
 ## The team split (from 5 November 2026; redone every one to two weeks)
@@ -25,7 +25,7 @@ This file briefs any Claude session on any machine. Read it first, then the file
 | **B. GraphRAG engine and models** | **Tri, the user of these sessions** | Base pipeline, LLM, embeddings, thin K2, cited answers, cost per page; publishes K2, K4 |
 | C. Storage, IDs and the end-to-end run | Hung | ID scheme and schemas, MinIO, PostgreSQL, vector store and Neo4j, loader, runner, viewer |
 
-The tracks meet only through versioned files K1 to K5 (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
+The first build's tracks are closed (24 November). For the second build Tri takes the engine and the frontend (the React UI); the plan proposes, for the team to agree (Q14), Khai on data and Hung on backend and stores. K1 to K5 stay the interfaces (specification §4.5). The expert group will supply the evaluation question set. Until then the development checks are the prototype's 31 questions and the simulated sets in `graphrag/gold/` (B-D22), which no expert has reviewed and which must never be reported as expert validation.
 
 ## Standing rules from the user
 
@@ -38,11 +38,13 @@ The tracks meet only through versioned files K1 to K5 (specification §4.5). The
 - When the direction changes, remove superseded text instead of keeping both, and record what was removed.
 - Write documentation in plain English, with short tables and lists. Vietnamese reports keep technical terms in English.
 
-## Track B: where things stand (5 November 2026)
+## Track B: where things stand (24 November 2026)
 
 Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its top table is the current state.
 
-- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is part of the design and of the end-of-well answer path (B-D29, which reverses B-D24). Plain RAG is the baseline the graphs are measured against, not the system. The supervisor has yet to see these decisions.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
+- **Now: the second build, designed on 24 November and not yet coded.** One connected application: a FastAPI backend and a React frontend on the shared stores, with `graphrag` as the engine library (D-65). Before any code, read specification §4.6, §7.5, §8.1, §8.5 and §8.6, then the plan's §7. Reserved experiment numbers: E32 answers on K1 version 1, E33 the coordinator on the 221 pooled questions, E34 the reasoning probe.
+
+- **Survey:** [docs/tracks/B-graphrag/survey.md](docs/tracks/B-graphrag/survey.md). neo4j-graphrag-python (E16, E20) and LightRAG (E19, with K2 in E21) have been run; no base is adopted wholesale (B-D21). **What runs today ([specification §8.4](docs/PROJECT_DESIGN.md#84-what-the-first-build-runs-today)): an event graph answers questions over time on daily reports (B-D26), and retrieval routed by well and date answers the rest (B-D23). The per-well fact graph is part of the design and of the end-of-well answer path (B-D29, which reverses B-D24). Plain RAG is the baseline the graphs are measured against, not the system. On 9 November the supervisor accepted the lanes as a concept and asked for a coordinator; he has not said whether users ask questions over time.** Learn from neo4j-labs/llm-graph-builder (a finished application, Apache-2.0), RAGFlow, fast-graphrag, Youtu-GraphRAG and MiniRAG.
 - **Code:** [graphrag/](graphrag/README.md).
 
   | Module | Contents |
@@ -100,9 +102,23 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
   - **Run one request at a time for measurements:** parallel requests to llama.cpp make results non-repeatable (B-F19). Record the server settings with each run.
   - A supported citation does not prove a right answer (B-F18, which corrects B-F17).
 
-### Next steps (B-D15)
+### Next steps
 
-1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). **E23 to E29 are done, and the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) for the supervisor. The whole project as of 9 November is in the [project report](docs/reports/PROJECT_REPORT_2026-11-09.md). What is left is [waiting on others](docs/tracks/B-graphrag/next-runs.md):** the expert questions, or a specification to write development questions from; the supervisor's view on the event graph and on whether users ask questions over time (B-D26, Q3); K1 version 1 from Khai ([note](docs/tracks/B-graphrag/note-for-track-A-daily-reports.md)); reading chunks from Hung's PostgreSQL and loading both graphs into Neo4j ([note](docs/tracks/B-graphrag/note-for-track-C-storage.md)).
+The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B's part, in order (B-D36 to B-D38):
+
+1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1).
+2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)); then read chunks and vectors from Hung's stores.
+3. The lane interface: passages, well facts and events behind one function shape with one evidence output; model roles in configuration.
+4. The fact graph as nodes and relationships for Neo4j (specification §8.5, to agree with Hung).
+5. The coordinator, measured as E33 before it is adopted; results computed by code inserted by code.
+6. The reasoning probe, E34: about ten frozen questions on AK-3's non-productive events.
+7. The React frontend, which Tri owns.
+
+Still waiting on others: the expert questions and the purpose of use (Q2, Q13); shared hosting of the stores (B-D35); appendix 23 inside the K1 package.
+
+History of this list (B-D15):
+
+1. The supervisor asked us to wait for the expert questions, so simulated sets stand in (B-D22). E23 to E31 are done; the stint's status is in Tri's [update](docs/tracks/B-graphrag/supervisor-update-2026-11-05.md) and the [project report](docs/reports/PROJECT_REPORT_2026-11-09.md) of 9 November.
 2. ~~Filter retrieval by well~~: done in E18 (B-D16). ~~LightRAG~~: E19, not adopted. ~~K2 version 1~~: `configs/ontology/k2_eowr_v1.json` (B-D17).
 3. ~~LightRAG with K2~~: E21, 26/31; adds document and project structure (B-D21).
 4. ~~Validate extracted facts~~: `graphrag/validate.py` (B-C15). ~~Table rows mapped in code~~: `graphrag/tables.py`, E22 (B-D20). Mappings checked on unseen reports (E25, E29): casing holds up, surveys do not, and a different author's modern report is untested (B-F54). Fact-graph work resumes (B-D29 reverses B-D24's stop).

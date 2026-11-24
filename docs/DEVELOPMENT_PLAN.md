@@ -1,91 +1,79 @@
 # Development and delivery plan
 
-**Version:** 3.1 · **Baseline date:** 23 October 2026 · **Last revised:** 30 October 2026 (first build split into three tracks)<br>
-**Product target:** a GraphRAG application for drilling reports: ingestion, storage, retrieval, chat and administration<br>
-**Team:** Tri, Khai, Hung · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Direction:** [28 October meeting](requirements/supervisor-meeting-2026-10-28.md)
+**Version:** 3.2 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (first build closed; second build planned)<br>
+**Product target:** a GraphRAG application for drilling reports: ingestion, storage, a coordinator over two graphs and retrieval, chat and administration<br>
+**Team:** Tri, Khai, Hung · **Source of truth:** [Project specification](PROJECT_DESIGN.md) · **Direction:** [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) meetings
 
-This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q12) refer to the specification. Version 3.0 replaces the earlier plan: the M0–M7 milestones, the 720-hour model, the Student A/B/C roles and the research backlog items are removed. The [meeting digest](requirements/supervisor-meeting-2026-10-28.md#13-effect-on-the-documentation) records what was removed and why. Version 3.1 splits the first build into three independent tracks (D-48), keeps domain depth thin (D-49) and plans only M0 and M1 in detail.
+This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q15) refer to the specification.
+
+**Version 3.2 (24 November)** closes the first build (M0 and M1) and plans the second: one connected application (specification §4.6, D-64 to D-67). **Removed in 3.2**, because the work is done or replaced: the M0 task list ("this week" of 2 November); the three tracks' research questions, work lists and "starts from" lists; the 15-row backlog of 30 October; and the note written after the 9 November meeting, whose items are done or carried into §7. What each track found stays in its own record: [Track A progress](experiments/TRACK_A_PROGRESS.md), [Track B log](tracks/B-graphrag/log.md), [Track C log](tracks/C-storage/log.md). Version 3.1 is in the Git history.
 
 ## Current status
 
-**Direction (28 October).**
+**Direction.**
 
-- Build a **GraphRAG application** on an existing open-source GraphRAG pipeline (D-36).
-- Use open-weight models of about 7B or smaller, never commercial APIs (D-37). Hosted open models serve development on public data; school GPU slots serve large runs (D-38).
-- Parse pages with VLMs and treat tables as their own workstream (D-39, D-47).
-- Scope by document type: end-of-well and daily drilling reports (D-40).
-- Work in this order: ingestion, then data organization, then retrieval (D-45). Start with **one document** (D-44).
-- Build the first slice in **three independent tracks** joined by versioned files: A ingestion and tables, B GraphRAG engine and models, C storage, IDs and the end-to-end run (D-48, spec §4.5). Keep domain depth thin (D-49).
+- A **GraphRAG application** for drilling reports: end-of-well and daily drilling reports (D-36, D-40).
+- Open-weight models of about 7B or smaller, never commercial APIs (D-37). The model can be swapped (D-62).
+- A **coordinator** sends each question to a lane: passages, well facts or events (D-58, D-64).
+- A **real application now**: FastAPI and React, read path first, shown to domain experts to learn what they ask (D-60, D-65).
+- Rule-based parsing is pushed as far as it goes before vision models (D-63). People review part of the machine-made data, after the pipeline is built (D-63).
+- A capstone, not research: prefer what works, start small, keep domain depth thin (D-41, D-44, D-49).
 
-**What exists and carries over** (code, tests and an experiment record):
+**What exists** (code, tests and a record):
 
-| Item | Use in the new direction | Evidence |
+| Part | State on 24 November | Evidence |
 |---|---|---|
-| Document ingestion with page provenance, Markdown tables, row-safe table chunks, releases | Baseline parser and chunker; the VLM must beat its tables | [Guide](components/corpus-ingestion.md), [E7](experiments/E7-corpus-pipeline-smoke.md), [E8](experiments/E8-ak3-appendices-corpus-run.md) |
-| Structured-data import (BSEE as a mapping) | Well identity source | [Guide](components/dataset-import.md), [E6](experiments/E6-generic-import-bsee.md) |
-| Entity registry: 57,453 wellbores and 39,518 wells | One ID per well across documents | [Guide](components/entity-registry.md), [E13](experiments/E13-entity-registry-bsee.md) |
-| Evidence, claim-revision and entity contracts | Starting point for the ID scheme (spec §5.11) | [E12](experiments/E12-shared-evidence-contract.md) |
-| Prototype: ontology file, LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Baseline the GraphRAG pipeline must match: precision 0.968, recall 0.732, 23/31 questions | [Prototype](../prototype/README.md), [E10](experiments/E10-profile-driven-prototype.md) |
+| Chunk packages (K1 version 1) | AK-3's end-of-well report and four daily-report attachments, 174 pages: validated, with a QA sidecar. Options added on 17 November, off by default: table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine, resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md) |
+| Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
+| Stores | PostgreSQL with pgvector and Neo4j in Docker Compose on one laptop; K1 loader with page rebuild (174 of 174); 1,042 vectors; the event graph in Neo4j, replaying 58 of 58 query plans | [Track C log](tracks/C-storage/log.md) |
+| Earlier foundation | Document pipeline, structured-data import, the entity registry (57,453 wellbores), the prototype as the measured baseline (23/31) | [Specification §3.1](PROJECT_DESIGN.md#31-what-exists) |
 
-**Not built:**
+**Not built:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: the parts are not connected, there is no coordinator, no API, no React frontend and no shared hosting.
 
-- VLM parsing;
-- multi-page table joining;
-- object storage;
-- the parent/child ID scheme across stores;
-- embeddings and a vector store;
-- the GraphRAG base;
-- ontology slicing and injection;
-- the glossary area;
-- scores and flagged items;
-- the frontend;
-- login.
+**Honest limits.** Every question set is simulated. Every method is tuned on one well and one report family. The repository shows no work between 17 and 24 November, and no supervisor contact is recorded after 9 November.
 
 ## 1. Planning basis
 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
-- **Compute (D-38):**
-  - hosted open-weight models through an OpenAI-compatible API (OpenRouter) for development, on public data only;
-  - about US$5–10 runs a reasonable amount, and the supervisor supports the cost;
-  - school GPUs, booked by time slot through Dr. Le Duy Dung, for large runs and the local-model evaluation;
+- **Compute:**
+  - Tri's desktop (RTX 4080 SUPER, 16 GB) with llama.cpp runs every Track B measurement locally;
+  - hosted open-weight models (OpenRouter) remain allowed for development on public data only (D-38). Who holds and funds the account is still open (Q6);
+  - school GPUs, booked through Dr. Le Duy Dung, for large runs. The booking process is still open (Q7);
   - laptops for code, tests, Docling and the stores.
-- **Data:** public only.
-  - Development order: the AK-3 end-of-well report, then one AK-3 daily report, then 5–10 documents.
-  - The supervisor's petroleum document, if supplied, is processed on local models only.
-- **Questions:** the supervisor has asked a drilling expert group for an evaluation question set (Q2). Until it arrives, development uses the prototype's questions and labelled simulated sets (D-49).
-- **Estimates:** plan week by week. Re-plan at every weekly check-in from what was actually finished. There is no fixed hour budget.
+- **Data:** public only. AK-3 first, then the Utah FORGE reports already used (56-32, 68-32, 78-32). The supervisor's petroleum document, if supplied, is processed on local models only.
+- **Questions:** simulated sets stand in for the expert set (Q2, D-49) and are never reported as expert validation. The application's question log is the new route to real questions (D-65).
+- **Estimates:** plan week by week. Re-plan at every check-in from what was actually finished.
 
 ## 2. Team split
 
-**First build (M0–M1): three tracks** (D-48, spec [§4.5](PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files)). Each track is a line of work that one person can research in depth and build in their own way. Tracks A and B meet only through versioned files. Track C sits between them and builds what links them: IDs, stores and the runner.
+The first build ran as three tracks joined by files (D-48). Those tracks are closed (§3), and K1 to K5 remain the interfaces between ingestion, engine and stores.
 
-**The split holds for one stint of one to two weeks.** At the end of each stint, the team divides the work again according to what is next. A track may change owner, merge with another or be replaced, and a new stint may split along different lines. Owners from 5 November:
+From this stint the split follows the lines the supervisor asked for (D-46, D-65). **Tri takes the engine and the frontend (his decision, 24 November). Khai on data and Hung on backend are a proposal for the team to agree (Q14).**
 
-| Track | Owner | Owns | Does not touch |
+| Role | Proposed owner | Owns | Interface it publishes |
 |---|---|---|---|
-| **A. Ingestion and tables** | Khai | Page parsing (Docling vs document VLMs), table structure, multi-page tables, key-value forms, chunking; publishes K1 | Models for extraction or answers, the ontology, storage |
-| **B. GraphRAG engine and models** | Tri | Base-pipeline comparison, ~7B LLM, embeddings, model client, a thin ontology slice and its injection, graph build, retrieval and cited answers, cost per page; publishes K2, K4 | Parsing, storage layout |
-| **C. Storage, IDs and the end-to-end run** | Hung | ID scheme and contract schemas with validators; MinIO, PostgreSQL, the vector store (chosen with Tri) and Neo4j in Docker Compose; loader from K1; run log; one command that runs A → B; a debugging viewer | Parsing, models |
+| **Data** | Khai | PDFs to K1 packages; table and form quality; the QA sidecar; new reports | K1 releases |
+| **Backend** | Hung | Shared hosting of the stores; the runner from a K1 package to loaded stores and graphs; the FastAPI service; the question log | The OpenAPI file; the stores |
+| **Engine** | Tri | Lanes, coordinator, answer checks, the reasoning probe; measurements | The `graphrag` library; K4 records |
+| **Frontend** | Tri (confirmed by Tri, 24 November) | The React application | — |
 
-The expert group supplies the evaluation question set (Q2). Until then Tri checks answers against the prototype's 31 questions and labelled simulated sets, never reported as expert validation (D-49).
+Engine and frontend on one person is the weak point of this proposal. If it slips, the frontend's first version shrinks to the chat page and the source viewer.
 
-When the application work starts (M2), the split follows the data/backend/frontend lines the supervisor asked for (D-46). Who takes which is decided at that stint's split, not now. Everyone joins integration, demos and documentation.
-
-The supervisor and Dr. Dung are consulted on scope; the drilling expert group, through the supervisor, on questions and domain terms.
+The split is redone every one to two weeks (D-48). Everyone joins integration, demos and documentation.
 
 ## 3. Milestones
 
-Windows are counted from the week of 2 November 2026 and are indicative; each weekly check-in revises them. Only M0 and M1 are planned in detail. Later milestones are outlines, replanned from what M1 teaches.
+Weeks are counted from 2 November 2026. Windows are indicative; each check-in revises them.
 
-| Milestone | Window | Lead | Exit demo |
+| Milestone | Window | Exit demo | State |
 |---|---|---|---|
-| **M0: Plan, access, current-workflow demo** | Week 1 | All | Weekly plan (slides) shared; tracks assigned; K1 and K4 schemas at version 0; supervisor on GitHub; OpenRouter account with a cap; GPU booking request sent; current workflow shown to the supervisor |
-| **M1: First build — one-document slice in three tracks** | Weeks 1–5 | Per stint (current split, from 5 November: A Khai, B Tri, C Hung) | On the AK-3 EOWR and one AK-3 DDR: parser chosen with table scores; K1 version 1 published; base pipeline, LLM, embedding model and vector store chosen by comparison; the prototype questions answered with page citations; the stores loaded and the run started by one command; compared with the E10 baseline and plain vector RAG; calls, tokens and cost per page reported |
-| **M2: Integration on the stores** | Weeks 5–7 | Data, with Backend | The M1 runner and stores turned into the ingestion worker: upload a new report and it runs end to end with pinned versions; API contract drafted (spec §7.5) and the frontend started on fixtures |
-| **M3: Quality and control** | Weeks 7–10 | Backend, with Data | Glossary in use; wells linked to registry IDs across the EOWR and DDRs; scores and flagged items; deterministic DDR table mapping and row batching (fewer calls per page); relation normalization; 5–10 documents; first run of the expert question set if it has arrived (G3–G6) |
-| **M4: Full application** | Weeks 7–11 | Frontend, with Backend | Non-developer does it unaided: uploads a report, watches the run, corrects three flagged items, merges a duplicate well, edits a glossary entry, activates the generation, asks a question and opens the cited page; ontology versions and audit visible |
-| **M5: Scale run on local models** | Weeks 10–13 | Backend, with Data | Local ~7B model served on a booked school GPU; the corpus processed in checkpointed runs; evaluation on the held-out expert questions; cost and throughput report (G8) |
-| **M6: Access control and hardening** | Second semester | Frontend, with Backend | Login and roles; private-endpoint guard tested (G7); backup and restore of all stores; joint evaluation on the supervisor's document if supplied |
+| **M0: Plan, access, workflow demo** | Week 1 | Tracks assigned, contracts at version 0, workflow shown | Done, except the OpenRouter account (Q6) and GPU booking (Q7) |
+| **M1: First build in three tracks** | Weeks 1–4 | One-document slice from pages to cited answers | **Closed 24 November**; see below |
+| **M2: Second build — one connected application** | Weeks 4–6 (24 November to 12 December) | A person outside the team opens the application, asks about AK-3, and sees the answer, the lane used, the cited page and the evidence. Everything is read from the shared stores, loaded by one command | **Current** |
+| **M3: Quality and control** | Weeks 6–9 | Wells linked to registry IDs; glossary in use; scores and flagged items; 5–10 documents from more than one report family; the expert or logged questions run (G3–G6) | Outline |
+| **M4: Full application** | Weeks 7–11 | A non-developer uploads a report, watches the run, corrects three flagged items, edits a glossary entry, asks a question and opens the cited page | Outline |
+| **M5: Scale run on local models** | Weeks 10–13 | The corpus processed in checkpointed runs on a booked GPU; evaluation on held-out questions; cost and throughput report (G8) | Outline |
+| **M6: Access control and hardening** | Second semester | Login and roles; private-endpoint guard tested (G7); backup and restore; joint evaluation on the supervisor's document if supplied | Outline |
 
 ![Milestone dependencies](diagrams/07-milestone-dependencies.svg)
 
@@ -95,7 +83,7 @@ Windows are counted from the week of 2 November 2026 and are indicative; each we
 ```mermaid
 flowchart TB
     M0["M0<br/>Plan, access, workflow demo"] --> M1["M1<br/>First build: three tracks on one document"]
-    M1 --> M2["M2<br/>Integration on the stores"]
+    M1 --> M2["M2<br/>Second build: one connected application"]
     M2 --> M3["M3<br/>Quality and control"]
     M2 --> M4["M4<br/>Full application"]
     M3 --> M4
@@ -106,255 +94,52 @@ flowchart TB
 
 </details>
 
-**Figure 7 — Milestone dependencies.** M1 runs three tracks in parallel; nothing after M1 starts until its exit demo. The critical path is Track A's chunk package → Track B's engine on it, run and stored by Track C → integration into a worker → quality on several documents → scale run.
+**Figure 7 — Milestone dependencies.** The critical path is the K1 release for the demo set → the stores loaded by one command → the engine reading the stores → the API → the frontend → domain experts using it.
 
-### After the 9 November meeting
+### M1: how the first build closed
 
-From the [9 November meeting](requirements/supervisor-meeting-2026-11-09.md) (D-58 to D-63):
+| Track | Exit asked | Met | Not met; where it goes |
+|---|---|---|---|
+| A. Ingestion and tables (Khai) | A parser choice with table scores; K1 version 1 for both documents | K1 version 1 adopted (D-57). Docling stays the general parser, with rules for known table formats. Operations Summary tables rebuilt: 81 of 81 on seen data, and 27 of 27 found on a held-out round | The document VLM comparison was not run; deferred by D-63. Tables over several pages: options exist, off by default and not yet measured on end-of-well reports. Generalization beyond one report family. → M2 task D2, M3 |
+| B. GraphRAG engine (Tri) | A base, an LLM, an embedding model and a vector store chosen; K4; cost per page | Qwen3-8B, Qwen3-Embedding-0.6B and pgvector chosen. No third-party base adopted; our own two graphs instead (D-53, D-55). K4 version 0.1. Cost reported on every run | Answers on K1 version 1 and on the stores. → M2 tasks E1, E2 |
+| C. Storage and the run (Hung) | Schemas with validators; four stores loaded; page-rebuild check; one-command runner; viewer | K1 tables with constraints; loader and page rebuild; vectors; the event graph in Neo4j | The runner and the full pass through it; the viewer (Track B's local UI stood in); MinIO in use; the fact graph in Neo4j; shared hosting. → M2 tasks B1 to B3 |
 
-- **Report to the professor on Wednesday 11 November**, 10 to 15 minutes: two or three slides of core architecture, each track as a diagram with a short evaluation per module and its weak points; one data sample walked through the whole pipeline; what the input looks like, what it looks like after processing, and what the application will look like; then needs, next steps and support wanted. No long text.
-- **Connect the three tracks and put a simple UI on top** (D-60): question, answer, cited source text and what was retrieved. It comes before the rest of M2, so the team can show domain experts and ask what they would ask.
-- **Track C before Wednesday:** store vectors and load Neo4j. Done on 10 November: 1,042 vectors in pgvector and the event graph in Neo4j, each checked ([Track C log](tracks/C-storage/log.md) C-F06).
-- **Track A:** try documents other than the five AK-3 files.
-- Message the supervisor whenever there is a result worth showing.
+### M2: second build, one connected application
 
-### M0: this week
+The design is [specification §4.6](PROJECT_DESIGN.md#46-second-build-one-connected-application), [§7.5](PROJECT_DESIGN.md#75-http-interface-design) and [§8.1](PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes). The task list is §7 below. Three checkpoints:
 
-- **Weekly plan.** Hung drafts it this week as a short slide deck: tracks and owners for this stint, M1 checkpoints, this week's tasks. Share it with the supervisor and in the group chat. Tell the supervisor why the first phase is split by track instead of data/backend/frontend (D-48).
-- **Contracts at version 0** (half a day, all three together). Agree the K1 and K4 field lists (spec §4.5). Hung writes them as JSON Schemas in `schemas/` and converts the AK-3 corpus chunks into K1 version 0. Tri starts K2 from `oil_wells.json`. Khai uses the 10 existing gold tables as K5.
-- **Access.**
-  - Add the supervisor to the GitHub repository.
-  - Create the OpenRouter account and set a spending cap; record who holds it (Q6).
-  - Ask Dr. Dung how to book the school GPUs (Q7).
-- **Show the current workflow** to the supervisor, as he asked:
-  - how ingestion runs and what it outputs (pages, chunks, tables);
-  - the BSEE numbers (57,453 wellbores, 39,518 wells) and graph;
-  - what the prototype extracts (14 properties from 15 chunks) and how it answers;
-  - where data is stored (corpus directories, `data/processed/`, Neo4j in Docker);
-  - what is missing: the ontology is team-authored, not given with the data (spec §6.1), and there are no embeddings, VLM, object store or ID scheme yet.
-- **BSEE data.** Share it with the supervisor as a ZIP of the local snapshot through the team drive. It is not committed (D-15).
-
-### M1: first build in three tracks
-
-Each track below lists its goal, the questions it researches, its work, its checkpoints and its exit. A track may change its own method freely; it may change a contract only by the rules in spec §4.5. Each comparison becomes an experiment record (E14 onward).
-
-**Shared checkpoints.**
-
-| When | All tracks |
+| When | Checkpoint |
 |---|---|
-| End of week 1 | K1 and K4 schemas and version 0 files; A and B running on version 0 inputs; stores coming up |
-| End of week 3 | **Dry run:** Track B runs on Track A's real K1 for the AK-3 EOWR, and Track C loads both into the stores. Fix contract mismatches only, not quality |
-| End of week 5 | **First full pass:** EOWR and one DDR through A → B with Track C's runner, stored and shown in the viewer; scores and choices shown to the supervisor |
+| End of week 4 (28 November) | Roles agreed. Supervisor messaged. Stores reachable by all three, with the AK-3 release loaded. The OpenAPI file agreed. The lane interface written, with the three lanes behind it |
+| End of week 5 (5 December) | The engine answers from the stores, with the baseline scores reproduced. The coordinator measured on the pooled questions. The API returns real answers. The frontend runs against it |
+| End of week 6 (12 December) | The exit demo above, shown to the supervisor: one sample walked from PDF to answer inside the application. The reasoning probe's record written. The application handed to whoever the supervisor names among the domain experts |
 
-#### Track A: ingestion and tables (from 5 November: Khai)
-
-**Goal.** Drilling-report pages become correct text, tables and chunks, each with a stable ID back to its file and page.
-
-**What Track B found (5 November).** Parsing sets the ceiling on daily reports: 9 of 27 gold questions fail even with the right page ([E24](experiments/E24-ak3-daily-reports.md)). The ordered list of needs is in the [note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md).
-
-- **Needed most:** form-header key-value pairs and a report date on every chunk. Track B's `page_dates` guess stands in for the date until K1 version 1.
-- **Keep working:** operations, mud and survey tables on the AK-3 daily reports. The event graph is built from the operations tables ([E28](experiments/E28-event-graph.md)), though the parser loses some `X` marks in their last column.
-- **Fails on other reports:** dense survey tables merge rows, and scanned reports come out column by column ([E29](experiments/E29-table-mappings-across-reports.md)). Forms on 68-32 and 78-32 come out as mixed grids ([E25](experiments/E25-table-mappings-unseen-report.md)).
-
-**Research questions.**
-
-1. Which document VLM of about 7B or smaller parses drilling-report tables better than Docling, and at what seconds and tokens per page?
-2. How to detect a table that continues on the next page, join the parts and carry the header (spec §5.10).
-3. How to read key-value forms, such as DDR header boxes. "Days On Location: 1700" is the kind of mismatch seen in the AK-3 daily reports ([Data sources](DATA_SOURCES.md)).
-4. How to cut parent and child chunks so that no table row is split and each table child carries its header.
-
-**Work.**
-
-1. **Baseline.** Track B has already run the current Docling pipeline on the four AK-3 DDR attachments: 0 OCR pages, no LLM calls, about 0.93 seconds per page (E24). Run it on the AK-3 EOWR if needed, and score its tables against the 10 existing gold tables (K5).
-2. **VLM comparison.** Run two or three VLMs from the spec §9 list through OpenRouter on the pages of the gold tables. Measure:
-   - cell accuracy;
-   - header and row correctness;
-   - merged cells;
-   - continuation joins;
-   - seconds and tokens per page.
-
-   Also run Track B's right-page check, `graphrag.oracle` (19/30 to beat, [command in the note](tracks/B-graphrag/note-for-track-A-daily-reports.md#how-to-check-your-output)). Pick one parser, or keep Docling.
-3. **Multi-page tables and key-value forms.** Join continued tables, record the page span, and flag uncertain joins. Join each form label to its value, on daily reports and on key-value tables in end-of-well reports (78-32).
-4. **Chunks.** Build parent/child chunks in the K1 format, with the spec §5.11 IDs from Track C's schema and a report date on every daily-report chunk. Publish K1 version 1 for the EOWR (by week 3) and one DDR (by week 5).
-
-**Exit.**
-
-- A parser choice with table scores against K5.
-- K1 version 1 for both documents.
-- Track B's reruns of E24, E27 and E29 on K1 version 1, with the operations tables still whole.
-
-**Starts from.**
-
-- The [note to Track A](tracks/B-graphrag/note-for-track-A-daily-reports.md), with Track B's failure lists and known pipeline problems.
-- The corpus pipeline and its tests ([guide](components/corpus-ingestion.md), [E8](experiments/E8-ak3-appendices-corpus-run.md)).
-- The ingestion prototype and its evaluation ([`explorations/ingestion/README.md`](../explorations/ingestion/README.md)): parser comparison, form pairing, continued tables.
-- Code stays in `src/graph_builder/`.
-- Compute: a laptop for Docling and OpenRouter for the VLMs.
-
-#### Track B: GraphRAG engine and models (since 30 October: Tri)
-
-**Goal.** Chunks with IDs become a graph and vectors that answer questions with chunk citations, on a ~7B model, at a known cost.
-
-**Working files.** Findings, decisions, design choices and runs are logged in [`docs/tracks/B-graphrag/log.md`](tracks/B-graphrag/log.md). The survey of ready-made repositories is in [`survey.md`](tracks/B-graphrag/survey.md).
-
-This stint starts small and treats efficiency as a headline metric (B-D01, B-D02):
-
-- begin with the 15 prototype chunks, then the whole AK-3 end-of-well report;
-- record calls, tokens, seconds and cost per page on every run.
-
-**Research questions.**
-
-1. Which open-source GraphRAG base fits our needs? Run neo4j-graphrag-python, then LightRAG (B-D04), judged on the spec §9 criteria. Above all, can we inject our ontology slice, and does it keep chunk IDs?
-2. Which ~7B LLM extracts reliably (JSON compliance, precision, recall)?
-3. Which embedding model retrieves the right chunks for the questions?
-4. Which vector store? Decided: pgvector inside PostgreSQL, as Track C proposed (D-56).
-5. Which retrieval mode answers best: vector, graph or hybrid?
-6. How many calls and tokens per page does each option need?
-
-**Work.**
-
-1. **Model client.** One OpenAI-compatible client with these properties:
-   - it records the endpoint, model and version per run;
-   - it refuses private files (FR-28);
-   - it uses JSON-schema output;
-   - it caches calls by chunk hash.
-2. **Vector baseline.** Run plain vector RAG on the same chunks and questions. Every base must beat it or justify its extra cost (B-D03).
-3. **Base comparison.** Run each candidate base on K1 version 0 with the same ~7B model and K2 version 0. Compare:
-   - extracted items against the E10 gold facts;
-   - calls and tokens;
-   - provenance kept;
-   - ease of injecting the ontology.
-
-   Choose one by week 3 and record the reasons.
-4. **Models.** Compare two or three LLMs and two or three embedding models on the chosen base. Choose the vector store with Track C.
-5. **Thin ontology slice.** Extend `oil_wells.json` only with what the reports show:
-   - section headings;
-   - table column headers;
-   - the AK-3 abbreviation table as the glossary seed.
-
-   Keep it just large enough for the extractor to work (D-49). Publish it as K2 version 1 and report the off-ontology rate per run.
-6. **Answers.** Answer the prototype's 31 questions (K3) with citations to child chunk IDs and write K4. Compare with the E10 template baseline and plain vector RAG.
-
-**Progress (5 November).** Details in the [track log](tracks/B-graphrag/log.md); what runs today is in [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
-
-| Work item | State | Evidence |
-|---|---|---|
-| 1. Model client | Done: JSON-schema output, cache, cost ledger, private-data guard | `graphrag/client.py` |
-| 2. Vector baseline | Done: Qwen3-8B, citations checked in code; BM25 routed by well, per-well fusion for questions naming several wells, date filter on daily reports (D-50). 28/31, 31/40, 23/36 and, on daily reports, 14/26 | [E14](experiments/E14-plain-rag-baseline.md) to [E18](experiments/E18-well-routing.md), [E26](experiments/E26-routing-and-strict-facts.md), [E27](experiments/E27-date-filter-and-coverage.md) |
-| 3. Base comparison | Closed for this stint: neo4j-graphrag-python and LightRAG (also with K2) not adopted, and no base chosen. Our own design has two graphs: a per-well fact graph for end-of-well reports, which ties retrieval on new lookup questions so far and stays in the answer path (D-55), and an **event graph** that beats retrieval on totals over time on daily reports, 22/35 and 19/23 against 5/35 and 4/23, on questions chosen to suit it (D-53). Supervisor to confirm | [E16](experiments/E16-neo4j-graphrag-python.md), [E19](experiments/E19-lightrag.md), [E20](experiments/E20-well-fact-sheet.md), [E21](experiments/E21-lightrag-k2.md), [E22](experiments/E22-table-facts.md), [E23](experiments/E23-simulated-set.md), [E26](experiments/E26-routing-and-strict-facts.md), [E28](experiments/E28-event-graph.md) |
-| 4. Models | Answer LLM: Qwen3-8B (thinking off). Extraction, when used: Qwen3-4B. Embeddings: Qwen3-Embedding-0.6B, used in fusion. Vector store: pgvector, proposed by Track C (D-56) | [E17](experiments/E17-model-sweep.md) |
-| 5. Ontology slice | K2 version 1.2 published. Casing mappings checked on 6 unseen reports: 13/16 with no wrong fact, up from 4/16; surveys unreliable. No further ontology work for now (D-52) | [`k2_eowr_v1.json`](../configs/ontology/k2_eowr_v1.json), [E25](experiments/E25-table-mappings-unseen-report.md), [E29](experiments/E29-table-mappings-across-reports.md) |
-| 6. Answers | Cited answers on all question sets, with cost per run; K4 version 0.1 published, with current files from the baseline | [`k4_answer_record.schema.json`](../schemas/k4_answer_record.schema.json), `graphrag/k4.py` |
-| Daily reports (added) | Date filter, then the event graph for questions over time; parsing failures written up for Track A | [E24](experiments/E24-ak3-daily-reports.md), [E27](experiments/E27-date-filter-and-coverage.md), [E28](experiments/E28-event-graph.md), [note](tracks/B-graphrag/note-for-track-A-daily-reports.md) |
-
-The 31 development questions each name one well and are mostly single-fact lookups, which plain RAG already answers. Which questions users really ask is what the expert set must settle; the event graph's questions over time were chosen to suit it.
-
-
-**Exit status (5 November).** Met: LLM and embedding model chosen with records; K4 for the prototype questions; calls, tokens and cost per page reported. Not met: a third-party base (none beats the baseline on current questions; the first build's graph is our own event graph, D-53); the vector store (with Track C); the dry run on Track A's K1 and Track C's stores, including loading the event graph into Neo4j.
-
-**Exit.**
-
-- A base, an LLM, an embedding model and a vector store chosen, with a comparison record.
-- K4 for the prototype questions, and for the expert questions if they arrive.
-- Calls, tokens and cost per page reported.
-
-**Starts from.**
-
-- The prototype ([E10](experiments/E10-profile-driven-prototype.md)) and its Neo4j compose file.
-- K1, K2 and K3 at version 0.
-- New code in its own folder (`graphrag/`), kept separate from `src/graph_builder/` until M2 decides what stays.
-- Compute: OpenRouter, within the cap.
-
-#### Track C: storage, IDs and the end-to-end run (from 5 November: Hung)
-
-**Goal.** Every piece the other two tracks produce is linked by one ID scheme, stored where spec §4.2 says, and runnable in one command.
-
-**What Track B found (5 November).** No third-party base was adopted (B-D21), so the stores serve Track B's own code: retrieval routed by well and date, the per-well fact graph (D-55), and an in-memory event graph, which the supervisor has yet to confirm (D-53). Both graphs need Neo4j. What this asks of the stores, and which code depends on today's IDs, is in the [note to Track C](tracks/B-graphrag/note-for-track-C-storage.md).
-
-**Research questions.**
-
-1. How to write the §5.11 ID scheme so that every chunk, vector and answer resolves to its file and page, and so that rechunking never breaks old citations.
-2. How to lay out MinIO keys and PostgreSQL tables for files, pages, tables, chunks and runs.
-3. Which vector store to use? Decided on 9 November: pgvector inside PostgreSQL, as Hung proposed (D-56). BM25 stays alongside it, and retrieval filters by well and report date.
-4. How to load the event graph into Neo4j so that each event keeps its source chunks and E28's results stay the same?
-
-**Work.**
-
-1. **IDs and schemas.** Write the K1 schema in `schemas/`, with validators, starting from the E12 evidence contract and the current chunk schemas. K4 version 0.1 already exists from Track B; add a validator if needed. Agree with Tri how old chunk IDs map to the §5.11 IDs, because gold data and `graphrag/` depend on them. Convert the existing AK-3 chunks into K1 version 0 for Khai and Tri.
-2. **Stores.** Bring up MinIO, PostgreSQL, the vector store and Neo4j with Docker Compose, extending the prototype's compose file or Track B's (`configs/graphrag/docker-compose.yml`). Keep well and report date in the vector payload.
-3. **Loader and run log.**
-   - Load K1 into the stores with its IDs.
-   - Rebuild a page from its chunks to prove nothing is detached.
-   - Record each run's models, versions, calls, tokens and cost from K4, index-time cost from the run's result file, and the llama.cpp server settings (B-F19).
-   - Load the event graph into Neo4j, kept easy to leave out until the supervisor confirms it.
-4. **Runner.** One command that runs Khai's parser and then Tri's engine on a document and loads the results. It covers both of Track B's paths and writes K4.
-5. **Viewer.** A simple local page that shows a page image beside its chunks and the answers that cite them, and the source events of a computed total. Use Streamlit or plain HTML; it is a debugging tool first.
-
-**Exit.**
-
-- K1 and K4 schemas with validators.
-- The four stores up and loaded with the AK-3 EOWR.
-- The page-rebuild check passes.
-- The week-5 full pass runs through the runner.
-- The viewer is used in the demo.
-
-**Starts from.**
-
-- The [note to Track C](tracks/B-graphrag/note-for-track-C-storage.md).
-- The E12 evidence contract, the existing chunk schemas and K4 version 0.1.
-- The prototype's Neo4j compose file and Track B's.
-- New code in `platform/`.
-- Compute: a laptop for the stores and loader. Answers need a GPU or, on public data, OpenRouter (B-F16).
-
-### M2: integration on the stores
-
-Outline only; plan it in detail at the end of M1.
-
-1. Turn Track C's runner into an ingestion worker that registers a new report and goes through to answers. Each run pins its versions (spec §4.3).
-2. Move the stores from development to a shared setup with backup of PostgreSQL and MinIO.
-3. Decide the package layout from the code that survived M1, and move the prototype and legacy pipelines aside.
-4. Draft the API contract (spec §7.5). The frontend starts against fixtures.
-5. Switch to data/backend/frontend roles (D-46).
+**Order matters more than dates.** The first two things unblock everyone else: shared stores (B1) and the K1 release for the demo set (D1). The frontend does not wait for them: it starts on recorded answers as fixtures.
 
 ### M3: quality and control
 
-1. **Identity and glossary.**
-   - Link report mentions to the BSEE registry, and AK-3 to its project-scoped entry.
-   - Link DDRs to their well.
-   - Use the glossary in normalization and question expansion.
-2. **Cost.**
-   - Map recognized DDR table columns deterministically.
-   - Batch rows by token budget.
-   - Handle long rows.
-   - Report calls and tokens per page before and after.
-3. **Scores and flagged items.**
-   - Compute scores and set the threshold from a labelled sample.
-   - Add relation normalization and the similar-entity search.
-4. **Scale to 5–10 documents** and run the question set (expert set if available).
+1. **Identity and glossary.** Link report mentions to the registry, and AK-3 to its project-scoped entry. Link daily reports to their well through `Document` nodes. Use the glossary in the question frame.
+2. **Generalization.** Reports from more than one family: the 58-32 daily reports, a different author's modern end-of-well report (Track B log B-F54), tables over several pages, and the QA thresholds calibrated on more than one family.
+3. **Scores and flagged items.** Compute scores, set the threshold from a labelled sample, and list flagged items for people (D-43, D-63).
+4. **Questions.** Run the expert set if it has arrived; otherwise the questions domain experts typed into the application, with gold answers written from the reports.
+5. **Lanes.** Split, merge or add lanes from what the question log shows (Q13). Decide whether the reasoning lane becomes a loop (D-64).
 
 ### M4: full application
 
-- **End user:** chat, answer with citations, source-page viewer, well page (facts, documents, chunks).
-- **Admin:**
-  - document upload and run status (coverage, tables, items, flagged count, cost);
-  - ontology versions with validation and diff;
-  - glossary editor;
-  - flagged items with accept/correct/reject;
-  - duplicate wells with merge and keep-apart;
-  - generation activation;
-  - document retirement.
+- **End user:** well page (facts, documents, timeline of days); graph and source browsing.
+- **Admin:** document upload and run status; ontology versions with validation and diff; glossary editor; flagged items with accept, correct and reject; duplicate wells; generation activation; document retirement.
 - **Governance:** versions and audit of every correction and activation.
 - Keep the UI plain: tables and lists before graph visualizations.
 
 ### M5: scale run on local models
 
-Serve the chosen ~7B model and VLM locally (vLLM or llama.cpp) on a booked school GPU. Process the corpus in checkpointed runs that stop and resume across slots, then evaluate on the held-out expert questions. Estimate first from the M3 cost report; prepare data, containers and models before the slot starts.
+Serve the chosen model locally (vLLM or llama.cpp) on a booked school GPU. Process the corpus in checkpointed runs that stop and resume across slots, then evaluate on held-out questions. Estimate first from the measured cost per page; prepare data, containers and models before the slot starts.
 
 ### M6: second semester
 
 - Login, roles and server-side checks.
 - The private-endpoint guard test.
-- Backup and restore of PostgreSQL, MinIO, the vector store and Neo4j.
+- Backup and restore of PostgreSQL, the file store and Neo4j.
 - The joint evaluation with the supervisor's document if supplied, on local models only.
 - Improvements chosen from the evaluation.
 
@@ -362,53 +147,52 @@ Serve the chosen ~7B model and VLM locally (vLLM or llama.cpp) on a booked schoo
 
 | Item | Approach | Control |
 |---|---|---|
-| Hosted open models (OpenRouter) | Development and one-document runs, public data only | Monthly cap on the account; cost per run reported (FR-30); providers that do not retain prompts where possible; never private data (spec §10.1) |
-| School GPU slots | Large runs, local-model evaluation, the final demonstration | Book early; checkpointed jobs; everything prepared before the slot |
-| Laptops | Code, tests, Docling, Docker stores | Fixture-based tests without model calls |
-| Storage | MinIO and databases in Docker locally; GPU host for large runs | Watch disk; parsed pages and vectors are rebuildable |
+| Local GPU (Tri's desktop) | Every measurement; the demo's model, reached over a private network (Q15) | One request at a time for measurements; server settings recorded with each run (Track B log B-F19) |
+| Hosted open models (OpenRouter) | Optional, public data only | A cap on the account; cost per run reported (FR-30); never private data (spec §10.1) |
+| School GPU slots | Large runs and the local-model evaluation | Book early; checkpointed jobs; everything prepared before the slot |
+| Shared host for the stores | A free cloud tier (Track B log B-D35) | Public data only; credentials outside the repository; one shared password in front of the application until login exists |
 
-Before any large run, estimate the cost: pages × tokens per page × price, or pages × GPU-seconds per page against the slot length. Compare it with what the one-document runs measured.
+Every run reports calls, tokens, seconds and cost per page and per question next to quality. The coordinator adds one model call to lookups; that cost is measured before it is adopted (D-64).
 
 **Scope cuts if time runs short**, in this order:
 
 1. graph visualization;
-2. community summaries;
-3. the ontology assistant;
-4. extra document types;
+2. the well page;
+3. the reasoning lane beyond its probe;
+4. the ontology assistant and extra document types;
 5. corpus size.
 
 Keep:
 
-- citations;
+- citations and the source page;
 - the ID scheme;
-- table handling;
-- flagged-item correction;
+- the coordinator with its three lanes;
+- the question log;
 - the private-data boundary.
 
 ## 5. Risks
 
 | ID | Risk | Watch for | Mitigation | Owner |
 |---|---|---|---|---|
-| R-01 | A ~7B model extracts plausible but wrong facts | Low precision on the labelled sample | Ontology slices, verbatim-value check, scores and flagged items, deterministic table mapping | Track B, then Backend |
-| R-02 | Table parsing errors (merged cells, multi-page) propagate | Wrong cells, missing headers | Table evaluation set, VLM comparison, header carry-over, flags on uncertain joins | Track A, then Data |
-| R-03 | The chosen GraphRAG base does not fit (no schema control, loses provenance, too many calls) | Base comparison results | Compare before choosing; wrap it behind the ID scheme and model client so it can be swapped | Track B |
-| R-04 | LLM calls and tokens per page too high for large runs | Cost report per page | Deterministic table mapping, batching, caching by page hash, cost estimate before runs | Backend |
-| R-05 | School GPU slots hard to get or too short | No booking, long queue | Ask early; checkpointed jobs; hosted open models for development | All |
-| R-06 | Hosted endpoint used on non-public data | Private file in a run | Permission field enforced by the model client; test it | Backend |
-| R-07 | No public DDR collection that matches registry wells | No candidate by M1 | AK-3 appendix DDRs; search BSEE well activity reports and other public collections; label any synthetic link as such | Track A |
-| R-08 | Expert question set arrives late | None by M3 | Keep checking against the prototype's questions and labelled simulated sets; ask the supervisor at each check-in | Track B |
-| R-09 | Scope too large for three people | Milestones slip two weeks running | Cut in the order of §4; keep a thin working path end to end | All |
-| R-10 | Direction drifts without anyone noticing | Week without supervisor contact | Weekly check-in; group-chat updates every few days (D-46) | All |
+| R-01 | A ~7B model states plausible but wrong facts | Wrong values in answers; unsupported claims in the reasoning probe | Values and citations checked in code; computed results inserted by code; facts validated before use; causes labelled stated or possible | Engine |
+| R-02 | Table parsing errors propagate | Wrong cells, missing headers, lost marks | Rules for known formats with a fallback and a reason; the QA sidecar; measure on other report families | Data |
+| R-03 | Methods tuned on one well do not transfer | A second report family fails | Add one new family at a time in M3; report seen and unseen data separately | Data, Engine |
+| R-04 | The coordinator sends questions to the wrong lane | Pooled score below the hand-routed scores | Wells and dates read by code; fixed fallback; measured before adoption; a lane can be forced from the UI | Engine |
+| R-05 | School GPU slots hard to get | No booking | Local GPU for development; ask early (Q7) | All |
+| R-06 | Hosted endpoint used on non-public data | A private file in a run | The model client's guard; test it | Engine |
+| R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
+| R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
+| R-09 | Scope too large for three people; engine and frontend on one person | A checkpoint missed by a week | Cut in the order of §4; shrink the frontend to chat and source viewer | All |
+| R-10 | Direction drifts without contact | **Already true: no recorded contact since 9 November** | Message the supervisor this week (task A1); short updates every few days (D-46) | All |
 | R-11 | Wrong entity merges corrupt answers | Two wells joined | Identifier and scoped-name matching only; merges always by a person | Backend |
-| R-12 | BSEE redistribution terms unclear | Request to share derived data | Keep out of Git; share privately with the supervisor only | Data |
-| R-13 | Tracks drift apart, or work is lost when owners change at a stint boundary | Dry run in week 3 breaks; a new owner cannot pick up a track | Contracts at version 0 in week 1; versioned changes announced in the chat; dry run in week 3; each track's experiment record and README kept current for handover | All |
+| R-12 | The three parts drift while being connected | A K1 or API change breaks another part | K1 changes by version only; the OpenAPI file agreed first; the runner checks each step | All |
+| R-13 | Data passed by hand between machines | A zip in the chat | Shared stores and a file store for K1 releases (B1) | Backend |
 
 ## 6. Working cadence (D-46)
 
-- **Weekly check-in with the supervisor, about 30 minutes:** what was done, what is blocked, next week's plan. Bring a demo whenever there is something running.
-- **Group chat updates every few days:** a short message or a screenshot, without polishing. Ask early when stuck. If a week passes without contact, message the supervisor.
-- **Weekly plan as a few slides**, not a long written report. Detailed write-ups go into experiment records only when there is a measurement.
-- **Board.** One shared board (Backlog, In progress, Review, Done); one major item per person at a time.
+- **Weekly check-in with the supervisor, about 30 minutes:** what was done, what is blocked, next week's plan. Bring a demo whenever something runs.
+- **Group chat updates every few days:** a short message or a screenshot. Message the supervisor when there is a result worth showing; do not wait for a meeting.
+- **Reports are short:** two or three slides of architecture, one sample walked through the pipeline, weak points stated, then what the team needs (9 November meeting).
 - **Review.** Each change is reviewed by another student before merging to `main`.
 - **Record decisions.** A supervisor decision becomes a decision in spec §13.1 in the same week. Superseded text is removed, not kept beside the new text.
 
@@ -420,38 +204,78 @@ Keep:
 - Calls and cost reported where models are used.
 - Limitations written down.
 
-## 7. Next implementation backlog
+## 7. What to do now
 
-| Order | Task | Acceptance | Status |
+Tasks for M2, in order within each group. "Needs" names what must exist first. Owners follow the proposal in §2.
+
+### All
+
+| # | Task | Done when |
+|---|---|---|
+| A1 | **Message anh Tuấn this week.** Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
+| A2 | **Agree the roles** for this stint (Q14) | Recorded in §2 and spec §13.2 |
+| A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung and Khai have read it; objections recorded |
+| A4 | Exit demo for the supervisor, then hand the application to domain experts | M2 exit shown; the question log has questions from someone outside the team |
+
+### Data (Khai)
+
+| # | Task | Needs | Done when |
 |---|---|---|---|
-| 1 | Weekly plan slides; tracks assigned; supervisor added to GitHub; OpenRouter account with cap; GPU booking request | Shared in the group chat | Open (this week) |
-| 2 | Demo of the current workflow to the supervisor (M0 list) | Supervisor has seen ingestion outputs, BSEE graph, prototype, storage, gaps | Open (this week) |
-| 3 | K1 and K4 schemas with validators; K1 version 0 from the AK-3 chunks | A and B run on version 0 inputs | Open (this week, C) |
-| 4 | A: Docling baseline and VLM comparison on the gold-table pages | Parser chosen with table scores | Open |
-| 5 | A: multi-page tables, key-value forms, parent/child chunks; K1 version 1 | EOWR by week 3, DDR by week 5 | Open |
-| 6 | B: model client with endpoint recording and the private-file guard | Runs record model and endpoint; private file refused by hosted endpoint | Done (`graphrag/client.py`) |
-| 7 | B: GraphRAG base comparison on K1 version 0 | Base chosen by week 3 with reasons | Closed for this stint with no third-party base chosen: none beats the D-50 baseline (E16 to E27). Our event graph handles questions over time (D-53, E28); supervisor to confirm |
-| 8 | B: LLM and embedding model comparison; cited answers (K4) | Prototype questions answered with chunk citations; cost per page | Done: Qwen3-8B (E17), Qwen3-Embedding-0.6B in fusion (E26); K4 version 0.1 published |
-| 9 | B: thin ontology slice from the reports' headings, table columns and abbreviation table (K2 version 1) | EOWR and DDR sections covered; off-ontology rate reported | K2 version 1.2 published, EOWR casing checked across reports (E29); DDR sections and the off-ontology rate not done, and no more ontology work for now (D-52) |
-| 10 | C: MinIO, PostgreSQL, vector store (chosen with B) and Neo4j in Docker Compose; loader from K1; page-rebuild check | AK-3 EOWR loaded; every chunk resolves to file and page | Open |
-| 11 | C: run log, one-command runner (A → B), debugging viewer | Week-5 full pass runs through it; viewer in the demo | Open |
-| 12 | M1 dry run (week 3) and first full pass (week 5) | Shown to the supervisor | Open |
-| 13 | M2: stores, one end-to-end run, package layout, API contract | M2 exit demo | Later |
-| 14 | M3–M5: registry linking, scores and flagged items, frontend, local-model scale run | Their exit demos | Later |
-| 15 | Open repository-review fixes: cache identity, redirect checks ([E9](experiments/E9-repository-review.md)) | Tests | Open; low priority |
+| D1 | **A K1 release for the demo set**: AK-3's end-of-well report, the four daily-report attachments and appendix 23 (the non-productive-time report), with the legacy ID map inside and a well on end-of-well chunks | — | The release validates; the event graph builds from K1 alone (drops the fallback of [E31](experiments/E31-event-graph-on-k1.md)) |
+| D2 | Decide which 17 November options are on by default, by measurement on this release | D1 | Each option on or off with a number behind it, in Track A's record |
+| D3 | Add 56-32 and 68-32 end-of-well reports to the release | D1 | Questions across wells can run from the stores |
+| D4 | Fix duplicated merged-cell text in table Markdown | — | Track A progress §7 item 1 closed |
+| D5 | A Track A log in `docs/tracks/A-ingestion/`, like the other two | — | Findings and decisions since 9 November are in it |
 
-The main [README](../README.md) stays the setup entry point. Do not rerun `publish` just to check documentation: it writes the selected bundle.
+### Backend (Hung)
+
+| # | Task | Needs | Done when |
+|---|---|---|---|
+| B1 | **Shared hosting of the stores** and of K1 releases (Track B log B-D35) | — | Tri and Khai connect with their own credentials; no data moves through chat |
+| B2 | **The runner**: one command from a K1 release to loaded chunks, vectors, the event region and the fact region, each step checked | D1, E4 | Run twice on the AK-3 release with the same result |
+| B3 | The fact region in Neo4j, and the event region on K1 version 1 IDs | E4 | Layout agreed (D-67); every fact and event links to a chunk that exists in PostgreSQL |
+| B4 | **The OpenAPI file** for the read path of spec §7.5, agreed with Engine and Frontend before coding | — | Committed; a fixture response for each endpoint |
+| B5 | The FastAPI service in `backend/`, calling `graphrag` | B4, E3 | Each endpoint returns real data from the stores |
+| B6 | The question log and feedback tables | B5 | Every question asked through the API is stored with its lane, answer and any mark |
+| B7 | Page images or PDF pages served for the source viewer | B1 | A citation opens the right page |
+| B8 | Compose file for the whole application; one shared password at the proxy | B5, F1 | The application runs on the shared host |
+
+### Engine (Tri)
+
+| # | Task | Needs | Done when |
+|---|---|---|---|
+| E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | Desktop | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
+| E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores |
+| E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | Existing runs reproduce through the interface; tests cover each lane |
+| E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | A file of nodes and relationships for AK-3 that B3 can load |
+| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch | E3 | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
+| E6 | Results computed by code are inserted by code | E3 | The garbled answers of E28 are gone; rerun in E33 |
+| E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support |
+
+### Frontend (Tri)
+
+| # | Task | Needs | Done when |
+|---|---|---|---|
+| F1 | A React and TypeScript application in `frontend/`: the chat page with the exact-answer switch, the answer with citations and the lanes used | B4 (fixtures) | Works against fixtures, then against the API |
+| F2 | The source viewer: the cited page (PDF.js) beside the cited passage | B7 | A citation opens the page |
+| F3 | The evidence panel: passages, facts, the query plan with its events | B5 | A computed total shows the events behind it |
+| F4 | "Wrong answer" button and comment | B6 | Marks arrive in the question log |
+
+### After M2
+
+The M3 to M6 lists in §3.
+
+The main [README](../README.md) stays the setup entry point.
 
 ## 8. Decisions to close
 
 | Decision | Needed by | Why |
 |---|---|---|
-| Next split of the work | End of each one- to two-week stint | The split is redone every stint (D-48); current split, from 5 November: A Khai, B Tri, C Hung |
-| Data/backend/frontend owners | The stint where M2 starts | The supervisor asked for this split (D-46) |
-| OpenRouter account owner and cap (Q6) | M0 | Development model access |
-| GPU booking process (Q7) | M1, before M5 | Large runs and the local-model evaluation |
-| Vector store | M1 (Tracks B and C) | Storage layout and ID payloads |
-| VLM (Track A), embedding model and ~7B LLM (Track B) (Q4) | M1 | Quality and cost |
-| GraphRAG base (Q3) | M1 week 3 (Track B) | Everything after M1 builds on it |
-| Public DDR sources (Q5) | M1 (Track A) | Daily reports are half of the document scope |
-| Expert question set (Q2) | M3 | Evaluation; simulated sets stand in for development only |
+| Roles for this stint (Q14) | 28 November | Nothing else can be assigned |
+| Where the demo runs and which model serves it (Q15) | 5 December | Domain experts must reach it without the team's laptops |
+| Purpose of use and question types (Q13) | M3 | Decides how lanes are split or merged (D-58) |
+| Expert question set, or which experts try the application (Q2) | M3 | Evaluation; simulated sets stand in for development only |
+| Whether the coordinator is adopted (D-64) | After record E33 | It adds one model call to lookups |
+| Whether the reasoning lane continues beyond its probe (D-66) | After record E34 | Depends on what the data supports |
+| OpenRouter account owner and cap (Q6); GPU booking (Q7) | Before M5 | Open since M0 |
+| Public daily-report sources beyond AK-3 (Q5) | M3 | Daily reports are half of the document scope |

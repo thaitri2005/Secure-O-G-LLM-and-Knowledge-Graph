@@ -1,6 +1,6 @@
 # Track B: GraphRAG engine and models
 
-**Owner (first stint, from 30 October 2026):** Tri · **Scope:** [specification §4.5](../../PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files) · **Plan:** [M1, Track B](../../DEVELOPMENT_PLAN.md#track-b-graphrag-engine-and-models-first-stint-tri)
+**Owner (first stint, from 30 October 2026):** Tri · **Scope:** [specification §4.5](../../PROJECT_DESIGN.md#45-first-build-three-tracks-joined-by-files) · **Plan:** [M1, Track B](../../DEVELOPMENT_PLAN.md#m1-how-the-first-build-closed)
 
 This track turns chunks with IDs into a graph and vectors that answer questions with chunk citations. It uses open-weight models of about 7B or smaller (D-37), at a cost per page that is known and kept low.
 
@@ -13,7 +13,7 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | [supervisor-update-2026-11-05.md](supervisor-update-2026-11-05.md) | Tri's status update for the supervisor, in Vietnamese |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
 
-**Where things stand on 5 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today.
+**Where things stand on 24 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today. What comes next is the second build: the design is in [specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes) (coordinator and lanes), [§8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships) (graph model) and [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-design-and-probe) (reasoning lane); the tasks are in the [plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now).
 
 Measurements go into experiment records in [`docs/experiments/`](../../experiments/README.md) (E14 onward). The log links to them and does not copy their numbers.
 

@@ -1,6 +1,6 @@
 # Experiment register
 
-**Current direction (28 October 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md)). Historical experiments keep their data and results. The next experiments, numbered from E14, are the table evaluation and VLM comparison, the GraphRAG base comparison on one document, and the embedding comparison. E4/E10 are the baseline those must match ([plan](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog)). Every new record also reports model endpoint, calls, tokens and cost.
+**Current direction (24 November 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller ([specification](../PROJECT_DESIGN.md)). Historical experiments keep their data and results. E14 to E31 are the first build. Reserved for the second build ([plan](../DEVELOPMENT_PLAN.md#7-what-to-do-now)): **E32** answers on K1 version 1 and from the stores, **E33** the coordinator on the 221 pooled development questions, **E34** the reasoning probe. E4/E10 remain the baseline. Every record also reports model endpoint, calls, tokens and cost.
 
 Every measurement the project relies on comes from one experiment, recorded in one file here. Experiments are numbered in the order they were run and never renumbered. Each record starts with the same header: date, question, requirement, input, gold data, outputs and status. Other documents link to an experiment instead of copying its numbers.
 

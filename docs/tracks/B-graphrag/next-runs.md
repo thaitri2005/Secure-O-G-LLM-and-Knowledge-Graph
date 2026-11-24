@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 5 November 2026: **E23 to E29 are done.** The next runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
+Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1-desktop)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. Other runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
 
 ## Before you start
 
@@ -89,8 +89,8 @@ Worth doing when the work resumes:
 | **High priority:** shared hosting of the stores on a free cloud tier, owned by Track C, with Tri and Khai added as users (B-D35) | Hung, Track C | Read K1 packages and chunks from the shared store instead of zips |
 | Appendix 23 (the non-productive-time report) inside the K1 package, so the event graph reads only K1 (E31) | Khai, Track A | Drop the old-corpus fallback in `events.npt_report_inputs` |
 | Reading chunks from Track C's PostgreSQL, and both graphs in Neo4j ([note](note-for-track-C-storage.md)); vector store is pgvector (D-56) | Hung, Track C | Point the baseline at the store; BM25 stays for one-well questions, pgvector embeddings for several |
-| Whether a graph goes in the main pipeline (B-D24, Q3) | Supervisor, through Tri | Confirm or reverse B-D24 |
-| Whether users ask questions over time (B-D26, Q3) | Supervisor and the expert group | Confirm or reverse the event graph |
+| Whether users ask questions over time (B-D26, Q3). The fact graph is in the design (B-D29), and the supervisor accepted the lanes as a concept on 9 November | Supervisor and the expert group; the application's question log (B-D37) | Confirm or reverse the event graph |
+| The purpose of use: document types and kinds of question (Q13) | Supervisor | Split, merge or add lanes (B-D32, B-D36) |
 
 ## After each run
 

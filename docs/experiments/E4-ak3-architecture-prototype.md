@@ -11,7 +11,7 @@
 | **Code** | [`prototype/`](../../prototype/README.md), with its own environment and Docker services |
 | **Gold** | [`prototype/gold/`](../../prototype/gold/): 41 facts, 31 questions; single annotator, AI-assisted |
 | **Outputs** | [`prototype/results/`](../../prototype/results/): current scores; `history/` for earlier runs (file map below) |
-| **Status** | Concluded for the stack; follow-up on prose extraction recall is backlog item 6 of the [plan](../DEVELOPMENT_PLAN.md#7-next-implementation-backlog) |
+| **Status** | Concluded for the stack; follow-up on prose extraction recall is backlog item 6 of the [plan](../DEVELOPMENT_PLAN.md#7-what-to-do-now) |
 
 > **Test build, not the real system.** Results are evidence for or against design choices. They are not acceptance results (specification §12), and they must not be quoted as system performance: the slice is small, the gold set is single-annotator, and the prompt was revised on the same slice (no held-out test). The prototype predates the VPI requirements: it has one module, no entity registry, and no interpretation claims.
 

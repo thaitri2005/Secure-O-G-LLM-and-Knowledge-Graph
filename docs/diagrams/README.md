@@ -11,16 +11,18 @@ Current direction (28 October 2026): a GraphRAG application for drilling reports
 - diagram 07: the new milestones;
 - diagram 09: the three layers as built in the capstone.
 
+On 24 November 2026 (specification 3.4, plan 3.2) these were redrawn: diagram 02, with the coordinator and its three lanes inside the backend and pgvector inside PostgreSQL; diagram 05, the answer flow through the coordinator; diagram 07, with M2 as the second build. The second-build flow (§4.6), today's pipeline (§8.4) and the graph model (§8.5) are Mermaid blocks in the specification with no SVG copy.
+
 Diagram 01 (current implementation) was relabelled to show the prototype as the baseline. Diagram 06 (deployment and recovery) was removed with the production-operations detail it illustrated; that work is now second-semester scope. Diagram 08 is unchanged and describes the current two tracks.
 
 | File | Diagram | Used in |
 |---|---|---|
-| `01-current-ingestion.svg` | What is built: document and data pipelines, releases, shared contracts, registry, baseline prototype | Design §3 |
-| `02-target-architecture.svg` | Target components, stores and model endpoints | Design §4 |
+| `01-current-ingestion.svg` | What was built before the first build: document and data pipelines, releases, shared contracts, registry, baseline prototype | Design §3 |
+| `02-target-architecture.svg` | Target components: frontend, backend with the coordinator and lanes, stores and model endpoints | Design §4 |
 | `03-claim-lifecycle.svg` | Item lifecycle with review by exception | Design §5.2 |
 | `04-data-model.svg` | Files, pages, parent/child chunks, vector points, entities, items, corrections, answers | Design §7 |
-| `05-question-answering.svg` | GraphRAG retrieval and cited answer sequence | Design §8 |
-| `07-milestone-dependencies.svg` | Milestones M0–M6, with M1 as the three-track first build | Plan §3 |
+| `05-question-answering.svg` | Answer sequence: frame, lanes, answer, checks | Design §8 |
+| `07-milestone-dependencies.svg` | Milestones M0–M6, with M1 as the three-track first build and M2 as the connected application | Plan §3 |
 | `08-source-integration.svg` | The two development tracks: BSEE data (import, graph, registry) and end-of-well reports (ontology file, extraction, review, QA) | Data sources, Design §5.7 |
 | `09-three-layers.svg` | Three layers as delivered by the capstone | Design §1.3 |
 | `10-first-build-tracks.svg` | First build: track A ingestion, track B GraphRAG engine, track C storage, IDs and runner | Design §4.5 |

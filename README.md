@@ -18,22 +18,24 @@ Development uses public data ([data sources](docs/DATA_SOURCES.md)): [BSEE well 
 
 ## Status
 
-**29 October:** the design was rewritten for the GraphRAG direction (specification 3.0).
+**24 November:** the first build is closed and the second is designed (specification 3.4, [plan](docs/DEVELOPMENT_PLAN.md#current-status)).
 
-- **Carries over:** ingestion, structured-data import, the entity registry and an extraction/QA prototype.
-- **Not built yet:** the GraphRAG pipeline, VLM parsing, object and vector storage, the ID scheme across stores, and the frontend.
-- **Next:** ingestion and data organization on one end-of-well and one daily report, then a one-document GraphRAG slice ([plan](docs/DEVELOPMENT_PLAN.md#current-status)).
+- **Exists as three separate parts:** chunk packages with stable IDs (K1 version 1), the stores (PostgreSQL with pgvector, Neo4j), and a GraphRAG engine with two graphs and cited answers.
+- **Not built yet:** the parts connected, the coordinator that picks a lane per question, the backend API and the React frontend, shared hosting.
+- **Next:** one connected application, read path first ([task list](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now)).
+
+All question sets so far are simulated; none is expert-reviewed.
 
 | Component | Purpose | Status |
 |---|---|---|
-| Document ingestion | Files to page-provenanced passage and table chunks (Docling, Markdown tables, rows never split) | Implemented ([guide](docs/components/corpus-ingestion.md)); baseline for the VLM comparison |
-| VLM page parsing and multi-page tables | Pages and tables to Markdown/HTML with a document VLM; continued tables joined with headers carried | Planned (M1, Track A) |
-| Storage and ID scheme | MinIO for files, PostgreSQL for metadata and chunks, a vector store, Neo4j; file → page → parent → child chunk → vector → graph | Planned (M1, Track C) |
+| Document ingestion and K1 packages | Files to pages, tables, forms and chunks with stable IDs, a validator and a QA sidecar (Docling, plus rules for known table formats) | Implemented in `src/graph_builder/corpus/` ([guide](docs/components/corpus-ingestion.md), [Track A](docs/tracks/A-ingestion/README.md)); tuned on one report family |
+| VLM page parsing | Pages and tables with a document VLM | Not run; rule-based methods come first (D-63) |
+| Stores and ID scheme | PostgreSQL with pgvector for chunks and vectors, Neo4j for the graph; file → page → parent → child chunk → vector → graph | Implemented in `platform/` on one laptop ([Track C](docs/tracks/C-storage/log.md)); not shared, no runner |
+| GraphRAG engine | Retrieval by well and date, a per-well fact graph, an event graph, answers with citations checked in code | Implemented in `graphrag/` ([README](graphrag/README.md), [Track B](docs/tracks/B-graphrag/log.md)); the coordinator is designed, not built |
 | Structured-data import | CSV/Excel/JSON-lines to typed records with row provenance; BSEE as a mapping | Implemented ([guide](docs/components/dataset-import.md), [E6](docs/experiments/E6-generic-import-bsee.md)) |
-| Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned |
-| GraphRAG pipeline | Existing open-source base, ontology injection, extraction, embeddings, graph and vector retrieval, cited answers | Planned (M1, Track B); base chosen by comparison |
-| Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Implemented as the baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
-| Application | Chat with citations; admin for documents, ontology, glossary, flagged items | Planned (M4) |
+| Entity registry | One ID per well; 57,453 wellbores and 39,518 wells from BSEE; identifier or scoped-name resolution | Implemented ([guide](docs/components/entity-registry.md), [E13](docs/experiments/E13-entity-registry-bsee.md)); report linking planned (M3) |
+| Extraction/QA prototype | Ontology file, local LLM extraction, Neo4j, template QA on 15 AK-3 chunks | Kept as the measured baseline ([prototype](prototype/README.md), [E10](docs/experiments/E10-profile-driven-prototype.md)) |
+| Application | Chat with citations, source page and evidence; later, admin for documents, ontology, glossary and flagged items | Second build (M2): FastAPI backend and React frontend. A local developer UI exists (`python -m graphrag.ui`) |
 
 ## Quick start
 
@@ -98,13 +100,16 @@ docs/
   PROJECT_DESIGN.md     project specification: the single source of truth
   DEVELOPMENT_PLAN.md   status, milestones, risks, backlog (derived from the specification)
   DATA_SOURCES.md       the public proxy data
-  requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests (7 and 28 October)
+  requirements/         VPI's requirement documents (digest; originals kept out of Git) and supervisor meeting digests (7 and 28 October, 9 November)
   components/           guides to implemented subsystems
-  experiments/          one record per experiment (E1–E13) and the register
-  reports/              Vietnamese progress report of 27 October (historical snapshot)
+  tracks/               each track's dated record of findings and decisions (A ingestion, B GraphRAG engine, C storage)
+  experiments/          one record per experiment (E1–E31) and the register
+  reports/              the project report of 9 November; the Vietnamese progress report of 27 October (historical)
   diagrams/             SVG exports of the Mermaid diagrams
-schemas/          JSON Schemas for every published record type (corpus_* for the document pipeline; evidence, claim, entity for application records)
-scripts/          experiment utilities (E2 OCR smoke test, E5 OCR benchmark, E8 AK-3 appendix corpus run)
+graphrag/         the GraphRAG engine: model client, retrieval, both graphs, cited answers, a local developer UI (python -m graphrag.ui)
+platform/         the stores: Docker Compose (PostgreSQL with pgvector, Neo4j), SQL, loaders and checks; scripts run by path
+schemas/          JSON Schemas for every published record type (k1_* for chunk packages, k4 for answer records, corpus_* for the document pipeline; evidence, claim, entity for application records)
+scripts/          experiment, evaluation and QA utilities
 src/graph_builder/corpus/      document pipeline (python -m graph_builder.corpus)
 src/graph_builder/publication.py  immutable releases behind an atomic pointer (exports and dataset bundles)
 src/graph_builder/contracts.py    shared evidence, claim-revision and entity records
@@ -113,7 +118,9 @@ src/graph_builder/datasets/    structured-data importer (python -m graph_builder
 src/graph_builder/ingestion/   earlier PDF pipeline (python -m graph_builder.ingestion) and BSEE adapter (…ingestion.bsee)
 src/graph_builder/graph/       earlier BSEE linked graph (python -m graph_builder.graph.bsee)
 prototype/        experiments E4/E10: extraction and template-QA prototype on AK-3; the baseline for the GraphRAG pipeline
+explorations/     side explorations, not part of the system
 tests/            unit and regression tests (unittest)
+backend/, frontend/   planned for the second build (FastAPI service, React application); not created yet
 ```
 
 For the earlier PDF pipeline, Docling caches live in a per-parser-settings subdirectory of `data/interim/docling/`. A document corpus keeps everything in its own directory (catalog, stored originals, per-document outputs, exports); OCR models live in `data/interim/ocr_models/`. BSEE snapshots live in `data/raw/bsee_wells/`, and the imported bundle in `data/processed/local/datasets/bsee_wells/`.

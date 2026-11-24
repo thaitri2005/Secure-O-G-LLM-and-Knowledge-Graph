@@ -25,7 +25,10 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Retrieval | BM25 routed by well; per-well fusion with Qwen3-Embedding-0.6B for questions naming several wells; date filter on daily reports | B-D23, B-C21, B-C22 |
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Khai](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
-| Next | From the [9 November meeting](../../requirements/supervisor-meeting-2026-11-09.md): the Wednesday report (short, architecture slides, one sample through the pipeline); a simple UI on the connected tracks (D-60); a coordinator for routing (D-58). Still waiting on the expert questions and the purpose of use (Q13) Event graph rebuilt on K1 version 1 (E31); answers on K1 need the desktop (next-runs). | B-D32 to B-D34, E31, [next-runs](next-runs.md) |
+| Next | **The second build: one connected application** ([specification §4.6](../../PROJECT_DESIGN.md#46-second-build-one-connected-application)). Track B's part, in the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now): answers on K1 version 1 (E32), reading the stores, the lane interface, the fact graph as nodes for Neo4j, the coordinator (E33), computed results inserted by code, the reasoning probe (E34). Still waiting on the expert questions and the purpose of use (Q13) | B-D36 to B-D38, B-C35, [next-runs](next-runs.md) |
+| Coordinator | Designed, not built: one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). Adopted only if it matches the hand-routed scores on the 221 pooled questions | B-D32, B-D36 |
+| Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C); fact region proposed | B-C35 |
+| Application | FastAPI backend and React frontend, read path first; `graphrag` is its library; the local UI stays a developer tool | B-D37 |
 | Ontology (K2) | Version 1.2: adds `rig`, `drilling_contractor`, and casing-spec, key-value and casing-item mappings ([k2_eowr_v1.json](../../../configs/ontology/k2_eowr_v1.json)). Casing mappings checked on 6 unseen reports ([E29](../../experiments/E29-table-mappings-across-reports.md)); no further ontology work (B-D25) | B-D17, E27, E29 |
 | Answer records (K4) | Version 0.1: [`k4_answer_record.schema.json`](../../../schemas/k4_answer_record.schema.json), written by `python -m graphrag.k4 <run>`; current files: `E26_plain_routed.k4.jsonl`, `E27_heldout_dates_bm25.k4.jsonl`, `E28_heldout_graph.k4.jsonl`. Computed answers cite source events (`how: event_graph`) | B-C18, B-C21, B-C24 |
 | Questions | All simulated except as noted: prototype 31; probe 9; simulated 40 (s02's gold to fix in the next version); held out 36; AK-3 daily 30 and daily held out 26. None is expert-reviewed | B-C14, B-D22, B-F34 |
@@ -734,3 +737,45 @@ Tri put Track A's package on the laptop: `ak3-k1-v1-candidate`, moved into ignor
 ### 12 November 2026
 
 **B-C34 (design choice).** `graphrag/compare_runs.py` turns recorded answer runs into one side-by-side table per question set (gold, each method's answer and result, cost per method), as Markdown and CSV, with no model call. Written for anh Tuấn, who asked for the questions, both methods' answers and the benchmark method. Output: [E28-answers/](../../experiments/E28-answers/README.md); totals match E28 (22/35, 19/23 for the event graph).
+
+## 2026-11-24: design of the second build
+
+No experiment was run today. This is design and documentation, done with Tri, before any code.
+
+**B-F59 (finding; state of the repository on 24 November).** Nothing from Track B or Track C is recorded after 12 November, and no supervisor contact after the 9 November meeting. Track A merged a large change on 17 November: table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine and resumable runs, all as options that are off by default. The transcript Tri brought today is the 9 November meeting, already digested on 10 November; the digest matches it. Tri confirmed there is no newer direction to record.
+
+**B-D36 (decision, by Tri; details D-58 and B-D32). This is D-64.** The coordinator is a router now, and an agent later in one lane only.
+
+- One model call frames the question: its kind, the report type and, for a question over time, the event graph's query plan. This is the planner of B-C24 with two more fields.
+- Code reads wells and dates as today, chooses lanes from a fixed table, and falls back to passages in a fixed order.
+- Each lane (passages, well facts, events) gets the same input and returns the same evidence shape, so it can later be called as a tool or through MCP, which is what the supervisor described.
+- A multi-step loop is considered only inside the reasoning lane, and only after a run shows a model of this size manages it.
+- *Why:* a fixed router is cheap, repeatable and measurable; a free tool loop on an 8B model is unproven here and not needed for four of the five question kinds.
+- *Test before adopting:* the 221 development questions in one pool with no lane given (31 + 40 + 36 + 30 + 26 + 35 + 23). Their source sets give the expected lane. The coordinator must match the hand-routed scores. It adds one model call to end-of-well lookups (1 to 2); event questions stay at 2.
+- Not chosen: a tool-calling agent from the start, and rules with no model call.
+
+**B-D37 (decision, by Tri; replaces the order in B-D33). This is D-65.** The application is built now as a FastAPI backend and a React frontend, read path first, instead of first pointing `graphrag/ui.py` at the stores.
+
+- `graphrag` becomes the library the backend imports. `graphrag/ui.py` and `ui.html` stay as a developer tool for replaying recorded runs; they are not the product.
+- Every question asked is logged with its lane, answer and any "wrong answer" mark. Shown to domain experts, that log is the route to real questions (Q2, Q13).
+- Work is split by data, backend and frontend from this stint. Tri takes the frontend as well as the engine (his decision, 24 November). Khai on data and Hung on backend are the plan's proposal, for the team to agree (Q14).
+- Not chosen: keeping the standard-library UI, and a thin FastAPI service that only serves today's HTML.
+
+**B-D38 (decision, by Tri; details D-61 and B-D34). This is D-66.** The reasoning lane is designed and probed, not promised. It finds the problem event in the event graph, gathers what surrounds it in code (days before and after, the non-productive report's description, the day's passages, the end-of-well narrative), and answers in two parts: causes the reports state, and possible causes, each with a citation. About ten questions on AK-3's 28 non-productive events are frozen before any run and scored on two things: the stated cause found and cited, and no unsupported claim stated as fact. Nothing inferred is written to the graph. One well's reports hold no offset wells, formation pressures or lessons-learned reports, so the probe is meant to show the supervisor a concrete answer and what a useful one would need.
+
+**B-C35 (design choice; answers the supervisor's request in B-D34). Proposed as D-67.** The node and relationship model is written down in [specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships): one graph with two regions joined at `Well` and `Chunk`.
+
+- Event region, as Track C loaded it (C-C11): `Well`, `ReportDay`, `Event`, `ActivityCode`, `NptCode`, with `FROM` to `Chunk`.
+- Fact region, proposed: `Fact` nodes (property, value, unit, qualifier, context, source) under `Well`, each with `FROM` to its chunk; `HoleSection` and `CasingString` from the casing mappings. These are the fields `graphrag/tables.py` already writes.
+- `Document` nodes link a well's daily reports to its end-of-well report.
+- A fact is a node, not a property on `Well`, because a well can have several values for one property, each with its own source.
+- K2's other types (`Project`, `Organization`, `Person`, `Rig`, `Formation`) wait until a kind of question needs them (B-D25).
+- To agree with Hung, who asked for it (Track C log, "Next").
+
+**B-C36 (design choice; documents brought up to date).** What changed, and what was removed:
+
+- Specification 3.4: §3 lists what the first build delivered; §4.1 has the coordinator and lanes; §4.2 states pgvector; §4.5 is marked closed; §4.6 is new (the second build); §7.5 separates the read path from administration; §8.1 to §8.3 are rewritten around the coordinator; §8.5 and §8.6 are new; D-64 to D-67 and Q14, Q15 are added.
+- Removed from the specification: graph expansion by a fixed number of hops and community summaries (§8.1), which no run supported (E16, E19, E21); the vector-store candidates (§4.2), settled by D-56; the claim that the GraphRAG parts are not built (§3.1).
+- Plan 3.2: rewritten. Removed: the M0 task list, the three tracks' research questions and work lists, the 30 October backlog and the note after the 9 November meeting. In their place: how M1 closed, the M2 checkpoints, and one task list by role.
+- `CLAUDE.md`, the documentation index, the main README's status, and a new [tracks index](../README.md) with a pointer for Track A.
+- Experiment numbers reserved: E32 answers on K1 version 1, E33 the coordinator on the pooled questions, E34 the reasoning probe.
