@@ -330,8 +330,19 @@ class CoordinatorReasoningTests(unittest.TestCase):
         frame_out, _ = coordinator.frame_question("Why?", self.engine, ScriptedClient(no_problem, None))
         self.assertEqual((frame_out["kind"], frame_out["problem"]), ("cause", reasoning.EMPTY_PROBLEM))
         many = flat(keywords=[" kick ", "", "stuck", "steam", "flow"])
-        frame_out, _ = coordinator.frame_question("Why?", self.engine, ScriptedClient(many, None))
+        question = "Why the kick, the stuck pipe, the steam and the flow?"
+        frame_out, _ = coordinator.frame_question(question, self.engine, ScriptedClient(many, None))
         self.assertEqual(frame_out["problem"]["keywords"], ["kick", "stuck", "steam"])
+
+    def test_the_models_date_depth_and_keywords_are_kept_only_where_the_question_says_them(self):
+        invented = flat(date="2016-08-21", depth_ft=176, npt_code="KICK", keywords=["kick", "weather"])
+        frame_out, _ = coordinator.frame_question("What caused the non-productive time on AK-3 in bad weather?",
+                                                  self.engine, ScriptedClient(invented, None))
+        self.assertEqual(frame_out["problem"], {"date": "", "depth_ft": 0, "npt_code": "KICK", "keywords": ["weather"]})
+        said = flat(date="", depth_ft=1725, keywords=["circulating"])
+        frame_out, _ = coordinator.frame_question("Why was AK-3 circulating at 1,725 ft on 3 September 2016?",
+                                                  self.engine, ScriptedClient(said, None))
+        self.assertEqual((frame_out["problem"]["date"], frame_out["problem"]["depth_ft"]), ("2016-09-03", 1725))
 
     def test_framing_request_names_the_kind_and_the_non_productive_codes(self):
         system = coordinator.frame_system(self.engine)

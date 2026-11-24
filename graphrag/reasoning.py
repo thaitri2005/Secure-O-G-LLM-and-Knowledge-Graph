@@ -173,18 +173,26 @@ def find_problems(frame: dict, events: list[Event]) -> list[Problem]:
     wanted = dict(EMPTY_PROBLEM, **(frame.get("problem") or {}))
     wanted["date"] = normalize(wanted["date"]) if wanted["date"] else ""
     keywords = [k for k in wanted["keywords"] if _words(k)]
+    # The model's "non-productive code" is checked against the codes the reports use. Qwen3-8B wrote the activity
+    # code there ("STUCK", where the reports' non-productive code for that hour is KICK), and an exact match on it
+    # found nothing (E34, B-F72). A code the reports do not use as a non-productive code is one more word that
+    # names the problem: `names` reads an event's activity code as well as its description.
+    if wanted["npt_code"] and wanted["npt_code"].upper() not in {(e.npt_code or "").upper() for e in events}:
+        keywords, wanted["npt_code"] = [*keywords, wanted["npt_code"]], ""
     well = (frame.get("plan") or {}).get("well") or ""
     if (well and well.upper() != WELL) or (wanted["date"] and not ISO_DATE.fullmatch(wanted["date"])):
         return []
     fitting = [p for p in incidents(events) if _fits(p.events, wanted)]
-    named = [p for p in fitting if not keywords or any(names(e, keywords) for e in p.events)]
+    # Every keyword must be named somewhere in the incident: "twist-off", "drill", "string" does not pick an
+    # incident because one of its events says "drill" (B-F72).
+    named = [p for p in fitting if all(any(names(e, [k]) for e in p.events) for k in keywords)]
     if named:
         return named
     if fitting and (wanted["date"] or wanted["depth_ft"] or wanted["npt_code"]):
         return fitting
     if not keywords or wanted["npt_code"]:
         return []
-    hits = [e for e in events if names(e, keywords) and _fits([e], dict(wanted, npt_code=""))]
+    hits = [e for e in events if all(names(e, [k]) for k in keywords) and _fits([e], dict(wanted, npt_code=""))]
     return _runs(hits, lambda a, b: True)
 
 

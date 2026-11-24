@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -113,8 +114,22 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     elif len(wells) > 1:
         frame["kind"] = "across_wells"
     dates = question_dates(question)
-    if frame["kind"] == "cause" and len(dates) == 1:
-        frame["problem"]["date"] = next(iter(dates))
+    if frame["kind"] == "cause":
+        # The model's date, depth and keywords are kept only where the question says them too (B-F72): they are
+        # asked for as the question's own words, and Qwen3-8B added a keyword of its own ("kick") to a question
+        # that did not say it. Its non-productive code is kept: turning "wait on equipment" into WOE is its job.
+        problem = frame["problem"]
+        said = question.lower()
+
+        def in_question(phrase: str) -> bool:
+            words = reasoning._words(str(phrase))
+            return bool(words) and all(re.search(rf"\b{re.escape(w)}", said) for w in words)
+
+        problem["date"] = next(iter(dates)) if len(dates) == 1 else ("" if not dates else problem["date"])
+        problem["keywords"] = [k for k in problem["keywords"] if in_question(k)]
+        if problem["depth_ft"] and not re.search(rf"(?<![\d.]){int(problem['depth_ft']):,}?(?![\d])|(?<![\d.]){int(problem['depth_ft'])}(?![\d])",
+                                                  question):
+            problem["depth_ft"] = 0
     return frame, call
 
 

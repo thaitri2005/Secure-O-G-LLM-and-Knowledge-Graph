@@ -74,6 +74,18 @@ class CitationTests(unittest.TestCase):
         self.assertEqual(([k["cause"] for k in kept], dropped), (["plugged inner barrel"], 1))
 
 
+class ProblemCodeTests(unittest.TestCase):
+    def test_an_activity_code_given_as_the_non_productive_code_still_finds_the_problem(self):
+        frame = {"plan": {"well": "AK-3"},
+                 "problem": {"date": "2016-08-20", "depth_ft": 0, "npt_code": "STUCK", "keywords": ["stuck", "pipe"]}}
+        found = reasoning.find_problems(frame, EVENTS)
+        self.assertEqual([(p.events[0].date, p.events[0].npt_code) for p in found], [("2016-08-20", "KICK")])
+
+    def test_a_real_non_productive_code_still_selects_by_code(self):
+        frame = {"plan": {"well": "AK-3"}, "problem": {"date": "", "depth_ft": 0, "npt_code": "wait", "keywords": []}}
+        self.assertEqual([p.events[0].npt_code for p in reasoning.find_problems(frame, EVENTS)], ["WAIT"])
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):
