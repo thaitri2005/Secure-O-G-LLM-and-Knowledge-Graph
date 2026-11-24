@@ -102,20 +102,41 @@ def create_app(service: Service | None = None) -> FastAPI:
 
 
 def default_service() -> Service:
-    """The service on this machine's files. Questions naming several wells use per-well fusion when the embedding
-    server answers, else per-well BM25."""
+    """The service, configured by the environment (backend/README.md):
+
+    - `BACKEND_SOURCE=stores`: the engine reads the K1 release in PostgreSQL (`BACKEND_DSN`, and `BACKEND_RELEASE`
+      when the store holds several) and the graph in Neo4j (`NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`).
+      Unset or `files`: this machine's files.
+    - `BACKEND_DSN` set: the question log is PostgreSQL's; unset: a file under ignored `data/interim/backend/`.
+
+    A store that is configured but does not answer raises here; nothing falls back to files. Questions naming several
+    wells use per-well fusion when the embedding server answers, else per-well BM25."""
     from graphrag.client import client_for, load_endpoints, load_roles
     from graphrag.lanes import Engine
 
-    from .questions import JsonlQuestionLog
+    from .questions import JsonlQuestionLog, PostgresQuestionLog
+    source, dsn = os.environ.get("BACKEND_SOURCE") or "files", os.environ.get("BACKEND_DSN")
+    if source not in ("files", "stores"):
+        raise ValueError(f"BACKEND_SOURCE is {source!r}; use 'files' or 'stores'")
     roles = load_roles()
     embed = load_endpoints()[roles["embed"]["endpoint"]]
+    settings: dict = {}
     try:
         httpx.get(f"{embed.base_url}/models", timeout=2.0).raise_for_status()
-        engine = Engine.load()
     except httpx.HTTPError:
-        engine = Engine.load(multi_well_retriever="perwell:bm25")
-    return Service(engine, client_for("frame", roles), client_for("answer", roles), JsonlQuestionLog(QUESTION_LOG),
+        settings["multi_well_retriever"] = "perwell:bm25"
+    if source == "stores":
+        from graphrag.stores import engine_from_stores
+        if not dsn:
+            raise ValueError("BACKEND_SOURCE=stores needs BACKEND_DSN, the PostgreSQL holding the K1 release")
+        # The local stores' defaults (platform/docker-compose.yml); a server sets its own.
+        engine = engine_from_stores(dsn, os.environ.get("NEO4J_URI") or "bolt://127.0.0.1:7687",
+                                    os.environ.get("NEO4J_USER") or "neo4j", os.environ.get("NEO4J_PASSWORD") or "platform-dev",
+                                    release=os.environ.get("BACKEND_RELEASE") or None, **settings)
+    else:
+        engine = Engine.load(**settings)
+    log = PostgresQuestionLog(dsn) if dsn else JsonlQuestionLog(QUESTION_LOG)
+    return Service(engine, client_for("frame", roles), client_for("answer", roles), log,
                    {role: roles[role] for role in ("frame", "answer")})
 
 

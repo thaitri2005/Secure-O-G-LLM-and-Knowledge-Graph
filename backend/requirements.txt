@@ -1,6 +1,6 @@
-# The backend's packages, on top of requirements.lock.txt (which already pins pydantic 2.14.1 and httpx 0.28.1).
-# Installed and tested on Windows with Python 3.12 on 24 November 2026. Kept apart from the main lock file so that
-# ingestion-only environments do not need a web framework.
+# The backend's packages, on top of requirements.lock.txt (which already pins pydantic 2.14.1, httpx 0.28.1,
+# typing_extensions 4.16.0 and tzdata 2026.5). Installed and tested on Windows with Python 3.12 on 24 November 2026.
+# Kept apart from the main lock file so that ingestion-only environments do not need a web framework.
 fastapi==0.165.0
 uvicorn==0.54.0
 starlette==1.10.0
@@ -9,3 +9,8 @@ h11==0.16.0
 click==8.5.0
 annotated-doc==0.0.5
 typing-inspection==0.4.4
+# The shared stores (BACKEND_DSN, BACKEND_SOURCE=stores): the PostgreSQL question log and graphrag/stores.py.
+psycopg[binary]==3.3.9
+psycopg-binary==3.3.9
+neo4j==6.4.1
+pytz==2026.6
