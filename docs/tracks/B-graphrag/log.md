@@ -939,3 +939,30 @@ Tri asked for the whole project to be gone over before people are put in front o
 - **Phone:** a one-line header; answer, then evidence, then earlier questions; each activity on two lines instead of a table that scrolls sideways; nothing wider than the screen down to 320 pixels.
 - **Accessibility:** an automated scan (axe, WCAG 2.2 AA, 17 screens at two widths) went from 315 findings to 0: landmarks, target sizes, names, keyboard focus in scrolling areas. Tabs and the timeline work by arrow keys; the guide and the page view keep and return focus; tables have headers; non-productive bars are hatched as well as amber. The same scan runs in the tests. **Not done:** a test with a screen reader.
 - **Print:** an answer prints with its sources and its whole evidence, without the controls.
+
+**B-F71 (finding; the baseline model runs on a CPU, slowly, and gives the recorded answers).** The cloud session's machine (4 cores, 16 GB, no GPU) ran our own copy of Qwen3-8B (the same 4-bit file) on llama.cpp's CPU build of the same release, b12015.
+
+- **The baseline is reproduced exactly:** BM25, top 5, AK-3, 31 prototype questions: 28/31, the same three questions wrong (q07, q25, q31), and the same status and values on all 31 as the recorded run on the borrowed GPU (E17). So a score from the CPU build stands beside the recorded ones. Run `bench_qwen3-8b.cpu_quick`.
+- **Speed:** 136 seconds a question (the GPU: 1.05), about 13 prompt tokens and 2.4 answer tokens a second while sharing the cores with other work. The 31 questions took 70 minutes of model time. The 221 pooled questions would take about a day, so E33 in full still needs a GPU; the short measurements do not.
+- **Memory:** the server holds about 9 GB with an 8k context; a 32k context does not fit in 16 GB. A frontend build beside it got the server killed twice; the bench resumed from its cache both times with no lost answer, which is what the resume was built for.
+- **Everything else the measurements need was built on the same machine:** the demo package from the public PDFs (Track A log A-F22), the stores with real vectors (Track C log C-F09), the page images (302 pages in 73 seconds), and the application as containers (C-F10).
+- Profile `qwen3-8b.cpu`; the steps are in the [engine README](../../../graphrag/README.md#without-a-gpu-on-linux).
+
+**B-F72 (finding; the first frames from the real model showed where the reasoning lane trusted it too far).** Before any answer about a cause was scored, the ten questions of the probe were framed by Qwen3-8B and the problem each frame leads to was worked out in code (no answer call). As built, the lane found the right outcome on 6 of 10.
+
+| Question | What the model wrote | What the lane did with it, as built | Change |
+|---|---|---|---|
+| r01, the stuck pipe on 20 August | Non-productive code `STUCK`: the activity code. The reports' non-productive code for that hour is `KICK` | An exact match on the code found no problem; the question fell back to passages and came out "not stated" | A code the reports do not use as a non-productive code is read as one more word naming the problem |
+| r09, "what caused the non-productive time" | Code `KICK` and keyword "kick", though the question names neither | One problem picked, where the question fits six and should be asked back | Date, depth and keywords are kept only where the question says them. The code is kept: turning "wait on equipment" into `WOE` is the model's job. So r09 still picks one problem; that is the model's error and is left as one |
+| r10, a twist-off that never happened | Keywords "twist-off", "drill", "string" | The KICK incident was picked because one of its events says "drill" | Every keyword must be named somewhere in the problem's activities |
+| r06, "what was AK-3 waiting for on 5 September" | Kind `lookup_by_date`, not `cause` | Sent to passages of that day | None: a defensible reading of the question |
+
+- After the three changes the frames lead to the right outcome on 8 of 10 (r06 and r09 remain). The stand-in models used in every earlier test never made these mistakes, which is why tests did not find them.
+- **The probe was used to find these faults, so its score after the changes is not a clean test of them.** A second probe, `graphrag/gold/ak3_reasoning_probe_v1.json`, was written after the changes and before any run on it: the same well asked in other words, two questions on causes written in activities that are not non-productive time, one to ask back and one about a failure that did not happen.
+- The rule the changes follow is the one the coordinator already had for wells and dates: what code can read from the question or the reports wins over what the model says.
+
+**B-F73 (finding; faults that only the live stack showed).** With the stores as the source and the application opened in a browser:
+
+- A fact's value on a well page did not open its page: on a package the fact named its report by the package's file ID, and the file routes use the report's name. The example data is on the old chunk IDs, where the two are the same, so no test saw it. Fixed, with a test on a package chunk.
+- The setting `GRAPHRAG_K1_CHUNKS` given a package's folder, as CLAUDE.md suggests, said the corpus was missing. It accepts the folder now.
+- Confirmed working there: page images found under the package's file ID (B-F70), the search in the database chosen at start on real vectors, the readiness check, the proxy's size limit and headers.
