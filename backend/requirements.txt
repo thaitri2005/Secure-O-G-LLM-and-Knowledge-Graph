@@ -1,0 +1,11 @@
+# The backend's packages, on top of requirements.lock.txt (which already pins pydantic 2.14.1 and httpx 0.28.1).
+# Installed and tested on Windows with Python 3.12 on 24 November 2026. Kept apart from the main lock file so that
+# ingestion-only environments do not need a web framework.
+fastapi==0.165.0
+uvicorn==0.54.0
+starlette==1.10.0
+anyio==4.15.1
+h11==0.16.0
+click==8.5.0
+annotated-doc==0.0.5
+typing-inspection==0.4.4

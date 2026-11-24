@@ -1,0 +1,27 @@
+[
+  {
+    "well_id": "56-32",
+    "facts": 115,
+    "report_days": 0
+  },
+  {
+    "well_id": "68-32",
+    "facts": 22,
+    "report_days": 0
+  },
+  {
+    "well_id": "AK-3",
+    "facts": 66,
+    "report_days": 27
+  },
+  {
+    "well_id": "TG-2",
+    "facts": 10,
+    "report_days": 0
+  },
+  {
+    "well_id": "TG-4",
+    "facts": 3,
+    "report_days": 0
+  }
+]

@@ -1,0 +1,234 @@
+{
+  "id": "fixture00000000000000000000000001",
+  "question": "What total depth did well AK-3 reach?",
+  "mode": "allow_fallback",
+  "status": "answered",
+  "answer_text": "1955 ft",
+  "answers": [
+    {
+      "value": "1955",
+      "unit": "ft"
+    }
+  ],
+  "lanes": [
+    "well_facts",
+    "passages"
+  ],
+  "fallback": false,
+  "answered_from": "end_of_well",
+  "frame": {
+    "kind": "lookup",
+    "report_type": "end_of_well",
+    "plan": {
+      "operation": "not_answerable",
+      "well": "AK-3",
+      "code": "",
+      "non_productive": false,
+      "npt_code": "",
+      "date_from": "",
+      "date_to": "",
+      "group_by": "",
+      "min_hours_per_day": 0,
+      "depth_ft": 0
+    }
+  },
+  "citations": [
+    {
+      "chunk_id": "gdr882_ak3_eowr#c0010",
+      "file_id": "gdr882_ak3_eowr",
+      "page": 7,
+      "section": "Drilling Summary",
+      "type": "text",
+      "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:\n\uf0b7 WGS-84 UTM Zone 3, 443969 E, 6000805 N,\n\uf0b7 Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.\nThese coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,\nWell AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-\u00bd\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. A comparison of planned versus actual days versus depth is shown in Figure 2.\nWhile drilling, two steam kicks occurred. The first kick was observed at 150' and was controlled by pumping cold water to cool the well (as planned). The second kick occurred at 170'.",
+      "how": "by_value"
+    }
+  ],
+  "evidence": {
+    "passages": [
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0034",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 19,
+        "section": "Productive vs. Non-Productive Time",
+        "type": "text",
+        "text": "The bulk of non-productive time was due to well control issues and weather. This accounts for about 18% of the total drilling time (Table 4).\nThere was a loss of 24 hours due to weather during the move to the well site on 13 August. Overnight from 16-17 August (14 hours) was counted as non-productive time because the crews had to leave the site to accommodations provided by the City of Akutan because the camp generator was not yet operational. With better preparation they could have continued working and would likely have been ready to spud earlier.\nThe time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.\nWeather did not stop operations directly, but through the course of the drilling, 8.5 hours were required to wait for the weather to improve to allow the helicopter to deliver equipment or personnel from the harbor to the well site. After the initial pressure and temperature survey on 5 September, 2.5 hours were recorded as non-productive time for interpretation of data and developing the plan to run the liner. A pie chart showing the breakdown of activity by hours is shown in Figure 11. Drilling was completed 3 days ahead of schedule (from spud to TD) at 255' below planned depth, despite the 2.75-day well kill and fishing operation."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0045",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 22,
+        "section": "Comparison to TG-2",
+        "type": "text",
+        "text": "Direct lithologic correlation between any of the three HSBV wells is difficult. This is due to several factors: (1) these are largely surficial volcanic (lava flows) and volcaniclastic (mass wasting) deposits that are likely to have restricted horizontal distribution so the likelihood of encountering the same deposit in two different wells is low; (2) none of these deposits have unique characteristics, making them nearly impossible to distinguish from other similar units in the stratigraphic sequence; and (3) until it is possible to directly compare the rocks from physical samples, interpretations of different lithologies based on descriptions from a different field geologist are subject to uncertainty. That said, the lithologies encountered in AK-3 are very similar to those in TG-2 and TG-4. Alteration in shallow portions of AK-3 is very similar to that observed in TG-2, with the exception of a narrow zone of what appears to be intense alteration along a fracture network at 168-170'. This is likely the depth that produced the uncontrolled flow during drilling. Well TG-2 encountered a broad fracture zone at 588-590', with significant mud losses and permeability. A similar zone at this depth was not encountered in AK-3. Thus, the flow zone may only occur on one side of the fault presumed to exist between these wells."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0010",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 7,
+        "section": "Drilling Summary",
+        "type": "text",
+        "text": "The AK-3 wellhead is located in Hot Springs Bay Valley at the following geographic coordinates:\n\uf0b7 WGS-84 UTM Zone 3, 443969 E, 6000805 N,\n\uf0b7 Alaska State Base Plane Coordinates NAD 27 Zone 7, x-126726.1, y-78180.6, Ground Elevation 41' ASL.\nThese coordinates were determined by a handheld Geographical Positioning System device in the field and converted to the Alaska State Base Plane with Geographical Information System software. The final wellsite has not yet been surveyed by a licensed surveyor,\nWell AK-3 was spud on 18 August and the rig was released 5 September 2016, a total of 19 days, with 27 days onsite, when rig up and rig down time are included. Drilling operations were conducted 24-hours a day, in two shifts. Drilling was supervised by GRG subcontractor Monty Keown and a site supervisor from the City of Akutan was onsite at all times. The well was drilled to a vertical depth of 1,955 in contrast to the planned 1,700'. The well was completed with HRQ (3-\u00bd\" ID), 8 ppf, blank and perforated liner from 755' to 1,955', set on bottom. Totco-type single shot drift surveys were run at 100' to 200' intervals, and showed a maximum inclination of 1.75\u00ba at 1,500' and 1\u00ba at 1,700'. A comparison of planned versus actual days versus depth is shown in Figure 2.\nWhile drilling, two steam kicks occurred. The first kick was observed at 150' and was controlled by pumping cold water to cool the well (as planned). The second kick occurred at 170'."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0026",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 15,
+        "section": "Surface Section",
+        "type": "text",
+        "text": "Figure 8: AK-3 flowing from about 169'.\nOn 22 August, a 10 sack cement drift plug was pumped with enough volume to reach from 176' to 88' to seal the loss zones. While waiting on cement, the hole began flowing again, increasing over 10 hours to about 11 gpm and 186\u00baF. The hole was circulated again, cooling the discharge to 86\u00baF. The top of cement was tagged at 172', so a nine-sack balanced cement plug was mixed and pumped from 88'. After six hours of waiting on cement, with no flow at the surface, the 7-1/2\" hole opener was picked up and the hole was opened from 40' to 90', with no indication of cement in cuttings. After another six hours, opening commenced again, all the way to 225', using salt-weighted water and bentonite gel. Mud temperatures increased to as high as 165\u00baF. The 5-1/2\", 15.5 ppf, K-55, VFJ (Valley Flush Joint) casing was set and cemented at 220' below ground surface with 62 sacks of 13.5 ppg Thermolite HT cement (pre-blended with 30% silica flour and cenospheres) with good returns to surface. The annulus was kept full with Portland cement for the first two hours after the initial cement job. The cement was allowed to cure for a total of 12 hours."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0005",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 6,
+        "section": "Introduction",
+        "type": "text",
+        "text": "It flowed unassisted, and temperatures favorable for electricity generation were measured in the flowing and static well. A rigorous flow test was never conducted, so temperature and flow estimates were made with limited information. The second well, TG-4, located about a mile from TG-2, on the opposite side of the valley, was a hot, but dry hole drilled to a total depth of 1,500'.\nSite selection for the new well was based on data collected since 2009, including the data from the 2010 drilling campaign. Through reexamination of the data and reports, including reprocessing of the 2012 gravity survey data and building a 3D visualization in GOCAD \u00ae software, the target site was selected close to the hot springs in lower HSBV, 450' southwest of TG-2.\nThe purpose of drilling the AK-3 well was to a confirm the resource at the Hot Springs area and locate the hottest and most productive part of the reservoir. Drilling a confirmation well at the Hot Springs site was a necessary step in determining the potential for a scalable, sustainable power output utilizing the resource, and for clarifying potential limitations.\nDrilling of AK-3 was coordinated by the City of Akutan. The City directly procured the shipping from the consolidation point in Tacoma, Washington, helicopter support, site preparation, on-site management and camp services. All drilling- and testing-related consulting services were provided by Geothermal Resource Group, Inc. (GRG)."
+      }
+    ],
+    "facts": [
+      {
+        "well": "AK-3",
+        "property": "api_number",
+        "value": "50-295-20005-00-00",
+        "unit": null,
+        "qualifier": "none",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0008"
+      },
+      {
+        "well": "AK-3",
+        "property": "ground_elevation",
+        "value": "41",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0010"
+      },
+      {
+        "well": "AK-3",
+        "property": "productive_time",
+        "value": "532.5",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "table_mapping",
+        "chunk_id": "gdr882_ak3_eowr#c0037"
+      },
+      {
+        "well": "AK-3",
+        "property": "rig_release_date",
+        "value": "2016-09-05",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0010"
+      },
+      {
+        "well": "AK-3",
+        "property": "spud_date",
+        "value": "2016-08-18",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0022"
+      },
+      {
+        "well": "AK-3",
+        "property": "spud_to_release_days",
+        "value": "3",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0022"
+      },
+      {
+        "well": "AK-3",
+        "property": "total_depth",
+        "value": "1955",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0002"
+      },
+      {
+        "well": "AK-3",
+        "property": "casing_depth",
+        "value": "1955",
+        "unit": null,
+        "qualifier": "actual",
+        "context": {
+          "casing_size_in": "3-1/2"
+        },
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0013"
+      },
+      {
+        "well": "AK-3",
+        "property": "casing_depth",
+        "value": "221.7",
+        "unit": null,
+        "qualifier": "actual",
+        "context": {
+          "casing_size_in": "5-1/2"
+        },
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0013"
+      },
+      {
+        "well": "AK-3",
+        "property": "casing_depth",
+        "value": "40",
+        "unit": null,
+        "qualifier": "actual",
+        "context": {
+          "casing_size_in": "8-5/8"
+        },
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0013"
+      },
+      {
+        "well": "AK-3",
+        "property": "casing_depth",
+        "value": "800",
+        "unit": null,
+        "qualifier": "actual",
+        "context": {
+          "casing_size_in": "4-1/2"
+        },
+        "source": "llm",
+        "chunk_id": "gdr882_ak3_eowr#c0013"
+      },
+      {
+        "well": "AK-3",
+        "property": "casing_grade",
+        "value": "A53B",
+        "unit": null,
+        "qualifier": "actual",
+        "context": {
+          "casing_size_in": "8-5/8"
+        },
+        "source": "table_mapping",
+        "chunk_id": "gdr882_ak3_eowr#c0013"
+      }
+    ],
+    "computed": null,
+    "model_note": null
+  },
+  "checks": {
+    "citations_supported": true,
+    "quotes_verbatim": true
+  },
+  "cost": {
+    "calls": 2,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0.0
+  }
+}

@@ -1,0 +1,888 @@
+{
+  "id": "fixture00000000000000000000000002",
+  "question": "How many hours of non-productive time did AK-3 have?",
+  "mode": "allow_fallback",
+  "status": "answered",
+  "answer_text": "total hours for non-productive = 115 (28 events on 10 dates)",
+  "answers": [
+    {
+      "value": "115",
+      "unit": "hours"
+    }
+  ],
+  "lanes": [
+    "events"
+  ],
+  "fallback": false,
+  "answered_from": "daily",
+  "frame": {
+    "kind": "over_time",
+    "report_type": "daily",
+    "plan": {
+      "operation": "total_hours",
+      "well": "AK-3",
+      "code": "",
+      "non_productive": true,
+      "npt_code": "",
+      "date_from": "",
+      "date_to": "",
+      "group_by": "",
+      "min_hours_per_day": 0,
+      "depth_ft": 0
+    }
+  },
+  "citations": [
+    {
+      "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001",
+      "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00027",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00041",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00030",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00034",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00034",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00040",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00057",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002",
+      "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003",
+      "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004",
+      "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006",
+      "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00090",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00245",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00226",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00241",
+      "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00275",
+      "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    },
+    {
+      "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00252",
+      "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+      "page": null,
+      "section": null,
+      "type": null,
+      "text": null,
+      "how": "event_graph"
+    }
+  ],
+  "evidence": {
+    "passages": [
+      {
+        "chunk_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001",
+        "file_id": "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00027",
+        "file_id": "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00041",
+        "file_id": "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      },
+      {
+        "chunk_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00030",
+        "file_id": "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8",
+        "page": null,
+        "section": null,
+        "type": null,
+        "text": null
+      }
+    ],
+    "facts": [],
+    "computed": {
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "text": "total hours for non-productive = 115 (28 events on 10 dates)",
+      "values": [
+        "115"
+      ],
+      "unit": "hours",
+      "events": [
+        {
+          "date": "2016-08-13",
+          "start": "0:00",
+          "end": "0:00",
+          "hours": 24.0,
+          "end_md": 0,
+          "code": "WOW",
+          "description": "Weather Delay",
+          "npt_code": "WAIT",
+          "chunks": [
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-16",
+          "start": "19:00",
+          "end": "20:00",
+          "hours": 1.0,
+          "end_md": 0,
+          "code": "OTHER",
+          "description": "Fly crews to lodge for evening, Unable to stay on site due to failed generators",
+          "npt_code": "WOE",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00027",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00041",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-16",
+          "start": "20:00",
+          "end": "0:00",
+          "hours": 4.0,
+          "end_md": 0,
+          "code": "WOD",
+          "description": "Crews at lodge for night",
+          "npt_code": "WOE",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00027",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00041",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-17",
+          "start": "0:00",
+          "end": "9:00",
+          "hours": 9.0,
+          "end_md": 0,
+          "code": "WOD",
+          "description": "Rig crews down for night at lodge.",
+          "npt_code": "WOE",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00030",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00034",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-18",
+          "start": "8:00",
+          "end": "12:00",
+          "hours": 4.0,
+          "end_md": 0,
+          "code": "WOW",
+          "description": "Waiting on weather to allow Mayor and Priest to site for blessing ritual , 08:00 mix spud mud, prepare to spud hole , install 5' PQ barrel and core bit. fill water tanks.",
+          "npt_code": "WOO",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00034",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00040",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00057",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-20",
+          "start": "17:00",
+          "end": "18:00",
+          "hours": 1.0,
+          "end_md": 176,
+          "code": "STUCK",
+          "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump cold water to hole.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-20",
+          "start": "18:00",
+          "end": "0:00",
+          "hours": 6.0,
+          "end_md": 176,
+          "code": "KILL",
+          "description": "Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-21",
+          "start": "0:00",
+          "end": "7:00",
+          "hours": 7.0,
+          "end_md": 176,
+          "code": "OTHER",
+          "description": "Well kicked. Steam flow to surface. Lost rod due to foot clamp slipping. Top of HWT rod 2' below foot clamp.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-21",
+          "start": "7:00",
+          "end": "15:30",
+          "hours": 8.5,
+          "end_md": 176,
+          "code": "FISH",
+          "description": "fly fishing tool from lay down yard,connect inside grapple ,run in on new HWT core rod, catch fish bring through foot camp. secure in head, break down fishing joint. Well blowing and flowing 66 gpm,",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+          ]
+        },
+        {
+          "date": "2016-08-21",
+          "start": "15:30",
+          "end": "17:30",
+          "hours": 2.0,
+          "end_md": 176,
+          "code": "WELLHD",
+          "description": "Rig up and install10' joint to string , shut in flow, secure well from blowing, begin pumping cold water into well bore. 60 degree in 136 F out,",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+          ]
+        },
+        {
+          "date": "2016-08-21",
+          "start": "17:30",
+          "end": "0:00",
+          "hours": 6.5,
+          "end_md": 176,
+          "code": "WELLHD",
+          "description": "Secure poor boy packoff from HWT to 8\" casing begin pumping 60 gpm of 60 degree water through string into hole. Hole secure.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "0:00",
+          "end": "7:00",
+          "hours": 7.0,
+          "end_md": 176,
+          "code": "WELLHD",
+          "description": "Continue pumping 35 gpm 60 degree cold water into 8\" casing , packed off on top with poor boy packer.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "7:00",
+          "end": "15:00",
+          "hours": 8.0,
+          "end_md": 176,
+          "code": "WELLHD",
+          "description": "Continue pumping cold water into hole from 176'. attend conference meeting on at City of Akutan 10:0013:00, discuss cementing options and well control plan. prepare to pump 10 sks of portland cement from 88' as a drift plug.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "15:00",
+          "end": "15:30",
+          "hours": 0.5,
+          "end_md": 176,
+          "code": "TRPO",
+          "description": "Pull 100' of rods , cooling hole after pulling 2 doubles , then 2 doubles and 1 double. position bottom of core rod at 88'.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "15:30",
+          "end": "16:30",
+          "hours": 1.0,
+          "end_md": 176,
+          "code": "CMTPL",
+          "description": "Mix and pump 10- 92.4 lbs sacks of portland cement into 77 gallons of water, pump through string as drift plug, chasing with 70 gallons of displacement. shut hole in monitor discharge, clean equipment.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "16:30",
+          "end": "17:30",
+          "hours": 1.0,
+          "end_md": 176,
+          "code": "WOC",
+          "description": "Rotate pipe each 15 minutes, to ensure free. initial static hole with top of fluid 3' below top of 8\" casing , after 1 hour, approx. .5-1 gallon flowing out of hole.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+          ]
+        },
+        {
+          "date": "2016-08-22",
+          "start": "17:30",
+          "end": "0:00",
+          "hours": 6.5,
+          "end_md": 176,
+          "code": "WOC",
+          "description": "Wait on cement, grab sample placed in warm laundry tent to cure. Flow from 8\" casing measured at 11-13 gpm, temp. building to 186 degrees at 00:00",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "0:00",
+          "end": "3:00",
+          "hours": 3.0,
+          "end_md": 176,
+          "code": "WOC",
+          "description": "pump cold water through core rods to cool hole prior to running in hole to tag top of cement.Initial reading 186 degrees F, lift pipe 1 foot and rotate, pipe free. begin pumping 60 degree F cold water into hole through core rod. to cool hole prior to tag top of cement. water temp at 00:15 186F, 00:30 , 148: 00:45-138: 01:30 134: 02:00-120F",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "3:00",
+          "end": "3:30",
+          "hours": 0.5,
+          "end_md": 176,
+          "code": "WELLHD",
+          "description": "Take off poor boy packoff, prior to lowering rod into hole to tag top of cement. Starting temp of discharge 120F",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "3:30",
+          "end": "4:00",
+          "hours": 0.5,
+          "end_md": 176,
+          "code": "TRPI",
+          "description": "RUN 20' into hole start temp. 115 F- joint down 142F, at 109'",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "4:00",
+          "end": "4:15",
+          "hours": 0.25,
+          "end_md": 176,
+          "code": "TRPI",
+          "description": "run in hole with 80' of rod temp begin at 115F end at 126F, tag top of cement at 172' BGS, circulating hole at top of cement fluid temp out 114F, pumping 30 gpm.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "4:15",
+          "end": "6:00",
+          "hours": 1.75,
+          "end_md": 176,
+          "code": "PUMP",
+          "description": "Pumping cold water to cool hole,Discuss with GRG, Bill Rickard , plan to re cement hole to stop flow.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "6:00",
+          "end": "7:00",
+          "hours": 1.0,
+          "end_md": 176,
+          "code": "PUMP",
+          "description": "Continue to pump cold water, change out stripping rubbers on packoff, attempt to gain shut in pressure, estimate at 4-9 psi, out floe from 8\" now at 11-13 gpm,",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "7:00",
+          "end": "8:30",
+          "hours": 1.5,
+          "end_md": 176,
+          "code": "PUMP",
+          "description": "Continue to pump cold water through core rod into hole with bottom of rod at 170', pull rod to 168' prepare to mix and pump 9sks of cement in a balance plug.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "8:30",
+          "end": "9:15",
+          "hours": 0.75,
+          "end_md": 176,
+          "code": "CMTPL",
+          "description": "Mix 9 bags of cement in 70 gallons of water, 14.5 lb/gal cement mix, pump into core rod and displace with 37 gallons of water, trip out with core rod to 49'. shut down,",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00090",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        },
+        {
+          "date": "2016-08-23",
+          "start": "9:15",
+          "end": "11:00",
+          "hours": 1.75,
+          "end_md": 176,
+          "code": "WOC",
+          "description": "wait on cement to set, rotate and lift rods every 15 min,begin time to see when fluid level returns to top of 8\" casing . took 1 hour and 15 min to see any water flow out of casing after cement down. minimum flow, less than 0.25 gpm.",
+          "npt_code": "KICK",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00090",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        },
+        {
+          "date": "2016-09-03",
+          "start": "6:30",
+          "end": "11:00",
+          "hours": 4.5,
+          "end_md": 1725,
+          "code": "CIRC",
+          "description": "Circulate hole from 1725', wait on weather to fly additional core rod to site (winds blowing over 35 KNTS). Receive 8 jts of HQ in first delivery at 10:45, 15 jts of used rod from village yard at 11:00 hrs.",
+          "npt_code": "WOE",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00245",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00226",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        },
+        {
+          "date": "2016-09-05",
+          "start": "6:30",
+          "end": "9:00",
+          "hours": 2.5,
+          "end_md": 1955,
+          "code": "WOO",
+          "description": "Waiting on well design after PT data review. Receive well plan: From the current blank run 4 perforated / 1 blank alternating 4 to 1 until run out of perf pipe, then 50 joints blank. Top of lap joint (TOL): 755' BGS.",
+          "npt_code": "WOO",
+          "chunks": [
+            "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00241",
+            "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00275",
+            "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00252",
+            "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006"
+          ]
+        }
+      ],
+      "source_chunks": [
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00023",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00027",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00041",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00030",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00034",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00034",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00040",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00057",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00060",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00075",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00088",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00002",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00066",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00082",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00098",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00003",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00072",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00089",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00108",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00004",
+        "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00006",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00073",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00090",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00211",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00245",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00226",
+        "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00241",
+        "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00275",
+        "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00252"
+      ]
+    },
+    "model_note": null
+  },
+  "checks": {
+    "citations_supported": true,
+    "quotes_verbatim": true
+  },
+  "cost": {
+    "calls": 1,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0.0
+  }
+}

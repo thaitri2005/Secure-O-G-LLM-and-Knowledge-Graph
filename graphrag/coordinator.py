@@ -17,7 +17,7 @@ from .baseline import MULTI_WELL_TOKENS, RESULTS, answer_one, fact_sheet
 from .client import client_for, load_roles
 from .data import QUESTION_SETS, ROOT, load_questions
 from .events import PLAN_SCHEMA, PLAN_SYSTEM, code_list
-from .lanes import LANES, SHEET_LINES, Engine, Evidence
+from .lanes import LANES, SHEET_LINES, Engine, Evidence, shown_facts
 from .retrieval import well_names
 from .scoring import normalize, score_answer
 
@@ -143,13 +143,16 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     by_lane = {e.lane: e for e in found}
     computed = next((e.computed for e in found if e.computed), None)
     calls = 1
+    shown: dict[str, list] = {"shown_passages": [], "shown_facts": []}
     if computed:
         row = _computed_row(q, computed, gold)
+        shown["shown_passages"] = computed["source_chunks"][:5]
     elif not found:
         # Nothing to answer from: in exact mode the graphs hold no answer, so no answer is generated.
         sources = _fallback(question, frame, engine, routed) if mode == "exact" else None
         row = {**_row_without_a_call(q, gold, "not_found_in_graph" if mode == "exact" else "not_stated", [], [], [], []),
                "sources": sources.passages if sources else []}
+        shown["shown_passages"] = row["sources"]
     else:
         facts, passages = by_lane.get("well_facts"), by_lane.get("passages")
         hits = passages.passages if passages else facts.passages
@@ -159,9 +162,11 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
         row = answer_one(q, hits, graph, engine.by_id(), answer_client, gold, answer_format=answer_format,
                          max_tokens=MULTI_WELL_TOKENS if answer_format == "evidence_first" else 400)
         calls = 2
+        shown = {"shown_passages": hits, "shown_facts": shown_facts(facts.facts) if facts else []}
     # The reports the evidence came from: a daily question can fall back to end-of-well passages, and must say so.
     answered_from = next((e.report_type for e in found if e.lane != "well_facts"), "end_of_well") if found else None
-    return {**row, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
+    # What was shown, for whoever displays the answer: passages by ID, and the facts of the sheet.
+    return {**row, **shown, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
             "answered_from": answered_from,
             "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
             "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}

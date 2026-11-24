@@ -1,0 +1,1298 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Drilling reports GraphRAG: read path",
+    "description": "Ask a question about the loaded drilling reports and see the answer, the lanes that gave its evidence, its citations and how it was reached. Specification \u00a77.5.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/questions": {
+      "post": {
+        "summary": "Ask a question",
+        "operationId": "ask_v1_questions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/questions/{question_id}/feedback": {
+      "post": {
+        "summary": "Mark an answer right or wrong",
+        "operationId": "feedback_v1_questions__question_id__feedback_post",
+        "parameters": [
+          {
+            "name": "question_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Question Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chunks/{chunk_id}": {
+      "get": {
+        "summary": "One chunk",
+        "operationId": "chunk_v1_chunks__chunk_id__get",
+        "parameters": [
+          {
+            "name": "chunk_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Chunk Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChunkOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/files": {
+      "get": {
+        "summary": "The loaded reports",
+        "operationId": "files_v1_files_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FileOut"
+                  },
+                  "type": "array",
+                  "title": "Response Files V1 Files Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/{file_id}/pages/{page}": {
+      "get": {
+        "summary": "One page of a report, as its chunks",
+        "operationId": "page_v1_files__file_id__pages__page__get",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wells": {
+      "get": {
+        "summary": "The wells",
+        "operationId": "wells_v1_wells_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/WellSummary"
+                  },
+                  "type": "array",
+                  "title": "Response Wells V1 Wells Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wells/{well_id}": {
+      "get": {
+        "summary": "One well's facts, documents and report days",
+        "operationId": "well_v1_wells__well_id__get",
+        "parameters": [
+          {
+            "name": "well_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Well Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WellOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/wells/{well_id}/events": {
+      "get": {
+        "summary": "A well's events between two dates",
+        "operationId": "events_v1_wells__well_id__events_get",
+        "parameters": [
+          {
+            "name": "well_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Well Id"
+            }
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date From"
+            }
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventOut"
+                  },
+                  "title": "Response Events V1 Wells  Well Id  Events Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "summary": "What is loaded and which models serve",
+        "operationId": "health_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Answer": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Value",
+            "description": "Normalized in code: dates YYYY-MM-DD, numbers without separators"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value"
+        ],
+        "title": "Answer"
+      },
+      "AnswerOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "The question's ID in the question log; use it for feedback"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "allow_fallback",
+              "exact"
+            ],
+            "title": "Mode"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "answered",
+              "not_stated",
+              "not_found_in_graph",
+              "withheld",
+              "invalid"
+            ],
+            "title": "Status"
+          },
+          "answer_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Text",
+            "description": "A sentence to show: the computed result, or the values with their units"
+          },
+          "answers": {
+            "items": {
+              "$ref": "#/components/schemas/Answer"
+            },
+            "type": "array",
+            "title": "Answers"
+          },
+          "lanes": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "passages",
+                "well_facts",
+                "events"
+              ]
+            },
+            "type": "array",
+            "title": "Lanes",
+            "description": "The lanes that gave the evidence, in order; empty when nothing was found"
+          },
+          "fallback": {
+            "type": "boolean",
+            "title": "Fallback",
+            "description": "True when the routed lanes found nothing and passages were used instead"
+          },
+          "answered_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "end_of_well",
+                  "daily"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answered From",
+            "description": "The reports the evidence came from"
+          },
+          "frame": {
+            "$ref": "#/components/schemas/Frame"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "type": "array",
+            "title": "Citations"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/Evidence"
+          },
+          "checks": {
+            "$ref": "#/components/schemas/Checks"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/Cost"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "mode",
+          "status",
+          "answer_text",
+          "answers",
+          "lanes",
+          "fallback",
+          "answered_from",
+          "frame",
+          "citations",
+          "evidence",
+          "checks",
+          "cost"
+        ],
+        "title": "AnswerOut"
+      },
+      "Checks": {
+        "properties": {
+          "citations_supported": {
+            "type": "boolean",
+            "title": "Citations Supported",
+            "description": "Every answer has a passage that supports it"
+          },
+          "quotes_verbatim": {
+            "type": "boolean",
+            "title": "Quotes Verbatim"
+          }
+        },
+        "type": "object",
+        "required": [
+          "citations_supported",
+          "quotes_verbatim"
+        ],
+        "title": "Checks"
+      },
+      "ChunkOut": {
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          },
+          "file_id": {
+            "type": "string",
+            "title": "File Id",
+            "description": "The report the chunk belongs to"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "section": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "text, table or form"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text",
+            "description": "None when this machine does not hold the chunk's report"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "file_id",
+          "page",
+          "section",
+          "type",
+          "text"
+        ],
+        "title": "ChunkOut"
+      },
+      "Citation": {
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          },
+          "file_id": {
+            "type": "string",
+            "title": "File Id",
+            "description": "The report the chunk belongs to"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "section": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "text, table or form"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text",
+            "description": "None when this machine does not hold the chunk's report"
+          },
+          "how": {
+            "type": "string",
+            "enum": [
+              "model",
+              "by_quote",
+              "by_value",
+              "unsupported",
+              "event_graph"
+            ],
+            "title": "How",
+            "description": "How code checked the citation; event_graph: a chunk holding a source event of a computed result"
+          }
+        },
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "file_id",
+          "page",
+          "section",
+          "type",
+          "text",
+          "how"
+        ],
+        "title": "Citation"
+      },
+      "Computed": {
+        "properties": {
+          "plan": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Plan",
+            "description": "The query plan the framing call wrote; code ran it"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Values"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EventOut"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "The events the result was computed from (at most 60)"
+          },
+          "source_chunks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Chunks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan",
+          "text",
+          "values",
+          "unit",
+          "events",
+          "source_chunks"
+        ],
+        "title": "Computed"
+      },
+      "Cost": {
+        "properties": {
+          "calls": {
+            "type": "integer",
+            "title": "Calls"
+          },
+          "prompt_tokens": {
+            "type": "integer",
+            "title": "Prompt Tokens"
+          },
+          "completion_tokens": {
+            "type": "integer",
+            "title": "Completion Tokens"
+          },
+          "seconds": {
+            "type": "number",
+            "title": "Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "calls",
+          "prompt_tokens",
+          "completion_tokens",
+          "seconds"
+        ],
+        "title": "Cost"
+      },
+      "EventOut": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "start": {
+            "type": "string",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "title": "End"
+          },
+          "hours": {
+            "type": "number",
+            "title": "Hours"
+          },
+          "end_md": {
+            "type": "integer",
+            "title": "End Md",
+            "description": "End measured depth, ft"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "Activity code"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "npt_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Npt Code",
+            "description": "Non-productive code, when the report marks one"
+          },
+          "chunks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chunks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "start",
+          "end",
+          "hours",
+          "end_md",
+          "code",
+          "description",
+          "npt_code",
+          "chunks"
+        ],
+        "title": "EventOut"
+      },
+      "Evidence": {
+        "properties": {
+          "passages": {
+            "items": {
+              "$ref": "#/components/schemas/ChunkOut"
+            },
+            "type": "array",
+            "title": "Passages",
+            "description": "The passages shown to the model, or the closest ones when nothing was found"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/FactOut"
+            },
+            "type": "array",
+            "title": "Facts",
+            "description": "The validated facts shown to the model"
+          },
+          "computed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Computed"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "model_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Note",
+            "description": "The model's own note on the evidence, when the answer format asks for one"
+          }
+        },
+        "type": "object",
+        "required": [
+          "passages",
+          "facts",
+          "computed",
+          "model_note"
+        ],
+        "title": "Evidence"
+      },
+      "FactOut": {
+        "properties": {
+          "well": {
+            "type": "string",
+            "title": "Well"
+          },
+          "property": {
+            "type": "string",
+            "title": "Property"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          },
+          "qualifier": {
+            "type": "string",
+            "title": "Qualifier",
+            "description": "actual, planned, projected, ..."
+          },
+          "context": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "For example the casing size a depth belongs to"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "table_mapping",
+              "llm"
+            ],
+            "title": "Source"
+          },
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "well",
+          "property",
+          "value",
+          "qualifier",
+          "source",
+          "chunk_id"
+        ],
+        "title": "FactOut"
+      },
+      "FeedbackIn": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "right",
+              "wrong"
+            ],
+            "title": "Verdict"
+          },
+          "comment": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Comment",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "verdict"
+        ],
+        "title": "FeedbackIn"
+      },
+      "FeedbackOut": {
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "title": "Question Id"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "right",
+              "wrong"
+            ],
+            "title": "Verdict"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_id",
+          "verdict"
+        ],
+        "title": "FeedbackOut"
+      },
+      "FileOut": {
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "title": "File Id"
+          },
+          "report_type": {
+            "type": "string",
+            "enum": [
+              "end_of_well",
+              "daily"
+            ],
+            "title": "Report Type"
+          },
+          "pages": {
+            "type": "integer",
+            "title": "Pages"
+          },
+          "chunks": {
+            "type": "integer",
+            "title": "Chunks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file_id",
+          "report_type",
+          "pages",
+          "chunks"
+        ],
+        "title": "FileOut"
+      },
+      "Frame": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "lookup",
+              "lookup_by_date",
+              "across_wells",
+              "over_time",
+              "reasoning",
+              "other"
+            ],
+            "title": "Kind"
+          },
+          "report_type": {
+            "type": "string",
+            "enum": [
+              "end_of_well",
+              "daily",
+              "both",
+              "unknown"
+            ],
+            "title": "Report Type"
+          },
+          "plan": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Plan"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "report_type",
+          "plan"
+        ],
+        "title": "Frame"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Health": {
+        "properties": {
+          "data": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Data",
+            "description": "Where the engine reads from and how much it holds"
+          },
+          "models": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Models",
+            "description": "role -> endpoint:model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "models"
+        ],
+        "title": "Health"
+      },
+      "PageOut": {
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "title": "File Id"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "chunks": {
+            "items": {
+              "$ref": "#/components/schemas/ChunkOut"
+            },
+            "type": "array",
+            "title": "Chunks",
+            "description": "The page's chunks in reading order"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url",
+            "description": "The page as an image, once the file store serves pages (plan task B7)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file_id",
+          "page",
+          "chunks"
+        ],
+        "title": "PageOut"
+      },
+      "QuestionIn": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "allow_fallback",
+              "exact"
+            ],
+            "title": "Mode",
+            "description": "exact: answer from the graphs only, no fallback to passages (D-59)",
+            "default": "allow_fallback"
+          },
+          "lane": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "passages",
+                  "well_facts",
+                  "events"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lane",
+            "description": "Force one lane instead of the coordinator's route"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "QuestionIn"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WellOut": {
+        "properties": {
+          "well_id": {
+            "type": "string",
+            "title": "Well Id"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/FactOut"
+            },
+            "type": "array",
+            "title": "Facts"
+          },
+          "documents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Documents"
+          },
+          "report_days": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Report Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "well_id",
+          "facts",
+          "documents",
+          "report_days"
+        ],
+        "title": "WellOut"
+      },
+      "WellSummary": {
+        "properties": {
+          "well_id": {
+            "type": "string",
+            "title": "Well Id"
+          },
+          "facts": {
+            "type": "integer",
+            "title": "Facts"
+          },
+          "report_days": {
+            "type": "integer",
+            "title": "Report Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "well_id",
+          "facts",
+          "report_days"
+        ],
+        "title": "WellSummary"
+      }
+    }
+  }
+}

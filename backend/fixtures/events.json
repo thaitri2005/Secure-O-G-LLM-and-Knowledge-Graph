@@ -1,0 +1,139 @@
+[
+  {
+    "date": "2016-08-20",
+    "start": "0:00",
+    "end": "9:30",
+    "hours": 9.5,
+    "end_md": 100,
+    "code": "DRIL",
+    "description": "Core PQ from 49' to 100', core temp at 100' -104 degrees F,",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "9:30",
+    "end": "10:00",
+    "hours": 0.5,
+    "end_md": 100,
+    "code": "SURV",
+    "description": "Run Totco inclination tool, 0.5 degrees at 100', Run MRT 190F,",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "10:00",
+    "end": "12:00",
+    "hours": 2.0,
+    "end_md": 129,
+    "code": "DRIL",
+    "description": "Core ahead to 130' with PQ, prepare to run MRT and Temperature logging probe on Totco.",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "12:00",
+    "end": "12:30",
+    "hours": 0.5,
+    "end_md": 129,
+    "code": "SURV",
+    "description": "Run survey MRT on survey tool along with down loadable temperature probe, Inclination .5 Degrees. MRT reading 145 F. Probe reading 140 F",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "12:30",
+    "end": "14:00",
+    "hours": 1.5,
+    "end_md": 149,
+    "code": "DRIL",
+    "description": "Core ahead PQ to 149'.Take steam kick, 190F coming out of annulus. Pump cold 56 F down rods, cool hole break joint lay down inner barrel,",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "14:00",
+    "end": "15:30",
+    "hours": 1.5,
+    "end_md": 149,
+    "code": "CIRC",
+    "description": "Pump cold water through core pipe, flow check, no flow from annulus, drop inner barrel. mix new mud 2 bags gel, pump barrel down, begin coring",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "15:30",
+    "end": "17:00",
+    "hours": 1.5,
+    "end_md": 176,
+    "code": "DRIL",
+    "description": "Core ahead, while coring from 176, high torque, stuck pipe, taking steam kick.",
+    "npt_code": null,
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "17:00",
+    "end": "18:00",
+    "hours": 1.0,
+    "end_md": 176,
+    "code": "STUCK",
+    "description": "Work to free stuck pipe, free hot water flowing from annulus, due to plugged inner barrel. Free pipe and gain circulation through core rods. Rig up pack off to seal 8\"casing to HWT core rods pump cold water to hole.",
+    "npt_code": "KICK",
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+      "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+    ]
+  },
+  {
+    "date": "2016-08-20",
+    "start": "18:00",
+    "end": "0:00",
+    "hours": 6.0,
+    "end_md": 176,
+    "code": "KILL",
+    "description": "Pump 60 gpm cold water 56 degrees trough core rods to cool hole",
+    "npt_code": "KICK",
+    "chunks": [
+      "gdr882-ak3-appx-27-6-dailyreportdetailrpt-nocost-f5e766b8#c00051",
+      "gdr882-ak3-appx-28-6-dailyreportdetailrpt-160920-4f05215f#c00065",
+      "gdr882-ak3-appx-30-6-dailyreportsummaryrpt-16092-62efbee0#c00079",
+      "gdr882-ak3-appx-23-5-nonproductivetimerpt-160927-f6b0f3f1#c00001"
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "id": "fixture00000000000000000000000003",
+  "question": "What total depth did well ZZ-9 reach?",
+  "mode": "exact",
+  "status": "not_found_in_graph",
+  "answer_text": null,
+  "answers": [],
+  "lanes": [],
+  "fallback": false,
+  "answered_from": null,
+  "frame": {
+    "kind": "lookup",
+    "report_type": "end_of_well",
+    "plan": {
+      "operation": "not_answerable",
+      "well": "",
+      "code": "",
+      "non_productive": false,
+      "npt_code": "",
+      "date_from": "",
+      "date_to": "",
+      "group_by": "",
+      "min_hours_per_day": 0,
+      "depth_ft": 0
+    }
+  },
+  "citations": [],
+  "evidence": {
+    "passages": [
+      {
+        "chunk_id": "gdr1295_56-32_eowr#c0038",
+        "file_id": "gdr1295_56-32_eowr",
+        "page": 20,
+        "section": "4.5. Days vs Depth",
+        "type": "text",
+        "text": "Well 56-32 was drilled to a total depth of 9,145 ft., 145 ft. deeper than the planned depth of 9,000 ft. and in less time than anticipated (Figure 6). The expected rate of penetration (ROP) was based on the PDC\nEnd of Well Report Utah FORGE Seismic Monitoring Well 56-32"
+      },
+      {
+        "chunk_id": "gdr1295_56-32_eowr#c0041",
+        "file_id": "gdr1295_56-32_eowr",
+        "page": 22,
+        "section": "5. DIRECTIONAL PROGRAM",
+        "type": "text",
+        "text": "End of Well Report Utah FORGE Seismic Monitoring Well 56-32\nsurface to TD are shown in Table 5 the final Total Measured Depth 9,145 ft. and True Vertical Depth is 9,138.3 ft., as calculated by the directional drilling services provider. The final plot is shown in Figure 7."
+      },
+      {
+        "chunk_id": "gdr1295_56-32_eowr#c0026",
+        "file_id": "gdr1295_56-32_eowr",
+        "page": 15,
+        "section": "4.2. Planned Wellbore Construction and Well Plan",
+        "type": "text",
+        "text": "Well 56-32 was planned as a mid-size, vertical, EGS monitoring and testing well to a total depth of 9,000 ft. (Figure 3). A 20 in. conductor casing was to be set at 128 ft., a 17-1/2 in. surface hole with cemented 13-3/8 in. casing was planned to 350 ft., the intermediate 12-1/4 in. hole with cemented 9-5/8 in. casing was planned to 3,500 ft., below this an 8-3/4 in. hole to 9,000 ft. with cemented 5-1/2 in. casing to total depth.\nTime to drill was estimated based on drilling performance of well 16A-32. The days versus depth plots were calculated prior to drilling and is shown in Figure 4. The estimated time was 38 days for drilling and testing. Actual drilling and testing were completed in 28 days from commencement of drilling and to a deeper TD of 9,105 ft."
+      },
+      {
+        "chunk_id": "gdr1295_56-32_eowr#c0035",
+        "file_id": "gdr1295_56-32_eowr",
+        "page": 20,
+        "section": "4.4. Drilling Summary",
+        "type": "text",
+        "text": "Prior to rig mobilization, the well pad was constructed including setting of the cellar and drilling of mouse and rat holes. Additionally, the 20 in. conductor pipe was cemented with the casing shoe at 128.5 ft. on 13 January 2021. The Frontier Rig started mobilization from the 16A pad on 3 February 2021 and completed mobilization and rig up. Drilling commenced on 8 February 2021. The 17-1/2 in. hole was drilled to 381 ft. and 13 3/8 in. casing was cemented to 381 ft., on the same day. Drilling of the 12-1/4 in. hole commenced on 9 February and continued to 10 February, when the casing point of 3,500 ft. was reached. The 9-5/8 in. casing was set and cemented at 3,494 ft measured depth on the same day. The drilling of the 8 -3/4 in. hole commenced on 12 February, and total depth of 7,625 ft. was reached on 22 February.\nThe well was conditioned and the PDC pulled out of the hole. A mud hammer with 8-3/4 in. bit was run in the hole and reamed hole to 7,620 ft. Attempted to mud hammer drill rotating and drilling 8-3/4 in. hole from 7,620 ft. to 7,627 ft. but mud hammer did not fire. It was suspected that the wellbore needed to be reamed with 2x8-3/4 in. roller reamer to allow the mud hammer to engage. This reaming was performed on 22 to 23 February. The second mud hammer was run and attempted to drilled 8-3/4 in. from 7,627 to 7,662 ft., but hammer failed to engage again."
+      },
+      {
+        "chunk_id": "gdr882_ak3_eowr#c0034",
+        "file_id": "gdr882_ak3_eowr",
+        "page": 19,
+        "section": "Productive vs. Non-Productive Time",
+        "type": "text",
+        "text": "The bulk of non-productive time was due to well control issues and weather. This accounts for about 18% of the total drilling time (Table 4).\nThere was a loss of 24 hours due to weather during the move to the well site on 13 August. Overnight from 16-17 August (14 hours) was counted as non-productive time because the crews had to leave the site to accommodations provided by the City of Akutan because the camp generator was not yet operational. With better preparation they could have continued working and would likely have been ready to spud earlier.\nThe time from 17:00 hours on 20 August to 11:00 on 23 August was recorded as non-productive time. This is the time it took to gain control of the well and repair the difficulties that the well kick at 176' created, a total of 66 hours.\nWeather did not stop operations directly, but through the course of the drilling, 8.5 hours were required to wait for the weather to improve to allow the helicopter to deliver equipment or personnel from the harbor to the well site. After the initial pressure and temperature survey on 5 September, 2.5 hours were recorded as non-productive time for interpretation of data and developing the plan to run the liner. A pie chart showing the breakdown of activity by hours is shown in Figure 11. Drilling was completed 3 days ahead of schedule (from spud to TD) at 255' below planned depth, despite the 2.75-day well kill and fishing operation."
+      }
+    ],
+    "facts": [],
+    "computed": null,
+    "model_note": null
+  },
+  "checks": {
+    "citations_supported": true,
+    "quotes_verbatim": true
+  },
+  "cost": {
+    "calls": 1,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "seconds": 0.0
+  }
+}

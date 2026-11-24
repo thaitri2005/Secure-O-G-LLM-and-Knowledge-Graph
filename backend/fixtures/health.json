@@ -1,0 +1,14 @@
+{
+  "data": {
+    "source": "files",
+    "end_of_well_chunks": 372,
+    "daily_chunks": 0,
+    "events": 161,
+    "facts": 216,
+    "wells": 5
+  },
+  "models": {
+    "frame": "stand-in:scripted",
+    "answer": "stand-in:scripted"
+  }
+}

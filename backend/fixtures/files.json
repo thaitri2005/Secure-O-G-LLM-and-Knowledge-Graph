@@ -1,0 +1,20 @@
+[
+  {
+    "file_id": "gdr1153_68-32_eowr",
+    "report_type": "end_of_well",
+    "pages": 40,
+    "chunks": 112
+  },
+  {
+    "file_id": "gdr1295_56-32_eowr",
+    "report_type": "end_of_well",
+    "pages": 82,
+    "chunks": 200
+  },
+  {
+    "file_id": "gdr882_ak3_eowr",
+    "report_type": "end_of_well",
+    "pages": 28,
+    "chunks": 60
+  }
+]

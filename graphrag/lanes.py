@@ -10,7 +10,7 @@ import json
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
-from .baseline import RESULTS, asks_about_plan, build, fact_lines, names_several_wells, pool
+from .baseline import RESULTS, asks_about_plan, build, fact_lines, names_several_wells, pool, render
 from .data import Chunk
 from .events import WELL, Event, build_events, inputs, plan_value
 from .retrieval import well_names
@@ -104,6 +104,20 @@ def passages(question: str, frame: dict, engine: Engine) -> Evidence:
         return Evidence("passages", False, [cid for cid, _ in hits], answer_format="evidence_first")
     hits = engine.retriever("wells:bm25", "end_of_well").search(question, 5)
     return Evidence("passages", False, [cid for cid, _ in hits])
+
+
+def shown_facts(facts: list[dict]) -> list[dict]:
+    """The facts an answer prompt shows: SHEET_LINES per well, in the fact sheet's order, one per distinct line
+    (baseline.fact_lines)."""
+    seen: dict[str, list[str]] = {}
+    out = []
+    for fact in sorted(facts, key=lambda f: (bool(f.get("context")), f["property"])):
+        for well in sorted(well_names(str(fact.get("well") or ""))):
+            line = render(fact)
+            if line not in seen.setdefault(well, []) and len(seen[well]) < SHEET_LINES:
+                seen[well].append(line)
+                out.append(fact)
+    return out
 
 
 def well_facts(question: str, frame: dict, engine: Engine) -> Evidence:
