@@ -4,6 +4,10 @@
 
 [`PROJECT_REPORT_2026-11-09.md`](PROJECT_REPORT_2026-11-09.md), in English, for the supervisors: purpose and scope, how the project got here, the target architecture, the first build's three tracks in detail (ingestion, the GraphRAG engine with its two graphs, storage), results, roadmap and what the team needs. Diagrams are Mermaid in the text. A shared web copy is at https://claude.ai/artifact/J3cK4LfXiAfKD7J3ZSt3CE; this file is the record.
 
+## Draft: resource request, 24 November 2026
+
+[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): what the second build needs to run where domain experts can reach it (a server for the stores and the application, a hosted open-weight model for the demo), what it costs, and what is asked of the supervisor: US$10 certain, at most US$160. A draft until Hung confirms the server size and the team sends it. Prices are list prices found that day.
+
 ## Slides for the professor's review, 11 November 2026
 
 Six slides, "GraphRAG Architecture Today", made in Canva on 12 November after the [9 November meeting](../requirements/supervisor-meeting-2026-11-09.md) asked for two or three slides of architecture instead of long text. The PDF is about 10 MB and is not committed; Tri keeps it. Its content is the architecture of [specification §8.4](../PROJECT_DESIGN.md#84-what-the-first-build-runs-today).
