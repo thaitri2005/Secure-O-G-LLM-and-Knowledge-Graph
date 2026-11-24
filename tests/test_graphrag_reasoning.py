@@ -150,6 +150,21 @@ class GatherTests(unittest.TestCase):
         self.assertTrue(all(i["text"].startswith("* ") for i in own))
         self.assertTrue(any("due to plugged inner barrel" in i["text"] for i in own))
 
+    def test_each_event_carries_its_fields_beside_the_line_the_model_sees(self):
+        events = [i for i in self.pack["items"] if i["kind"] == "event"]
+        by_line = {reasoning._event_line(e, own): (e, own) for e in RECORDED for own in (True, False)}
+        for item in events:
+            event, own = by_line[item["text"]]   # the line is the one the lane always wrote
+            self.assertEqual(item["activity"], {**dataclasses.asdict(event), "problem": own})
+            self.assertEqual((item["activity"]["problem"], item["activity"]["date"]), (item["problem"], item["date"]))
+        self.assertTrue(all("activity" not in i for i in self.pack["items"] if i["kind"] != "event"))
+        # The description is whole where a neighbour's line cuts it.
+        cut = [i for i in events if i["text"].endswith(" ...")]
+        self.assertTrue(cut and all(not i["activity"]["description"].endswith(" ...") for i in cut))
+        # The prompt does not change with the fields: they are not shown to the model.
+        bare = dict(self.pack, items=[{k: v for k, v in i.items() if k != "activity"} for i in self.pack["items"]])
+        self.assertEqual(reasoning.messages("Why?", self.pack), reasoning.messages("Why?", bare))
+
     def test_neighbours_come_from_the_days_around_it_within_the_budget(self):
         events = [i for i in self.pack["items"] if i["kind"] == "event"]
         neighbours = [i for i in events if not i["problem"]]

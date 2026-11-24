@@ -1,0 +1,59 @@
+{
+  "id": "fixture-log-2",
+  "asked_at": "2026-11-21T09:30:00+00:00",
+  "question": "How many hours of non-productive time did AK-3 have?",
+  "mode": "allow_fallback",
+  "kind": "over_time",
+  "report_type": "daily",
+  "status": "answered",
+  "lanes": [
+    "events"
+  ],
+  "fallback": false,
+  "answered_from": "daily",
+  "answer_text": "115 hours",
+  "verdict": "right",
+  "feedback": [
+    {
+      "verdict": "wrong",
+      "comment": "Expected the well total of appendix 23",
+      "at": "2026-11-21T09:40:00+00:00"
+    },
+    {
+      "verdict": "right",
+      "comment": "Matches appendix 23 after checking",
+      "at": "2026-11-21T10:05:00+00:00"
+    }
+  ],
+  "record": {
+    "id": "fixture-log-2",
+    "asked_at": "2026-11-21T09:30:00+00:00",
+    "question": "How many hours of non-productive time did AK-3 have?",
+    "mode": "allow_fallback",
+    "forced_lane": null,
+    "frame": {
+      "kind": "over_time",
+      "report_type": "daily",
+      "plan": {}
+    },
+    "lanes": [
+      "events"
+    ],
+    "fallback": false,
+    "answered_from": "daily",
+    "status": "answered",
+    "answers": [],
+    "answer_text": "115 hours",
+    "citations": [],
+    "cost": {
+      "calls": 2,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0
+    },
+    "models": {
+      "frame": "stand-in:scripted",
+      "answer": "stand-in:scripted"
+    }
+  }
+}

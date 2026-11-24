@@ -1,0 +1,67 @@
+{
+  "total": 4,
+  "limit": 3,
+  "offset": 0,
+  "questions": [
+    {
+      "id": "fixture-log-4",
+      "asked_at": "2026-11-23T16:45:00+00:00",
+      "question": "What mud weight was used on well ZZ-9?",
+      "mode": "allow_fallback",
+      "kind": "lookup",
+      "report_type": "end_of_well",
+      "status": "not_found_in_graph",
+      "lanes": [],
+      "fallback": false,
+      "answered_from": null,
+      "answer_text": null,
+      "verdict": null,
+      "feedback": []
+    },
+    {
+      "id": "fixture-log-3",
+      "asked_at": "2026-11-22T14:05:00+00:00",
+      "question": "What caused the stuck pipe on AK-3 on 20 August 2016?",
+      "mode": "allow_fallback",
+      "kind": "cause",
+      "report_type": "daily",
+      "status": "answered",
+      "lanes": [
+        "reasoning"
+      ],
+      "fallback": false,
+      "answered_from": "daily",
+      "answer_text": null,
+      "verdict": null,
+      "feedback": []
+    },
+    {
+      "id": "fixture-log-2",
+      "asked_at": "2026-11-21T09:30:00+00:00",
+      "question": "How many hours of non-productive time did AK-3 have?",
+      "mode": "allow_fallback",
+      "kind": "over_time",
+      "report_type": "daily",
+      "status": "answered",
+      "lanes": [
+        "events"
+      ],
+      "fallback": false,
+      "answered_from": "daily",
+      "answer_text": "115 hours",
+      "verdict": "right",
+      "feedback": [
+        {
+          "verdict": "wrong",
+          "comment": "Expected the well total of appendix 23",
+          "at": "2026-11-21T09:40:00+00:00"
+        },
+        {
+          "verdict": "right",
+          "comment": "Matches appendix 23 after checking",
+          "at": "2026-11-21T10:05:00+00:00"
+        }
+      ]
+    }
+  ]
+}

@@ -89,14 +89,21 @@ class Problem(BaseModel):
     chunks: list[str]
 
 
+class Activity(EventOut):
+    """An event among the reasoning evidence, as fields: the same event as its text line, which is what the model saw."""
+    description: str = Field(description="Whole, also where the text line cuts a neighbouring event's description")
+    problem: bool = Field(description="Whether it is part of the problem itself")
+
+
 class ReasoningEvidence(BaseModel):
     id: str = Field(description="The label the answer cites: E1, E2, ... for events, P1, P2, ... for passages")
     kind: Literal["event", "daily", "end_of_well"]
     chunk: str
-    text: str
+    text: str = Field(description="The line or passage exactly as the model saw it")
     date: str | None = None
     page: int | None = None
     problem: bool | None = Field(None, description="For an event: whether it is part of the problem itself")
+    activity: Activity | None = Field(None, description="For an event: its fields; null for a passage")
 
 
 class CauseCitation(BaseModel):
@@ -197,11 +204,127 @@ class WellSummary(BaseModel):
     report_days: int
 
 
+class WellFact(FactOut):
+    file_id: str = Field(description="The report the fact's chunk belongs to")
+    page: int | None = Field(description="The chunk's page; null when this machine does not hold the chunk")
+
+
+class CasingString(BaseModel):
+    size_in: str = Field(description="Casing size as the report writes it, for example 9-5/8")
+    facts: list[WellFact] = Field(description="Its depth, weight and grade, planned and actual")
+
+
+class Readings(BaseModel):
+    property: str = Field(description="For example inclination or max_measured_temperature")
+    facts: list[WellFact] = Field(description="One per depth, shallowest first; context.depth_ft is the depth")
+
+
+class WellFacts(BaseModel):
+    general: list[WellFact] = Field(description="Rig, contractor, API number, elevation and other well-level facts")
+    depths_and_dates: list[WellFact] = Field(description="Total depth, spud and rig release dates, days and hours")
+    casing_strings: list[CasingString] = Field(description="Largest casing first")
+    readings: list[Readings] = Field(description="Values measured or projected at depths")
+
+
+class WellDocument(BaseModel):
+    file_id: str
+    report_type: ReportType | None = Field(description="Null when a fact cites a report this machine does not hold")
+    pages: int = Field(description="0 when this machine does not hold the report")
+    chunks: int
+
+
+class ReportDay(BaseModel):
+    date: str
+    hours: float = Field(description="Hours logged in the day's operations table")
+    npt_hours: float = Field(description="Hours of those the report marks non-productive")
+    events: int
+    end_md: int = Field(description="Deepest end measured depth of the day's events, ft")
+    codes: list[str] = Field(description="Activity codes of the day, in the order logged")
+    npt_codes: list[str] = Field(description="Non-productive codes of the day, in the order logged")
+
+
+class WellTotals(BaseModel):
+    days: int
+    events: int
+    hours: float
+    npt_hours: float
+    npt_hours_by_code: dict[str, float] = Field(description="Non-productive hours per non-productive code, most first")
+
+
 class WellOut(BaseModel):
+    """What a page about one well shows, computed in code from the engine; no model call."""
     well_id: str
-    facts: list[FactOut]
-    documents: list[str]
-    report_days: list[str]
+    facts: WellFacts
+    documents: list[WellDocument] = Field(description="End-of-well reports first, then daily reports, by file ID")
+    report_days: list[ReportDay] = Field(description="From the event graph, oldest first; empty for a well without one")
+    totals: WellTotals
+
+
+# ---- the question log, read side (D-65): no login yet, the shared password at the proxy is the only gate ---------
+
+Verdict = Literal["right", "wrong"]
+
+
+class FeedbackRecord(BaseModel):
+    verdict: Verdict
+    comment: str
+    at: str
+
+
+class LoggedQuestion(BaseModel):
+    id: str
+    asked_at: str | None
+    question: str
+    mode: str | None
+    kind: str | None = Field(description="The frame's kind")
+    report_type: str | None = Field(description="The frame's report type")
+    status: str | None
+    lanes: list[str]
+    fallback: bool | None
+    answered_from: str | None
+    answer_text: str | None
+    verdict: Verdict | None = Field(description="The latest mark; null when nobody marked the answer")
+    feedback: list[FeedbackRecord] = Field(description="Every mark, oldest first")
+
+
+class QuestionPage(BaseModel):
+    total: int = Field(description="Questions matching the filters, over all pages")
+    limit: int
+    offset: int
+    questions: list[LoggedQuestion] = Field(description="Newest first")
+
+
+class LoggedQuestionDetail(LoggedQuestion):
+    record: dict = Field(description="The whole stored entry: frame, answers, cited chunk IDs, cost, models, forced lane")
+
+
+class QuestionCounts(BaseModel):
+    questions: int
+    by_kind: dict[str, int]
+    by_status: dict[str, int]
+    by_verdict: dict[str, int] = Field(description="right, wrong and none (not marked), by the latest mark")
+
+
+class CollectedQuestion(BaseModel):
+    id: str = Field(description="The question's ID in the log")
+    kind: str = Field(description="The frame's kind when it was asked")
+    question: str
+    gold: list[str] = Field(description="Empty: gold answers are not written yet")
+    asked_at: str | None
+    feedback: list[FeedbackRecord] = Field(description="The marks and comments the users left")
+
+
+class QuestionSetFile(BaseModel):
+    """A question file in the format of graphrag/gold/, which `python -m graphrag.coordinator answer --questions
+    <file>` runs; a person adds the gold facts later."""
+    status: str
+    version: str
+    expected_lane: str | None = Field(None, description="Absent unless chosen at export: the coordinator then takes "
+                                                        "it as reasoning, so routing scores of the file mean nothing")
+    collected: dict = Field(description="On which date, how many questions and with which filters")
+    known_limits: list[str]
+    questions: list[CollectedQuestion]
+    facts: list[dict] = Field(description="Empty: the gold facts a person writes")
 
 
 class Health(BaseModel):

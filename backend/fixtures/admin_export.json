@@ -1,0 +1,44 @@
+{
+  "status": "COLLECTED from the application's question log on 2026-11-24; gold answers not yet written; not expert-reviewed unless stated",
+  "version": "0.1",
+  "expected_lane": "end_of_well",
+  "collected": {
+    "on": "2026-11-24",
+    "questions": 2,
+    "filters": {
+      "ids": [
+        "fixture-log-1",
+        "fixture-log-4"
+      ]
+    }
+  },
+  "known_limits": [
+    "Questions as users typed them, including ones about data the reports do not hold.",
+    "kind is the frame the application gave when the question was asked, not a person's judgement."
+  ],
+  "questions": [
+    {
+      "id": "fixture-log-1",
+      "kind": "lookup",
+      "question": "What total depth did well AK-3 reach?",
+      "gold": [],
+      "asked_at": "2026-11-20T08:15:00+00:00",
+      "feedback": [
+        {
+          "verdict": "right",
+          "comment": "",
+          "at": "2026-11-20T08:20:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "fixture-log-4",
+      "kind": "lookup",
+      "question": "What mud weight was used on well ZZ-9?",
+      "gold": [],
+      "asked_at": "2026-11-23T16:45:00+00:00",
+      "feedback": []
+    }
+  ],
+  "facts": []
+}
