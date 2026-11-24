@@ -47,7 +47,7 @@
   },
   "date": "2026-11-24",
   "started": "2026-11-24T17:57:07+00:00",
-  "finished": null,
+  "finished": "2026-11-24T19:09:52+00:00",
   "one_request_at_a_time": true,
   "steps": [
     {
@@ -70,23 +70,25 @@
         "bench_qwen3-8b.cpu_quick_quick_prototype"
       ],
       "run": "bench_qwen3-8b.cpu_quick_quick_prototype",
-      "status": "started",
+      "status": "done",
       "started": "2026-11-24T18:22:05+00:00",
-      "error": null
+      "error": null,
+      "finished": "2026-11-24T19:09:52+00:00",
+      "wall_seconds": 2866.3
     }
   ],
-  "updated": "2026-11-24T18:22:05+00:00",
+  "updated": "2026-11-24T19:09:52+00:00",
   "totals": {
-    "calls": 0,
-    "cached_calls": 0,
+    "calls": 31,
+    "cached_calls": 6,
     "invalid_json": 0,
-    "prompt_tokens": 0,
-    "completion_tokens": 0,
-    "seconds": 0,
-    "cost_usd": 0,
-    "cached_seconds": 0,
-    "cached_cost_usd": 0,
-    "questions": 0,
+    "prompt_tokens": 45000,
+    "completion_tokens": 2438,
+    "seconds": 2866.3,
+    "cost_usd": 0.0,
+    "cached_seconds": 1359.1,
+    "cached_cost_usd": 0.0,
+    "questions": 31,
     "providers": []
   }
 }

@@ -29,6 +29,8 @@ K1_CHUNKS = ROOT / "data/interim/k1/chunks.jsonl"
 
 def k1_chunks_path() -> Path:
     path = Path(os.environ.get("GRAPHRAG_K1_CHUNKS") or K1_CHUNKS)
+    if path.is_dir():
+        path = path / "chunks.jsonl"  # the package's folder is accepted as well as its chunk file
     if not os.environ.get("GRAPHRAG_K1_CHUNKS") and not path.is_file():
         # A package unzipped into its own folder, e.g. data/interim/k1/ak3-k1-v1-candidate/; exactly one is taken.
         found = sorted(K1_CHUNKS.parent.glob("*/chunks.jsonl"))
