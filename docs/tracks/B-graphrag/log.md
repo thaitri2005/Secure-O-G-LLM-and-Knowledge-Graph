@@ -1068,3 +1068,10 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **Removed from the plan:** the request for school GPU slots and a school virtual machine (B-C58), and the earlier sizes as the main ask (a 16 GB card for 8 hours a week, 4 vCPU and 8 GB, US$10); they remain in it as the minimum.
 - **Unverified:** the price of the larger server is the smaller listed price doubled; six months to May 2027 is assumed; whether the school funds cloud services, and in what form, is the question the email asks. The email is addressed to Dr. Le Duy Dung on the specification's word that school resources go through him.
 - **A limit that got sharper:** a rented GPU is someone else's machine, like a hosted model. With no school or team GPU planned, there is now nowhere to process a private VPI document; that needs VPI's written agreement to a provider, or VPI's own hardware (D-68, specification §10.1).
+
+**B-D45 (decision; the budget ceiling is 10 million VND, and the request goes to the school).** Tri, 24 November. This replaces the amounts of B-D44 and the addressee of B-C58.
+
+- **Ceiling:** 10 million VND for the three of us for now, about US$385 at an assumed 26,000 VND to the dollar. The US$1,000 of B-D44 was too much.
+- **What fits in it for six months:** a 24 GB GPU for about 10 hours a week and one run of about three days (3.0 to 6.0 million VND); a server of 4 vCPU and 8 GB at Hetzner (1.6 to 2.5 million); 0.5 million of hosted calls; a domain name and a reserve. Estimated 6.2 to 10.1 million; GPU hours are cut first if prices sit high. The least that keeps the project moving is about 3 million.
+- **Dropped to fit:** 20 GPU hours a week, the 16 GB server with a second copy of the stores, the vision-model trial. They are listed in the plan as what more money would buy.
+- **Who is asked:** the school, by email, copied to both advisors. Dr. Le Duy Dung is the team's advisor and was the one who said to ask for resources; anh Tuấn advised against the school's own machines. The office to address is not known yet.

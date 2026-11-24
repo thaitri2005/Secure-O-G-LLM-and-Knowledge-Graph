@@ -39,7 +39,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
 - **Compute:**
   - no GPU of the team's own: the desktop that ran every measurement up to E31 was borrowed and is not planned on (Track B log B-D42, B-D43);
-  - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks for about US$1,000 for six months (Q6, Q7);
+  - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks the school for up to 10 million VND (about US$385) for six months (Q6, Q7);
   - the school's GPUs are not planned on: the supervisor advised they are slow and awkward (24 November);
   - laptops for code, tests, Docling and the stores.
 - **Data:** public only. AK-3 first, then the Utah FORGE reports already used (56-32, 68-32, 78-32). The supervisor's petroleum document, if supplied, is processed on local models only.
@@ -181,7 +181,7 @@ Keep:
 | R-02 | Table parsing errors propagate | Wrong cells, missing headers, lost marks | Rules for known formats with a fallback and a reason; the QA sidecar; measure on other report families | Data |
 | R-03 | Methods tuned on one well do not transfer | A second report family fails | Add one new family at a time in M3; report seen and unseen data separately | Data, Engine |
 | R-04 | The coordinator sends questions to the wrong lane | Pooled score below the hand-routed scores | Wells and dates read by code; fixed fallback; measured before adoption; a lane can be forced from the UI | Engine |
-| R-05 | No compute to measure with: no GPU of our own, no budget yet for a rented one | No approval of the resource plan | Ask now (Q6, Q7); about US$50 a month keeps the project moving; a hosted model for a few dollars covers the first measurements | All |
+| R-05 | No compute to measure with: no GPU of our own, no budget yet for a rented one | No approval of the resource plan | Ask now (Q6, Q7); about 3 million VND keeps the project moving; a hosted model for a few dollars covers the first measurements | All |
 | R-06 | Hosted endpoint used on non-public data | A private file in a run | The model client's guard; test it | Engine |
 | R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
 | R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
