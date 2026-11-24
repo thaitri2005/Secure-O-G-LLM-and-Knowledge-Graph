@@ -1,6 +1,6 @@
 # Track B: next runs
 
-Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1-desktop)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. Other runs depend on other people's work; see "Waiting on" below. Runs need the desktop (RTX 4080 SUPER); the laptop has no GPU or models. Decision and limits of the question sets: [log](log.md), B-D22.
+Status on 24 November 2026: **E23 to E31 are done.** Next, in order: E32 (answers on K1 version 1, [commands below](#answers-on-k1-version-1)), E33 (the coordinator on the 221 pooled questions) and E34 (the reasoning probe); see the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) and log entries B-D36 to B-D38. **The team has no GPU of its own now** (B-D42, B-D43): the desktop these runs were written for was borrowed. Run them on a hosted open-weight model on public data ([below](#on-a-hosted-model)) or on a school GPU with the local commands as written.
 
 ## Before you start
 
@@ -100,9 +100,28 @@ Worth doing when the work resumes:
 4. Commit as yourself, with no AI attribution, then `git pull --rebase` and push.
 5. Mark the run done in this file.
 
-## Answers on K1 version 1 (desktop)
+## On a hosted model
 
-The package `ak3-k1-v1-candidate` is in ignored `data/interim/k1/` on the laptop; copy that folder to the desktop. The compatibility check and the event graph (E31) are done and need no model. These need Qwen3-8B on the GPU:
+All data in these runs is public (AK-3 and the Utah FORGE reports), so a hosted open-weight model is allowed (D-38, D-68). Set `OPENROUTER_API_KEY` first.
+
+| Local command part | Hosted |
+|---|---|
+| `--endpoint local-llama --model qwen3-8b` (`graphrag.baseline`, `graphrag.events answer`) | `--endpoint openrouter --model qwen/qwen3-8b` |
+| The coordinator and the backend, which read the roles file | `$env:GRAPHRAG_ROLES = "deploy/models/roles.openrouter.json"` before the command |
+| Questions naming several wells (they need the embedding server) | `--no-embeddings` on the coordinator, or `--multi-well-retriever perwell:bm25` on the baseline; say so in the record |
+
+Rules for a hosted run (D-68):
+
+1. **Rerun the baseline on the same endpoint first.** A hosted score is compared only with another hosted score, never with the recorded local ones.
+2. Record the provider OpenRouter routed to, the model ID and the date with the run. Report tokens and cost; seconds say little there.
+3. Check on the first run that thinking is off (answers arrive without a reasoning block and at the usual token counts); if it is not, stop and record what the provider needs.
+4. None of this has been run: the model ID and the provider's behaviour are unverified until the first call.
+
+Cost: the 221 pooled questions are about 0.7 million prompt tokens, so E33 with its baselines, E32 and E34 together come to a few million tokens, under US$1 at the listed prices ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)).
+
+## Answers on K1 version 1
+
+Use the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, Track B log B-C55), in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` to its `chunks.jsonl` if another package is there too. The compatibility check and the event graph need no model. These need a model, shown here with the local endpoint:
 
 ```powershell
 python -m graphrag.baseline answer --pool k1_ak3 --retriever bm25 --k 5 --endpoint local-llama --model qwen3-8b --name E32_k1_prototype

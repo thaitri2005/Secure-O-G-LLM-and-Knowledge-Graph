@@ -17,13 +17,13 @@ The second build puts one application in front of domain experts (decision D-60,
 
 | Need | What it is | Plan | Cost |
 |---|---|---|---:|
-| **Stores and application** | One server for PostgreSQL with pgvector, Neo4j, the backend and the frontend. About 4 vCPU and 8 GB of memory: Neo4j alone wants 2 GB or more | A cloud server paid from GitHub Student Developer Pack credits | US$0 from our side |
-| **The model, for measurements** | Qwen3-8B on a GPU, one request at a time, so results are repeatable | Tri's desktop (RTX 4080 SUPER), as for every run so far | US$0 |
+| **Stores and application** | One server for PostgreSQL with pgvector, Neo4j, the backend and the frontend. About 4 vCPU and 8 GB of memory: Neo4j alone wants 2 GB or more. Everything that runs on it is built and has run on a laptop | A cloud server paid from GitHub Student Developer Pack credits | US$0 from our side |
+| **The model, for measurements** | Qwen3-8B, one request at a time. The desktop that ran every measurement so far was borrowed and is not ours to plan on | The same hosted open-weight model as the demo, on public data; the school GPUs for anything that must stay local | Under US$1 for the three runs waiting now |
 | **The model, for the demo** | An endpoint that answers when an expert opens the application, at any hour | A hosted open-weight model through OpenRouter. Allowed because the demo data is public (specification §10.1) | About US$0.001 a question |
 
 **The server.** A 4 vCPU, 8 GB server is listed at about US$48 a month at DigitalOcean. The Student Developer Pack lists US$200 of DigitalOcean credit for one year and US$100 of Azure credit, so one student's credit covers about four months and the three of us cover the academic year. If the credits cannot be redeemed (Azure asks for a card; DigitalOcean's own page mentions US$100 for new users only), the same server costs US$10 to US$16 a month at Hetzner or about US$48 at DigitalOcean. That is the contingency.
 
-**The hosted model.** A question costs about 3,100 prompt tokens and 200 output tokens over its two calls (measured in [E28](../experiments/E28-event-graph.md): 71,553 and 4,736 tokens for 23 questions). Listed prices for Qwen3-8B are US$0.12 to US$0.20 per million input tokens and US$0.20 to US$0.46 per million output tokens, which gives well under US$0.001 a question. US$10 is therefore more than 10,000 questions: every expert trial we can foresee, with room for the development runs that do not need the desktop.
+**The hosted model.** A question costs about 3,100 prompt tokens and 200 output tokens over its two calls (measured in [E28](../experiments/E28-event-graph.md): 71,553 and 4,736 tokens for 23 questions). Listed prices for Qwen3-8B are US$0.12 to US$0.20 per million input tokens and US$0.20 to US$0.46 per million output tokens, which gives well under US$0.001 a question. US$10 is therefore more than 10,000 questions: every expert trial we can foresee, and the measurements too. The three runs waiting now (the coordinator on 221 questions with its baselines, answers on the new package, the ten questions about causes) are a few million tokens, under US$1.
 
 **What we do not ask for.**
 
@@ -33,13 +33,13 @@ The second build puts one application in front of domain experts (decision D-60,
 ## Limits to know about
 
 - **Public data only.** The hosted model and the cloud server may hold public reports only (AK-3, the Utah FORGE reports). A VPI document stays on local machines and local models, as the specification requires. If the demo must ever use private data, this plan no longer fits and the model must run on a GPU we control.
-- **Hosted results are not our measured results.** OpenRouter serves the model at full precision from a third-party provider; our measurements use a 4-bit copy on our own GPU. Scores we report come from the desktop. The hosted model is for letting people try the application.
+- **Hosted results cannot be compared with our earlier ones.** OpenRouter serves the model at full precision from a third-party provider; every score recorded so far used a 4-bit copy on a local GPU. From now on we rerun the baseline on the hosted model before comparing anything with it, and we record the provider with each run. Speed measured there says little about a local deployment.
 - **Prices are list prices found on 24 November 2026** and should be checked on the day of purchase. The sources disagree in places, and two are several months old.
 
 ## What we need from you
 
 1. Approval of the US$10, and who holds the OpenRouter account and its spending cap (open question Q6).
-2. How to book the school GPUs (open question Q7), before milestone M5.
+2. How to book the school GPUs (open question Q7). It matters sooner than before: we have no GPU of our own, so any run that must stay on local machines waits for a slot.
 
 ## Sources
 

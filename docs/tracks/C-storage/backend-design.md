@@ -6,18 +6,21 @@ This is a proposal for your part of the work. Anything here can change; say so i
 
 ## Where each task stands
 
-| Task | State | Who |
-|---|---|---|
-| B4. The API contract | **Done.** `backend/openapi.json` and one example response per endpoint in `backend/fixtures/` | Track B, on your behalf |
-| B5. The FastAPI service | **Done, reading files.** `backend/`, 17 tests. It does not read the stores yet (§5) | Track B, on your behalf |
-| B6. The question log | **Done as a file** (`backend/questions.py`). The PostgreSQL version is designed in §3 | Track B; the tables are yours |
-| B1. Shared hosting | Designed in §1. Needs your accounts | You |
-| B3. The graph in Neo4j | Designed in §4. The fact graph file is ready | You |
-| B2. The runner | Designed in §6 | You |
-| B7. Page images | Designed in §7 | You |
-| B8. Compose file and access gate | Designed in §8 | You |
+Updated on 24 November after everything below was built (Track B log B-D41; Track C log C-C12 to C-C18). The sections that follow are the designs as written before the build; they are kept as the reasons behind the code. Where the code differs, the Track C log says so.
 
-**Suggested order:** B1, then B3, then §5 (the engine reads the stores, done together with Tri), then B2, B8, B7. B1 unblocks everyone; B7 can wait, because the application already shows a page as its text.
+| Task | State | Where |
+|---|---|---|
+| B4. The API contract | **Done** | `backend/openapi.json`, twelve example responses in `backend/fixtures/` |
+| B5. The FastAPI service | **Done**, reading files or the stores | `backend/`; `BACKEND_SOURCE=stores` (§5) |
+| B6. The question log | **Done** in PostgreSQL | `platform/sql/002_questions.sql`, `backend/questions.py` (§3) |
+| B1. Shared hosting | **Prepared, no server yet** | `platform/server/`, the [server runbook](server-runbook.md); interim host to agree (C-D06, C-D07) |
+| B3. The graph in Neo4j | **Done** on laptops | `platform/load_facts_neo4j.py`, `load_events_neo4j.py` (§4). Open: the facts cite old chunk IDs (§4.2) |
+| B2. The runner | **Done**, without vectors on a machine with no embedding model | `platform/run_release.py` (§6) |
+| B7. Page images | **Done**; no highlight on the image | `platform/render_pages.py`, the image route (§7) |
+| B8. Compose file and access gate | **Done**, run on a laptop only | `--profile app`, [deploy/README.md](../../../deploy/README.md) (§8) |
+| Vector search in SQL inside the engine (§5, last row) | **Not built** | Track B log B-C50 |
+
+**What is left for Hung:** review the code against these designs, agree a host (B1), and run the server steps for real.
 
 To run what exists: [backend/README.md](../../../backend/README.md).
 
@@ -226,7 +229,7 @@ python platform/run_release.py <release folder> [--skip-vectors] [--skip-graphs]
 
 ## 7. Page images (B7)
 
-The application shows the cited passage beside its page. Today `GET /v1/files/{file_id}/pages/{n}` returns the page's chunks as text and `image_url: null`.
+The application shows the cited passage beside its page. `GET /v1/files/{file_id}/pages/{n}` returns the page's chunks as text, and `image_url` when the page has been rendered.
 
 - **Render at load time, not at request time:** one PNG per page, 150 dpi, with `pypdfium2`, which is already in the lock file and is permissively licensed. Not PyMuPDF: it is AGPL and must stay out of anything deployed ([dependencies](../../components/dependencies.md)).
 - **Store** as `<file store>/pages/<file_id>/p<n>.png`. On the server the file store is a folder (§1).

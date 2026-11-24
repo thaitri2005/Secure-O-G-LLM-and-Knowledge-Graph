@@ -11,7 +11,7 @@
 - **The parts are connected.** The application answers from the stores (PostgreSQL and Neo4j), behind one shared password, and one command loads a new report package into them. It ran end to end on a laptop, with a stand-in in place of the AI model.
 - A total such as "hours of non-productive time" is **calculated by code and never written by an AI**, so it cannot be a guess.
 - A question about **the cause of a problem** now gets an answer in parts: what the reports state, other possible factors labelled as possibilities, and what is missing for a real judgement.
-- **Not done yet:** no run with the real AI model on the new parts, so we cannot say how well they answer. That needs the desktop's graphics card. A shared server needs an account and a small budget (§12).
+- **Not done yet:** no run with the real AI model on the new parts, so we cannot say how well they answer. We have no graphics card of our own now, so these runs need a hosted model or the school's GPUs, and a server needs an account. Both are small asks (§12).
 
 ## 2. What you asked for, and where each stands
 
@@ -192,6 +192,7 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 ## 11. Weak points
 
 - **The new parts have not run with the real model yet.** How well the coordinator chooses, and how good an answer about a cause is, are unknown until they do. Everything in this report was tested with stand-ins for the model.
+- **We have no graphics card of our own.** Every earlier result came from a borrowed machine. New runs go to a hosted open-weight model, on public data only, or to the school's GPUs. A hosted model is not the same copy as the one we measured before, so we will rerun the earlier baseline there before comparing anything with it.
 - **Connected on laptops, not on a server.** The steps for a real server with a real address are written but have not been run.
 - **No search vectors in the laptop's store**, so a question naming several wells searches by words only there.
 - **The well facts and the passages use two ID schemes** in the stores, so a fact's passage cannot always be shown.
@@ -204,8 +205,9 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 
 1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones.
 2. **What it is for**: which report types stay in scope, and which kinds of question users ask.
-3. **US$10** for a hosted open-weight model, so the demo answers at any hour, on public data only. The server comes from student credits. Detail: [resource request](../RESOURCE_REQUEST_2026-11-24.md).
-4. **How to book the school GPUs.**
+3. **US$10** for a hosted open-weight model, on public data only. It now covers two things: the runs that measure the new parts (under US$1) and a demo that answers at any hour. Detail: [resource request](../RESOURCE_REQUEST_2026-11-24.md).
+4. **How to book the school GPUs.** This matters sooner than before: anything that must stay on our own machines waits for a slot.
+5. **A server**, if the student credits cannot be used: up to US$50 a month.
 
 ## 13. What comes next
 
@@ -213,7 +215,7 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 
 | Who | What |
 |---|---|
-| Tri | Run the coordinator with the real model on all 221 development questions and decide whether to keep it; run the ten questions about causes |
+| Tri | With a hosted model, once there is a key: rerun the baseline, then the coordinator on all 221 development questions and the ten questions about causes, and decide whether to keep the coordinator |
 | Hung | Review the loading command and the container setup; host the stores where all three of us reach them |
 | Khai | Review the demo package and the record written for him; decide which reading options go on |
 

@@ -4,6 +4,20 @@
 
 This is your work list for the data side, in the order that unblocks the most. Each task says what to build, the steps, and how to know it is done. You know the ingestion code far better than I do, so where I name a file it is a pointer, not an instruction.
 
+## Update, later on 24 November: Tasks 1, 4 and 5 have a first version
+
+With your clearance three of the tasks below were built the same day (Track B log B-C55). **They are yours to check and correct**; nothing was switched on by default and no K1 field was added.
+
+| Task | State | What is left for you |
+|---|---|---|
+| 1. The demo release (D1) | Built: `python scripts/build_k1_demo_release.py` gives `ak3-demo-v1`, 1,051 chunks, with appendix 23, the legacy map and a well on end-of-well chunks. The five checks pass; the legacy map covers 15 of the 17 gold chunks | Check it against how you would have built it. It uses today's `k1.json` (Operations Summary rule on), not the candidate's configuration: 31 event descriptions differ in wording from E28's (B-F64). The well comes from a new optional setting, `document_context` |
+| 2. Which options go on (D2) | Not done | Yours, on this release |
+| 3. Two more end-of-well reports (D3) | Not done | Yours. It also unblocks rebuilding the facts on the new IDs (B-F63) |
+| 4. Merged-cell text (D4) | The mode `span_once_keyed` already fixes it; a test now shows it. On the demo release it clears both high character-ratio warnings and changes no ID | Decide whether to switch it on (with D2) |
+| 5. A dated log (D5) | A draft: [log.md](log.md), written from the repository's history | Correct it; it guesses at nothing, but it is not your account |
+| The two tests without PyMuPDF | They skip with a reason | — |
+| A title per report; a region on passages | Not done | As below |
+
 ## Why it matters now
 
 An application now sits on top of your output ([frontend/](../../../frontend/README.md)). It shows report text to users exactly as K1 gives it, lists sources by report and page, and draws a timeline from the operations tables. What K1 contains is now what a person sees.

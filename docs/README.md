@@ -2,7 +2,7 @@
 
 **Current direction (24 November 2026):** a **GraphRAG application for drilling reports** (end-of-well and daily drilling reports). A coordinator sends each question to a lane: text passages, facts about a well, or events over time, the last two held in one graph. It uses open-weight models of about 7B or smaller and never commercial APIs; it links stores and documents through one ID scheme; and it is delivered as a full application with chat and administration. The basis is the [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) supervisor meetings (specification D-36 to D-63) and the design choices of 24 November (D-64 to D-67).
 
-**Where the project stands:** the first build is closed. Chunk packages, the stores and the engine exist as three separate parts. The second build connects them behind one application.
+**Where the project stands:** the second build is coded in all three tracks: chunk packages, the stores and the engine are connected behind one application, which runs end to end on a laptop with a stand-in for the model. Nothing new is measured with a real model yet, and it is not on a server.
 
 | To find out… | Read |
 |---|---|
@@ -12,7 +12,8 @@
 | What each part of the team has found | [Track records](tracks/README.md) |
 | What this stint accomplished, with diagrams of how the system works | [Stint report, 10 to 27 November](reports/stints/STINT_REPORT_2026-11-27.md) ([PDF](reports/stints/STINT_REPORT_2026-11-27.pdf)), a draft until 27 November |
 | What Khai and Hung are asked to do next | Notes of 24 November: [for Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [for Hung](tracks/C-storage/note-from-track-B-2026-11-24.md) |
-| How to run the application | [frontend/README.md](../frontend/README.md), [backend/README.md](../backend/README.md) |
+| How to run the application | [frontend/README.md](../frontend/README.md), [backend/README.md](../backend/README.md); on a server: [deploy/README.md](../deploy/README.md) and the [server runbook](tracks/C-storage/server-runbook.md) |
+| How to load a report package into the stores | [platform/README.md](../platform/README.md) |
 | What the supervisor asked for | [Meeting digests](requirements/README.md) |
 
 ## Document hierarchy
@@ -26,10 +27,10 @@ The [project specification](PROJECT_DESIGN.md) is the **single source of truth**
 | **Derived** | [Development plan](DEVELOPMENT_PLAN.md) | Current status, how the first build closed, roles, milestones, the task list, risks |
 | Supporting | [Data sources](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well reports (AK-3 first), daily drilling reports |
 | Supporting | [Components](components/) | How each implemented subsystem works: [document ingestion](components/corpus-ingestion.md), [structured-data import](components/dataset-import.md), [entity registry](components/entity-registry.md). Earlier pipelines kept for reproduction: [PDF ingestion](components/pdf-ingestion.md), [OCR ingestion](components/ocr-ingestion.md), [BSEE ingestion](components/bsee-ingestion.md) |
-| Supporting | [Track records](tracks/README.md) | Each track's findings, decisions and design choices, logged the same day: [A, ingestion](tracks/A-ingestion/README.md), [B, GraphRAG engine](tracks/B-graphrag/README.md), [C, storage](tracks/C-storage/log.md) |
+| Supporting | [Track records](tracks/README.md) | Each track's findings, decisions and design choices, logged the same day: [A, ingestion](tracks/A-ingestion/README.md) (with a [log](tracks/A-ingestion/log.md), a draft), [B, GraphRAG engine](tracks/B-graphrag/README.md), [C, storage](tracks/C-storage/log.md) |
 | Supporting | [Experiments](experiments/README.md) | Measurements, one record per experiment (E1–E31) |
 | Supporting | [Reports](reports/README.md) | What was sent to the supervisor. [Stint reports](reports/stints/README.md), one per stint, in their own folder; the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md); the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
-| Supporting | Application guides | [backend/README.md](../backend/README.md): the read-path API and its contract. [frontend/README.md](../frontend/README.md): the application people use. [graphrag/README.md](../graphrag/README.md): the engine |
+| Supporting | Application guides | [backend/README.md](../backend/README.md): the read-path API and its contract. [frontend/README.md](../frontend/README.md): the application people use. [graphrag/README.md](../graphrag/README.md): the engine. [platform/README.md](../platform/README.md): loading the stores. [deploy/README.md](../deploy/README.md): the application on a server |
 | Supporting | [Related work](references.md) | Papers, GraphRAG repositories and model candidates |
 | Historical | [Repository assessment, 27 October](REPOSITORY_REVIEW_2026-10-27.md) · [Progress report, 27 October](reports/KNOWLEDGE_GRAPH_BUILDER_PROGRESS_2026-10-27.md) | Snapshots from before the 28 October direction |
 | Assets | [Diagrams](diagrams/README.md) | SVG exports and how to regenerate them |

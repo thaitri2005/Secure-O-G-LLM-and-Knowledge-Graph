@@ -79,7 +79,7 @@ Fonts and icons are bundled, so the application needs no outside network.
 
 ## Limits
 
-- **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run on the desktop is still to do.
+- **Never run against a real model.** Built and tested on the example responses and on stand-ins; the first run with a real model is still to do (it needs a model endpoint, Track B log B-D43).
 - A page's image shows only where the backend has rendered it (`platform/render_pages.py`, `BACKEND_PAGE_IMAGES`); there is no highlight of the cited passage on the image yet, because K1 passages carry no region ([backend design](../docs/tracks/C-storage/backend-design.md) §7).
 - The activities around a cause's problem arrive as the lines the AI was shown, not as structured activities; the application reads them back (`src/lib/cause.ts`) and shows a line it cannot read as it is, without a timeline.
 - Report names are file IDs made readable (`ak3 eowr`), until documents carry titles.

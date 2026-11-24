@@ -12,10 +12,11 @@ This track turns chunks with IDs into a graph and vectors that answer questions 
 | [note-for-track-A-daily-reports.md](note-for-track-A-daily-reports.md) | What Track B needs from K1 version 1 |
 | [Stint reports](../../reports/stints/README.md) | What each stint accomplished, for the supervisor: [24 November](../../reports/stints/STINT_REPORT_2026-11-27.md), and Tri's [5 November update](../../reports/stints/STINT_UPDATE_2026-11-05.md), in Vietnamese |
 | [plan-lanes-and-coordinator.md](plan-lanes-and-coordinator.md) | The implementation plan for the lanes and the coordinator, carried out on 24 November |
-| Notes to teammates, 24 November | [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md): what the second build needs from data. [For Hung](../C-storage/note-from-track-B-2026-11-24.md): where the backend stands and what is his next |
+| [plan-production-readiness.md](plan-production-readiness.md) | How the build of 24 November was split into work packages across the three tracks, carried out the same day (B-D41) |
+| Notes to teammates, 24 November | [for Khai](../A-ingestion/note-from-track-B-2026-11-24.md) and [for Hung](../C-storage/note-from-track-B-2026-11-24.md): what was built in their tracks with their clearance, and what is left for each |
 | [ask-supervisor-graph-questions.md](ask-supervisor-graph-questions.md) | The 31 October request for graph-worthy questions (historical) |
 
-**Where things stand on 24 November 2026:** the log's "Current state" table, and [specification §8.4](../../PROJECT_DESIGN.md#84-what-the-first-build-runs-today) for what runs today. What comes next is the second build: the design is in [specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes) (coordinator and lanes), [§8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships) (graph model) and [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-design-and-probe) (reasoning lane); the tasks are in the [plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now).
+**Where things stand on 24 November 2026:** the log's "Current state" table. The second build is coded and runs end to end on a laptop with a stand-in model: the coordinator and four lanes ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes), [§8.6](../../PROJECT_DESIGN.md#86-reasoning-about-causes-built-not-yet-measured)), the engine on the stores, the application. What comes next is measuring it, which needs a hosted open-weight model or a school GPU (B-D43); the commands are in [next-runs.md](next-runs.md).
 
 Measurements go into experiment records in [`docs/experiments/`](../../experiments/README.md) (E14 onward). The log links to them and does not copy their numbers.
 

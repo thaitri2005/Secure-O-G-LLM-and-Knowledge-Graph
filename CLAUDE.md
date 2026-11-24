@@ -5,14 +5,14 @@ This file briefs any Claude session on any machine. Read it first, then the file
 ## The project in five lines
 
 - A VPI capstone: a **GraphRAG application for drilling reports**, covering end-of-well reports (EOWR) and daily drilling reports (DDR).
-- It uses **existing open-source GraphRAG code** as libraries and references; no base is adopted wholesale (D-50). The design is a **coordinator in front of three lanes** (passages, well facts, events) over one graph with two regions (specification §8.1, §8.5).
+- It uses **existing open-source GraphRAG code** as libraries and references; no base is adopted wholesale (D-50). The design is a **coordinator in front of four lanes** (passages, well facts, events, reasoning about causes) over one graph with two regions (specification §8.1, §8.5).
 - It uses **open-weight models of about 7B or smaller**. 8B models are allowed (Track B log B-D06). Commercial APIs are never used, not even for development.
-- Development runs on **OpenRouter, on public data only**. Large runs use the school GPUs.
+- **The team has no GPU of its own** (the desktop used up to E31 was borrowed, B-D42, B-D43). Runs with a model use **OpenRouter, on public data only**, or the school GPUs.
 - Supervisor: MSc. Nguyen Anh Tuan ("anh Tuấn"). His 28 October 2026 direction is in [docs/requirements/supervisor-meeting-2026-10-28.md](docs/requirements/supervisor-meeting-2026-10-28.md); the [9 November meeting](docs/requirements/supervisor-meeting-2026-11-09.md) added a coordinator for routing, a simple UI early, a reasoning question type and short reporting (D-58 to D-63). Tri's design choices of 24 November turn that into the second build (D-64 to D-67). It is a capstone, not research: prefer what works, start small, keep domain depth thin.
 
 ## Sources of truth, in order
 
-1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification (version 3.4). §4.5 covers the first build in three tracks (closed); **§4.6 the second build, §8.1 the coordinator and lanes, §8.5 the graph's nodes and relationships, §8.6 the reasoning lane**; §13.1 is the decision register (D-01 to D-67). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
+1. [docs/PROJECT_DESIGN.md](docs/PROJECT_DESIGN.md), the specification (version 3.5). §4.5 covers the first build in three tracks (closed); **§4.6 the second build, §8.1 the coordinator and lanes, §8.5 the graph's nodes and relationships, §8.6 the reasoning lane**; §13.1 is the decision register (D-01 to D-67). Chunk and table IDs follow §5.11 as Track A's K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54); `graphrag` also reads version 0's `<doc_id>#c0005`.
 2. [docs/DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md), the plan (version 3.2). M1 is closed; **M2 is the second build, and §7 is the task list by role**.
 3. Track records in [docs/tracks/](docs/tracks/README.md), with dated findings and decisions.
 4. Experiment records in [docs/experiments/](docs/experiments/README.md), one record per measurement.
@@ -104,7 +104,7 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 
   - neo4j-graphrag with Qwen3-4B extracts 0.85 of the 41 gold facts, but 28% of its keyed facts are wrong, and its facts do not improve answers. One prompt sentence can move recall between 0.37 and 0.85 (B-F20).
   - Qwen2.5-7B and Llama-3.1-8B abstain on nearly everything under our prompt (8/31, 10/31) and are dropped.
-  - **Run one request at a time for measurements:** parallel requests to llama.cpp make results non-repeatable (B-F19). Record the server settings with each run.
+  - **Run one request at a time for measurements:** parallel requests to llama.cpp make results non-repeatable (B-F19). Record the server settings with each run; on a hosted endpoint record the provider and model ID, and expect seconds per question to say little.
   - A supported citation does not prove a right answer (B-F18, which corrects B-F17).
 
 ### Next steps
@@ -112,12 +112,12 @@ Read [docs/tracks/B-graphrag/log.md](docs/tracks/B-graphrag/log.md) first; its t
 The task list is [plan §7](docs/DEVELOPMENT_PLAN.md#7-what-to-do-now). Track B's part, in order (B-D36 to B-D38):
 
 1. Message anh Tuấn: no contact is recorded since 9 November (plan task A1). The desktop is borrowed: it hosts nothing for the team, neither the stores nor the demo's model (B-D42, Track C log C-D07); Hung to say whether his machine hosts the stores for now.
-2. E32: answers on K1 version 1 on the desktop ([commands](docs/tracks/B-graphrag/next-runs.md)), on the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, B-C55); then the same from the stores (`BACKEND_SOURCE=stores`, B-C50).
+2. **Get a model to measure with** (B-D43, D-68): an OpenRouter key and about US$10 ([resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md)), or a school GPU slot. Then E32: answers on K1 version 1 ([commands](docs/tracks/B-graphrag/next-runs.md)) on the demo release `ak3-demo-v1` (`python scripts/build_k1_demo_release.py`, B-C55), with the baselines rerun on the same endpoint; then the same from the stores (`BACKEND_SOURCE=stores`, B-C50).
 3. ~~The lane interface and model roles~~: done (B-C37, B-C41).
 4. ~~The fact graph as nodes and relationships~~: exported (B-C40) and loaded in Neo4j. Open: its facts cite K1 version 0 chunk IDs, which the stores do not hold (B-F63), and B-F60's two doubts.
-5. The coordinator is built (B-C38, B-C39). **Run E33 on the desktop** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`) and adopt it only if it matches the hand-routed scores.
-6. The reasoning lane and its ten frozen questions are built (B-C51, B-C52). **Run E34 on the desktop:** `python -m graphrag.coordinator answer --questions graphrag/gold/ak3_reasoning_probe_v0.json --name E34_reasoning_probe`.
-7. ~~The React frontend~~: built in [frontend/](frontend/README.md), for non-developers: always light, plain words, a guide, explanations on hover, answers about causes in parts (B-C45, B-C47, B-C57; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do**, on the desktop.
+5. The coordinator is built (B-C38, B-C39). **Run E33** (`python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool`; on a hosted model set `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` and add `--no-embeddings`) and adopt it only if it matches the hand-routed scores from the same endpoint.
+6. The reasoning lane and its ten frozen questions are built (B-C51, B-C52). **Run E34:** `python -m graphrag.coordinator answer --questions graphrag/gold/ak3_reasoning_probe_v0.json --name E34_reasoning_probe`.
+7. ~~The React frontend~~: built in [frontend/](frontend/README.md), for non-developers: always light, plain words, a guide, explanations on hover, answers about causes in parts (B-C45, B-C47, B-C57; `npm run dev:examples` needs no server; `npm test`; `npm run types` after a contract change). **First run against the API with a real model is still to do.**
 
 **Backend, stores and deployment (B-D39, B-D41):** built with Hung's clearance, beside his own work of the same day; the Track C log says who built what. The API is in [backend/](backend/README.md) (`python -m uvicorn backend.app:app`; `BACKEND_SOURCE=stores` with `BACKEND_DSN` and `NEO4J_*` reads the stores; tests `tests/test_backend*.py`). Scripts in [platform/](platform/README.md): `run_release.py <release>` loads a K1 release into PostgreSQL and Neo4j, each step checked. The stores need `platform/.env` with the two passwords (`platform-dev` on a laptop whose stores already exist). The whole application: `docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build`, where `demo` adds a stub model that is not a model; the runbooks are [deploy/README.md](deploy/README.md) (application) and [docs/tracks/C-storage/server-runbook.md](docs/tracks/C-storage/server-runbook.md) (server and stores). Say in the group chat what is being built before building in a teammate's track (B-F65).
 
@@ -135,7 +135,7 @@ History of this list (B-D15):
 
 ## Setting up a machine for Track B runs
 
-Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Windows), fully local on the GPU with llama.cpp (B-F16). The old laptop proved too slow. OpenRouter remains an option for public data.
+Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Windows), fully local on the GPU with llama.cpp (B-F16). **That machine is no longer the team's to plan on** (B-D42, B-D43): new runs use OpenRouter on public data (step 4) or a school GPU. The steps below set up any machine with a GPU the same way; the laptop is too slow for the LLM.
 
 1. `git pull`. Create `.venv` with Python 3.12, then `pip install -r requirements.lock.txt` and `pip install -e .`. `graphrag/` needs only `httpx` and `numpy`, which the lock file includes.
 2. For neo4j-graphrag runs only: a second environment `.venv-graphrag` from `requirements-graphrag.lock.txt` (it needs a newer `pypdf` than the main lock allows, B-C09), and Docker Desktop for Neo4j: `docker compose -f configs/graphrag/docker-compose.yml up -d`. Stop the prototype's Neo4j first; they share ports. On Windows the `docker` CLI may not be on PATH; it is under `%LOCALAPPDATA%/Programs/DockerDesktop/resources/bin`.
@@ -150,8 +150,8 @@ Runs happen on Tri's desktop (RTX 4080 SUPER 16 GB, Ryzen 9 9900X, 32 GB, Window
    | Dropped (E17) | `bartowski/Qwen2.5-7B-Instruct-GGUF`, `bartowski/Meta-Llama-3.1-8B-Instruct-GGUF` (Q4_K_M) |
 
    Server commands are in [graphrag/README.md](graphrag/README.md): `-c 32768 -np 4 -ngl 99` up to E18; **`-np 1` from E19 on** (LightRAG needs a 32k slot; the baseline gives the same 28/31 either way). Qwen3-4B for extraction can run on port 8082 (endpoint `local-llama-2`). On a laptop with an integrated GPU, use `--device none -ngl 0` instead.
-   Tools used in this stint, installed with `winget --source winget` on the desktop: Poppler (`oschwartz10612.Poppler`, reading PDF pages) and Node.js (`OpenJS.NodeJS.LTS`, rendering Mermaid).
-4. **Hosted, optional:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>`. Public data only; the client refuses private data on hosted endpoints.
+   Tools used in this stint, installed with `winget --source winget`: Poppler (`oschwartz10612.Poppler`, reading PDF pages) and Node.js (`OpenJS.NodeJS.LTS`, rendering Mermaid).
+4. **Hosted, the way to measure without a GPU:** set `OPENROUTER_API_KEY` and use `--endpoint openrouter --model <openrouter model id>` for `graphrag.baseline`, or `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` for the coordinator and the backend. Public data only; the client refuses private data on hosted endpoints. A hosted score is not comparable with the recorded local ones (full precision against a 4-bit copy): rerun the baseline on the same endpoint first, and record the provider with the run.
 5. Check the setup by reproducing E17's baseline:
 
    ```

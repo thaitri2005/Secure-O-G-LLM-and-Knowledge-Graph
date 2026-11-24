@@ -1,6 +1,6 @@
 # Plan: everything that can be built before keys and servers arrive
 
-**Written:** 24 November 2026, Track B (Tri, with Claude), with clearance from Khai and Hung to work in all three tracks (Track B log B-D41). **Goal:** at the end of the stint the only work left is to rent the server, set passwords and keys, and run the measurements that need the desktop GPU.
+**Status: carried out on 24 November 2026**; what each package delivered is in the Track B log (B-C50 to B-C57, B-F63 to B-F65) and the Track C log (C-C14 to C-C18). A seventh package, the frontend's view of answers about causes, was added during the build. Kept as the record of how the work was split. **Written:** 24 November 2026, Track B (Tri, with Claude), with clearance from Khai and Hung to work in all three tracks (Track B log B-D41). **Goal:** at the end of the stint the only work left is to rent the server, set passwords and keys, and run the measurements that need the desktop GPU.
 
 The designs this plan carries out are already written: [backend design](../C-storage/backend-design.md) (B1 to B8), [specification §4.6, §7.5, §8.5, §8.6](../../PROJECT_DESIGN.md), the [note for Khai](../A-ingestion/note-from-track-B-2026-11-24.md) (D1 to D5). This file only splits the work so several development agents can build at once without touching the same files.
 
@@ -62,7 +62,6 @@ The overseeing session merges the six branches, runs the whole test suite, runs 
 | What | Who | Needs |
 |---|---|---|
 | Rent the server, set the passwords, run the runbook | Hung | The provider account |
-| E32, E33, E34 on the desktop | Tri | The GPU |
-| A hosted open-weight model for the demo | Tri | An OpenRouter key and about US$10 |
+| E32, E33, E34 | Tri | A model to measure with: an OpenRouter key and about US$10, which also serves the demo, or a school GPU slot. The desktop was borrowed and is not planned on (B-D43) |
 | Review the K1 release and the Track A log draft | Khai | — |
 | Message anh Tuấn | Tri | — |

@@ -2,7 +2,7 @@
 
 ## Project specification and system design
 
-**Document version:** 3.4 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice; then what was built the same day, §8.4)<br>
+**Document version:** 3.5 · **Baseline date:** 23 October 2026 · **Last revised:** 24 November 2026 (coordinator and lanes, graph model, reasoning lane, application slice; then what was built the same day, §3.1 and §8.4; measurements move to hosted models, D-68)<br>
 **Project context:** VPI capstone "Secure Domain-Specific LLM and Knowledge Graph Platform for Oil & Gas Technical Intelligence"; three students<br>
 **Status:** the first build is closed (§4.5): chunk packages, the stores and a GraphRAG engine with two graphs exist as three separate parts; the second build connects them behind one application (§4.6)<br>
 **Inputs:** [Stakeholder requirements](requirements/README.md), supervisor meetings of [7 October](requirements/supervisor-meeting-2026-10-07.md), [28 October](requirements/supervisor-meeting-2026-10-28.md) and [9 November](requirements/supervisor-meeting-2026-11-09.md) · **Derived:** [Development plan](DEVELOPMENT_PLAN.md) · **Supporting:** [Data sources](DATA_SOURCES.md), [components](components/), [experiments](experiments/README.md)
@@ -249,13 +249,14 @@ They also maintain a **glossary**: abbreviations (TD, BOP, WOC, ROP…) with exp
 
 ### 3.1 What exists
 
-Two groups of work exist. The first build (30 October to 17 November, §4.5) produced three parts that are not yet one system:
+Two groups of work exist. The first build (30 October to 17 November, §4.5) produced three parts, and the second build (24 November, §4.6) connected them into one application that runs on a laptop:
 
 | Part | What exists | Evidence |
 |---|---|---|
 | **Chunk packages (Track A)** | K1 version 1: files, pages, parents, chunks, tables and forms with the D-54 IDs, report date and well on daily-report chunks, a validator and a QA sidecar. Built for AK-3's end-of-well report and four daily-report attachments (174 pages). The Operations Summary table is rebuilt from the PDF text layer. Added on 17 November as options that are off by default: joining tables across pages, section context, form recognition, label-value repair, page orientation, quarantine and resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md), [guide](components/corpus-ingestion.md) |
 | **GraphRAG engine (Track B)** | One model client; retrieval routed by well and date; a per-well fact graph from table mappings and LLM extraction, checked in code; an event graph built with no model call; cited answers checked in code; K4 answer records; a local UI. Since 24 November: the three lanes behind one interface, the coordinator of §8.1, and the fact graph exported as nodes and relationships. The coordinator is tested with stand-in models and **not yet measured** | §8.4, [Track B log](tracks/B-graphrag/log.md), E14 to E31 |
-| **Stores (Track C)** | PostgreSQL with pgvector and Neo4j in Docker Compose; a K1 loader with a page-rebuild check; 1,042 chunk vectors; the event graph in Neo4j. All on one laptop, not shared | [Track C log](tracks/C-storage/log.md) |
+| **Stores (Track C)** | PostgreSQL with pgvector and Neo4j in Docker Compose; a K1 loader with a page-rebuild check; chunk vectors; both graph regions in Neo4j (events and facts); `platform/run_release.py`, one command from a K1 release to loaded stores with a run record; passwords from the environment, a server setup script, a backup script and a runbook. On laptops, not on a server | [Track C log](tracks/C-storage/log.md), [platform/README.md](../platform/README.md) |
+| **Application (second build)** | A FastAPI backend (`backend/`) that reads files or the stores, with its OpenAPI contract, a question log in PostgreSQL and page images; a React frontend (`frontend/`) for people who are not developers; a Caddy proxy with one shared password; all as containers (`platform/docker-compose.yml --profile app`). Run end to end on a laptop with a stub in place of the model | [backend](../backend/README.md), [frontend](../frontend/README.md), [runbook](../deploy/README.md), Track B log B-C50 to B-C57 |
 
 The second group was built before the 28 October direction and remains the ingestion and identity foundation:
 
@@ -278,11 +279,11 @@ The second group was built before the 28 October direction and remains the inges
 
 **Not built (24 November):**
 
-- the three parts connected: the engine and the backend API still read files, not the stores, and no single command runs a report from PDF to answer;
-- the coordinator measured against the hand-routed scores (§8.1; the code exists, experiment E33 does not);
-- the fact graph loaded into Neo4j (it is exported as a file, §8.5), and the event graph on K1 version 1 IDs in Neo4j;
-- the backend beyond its read path (§4.6); the read-path API and the React frontend exist since 24 November and have not yet run against a real model;
-- shared hosting of the stores;
+- any measurement of the second build with a real model: the coordinator against the hand-routed scores (E33), the reasoning lane (E34), answers on K1 version 1 and from the stores (E32). The team has no GPU of its own, so these need a hosted open-weight model or the school GPUs (D-68);
+- the application on a server: the steps are written and have run on a laptop only;
+- facts on K1 version 1 chunk IDs: the fact region cites version 0 IDs, which the stores do not hold, so a fact's passage cannot always be shown (Track B log B-F63);
+- vector search inside PostgreSQL wired into the engine: questions naming several wells search in memory;
+- the backend beyond its read path (§4.6): upload, runs and administration;
 - VLM parsing (not run; rule-based methods come first, D-63);
 - object storage in use (MinIO is optional in the compose file);
 - linking report mentions to the entity registry; the glossary in retrieval;
@@ -383,8 +384,8 @@ flowchart TB
         L1 --> EMB
         ONT["Ontology and glossary<br/>versioned, admin-managed"] --> W & CO
     end
-    DEV["Development only: hosted open-model API<br/>(e.g. OpenRouter), public documents only"] -.-> LM & VLM & EMB
-    GPU["Local GPU: Tri's desktop today,<br/>school GPU slots for large runs"] -.-> LM & VLM
+    DEV["Hosted open-model API (e.g. OpenRouter),<br/>public documents only: development,<br/>measurements and the demo (D-68)"] -.-> LM & VLM & EMB
+    GPU["School GPU slots, for large runs and<br/>for anything that must stay local"] -.-> LM & VLM
 ```
 
 </details>
@@ -1351,6 +1352,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | D-65 | **The application is built now: a FastAPI backend and a React frontend,** read path first (§4.6, §7.5). It replaces the plan of first pointing Track B's local UI at the stores; D-60's purpose stays. Every question asked is logged, so use by domain experts yields the real questions (Q2, Q13). Work is split by data, backend and frontend from this stint (D-46); who takes which is the team's to agree (Q14) | 24 Nov 2026; Tri (Track B log B-D37) | The team cannot staff a frontend, or the supervisor wants something shown sooner than it can be built |
 | D-66 | **The reasoning lane is designed and probed, not promised.** It finds the problem event, gathers what surrounds it in code, and answers in two parts: causes the reports state, and possible causes, each cited (§8.6). About ten frozen questions on AK-3's non-productive events test it. No inferred cause is stored in the graph | 24 Nov 2026; Tri, from D-61 (Track B log B-D38) | The probe shows the data supports nothing useful, or more data arrives |
 | D-67 | **One graph with two regions, joined at `Well` and `Chunk`** (§8.5): facts for end-of-well reports, days and events for daily reports, and documents linking a well's reports. A fact is a node with its own source. The event region is as Track C loaded it; the fact region's layout in Neo4j is **proposed**, to agree with Track C | 24 Nov 2026; proposed by Track B (Track B log B-C35); **agreed by Hung the same day**, as relayed by Tri (B-D39). Exported as a file (B-C40); `CASED_WITH` is not written yet | Loading it shows another layout works better, or a question type needs K2's other entity types |
+| D-68 | **Measurements and the demo use a hosted open-weight model on public data; the school GPUs serve what must stay local.** The team has no GPU of its own: the desktop that ran every measurement up to E31 was borrowed. A hosted model is served at full precision by a third party, so its scores are not comparable with the recorded ones from a 4-bit local copy: the baseline is rerun on the same endpoint before any comparison, the provider and model ID are recorded with each run, and tokens, not seconds, are the efficiency measure there. Recorded scores stand as recorded. Private documents never go to a hosted endpoint (§10.1); the client refuses them | Tri, 24 November 2026; Track B log B-D42, B-D43 | D-38, §10.1, §11.3, Q6, Q7, Q15 |
 
 **Superseded or removed decisions** (kept as history; do not follow them):
 
@@ -1387,7 +1389,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q12 | Who reviews flagged items and labels the extraction sample? | The team, with the expert group's help if available | D-43, D-63, G3 |
 | Q13 | What is the full purpose of use: which document types are in scope for good, and which main kinds of question do users ask? | Supervisor to supply (9 Nov). Until then: end-of-well and daily reports; lookups, lookups by date, across wells, totals over time, and reasoning about causes (D-61). The application's question log is meant to help answer it (D-65) | D-58, D-61, D-64 |
 | Q14 | Who takes data, backend and frontend, and who owns the engine, in the second build? | Tri takes the engine and the frontend (decided by Tri, 24 November). Hung agreed to backend and stores on 24 November, and asked Tri to do part of it for now (Track B log B-D39). Khai agreed to data the same day (B-D40). The roles are settled for this stint | D-65, plan §2 |
-| Q15 | Where does the demo for domain experts run, and which model serves it? | Stores and application on the shared host Track C sets up (B-D35); the model on Tri's desktop GPU reached over a private network, or a hosted open-weight endpoint, since the demo data is public | D-65, §10.1, §11.3 |
+| Q15 | Where does the demo for domain experts run, and which model serves it? | **The model: a hosted open-weight endpoint,** since the demo data is public and the team has no GPU of its own (D-68). The stores and the application: a cloud server from student credits when one is found; until then Hung's machine over a private network if he agrees (Track C log C-D06, C-D07), which cannot serve a demo at any hour | D-65, D-68, §10.1, §11.3 |
 ### 13.3 Change process
 
 Update this document first when scope, interfaces, stores or gates change, then the plan. Record supervisor direction as a meeting digest in [`requirements/`](requirements/) and as decisions here. When a decision is superseded, move it to the superseded table and **remove** the old design text; do not leave both. Update §3 only after code and evidence exist. Measurements live in [experiment records](experiments/README.md).

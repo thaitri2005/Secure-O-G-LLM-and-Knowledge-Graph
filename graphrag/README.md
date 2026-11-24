@@ -58,7 +58,7 @@ Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/
 
 ## The coordinator (D-64)
 
-Built on 24 November 2026 and **not yet measured**: E33 is the run below, on the desktop, one request at a time. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
+Built on 24 November 2026 and **not yet measured**: E33 is the run below, one request at a time. It needs a model endpoint: a hosted open-weight model on public data (OpenRouter) or the school GPUs (B-D43); on a hosted model set `GRAPHRAG_ROLES=deploy/models/roles.openrouter.json` and add `--no-embeddings`. It is adopted only if it matches the scores each question set got when the lane was chosen by hand.
 
 ```powershell
 # Every development question in one pool, no lane given (E33)
@@ -78,7 +78,7 @@ python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three -
 
 ## The reasoning lane (specification §8.6, D-61)
 
-Built on 24 November 2026 with stand-in models and **not yet measured**: E34, the reasoning probe, runs it on the desktop.
+Built on 24 November 2026 with stand-in models and **not yet measured**: E34, the reasoning probe, runs it, once there is a model endpoint (B-D43).
 
 ```powershell
 # The probe: a question file of reasoning questions with the gold below (E34)

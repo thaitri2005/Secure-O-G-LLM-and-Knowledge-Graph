@@ -25,22 +25,22 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 |---|---|---|
 | Chunk packages (K1 version 1) | AK-3's end-of-well report and four daily-report attachments, 174 pages: validated, with a QA sidecar. Options added on 17 November, off by default: table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine, resumable runs | [Track A progress](experiments/TRACK_A_PROGRESS.md), [E30](experiments/E30-k1-version-1-candidate.md) |
 | Engine | Retrieval by well and date, the per-well fact graph, the event graph, cited answers checked in code, K4 records, a local UI. 28/31 on the prototype's questions; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain RAG. Since 24 November: lanes behind one interface, the coordinator and the fact graph export, tested with stand-in models and not yet measured | [Specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today), [Track B log](tracks/B-graphrag/log.md) |
-| Stores | PostgreSQL with pgvector and Neo4j in Docker Compose on one laptop; K1 loader with page rebuild (174 of 174); 1,042 vectors; the event graph in Neo4j, replaying 58 of 58 query plans | [Track C log](tracks/C-storage/log.md) |
-| Backend API | The read path as a FastAPI service with its contract and example responses, built 24 November. It reads files, not the stores | [backend/README.md](../backend/README.md), Track B log B-C44 |
-| Frontend | The React application, built 24 November on the contract and the example responses. Not yet run against a real model | [frontend/README.md](../frontend/README.md), Track B log B-C45 |
+| Stores | PostgreSQL with pgvector and Neo4j in Docker Compose. One command loads a K1 release, each step checked and each run recorded: the demo release gives 1,051 chunks (176 of 176 pages rebuilt), 161 events replaying 58 of 58 query plans, 216 facts. Vectors: 1,042 on Hung's machine, none on Tri's. On laptops; a server setup script, a backup script and a runbook are ready | [Track C log](tracks/C-storage/log.md), [platform/README.md](../platform/README.md) |
+| Backend API | A FastAPI service with its contract and example responses, reading files or the stores (`BACKEND_SOURCE=stores`); the question log in PostgreSQL; page images. With a Caddy proxy and one shared password it runs as containers; checked end to end on a laptop with a stub model | [backend/README.md](../backend/README.md), [deploy/README.md](../deploy/README.md), Track B log B-C50, B-C53, B-C54 |
+| Frontend | The React application for non-developers: answers with a trust label and their evidence, answers about causes in parts, the page view, feedback. Not yet run against a real model | [frontend/README.md](../frontend/README.md), Track B log B-C45, B-C47, B-C57 |
 | Earlier foundation | Document pipeline, structured-data import, the entity registry (57,453 wellbores), the prototype as the measured baseline (23/31) | [Specification §3.1](PROJECT_DESIGN.md#31-what-exists) |
 
-**Not built:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: the parts are not connected, there is no coordinator, no API, no React frontend and no shared hosting.
+**Not done:** the list in [specification §3.1](PROJECT_DESIGN.md#31-what-exists). In short: nothing new is measured with a real model, the application is not on a server, the facts and the chunks are on two ID schemes in the stores, and vector search does not run in the database.
 
-**Honest limits.** Every question set is simulated. Every method is tuned on one well and one report family. The repository shows no work between 17 and 24 November, and no supervisor contact is recorded after 9 November.
+**Honest limits.** Every question set is simulated. Every method is tuned on one well and one report family. The second build was tested with stand-ins for the model only. The team has no GPU of its own (Track B log B-D43), and no supervisor contact is recorded after 9 November.
 
 ## 1. Planning basis
 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
 - **Compute:**
-  - Tri's desktop (RTX 4080 SUPER, 16 GB) with llama.cpp runs every Track B measurement locally;
-  - hosted open-weight models (OpenRouter) remain allowed for development on public data only (D-38). Who holds and funds the account is still open (Q6);
-  - school GPUs, booked through Dr. Le Duy Dung, for large runs. The booking process is still open (Q7);
+  - no GPU of the team's own: the desktop that ran every measurement up to E31 was borrowed and is not planned on (Track B log B-D42, B-D43);
+  - hosted open-weight models (OpenRouter), on public data only (D-38), are now the way to measure (D-68). Who holds and funds the account is still open (Q6);
+  - school GPUs, booked through Dr. Le Duy Dung, for large runs and for measurements that must be local. The booking process is still open (Q7);
   - laptops for code, tests, Docling and the stores.
 - **Data:** public only. AK-3 first, then the Utah FORGE reports already used (56-32, 68-32, 78-32). The supervisor's petroleum document, if supplied, is processed on local models only.
 - **Questions:** simulated sets stand in for the expert set (Q2, D-49) and are never reported as expert validation. The application's question log is the new route to real questions (D-65).
@@ -112,8 +112,8 @@ The design is [specification §4.6](PROJECT_DESIGN.md#46-second-build-one-connec
 
 | When | Checkpoint |
 |---|---|
-| End of week 4 (28 November) | Roles agreed. Supervisor messaged. Stores reachable by all three, with the AK-3 release loaded. The OpenAPI file agreed. The lane interface written, with the three lanes behind it |
-| End of week 5 (5 December) | The engine answers from the stores, with the baseline scores reproduced. The coordinator measured on the pooled questions. The API returns real answers. The frontend runs against it |
+| End of week 4 (28 November) | Roles agreed. Supervisor messaged. Stores reachable by all three, with the AK-3 release loaded. The OpenAPI file agreed. The lane interface written, with the lanes behind it. **State 24 November:** all built and run on laptops; open: the message to the supervisor, a host all three reach |
+| End of week 5 (5 December) | The engine answers from the stores, with the baseline scores reproduced. The coordinator measured on the pooled questions. The API returns real answers. The frontend runs against it. **State 24 November:** the code exists; every item here waits for a model to measure with (D-68) |
 | End of week 6 (12 December) | The exit demo above, shown to the supervisor: one sample walked from PDF to answer inside the application. The reasoning probe's record written. The application handed to whoever the supervisor names among the domain experts |
 
 **Order matters more than dates.** The first two things unblock everyone else: shared stores (B1) and the K1 release for the demo set (D1). The frontend does not wait for them: it starts on recorded answers as fixtures.
@@ -149,10 +149,10 @@ Serve the chosen model locally (vLLM or llama.cpp) on a booked school GPU. Proce
 
 | Item | Approach | Control |
 |---|---|---|
-| Local GPU (Tri's desktop) | Every measurement; the demo's model, reached over a private network (Q15) | One request at a time for measurements; server settings recorded with each run (Track B log B-F19) |
-| Hosted open models (OpenRouter) | Optional, public data only | A cap on the account; cost per run reported (FR-30); never private data (spec §10.1) |
-| School GPU slots | Large runs and the local-model evaluation | Book early; checkpointed jobs; everything prepared before the slot |
-| Shared host for the stores | A free cloud tier (Track B log B-D35) | Public data only; credentials outside the repository; one shared password in front of the application until login exists |
+| A GPU of our own | None (Track B log B-D43). Runs up to E31 were made on a borrowed desktop | Their recorded scores stand; nothing new is planned on that machine |
+| Hosted open models (OpenRouter) | Measurements and the demo's model, public data only (D-68) | A cap on the account; cost per run reported (FR-30); never private data (spec §10.1); the baseline rerun on the same endpoint before any comparison; provider and model ID recorded with each run |
+| School GPU slots | Large runs, the local-model evaluation, and any measurement that must not leave our machines | Book early; checkpointed jobs; everything prepared before the slot |
+| Shared host for the stores | Interim: Hung's machine over a private network, if he agrees (Track C log C-D06, C-D07); then a cloud server from student credits | Public data only; credentials outside the repository; one shared password in front of the application until login exists |
 
 Every run reports calls, tokens, seconds and cost per page and per question next to quality. The coordinator adds one model call to lookups; that cost is measured before it is adopted (D-64).
 
@@ -168,7 +168,7 @@ Keep:
 
 - citations and the source page;
 - the ID scheme;
-- the coordinator with its three lanes;
+- the coordinator with its lanes;
 - the question log;
 - the private-data boundary.
 
@@ -214,7 +214,7 @@ Tasks for M2, in order within each group. "Needs" names what must exist first. O
 
 | # | Task | Done when |
 |---|---|---|
-| A1 | **Message anh Tuấn this week**, with the [stint report](reports/stints/STINT_REPORT_2026-11-27.md). Two weeks have passed. Say what exists, show the design in three lines (coordinator, three lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
+| A1 | **Message anh Tuấn this week**, with the [stint report](reports/stints/STINT_REPORT_2026-11-27.md). Two weeks have passed. Say what exists, show the design in three lines (coordinator, lanes, application), and ask the open questions: the purpose of use (Q13), the expert questions (Q2), which experts will try the application, OpenRouter funding (Q6), GPU booking (Q7) | Sent; answers recorded in spec §13.2 |
 | A2 | **Agree the roles** for this stint (Q14) | **Done 24 November:** Khai data, Hung backend, Tri engine and frontend (Track B log B-D39, B-D40) |
 | A3 | Review this design: specification §4.1, §4.6, §7.5, §8.1, §8.5, §8.6 | Hung agreed to it and Khai to his role (24 November). Open: each reads his note ([Khai](tracks/A-ingestion/note-from-track-B-2026-11-24.md), [Hung](tracks/C-storage/note-from-track-B-2026-11-24.md)) and records objections |
 | A4 | Exit demo for the supervisor, then hand the application to domain experts | M2 exit shown; the question log has questions from someone outside the team |
@@ -248,13 +248,13 @@ Hung asked Tri to do part of this for now (Track B log B-D39), and on 24 Novembe
 
 | # | Task | Needs | Done when |
 |---|---|---|---|
-| E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | Desktop | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
+| E1 | Answers on K1 version 1 (the runs named in [next-runs](tracks/B-graphrag/next-runs.md)); `DateRouter` reads K1's report date | A model endpoint (D-68) | Record E32, compared with 28/31, 22/35, 19/23 and 14/26 |
 | E2 | The engine reads chunks and vectors from the stores | B1 | The same scores as E1 from the stores. **Built 24 November** (Track B log B-C50): `graphrag/stores.py`; chunks, events and facts from the stores equal the file-loaded ones. Open: vector search in SQL, and the scores from the stores (needs E1) |
 | E3 | **The lane interface**: passages, well facts and events behind one function shape, returning the common evidence (spec §8.1); model roles in configuration (D-62); K4 gains the lane and the frame | — | **Done 24 November** (Track B log B-C37, B-C41): the baseline's requests are unchanged, and tests cover each lane |
 | E4 | The fact graph as nodes and relationships (spec §8.5), written for Backend's loader | — | **Done 24 November** (B-C40): `graphrag/results/E27_fact_graph.graph.json`, 216 facts of 5 wells. Two doubts to check (B-F60) |
-| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, desktop | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
-| E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, desktop | The garbled answers of E28 are gone; rerun in E33 |
-| E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support. **Built 24 November, not measured** (Track B log B-C51, B-C52): `graphrag/reasoning.py` and ten frozen questions in `graphrag/gold/ak3_reasoning_probe_v0.json`. Open: the run on the desktop |
+| E5 | **The coordinator**: the framing call, the routing table, the fallback, the exact-answer switch. **Built 24 November (B-C38), not measured** | E3, a model endpoint (D-68) | Record E33: the 221 development questions in one pool, lane accuracy and answers against the hand-routed scores, with calls and tokens per question. Adopt or not (D-64) |
+| E6 | Results computed by code are reported by code. **Built 24 November (B-C39)** | E3, a model endpoint (D-68) | The garbled answers of E28 are gone; rerun in E33 |
+| E7 | **The reasoning probe**: about ten questions on AK-3's non-productive events, frozen first; then the lane of spec §8.6 | E3, D1 | Record E34: stated cause found and cited; unsupported claims counted; what the data could not support. **Built 24 November, not measured** (Track B log B-C51, B-C52): `graphrag/reasoning.py` and ten frozen questions in `graphrag/gold/ak3_reasoning_probe_v0.json`. Open: the run, which needs a model endpoint (D-68) |
 
 ### Frontend (Tri)
 

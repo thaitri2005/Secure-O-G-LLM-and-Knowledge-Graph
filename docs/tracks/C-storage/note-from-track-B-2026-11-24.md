@@ -4,24 +4,45 @@
 
 This is your work list for the backend and the stores, in the order that unblocks the most. Each task says what to build, the steps, and how to know it is done. Change anything you disagree with and say so in your log.
 
-## Where things stand
+## Update, later on 24 November: most of this list is built
 
-| Piece | State |
+With your clearance the tasks below were built the same day (Track B log B-D41; Track C log C-C14 to C-C18), beside your own fact loader and server scripts. **What is asked of you now is review, a host, and the real server run**, not the building. The task sections further down are kept as the description of what each part must do; read them as the checklist to review against.
+
+| Task | State | What is left for you |
+|---|---|---|
+| 1. Shared server (B1) | Your scripts and [runbook](server-runbook.md) are ready; no server | Agree a host. Tri's desktop is borrowed and cannot host (C-D07): your machine over Tailscale, or wait for a server |
+| 2. Well facts in Neo4j (B3) | Loaded. One loader is kept from the two written that afternoon (C-C14) | Check that choice; reverse it if you disagree |
+| 3. The engine reads the stores | Built: `graphrag/stores.py`, `BACKEND_SOURCE=stores` | Try it against your stores, which hold vectors (Tri's do not) |
+| 4. The runner (B2) | Built: `python platform/run_release.py <release>` ([platform/README.md](../../../platform/README.md)) | Run it with the embedding server; confirm the softer rule for the graphical report (C-C16) |
+| 5. The application on the host (B8) | Built: `--profile app`, [deploy/README.md](../../../deploy/README.md); run on a laptop with a stub model | Run it on a real server with a domain |
+| 6. Page images (B7) | Built: `platform/render_pages.py` and the image route | Render the demo release's pages on the host |
+| The question log in PostgreSQL (B6) | Built: `platform/sql/002_questions.sql` | Check the tables suit you |
+
+To see it all run on your machine, with no model and no GPU:
+
+```sh
+docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build   # needs APP_PASSWORD_HASH in platform/.env
+python deploy/smoke_test.py --url http://127.0.0.1 --user team --password '<the password>' --expect-stub
+```
+
+The demo release to load is `ak3-demo-v1`: build it with `python scripts/build_k1_demo_release.py` (it needs the source PDFs and the E8 corpus), or ask Tri for the folder. It holds the same files as the candidate you loaded, so load it with `--replaces <the old release name>`.
+
+## Where things stood when the list was written
+
+| Piece | State on the morning of 24 November |
 |---|---|
 | PostgreSQL with pgvector, Neo4j, the K1 loader, 1,042 vectors, the daily activities in Neo4j | Built and checked by you, on your laptop |
-| The backend service, [`backend/`](../../../backend/README.md): asking, feedback, passages, pages, wells, activities, health | Built, 21 tests. **It reads files, not the stores** |
+| The backend service, [`backend/`](../../../backend/README.md) | Built, reading files |
 | The contract with the application: [`backend/openapi.json`](../../../backend/openapi.json) and example responses in `backend/fixtures/` | Built |
-| The question log | Built as a file (`backend/questions.py`) |
-| The well facts as a graph file: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json) | Built by me, ready for you to load |
-| The application, [`frontend/`](../../../frontend/README.md) | Built by me, runs on the example responses |
-
-Nothing in `platform/` was changed. Please read `backend/` and change what you would do differently: it is your area.
+| The question log | Built as a file |
+| The well facts as a graph file: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json) | Built, ready to load |
+| The application, [`frontend/`](../../../frontend/README.md) | Built, on the example responses |
 
 ```powershell
 .venv\Scripts\python -m pip install -r backend/requirements.txt
 .venv\Scripts\python -m uvicorn backend.app:app --port 8000      # then http://127.0.0.1:8000/docs
 cd frontend; npm install; npm run dev:examples                    # the application, no model needed
-python -m unittest tests.test_backend                             # 21 tests
+python -m unittest discover -s tests -p "test_backend*.py"
 ```
 
 ## Task 1 (B1): put the stores on a shared server
