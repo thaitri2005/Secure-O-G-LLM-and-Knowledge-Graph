@@ -1075,3 +1075,9 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **What fits in it for six months:** a 24 GB GPU for about 10 hours a week and one run of about three days (3.0 to 6.0 million VND); a server of 4 vCPU and 8 GB at Hetzner (1.6 to 2.5 million); 0.5 million of hosted calls; a domain name and a reserve. Estimated 6.2 to 10.1 million; GPU hours are cut first if prices sit high. The least that keeps the project moving is about 3 million.
 - **Dropped to fit:** 20 GPU hours a week, the 16 GB server with a second copy of the stores, the vision-model trial. They are listed in the plan as what more money would buy.
 - **Who is asked:** the school, by email, copied to both advisors. Dr. Le Duy Dung is the team's advisor and was the one who said to ask for resources; anh Tuấn advised against the school's own machines. The office to address is not known yet.
+
+**B-D46 (decision; the first request covers three months).** Tri, 24 November: ask for the near future first. This changes the period and the amount of B-D45; the 10 million VND stays the team's ceiling in total.
+
+- **The request:** up to 7.5 million VND (about US$290) for December 2026 to February 2027: a 24 GB GPU for about 20 hours a week (2.3 to 4.7 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 4.7 to 7.5 million. The least that keeps the project moving is about 1.5 million.
+- **The shorter period buys back the 20 GPU hours a week** that B-D45 had cut to 10.
+- **Left for a second request:** the second semester's server and GPU hours, and the full run over all the reports.

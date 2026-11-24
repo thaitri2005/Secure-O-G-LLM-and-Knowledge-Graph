@@ -10,20 +10,20 @@ Amounts are in Vietnamese dong, with US dollars beside them at **26,000 VND to t
 
 The application is built and runs on a laptop. It cannot yet be measured or shown, because the team owns no GPU and no server.
 
-**We ask for a budget of 10 million VND (about US$385) for six months**, December 2026 to May 2027, spent on three rented services:
+**We ask for a budget of up to 7.5 million VND (about US$290) for the next three months**, December 2026 to February 2027, spent on three rented services:
 
-| # | Service | What we would rent | Six months, estimated |
+| # | Service | What we would rent | Three months, estimated |
 |---|---|---|---:|
-| 1 | **A GPU by the hour** | One 24 GB card, about 10 hours a week, plus one run of about three days | 3.0 to 6.0 million VND (US$115 to US$230) |
-| 2 | **A server that stays on** | 4 vCPU, 8 GB memory, 80 GB disk, with an HTTPS address | 1.6 to 2.5 million VND (US$60 to US$96) |
+| 1 | **A GPU by the hour** | One 24 GB card, about 20 hours a week | 2.3 to 4.7 million VND (US$90 to US$180) |
+| 2 | **A server that stays on** | 4 vCPU, 8 GB memory, 80 GB disk, with an HTTPS address | 0.8 to 1.2 million VND (US$30 to US$48) |
 | 3 | **A hosted open-weight model** | Pay per use, on public data only | 0.5 million VND (US$20) |
 | | A web address and a reserve | | 1.1 million VND (US$42) |
-| | **Total** | | **6.2 to 10.1 million VND (US$237 to US$388)** |
+| | **Total** | | **4.7 to 7.5 million VND (US$182 to US$290)** |
 
-- **10 million VND is the ceiling.** If prices sit at the high end, the GPU hours are cut first, to stay inside it.
-- **The least that keeps the project moving** is about **3 million VND** (US$115): the server, a hosted model for the measurements, and no rented GPU. Nothing could then be compared with our earlier results.
+- **7.5 million VND is the ceiling for these three months.** If prices sit at the high end, GPU hours are cut first, to stay inside it.
+- **This is a first request.** After three months we report what was spent and what it bought, and ask again for the second semester, which includes the full run over all the reports. The team's total for now is at most 10 million VND.
+- **The least that keeps the project moving** is about **1.5 million VND** (US$60) for the three months: the server, a hosted model for the measurements, and no rented GPU. Nothing could then be compared with our earlier results.
 - The team also asks the supervisor for **one or two domain experts** to try the application, and for their questions.
-- The months and the end date are our assumption; the budget scales with them.
 
 ## Why the team has no compute of its own
 
@@ -41,10 +41,10 @@ The application is built and runs on a laptop. It cannot yet be measured or show
 
 | Resource | What for | Size | When | Have it? |
 |---|---|---|---|---|
-| **GPU, for measurements and experiments** | Running the language model (Qwen3-8B, 4-bit) on our test questions, one request at a time so results repeat; comparing other open-weight models of the allowed size, and settings, on the same questions | One 24 GB card by the hour (16 GB at the least); a small kept disk for model files | Weekly, December to May | **No.** Service 1 |
+| **GPU, for measurements and experiments** | Running the language model (Qwen3-8B, 4-bit) on our test questions, one request at a time so results repeat; comparing other open-weight models of the allowed size, and settings, on the same questions | One 24 GB card by the hour (16 GB at the least); a small kept disk for model files | Weekly, December to February | **No.** Service 1 |
 | **GPU, for building the graph from text** | A smaller model (Qwen3-4B) reads each page once to extract facts: about 3 seconds and 4,750 tokens a page ([E16](../experiments/E16-neo4j-graphrag-python.md)) | Same card | With each new set of reports | **No.** Service 1 |
-| **GPU, for the large run** | The whole corpus on local models, then the evaluation (plan milestone M5) | Same card, about three days, stopping and resuming allowed | Second semester | **No.** Service 1 |
-| **GPU, for reading pages with a vision model** | Only if rule-based reading of tables and forms proves not enough (D-63) | 24 GB | Not before January; may not be needed | **No.** Not in this budget |
+| **GPU, for the large run** | The whole corpus on local models, then the evaluation (plan milestone M5) | Same card, about three days, stopping and resuming allowed | Second semester | **No.** A later request |
+| **GPU, for reading pages with a vision model** | Only if rule-based reading of tables and forms proves not enough (D-63) | 24 GB | Not before January; may not be needed | **No.** Fits in service 1's hours if it is tried |
 | **A server that stays on** | PostgreSQL with pgvector, Neo4j, the backend and the web application, for the team and for the experts | 4 vCPU, 8 GB memory, 80 GB disk, Ubuntu 24.04, Docker | From early December | **No.** Service 2 |
 | **An address for the application** | Experts open it in a browser over HTTPS, behind one shared password | One domain name | With the server | **No.** About 0.3 million VND a year |
 | **A hosted open-weight model** | The demo answering at any hour without a GPU running; quick checks between GPU sessions. Public data only | 0.5 million VND: more than 20,000 questions | Now | **No.** Service 3 |
@@ -71,42 +71,46 @@ The application is built and runs on a laptop. It cannot yet be measured or show
 | Repeating a run to see how much a score moves by chance | Three repeats of a round | 6 to 12 hours |
 | The large run and its evaluation | A few thousand pages, extraction and questions | About three days, with stops allowed |
 
-These are estimates from runs on the borrowed card; a rented card may be faster or slower. **About 10 hours a week** covers the regular measurements and one experiment a week between the three of us. Over 26 weeks that is 260 hours, plus about 72 hours for the large run: about 330 hours, 3.0 to 6.0 million VND. Model files are kept on a small rented disk between sessions, inside that range. More hours would allow more experiments; this is what the ceiling allows.
+These are estimates from runs on the borrowed card; a rented card may be faster or slower. About 8 hours a week covers only the first three rows. **About 20 hours a week** lets each of us run one experiment a week beside the regular measurements, and a failed run can be repeated the same week. Over 13 weeks that is 260 hours: 2.3 to 4.7 million VND. Model files are kept on a small rented disk between sessions, inside that range. The large run belongs to the second semester and is not in this request.
 
 **The server.** Neo4j is set to 2 GB of heap and 1 GB of cache; PostgreSQL, the backend and the web application share the rest of 8 GB, which is the least that works. It needs no GPU: the model is reached over the network. Experiments on the stores stay on our laptops, so a trial never disturbs what the experts use.
 
-| Server, 4 vCPU and 8 GB | Listed price a month | Six months |
+| Server, 4 vCPU and 8 GB | Listed price a month | Three months |
 |---|---:|---:|
-| Hetzner | US$10 to US$16 | 1.6 to 2.5 million VND |
-| DigitalOcean | about US$48 | 7.5 million VND: too much for this budget without credits |
+| Hetzner | US$10 to US$16 | 0.8 to 1.2 million VND |
+| DigitalOcean | about US$48 | 3.7 million VND: half the budget, so only with student credits |
 
 The GitHub Student Developer Pack lists US$200 of DigitalOcean credit for a year and US$100 of Azure credit per student. If one of us can redeem it (either may ask for a card), the server costs nothing and its share goes to GPU hours.
 
-**The hosted model.** A question costs about 3,100 prompt tokens and 200 output tokens over its two calls (measured in [E28](../experiments/E28-event-graph.md): 71,553 and 4,736 tokens for 23 questions). Listed prices for Qwen3-8B are US$0.12 to US$0.20 per million input tokens and US$0.20 to US$0.46 per million output tokens, which gives well under US$0.001 a question. US$20 pays for the demo for the whole period and for quick checks with room to spare.
+**The hosted model.** A question costs about 3,100 prompt tokens and 200 output tokens over its two calls (measured in [E28](../experiments/E28-event-graph.md): 71,553 and 4,736 tokens for 23 questions). Listed prices for Qwen3-8B are US$0.12 to US$0.20 per million input tokens and US$0.20 to US$0.46 per million output tokens, which gives well under US$0.001 a question. US$20 pays for the demo for the three months and for quick checks with room to spare.
 
 ## The budget
 
+Three months, December 2026 to February 2027.
+
 | Item | Low | High | Note |
 |---|---:|---:|---|
-| Server, six months | 1.6 M (US$60) | 2.5 M (US$96) | Hetzner; nothing if student credits can be redeemed |
-| GPU by the hour, 26 weeks at 10 hours a week | 2.3 M (US$90) | 4.7 M (US$180) | US$0.34 to US$0.69 an hour |
-| GPU, the large run | 0.6 M (US$25) | 1.3 M (US$50) | About 72 hours |
+| Server | 0.8 M (US$30) | 1.2 M (US$48) | Hetzner; nothing if student credits can be redeemed |
+| GPU by the hour, 13 weeks at 20 hours a week | 2.3 M (US$90) | 4.7 M (US$180) | US$0.34 to US$0.69 an hour |
 | Hosted open-weight model | 0.5 M (US$20) | 0.5 M (US$20) | Pay per use; unused credit stays |
 | Domain name | 0.3 M (US$12) | 0.3 M (US$12) | One year |
 | Reserve | 0.8 M (US$30) | 0.8 M (US$30) | Prices are several months old in places |
-| **Total** | **6.2 M VND (US$237)** | **10.1 M VND (US$388)** | |
+| **Total** | **4.7 M VND (US$182)** | **7.5 M VND (US$290)** | |
 
-We ask for **10 million VND as a ceiling**, and will report what is spent each month against it.
+We ask for **7.5 million VND as a ceiling**, and will report what is spent each month against it.
 
-## If more became possible later
+## After the three months
+
+A second request, sized from what these months show: the server and the weekly GPU hours for the second semester, and the full run over all the reports (about three days of GPU time, 0.6 to 1.3 million VND).
+
+## If more became possible
 
 Not asked for now. In order of what it would buy:
 
 | With | We could |
 |---|---|
-| About 20 GPU hours a week instead of 10 | Run an experiment each per week, and repeat a failed run the same week |
 | A server with 16 GB | Keep a second copy of the stores for experiments on the server, not on laptops |
-| A day of GPU time for a vision model | Find out whether it reads the tables and forms the rules read badly |
+| More GPU hours | Try a vision model on the tables and forms the rules read badly |
 
 ## Limits to know about
 
@@ -126,13 +130,13 @@ We are a capstone team working with the Vietnam Petroleum Institute (VPI) on que
 
 The application is now built: a person asks a question about a well's reports and gets an answer with the page it comes from. It runs end to end on a laptop. We cannot yet measure it or show it to VPI's experts, because the project must use open-weight language models that we run ourselves, and we have no GPU and no server of our own. The machine we used until now was borrowed.
 
-We would like to rent these from cloud providers, paying only for the hours we use, and we ask whether the school can support the cost: **up to 10 million VND (about US$385) for six months**, December 2026 to May 2027.
+We would like to rent these from cloud providers, paying only for the hours we use, and we ask whether the school can support the cost: **up to 7.5 million VND (about US$290) for the next three months**, December 2026 to February 2027.
 
-1. **A GPU rented by the hour** (one 24 GB card, about 10 hours a week, and one run of about three days in the second semester): 3 to 6 million VND. Most of our work from here is experiments: comparing open-weight models and repeating runs to see how stable a result is.
-2. **One small server that stays on** (4 vCPU, 8 GB of memory) for the databases and the web application, behind a password: 1.6 to 2.5 million VND.
+1. **A GPU rented by the hour** (one 24 GB card, about 20 hours a week): 2.3 to 4.7 million VND. Most of our work from here is experiments: comparing open-weight models and repeating runs to see how stable a result is.
+2. **One small server that stays on** (4 vCPU, 8 GB of memory) for the databases and the web application, behind a password: 0.8 to 1.2 million VND.
 3. **Pay-per-use access to hosted open-weight models**, so a demonstration answers at any hour: 0.5 million VND.
 
-The rest is a web address and a small reserve. All data on these services is public (drilling reports published by the US Department of Energy's Geothermal Data Repository), and everything we run is open source. We will report what is spent each month.
+The rest is a web address and a small reserve. All data on these services is public (drilling reports published by the US Department of Energy's Geothermal Data Repository), and everything we run is open source. We will report what is spent each month. After the three months we would report what the budget bought and, if the school agrees, ask again for the second semester.
 
 Could you tell us:
 
@@ -140,7 +144,7 @@ Could you tell us:
 - in what form: a budget we spend and claim back, or accounts the school opens and pays for;
 - who should approve it, and what you need from us to decide.
 
-If only part is possible, about 3 million VND still keeps the project moving, with far less room for experiments. A short document with the sizes, the prices and how we worked them out is attached.
+If only part is possible, about 1.5 million VND still keeps the project moving, with far less room for experiments. A short document with the sizes, the prices and how we worked them out is attached.
 
 Thank you for your time.
 

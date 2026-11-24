@@ -205,7 +205,7 @@ Ten trial questions on AK-3's own non-productive events are written and fixed. O
 
 1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones.
 2. **What it is for**: which report types stay in scope, and which kinds of question users ask.
-3. **A budget for rented compute: up to 10 million VND for six months.** A GPU by the hour (about 10 hours a week) for measurements and experiments, a small server that stays on for the application, and pay-per-use hosted models for a demo that answers at any hour. About 3 million VND is the least that keeps the project moving. We are asking the school, as Dr. Dung advised; your support for the request would help. Detail: [resource plan](../RESOURCE_REQUEST_2026-11-24.md).
+3. **A budget for rented compute: up to 7.5 million VND for the next three months.** A GPU by the hour (about 20 hours a week) for measurements and experiments, a small server that stays on for the application, and pay-per-use hosted models for a demo that answers at any hour. About 1.5 million VND is the least that keeps the project moving. We are asking the school, as Dr. Dung advised; your support for the request would help. Detail: [resource plan](../RESOURCE_REQUEST_2026-11-24.md).
 4. **If a private VPI document is to be used later:** where it may be processed, since we will have no machine of our own.
 
 ## 13. What comes next
