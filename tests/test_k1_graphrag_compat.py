@@ -38,6 +38,10 @@ TABLE = {"table_id": f"{FILE}:t1", "doc_id": REPORT, "logical_id": f"{REPORT}#t0
                    {"r": 1, "c": 1, "text": "ft"}, {"r": 1, "c": 0, "text": "Unit"}]}
 
 
+def read_rows(path: Path) -> list[dict]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+
+
 def write_jsonl(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8", newline="\n")
 
@@ -87,6 +91,37 @@ class SyntheticPackageTests(unittest.TestCase):
 
     def test_hit_rates_count_ranks_up_to_each_cutoff(self):
         self.assertEqual(CHECK.rates([1, 4, None, 12]), {"hit@1": 0.25, "hit@3": 0.25, "hit@5": 0.5, "hit@10": 0.5})
+
+    def event_package(self, npt_doc: str = "sample-appx-23-5-nonproductivetimerpt-0a1b2c3d", npt_file: str = "f" + "3" * 16) -> Path:
+        """One daily operations table (one row) and a non-productive report with that row and one the table lost."""
+        def grid(table_id, doc_id, rows):
+            return {"table_id": table_id, "doc_id": doc_id,
+                    "cells": [{"r": r, "c": c, "text": v} for r, row in enumerate(rows) for c, v in enumerate(row)]}
+        ops = [["From", "To", "Elapsed", "End MD(ft)", "Code", "Operations Description"], ["06:00", "07:00", "1.00", "465", "DRL", "Drill"]]
+        npt = [["NPT Code", "Well", "Date", "From", "To", "Hours", "Depth", "Code", "Description"],
+               ["TH", "AK-3", "28-Aug-16", "06:00", "07:00", "1.00", "465", "DRL", "Drill"],
+               ["WO", "AK-3", "29-Aug-16", "10:00", "12:00", "2.00", "500", "RIG", "Rig repair"]]
+        daily = dict(chunk(f"{FILE}:t1:c0", REPORT, 17, "table", "ops", f"{FILE}:t1", 0, 2), context={"report_date": "28-Aug-16", "well": "AK-3"})
+        report = chunk(f"{npt_file}:t1:c0", npt_doc, 1, "table", "npt", f"{npt_file}:t1", 0, 3)
+        write_jsonl(self.directory / "chunks.jsonl", [daily, report])
+        write_jsonl(self.directory / "tables.jsonl", [grid(f"{FILE}:t1", REPORT, ops), grid(f"{npt_file}:t1", npt_doc, npt)])
+        return self.directory / "chunks.jsonl"
+
+    def test_event_check_builds_events_from_the_package_with_its_non_productive_report(self):
+        path = self.event_package()
+        result, output = self.run_check(CHECK.check_events, path, 2)
+        self.assertTrue(result, output)
+        self.assertIn("2 events (expected 2)", output)
+        self.assertFalse(self.run_check(CHECK.check_events, path, 3)[0])
+
+    def test_event_check_fails_without_the_report_or_with_version_0_ids(self):
+        self.assertFalse(self.run_check(CHECK.check_events, self.event_package(npt_doc="sample-appx-24-other-0a1b2c3d"), None)[0])
+        rows = read_rows(self.event_package())
+        rows[1]["chunk_id"] = "sample-appx-23-5-nonproductivetimerpt-0a1b2c3d#c0001"
+        write_jsonl(self.directory / "chunks.jsonl", rows)
+        result, output = self.run_check(CHECK.check_events, self.directory / "chunks.jsonl", None)
+        self.assertFalse(result)
+        self.assertIn("event chunk ids with '#': 1", output)
 
     def test_graphrag_has_no_id_format_gaps_left(self):
         # The four gaps E30 listed were fixed in graphrag (Track B log B-C28).

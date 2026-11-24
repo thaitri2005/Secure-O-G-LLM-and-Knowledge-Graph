@@ -527,5 +527,51 @@ class ContextTests(PackageCase):
         self.assertEqual(validate_k1(release), [])
 
 
+DOCUMENT_CONTEXT = {"document_types": ["eowr"], "pages": 1,
+                    "well_patterns": ["(?m)^[ \\t]*(?:.*\\bWell[ \\t]+)?([A-Z]{1,4}-\\d{1,3}|\\d{1,3}-\\d{1,3})[ \\t]*$"]}
+
+
+class DocumentContextTests(PackageCase):
+    """Optional document_context: the well of an end-of-well report on every one of its chunks (D1)."""
+
+    def run_with(self, cover, config=None):
+        add_sample(self.corpus, self.root, "sample_eowr", self.fingerprint)
+        config = config if config is not None else dict(K1_CONFIG, document_context=DOCUMENT_CONTEXT)
+        with patch("graph_builder.corpus.report_context.pdf_page_texts", return_value={1: cover}):
+            result = export_k1(self.corpus, "one", Path("models"), config)
+        release = Path(result["export"])
+        chunks = [json.loads(line) for line in (release / "chunks.jsonl").read_text(encoding="utf-8").splitlines()]
+        return result, release, json.loads((release / "manifest.json").read_text(encoding="utf-8")), chunks
+
+    def test_every_chunk_carries_the_well_of_the_cover_page(self):
+        result, release, manifest, chunks = self.run_with("Akutan Geothermal Project\r\nAK-3\r\nEnd of Well Report\r\n")
+        self.assertTrue(chunks)
+        self.assertEqual({json.dumps(chunk["context"]) for chunk in chunks}, {json.dumps({"well": "AK-3"})})
+        self.assertEqual(manifest["context_coverage"]["sample_eowr"], {"chunks": len(chunks), "with_context": len(chunks)})
+        self.assertEqual(manifest["pages_without_context"], [])
+        self.assertEqual(result["document_context"], {"sample_eowr": {"well": "AK-3", "candidates": ["AK-3"]}})
+        self.assertEqual(validate_k1(release), [])
+
+    def test_unresolved_well_lists_the_pages_and_the_validator_requires_them(self):
+        result, release, manifest, chunks = self.run_with("AK-3\nTG-2\nEnd of Well Report")
+        self.assertEqual(result["document_context"]["sample_eowr"], {"well": "", "candidates": ["AK-3", "TG-2"]})
+        self.assertTrue(all(chunk["context"] == {} for chunk in chunks))
+        self.assertEqual(manifest["pages_without_context"], [{"doc_id": "sample_eowr", "page": 1}, {"doc_id": "sample_eowr", "page": 2}])
+        self.assertEqual(validate_k1(release), [])
+        copy = self.root / "copy"
+        shutil.copytree(release, copy)
+        manifest["pages_without_context"] = []
+        (copy / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8", newline="\n")
+        ValidationTests.rewrite_sums(copy)
+        self.assertTrue(any("eowr chunk without well" in e for e in validate_k1(copy)))
+
+    def test_without_the_option_end_of_well_chunks_stay_without_context(self):
+        result, release, manifest, chunks = self.run_with("AK-3\nEnd of Well Report", config=K1_CONFIG)
+        self.assertTrue(all(chunk["context"] == {} for chunk in chunks))
+        self.assertEqual(manifest["context_coverage"], {})
+        self.assertNotIn("document_context", result)
+        self.assertNotIn("document_context", manifest["config"]["k1"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,4 @@
-"""Resolve the report date and well of every page of a daily report."""
+"""Resolve the report date and well of every page of a daily report, and the one well of a single-well document."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -59,6 +59,39 @@ def pdf_page_texts(pdf_path: Path, pages: Iterable[int]) -> dict[int, str]:
             textpage.close()
             page.close()
     return texts
+
+
+def document_well(page_texts: dict[int, str], config: dict[str, Any]) -> tuple[str, list[str]]:
+    """Return (well, candidates) for a document about one well, such as an end-of-well report.
+
+    ``config`` is the optional ``document_context`` section of the K1 configuration. Every match of every
+    ``well_patterns`` entry on the first ``pages`` pages is a candidate. The well is set only when exactly one
+    distinct candidate is found; none or several give an empty well, so a body page naming another well (TG-2 in
+    AK-3's report) can never decide it.
+    """
+    candidates: list[str] = []
+    for number in sorted(page_texts)[:config["pages"]]:
+        text = page_texts[number].replace("\r\n", "\n").replace("\r", "\n")
+        for pattern in config["well_patterns"]:
+            candidates.extend(match.group(1) for match in re.finditer(pattern, text))
+    distinct = sorted(set(candidates))
+    return (distinct[0] if len(distinct) == 1 else ""), distinct
+
+
+def document_contexts(pdf_path: Path, pages: Iterable[int], document_type: str,
+                      config: dict[str, Any] | None) -> tuple[dict[int, dict], list[int], dict | None]:
+    """The ``{"well"}`` context of every page of a document type named in ``document_context``.
+
+    Returns the contexts by page, the pages left without one (all pages when the well does not resolve) and a
+    finding with the candidates, or ``({}, [], None)`` when the option is absent or does not cover the type."""
+    if not config or document_type not in config["document_types"]:
+        return {}, [], None
+    pages = list(pages)
+    well, candidates = document_well(pdf_page_texts(pdf_path, pages[:config["pages"]]), config)
+    finding = {"well": well, "candidates": candidates}
+    if not well:
+        return {}, pages, finding
+    return {number: {"well": well} for number in pages}, [], finding
 
 
 def report_contexts(pdf_path: Path, pages: Iterable[int], forms: dict[int, dict], document_type: str,

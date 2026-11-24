@@ -141,12 +141,37 @@ def report_id_format_gaps(sample_id: str) -> None:
         print("    none: graphrag reads K1 ids through graphrag.data.document_key, short_id and cited_id")
 
 
+def check_events(chunks_path: Path, expected: int | None) -> bool:
+    """Track B's event graph built from this package alone: daily-report operations tables with the report dates
+    of K1, joined with the non-productive-time report (appendix 23) when the package holds it."""
+    from graphrag.events import build_events
+    from graphrag.scoring import normalize
+    rows = read_jsonl(chunks_path)
+    daily = {r["doc_id"] for r in rows if "dailyreport" in r["doc_id"]}
+    npt = {r["doc_id"] for r in rows if "-appx-23-" in r["doc_id"]}
+    dates = {}
+    for r in rows:
+        date = (r.get("context") or {}).get("report_date")
+        if r["doc_id"] in daily and date:
+            for page in r.get("pages") or [r["page"]]:
+                dates.setdefault((r["doc_id"], page), normalize(date))
+    tables = [t for t in read_jsonl(chunks_path.with_name("tables.jsonl")) if t["doc_id"] in daily | npt]
+    events, stats = build_events(load_chunks(sorted(daily | npt), chunks_path), tables, dates)
+    hashed = sorted({c for e in events for c in e.chunks if "#" in c})
+    ok = bool(npt) and bool(events) and not hashed and (expected is None or len(events) == expected)
+    print(f"(6) event graph from this package (graphrag.events.build_events): {len(events)} events"
+          f"{f' (expected {expected})' if expected is not None else ''}; non-productive report in the package: {bool(npt)}; "
+          f"event chunk ids with '#': {len(hashed)}; build {stats}: {'PASS' if ok else 'FAIL'}")
+    return ok
+
+
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--k1", type=Path, required=True, help="K1 release directory (holds chunks.jsonl and tables.jsonl)")
     parser.add_argument("--no-daily-reports", action="store_true", help="skip check (2) for a package that holds only the end-of-well report")
     parser.add_argument("--legacy-map", type=Path, help="legacy_chunk_ids.json; default: the one inside the release, if any")
+    parser.add_argument("--expect-events", type=int, help="check (6): the number of events the package must give (161 for AK-3)")
     args = parser.parse_args()
     chunks_path = args.k1 / "chunks.jsonl"
     print(f"K1 release: {args.k1.name}")
@@ -162,7 +187,8 @@ def main() -> int:
     else:
         print("(4) skipped: no legacy id map (pass --legacy-map or export with --legacy-chunks)")
     report_id_format_gaps(chunks[0].id if chunks else "")
-    return 0 if loaded and daily and tables else 1
+    events = check_events(chunks_path, args.expect_events) if not args.no_daily_reports else True
+    return 0 if loaded and daily and tables and events else 1
 
 
 if __name__ == "__main__":

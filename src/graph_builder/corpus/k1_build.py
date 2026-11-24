@@ -21,7 +21,7 @@ from .k1_config import document_type, template_path
 from .ops_tables import RULE, repair_document
 from .quarantine import chunk_sidecar
 from .process import output_directory, page_texts
-from .report_context import report_contexts
+from .report_context import document_contexts, report_contexts
 from .section_context import clean_path, compile_numbering, hierarchy_path, non_section_values
 from .table_join import join_tables
 from .store import read_jsonl
@@ -436,6 +436,10 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
         context_forms = [dict(form, fields=form["fields"][:legacy_counts[form["page"]]]) for form in forms if legacy_counts[form["page"]]]
     contexts, conflicts, missing = report_contexts(pdf, numbers, {form["page"]: form for form in context_forms}, dtype,
                                                    k1_config["report_context"])
+    # optional: the one well of a document such as an end-of-well report; the types are disjoint from report_context
+    single_contexts, single_missing, single_finding = document_contexts(pdf, numbers, dtype, k1_config.get("document_context"))
+    if single_finding is not None:
+        contexts, missing = single_contexts, single_missing
     repairs = []
     rule = k1_config.get("table_rules", {}).get(RULE)
     if rule and dtype in rule["document_types"]:
@@ -501,6 +505,8 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
                  pages_without_context=[{"doc_id": doc["doc_id"], "page": page} for page in missing])
     if boundary_report is not None:
         built["report_boundaries"] = boundary_report
+    if single_finding is not None:
+        built["document_context"] = single_finding
     if "label_value" in record["statistics"]:
         built["label_value"] = record["statistics"]["label_value"]  # optional chunking.label_value: changes and abstentions
     if "quarantine" in record["statistics"]:

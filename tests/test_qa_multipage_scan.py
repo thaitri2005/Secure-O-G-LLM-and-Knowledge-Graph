@@ -228,6 +228,10 @@ class DocumentIsolationTests(unittest.TestCase):
     def test_broken_pdf_is_recorded_and_other_documents_survive(self):
         import json
         import tempfile
+        try:
+            import pymupdf  # noqa: F401  scan() opens each PDF with PyMuPDF
+        except ImportError:
+            self.skipTest("PyMuPDF not available")
         with tempfile.TemporaryDirectory(dir=ROOT / "tests") as tmp:
             tmp = Path(tmp)
             rel = tmp / "rel"
