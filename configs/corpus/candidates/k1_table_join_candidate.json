@@ -1,94 +1,62 @@
 {
+  "evidence_routing": true,
   "document_types": {
     "default": "other",
     "rules": [
-      {
-        "document_type": "eowr",
-        "pattern": "_eowr$"
-      },
-      {
-        "document_type": "daily_report",
-        "pattern": "dailyreport"
-      },
-      {
-        "document_type": "casing_report",
-        "pattern": "casinginforpt"
-      },
-      {
-        "document_type": "survey_report",
-        "pattern": "directional|survey"
-      },
-      {
-        "document_type": "drilling_plan",
-        "pattern": "drillingplan"
-      },
-      {
-        "document_type": "permit",
-        "pattern": "permit"
-      }
+      {"document_type": "eowr", "pattern": "_eowr$"},
+      {"document_type": "daily_report", "pattern": "dailyreport"},
+      {"document_type": "casing_report", "pattern": "casinginforpt"},
+      {"document_type": "survey_report", "pattern": "directional|survey"},
+      {"document_type": "drilling_plan", "pattern": "drillingplan"},
+      {"document_type": "permit", "pattern": "permit"}
     ]
   },
   "forms": {
+    "daily_header": true,
+    "missing_report_fields": true,
     "generic": false,
     "minimum_label_share": 0.4,
     "template": "configs/corpus/rimbase_form_template.json"
   },
+  "repair_numeric_cells": true,
+  "numeric_cell_focus": true,
+  "repair_native_column_alignment": true,
+  "repair_scan_table_ink": true,
+  "recover_source_grids": true,
+  "recover_complex_grids": true,
+  "recover_scan_grids": true,
   "table_rules": {
+    "hourly_operations": {
+      "document_types": ["daily_report", "other"],
+      "templates": [
+        {"id": "hourly-iadc-v1", "title": "Hourly Operations Summary", "columns": [["From"], ["To"], ["[IADC Code] Description"]]}
+      ]
+    },
+    "casing": {
+      "document_types": ["daily_report", "casing_report"]
+    },
     "operations_summary": {
-      "document_types": [
-        "daily_report"
-      ],
+      "document_types": ["daily_report"],
       "schema": {
-        "title_words": [
-          "Operations",
-          "Summary"
-        ],
+        "title_words": ["Operations", "Summary"],
         "columns": [
-          {
-            "label": "From",
-            "kind": "time"
-          },
-          {
-            "label": "To",
-            "kind": "time"
-          },
-          {
-            "label": "Elapsed",
-            "kind": "hours"
-          },
-          {
-            "label": "End MD(ft)",
-            "kind": "depth"
-          },
-          {
-            "label": "Code",
-            "kind": "code"
-          },
-          {
-            "label": "Operations Description",
-            "kind": "text"
-          },
-          {
-            "label": "Non-Prod",
-            "kind": "mark"
-          }
+          {"label": "From", "kind": "time"},
+          {"label": "To", "kind": "time"},
+          {"label": "Elapsed", "kind": "hours"},
+          {"label": "End MD(ft)", "kind": "depth"},
+          {"label": "Code", "kind": "code"},
+          {"label": "Operations Description", "kind": "text"},
+          {"label": "Non-Prod", "kind": "mark"}
         ],
         "patterns": {
           "time": "^(\\d{1,2}):([0-5]\\d)$",
           "hours": "^\\d{1,2}\\.\\d{2}$",
           "depth": "^-?\\d[\\d,]*(?:\\.\\d+)?$",
-          "code": "^[A-Za-z][A-Za-z0-9/&_-]*$"
+          "code": "^(?:[A-Za-z][A-Za-z0-9/&_-]*|[0-9]+(?:-[0-9]+)+)$"
         },
-        "mark": {
-          "glyph": "X",
-          "lookalikes": "\u00d7\u2713\u2714\u2717\u2718\u221a\u2022*\u25a0\u25cf\u2610\u2611\u2612"
-        },
+        "mark": {"glyph": "X", "lookalikes": "×✓✔✗✘√•*■●☐☑☒"},
         "annotation_kinds": [
-          {
-            "kind": "records_not_printed",
-            "pattern": "^(\\d+) records? not printed$",
-            "sample": "2 records not printed"
-          }
+          {"kind": "records_not_printed", "pattern": "^(\\d+) records? not printed$", "sample": "2 records not printed"}
         ]
       },
       "recognition": {
@@ -104,11 +72,7 @@
         "code_zone_extension": 0.5,
         "elapsed_tolerance_minutes": 1.0,
         "docling_overlap": 0.5,
-        "section_title": {
-          "centre_tolerance_page_width": 0.019608,
-          "max_words": 4,
-          "word_pattern": "^[A-Z][A-Za-z/&-]*$"
-        }
+        "section_title": {"centre_tolerance_page_width": 0.019608, "max_words": 4, "word_pattern": "^[A-Z][A-Za-z/&-]*$"}
       }
     }
   },
@@ -117,9 +81,7 @@
       "Report For\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})",
       "Graphical Summary\\s+(\\d{1,2}-[A-Za-z]{3}-\\d{2})"
     ],
-    "document_types": [
-      "daily_report"
-    ],
+    "document_types": ["daily_report"],
     "well_patterns": [
       "Well (?:ID|Name):\\s*([A-Z0-9][A-Za-z0-9-]*\\d[A-Za-z0-9-]*)"
     ]

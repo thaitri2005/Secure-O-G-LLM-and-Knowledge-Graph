@@ -18,11 +18,15 @@ modified. Page boxes and regions of the converted document then use the upright 
 from __future__ import annotations
 
 import ctypes
+from collections import Counter
+from dataclasses import dataclass, field
 import math
 from pathlib import Path
-from typing import Any
+import re
+from typing import Any, Callable
+import unicodedata
 
-MODES = ("flag", "normalize")
+MODES = ("flag", "normalize", "verify")
 DEFAULT_SETTINGS = {
     "min_chars": 40,           # fewer measured glyph steps: the direction is not judged
     "dominant_share": 0.8,     # share of glyph steps that must point the same way
@@ -33,7 +37,7 @@ REASON = "rotated_page"
 
 
 def orientation_settings(supplied: Any) -> dict[str, Any]:
-    """Validate ``analysis.page_orientation``: ``{"mode": "flag"|"normalize", ...thresholds}``."""
+    """Validate the orientation mode and glyph-direction thresholds."""
     if not isinstance(supplied, dict) or "mode" not in supplied or set(supplied) - set(DEFAULT_SETTINGS) - {"mode"}:
         raise ValueError(f"analysis.page_orientation needs mode {list(MODES)} and optionally {sorted(DEFAULT_SETTINGS)}")
     if supplied["mode"] not in MODES:
@@ -139,14 +143,36 @@ def analyze_orientation(path: Path, settings: dict[str, Any], skip_pages: set[in
 UPRIGHT_COPY = "input-upright.pdf"
 
 
+def normalized_rotation(page: dict) -> tuple[int, int] | None:
+    """Return the source and conversion rotations recorded for a normalized page."""
+    orientation = page.get("orientation") or {}
+    original, working = page.get("rotation"), orientation.get("applied_rotate")
+    if (orientation.get("normalized") is True and orientation.get("rotation") == original
+            and original in (0, 90, 180, 270) and working in (0, 90, 180, 270) and original != working):
+        return original, working
+    return None
+
+
+def rotate_bbox(box: list[float], width: float, height: float, degrees: int) -> list[float]:
+    """Rotate a top-left page box clockwise around the displayed page."""
+    left, top, right, bottom = box
+    return {
+        0: [left, top, right, bottom],
+        90: [height - bottom, left, height - top, right],
+        180: [width - right, height - bottom, width - left, height - top],
+        270: [top, width - right, bottom, width - left],
+    }[degrees % 360]
+
+
 def apply_page_orientation(source: Path, directory: Path, analysis: list[dict[str, Any]], settings: dict[str, Any]) -> Path:
     """Attach ``orientation`` to every page dict of ``analysis`` and return the file Docling must convert.
 
-    ``flag`` returns ``source``. ``normalize`` returns ``directory / UPRIGHT_COPY`` when at least one page was corrected,
-    else ``source``. A failed copy keeps ``source`` and marks the pages ``normalize_error`` (the page stays flagged)."""
-    records = analyze_orientation(source, settings, {page["page"] for page in analysis if page.get("mode") == "ocr"})
+    ``flag`` returns ``source``. ``normalize`` and ``verify`` prepare an upright copy when at least one page has
+    a correction. The caller compares that preliminary copy in ``verify`` mode. Failed copies keep the source."""
+    skipped = ("ocr", "hybrid") if settings["mode"] == "verify" else ("ocr",)
+    records = analyze_orientation(source, settings, {page["page"] for page in analysis if page.get("mode") in skipped})
     conversion_source, corrected = source, []
-    if settings["mode"] == "normalize":
+    if settings["mode"] in ("normalize", "verify"):
         try:
             corrected = normalize_working_copy(source, directory / UPRIGHT_COPY, records)
             if corrected:
@@ -162,6 +188,109 @@ def apply_page_orientation(source: Path, directory: Path, analysis: list[dict[st
         if record is not None:
             page["orientation"] = record
     return conversion_source
+
+
+WORD = re.compile(r"[^\W_]+", re.UNICODE)
+NUMBER = re.compile(r"(?<!\w)[+−-]?\d+(?:[.,:/]\d+)*(?!\w)")
+CELL_TOKEN = re.compile(r"\w+|[^\w\s]")
+
+
+def source_coverage(source: str, extracted: str) -> tuple[dict[str, int], Counter]:
+    """Count matching occurrences and keep the exact grounded numeric occurrences."""
+    source, extracted = (unicodedata.normalize("NFC", text).casefold().replace("−", "-") for text in (source, extracted))
+    words = Counter(WORD.findall(source)) & Counter(WORD.findall(extracted))
+    numbers = Counter(NUMBER.findall(source)) & Counter(NUMBER.findall(extracted))
+    return {"words": sum(words.values()), "numbers": sum(numbers.values()), "unique_numbers": len(numbers)}, numbers
+
+
+@dataclass
+class RotationProbe:
+    text: str
+    tables: int = 0
+    numeric_rows: Counter = field(default_factory=Counter)
+    numeric_cell_anchors: tuple[frozenset, ...] = ()
+
+
+def numeric_cell_anchors(table, words, height):
+    """Identify original PDF words that agree with an entire numeric cell at its printed position."""
+    anchors = set()
+    for cell in table.data.table_cells:
+        if cell.bbox is None or not NUMBER.search(cell.text):
+            continue
+        box = cell.bbox.to_top_left_origin(page_height=height)
+        observed = [word for word in words if box.l <= (word[0] + word[2]) / 2 <= box.r
+                    and box.t <= (word[1] + word[3]) / 2 <= box.b]
+        text = unicodedata.normalize("NFC", " ".join(word[4] for word in observed))
+        if CELL_TOKEN.findall(text) == CELL_TOKEN.findall(unicodedata.normalize("NFC", cell.text)):
+            anchors.update(word[5:] for word in observed if NUMBER.search(word[4]))
+    return frozenset(anchors)
+
+
+def improved_table_geometry(original, upright):
+    """Each original grid must have a distinct upright match with stronger source evidence."""
+    if not original:
+        return False
+    assigned = set()
+    for before in original:
+        candidates = [i for i, after in enumerate(upright)
+                      if len(before & after) > len(before - after) and len(after) > len(before)]
+        if len(candidates) != 1 or candidates[0] in assigned:
+            return False
+        assigned.add(candidates[0])
+    return True
+
+
+def verify_working_copy(source: Path, upright: Path, analysis: list[dict],
+                        read_converted: Callable[[Path, int], str | RotationProbe]) -> Path:
+    """Require retained source content and preserved rows or stronger printed table geometry."""
+    from .report_context import pdf_page_texts
+
+    changed = {page["page"]: page["orientation"] for page in analysis if page.get("orientation", {}).get("normalized")}
+    if not changed:
+        return source
+    accepted = {}
+    for number, record in changed.items():
+        try:
+            text = pdf_page_texts(source, [number])[number]
+            old = read_converted(source, number)
+            new = read_converted(upright, number)
+            old = RotationProbe(old) if isinstance(old, str) else old
+            new = RotationProbe(new) if isinstance(new, str) else new
+            before, before_numbers = source_coverage(text, old.text)
+            after, after_numbers = source_coverage(text, new.text)
+            numeric_losses = sum((before_numbers - after_numbers).values())
+            row_losses = sum((old.numeric_rows - new.numeric_rows).values())
+            source_ok = after["words"] > 0 and after["words"] >= before["words"] and not numeric_losses
+            better_geometry = bool(row_losses) and improved_table_geometry(old.numeric_cell_anchors, new.numeric_cell_anchors)
+            table_ok = new.tables >= old.tables and (not row_losses or better_geometry)
+            decision = "normalized"
+            if not source_ok:
+                decision = "source_coverage_decreased"
+            elif not table_ok:
+                decision = "table_evidence_decreased"
+            record["verification"] = {"original": before, "normalized": after,
+                                      "lost_numeric_occurrences": numeric_losses,
+                                      "original_tables": old.tables, "normalized_tables": new.tables,
+                                      "lost_numeric_table_rows": row_losses,
+                                      "original_anchored_numbers": sum(map(len, old.numeric_cell_anchors)),
+                                      "normalized_anchored_numbers": sum(map(len, new.numeric_cell_anchors)),
+                                      "improved_table_geometry": better_geometry, "decision": decision}
+            if source_ok and table_ok:
+                accepted[number] = record
+        except (OSError, RuntimeError, ValueError) as error:
+            record["verification"] = {"decision": "conversion_comparison_unavailable", "error": type(error).__name__}
+
+    if accepted and accepted.keys() != changed.keys():
+        try:
+            normalize_working_copy(source, upright, accepted)
+        except (OSError, RuntimeError, ValueError) as error:
+            for record in accepted.values():
+                record["verification"].update(decision="working_copy_unavailable", error=type(error).__name__)
+            accepted.clear()
+    for number in changed.keys() - accepted.keys():
+        changed[number].pop("normalized", None)
+        changed[number].pop("applied_rotate", None)
+    return upright if accepted else source
 
 
 def normalize_working_copy(source: Path, target: Path, records: dict[int, dict[str, Any]]) -> list[int]:

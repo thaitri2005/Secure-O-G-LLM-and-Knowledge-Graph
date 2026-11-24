@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "annotation": {
+    "method": "Visual transcription from rendered source PDF pages before reading the K1 grid. Depth anchors use the printed MD ticks. Handwritten names and signatures are outside the scored body cells.",
+    "reading_order": "Rows follow the physical source order."
+  },
+  "sources": {
+    "forge_mudlog": {
+      "file": "HadiSlvt-drilling report.pdf",
+      "url": "https://raw.githubusercontent.com/HadiSlvt/Geological_log_Extraction_CV/e6f3682073fc984a301a1f658d54de13c6385551/drilling%20report.pdf",
+      "sha256": "4e443804042c40d709ed2513a25f41b18d1b73379da77f35d53f61a8cfcbf77c",
+      "operator": "Utah FORGE",
+      "split": "development"
+    },
+    "ozalpha_approval": {
+      "file": "OzAlpha-1 WCR.pdf",
+      "url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/OzAlpha-1%20WCR.pdf",
+      "sha256": "20771aaeeae125bb5c16cb08c5c6e33f40c7002c4221afeb5703ebbe56fb0546",
+      "operator": "Statoil",
+      "split": "development"
+    },
+    "mobil_12_1": {
+      "file": "227233.tif",
+      "url": "https://raw.githubusercontent.com/GeoLarryLai/pyLogDigitizer/f7d58ff4da57f830dc510457d3281148d7311a4f/example_data/MOBIL_12-1_15-189-20087/227233.tif",
+      "original_url": "https://kgsimages.blob.core.windows.net/web/web_1/WebDocs/Elog3/W/31S35/227233.tif",
+      "sha256": "4dd28200dfb48b3d4bdffa152a438b95b87ea7f2992599fd6f308aa64e2c15cc",
+      "operator": "Ashland Oil & Refining Co.",
+      "collection": "Kansas Geological Survey, API 15-189-20087",
+      "split": "holdout",
+      "raster_window": {
+        "pixels": [
+          0,
+          0,
+          1447,
+          1750
+        ],
+        "dpi": 300
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "forge_temperature_track",
+      "source": "forge_mudlog",
+      "source_page": 1,
+      "bbox": [
+        101,
+        773,
+        418,
+        1820
+      ],
+      "key_columns": [
+        0
+      ],
+      "header": null,
+      "column_names": [
+        "Measured depth",
+        "Temperature in",
+        "Temperature out"
+      ],
+      "rows": [
+        [
+          "200 ft",
+          "68 °F",
+          "71 °F"
+        ],
+        [
+          "300 ft",
+          "66 °F",
+          "69 °F"
+        ],
+        [
+          "400 ft",
+          "68 °F",
+          "68 °F"
+        ],
+        [
+          "500 ft",
+          "69 °F",
+          "68 °F"
+        ],
+        [
+          "600 ft",
+          "72 °F",
+          "75 °F"
+        ],
+        [
+          "700 ft",
+          "78 °F",
+          "81 °F"
+        ],
+        [
+          "800 ft",
+          "80 °F",
+          "77 °F"
+        ],
+        [
+          "900 ft",
+          "83 °F",
+          "87 °F"
+        ]
+      ],
+      "note": "Logical grid transcribed from the chart. MD is keyed by the labelled horizontal ticks. Only explicitly printed in/out readings are scored. The lines and the surrounding tracks are outside scope."
+    },
+    {
+      "id": "ozalpha_approval_matrix",
+      "source": "ozalpha_approval",
+      "source_page": 5,
+      "bbox": [
+        60,
+        195,
+        572,
+        390
+      ],
+      "key_columns": [
+        0
+      ],
+      "header": [
+        "SECTION/CHAPTER",
+        "REV. NO.",
+        "AUTHOR",
+        "VERIFIED BY",
+        "RECOMMENDED BY"
+      ],
+      "column_names": [
+        "SECTION/CHAPTER",
+        "REV. NO.",
+        "AUTHOR",
+        "VERIFIED BY",
+        "RECOMMENDED BY"
+      ],
+      "rows": [
+        [
+          "1",
+          "",
+          "Linn Arnesen",
+          "Griffiths Weste",
+          null
+        ],
+        [
+          "2",
+          "",
+          "Luis Tarazona",
+          "Brad Ahlquist",
+          null
+        ],
+        [
+          "3-7",
+          "",
+          "Linn Arnesen",
+          "Griffiths Weste",
+          null
+        ],
+        [
+          "8",
+          "",
+          "Anja I. Relbo",
+          "Griffiths Weste",
+          null
+        ],
+        [
+          "9",
+          "",
+          "Linn Arnesen",
+          "Griffiths Weste",
+          null
+        ]
+      ],
+      "note": "Printed body text only. Revision cells are visibly blank. The merged recommender cell has a struck-out name and handwritten replacement and is excluded from body scoring. Trailing empty layout bands are ignored."
+    },
+    {
+      "id": "mobil_logging_run",
+      "source": "mobil_12_1",
+      "source_page": 1,
+      "bbox": [
+        102,
+        0,
+        168,
+        216
+      ],
+      "key_columns": [
+        0
+      ],
+      "header": null,
+      "column_names": [
+        "Printed field",
+        "Run one",
+        "Run column 2",
+        "Run column 3",
+        "Run column 4"
+      ],
+      "rows": [
+        [
+          "Date",
+          "2-12-70",
+          null,
+          null,
+          null
+        ],
+        [
+          "Run No.",
+          "ONE",
+          null,
+          null,
+          null
+        ],
+        [
+          "Depth—Driller",
+          "5700",
+          null,
+          null,
+          null
+        ],
+        [
+          "Depth—Logger",
+          "5795",
+          null,
+          null,
+          null
+        ],
+        [
+          "Btm. Log Interval",
+          "5793",
+          null,
+          null,
+          null
+        ],
+        [
+          "Top Log Interval",
+          "4000",
+          null,
+          null,
+          null
+        ],
+        [
+          "Casing—Driller",
+          "8 5/8 @ 1668",
+          null,
+          null,
+          null
+        ],
+        [
+          "Casing—Logger",
+          "1670",
+          null,
+          null,
+          null
+        ],
+        [
+          "Bit Size",
+          "7 7/8",
+          null,
+          null,
+          null
+        ],
+        [
+          "Type Fluid in Hole",
+          "CHEMICAL",
+          null,
+          null,
+          null
+        ]
+      ],
+      "note": "The panel is sideways within the original upright strip. The scored subtable runs from Date to Type Fluid in Hole. Later run columns and handwritten notes are outside the scored cells."
+    },
+    {
+      "id": "mobil_gamma_ray_calibration",
+      "source": "mobil_12_1",
+      "source_page": 1,
+      "bbox": [
+        18,
+        363,
+        329,
+        386
+      ],
+      "key_columns": [
+        0
+      ],
+      "header": [
+        "CALIBRATION:",
+        "BACKGND. CPS.",
+        "SOURCE CPS.",
+        "GALV. INCR. DIVISIONS",
+        "SENS. TAP (FOR CAL.)",
+        "SENS. TAP (RECORD)",
+        "TIME CONST.",
+        "RECORDING SPEED (FT./MIN.)"
+      ],
+      "column_names": [
+        "Calibration",
+        "Background",
+        "Source",
+        "Galvanometer",
+        "Calibration sense tap",
+        "Record sense tap",
+        "Time constant",
+        "Recording speed"
+      ],
+      "rows": [
+        [
+          "GAMMA RAY:",
+          "120",
+          "540",
+          "82.5",
+          "500",
+          "300",
+          "1",
+          "40"
+        ]
+      ],
+      "note": "The printed recording speed unit belongs to column 8. Only the Gamma Ray calibration table is in scope."
+    }
+  ]
+}

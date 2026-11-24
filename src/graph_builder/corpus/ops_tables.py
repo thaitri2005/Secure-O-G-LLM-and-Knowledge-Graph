@@ -31,7 +31,7 @@ from typing import Any
 from . import table_recognition as recognition
 from .report_context import pdf_page_texts
 from .table_recognition import REASON_STATE, page_lines
-from .text_layer import source_page
+from .text_layer import source_page, union
 
 LOGGER = logging.getLogger(__name__)
 RULE = "operations_summary"
@@ -111,13 +111,16 @@ def read_row(line: dict, zones: dict[str, float], rule: dict) -> dict:
         raise Fallback("column_mismatch", f"End MD {depth['text']}")
     rest = rest[2:]
     code = ""
+    code_box = None
     if rest and zones["depth_code"] <= centre(rest[0]) <= zones["code_limit"]:
         code = rest[0]["text"]
-        if not pattern(rule, "code").match(code):
+        if not pattern(rule, "code").fullmatch(code):
             raise Fallback("column_mismatch", f"Code {code}")
+        code_box = rest[0]["bbox"]
         rest = rest[1:]
     return {"from": from_word["text"], "to": to_word["text"], "elapsed": elapsed["text"], "end_md": depth["text"],
-            "code": code, "lines": [line], "first_description": rest}
+            "code": code, "lines": [line], "first_description": rest,
+            "field_boxes": [from_word["bbox"], to_word["bbox"], elapsed["bbox"], depth["bbox"], code_box]}
 
 
 def split_marks(words: list[dict], zones: dict[str, float], rule: dict) -> tuple[list[dict], list[dict]]:
@@ -196,6 +199,7 @@ def read_table(layer: dict, lines: list[dict], at: int, rule: dict, titles: froz
                                                  "after the end of the table")
     table_words = list(header_line["words"])
     cells = []
+    cell_boxes = [header["boxes"]]
     for row in rows:
         check_elapsed(row, rule)
         description, marks = split_marks(row["first_description"] + [w for extra in row["lines"][1:]
@@ -205,11 +209,13 @@ def read_table(layer: dict, lines: list[dict], at: int, rule: dict, titles: froz
         row.update(description=description, marks=marks)
         cells.append([row["from"], row["to"], row["elapsed"], row["end_md"], row["code"],
                       " ".join(w["text"] for w in description), rule["schema"]["mark"]["glyph"] if marks else ""])
+        cell_boxes.append([*row["field_boxes"], union(description), union(marks)])
         table_words.extend(w for line in row["lines"] for w in line["words"])
     check_text_layer(layer, zones, rows, lines[header["line"] + 1:position], rule, size)
     box = [min(w["bbox"][0] for w in table_words), min(w["bbox"][1] for w in table_words),
            max(w["bbox"][2] for w in table_words), max(w["bbox"][3] for w in table_words)]
-    return {"zones": zones, "rows": cells, "bbox": box, "top": lines[at]["top"], "bottom": lines[position - 1]["bottom"],
+    return {"zones": zones, "rows": cells, "cell_boxes": cell_boxes, "bbox": box,
+            "top": lines[at]["top"], "bottom": lines[position - 1]["bottom"],
             "title_top": lines[at]["top"]}, position
 
 
@@ -283,7 +289,7 @@ def read_page(layer: dict, rule: dict) -> list[dict]:
             resume = mention["line"] + 1
             continue
         results.append(page_result(layer, index, "rebuilt", None, "", trace, mention, rule, rows=table["rows"],
-                                   bbox=table["bbox"], span=[table["title_top"], table["bottom"]]))
+                                   bbox=table["bbox"], cell_boxes=table["cell_boxes"], span=[table["title_top"], table["bottom"]]))
         resume = after
     return results
 
@@ -299,23 +305,30 @@ def markdown(grid: list[list[str]]) -> str:
 
 def table_record(logical_id: str, doc_id: str, source_ref: str, page: int, result: dict, rule: dict) -> dict:
     """A corpus-format table (plus ``grid``) for a rebuilt table: one header row, one column per schema label."""
-    header = labels(rule)
-    grid = [header, *result["rows"]]
+    return grid_table_record(logical_id, doc_id, source_ref, page, result["bbox"], [labels(rule), *result["rows"]])
+
+
+def grid_table_record(logical_id: str, doc_id: str, source_ref: str, page: int, bbox: list, grid: list[list[str]]) -> dict:
+    header = grid[0]
     cells = [{"r": r, "c": c, "row_span": 1, "col_span": 1, "text": value, "is_header": r == 0}
              for r, row in enumerate(grid) for c, value in enumerate(row) if value]
     rows_text = ["; ".join(f"{header[c]}: {value}" for c, value in enumerate(row)) for row in grid[1:]]
     return {"table_id": logical_id, "doc_id": doc_id, "source_ref": source_ref,
-            "regions": [{"page": page, "bbox": result["bbox"]}], "num_rows": len(grid), "num_cols": len(header),
+            "regions": [{"page": page, "bbox": bbox}], "num_rows": len(grid), "num_cols": len(header),
             "header_rows": 1, "cells": cells, "rows_text": rows_text, "grid": grid}
 
 
-def table_chunks(table: dict, template: dict, max_chars: int) -> list[dict]:
+def table_chunks(table: dict, template: dict, max_chars: int, caption: str = "") -> list[dict]:
     """Table chunks like the ones Docling tables get: header repeated, whole rows, row range per chunk."""
     from ..ingestion.chunking import split_table
     from .chunking import language
     page = table["regions"][0]["page"]
     chunks, next_row = [], table["header_rows"]
-    for number, part in enumerate(split_table(markdown(table["grid"]), "", max_chars)):
+    grid = table["grid"]
+    if next_row != 1:
+        labels = [" / ".join(row[c] for row in grid[:next_row] if row[c]) for c in range(table["num_cols"])]
+        grid = [labels, *grid[next_row:]]
+    for number, part in enumerate(split_table(markdown(grid), caption, max_chars)):
         rows = max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2)
         end = min(next_row + rows, table["num_rows"])
         chunks.append(dict(template, chunk_id=f"{table['table_id']}:ops{number}", type="table", text=part, page=page,
@@ -378,7 +391,7 @@ def fail(record: dict, reason: str, detail: str) -> None:
 
 
 def repair_document(pdf: Path, numbers: list[int], chunks: list[dict], tables: list[dict], doc_id: str, file_id: str,
-                    max_chars: int, rule: dict) -> dict[str, Any]:
+                    max_chars: int, rule: dict, *, source_texts=None) -> dict[str, Any]:
     """Apply the rule to one document: returns the new ``chunks`` and ``tables`` and one record per occurrence.
 
     Existing tables keep their position (so their K1 ids); tables Docling did not find are appended in page order.
@@ -386,7 +399,7 @@ def repair_document(pdf: Path, numbers: list[int], chunks: list[dict], tables: l
     merging one is recorded (``PARSING_FAILURE``) and the other pages and tables are still processed.
     """
     chunks, tables = list(chunks), list(tables)
-    texts = pdf_page_texts(pdf, numbers)
+    texts = pdf_page_texts(pdf, numbers, source_texts=source_texts)
     gate = re.compile(recognition.title_phrase_pattern(rule))
     overlap = rule["tolerances"]["docling_overlap"]
     title = " ".join(rule["schema"]["title_words"])

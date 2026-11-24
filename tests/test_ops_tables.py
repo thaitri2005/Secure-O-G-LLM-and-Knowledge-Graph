@@ -260,12 +260,19 @@ class RecognitionReadPageTests(unittest.TestCase):
                          ("fallback", "rotated_page", "precondition", "UNSUPPORTED_FORMAT"))
         self.assertEqual((result["evidence"]["decision"], result["evidence"]["rejected_at"]), ("rejected", "G0"))
 
-    def test_a_code_that_starts_with_a_digit_is_a_column_mismatch_and_not_loosened(self):  # N18
+    def test_hyphenated_numeric_code_is_preserved_in_the_code_column(self):
         lines = good_page()
         lines[3] = data(287.1, "8:00", "15:00", "7.00", "0", "3-2-1", words("Fly drill loads to site and stage prior to"))
         result = rows_of(lines)
-        self.assertEqual((result["reason"], result["detail"], ops.state_of(result["reason"])),
-                         ("column_mismatch", "Code 3-2-1", "RECOGNISED_BUT_FAILED"))
+        self.assertEqual(result["status"], "rebuilt")
+        self.assertIn(["8:00", "15:00", "7.00", "0", "3-2-1"], [row[:5] for row in result["rows"]])
+
+    def test_unqualified_number_and_malformed_numeric_code_are_rejected(self):
+        for code in ("1234", "1-01X", "1-", "1.5"):
+            with self.subTest(code=code):
+                lines = good_page()
+                lines[3] = data(287.1, "8:00", "15:00", "7.00", "0", code, words("Fly drill loads to site and stage prior to"))
+                self.assertEqual(rows_of(lines)["reason"], "column_mismatch")
 
     def test_the_trailing_line_reason_does_not_depend_on_how_long_the_line_is(self):  # N21
         lines = good_page()
@@ -328,7 +335,9 @@ class RecognitionReadPageTests(unittest.TestCase):
     def test_the_result_has_evidence_and_the_fields_of_the_contract(self):
         result = rows_of(real_page(left=NOTE))
         self.assertEqual(set(result), {"page", "index", "status", "reason", "detail", "stage", "evidence", "annotations",
-                                       "completeness", "rows", "bbox", "span"})
+                                       "completeness", "rows", "bbox", "span", "cell_boxes"})
+        self.assertEqual(len(result["cell_boxes"]), len(result["rows"]) + 1)
+        self.assertTrue(all(len(row) == 7 for row in result["cell_boxes"]))
         self.assertEqual(set(result["evidence"]), {"decision", "rejected_at", "title", "header", "rows", "margins"})
         self.assertEqual((result["evidence"]["decision"], result["evidence"]["rejected_at"]), ("recognised", None))
         self.assertNotIn("state", result)  # a page read is not yet validated: only the merge assigns the state

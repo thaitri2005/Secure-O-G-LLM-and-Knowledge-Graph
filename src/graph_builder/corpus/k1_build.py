@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from collections import Counter
 import copy
+from functools import cache
 import gzip
 import hashlib
 from importlib.metadata import version
@@ -17,11 +18,12 @@ from typing import Any
 
 from .catalog import Corpus
 from .forms import extract_auto, load_template
-from .k1_config import document_type, template_path
+from .k1_config import document_type_from_id, template_path
 from .ops_tables import RULE, repair_document
+from .orientation import normalized_rotation
 from .quarantine import chunk_sidecar
 from .process import output_directory, page_texts
-from .report_context import document_contexts, report_contexts
+from .report_context import document_contexts, pdf_page_texts, report_context_fallback, report_contexts
 from .section_context import clean_path, compile_numbering, hierarchy_path, non_section_values
 from .table_join import join_tables
 from .store import read_jsonl
@@ -292,6 +294,8 @@ def map_children(fid: str, doc_id: str, dtype: str, chunks: list[dict], tables: 
         if chunk["table_id"]:
             parent = chunk["table_id"] = owners[chunk["table_id"]]
             if move:
+                if move.get("rendered_body_header_rows") and old_counts[move["table_id"]] == 0:
+                    chunk["row_start"] = 0
                 for key in ("row_start", "row_end"):
                     if chunk[key] is not None:
                         chunk[key] = move["offset"] + min(max(chunk[key] - move["dropped"], 0), move["rows"])
@@ -346,10 +350,17 @@ def logical_tables(tables: list[dict], document: Any, fid: str, doc_id: str) -> 
         pages = sorted({region["page"] for region in regions})
         part = dict(source_ref=table["source_ref"], page=pages[0], bbox=regions[0]["bbox"], row_start=0,
                     row_end=table["num_rows"], header=grid[:table["header_rows"]])
+        if "native_trimmed_rows" in table:
+            part["native_trimmed_rows"] = table["native_trimmed_rows"]
+        verified = table.get("verified_parts")
+        join = {"status": "single", "reasons": []}
+        if verified and len(verified) > 1:
+            rule = verified[0]["source_ref"].split(":")[1]
+            join = {"status": "joined", "reasons": [f"source_ruled_{rule}"]}
         result.append(dict(table_id=f"{fid}:t{number}", logical_id=table["table_id"], file_id=fid, doc_id=doc_id,
                            pages=pages, grid=grid, header_rows=table["header_rows"], num_rows=table["num_rows"],
-                           num_cols=table["num_cols"], cells=table["cells"], parts=[part],
-                           join={"status": "single", "reasons": []}, rows_text=table["rows_text"], regions=regions))
+                           num_cols=table["num_cols"], cells=table["cells"], parts=verified or [part],
+                           join=join, rows_text=table["rows_text"], regions=regions))
     return result
 
 
@@ -379,11 +390,16 @@ def page_records(fid: str, document: dict, expected: dict[int, str], table_mode:
     records = []
     for page in document["pages"]:
         engine = page["ocr_engine"]
+        ocr = {"engine": engine, "version": runtime.get(engine, "")} if engine else None
+        if page.get("tiled_ocr"):
+            ocr = {"engine": "rapidocr", "version": version("rapidocr"), "method": "scan_strips"}
         number = page["page"]
+        rotation = normalized_rotation(page)
+        attempts = [{"source_rotation": rotation[0], "working_rotation": rotation[1], "status": "normalized"}] if rotation else []
         records.append(dict(page_id=f"{fid}:p{number}", file_id=fid, page=number, width=page["width"],
                             height=page["height"], mode=page["mode"], conversion_mode=page["mode"], parser=parser,
-                            ocr={"engine": engine, "version": runtime.get(engine, "")} if engine else None,
-                            rotation_attempts=[], status=page["status"],
+                            ocr=ocr,
+                            rotation_attempts=attempts, status=page["status"],
                             filtered_text_sha256=hashlib.sha256(expected.get(number, "").encode("utf-8")).hexdigest()))
     return records
 
@@ -392,7 +408,8 @@ def context_coverage(chunks: list[dict]) -> dict[str, int]:
     return {"chunks": len(chunks), "with_context": sum(bool(chunk["context"]) for chunk in chunks)}
 
 
-def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict) -> dict[str, Any]:
+def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict, *,
+                   models: Path | None = None) -> dict[str, Any]:
     """Build every K1 record of one processed PDF document.
 
     Returns the lists ``files``, ``pages``, ``tables``, ``forms``, ``parents`` and ``chunks``, the extracted
@@ -401,27 +418,59 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
     """
     from docling_core.types.doc import DoclingDocument
     directory = output_directory(corpus, doc["doc_id"], fingerprint)
+
+    @cache
+    def converted_document():
+        with gzip.open(directory / "docling.json.gz", "rt", encoding="utf-8") as stream:
+            return DoclingDocument.model_validate_json(stream.read())
+
+    @cache
+    def native_tables():
+        return {item.self_ref: item for item in converted_document().tables}
+
     record = json.loads((directory / "document.json").read_text(encoding="utf-8"))
     chunks = list(read_jsonl(directory / "chunks.jsonl"))
     corpus_tables = list(read_jsonl(directory / "tables.jsonl"))
     pdf = corpus.blob(doc["sha256"])
     fid = file_id(doc["sha256"])
-    dtype = document_type(doc["doc_id"], k1_config)
+    pages = record["pages"]
+    numbers = [page["page"] for page in pages]
+    evidence_routing = k1_config.get("evidence_routing", False)
+    rules = k1_config.get("table_rules", {})
+    dtype, type_source = document_type_from_id(doc["doc_id"], k1_config)
+    if evidence_routing:
+        from .document_evidence import source_document_type
+
+        context_types = (k1_config.get("document_context") or {}).get("document_types", ())
+        missing_title_type = dtype if type_source == "doc_id" and dtype in context_types else None
+        dtype, type_source = source_document_type(pdf, pages, k1_config["document_types"]["default"],
+                                                  missing_title_type=missing_title_type)
+        text_options = {"source_texts": pdf_page_texts(pdf, numbers)}
+    else:
+        text_options = {}
+
+    def table_rule(name):
+        rule = rules.get(name)
+        return rule if rule and (evidence_routing or dtype in rule["document_types"]) else None
+
     settings = k1_config["forms"]
     template = load_template(template_path(k1_config))
-    numbers = [page["page"] for page in record["pages"]]
     forms = []
     blocks = k1_config.get("form_blocks")  # optional (A-435): lower form blocks; None keeps the header-only forms
     recognition = k1_config.get("form_recognition")
     recognition_findings: list[dict] = []
     block_findings: list[dict] = []
-    for number in numbers:
+    read_daily_header = settings.get("daily_header") and (evidence_routing or dtype == "daily_report")
+    for page_record in record["pages"]:
+        number = page_record["page"]
+        daily_header = {"daily_header": True} if read_daily_header and page_record["mode"] == "text" else {}
         if recognition is None:
-            form = extract_auto(pdf, number, template, settings["minimum_label_share"], settings["generic"], blocks, block_findings)
+            form = extract_auto(pdf, number, template, settings["minimum_label_share"], settings["generic"],
+                                blocks, block_findings, **daily_header)
         else:
             masks = [region["bbox"] for table in corpus_tables for region in table["regions"] if region["page"] == number]
             form = extract_auto(pdf, number, template, settings["minimum_label_share"], settings["generic"], blocks, block_findings,
-                                recognition, recognition_findings, masks)
+                                recognition, recognition_findings, masks, **daily_header)
         if form:
             forms.append(dict(form, page=number))
     block_only = {item["page"] for item in block_findings if item.get("block_only")}
@@ -435,16 +484,12 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
         # Candidate fields must not change the legacy context/conflict decisions.
         context_forms = [dict(form, fields=form["fields"][:legacy_counts[form["page"]]]) for form in forms if legacy_counts[form["page"]]]
     contexts, conflicts, missing = report_contexts(pdf, numbers, {form["page"]: form for form in context_forms}, dtype,
-                                                   k1_config["report_context"])
-    # optional: the one well of a document such as an end-of-well report; the types are disjoint from report_context
-    single_contexts, single_missing, single_finding = document_contexts(pdf, numbers, dtype, k1_config.get("document_context"))
-    if single_finding is not None:
-        contexts, missing = single_contexts, single_missing
+                                                   k1_config["report_context"], **text_options)
     repairs = []
-    rule = k1_config.get("table_rules", {}).get(RULE)
-    if rule and dtype in rule["document_types"]:
+    join_options = k1_config.get("table_join", {})
+    if rule := table_rule(RULE):
         repaired = repair_document(pdf, numbers, chunks, corpus_tables, doc["doc_id"], fid, corpus.config["chunking"]["max_chars"],
-                                   rule)
+                                   rule, **text_options)
         chunks, corpus_tables = repaired["chunks"], repaired["tables"]
         repairs = [dict(record, document_type=dtype, rule=RULE) for record in repaired["records"]]
     boundary_report = None
@@ -452,26 +497,156 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
         from .text_layer import source_page
         try:
             layers = {number: source_page(pdf, number) for number in numbers}
-            with gzip.open(directory / "docling.json.gz", "rt", encoding="utf-8") as stream:
-                native = DoclingDocument.model_validate_json(stream.read())
+            native = converted_document()
             chunks, forms, boundary_report = partition_reports(
                 chunks, forms, native, layers, k1_config["report_boundaries"],
                 record["statistics"].get("label_value", {}).get("changes", []), corpus_tables)
-            if boundary_report["pages"] and k1_config.get("table_join"):
+            if boundary_report["pages"] and join_options and not join_options["continuity"].get("require_source_proof"):
                 raise ReportBoundaryError("report_boundary_table_join_combination_unsupported",
                                           pages=sorted(boundary_report["pages"]))
         except ReportBoundaryError:
             raise
         except Exception as error:
             raise ReportBoundaryError("report_boundary_source_unavailable", detail=f"{type(error).__name__}: {error}") from error
-    expected = page_texts(chunks + [{"page": form["page"], "source_spans": [], "text": form_text(form)} for form in forms])
+    casing_findings = []
+    if table_rule("casing"):
+        from .casing_tables import repair_document as repair_casing
+        chunks, corpus_tables, casing_findings = repair_casing(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], fid,
+            corpus.config["chunking"]["max_chars"], stacked_pages=(boundary_report or {}).get("pages", ()),
+            native_tables=native_tables, **text_options,
+        )
+    if settings.get("missing_report_fields") and (evidence_routing or dtype in ("daily_report", "other")):
+        from .report_fields import recover_fields
+        forms = recover_fields(pdf, record["pages"], forms, page_texts(chunks), settings["minimum_label_share"],
+                               stacked_pages=(boundary_report or {}).get("pages", ()),
+                               require_signature=evidence_routing or dtype == "other")
+    if missing:
+        contexts.update(report_context_fallback(pdf, record["pages"], missing, (boundary_report or {}).get("pages", ())))
+        missing = [page for page in missing if page not in contexts]
+    # optional: the one well of a document such as an end-of-well report; the types are disjoint from report_context
+    single_contexts, single_missing, single_finding = document_contexts(pdf, numbers, dtype, k1_config.get("document_context"))
+    if single_finding is not None:
+        contexts, missing = single_contexts, single_missing
+    hourly_findings = []
+    if hourly := table_rule("hourly_operations"):
+        from .hourly_operations import repair_document as repair_hourly
+        chunks, corpus_tables, hourly_findings = repair_hourly(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], fid,
+            corpus.config["chunking"]["max_chars"], hourly, stacked_pages=(boundary_report or {}).get("pages", ()),
+            native_tables=native_tables, **text_options,
+        )
+    mud_findings: list[dict] = []
+    if table_rule("mud_properties"):
+        from .mud_properties import repair_document as repair_mud
+        chunks, corpus_tables = repair_mud(pdf, record["pages"], chunks, corpus_tables, doc["doc_id"],
+                                           corpus.config["chunking"]["max_chars"],
+                                           stacked_pages=(boundary_report or {}).get("pages", ()), findings=mud_findings,
+                                           **text_options)
+    panel_findings: list[dict] = []
+    if panels := table_rule("ruled_panels"):
+        from .ruled_panels import repair_document as repair_panels
+        kinds = [kind for kind in panels["panels"] if kind != "well_summary" or evidence_routing or dtype == "eowr"]
+        chunks, corpus_tables, panel_findings = repair_panels(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"], kinds,
+            stacked_pages=(boundary_report or {}).get("pages", ()), **text_options,
+        )
+    log_findings = []
+    if table_rule("daily_log"):
+        from .daily_log import repair_document as repair_daily_log
+
+        chunks, corpus_tables, log_findings = repair_daily_log(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            contexts, stacked_pages=(boundary_report or {}).get("pages", ()), **text_options,
+        )
+    well_findings = []
+    if table_rule("well_completion"):
+        from .well_completion import repair_document as repair_well_completion
+
+        chunks, corpus_tables, well_findings = repair_well_completion(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            stacked_pages=(boundary_report or {}).get("pages", ()), **text_options,
+        )
+    scan_findings = []
+    scans = any(page.get("mode") == "ocr" for page in record["pages"])
+    scan_fields_enabled = bool(table_rule("scan_fields"))
+    scan_readers = None
+    if scans and (scan_fields_enabled or k1_config.get("repair_scan_table_ink") or k1_config.get("recover_scan_grids")):
+        from .scan_fields import scan_runtime
+        from .ocr_engines import DEFAULT_MODELS
+
+        scan_readers = scan_runtime((models or DEFAULT_MODELS).resolve())
+    if scan_fields_enabled and scans:
+        from .scan_fields import repair_document as repair_scanned_fields
+        from .ocr_engines import DEFAULT_MODELS
+
+        chunks, corpus_tables, scan_findings = repair_scanned_fields(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            stacked_pages=(boundary_report or {}).get("pages", ()), models=models or DEFAULT_MODELS,
+            minimum=corpus.config["quality"]["min_ocr_page_chars"],
+        )
+    if scans and k1_config.get("recover_scan_grids"):
+        from .scan_grids import repair_document as recover_scan_grids
+        from .ocr_engines import DEFAULT_MODELS
+
+        chunks, corpus_tables, raster_findings = recover_scan_grids(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            models=models or DEFAULT_MODELS, stacked_pages=(boundary_report or {}).get("pages", ()),
+            allow_broken=k1_config.get("recover_broken_scan_grids", False),
+            allow_sparse=k1_config.get("recover_sparse_scan_rows", False),
+        )
+        scan_findings.extend(raster_findings)
+    activity_findings = []
+    if join_options.get("continuity", {}).get("split_activity_rows"):
+        from .activity_detail import repair_document as repair_activity
+        chunks, corpus_tables, activity_findings = repair_activity(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            contexts, stacked_pages=(boundary_report or {}).get("pages", ()),
+        )
+    if join_options.get("continuity", {}).get("merge_split_rows"):
+        from .split_rows import repair_document as repair_split_rows
+
+        chunks, corpus_tables, split_findings = repair_split_rows(
+            pdf, record["pages"], chunks, corpus_tables, corpus.config["chunking"]["max_chars"], contexts, join_options,
+            stacked_pages=(boundary_report or {}).get("pages", ()), **text_options,
+        )
+        activity_findings.extend(split_findings)
+    column_findings = []
+    if k1_config.get("repair_native_column_alignment"):
+        from .column_alignment import repair_document as realign_columns
+
+        chunks, corpus_tables, column_findings = realign_columns(
+            pdf, record["pages"], chunks, corpus_tables, native_tables, corpus.config["chunking"]["max_chars"],
+            stacked_pages=(boundary_report or {}).get("pages", ()),
+        )
+    source_grid_findings = []
+    if k1_config.get("recover_source_grids"):
+        from .source_grids import repair_document as recover_source_grids
+
+        chunks, corpus_tables, source_grid_findings = recover_source_grids(
+            pdf, record["pages"], chunks, corpus_tables, doc["doc_id"], corpus.config["chunking"]["max_chars"],
+            native_tables, allow_complex=k1_config.get("recover_complex_grids", False),
+            allow_borderless=k1_config.get("recover_borderless_grids", False),
+            stacked_pages=(boundary_report or {}).get("pages", ()),
+        )
     tables = []
     if corpus_tables:
-        document = None
-        if any("grid" not in table for table in corpus_tables):
-            with gzip.open(directory / "docling.json.gz", "rt", encoding="utf-8") as stream:
-                document = DoclingDocument.model_validate_json(stream.read())
+        document = converted_document() if any("grid" not in table for table in corpus_tables) else None
         tables = logical_tables(corpus_tables, document, fid, doc["doc_id"])
+    if k1_config.get("repair_scan_table_ink") and tables:
+        from .scan_table_ink import repair_document as repair_scan_ink
+        from .ocr_engines import DEFAULT_MODELS
+
+        repair_scan_ink(pdf, record["pages"], tables, chunks, native_tables, models or DEFAULT_MODELS,
+                        stacked_pages=(boundary_report or {}).get("pages", ()))
+    numeric_findings = []
+    if k1_config.get("repair_numeric_cells") and tables:
+        from .numeric_cells import repair_document as repair_numeric_cells
+
+        numeric_findings = repair_numeric_cells(pdf, record["pages"], tables, chunks, native_tables,
+                                                 stacked_pages=(boundary_report or {}).get("pages", ()),
+                                                 allow_focus=k1_config.get("numeric_cell_focus", False))
+    expected = page_texts(chunks + [{"page": form["page"], "source_spans": [], "text": form_text(form)} for form in forms])
     section_findings = None
     dropped = None
     numbering = None
@@ -487,14 +662,17 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
     join_report = None
     absorbed: dict[str, dict] = {}
     moved: list[dict] = []
-    if k1_config.get("table_join") and tables:
+    if join_options and tables:
         # optional (FR-25): tables cut by a page break become one logical table when the evidence is strong; the report is a sidecar
-        tables, absorbed, join_report = join_tables(tables, pdf, max(numbers), k1_config["table_join"])
+        rotations = {page["page"]: rotation[1] for page in record["pages"] if (rotation := normalized_rotation(page))}
+        tables, absorbed, join_report = join_tables(tables, pdf, max(numbers), join_options,
+                                                   page_rotations=rotations, report_contexts=contexts,
+                                                   excluded_pages=(boundary_report or {}).get("pages", ()))
     children, parents = map_children(fid, doc["doc_id"], dtype, chunks, tables, forms, contexts, dropped, numbering, absorbed, moved)
     pages = page_records(fid, record, expected, corpus.config["table_mode"])
     flagged = {page["page"] for page in pages if page["status"] != "ok"}
     for child in children:
-        if flagged.intersection(child["pages"]):
+        if flagged.intersection(child["pages"]) or (child["type"] == "table" and len(child["text"]) > corpus.config["chunking"]["max_chars"]):
             child["quality"] = "review"
     file = dict(file_id=fid, doc_id=doc["doc_id"], original_name=doc["original_name"], document_type=dtype,
                 sha256=doc["sha256"], page_count=len(pages), text=f"text/{fid}.txt",
@@ -502,11 +680,23 @@ def build_document(corpus: Corpus, doc: dict, fingerprint: str, k1_config: dict)
     built = dict(files=[file], pages=pages, tables=tables, forms=forms, parents=parents, chunks=children,
                  text="\n\n".join(child["text"] for child in children), table_repairs=repairs,
                  form_conflicts=[dict(conflict, doc_id=doc["doc_id"]) for conflict in conflicts],
-                 pages_without_context=[{"doc_id": doc["doc_id"], "page": page} for page in missing])
+                 pages_without_context=[{"doc_id": doc["doc_id"], "page": page} for page in missing],
+                 document_type_source=type_source)
     if boundary_report is not None:
         built["report_boundaries"] = boundary_report
     if single_finding is not None:
         built["document_context"] = single_finding
+    if scan_readers:
+        built["scan_readers"] = scan_readers
+    if casing_findings:
+        built["casing_tables"] = casing_findings
+    if hourly_findings:
+        built["hourly_operations"] = hourly_findings
+    built["table_findings"] = [
+        {"page": item["page"], "rule": name, "reason": item["reason"]}
+        for name, items in ((RULE, repairs), ("casing", casing_findings), ("hourly_operations", hourly_findings), ("mud_properties", mud_findings))
+        for item in items if item.get("reason") and item.get("action") in (None, "review", "kept_docling")
+    ] + panel_findings + log_findings + well_findings + scan_findings + activity_findings + column_findings + source_grid_findings + numeric_findings
     if "label_value" in record["statistics"]:
         built["label_value"] = record["statistics"]["label_value"]  # optional chunking.label_value: changes and abstentions
     if "quarantine" in record["statistics"]:

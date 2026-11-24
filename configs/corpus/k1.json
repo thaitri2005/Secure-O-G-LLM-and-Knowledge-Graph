@@ -1,4 +1,5 @@
 {
+  "evidence_routing": true,
   "document_types": {
     "default": "other",
     "rules": [
@@ -11,11 +12,40 @@
     ]
   },
   "forms": {
+    "daily_header": true,
+    "missing_report_fields": true,
     "generic": false,
     "minimum_label_share": 0.4,
     "template": "configs/corpus/rimbase_form_template.json"
   },
+  "repair_numeric_cells": true,
+  "numeric_cell_focus": true,
+  "repair_native_column_alignment": true,
+  "repair_scan_table_ink": true,
+  "recover_source_grids": true,
+  "recover_complex_grids": true,
+  "recover_borderless_grids": true,
+  "recover_scan_grids": true,
   "table_rules": {
+    "daily_log": {"document_types": ["eowr", "daily_report", "other"]},
+    "well_completion": {"document_types": ["eowr", "other"]},
+    "scan_fields": {"document_types": ["eowr", "daily_report", "other"]},
+    "hourly_operations": {
+      "document_types": ["daily_report", "other"],
+      "templates": [
+        {"id": "hourly-iadc-v1", "title": "Hourly Operations Summary", "columns": [["From"], ["To"], ["[IADC Code] Description"]]}
+      ]
+    },
+    "casing": {
+      "document_types": ["daily_report", "casing_report"]
+    },
+    "mud_properties": {
+      "document_types": ["daily_report", "other"]
+    },
+    "ruled_panels": {
+      "document_types": ["daily_report", "survey_report"],
+      "panels": ["survey", "bit", "bha", "inventory", "formation_depths", "pump"]
+    },
     "operations_summary": {
       "document_types": ["daily_report"],
       "schema": {
@@ -33,7 +63,7 @@
           "time": "^(\\d{1,2}):([0-5]\\d)$",
           "hours": "^\\d{1,2}\\.\\d{2}$",
           "depth": "^-?\\d[\\d,]*(?:\\.\\d+)?$",
-          "code": "^[A-Za-z][A-Za-z0-9/&_-]*$"
+          "code": "^(?:[A-Za-z][A-Za-z0-9/&_-]*|[0-9]+(?:-[0-9]+)+)$"
         },
         "mark": {"glyph": "X", "lookalikes": "×✓✔✗✘√•*■●☐☑☒"},
         "annotation_kinds": [
@@ -55,6 +85,44 @@
         "docling_overlap": 0.5,
         "section_title": {"centre_tolerance_page_width": 0.019608, "max_words": 4, "word_pattern": "^[A-Z][A-Za-z/&-]*$"}
       }
+    }
+  },
+  "table_join": {
+    "sources": [
+      "docling"
+    ],
+    "rotations": [
+      0,
+      270
+    ],
+    "page": {
+      "header_band_frac": 0.08,
+      "footer_band_frac": 0.08,
+      "frame_slack_pt": 2.0,
+      "page_size_tolerance_pt": 1.0
+    },
+    "running_text": {
+      "cell_pt": 4.0,
+      "min_pages_frac": 0.5,
+      "top_zone_frac": 0.3,
+      "bottom_zone_frac": 0.15,
+      "max_pages": 120
+    },
+    "boundary": {
+      "bottom_gap_max_frac": 0.12,
+      "top_gap_max_frac": 0.12,
+      "word_slack_pt": 2.0
+    },
+    "structure": {
+      "x_tolerance_rel": 0.03,
+      "min_region_words": 3
+    },
+    "continuity": {
+      "header_x_tolerance_rel": 0.03,
+      "header_min_words": 2,
+      "series_min_rows": 5,
+      "require_source_proof": true,
+      "merge_split_rows": true
     }
   },
   "report_context": {

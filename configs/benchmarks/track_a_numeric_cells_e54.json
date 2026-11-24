@@ -1,0 +1,40 @@
+{
+  "myrtle": {
+    "file": "PR20140005_Daily_Drilling_Report.pdf",
+    "sha256": "bd48110b9c8ac42452976e14b33a2e50ff44fe917b241479d27595977e788494",
+    "rows": {
+      "2": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "1"]],
+      "5": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "1"]],
+      "8": [["PERMITS ISSUED", 1, "3"], ["PRE TOUR MEETING", 1, "2"]],
+      "11": [["PERMITS ISSUED", 1, "2"], ["PRE TOUR MEETING", 1, "2"]],
+      "14": [["PERMITS ISSUED", 1, "2"], ["PRE TOUR MEETING", 1, "2"]],
+      "17": [["PERMITS ISSUED", 1, "3"], ["PRE TOUR MEETING", 1, "2"]],
+      "20": [["PERMITS ISSUED", 1, "3"], ["PRE TOUR MEETING", 1, "2"]],
+      "23": [["PERMITS ISSUED", 1, "3"], ["PRE TOUR MEETING", 1, "2"]],
+      "26": [["PERMITS ISSUED", 1, "2"], ["PRE TOUR MEETING", 1, "2"]],
+      "29": [["PERMITS ISSUED", 1, "2"], ["PRE TOUR MEETING", 1, "2"]],
+      "32": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "35": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "38": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "41": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "44": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "47": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "50": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "53": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "56": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]],
+      "59": [["PERMITS ISSUED", 1, "1"], ["PRE TOUR MEETING", 1, "2"]]
+    }
+  },
+  "zerogen": {
+    "file": "cr_54682_33.pdf",
+    "sha256": "ad253e7c0fcba298161a382cd7038727b9eb8b4274c65abbcbb52deb07be02b1",
+    "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/cr_54682_33.pdf",
+    "source_pages": [23, 24, 34, 35],
+    "rows": {
+      "23": [["Catherine Sandstone", 1, "892"], ["Catherine Sandstone", 2, "N/A"], ["Catherine Sandstone", 3, "56"], ["Ingelara Formation", 1, "923"], ["Ingelara Formation", 2, "N/A"], ["Ingelara Formation", 3, "57"], ["Freitag Formation", 1, "1109"], ["Freitag Formation", 2, "N/A"], ["Freitag Formation", 3, "62"], ["Aldebaran Sandstone", 1, "1233"], ["Aldebaran Sandstone", 2, "N/A"], ["Aldebaran Sandstone", 3, "64"]],
+      "24": [["Surface Hole - Ausgel, KCl, Pac R + CR650", 1, "8.7ppg"], ["Surface Hole - Ausgel, KCl, Pac R + CR650", 2, "8.8"], ["Surface Hole - Ausgel, KCl, Pac R + CR650", 3, "48"], ["Surface Hole - Ausgel, KCl, Pac R + CR650", 4, "8.7"], ["Surface Hole - Ausgel, KCl, Pac R + CR650", 5, "9.1"], ["Surface Hole - Ausgel, KCl, Pac R + CR650", 6, "40"], ["Intermediate Hole - Pac R, CR650, KCl", 1, "8.7ppg"], ["Intermediate Hole - Pac R, CR650, KCl", 2, "9.0"], ["Intermediate Hole - Pac R, CR650, KCl", 3, "42"], ["Intermediate Hole - Pac R, CR650, KCl", 4, "8.7ppg"], ["Intermediate Hole - Pac R, CR650, KCl", 5, "9.0"], ["Intermediate Hole - Pac R, CR650, KCl", 6, "41"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 1, "9.0ppg"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 2, "9.0"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 3, "35"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 4, "9.1ppg"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 5, "9.0"], ["Main Hole - Pac L, CR650, KCl, Soda Ash", 6, "32"]],
+      "34": [["Bandanna Fm", 1, "435.6"], ["Bandanna Fm", 2, "-251.32"], ["Black Alley Shale", 1, "590.2"], ["Black Alley Shale", 2, "-405.92"], ["Freitag Fm", 1, "1109.7"], ["Freitag Fm", 2, "-925.42"], ["Total Depth**", 1, "1313.9"], ["Total Depth**", 2, "-1135.62"]],
+      "35": [["AM 2.2", 1, "-535.4"], ["AM 2.2", 2, "717.4"], ["Peawaddy Sand", 1, "-662.8"], ["Peawaddy Sand", 2, "844.8"], ["Catherine Lithostrat", 1, "-662.0"], ["Catherine Lithostrat", 2, "844.0"], ["Ingelara Lithostrat", 1, "-815.3"], ["Ingelara Lithostrat", 2, "997.3"]]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "annotation": {
+    "method": "Visual transcription from the 300 DPI source TIFF before running the E56 engine on this source.",
+    "reading_order": "The printed neutron calibration values follow the source column order."
+  },
+  "sources": {
+    "chitwood_12": {
+      "file": "260245.tif",
+      "url": "https://raw.githubusercontent.com/GeoLarryLai/pyLogDigitizer/f7d58ff4da57f830dc510457d3281148d7311a4f/example_data/Chitwood_12_15-151-10469/260245.tif",
+      "original_url": "https://kgsimages.blob.core.windows.net/web/web_1/WebDocs/Elog3/W/28S12/260245.tif",
+      "sha256": "a6762affd73f3ed3110e940738c883f88108d402f391fe6cfaeb835911a9843c",
+      "operator": "Lion Oil Co.",
+      "collection": "Kansas Geological Survey, API 15-151-10469",
+      "split": "holdout",
+      "raster_window": {"pixels": [0, 0, 1436, 1700], "dpi": 300}
+    }
+  },
+  "cases": [
+    {
+      "id": "chitwood_neutron_calibration",
+      "source": "chitwood_12",
+      "source_page": 1,
+      "bbox": [18, 375.6, 339.6, 398.4],
+      "key_columns": [0],
+      "header": null,
+      "column_names": ["Calibration", "Test S. Far", "Test S. Close", "Galv. Incr. Divisions", "Sens. Tap (For Cal.)", "Sens. Tap (Record)", "Time Const.", "Record. Speed (Ft./Min.)"],
+      "rows": [["NEUTRON:", "60", "390", "9.62", "500", "300", "2", "30"]],
+      "note": "Only the printed neutron calibration row is scored. The nearby gamma-ray row and the overlapping stamp are outside the reference."
+    }
+  ]
+}

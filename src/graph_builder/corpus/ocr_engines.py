@@ -15,6 +15,7 @@ from typing import Any
 from urllib.request import urlopen
 
 ENGINES = ("vietocr", "rapidocr", "easyocr")
+DEFAULT_MODELS = Path("data/interim/ocr_models")
 DEFAULT_OCR = {"engine": "vietocr", "languages": ["vi", "en"], "model_size": "small",
                "scale": 2.5, "confidence_threshold": 0.5}
 RAPIDOCR_FOLDER = "RapidOcr"

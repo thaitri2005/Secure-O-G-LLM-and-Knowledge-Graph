@@ -16,7 +16,8 @@ def load_template(path: Path = TEMPLATE) -> dict:
 
 def extract_auto(path: Path, number: int, template: dict, minimum_share: float = 0.4, generic: bool = False, blocks: dict | None = None,
                  findings: list | None = None, recognition: dict | None = None,
-                 recognition_findings: list | None = None, excluded_boxes: list | None = None) -> dict | None:
+                 recognition_findings: list | None = None, excluded_boxes: list | None = None,
+                 *, daily_header: bool = False) -> dict | None:
     """Pair a page with the template when enough distinct labels occur visibly.
 
     Pages that do not match return None unless ``generic`` is true, which pairs any colon-terminated
@@ -34,11 +35,18 @@ def extract_auto(path: Path, number: int, template: dict, minimum_share: float =
     present = {label["key"] for row in sorted({w["row"] for w in layer["words"]}) for label in find_labels([w for w in layer["words"] if w["row"] == row], template["labels"])}
     share = len(present) / len(template["labels"])
     matching = share >= minimum_share and "Operations Summary" in layer["text"]
+
+    def finish(form):
+        if daily_header:
+            from .daily_header import add_header_fields
+            return add_header_fields(layer, form, share, minimum_share)
+        return form
+
     if not matching and (not generic or sum((w["text"].endswith(":") for w in layer["words"])) < 3):
         if recognition is not None:
             from .form_recognition import append_candidate
-            return append_candidate(layer, recognition, None, share, minimum_share, number, recognition_findings, excluded_boxes)
-        return _block_page(layer, share, minimum_share, blocks, number, findings) if blocks else None
+            return finish(append_candidate(layer, recognition, None, share, minimum_share, number, recognition_findings, excluded_boxes))
+        return finish(_block_page(layer, share, minimum_share, blocks, number, findings) if blocks else None)
     result = extract(path, number, "template" if matching else "generic", template)
     result.update(method="rimbase_template" if matching else "generic", verified=matching, template_label_share=share, template_minimum_share=minimum_share)
     if blocks and matching:
@@ -54,8 +62,8 @@ def extract_auto(path: Path, number: int, template: dict, minimum_share: float =
     result = result if result["fields"] else None
     if recognition is not None:
         from .form_recognition import append_candidate
-        return append_candidate(layer, recognition, result, share, minimum_share, number, recognition_findings, excluded_boxes)
-    return result
+        result = append_candidate(layer, recognition, result, share, minimum_share, number, recognition_findings, excluded_boxes)
+    return finish(result)
 
 
 def _block_page(layer: dict, share: float, minimum_share: float, blocks: dict, number: int, findings: list | None) -> dict | None:

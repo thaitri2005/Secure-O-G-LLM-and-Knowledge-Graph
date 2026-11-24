@@ -158,13 +158,22 @@ def compare_table_chunk(table: dict, chunk: dict, parsed: dict, config: dict, ra
     if parsed["stray"]:
         out.append({"chunk_id": chunk["chunk_id"], "kind": "text_after_table", "lines": [clip(line, config) for line in parsed["stray"][:_limit(config, "max_listed_items")]]})
     header_source = [cell for row in grid[:rendered_header_rows] for cell in row]
+    actual = parsed["rows"]
+    if range_ok and table.get("join", {}).get("status") == "joined":
+        continuation = next((part for part in table["parts"][1:] if not part["header"]
+                             and part["row_start"] <= chunk["row_start"] < part["row_end"]), None)
+        if continuation:
+            first_row = continuation["row_start"]
+            body_headers = continuation.get("rendered_body_header_rows", 0)
+            header_source = [cell for row in grid[first_row:first_row + body_headers] for cell in row]
+            if body_headers and chunk["row_start"] == first_row:
+                actual = [parsed["header"], *actual]
     if len(parsed["header"]) != num_cols or header_words(parsed["header"]) != header_words(header_source):
         out.append({"chunk_id": chunk["chunk_id"], "kind": "header", "rendered_header_rows": rendered_header_rows,
                     "header_cells": len(parsed["header"]), "num_cols": num_cols, **token_diff(header_source, parsed["header"], config)})
     if not range_ok:
         return out  # rows cannot be aligned without a valid range; the table-level token comparison covers them
     expected = grid[chunk["row_start"]:chunk["row_end"]]
-    actual = parsed["rows"]
     if len(expected) != len(actual):
         out.append({"chunk_id": chunk["chunk_id"], "kind": "row_count", "expected_rows": len(expected), "actual_rows": len(actual)})
         return out

@@ -1,0 +1,124 @@
+{
+  "source_notes": "Original West Moonie completion reports from the same public publication, different well, edition and page layouts. West Moonie-1 references were frozen in E50. West Moonie-2 rows use rendered source column cuts and word-position date anchors from the original page. The PDFs supplied to the engine keep original word boxes, with unmodified neighbouring pages around both table windows.",
+  "sources": {
+    "moon1": {
+      "doc_id": "moon1_eowr",
+      "file": "CTSCo WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/CTSCo%20WCR.pdf",
+      "sha256": "96ee4da9cb4db8f2bb063dbf6a67766d9ca86df73637e8bd2dd4306cfca09108",
+      "source_pages": [
+        24,
+        30
+      ]
+    },
+    "moon2": {
+      "doc_id": "moon2_eowr",
+      "file": "CTSCo WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/CTSCo%20WCR.pdf",
+      "sha256": "96ee4da9cb4db8f2bb063dbf6a67766d9ca86df73637e8bd2dd4306cfca09108",
+      "source_pages": [
+        120,
+        125
+      ]
+    }
+  },
+  "cases": {
+    "moon1": {
+      "header_prefix": [
+        "Report Date",
+        "Report #",
+        "Midnight Depth"
+      ],
+      "depth_unit": "m",
+      "pages": {
+        "25": [
+          ["11 Aug 2020", "1", "353.7", "8257e216a571c26c938b6e7981b1e60cfd9644975c94263ad0c5e68dbfe5a48a"],
+          ["12 Aug 2020", "2", "391.7", "0184f64a114bd171a4e15688ff372c93a1f25cb3c0329e59bfab26f005b86420"],
+          ["13 Aug 2020", "3", "920.0", "e49bd1d186a44608d2d4c95cddbe4ab566647b228d205181415fedd0b58c4fa0"]
+        ],
+        "26": [
+          ["14 Aug 2020", "4", "1255.0", "df6c25c416f2922c8836dc73d26be980345ff9a1430a494979778cafe67775f3"],
+          ["15 Aug 2020", "5", "1622.0", "b8702499cc15e85c6208e35f8cc692766c5b636e4e2adbdf22e1e206e51179ff"],
+          ["16 Aug 2020", "6", "1622.0", "660cbfcc267448c92f037974700da3e9866c5f78d8d629a147d105c213b84d6a"],
+          ["17 Aug 2020", "7", "1622.0", "ee3f9d94d95d85ee9ed3c51b182589990e95fa1389a586fc1b8a9bd2cdd4049f"],
+          ["18 Aug 2020", "8", "1622.0", "b4f068d0dc374ab9fe747fe8f19d51ef718b3b1e35a7def7fcf0c509ac4a9a12"],
+          ["19 Aug 2020", "9", "1622.0", "b123c4fa4430eeaa8e24a68ee808ff45453c8c53b2f1d7186dbe4c85fb17a21d"],
+          ["20 Aug 2020", "10", "1740.0", "9d8954927438a417eb80aabe0a9f490dac72d11cae2b846cd81b9726cdfe88ea"],
+          ["21 Aug 2020", "11", "2161.0", "d27635d77571b307e955eae60a6ecb9b6f144779e30d41a4be2dccee49d85099"],
+          ["22 Aug 2020", "12", "2232.0", "2e932d6495c28c9115d4e11054e066c9f17228b8abe9d65fb92d9d138c13a9f1"]
+        ],
+        "27": [
+          ["23 Aug 2020", "13", "2232.0", "6aa9995489fac42e4ff1d6058f6be888833a6f476acf890a2daaa157a9e685f3"],
+          ["24 Aug 2020", "14", "2261.0", "04e893f8d0e2b04016282a5f2f6f9997051e8d3e55efc9f6dfc25c5548b6ebd5"],
+          ["25 Aug 2020", "15", "2301.0", "af549814543fff8cabd7805b3bfffa3f9674620eba9b6fdeffdf1059dfe66084"],
+          ["26 Aug 2020", "16", "2302.0", "a76a71285ced2e5c97b0afb01acdb0df590313df8522ca96533738ec48a5c627"],
+          ["27 Aug 2020", "17", "2369.1", "0e7b2cd74274cfb7888bfbc7b4b35d116390b2ba2e6222891561e3509f5f39e3"],
+          ["28 Aug 2020", "18", "2369.1", "64b278db7d3fbfc474a0817b50706fe0743ca00196693d2343f5e97a00077673"],
+          ["29 Aug 2020", "19", "2376.2", "8097dee015d19b3493e28312e21f645a000afce6c81532a1578ced67590a4dd8"]
+        ],
+        "28": [
+          ["30 Aug 2020", "20", "2424.0", "01f8fd4c6610e75279ea373ba2eef395e224eebed98d79d5c4f3c2178ee6e792"],
+          ["31 Aug 2020", "21", "2432.0", "4d9ee26f64d800b95a8aa71e05d72fdc5c93d867ca41142dedd3041e35d9f510"],
+          ["01 Sep 2020", "22", "2447.0", "434ef013a5e28755458bcb008eb192460974f538e447d7ac4be85b9d738d384e"],
+          ["02 Sep 2020", "23", "2530.0", "c3c3e77d583695812161347827b51b6dfe961bdd47fd72089c458c1ae58fdadf"],
+          ["03 Sep 2020", "24", "2571.5", "1754947b737c38de316b4a7da63b63dc2dabc1afa38fd80d15ae448b4fb201b4"],
+          ["04 Sep 2020", "25", "2593.1", "48f70cfd35b9ac251fde406c87ae1f5e63ac56111f67d117583beb6184a71792"],
+          ["05 Sep 2020", "26", "2632.5", "23ef3113c3af8b17901c6cbe2cfec3961c7d2f8b0840e1323a84f0c99b19f61e"],
+          ["06 Sep 2020", "27", "2685.5", "90c388d2a1d9357ef93fe08288624d2e8dc46ea9cded7c5f3bf5b41782d8e3df"],
+          ["07 Sep 2020", "28", "2713.5", "80a3a669d6655fed21cbc3cf7234901b377d425deb4563f0afa45e720536cc71"],
+          ["08 Sep 2020", "29", "2713.5", "9def12abccaf7ed0861e3b892191a47aa9db1b49355d78ea94f6efc1c841cbcf"],
+          ["09 Sep 2020", "30", "2713.5", "6b9bfb2d1ef35096d45fc75e5216b55096676dd2fd06cc45a309ba07733f489f"],
+          ["10 Sep 2020", "31", "2713.5", "490f7f117f92c13ae1e6219e415b809edc435dcfb757a7a5f23fd10210d19c18"],
+          ["11 Sep 2020", "32", "2713.5", "3f1e45fde46fa8a8dbdc22d5cf966116c792af4eb89f96cc69adbf3b6b3d3bea"]
+        ],
+        "29": [
+          ["12 Sep 2020", "33", "2713.5", "1b8eaff989cae31a492ac46ed83edb6f49c06a3b1fac6567706f1278acbc639b"],
+          ["13 Sep 2020", "34", "2713.5", "9a9f93ca7a1f052c74ceebbc1756ea9143b0ac9afe2dacb49bb6612535b4901b"],
+          ["14 Sep 2020", "35", "2713.5", "b0b2da668cb00ecd88d9631621123155f70e3c25d352126ed55785d074e64533"]
+        ]
+      }
+    },
+    "moon2": {
+      "header_prefix": [
+        "Report Date",
+        "Report #",
+        "Midnight Depth"
+      ],
+      "depth_unit": "m",
+      "pages": {
+        "121": [
+          ["30 Jun 2021", "1", "0.0", "7d73ab7771c7071a9df90dfeca37129291db8609a7ff167fe8a5f2f3f33e4eed"],
+          ["01 Jul 2021", "2", "250.0", "7f490ebeaf3e5f189eb437773165f9396fdce1fb50610653c14f4e6bed441dc8"],
+          ["02 Jul 2021", "3", "667.0", "f621b95cb610fb52211a7300ea0002c7352a837cab8eb77ed2534a02cce8ee6a"],
+          ["03 Jul 2021", "4", "735.0", "86d76850ef09321cf8dcb3e6815bfaa9a2bbb98f16d47b6f49f79e3ba8d11e68"],
+          ["04 Jul 2021", "5", "1122.0", "7fe32a946226841a55e4c7f008140a8166aa05fd15f052af4112c6255882f5ec"],
+          ["05 Jul 2021", "6", "1465.0", "c4ccc62229e3cc63e1d933b5ae78e04f78051c5c5bdec3ae5fddaeef336d21f7"],
+          ["06 Jul 2021", "7", "1542.0", "3f67eca361794db00beeeca28432f814550e38d85c475c874ae81c7ed5268a42"]
+        ],
+        "122": [
+          ["07 Jul 2021", "8", "1545.0", "46ae13c1725dbc9e23631b4b0513d00c4974a69f42bbeb76920f65fb1acebd55"],
+          ["08 Jul 2021", "9", "1545.0", "540ef9b418333bceeda951bc3947d873af1de6885d76c50a45f48920ed702ccd"],
+          ["09 Jul 2021", "10", "1545.0", "d8f305df0a83d6bbfff44d34d365b903a64725cad45978f38406dc8af141d3a8"],
+          ["10 Jul 2021", "11", "1545.0", "b3c68d5b94ed57621fe9bb789bac2463f594c68276fd78b7631a362198d87d9a"],
+          ["11 Jul 2021", "12", "1824.0", "f672550d2fc240d0ba4a9aededf2a47614b0c3e285202031de8642c7baacc877"],
+          ["12 Jul 2021", "13", "2130.0", "b7a615900f1a2c438c2d43958ebed6e06ce9639cdfa9a4ad496baa3a7aaa6b58"],
+          ["13 Jul 2021", "14", "2130.0", "34e3c11f50ca7022115d96dd23a8b14ed286e7b1d75cebfc2639bec5fc00ce54"]
+        ],
+        "123": [
+          ["14 Jul 2021", "15", "2132.3", "2877128d209db361d8ce748979ea34e3cbb2c5833ad880ece664342eede9e436"],
+          ["15 Jul 2021", "16", "2139.0", "52492d79968dd0210ab500fe24e5ae912073fb615da29a72fe5ade80c853d4e5"],
+          ["16 Jul 2021", "17", "2338.0", "4e9ef6e42e57c57dbd178b79ab19d1b515d4c21927e212b818d61b9894b14dc5"],
+          ["17 Jul 2021", "18", "2450.0", "3c1faa6b8c9c2456a233813bb25cd8bb0aee91578c41f71b06cab7da67cf34c2"],
+          ["18 Jul 2021", "19", "2450.0", "3a844db0240b9ee4a254587a15b3744b75c556ed3317bfd000c14efbec689ee5"],
+          ["19 Jul 2021", "20", "2450.0", "bd32f5ae3a65183c89a801f126376d69f6181d82aef2a75218cc717b5c749037"],
+          ["20 Jul 2021", "21", "2450.0", "dfbcfe411baf8691924480199f90f4a339f4ed2cccbc4ebe3a61ec366a32038b"]
+        ],
+        "124": [
+          ["21 Jul 2021", "22", "2450.0", "92fa7e3373ffeb5efe4d1d7fc572475687b7b2aa5a3f7ab616f0006f04716b30"],
+          ["22 Jul 2021", "23", "2450.0", "d3e8318dad1f356110f6a7bbb288232c9f7537d43c1ef533437525a8da66f7f7"],
+          ["23 Jul 2021", "24", "2450.0", "a286ae13319e54a790db29d8ba10927bc2bc18d10a45c98abcb033ba28f931b8"]
+        ]
+      }
+    }
+  }
+}

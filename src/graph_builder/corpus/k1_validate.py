@@ -1,7 +1,7 @@
 """Check a K1 package: schemas, references, offsets, boxes, page reconstruction, report context and checksums."""
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, defaultdict
 import hashlib
 import json
 from pathlib import Path
@@ -77,6 +77,59 @@ def check_references(sets: dict[str, list[dict]], index: dict[str, dict], errors
                 left, top, right, bottom = region["bbox"]
                 if not (0 <= left <= right <= page["width"] + TOLERANCE and 0 <= top <= bottom <= page["height"] + TOLERANCE):
                     errors.append(f"{label}: region outside page {region['page']}")
+
+
+def check_table_fragments(tables: list[dict], errors: list[str]) -> None:
+    for table in tables:
+        parts = table["parts"]
+        if not any("cell_sources" in part for part in parts):
+            continue
+        label = f"tables {table['table_id']}"
+        if [part["page"] for part in parts] != sorted(table["pages"]) or not all("cell_sources" in part for part in parts):
+            errors.append(f"{label}: incomplete physical cell sources")
+            continue
+        fragments = defaultdict(list)
+        for part in parts:
+            l, t, r, b = part["bbox"]
+            seen = set()
+            for source in part["cell_sources"]:
+                row, col = source["r"], source["c"]
+                left, top, right, bottom = source["bbox"]
+                if ((row, col) in seen or not part["row_start"] <= row < part["row_end"]
+                        or not l - TOLERANCE <= left < right <= r + TOLERANCE
+                        or not t - TOLERANCE <= top < bottom <= b + TOLERANCE):
+                    errors.append(f"{label}: invalid cell fragment ({row}, {col}) on page {part['page']}")
+                seen.add((row, col))
+                fragments[row, col].append(source["text"])
+        expected = {(row, col): value.split() for row, values in enumerate(table["grid"])
+                    for col, value in enumerate(values) if value.strip()}
+        if {position: " ".join(texts).split() for position, texts in fragments.items()} != expected:
+            errors.append(f"{label}: cell fragments do not reproduce the logical grid")
+
+
+def check_native_repairs(tables: list[dict], pages: list[dict], errors: list[str]) -> None:
+    dimensions = {(page["file_id"], page["page"]): (page["width"], page["height"], page["mode"]) for page in pages}
+    for table in tables:
+        for part in table["parts"]:
+            repairs = [(repair, "text") for repair in part.get("numeric_repairs", ())]
+            repairs.extend((repair, "ocr") for repair in part.get("scan_repairs", ()))
+            if not repairs:
+                continue
+            width, height, mode = dimensions.get((table["file_id"], part["page"]), (0, 0, None))
+            dropped = len(part["header"]) if part["row_start"] else 0
+            seen = set()
+            for repair, expected_mode in repairs:
+                row, col = repair["r"] - dropped + part["row_start"], repair["c"]
+                l, t, r, b = repair["bbox"]
+                fl, ft, fr, fb = repair.get("focus", repair["bbox"])
+                if ((row, col) in seen or mode != expected_mode or not part["source_ref"].startswith("#/tables/")
+                        or not max(part["row_start"], table["header_rows"]) <= row < min(part["row_end"], len(table["grid"]))
+                        or not 0 <= col < len(table["grid"][row])
+                        or not (0 <= l < r <= width + TOLERANCE and 0 <= t < b <= height + TOLERANCE)
+                        or not (l - 1 <= fl < fr <= r + 1 and t - 1 <= ft < fb <= b + 1)
+                        or repair["previous"] == repair["value"] or table["grid"][row][col] != repair["value"]):
+                    errors.append(f"tables {table['table_id']}: invalid {expected_mode} cell repair ({row}, {col}) on page {part['page']}")
+                seen.add((row, col))
 
 
 def check_chunks(sets: dict[str, list[dict]], index: dict[str, dict], directory: Path, errors: list[str]) -> None:
@@ -182,6 +235,8 @@ def inspect(directory: Path) -> dict[str, Any]:
     matches, total, coverage = 0, len(sets["pages"]), {}
     if len(errors) == problems:
         check_references(sets, index, errors)
+        check_table_fragments(sets["tables"], errors)
+        check_native_repairs(sets["tables"], sets["pages"], errors)
         check_chunks(sets, index, directory, errors)
         matches, total = rebuild_pages(sets, errors)
         coverage = check_context(sets, index, manifest, errors)

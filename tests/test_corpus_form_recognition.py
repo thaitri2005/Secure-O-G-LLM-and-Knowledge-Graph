@@ -364,7 +364,7 @@ class IntegrationTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(child["text"].encode()).hexdigest(), child["sha256"])
 
     def test_builder_integrates_masks_context_isolation_and_sidecar(self):
-        config = load_k1_config(); config["form_recognition"] = options()
+        config = dict(load_k1_config(), form_recognition=options(), evidence_routing=False)
         sources = {1: sample(), 2: form_layer()}
         record = {"pages": [{"page": 1}, {"page": 2}], "statistics": {}}
         corpus = SimpleNamespace(config={"chunking": {"max_chars": 1500}, "table_mode": "fast"}, blob=lambda _: Path("synthetic.pdf"))
@@ -550,7 +550,7 @@ class NonHeaderRegionsTests(unittest.TestCase):
     def test_builder_without_non_header_regions_creates_no_new_form(self):
         results = {}
         for name, recognition in (("combined", options()), ("header_only", header_only())):
-            config = load_k1_config(); config["form_recognition"] = recognition
+            config = dict(load_k1_config(), form_recognition=recognition, evidence_routing=False)
             sources = {1: sample(), 2: form_layer()}
             record = {"pages": [{"page": 1}, {"page": 2}], "statistics": {}}
             corpus = SimpleNamespace(config={"chunking": {"max_chars": 1500}, "table_mode": "fast"}, blob=lambda _: Path("synthetic.pdf"))

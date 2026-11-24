@@ -1,0 +1,12 @@
+[
+  {"doc_id":"eastern-palm-valley-dailyreport","page":1,"rule":"mud_properties","row":["Density (ppg)","8.45","9.05"],"query":"What density in ppg was recorded for the mud samples?"},
+  {"doc_id":"eastern-palm-valley-dailyreport","page":10,"rule":"mud_properties","row":["Gels (10s/m)","7 / 10","7 / 10"],"query":"What were the measured gel strengths for both mud columns?"},
+  {"doc_id":"eastern-palm-valley-dailyreport","page":23,"rule":"mud_properties","row":["Density (ppg)","9.40","8.90"],"query":"What density in ppg was measured for each mud column?"},
+  {"doc_id":"eastern-palm-valley-dailyreport","page":46,"rule":"mud_properties","row":["Viscosity (sec)","","39"],"query":"What mud viscosity in seconds was reported?"},
+  {"doc_id":"eastern-palm-valley-dailyreport","page":54,"rule":"mud_properties","row":["Gels (10s/m)","6 / 7",""],"query":"What gels reading was recorded in the left mud column?"},
+  {"doc_id":"new-crown-1-dailyreport","page":7,"rule":"ruled_panels:bit","row":["Bit No","2",""],"query":"What bit number is listed in Bit Data?"},
+  {"doc_id":"new-crown-1-dailyreport","page":7,"rule":"ruled_panels:bha","row":["Bit","1","8-1/2\"","0.28"],"query":"What length was recorded for the bit in the BHA Data?"},
+  {"doc_id":"new-crown-1-dailyreport","page":7,"rule":"ruled_panels:survey","row":["320m","0.2"],"query":"What deviation is recorded at a survey depth of 320 m?"},
+  {"doc_id":"forge-16a-dailyreport-014","page":1,"rule":"ruled_panels:survey","row":["1,325","1.58","166.01","1,325","-14.4","-2.0","1.8","0.4"],"query":"What inclination and azimuth were recorded at measured depth 1,325 in the directional survey?"},
+  {"doc_id":"forge-78b-dailyreport","page":2,"rule":"ruled_panels:inventory","row":["Diesel (OBM)","","1,000","735","7,372","7,637","6,637"],"query":"How much Diesel OBM was used and how much was on hand in Bulk Inventory?"}
+]

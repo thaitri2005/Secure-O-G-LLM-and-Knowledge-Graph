@@ -9,6 +9,7 @@
     "running_block_max_gap_lines": 1.0,
     "running_block_alignment_lines": 0.5,
     "running_line_fragment_gap_lines": 3.0,
+    "running_line_min_pages": 3,
     "keep_line_patterns": ["\\b(?:Vis\\.|Temp|Pressure|Wind|Gusts):"]
   },
   "table_mode": "fast",

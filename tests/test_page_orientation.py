@@ -1,16 +1,22 @@
 """C-03: detect pages whose text is not upright when displayed, and optionally convert them upright (default OFF)."""
 from __future__ import annotations
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
 import shutil
+from tempfile import TemporaryDirectory
 import unittest
 from unittest import mock
+
+import pymupdf
+
 from graph_builder.corpus import orientation as ori
 from graph_builder.corpus.analysis import DEFAULT_ANALYSIS, analysis_config
 from graph_builder.corpus.config import fingerprint, load_config
 from graph_builder.corpus.qa.orientation import register_orientation
 from graph_builder.corpus.qa.signals import CheckContext, Registry
+from graph_builder.corpus.text_layer import source_page
 ROOT = Path(__file__).resolve().parents[1]
 SCRATCH = ROOT / "data" / "interim" / "overnight" / "p1" / "c03" / "_test_orientation"
 S = ori.orientation_settings({"mode": "flag"})
@@ -18,6 +24,71 @@ TEXT = ["Casing joint number 12 length 40.5 ft", "Cement job volume 25 bbl densi
 
 
 class ClassifyTests(unittest.TestCase):
+    def test_verified_rotation_rolls_back_only_the_page_that_loses_a_numeric_value(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdf"
+            content = "Density 12.5 ppg, pressure -175.25 psi, casing length 47.5 ft."
+            with pymupdf.open() as pdf:
+                for _ in range(2):
+                    page = pdf.new_page()
+                    page.insert_text((32, 60), content)
+                    page.set_rotation(270)
+                pdf.save(source)
+            digest = hashlib.sha256(source.read_bytes()).digest()
+            analysis = [{"page": n, "mode": "text"} for n in (1, 2)]
+            upright = ori.apply_page_orientation(source, root, analysis, ori.orientation_settings({"mode": "verify"}))
+
+            def converted(path, page):
+                if page == 1:
+                    return content
+                return content.replace("-175.25", "175.25") if path == upright else content.replace("47.5", "47.4")
+
+            verified = ori.verify_working_copy(source, upright, analysis, converted)
+            with pymupdf.open(verified) as pdf:
+                self.assertEqual([page.rotation for page in pdf], [0, 270])
+            self.assertTrue(analysis[0]["orientation"]["normalized"])
+            self.assertNotIn("normalized", analysis[1]["orientation"])
+            comparison = analysis[1]["orientation"]["verification"]
+            self.assertEqual(comparison["original"]["numbers"], comparison["normalized"]["numbers"])
+            self.assertEqual(comparison["lost_numeric_occurrences"], 1)
+            self.assertEqual(comparison["decision"], "source_coverage_decreased")
+            self.assertEqual(hashlib.sha256(source.read_bytes()).digest(), digest)
+
+    def test_verified_rotation_keeps_table_rows_in_their_columns(self):
+        content = "Measured interval 130 ft, upstream pressure 25 psi, residual pressure 12 psi."
+        row = ((0, "130 ft"), (1, "25 psi"))
+        reordered = ((0, "25 psi"), (1, "130 ft"))
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdf"
+            with pymupdf.open() as pdf:
+                for _ in range(4):
+                    page = pdf.new_page()
+                    page.insert_text((32, 60), content)
+                    page.set_rotation(270)
+                pdf.save(source)
+            analysis = [{"page": n, "mode": "text"} for n in (1, 2, 3, 4)]
+            upright = ori.apply_page_orientation(source, root, analysis, ori.orientation_settings({"mode": "verify"}))
+
+            def converted(path, page):
+                if path == source or page == 1:
+                    return ori.RotationProbe(content, 1, Counter({row: 1}), (frozenset({"interval", "pressure"}),))
+                if page == 2:
+                    return ori.RotationProbe(content, 1, Counter({reordered: 1}), (frozenset({"interval", "pressure"}),))
+                if page == 4:
+                    return ori.RotationProbe(content, 1, Counter({row + ((2, "12 psi"),): 1}),
+                                             (frozenset({"interval", "pressure", "residual"}),))
+                return ori.RotationProbe(content)
+
+            with pymupdf.open(ori.verify_working_copy(source, upright, analysis, converted)) as pdf:
+                self.assertEqual([page.rotation for page in pdf], [0, 270, 270, 0])
+            checks = [page["orientation"]["verification"] for page in analysis]
+            self.assertEqual([check["decision"] for check in checks],
+                             ["normalized", "table_evidence_decreased", "table_evidence_decreased", "normalized"])
+            self.assertEqual([check["lost_numeric_table_rows"] for check in checks], [0, 1, 1, 1])
+            self.assertTrue(checks[3]["improved_table_geometry"])
+
     def test_upright_and_compensated_rotation_are_supported(self) -> None:
         self.assertEqual(ori.classify(0, {0: 100}, S)["state"], "upright")
         compensated = ori.classify(270, {90: 100}, S)  # text stored turned, /Rotate turns it back
@@ -52,6 +123,38 @@ class ClassifyTests(unittest.TestCase):
         self.assertEqual(ori.quarter(-92, 10), 270)
         self.assertEqual(ori.quarter(358, 10), 0)
         self.assertIsNone(ori.quarter(45, 10))
+
+    def test_crop_and_quarter_turn_geometry_matches_the_working_pdf(self) -> None:
+        with TemporaryDirectory() as directory:
+            source = Path(directory) / "original.pdf"
+            with pymupdf.open() as pdf:
+                for rotation in (90, 180, 270):
+                    page = pdf.new_page(width=380, height=560)
+                    for row, value in enumerate(TEXT):
+                        page.insert_text((55, 53 + row * 18), value)
+                    page.draw_rect((48, 39, 280, 59))
+                    page.set_cropbox(pymupdf.Rect(20, 16, 362, 530))
+                    page.set_rotation(rotation)
+                pdf.save(source)
+            pages = [{"page": number, "rotation": rotation, "mode": "text"}
+                     for number, rotation in enumerate((90, 180, 270), 1)]
+            working = ori.apply_page_orientation(source, source.parent, pages, ori.orientation_settings({"mode": "normalize"}))
+            for page in pages:
+                number = page["page"]
+                original, normalized = ori.normalized_rotation(page)
+                self.assertEqual((original, normalized), (page["rotation"], 0))
+                actual = source_page(source, number, displayed_origin=True, rotation_override=normalized)
+                expected = source_page(working, number, displayed_origin=True)
+                self.assertEqual((actual["width"], actual["height"], actual["rotation"]),
+                                 (expected["width"], expected["height"], expected["rotation"]))
+                self.assertEqual([word["text"] for word in actual["words"]], [word["text"] for word in expected["words"]])
+                for a, b in zip(actual["words"], expected["words"]):
+                    for x, y in zip(a["bbox"], b["bbox"]):
+                        self.assertAlmostEqual(x, y, places=3)
+                visible = source_page(source, number, displayed_origin=True)
+                projected = ori.rotate_bbox(actual["rulings"][0], actual["width"], actual["height"], original)
+                for a, b in zip(projected, visible["rulings"][0]):
+                    self.assertAlmostEqual(a, b)
 
 
 class ConfigTests(unittest.TestCase):

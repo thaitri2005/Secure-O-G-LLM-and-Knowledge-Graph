@@ -99,7 +99,8 @@ def load_work_document(corpus_dir: Path | None, doc_id: str, fingerprint: str | 
 
 def table_origin(table: dict) -> tuple[str, list[str]]:
     refs = sorted({part.get("source_ref") for part in table.get("parts") or [] if part.get("source_ref")})
-    kinds = {"textlayer_rebuild" if ref.startswith("textlayer:") else "docling" for ref in refs}
+    kinds = {"textlayer_rebuild" if ref.startswith("textlayer:") else
+             "ocr_corroborated" if ref.startswith("ocr:scan_fields:") else "docling" for ref in refs}
     if not kinds:
         return "unknown", refs
     return (kinds.pop() if len(kinds) == 1 else "mixed"), refs
@@ -115,7 +116,8 @@ def sorted_signals(signals: list[dict]) -> list[dict]:
     return sorted(signals, key=lambda s: (s["code"], dumps(s["scope"]), dumps(s["evidence"])))
 
 
-def read_release(release_dir: Path, syntax_rules: dict | None = None) -> dict:
+def read_release(release_dir: Path, syntax_rules: dict | None = None, *,
+                 max_table_chars: int | None = None, table_tokenizer=None, max_table_tokens: int | None = None) -> dict:
     """Load the small release groups; chunks are streamed into counters (their text is never kept).
 
     ``syntax_rules`` (configs/qa/ledger.json ``markdown_syntax``) turns on the per-page count of Markdown table syntax characters."""
@@ -129,6 +131,7 @@ def read_release(release_dir: Path, syntax_rules: dict | None = None) -> dict:
     chunk_stats: dict[str, dict] = {}
     page_chunks: Counter = Counter()
     page_syntax: Counter = Counter()
+    over_budget: dict[tuple, list[dict]] = {}
     for chunk in iter_jsonl(release_dir / "chunks.jsonl"):
         stats = chunk_stats.setdefault(chunk["file_id"], {"count": 0, "by_quality": Counter(), "groups": {}})
         stats["count"] += 1
@@ -137,6 +140,16 @@ def read_release(release_dir: Path, syntax_rules: dict | None = None) -> dict:
         group["count"] += 1
         group["by_quality"][str(chunk.get("quality"))] += 1
         page_chunks[(chunk["file_id"], chunk.get("page"))] += 1
+        if chunk.get("type") == "table":
+            text = chunk["text"]
+            tokens = len(table_tokenizer.encode(text).ids) if table_tokenizer is not None else None
+            if ((max_table_chars is not None and len(text) > max_table_chars)
+                    or (tokens is not None and max_table_tokens is not None and tokens > max_table_tokens)):
+                finding = {key: chunk[key] for key in ("chunk_id", "table_id", "row_start", "row_end")}
+                finding.update(characters=len(text), character_budget=max_table_chars)
+                if tokens is not None:
+                    finding.update(tokens=tokens, token_budget=max_table_tokens)
+                over_budget.setdefault((chunk["file_id"], chunk.get("page")), []).append(finding)
         if syntax_rules and chunk.get("text"):
             text = chunk["text"]  # same page attribution as process.page_texts: source spans, else the chunk page
             if chunk.get("source_spans"):
@@ -145,7 +158,7 @@ def read_release(release_dir: Path, syntax_rules: dict | None = None) -> dict:
             elif chunk.get("page") is not None:
                 page_syntax[(chunk["file_id"], chunk["page"])] += syntax_chars(text, syntax_rules)
     return {"files": list(iter_jsonl(release_dir / "files.jsonl")), "pages": pages, "tables": tables,
-            "chunk_stats": chunk_stats, "page_chunks": page_chunks, "page_syntax": page_syntax}
+            "chunk_stats": chunk_stats, "page_chunks": page_chunks, "page_syntax": page_syntax, "over_budget": over_budget}
 
 
 def counter_dict(counter: Counter) -> dict:
@@ -176,7 +189,7 @@ def base_level(context: CheckContext, signals: list[dict]) -> str:
 
 
 def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page: dict | None, document_has_work: bool,
-               chunk_count: int, exclusion: dict | None = None, syntax: int = 0) -> dict:
+               chunk_count: int, exclusion: dict | None = None, syntax: int = 0, over_budget=(), table_findings=()) -> dict:
     registry = context.registry
     work_page = work_page or {}
     ids = {"file_id": file_row["file_id"], "page": page_row["page"], "page_id": page_row.get("page_id")}
@@ -189,6 +202,10 @@ def build_page(context: CheckContext, file_row: dict, page_row: dict, work_page:
               "confidence": work_page.get("confidence"), "analysis_reasons": work_page.get("reasons"),
               "chunk_count": chunk_count, "work_present": bool(work_page), "document_has_work": document_has_work,
               "page_exclusion": exclusion}
+    if over_budget:
+        entity["table_chunks_over_budget"] = over_budget
+    if table_findings:
+        entity["table_findings"] = table_findings
     if work_page.get("orientation") is not None:  # C-03: only present when analysis.page_orientation was configured
         entity["orientation"] = work_page["orientation"]
     signals, ran, granted = registry.run("page", context, entity, ids)
@@ -244,13 +261,18 @@ def build_document(registry: Registry, config: dict, release_dir: Path, manifest
                             "groups": {name: {"count": group["count"], "by_quality": counter_dict(group["by_quality"])}
                                        for name, group in sorted(chunks["groups"].items())}}
         pages = sorted(release["pages"].get(file_id, []), key=lambda row: row["page"])
+        table_findings: dict[int, list[dict]] = {}
+        for finding in manifest.get("table_findings", {}).get(file_id, []):
+            table_findings.setdefault(finding["page"], []).append(finding)
         excluded, _ = load_page_exclusions(corpus_dir / "work" / file_row.get("doc_id", "") / work_fp if work_doc and corpus_dir else None,
                                            config["exclusion_rules"])
         record["pages"] = [build_page(context, file_row, row, work_pages.get(row["page"]), work_doc is not None,
                                       release["page_chunks"].get((file_id, row["page"]), 0),
                                       explain_page(excluded.get(row["page"]), (work_pages.get(row["page"]) or {}).get("text_chars"),
                                                    config["exclusion_rules"]),
-                                      release["page_syntax"].get((file_id, row["page"]), 0)) for row in pages]
+                                      release["page_syntax"].get((file_id, row["page"]), 0),
+                                      release["over_budget"].get((file_id, row["page"]), ()),
+                                      table_findings.get(row["page"], ())) for row in pages]
         record["tables"] = [build_table(context, file_row, table) for table in release["tables"].get(file_id, [])]
         entity = {"ids": ids, "work": record["work"], "chunks": record["chunks"]}
         signals, ran, granted = registry.run("document", context, entity, ids)
@@ -354,7 +376,8 @@ def write_ledger(path: Path, header: dict, records: Iterator[dict]) -> None:
 
 
 def build_qa(release_dir: Path, out_dir: Path, corpus_dir: Path | None = None, config_path: Path | None = None,
-             sidecar_path: Path | None = None, registry: Registry | None = None) -> dict:
+             sidecar_path: Path | None = None, registry: Registry | None = None, *,
+             table_tokenizer_path: Path | None = None, max_table_tokens: int | None = None) -> dict:
     """Build qa-ledger.json and qa-summary.json for ``release_dir``; the release and the corpus are only read."""
     registry = registry or default_registry()
     config_file = config_path or DEFAULT_CONFIG
@@ -363,7 +386,20 @@ def build_qa(release_dir: Path, out_dir: Path, corpus_dir: Path | None = None, c
     validator = run_validator(release_dir, config["thresholds"]["max_listed_validator_errors"]["value"])
     found, searched = find_sidecar(config, release_dir, corpus_dir, sidecar_path)
     sidecar, duplicates = load_sidecar(found) if found else (None, 0)
-    release = read_release(release_dir, config.get("markdown_syntax"))
+    if (table_tokenizer_path is None) != (max_table_tokens is None) or (max_table_tokens is not None and max_table_tokens < 1):
+        raise ValueError("Table token QA needs a local tokenizer and a positive token budget")
+    tokenizer = None
+    if table_tokenizer_path is not None:
+        from tokenizers import Tokenizer
+        try:
+            tokenizer = Tokenizer.from_file(str(table_tokenizer_path))
+        except Exception as error:
+            raise ValueError(f"Could not read the QA tokenizer: {error}") from error
+        tokenizer.no_truncation()
+        tokenizer.no_padding()
+    max_chars = manifest.get("config", {}).get("corpus", {}).get("chunking", {}).get("max_chars")
+    release = read_release(release_dir, config.get("markdown_syntax"), max_table_chars=max_chars,
+                           table_tokenizer=tokenizer, max_table_tokens=max_table_tokens)
     known_tables = {table["table_id"] for rows in release["tables"].values() for table in rows}
     unmatched = sorted(set(sidecar) - known_tables) if sidecar is not None else []
     context = CheckContext(registry, config, release_dir, manifest, validator=validator, sidecar=sidecar)
@@ -379,6 +415,8 @@ def build_qa(release_dir: Path, out_dir: Path, corpus_dir: Path | None = None, c
                                                                      "sha256": sha256_file(found) if found else None,
                                                                      "duplicate_table_ids": duplicates},
             "corpus_work_folder": "used" if corpus_dir is not None and (corpus_dir / "work").is_dir() else "not available (release-only, degraded)"}
+    if table_tokenizer_path is not None:
+        link["table_token_budget"] = {"tokenizer_sha256": sha256_file(table_tokenizer_path), "max_tokens": max_table_tokens}
     checks = [{"name": c.name, "version": c.version, "scope": c.scope, "grants": c.grants, "limitations": list(c.limitations)}
               for c in sorted(registry.checks, key=lambda c: c.name)]
     header = {"schema_version": SCHEMA_VERSION, "link": link, "completeness": "UNKNOWN", "completeness_values_allowed": list(COMPLETENESS_VALUES),

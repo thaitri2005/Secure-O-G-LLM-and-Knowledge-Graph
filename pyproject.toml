@@ -12,7 +12,8 @@ requires-python = ">=3.12,<3.13"
 # Pillow, tabulate, transformers and openpyxl are imported by src/graph_builder outside the OCR engines.
 dependencies = ["docling==2.141.0", "docling-core==2.103.1", "jsonschema==4.26.0",
                 "pypdf==6.1.1", "pypdfium2==5.14.0", "rapidfuzz==3.14.6",
-                "Pillow==12.3.0", "tabulate==0.10.0", "transformers==5.20.2", "openpyxl==3.1.5"]
+                "Pillow==12.3.0", "tabulate==0.10.0", "transformers==5.20.2", "openpyxl==3.1.5",
+                "filelock==4.2.4"]
 
 [project.optional-dependencies]
 # VietOCR itself is installed separately: pip install --no-deps vietocr==0.3.13 (its metadata pins old packages).
@@ -20,11 +21,11 @@ dependencies = ["docling==2.141.0", "docling-core==2.103.1", "jsonschema==4.26.0
 ocr = ["onnxruntime==1.31.1", "rapidocr==3.10.0", "numpy==2.5.4", "PyYAML==6.0.3", "torch==2.14.1",
        "einops==0.8.2", "easyocr==1.7.2", "ImageIO==2.38.1", "lazy-loader==0.6",
        "ninja==1.13.2", "python-bidi==0.6.12", "scikit-image==0.26.0",
-       "tifffile==2026.10.15"]
+       "tifffile==2026.10.15", "opencv-python-headless==5.0.0.93"]
 # Tests and QA scripts only (tests/test_corpus_table_join.py, test_page_orientation.py, test_qa_*.py; scripts/qa_multipage_*.py,
 # evaluate_ops_tables.py, benchmark_tables.py). Nothing under src/graph_builder imports it. PyMuPDF is AGPL-3.0 or a
 # commercial Artifex licence: see docs/components/dependencies.md before distributing anything that links it.
-qa = ["PyMuPDF==1.28.2"]
+qa = ["PyMuPDF==1.28.2", "tokenizers==0.23.3", "psutil==7.2.2; sys_platform == 'win32'"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

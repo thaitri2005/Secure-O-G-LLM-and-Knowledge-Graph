@@ -8,7 +8,7 @@ from pathlib import Path
 import unittest
 
 from graph_builder.corpus.chunking import chunk_document
-from graph_builder.corpus.config import fingerprint, validate_config
+from graph_builder.corpus.config import fingerprint, load_config, validate_config
 from graph_builder.ingestion.filters import filter_running_lines
 from test_chunking import add_text, make_document
 from test_filter_position import add_numeric_table, report_document
@@ -37,6 +37,33 @@ def kept(result) -> list[str]:
 
 
 class MinPagesTests(unittest.TestCase):
+    def test_varying_report_values_survive_while_page_counters_and_print_stamps_are_removed(self) -> None:
+        document = make_document(4)
+        for page in range(1, 5):
+            add_text(document, "Summary report", page, 16, 26, left=120)
+            add_text(document, f"Inspection date: {page + 10}/12/2024", page, 52, 62, left=120)
+            add_text(document, f"Page {page} of 4", page, 954, 964)
+            add_text(document, f"Printed: 15:33 {page}/12/2024", page, 971, 981)
+            add_text(document, "Body text.", page, 400, 410)
+        legacy, _ = run(document, 3)
+        protected, _ = filter_running_lines(document, .08, .5, 1.0, .5, 3.0, min_pages=3,
+                                            keep_varying_numbers=True)
+        self.assertEqual(kept(legacy), ["Body text."] * 4)
+        self.assertEqual(kept(protected), [value for page in range(1, 5)
+                                          for value in (f"Inspection date: {page + 10}/12/2024", "Body text.")])
+
+    def test_varying_values_protect_horizontal_fragments(self) -> None:
+        document = make_document(4)
+        for page in range(1, 5):
+            add_text(document, "Report #", page, 48, 58, left=100, right=150)
+            add_text(document, str(100 + page), page, 48, 58, left=156, right=180)
+            add_text(document, f"Page {page}", page, 960, 970)
+        legacy, _ = run(document, 3)
+        protected, _ = filter_running_lines(document, .08, .5, 1.0, .5, 3.0, min_pages=3,
+                                            keep_varying_numbers=True)
+        self.assertEqual(kept(legacy), [])
+        self.assertEqual(kept(protected), [x for page in range(1, 5) for x in ("Report #", str(100 + page))])
+
     def test_defect_one_page_document_loses_its_title_without_the_option(self) -> None:
         off, drops = run(short_document(1, True))
         self.assertEqual(kept(off), ["Body text of the page."])
@@ -141,6 +168,31 @@ class MinPagesConfigTests(unittest.TestCase):
     def test_shared_default_configuration_file_is_not_changed_by_the_option(self) -> None:
         default = json.loads((ROOT / "configs" / "corpus" / "default.json").read_text(encoding="utf-8"))
         self.assertNotIn("running_line_min_pages", default["filters"])
+
+    def test_daily_report_profile_keeps_short_report_headers_and_filters_repeated_furniture(self) -> None:
+        config = load_config(ROOT / "configs" / "corpus" / "daily_reports.json")
+        report_number = "RPT NUM.: 22"
+        report_date = "RPT DATE: 11/10/2020"
+        for pages in (1, 2, 4):
+            with self.subTest(pages=pages):
+                document = make_document(pages)
+                add_text(document, report_number, top=40, bottom=50)
+                add_text(document, report_date, top=60, bottom=70)
+                for page in range(1, pages + 1):
+                    add_text(document, "Daily Drilling Report", page, 20, 30)
+                    add_text(document, f"Page {page} of {pages}", page, 965, 975)
+                    add_text(document, "Temp: 58", page, 940, 950)
+                    add_text(document, "Operations continued.", page, 400, 410)
+
+                chunks, _, stats = chunk_document(document, "sample", config, set())
+                text = "\n".join(chunk["text"] for chunk in chunks)
+                self.assertIn(report_number, text)
+                self.assertIn(report_date, text)
+                self.assertEqual(text.count("Temp: 58"), pages)
+                self.assertEqual(text.count("Daily Drilling Report"), pages if pages < 3 else 0)
+                for page in range(1, pages + 1):
+                    self.assertEqual(f"Page {page} of {pages}" in text, pages < 3)
+                self.assertEqual(stats["dropped"]["running_line"], 0 if pages < 3 else 2 * pages)
 
 
 if __name__ == "__main__":

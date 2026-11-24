@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "forge-003",
+      "family": "Utah FORGE DDR",
+      "source": "https://raw.githubusercontent.com/djimrastephane/ddr-rag-book/4c94867c3cf1fa0c779e2fb2bdbe2204cf6711f2/book/datasets/forge_archive/FORGE-16A-78-32_Completion_003_2021-01-06.pdf",
+      "pages": 1,
+      "sha256": "b45a0047a0d8e82d087a7f538b15e2eec0f8f714562716da2a57243546c08dee",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-st2-1993-04-06",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_ST2_1993_04_06.pdf",
+      "pages": 2,
+      "sha256": "1c91c77246a78aef13a75154a2a9b0d21bcd2d742fe8ed856ff4f8eb9b2605fb",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-st2-1993-04-23",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_ST2_1993_04_23.pdf",
+      "pages": 2,
+      "sha256": "11912ad3bcdcbc15d92357b486c735d6594cb6da69f4d3767d7dbf95e4847306",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-11-a-2013-05-22",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_11_A_2013_05_22.pdf",
+      "pages": 2,
+      "sha256": "94558f27f218112d62baff4da7ee8b73dd2141b5d0db6f27ea9152ade44cf987",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-11-a-2013-05-25",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_11_A_2013_05_25.pdf",
+      "pages": 2,
+      "sha256": "397ff20455618b22bdeb94a767365ece3f9d78f1516b1116accdcc4275b8b458",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-11-t2-2013-03-29",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_11_T2_2013_03_29.pdf",
+      "pages": 2,
+      "sha256": "d74869ec4506528e3adb7701a8b7f57eb2b5385345363756cce65988b2ba7f76",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-11-t2-2013-05-14",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_11_T2_2013_05_14.pdf",
+      "pages": 2,
+      "sha256": "d723ac7a71e2f930eda014c2fb9b5827318f7baba005abedf39d8d8f56d52d85",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-15-a-2008-12-20",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_15_A_2008_12_20.pdf",
+      "pages": 2,
+      "sha256": "7507f9d4193cf15df03237df7d5587a3a9e985546b10c16ce82610cc5e572d46",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-15-a-2008-12-23",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_15_A_2008_12_23.pdf",
+      "pages": 2,
+      "sha256": "785bbb3969105ae77c3363812f826fe73596c1f9f2120669e7560e030d419bcb",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-bt2-1997-12-20",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_BT2_1997_12_20.pdf",
+      "pages": 2,
+      "sha256": "03b731aafae35f95c5ae96ca90fdfd4929dba958c84b5f50eba97c8983962919",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-bt2-1998-01-04",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_BT2_1998_01_04.pdf",
+      "pages": 2,
+      "sha256": "9f5a3b41f2665e9280b666dad788ef7838dbcd9e117c19dc5b7721a3479801c4",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-12-2008-01-29",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_12_2008_01_29.pdf",
+      "pages": 2,
+      "sha256": "c1c739cfd34890bc86b317823b9708eb4976acdf86b199b3ad93c171e975101e",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-f-12-2007-07-22",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_F_12_2007_07_22.pdf",
+      "pages": 2,
+      "sha256": "c54eb8a06e24b76fbc0a422be99994a1071913e84db48dd93d63c09da22bf3dc",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-s-1992-11-30",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_S_1992_11_30.pdf",
+      "pages": 2,
+      "sha256": "33f0cf5019fdcdd63aafc685036f135455301dace266b41d4db8398cd65191e0",
+      "format": "pdf"
+    },
+    {
+      "id": "15-9-19-s-1992-09-20",
+      "family": "Volve DDR",
+      "source": "https://raw.githubusercontent.com/0melek1/drilling-data-extraction-pipeline/94f620b667d24e0386774bb2792f41e959eebd83/Task_DS/PDF_version_1000/15_9_19_S_1992_09_20.pdf",
+      "pages": 2,
+      "sha256": "d52d12b2681c0c47d607bd59eaedf4fd85231541736c48948553210d8a73b767",
+      "format": "pdf"
+    },
+    {
+      "id": "nwis-w001-wcr-scanned",
+      "family": "NWIS synthetic scanned",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/scanned_reports/W001_WCR_scanned.pdf",
+      "pages": 7,
+      "sha256": "31e681e674c1b60768a1d7340aeb1d1609153668b2be93834e9382f01f679ffe",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W001_WCR.pdf",
+      "reference_sha256": "e749fcfdf01926d924eab947aa5d2d6ec9bf1c8738b3a46fa4579382173bb2a0"
+    },
+    {
+      "id": "nwis-w002-ddr-scanned",
+      "family": "NWIS synthetic scanned",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/scanned_reports/W002_DDR_scanned.pdf",
+      "pages": 7,
+      "sha256": "9604584333d2f1817b660fa9cc7b88927d83554061c1a1b2a420c0a5af4fd390",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W002_DDR.pdf",
+      "reference_sha256": "31983163d75139161768a9f8e48a9db3bf20b29487fd6d5a9bc48bcc23f7fa4d"
+    },
+    {
+      "id": "nwis-w003-ddr",
+      "family": "NWIS synthetic native",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W003_DDR.pdf",
+      "pages": 8,
+      "sha256": "e853571e5d1090ed61bdbce13f9d8a9e34540c082bc7888c236e43e10c8b445e",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W003_DDR.pdf",
+      "reference_sha256": "e853571e5d1090ed61bdbce13f9d8a9e34540c082bc7888c236e43e10c8b445e"
+    },
+    {
+      "id": "nwis-w004-wcr-scanned",
+      "family": "NWIS synthetic scanned",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/scanned_reports/W004_WCR_scanned.pdf",
+      "pages": 6,
+      "sha256": "2f35267f0bb569626d5fdfdea2b66da4b161bf44a813b0317387e7c5b8089136",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W004_WCR.pdf",
+      "reference_sha256": "f7109ead8614ddbc7c36a11733ee965af29f79d1da9c86ee5dcc8230ee18d0d4"
+    },
+    {
+      "id": "nwis-w006-ddr-scanned",
+      "family": "NWIS synthetic scanned",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/scanned_reports/W006_DDR_scanned.pdf",
+      "pages": 8,
+      "sha256": "2ee0269958d0e03f762c040556b9e8ccc769bdc16c143fef227bd9e0da80f0f1",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W006_DDR.pdf",
+      "reference_sha256": "93451aa415f62345a1001115d5f9efa73f3db79069604ffcfc50b68a33591400"
+    },
+    {
+      "id": "nwis-w007-wcr",
+      "family": "NWIS synthetic native",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W007_WCR.pdf",
+      "pages": 6,
+      "sha256": "d615499bf57e9c69a910464bdc93398c02d0fffefa3766adadafa7d140b74c28",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W007_WCR.pdf",
+      "reference_sha256": "d615499bf57e9c69a910464bdc93398c02d0fffefa3766adadafa7d140b74c28"
+    },
+    {
+      "id": "nwis-w009-wcr-scanned",
+      "family": "NWIS synthetic scanned",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/scanned_reports/W009_WCR_scanned.pdf",
+      "pages": 7,
+      "sha256": "9d2aca1a3695e3c87738dbd5b521af88c1a1551c0378f02cf8b32eec70d4c146",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W009_WCR.pdf",
+      "reference_sha256": "9b705106f74600e3129149c487df850d4d4384e392c3d462123c9910e1724f22"
+    },
+    {
+      "id": "nwis-w010-ddr",
+      "family": "NWIS synthetic native",
+      "source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W010_DDR.pdf",
+      "pages": 7,
+      "sha256": "2dc7aa120af56b65b734e436526e1d097cada1a4eedb6d09bfc3d8e4d75cc5b0",
+      "format": "pdf",
+      "reference_source": "https://raw.githubusercontent.com/ManthanTerse/SpaceX-NWIS/3a5efe94273fc73db5760f6041445187fa781b01/data/reports/W010_DDR.pdf",
+      "reference_sha256": "2dc7aa120af56b65b734e436526e1d097cada1a4eedb6d09bfc3d8e4d75cc5b0"
+    },
+    {
+      "id": "wireline-chart",
+      "family": "Published raster chart",
+      "source": "https://raw.githubusercontent.com/amandeepsinghs-cyber/Well-Log-Digitization/e82b9f30adf577a1b381d2df37a40badd6b15219/docs/Well_log_schlum.jpg",
+      "pages": 1,
+      "sha256": "c5a10e95868c0874012750ef914083ee49e8a2d4c63215ae32ff5e22c85ada7b",
+      "format": "jpeg"
+    }
+  ]
+}

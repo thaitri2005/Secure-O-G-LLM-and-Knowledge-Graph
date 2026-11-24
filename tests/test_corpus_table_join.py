@@ -9,7 +9,7 @@ import tempfile
 import unittest
 
 try:
-    import fitz  # PyMuPDF draws the synthetic PDF of RealPdfTests only; the other tests need no PDF
+    import fitz  # PyMuPDF draws the synthetic PDFs for the tests marked below.
 except ImportError:
     fitz = None
 
@@ -90,6 +90,108 @@ class DecisionTests(unittest.TestCase):
         self.assertEqual(decision["dropped_header_rows"], 1)
         self.assertEqual([[t["table_id"] for t in g] for g in result["groups"]], [[a["table_id"], b["table_id"]]])
 
+    def test_source_proof_requires_more_than_the_same_header(self):
+        options = copy.deepcopy(OPTIONS)
+        options["continuity"]["require_source_proof"] = True
+        a, b, layers = pair()
+        decision, _ = self.decide(a, b, layers, options)
+        self.assertEqual(decision["decision"], "uncertain")
+        layers[1]["words"] += layer(words_for([["Pressure measurements"]], 582))["words"]
+        layers[2]["words"] += layer(words_for([["Pressure measurements (continued)"]], 52))["words"]
+        decision, result = self.decide(a, b, layers, options)
+        self.assertEqual(decision["reasons"], ["printed_continuation"])
+        joined, _, failures = apply_groups([a, b], result, options)
+        self.assertEqual(failures, [])
+        self.assertEqual(joined[0]["grid"], a["grid"] + b["grid"][1:])
+        self.assertEqual(joined[0]["parts"][1]["page"], 2)
+
+    def test_headerless_regular_series_can_continue_within_a_proven_report(self):
+        options = copy.deepcopy(OPTIONS)
+        options["continuity"]["require_source_proof"] = True
+        left = [["Depth", "Plan", "Actual"], *[[str(i), "23", "25"] for i in range(10, 18)]]
+        for start, expected in ((18, "joined"), (22, "uncertain")):
+            right = [[str(i), "23", "25"] for i in range(start, start + 4)]
+            a, b, layers = pair(grid_a=left, grid_b=right, header_b=1)
+            context = {"well": "A-01", "report_date": "2025-01-04"}
+            result = plan_joins([a, b], layers.__getitem__, 2, options, report_contexts={1: context, 2: context})
+            decision, = result["decisions"]
+            self.assertEqual(decision["decision"], expected)
+            if expected == "joined":
+                tables, _, failures = apply_groups([a, b], result, options)
+                self.assertEqual(failures, [])
+                self.assertEqual(tables[0]["grid"], left + right)
+                self.assertEqual(tables[0]["parts"][1]["rendered_body_header_rows"], 1)
+
+    def test_continuation_cannot_cross_a_known_report_date_or_well_change(self):
+        a, b, layers = pair()
+        context = {"report_date": "2025-01-02", "well": "A-01"}
+        for key, value in (("report_date", "2025-01-03"), ("well", "B-02")):
+            with self.subTest(key=key):
+                outcome = plan_joins([a, b], layers.__getitem__, 2, OPTIONS,
+                                     report_contexts={1: context, 2: {**context, key: value}})
+                self.assertEqual(outcome["groups"], [])
+                self.assertEqual(outcome["decisions"][0]["reasons"], ["report_context_differs"])
+                self.assertEqual(outcome["decisions"][0]["evidence"]["different_fields"], [key])
+        for second in (context, {"well": "a-01"}, {}):
+            outcome = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, report_contexts={1: context, 2: second})
+            self.assertEqual(len(outcome["groups"]), 1)
+
+    @unittest.skipIf(fitz is None, "PyMuPDF not available")
+    def test_visually_matching_candidates_keep_distinct_source_report_ids_separate(self):
+        from graph_builder.corpus.report_fields import source_report_identity
+        from graph_builder.corpus.text_layer import source_page
+
+        a, b, layers = pair()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "reports.pdf"
+            with fitz.open() as pdf:
+                for report in ("034 23/09/2018", "34 2018-09-23", "035 24/09/2018", "34 02/03/2018", "34 2018-02-03"):
+                    page = pdf.new_page(width=600, height=800)
+                    page.insert_text((50, 40), "DAILY DRILLING REPORT")
+                    page.insert_text((50, 60), "WELL: Oil Basin 5")
+                    page.insert_text((50, 80), f"REPORT # {report}")
+                pdf.save(path)
+            first, same, next_report, ambiguous, equivalent = [
+                source_report_identity(source_page(path, page, displayed_origin=True)) for page in (1, 2, 3, 4, 5)]
+        self.assertEqual(first, {"report_number": ("34",), "report_reference_date": ("2018-09-23",),
+                                 "well": ("oil basin 5",)})
+        self.assertEqual(first, same)
+        layers[1]["identity"], layers[2]["identity"] = first, next_report
+        result = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, source_identity=lambda layer: layer["identity"])
+        self.assertEqual(result["groups"], [])
+        self.assertEqual(result["decisions"][0]["reasons"], ["source_report_identity_differs"])
+        layers[2]["identity"] = same
+        result = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, source_identity=lambda layer: layer["identity"])
+        self.assertEqual(len(result["groups"]), 1)
+        layers[1]["identity"], layers[2]["identity"] = ambiguous, equivalent
+        result = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, source_identity=lambda layer: layer["identity"])
+        self.assertEqual(len(result["groups"]), 1)
+
+    def test_repeated_body_text_is_kept_when_the_header_repeats(self):
+        grid = [HEADER] + [["Drill", "Pump", "Circulate"] for _ in range(8)]
+        a, b, layers = pair(grid_a=grid, grid_b=grid)
+        decision, result = self.decide(a, b, layers)
+        self.assertEqual((decision["decision"], decision["dropped_header_rows"]), ("joined", 1))
+        tables, _, _ = apply_groups([a, b], result, OPTIONS)
+        self.assertEqual(tables[0]["grid"], grid + grid[1:])
+
+    def test_headerless_continuation_needs_same_report_and_continuing_depth(self):
+        from graph_builder.corpus.qa.table_headers import add_continuation_headers
+
+        header = ["Item", "Measured Depth (ft)", "Pressure"]
+        a, b, layers = pair(grid_a=[header] + body(1, 8), grid_b=body(9, 5), header_b=0)
+        context = {"report_date": "2026-11-23", "well": "Test Well 5"}
+        decision = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, report_contexts={1: context, 2: context})
+        self.assertEqual(decision["decisions"][0]["reasons"], ["headerless_monotonic_series_within_report"])
+        row = {"table_id": a["table_id"], "page": 2, "pages": [2], "type": "table", "text": "printed table body"}
+        enriched, = add_continuation_headers([row], {(a["table_id"], 2): (1, header, 9, 0)})
+        self.assertEqual(enriched["table_header_page"], 1)
+        self.assertTrue(enriched["text"].endswith("\n" + row["text"]))
+        self.assertIn("Measured Depth", enriched["text"])
+        for other in ({}, dict(context, report_date="2026-11-24")):
+            result = plan_joins([a, b], layers.__getitem__, 2, OPTIONS, report_contexts={1: context, 2: other})
+            self.assertFalse(result["groups"])
+
     def test_orphaned_header_alone_at_the_page_bottom_is_joined(self):
         a, b, layers = pair(grid_a=[HEADER], grid_b=body(1, 5), header_a=1, header_b=0, top_a=700.0)
         decision, _ = self.decide(a, b, layers)
@@ -168,6 +270,14 @@ class DecisionTests(unittest.TestCase):
         a, b, layers = pair()
         layers[1]["rotation"] = layers[2]["rotation"] = 270
         self.assertEqual(self.decide(a, b, layers)[0]["decision"], "joined")
+
+    def test_normalized_content_can_continue_an_unrotated_table(self):
+        a, b, layers = pair()
+        for rotation in (90, 180, 270):
+            layers[2].update(rotation=rotation, normalized=True)
+            decision, _ = self.decide(a, b, layers)
+            self.assertEqual(decision["decision"], "joined")
+            self.assertEqual(decision["evidence"]["rotation"], [0, rotation])
 
     def test_page_without_text_layer_cannot_be_judged(self):
         a, b, layers = pair(words_b=[])
@@ -260,11 +370,11 @@ class HelperTests(unittest.TestCase):
         self.assertFalse(header_like(["Depth", "100"]))
         self.assertFalse(header_like(["", ""]))
 
-    def test_leading_header_rows_never_takes_the_last_row_and_needs_known_words_only(self):
-        b = {"grid": [HEADER, ["Row1", "1", "2"]]}
-        self.assertEqual(leading_header_rows(b, {"item", "plan", "actual"}), 1)
-        self.assertEqual(leading_header_rows({"grid": [HEADER]}, {"item", "plan", "actual"}), 0)
-        self.assertEqual(leading_header_rows(b, {"item", "plan"}), 0)
+    def test_leading_header_rows_never_takes_the_last_row_and_needs_column_order(self):
+        a, b, _ = pair()
+        self.assertEqual(leading_header_rows(a, b), 1)
+        self.assertEqual(leading_header_rows(a, dict(b, grid=[HEADER])), 0)
+        self.assertEqual(leading_header_rows(a, dict(b, grid=[HEADER[::-1], *b["grid"][1:]])), 0)
 
     def test_series_needs_enough_monotonic_rows(self):
         a = {"num_cols": 1, "header_rows": 0, "grid": [["1"], ["2"], ["3"]]}
@@ -286,9 +396,9 @@ class HelperTests(unittest.TestCase):
 
 
 class ConfigTests(unittest.TestCase):
-    def test_shipped_block_is_valid_and_k1_default_does_not_contain_it(self):
+    def test_default_uses_source_proof_and_shipped_candidate_replays_the_looser_rule(self):
         self.assertEqual(validate_table_join(copy.deepcopy(OPTIONS)), OPTIONS)
-        self.assertNotIn("table_join", load_k1_config())
+        self.assertTrue(load_k1_config()["table_join"]["continuity"]["require_source_proof"])
         candidate = json.loads((ROOT / "configs/corpus/candidates/k1_table_join_candidate.json").read_text(encoding="utf-8"))
         self.assertEqual(candidate["table_join"], OPTIONS)
         self.assertEqual(validate_k1_config(candidate), candidate)

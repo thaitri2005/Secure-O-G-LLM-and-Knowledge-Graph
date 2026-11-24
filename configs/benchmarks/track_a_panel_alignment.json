@@ -1,0 +1,22 @@
+{
+  "source_notes": "Physical PDF rows transcribed from the ruled regions using an independent PyMuPDF text read and page images. Tool lengths have no printed unit in these BHA headers. Pump IDs, inches and printed blanks are kept. Evaluation pages come from the same two source reports as development pages.",
+  "sources": {
+    "eastern-palm-valley-dailyreport": {"sha256": "0bd08d13e390a78651d9d58c9a3952178ff44e5466785ec3534138f84eb42801"},
+    "new-crown-1-dailyreport": {"sha256": "4067cd3e1ba81c0ca0ac1fec8e6ec3fbe1236c53f03bd7c739db10869b1759ab"}
+  },
+  "panels": [
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 30, "cohort": "development", "caption": "BHA # 14", "header": ["TOOL", "LENGTH"], "rows": [["Down Hole Motor", "8.34"], ["3x Drill Collar- 6 1/2\"", "28.33"], ["18x Heavy Weight DP", "169.32"], ["Crossover Sub", "0.30"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 32, "cohort": "development", "caption": "BHA # 14", "header": ["TOOL", "LENGTH"], "rows": [["Bit - PDC", "0.30"], ["Float Sub", "0.79"], ["Crossover Sub", "0.80"], ["6x Heavy Weight DP", "56.42"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 34, "cohort": "development", "caption": "BHA # 15", "header": ["TOOL", "LENGTH"], "rows": [["Down Hole Motor", "7.76"], ["Float Sub", "0.68"], ["Non Magnetic DC", "7.03"], ["Directional Tools", "1.95"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 6, "cohort": "evaluation", "caption": "BHA # 3", "header": ["TOOL", "LENGTH"], "rows": [["NOV Fluid Hammer- 9 5/8\"", "10.95"], ["4x Drill Collar- 8\"", "37.86"], ["16x Drill Collar- 6 1/2\"", "148.77"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 24, "cohort": "evaluation", "caption": "BHA # 6", "header": ["TOOL", "LENGTH"], "rows": [["Bit - PDC", "0.24"], ["NOV Fluid Hammer- 6 3/4\"", "8.83"], ["Stabiliser", "1.69"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 46, "cohort": "evaluation", "caption": "BHA # 19", "header": ["TOOL", "LENGTH"], "rows": [["Motor - 4.75", "7.49"], ["MWD", "11.08"], ["62x Drill Pipe", "580.11"]]},
+    {"doc_id": "eastern-palm-valley-dailyreport", "page": 54, "cohort": "evaluation", "caption": "BHA # 22", "header": ["TOOL", "LENGTH"], "rows": [["Bit - Tri Cone", "0.18"], ["Casing Scraper", "1.20"], ["Bit Sub w/- Float", "0.82"]]},
+    {"doc_id": "new-crown-1-dailyreport", "page": 7, "cohort": "development", "caption": "PUMP DATA", "header": ["Pump No", "1", "2"], "rows": [["Model", "NF-500", "NF-500"], ["Liner Size", "6\" x 7\"", "6\" x 7\""], ["SPM", "95", ""], ["GPM", "310", ""]]},
+    {"doc_id": "new-crown-1-dailyreport", "page": 10, "cohort": "development", "caption": "PUMP DATA", "header": ["Pump No", "1", "2"], "rows": [["Liner Size", "6\" x 7\"", "6\" x 7\""], ["SPM", "51", ""], ["GPM", "165", ""], ["Pressure", "", ""]]},
+    {"doc_id": "new-crown-1-dailyreport", "page": 8, "cohort": "evaluation", "caption": "PUMP DATA", "header": ["Pump No", "1", "2"], "rows": [["Model", "NF-500", "NF-500"], ["SPM", "95", ""], ["GPM", "310", ""], ["Pressure", "", ""]]},
+    {"doc_id": "new-crown-1-dailyreport", "page": 11, "cohort": "evaluation", "caption": "PUMP DATA", "header": ["Pump No", "1", "2"], "rows": [["Liner Size", "6\" x 7\"", "6\" x 7\""], ["SPM", "51", ""], ["GPM", "165", ""], ["Output/GPS", "", ""]]},
+    {"doc_id": "new-crown-1-dailyreport", "page": 12, "cohort": "evaluation", "caption": "PUMP DATA", "header": ["Pump No", "1", "2"], "rows": [["Model", "NF-500", "NF-500"], ["SPM", "51", ""], ["GPM", "165", ""], ["Pressure", "", ""]]}
+  ],
+  "empty_pump_pages": [5, 15, 20]
+}

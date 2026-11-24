@@ -130,12 +130,29 @@ def text_digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
+def pdf_readers(k1_config: dict) -> dict[str, str]:
+    rules = k1_config.get("table_rules", {})
+    enabled = {"ruled_panels", "well_completion", "scan_fields", "daily_log"} & rules.keys()
+    if not (enabled or k1_config.get("evidence_routing") or k1_config.get("repair_numeric_cells") or
+            k1_config.get("repair_native_column_alignment") or
+            k1_config.get("repair_scan_table_ink") or k1_config.get("recover_source_grids") or k1_config.get("recover_scan_grids") or
+            k1_config.get("table_join", {}).get("continuity", {}).get("split_activity_rows")):
+        return {}
+    try:
+        import pymupdf
+    except ImportError as error:
+        raise ValueError("This K1 profile requires PyMuPDF. Install the pinned qa extra.") from error
+    return {"pymupdf": pymupdf.VersionBind, "pdfium": version("pypdfium2")}
+
+
 def package_identity(corpus_fingerprint: str, k1_config: dict) -> str:
     """Hash of everything besides the documents that decides the package content."""
     material = {"corpus_fingerprint": corpus_fingerprint, "k1_config": k1_config,
                 "form_template": text_digest(template_path(k1_config)),
                 "schemas": {path.name: text_digest(path) for path in sorted(SCHEMAS.glob("k1_*.schema.json"))},
                 "versions": {name: version(name) for name in ("docling", "docling-core")}}
+    if readers := pdf_readers(k1_config):
+        material["pdf_readers"] = readers
     return hashlib.sha256(dumps(material).encode("utf-8")).hexdigest()
 
 
@@ -166,6 +183,7 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
     unknown = sorted(set(only or []) - {doc["doc_id"] for doc in documents})
     ocr = engine_fingerprint(models, config["ocr"])
     fingerprint = make_fingerprint(config, ocr["models"])
+    identity = package_identity(fingerprint, k1_config)
     jobs = corpus.jobs(fingerprint)
     sets: dict[str, list[dict]] = {group: [] for group in GROUPS}
     texts: dict[str, str] = {}
@@ -175,11 +193,16 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
                 for doc in unknown_documents)
     section_findings: dict[str, dict] = {}
     single_findings: dict[str, dict] = {}
+    document_type_findings: dict[str, dict] = {}
     block_findings: dict[str, dict] = {}
     label_findings: dict[str, dict] = {}
     quarantine_findings: dict[str, dict] = {}
     join_findings: dict[str, dict] = {}
     boundary_findings: dict[str, dict] = {}
+    casing_findings: dict[str, list] = {}
+    hourly_findings: dict[str, list] = {}
+    table_findings: dict[str, list] = {}
+    scan_readers = None
     for doc in documents:
         job = jobs.get(doc["doc_id"])
         if doc["format"] != "pdf":
@@ -191,7 +214,7 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
                                          (job or {}).get("error") or "not processed"))
             continue
         try:
-            built = build_document(corpus, doc, fingerprint, k1_config)
+            built = build_document(corpus, doc, fingerprint, k1_config, models=models)
             problem = completeness_problem(doc, built)
         except ReportBoundaryError as error:
             held.append(blocked_document(corpus, doc, fingerprint, "BLOCKED", "report_boundaries", error.evidence))
@@ -206,6 +229,9 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
         for group in GROUPS:
             sets[group].extend(built[group])
         file = built["files"][0]
+        if "document_type_source" in built:
+            document_type_findings[doc["doc_id"]] = {"document_type": file["document_type"],
+                                                    "document_type_source": built["document_type_source"]}
         texts[file["text"]] = built["text"]
         conflicts += built["form_conflicts"]
         missing += built["pages_without_context"]
@@ -218,6 +244,14 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
             join_findings[doc["doc_id"]] = built["table_join"]
         if "report_boundaries" in built:
             boundary_findings[doc["doc_id"]] = built["report_boundaries"]
+        if "casing_tables" in built:
+            casing_findings[doc["doc_id"]] = built["casing_tables"]
+        if "hourly_operations" in built:
+            hourly_findings[doc["doc_id"]] = built["hourly_operations"]
+        if built.get("table_findings"):
+            table_findings[file["file_id"]] = built["table_findings"]
+        if built.get("scan_readers"):
+            scan_readers = built["scan_readers"]
         if "section_context" in built:
             section_findings[doc["doc_id"]] = built["section_context"]
         if "form_blocks" in built:
@@ -241,12 +275,18 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
         if legacy_records is not None:
             write_text(staging / LEGACY_MAP, dumps(legacy_records, indent=2))
         manifest = {"format": "K1", "schema_version": SCHEMA_VERSION,
-                    "identity": package_identity(fingerprint, k1_config), "corpus_fingerprint": fingerprint,
+                    "identity": identity, "corpus_fingerprint": fingerprint,
                     "config": {"corpus": config, "k1": k1_config},
                     "ocr": {"engine": ocr["settings"]["engine"], "runtime": ocr["runtime"], "models": ocr["models"]},
                     "geometry_pdf_points": 0.01, "counts": {group: len(sets[group]) for group in GROUPS},
                     "documents": included, "context_coverage": coverage, "pages_without_context": missing,
                     "form_conflicts": conflicts, "held_back": held}
+        if readers := pdf_readers(k1_config):
+            manifest["pdf_readers"] = readers
+        if scan_readers:
+            manifest["scan_readers"] = scan_readers
+        if table_findings:
+            manifest["table_findings"] = table_findings
         write_text(staging / MANIFEST, dumps(manifest, indent=2))
         names = sorted(path.relative_to(staging).as_posix() for path in staging.rglob("*") if path.is_file())
         write_text(staging / SUMS, "".join(f"{file_sha256(staging / name)}  {name}\n" for name in names))
@@ -279,6 +319,12 @@ def export_k1(corpus: Corpus, name: str, models: Path, k1_config: dict, only: li
     if k1_config.get("document_context"):
         # Outside the package on purpose: the well found for each document and the candidates it came from (document_context).
         result["document_context"] = single_findings
+    if document_type_findings:
+        result["document_type_findings"] = document_type_findings
+    if k1_config.get("table_rules", {}).get("casing"):
+        result["casing_tables"] = casing_findings
+    if k1_config.get("table_rules", {}).get("hourly_operations"):
+        result["hourly_operations"] = hourly_findings
     if legacy_records is not None:
         result["legacy_map"] = summarize_legacy_map(legacy_records)
     return result

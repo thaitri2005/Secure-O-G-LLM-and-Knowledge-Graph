@@ -11,8 +11,8 @@ from graph_builder.corpus.k1_config import load_k1_config
 ROOT = Path(__file__).resolve().parents[1]
 CORPUS_OPTIONS = (("chunking", "table_markdown"), ("filters", "running_line_position_tolerance"),
                   ("filters", "running_line_min_pages"), ("filters", "toc_leader_min_dots"), ("analysis", "page_orientation"),
-                  ("chunking", "label_value"), ("chunking", "quarantine"))
-K1_OPTIONS = ("section_context", "form_blocks", "table_join", "report_boundaries", "form_recognition", "document_context")
+                  ("chunking", "label_value"), ("chunking", "quarantine"), ("chunking", "preserve_list_markers"))
+K1_OPTIONS = ("section_context", "form_blocks", "report_boundaries", "form_recognition", "document_context")
 
 
 def read(name: str) -> dict:

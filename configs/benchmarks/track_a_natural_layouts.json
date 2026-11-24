@@ -1,0 +1,134 @@
+{
+  "source_notes": "Selected page windows preserve original visible word boxes, orientation and printed pagination. West Moonie date, report number, depth and summary were read from the independent PyMuPDF table geometry and checked on the visible source pages. OzAlpha field pairs were read from its rendered summary. ZeroGen has native sideways content with PDF /Rotate 0.",
+  "sources": {
+    "west_moonie": {
+      "doc_id": "west-moonie-continuation_eowr",
+      "file": "CTSCo WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/CTSCo%20WCR.pdf",
+      "sha256": "96ee4da9cb4db8f2bb063dbf6a67766d9ca86df73637e8bd2dd4306cfca09108",
+      "source_pages": [
+        25,
+        29
+      ]
+    },
+    "ozalpha": {
+      "doc_id": "ozalpha_eowr",
+      "file": "OzAlpha-1 WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/OzAlpha-1%20WCR.pdf",
+      "sha256": "20771aaeeae125bb5c16cb08c5c6e33f40c7002c4221afeb5703ebbe56fb0546",
+      "source_pages": [
+        10,
+        10
+      ]
+    },
+    "zerogen": {
+      "doc_id": "zerogen-formation-tops_eowr",
+      "file": "cr_54682_25.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/cr_54682_25.pdf",
+      "sha256": "cda79a3ec8f213b151959b70c54c170883c04b521a590f055519eb376b19c3b4",
+      "source_pages": [
+        17,
+        18
+      ]
+    }
+  },
+  "west_moonie": {
+    "header_prefix": [
+      "Report Date",
+      "Report #",
+      "Midnight Depth"
+    ],
+    "depth_unit": "m",
+    "pages": {
+      "25": [
+        ["11 Aug 2020", "1", "353.7", "8257e216a571c26c938b6e7981b1e60cfd9644975c94263ad0c5e68dbfe5a48a"],
+        ["12 Aug 2020", "2", "391.7", "0184f64a114bd171a4e15688ff372c93a1f25cb3c0329e59bfab26f005b86420"],
+        ["13 Aug 2020", "3", "920.0", "e49bd1d186a44608d2d4c95cddbe4ab566647b228d205181415fedd0b58c4fa0"]
+      ],
+      "26": [
+        ["14 Aug 2020", "4", "1255.0", "df6c25c416f2922c8836dc73d26be980345ff9a1430a494979778cafe67775f3"],
+        ["15 Aug 2020", "5", "1622.0", "b8702499cc15e85c6208e35f8cc692766c5b636e4e2adbdf22e1e206e51179ff"],
+        ["16 Aug 2020", "6", "1622.0", "660cbfcc267448c92f037974700da3e9866c5f78d8d629a147d105c213b84d6a"],
+        ["17 Aug 2020", "7", "1622.0", "ee3f9d94d95d85ee9ed3c51b182589990e95fa1389a586fc1b8a9bd2cdd4049f"],
+        ["18 Aug 2020", "8", "1622.0", "b4f068d0dc374ab9fe747fe8f19d51ef718b3b1e35a7def7fcf0c509ac4a9a12"],
+        ["19 Aug 2020", "9", "1622.0", "b123c4fa4430eeaa8e24a68ee808ff45453c8c53b2f1d7186dbe4c85fb17a21d"],
+        ["20 Aug 2020", "10", "1740.0", "9d8954927438a417eb80aabe0a9f490dac72d11cae2b846cd81b9726cdfe88ea"],
+        ["21 Aug 2020", "11", "2161.0", "d27635d77571b307e955eae60a6ecb9b6f144779e30d41a4be2dccee49d85099"],
+        ["22 Aug 2020", "12", "2232.0", "2e932d6495c28c9115d4e11054e066c9f17228b8abe9d65fb92d9d138c13a9f1"]
+      ],
+      "27": [
+        ["23 Aug 2020", "13", "2232.0", "6aa9995489fac42e4ff1d6058f6be888833a6f476acf890a2daaa157a9e685f3"],
+        ["24 Aug 2020", "14", "2261.0", "04e893f8d0e2b04016282a5f2f6f9997051e8d3e55efc9f6dfc25c5548b6ebd5"],
+        ["25 Aug 2020", "15", "2301.0", "af549814543fff8cabd7805b3bfffa3f9674620eba9b6fdeffdf1059dfe66084"],
+        ["26 Aug 2020", "16", "2302.0", "a76a71285ced2e5c97b0afb01acdb0df590313df8522ca96533738ec48a5c627"],
+        ["27 Aug 2020", "17", "2369.1", "0e7b2cd74274cfb7888bfbc7b4b35d116390b2ba2e6222891561e3509f5f39e3"],
+        ["28 Aug 2020", "18", "2369.1", "64b278db7d3fbfc474a0817b50706fe0743ca00196693d2343f5e97a00077673"],
+        ["29 Aug 2020", "19", "2376.2", "8097dee015d19b3493e28312e21f645a000afce6c81532a1578ced67590a4dd8"]
+      ],
+      "28": [
+        ["30 Aug 2020", "20", "2424.0", "01f8fd4c6610e75279ea373ba2eef395e224eebed98d79d5c4f3c2178ee6e792"],
+        ["31 Aug 2020", "21", "2432.0", "4d9ee26f64d800b95a8aa71e05d72fdc5c93d867ca41142dedd3041e35d9f510"],
+        ["01 Sep 2020", "22", "2447.0", "434ef013a5e28755458bcb008eb192460974f538e447d7ac4be85b9d738d384e"],
+        ["02 Sep 2020", "23", "2530.0", "c3c3e77d583695812161347827b51b6dfe961bdd47fd72089c458c1ae58fdadf"],
+        ["03 Sep 2020", "24", "2571.5", "1754947b737c38de316b4a7da63b63dc2dabc1afa38fd80d15ae448b4fb201b4"],
+        ["04 Sep 2020", "25", "2593.1", "48f70cfd35b9ac251fde406c87ae1f5e63ac56111f67d117583beb6184a71792"],
+        ["05 Sep 2020", "26", "2632.5", "23ef3113c3af8b17901c6cbe2cfec3961c7d2f8b0840e1323a84f0c99b19f61e"],
+        ["06 Sep 2020", "27", "2685.5", "90c388d2a1d9357ef93fe08288624d2e8dc46ea9cded7c5f3bf5b41782d8e3df"],
+        ["07 Sep 2020", "28", "2713.5", "80a3a669d6655fed21cbc3cf7234901b377d425deb4563f0afa45e720536cc71"],
+        ["08 Sep 2020", "29", "2713.5", "9def12abccaf7ed0861e3b892191a47aa9db1b49355d78ea94f6efc1c841cbcf"],
+        ["09 Sep 2020", "30", "2713.5", "6b9bfb2d1ef35096d45fc75e5216b55096676dd2fd06cc45a309ba07733f489f"],
+        ["10 Sep 2020", "31", "2713.5", "490f7f117f92c13ae1e6219e415b809edc435dcfb757a7a5f23fd10210d19c18"],
+        ["11 Sep 2020", "32", "2713.5", "3f1e45fde46fa8a8dbdc22d5cf966116c792af4eb89f96cc69adbf3b6b3d3bea"]
+      ],
+      "29": [
+        ["12 Sep 2020", "33", "2713.5", "1b8eaff989cae31a492ac46ed83edb6f49c06a3b1fac6567706f1278acbc639b"],
+        ["13 Sep 2020", "34", "2713.5", "9a9f93ca7a1f052c74ceebbc1756ea9143b0ac9afe2dacb49bb6612535b4901b"],
+        ["14 Sep 2020", "35", "2713.5", "b0b2da668cb00ecd88d9631621123155f70e3c25d352126ed55785d074e64533"]
+      ]
+    }
+  },
+  "ozalpha": {
+    "fields": [
+      [
+        "WELL NAME",
+        "OzAlpha-1"
+      ],
+      [
+        "WELL CLASS",
+        "Exploration"
+      ],
+      [
+        "BASIN",
+        "Southern Georgina Basin"
+      ],
+      [
+        "NORTHING",
+        "768840 mN"
+      ],
+      [
+        "LICENCE",
+        "EP 104"
+      ],
+      [
+        "EASTING",
+        "7518300 mE"
+      ],
+      [
+        "ZONE",
+        "53 S"
+      ],
+      [
+        "OPERATOR",
+        "Statoil Australia Theta B. V."
+      ],
+      [
+        "SPUD DATE",
+        "01/04/2014"
+      ],
+      [
+        "DRILLER TD OzAlpha-1",
+        "1250.3 m MD"
+      ]
+    ]
+  }
+}

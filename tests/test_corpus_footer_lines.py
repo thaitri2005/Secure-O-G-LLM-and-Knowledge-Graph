@@ -70,10 +70,11 @@ class KeepLineConfigTests(unittest.TestCase):
         self.assertNotIn("keep_line_patterns", config["filters"])
         self.assertNotEqual(fingerprint(config, {}), fingerprint(validate_config(settings([r"x"])), {}))
 
-    def test_daily_report_configuration_validates_and_differs_from_default_only_in_the_option(self) -> None:
+    def test_daily_report_configuration_enables_both_margin_guards(self) -> None:
         daily = json.loads((ROOT / "configs" / "corpus" / "daily_reports.json").read_text(encoding="utf-8"))
         validate_config(copy.deepcopy(daily))
-        daily["filters"].pop("keep_line_patterns")
+        self.assertTrue(daily["filters"].pop("keep_line_patterns"))
+        self.assertEqual(daily["filters"].pop("running_line_min_pages"), 3)
         self.assertEqual(daily, settings())
 
     def test_invalid_values_are_rejected(self) -> None:

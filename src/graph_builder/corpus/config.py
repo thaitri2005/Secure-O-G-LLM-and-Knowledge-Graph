@@ -18,7 +18,8 @@ KEYS = {"chunking", "filters", "table_mode", "ocr", "analysis", "quality", "segm
         "allowed_hosts", "document_timeout"}
 FILTER_KEYS = {"margin_band", "frequency", "running_block_max_gap_lines", "running_block_alignment_lines",
                "running_line_fragment_gap_lines"}
-OPTIONAL_FILTER_KEYS = {"keep_line_patterns", "running_line_position_tolerance", "running_line_min_pages", "toc_leader_min_dots"}
+OPTIONAL_FILTER_KEYS = {"keep_line_patterns", "running_line_position_tolerance", "running_line_min_pages",
+                        "running_line_keep_varying_numbers", "toc_leader_min_dots"}
 QUALITY_KEYS = {"review_invalid_vietnamese_rate", "review_foreign_letter_rate", "min_ocr_page_chars"}
 PIPELINE_VERSION = "corpus-1"
 OPTIONAL_KEYS = {"cache"}  # C-04: absent unless supplied, so existing fingerprints and caches do not change
@@ -50,12 +51,16 @@ def validate_config(config: Any) -> dict[str, Any]:
                               or type(config["cache"]["code_version"]) is not bool):
         raise ValueError("cache must be an object with exactly one boolean key, code_version")
     chunking = config["chunking"]
-    if (not isinstance(chunking, dict) or not {"max_chars", "strategy"} <= set(chunking) <= {"max_chars", "strategy", "table_markdown", "label_value", "quarantine"}
+    if (not isinstance(chunking, dict) or not {"max_chars", "strategy"} <= set(chunking) <= {
+            "max_chars", "strategy", "table_markdown", "label_value", "quarantine", "preserve_list_markers"}
             or type(chunking["max_chars"]) is not int or not 200 <= chunking["max_chars"] <= 20000
             or chunking["strategy"] not in ("paragraph", "page")
             or chunking.get("table_markdown", "docling") not in TABLE_MARKDOWN_MODES):
         raise ValueError("chunking needs max_chars (200-20000) and strategy paragraph or page, "
-                         f"and optionally table_markdown {list(TABLE_MARKDOWN_MODES)}, label_value and quarantine (objects)")
+                         f"and optionally table_markdown {list(TABLE_MARKDOWN_MODES)}, label_value, quarantine "
+                         "and preserve_list_markers")
+    if type(chunking.get("preserve_list_markers", False)) is not bool:
+        raise ValueError("chunking.preserve_list_markers must be a boolean")
     if "label_value" in chunking:
         label_value_settings(chunking["label_value"])
     if "quarantine" in chunking:
@@ -66,6 +71,8 @@ def validate_config(config: Any) -> dict[str, Any]:
         raise ValueError(f"filters must contain nonnegative {sorted(FILTER_KEYS)} and optionally {sorted(OPTIONAL_FILTER_KEYS)}")
     if "keep_line_patterns" in filters:
         keep_pattern(filters["keep_line_patterns"])
+    if type(filters.get("running_line_keep_varying_numbers", False)) is not bool:
+        raise ValueError("running_line_keep_varying_numbers must be a boolean")
     if "running_line_position_tolerance" in filters and (type(filters["running_line_position_tolerance"]) not in (int, float)
                                                          or not 0 < filters["running_line_position_tolerance"] <= 0.5):
         raise ValueError("running_line_position_tolerance must be a fraction of the page height, above 0 and at most 0.5 "
@@ -126,6 +133,8 @@ def fingerprint(config: dict[str, Any], ocr_models: dict[str, str]) -> str:
                 "ocr_models": ocr_models}
     if "running_line_position_tolerance" in config["filters"]:
         material["running_line_semantics"] = 2
+    if config["analysis"].get("page_orientation", {}).get("mode") == "verify":
+        material["orientation_verification_semantics"] = 3
     if config.get("cache", {}).get("code_version"):
         material["code"] = code_digest()
     return hashlib.sha256(json.dumps(material, sort_keys=True).encode("utf-8")).hexdigest()[:16]

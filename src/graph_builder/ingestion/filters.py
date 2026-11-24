@@ -9,10 +9,27 @@ from docling_core.types.doc import ContentLayer, DoclingDocument, PictureItem, T
 
 TOC_LEADER = re.compile(r"\.{3,}\s*\d*\s*(?:$|\n)")
 TOC_TITLE = re.compile(r"(?:table\s+of\s+contents|contents)\s*[:.]?", re.IGNORECASE)
+NUMBERED_FURNITURE = re.compile(
+    r"(?:\d+|(?:page|pg\.?|p\.)\s*\d+(?:\s*(?:of|/)\s*\d+)?|"
+    r"(?:printed|generated)(?:\s+(?:at|on))?\s*:\s*.+)", re.IGNORECASE,
+)
 
 
 def clean_text(text: str) -> str:
     return re.sub(r"\s+", " ", text.replace("\r\n", "\n")).strip()
+
+
+def varying_number_keys(occurrences: list[dict[str, Any]]) -> set[str]:
+    """Find masked keys that recur with different printed values outside explicit furniture."""
+    first: dict[str, str] = {}
+    varying: set[str] = set()
+    for occurrence in occurrences:
+        key, literal = occurrence["key"], occurrence["text"].casefold()
+        if not re.search(r"\d", literal) or NUMBERED_FURNITURE.fullmatch(literal):
+            continue
+        if first.setdefault(key, literal) != literal:
+            varying.add(key)
+    return varying
 
 
 def positional_repeats(occurrences: list[dict[str, Any]], pages: Any, tolerance: float,
@@ -53,7 +70,8 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
                          block_max_gap_lines: float, block_alignment_lines: float,
                          fragment_gap_lines: float, keep: re.Pattern[str] | None = None,
                          position_tolerance: float | None = None,
-                         min_pages: int | None = None) -> tuple[DoclingDocument, int]:
+                         min_pages: int | None = None,
+                         keep_varying_numbers: bool = False) -> tuple[DoclingDocument, int]:
     """Remove repeated margin lines and adjacent repeated lines in an anchored block.
 
     Frequency keys normalize whitespace, case, and digit runs. Block members
@@ -78,6 +96,9 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
     so every line in the margin band of a short document counts as repeated, including titles and identifiers.
     With ``min_pages`` a key must also occur on at least that many distinct pages to count as repeated; a document with
     fewer pages than ``min_pages`` has no repetition evidence and nothing is removed. ``None`` keeps the old behavior.
+
+    ``keep_varying_numbers`` protects lines whose printed digits actually change under the same masked key, including
+    geometric line fragments. Number-only counters, explicit page counters and print/generation stamps are excluded.
     """
     needed_pages = len(doc.pages) * frequency if min_pages is None else max(len(doc.pages) * frequency, min_pages)
     doc = doc.model_copy(deep=True)
@@ -146,9 +167,10 @@ def filter_running_lines(doc: DoclingDocument, margin_band: float, frequency: fl
     positional = (positional_repeats(occurrences, doc.pages, position_tolerance, needed_pages)
                   if position_tolerance is not None else None)
     protected: set[tuple[int, int]] = set()
-    if keep is not None:
+    varying = varying_number_keys(occurrences) if keep_varying_numbers else set()
+    if keep is not None or varying:
         for index, occurrence in enumerate(occurrences):
-            if keep.search(occurrence["text"]):
+            if occurrence["key"] in varying or (keep is not None and keep.search(occurrence["text"])):
                 for page_no in occurrence["pages"]:
                     protected.update((member, page_no) for member in (index, *occurrence["members"]))
     frequent = {key for key, pages in pages_by_line.items() if len(pages) >= needed_pages}
@@ -243,7 +265,7 @@ def has_toc_leader(text: str, min_dots: int | None = None) -> bool:
     return False
 
 
-def dropped_item_reasons(doc: DoclingDocument, toc_leader_min_dots: int | None = None) -> dict[str, str]:
+def dropped_item_reasons(doc: DoclingDocument, toc_leader_min_dots: int | None = None, *, render_table=None) -> dict[str, str]:
     """Identify structural exclusions, including the explicit title of a detected TOC.
 
     Shared with the validator so exemptions describe actual extraction rules.
@@ -269,8 +291,10 @@ def dropped_item_reasons(doc: DoclingDocument, toc_leader_min_dots: int | None =
             reason = "picture"
         elif has_toc_leader(getattr(item, "text", ""), toc_leader_min_dots):
             reason = "dotted_leader_toc"
-        elif isinstance(item, TableItem) and has_toc_leader(item.export_to_markdown(doc=doc), toc_leader_min_dots):
-            reason = "dotted_leader_toc_table"
+        elif isinstance(item, TableItem):
+            markdown = render_table(item) if render_table is not None else item.export_to_markdown(doc=doc)
+            if has_toc_leader(markdown, toc_leader_min_dots):
+                reason = "dotted_leader_toc_table"
         if reason is not None:
             reasons[item.self_ref] = reason
             if reason.startswith("document_index") or reason.startswith("dotted_leader_toc"):

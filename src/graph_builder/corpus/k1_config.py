@@ -14,8 +14,11 @@ REPO = Path(__file__).resolve().parents[3]
 DEFAULT_K1_CONFIG = REPO / "configs/corpus/k1.json"
 KEYS = {"forms", "document_types", "report_context"}
 OPTIONAL_KEYS = {"table_rules", "section_context", "form_blocks", "table_join", "report_boundaries", "form_recognition",
-                 "document_context"}  # all are opt-in
-TABLE_RULES = {"operations_summary"}
+                 "document_context", "repair_numeric_cells", "numeric_cell_focus", "repair_native_column_alignment", "repair_scan_table_ink",
+                 "recover_source_grids", "evidence_routing", "recover_complex_grids", "recover_scan_grids",
+                 "recover_borderless_grids", "recover_broken_scan_grids", "recover_sparse_scan_rows"}
+TABLE_RULES = {"operations_summary", "casing", "hourly_operations", "mud_properties", "ruled_panels", "daily_log",
+               "well_completion", "scan_fields"}
 OPERATIONS_RULE_KEYS = {"document_types", "schema", "recognition", "tolerances"}
 SCHEMA_KEYS = {"title_words", "columns", "patterns", "mark", "annotation_kinds"}
 RECOGNITION_KEYS = {"phrase_gap_em_title", "annotation_min_gap_em_title", "annotation_max_tokens", "title_header_gap_em_header"}
@@ -48,8 +51,27 @@ def regex_list(name: str, patterns: Any, groups: int | None = None) -> list[str]
 def validate_k1_config(config: Any) -> dict[str, Any]:
     if not isinstance(config, dict) or set(config) - OPTIONAL_KEYS != KEYS:
         raise ValueError(f"K1 configuration must contain exactly {sorted(KEYS)} (and optionally {sorted(OPTIONAL_KEYS)})")
+    if type(config.get("repair_numeric_cells", False)) is not bool:
+        raise ValueError("repair_numeric_cells must be a boolean")
+    if type(config.get("numeric_cell_focus", False)) is not bool:
+        raise ValueError("numeric_cell_focus must be a boolean")
+    if type(config.get("repair_native_column_alignment", False)) is not bool:
+        raise ValueError("repair_native_column_alignment must be a boolean")
+    if type(config.get("repair_scan_table_ink", False)) is not bool:
+        raise ValueError("repair_scan_table_ink must be a boolean")
+    if type(config.get("recover_source_grids", False)) is not bool:
+        raise ValueError("recover_source_grids must be a boolean")
+    if type(config.get("evidence_routing", False)) is not bool:
+        raise ValueError("evidence_routing must be a boolean")
+    for key in ("recover_complex_grids", "recover_scan_grids", "recover_borderless_grids", "recover_broken_scan_grids",
+                "recover_sparse_scan_rows"):
+        if type(config.get(key, False)) is not bool:
+            raise ValueError(f"{key} must be a boolean")
     forms = config["forms"]
-    if (not isinstance(forms, dict) or set(forms) != FORM_KEYS or not isinstance(forms["template"], str) or not forms["template"]
+    if (not isinstance(forms, dict) or set(forms) - {"daily_header", "missing_report_fields"} != FORM_KEYS
+            or type(forms.get("daily_header", False)) is not bool
+            or type(forms.get("missing_report_fields", False)) is not bool
+            or not isinstance(forms["template"], str) or not forms["template"]
             or type(forms["minimum_label_share"]) not in (int, float) or not 0 < forms["minimum_label_share"] <= 1
             or type(forms["generic"]) is not bool):
         raise ValueError("forms needs template (path), minimum_label_share (0-1) and generic (true or false)")
@@ -102,12 +124,43 @@ def validate_k1_config(config: Any) -> dict[str, Any]:
         raise ValueError(f"table_rules may only contain {sorted(TABLE_RULES)}")
     for name, rule in rules.items():
         names = rule.get("document_types") if isinstance(rule, dict) else None
-        if not isinstance(rule, dict) or set(rule) != OPERATIONS_RULE_KEYS or not isinstance(names, list) or not names \
+        keys = {"document_types"} if name in ("casing", "mud_properties", "daily_log", "well_completion", "scan_fields") else (
+            {"document_types", "templates"} if name == "hourly_operations" else
+            {"document_types", "panels"} if name == "ruled_panels" else OPERATIONS_RULE_KEYS)
+        if not isinstance(rule, dict) or set(rule) != keys or not isinstance(names, list) or not names \
                 or any(not isinstance(item, str) or not item for item in names):
-            raise ValueError(f"table_rules {name} needs exactly {sorted(OPERATIONS_RULE_KEYS)} "
+            raise ValueError(f"table_rules {name} needs exactly {sorted(keys)} "
                              "(document_types is a non-empty list of document type names)")
-        validate_operations_summary(rule)
+        if name == "operations_summary":
+            validate_operations_summary(rule)
+        if name == "hourly_operations":
+            validate_hourly_operations(rule["templates"])
+        if name == "ruled_panels":
+            from .ruled_panels import TITLES
+            panels = rule["panels"]
+            if (not isinstance(panels, list) or not panels or any(not isinstance(panel, str) or panel not in TITLES for panel in panels)
+                    or len(set(panels)) != len(panels)):
+                raise ValueError(f"ruled_panels needs a non-empty list of distinct panel kinds from {sorted(TITLES)}")
     return config
+
+
+def validate_hourly_operations(templates: Any) -> None:
+    if not isinstance(templates, list) or not templates:
+        raise ValueError("hourly_operations needs at least one template")
+    ids = set()
+    for template in templates:
+        if not isinstance(template, dict) or set(template) != {"id", "title", "columns"}:
+            raise ValueError("each hourly_operations template needs id, title and columns")
+        if any(not isinstance(template[key], str) or not template[key].strip() for key in ("id", "title")):
+            raise ValueError("hourly_operations template id and title must be non-empty strings")
+        if template["id"] in ids:
+            raise ValueError("hourly_operations needs distinct template ids")
+        ids.add(template["id"])
+        columns = template["columns"]
+        if (not isinstance(columns, list) or len(columns) != 3 or any(
+                not isinstance(aliases, list) or not aliases or any(not isinstance(alias, str) or not alias.strip()
+                                                                     for alias in aliases) for aliases in columns)):
+            raise ValueError("hourly_operations columns must give non-empty aliases for from time, to time and description")
 
 
 def exact_keys(name: str, value: Any, keys: set[str]) -> dict:
@@ -204,5 +257,13 @@ def template_path(config: dict[str, Any]) -> Path:
 
 def document_type(doc_id: str, config: dict[str, Any]) -> str:
     """Return the first rule whose pattern matches the document id, or the default type."""
+    return document_type_from_id(doc_id, config)[0]
+
+
+def document_type_from_id(doc_id: str, config: dict[str, Any]) -> tuple[str, str]:
+    """Report the selected type and whether a document ID rule matched."""
     types = config["document_types"]
-    return next((rule["document_type"] for rule in types["rules"] if re.search(rule["pattern"], doc_id)), types["default"])
+    for rule in types["rules"]:
+        if re.search(rule["pattern"], doc_id):
+            return rule["document_type"], "doc_id"
+    return types["default"], "default"

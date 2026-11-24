@@ -36,7 +36,7 @@ SECTION_KEYS = {
 }
 REASONS_SEPARATE = ("already_multipage", "empty_table", "source_not_supported", "rotation_unsupported", "rotation_differs", "page_size_differs",
                     "no_text_layer", "a_not_at_page_end", "b_not_at_page_start", "column_count_differs", "x_extent_differs",
-                    "series_restarts", "header_cell_spans_body", "invariant_failed", "pdf_unreadable")
+                    "series_restarts", "header_cell_spans_body", "report_context_differs", "invariant_failed", "pdf_unreadable")
 
 
 def validate_table_join(options: Any) -> dict[str, Any]:
@@ -51,8 +51,12 @@ def validate_table_join(options: Any) -> dict[str, Any]:
         raise ValueError("table_join rotations must be a non-empty list of page rotations (0, 90, 180, 270)")
     for name, keys in SECTION_KEYS.items():
         section = options[name]
-        if not isinstance(section, dict) or set(section) != keys:
+        optional = {"split_activity_rows", "require_source_proof", "merge_split_rows"} if name == "continuity" else set()
+        if not isinstance(section, dict) or set(section) - optional != keys:
             raise ValueError(f"table_join {name} must contain exactly {sorted(keys)}")
+        for flag in optional:
+            if type(section.get(flag, False)) is not bool:
+                raise ValueError(f"table_join {name}.{flag} must be a boolean")
     numeric = {"page": ("header_band_frac", "footer_band_frac", "frame_slack_pt", "page_size_tolerance_pt"),
                "running_text": ("cell_pt", "min_pages_frac", "top_zone_frac", "bottom_zone_frac"),
                "boundary": ("bottom_gap_max_frac", "top_gap_max_frac", "word_slack_pt"), "structure": ("x_tolerance_rel",),
@@ -155,18 +159,21 @@ def text_lines(words: list[dict]) -> list[dict]:
     return sorted(lines, key=lambda line: line["y"])
 
 
-def header_prefix(words_a: list[dict], words_b: list[dict], width: float, options: dict) -> dict:
-    """Source-based header repetition: how many text rows at the top of the later table's region reproduce, in text and x position, the top
-    rows of the earlier table's region on the PDF text layer (independent of how the converter split the header cells)."""
+def header_prefix(words_a: list[dict], words_b: list[dict], width: float, options: dict, expected: Counter) -> dict:
+    """Check the expected header against the same leading text on both PDF pages."""
     lines_a, lines_b = text_lines(words_a), text_lines(words_b)
     tolerance = options["continuity"]["header_x_tolerance_rel"] * max(width, 1e-6)
-    rows = 0
-    while rows < min(len(lines_a), len(lines_b)) and lines_a[rows]["text"] == lines_b[rows]["text"] \
-            and abs(lines_a[rows]["x0"] - lines_b[rows]["x0"]) <= tolerance:
+    seen: Counter = Counter()
+    rows, words = 0, 0
+    for line_a, line_b in zip(lines_a, lines_b):
+        if line_a["text"] != line_b["text"] or abs(line_a["x0"] - line_b["x0"]) > tolerance:
+            break
+        seen += Counter(line_a["text"].split())
         rows += 1
-    tokens = {token for line in lines_a[:rows] for token in line["text"].split()}
-    words = sum(line["n"] for line in lines_a[:rows])
-    return {"rows": rows, "words": words, "tokens": tokens, "repeated": rows >= 1 and words >= options["continuity"]["header_min_words"]}
+        words += line_a["n"]
+        if not seen < expected:
+            break
+    return {"rows": rows, "words": words, "repeated": seen == expected and words >= options["continuity"]["header_min_words"]}
 
 
 # ---------------------------------------------------------------- grid helpers (pure; a table is a K1 table record)
@@ -176,16 +183,13 @@ def number_of(text: Any) -> float | None:
     return float(cleaned) if re.fullmatch(r"-?\d+(\.\d+)?", cleaned) else None
 
 
-def leading_header_rows(b: dict, prefix_tokens: set[str]) -> int:
-    """How many leading grid rows of ``b`` hold nothing but the words of the header printed at the top of both pages (always fewer than all
-    rows of b). The dropped rows add no information: every word of them is part of the header that the earlier table prints as well."""
-    count = 0
-    for row in b["grid"][:len(b["grid"]) - 1]:
-        tokens = {token for cell in row for token in norm_text(cell).split()}
-        if not tokens or not tokens <= prefix_tokens:
-            break
-        count += 1
-    return count
+def leading_header_rows(a: dict, b: dict) -> int:
+    """Only drop a declared header with identical content and column order, leaving at least one data row."""
+    n = a["header_rows"]
+    if 0 < n == b["header_rows"] < len(b["grid"]):
+        if [norm_row(row) for row in a["grid"][:n]] == [norm_row(row) for row in b["grid"][:n]]:
+            return n
+    return 0
 
 
 def series_check(a: dict, b: dict, dropped: int, options: dict) -> dict:
@@ -212,8 +216,50 @@ def header_like(row: list[str]) -> bool:
     return any(str(cell).strip() for cell in row) and all(number_of(cell) is None for cell in row)
 
 
+def sequential_columns(table: dict) -> set[int]:
+    return {column for column, label in enumerate(labels_of(table))
+            if re.match(r"^(?:measured depth|depth|md|tvd|station|footage|row no\.?|step)(?:\b|$)", norm_text(label))}
+
+
+CONTINUED = re.compile(r"(?:(.*?)\s+)?(?:\(\s*continued\s*\)|continued\.?|\(\s*cont\.\s*\))$", re.I)
+
+
+def continuation_caption(previous, current, box_a, box_b):
+    """Identify a continuation label above the second table and match a named caption if printed."""
+    def nearby(layer, box):
+        reach = min(30, layer["height"] * .045)
+        return [line for line in text_lines(layer["words"]) if box[1] - reach <= line["y"] < box[1] - 2
+                and box[0] - 6 <= line["x0"] < box[2]]
+
+    before, after = nearby(previous, box_a), nearby(current, box_b)
+    if not after or not (match := CONTINUED.fullmatch(after[-1]["text"])):
+        return None
+    caption = (match[1] or "").rstrip(" -–:").strip()
+    if caption and not any(line["text"].rstrip(" -–:") == caption
+                           or (prior := CONTINUED.fullmatch(line["text"])) and (prior[1] or "").rstrip(" -–:") == caption
+                           for line in before):
+        return None
+    return after[-1]
+
+
+def regular_seam(a, b, anchor, dropped, options):
+    """Require the same observed numeric step on both sides and through the page break."""
+    needed = max(3, options["continuity"]["series_min_rows"])
+    for column in sequential_columns(anchor):
+        left = [number_of(row[column]) for row in a["grid"][a["header_rows"]:]][-needed:]
+        right = [number_of(row[column]) for row in b["grid"][dropped:dropped + 3]]
+        values = [*left, *right]
+        if len(left) != needed or len(right) != 3 or any(value is None for value in values):
+            continue
+        step = values[1] - values[0]
+        if step and all(abs((y - x) - step) <= max(abs(step) * .02, 1e-7) for x, y in zip(values, values[1:])):
+            return True
+    return False
+
+
 def source_of(table: dict) -> str:
-    return "textlayer" if str(table["parts"][0]["source_ref"]).startswith("textlayer") else "docling"
+    source = str(table["parts"][0]["source_ref"])
+    return source.split(":", 1)[0] if ":" in source else "docling"
 
 
 # ---------------------------------------------------------------- decision for one pair
@@ -237,9 +283,12 @@ def assess_pair(a: dict, b: dict, layer_a: dict | None, layer_b: dict | None, li
         blocking.append("pdf_unreadable")
     else:
         evidence["rotation"] = [layer_a["rotation"], layer_b["rotation"]]
-        if layer_a["rotation"] not in options["rotations"] or layer_b["rotation"] not in options["rotations"]:
+        frame_rotations = [0 if layer.get("normalized") else layer["rotation"] for layer in (layer_a, layer_b)]
+        if any(layer.get("normalized") for layer in (layer_a, layer_b)):
+            evidence["normalized"] = [bool(layer.get("normalized")) for layer in (layer_a, layer_b)]
+        if any(rotation not in options["rotations"] for rotation in frame_rotations):
             blocking.append("rotation_unsupported")
-        elif layer_a["rotation"] != layer_b["rotation"]:
+        elif frame_rotations[0] != frame_rotations[1]:
             blocking.append("rotation_differs")
         tolerance = options["page"]["page_size_tolerance_pt"]
         if abs(layer_a["width"] - layer_b["width"]) > tolerance or abs(layer_a["height"] - layer_b["height"]) > tolerance:
@@ -252,7 +301,14 @@ def assess_pair(a: dict, b: dict, layer_a: dict | None, layer_b: dict | None, li
         if len(inside_a) < minimum or len(inside_b) < minimum:
             blocking.append("no_text_layer")
         end = ends_page_body(box_a, layer_a["words"], layer_a["height"], limits[a["regions"][-1]["page"]][1], options)
-        start = starts_page_body(box_b, layer_b["words"], layer_b["height"], limits[b["regions"][0]["page"]][0], options)
+        words_b = layer_b["words"]
+        if options["continuity"].get("require_source_proof"):
+            caption = continuation_caption(layer_a, layer_b, box_a, box_b)
+            if caption:
+                evidence["continuation_caption"] = caption["text"]
+                words_b = [w for w in words_b if not (abs((w["bbox"][1] + w["bbox"][3]) / 2 - caption["y"]) < 2.5
+                                                       and caption["x0"] - 1 <= w["bbox"][0] < box_b[2])]
+        start = starts_page_body(box_b, words_b, layer_b["height"], limits[b["regions"][0]["page"]][0], options)
         extent = x_extent_match(box_a, box_b, options)
         evidence.update(ends_page_body=end, starts_page_body=start, x_extent=extent)
         if not end["ends"]:
@@ -264,8 +320,11 @@ def assess_pair(a: dict, b: dict, layer_a: dict | None, layer_b: dict | None, li
     dropped = 0
     prefix = None
     if not any(reason in blocking for reason in ("already_multipage", "empty_table", "column_count_differs", "pdf_unreadable")):
-        prefix = header_prefix(inside_a, inside_b, max(a["regions"][-1]["bbox"][2] - a["regions"][-1]["bbox"][0], 1e-6), options)
-        dropped = leading_header_rows(b, prefix["tokens"]) if prefix["repeated"] else 0
+        expected = Counter(token for cell in a["cells"] if cell["r"] < a["header_rows"]
+                           for token in norm_text(cell["text"]).split())
+        width = a["regions"][-1]["bbox"][2] - a["regions"][-1]["bbox"][0]
+        prefix = header_prefix(inside_a, inside_b, width, options, expected)
+        dropped = leading_header_rows(a, b) if prefix["repeated"] else 0
         evidence["header_text_layer"] = {"rows": prefix["rows"], "words": prefix["words"], "repeated": prefix["repeated"], "grid_rows_dropped": dropped}
         series = series_check(a, b, dropped, options)
         evidence["series"] = series
@@ -277,8 +336,7 @@ def assess_pair(a: dict, b: dict, layer_a: dict | None, layer_b: dict | None, li
         return {"decision": "separate", "reasons": sorted(set(blocking), key=REASONS_SEPARATE.index), "evidence": evidence, "dropped_header_rows": 0}
     signals, conflicts = [], []
     if prefix and prefix["repeated"]:
-        covered = {token for row in b["grid"][:dropped] for cell in row for token in norm_text(cell).split()}
-        if dropped and prefix["tokens"] <= covered:
+        if dropped:
             signals.append("header_repeated")
         else:
             conflicts.append("header_repeated_on_pdf_not_in_grid")  # the PDF repeats a header the grid cannot drop cleanly: do not guess
@@ -326,7 +384,9 @@ def sample_pages(count: int, needed: set[int], maximum: int) -> list[int]:
     return sorted(needed | {others[int(i * len(others) / room)] for i in range(room)}) if room else sorted(needed)
 
 
-def plan_joins(tables: list[dict], read_page: Callable[[int], dict], page_count: int, options: dict) -> dict[str, Any]:
+def plan_joins(tables: list[dict], read_page: Callable[[int], dict], page_count: int, options: dict, *,
+               report_contexts: dict[int, dict] | None = None,
+               source_identity: Callable[[dict], dict[str, tuple[str, ...]]] | None = None) -> dict[str, Any]:
     """Decide every candidate pair of one document. ``read_page(n)`` returns the source page layer (words, height, width, rotation).
 
     Returns {"decisions": [...], "groups": [[table, ...], ...], "error": str | None}. A group of two or more tables is to be joined."""
@@ -345,9 +405,58 @@ def plan_joins(tables: list[dict], read_page: Callable[[int], dict], page_count:
               and t["regions"][0]["page"] in limits
               and frame_zone(t["regions"][0]["bbox"], *limits[t["regions"][0]["page"]], options["page"]["frame_slack_pt"])}
     decisions = []
+    contexts = report_contexts or {}
+    identities: dict[int, dict[str, tuple[str, ...]]] = {}
+    anchors: dict[str, dict] = {}
     for a, b in candidate_pairs(tables, frames):
-        result = assess_pair(a, b, layers.get(a["regions"][-1]["page"]), layers.get(b["regions"][0]["page"]), limits, options)
-        decisions.append({"a": a["table_id"], "b": b["table_id"], "pages": result["evidence"]["pages"], **result})
+        first, second = a["regions"][-1]["page"], b["regions"][0]["page"]
+        context_a, context_b = contexts.get(first, {}), contexts.get(second, {})
+        changed = [key for key in ("report_date", "well") if context_a.get(key) and context_b.get(key)
+                   and norm_text(context_a[key]) != norm_text(context_b[key])]
+        if changed:
+            result = {"decision": "separate", "reasons": ["report_context_differs"], "dropped_header_rows": 0,
+                      "evidence": {"pages": [first, second], "different_fields": changed}}
+        else:
+            result = assess_pair(a, b, layers.get(first), layers.get(second), limits, options)
+            same_report = bool(context_a.get("well") and context_a.get("report_date") and context_a == context_b)
+            if source_identity is not None and result["decision"] != "separate":
+                for number in (first, second):
+                    if number not in identities:
+                        identities[number] = source_identity(layers[number])
+                left, right = identities[first], identities[second]
+                fields = sorted(key for key in left.keys() & right.keys() if set(left[key]).isdisjoint(right[key]))
+                if fields:
+                    result.update(decision="separate", reasons=["source_report_identity_differs"], dropped_header_rows=0)
+                    result["evidence"]["source_report_identities"] = [left, right]
+                    result["evidence"]["different_fields"] = fields
+                shared = {key for key in left.keys() & right.keys() if len(left[key]) == 1 and left[key] == right[key]}
+                same_report = same_report or "well" in shared and bool(
+                    shared & {"printed_report_date", "report_for", "period", "report_number", "report_reference_date"})
+            anchor = anchors.get(a["table_id"], a)
+            rendered_body_header = (b["header_rows"] == 1 and bool(b["grid"]) and bool(b["grid"][0])
+                                    and all(number_of(value) is not None for value in b["grid"][0]))
+            if options["continuity"].get("require_source_proof") and result["decision"] != "separate":
+                proof = result["evidence"]
+                repeated = "header_repeated" in result["reasons"]
+                headerless = not b["header_rows"] or rendered_body_header
+                marker = proof.get("continuation_caption") and (repeated or headerless and same_report)
+                sequential = same_report and (repeated or headerless) and regular_seam(
+                    a, b, anchor, result["dropped_header_rows"], options)
+                if (marker or sequential) and (result["decision"] == "joined" or "no_continuation_signal" in result["reasons"]):
+                    result.update(decision="joined", reasons=["printed_continuation" if marker else "regular_sequence_within_report"])
+                    if rendered_body_header:
+                        proof["rendered_body_header_rows"] = 1
+                elif result["decision"] == "joined":
+                    result.update(decision="uncertain", reasons=["no_independent_continuation_proof"], dropped_header_rows=0)
+            elif (result["decision"] == "uncertain" and result["reasons"][0] == "no_continuation_signal"
+                    and same_report and (not b["header_rows"] or rendered_body_header)
+                    and sequential_columns(anchor).intersection(result["evidence"]["series"]["continues"])):
+                result.update(decision="joined", reasons=["headerless_monotonic_series_within_report"], dropped_header_rows=0)
+                if rendered_body_header:
+                    result["evidence"]["rendered_body_header_rows"] = 1
+        if result["decision"] == "joined":
+            anchors[b["table_id"]] = anchors.get(a["table_id"], a)
+        decisions.append({"a": a["table_id"], "b": b["table_id"], "pages": [first, second], **result})
     by_id = {t["table_id"]: t for t in tables}
     groups: list[list[dict]] = []
     for decision in decisions:
@@ -408,13 +517,21 @@ def apply_groups(tables: list[dict], plan: dict[str, Any], options: dict) -> tup
                 break
             grid.extend(list(row) for row in table["grid"][dropped:])
             dropped_bag.update(token_bag(table["grid"][:dropped]))
-            cells.extend(dict(cell, r=cell["r"] - dropped + offset) for cell in copy.deepcopy(table["cells"]) if cell["r"] >= dropped)
+            body_header = decision["evidence"].get("rendered_body_header_rows", 0)
+            cells.extend(dict(cell, r=cell["r"] - dropped + offset, is_header=cell["is_header"] and cell["r"] >= body_header)
+                         for cell in copy.deepcopy(table["cells"]) if cell["r"] >= dropped)
             rows_text.extend(row_text(labels, row) for row in table["grid"][dropped:])
             parts.append(dict(table["parts"][0], row_start=offset, row_end=offset + len(table["grid"]) - dropped,
                               header=[list(row) for row in table["grid"][:dropped]]))
+            if "cell_sources" in parts[-1]:
+                parts[-1]["cell_sources"] = [dict(cell, r=cell["r"] - dropped + offset)
+                                             for cell in parts[-1]["cell_sources"] if cell["r"] >= dropped]
             regions.extend(table["regions"])
             moved[table["logical_id"]] = {"table_id": table["table_id"], "owner": first["table_id"], "offset": offset, "dropped": dropped,
                                           "rows": len(table["grid"]) - dropped}
+            if body_header:
+                parts[-1]["rendered_body_header_rows"] = body_header
+                moved[table["logical_id"]]["rendered_body_header_rows"] = body_header
         if moved:
             before = Counter()
             for part in group:
@@ -431,7 +548,7 @@ def apply_groups(tables: list[dict], plan: dict[str, Any], options: dict) -> tup
         replaced[first["table_id"]] = joined
         absorbed.update(moved)
     owner_of = {entry["table_id"]: entry["owner"] for entry in absorbed.values()}
-    marks = uncertain_marks(plan["decisions"], owner_of)
+    marks = {} if options["continuity"].get("require_source_proof") else uncertain_marks(plan["decisions"], owner_of)
     result = []
     for table in tables:
         if table["table_id"] in owner_of:
@@ -466,18 +583,26 @@ def summarize(plan: dict[str, Any], absorbed: dict[str, dict], failures: list[di
             "failures": failures, "error": plan.get("error")}
 
 
-def join_tables(tables: list[dict], pdf: Path, page_count: int, options: dict) -> tuple[list[dict], dict[str, dict], dict[str, Any]]:
+def join_tables(tables: list[dict], pdf: Path, page_count: int, options: dict, *,
+                page_rotations: dict[int, int] | None = None,
+                report_contexts: dict[int, dict] | None = None, excluded_pages=()) -> tuple[list[dict], dict[str, dict], dict[str, Any]]:
     """Plan and apply the joins of one document. Returns (tables, absorbed, report); the report is a sidecar and never part of the package."""
     from .text_layer import source_page
+    from .report_fields import source_report_identity
     cache: dict[int, dict] = {}
+    rotations = page_rotations or {}
 
     def read_page(number: int) -> dict:
         if number not in cache:
-            cache[number] = source_page(pdf, number)
+            cache[number] = source_page(pdf, number, displayed_origin=True, rotation_override=rotations.get(number))
+            if number in rotations:
+                cache[number]["normalized"] = True
         return cache[number]
 
     try:
-        plan = plan_joins(tables, read_page, page_count, options)
+        candidates = [table for table in tables if not set(table["pages"]).intersection(excluded_pages)]
+        plan = plan_joins(candidates, read_page, page_count, options, report_contexts=report_contexts,
+                          source_identity=source_report_identity)
         result, absorbed, failures = apply_groups(tables, plan, options)
     except Exception as error:  # failure isolation: one document that cannot be judged never stops the export and never gets half a join
         report = {"decisions": [], "frames": [], "absorbed": {}, "summary": {"pairs": 0, "by_decision": {}, "by_reason": {}, "joined_groups": 0,

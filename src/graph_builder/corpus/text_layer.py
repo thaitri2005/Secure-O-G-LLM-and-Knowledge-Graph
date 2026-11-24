@@ -10,8 +10,9 @@ def union(items: list) -> list | None:
     boxes = [item["bbox"] if isinstance(item, dict) else item for item in items]
     return [min((b[0] for b in boxes)), min((b[1] for b in boxes)), max((b[2] for b in boxes)), max((b[3] for b in boxes))] if boxes else None
 
-def source_page(path: Path, number: int, upright: bool=False) -> dict:
-    """Read visible glyphs and vector paths directly from the source PDF."""
+def source_page(path: Path | bytes, number: int, upright: bool=False, *, displayed_origin: bool=False,
+                rotation_override: int | None = None) -> dict:
+    """Read visible glyphs and vector paths, optionally in the normalized copy's frame."""
     import pypdfium2 as pdfium
     from pypdfium2 import raw
     with pdfium.PdfDocument(path) as pdf:
@@ -20,9 +21,18 @@ def source_page(path: Path, number: int, upright: bool=False) -> dict:
         width, height = page.get_size()
         rotation = page.get_rotation()
         rw, rh = (height, width) if rotation in (90, 270) else (width, height)
+        if rotation_override is not None:
+            rotation = rotation_override
+            width, height = (rh, rw) if rotation in (90, 270) else (rw, rh)
+        if upright and rotation == 270:
+            view_width, view_height = height, width
+        else:
+            view_width, view_height = width, height
+        origin_x, origin_y = page.get_bbox()[:2] if displayed_origin else (0, 0)
 
         def frame(box):
             l, b, r, t = box
+            l, b, r, t = l - origin_x, b - origin_y, r - origin_x, t - origin_y
             physical = {0: [l, rh - t, r, rh - b], 90: [b, l, t, r], 180: [rw - r, b, rw - l, t], 270: [rh - t, rw - r, rh - b, rw - l]}[rotation]
             if upright and rotation == 270:
                 l, t, r, b = physical
@@ -54,6 +64,8 @@ def source_page(path: Path, number: int, upright: bool=False) -> dict:
                         boxes.append(frame([min((p[0] for p in points)), min((p[1] for p in points)), max((p[0] for p in points)), max((p[1] for p in points))]))
                 clips[pointer] = boxes
             cx, cy = ((bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2)
+            if displayed_origin and not (0 <= cx <= view_width and 0 <= cy <= view_height):
+                continue
             if any((not (clip[0] - 0.1 <= cx <= clip[2] + 0.1 and clip[1] - 0.1 <= cy <= clip[3] + 0.1) for clip in clips[pointer])):
                 continue
             chars.append({"text": value, "bbox": bb, "index": i})
@@ -67,8 +79,6 @@ def source_page(path: Path, number: int, upright: bool=False) -> dict:
                 continue
             if bb[2] - bb[0] > 0.5 or bb[3] - bb[1] > 0.5:
                 rulings.append(bb)
-        if upright and rotation == 270:
-            width, height = (height, width)
         rows = []
         for char in sorted(chars, key=lambda c: ((c["bbox"][1] + c["bbox"][3]) / 2, c["bbox"][0])):
             cy = (char["bbox"][1] + char["bbox"][3]) / 2
@@ -90,7 +100,7 @@ def source_page(path: Path, number: int, upright: bool=False) -> dict:
                 last = char
             if run:
                 words.append({"text": "".join((c["text"] for c in run)), "bbox": union(run), "row": row_id})
-        result = {"page": number, "width": width, "height": height, "rotation": rotation, "upright_for_pairing": upright and rotation == 270, "chars": chars, "words": words, "rulings": rulings, "text": textpage.get_text_range(), "provenance": "Direct PDFium glyphs and vector paths only."}
+        result = {"page": number, "width": view_width, "height": view_height, "rotation": rotation, "upright_for_pairing": upright and rotation == 270, "chars": chars, "words": words, "rulings": rulings, "text": textpage.get_text_range(), "provenance": "Direct PDFium glyphs and vector paths only."}
         textpage.close()
         page.close()
         return result

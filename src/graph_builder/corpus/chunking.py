@@ -6,12 +6,13 @@ sources (DOCX, HTML, Markdown), where items have no page geometry and chunks car
 from __future__ import annotations
 
 from collections import Counter
+from functools import cache
 import hashlib
 from pathlib import Path
 import re
 from typing import Any
 
-from docling_core.types.doc import ContentLayer, DoclingDocument, TableItem, TextItem
+from docling_core.types.doc import ContentLayer, DoclingDocument, ListItem, TableItem, TextItem
 
 from ..ingestion.attribution import source_spans
 from ..ingestion.chunking import split_table
@@ -27,10 +28,27 @@ BOUNDARY = re.compile(r"[.!?…]+[\"'”’)\]]*\s+|\n+")
 OPENERS = "\"'“‘([«"
 
 
-def split_sentences(text: str) -> list[tuple[int, int]]:
+def restore_list_markers(doc: DoclingDocument) -> None:
+    """Restore source-backed markers on items with unambiguous provenance before chunking."""
+    for item in doc.texts:
+        if not isinstance(item, ListItem) or len(item.prov) > 1:
+            continue
+        marker = item.marker.strip()
+        body = item.text.strip()
+        original = item.orig.strip()
+        tail = original[len(marker):]
+        if marker and body and original.startswith(marker) and tail[:1].isspace() and tail.lstrip() == body:
+            item.text = original
+            if item.prov:
+                item.prov[0].charspan = (0, len(original))
+
+
+def split_sentences(text: str, protected_ends: frozenset[int] = frozenset()) -> list[tuple[int, int]]:
     """Sentence offsets; a boundary needs end punctuation followed by an uppercase letter or digit (any script)."""
     spans, start = [], 0
     for match in BOUNDARY.finditer(text):
+        if match.end() in protected_ends:
+            continue
         following = text[match.end():match.end() + 2].lstrip(OPENERS)[:1]
         if "\n" in match.group() or following.isupper() or following.isdigit():
             end = match.end()
@@ -47,13 +65,14 @@ def split_sentences(text: str) -> list[tuple[int, int]]:
     return spans
 
 
-def pack(text: str, max_chars: int) -> list[tuple[int, int]]:
+def pack(text: str, max_chars: int, protected_ends: frozenset[int] = frozenset()) -> list[tuple[int, int]]:
     """Pack whole sentences up to max_chars; split an oversized sentence at whitespace."""
     pieces = []
-    for start, end in split_sentences(text):
+    for start, end in split_sentences(text, protected_ends):
         while end - start > max_chars:
             limit = start + max_chars
-            cut = next((i for i in range(limit, start, -1) if text[i].isspace()), limit)
+            cut = next((i for i in range(limit, start, -1)
+                        if text[i].isspace() and i + 1 not in protected_ends), limit)
             pieces.append((start, cut))
             start = cut
             while start < end and text[start].isspace():
@@ -69,14 +88,17 @@ def pack(text: str, max_chars: int) -> list[tuple[int, int]]:
     return packed
 
 
-def table_parts(item: TableItem, doc: DoclingDocument, caption: str, max_chars: int, mode: str) -> list[str]:
+def table_parts(item: TableItem, doc: DoclingDocument, caption: str, max_chars: int, mode: str,
+                *, original: str | None = None) -> list[str]:
     """Table chunk texts. ``span_once_keyed`` renders merged cells once but keeps the row boundaries (hence the
     number of chunks and their ids) of the Docling rendering; if those cannot be reproduced the Docling text is used."""
-    markdown = table_markdown(item, doc, mode)
+    if original is None:
+        original = item.export_to_markdown(doc=doc)
+    markdown = table_markdown(item, doc, mode, original=original)
     if mode != "span_once_keyed":
         return split_table(markdown, caption, max_chars)
-    reference = split_table(table_markdown(item, doc, "docling"), caption, max_chars)
-    if markdown == table_markdown(item, doc, "docling"):
+    reference = split_table(original, caption, max_chars)
+    if markdown == original:
         return reference
     groups = [max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2) for part in reference]
     try:
@@ -103,6 +125,7 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
     ``source`` (the PDF) is only read when ``chunking.label_value`` is configured (see ``label_value``)."""
     max_chars = config["chunking"]["max_chars"]
     paragraph = config["chunking"]["strategy"] == "paragraph"
+    preserve_list_markers = config["chunking"].get("preserve_list_markers", False)
     table_mode = config["chunking"].get("table_markdown", "docling")
     paginated = bool(doc.pages)
     filters = config["filters"]
@@ -115,8 +138,21 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
                                                   filters["running_line_fragment_gap_lines"],
                                                   keep_pattern(filters.get("keep_line_patterns", [])),
                                                   filters.get("running_line_position_tolerance"),
-                                                  filters.get("running_line_min_pages"))
-    exclusions = dropped_item_reasons(doc, filters.get("toc_leader_min_dots"))
+                                                  filters.get("running_line_min_pages"),
+                                                  filters.get("running_line_keep_varying_numbers", False))
+    @cache
+    def serializer():
+        from docling_core.transforms.serializer.markdown import MarkdownDocSerializer
+
+        return MarkdownDocSerializer(doc=doc)
+
+    @cache
+    def render_table(ref):
+        return serializer().serialize(item=table_by_ref[ref]).text
+
+    table_by_ref = {table.self_ref: table for table in doc.tables}
+    exclusions = dropped_item_reasons(doc, filters.get("toc_leader_min_dots"),
+                                      render_table=lambda item: render_table(item.self_ref))
     label_value = None
     if "label_value" in config["chunking"]:
         # The exclusions (running lines, dotted-leader TOC lines, ...) are decided on the text as converted; the corrected text must not
@@ -124,6 +160,9 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
         if paginated:
             doc, label_value = correct_document(doc, source, label_value_settings(config["chunking"]["label_value"]), ocr_pages,
                                                 frozenset(exclusions))
+            table_by_ref = {table.self_ref: table for table in doc.tables}
+            serializer.cache_clear()
+            render_table.cache_clear()
         else:
             label_value = {"method": "cell_geometry_v1", "skipped": "not_paginated"}
     quarantine = None
@@ -166,7 +205,15 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
         if not buffer:
             return
         text = "\n".join(value for value, _, _ in buffer)
-        for start, end in pack(text, max_chars):
+        protected_ends = set()
+        if preserve_list_markers:
+            position = 0
+            for value, item, _ in buffer:
+                marker = clean_text(item.marker) if isinstance(item, ListItem) else ""
+                if marker and value.startswith(marker + " "):
+                    protected_ends.add(position + len(marker) + 1)
+                position += len(value) + 1
+        for start, end in pack(text, max_chars, frozenset(protected_ends)):
             selected, position = [], 0
             for value, item, page in buffer:
                 if position < end and start < position + len(value):
@@ -220,7 +267,7 @@ def chunk_document(doc: DoclingDocument, doc_id: str, config: dict[str, Any],
             # Rows are counted as the Markdown serializer renders them; cap at the grid in case it differs.
             next_row = min(_count_header_rows(item), item.data.num_rows)
             items = [(item, None), *[(ref.resolve(doc), None) for ref in item.captions]]
-            for part in table_parts(item, doc, caption, max_chars, table_mode):
+            for part in table_parts(item, doc, caption, max_chars, table_mode, original=render_table(item.self_ref)):
                 rows = max(0, sum(line.strip().startswith("|") for line in part.splitlines()) - 2)
                 end = min(next_row + rows, item.data.num_rows)
                 emit("table", part, items, table_id=table_id, row_start=next_row, row_end=end)

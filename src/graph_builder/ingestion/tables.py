@@ -21,24 +21,27 @@ def tables_path(chunks_path):
 
 
 def table_views(table) -> tuple[list[list[str]], list[str], list[dict], int]:
-    grid = [[clean_text(cell.text) for cell in row] for row in table.data.grid]
+    native_grid = table.data.grid
+    grid = [[clean_text(cell.text) for cell in row] for row in native_grid]
     header_rows = 0
-    for row in table.data.grid:
+    for row in native_grid:
         if row and any(cell.column_header for cell in row):
             header_rows += 1
         else:
             break
-    headers = []
-    for column in range(table.data.num_cols):
-        labels = list(dict.fromkeys(grid[row][column] for row in range(header_rows) if grid[row][column]))
-        headers.append(" / ".join(labels))
-    rows_text = ["; ".join(f"{headers[column]}: {value}" if headers[column] else value
-                           for column, value in enumerate(row)) for row in grid[header_rows:]]
+    rows_text = table_row_texts(grid, header_rows, table.data.num_cols)
     cells = [{"r": cell.start_row_offset_idx, "c": cell.start_col_offset_idx,
               "row_span": cell.row_span, "col_span": cell.col_span, "text": cell.text,
               "is_header": cell.column_header or cell.row_header or cell.row_section}
              for cell in table.data.table_cells]
     return grid, rows_text, cells, header_rows
+
+
+def table_row_texts(grid, header_rows, width):
+    headers = [" / ".join(dict.fromkeys(grid[row][c] for row in range(header_rows) if grid[row][c]))
+               for c in range(width)]
+    return ["; ".join(f"{headers[c]}: {value}" if headers[c] else value for c, value in enumerate(row))
+            for row in grid[header_rows:]]
 
 
 def compact_markdown(table) -> str:
@@ -54,7 +57,7 @@ def compact_markdown(table) -> str:
 TABLE_MARKDOWN_MODES = ("docling", "span_once", "span_once_keyed")
 
 
-def table_markdown(table, doc, mode: str = "docling") -> str:
+def table_markdown(table, doc, mode: str = "docling", *, original: str | None = None) -> str:
     """Markdown of a table as ``export_to_markdown`` renders it, or with each merged cell's text written once.
 
     ``docling`` returns Docling's own output. ``span_once`` keeps the text of a cell that spans several rows or
@@ -72,7 +75,8 @@ def table_markdown(table, doc, mode: str = "docling") -> str:
     """
     if mode not in TABLE_MARKDOWN_MODES:
         raise ValueError(f"table_markdown mode must be one of {TABLE_MARKDOWN_MODES}")
-    original = table.export_to_markdown(doc=doc)
+    if original is None:
+        original = table.export_to_markdown(doc=doc)
     if mode == "docling":
         return original
     from docling_core.transforms.serializer.markdown import _count_header_rows, _flatten_header_rows

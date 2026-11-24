@@ -60,6 +60,15 @@ def check_page_status(context: CheckContext, entity: dict) -> list[dict]:
     return out
 
 
+def check_table_coverage(context: CheckContext, entity: dict) -> list[dict]:
+    signals = []
+    if chunks := entity.get("table_chunks_over_budget"):
+        signals.append(_sig(context, "TABLE_CHUNK_OVER_BUDGET", "page", entity, {"chunks": chunks}))
+    if findings := entity.get("table_findings"):
+        signals.append(_sig(context, "TABLE_RECONSTRUCTION_ABSTAINED", "page", entity, {"findings": findings}))
+    return signals
+
+
 def check_char_ratio(context: CheckContext, entity: dict) -> list[dict]:
     """Ratio of extracted to PDF text characters, text-mode pages only (hybrid/OCR pages add OCR text outside the text layer)."""
     pdf, extracted = entity["pdf_text_chars"], entity["extracted_characters"]
@@ -102,6 +111,8 @@ def check_table_origin(context: CheckContext, entity: dict) -> list[dict]:
         return [_sig(context, "TABLE_ORIGIN_UNKNOWN", "table", entity)]
     if entity["origin"] in ("textlayer_rebuild", "mixed"):
         return [_sig(context, "TABLE_ORIGIN_TEXTLAYER_REBUILD", "table", entity, {"source_refs": entity["source_refs"]})]
+    if entity["origin"] == "ocr_corroborated":
+        return [_sig(context, "TABLE_ORIGIN_OCR_CORROBORATED", "table", entity, {"source_refs": entity["source_refs"]})]
     return []
 
 
@@ -128,6 +139,8 @@ def register_builtin(registry: Registry) -> Registry:
     registry.register_check("chunk_quality", check_chunk_quality, "document", version,
                             limitations=("quality 'ok' is only counted, never treated as evidence of correct content.",))
     registry.register_check("page_status", check_page_status, "page", version)
+    registry.register_check("table_coverage", check_table_coverage, "page", version,
+                            limitations=("Abstentions require a layout recognized by a configured table rule.",))
     registry.register_check("char_ratio", check_char_ratio, "page", "2",
                             limitations=("Compares the pipeline's own extracted-char count with its own PDF text-char count; furniture removal lowers the ratio legitimately.",
                                          "From version 2 the Markdown table syntax of the release chunks (cell pipes, separator rows, image placeholders, entities) is subtracted from the extracted count; the syntax is counted in the release chunks while the extracted count comes from the work folder, so a work folder from another run can shift the ratio.",))

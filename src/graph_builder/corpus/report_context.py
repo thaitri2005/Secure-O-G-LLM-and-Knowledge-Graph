@@ -1,12 +1,14 @@
 """Resolve the report date and well of every page of a daily report, and the one well of a single-well document."""
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 import re
 from typing import Any, Iterable
 
 DATE_KEYS = ("Report For",)
 WELL_KEYS = ("Well ID:", "Well Name:")
+HEADER_END = re.compile(r"^(?:ops summary|planned ops|present operations|activity planned|daily op|forecast op|casing data|time breakdown|operations summary|from\s+to)\b", re.I)
 
 
 def first_match(patterns: list[str], text: str) -> str:
@@ -48,7 +50,9 @@ def page_conflicts(form: dict | None, page_text: str, config: dict[str, Any]) ->
             if from_form and from_text and from_form != from_text]
 
 
-def pdf_page_texts(pdf_path: Path, pages: Iterable[int]) -> dict[int, str]:
+def pdf_page_texts(pdf_path: Path, pages: Iterable[int], *, source_texts: dict[int, str] | None = None) -> dict[int, str]:
+    if source_texts is not None:
+        return {number: source_texts[number] for number in pages}
     import pypdfium2 as pdfium
     texts = {}
     with pdfium.PdfDocument(pdf_path) as pdf:
@@ -95,7 +99,8 @@ def document_contexts(pdf_path: Path, pages: Iterable[int], document_type: str,
 
 
 def report_contexts(pdf_path: Path, pages: Iterable[int], forms: dict[int, dict], document_type: str,
-                    config: dict[str, Any]) -> tuple[dict[int, dict], list[dict], list[int]]:
+                    config: dict[str, Any], *, source_texts: dict[int, str] | None = None
+                    ) -> tuple[dict[int, dict], list[dict], list[int]]:
     """Resolve the context of each 1-based page of a daily report.
 
     ``forms`` maps page numbers to the form extracted on that page, ``config`` is the ``report_context`` section
@@ -106,7 +111,7 @@ def report_contexts(pdf_path: Path, pages: Iterable[int], forms: dict[int, dict]
         return {}, [], []
     pages = list(pages)
     contexts, conflicts, missing = {}, [], []
-    for number, text in pdf_page_texts(pdf_path, pages).items():
+    for number, text in pdf_page_texts(pdf_path, pages, source_texts=source_texts).items():
         form = forms.get(number)
         context = page_context(form, text, config)
         if context:
@@ -115,3 +120,97 @@ def report_contexts(pdf_path: Path, pages: Iterable[int], forms: dict[int, dict]
             missing.append(number)
         conflicts.extend({"page": number, **conflict} for conflict in page_conflicts(form, text, config))
     return contexts, conflicts, missing
+
+
+def physical_context_fields(layer: dict) -> dict[str, str]:
+    """Read explicit identity pairs from visible header rows, before any body or table."""
+    from .report_fields import DATE, HEADER_RULES, field_candidates, normalized, supported
+    from .table_recognition import page_lines
+
+    rows = []
+    for row in page_lines(layer):
+        text = " ".join(word["text"] for word in row["words"])
+        if row["bottom"] > layer["height"] / 3 or HEADER_END.search(text):
+            break
+        rows.append((row, text))
+    rules = {name: HEADER_RULES[name] for name in ("well", "report", "report_for", "spud", "permit")}
+    rules["date"] = re.compile(fr"(?<!\w)(?<!spud\s)(?P<key>(?:(?:report|rpt)\s+)?date\s*:?)\s+(?P<value>{DATE})(?=\s|$)", re.I)
+    candidates = list(field_candidates(layer, rows, rules))
+    peers = [field for _, field in candidates]
+    accepted: dict[str, set[str]] = {}
+    for kind, field in candidates:
+        if not supported(field, peers):
+            continue
+        value = field["value"]
+        if kind == "report":
+            _, _, value = value.partition(" ")
+        if kind == "well" and normalized(field["key"]).rstrip(":") == "well id":
+            kind = "well_id"
+        if value:
+            accepted.setdefault(kind, set()).add(value)
+    result = {kind: next(iter(values)) for kind, values in accepted.items() if len(values) == 1}
+    if not accepted.get("well") and "well_id" in result:
+        result["well"] = result["well_id"]
+    return result
+
+
+def slash_order(value: str) -> str | None:
+    match = re.fullmatch(r"(\d{1,2})/(\d{1,2})/\d{2,4}", value)
+    if match:
+        first, second = map(int, match.groups())
+        if first > 12 >= second:
+            return "day"
+        if second > 12 >= first:
+            return "month"
+    return None
+
+
+def canonical_date(value: str, slash: str | None) -> str | None:
+    formats = ["%Y-%m-%d", "%d-%b-%Y", "%d-%b-%y"]
+    order = slash_order(value) or slash
+    if order == "day" or (not order and re.match(r"^(\d{1,2})/\1/", value)):
+        formats += ["%d/%m/%Y", "%d/%m/%y"]
+    if order == "month":
+        formats += ["%m/%d/%Y", "%m/%d/%y"]
+    for fmt in formats:
+        try:
+            return datetime.strptime(value, fmt).date().isoformat()
+        except ValueError:
+            continue
+    return None
+
+
+def report_context_fallback(pdf: Path, pages: list[dict], missing: list[int], stacked_pages=()) -> dict[int, dict]:
+    """Resolve the report day and well on missing text pages without borrowing another page's identity."""
+    from .orientation import normalized_rotation
+    from .text_layer import source_page
+
+    unresolved = set(missing) - set(stacked_pages)
+    fields = {}
+    for entry in pages:
+        number = entry["page"]
+        if number not in unresolved or entry["mode"] != "text":
+            continue
+        rotation = normalized_rotation(entry)
+        try:
+            layer = source_page(pdf, number, displayed_origin=True, rotation_override=rotation[1] if rotation else None)
+        except (OSError, ValueError, RuntimeError):
+            continue
+        if not layer["rotation"] or rotation:
+            fields[number] = physical_context_fields(layer)
+    orders: dict[str, set[str]] = {}
+    for values in fields.values():
+        if well := values.get("well"):
+            for key in ("report_for", "report", "date", "spud"):
+                if order := slash_order(values.get(key, "")):
+                    orders.setdefault(well.casefold(), set()).add(order)
+    resolved = {}
+    for number, values in fields.items():
+        well = values.get("well")
+        raw_date = next((values[key] for key in ("report_for", "report", "date") if key in values), "")
+        if well and raw_date:
+            choices = orders.get(well.casefold(), set())
+            date = canonical_date(raw_date, next(iter(choices)) if len(choices) == 1 else None)
+            if date:
+                resolved[number] = {"well": well, "report_date": date}
+    return resolved

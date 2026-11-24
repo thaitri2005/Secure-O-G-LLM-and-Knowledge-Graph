@@ -6,6 +6,7 @@ their cached segments, and isolates failures to the document that caused them.
 """
 from __future__ import annotations
 
+from collections import Counter
 from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 from concurrent.futures.process import BrokenProcessPool
 import gzip
@@ -24,9 +25,9 @@ from typing import Any, Callable
 
 from .analysis import analyze_pdf, segments
 from .catalog import Corpus, now
-from .chunking import chunk_document
+from .chunking import chunk_document, restore_list_markers
 from .label_value import label_value_settings, mark_unverified
-from .orientation import UPRIGHT_COPY, apply_page_orientation
+from .orientation import NUMBER, RotationProbe, UPRIGHT_COPY, apply_page_orientation, numeric_cell_anchors, verify_working_copy
 from .quarantine import mark_quarantine, quarantine_settings
 from .store import atomic_write_json, atomic_write_jsonl, atomic_write_text, file_sha256
 from .vietnamese import text_profile
@@ -117,14 +118,15 @@ def completed_summary(directory: Path) -> dict[str, Any]:
 
 
 def converter(kind: str, mode: str | None, config: dict[str, Any], models: Path):
-    """Reuse one converter per (format family, OCR mode) in this process; models load once."""
-    key = (kind, mode)
+    """Reuse a converter only when its runtime and model settings match."""
+    pdf = kind in ("pdf", "image")
+    options = {name: config[name] for name in ("ocr", "table_mode", "document_timeout")} if pdf else {}
+    key = (kind, mode, models if pdf else None, json.dumps(options, sort_keys=True))
     if key not in _CONVERTERS:
         if kind in ("pdf", "image"):
             from .convert import build_converter
             full_page = {"text": None, "hybrid": False, "ocr": True}[mode]
-            _CONVERTERS[key] = build_converter({"ocr": config["ocr"], "table_mode": config["table_mode"],
-                                                "document_timeout": config["document_timeout"]}, models, full_page)
+            _CONVERTERS[key] = build_converter(options, models, full_page)
         else:
             from docling.datamodel.base_models import InputFormat
             from docling.document_converter import DocumentConverter
@@ -248,6 +250,74 @@ def ensure_source(corpus: Corpus, doc: dict[str, Any], source: Path) -> None:
         raise SourceChecksumError("source_work_copy_replace_failed", f"{type(error).__name__}: {error}") from error
 
 
+def verify_rotation_segments(source, upright, analysis, plan, directory, config, models):
+    """Compare and reuse conversions at the same segment boundaries as the final pass."""
+    from docling_core.types.doc import TableItem, TextItem
+
+    from .activity_detail import independent_words
+
+    proposed = {page["page"]: page["orientation"] for page in analysis if page.get("orientation", {}).get("normalized")}
+    locations = {number: (mode, first, last) for mode, first, last in plan
+                 for number in range(first, last + 1) if number in proposed}
+    probes = {}
+
+    def read_converted(path, number):
+        mode, first, last = locations[number]
+        tag = "original" if path == source else "upright"
+        key = (mode, first, last), tag
+        if key not in probes:
+            probes[key] = convert_segment(path, "pdf", mode, (first, last),
+                                          directory / "rotation-probes" / f"{first}-{last}-{tag}.json.gz", config, models)
+        document, meta = probes[key]
+        if meta["status"] != "success" or len(document.pages) != last - first + 1:
+            raise ValueError("orientation probe returned partial output")
+        page = sorted(document.pages)[number - first]
+        blocks = []
+        table_count = 0
+        table_rows = Counter()
+        anchors = []
+        words = []
+        try:
+            import pymupdf
+
+            with pymupdf.open(source) as pdf:
+                orientation = proposed[number]
+                angle = orientation["rotation"] if tag == "original" else orientation["correction_rotate"]
+                words = independent_words(pdf[number - 1], angle)
+        except (ImportError, OSError, RuntimeError, ValueError):
+            pass
+        for item, _ in document.iterate_items():
+            if not isinstance(item, (TableItem, TextItem)):
+                continue
+            present = {region.page_no for region in item.prov}
+            if page not in present:
+                continue
+            if len(present) > 1:
+                raise ValueError("orientation probe cannot attribute a cross-page item")
+            if isinstance(item, TableItem):
+                blocks.extend(cell.text for cell in item.data.table_cells)
+                table_count += 1
+                anchors.append(numeric_cell_anchors(item, words, document.pages[page].size.height))
+                for row in item.data.grid:
+                    populated = tuple((column, " ".join(cell.text.split())) for column, cell in enumerate(row) if cell.text.strip())
+                    if len(populated) >= 2 and any(NUMBER.search(text) for _, text in populated):
+                        table_rows[populated] += 1
+            elif isinstance(item, TextItem):
+                blocks.append(item.text)
+        return RotationProbe("\n".join(blocks), table_count, table_rows, tuple(anchors))
+
+    selected = verify_working_copy(source, upright, analysis, read_converted)
+    accepted = {page["page"] for page in analysis if page.get("orientation", {}).get("normalized")}
+    reusable = {}
+    for block in set(locations.values()):
+        affected = {number for number, location in locations.items() if location == block}
+        tag = "upright" if affected <= accepted else "original" if accepted.isdisjoint(affected) else None
+        probe = probes.get((block, tag))
+        if probe and probe[1]["status"] == "success":
+            reusable[block] = probe
+    return selected, reusable
+
+
 def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fingerprint: str,
                      ocr: dict[str, Any], models: str) -> dict[str, Any]:
     """Process one catalogued document; runs in a worker process. Returns a summary for the catalog."""
@@ -270,20 +340,36 @@ def process_document(root: str, doc: dict[str, Any], config: dict[str, Any], fin
     else:
         analysis, plan = [], [("text", 0, 0)]
     conversion_source = source
+    segment_directory = directory / "segments"
+    reusable = {}
     orientation_settings = config["analysis"].get("page_orientation") if kind == "pdf" else None
     if orientation_settings:  # optional (C-03): record page orientation; "normalize" converts a copy with upright pages
         conversion_source = apply_page_orientation(source, directory, analysis, orientation_settings)
+        if orientation_settings["mode"] == "verify" and conversion_source != source:
+            conversion_source, reusable = verify_rotation_segments(source, conversion_source, analysis, plan,
+                                                                   directory, config, models_path)
+            rotations = [(page["page"], page["orientation"]["applied_rotate"]) for page in analysis
+                         if page.get("orientation", {}).get("normalized")]
+            if rotations:
+                key = hashlib.sha256(json.dumps(rotations).encode()).hexdigest()[:16]
+                segment_directory = directory / "segments-verified" / key
     documents, metas = [], []
     for mode, first, last in plan:
-        cache = directory / "segments" / f"{first:05d}-{last:05d}-{mode}.json.gz"
+        cache = segment_directory / f"{first:05d}-{last:05d}-{mode}.json.gz"
         pages = (first, last) if kind == "pdf" else None
-        document, meta = convert_segment(conversion_source, kind if kind in ("pdf", "image") else "office", mode, pages,
-                                         cache, config, models_path)
+        converted = reusable.get((mode, first, last))
+        if converted is None:
+            converted = convert_segment(conversion_source, kind if kind in ("pdf", "image") else "office", mode, pages,
+                                        cache, config, models_path)
+        document, meta = converted
         documents.append(document)
         metas.append(meta)
     merged = documents[0] if len(documents) == 1 else DoclingDocument.concatenate(documents)
+    if config["chunking"].get("preserve_list_markers", False):
+        restore_list_markers(merged)
     ocr_pages = {page["page"] for page in analysis if page["mode"] in ("ocr", "hybrid")}
-    chunks, tables, statistics = chunk_document(merged, doc["doc_id"], config, ocr_pages, source if kind == "pdf" else None)
+    chunks, tables, statistics = chunk_document(merged, doc["doc_id"], config, ocr_pages,
+                                               conversion_source if kind == "pdf" else None)
     confidence = {page: scores for meta in metas for page, scores in meta["confidence"].items()}
     for page in analysis:
         converted = merged.pages.get(page["page"])

@@ -22,7 +22,7 @@ from graph_builder.corpus.k1_export import K1CompletenessError, export_k1
 from graph_builder.corpus.k1_validate import GROUPS, LEGACY_MAP, summary, validate_k1
 from graph_builder.corpus.legacy_ids import LEGACY_DOCUMENT
 from graph_builder.corpus.process import page_texts, process_document
-from graph_builder.corpus.store import file_sha256
+from graph_builder.corpus.store import file_sha256, read_jsonl
 from graph_builder.corpus.validate import SCHEMAS
 from test_chunking import add_table, add_text, make_document
 
@@ -108,8 +108,15 @@ def make_pdf(path: Path, pages: int = 2, width: int = 600) -> Path:
     return path
 
 
-def add_sample(corpus: Corpus, root: Path, doc_id: str, fingerprint: str, process: bool = True, width: int = 600) -> dict:
+def add_sample(corpus: Corpus, root: Path, doc_id: str, fingerprint: str, process: bool = True, width: int = 600,
+               heading: str | None = None) -> dict:
     pdf = make_pdf(root / f"{doc_id}.pdf", width=width)
+    if heading:
+        import pymupdf
+
+        with pymupdf.open(pdf) as source:
+            source[0].insert_text((35, 40), heading)
+            source.saveIncr()
     status, added = corpus.add_file(pdf, doc_id=doc_id, license_id="CC-BY-4.0", license_url="https://creativecommons.org/licenses/by/4.0/")
     assert status == "added", added
     if not process:
@@ -493,7 +500,7 @@ class ValidationTests(PackageCase):
 
 class ContextTests(PackageCase):
     def run_with(self, contexts, missing):
-        add_sample(self.corpus, self.root, "sample-dailyreport", self.fingerprint)
+        add_sample(self.corpus, self.root, "sample-dailyreport", self.fingerprint, heading="Daily Drilling Report")
         with patch("graph_builder.corpus.k1_build.report_contexts", return_value=(contexts, [], missing)):
             return self.export()
 
@@ -521,10 +528,19 @@ class ContextTests(PackageCase):
         self.assertTrue(any("daily report chunk without report_date and well" in e for e in validate_k1(copy)))
 
     def test_other_document_types_need_no_context(self):
-        add_sample(self.corpus, self.root, "sample-report", self.fingerprint)
+        add_sample(self.corpus, self.root, "sample-dailyreport", self.fingerprint)
         release = self.export()
+        self.assertEqual(list(read_jsonl(release / "files.jsonl"))[0]["document_type"], "other")
         self.assertEqual(json.loads((release / "manifest.json").read_text(encoding="utf-8"))["context_coverage"], {})
         self.assertEqual(validate_k1(release), [])
+
+    def test_visible_report_type_and_table_readers_win_over_a_misleading_name(self):
+        add_sample(self.corpus, self.root, "permit-attachment", self.fingerprint, heading="Well Completion Report")
+        reader = "graph_builder.corpus.well_completion.repair_document"
+        with patch(reader, side_effect=lambda _pdf, _pages, chunks, tables, *_args, **_kw: (chunks, tables, [])) as repair:
+            release = self.export()
+        repair.assert_called_once()
+        self.assertEqual(list(read_jsonl(release / "files.jsonl"))[0]["document_type"], "eowr")
 
 
 DOCUMENT_CONTEXT = {"document_types": ["eowr"], "pages": 1,
@@ -571,6 +587,33 @@ class DocumentContextTests(PackageCase):
         self.assertEqual(manifest["context_coverage"], {})
         self.assertNotIn("document_context", result)
         self.assertNotIn("document_context", manifest["config"]["k1"])
+
+
+class DocumentTypeFindingTests(PackageCase):
+    def assert_classification(self, doc_id, heading, expected_type, expected_source):
+        add_sample(self.corpus, self.root, doc_id, self.fingerprint, heading=heading)
+        config = dict(K1_CONFIG, document_context=DOCUMENT_CONTEXT)
+        result = export_k1(self.corpus, "one", Path("models"), config)
+        file, = read_jsonl(Path(result["export"]) / "files.jsonl")
+        self.assertEqual(file["document_type"], expected_type)
+        self.assertEqual(result["document_type_findings"], {
+            doc_id: {"document_type": expected_type, "document_type_source": expected_source},
+        })
+
+    def test_pdf_title_sets_the_type(self):
+        self.assert_classification("sample-report", "End of Well Report", "eowr", "pdf_title")
+
+    def test_missing_title_uses_an_id_rule_for_a_configured_document_context_type(self):
+        self.assert_classification("sample_eowr", None, "eowr", "doc_id")
+
+    def test_pdf_title_wins_when_the_id_rule_conflicts(self):
+        self.assert_classification("sample_eowr", "Casing Data Report", "casing_report", "pdf_title")
+
+    def test_missing_title_keeps_default_when_id_type_has_no_document_context(self):
+        self.assert_classification("sample-permit", None, "other", "default")
+
+    def test_conflicting_pdf_headings_keep_default_even_with_an_eligible_id_rule(self):
+        self.assert_classification("sample_eowr", "Casing Data Report\nEnd of Well Report", "other", "default")
 
 
 if __name__ == "__main__":

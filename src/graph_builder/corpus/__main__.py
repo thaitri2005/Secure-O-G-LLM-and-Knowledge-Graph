@@ -22,7 +22,7 @@ import os
 from pathlib import Path
 import sys
 
-DEFAULT_MODELS = Path("data/interim/ocr_models")
+from .ocr_engines import DEFAULT_MODELS
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -46,17 +46,38 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--name")
     parser.add_argument("--hold-review", action="store_true")
     parser.add_argument("--k1-config", type=Path, default=Path("configs/corpus/k1.json"))
+    parser.add_argument("--no-mud-properties", action="store_true", help="k1: disable Mud Properties reconstruction for ablation")
+    parser.add_argument("--no-ruled-panels", action="store_true", help="k1: disable ruled report panel reconstruction for ablation")
+    parser.add_argument("--recover-source-grids", action=argparse.BooleanOptionalAction,
+                        help="k1: recover independently verified tables from their printed source columns")
+    parser.add_argument("--recover-sparse-scan-rows", action=argparse.BooleanOptionalAction,
+                        help="k1: recover corroborated measurement rows from open scan rulings")
     parser.add_argument("--legacy-chunks", type=Path)
     parser.add_argument("--release", type=Path)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--a107-sidecar", type=Path)
     parser.add_argument("--qa-config", type=Path)
+    parser.add_argument("--release-only", action="store_true", help="qa: write diagnostics without publishing a retrieval view")
     parser.add_argument("--fidelity", action="store_true", help="qa: add the A-402 source fidelity check (reads the source PDFs)")
     parser.add_argument("--crossrep", action="store_true", help="qa: add the A-403 cross-representation checks (reads only the release)")
     parser.add_argument("--ops-margin", action="store_true", help="qa: add the A-401a Operations table mark-margin check (reads the source PDFs)")
     parser.add_argument("--annotations", action="store_true", help="qa: add the A-414 'N records not printed' annotation check (reads the source PDFs)")
     parser.add_argument("--label-value", action="store_true", help="qa: add the optional A-432 label-value geometry check (reads the source PDFs; WARN signal only)")
     parser.add_argument("--form-conflict", action="store_true", help="qa: add the optional A-435 form-versus-text-chunk pairing conflict check (reads only the release; WARN signal only)")
+    parser.add_argument("--form-overlap", action=argparse.BooleanOptionalAction,
+                        help="qa: project source-backed form/text overlaps (default follows the K1 form rules)")
+    parser.add_argument("--table-overlap", action=argparse.BooleanOptionalAction,
+                        help="qa: project source-proven hourly table overlaps (default follows the K1 hourly rule)")
+    parser.add_argument("--ruled-table-overlap", action=argparse.BooleanOptionalAction,
+                        help="qa: prefer corroborated mud, casing and ruled panel cells (default follows the K1 table rules)")
+    parser.add_argument("--no-ruled-native-margin", action="store_false", dest="ruled_native_margin",
+                        help="qa: use strict panel bounds for the native-cell overlap ablation")
+    parser.add_argument("--compact-table-spans", action=argparse.BooleanOptionalAction,
+                        help="qa: compact repeated horizontal spans in oversized table chunks")
+    parser.add_argument("--cell-evidence", action="store_true",
+                        help="qa: write original-PDF locations and source review reasons for table cells")
+    parser.add_argument("--table-tokenizer", type=Path, help="qa: local tokenizer.json for exact table chunk token counts")
+    parser.add_argument("--table-max-tokens", type=int, help="qa: token budget for table chunks, including special tokens")
     parser.add_argument("--orientation", action="store_true", help="qa: add the optional C-03 page-orientation check (reads the orientation records of the work folder, not the PDFs; needs analysis.page_orientation)")
     parser.add_argument("--engine", default="vietocr")
     parser.add_argument("-v", "--verbose", action="store_true")
@@ -78,17 +99,28 @@ def main(argv: list[str] | None = None) -> int:
             digests = download_models(args.models, ocr_config({"engine": args.engine}))
             print(json.dumps(digests, indent=1))
             return 0
-        if args.corpus is None:
-            raise ValueError("A corpus directory is required")
         if args.command == "init":
+            if args.corpus is None:
+                raise ValueError("A corpus directory is required")
             from .config import load_config
             Corpus.create(args.corpus, load_config(args.config))
             print(f"Created corpus {args.corpus}")
             return 0
         if args.command == "qa":  # read-only sidecar; never opens the catalog or writes into the corpus
             from .qa.cli import run as run_qa
-            print(json.dumps(run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar, fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin, annotations=args.annotations, label_value=args.label_value, form_conflict=args.form_conflict, orientation=args.orientation), sort_keys=True))
-            return 0
+            result = run_qa(args.corpus, args.release, args.out, args.qa_config, args.a107_sidecar,
+                                    fidelity=args.fidelity, crossrep=args.crossrep, ops_margin=args.ops_margin,
+                                    annotations=args.annotations, label_value=args.label_value,
+                                    form_conflict=args.form_conflict, orientation=args.orientation,
+                                    form_overlap=args.form_overlap, table_overlap=args.table_overlap,
+                                    cell_evidence=args.cell_evidence, table_tokenizer_path=args.table_tokenizer,
+                                    max_table_tokens=args.table_max_tokens, ruled_table_overlap=args.ruled_table_overlap,
+                                    compact_table_spans=args.compact_table_spans, ruled_native_margin=args.ruled_native_margin,
+                                    models=args.models, release_only=args.release_only)
+            print(json.dumps(result, sort_keys=True))
+            return int(result["validator"] != "pass" or result.get("source_validation", {}).get("status") == "fail")
+        if args.corpus is None:
+            raise ValueError("A corpus directory is required")
         corpus = Corpus(args.corpus)
         if args.command == "add":
             fields = {"license_id": args.license_id, "license_url": args.license_url}
@@ -163,7 +195,17 @@ def main(argv: list[str] | None = None) -> int:
                 raise ValueError("k1 requires --name")
             from .k1_config import load_k1_config
             from .k1_export import export_k1
-            print(json.dumps(export_k1(corpus, args.name, args.models, load_k1_config(args.k1_config), only=args.only,
+            config = load_k1_config(args.k1_config)
+            if args.recover_source_grids is not None:
+                config["recover_source_grids"] = args.recover_source_grids
+            if args.recover_sparse_scan_rows is not None:
+                config["recover_sparse_scan_rows"] = args.recover_sparse_scan_rows
+            rules = config.get("table_rules", {})
+            if args.no_mud_properties:
+                rules.pop("mud_properties", None)
+            if args.no_ruled_panels:
+                rules.pop("ruled_panels", None)
+            print(json.dumps(export_k1(corpus, args.name, args.models, config, only=args.only,
                                        legacy_chunks=args.legacy_chunks)))
             return 0
         if args.command == "retire":

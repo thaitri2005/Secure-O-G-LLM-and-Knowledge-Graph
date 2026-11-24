@@ -1,0 +1,70 @@
+{
+  "sources": {
+    "ad66_eowr": {
+      "file": "AD66.pdf",
+      "source_url": "https://raw.githubusercontent.com/mhsuhail00/ONGC-PDF-Image-Classification/bd55de62e8c19ebfb12c1dab9b3fdc2db17a27f8/Example_PDF/AD66.pdf",
+      "sha256": "226f725fa31fb3cb9040047a1e2b71ae4d2dcb7b318fcf77b808fb77c1d18cfa",
+      "pages": [2, 3]
+    },
+    "ozalpha_eowr": {
+      "file": "OzAlpha-1 WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/OzAlpha-1%20WCR.pdf",
+      "sha256": "20771aaeeae125bb5c16cb08c5c6e33f40c7002c4221afeb5703ebbe56fb0546",
+      "pages": [3, 5, 10]
+    },
+    "mooncard_eowr": {
+      "file": "CTSCo WCR.pdf",
+      "source_url": "https://raw.githubusercontent.com/pradyun1611/ONGC-NLP-project/0c485e40407cb5fa2ba1730264452f515c7b93b0/WCR_dir/CTSCo%20WCR.pdf",
+      "sha256": "96ee4da9cb4db8f2bb063dbf6a67766d9ca86df73637e8bd2dd4306cfca09108",
+      "pages": [47, 144, 147]
+    },
+    "forge-mudlog_eowr": {
+      "file": "HadiSlvt-drilling report.pdf",
+      "source_url": "https://raw.githubusercontent.com/HadiSlvt/Geological_log_Extraction_CV/e6f3682073fc984a301a1f658d54de13c6385551/drilling%20report.pdf",
+      "sha256": "4e443804042c40d709ed2513a25f41b18d1b73379da77f35d53f61a8cfcbf77c",
+      "pages": [1],
+      "crop_bottom_pt": 520
+    }
+  },
+  "cases": [
+    {"doc_id": "ad66_eowr", "page": 2, "type": "text", "rows": [
+      ["Country", "India"], ["State/ District", "Tripura, West Tripura"], ["Village/ Mandal/Tehsil", "Bishalgarh"],
+      ["Basin", "A & AA Basin"], ["Area/ Structure", "Agartala Dome"], ["Well No. (Well Name)", "AD#66 (ADAV)"],
+      ["WBS Element", "AG.23E.PMLAD.AD#ADAV"], ["Well Type / Category", "Exploratory / “B”"],
+      ["Expendable / Non-Expendable", "Non-Expendable"], ["Well Profile", "Inclined L-Profile"]
+    ]},
+    {"doc_id": "ad66_eowr", "page": 3, "type": "text", "rows": [
+      ["Offset from Released Location", "32.35m due 200.96°N from released location"],
+      ["Target Depth (MDKB/TVDSS)", "3011m/2715m"], ["Revised Target Depth, if any (MDKB/TVDSS)", "-"],
+      ["Drilled Depth (MDKB/TVDSS)", "3011m/2715m"], ["Formation/Member at TD", "Upper Bhuban"],
+      ["Logger’s Depth (MDKB/TVDSS)", "3016m/2720m"], ["Planned Deviation (Inc./Azim.)", "26.57⁰/ 21.51⁰ N at TD"],
+      ["Planned Drift", "1094.12m at TD"], ["Actual Deviation (Inc. /Azim.)", "28.44⁰/ 20.63⁰ N at TD"],
+      ["Actual Drift", "1101.6m at TD"]
+    ]},
+    {"doc_id": "ozalpha_eowr", "page": 10, "type": "text", "rows": [
+      ["WELL NAME", "OzAlpha-1"], ["WELL CLASS", "Exploration"], ["BASIN", "Southern Georgina Basin"],
+      ["NORTHING", "768840 mN"], ["LICENCE", "EP 104"], ["EASTING", "7518300 mE"],
+      ["ZONE", "53 S"], ["OPERATOR", "Statoil Australia Theta B. V."], ["SPUD DATE", "01/04/2014"],
+      ["DRILLER TD OzAlpha-1", "1250.3 m MD"]
+    ]},
+    {"doc_id": "mooncard_eowr", "page": 47, "type": "text", "rows": [
+      ["Well Name", "West Moonie-1"], ["GL Elevation", "243.0 (m)"], ["Easting (m)", "200,364.85m E"],
+      ["Northing (m)", "6,917,885.29m S"], ["Depth Ref. Elev.", "247.2 (m)"]
+    ]},
+    {"doc_id": "mooncard_eowr", "page": 144, "type": "text", "rows": [
+      ["Well Name", "West Moonie-2"], ["GL Elevation", "243.0 (m)"], ["Easting (m)", "200,352.070m E"],
+      ["Northing (m)", "6,917,891.240m S"], ["Depth Ref. Elev.", "247.2 (m)"]
+    ]},
+    {"doc_id": "mooncard_eowr", "page": 147, "type": "text", "rows": [
+      ["Well Name", "West Moonie-2"], ["Rig Elevation", "247.2 (m)"], ["Mud Weight", "9.0 (ppg)"], ["Hole Size", "8.500 (in)"]
+    ]},
+    {"doc_id": "ozalpha_eowr", "page": 3, "type": "ocr", "rows": [
+      ["Expiry date", "2015-12-31"], ["Distribution date", "2015-07-21"], ["Status", "Final"]
+    ]},
+    {"doc_id": "forge-mudlog_eowr", "page": 1, "type": "ocr", "rows": [
+      ["SPUD DATE", "2020.10.29"], ["LOGGING DATES", "2020.10.29-2020.12.24"],
+      ["LOGGING DEPTHS", "130'-10987'"], ["ELEVATION", "GL:5414' RF:5444'"]
+    ]}
+  ],
+  "control": {"doc_id": "ozalpha_eowr", "page": 5, "column": "SECTION/CHAPTER", "values": ["1", "2", "3-7", "8", "9"]}
+}

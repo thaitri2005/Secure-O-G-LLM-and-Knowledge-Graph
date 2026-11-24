@@ -22,13 +22,15 @@
       "items": {
         "type": "object",
         "required": ["r", "c", "row_span", "col_span", "text", "is_header"],
+        "allOf": [{"if": {"required": ["ocr_unreadable"]}, "then": {"properties": {"text": {"const": ""}}}}],
         "properties": {
           "r": {"type": "integer", "minimum": 0},
           "c": {"type": "integer", "minimum": 0},
           "row_span": {"type": "integer", "minimum": 1},
           "col_span": {"type": "integer", "minimum": 1},
           "text": {"type": "string"},
-          "is_header": {"type": "boolean"}
+          "is_header": {"type": "boolean"},
+          "ocr_unreadable": {"const": true, "description": "Ink is present in this physical cell. The local OCR readers could not agree."}
         }
       }
     },
@@ -44,6 +46,51 @@
           "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
           "row_start": {"type": "integer", "minimum": 0},
           "row_end": {"type": "integer", "minimum": 0},
+          "native_trimmed_rows": {"type": "integer", "minimum": 1, "description": "Leading native rows removed before this part was assembled."},
+          "rendered_body_header_rows": {"type": "integer", "minimum": 1, "description": "Leading retained body rows that the native converter rendered as a header."},
+          "scan_repairs": {
+            "type": "array", "minItems": 1,
+            "description": "OCR table cells with both the native read and the corroborated printed line.",
+            "items": {
+              "type": "object", "additionalProperties": false, "required": ["r", "c", "previous", "value", "bbox"],
+              "properties": {
+                "r": {"type": "integer", "minimum": 0},
+                "c": {"type": "integer", "minimum": 0},
+                "previous": {"type": "string", "minLength": 1},
+                "value": {"type": "string", "minLength": 1},
+                "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4}
+              }
+            }
+          },
+          "numeric_repairs": {
+            "type": "array", "minItems": 1,
+            "description": "Native grid indices, original value and printed cell rectangle for reconciled numeric cells.",
+            "items": {
+              "type": "object", "additionalProperties": false, "required": ["r", "c", "previous", "value", "bbox"],
+              "properties": {
+                "r": {"type": "integer", "minimum": 0},
+                "c": {"type": "integer", "minimum": 0},
+                "previous": {"type": "string", "minLength": 1},
+                "value": {"type": "string", "minLength": 1},
+                "focus": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4,
+                          "description": "Visible word box used when the native rectangle crosses a printed border."},
+                "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4}
+              }
+            }
+          },
+          "cell_sources": {
+            "type": "array", "minItems": 1,
+            "description": "Visible cell fragments on this page, using the logical row and column indices.",
+            "items": {
+              "type": "object", "additionalProperties": false, "required": ["r", "c", "text", "bbox"],
+              "properties": {
+                "r": {"type": "integer", "minimum": 0},
+                "c": {"type": "integer", "minimum": 0},
+                "text": {"type": "string", "minLength": 1},
+                "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4}
+              }
+            }
+          },
           "header": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}
         }
       }

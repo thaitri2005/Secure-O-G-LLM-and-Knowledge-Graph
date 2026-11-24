@@ -1,0 +1,24 @@
+{
+  "documents": [
+    {
+      "doc_id": "eastern-palm-valley-dailyreport",
+      "sha256": "0bd08d13e390a78651d9d58c9a3952178ff44e5466785ec3534138f84eb42801",
+      "pages": [
+        {"page": 10, "rows": [["Density (ppg)", "9.10", "9.10"], ["Viscosity (sec)", "41", "41"], ["Gels (10s/m)", "7 / 10", "7 / 10"], ["pH (strip)", "9.5", "9.5"]]},
+        {"page": 23, "rows": [["Density (ppg)", "9.40", "8.90"], ["Viscosity (sec)", "38", "38"], ["Gels (10s/m)", "6 / 8", "5 / 7"], ["pH (strip)", "9.5", "9.5"]]},
+        {"page": 46, "rows": [["Density (ppg)", "", "9.10"], ["Viscosity (sec)", "", "39"], ["Gels (10s/m)", "", "6 / 7"], ["pH (strip)", "", "9.5"]]},
+        {"page": 54, "rows": [["Density (ppg)", "9.10", ""], ["Viscosity (sec)", "39", ""], ["Gels (10s/m)", "6 / 7", ""], ["pH (strip)", "9.5", ""]]}
+      ]
+    },
+    {
+      "doc_id": "new-crown-1-dailyreport",
+      "sha256": "4067cd3e1ba81c0ca0ac1fec8e6ec3fbe1236c53f03bd7c739db10869b1759ab",
+      "pages": [
+        {"page": 5, "rows": [["Mud Weight", "8.7ppg"], ["Visc", "46sec"], ["Gels", "*6/8"], ["Fluid Loss", "200"]]},
+        {"page": 6, "rows": [["Mud Weight", "8.7ppg"], ["Visc", "46sec"], ["Gels", "*6/8"], ["Fluid Loss", "200"]]},
+        {"page": 8, "rows": [["Mud Weight", "9.1ppg"], ["Visc", "48sec"], ["Gels", "*11 / 18"], ["Fluid Loss", "0"]]},
+        {"page": 10, "rows": [["Mud Weight", "9.1ppg"], ["Visc", "48sec"], ["Gels", "*11 / 18"], ["Fluid Loss", "0"]]}
+      ]
+    }
+  ]
+}

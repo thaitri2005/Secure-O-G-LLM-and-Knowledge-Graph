@@ -39,7 +39,7 @@ def check_orientation(registry: Registry):
         if code is None:
             return []
         evidence = {key: record[key] for key in ("state", "status", "reason", "rotation", "text_direction", "displayed", "applied_rotate",
-                                                 "dominant_share", "steps", "detail", "normalize_error") if key in record}
+                                                 "dominant_share", "steps", "detail", "normalize_error", "verification") if key in record}
         return [registry.signal(code, "page", entity["ids"], evidence=evidence)]
     return check
 
