@@ -22,10 +22,11 @@ Track C is storage, IDs and the end-to-end run (owner: Hung, from 5 November 202
 | Loader | [`platform/load_k1.py`](../../../platform/load_k1.py): validates, loads one release in one transaction, reads it back and rebuilds every page from the database. Track A's AK-3 package loaded on Hung's Mac: 1,042 chunks, 174 / 174 pages rebuilt from the database | C-C08, C-F05 |
 | Reading the store | [`platform/k1_store.py`](../../../platform/k1_store.py): `read_chunks()` returns a release's chunks as the package wrote them, in order; `export` writes a `chunks.jsonl` that `graphrag` reads. The store equals the package, 1,042 / 1,042 | C-C09, C-F06 |
 | Vectors | [`platform/embed_k1.py`](../../../platform/embed_k1.py): 1,042 Qwen3-Embedding-0.6B vectors in pgvector, each with its well and report date; 67 / 67 searches give the same top 5 from SQL as in memory. About 1,170 tokens and 0.5 s per page on Hung's Mac | C-C10, C-F06 |
-| Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. Its source chunks still use the corpus export's IDs, not K1 version 1's. The fact graph is not in Neo4j yet | C-C11, C-F06 |
+| Neo4j | [`platform/load_events_neo4j.py`](../../../platform/load_events_neo4j.py): E28's event graph (161 events of AK-3) in Neo4j; read back identical, and 58 / 58 recorded query plans give their recorded results. [`platform/load_facts_neo4j.py`](../../../platform/load_facts_neo4j.py): the fact region (E27 fact graph: 216 facts, 5 wells, 11 casing strings) beside it, read back identical, the event region untouched. Both regions still cite the corpus export's chunk IDs, not K1 version 1's | C-C11, C-F06, C-C12, C-F07 |
 | Runner, viewer | Not started. Track B's local UI (B-C32, D-60) is the viewer for now | — |
+| Shared hosting | **Interim, not set up yet:** one team machine (proposed: Tri's desktop, Tri to agree) hosts the stores over Tailscale, because there is no budget for a server yet. Passwords come from `platform/.env` (never committed); server scripts and the [runbook](server-runbook.md) are ready for a cloud server when one is found | C-D06, C-C13 |
 | Backend API | Read path built by Track B on Hung's behalf: `backend/`, with the contract and example responses for the frontend. It reads files, not the stores. The rest is designed in [backend-design.md](backend-design.md): hosting, the graph in Neo4j, the question log in PostgreSQL, the runner, page images, the compose file | C-D05 |
-| Next | In the order of [backend-design.md](backend-design.md): shared hosting (B1), the fact region in Neo4j (B3), the engine reading the stores, the runner (B2). Earlier list: Track B reads chunks from the store (`k1_store.py`); link the event graph to K1 version 1 chunks (legacy map from Khai, or the event graph built from K1); agree the fact graph's nodes and relationships with Tri; runner | — |
+| Next | Tri's answer on hosting the stores; then the interim setup ([runbook §0](server-runbook.md#0-for-now-a-team-machine-over-tailscale-no-budget-yet)); free server options in parallel (C-D06). Then, in the order of [the note of 24 November](note-from-track-B-2026-11-24.md): the engine reading the stores (with Tri), the runner (B2). ~~The fact region in Neo4j (B3)~~: done on Hung's Mac (C-C12, C-F07); load it again on the shared host | — |
 
 ## 2026-11-05
 
@@ -143,21 +144,54 @@ Before this run the three scripts were tested in the cloud: `k1_store.py` and `e
 - Hung has not reviewed this entry or the design; both are his to correct.
 - What to do first, in order, is in the [note of 24 November](note-from-track-B-2026-11-24.md): shared hosting, then the well facts in Neo4j, then the engine reading the stores.
 
+**C-C12 (design choice).** [`platform/load_facts_neo4j.py`](../../../platform/load_facts_neo4j.py) loads Track B's fact graph (`graphrag/results/E27_fact_graph.graph.json`, from `python -m graphrag.factgraph`) into Neo4j as the fact region, following [backend-design.md §4.1](backend-design.md#41-the-fact-region). Written with Claude; Hung ran and checked it.
+
+1. Key properties: `Well.name` and `Chunk.chunk_id` as the event loader has them, so the two regions meet on the same nodes; `Document.file_id`, `Fact.fact_id`, `CasingString.casing_id`, `HoleSection.section_id`, each with a uniqueness constraint.
+2. One write transaction: delete only `Fact`, `CasingString`, `HoleSection`, `Document` and chunks left with no relationship; then `MERGE` every node and relationship, so a second load changes nothing.
+3. Checks, any failure rolls back: counts per label and type equal the file's; every `Fact` has exactly one `HAS_FACT` in and one `FROM` out; facts read back equal the file's field by field; `ReportDay` and `Event` counts are the same before and after.
+4. The file has no `HoleSection` nodes or `HAS_SECTION` relationships (no fact states a hole section today), so five relationship types, not the six the note lists. Facts carry no `unit`. The loader handles both if they appear.
+5. The Neo4j password comes from `NEO4J_PASSWORD` when set (for the shared server, Task 1), else the local development one.
+
+`load_events_neo4j.py` already had the `--events` argument the note asked for; nothing changed there.
+
+**C-F07 (finding).** On Hung's Mac (Docker Neo4j 5.26, the event graph of C-F06 already loaded):
+
+| Check | Result |
+|---|---|
+| First load | 5 wells, 3 documents, 38 chunks, 216 facts, 11 casing strings; 216 `HAS_FACT`, 216 `FROM`, 5 `DESCRIBED_BY`, 38 `HAS_CHUNK`, 11 `HAS_CASING`: all equal the file |
+| Facts read back | 216 / 216 identical to the file |
+| Event region | 27 report days and 161 events before and after |
+| Second load | Same counts; nothing changed |
+| `MATCH (w:Well {name:'AK-3'})-[:HAS_FACT\|HAS_DAY]->()` | 27 `HAS_DAY` and 66 `HAS_FACT`: both regions |
+| Event loader run again afterwards | 161 / 161 events identical, 58 / 58 plans replay; still 216 facts |
+| A copy of the file with one `FROM` removed | Refused and rolled back; 216 facts with `FROM` remain |
+
+All 38 fact chunks use the corpus export's IDs (`gdr882_ak3_eowr#c0013`), so none match the `chunks` table in PostgreSQL yet (design §4.2). The data doubts Track B named (B-F60, B-F62: facts about TG-2 and TG-4, a 68-32 casing size that may be a hole size, AK-3's spud-to-release days) are loaded as the file gives them; they are Track B's to fix.
+
+**C-C13 (design choice).** Shared hosting prepared in the repository (plan task B1), written with Claude and checked by Hung:
+
+1. [`platform/docker-compose.yml`](../../../platform/docker-compose.yml) reads `POSTGRES_PASSWORD` and `NEO4J_PASSWORD` from `platform/.env` and refuses to start without them; [`platform/.env.example`](../../../platform/.env.example) lists the names. `.env` is now in `.gitignore`: the repository is public. A laptop whose stores already exist keeps `platform-dev` in its `.env`, because both databases read the password only on their first start.
+2. [`platform/server/setup.sh`](../../../platform/server/setup.sh): one-time setup of an Ubuntu 24.04 server (Docker from Docker's apt repository, user `kg` with SSH keys only, no root or password login, firewall open on 22 and 443 only, `/srv` folders). Not yet run on a server.
+3. [`platform/server/backup.sh`](../../../platform/server/backup.sh): `pg_dump` in custom format, keeps 7 days. On Hung's Mac it wrote a 5.2 MB dump holding all nine K1 tables, including `chunks` and `chunk_vectors`, and deleted an older file. Neo4j is not backed up: it is derived (D-06) and its loaders rebuild it.
+4. [server-runbook.md](server-runbook.md): the steps. The server runs Docker only; loading scripts run on our machines through an SSH tunnel on ports 15434, 17474 and 17687 (local Docker uses the usual ones), so the server needs no Python and no model. This differs from the note of 24 November, which loaded on the server.
+
+**C-D06 (decision, by Hung; Tri still to agree).** There is no budget for a server yet. Until a free one is found, one team machine hosts the stores and the others reach it over Tailscale, a free private network; nothing is opened to the internet ([runbook §0](server-runbook.md#0-for-now-a-team-machine-over-tailscale-no-budget-yet)). Proposed host: Tri's desktop, which is on most often and runs the engine. In parallel: each of us tries the student credits (a card may be asked for), the school is asked for a small virtual machine, and the resource request goes to anh Tuấn with the server size confirmed (4 vCPU, 8 GB). The interim host cannot serve the demo application at any hour; a cloud server is still needed for Task 5.
 
 ## 2026-11-24 (later): the loaders, the runner and the deployment files
 
-Built by Track B with Hung's clearance (Track B log B-D41), from the [backend design](backend-design.md). Hung has not reviewed these entries or the code; both are his to correct. Everything ran on Tri's laptop against the Docker stores of `platform/docker-compose.yml`, not on a server.
+Built by Track B with Hung's clearance (Track B log B-D41), from the [backend design](backend-design.md), the same afternoon as C-C12, C-C13 and C-D06 above; where the two overlapped, the better version was kept, judged on what it does: the fact loader written here (C-C14, a superset the runner can call); Hung's required passwords (a server cannot start on the public defaults), his backup script (it writes to a temporary file and renames, and was run) and his tunnel ports (they leave local stores running). Hung has not reviewed these entries or the code; both are his to correct. Everything ran on Tri's laptop against the Docker stores of `platform/docker-compose.yml`, not on a server.
 
-**C-C12 (design choice; the fact region in Neo4j).** `platform/load_facts_neo4j.py`, as backend design §4.1: one write transaction that clears the fact region only, merges nodes and relationships from `graphrag/results/E27_fact_graph.graph.json`, checks, and rolls back on any difference.
+**C-C14 (design choice; one fact loader, from two written the same afternoon).** Hung wrote and checked `platform/load_facts_neo4j.py` on his Mac (C-C12, C-F07) while a second one was being written here from the same design. They do the same thing and give the same counts (216 facts, 38 chunks, 3 documents, 11 casing strings, 5 wells). The file now in the repository is the second one, because the runner calls it as a function. **This replaces Hung's file and is his to reverse.**
 
-- **Loaded:** 216 facts, 38 chunks, 3 documents, 11 casing strings, 5 wells; 216 `HAS_FACT`, 216 `FROM`, 38 `HAS_CHUNK`, 11 `HAS_CASING`, 5 `DESCRIBED_BY`. The facts read back equal the file's, 216 of 216. Loading twice gives the same result.
-- **The event region is not disturbed:** 27 days and 161 events of AK-3 before and after. The check counts the file's wells only, so another well being loaded at the same time cannot fail it.
+- **What it adds to C-C12:** `load()` and `check_file()` for the runner; `NEO4J_URI` and `NEO4J_USER` from the environment beside `NEO4J_PASSWORD`; the count of chunks with K1 version 1 IDs missing from PostgreSQL; the event-region check counts the file's wells only, so loading another well at the same time cannot fail it.
+- **Kept from C-C12:** `--facts` still names the file (`--graph` is the same option), so the commands in the [server runbook](server-runbook.md) work unchanged.
+- **Run here:** loaded twice with the same result; the event region still 27 days and 161 events.
 
-**C-C13 (design choice; the event loader takes its input and its connection from outside).** `platform/load_events_neo4j.py` gains `--events`, `--runs` and `--well`, and reads `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` and `BACKEND_DSN` from the environment; with nothing given it behaves as before. It now reports chunks with K1 version 1 IDs that are missing from PostgreSQL (backend design §4.2), without failing on them.
+**C-C15 (design choice; the event loader takes its input and its connection from outside).** `platform/load_events_neo4j.py` gains `--events`, `--runs` and `--well`, and reads `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` and `BACKEND_DSN` from the environment; with nothing given it behaves as before. It now reports chunks with K1 version 1 IDs that are missing from PostgreSQL (backend design §4.2), without failing on them.
 
 - **The event region is now loaded from the graph built on K1** (`E31_events_k1.json`): 161 of 161 events read back identical, 58 of 58 recorded plans replay, 83 chunks carry version 1 IDs and none is missing from PostgreSQL. The non-productive report's events still cite old IDs, until the release holds appendix 23 (plan task D1).
 
-**C-C14 (design choice; the runner).** `platform/run_release.py <release>`: the eight steps of backend design §6 as functions, each with its check, and one row in a new `runs` table (`platform/sql/003_runs.sql`). [platform/README.md](../../../platform/README.md) lists the scripts, their order and the environment variables.
+**C-C16 (design choice; the runner).** `platform/run_release.py <release>`: the eight steps of backend design §6 as functions, each with its check, and one row in a new `runs` table (`platform/sql/003_runs.sql`). [platform/README.md](../../../platform/README.md) lists the scripts, their order and the environment variables.
 
 | Run on Khai's K1 candidate | Result |
 |---|---|
@@ -171,19 +205,19 @@ Built by Track B with Hung's clearance (Track B log B-D41), from the [backend de
 - **A softer rule than the design's:** appendix 29, the graphical report, has no operations table and gives no events. The runner fails a daily-report file that has an operations table but no event, and only lists the others. For Hung to confirm.
 - **Not changed:** `load_k1.py`, `embed_k1.py`, `k1_store.py`, `validate_k1.py`. Run alone they still default to the local connection string; they take `--dsn`.
 
-**C-C15 (design choice; the question log tables and the run record).** `platform/sql/002_questions.sql` holds the tables of backend design §3, safe to run twice, with `reasoning` among the lanes that can be forced. The class that writes them is in `backend/questions.py` (Track B log B-C50). Both files run by themselves when PostgreSQL first starts on an empty volume; on an existing database, `python -m backend.questions init` and the runner create them.
+**C-C17 (design choice; the question log tables and the run record).** `platform/sql/002_questions.sql` holds the tables of backend design §3, safe to run twice, with `reasoning` among the lanes that can be forced. The class that writes them is in `backend/questions.py` (Track B log B-C50). Both files run by themselves when PostgreSQL first starts on an empty volume; on an existing database, `python -m backend.questions init` and the runner create them.
 
-**C-C16 (design choice; the compose file serves a laptop and a server).** Backend design §1 and §8.
+**C-C18 (design choice; the compose file serves a laptop and a server).** Backend design §1 and §8.
 
-- **Passwords come from the environment**, with the local defaults kept, so a laptop needs no `.env` file and a server sets its own. [`platform/.env.example`](../../../platform/.env.example) lists every variable. The stores still start alone, with the same images and volumes.
+- **The store passwords stay as C-C13 set them:** required, from `platform/.env`. A first version here gave them local defaults; that was dropped for Hung's rule. [`platform/.env.example`](../../../platform/.env.example) lists his variables first, then the application's. The stores still start alone, with the same images and volumes.
 - **`--profile app`** adds the backend (built from `backend/Dockerfile`: Python 3.12, a non-root user, only what runs) and the proxy (Caddy with the built frontend, `/v1/` forwarded to the backend, one shared user name and password, automatic HTTPS when a domain is set). Without a password hash the proxy refuses to start.
 - **`--profile demo`** adds a stub model server, `scripts/stub_model_server.py`, for trying the stack without a GPU. It is not a model: every answer starts with "[stub model]".
 - **The model endpoint is a mounted file,** a server-side copy of `endpoints.json` and `roles.json`; templates for Tri's desktop over a private network and for an open-weight model at OpenRouter are in `deploy/models/`.
-- **[deploy/README.md](../../../deploy/README.md) is the runbook:** from a new Ubuntu server to the running application, with the firewall, loading a release, the SSH tunnel, backup (`deploy/backup.sh`, a nightly `pg_dump` kept seven days), updating, and troubleshooting. `deploy/smoke_test.py` checks a running deployment from outside.
+- **[deploy/README.md](../../../deploy/README.md) is the runbook:** from a new Ubuntu server to the running application, the model endpoint, starting and checking the application, updating, and troubleshooting. It covers the application only: for the server, the stores, the tunnel and the backup it points to the [server runbook](server-runbook.md) and says that one is right where they differ. A second backup script written here was removed in favour of `platform/server/backup.sh`. `deploy/smoke_test.py` checks a running deployment from outside.
 - **Run on Tri's laptop only** (Track B log B-C54). The steps on a real server with a real domain have not been run.
 - **CI:** `.github/workflows/ci.yml` runs the engine, backend and stub tests and the frontend's tests and build on each push. It informs; it is not a required check and blocks no one.
 
-**C-F07 (finding; what is still open in the stores).**
+**C-F08 (finding; what is still open in the stores).**
 
 - **No vectors on this laptop's store:** `chunk_vectors` is empty, and vector search in SQL is not wired into the engine (Track B log B-C50).
 - **Facts and chunks are on two ID schemes** (Track B log B-F63): the fact region cites K1 version 0 chunk IDs, which are not in `chunks`.

@@ -4,6 +4,8 @@ The runbook for the shared server (backend design [§1](../docs/tracks/C-storage
 
 **Status (24 November 2026):** the images were built and the stack ran on a Windows laptop with Docker Desktop, behind the password, with the stub model, and `smoke_test.py` passed through the proxy. The steps on a real Ubuntu server and with a real domain have not been run yet; mark here what differed when you run them.
 
+**Two runbooks, one server.** Hung's [server runbook](../docs/tracks/C-storage/server-runbook.md) covers the server itself and the stores: creating it, `platform/server/setup.sh`, the passwords, the SSH tunnel, the backup, and loading a release through the tunnel. This file adds the application on top: the backend, the proxy with the password gate, and the model endpoint. Sections 1 to 3, 6, 7 and 10 below overlap with his and are kept so the whole path can be read in one place; where the two differ on the stores or the server, follow his: it is the one that was run. Until a server exists, the stores run on a team machine over Tailscale (Track C log C-D06); the application can run there the same way, for the team only.
+
 ## What runs
 
 ```mermaid
@@ -33,10 +35,11 @@ Files in this folder:
 | `models/endpoints.desktop.json` | Template: Tri's desktop over a private network |
 | `models/roles.openrouter.json` | Template: the answer and frame roles on an open-weight model at OpenRouter |
 | `requirements-runner.txt` | Python packages on the host for loading a release |
-| `backup.sh` | Nightly `pg_dump`, kept 7 days |
 | `smoke_test.py` | Checks a running deployment from outside: gate, frontend, health, one question, one feedback |
 
 ## 1. The server
+
+Hung's `platform/server/setup.sh` does this section and the next in one run ([server runbook §3](../docs/tracks/C-storage/server-runbook.md#3-first-setup-as-root)); the commands below are the same steps by hand.
 
 | Choice | Value |
 |---|---|
@@ -58,7 +61,7 @@ systemctl restart ssh
 
 **Firewall: only ports 22, 80 and 443.** Set it in two places:
 
-1. The provider's cloud firewall (DigitalOcean "Cloud Firewalls", Azure "Network security group"): inbound TCP 22, 80, 443 only.
+1. The provider's cloud firewall (DigitalOcean "Cloud Firewalls", Azure "Network security group"): inbound TCP 22, 80, 443 only. `setup.sh` opens 22 and 443; add 80 so the proxy can send plain HTTP on to HTTPS. Caddy gets its certificate over 443 either way.
 2. On the server:
 
    ```sh
@@ -96,18 +99,18 @@ As `kg`:
 
 ```sh
 sudo mkdir -p /srv/kg /srv/k1 && sudo chown kg:kg /srv/kg /srv/k1
-git clone https://github.com/thaitri2005/Secure-O-G-LLM-and-Knowledge-Graph.git /srv/kg/app
-mkdir -p /srv/kg/models /srv/kg/pages /srv/kg/backups
-cd /srv/kg/app
+git clone https://github.com/thaitri2005/Secure-O-G-LLM-and-Knowledge-Graph.git /srv/kg/repo
+mkdir -p /srv/kg/models /srv/kg/pages /srv/backups
+cd /srv/kg/repo
 ```
 
 | Folder | Holds |
 |---|---|
-| `/srv/kg/app` | The clone. Never commit from it |
+| `/srv/kg/repo` | The clone. Never commit from it |
 | `/srv/k1/<release>/` | K1 releases, copied with `rsync` (they replace the zip in chat) |
 | `/srv/kg/models/` | The server's own endpoints and roles files |
 | `/srv/kg/pages/` | Page images |
-| `/srv/kg/backups/` | Nightly database dumps |
+| `/srv/backups/` | Nightly database dumps |
 
 ## 4. The settings file
 
@@ -171,9 +174,11 @@ docker compose -f platform/docker-compose.yml up -d postgres neo4j
 docker compose -f platform/docker-compose.yml ps
 ```
 
-PostgreSQL creates its tables from `platform/sql/` on this first start. Neo4j takes about a minute to install APOC.
+Compose refuses to start until `platform/.env` holds the two store passwords (Track C log C-C13). PostgreSQL creates its tables from `platform/sql/` on this first start. Neo4j takes about a minute to install APOC.
 
 ## 7. Load a release
+
+There are two ways, and they load the same thing. **Through the tunnel, from a teammate's machine** ([server runbook §6](../docs/tracks/C-storage/server-runbook.md#6-loading-a-release)): the server needs no Python, and the machine has the embedding model, so vectors are loaded too. The runner works that way as well: set `BACKEND_DSN`, `NEO4J_URI` and `NEO4J_PASSWORD` to the tunnel's addresses and run `python platform/run_release.py <release>`. **On the server**, as below: no tunnel, but no vectors.
 
 From your machine, copy the release:
 
@@ -192,7 +197,7 @@ python3 -m venv /srv/kg/venv
 Then, each time a release is loaded:
 
 ```sh
-cd /srv/kg/app
+cd /srv/kg/repo
 set -a; . platform/.env; set +a                 # the passwords, for the runner
 /srv/kg/venv/bin/python platform/run_release.py /srv/k1/<release> --skip-vectors
 ```
@@ -228,25 +233,25 @@ Five checks: the gate refuses a request without the password, the frontend loads
 The databases never face the internet. Each teammate sends their **public** SSH key; append it to `/home/kg/.ssh/authorized_keys` (one line per person, with their name as the comment at the end of the line, so it can be removed alone). They then run, on their own machine:
 
 ```sh
-ssh -N -L 5434:127.0.0.1:5434 -L 7687:127.0.0.1:7687 -L 7474:127.0.0.1:7474 kg@<server>
+ssh -N -L 15434:127.0.0.1:5434 -L 17474:127.0.0.1:7474 -L 17687:127.0.0.1:7687 kg@<server>
 ```
 
-and use `postgresql://kg:<POSTGRES_PASSWORD>@127.0.0.1:5434/kg`, `bolt://127.0.0.1:7687` and http://127.0.0.1:7474 as if the stores were local. Their own local stores use the same ports, so stop those first. The store passwords are shared by a channel other than the repository.
+and use `postgresql://kg:<POSTGRES_PASSWORD>@127.0.0.1:15434/kg`, `bolt://127.0.0.1:17687` and <http://127.0.0.1:17474>. The 1xxxx ports leave their own local stores running ([server runbook §5](../docs/tracks/C-storage/server-runbook.md#5-reaching-the-databases-the-tunnel)). The store passwords are shared by a channel other than the repository.
 
 ## 11. Backup, restore, update
 
 **Backup.** Only PostgreSQL holds what cannot be rebuilt: the question log. As `kg`, `crontab -e`, add:
 
 ```
-30 2 * * * cd /srv/kg/app && sh deploy/backup.sh /srv/kg/backups >> /srv/kg/backups/backup.log 2>&1
+15 3 * * * /srv/kg/repo/platform/server/backup.sh >> /srv/backups/backup.log 2>&1
 ```
 
-It writes `kg-<time>.dump` every night and deletes dumps older than 7 days. Copy one off the server now and then (`scp kg@<server>:/srv/kg/backups/<dump> .`): a backup on the same disk does not survive the server.
+That is Hung's `platform/server/backup.sh`. It writes `kg-<time>.dump` every night and deletes dumps older than 7 days. Copy one off the server now and then (`scp kg@<server>:/srv/backups/<dump> .`): a backup on the same disk does not survive the server.
 
 **Restore** a dump into the running database (it replaces what is there):
 
 ```sh
-docker compose -f platform/docker-compose.yml exec -T postgres pg_restore -U kg -d kg --clean --if-exists < /srv/kg/backups/<dump>
+docker compose -f platform/docker-compose.yml exec -T postgres pg_restore -U kg -d kg --clean --if-exists < /srv/backups/<dump>
 ```
 
 Neo4j and the vectors are rebuilt by loading the release again (section 7).
@@ -254,7 +259,7 @@ Neo4j and the vectors are rebuilt by loading the release again (section 7).
 **Update to a new version:**
 
 ```sh
-cd /srv/kg/app
+cd /srv/kg/repo
 git pull
 docker compose -f platform/docker-compose.yml up -d --build
 python3 deploy/smoke_test.py --url https://<domain> --user team --password '<password>'
@@ -291,6 +296,6 @@ Basic authentication over plain HTTP sends the password readable by anyone on th
 | `backend` unhealthy, log shows a PostgreSQL authentication error | The password in `.env` differs from the one the volume was created with | Section 11, "Change a store password" |
 | Health says `"source": "files"` on the server | `BACKEND_SOURCE` not set to `stores` | Set it in `.env`, `up -d` |
 | Health says `"source": "stores"` but no wells or chunks | No release loaded yet | Section 7 |
-| The runner cannot connect to PostgreSQL or Neo4j | The `.env` variables were not exported into the shell | `set -a; . platform/.env; set +a`, then run it again from `/srv/kg/app` |
+| The runner cannot connect to PostgreSQL or Neo4j | The `.env` variables were not exported into the shell | `set -a; . platform/.env; set +a`, then run it again from `/srv/kg/repo` |
 | Disk filling up | Container logs, old images or dumps | `docker system df`; `docker image prune`; the log limits of section 2 |
 | `docker compose` complains about a variable | A `$` in `.env` outside single quotes | Quote the value |

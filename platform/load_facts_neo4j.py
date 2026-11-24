@@ -192,7 +192,8 @@ def load(graph_path: Path = GRAPH, uri: str = URI, user: str = USER, password: s
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--graph", type=Path, default=GRAPH, help="a .graph.json written by graphrag.factgraph")
+    parser.add_argument("--graph", "--facts", dest="graph", type=Path, default=GRAPH,
+                        help="a .graph.json written by graphrag.factgraph")
     parser.add_argument("--uri", default=URI)
     parser.add_argument("--user", default=USER)
     parser.add_argument("--password", default=PASSWORD)
