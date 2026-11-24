@@ -121,6 +121,10 @@ class UnitTests(unittest.TestCase):
                                   ("115", "115 hours of non-productive time", "hours"), ("329", "329°F at 500 feet", "°F")):
             self.assertEqual(unit_in_text(value, text), unit, text)
 
+    def test_the_unit_may_follow_a_later_mention_of_the_value(self):
+        text = "a vertical depth of 1,955 in contrast to the planned 1,700'. Liner from 755' to 1,955', set on bottom"
+        self.assertEqual(unit_in_text("1955", text), "ft")
+
     def test_a_preposition_or_a_missing_value_gives_no_unit(self):
         self.assertIsNone(unit_in_text("1955", "1955 in 2016"))
         self.assertIsNone(unit_in_text("1955", "no number here"))

@@ -47,11 +47,13 @@ def unit_in_text(value: str, text: str) -> str | None:
     plain = _plain(str(value))
     if not re.fullmatch(r"-?\d+(?:\.\d+)?", plain):
         return None
-    found = re.search(rf"(?<![\d.]){re.escape(plain)}(?:\.0+)?(?!\d)[ \u00a0-]?(\S{{0,12}})", _plain(text))
-    if not found:
-        return None
-    after = found.group(1).lower()
-    return next((unit for pattern, unit in _UNITS if re.match(rf"(?:{pattern})(?![a-z])", after)), None)
+    # Every place the passage writes the value: "1,955 in contrast to ... liner from 755' to 1,955'" gives "ft".
+    for found in re.finditer(rf"(?<![\d.]){re.escape(plain)}(?:\.0+)?(?!\d)[ \u00a0-]?(\S{{0,12}})", _plain(text)):
+        after = found.group(1).lower()
+        unit = next((unit for pattern, unit in _UNITS if re.match(rf"(?:{pattern})(?![a-z])", after)), None)
+        if unit:
+            return unit
+    return None
 
 
 def same_unit(a: str, b: str) -> bool:
