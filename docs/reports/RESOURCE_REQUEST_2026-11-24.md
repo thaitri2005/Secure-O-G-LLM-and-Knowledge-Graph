@@ -2,7 +2,7 @@
 
 **Date:** 24 November 2026 · **From:** Thai Huu Tri, Nguyen Le Hung, Tran Quang Khai · **Status:** draft for the team to check before anything is sent
 
-This is everything the project needs to be developed, measured and shown, what the team already has, and what it asks for. Everything asked for is **rented from cloud providers**, not school hardware: MSc. Nguyen Anh Tuan advised that the school's machines can be slow and awkward to use. Dr. Le Duy Dung, the team's advisor, advised asking the school for the resources. The email to the school is at the end.
+This is everything the project needs to be developed, measured and shown, what the team already has, and what it asks for. Everything asked for is **rented from cloud providers**, not school hardware: MSc. Nguyen Anh Tuan advised that the school's machines can be slow and awkward to use. Dr. Le Duy Dung, the team's advisor, said to email anh Trường to use the capstone funding when resources are needed. That email is at the end.
 
 Amounts are in Vietnamese dong, with US dollars beside them at **26,000 VND to the dollar**, an assumed rate to check on the day.
 
@@ -10,18 +10,18 @@ Amounts are in Vietnamese dong, with US dollars beside them at **26,000 VND to t
 
 The application is built and runs on a laptop. It cannot yet be measured or shown, because the team owns no GPU and no server.
 
-**We ask for a budget of up to 7.5 million VND (about US$290) for the next three months**, December 2026 to February 2027, spent on three rented services:
+**We ask for 5 million VND (about US$190) from the capstone funding for the next three months**, December 2026 to February 2027, spent on three rented services:
 
 | # | Service | What we would rent | Three months, estimated |
 |---|---|---|---:|
-| 1 | **A GPU by the hour** | One 24 GB card, about 20 hours a week | 2.3 to 4.7 million VND (US$90 to US$180) |
+| 1 | **A GPU by the hour** | One 24 GB card, about 10 hours a week | 1.2 to 2.3 million VND (US$45 to US$90) |
 | 2 | **A server that stays on** | 4 vCPU, 8 GB memory, 80 GB disk, with an HTTPS address | 0.8 to 1.2 million VND (US$30 to US$48) |
 | 3 | **A hosted open-weight model** | Pay per use, on public data only | 0.5 million VND (US$20) |
-| | A web address and a reserve | | 1.1 million VND (US$42) |
-| | **Total** | | **4.7 to 7.5 million VND (US$182 to US$290)** |
+| | A web address and a reserve | | 0.8 million VND (US$32) |
+| | **Total** | | **3.3 to 4.8 million VND (US$127 to US$186)** |
 
-- **7.5 million VND is the ceiling for these three months.** If prices sit at the high end, GPU hours are cut first, to stay inside it.
-- **This is a first request.** After three months we report what was spent and what it bought, and ask again for the second semester, which includes the full run over all the reports. The team's total for now is at most 10 million VND.
+- **5 million VND is the ceiling for these three months.** If prices sit at the high end, GPU hours are cut first, to stay inside it.
+- **This is a first request.** The rest is for next semester: after the three months we report what was spent and what it bought, and ask again, including for the full run over all the reports.
 - **The least that keeps the project moving** is about **1.5 million VND** (US$60) for the three months: the server, a hosted model for the measurements, and no rented GPU. Nothing could then be compared with our earlier results.
 - The team also asks the supervisor for **one or two domain experts** to try the application, and for their questions.
 
@@ -71,14 +71,14 @@ The application is built and runs on a laptop. It cannot yet be measured or show
 | Repeating a run to see how much a score moves by chance | Three repeats of a round | 6 to 12 hours |
 | The large run and its evaluation | A few thousand pages, extraction and questions | About three days, with stops allowed |
 
-These are estimates from runs on the borrowed card; a rented card may be faster or slower. About 8 hours a week covers only the first three rows. **About 20 hours a week** lets each of us run one experiment a week beside the regular measurements, and a failed run can be repeated the same week. Over 13 weeks that is 260 hours: 2.3 to 4.7 million VND. Model files are kept on a small rented disk between sessions, inside that range. The large run belongs to the second semester and is not in this request.
+These are estimates from runs on the borrowed card; a rented card may be faster or slower. **About 10 hours a week** covers the regular measurements and one experiment a week between the three of us. Over 13 weeks that is 130 hours: 1.2 to 2.3 million VND. Model files are kept on a small rented disk between sessions, inside that range. The large run belongs to the second semester and is not in this request.
 
 **The server.** Neo4j is set to 2 GB of heap and 1 GB of cache; PostgreSQL, the backend and the web application share the rest of 8 GB, which is the least that works. It needs no GPU: the model is reached over the network. Experiments on the stores stay on our laptops, so a trial never disturbs what the experts use.
 
 | Server, 4 vCPU and 8 GB | Listed price a month | Three months |
 |---|---:|---:|
 | Hetzner | US$10 to US$16 | 0.8 to 1.2 million VND |
-| DigitalOcean | about US$48 | 3.7 million VND: half the budget, so only with student credits |
+| DigitalOcean | about US$48 | 3.7 million VND: most of the budget, so only with student credits |
 
 The GitHub Student Developer Pack lists US$200 of DigitalOcean credit for a year and US$100 of Azure credit per student. If one of us can redeem it (either may ask for a card), the server costs nothing and its share goes to GPU hours.
 
@@ -91,17 +91,17 @@ Three months, December 2026 to February 2027.
 | Item | Low | High | Note |
 |---|---:|---:|---|
 | Server | 0.8 M (US$30) | 1.2 M (US$48) | Hetzner; nothing if student credits can be redeemed |
-| GPU by the hour, 13 weeks at 20 hours a week | 2.3 M (US$90) | 4.7 M (US$180) | US$0.34 to US$0.69 an hour |
+| GPU by the hour, 13 weeks at 10 hours a week | 1.2 M (US$45) | 2.3 M (US$90) | US$0.34 to US$0.69 an hour |
 | Hosted open-weight model | 0.5 M (US$20) | 0.5 M (US$20) | Pay per use; unused credit stays |
 | Domain name | 0.3 M (US$12) | 0.3 M (US$12) | One year |
-| Reserve | 0.8 M (US$30) | 0.8 M (US$30) | Prices are several months old in places |
-| **Total** | **4.7 M VND (US$182)** | **7.5 M VND (US$290)** | |
+| Reserve | 0.5 M (US$20) | 0.5 M (US$20) | Prices are several months old in places |
+| **Total** | **3.3 M VND (US$127)** | **4.8 M VND (US$186)** | |
 
-We ask for **7.5 million VND as a ceiling**, and will report what is spent each month against it.
+We ask for **5 million VND as a ceiling**, and will report what is spent each month against it.
 
 ## After the three months
 
-A second request, sized from what these months show: the server and the weekly GPU hours for the second semester, and the full run over all the reports (about three days of GPU time, 0.6 to 1.3 million VND).
+A second request for next semester, sized from what these months show: the server and the weekly GPU hours, and the full run over all the reports (about three days of GPU time, 0.6 to 1.3 million VND). The team expects its total for now to stay within about 10 million VND.
 
 ## If more became possible
 
@@ -110,39 +110,40 @@ Not asked for now. In order of what it would buy:
 | With | We could |
 |---|---|
 | A server with 16 GB | Keep a second copy of the stores for experiments on the server, not on laptops |
-| More GPU hours | Try a vision model on the tables and forms the rules read badly |
+| About 20 GPU hours a week instead of 10 | Run an experiment each per week, and repeat a failed run the same week |
+| A day of GPU time for a vision model | Find out whether it reads the tables and forms the rules read badly |
 
 ## Limits to know about
 
 - **Public data only, on everything rented.** A cloud server, a rented GPU and a hosted model are all other people's machines. They may hold public reports only (AK-3, Utah FORGE). A VPI document stays off them unless VPI agrees in writing to a named provider; until then such a document can only be processed on a machine VPI or the team controls, and none is planned here.
 - **A hosted model's results are not compared with our earlier ones.** They come from a different copy of the model. Reported scores come from the rented GPU, where we run our own copy.
 - **Prices are list prices found on 24 November 2026**, in dollars, and should be checked on the day of purchase. The sources disagree in places, and two are several months old. The exchange rate is assumed.
-- **Nothing here has been confirmed by the school or the advisors**: whether the school can fund cloud services, how (a budget, a refund, or accounts the school holds), and who holds each account and its spending cap (open question Q6).
+- **Nothing here has been confirmed**: whether the capstone funding can pay for cloud services, how (a budget, a refund, or accounts the school holds), and who holds each account and its spending cap (open question Q6).
 - **Spending is capped at the provider** where the provider allows it, and a rented GPU is switched off after each session; the team records hours and cost with every run, as it already does for tokens.
 
-## The email to the school
+## The email
 
-**To:** the school (the office that funds capstone projects: to fill in) · **Cc:** Dr. Le Duy Dung, MSc. Nguyen Anh Tuan · **Subject:** Capstone "LLM and Knowledge Graph for drilling reports": request for a cloud computing budget
+**To:** anh Trường (full name and address to fill in) · **Cc:** Dr. Le Duy Dung, MSc. Nguyen Anh Tuan · **Subject:** Capstone "LLM and Knowledge Graph for drilling reports": request to use capstone funding for cloud computing
 
-Dear Sir or Madam,
+Dear anh Trường,
 
-We are a capstone team working with the Vietnam Petroleum Institute (VPI) on question answering over drilling reports: Thai Huu Tri, Nguyen Le Hung and Tran Quang Khai. Our advisors are Dr. Le Duy Dung and MSc. Nguyen Anh Tuan. Dr. Dung advised us to ask the school for the resources the project needs, and this is that request.
+We are a capstone team working with the Vietnam Petroleum Institute (VPI) on question answering over drilling reports: Thai Huu Tri, Nguyen Le Hung and Tran Quang Khai. Our advisors are Dr. Le Duy Dung and MSc. Nguyen Anh Tuan. Dr. Dung told us to write to you to use the capstone funding for the resources the project needs.
 
 The application is now built: a person asks a question about a well's reports and gets an answer with the page it comes from. It runs end to end on a laptop. We cannot yet measure it or show it to VPI's experts, because the project must use open-weight language models that we run ourselves, and we have no GPU and no server of our own. The machine we used until now was borrowed.
 
-We would like to rent these from cloud providers, paying only for the hours we use, and we ask whether the school can support the cost: **up to 7.5 million VND (about US$290) for the next three months**, December 2026 to February 2027.
+We would like to rent these from cloud providers, paying only for the hours we use, and we would like to ask for **5 million VND (about US$190) for the next three months**, December 2026 to February 2027.
 
-1. **A GPU rented by the hour** (one 24 GB card, about 20 hours a week): 2.3 to 4.7 million VND. Most of our work from here is experiments: comparing open-weight models and repeating runs to see how stable a result is.
+1. **A GPU rented by the hour** (one 24 GB card, about 10 hours a week): 1.2 to 2.3 million VND. Most of our work from here is experiments: comparing open-weight models and repeating runs to see how stable a result is.
 2. **One small server that stays on** (4 vCPU, 8 GB of memory) for the databases and the web application, behind a password: 0.8 to 1.2 million VND.
 3. **Pay-per-use access to hosted open-weight models**, so a demonstration answers at any hour: 0.5 million VND.
 
-The rest is a web address and a small reserve. All data on these services is public (drilling reports published by the US Department of Energy's Geothermal Data Repository), and everything we run is open source. We will report what is spent each month. After the three months we would report what the budget bought and, if the school agrees, ask again for the second semester.
+The rest is a web address and a small reserve. All data on these services is public (drilling reports published by the US Department of Energy's Geothermal Data Repository), and everything we run is open source. We will report what is spent each month. After the three months we would report what the budget bought, and ask again for next semester.
 
 Could you tell us:
 
-- whether the school can fund this, in full or in part;
-- in what form: a budget we spend and claim back, or accounts the school opens and pays for;
-- who should approve it, and what you need from us to decide.
+- whether this can be funded, in full or in part;
+- how it works: we pay and claim back with receipts, or the school pays the providers;
+- what you need from us to proceed (a form, quotes, an approval from our advisors).
 
 If only part is possible, about 1.5 million VND still keeps the project moving, with far less room for experiments. A short document with the sizes, the prices and how we worked them out is attached.
 

@@ -39,7 +39,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
 - **Compute:**
   - no GPU of the team's own: the desktop that ran every measurement up to E31 was borrowed and is not planned on (Track B log B-D42, B-D43);
-  - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks the school for up to 7.5 million VND (about US$290) for the next three months (Q6, Q7);
+  - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks for 5 million VND (about US$190) from the capstone funding for the next three months (Q6, Q7);
   - the school's GPUs are not planned on: the supervisor advised they are slow and awkward (24 November);
   - laptops for code, tests, Docling and the stores.
 - **Data:** public only. AK-3 first, then the Utah FORGE reports already used (56-32, 68-32, 78-32). The supervisor's petroleum document, if supplied, is processed on local models only.

@@ -13,7 +13,7 @@ One per stint, for the supervisor, in their own folder: [stints/](stints/README.
 
 ## Draft: resource plan and request, 24 November 2026
 
-[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): everything the project needs to be developed, measured and shown, what the team has, and what it asks for: a first budget of up to 7.5 million VND (about US$290) for three months of rented cloud compute (a GPU by the hour, a small server that stays on, hosted open-weight models), on public data only. It ends with the email to the school, which Dr. Le Duy Dung advised sending. A draft until the team checks it: the office to address and the exchange rate are assumptions, and prices are list prices found that day.
+[`RESOURCE_REQUEST_2026-11-24.md`](RESOURCE_REQUEST_2026-11-24.md): everything the project needs to be developed, measured and shown, what the team has, and what it asks for: a first budget of 5 million VND (about US$190) for three months of rented cloud compute (a GPU by the hour, a small server that stays on, hosted open-weight models), on public data only. It ends with the email to anh Trường, whom Dr. Le Duy Dung said to write to for the capstone funding. A draft until the team checks it: the exchange rate is assumed, and prices are list prices found that day.
 
 ## Slides
 

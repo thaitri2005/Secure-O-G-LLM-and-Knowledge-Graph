@@ -1381,7 +1381,7 @@ The thresholds are proposals for a student project. Report sample sizes. If a ga
 | Q4 | Which VLM and embedding models, and which ~7B LLM? | Chosen by measurement in M1 (VLM by Track A; LLM and embeddings by Track B), within D-37 | §9 |
 | Q5 | Which public daily drilling reports to use, ideally for wells in a structured dataset? | AK-3 appendix daily reports first; candidates in [Data sources](DATA_SOURCES.md) | D-40, G4 |
 | Q6 | How is the OpenRouter (or similar) account funded and capped, and who holds it? | Supervisor supports the cost; team sets a monthly cap | D-38 |
-| Q7 | How is the rented compute paid for: a budget from the school, a refund, or accounts someone else holds? (Was: how to book the school GPUs, which are no longer planned on, D-68) | Ask the school, as Dr. Le Duy Dung advised, with the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md): up to 7.5 million VND (about US$290) for the next three months | D-38, D-68, §11 |
+| Q7 | How is the rented compute paid for: a budget from the school, a refund, or accounts someone else holds? (Was: how to book the school GPUs, which are no longer planned on, D-68) | Email anh Trường to use the capstone funding, as Dr. Le Duy Dung said, with the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md): 5 million VND (about US$190) for the next three months, the rest next semester | D-38, D-68, §11 |
 | Q8 | May the two VPI requirement documents be published in this public repository? | No | `docs/requirements/` |
 | Q9 | The two papers (OnePetro 642469, EarthDoc DOI) | The supervisor's friend abroad will download and send them | [Related work](references.md) |
 | Q10 | Is the ontology assistant (FR-20) wanted? | Later | §6 |

@@ -1081,3 +1081,9 @@ An independent review of the day's code (a fresh reviewer, read-only) confirmed 
 - **The request:** up to 7.5 million VND (about US$290) for December 2026 to February 2027: a 24 GB GPU for about 20 hours a week (2.3 to 4.7 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 4.7 to 7.5 million. The least that keeps the project moving is about 1.5 million.
 - **The shorter period buys back the 20 GPU hours a week** that B-D45 had cut to 10.
 - **Left for a second request:** the second semester's server and GPU hours, and the full run over all the reports.
+
+**B-D47 (decision; 5 million VND now from the capstone funding, asked of anh Trường).** Tri, 24 November. This replaces the amount of B-D46 and the addressee of B-D45.
+
+- **Who to ask:** Dr. Le Duy Dung's words, as Tri passed them on: "nếu cần tài nguyên thì email anh Trường để sử dụng funding cho capstone nhé". The email is to anh Trường, copied to both advisors. His full name and address are to fill in.
+- **The request:** 5 million VND (about US$190) for December 2026 to February 2027; the rest is for next semester. A 24 GB GPU for about 10 hours a week (1.2 to 2.3 million), a server of 4 vCPU and 8 GB (0.8 to 1.2 million), 0.5 million of hosted calls, a domain name and a reserve. Estimated 3.3 to 4.8 million.
+- **Cut to fit:** GPU hours from 20 a week back to 10.
