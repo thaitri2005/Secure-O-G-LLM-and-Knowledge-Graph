@@ -151,9 +151,30 @@ class PlanValueTests(unittest.TestCase):
         self.assertEqual(events.plan_value(plan("not_answerable"), self.events), ([], "", "", []))
         self.assertEqual(events.plan_value(plan("total_hours", well="56-32"), self.events), ([], "", "", []))
 
-    def test_run_plan_text_is_unchanged(self):
-        for p in (plan("total_hours", code="DRIL"), plan("count_days", non_productive=True), plan("top_group")):
-            self.assertEqual(events.run_plan(p, self.events), events.plan_value(p, self.events)[2:])
+    def test_run_plan_text_is_what_track_c_replays(self):
+        # platform/load_events_neo4j.py compares recorded plans' results with this text, character for character.
+        text = lambda *a, **k: events.run_plan(plan(*a, **k), self.events)[0]
+        self.assertEqual(text("total_hours", code="DRIL"), "total hours for code DRIL = 15.5 (2 events on 2 dates)")
+        self.assertEqual(text("count_events", non_productive=True), "number of events for non-productive = 2")
+        self.assertEqual(text("count_days", non_productive=True, min_hours_per_day=12),
+                         "number of dates for non-productive with at least 12 hours = 1")
+        self.assertEqual(text("list_dates", npt_code="KICK"), "dates for non-productive code KICK = 2016-08-20, 2016-08-21")
+        self.assertEqual(text("first_date", code="DRIL"), "first date for code DRIL = 2016-08-20")
+        self.assertEqual(text("last_date", date_from="2016-08-21", date_to="2016-08-22"),
+                         "last date for from 2016-08-21 to 2016-08-22 = 2016-08-22")
+        self.assertEqual(text("top_group", group_by="date"), "the date with the most hours for all events = 2016-08-21 (24 hours)")
+        self.assertEqual(text("depth_on_date", date_from="2016-08-22"), "deepest end measured depth on 2016-08-22 = 300 ft")
+        self.assertEqual(text("depth_gain", date_from="2016-08-20", date_to="2016-08-22"),
+                         "end measured depth rose by 124 ft from 2016-08-20 (176 ft) to 2016-08-22 (300 ft)")
+        self.assertEqual(text("first_date_depth_at_least", depth_ft=150),
+                         "first date with an end measured depth of at least 150 ft = 2016-08-20")
+
+    def test_recorded_plans_still_give_their_recorded_results(self):
+        recorded = [Event(**e) for e in json.loads((baseline.RESULTS / "E28_events.json").read_text(encoding="utf-8"))["events"]]
+        rows = json.loads((baseline.RESULTS / "E28_heldout_graph.json").read_text(encoding="utf-8"))["rows"]
+        self.assertEqual(len(rows), 23)
+        for row in rows:
+            self.assertEqual(events.run_plan(row["plan"], recorded)[0], row["graph_result"])
 
 
 class AnswerOneTests(unittest.TestCase):
@@ -214,6 +235,22 @@ class LaneTests(unittest.TestCase):
         self.assertEqual(set(actual.passages), {f["chunk"] for f in actual.facts})
         planned = lanes.well_facts("What was the planned casing depth of AK-3?", FRAME_EOW, self.engine)
         self.assertIn("planned", {f["qualifier"] for f in planned.facts})
+
+    def test_well_facts_passages_are_the_chunks_of_each_wells_sheet_lines(self):
+        many = [dict(FACTS[2], property=f"p{n:02}", chunk=f"gdr882_ak3_eowr#c{n:04}") for n in range(20)]
+        other = [dict(FACTS[2], well="56-32", chunk="gdr1295_56-32_eowr#c0001")]
+        engine = dataclasses.replace(self.engine, facts=many + other)
+        ev = lanes.well_facts("Compare the non-productive time of AK-3 and 56-32", FRAME_EOW, engine)
+        sheet = baseline.fact_sheet(ev.facts, limit=lanes.SHEET_LINES)
+        cited = {line.rsplit("[", 1)[1].rstrip("]") for text in sheet.values() for line in text.splitlines()[1:]}
+        self.assertEqual(set(ev.passages), cited)
+        self.assertIn("gdr1295_56-32_eowr#c0001", ev.passages)
+        self.assertEqual(len(ev.passages), 13)
+
+    def test_engine_knows_its_wells_and_whether_it_has_daily_reports(self):
+        self.assertEqual(self.engine.wells, {"AK-3", "56-32", "68-32"})
+        self.assertTrue(self.engine.has_daily)
+        self.assertFalse(dataclasses.replace(self.engine, daily_chunks=[], events=[]).has_daily)
 
     def test_well_facts_are_empty_for_an_unknown_well_or_no_well(self):
         self.assertTrue(lanes.well_facts("What depth did ZZ-9 reach?", FRAME_EOW, self.engine).empty)
@@ -328,6 +365,48 @@ class CoordinatorTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             coordinator.answer(Q("x"), self.engine, scripted, scripted, lane="poetry")
 
+    def test_exact_mode_drops_passages_from_forced_lanes_too(self):
+        scripted = ScriptedClient(flat(FRAME_EOW), DEPTH_ANSWER)
+        row = coordinator.answer(Q("What depth did ZZ-9 reach?"), self.engine, scripted, scripted, mode="exact",
+                                 lane=["well_facts", "passages"])
+        self.assertEqual((row["status"], row["lanes"], scripted.answer_calls), ("not_found_in_graph", [], 0))
+
+    def test_a_date_range_or_tool_name_is_not_read_as_a_well(self):
+        hours = flat(frame_with(plan("total_hours", code="DRIL")))
+        for question in ("How many hours of drilling did AK-3 log from 20-22 August 2016?",
+                         "How many hours of drilling between 20-22 August 2016?",
+                         "How many hours of drilling on BHA-2 runs for AK-3?"):
+            scripted = ScriptedClient(hours, None)
+            row = coordinator.answer(Q(question), self.engine, scripted, scripted)
+            self.assertEqual((row["lanes"], row["values"], row["frame"]["kind"]), (["events"], ["15.5"], "over_time"), question)
+
+    def test_a_frame_with_wrong_field_types_is_discarded(self):
+        good = flat(frame_with(plan("total_hours", code="DRIL")))
+        for field, value in (("date_from", 20160820), ("min_hours_per_day", "12"), ("well", 3), ("code", 5),
+                             ("depth_ft", None), ("non_productive", "yes")):
+            scripted = ScriptedClient(dict(good, **{field: value}), DEPTH_ANSWER)
+            row = coordinator.answer(Q("What total depth did well AK-3 reach?"), self.engine, scripted, scripted)
+            self.assertEqual(row["frame"]["kind"], "other", field)
+
+    def test_every_kind_of_row_has_the_keys_a_run_summary_reads(self):
+        computed = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), None)
+        nothing = ScriptedClient(flat(FRAME_EOW), None)
+        answered = ScriptedClient(flat(FRAME_EOW), DEPTH_ANSWER)
+        rows = [coordinator.answer(Q("How many hours of drilling on AK-3?"), self.engine, computed, computed),
+                coordinator.answer(Q("What depth did ZZ-9 reach?"), self.engine, nothing, nothing, mode="exact"),
+                coordinator.answer(Q("What total depth did well AK-3 reach?"), self.engine, answered, answered)]
+        self.assertEqual(set(rows[0]) - {"answer_text", "plan", "graph_result", "graph_source_chunks"},
+                         set(rows[2]) - {"evidence"})
+        self.assertEqual(set(rows[1]) - {"sources"}, set(rows[2]) - {"evidence"})
+        summary = baseline.summarize(rows, SimpleNamespace(ledger=SimpleNamespace(summary=lambda: {})))
+        self.assertEqual(summary["questions"], 3)
+
+    def test_a_daily_question_without_daily_reports_says_which_reports_answered(self):
+        engine = dataclasses.replace(self.engine, daily_chunks=[], events=[])
+        scripted = ScriptedClient(flat(frame_with(plan("total_hours", code="DRIL"))), NOT_STATED)
+        row = coordinator.answer(Q("How many hours of drilling on AK-3?"), engine, scripted, scripted)
+        self.assertEqual((row["fallback"], row["answered_from"]), (True, "end_of_well"))
+
     def test_several_forced_lanes_run_in_the_order_given(self):
         scripted = ScriptedClient(None, DEPTH_ANSWER)
         row = coordinator.answer(Q("What casing depth did well AK-3 reach?"), self.engine, scripted, scripted,
@@ -367,6 +446,14 @@ class PooledRunTests(unittest.TestCase):
         self.assertEqual(summary["by_set"]["a"]["correct"], "1/2")
         self.assertEqual(summary["by_set"]["b"]["calls_per_question"], 1.0)
         self.assertEqual(summary["per_question"]["prompt_tokens"], round((1600 + 1600 + 600) / 3, 1))
+
+    def test_daily_question_sets_are_refused_without_daily_reports(self):
+        engine = dataclasses.replace(sample_engine(), daily_chunks=[], events=[])
+        with self.assertRaises(SystemExit) as refused:
+            coordinator.check_engine(engine, ["prototype", "ak3_events"])
+        self.assertIn("daily-report", str(refused.exception))
+        coordinator.check_engine(engine, ["prototype", "probe"])
+        coordinator.check_engine(sample_engine(), ["ak3_events"])
 
     def test_a_pooled_run_answers_through_the_coordinator_and_records_its_cost(self):
         scripted = ScriptedClient(flat(FRAME_EOW), DEPTH_ANSWER)
@@ -471,6 +558,30 @@ class FactGraphTests(unittest.TestCase):
         fact = dict(FACTS[2], chunk="f62efbee00767a3e7:s6:c0")
         documents = [n["key"] for n in factgraph.to_graph([fact])["nodes"] if n["label"] == "Document"]
         self.assertEqual(documents, ["f62efbee00767a3e7"])
+
+
+class RecordedPlanTests(unittest.TestCase):
+    """E28's recorded query plans, replayed with the result reported by code (B-C39). No model call: the plans are
+    the ones the model wrote in E28, so this shows what code reporting does to those answers, not a new run."""
+
+    def replay(self, run, gold_file):
+        from graphrag.data import AK3_EVENTS, AK3_EVENTS_HELDOUT
+        data = json.loads({"seen": AK3_EVENTS, "heldout": AK3_EVENTS_HELDOUT}[gold_file].read_text(encoding="utf-8"))
+        questions, gold = {q["id"]: q for q in data["questions"]}, {f["id"]: f for f in data["facts"]}
+        recorded = [Event(**e) for e in json.loads((baseline.RESULTS / "E28_events.json").read_text(encoding="utf-8"))["events"]]
+        engine = lanes.Engine([], [], recorded, [])
+        rows = json.loads((baseline.RESULTS / f"{run}.json").read_text(encoding="utf-8"))["rows"]
+        by_code = 0
+        for row in rows:
+            evidence = lanes.events(questions[row["id"]]["question"], {"plan": row["plan"]}, engine)
+            # Without a computed result the question fell back to retrieval, and its recorded answer stands.
+            by_code += coordinator._computed_row(questions[row["id"]], evidence.computed, gold)["correct"] \
+                if evidence.computed else row["correct"]
+        return sum(r["correct"] for r in rows), by_code, len(rows)
+
+    def test_code_reported_results_on_the_recorded_plans(self):
+        self.assertEqual(self.replay("E28_graph_fixed_seen", "seen"), (27, 33, 35))
+        self.assertEqual(self.replay("E28_heldout_graph", "heldout"), (19, 22, 23))
 
 
 if __name__ == "__main__":

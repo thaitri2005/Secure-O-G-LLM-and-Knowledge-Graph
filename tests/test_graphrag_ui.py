@@ -62,6 +62,31 @@ class UiTests(unittest.TestCase):
     def test_pooled_coordinator_runs_are_not_listed_for_replay(self):
         self.assertTrue(all(isinstance(r["question_set"], str) for r in ui.list_runs()))
 
+    def test_replaying_a_pooled_run_is_refused_not_a_crash(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            Path(temporary, "pool.json").write_text(json.dumps({"question_set": ["prototype"], "rows": [{}]}), encoding="utf-8")
+            with patch.object(ui, "RESULTS", Path(temporary)), self.assertRaises(FileNotFoundError):
+                ui.run_view("pool")
+
+    def test_two_wells_without_the_embedding_server_still_answer(self):
+        ui.engine.cache_clear()
+        with patch.object(ui, "endpoint_status", side_effect=lambda name: {"up": name != "local-embed", "detail": name}), \
+                patch("graphrag.client.ModelClient", FakeClient):
+            out = ui.ask("Which of AK-3 and 56-32 was drilled deeper?")
+        ui.engine.cache_clear()
+        self.assertNotIn("error", out)
+        self.assertIn("passages", out["lanes"])
+
+    def test_forcing_the_daily_lane_without_daily_reports_says_so(self):
+        from graphrag.lanes import Engine
+        empty = Engine(ui.engine().eow_chunks, [], [], [], multi_well_retriever="perwell:bm25")
+        with patch.object(ui, "endpoint_status", return_value={"up": True, "detail": "test"}), \
+                patch.object(ui, "engine", return_value=empty), patch("graphrag.client.ModelClient", FakeClient):
+            out = ui.ask("How many non-productive hours were logged?", lane="daily")
+        self.assertIn("daily-report corpus is not on this machine", out["error"])
+
     def test_live_answer_without_a_model_server_says_so(self):
         with patch.object(ui, "endpoint_status", return_value={"up": False, "detail": "nothing answers"}):
             self.assertIn("No model to answer with", ui.ask("What total depth did AK-3 reach?")["error"])

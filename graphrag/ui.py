@@ -128,6 +128,8 @@ def run_view(name: str) -> dict:
     if not NAME.match(name) or not (RESULTS / f"{name}.json").is_file():
         raise FileNotFoundError(name)
     run = json.loads((RESULTS / f"{name}.json").read_text(encoding="utf-8"))
+    if not isinstance(run.get("question_set"), str):
+        raise FileNotFoundError(name)  # a pooled coordinator run: not replayed here
     questions, gold = questions_for(run["question_set"])
     rows = []
     for row in run["rows"]:
@@ -174,13 +176,14 @@ FORCED = {"eowr": ["well_facts", "passages"], "daily": ["events"]}
 def engine():
     """Loaded once: the reports, the event graph and the validated facts the lanes read."""
     from .lanes import Engine
-    return Engine.load()
+    # Per-well fusion needs the embedding server; without it, questions naming several wells use per-well BM25.
+    return Engine.load() if endpoint_status("local-embed")["up"] else Engine.load(multi_well_retriever="perwell:bm25")
 
 
 def method_of_answer(row: dict) -> str:
     if row["computed"]:
         return "Event graph"
-    if row["fallback"] and row["frame"]["kind"] == "over_time":
+    if row["fallback"] and row["frame"]["kind"] == "over_time" and row["answered_from"] == "daily":
         return "Event graph planner, then retrieval by date"
     if "well_facts" in row["lanes"]:
         return "Retrieval by well, with the per-well fact sheet" if "passages" in row["lanes"] else "Per-well fact graph"
@@ -200,11 +203,13 @@ def ask(question: str, lane: str = "auto", mode: str = "allow_fallback") -> dict
     if not status["up"]:
         return {"error": f"No model to answer with: {status['detail']}. Start llama.cpp (graphrag/README.md) or use "
                          f"replay mode."}
+    if lane == "daily" and not engine().has_daily:
+        return {"error": "The daily-report corpus is not on this machine (data/corpora/ak3_appendices)."}
     q = {"id": "live", "kind": "live", "question": question, "gold": []}
     row = answer(q, engine(), client_for("frame", roles), client_for("answer", roles),
                  mode=mode if mode in MODES else "allow_fallback", lane=FORCED.get(lane))
     computed = row["computed"] or {}
-    daily = row["lanes"] == ["events"] or row["frame"]["report_type"] == "daily" or row["frame"]["kind"] == "over_time"
+    daily = row["answered_from"] == "daily"
     return {"lane": lane if lane in FORCED else "daily" if daily else "eowr", "method": method_of_answer(row),
             "question": question, "status": row["status"], "values": row["values"], "units": row["units"],
             "evidence": row.get("evidence") or row.get("answer_text"),

@@ -16,7 +16,11 @@ from pathlib import Path
 
 
 def _load(path: str) -> dict:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    run = json.loads(Path(path).read_text(encoding="utf-8"))
+    if isinstance(run.get("question_set"), list):
+        # A pooled coordinator run prefixes question IDs with their set, so it lines up with no single-set run.
+        raise SystemExit(f"{path} is a pooled coordinator run; compare_runs reads runs of one question set.")
+    return run
 
 
 def _fmt_values(row: dict | None) -> str:

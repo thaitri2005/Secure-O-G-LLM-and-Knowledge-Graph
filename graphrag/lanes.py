@@ -10,9 +10,9 @@ import json
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
-from .baseline import RESULTS, asks_about_plan, build, names_several_wells, pool
+from .baseline import RESULTS, asks_about_plan, build, fact_lines, names_several_wells, pool
 from .data import Chunk
-from .events import Event, build_events, inputs, plan_value
+from .events import WELL, Event, build_events, inputs, plan_value
 from .retrieval import well_names
 from .validate import validate
 
@@ -64,6 +64,20 @@ class Engine:
         facts, _ = validate(raw, {c.id: c.text for c in eow}, strict=True) if raw else ([], {})
         return cls(eow, daily, events, facts, **settings)
 
+    @property
+    def has_daily(self) -> bool:
+        """False on a machine without the daily-report corpus: the daily and event lanes then find nothing."""
+        return bool(self.daily_chunks)
+
+    @property
+    def wells(self) -> set[str]:
+        """The wells this engine holds: those its facts are about, those its reports are named after, and the
+        event graph's well. A name in a question counts as a well only if it is one of these: the pattern for
+        well names also matches a date range (20-22 August) or a tool (BHA-2)."""
+        named = {w for f in self.facts for w in well_names(str(f.get("well") or ""))}
+        named |= {w for c in self.eow_chunks for w in well_names(c.doc_id.replace("_", " "))}
+        return named | ({WELL} if self.events else set())
+
     def chunks(self, report_type: str) -> list[Chunk]:
         return self.daily_chunks if report_type == "daily" else self.eow_chunks
 
@@ -101,7 +115,10 @@ def well_facts(question: str, frame: dict, engine: Engine) -> Evidence:
              and (with_plans or f["qualifier"] != "planned")]
     # Well-level facts before per-depth readings, as the fact sheet orders them (baseline.fact_lines).
     facts.sort(key=lambda f: (bool(f.get("context")), f["property"]))
-    shown = list(dict.fromkeys(f["chunk"] for f in facts[:SHEET_LINES * max(len(wells), 1)]))
+    # The chunks of the lines a fact sheet shows: SHEET_LINES per well, as baseline.fact_sheet cuts them.
+    lines = fact_lines(facts)
+    shown = list(dict.fromkeys(line.rsplit("[", 1)[1].rstrip("]") for well in sorted(lines)
+                               for _, line in lines[well][:SHEET_LINES]))
     return Evidence("well_facts", True, shown, facts, answer_format="evidence_first")
 
 

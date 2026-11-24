@@ -26,7 +26,7 @@ Every finding, decision, design choice and experiment of Track B goes here the s
 | Compute | Desktop RTX 4080 SUPER with llama.cpp (`-c 32768 -np 1`), one request at a time for measurements; Neo4j in Docker | B-F16, B-C09, B-C10 |
 | Daily reports | Lookups: date filter 14/26, with the event graph's planner in front 17/26. Totals over time: event graph. Form headers, inventory and parameters need K1 version 1 ([note for Khai](note-for-track-A-daily-reports.md)) | B-F35, B-F36, B-C22, B-D26 |
 | Next | **The second build: one connected application** ([specification §4.6](../../PROJECT_DESIGN.md#46-second-build-one-connected-application)). Track B's part, in the [plan's task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now): answers on K1 version 1 (E32), reading the stores, the lane interface, the fact graph as nodes for Neo4j, the coordinator (E33), computed results inserted by code, the reasoning probe (E34). Still waiting on the expert questions and the purpose of use (Q13) | B-D36 to B-D38, B-C35, [next-runs](next-runs.md) |
-| Coordinator | **Built, not yet measured** (`graphrag/coordinator.py`): one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). A result computed by code is reported by code, with no answer call. Adopted only if E33 matches the hand-routed scores on the 221 pooled questions; E33 needs the desktop GPU | B-D32, B-D36, B-C37 to B-C39 |
+| Coordinator | **Built, not yet measured** (`graphrag/coordinator.py`): one framing call, lanes chosen in code from a fixed table, fixed fallback, an exact-answer switch ([specification §8.1](../../PROJECT_DESIGN.md#81-the-coordinator-and-its-lanes)). A result computed by code is reported by code, with no answer call. Adopted only if E33 matches the hand-routed scores on the 221 pooled questions; E33 needs the desktop GPU. Replaying E28's recorded plans with code reporting gives 33 of 35 and 22 of 23, against 27 and 19 recorded (no model call) | B-D32, B-D36, B-C37 to B-C39, B-C43, B-F61 |
 | Lanes | `graphrag/lanes.py`: passages, well facts and events behind one function shape, each returning the same evidence; settings are the baseline's | B-C37 |
 | Graph model | One graph, two regions joined at `Well` and `Chunk` ([specification §8.5](../../PROJECT_DESIGN.md#85-the-graph-nodes-and-relationships)). Event region in Neo4j (Track C). Fact region exported as nodes and relationships for Track C's loader: [`E27_fact_graph.graph.json`](../../../graphrag/results/E27_fact_graph.graph.json), 216 facts of 5 wells | B-C35, B-C40, B-F60 |
 | Application | FastAPI backend and React frontend, read path first; `graphrag` is its library; the local UI stays a developer tool | B-D37 |
@@ -834,3 +834,36 @@ python -m graphrag.coordinator answer --questions prototype simulated heldout ak
 ```
 
 The daily-report corpus is not on the laptop either, so the daily and event lanes were tested on stand-in chunks and events only.
+
+## 2026-11-24: review of the lanes and the coordinator
+
+An independent review of the day's code (a fresh reviewer, read-only) confirmed the two hard constraints by running them: `run_plan` gives the same text and events as before on all 154 plans recorded in `graphrag/results/`, and the baseline's requests are unchanged. It found eight defects, all fixed the same day, each with a test that failed first.
+
+**B-F61 (finding; from replaying E28's recorded plans, no model call).** With the result reported by code (B-C39), the plans the model wrote in E28 score **33 of 35** on the seen set, where the two-call path scored 27 (`E28_graph_fixed_seen`), and **22 of 23** on the new set, where it scored 19 (`E28_heldout_graph`). The 22 matches the estimate E28 made and did not run.
+
+- Nine answers change, all from wrong to right: t04, t13, t14, t23, t25, t30 and g07, g11, g13. Each had a right computed result that the answer call garbled or abstained on.
+- This is not a new run. The plans are E28's, written under the planner's prompt; the coordinator's framing prompt adds two fields and may write different plans. E33 is the measurement.
+- It is kept as a test (`RecordedPlanTests`), so a change to the event lane that loses these answers fails.
+
+**B-C43 (design choice; fixes from the review).**
+
+- **Exact mode and forced lanes.** `exact` now drops passages from a forced lane too. Before, the local UI's "end-of-well" choice in exact mode answered from passages.
+- **Which names are wells.** The pattern for well names also matches a date range ("20-22 August") and a tool ("BHA-2"). Code now treats a name in a question as a well only if the engine holds it: a well its facts are about, one its reports are named after, or the event graph's well (`Engine.wells`). Before, "from 20-22 August 2016" replaced the plan's well and a right plan fell back to "not stated".
+- **Frame types.** A frame whose plan fields have the wrong types is discarded for the empty frame. llama.cpp enforces the schema; a hosted endpoint may not.
+- **Rows.** Rows answered without an answer call carry every key `answer_one` gives, so `baseline.summarize` reads a coordinator run.
+- **Well-facts passages** are the chunks of each well's sheet lines, 12 per well, as B-C37 said; the first version took 12 times the number of wells overall.
+- **Missing daily reports.** `Engine.has_daily`; a pooled run stops with a message if a daily or event question set is asked without them; the local UI says so when the daily lane is forced; and each row has `answered_from`, the reports its evidence came from, so a daily question answered from end-of-well passages is labelled as such.
+- **Embedding server.** The local UI uses per-well BM25 for several wells when the embedding server is down, instead of failing.
+- **Pooled runs** are refused by `compare_runs` and by the UI's replay, with a reason, instead of giving wrong tables or an error.
+- `test_run_plan_text_is_unchanged` could not fail (it compared a function with itself). It now asserts the literal text of ten operations and replays the 23 recorded plans of `E28_heldout_graph` against their recorded results.
+
+**Left open from the review** (small; none changes an answer today):
+
+- `factgraph`: two facts with the same well, property, qualifier, context and value merge, and the last one's `source` and `unit` win; two actual casing values for one size would overwrite each other. No such pair exists in today's 216 facts.
+- `factgraph`: `DESCRIBED_BY` links TG-2 and TG-4 to the AK-3 report (see B-F60).
+- A question over time about a well without daily reports (56-32) falls back to AK-3's daily passages, because retrieval does not filter on a well no document names. This is the baseline's behaviour.
+- The page `ui.html` does not show the lanes, the mode or the frame, shows `not_found_in_graph` as "not stated", and checks a fixed endpoint name. The React application replaces it.
+- K4 0.2 writes `cost_usd` 0 for every coordinator row, also on a hosted endpoint; and writing K4 for a daily set needs the daily corpus to read the question text.
+- The retriever cache and the UI's engine are shared between request threads without a lock.
+- No test runs the command line's `main`.
+

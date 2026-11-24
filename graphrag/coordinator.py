@@ -59,12 +59,16 @@ def frame_question(question: str, engine: Engine, client) -> tuple[dict, Any]:
     call = client.chat([{"role": "system", "content": frame_system(engine)}, {"role": "user", "content": question}],
                        schema=FRAME_SCHEMA, max_tokens=260)
     parsed = call.parsed if isinstance(call.parsed, dict) else {}
-    valid = (parsed.get("kind") in KINDS and parsed.get("report_type") in REPORT_TYPES
-             and parsed.get("operation") in PLAN_SCHEMA["properties"]["operation"]["enum"])
+    # A hosted endpoint may not enforce the schema, so the plan's field types are checked here too.
+    typed = all(type(parsed.get(key, empty)) in ((int, float) if type(empty) is int else (type(empty),))
+                for key, empty in EMPTY_PLAN.items())
+    valid = (typed and parsed.get("kind") in KINDS and parsed.get("report_type") in REPORT_TYPES
+             and parsed.get("operation") in PLAN_SCHEMA["properties"]["operation"]["enum"]
+             and parsed.get("group_by", "") in PLAN_SCHEMA["properties"]["group_by"]["enum"])
     frame = {"kind": parsed["kind"], "report_type": parsed["report_type"],
              "plan": {key: parsed.get(key, empty) for key, empty in EMPTY_PLAN.items()}} if valid else \
         {"kind": "other", "report_type": "unknown", "plan": dict(EMPTY_PLAN)}
-    wells = well_names(question)
+    wells = well_names(question) & engine.wells
     if len(wells) == 1:
         frame["plan"]["well"] = next(iter(wells))
     elif len(wells) > 1:
@@ -95,18 +99,28 @@ def _fallback(question: str, frame: dict, engine: Engine, routed: list[str]) -> 
     return None
 
 
+def _row_without_a_call(q: dict, gold: dict, status: str, values: list[str], raw: list[str], units: list[str],
+                        citations: list[dict]) -> dict:
+    """A row no answer call was made for, with every key `baseline.answer_one` gives, so that a run's rows can be
+    summarized and compared whichever way each was answered. The checks on a model's citations do not apply."""
+    expected = [gold[g] for g in q["gold"]]
+    return {"id": q["id"], "kind": q["kind"], "status": status, "values": values, "raw_values": raw, "units": units,
+            "withheld_values": [], **score_answer(q, expected, "answered" if values else "not_stated", values),
+            "retrieved_gold": None, "gold_facts_retrieved": None, "gold_facts": len(expected), "citations": citations,
+            "citations_supported": True, "verified_on_gold_chunk": None, "citations_in_retrieved": True,
+            "citations_on_gold_chunk": None, "quotes_verbatim": True, "passages": 0, "prompt_tokens": 0,
+            "completion_tokens": 0, "seconds": 0.0, "cached": False}
+
+
 def _computed_row(q: dict, computed: dict, gold: dict) -> dict:
     """A result computed by code is the answer as code wrote it, cited to its source events: no model retypes it
     (specification §8.3; retyping garbled right results in E28)."""
-    values = [normalize(v) for v in computed["values"]]
+    values = list(dict.fromkeys(normalize(v) for v in computed["values"]))
     sources = computed["source_chunks"]
-    return {"id": q["id"], "kind": q["kind"], "status": "answered", "values": values,
-            "raw_values": computed["values"], "units": [computed["unit"]] * len(values), "withheld_values": [],
-            **score_answer(q, [gold[g] for g in q["gold"]], "answered", values),
-            "answer_text": computed["text"], "plan": computed["plan"], "graph_result": computed["text"],
-            "graph_source_chunks": sources, "citations": [{"chunk": c, "how": "event_graph"} for c in sources],
-            "citations_supported": True, "passages": 0, "prompt_tokens": 0, "completion_tokens": 0, "seconds": 0.0,
-            "cached": False}
+    row = _row_without_a_call(q, gold, "answered", values, computed["values"], [computed["unit"]] * len(values),
+                              [{"chunk": c, "how": "event_graph"} for c in sources])
+    return {**row, "answer_text": computed["text"], "plan": computed["plan"], "graph_result": computed["text"],
+            "graph_source_chunks": sources}
 
 
 def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | None = None,
@@ -119,6 +133,8 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
     question = q["question"]
     frame, call = frame_question(question, engine, frame_client)
     routed = ([lane] if isinstance(lane, str) else list(lane)) if lane else route(frame, mode)
+    if mode == "exact":
+        routed = [name for name in routed if name != "passages"]
     found = [e for e in (LANES[name](question, frame, engine) for name in routed) if not e.empty]
     fallback = False
     if not found and mode == "allow_fallback":
@@ -131,12 +147,9 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
         row = _computed_row(q, computed, gold)
     elif not found:
         # Nothing to answer from: in exact mode the graphs hold no answer, so no answer is generated.
-        sources = _fallback(question, frame, engine, routed)
-        row = {"id": q["id"], "kind": q["kind"], "status": "not_found_in_graph" if mode == "exact" else "not_stated",
-               "values": [], "raw_values": [], "units": [], "withheld_values": [],
-               **score_answer(q, [gold[g] for g in q["gold"]], "not_stated", []),
-               "sources": sources.passages if sources else [], "citations": [], "citations_supported": True,
-               "passages": 0, "prompt_tokens": 0, "completion_tokens": 0, "seconds": 0.0, "cached": False}
+        sources = _fallback(question, frame, engine, routed) if mode == "exact" else None
+        row = {**_row_without_a_call(q, gold, "not_found_in_graph" if mode == "exact" else "not_stated", [], [], [], []),
+               "sources": sources.passages if sources else []}
     else:
         facts, passages = by_lane.get("well_facts"), by_lane.get("passages")
         hits = passages.passages if passages else facts.passages
@@ -146,7 +159,10 @@ def answer(q: dict, engine: Engine, frame_client, answer_client, gold: dict | No
         row = answer_one(q, hits, graph, engine.by_id(), answer_client, gold, answer_format=answer_format,
                          max_tokens=MULTI_WELL_TOKENS if answer_format == "evidence_first" else 400)
         calls = 2
+    # The reports the evidence came from: a daily question can fall back to end-of-well passages, and must say so.
+    answered_from = next((e.report_type for e in found if e.lane != "well_facts"), "end_of_well") if found else None
     return {**row, "frame": frame, "lanes": [e.lane for e in found], "mode": mode, "fallback": fallback,
+            "answered_from": answered_from,
             "computed": computed, "calls": calls, "frame_prompt_tokens": call.prompt_tokens,
             "frame_completion_tokens": call.completion_tokens, "frame_seconds": call.seconds}
 
@@ -197,6 +213,15 @@ def summarize_pool(rows: list[dict]) -> dict:
             "by_set": {name: part([r for r in rows if r["set"] == name]) for name in dict.fromkeys(r["set"] for r in rows)}}
 
 
+def check_engine(engine: Engine, sets: list[str]) -> None:
+    """Stops a run that would answer daily-report questions without the daily reports: every such question would
+    fall back to end-of-well passages and the scores would mean nothing."""
+    needing = [name for name in sets if EXPECTED[name] in ("daily", "events")]
+    if needing and not engine.has_daily:
+        raise SystemExit(f"The daily-report corpus is not on this machine, and {', '.join(needing)} need it. "
+                         f"Regenerate it (docs/tracks/B-graphrag/next-runs.md) or unzip a K1 package and use --k1.")
+
+
 def run_pool(questions: list[dict], gold: dict, engine: Engine, frame_client, answer_client,
              mode: str = "allow_fallback", quiet: bool = False) -> dict:
     rows = []
@@ -223,6 +248,7 @@ def main(argv: list[str] | None = None) -> None:
     a.add_argument("--name", required=True, help="result file name under graphrag/results/")
     args = parser.parse_args(argv)
     engine = Engine.load(k1=args.k1, **({"multi_well_retriever": "perwell:bm25"} if args.no_embeddings else {}))
+    check_engine(engine, args.questions)
     roles = load_roles()
     frame_client, answer_client = client_for("frame", roles), client_for("answer", roles)
     questions, gold = pooled(args.questions)
