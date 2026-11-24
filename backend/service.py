@@ -147,7 +147,7 @@ class Service:
     # ---- health ------------------------------------------------------------------------------------------------
 
     def health(self) -> dict:
-        return {"data": {"source": "files", "end_of_well_chunks": len(self.engine.eow_chunks),
+        return {"data": {"source": getattr(self.engine, "source", "files"), "end_of_well_chunks": len(self.engine.eow_chunks),
                          "daily_chunks": len(self.engine.daily_chunks), "events": len(self.engine.events),
                          "facts": len(self.engine.facts), "wells": len(self.engine.wells)},
                 "models": self.models}

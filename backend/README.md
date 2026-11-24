@@ -11,6 +11,29 @@ The FastAPI service of the second build ([specification §4.6](../docs/PROJECT_D
 
 Then open http://127.0.0.1:8000/docs for the interactive description. Reading endpoints work at once. `POST /v1/questions` needs the model server of the roles file ([`configs/graphrag/roles.json`](../configs/graphrag/roles.json)), such as llama.cpp on port 8080; without it the answer is a `503` that says so.
 
+### Where it reads from: the environment
+
+With nothing set, the service reads this machine's files and writes the question log to a file, as it always has.
+
+| Variable | Effect |
+|---|---|
+| `BACKEND_SOURCE` | `files` (the default) or `stores`: the engine reads the K1 release in PostgreSQL and the graph in Neo4j ([`graphrag/stores.py`](../graphrag/stores.py)) |
+| `BACKEND_DSN` | PostgreSQL address, e.g. `postgresql://kg:<password>@127.0.0.1:5434/kg`. When set, the question log goes into its `questions` and `question_feedback` tables. Needed by `BACKEND_SOURCE=stores` |
+| `BACKEND_RELEASE` | The K1 release to read, when the store holds more than one |
+| `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` | Neo4j address and login for `BACKEND_SOURCE=stores`; the local stores' defaults (`bolt://127.0.0.1:7687`, `neo4j`, `platform-dev`) when unset |
+| `BACKEND_CORS_ORIGINS` | Origins allowed to call the API; the frontend's development server when unset, empty behind the proxy |
+
+A store that is configured but does not answer, a database without the question tables, or a release that is not there stops the service with the error; nothing falls back to files. The service is built on the first request, so the error shows there and in the server log. `GET /v1/health` says `"source": "stores"` or `"files"`.
+
+```powershell
+python -m backend.questions init       # once per database: the tables of platform/sql/002_questions.sql (safe to repeat)
+python -m backend.questions counts     # questions asked, answered and marked wrong, per kind (backend design §3)
+```
+
+Both read `BACKEND_DSN`, or take `--dsn`.
+
+**The model endpoints are not set by the environment yet.** The roles and endpoints come from `configs/graphrag/roles.json` and `endpoints.json`; only a hosted endpoint's key comes from the environment (`OPENROUTER_API_KEY`). A server points the frame and answer roles elsewhere by its own copy of those two files.
+
 ## Endpoints
 
 | Endpoint | Returns |
@@ -37,19 +60,27 @@ Then open http://127.0.0.1:8000/docs for the interactive description. Reading en
 | `schemas.py` | Request and response shapes: the contract |
 | `service.py` | What the API does, without HTTP: questions through the coordinator, reads of chunks, files, wells and events |
 | `app.py` | Routes, errors, CORS for the frontend's development server; `create_app(service)` for tests |
-| `questions.py` | The question log: every question, how it was answered, and feedback. A JSON-lines file under ignored `data/interim/backend/` for now |
+| `questions.py` | The question log: every question, how it was answered, and feedback. A JSON-lines file under ignored `data/interim/backend/`, or PostgreSQL's tables when `BACKEND_DSN` is set |
 | `contract.py` | Writes `openapi.json` and the fixtures |
 
 ## What it reads today, and what changes
 
-The service holds an `Engine` ([`graphrag/lanes.py`](../graphrag/lanes.py)) loaded **from this machine's files**, not from the stores: the committed end-of-well bundle, the daily-report corpus if it is there, and the fact runs of the current design. `GET /v1/health` reports `"source": "files"`. When the shared stores are up, the engine's loading changes and this service does not.
+The service holds an `Engine` ([`graphrag/lanes.py`](../graphrag/lanes.py)), loaded one of two ways; the rest of the service is the same for both.
+
+| Source | End-of-well chunks | Daily chunks | Events | Facts |
+|---|---|---|---|---|
+| `files` | The committed bundle (three reports, K1 version 0) | The daily-report corpus, if this machine has it | Built from that corpus | The fact runs of the current design, validated on load |
+| `stores` | The release's chunks in PostgreSQL that are not daily | Its daily-report files and the non-productive-time report (appendix 23), told apart by name as `Engine.load(k1=True)` does | The event region in Neo4j, for AK-3 | The fact region in Neo4j, validated when the graph was built |
+
+**On the stores, citations follow the IDs the graph was built on.** Facts and events cite the chunk IDs of the run that built them. A cited chunk the release does not hold is counted in the server log at start and shown without its text. Today's fact region (E27) cites K1 version 0 IDs, so every fact citation is of that kind until the facts are rebuilt on a K1 version 1 release (backend design §4.2).
 
 ## Limits
 
 - No login. The demo holds public data only, and the access gate is a shared password at the proxy (design, B8).
 - One question at a time: the model server has one slot.
 - Responses over 2 kB are compressed. Reads may be kept by the browser for a minute; answers, feedback and health never.
-- The question log holds what users typed. It stays on the machine, in an ignored folder.
+- The question log holds what users typed. It stays on the machine: in an ignored folder, or in the deployment's PostgreSQL.
 - The event graph is one well's (AK-3), so only that well has report days and events.
+- On the stores, questions naming several wells search per well in memory, as on files. The SQL vector search over `chunk_vectors` with the well filter (C-C10) is not built.
 
-Tests: `python -m unittest tests.test_backend` (21 tests, no server or model needed).
+Tests: `python -m unittest tests.test_backend` (no server or model needed). `python -m unittest tests.test_backend_postgres tests.test_graphrag_stores` checks the PostgreSQL log, the environment and the stores; tests needing the local PostgreSQL or Neo4j skip when those do not answer.
