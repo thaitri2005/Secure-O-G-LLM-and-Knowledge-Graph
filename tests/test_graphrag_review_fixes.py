@@ -57,8 +57,24 @@ class FactCheckTests(unittest.TestCase):
 
     def test_the_same_number_written_another_way_is_found(self):
         for value, text in ((1955, "a depth of 1,955 ft"), ("5.5", "5.500 at 1000"), ("12", "| 12.00 |"),
-                            ("0.7", "| 0.70 |"), ("3", "Casing 13-3/8 set"), ("2016-08-18", "spud on 18 August 2016")):
+                            ("0.7", "| 0.70 |"), ("2016-08-18", "spud on 18 August 2016")):
             self.assertTrue(written_in(value, text), (value, text))
+
+    def test_a_part_of_a_fraction_or_of_a_date_is_not_the_number(self):
+        for value, text in (("3", "Casing 13-3/8 set"), ("3", 'a 10 3/4" hole opener'), ("5", "the 9-5/8 in. casing"),
+                            ("11", "report for 11-Mar-19")):
+            self.assertFalse(written_in(value, text), (value, text))
+        self.assertTrue(written_in("3", "cement from 3' to surface"))
+
+    def test_a_duration_read_by_the_model_must_be_written_as_one(self):
+        from graphrag.validate import written_as_a_duration
+        days = {"property": "spud_to_release_days", "value": "3"}
+        self.assertFalse(written_as_a_duration(days, "a top job was performed to bring cement from 3' to surface"))
+        self.assertTrue(written_as_a_duration(dict(days, value="19"), "released 5 September 2016, a total of 19 days"))
+        self.assertTrue(written_as_a_duration({"property": "total_rig_time", "value": "298"}, "Total time: 298.00 hrs"))
+        # A table rule names its column, and a property that is no duration is not checked this way.
+        self.assertTrue(written_as_a_duration(dict(days, source="t005"), "| 3 |"))
+        self.assertTrue(written_as_a_duration({"property": "total_depth", "value": "1955"}, "TD 1955"))
 
 
 class CitationTests(unittest.TestCase):
@@ -341,3 +357,27 @@ class ProbeScoreTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WholeNumberScoreTests(unittest.TestCase):
+    def test_a_whole_number_must_match_exactly_and_a_decimal_within_half_a_percent(self):
+        from graphrag.scoring import same_value
+        self.assertFalse(same_value("1160", 1165))
+        self.assertTrue(same_value("1,165 ft", 1165))
+        self.assertTrue(same_value("1165.0", 1165.0))
+        self.assertTrue(same_value("647.4", 647.5))
+        self.assertFalse(same_value("640", 647.5))
+
+
+class SamePageMappingTests(unittest.TestCase):
+    def test_a_fact_whose_passage_has_no_match_moves_to_the_one_passage_on_its_page_that_holds_it(self):
+        from graphrag.factgraph import map_chunks
+        facts = [{"well": "AK-3", "property": "total_depth", "qualifier": "actual", "context": {}, "value": "1955",
+                  "chunk": "old#c0004"}]
+        texts = {"f1:s1:c0": "Well AK-3 reached 1955 ft.", "f1:s1:c1": "Well AK-3 was planned to 1700 ft."}
+        moved, counts = map_chunks(facts, {}, texts, {"old#c0004": ["f1:s1:c0", "f1:s1:c1"]})
+        self.assertEqual((moved[0]["chunk"], counts["facts_moved_by_page"], counts["facts_on_old_ids"]), ("f1:s1:c0", 1, {}))
+        # Two passages that both hold the value: no guess is made.
+        texts["f1:s1:c1"] = "AK-3: 1955 ft again."
+        moved, counts = map_chunks(facts, {}, texts, {"old#c0004": ["f1:s1:c0", "f1:s1:c1"]})
+        self.assertEqual((moved[0]["chunk"], counts["facts_on_old_ids"]), ("old#c0004", {"no mapping": 1}))

@@ -1,5 +1,6 @@
-"""Value matching and answer scoring, with the same rules as the prototype (prototype/kgproto/profile.py,
-prototype/kgproto/evaluate_qa.py) so that results compare with E10."""
+"""Value matching and answer scoring, with the rules of the prototype (prototype/kgproto/profile.py,
+prototype/kgproto/evaluate_qa.py) so that results compare with E10, except that a whole number must match exactly
+(`same_value`)."""
 from __future__ import annotations
 
 import re
@@ -32,11 +33,15 @@ def number(value: Any) -> float | None:
 
 
 def same_value(a: Any, b: Any) -> bool:
-    """Numbers within 0.5%; dates and identifiers exactly, ignoring punctuation and case."""
+    """Dates and identifiers exactly, ignoring punctuation and case. A whole number exactly: 1160 ft is not 1165 ft,
+    and the old 0.5% let it pass (two answers in every recorded run, B-F85). A number with decimals within 0.5%,
+    since reports round them."""
     if isinstance(b, str):
         return re.sub(r"\W", "", str(a)).lower() == re.sub(r"\W", "", b).lower()
     x = number(a)
-    return x is not None and abs(x - b) <= max(0.01, 0.005 * abs(b))
+    if x is None:
+        return False
+    return x == float(b) if float(b).is_integer() else abs(x - b) <= max(0.01, 0.005 * abs(b))
 
 
 def matches(value: Any, fact: dict) -> bool:

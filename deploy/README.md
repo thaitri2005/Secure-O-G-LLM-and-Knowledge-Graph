@@ -64,6 +64,7 @@ Files in this folder:
 | `models/endpoints.desktop.json` | Template: Tri's desktop over a private network |
 | `models/roles.openrouter.json` | Template: the answer and frame roles on an open-weight model at OpenRouter |
 | `requirements-runner.txt` | Python packages on the host for loading a release |
+| `ask_set.py` | Asks a whole question set through a running application, one question at a time, and scores it as the engine's own runs are scored: `python deploy/ask_set.py --url <address> --questions prototype --name <result>`. The measurement of the application as people use it (E32) |
 | `smoke_test.py` | Checks a running deployment from outside: gate, frontend, health, readiness, one question, one feedback. `--quick` stops before the question |
 | `watch.sh` | The monitor: runs the quick smoke test from another machine and tells the group chat when the application goes down or comes back |
 

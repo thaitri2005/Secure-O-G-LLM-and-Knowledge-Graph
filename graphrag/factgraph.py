@@ -29,7 +29,8 @@ from .retrieval import well_names
 from .validate import validate
 
 CASING = {"casing_depth": "depth", "casing_weight": "weight", "casing_grade": "grade"}
-RECORDED = RESULTS / "E32_fact_graph.graph.json"  # E27's facts checked again with the number-aware rule (B-F68)
+# E27's facts checked again: numbers standing on their own (B-F68), durations written as durations (B-F85).
+RECORDED = RESULTS / "E32_fact_graph_v2.graph.json"
 LEGACY_MAP = "legacy_chunk_ids.json"   # written into a K1 release by Track A (graph_builder.corpus.k1_export)
 
 
@@ -92,27 +93,51 @@ def fact_key(fact: dict) -> tuple:
     return fact["well"], fact["property"], fact["qualifier"], json.dumps(fact.get("context") or {}, sort_keys=True), str(fact["value"])
 
 
-def map_chunks(facts: list[dict], legacy: dict[str, str], texts: dict[str, str]) -> tuple[list[dict], dict]:
+def map_chunks(facts: list[dict], legacy: dict[str, str], texts: dict[str, str],
+               same_page: dict[str, list[str]] | None = None) -> tuple[list[dict], dict]:
     """Move each fact onto the new chunk ID `legacy` gives its chunk, and check it again, strictly, on `texts` (the
-    release's chunk texts by ID). A fact with no mapping, or that fails a check on the new text, keeps its old ID.
-    Returns the facts in their order and the counts."""
-    moved = [dict(fact, chunk=legacy[fact["chunk"]]) for fact in facts if legacy.get(fact["chunk"])]
-    kept, rejected = validate(moved, texts, strict=True)
+    release's chunk texts by ID). A fact whose chunk has no mapping is tried on the release's chunks of the same
+    page of the same report (`same_page`): it moves when exactly one of them passes the checks. A fact that cannot
+    move, or fails a check on the new text, keeps its old ID. Returns the facts in their order and the counts."""
+    target = {}
+    for n, fact in enumerate(facts):
+        if legacy.get(fact["chunk"]):
+            target[n] = legacy[fact["chunk"]]
+            continue
+        passing = [new for new in (same_page or {}).get(fact["chunk"], [])
+                   if validate([dict(fact, chunk=new)], texts, strict=True)[0]]
+        if len(passing) == 1:
+            target[n] = passing[0]
+    by_page = sum(not legacy.get(facts[n]["chunk"]) for n in target)
+    kept, rejected = validate([dict(facts[n], chunk=new) for n, new in target.items()], texts, strict=True)
     passed = {fact_key(fact) for fact in kept}
     out, on_old = [], Counter()
-    for fact in facts:
-        new = legacy.get(fact["chunk"])
-        if new and fact_key(fact) in passed:
-            out.append(dict(fact, chunk=new))
+    for n, fact in enumerate(facts):
+        if n in target and fact_key(fact) in passed:
+            out.append(dict(fact, chunk=target[n]))
         else:
             out.append(fact)
-            on_old["no mapping" if not new else "failed a check on the new text"] += 1
+            on_old["no mapping" if n not in target else "failed a check on the new text"] += 1
     cited = sorted({fact["chunk"] for fact in facts})
     counts = {"llm_calls": 0, "facts": len(facts), "facts_on_new_ids": len(facts) - sum(on_old.values()),
-              "facts_on_old_ids": dict(on_old), "checks_failed_on_new_text": rejected,
+              "facts_moved_by_page": by_page, "facts_on_old_ids": dict(on_old), "checks_failed_on_new_text": rejected,
               "chunks_cited": len(cited), "chunks_mapped": sum(bool(legacy.get(c)) for c in cited),
               "chunks_unmapped": [c for c in cited if not legacy.get(c)]}
     return out, counts
+
+
+def same_page_chunks(records: list[dict], chunks: list) -> dict[str, list[str]]:
+    """For each old chunk the release's map could not pair: the release's chunks on the same page of the same
+    report. The report is known from the old chunk's neighbours, whose new IDs start with the report's file ID."""
+    report = {}
+    for r in records:
+        if r.get("new_chunk_id"):
+            report.setdefault(r["old_chunk_id"].split("#")[0], Counter())[r["new_chunk_id"].split(":")[0]] += 1
+    on_page = {}
+    for c in chunks:
+        on_page.setdefault((c.id.split(":")[0], c.page), []).append(c.id)
+    return {r["old_chunk_id"]: on_page.get((report[r["old_chunk_id"].split("#")[0]].most_common(1)[0][0], r.get("old_page")), [])
+            for r in records if not r.get("new_chunk_id") and r["old_chunk_id"].split("#")[0] in report}
 
 
 def map_to_release(release: Path, graph_path: Path = RECORDED) -> tuple[dict, dict]:
@@ -120,8 +145,9 @@ def map_to_release(release: Path, graph_path: Path = RECORDED) -> tuple[dict, di
     graph = json.loads(graph_path.read_text(encoding="utf-8"))
     records = json.loads((release / LEGACY_MAP).read_text(encoding="utf-8"))
     legacy = {r["old_chunk_id"]: r["new_chunk_id"] for r in records if r.get("new_chunk_id")}
-    texts = {c.id: c.text for c in load_chunks(path=release / "chunks.jsonl")}
-    facts, counts = map_chunks(graph_facts(graph), legacy, texts)
+    chunks = load_chunks(path=release / "chunks.jsonl")
+    texts = {c.id: c.text for c in chunks}
+    facts, counts = map_chunks(graph_facts(graph), legacy, texts, same_page_chunks(records, chunks))
     sums = release / "SHA256SUMS"
     source = {"source_graph": graph_path.name, "release": release.resolve().name,
               "sha256sums_sha256": hashlib.sha256(sums.read_bytes()).hexdigest() if sums.is_file() else None}

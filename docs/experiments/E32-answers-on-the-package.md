@@ -9,8 +9,8 @@
 | **Code** | `graphrag/baseline.py` (pool `k1_ak3`), `backend/`, `platform/run_release.py`, `deploy/smoke_test.py` |
 | **Gold data** | The prototype's 31 questions on AK-3 with their gold facts (`prototype/gold/`), written by the team with AI; not expert-reviewed |
 | **Models** | Qwen3-8B Q4_K_M, our own copy, llama.cpp b12015 CPU build (profile `qwen3-8b.cpu`), thinking off, one slot, 8k context, one request at a time. Qwen3-Embedding-0.6B for the vectors |
-| **Outputs** | `graphrag/results/E32_cpu_k1_prototype.json`; the baseline beside it, `bench_qwen3-8b.cpu_quick_quick_prototype.json`; the stores' run row `demo-v2-20261124T190029Z` |
-| **Status** | Done for the AK-3 report with plain retrieval, and for one question through the whole application. The full suite on the package (every question set, with `--k1`) is E33's run |
+| **Outputs** | `graphrag/results/E32_cpu_k1_prototype.json`; the baseline beside it, `bench_qwen3-8b.cpu_quick_quick_prototype.json`; through the application, `E32_stores_prototype.json`; the stores' run row `demo-v2-20261124T190029Z` |
+| **Status** | Done: the AK-3 report with plain retrieval from files, and the same 31 questions through the whole application on the stores |
 
 ## Results
 
@@ -39,16 +39,29 @@ The backend as a container, reading the package from PostgreSQL and the graph fr
 | Search for questions naming several wells | Chosen at start: BM25 fused with the vector search inside PostgreSQL, on 1,432 stored vectors |
 | Written to | The question log in PostgreSQL, with its mark |
 
+### The 31 questions through the application
+
+`python deploy/ask_set.py --url <address> --questions prototype --name E32_stores_prototype`: each question posted to the running application, one at a time, and scored as every other run is. The coordinator chose the lane; the stores held 207 facts.
+
+| Path | Correct | Calls a question | Prompt tokens | Completion tokens | Seconds |
+|---|---:|---:|---:|---:|---:|
+| The application on the stores (the package's chunks) | 26/31 | 1.8 | 2,866 | 166 | 117 |
+| The coordinator from files ([E33](E33-coordinator.md): end-of-well passages from the older chunks) | 28/31 | 1.8 | 2,802 | 172 | 83 |
+
+- **29 of 31 questions get the same answer on both paths.** The two that differ are q11 and q12 again, the casing depths: from the stores q11 is "not stated" and q12 gives the actual depth (221.7 ft) where the planned one (220 ft) is asked.
+- Wrong on both paths: q06, q21 (sent to the daily activities) and q25.
+- No question failed, timed out or waited: 31 of 31 answered and logged.
+
 ## What was learned
 
 1. **The package costs two answers of 31 on this set, and the cause is the model's reading of one table, not the search.** The casing table is found either way. Its text differs between the two chunk versions, and Qwen3-8B abstains on the newer one. This is the table Track A's options change (plan task D2), so it is the first thing to look at when those are measured.
-2. **The application answers from the stores with the real model.** Every part was exercised by one question: the proxy, the backend, the coordinator, the well facts from Neo4j, the passages from PostgreSQL, the checks, the question log.
+2. **The application answers from the stores with the real model, and as well as the same code on files.** The whole difference between the two paths is the package's casing table. Every part was exercised: the proxy, the backend, the coordinator, the well facts from Neo4j, the passages from PostgreSQL, the checks, the question log.
 3. **The first real answer showed a fault no test had:** "1955 in", from "1,955 in contrast to". The unit is now checked against the cited passage (Track B log B-F76, B-F78).
 4. **Vector search in the database works on real vectors:** 67 of 67 check searches return what the search in memory returns.
 
 ## Limits
 
-- **One report, 31 questions, plain retrieval.** The other question sets, the fact sheet and the coordinator on the package are in E33's run.
-- **One question through the application** is a check that the parts connect, not a score.
+- **One report and 31 questions.** The other question sets were not asked through the application.
+- **The run through the application used 207 facts**; the stores now hold 206 (Track B log B-F85). The fact removed for AK-3 is not one these questions ask about.
 - **The package differs by one chunk from the one built on the laptop** (1,432 against 1,431, in the 68-32 report), so this record names its release.
 - The questions are the team's, not an expert's.

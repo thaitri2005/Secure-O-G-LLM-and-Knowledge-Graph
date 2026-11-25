@@ -155,16 +155,6 @@
       },
       {
         "well": "AK-3",
-        "property": "spud_to_release_days",
-        "value": "3",
-        "unit": null,
-        "qualifier": "actual",
-        "context": null,
-        "source": "llm",
-        "chunk_id": "gdr882_ak3_eowr#c0022"
-      },
-      {
-        "well": "AK-3",
         "property": "total_depth",
         "value": "1955",
         "unit": null,
@@ -172,6 +162,16 @@
         "context": null,
         "source": "llm",
         "chunk_id": "gdr882_ak3_eowr#c0002"
+      },
+      {
+        "well": "AK-3",
+        "property": "total_rig_time",
+        "value": "647.50",
+        "unit": null,
+        "qualifier": "actual",
+        "context": null,
+        "source": "table_mapping",
+        "chunk_id": "gdr882_ak3_eowr#c0037"
       },
       {
         "well": "AK-3",

@@ -1,6 +1,6 @@
 """Load Track B's per-well fact graph into Neo4j beside the event region, and check it (backend design §4.1, B3).
 
-    python platform/load_facts_neo4j.py                       # graphrag/results/E32_fact_graph.graph.json
+    python platform/load_facts_neo4j.py                       # graphrag/results/E32_fact_graph_v2.graph.json
     python platform/load_facts_neo4j.py --graph <file.graph.json>
 
 The file is what `python -m graphrag.factgraph` writes: nodes `{label, key, properties}` and relationships
@@ -41,7 +41,7 @@ from neo4j import GraphDatabase  # noqa: E402
 from load_events_neo4j import (DSN, PASSWORD, URI, USER, CheckFailed, create_constraints, k1_chunk_ids,  # noqa: E402
                                missing_in_postgres)
 
-GRAPH = ROOT / "graphrag/results/E32_fact_graph.graph.json"
+GRAPH = ROOT / "graphrag/results/E32_fact_graph_v2.graph.json"
 KEYS = {"Well": "name", "Chunk": "chunk_id", "Document": "file_id", "Fact": "fact_id", "CasingString": "casing_id",
         "HoleSection": "section_id"}
 ENDS = {"HAS_FACT": ("Well", "Fact"), "FROM": ("Fact", "Chunk"), "DESCRIBED_BY": ("Well", "Document"),

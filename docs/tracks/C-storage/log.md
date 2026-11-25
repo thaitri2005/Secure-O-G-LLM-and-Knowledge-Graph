@@ -261,3 +261,5 @@ Written by Track B with Hung's clearance, from a design review and a run of the 
 
 - **Docker Hub rate-limited the machine** (HTTP 429 on the pinned images). The images were pulled from `mirror.gcr.io` under the same tags for this run only; the compose file still pins the digests. On a server that pulls for the first time this is unlikely, but a mirror is the way out.
 - **Not done here:** a server with a domain and HTTPS; the backup and the monitor running from cron.
+
+**C-F11 (finding; the fact region reloaded with the corrected facts, 25 November).** `platform/run_release.py data/interim/k1/demo-v2 --skip-vectors`, run `demo-v2-20261125T095543Z`: 206 facts from `E32_fact_graph_v2.graph.json`, all 206 on the package's chunk IDs, none missing in PostgreSQL; the event region unchanged (161 events). The loader now moves a fact whose passage has no pair in the old-to-new map to the one passage on the same page that holds it (Track B log B-F85). The 31 baseline questions were then asked through the application on these stores (B-F86).

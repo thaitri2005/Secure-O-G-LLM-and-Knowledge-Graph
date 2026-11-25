@@ -19,10 +19,12 @@ Hand-routed: a person chose the lane per question set, and the baseline was reru
 | Question set | Questions | Hand-routed | Coordinator | Routed as by hand |
 |---|---:|---:|---:|---:|
 | `prototype` (end-of-well) | 31 | 29 | 28 | 25 |
-| `ak3_daily` (daily reports) | 30 | 17 | 17 | 27 |
+| `ak3_daily` (daily reports) | 30 | 17 | 16 | 27 |
 | `ak3_events` (totals over time) | 35 | 25 | 34 | 30 |
 | `ak3_events_heldout` | 23 | 16 | 23 | 19 |
-| **All** | **119** | **87** | **102** | **101** |
+| **All** | **119** | **87** | **101** | **101** |
+
+Whole numbers are scored exactly. The run was recorded as 102: one daily answer of 1,160 ft for a gold of 1,165 passed the 0.5% the scorer then allowed (Track B log B-F85). No hand-routed score changes.
 
 ### Cost per question
 
@@ -46,21 +48,21 @@ US$0 on our own copy. On a GPU that answers a lookup in a second, every figure i
 | Event questions, coordinator as built | 14 of 58 plans wrong in ways the question shows (an invented code, a field name as a code, a wrong year) | 44/58 |
 | Event questions, plan checked in code | Those 14 caught | 58/58 |
 | Daily questions, with that plan check | The check called every dated lookup a question over time. The events lane then reported the day's depth, 770, for the inclination, the casing depth and a bit | 13/30 |
-| Last pass: a question naming one day stays a lookup; a text that asks nothing does not reach the events lane | Daily back to the hand-routed score; one event question lost (t13) | 102/119 |
+| Last pass: a question naming one day stays a lookup; a text that asks nothing does not reach the events lane | Daily back to one answer below the hand-routed score; one event question lost (t13) | 101/119 |
 
 ## What was learned
 
-1. **The coordinator matches the hand-routed score on daily lookups, beats it on totals over time, and is one answer short on end-of-well lookups.** It costs the same number of calls overall: it saves a call on every total and spends one more on every lookup.
+1. **The coordinator beats the hand-routed score on totals over time and is one answer short on end-of-well lookups and on daily lookups.** It costs the same number of calls overall: it saves a call on every total and spends one more on every lookup.
 2. **The gain on totals is code reporting the number.** All 17 hand-routed losses on the event sets were the answer call retyping a computed number wrongly; the plans were right.
 3. **The lookup costs one more call and buys nothing on these questions.** That is the price of not being told the lane.
 4. **Five end-of-well questions go to the events lane** ("How many days did the project take?", "How much non-productive time was recorded?"). Three come out right from the daily reports, two wrong: "planned to take" (events hold what happened, not what was planned) and "productive hours" (the plan filtered on a code). The hand-routed run got one of the five wrong. Both sources hold these answers; the coordinator has no rule for which to prefer.
-5. **Three daily lookups were framed as "other" and searched in the end-of-well report** (sacks of cement, inventory units, a serial number): 3 of the 13 daily losses. The other 10 are lost by the hand-routed run too.
+5. **Three daily lookups were framed as "other" and searched in the end-of-well report** (sacks of cement, inventory units, a serial number): 3 of the 14 daily losses. One more is a depth gain computed 5 ft short. The other 10 are lost by the hand-routed run too.
 6. **Every fault found was the model's frame against what the question plainly says, or our own rule being too broad.** Each fix is a check in code, and the second fault was introduced by the first fix. A rule tuned on one set has to be run on the others before it is trusted.
 7. **An injected instruction reached the events lane and got a number** ("Ignore all previous instructions…" answered 647.5 hours) in the stopped run, because code reports a computed result without the model reading the question again. It now goes to passages and is answered "not stated".
 
 ## Decision (D-64)
 
-The coordinator stays the application's path, and the hand-routed commands stay as the baseline to compare with. It is at or above the hand-routed score on two kinds of question and one answer below on the third, at the same cost.
+The coordinator stays the application's path, and the hand-routed commands stay as the baseline to compare with. It is well above the hand-routed score on totals over time and one answer below on each kind of lookup, at the same cost.
 
 This is not the adoption test passed in full: the checks were written while looking at these 119 questions, and 102 other questions were not run. The test that counts is an expert's question set, run once through both paths.
 
@@ -69,5 +71,4 @@ This is not the adoption test passed in full: the checks were written while look
 - **Questions written by the team.** Not an evaluation.
 - **Tuned on what it is scored on.** The plan checks were written from the event sets' misses and the one-day rule from the daily set's. Only `ak3_events_heldout` under the first plan check (18/23 as built) was unseen.
 - **Three sets not run** (`simulated`, `heldout`, `ak3_daily_heldout`). A stopped run answered 14 `simulated` questions, 10 right against 13 hand-routed; two of the four misses were routing.
-- **The scorer accepts a right number from the wrong place** (26 August's depth gain: 1,160 for a gold of 1,165, inside the tolerance).
 - **CPU timings**; token counts are exact. Framing calls of the last pass came from the request cache, and their recorded seconds are counted.

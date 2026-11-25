@@ -17,7 +17,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | Part | State | More |
 |---|---|---|
 | Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. The reading options were measured on it and their defaults set (E62): section context and grid recovery on, the rest off with reasons | [Track A log](tracks/A-ingestion/log.md) |
-| Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 207 facts, and now a vector for every chunk, searched inside the database. They restart by themselves and report their health | [platform/README.md](../platform/README.md) |
+| Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 206 facts, and now a vector for every chunk, searched inside the database. They restart by themselves and report their health | [platform/README.md](../platform/README.md) |
 | Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the measurement suite and compares runs. The baseline is reproduced on a second machine and the reasoning lane is measured; the coordinator is measured against hand-routed runs on one question set per lane (E33). All on questions the team wrote | [graphrag/README.md](../graphrag/README.md) |
 | Application (Tri, Hung) | A FastAPI backend and a React frontend for non-developers, a question log that exports a test set, one shared password, all as containers. Built for one model slot: questions take turns, failures are logged and told plainly, a monitor and a backup copy are ready to switch on | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
 
@@ -25,7 +25,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 | Gap | Waits for |
 |---|---|
-| The coordinator is measured on questions the team wrote, one set per lane ([E33](experiments/E33-coordinator.md): 102/119 against 87/119 hand-routed). Long runs on our own questions have stopped | An expert's question set ([how it comes in](EXPERT_PILOT.md)), then a GPU to run it through both paths: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
+| The coordinator is measured on questions the team wrote, one set per lane ([E33](experiments/E33-coordinator.md): 101/119 against 87/119 hand-routed). Long runs on our own questions have stopped | An expert's question set ([how it comes in](EXPERT_PILOT.md)), then a GPU to run it through both paths: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
 | Not on a server that others reach | The same request, or Hung's machine in the meantime |
 | No domain expert has used the application or reviewed a question | The supervisor naming one or two people |
 | The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | Ours: a smaller unit for "the problem" is built and to be scored on the second probe. Then an expert's reading |
@@ -261,7 +261,7 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 |---|---|---|---|
 | B1 | A host for the stores that all three reach | Scripts and a runbook ready; run on a cloud machine | A host: Hung's machine or a rented server |
 | B2 | One command from a package to loaded stores | Done, with the embedding model: 1,432 vectors, the database search equal to the search in memory | — |
-| B3 | Both graph regions in Neo4j | Done: 207 facts, 202 on the package's chunk IDs | 5 facts on old IDs, with no chunk to show |
+| B3 | Both graph regions in Neo4j | Done: 206 facts, all on the package's chunk IDs | — |
 | B4 | The API contract | Done | — |
 | B5 | The backend service | Done; answers from the stores with the real model | — |
 | B6 | The question log | Done, in PostgreSQL; failed questions are logged too | — |
@@ -273,11 +273,11 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 
 | # | Task | State | Left |
 |---|---|---|---|
-| E1 | Answers on the new package (experiment E32) | The package, the stores and the application answer with the real model | The scores on a GPU (G1) |
+| E1 | Answers on the new package (experiment E32) | Done: 26/31 through the application on the stores, the same as on the package from files; the two lost against the older chunks are casing depths | The casing table in the package (Khai, D2) |
 | E2 | The engine reads the stores | Done, on real vectors | — |
 | E3 | Lanes behind one interface; model roles in a settings file | Done | — |
-| E4 | The fact graph as nodes and relationships | Done; rebuilt after nine wrong facts were found (207 facts) | One known wrong fact (AK-3, days from spud to release) |
-| E5 | The coordinator (experiment E33) | Measured on one team-written set per lane: 102/119 against 87/119 hand-routed, same calls | An expert's set (G2) |
+| E4 | The fact graph as nodes and relationships | Done; rebuilt twice after wrong facts were found by a stricter check (206 facts) | Facts read by the model stay the weak kind: the check sees how a value is written, not what it means |
+| E5 | The coordinator (experiment E33) | Measured on one team-written set per lane: 101/119 against 87/119 hand-routed, same calls | An expert's set (G2) |
 | E6 | Totals reported by code, not retyped by the model | Measured: 57/58 against 41/58 with the model retyping (E33) | — |
 | E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states; rules in code remove most of it on the first probe | Score the last rule on the second probe; an expert's reading |
 | E8 | A bench for models | Done; the baseline reproduced with it on a second machine | — |

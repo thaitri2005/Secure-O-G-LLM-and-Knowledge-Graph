@@ -12,7 +12,7 @@ Every question set so far was written by the team, so no score in this repositor
 | 4. Sheet | The team | `python -m graphrag.expert sheet collected_<date>.json --out pilot.csv` | 1 minute |
 | 5. Fill | The expert, or the team from the expert's comments | Opens `pilot.csv` in Excel and fills `expected_answer` | About a minute per question |
 | 6. Build | The team | `python -m graphrag.expert build pilot.csv --name pilot_v1 --written-by "<name>" --expert` | 1 minute |
-| 7. Run | The team | `python -m graphrag.coordinator answer --questions graphrag/gold/pilot_v1.json --k1 --name pilot_v1` | A few seconds per question on a GPU, about two minutes on a laptop |
+| 7. Run | The team | `python -m graphrag.coordinator answer --questions graphrag/gold/pilot_v1.json --k1 --name pilot_v1`, or through the running application: `python deploy/ask_set.py --url <address> --questions graphrag/gold/pilot_v1.json --name pilot_v1_app` | A few seconds per question on a GPU, about two minutes on a laptop |
 
 An expert who prefers not to use the application starts at step 5 with an empty sheet: `python -m graphrag.expert sheet --blank --out pilot.csv` writes one with five example rows.
 
@@ -34,7 +34,7 @@ How to write an expected answer:
 
 | The answer is | Write | Scored as |
 |---|---|---|
-| A number | `1955 ft` or `1,955` | The number, within 0.5%. The unit is not scored |
+| A number | `1955 ft` or `1,955` | The number: exactly for a whole number, within 0.5% for one with decimals. The unit is not scored |
 | A date | `13 August 2016` | That day |
 | A name or a phrase | `Monty Keown` | The same words, ignoring case and punctuation |
 | A value with more than one accepted wording | `Monty Keown \| M. Keown` | Any of them |

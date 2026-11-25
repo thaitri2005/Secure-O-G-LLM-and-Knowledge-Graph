@@ -53,8 +53,7 @@ Everything code and a machine without a GPU can do for this build is done. The n
 1. Send the [resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường (capstone funding, as Dr. Dung said), and the [stint report](docs/reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn. The stint report is a draft until the stint ends on 27 November.
 2. **Measured with the real model**, on a 4-core machine without a GPU (Track B log B-F71 to B-F77): the baseline, answer for answer; the reasoning lane on two probes ([E34](docs/experiments/E34-reasoning-probe.md); it stays a probe, B-D50); one question through the whole application on the stores.
 3. **Still to record**, with [these commands](docs/tracks/B-graphrag/next-runs.md):
-   - **An expert's question set**, through both paths (hand-routed and coordinator) on one endpoint. [E33](docs/experiments/E33-coordinator.md) measured the coordinator on one team-written set per lane (102/119 against 87/119 hand-routed); long runs on the team's own questions have stopped (B-D51). [How an expert's answers become a test](docs/EXPERT_PILOT.md);
-   - **E32:** answers on the demo package `demo-v2`, from files and then from the stores.
+   - **An expert's question set**, through both paths (hand-routed and coordinator) on one endpoint. [E33](docs/experiments/E33-coordinator.md) measured the coordinator on one team-written set per lane (101/119 against 87/119 hand-routed); long runs on the team's own questions have stopped (B-D51). [How an expert's answers become a test](docs/EXPERT_PILOT.md);
 4. **Reasoning lane:** an expert's reading of ten answers, and a question set written by someone else, before more code.
 5. **Without a GPU:** profile `qwen3-8b.cpu`, with the server started with `--cache-ram 0` ([how](graphrag/README.md#without-a-gpu-on-linux)). Profiles are in [configs/graphrag/models/](configs/graphrag/models/README.md).
 
@@ -69,6 +68,7 @@ python platform/run_release.py data/interim/k1/demo-v2      # load a report pack
 python -m graphrag.bench check <profile>                    # is this model usable here? then: run, compare
 docker compose -f platform/docker-compose.yml --profile app --profile demo up -d --build   # the whole application, with a stub model
 python deploy/smoke_test.py --url <address> --user team     # check a running application from outside; --quick asks no question
+python deploy/ask_set.py --url <address> --questions <set or file> --name <result>   # a whole question set through the running application, scored
 ```
 
 - The stores need `platform/.env` with the two passwords (`platform-dev` on a laptop whose stores already exist).
@@ -103,7 +103,7 @@ Every run up to E31 was made on a borrowed desktop (RTX 4080 SUPER 16 GB, Window
 - **Chunk IDs** follow specification §5.11 as K1 version 1 writes them, for example `f62efbee00767a3e7:s6:c0` (D-54). The engine also reads version 0's `<doc_id>#c0005`.
 - **Committed data:** `data/processed/gdr_chunks_full.jsonl` holds three end-of-well reports as K1 version 0 chunks (372 chunks; AK-3 is `gdr882_ak3_eowr`). Gold data for the prototype's 31 questions is in `prototype/gold/`.
 - **Report packages are never committed** (B-F56). They live in ignored `data/interim/k1/`; set `GRAPHRAG_K1_CHUNKS` to a package's folder when more than one is there. The demo package `demo-v2` (three end-of-well reports, AK-3's daily reports) is built with `python scripts/build_k1_demo_release.py --raw data/raw --models data/interim/ocr_models`; from nothing it takes about 75 minutes ([all the steps](docs/tracks/B-graphrag/next-runs.md#building-the-demo-package-from-nothing-on-linux)). It has 1,431 chunks built on the laptop and 1,432 built on Linux, so a record names the release ID.
-- **The fact graph** the stores load is `graphrag/results/E32_fact_graph.graph.json` (207 facts).
+- **The fact graph** the stores load is `graphrag/results/E32_fact_graph_v2.graph.json` (206 facts, every one on a passage of the demo package).
 - **Headline results so far**, all on questions written by the team, are in the [experiment register](docs/experiments/README.md) and in the "Best scores" row of the [Track B log](docs/tracks/B-graphrag/log.md#current-state). The baseline to reproduce is E17: 28/31 on the prototype's questions with Qwen3-8B.
 - **PyMuPDF is AGPL** and must stay out of anything deployed; use `pypdfium2`.
 - **Diagrams:** the specification's are Mermaid in the text, exported with mermaid-cli 11.17.0 ([how](docs/diagrams/README.md)); the stint report's are drawn by `scripts/stint_figures.py`.

@@ -270,7 +270,7 @@ def deployment() -> None:
     s.box(452, 130, 220, 130, "Backend service", ["one question at a time,", "the others wait their turn;", "every question is logged,", "failures told in plain words"], VIOLET_SOFT, VIOLET)
     s.box(452, 300, 220, 96, "Answering engine", ["the coordinator and its", "four places to look", "(runs inside the service)"], BLUE_SOFT, BLUE)
     s.box(712, 80, 268, 76, "PostgreSQL", ["passages, search vectors, pages,", "the question log"], GREEN_SOFT, GREEN)
-    s.box(712, 176, 268, 76, "Neo4j", ["the knowledge graph:", "161 activities, 207 facts"], GREEN_SOFT, GREEN)
+    s.box(712, 176, 268, 76, "Neo4j", ["the knowledge graph:", "161 activities, 206 facts"], GREEN_SOFT, GREEN)
     s.box(712, 272, 268, 62, "Report package", ["a folder: page images"], GREEN_SOFT, GREEN)
     s.box(712, 346, 268, 54, "Monitor and nightly backup", ["alert to the group chat; copy kept elsewhere"], "#fff", MUTED, size=13)
     s.box(1030, 130, 190, 130, "AI model", ["Qwen3-8B, the team's", "own copy (llama.cpp),", "or a hosted open model", "for public data only"], AMBER_SOFT, AMBER)

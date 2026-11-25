@@ -84,15 +84,39 @@ def context_problem(fact: dict, text: str) -> str | None:
     return None
 
 
+def _own_number(digits: str) -> re.Pattern:
+    """A number standing on its own in a text: not inside a longer number, not a part of a fraction ("3" is not in
+    '10 3/4"', "5" is not in "9-5/8"), and not the day of a date ("11" is not in "11-Mar-19")."""
+    tail = r"0*" if "." in digits else r"(?:\.0+)?"
+    return re.compile(rf"(?<![\d.])(?<!\d,)(?<!\d/){re.escape(digits)}{tail}(?!\d|[.,]\d|/\d|-[A-Za-z]{{3}}-\d)")
+
+
+# A duration read by the model must be written as one: the number with its unit beside it. "3 days from spud to rig
+# release" was read from a passage that says "cement from 3' to surface" (B-F85). Table rules name their column and
+# are not checked this way.
+DURATION_WORDS = {"drilling_days": r"days?", "spud_to_release_days": r"days?",
+                  "non_productive_time": r"hours?|hrs?|days?", "productive_time": r"hours?|hrs?|days?",
+                  "total_rig_time": r"hours?|hrs?|days?"}
+
+
+def written_as_a_duration(fact: dict, text: str) -> bool:
+    words = DURATION_WORDS.get(fact.get("property"))
+    plain = _value_text(fact["value"]).replace(",", "")
+    if not words or fact.get("source") or not NUMBER.fullmatch(plain):
+        return True
+    flat = _plain(text)
+    unit = re.compile(rf"\b(?:{words})\b", re.I)
+    return any(unit.search(flat[max(0, m.start() - 40):m.start()]) or unit.search(flat[m.end():m.end() + 25])
+               for m in _own_number(plain).finditer(flat))
+
+
 def written_in(value, text: str) -> bool:
     plain = _value_text(value)
     if NUMBER.fullmatch(plain.replace(",", "")):
         # A number must be written as a number of its own: "8" is not in "833 ft", "150" is not in "1500'", and
         # "180" is not in "78180.6" (B-F68). Trailing zeros are the same number: 5.5 is "5.500", 12 is "12.0".
         digits = plain.replace(",", "")
-        tail = r"0*" if "." in digits else r"(?:\.0+)?"
-        own = re.compile(rf"(?<![\d.])(?<!\d,){re.escape(digits)}{tail}(?!\d|[.,]\d)")
-        return bool(own.search(_plain(text)))
+        return bool(_own_number(digits).search(_plain(text)))
     if _contains(text, plain):
         return True
     # Dates are extracted as YYYY-MM-DD but written as "18 August 2016" or "09-Mar-19".
@@ -120,6 +144,9 @@ def validate(facts: list[dict], texts: dict[str, str], strict: bool = False) -> 
             continue
         if not written_in(fact["value"], texts.get(fact["chunk"], "")):
             rejected["value not in its chunk"] += 1
+            continue
+        if strict and not written_as_a_duration(fact, texts.get(fact["chunk"], "")):
+            rejected["value not written as a duration"] += 1
             continue
         problem = context_problem(fact, texts.get(fact["chunk"], "")) if strict else None
         if problem:

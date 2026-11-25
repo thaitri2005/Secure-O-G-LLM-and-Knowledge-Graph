@@ -14,7 +14,7 @@ This is a proposal for your part of the work. Anything here can change; say so i
 | B5. The FastAPI service | **Done**, reading files or the stores | `backend/`; `BACKEND_SOURCE=stores` (§5) |
 | B6. The question log | **Done** in PostgreSQL | `platform/sql/002_questions.sql`, `backend/questions.py` (§3) |
 | B1. Shared hosting | **Prepared and run on a cloud machine; no server others reach yet** | `platform/server/`, the [server runbook](server-runbook.md); interim host to agree (C-D06, C-D07) |
-| B3. The graph in Neo4j | **Done** | `platform/load_facts_neo4j.py`, `load_events_neo4j.py` (§4). 202 of the 207 facts cite the package's chunk IDs; 5 keep old IDs (Track C log C-F09) |
+| B3. The graph in Neo4j | **Done** | `platform/load_facts_neo4j.py`, `load_events_neo4j.py` (§4). All 206 facts cite the package's chunk IDs (Track C log C-F11) |
 | B2. The runner | **Done**, with vectors (Track C log C-F09) | `platform/run_release.py` (§6) |
 | B7. Page images | **Done**; no highlight on the image | `platform/render_pages.py`, the image route (§7) |
 | B8. Compose file and access gate | **Done**; run as containers on a cloud machine with the real model, checked from outside (Track C log C-F10) | `--profile app`, [deploy/README.md](../../../deploy/README.md) (§8) |

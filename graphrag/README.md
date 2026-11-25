@@ -67,7 +67,7 @@ Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/
 
 ## The coordinator (D-64)
 
-Measured on one question set per lane ([E33](../docs/experiments/E33-coordinator.md)): 102 of 119 against 87 of 119 with the lane chosen by hand, at the same number of calls, on questions the team wrote. `python -m graphrag.bench run <profile> --suite full` runs every set with its baselines ([the bench](#trying-a-model-profiles-and-the-bench-d-62-d-68)); the run that counts is an expert's set through both paths ([guide](../docs/EXPERT_PILOT.md)).
+Measured on one question set per lane ([E33](../docs/experiments/E33-coordinator.md)): 101 of 119 against 87 of 119 with the lane chosen by hand, at the same number of calls, on questions the team wrote. `python -m graphrag.bench run <profile> --suite full` runs every set with its baselines ([the bench](#trying-a-model-profiles-and-the-bench-d-62-d-68)); the run that counts is an expert's set through both paths ([guide](../docs/EXPERT_PILOT.md)).
 
 ```powershell
 # Every development question in one pool, no lane given (E33)

@@ -11,7 +11,7 @@
 - **It has run from end to end with the real AI model** (Qwen3-8B, the team's own copy): from the public PDF reports, through the stores (PostgreSQL and Neo4j), to answers behind a password. The earlier baseline result came out the same, answer for answer.
 - **Three wells are loaded:** the end-of-well reports of AK-3, 56-32 and 68-32, and AK-3's daily reports.
 - **A total is calculated by code and never written by an AI**, so it cannot be a guess.
-- **The coordinator is measured:** on 119 of the team's own questions it answers 102, against 87 when a person chooses where to look, with the same number of AI calls (§8).
+- **The coordinator is measured:** on 119 of the team's own questions it answers 101, against 87 when a person chooses where to look, with the same number of AI calls (§8).
 - **Answers about the cause of a problem are measured once.** The system finds the cause the reports state, in the report's own words, but also lists nearby events as causes. Not ready to show as a finding (§8).
 - **An expert's input becomes a test without programming** (§6).
 - **What is left needs people or money, not code:** experts to try it, a server others can reach, and a graphics card to run the experts' questions (§10).
@@ -37,7 +37,7 @@
 | Part | State at the end of this stint |
 |---|---|
 | 1. Reading the reports (Khai) | One command builds the package for the demo: 302 pages, about 1,430 passages, each with an ID that points back to its page. Each new reading option was measured; three are on (§7) |
-| 2. Stores (Hung) | One command loads a package and checks every step: the passages with a search vector each, 161 daily activities, 207 well facts. The stores restart by themselves after a failure |
+| 2. Stores (Hung) | One command loads a package and checks every step: the passages with a search vector each, 161 daily activities, 206 well facts. The stores restart by themselves after a failure |
 | 3. Answering engine (Tri) | The coordinator and its four places to look. With the real model: the baseline reproduced, the coordinator and the answers about causes measured (§8) |
 | 4. Application (Tri and Hung) | A backend service and a web application behind one password. Besides asking: a page per well and a page of the questions people asked |
 
@@ -95,7 +95,7 @@ The application is written for people who read drilling reports: nothing on scre
 | Region | Built from | By | State |
 |---|---|---|---|
 | Activities (amber) | The operations tables of the daily reports and the non-productive-time report | Code only, no AI | 161 activities on 27 days for AK-3 |
-| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 207 checked facts for 5 wells; 202 of them point to a passage in the store |
+| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 206 checked facts for 5 wells, every one pointing to a passage in the store |
 
 Activities answer "how many hours" and "on which days". Facts answer "how deep" and "which casing". A relationship the report does not state, such as a cause, is never stored.
 
@@ -121,7 +121,7 @@ Activities answer "how many hours" and "on which days". Facts answer "how deep" 
 - **The design of the second build**, in the specification and the plan.
 - **The coordinator and four places to look behind one interface**: report text, well facts, daily activities, causes of a problem. Totals are reported by code.
 - **Answers about causes**: code finds the problem and gathers what surrounds it; the AI answers in parts; code removes any cause whose source it cannot find.
-- **The well facts as a graph**: 207 checked facts for 5 wells, after a stricter check removed nine wrong ones.
+- **The well facts as a graph**: 206 checked facts for 5 wells, after a stricter check removed eleven wrong ones.
 - **A bench for models**: one command checks a model, one runs every measurement and resumes if interrupted, one compares runs.
 - **The web application**, with 178 automated tests.
 - **The first runs with the real model**, on a machine without a graphics card (§8).
@@ -156,7 +156,7 @@ Activities answer "how many hours" and "on which days". Facts answer "how deep" 
 
 - **One package holding everything the demo needs**, built by one command, and built a second time from nothing on another machine: the same pages, one passage more in one scanned report.
 - **The daily activities are built from this package alone.**
-- **The well facts moved onto the package's passages without an AI**: 202 of 207 moved; 5 have no matching passage.
+- **The well facts moved onto the package's passages without an AI**: all 206.
 
 ## 8. What was measured
 
@@ -167,9 +167,9 @@ All questions below were written by the team. None is reviewed by an expert, so 
 | Kind of question | Questions | Chosen by hand | Coordinator |
 |---|---:|---:|---:|
 | A fact in an end-of-well report | 31 | 29 | 28 |
-| A fact in one day's report | 30 | 17 | 17 |
+| A fact in one day's report | 30 | 17 | 16 |
 | A total over many days | 58 | 41 | 57 |
-| **All** | **119** | **87** | **102** |
+| **All** | **119** | **87** | **101** |
 
 - **Both ways cost 1.5 AI calls a question.** The coordinator spends one call more on a simple fact and one fewer on a total.
 - **Why totals improved:** all 17 answers lost by hand were the AI copying a calculated number wrongly; the plan was right every time. The coordinator has code report the number.
@@ -179,7 +179,8 @@ All questions below were written by the team. None is reviewed by an expert, so 
 ### The baseline, and the new report package
 
 - **The earlier baseline is reproduced on a second machine:** 28 of 31, the same three wrong.
-- **On the new package: 26 of 31.** In both lost cases the right table was found and the model answered "not stated". It is the casing table; the reading rule written for it is left off for now because it renames IDs.
+- **Through the whole application on the stores: 26 of 31,** every question asked through the password gate as a user would. The same 31 questions answered by the same code from files give 28; 29 answers are identical.
+- **The two lost are the same casing table** in the new package: the right table is found, and the model answers "not stated" or gives the actual depth where the planned one is asked. The reading rule written for that table is left off for now because it renames IDs.
 
 ### Answers about causes
 
@@ -203,21 +204,21 @@ Twenty trial questions about AK-3 in two sets of ten, each fixed before it was r
 
 1. **The real model makes mistakes that scripted stand-ins never made**: a code the question never mentioned, a wrong year on a date, "1955 in" for a depth written as "1,955 in contrast to the planned 1,700'". Each can be seen by comparing with the question or the report, so code now checks it. The rule: what code can read outranks what the model says.
 2. **A real quote is not a reason.** Checking that a quote exists is not checking that it is a cause.
-3. **The check on facts was weaker than thought.** It accepted digits inside a longer number: an elevation of 150 read out of "1500'". Nine of 216 facts were wrong this way; 207 remain.
+3. **The check on facts was weaker than thought, twice.** It accepted digits inside a longer number (an elevation of 150 read out of "1500'"), and then a number that is written but means something else ("3 days from spud to release", read from "cement from 3' to surface"). Eleven of 216 facts were wrong in these ways; 206 remain. The check sees how a value is written, not what it means.
 4. **Reviews found what tests did not**: nothing limited how long a question could wait; a failed question left no trace; the stores would not come back after a restart.
-5. **Showing the data to a person exposes errors fast.** The well page shows AK-3 with 3 days from spud to rig release beside report text that says 19. This is the human review asked for, in its first form.
-6. **A rule tuned on one kind of question must be run on the others.** A rule written to fix totals sent simple daily facts to the calculation: 13 of 30 right, not 17, until it was narrowed.
+5. **Showing the data to a person exposes errors fast.** The well page showed AK-3 with 3 days from spud to rig release beside report text that says 19. That fact is now removed by a rule. This is the human review asked for, in its first form.
+6. **A rule tuned on one kind of question must be run on the others.** A rule written to fix totals sent simple daily facts to the calculation: 13 of 30 right against 17 by hand, and 16 once it was narrowed.
 
 ## 9. Weak points
 
-- **Every test question is written by the team.** The scoring is also lenient in one known way: a number within half a percent counts as right.
+- **Every test question is written by the team.**
 - **No domain expert has used the application.**
-- **The coordinator's checks were written on the questions it is scored on.** On a simple fact it costs one AI call more than choosing by hand and is no better.
+- **The coordinator's checks were written on the questions it is scored on.** On a simple fact it costs one AI call more than choosing by hand and is one answer worse.
 - **Answers about causes over-state.** Not ready to show as findings.
 - **No graphics card and no server of the team's own.** The runs were made on a cloud machine without a graphics card, on public data only. A private document cannot go on a rented machine without VPI's agreement.
 - **Not on a server others can reach.**
 - **Three wells from two projects, one report author.** Other authors' reports are untested or fail.
-- **One stored fact is known to be wrong** (AK-3, days from spud to rig release), and five facts point to passages the store does not hold.
+- **Facts read by the AI remain the weak kind of data.** The check removes a value that is not written, or not written as that kind of quantity; it cannot tell a true sentence about something else.
 
 ## 10. What the team needs from anh Tuấn
 

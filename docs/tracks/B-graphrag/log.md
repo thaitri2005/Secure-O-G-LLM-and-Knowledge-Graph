@@ -17,9 +17,9 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 |---|---|---|
 | What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. The coordinator is not measured in full; the reasoning lane is measured and stays a probe | B-D36, B-C37, B-C38, B-C51, B-D50, [E34](../../experiments/E34-reasoning-probe.md) |
 | Passages | BM25 routed by well, top 5; per-well fusion for questions naming several wells; a date filter on daily reports. Qwen3-8B, thinking off; citations and values checked in code | B-D23, B-C21, B-C22 |
-| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 207 facts of 5 wells, 202 of them on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30, B-F68 |
+| Well facts | A per-well fact graph from table rules and model extraction, checked in code: 206 facts of 5 wells, all on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30, B-F68, B-F85 |
 | Events | An event graph built from operations tables with no model call; the model writes a plan, code runs it and reports the total | B-D26, B-C39 |
-| Best scores so far | 28/31 prototype questions (baseline); 30/31 with facts; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain retrieval. All on questions written by the team. Coordinator with no lane given: 102/119 against 87/119 hand-routed, one set per lane (E33) | [E18](../../experiments/E18-well-routing.md), [E22](../../experiments/E22-table-facts.md), [E28](../../experiments/E28-event-graph.md), B-F83, B-D51 |
+| Best scores so far | 28/31 prototype questions (baseline); 30/31 with facts; 22/35 and 19/23 on totals over time against 5/35 and 4/23 for plain retrieval. All on questions written by the team. Coordinator with no lane given: 101/119 against 87/119 hand-routed, one set per lane (E33, whole numbers scored exactly) | [E18](../../experiments/E18-well-routing.md), [E22](../../experiments/E22-table-facts.md), [E28](../../experiments/E28-event-graph.md), B-F83, B-D51 |
 | Application | A backend and a frontend on the stores, behind one password; run end to end in containers with the real model; built for one model slot, with failures logged and told plainly | B-C44 to B-C47, B-C50 to B-C57, B-C65 to B-C69, B-F76 |
 | Expert input | A sheet or marks in the application become a runnable question file, with no model call and no code to write | B-C70, [guide](../../EXPERT_PILOT.md) |
 | Models | Qwen3-8B answers best; Qwen3-4B extracts; Qwen3-Embedding-0.6B embeds. Qwen2.5-7B and Llama-3.1-8B abstain and are dropped | B-D06, B-D14 |
@@ -1067,3 +1067,26 @@ Tri asked for the whole project to be gone over before people are put in front o
 **B-F84 (finding; a test that passed here failed in CI, for one commit).** The check that a run has the daily reports was changed to read each question's lane, and for that it loaded the built-in sets, which need those same reports. This machine has them and CI does not, so the three CI commands passed here and failed there. The check now reads lanes without loading gold. Before pushing, the tests are also run with ignored `data/interim/` and `data/corpora/ak3_appendices/` moved aside, which is the tree CI sees.
 
 **B-C71 (design choice; the stint report rewritten for the meeting of 25 November).** At Tri's request: shorter (about 3,800 words, from 6,600), in the third person (anh Tuấn is named as the one who asked; no "you", "I" or "we"), and with the current architecture in pictures. Two figures are new, both drawn by `scripts/stint_figures.py`: how the application runs as containers behind one password, and the path from an expert's input to a test. The sections on what was measured and on reasoning about causes are one section; five screenshots that repeated others are no longer shown. The rules are in the [stints README](../../reports/stints/README.md) and `CLAUDE.md`.
+
+**B-F85 (finding; three known faults worked out in code, no model call).** Tri asked on 25 November for the faults left open to be fixed.
+
+| Fault | Cause | Fix | Effect |
+|---|---|---|---|
+| A number 0.5% off counted as right | The scorer's tolerance, taken from the prototype, applied to every number | A whole number must match exactly; a number with decimals keeps the 0.5% (`scoring.same_value`) | Every recorded result rescored: two answers change, both depths 5 ft off (1,160 for 1,165; 1,100 for 1,105). E33's coordinator total is 101/119, not 102; no hand-routed score changes |
+| AK-3 stored with 3 days from spud to rig release (the report says 19) | The value was read by the model from "cement from 3' to surface": written in the passage, about something else | A duration read by the model must be written as one: the number with "days" or "hours" beside it. Also a number is not found inside a fraction ('10 3/4"') or a date ("11-Mar-19") | 206 facts, in `E32_fact_graph_v2.graph.json`: two wrong ones gone (the 3 days; 1.5 hours of non-productive time for 68-32, read from '1.5" PVC'), one true one back (AK-3's total rig time, 647.5 hours, which had lost a tie against a wrong value) |
+| Five facts pointed to passages the store does not hold | Two old passages have no pair in the package's old-to-new map | A fact without a pair moves to the one passage on the same page of the same report that passes its checks; with two candidates no guess is made | All 206 facts cite the package's passages |
+
+- **The first file stays** (`E32_fact_graph.graph.json`, 207 facts): recorded runs name it.
+- **What the fact check still cannot do:** tell a true sentence about something else. "Productive time 20 hours" for 56-32 comes from "allowing them to stay in the hole over 20 hours", said of mud motors. It is written as a duration, so it passes. Facts read by the model stay the weak kind of data; the table rules do not have this fault.
+- Tests: 5 new in `tests/test_graphrag_review_fixes.py`. The stores on this machine were reloaded: 206 facts, none missing its passage.
+
+**B-F86 (finding; E32 finished: the 31 baseline questions through the whole application, [record](../../experiments/E32-answers-on-the-package.md)).** `deploy/ask_set.py` is new: it posts a question set to a running application, one question at a time, and scores it with the engine's scorer, so a run through the application compares with a run of the engine. It takes the same question sets and files as `graphrag.coordinator`, so an expert's set runs through it too.
+
+| Path | Correct | Calls a question | Seconds |
+|---|---:|---:|---:|
+| The application on the stores | 26/31 | 1.8 | 117 |
+| The coordinator from files (E33) | 28/31 | 1.8 | 83 |
+
+- 29 of 31 answers are identical. The two that differ are the casing depths (q11, q12), as in E32's run from files: the stores hold the package's end-of-well passages, the run from files the older chunks.
+- No question failed or timed out; all 31 are in the question log.
+- Qwen3-8B on the CPU profile, one request at a time; the stores held 207 facts during the run.

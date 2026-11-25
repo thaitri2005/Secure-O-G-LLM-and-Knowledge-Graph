@@ -147,7 +147,7 @@ The search in PostgreSQL returns what the search in memory returns on the same v
 
 `chunk_vectors` has no vector index, only its primary key, so each search reads every vector of the release: about 17 ms for 1,042 vectors and 80 ms for 10,000 on a laptop (24 November 2026). An approximate index (HNSW) starts to matter at tens of thousands of vectors, some twenty releases the size of AK-3's (1,051 chunks), and would make the search approximate, so it would no longer equal the search in memory.
 
-**On the stores, citations follow the IDs the graph was built on.** Facts and events cite the chunk IDs of the run that built them. A cited chunk the release does not hold is counted in the server log at start and shown without its text. Today's fact region cites the package's chunk IDs for 202 of its 207 facts; the other 5 keep old IDs and are shown without their text.
+**On the stores, citations follow the IDs the graph was built on.** Facts and events cite the chunk IDs of the run that built them. A cited chunk the release does not hold is counted in the server log at start and shown without its text. Today's fact region cites the package's chunk IDs for all of its 206 facts.
 
 ## Limits
 
