@@ -16,7 +16,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 | Part | State | More |
 |---|---|---|
-| Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. Newer reading options exist and are off until measured | [Track A log](tracks/A-ingestion/log.md) |
+| Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. The reading options were measured on it and their defaults set (E62): section context and grid recovery on, the rest off with reasons | [Track A log](tracks/A-ingestion/log.md) |
 | Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 207 facts, and now a vector for every chunk, searched inside the database. They restart by themselves and report their health | [platform/README.md](../platform/README.md) |
 | Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the measurement suite and compares runs. The baseline is reproduced on a second machine and the reasoning lane is measured; the coordinator is measured against hand-routed runs on one question set per lane (E33). All on questions the team wrote | [graphrag/README.md](../graphrag/README.md) |
 | Application (Tri, Hung) | A FastAPI backend and a React frontend for non-developers, a question log that exports a test set, one shared password, all as containers. Built for one model slot: questions take turns, failures are logged and told plainly, a monitor and a backup copy are ready to switch on | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
@@ -225,7 +225,7 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 | 1 | Tri | Send the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường | A server and a GPU |
 | 2 | Tri | Send the [stint report](reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn, with three questions: who can try the application, what it is for, and whether a private document will come | Real questions; the purpose of use |
 | 3 | Hung | Say whether his machine hosts the stores and the application until there is a server; create the group chat's incoming webhook for the monitor | A place others reach |
-| 4 | Khai | Commit the four benchmark manifests the Track A scripts read; review the demo package and the Track A log; measure the reading options (D2) | Track A's records reproducible |
+| 4 | Khai | Commit the four benchmark manifests the Track A scripts read; review the demo package and the Track A log. The reading options are measured (D2, E62) | Track A's records reproducible |
 | 5 | All | Read the three reviews' changes in each track's log and object if something is wrong | — |
 
 ### Once there is a server (half a day, [runbook](../deploy/README.md))
@@ -249,9 +249,9 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 | # | Task | State | Left |
 |---|---|---|---|
 | D1 | A package for the demo: three end-of-well reports, AK-3's four daily-report attachments and its non-productive-time report, with the old-to-new ID map | Built (`demo-v2`), and rebuilt from the public PDFs on Linux with the same pages and one more chunk | Khai's review |
-| D2 | Decide which reading options are on by default, by measurement on this package | Not done | Khai |
+| D2 | Decide which reading options are on by default, by measurement on this package | Done ([E62](experiments/E62-track-a-option-measurements.md), A-D07) | An independent check on other reports |
 | D3 | Add the 56-32 and 68-32 end-of-well reports | Done, in `demo-v2` | Khai's review |
-| D4 | Merged-cell text repeated in table Markdown | The fix exists as an option, with a test | Switch it on, with D2 |
+| D4 | Merged-cell text repeated in table Markdown | Decided: stays off until its stacked-header guard is fixed (A-D08) | Khai fixes the guard, then one setting |
 | D5 | A dated Track A log | A draft exists | Khai corrects it |
 | D6 | The benchmark manifests under `configs/benchmarks/` that four scripts and five records point to | Not in the repository | Khai commits them |
 

@@ -14,7 +14,8 @@
 - **The coordinator got its first measurement,** on 119 of our own questions: it answers 102, against 87 when a person chooses where to look, with the same number of AI calls (§9).
 - A question about **the cause of a problem** gets an answer in parts. We measured this for the first time: the system finds the cause the reports state, in the report's own words, but it also lists nearby events as causes. It is not ready to show as a finding (§10).
 - **Before putting people in front of it, we had the design, the code and the security reviewed with AI review tools,** and fixed what was found (§9).
-- **What is left needs people or money, not code:** a server others can reach, a graphics card for the one long measurement, and experts to try it (§12).
+- **An expert's input becomes a test without programming.** An expert marks answers in the application, or fills one column of a spreadsheet; one command turns that into a test the system is run against (§7).
+- **What is left needs people or money, not code:** a server others can reach, experts to try it, and a graphics card to run their questions (§12).
 
 ## 2. What you asked for, and where each stands
 
@@ -25,7 +26,7 @@
 | A simple application early, on the connected parts, for domain experts | **Built, connected, and run with the real model**; not yet on a server others reach | A backend service and a web application, written for people who are not developers, reading the stores |
 | Reasoning about the causes of a drilling problem | **Built and measured once:** good in one part, not ready in another | A fourth place to look, for causes (§10), tried on twenty trial questions about AK-3 |
 | The model can be swapped | **Built** | One small file names a model and where it runs. One command checks that model and measures it on our questions |
-| People review part of the machine-made data | **Built, first form** | Every answer can be marked right or wrong. A page lists every question asked with its marks, and downloads them as a test set |
+| People review part of the machine-made data | **Built, first form** | Every answer can be marked right or wrong, with the right answer typed in. A page lists every question asked with its marks, and downloads them as a test set or as a spreadsheet for an expert to fill |
 | State the node and relationship logic of the graph | **Written down** | §6 below |
 
 ## 3. The system now
@@ -36,7 +37,7 @@
 
 | Part | What it does | State at the end of this stint |
 |---|---|---|
-| 1. Reading the reports | Turns a PDF into passages, tables and forms, each with a stable ID that points back to its page | A package for the demo, built by one command: the end-of-well reports of AK-3, 56-32 and 68-32, AK-3's four daily-report attachments and its non-productive-time report (302 pages, about 1,430 passages). It was built again from nothing on a second machine. New reading options exist; their effect is still to be measured |
+| 1. Reading the reports | Turns a PDF into passages, tables and forms, each with a stable ID that points back to its page | A package for the demo, built by one command: the end-of-well reports of AK-3, 56-32 and 68-32, AK-3's four daily-report attachments and its non-productive-time report (302 pages, about 1,430 passages). It was built again from nothing on a second machine. The new reading options were each measured on this package: three are on, the rest stay off with the reason written down (§8) |
 | 2. Stores | Keeps passages and their search vectors in PostgreSQL, and the knowledge graph in Neo4j | One command loads a package and checks every step: the passages, a search vector for each, 161 daily activities, 207 well facts. Search by meaning runs inside the database. The question log is in PostgreSQL. The stores restart by themselves after a failure. Not yet on a server others reach |
 | 3. Answering engine | Understands the question, looks in the right place, answers, and checks the answer | The coordinator and its four places to look, reading files or the stores. With the real model: the earlier baseline is reproduced, and answers about causes are measured (§10). A bench checks any model and runs the whole measurement in one command |
 | 4. Application | Lets a person ask, read the answer, check its sources and mark it right or wrong | Backend service and web application run together behind one password, as containers that start with one command. Besides asking: a page per well, and a page of the questions people asked. It tells the user plainly when it is busy or when something is down |
@@ -150,7 +151,7 @@ The application was checked with an automated accessibility tool on every screen
 
 ![The page listing the questions people asked](figures/app-questions.png)
 
-**Figure 12.** Every question asked, the answer it got, and how it was marked. The button downloads the selected questions as a file with a place for the right answer to each. Once an expert fills those in, the file is a test the system can be run against. This is how the application turns use into the real questions we are waiting for. The entries shown are examples.
+**Figure 12.** Every question asked, the answer it got, and how it was marked. The button downloads the selected questions with the answer each one got. One command turns that file into a spreadsheet: an answer the expert marked right is already filled in as the expected one, and the expert types the rest in plain words ("1955 ft", "not stated"). A second command turns the filled sheet into a test, and the test records whether an expert or the team wrote its answers. This is how the application turns use into the real questions we are waiting for. The entries shown are examples.
 
 ## 8. What each of us built
 
@@ -164,7 +165,8 @@ The application was checked with an automated accessibility tool on every screen
 - **The well facts exported as a graph**: 207 checked facts for 5 wells, after a stricter check removed nine wrong ones (§9).
 - **A bench for models**: a small file names a model and where it runs; one command checks it (does it answer in the required form, with reasoning switched off, and does our longest prompt fit), one runs every measurement and can resume if interrupted, one prints the comparison. It works with any server that speaks the common interface, on our own machine or rented.
 - **The web application** (§7), with 178 automated tests: the answer screens, the cause screens, the page view, a page per well, the questions people asked, and plain messages when the server cannot be reached.
-- **The first runs with the real model**, on a machine without a graphics card: the earlier baseline reproduced answer for answer (28 of 31, the same three wrong), and the answers about causes measured on twenty trial questions (§10).
+- **The first runs with the real model**, on a machine without a graphics card: the earlier baseline reproduced answer for answer (28 of 31, the same three wrong); the coordinator measured against choosing by hand on 119 questions (§9); and the answers about causes measured on twenty trial questions (§10).
+- **The path for an expert's input**: the spreadsheet, the command that builds a test from it, and a check that says what is missing before a run. A short guide describes it for the expert and for us.
 - **Three reviews before anyone uses it, made with AI review tools:** of the design, of the code and of the security. Together with an earlier review of the engine they raised about fifty points, large and small (they are listed in the engine's record); those that code can fix are fixed, most with a test (§9).
 - **Every diagram redrawn** in one style and checked against the code.
 
@@ -194,7 +196,9 @@ The application was checked with an automated accessibility tool on every screen
 - **Form recognition and label repair**: candidate settings for reading form areas and for pairing a label with its value.
 - **Page orientation, quarantine of bad pages, and runs that can stop and resume.**
 - **More checks** on the output: tables against their passages, labels against values, conflicts between forms, structure across pages.
-- All of these are options that are off by default. Measuring each and deciding which to switch on comes next.
+- **Each option measured on the demo package, by rules written before the numbers**: an option is on only if the package still passes its checks, no existing ID changes, and a sample of changed items read against the page images shows no item made worse.
+- **The outcome:** section context and the recovery of table grids are on. Table joining stays on as shipped, though on this package it joined none of ten real continuations; an earlier variant that joins three is kept as a setting. The others stay off, each with its reason: some did not act on these reports, some changed IDs, one moved 12 forms to another page.
+- These decisions rest on the eight files of the demo package, which is development data; they are not tested on other reports.
 
 ### Khai and Tri together: the package for the demo
 
@@ -237,7 +241,7 @@ The 58 of those questions about AK-3's daily reports ("how many hours of non-pro
 
 ### On the new report package
 
-The 31 questions of our first baseline, asked of AK-3's report as the new package holds it: 26 right, against 28 on the older version of the same report. In both lost cases the right table was found and the model answered "not stated". It is the casing table, which the new reading options are meant to improve.
+The 31 questions of our first baseline, asked of AK-3's report as the new package holds it: 26 right, against 28 on the older version of the same report. In both lost cases the right table was found and the model answered "not stated". It is the casing table. The reading rule written for it is among those measured and left off for now, because it renames IDs (§8).
 
 ### What we learned
 
@@ -294,7 +298,7 @@ One well's reports do not hold offset wells, formation pressures or lessons lear
 
 ## 12. What we need from you
 
-1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones. We would also ask one of them to read ten answers about causes and say whether that kind of answer is useful (§10).
+1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones; an expert who prefers a spreadsheet can write questions and answers there. We would also ask one of them to read ten answers about causes and say whether that kind of answer is useful (§10).
 2. **What it is for**: which report types stay in scope, and which kinds of question users ask.
 3. **A budget for rented compute: 5 million VND for the next three months**, from the capstone funding. A GPU by the hour (about 10 hours a week) for measurements and experiments, a small server that stays on for the application, and pay-per-use hosted models for a demo that answers at any hour. We are asking through the school, as Dr. Dung said; your support for the request would help. Detail: [resource plan](../RESOURCE_REQUEST_2026-11-24.md).
 4. **If a private VPI document is to be used later:** where it may be processed, since we will have no machine of our own.
@@ -309,14 +313,14 @@ Everything that code and our own machines can do for this build is done. Each ne
 |---|---|
 | Tri | Send the request for rented compute, and this report |
 | Hung | Say whether his machine hosts the application until there is a server; review the loading command and the container setup |
-| Khai | Review the demo package and the record written for him; decide which reading options go on |
+| Khai | Review the demo package and the record written for him; add the four benchmark files that his scripts read and the repository lacks |
 
 **Next stint, to 12 December**
 
 1. **With a server (half a day of work):** the application at one address behind the password, watched by the monitor, with its backup copied elsewhere.
 2. **With a graphics card (one session of a few hours):** the experts' questions answered both ways, by hand-chosen place and by the coordinator, and the coordinator confirmed or not.
 3. **With one or two experts:** the application in their hands, their questions in the log, and their reading of the answers about causes.
-4. **Ours meanwhile:** a smaller unit for "the problem" in answers about causes; one question shown to you going through the whole system, live.
+4. **Ours meanwhile:** in answers about causes, recognise a reason the report gives as a purpose ("to stop flow") and ask back when a question fits several problems; one question shown to you going through the whole system, live.
 
 ## Where the detail is
 
