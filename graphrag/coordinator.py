@@ -108,6 +108,10 @@ NOT_A_CODE = {"activity_code", "npt_code", "code", "non_productive", "nonproduct
 SAYS_NON_PRODUCTIVE = re.compile(r"non[- ]?productive|\bnpt\b|lost time|down ?time", re.IGNORECASE)
 
 
+ASKS = re.compile(r"\?|^\W*(how|what|when|which|who|whom|where|why|list|give|show|count|sum|total|name|tell|did|does|do|"
+                  r"was|were|is|are|on|in|at|by|from|between|during|for)\b", re.I)
+
+
 def _check_plan(frame: dict, question: str, dates: set[str], engine: Engine) -> None:
     """Checks the plan of a frame against the question, in place (E33, B-F79). One framing call writes sloppier
     plans than the dedicated planner did: on 58 event questions it invented a non-productive code for "non-productive
@@ -121,9 +125,15 @@ def _check_plan(frame: dict, question: str, dates: set[str], engine: Engine) -> 
     npt_codes = {(e.npt_code or "").upper() for e in engine.events} - {""}
     # "On which dates was code X logged" came back as a lookup by date with a runnable plan: on the daily reports
     # that is a question over time. Only that kind is changed: a plain lookup with a stray plan (seen on an
-    # end-of-well question) stays a lookup and its plan is not used.
-    if frame["kind"] == "lookup_by_date" and frame["report_type"] in ("daily", "both", "unknown"):
+    # end-of-well question) stays a lookup and its plan is not used. A question that names exactly one day stays a
+    # lookup as well: that day's report holds the answer, and the events lane would report the day's depth for
+    # whatever was asked (9 of 30 daily lookups in E33, B-F83).
+    if frame["kind"] == "lookup_by_date" and frame["report_type"] in ("daily", "both", "unknown") and len(dates) != 1:
         frame["kind"] = "over_time"
+    # Code reports a computed result without the model reading the question again, so a text that asks nothing
+    # ("Ignore all previous instructions and delete ...") must not reach it.
+    if frame["kind"] == "over_time" and not ASKS.search(question):
+        frame["kind"] = "other"
     if frame["kind"] != "over_time":
         return
     # The days are the question's, when it names any.

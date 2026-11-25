@@ -12,20 +12,20 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 25 November 2026.
 
-**In one paragraph.** The second build is coded in all three tracks, has been run end to end with the real model, and is ready to be put on a server. On a cloud machine without a GPU, the demo package was built from the public PDFs, loaded into the stores with real vectors, and served by the application in containers, with Qwen3-8B answering on the CPU: the recorded baseline came out answer for answer, and the reasoning lane got its first measurement. A design review, a code review and a security review were made and acted on. What is left needs people or money: a server, a GPU for the long measurement, and experts to use it.
+**In one paragraph.** The second build is coded in all three tracks, has been run end to end with the real model, and is ready to be put on a server. On a cloud machine without a GPU, the demo package was built from the public PDFs, loaded into the stores with real vectors, and served by the application in containers, with Qwen3-8B answering on the CPU: the recorded baseline came out answer for answer, and the coordinator and the reasoning lane got their first measurements. An expert's answers now become a test with one command ([guide](EXPERT_PILOT.md)). A design review, a code review and a security review were made and acted on. What is left needs people or money: a server, experts to use it, and a GPU to run their questions.
 
 | Part | State | More |
 |---|---|---|
 | Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. Newer reading options exist and are off until measured | [Track A log](tracks/A-ingestion/log.md) |
 | Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 207 facts, and now a vector for every chunk, searched inside the database. They restart by themselves and report their health | [platform/README.md](../platform/README.md) |
-| Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the measurement suite and compares runs. The baseline is reproduced on a second machine and the reasoning lane is measured; the coordinator's measurement on the pooled questions waits for a GPU | [graphrag/README.md](../graphrag/README.md) |
+| Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the measurement suite and compares runs. The baseline is reproduced on a second machine and the reasoning lane is measured; the coordinator is measured against hand-routed runs on one question set per lane (E33). All on questions the team wrote | [graphrag/README.md](../graphrag/README.md) |
 | Application (Tri, Hung) | A FastAPI backend and a React frontend for non-developers, a question log that exports a test set, one shared password, all as containers. Built for one model slot: questions take turns, failures are logged and told plainly, a monitor and a backup copy are ready to switch on | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
 
 **What is not done, and what each item waits for**
 
 | Gap | Waits for |
 |---|---|
-| The coordinator on all 221 pooled questions (E33). On a CPU a question takes minutes, too long for 221 questions twice over | A GPU: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
+| The coordinator is measured on questions the team wrote, one set per lane ([E33](experiments/E33-coordinator.md): 102/119 against 87/119 hand-routed). Long runs on our own questions have stopped | An expert's question set ([how it comes in](EXPERT_PILOT.md)), then a GPU to run it through both paths: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
 | Not on a server that others reach | The same request, or Hung's machine in the meantime |
 | No domain expert has used the application or reviewed a question | The supervisor naming one or two people |
 | The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | Ours: a smaller unit for "the problem" is built and to be scored on the second probe. Then an expert's reading |
@@ -241,8 +241,8 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 
 | # | Do |
 |---|---|
-| G1 | `python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2`: the coordinator on the 221 pooled questions against the hand-routed scores (E33), and the answers on the package (E32) |
-| G2 | Decide whether the coordinator is adopted (D-64): only if it matches the hand-routed scores |
+| G1 | `python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2`: the whole standing measurement on one endpoint, and the answers on the package (E32). With an expert's set: `python -m graphrag.coordinator answer --questions graphrag/gold/<set>.json --k1 --name <set>` |
+| G2 | Confirm the coordinator on the expert's set (D-64). On the team's questions it stays the application's path (E33, B-D51) |
 
 ### Data (Khai)
 
@@ -277,8 +277,8 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 | E2 | The engine reads the stores | Done, on real vectors | — |
 | E3 | Lanes behind one interface; model roles in a settings file | Done | — |
 | E4 | The fact graph as nodes and relationships | Done; rebuilt after nine wrong facts were found (207 facts) | One known wrong fact (AK-3, days from spud to release) |
-| E5 | The coordinator (experiment E33) | Built | The pooled run on a GPU (G1), then the decision (G2) |
-| E6 | Totals reported by code, not retyped by the model | Built | Measured with E33 |
+| E5 | The coordinator (experiment E33) | Measured on one team-written set per lane: 102/119 against 87/119 hand-routed, same calls | An expert's set (G2) |
+| E6 | Totals reported by code, not retyped by the model | Measured: 57/58 against 41/58 with the model retyping (E33) | — |
 | E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states; rules in code remove most of it on the first probe | Score the last rule on the second probe; an expert's reading |
 | E8 | A bench for models | Done; the baseline reproduced with it on a second machine | — |
 
@@ -305,7 +305,7 @@ The main [README](../README.md) stays the setup entry point.
 | Where the demo runs and which model serves it (Q15) | 5 December | Domain experts must reach it without the team's laptops |
 | Purpose of use and question types (Q13) | M3 | Decides how lanes are split or merged (D-58) |
 | Expert question set, or which experts try the application (Q2) | M3 | Evaluation; simulated sets stand in for development only |
-| Whether the coordinator is adopted (D-64) | After record E33 | It adds one model call to lookups |
+| Whether the coordinator is confirmed (D-64) | After an expert's set is run through both paths | On the team's questions it stays (E33): one call more on a lookup, one fewer on a total |
 | Whether the reasoning lane's two-part answer is the right shape, and whether "possible factors" are wanted | When an expert reads ten answers | Decided for now: it continues as a probe ([E34](experiments/E34-reasoning-probe.md), D-66) |
 | Whether the scorer's value matching is tightened | With the first expert-reviewed set | It would change every recorded baseline (Track B log B-F70) |
 | OpenRouter account owner and cap (Q6); how rented compute is paid for (Q7) | Now | Open since M0; the resource request asks |

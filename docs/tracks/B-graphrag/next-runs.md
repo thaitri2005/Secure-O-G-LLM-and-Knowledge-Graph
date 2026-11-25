@@ -1,13 +1,13 @@
 # Track B: next runs
 
-**Next: E33 and E32** ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). E34 is recorded ([two probes](../../experiments/E34-reasoning-probe.md)). The team has no GPU of its own (B-D42, B-D47). The long run goes on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)). A machine without a GPU does the short runs ([how](../../../graphrag/README.md#without-a-gpu-on-linux)).
+**Next: an expert's question set through both paths, and E32 from the stores** ([plan task list](../../DEVELOPMENT_PLAN.md#7-what-to-do-now)). E33 is recorded on one set per lane ([record](../../experiments/E33-coordinator.md)) and E34 on two probes ([record](../../experiments/E34-reasoning-probe.md)). Long runs on the team's own questions have stopped (B-D51); an expert's answers become a question file through [this path](../../EXPERT_PILOT.md). The team has no GPU of its own (B-D42, B-D47). The long run goes on a rented cloud GPU, running our own copy of the model so scores stay comparable with the recorded ones, or on a hosted open-weight model on public data (D-68). Neither is paid for yet ([resource request](../../reports/RESOURCE_REQUEST_2026-11-24.md)). A machine without a GPU does the short runs ([how](../../../graphrag/README.md#without-a-gpu-on-linux)).
 
 Every run goes through the model bench (`python -m graphrag.bench`, [how it works](../../../graphrag/README.md#trying-a-model-profiles-and-the-bench-d-62-d-68)): one command checks a model, one runs the whole suite, one compares runs.
 
 | Measurement | What | Inside `bench run --suite full` |
 |---|---|---|
 | E32 | Answers on the K1 package `demo-v2` | Every step with `--k1`, and the prototype questions on the package's AK-3 report |
-| E33 | The coordinator on the 221 pooled questions, against the hand-routed scores from the same model | The hand-routed baselines of the seven sets, then the coordinator |
+| E33 | The coordinator against the hand-routed scores from the same model. Recorded on a CPU for four of the seven sets (119 questions) | The hand-routed baselines of the seven sets, then the coordinator on all 221 |
 | E34 | The reasoning lane on its first probe (`graphrag/gold/ak3_reasoning_probe_v0.json`); recorded on a CPU, and repeated here on the GPU | The last step |
 
 ## On a rented GPU

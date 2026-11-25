@@ -1,0 +1,4047 @@
+{
+  "question_set": [
+    "ak3_daily"
+  ],
+  "mode": "allow_fallback",
+  "roles": {
+    "frame": {
+      "endpoint": "qwen3-8b.cpu",
+      "model": "qwen3-8b",
+      "profile": "qwen3-8b.cpu"
+    },
+    "answer": {
+      "endpoint": "qwen3-8b.cpu",
+      "model": "qwen3-8b",
+      "profile": "qwen3-8b.cpu"
+    }
+  },
+  "retriever": "coordinator",
+  "pool": "k1",
+  "multi_well_retriever": "perwell:bm25",
+  "events": 161,
+  "facts": 207,
+  "cost": {
+    "frame": {
+      "calls": 30,
+      "cached_calls": 0,
+      "invalid_json": 0,
+      "prompt_tokens": 38351,
+      "completion_tokens": 4357,
+      "seconds": 1738.9,
+      "cost_usd": 0.0,
+      "cached_seconds": 0.0,
+      "cached_cost_usd": 0.0,
+      "models": [
+        "qwen3-8b.cpu:qwen3-8b"
+      ],
+      "providers": []
+    },
+    "answer": {
+      "calls": 21,
+      "cached_calls": 0,
+      "invalid_json": 0,
+      "prompt_tokens": 38982,
+      "completion_tokens": 957,
+      "seconds": 1227.0,
+      "cost_usd": 0.0,
+      "cached_seconds": 0.0,
+      "cached_cost_usd": 0.0,
+      "models": [
+        "qwen3-8b.cpu:qwen3-8b"
+      ],
+      "providers": []
+    }
+  },
+  "questions": 30,
+  "correct_total": "13/30",
+  "rightly_routed": "27/30",
+  "fallbacks": 3,
+  "per_question": {
+    "calls_per_question": 1.7,
+    "prompt_tokens": 2577.8,
+    "completion_tokens": 177.1,
+    "seconds": 98.9
+  },
+  "by_set": {
+    "ak3_daily": {
+      "questions": 30,
+      "correct": "13/30",
+      "rightly_routed": "27/30",
+      "fallbacks": 3,
+      "calls_per_question": 1.7,
+      "prompt_tokens": 2577.8,
+      "completion_tokens": 177.1,
+      "seconds": 98.9
+    }
+  },
+  "rows": [
+    {
+      "id": "ak3_daily:d01",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "Brian Walker"
+      ],
+      "raw_values": [
+        "Brian Walker"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f62efbee00767a3e7:f1:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1931,
+      "completion_tokens": 65,
+      "seconds": 69.123,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f1:c0",
+        "f41b0c1e42cd79364:s1:c1",
+        "ff5e766b8670b35da:f1:c0",
+        "ff5e766b8670b35da:s1:c0",
+        "f4f05215feea85339:f1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": []
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 140,
+      "frame_seconds": 86.519,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d02",
+      "kind": "form_header",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1931,
+      "completion_tokens": 21,
+      "seconds": 51.738,
+      "cached": false,
+      "shown_passages": [
+        "ff5e766b8670b35da:f1:c0",
+        "f62efbee00767a3e7:f1:c0",
+        "f41b0c1e42cd79364:s1:c1",
+        "f4f05215feea85339:f1:c0",
+        "ff5e766b8670b35da:s1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "personnel"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 143,
+      "frame_seconds": 69.401,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d03",
+      "kind": "form_comment",
+      "status": "answered",
+      "values": [
+        "11"
+      ],
+      "raw_values": [
+        "11"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t1:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t1:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t1:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "total hours for code MOB from 2016-08-12 to 2016-08-12 = 11 (2 events on 1 dates)",
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "MOB",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-12",
+        "date_to": "2016-08-12",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code MOB from 2016-08-12 to 2016-08-12 = 11 (2 events on 1 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "total_hours",
+          "well": "AK-3",
+          "code": "MOB",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "helicopter",
+            "flight"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "total_hours",
+          "well": "AK-3",
+          "code": "MOB",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "total hours for code MOB from 2016-08-12 to 2016-08-12 = 11 (2 events on 1 dates)",
+        "values": [
+          "11"
+        ],
+        "unit": "hours",
+        "events": [
+          {
+            "date": "2016-08-12",
+            "start": "8:00",
+            "end": "9:30",
+            "hours": 1.5,
+            "end_md": 0,
+            "code": "MOB",
+            "description": "Meeting to discuss project fly to Valley to site hole location",
+            "chunks": [
+              "f4f05215feea85339:t1:c0",
+              "f62efbee00767a3e7:t1:c0",
+              "ff5e766b8670b35da:t1:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-12",
+            "start": "9:30",
+            "end": "19:00",
+            "hours": 9.5,
+            "end_md": 0,
+            "code": "MOB",
+            "description": "Fly loads to site , begin construction of camp and drill pad.",
+            "chunks": [
+              "f4f05215feea85339:t1:c0",
+              "f62efbee00767a3e7:t1:c0",
+              "ff5e766b8670b35da:t1:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t1:c0",
+          "f62efbee00767a3e7:t1:c0",
+          "ff5e766b8670b35da:t1:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1276,
+      "frame_completion_tokens": 148,
+      "frame_seconds": 64.514,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d04",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "58"
+      ],
+      "raw_values": [
+        "58"
+      ],
+      "units": [
+        "degF"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:s5:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1235,
+      "completion_tokens": 83,
+      "seconds": 47.876,
+      "cached": false,
+      "shown_passages": [
+        "f4f05215feea85339:s5:c0",
+        "ff5e766b8670b35da:s3:c0",
+        "f62efbee00767a3e7:f1:c0",
+        "f41b0c1e42cd79364:s1:c1",
+        "ff5e766b8670b35da:f1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "air",
+            "temperature"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1275,
+      "frame_completion_tokens": 145,
+      "frame_seconds": 37.467,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d05",
+      "kind": "form_header",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1356,
+      "completion_tokens": 21,
+      "seconds": 38.665,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:s2:c0",
+        "f41b0c1e42cd79364:s1:c1",
+        "f62efbee00767a3e7:f1:c0",
+        "ff5e766b8670b35da:f1:c0",
+        "f62efbee00767a3e7:s6:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "daily",
+            "cost"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1275,
+      "frame_completion_tokens": 145,
+      "frame_seconds": 67.416,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d06",
+      "kind": "graphic_form",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2007,
+      "completion_tokens": 17,
+      "seconds": 51.24,
+      "cached": false,
+      "shown_passages": [
+        "f41b0c1e42cd79364:s1:c1",
+        "f41b0c1e42cd79364:s1:c0",
+        "f62efbee00767a3e7:f1:c0",
+        "f62efbee00767a3e7:s2:c0",
+        "ff5e766b8670b35da:f1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "other",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 800
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 800,
+          "npt_code": "",
+          "keywords": [
+            "production",
+            "section"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1285,
+      "frame_completion_tokens": 147,
+      "frame_seconds": 65.663,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d07",
+      "kind": "graphic_form",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1750,
+      "completion_tokens": 24,
+      "seconds": 48.09,
+      "cached": false,
+      "shown_passages": [
+        "f41b0c1e42cd79364:s1:c1",
+        "f41b0c1e42cd79364:s1:c0",
+        "f62efbee00767a3e7:f1:c0",
+        "f62efbee00767a3e7:s2:c0",
+        "f4f05215feea85339:s1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "engineer"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1274,
+      "frame_completion_tokens": 143,
+      "frame_seconds": 65.483,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d08",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "220"
+      ],
+      "raw_values": [
+        "220"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:s85:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1876,
+      "completion_tokens": 74,
+      "seconds": 63.588,
+      "cached": false,
+      "shown_passages": [
+        "f4f05215feea85339:s85:c0",
+        "f62efbee00767a3e7:f13:c0",
+        "ff5e766b8670b35da:f13:c0",
+        "f4f05215feea85339:f13:c0",
+        "f41b0c1e42cd79364:s1:c22"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-24",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "header"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 140,
+      "frame_seconds": 62.526,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d09",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "225"
+      ],
+      "raw_values": [
+        "225"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t28:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t12:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t18:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-08-24 = 225 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "FIT",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-24",
+        "date_to": "2016-08-24",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-08-24 = 225 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "FIT",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-24",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "leak",
+            "off",
+            "test"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "FIT",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-08-24 = 225 ft",
+        "values": [
+          "225"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-24",
+            "start": "0:00",
+            "end": "15:00",
+            "hours": 15.0,
+            "end_md": 225,
+            "code": "OPEN",
+            "description": "Drill ahead with 7.5\" hole opener from 125' to 225', circulating hole with 9.2-9.5 salt weighted water and bentonite gell, mud temps in 105 F mud tempps out 150-165F. Circulate hole to cool with cold water 60F and gell 45 vis each hour to keep hole cool.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "15:00",
+            "end": "15:30",
+            "hours": 0.5,
+            "end_md": 225,
+            "code": "CIRC",
+            "description": "Circulate hole with 60 F 9.4 mud to cool hole prior to tripping out with 7.5\" hole opener",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "15:30",
+            "end": "16:00",
+            "hours": 0.5,
+            "end_md": 225,
+            "code": "TRPO",
+            "description": "Trip out of hole with PQ rod and lay down 7.5\" hole opener",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "16:00",
+            "end": "19:00",
+            "hours": 3.0,
+            "end_md": 225,
+            "code": "CASE",
+            "description": "Rig up and run 5.5\" od. casing from ground surface to 220' below ground surface. Circulating and filling each three joints as run in hole, circulate last joint to bottom( no fill) install landing joint set at 6\" above cellar floor.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "19:00",
+            "end": "21:30",
+            "hours": 2.5,
+            "end_md": 225,
+            "code": "CMTP",
+            "description": "rig up cementing tubs, mix and pump 52 sacks of Thermolite HT, pump cement, drop plug, pump plug to bottom with fresh water, bump plug at 21:30 hrs with 800 psi. shut in valve. Cement returns to surface, captured discharge.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "21:30",
+            "end": "0:00",
+            "hours": 2.5,
+            "end_md": 225,
+            "code": "CMTS",
+            "description": "Mixed and pumped to keep hole full as cement shrank and settled in annulus of 8\" casing. hole stopped taking any cement by 23:30, Cleaned all hoses and cementing equipment as hole monitoring from plug down to time cement remained at top of 8\"",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t28:c0",
+          "f62efbee00767a3e7:t12:c0",
+          "ff5e766b8670b35da:t18:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1278,
+      "frame_completion_tokens": 151,
+      "frame_seconds": 65.526,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d10",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "4"
+      ],
+      "raw_values": [
+        "4"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "ff5e766b8670b35da:f13:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1605,
+      "completion_tokens": 71,
+      "seconds": 57.328,
+      "cached": false,
+      "shown_passages": [
+        "ff5e766b8670b35da:s71:c0",
+        "f4f05215feea85339:s90:c0",
+        "ff5e766b8670b35da:f13:c0",
+        "f4f05215feea85339:s85:c0",
+        "f4f05215feea85339:f13:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "count_days",
+          "well": "AK-3",
+          "code": "DRIL",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-24",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "lost",
+            "time"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": true,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 39.879,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d11",
+      "kind": "operations_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2406,
+      "completion_tokens": 21,
+      "seconds": 68.451,
+      "cached": false,
+      "shown_passages": [
+        "gdr882_ak3_eowr#c0026",
+        "gdr882_ak3_eowr#c0028",
+        "gdr882_ak3_eowr#c0010",
+        "gdr882_ak3_eowr#c0034",
+        "gdr882_ak3_eowr#c0019"
+      ],
+      "shown_facts": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0008",
+          "well": "AK-3",
+          "property": "api_number",
+          "value": "50-295-20005-00-00",
+          "qualifier": "none",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "ground_elevation",
+          "value": "41",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "non_productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "115",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "532.5",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "rig_release_date",
+          "value": "2016-09-05",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_date",
+          "value": "2016-08-18",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_to_release_days",
+          "value": "3",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0002",
+          "well": "AK-3",
+          "property": "total_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "3-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "221.7",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "5-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "40",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "8-5/8"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "800",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "4-1/2"
+          }
+        }
+      ],
+      "frame": {
+        "kind": "other",
+        "report_type": "unknown",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-24",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": []
+        }
+      },
+      "lanes": [
+        "well_facts",
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "end_of_well",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1276,
+      "frame_completion_tokens": 138,
+      "frame_seconds": 66.678,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": false
+    },
+    {
+      "id": "ak3_daily:d12",
+      "kind": "operations_table",
+      "status": "answered",
+      "values": [
+        "CMTP"
+      ],
+      "raw_values": [
+        "CMTP"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "ff5e766b8670b35da:t18:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2731,
+      "completion_tokens": 141,
+      "seconds": 116.248,
+      "cached": false,
+      "shown_passages": [
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "f62efbee00767a3e7:f13:c0",
+        "ff5e766b8670b35da:f13:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "list_dates",
+          "well": "AK-3",
+          "code": "WOD",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-08-24",
+          "group_by": "date",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-24",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "weather"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": true,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1285,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 65.495,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d13",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "770"
+      ],
+      "raw_values": [
+        "770"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t41:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t18:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t28:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-28",
+        "date_to": "2016-08-28",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "header"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-08-28 = 770 ft",
+        "values": [
+          "770"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-28",
+            "start": "0:00",
+            "end": "3:30",
+            "hours": 3.5,
+            "end_md": 500,
+            "code": "DRIL",
+            "description": "Core ahead PQ to 500'. Maximun Flow line temp out 145 F, mud temp in average 70, mixing cold (60 F) water with poly mud to maintain fluid temperatures.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "3:30",
+            "end": "4:00",
+            "hours": 0.5,
+            "end_md": 500,
+            "code": "SURV",
+            "description": "Run single shot Totco survey at 500', .25 degree inclination, MRT 250F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "4:00",
+            "end": "11:00",
+            "hours": 7.0,
+            "end_md": 600,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 600'. Maximum Flow line temp out 156 F, mud temp in avg. 72F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:00",
+            "end": "11:30",
+            "hours": 0.5,
+            "end_md": 600,
+            "code": "SURV",
+            "description": "Run single shot survey at 600', 1 degree inclination, MRT 280 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:30",
+            "end": "17:30",
+            "hours": 6.0,
+            "end_md": 700,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 700' , maximum flow line temp out 156 F , average mud temp in 71 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "17:30",
+            "end": "18:00",
+            "hours": 0.5,
+            "end_md": 700,
+            "code": "SURV",
+            "description": "Run single shot survey at 700' 1 degree inclination, MRT 275 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "18:00",
+            "end": "0:00",
+            "hours": 6.0,
+            "end_md": 770,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 770'. Maximum flow line temp 165 F, average mud temp in 71 F. Pumped to waste sump 500 gal and added 500 gal of cold mud 60 F to cool fluid and hole.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t41:c0",
+          "f62efbee00767a3e7:t18:c0",
+          "ff5e766b8670b35da:t28:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 142,
+      "frame_seconds": 63.654,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d14",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "770"
+      ],
+      "raw_values": [
+        "770"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t41:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t18:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t28:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-28",
+        "date_to": "2016-08-28",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "vertical",
+            "depth"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-08-28 = 770 ft",
+        "values": [
+          "770"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-28",
+            "start": "0:00",
+            "end": "3:30",
+            "hours": 3.5,
+            "end_md": 500,
+            "code": "DRIL",
+            "description": "Core ahead PQ to 500'. Maximun Flow line temp out 145 F, mud temp in average 70, mixing cold (60 F) water with poly mud to maintain fluid temperatures.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "3:30",
+            "end": "4:00",
+            "hours": 0.5,
+            "end_md": 500,
+            "code": "SURV",
+            "description": "Run single shot Totco survey at 500', .25 degree inclination, MRT 250F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "4:00",
+            "end": "11:00",
+            "hours": 7.0,
+            "end_md": 600,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 600'. Maximum Flow line temp out 156 F, mud temp in avg. 72F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:00",
+            "end": "11:30",
+            "hours": 0.5,
+            "end_md": 600,
+            "code": "SURV",
+            "description": "Run single shot survey at 600', 1 degree inclination, MRT 280 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:30",
+            "end": "17:30",
+            "hours": 6.0,
+            "end_md": 700,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 700' , maximum flow line temp out 156 F , average mud temp in 71 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "17:30",
+            "end": "18:00",
+            "hours": 0.5,
+            "end_md": 700,
+            "code": "SURV",
+            "description": "Run single shot survey at 700' 1 degree inclination, MRT 275 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "18:00",
+            "end": "0:00",
+            "hours": 6.0,
+            "end_md": 770,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 770'. Maximum flow line temp 165 F, average mud temp in 71 F. Pumped to waste sump 500 gal and added 500 gal of cold mud 60 F to cool fluid and hole.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t41:c0",
+          "f62efbee00767a3e7:t18:c0",
+          "ff5e766b8670b35da:t28:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 145,
+      "frame_seconds": 38.766,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d15",
+      "kind": "survey_table",
+      "status": "answered",
+      "values": [
+        "770"
+      ],
+      "raw_values": [
+        "770"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t41:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t18:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t28:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "SURV",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-28",
+        "date_to": "2016-08-28",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 500
+      },
+      "graph_result": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "SURV",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 500
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 500,
+          "npt_code": "",
+          "keywords": [
+            "survey",
+            "inclination"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "SURV",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 500
+        },
+        "text": "deepest end measured depth on 2016-08-28 = 770 ft",
+        "values": [
+          "770"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-28",
+            "start": "0:00",
+            "end": "3:30",
+            "hours": 3.5,
+            "end_md": 500,
+            "code": "DRIL",
+            "description": "Core ahead PQ to 500'. Maximun Flow line temp out 145 F, mud temp in average 70, mixing cold (60 F) water with poly mud to maintain fluid temperatures.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "3:30",
+            "end": "4:00",
+            "hours": 0.5,
+            "end_md": 500,
+            "code": "SURV",
+            "description": "Run single shot Totco survey at 500', .25 degree inclination, MRT 250F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "4:00",
+            "end": "11:00",
+            "hours": 7.0,
+            "end_md": 600,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 600'. Maximum Flow line temp out 156 F, mud temp in avg. 72F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:00",
+            "end": "11:30",
+            "hours": 0.5,
+            "end_md": 600,
+            "code": "SURV",
+            "description": "Run single shot survey at 600', 1 degree inclination, MRT 280 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:30",
+            "end": "17:30",
+            "hours": 6.0,
+            "end_md": 700,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 700' , maximum flow line temp out 156 F , average mud temp in 71 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "17:30",
+            "end": "18:00",
+            "hours": 0.5,
+            "end_md": 700,
+            "code": "SURV",
+            "description": "Run single shot survey at 700' 1 degree inclination, MRT 275 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "18:00",
+            "end": "0:00",
+            "hours": 6.0,
+            "end_md": 770,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 770'. Maximum flow line temp 165 F, average mud temp in 71 F. Pumped to waste sump 500 gal and added 500 gal of cold mud 60 F to cool fluid and hole.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t41:c0",
+          "f62efbee00767a3e7:t18:c0",
+          "ff5e766b8670b35da:t28:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1283,
+      "frame_completion_tokens": 152,
+      "frame_seconds": 41.071,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d16",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "8.60"
+      ],
+      "raw_values": [
+        "8.60"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:s132:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2105,
+      "completion_tokens": 148,
+      "seconds": 94.683,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f17:c0",
+        "f41b0c1e42cd79364:s1:c30",
+        "f62efbee00767a3e7:s146:c0",
+        "f4f05215feea85339:s132:c0",
+        "ff5e766b8670b35da:s108:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "mud",
+            "density"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1278,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 37.8,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d17",
+      "kind": "bit_table",
+      "status": "answered",
+      "values": [
+        "770"
+      ],
+      "raw_values": [
+        "770"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t41:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t18:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t28:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-28",
+        "date_to": "2016-08-28",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-08-28 = 770 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "depth",
+            "out",
+            "bit"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-08-28 = 770 ft",
+        "values": [
+          "770"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-28",
+            "start": "0:00",
+            "end": "3:30",
+            "hours": 3.5,
+            "end_md": 500,
+            "code": "DRIL",
+            "description": "Core ahead PQ to 500'. Maximun Flow line temp out 145 F, mud temp in average 70, mixing cold (60 F) water with poly mud to maintain fluid temperatures.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "3:30",
+            "end": "4:00",
+            "hours": 0.5,
+            "end_md": 500,
+            "code": "SURV",
+            "description": "Run single shot Totco survey at 500', .25 degree inclination, MRT 250F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "4:00",
+            "end": "11:00",
+            "hours": 7.0,
+            "end_md": 600,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 600'. Maximum Flow line temp out 156 F, mud temp in avg. 72F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:00",
+            "end": "11:30",
+            "hours": 0.5,
+            "end_md": 600,
+            "code": "SURV",
+            "description": "Run single shot survey at 600', 1 degree inclination, MRT 280 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "11:30",
+            "end": "17:30",
+            "hours": 6.0,
+            "end_md": 700,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 700' , maximum flow line temp out 156 F , average mud temp in 71 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "17:30",
+            "end": "18:00",
+            "hours": 0.5,
+            "end_md": 700,
+            "code": "SURV",
+            "description": "Run single shot survey at 700' 1 degree inclination, MRT 275 F",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-28",
+            "start": "18:00",
+            "end": "0:00",
+            "hours": 6.0,
+            "end_md": 770,
+            "code": "DRIL",
+            "description": "Core ahead with PQ to 770'. Maximum flow line temp 165 F, average mud temp in 71 F. Pumped to waste sump 500 gal and added 500 gal of cold mud 60 F to cool fluid and hole.",
+            "chunks": [
+              "f4f05215feea85339:t41:c0",
+              "f62efbee00767a3e7:t18:c0",
+              "ff5e766b8670b35da:t28:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t41:c0",
+          "f62efbee00767a3e7:t18:c0",
+          "ff5e766b8670b35da:t28:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1281,
+      "frame_completion_tokens": 147,
+      "frame_seconds": 63.997,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d18",
+      "kind": "inventory_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1314,
+      "completion_tokens": 14,
+      "seconds": 32.546,
+      "cached": false,
+      "shown_passages": [
+        "gdr882_ak3_eowr#c0059",
+        "gdr882_ak3_eowr#c0039",
+        "gdr882_ak3_eowr#c0038",
+        "gdr882_ak3_eowr#c0001",
+        "gdr882_ak3_eowr#c0009"
+      ],
+      "shown_facts": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0008",
+          "well": "AK-3",
+          "property": "api_number",
+          "value": "50-295-20005-00-00",
+          "qualifier": "none",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "ground_elevation",
+          "value": "41",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "non_productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "115",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "532.5",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "rig_release_date",
+          "value": "2016-09-05",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_date",
+          "value": "2016-08-18",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_to_release_days",
+          "value": "3",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0002",
+          "well": "AK-3",
+          "property": "total_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "3-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "221.7",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "5-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "40",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "8-5/8"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "800",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "4-1/2"
+          }
+        }
+      ],
+      "frame": {
+        "kind": "other",
+        "report_type": "unknown",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": []
+        }
+      },
+      "lanes": [
+        "well_facts",
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "end_of_well",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1279,
+      "frame_completion_tokens": 138,
+      "frame_seconds": 34.706,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": false
+    },
+    {
+      "id": "ak3_daily:d19",
+      "kind": "form_header",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1175,
+      "completion_tokens": 21,
+      "seconds": 30.233,
+      "cached": false,
+      "shown_passages": [
+        "ff5e766b8670b35da:s118:c0",
+        "f4f05215feea85339:s142:c0",
+        "f41b0c1e42cd79364:s1:c30",
+        "f62efbee00767a3e7:f17:c0",
+        "f62efbee00767a3e7:s146:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "visibility"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1272,
+      "frame_completion_tokens": 142,
+      "frame_seconds": 61.767,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d20",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "1385"
+      ],
+      "raw_values": [
+        "1385"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t56:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t29:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t39:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-09-01 = 1385 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-01",
+        "date_to": "2016-09-01",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-09-01 = 1385 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "header"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-09-01 = 1385 ft",
+        "values": [
+          "1385"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-09-01",
+            "start": "0:00",
+            "end": "15:30",
+            "hours": 15.5,
+            "end_md": 1300,
+            "code": "DRIL",
+            "description": "Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to trip out for new bit.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "15:30",
+            "end": "16:00",
+            "hours": 0.5,
+            "end_md": 1300,
+            "code": "SURV",
+            "description": "Run Totco single shot survey, 1 degree inclination.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "16:00",
+            "end": "18:00",
+            "hours": 2.0,
+            "end_md": 1300,
+            "code": "TRPO",
+            "description": "Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "18:00",
+            "end": "20:30",
+            "hours": 2.5,
+            "end_md": 1300,
+            "code": "TRPI",
+            "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "20:30",
+            "end": "0:00",
+            "hours": 3.5,
+            "end_md": 1385,
+            "code": "DRIL",
+            "description": "Break in new bit and core ahead from 1300' to 1385'.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t56:c0",
+          "f62efbee00767a3e7:t29:c0",
+          "ff5e766b8670b35da:t39:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1276,
+      "frame_completion_tokens": 142,
+      "frame_seconds": 60.932,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d21",
+      "kind": "form_header",
+      "status": "answered",
+      "values": [
+        "1385"
+      ],
+      "raw_values": [
+        "1385"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t56:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t29:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t39:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "deepest end measured depth on 2016-09-01 = 1385 ft",
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "CASE",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-09-01",
+        "date_to": "2016-09-01",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-09-01 = 1385 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "CASE",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "casing",
+            "set"
+          ]
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_on_date",
+          "well": "AK-3",
+          "code": "CASE",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "deepest end measured depth on 2016-09-01 = 1385 ft",
+        "values": [
+          "1385"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-09-01",
+            "start": "0:00",
+            "end": "15:30",
+            "hours": 15.5,
+            "end_md": 1300,
+            "code": "DRIL",
+            "description": "Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to trip out for new bit.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "15:30",
+            "end": "16:00",
+            "hours": 0.5,
+            "end_md": 1300,
+            "code": "SURV",
+            "description": "Run Totco single shot survey, 1 degree inclination.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "16:00",
+            "end": "18:00",
+            "hours": 2.0,
+            "end_md": 1300,
+            "code": "TRPO",
+            "description": "Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "18:00",
+            "end": "20:30",
+            "hours": 2.5,
+            "end_md": 1300,
+            "code": "TRPI",
+            "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "20:30",
+            "end": "0:00",
+            "hours": 3.5,
+            "end_md": 1385,
+            "code": "DRIL",
+            "description": "Break in new bit and core ahead from 1300' to 1385'.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t56:c0",
+          "f62efbee00767a3e7:t29:c0",
+          "ff5e766b8670b35da:t39:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1278,
+      "frame_completion_tokens": 148,
+      "frame_seconds": 38.175,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d22",
+      "kind": "operations_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2383,
+      "completion_tokens": 17,
+      "seconds": 64.757,
+      "cached": false,
+      "shown_passages": [
+        "gdr882_ak3_eowr#c0030",
+        "gdr882_ak3_eowr#c0033",
+        "gdr882_ak3_eowr#c0004",
+        "gdr882_ak3_eowr#c0008",
+        "gdr882_ak3_eowr#c0010"
+      ],
+      "shown_facts": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0008",
+          "well": "AK-3",
+          "property": "api_number",
+          "value": "50-295-20005-00-00",
+          "qualifier": "none",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "ground_elevation",
+          "value": "41",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "non_productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "115",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0037",
+          "well": "AK-3",
+          "property": "productive_time",
+          "qualifier": "actual",
+          "context": null,
+          "value": "532.5",
+          "source": "gdr882_ak3_eowr#t005"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "well": "AK-3",
+          "property": "rig_release_date",
+          "value": "2016-09-05",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_date",
+          "value": "2016-08-18",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0022",
+          "well": "AK-3",
+          "property": "spud_to_release_days",
+          "value": "3",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0002",
+          "well": "AK-3",
+          "property": "total_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": null
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "1955",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "3-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "221.7",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "5-1/2"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "40",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "8-5/8"
+          }
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0013",
+          "well": "AK-3",
+          "property": "casing_depth",
+          "value": "800",
+          "qualifier": "actual",
+          "context": {
+            "casing_size_in": "4-1/2"
+          }
+        }
+      ],
+      "frame": {
+        "kind": "other",
+        "report_type": "unknown",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "core",
+            "bit",
+            "installed"
+          ]
+        }
+      },
+      "lanes": [
+        "well_facts",
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "end_of_well",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 145,
+      "frame_seconds": 37.27,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": false
+    },
+    {
+      "id": "ak3_daily:d23",
+      "kind": "bit_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2336,
+      "completion_tokens": 17,
+      "seconds": 63.179,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f21:c0",
+        "ff5e766b8670b35da:s156:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "rate",
+            "penetration"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1281,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 65.579,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d24",
+      "kind": "mud_table",
+      "status": "answered",
+      "values": [
+        "8.40"
+      ],
+      "raw_values": [
+        "8.40"
+      ],
+      "units": [
+        "%"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:s191:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2636,
+      "completion_tokens": 111,
+      "seconds": 102.92,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f21:c0",
+        "f4f05215feea85339:f21:c0",
+        "ff5e766b8670b35da:f21:c0",
+        "ff5e766b8670b35da:s156:c0",
+        "f4f05215feea85339:s191:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "mud",
+            "density"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1277,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 63.015,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d25",
+      "kind": "parameters_table",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1596,
+      "completion_tokens": 21,
+      "seconds": 45.872,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f21:c0",
+        "f4f05215feea85339:s184:c0",
+        "f62efbee00767a3e7:s185:c0",
+        "ff5e766b8670b35da:s156:c0",
+        "f62efbee00767a3e7:s184:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-09-01",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 1385
+        },
+        "problem": {
+          "date": "2016-09-01",
+          "depth_ft": 1385,
+          "npt_code": "",
+          "keywords": [
+            "penetration",
+            "rate"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1292,
+      "frame_completion_tokens": 151,
+      "frame_seconds": 66.105,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d26",
+      "kind": "across_days",
+      "status": "answered",
+      "values": [
+        "1160"
+      ],
+      "raw_values": [
+        "1160"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t28:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t12:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t18:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f4f05215feea85339:t56:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "f62efbee00767a3e7:t29:c0",
+          "how": "event_graph"
+        },
+        {
+          "chunk": "ff5e766b8670b35da:t39:c0",
+          "how": "event_graph"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "seconds": 0.0,
+      "cached": false,
+      "answer_text": "end measured depth rose by 1160 ft from 2016-08-24 (225 ft) to 2016-09-01 (1385 ft)",
+      "plan": {
+        "operation": "depth_gain",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-24",
+        "date_to": "2016-09-01",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "end measured depth rose by 1160 ft from 2016-08-24 (225 ft) to 2016-09-01 (1385 ft)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ],
+      "shown_passages": [
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "depth_gain",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": []
+        }
+      },
+      "lanes": [
+        "events"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": {
+        "plan": {
+          "operation": "depth_gain",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-24",
+          "date_to": "2016-09-01",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "text": "end measured depth rose by 1160 ft from 2016-08-24 (225 ft) to 2016-09-01 (1385 ft)",
+        "values": [
+          "1160"
+        ],
+        "unit": "ft",
+        "events": [
+          {
+            "date": "2016-08-24",
+            "start": "0:00",
+            "end": "15:00",
+            "hours": 15.0,
+            "end_md": 225,
+            "code": "OPEN",
+            "description": "Drill ahead with 7.5\" hole opener from 125' to 225', circulating hole with 9.2-9.5 salt weighted water and bentonite gell, mud temps in 105 F mud tempps out 150-165F. Circulate hole to cool with cold water 60F and gell 45 vis each hour to keep hole cool.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "15:00",
+            "end": "15:30",
+            "hours": 0.5,
+            "end_md": 225,
+            "code": "CIRC",
+            "description": "Circulate hole with 60 F 9.4 mud to cool hole prior to tripping out with 7.5\" hole opener",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "15:30",
+            "end": "16:00",
+            "hours": 0.5,
+            "end_md": 225,
+            "code": "TRPO",
+            "description": "Trip out of hole with PQ rod and lay down 7.5\" hole opener",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "16:00",
+            "end": "19:00",
+            "hours": 3.0,
+            "end_md": 225,
+            "code": "CASE",
+            "description": "Rig up and run 5.5\" od. casing from ground surface to 220' below ground surface. Circulating and filling each three joints as run in hole, circulate last joint to bottom( no fill) install landing joint set at 6\" above cellar floor.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "19:00",
+            "end": "21:30",
+            "hours": 2.5,
+            "end_md": 225,
+            "code": "CMTP",
+            "description": "rig up cementing tubs, mix and pump 52 sacks of Thermolite HT, pump cement, drop plug, pump plug to bottom with fresh water, bump plug at 21:30 hrs with 800 psi. shut in valve. Cement returns to surface, captured discharge.",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-08-24",
+            "start": "21:30",
+            "end": "0:00",
+            "hours": 2.5,
+            "end_md": 225,
+            "code": "CMTS",
+            "description": "Mixed and pumped to keep hole full as cement shrank and settled in annulus of 8\" casing. hole stopped taking any cement by 23:30, Cleaned all hoses and cementing equipment as hole monitoring from plug down to time cement remained at top of 8\"",
+            "chunks": [
+              "f4f05215feea85339:t28:c0",
+              "f62efbee00767a3e7:t12:c0",
+              "ff5e766b8670b35da:t18:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "0:00",
+            "end": "15:30",
+            "hours": 15.5,
+            "end_md": 1300,
+            "code": "DRIL",
+            "description": "Core ahead with HQ from 1100' to 1300'. Average mud temp: in 118 F, out 168F with full returns.1280'-1300': started to see core samples whittled and bit walking. Determine to trip out for new bit.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "15:30",
+            "end": "16:00",
+            "hours": 0.5,
+            "end_md": 1300,
+            "code": "SURV",
+            "description": "Run Totco single shot survey, 1 degree inclination.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "16:00",
+            "end": "18:00",
+            "hours": 2.0,
+            "end_md": 1300,
+            "code": "TRPO",
+            "description": "Trip out of hole from 1300' to change bit. Pulling pipe in doubles (20'), line up kill pump to pump down back side while pull out of hole.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "18:00",
+            "end": "20:30",
+            "hours": 2.5,
+            "end_md": 1300,
+            "code": "TRPI",
+            "description": "Install new HQ core bit (model 8 AM SN 6B3981). Reamer and stabilizer in good condition. Trip in hole (circulating at each 100'). At 500' start circulating each joint down due to hot fluid, mud temp out through core rod 185F.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          },
+          {
+            "date": "2016-09-01",
+            "start": "20:30",
+            "end": "0:00",
+            "hours": 3.5,
+            "end_md": 1385,
+            "code": "DRIL",
+            "description": "Break in new bit and core ahead from 1300' to 1385'.",
+            "chunks": [
+              "f4f05215feea85339:t56:c0",
+              "f62efbee00767a3e7:t29:c0",
+              "ff5e766b8670b35da:t39:c0"
+            ],
+            "npt_code": null
+          }
+        ],
+        "source_chunks": [
+          "f4f05215feea85339:t28:c0",
+          "f62efbee00767a3e7:t12:c0",
+          "ff5e766b8670b35da:t18:c0",
+          "f4f05215feea85339:t56:c0",
+          "f62efbee00767a3e7:t29:c0",
+          "ff5e766b8670b35da:t39:c0"
+        ]
+      },
+      "calls": 1,
+      "frame_prompt_tokens": 1289,
+      "frame_completion_tokens": 151,
+      "frame_seconds": 68.076,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d27",
+      "kind": "across_days",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2504,
+      "completion_tokens": 21,
+      "seconds": 68.456,
+      "cached": false,
+      "shown_passages": [
+        "ff5e766b8670b35da:f13:c0",
+        "f4f05215feea85339:f13:c0",
+        "f41b0c1e42cd79364:s1:c21",
+        "ff5e766b8670b35da:f1:c0",
+        "ff5e766b8670b35da:s72:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "over_time",
+        "report_type": "daily",
+        "plan": {
+          "operation": "list_dates",
+          "well": "AK-3",
+          "code": "BOPNU",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-24",
+          "group_by": "date",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "personnel"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": true,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1282,
+      "frame_completion_tokens": 145,
+      "frame_seconds": 37.906,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d28",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 964,
+      "completion_tokens": 21,
+      "seconds": 28.54,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:s152:c0",
+        "f41b0c1e42cd79364:s1:c30",
+        "ff5e766b8670b35da:s118:c0",
+        "f4f05215feea85339:s142:c0",
+        "f62efbee00767a3e7:f17:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-28",
+          "date_to": "2016-08-28",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-28",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "gas",
+            "reading"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1276,
+      "frame_completion_tokens": 147,
+      "frame_seconds": 66.238,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d29",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1444,
+      "completion_tokens": 14,
+      "seconds": 38.679,
+      "cached": false,
+      "shown_passages": [
+        "f62efbee00767a3e7:f1:c0",
+        "f41b0c1e42cd79364:s1:c1",
+        "ff5e766b8670b35da:f1:c0",
+        "f62efbee00767a3e7:s2:c0",
+        "f4f05215feea85339:s1:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2016-08-12",
+          "date_to": "2016-08-12",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2016-08-12",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "barometric",
+            "pressure"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1273,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 71.195,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    },
+    {
+      "id": "ak3_daily:d30",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1697,
+      "completion_tokens": 14,
+      "seconds": 44.836,
+      "cached": false,
+      "shown_passages": [
+        "f41b0c1e42cd79364:s1:c30",
+        "f41b0c1e42cd79364:s1:c28",
+        "ff5e766b8670b35da:t57:c0",
+        "f62efbee00767a3e7:f17:c0",
+        "f62efbee00767a3e7:f27:c0"
+      ],
+      "shown_facts": [],
+      "frame": {
+        "kind": "lookup_by_date",
+        "report_type": "daily",
+        "plan": {
+          "operation": "not_answerable",
+          "well": "AK-3",
+          "code": "",
+          "non_productive": false,
+          "npt_code": "",
+          "date_from": "2015-08-13",
+          "date_to": "2015-08-13",
+          "group_by": "",
+          "min_hours_per_day": 0,
+          "depth_ft": 0
+        },
+        "problem": {
+          "date": "2015-08-13",
+          "depth_ft": 0,
+          "npt_code": "",
+          "keywords": [
+            "mud",
+            "weight"
+          ]
+        }
+      },
+      "lanes": [
+        "passages"
+      ],
+      "mode": "allow_fallback",
+      "fallback": false,
+      "answered_from": "daily",
+      "computed": null,
+      "calls": 2,
+      "frame_prompt_tokens": 1271,
+      "frame_completion_tokens": 146,
+      "frame_seconds": 66.096,
+      "set": "ak3_daily",
+      "expected": "daily",
+      "rightly_routed": true
+    }
+  ]
+}

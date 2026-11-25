@@ -11,7 +11,7 @@
 - **It has run from end to end with the real AI model.** On one machine, starting from the public PDF reports: the reports were read, loaded into the stores (PostgreSQL and Neo4j), and the application answered from them behind a password, with our own copy of the model (Qwen3-8B). Our earlier baseline result came out the same, answer for answer.
 - **Three wells are loaded:** the end-of-well reports of AK-3, 56-32 and 68-32, and AK-3's daily reports. Each well has its own page, and every question people ask is kept and can be downloaded as a test set.
 - A total such as "hours of non-productive time" is **calculated by code and never written by an AI**, so it cannot be a guess.
-- **The coordinator got its first measurement,** on our 58 questions about totals over time: it does as well as choosing the place to look by hand, with fewer AI calls (§9).
+- **The coordinator got its first measurement,** on 119 of our own questions: it answers 102, against 87 when a person chooses where to look, with the same number of AI calls (§9).
 - A question about **the cause of a problem** gets an answer in parts. We measured this for the first time: the system finds the cause the reports state, in the report's own words, but it also lists nearby events as causes. It is not ready to show as a finding (§10).
 - **Before putting people in front of it, we had the design, the code and the security reviewed with AI review tools,** and fixed what was found (§9).
 - **What is left needs people or money, not code:** a server others can reach, a graphics card for the one long measurement, and experts to try it (§12).
@@ -20,7 +20,7 @@
 
 | You asked on 9 November | State | What exists |
 |---|---|---|
-| A coordinator that routes each question; later it uses tools and connectors | **Built, and measured on one kind of question** (§9); the other kinds are being measured | One AI call understands the question; code then decides where to look. Each place it can look has the same interface, so it can later be offered as a tool |
+| A coordinator that routes each question; later it uses tools and connectors | **Built, and measured on our own questions** (§9); to be confirmed on an expert's | One AI call understands the question; code then decides where to look. Each place it can look has the same interface, so it can later be offered as a tool |
 | A switch for exact answers only | **Built** | "Verified data only" in the application |
 | A simple application early, on the connected parts, for domain experts | **Built, connected, and run with the real model**; not yet on a server others reach | A backend service and a web application, written for people who are not developers, reading the stores |
 | Reasoning about the causes of a drilling problem | **Built and measured once:** good in one part, not ready in another | A fourth place to look, for causes (§10), tried on twenty trial questions about AK-3 |
@@ -132,7 +132,7 @@ It is written for people who read drilling reports, not for developers. Nothing 
 | See what people asked | A page of every question and its marks, with a download (Figure 12) |
 | Learn how it works | A guide on first visit and from the top bar |
 
-Every question, how it was answered, and every right or wrong mark is logged in the database, also when a question could not be answered. When domain experts use it, that log gives us their real questions.
+Every question, how it was answered, and every right or wrong mark is logged in the database, also when a question could not be answered. When domain experts use it, that log gives us their real questions. **Turning an expert's answers into a test needs no programming:** they mark answers in the application or fill one column of a spreadsheet, and one command makes the test ([guide](../../EXPERT_PILOT.md)).
 
 ![The waiting screen, with its steps and a stop button](figures/app-waiting.png)
 
@@ -205,9 +205,24 @@ The application was checked with an automated accessibility tool on every screen
 
 ## 9. What we measured, and what we learned
 
-### The coordinator, on questions about totals over time
+### The coordinator against choosing by hand
 
-58 of our own questions about AK-3's daily reports ("how many hours of non-productive time in August", "on which days was casing run"), answered by the real model on the same machine three ways. These are our questions, not an expert's.
+119 of our own questions, one set for each kind, answered by the real model on the same machine twice: once with the place to look chosen by a person, once by the coordinator. These are our questions, not an expert's.
+
+| Kind of question | Questions | Chosen by hand | Coordinator |
+|---|---:|---:|---:|
+| A fact in an end-of-well report | 31 | 29 | 28 |
+| A fact in one day's report | 30 | 17 | 17 |
+| A total over many days | 58 | 41 | 57 |
+| **All** | **119** | **87** | **102** |
+
+- **Both ways cost 1.5 AI calls a question.** The coordinator spends one call more on a simple fact, to understand the question, and one call fewer on a total.
+- **It is not a clean test:** the coordinator's checks were written while looking at these questions. The test that counts is an expert's questions, answered both ways.
+- Detail: [experiment E33](../../experiments/E33-coordinator.md).
+
+### Why totals improved
+
+The 58 of those questions about AK-3's daily reports ("how many hours of non-productive time in August", "on which days was casing run"), answered by the real model on the same machine three ways. These are our questions, not an expert's.
 
 | How the question is answered | Right, of 58 | AI calls a question |
 |---|---:|---:|
@@ -218,7 +233,7 @@ The application was checked with an automated accessibility tool on every screen
 - **Every one of the 17 answers lost in the first row was the AI copying a calculated number wrongly.** The plan was right all 58 times. This is why the coordinator has code report the number.
 - **The coordinator's own 14 misses were in its plan:** it added a code the question did not mention, or put the wrong year on a date. Each can be seen by comparing the plan with the question, so code now does that.
 - **The last row was reached on the same 58 questions that showed us the faults,** so it says the faults are of a kind code can catch; it does not say how many remain on questions we have not seen.
-- So for this kind of question the coordinator can replace choosing by hand. The measurement on the other kinds of question was started on the same machine and takes most of a day there.
+- **One of our own checks was too broad, twice.** A rule written to fix the totals sent simple facts from a daily report to the calculation, which answered with that day's depth whatever was asked: 13 of 30 right, not 17. Narrowing the rule restored them, at the price of one of the 58 totals (57 in the table above). We now run a new rule on every kind of question before keeping it.
 
 ### On the new report package
 
@@ -267,7 +282,7 @@ One well's reports do not hold offset wells, formation pressures or lessons lear
 
 ## 11. Weak points
 
-- **The coordinator is measured on one kind of question only** (§9). The full test needs 221 questions answered twice: once with the place to look chosen by hand, once chosen by the coordinator. Without a graphics card an answer takes two to six minutes, so that run takes a day. The short measurements were made; this one needs rented compute.
+- **The coordinator is measured only on our own questions, and its checks were written on them** (§9). On a simple fact it costs one AI call more than choosing by hand and is no better. We stopped measuring on our own questions: the next measurement should be on an expert's.
 - **Answers about causes over-state** (§10). Not ready to show as findings.
 - **We have no graphics card and no server of our own.** The end-to-end run was made on a cloud machine without a graphics card, and on public data only. A private document cannot go on a rented machine without VPI's agreement.
 - **Not on a server others can reach.** Everything a server needs is written and was run on one machine: the containers, the password gate, the monitor, the backup. A real address and its certificate have not been tried.
@@ -299,7 +314,7 @@ Everything that code and our own machines can do for this build is done. Each ne
 **Next stint, to 12 December**
 
 1. **With a server (half a day of work):** the application at one address behind the password, watched by the monitor, with its backup copied elsewhere.
-2. **With a graphics card (one session of a few hours):** the coordinator measured on all 221 questions, and the decision whether to keep it.
+2. **With a graphics card (one session of a few hours):** the experts' questions answered both ways, by hand-chosen place and by the coordinator, and the coordinator confirmed or not.
 3. **With one or two experts:** the application in their hands, their questions in the log, and their reading of the answers about causes.
 4. **Ours meanwhile:** a smaller unit for "the problem" in answers about causes; one question shown to you going through the whole system, live.
 

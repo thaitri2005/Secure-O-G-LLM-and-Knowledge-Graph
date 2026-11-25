@@ -53,7 +53,7 @@ Everything code and a machine without a GPU can do for this build is done. The n
 1. Send the [resource request](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to anh Trường (capstone funding, as Dr. Dung said), and the [stint report](docs/reports/stints/STINT_REPORT_2026-11-27.md) to anh Tuấn. The stint report is a draft until the stint ends on 27 November.
 2. **Measured with the real model**, on a 4-core machine without a GPU (Track B log B-F71 to B-F77): the baseline, answer for answer; the reasoning lane on two probes ([E34](docs/experiments/E34-reasoning-probe.md); it stays a probe, B-D50); one question through the whole application on the stores.
 3. **Still to record**, with [these commands](docs/tracks/B-graphrag/next-runs.md):
-   - **E33:** the coordinator on the 221 pooled questions; adopt it only if it matches the hand-routed scores from the same endpoint. The full pool needs a GPU;
+   - **An expert's question set**, through both paths (hand-routed and coordinator) on one endpoint. [E33](docs/experiments/E33-coordinator.md) measured the coordinator on one team-written set per lane (102/119 against 87/119 hand-routed); long runs on the team's own questions have stopped (B-D51). [How an expert's answers become a test](docs/EXPERT_PILOT.md);
    - **E32:** answers on the demo package `demo-v2`, from files and then from the stores.
 4. **Reasoning lane:** an expert's reading of ten answers, and a question set written by someone else, before more code.
 5. **Without a GPU:** profile `qwen3-8b.cpu`, with the server started with `--cache-ram 0` ([how](graphrag/README.md#without-a-gpu-on-linux)). Profiles are in [configs/graphrag/models/](configs/graphrag/models/README.md).
