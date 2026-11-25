@@ -14,4 +14,4 @@ This page was added by Track B on 24 November 2026 so that all three tracks can 
 | [Quality ledger](../../components/quality-ledger.md) | The QA sidecar |
 | [Note from Track B](../B-graphrag/note-for-track-A-daily-reports.md) | What the engine needs from K1 |
 
-**Not yet recorded anywhere as a dated entry:** the 17 November merge (table joining across pages, section context, form recognition, label-value repair, page orientation, quarantine, resumable runs; all off by default) and which of these options were measured.
+**The options of the 17 November merge** (table joining across pages, section context, form recognition, label-value repair, page orientation) **were measured on the demo package on 25 November** ([E62](../../experiments/E62-track-a-option-measurements.md), log A-F23 to A-D08): section context and grid recovery are on, table joining stays as shipped, the others are off.

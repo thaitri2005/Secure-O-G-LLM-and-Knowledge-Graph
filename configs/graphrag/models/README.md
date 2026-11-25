@@ -24,7 +24,7 @@ Any server that speaks the OpenAI API works. Copy a profile and change three fie
 
 Rules:
 
-- Only open-weight models of about 8B parameters or smaller (specification D-37).
+- Only open-weight models of about 7B parameters or smaller, 8B at most (specification D-37, §9).
 - An address that is not on this machine counts as hosted and takes public data only (D-68). A rented machine reached through an SSH tunnel is on this machine's address.
 - Scores are comparable only between runs of the same model copy. Ollama and vLLM ship their own copies and settings, so give such a profile its own `compare_as` and rerun the baseline with it before comparing anything.
 - Thinking must be off, and the model must honour a JSON schema. `check` tests both; do not skip it.

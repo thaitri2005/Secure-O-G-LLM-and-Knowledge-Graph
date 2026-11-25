@@ -52,15 +52,15 @@ These appeared in searches for the items above and may be useful background. Non
 
 ## Candidates for the GraphRAG application
 
-These are candidates to **compare on one document**, not decisions. Record versions, licenses and results as experiments (E14 onward) and choose by measurement ([specification §9](PROJECT_DESIGN.md#9-technology-choices-and-alternatives)).
+These were the candidates. What was compared and chosen is in [specification §9](PROJECT_DESIGN.md#9-technology-choices-and-alternatives): no GraphRAG base was adopted (D-50; neo4j-graphrag-python and LightRAG were run, E16 and E19), Qwen3-8B answers, Qwen3-Embedding-0.6B embeds, and the VLM parser comparison was deferred (D-63).
 
 | Need | Candidates | What to check |
 |---|---|---|
 | GraphRAG base pipeline | [neo4j-graphrag-python](https://github.com/neo4j/neo4j-graphrag-python), [LightRAG](https://github.com/HKUDS/LightRAG), [Microsoft GraphRAG](https://github.com/microsoft/graphrag), LlamaIndex property-graph index | Works with an OpenAI-compatible endpoint and a ~7B model; accepts a schema so the ontology slice can be injected; keeps chunk provenance; Neo4j storage; calls and tokens per page; license and activity |
 | Page/table parsing (VLM) | granite-docling / SmolDocling (Docling VLM pipeline), PaddleOCR-VL, MinerU, olmOCR, Qwen2.5-VL (3B/7B) | Within ~7B; cell accuracy, merged cells and multi-page joins on the table set; key–value forms; Markdown/HTML output; speed |
 | Embeddings | BAAI bge-m3, Qwen3-Embedding (0.6B), nomic-embed-text; reranker bge-reranker-v2-m3 | Retrieval recall on the development questions; English technical terms and numbers; size |
-| LLM (≤ ~7B) | Qwen2.5-7B-Instruct, Llama-3.1-8B-class, Qwen2.5-3B (current prototype) | JSON compliance, extraction precision/recall, answer quality, tokens per page; availability on OpenRouter for development and locally for runs |
-| Drilling ontology | Queiroz et al. well-engineering ontology for daily reports (below) | Class and relation names to reuse in the drilling-report profile |
+| LLM (≤ ~7B) | Qwen3-8B (chosen), Qwen3-4B (extraction), Qwen2.5-7B-Instruct and Llama-3.1-8B-class (tried and dropped), Qwen2.5-3B (the prototype) | JSON compliance, extraction precision/recall, answer quality, tokens per page; availability on OpenRouter for development and locally for runs |
+| Drilling ontology | Queiroz et al. well-engineering ontology for daily reports (above) | Class and relation names to reuse in the drilling-report profile |
 
 Repository GraphRAG pipelines are generic. What they typically lack, and what this project adds (supervisor, 28 October):
 

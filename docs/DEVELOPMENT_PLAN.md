@@ -6,7 +6,7 @@
 
 This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of its own; requirement IDs (FR), gates (G1–G8), decisions (D-xx) and questions (Q1–Q15) refer to the specification.
 
-**Version 3.3 (25 November)** records the first runs with the real model and the reviews, and rewrites the status and the task list (§7) around what now needs people or money. What each track found is in its own record: [Track A progress](experiments/TRACK_A_PROGRESS.md), [Track B log](tracks/B-graphrag/log.md), [Track C log](tracks/C-storage/log.md). Earlier versions are in the Git history.
+**Version 3.4 (25 November)** records the measurements with the real model (the coordinator, E33; the application on the stores, E32; the reasoning lane, E34), the reviews, the path for an expert's input and the corrected fact graph (206 facts). The status and the task list (§7) are written around what now needs people or money. What each track found is in its own record: [Track A progress](experiments/TRACK_A_PROGRESS.md), [Track B log](tracks/B-graphrag/log.md), [Track C log](tracks/C-storage/log.md). Earlier versions are in the Git history.
 
 ## Current status
 
@@ -16,7 +16,7 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 
 | Part | State | More |
 |---|---|---|
-| Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. The reading options were measured on it and their defaults set (E62): section context and grid recovery on, the rest off with reasons | [Track A log](tracks/A-ingestion/log.md) |
+| Reading the reports (Khai) | The demo package builds with one command, and was rebuilt from nothing on Linux: the end-of-well reports of AK-3, 56-32 and 68-32 and AK-3's daily reports, 302 pages. The reading options were measured on it and their defaults set (E62): section context and grid recovery on, table joining as shipped, the rest off with reasons | [Track A log](tracks/A-ingestion/log.md) |
 | Stores (Hung) | PostgreSQL with pgvector and Neo4j. One command loads a package and checks each step: 161 events, 206 facts, and now a vector for every chunk, searched inside the database. They restart by themselves and report their health | [platform/README.md](../platform/README.md) |
 | Engine (Tri) | A coordinator over four lanes: passages, well facts, events, reasoning about causes. Reads files or the stores. A bench checks a model, runs the measurement suite and compares runs. The baseline is reproduced on a second machine and the reasoning lane is measured; the coordinator is measured against hand-routed runs on one question set per lane (E33). All on questions the team wrote | [graphrag/README.md](../graphrag/README.md) |
 | Application (Tri, Hung) | A FastAPI backend and a React frontend for non-developers, a question log that exports a test set, one shared password, all as containers. Built for one model slot: questions take turns, failures are logged and told plainly, a monitor and a backup copy are ready to switch on | [backend](../backend/README.md), [frontend](../frontend/README.md), [deploy](../deploy/README.md) |
@@ -28,20 +28,19 @@ This plan schedules the [specification](PROJECT_DESIGN.md). It adds no scope of 
 | The coordinator is measured on questions the team wrote, one set per lane ([E33](experiments/E33-coordinator.md): 101/119 against 87/119 hand-routed). Long runs on our own questions have stopped | An expert's question set ([how it comes in](EXPERT_PILOT.md)), then a GPU to run it through both paths: the [resource request](reports/RESOURCE_REQUEST_2026-11-24.md) |
 | Not on a server that others reach | The same request, or Hung's machine in the meantime |
 | No domain expert has used the application or reviewed a question | The supervisor naming one or two people |
-| The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | Ours: a smaller unit for "the problem" is built and to be scored on the second probe. Then an expert's reading |
-| Value matching in the scorer is looser than described (a numeric gold accepts numbers within 0.5%) | A decision with the first expert-reviewed set: changing it means rescoring every baseline |
+| The reasoning lane over-states: it finds the stated cause and also lists nearby events as causes ([E34](experiments/E34-reasoning-probe.md)) | An expert's reading of ten answers, and a third question set written by someone else. The smaller unit for "the problem" is built and scored on both probes |
 | Four benchmark manifests of Track A are referenced by scripts and records and are not in the repository | Khai committing them |
 
 **Results so far** are in the [experiment register](experiments/README.md) and [specification §8.4](PROJECT_DESIGN.md#84-what-the-first-build-runs-today). Every question set is written by the team, and every method is tuned on one well and one report family.
 
-**Direction** (unchanged): a GraphRAG application for drilling reports (D-36, D-40); open-weight models of about 8B or smaller, never commercial APIs (D-37); a coordinator that sends each question to a lane (D-58, D-64); a real application shown to domain experts early (D-60, D-65); rule-based parsing before vision models (D-63); a capstone, not research (D-41, D-44).
+**Direction** (unchanged): a GraphRAG application for drilling reports (D-36, D-40); open-weight models of about 7B or smaller, 8B at most, never commercial APIs (D-37); a coordinator that sends each question to a lane (D-58, D-64); a real application shown to domain experts early (D-60, D-65); rule-based parsing before vision models (D-63); a capstone, not research (D-41, D-44).
 
 ## 1. Planning basis
 
 - **Team:** three students. The supervisor expects the end-to-end application in English within the first semester (D-35); hardening and scale follow in the second.
 - **Compute:**
   - no GPU of the team's own: the desktop that ran every measurement up to E31 was borrowed and is not planned on (Track B log B-D42, B-D43);
-  - **a machine without a GPU runs the baseline model at minutes a question** (4 cores, Track B log B-F71): enough to check the whole system with the real model and for measurements of ten to sixty questions, not for the 221-question pool;
+  - **a machine without a GPU runs the baseline model at minutes a question** (4 cores, Track B log B-F71): enough to check the whole system with the real model and for measurements of ten to a hundred questions, not for several hundred;
   - **rented from cloud providers, on public data only (D-68):** a GPU by the hour for measurements and experiments, running our own copy of the model; a server for the stores and the application; hosted open-weight models (OpenRouter) for the demo and quick checks. None is paid for yet: the [resource plan](reports/RESOURCE_REQUEST_2026-11-24.md) asks for 5 million VND (about US$190) from the capstone funding for the next three months (Q6, Q7);
   - the school's GPUs are not planned on: the supervisor advised they are slow and awkward (24 November);
   - laptops for code, tests, Docling and the stores.
@@ -185,8 +184,8 @@ Keep:
 | R-01 | A ~7B model states plausible but wrong facts | Wrong values in answers; unsupported claims in the reasoning probe | Values and citations checked in code; computed results inserted by code; facts validated before use; causes labelled stated or possible | Engine |
 | R-02 | Table parsing errors propagate | Wrong cells, missing headers, lost marks | Rules for known formats with a fallback and a reason; the QA sidecar; measure on other report families | Data |
 | R-03 | Methods tuned on one well do not transfer | A second report family fails | Add one new family at a time in M3; report seen and unseen data separately | Data, Engine |
-| R-04 | The coordinator sends questions to the wrong lane, or trusts a field the model got wrong | Pooled score below the hand-routed scores; the faults of [E34](experiments/E34-reasoning-probe.md) | Wells and dates read by code; fixed fallback; measured before adoption; a lane can be forced from the UI | Engine |
-| R-05 | No GPU for the long measurement and no server others reach: no budget yet | No approval of the resource plan | Ask now (Q6, Q7). A machine without a GPU already covers the short measurements (Track B log B-F71); a hosted model for a few dollars covers the pooled one | All |
+| R-04 | The coordinator sends questions to the wrong lane, or trusts a field the model got wrong | A score below the hand-routed one on an expert's set; the faults of [E33](experiments/E33-coordinator.md) and [E34](experiments/E34-reasoning-probe.md) | Wells and dates read by code; the plan checked against the question; fixed fallback; a lane can be forced from the UI | Engine |
+| R-05 | No GPU for the long measurement and no server others reach: no budget yet | No approval of the resource plan | Ask now (Q6, Q7). A machine without a GPU already covers the short measurements (Track B log B-F71); a hosted model for a few dollars covers an expert's set | All |
 | R-06 | Hosted endpoint used on non-public data | A private file in a run | The backend's check at start: a hosted model only gets packages named as public, and any address outside the private network counts as hosted (specification §10.1) | Engine |
 | R-07 | No public daily-report collection beyond AK-3 | Reasoning and event lanes stay on one well | The 58-32 daily reports; keep looking (Q5); say so in every result | Data |
 | R-08 | Real questions never arrive | No expert set, and nobody uses the application | Simulated sets, labelled; put the application in front of experts early; ask at each check-in | All |
@@ -241,7 +240,7 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 
 | # | Do |
 |---|---|
-| G1 | `python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2`: the whole standing measurement on one endpoint, and the answers on the package (E32). With an expert's set: `python -m graphrag.coordinator answer --questions graphrag/gold/<set>.json --k1 --name <set>` |
+| G1 | `python -m graphrag.bench run qwen3-8b.local --suite full --k1 data/interim/k1/demo-v2`: the whole standing measurement on one endpoint, only if a GPU score on the team's questions is wanted (B-D51). With an expert's set: `python -m graphrag.coordinator answer --questions graphrag/gold/<set>.json --k1 --name <set>` |
 | G2 | Confirm the coordinator on the expert's set (D-64). On the team's questions it stays the application's path (E33, B-D51) |
 
 ### Data (Khai)
@@ -273,13 +272,13 @@ Tasks for M2. Everything that code, a laptop or a machine without a GPU can do i
 
 | # | Task | State | Left |
 |---|---|---|---|
-| E1 | Answers on the new package (experiment E32) | Done: 26/31 through the application on the stores, the same as on the package from files; the two lost against the older chunks are casing depths | The casing table in the package (Khai, D2) |
+| E1 | Answers on the new package (experiment E32) | Done: 26/31 through the application on the stores, the same as on the package from files; the two lost against the older chunks are casing depths | The casing table in the package: its reading rule is off because it renames IDs (E62); Khai |
 | E2 | The engine reads the stores | Done, on real vectors | — |
 | E3 | Lanes behind one interface; model roles in a settings file | Done | — |
 | E4 | The fact graph as nodes and relationships | Done; rebuilt twice after wrong facts were found by a stricter check (206 facts) | Facts read by the model stay the weak kind: the check sees how a value is written, not what it means |
 | E5 | The coordinator (experiment E33) | Measured on one team-written set per lane: 101/119 against 87/119 hand-routed, same calls | An expert's set (G2) |
 | E6 | Totals reported by code, not retyped by the model | Measured: 57/58 against 41/58 with the model retyping (E33) | — |
-| E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states; rules in code remove most of it on the first probe | Score the last rule on the second probe; an expert's reading |
+| E7 | The reasoning lane (experiment E34) | Measured on two probes: it finds the stated cause and over-states; rules in code remove most of it on the first probe | An expert's reading; a third question set written by someone else |
 | E8 | A bench for models | Done; the baseline reproduced with it on a second machine | — |
 
 ### Frontend (Tri)
@@ -307,6 +306,5 @@ The main [README](../README.md) stays the setup entry point.
 | Expert question set, or which experts try the application (Q2) | M3 | Evaluation; simulated sets stand in for development only |
 | Whether the coordinator is confirmed (D-64) | After an expert's set is run through both paths | On the team's questions it stays (E33): one call more on a lookup, one fewer on a total |
 | Whether the reasoning lane's two-part answer is the right shape, and whether "possible factors" are wanted | When an expert reads ten answers | Decided for now: it continues as a probe ([E34](experiments/E34-reasoning-probe.md), D-66) |
-| Whether the scorer's value matching is tightened | With the first expert-reviewed set | It would change every recorded baseline (Track B log B-F70) |
 | OpenRouter account owner and cap (Q6); how rented compute is paid for (Q7) | Now | Open since M0; the resource request asks |
 | Public daily-report sources beyond AK-3 (Q5) | M3 | Daily reports are half of the document scope |

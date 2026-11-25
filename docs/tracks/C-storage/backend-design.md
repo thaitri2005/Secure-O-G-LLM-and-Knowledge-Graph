@@ -6,7 +6,7 @@ This is a proposal for your part of the work. Anything here can change; say so i
 
 ## Where each task stands
 
-**The table says where each task stands today. The sections after it are the design as written on 24 November, before the build:** they are kept as the reasons behind the code, and their numbers and file names are those of that day (the fact graph then had 216 facts in `E27_fact_graph.graph.json`; today it has 207 in `E32_fact_graph.graph.json`, and Neo4j runs without APOC). Where the code differs, the Track C log says so.
+**The table says where each task stands today. The sections after it are the design as written on 24 November, before the build:** they are kept as the reasons behind the code, and their numbers and file names are those of that day (the fact graph then had 216 facts in `E27_fact_graph.graph.json`; today it has 206 in `E32_fact_graph_v2.graph.json`, and Neo4j runs without APOC). Where the code differs, the Track C log says so.
 
 | Task | State | Where |
 |---|---|---|

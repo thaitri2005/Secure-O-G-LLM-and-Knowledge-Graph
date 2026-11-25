@@ -15,7 +15,7 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 
 | Topic | Where it stands | Entries |
 |---|---|---|
-| What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. The coordinator is not measured in full; the reasoning lane is measured and stays a probe | B-D36, B-C37, B-C38, B-C51, B-D50, [E34](../../experiments/E34-reasoning-probe.md) |
+| What answers questions | A coordinator sends each question to one of four lanes: passages, well facts, events, reasoning about causes. The coordinator is measured on one question set per lane and stays the application's path (E33, B-D51); the reasoning lane is measured and stays a probe | B-D36, B-C37, B-C38, B-C51, B-D50, [E34](../../experiments/E34-reasoning-probe.md) |
 | Passages | BM25 routed by well, top 5; per-well fusion for questions naming several wells; a date filter on daily reports. Qwen3-8B, thinking off; citations and values checked in code | B-D23, B-C21, B-C22 |
 | Well facts | A per-well fact graph from table rules and model extraction, checked in code: 206 facts of 5 wells, all on the demo package's chunk IDs. Ties plain retrieval on new lookup questions so far | B-D29, B-C40, B-C64, B-F30, B-F68, B-F85 |
 | Events | An event graph built from operations tables with no model call; the model writes a plan, code runs it and reports the total | B-D26, B-C39 |
@@ -28,7 +28,7 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 | Compute | None of our own. Rented, on public data only; a request for 5 million VND for three months is drafted. A machine without a GPU runs the baseline model at about two minutes a lookup | B-D42, B-D47, B-F71 |
 | Trying a model | A profile names a model on an address; `python -m graphrag.bench` checks it, runs the measurement suite and compares runs | B-D48, B-C60 |
 | Questions | All simulated except the prototype's 31; none is expert-reviewed | B-D22 |
-| Next | The coordinator against the hand-routed scores (E33) and the answers on the package (E32); the smaller unit for the problem on the second probe; then an expert's reading ([commands](next-runs.md)) | B-D38, B-C60, B-F77 |
+| Next | An expert's question set through both paths ([how it comes in](../../EXPERT_PILOT.md), [commands](next-runs.md)); an expert's reading of ten answers about causes. Ours meanwhile, in the reasoning lane: a reason given as a purpose, and asking back when the model picks a code | B-D51, B-C70, B-F80 |
 
 ## Contents
 
@@ -46,6 +46,7 @@ Entries keep their numbers for good. A later entry that replaces an earlier one 
 | 24 November, evening | No GPU of our own; the resource request; the documents reorganised | B-D42 to B-D47, B-C59 |
 | 25 November | Everything that needs no compute: the model bench, vector search in the database, the question log's read side, three screens, three reports in the package | B-D48, B-C60 to B-C64, B-F66 |
 | 25 November, later | A design review, a code review and a security review; the first runs with the real model (E34); the whole stack run on one machine | B-D49, B-D50, B-C65 to B-C69, B-F68 to B-F77 |
+| 25 November, last | The coordinator against hand-routed runs (E33); the path for an expert's input; E32 through the application; three faults fixed in the scorer and the fact graph; the stint report rewritten | B-D51, B-C70, B-C71, B-F78 to B-F86 |
 
 Search the file for an entry's number to find it.
 
@@ -1090,3 +1091,11 @@ Tri asked for the whole project to be gone over before people are put in front o
 - 29 of 31 answers are identical. The two that differ are the casing depths (q11, q12), as in E32's run from files: the stores hold the package's end-of-well passages, the run from files the older chunks.
 - No question failed or timed out; all 31 are in the question log.
 - Qwen3-8B on the CPU profile, one request at a time; the stores held 207 facts during the run.
+
+**B-C72 (design choice; every document and README read against the current state, 25 November).** Three independent readers went through the READMEs, the plan, the specification, the track pages, the experiment records, the component guides and the stint report, each with the day's facts in hand; about sixty statements were out of date and are rewritten.
+
+- **What was stale most often:** the coordinator as "not measured", the 221-question pool as work still to do, 207 facts with 5 on old IDs, the reading options as "off until measured", the scorer's tolerance as an open gap, and E32 as "one question through the application".
+- **The experiment register now lists Track A's 22 records** (E35 to E61), which had files and no row, and names the next free number.
+- **The plan is version 3.4 and the specification 3.9.** The specification's D-64 now names an expert's set as the test, not the pooled run.
+- **Every relative link in every tracked document was checked.** Seven do not resolve: one is a template example, six point to the four benchmark files of Track A that are not in the repository (plan task D6).
+- No code changed.

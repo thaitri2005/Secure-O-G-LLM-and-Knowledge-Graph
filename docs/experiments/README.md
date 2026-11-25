@@ -1,6 +1,6 @@
 # Experiment register
 
-**Current direction (25 November 2026):** a GraphRAG application for drilling reports on open-weight models of about 8B or smaller ([specification](../PROJECT_DESIGN.md)).
+**Current direction (25 November 2026):** a GraphRAG application for drilling reports on open-weight models of about 7B or smaller, 8B at most ([specification](../PROJECT_DESIGN.md)).
 
 - Historical experiments keep their data and results. E14 to E31 are the first build.
 - The second build ([plan](../DEVELOPMENT_PLAN.md#7-what-to-do-now)): **E32** (answers on the K1 package and from the stores), **E33** (the coordinator against hand-routed runs, on one question set per lane) and **E34** (the reasoning probe) are recorded.
@@ -42,14 +42,43 @@ Every measurement the project relies on comes from one experiment, recorded in o
 | [E29](E29-table-mappings-across-reports.md) | Table mappings across reports from other authors (Track B) | 5 Nov 2026 | Reports (GraphRAG) | `graphrag/tables.py`, `graphrag/table_eval.py`, `configs/sources/gdr_e29_unseen.json`, `graphrag/gold/e29_table_gold.json`, `graphrag/results/E29_*.json` | Held-out casing strings 4/16 as written, 13/16 with no wrong fact after general fixes. Surveys unreliable: half the rows at best, 8% wrong on the held-out report. A scanned 1976 report stays at 0/2. No evidence yet on a different author's modern report |
 | [E30](E30-k1-version-1-candidate.md) | K1 version 1 candidate for the AK-3 reports: parent and child ids, forms, report dates, old-to-new chunk ids (Track A) | 6 and 7 Nov 2026 | Reports (ingestion) | `src/graph_builder/corpus/k1_*.py`, `legacy_ids.py`, `forms.py`, `report_context.py`, `configs/corpus/k1.json`, `schemas/k1_*.schema.json`, `scripts/check_k1_graphrag_compat.py`, `data/processed/k1/ak3-k1-candidate/` | 5 documents, 174 pages, 1,040 chunks, validation 0 errors, page rebuild 174/174, identical checksums on two runs. Date and well on 100% of daily-report chunks (appendix 29 was 0/82). Old chunk ids: 49 exact, 2 near, 9 unmapped of 60; 15 of 17 cited chunks map. BM25 hit@5 through the map 0.913 (1.00 with another OCR engine) |
 | [E31](E31-event-graph-on-k1.md) | The event graph rebuilt from Track A's K1 version 1 package (Track B) | 10 Nov 2026 | Reports (GraphRAG) | `graphrag/events.py --k1`, `graphrag/results/E31_events_k1.json` | 161 / 161 events identical to E28, 160 linked to K1 chunk IDs; E28's final plans replay 35 / 35 and 23 / 23; no model call |
-| [E32](E32-answers-on-the-package.md) | Answers on the demo package, from files and from the stores (Track B) | 25 Nov 2026 | Reports (GraphRAG) | `graphrag/baseline.py` (pool `k1_ak3`), `backend/`, `platform/run_release.py`, `graphrag/results/E32_cpu_k1_prototype.json` | Qwen3-8B on a CPU. The 31 prototype questions through the whole application on the stores: 26/31, against 28/31 for the same coordinator on files; the two lost are the package's casing depths. AK-3's report with plain retrieval: 26/31 on the package against 28/31 on the older chunks from the same machine; the two lost answers are the model abstaining on the casing table, which is retrieved either way. One question answered through the whole application from the stores (smoke test 6 of 6); vector search in the database equal to the search in memory on 1,432 real vectors |
+| [E32](E32-answers-on-the-package.md) | Answers on the demo package, from files and from the stores (Track B) | 25 Nov 2026 | Reports (GraphRAG) | `graphrag/baseline.py` (pool `k1_ak3`), `backend/`, `platform/run_release.py`, `graphrag/results/E32_cpu_k1_prototype.json` | Qwen3-8B on a CPU. The 31 prototype questions through the whole application on the stores: 26/31, against 28/31 for the same coordinator on files with the older end-of-well chunks; the two lost are the package's casing depths. AK-3's report with plain retrieval: 26/31 on the package against 28/31 on the older chunks from the same machine; the two lost answers are the model abstaining on the casing table, which is retrieved either way. One question answered through the whole application from the stores (smoke test 6 of 6); vector search in the database equal to the search in memory on 1,432 real vectors |
 | [E33](E33-coordinator.md) | The coordinator against choosing the lane by hand (Track B) | 25 Nov 2026 | Reports (GraphRAG) | `graphrag/coordinator.py`, `graphrag/results/E33_cpu_*.json` | Qwen3-8B on a CPU, one simulated question set per lane, 119 questions. Coordinator 101/119 against 87/119 hand-routed: end-of-well 28/31 against 29, daily 16/30 against 17, totals over time 57/58 against 41. 1.5 calls a question on both paths: a call saved on every total, one more on every lookup. Its checks were written on these questions; three sets (102 questions) were not run. Stays the application's path; the test that counts is an expert's set |
 | [E34](E34-reasoning-probe.md) | The reasoning lane on its probe, with the real model (Track B) | 25 Nov 2026 | Reports (GraphRAG) | `graphrag/reasoning.py`, `graphrag/gold/ak3_reasoning_probe_v0.json` and `_v1.json`, `graphrag/results/E34_*.json` | Qwen3-8B on a CPU, two sets of ten simulated questions on AK-3. First set, after the problem finding was corrected: 2/10 correct, the problem found 8/10, the stated cause found and cited 8/10, 17 unsupported claims. Second set, unseen: 3/10, 6/10, 5/10 and 8. The model names and quotes the stated cause and pads the list with nearby events; a rule that a stated cause must give a reason removes about half. Under that rule the unseen set's stated cause falls to 4/10 with 5 unsupported. A smaller unit for the problem then gives 7/10 with 4 unsupported on the first set, on which it was tuned, and 6/10 with 4 on the second (7/10 by reading). Two calls and about 4,800 prompt tokens a question. Stays a probe |
 | [E62](E62-track-a-option-measurements.md) | Which reading options are on by default, measured on the demo release (Track A, D2 and D4) | 25 Nov 2026 | Ingestion and tables | `configs/corpus/k1.json`, `configs/corpus/candidates/k1_standard_24nov.json`, Track A log A-F23 to A-D08 | Rules written first, then 5 options and 6 groups built on and off from the cached conversions of the 8 demo PDFs. On: section context, grid recovery, table joining as shipped. Off: the rest, each with a number. The mode `span_once_keyed` clears both `CHAR_RATIO_HIGH` alarms with no id change, but drops a group label on 2 tables, so `docling` stays. Development data only; generalization NOT EVALUATED |
 
+## Track A's records, E35 to E61
+
+Reading the reports (tables, forms, scanned pages). Each record holds its own data, scoring and limits; their findings are summarised in the [Track A log](../tracks/A-ingestion/log.md) and in [Track A progress](TRACK_A_PROGRESS.md). The date is the day the record was added.
+
+| Record | Title | Added |
+|---|---|---|
+| [E35](E35-track-a-native-ddr-holdout.md) | Track A native PDF ablation on Utah FORGE daily reports | 24 Nov 2026 |
+| [E37](E37-track-a-casing-grid-and-daily-header.md) | Rebuilt casing grids and daily report headers | 24 Nov 2026 |
+| [E38](E38-track-a-scale-benchmark.md) | Track A benchmark on 229 drilling-report pages | 24 Nov 2026 |
+| [E40](E40-track-a-source-report-fields.md) | Recovering missing daily drilling report fields from the source PDF | 24 Nov 2026 |
+| [E41](E41-track-a-hourly-operations.md) | Recovering ruled hourly operations logs | 24 Nov 2026 |
+| [E42](E42-track-a-table-overlap.md) | Removing proved hourly table overlaps from retrieval | 24 Nov 2026 |
+| [E43](E43-track-a-cell-evidence.md) | Source evidence for individual K1 table cells | 24 Nov 2026 |
+| [E44](E44-track-a-rotated-table-continuations.md) | Rotated text pages and table continuations | 24 Nov 2026 |
+| [E45](E45-track-a-compound-table-quality.md) | Retained-row evidence and ruled mud-property panels | 24 Nov 2026 |
+| [E46](E46-track-a-functional-coverage.md) | Report context, continuations and ruled report panels | 24 Nov 2026 |
+| [E47](E47-track-a-ruled-table-retrieval.md) | Retrieval projection for corroborated ruled tables | 24 Nov 2026 |
+| [E48](E48-track-a-verified-continuations.md) | Verified rotation and split activity rows | 24 Nov 2026 |
+| [E49](E49-track-a-compound-tables.md) | Drilling table panels and operation codes | 24 Nov 2026 |
+| [E50](E50-track-a-panel-alignment-and-natural-layouts.md) | Panel alignment and original report layouts | 24 Nov 2026 |
+| [E51](E51-track-a-verified-daily-logs.md) | Verified multi-page daily logs | 24 Nov 2026 |
+| [E52](E52-track-a-source-panels-and-cold-processing.md) | Well completion panels, scanned fields and cold processing | 24 Nov 2026 |
+| [E53](E53-track-a-independent-scan-cell-qa.md) | Independent cell scoring for scanned drilling tables | 24 Nov 2026 |
+| [E54](E54-track-a-native-numeric-cell-reconciliation.md) | Source verification for compound numeric cells | 24 Nov 2026 |
+| [E55](E55-track-a-numeric-conflicts.md) | Numeric cells that cross printed borders | 24 Nov 2026 |
+| [E56](E56-track-a-handoff-and-table-alignment.md) | K1 handoff, column alignment and scanned cell text | 24 Nov 2026 |
+| [E57](E57-track-a-source-grid-transfer.md) | Source-grid recovery on new drilling reports | 24 Nov 2026 |
+| [E61](E61-track-a-sparse-scan-rows.md) | Scan tables with open rulings | 24 Nov 2026 |
+
 ## Adding an experiment
 
-1. Take the next ID (E14, E15, …) and copy the header table of an existing record.
+1. Take the next free ID (E63 on 25 November 2026; E36, E39 and E58 to E60 were never used) and copy the header table of an existing record.
 2. State the question and the requirement or decision it informs before running anything.
 3. Use a named run (`--run-name`) or a separate directory so that the experiment cannot overwrite published data or another experiment's outputs. Keep large outputs in ignored `data/interim/`. Commit only small result summaries.
 4. Freeze any gold data before tuning, and say whether the result is a development or held-out score. Record the model endpoint (hosted or local), model and version, calls, tokens and cost.

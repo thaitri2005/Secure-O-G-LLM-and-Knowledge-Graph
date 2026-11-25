@@ -11,7 +11,7 @@ This note records how the Track A code in this branch was produced and what is n
 
 ## Changes that affect shared behaviour
 
-- `configs/corpus/k1.json` changed its defaults: eleven repair and recovery switches, seven table rules and `table_join` are now on. The default K1 output differs from earlier releases.
+- `configs/corpus/k1.json` changed its defaults on 24 November: eleven repair and recovery switches, seven table rules and `table_join` were turned on. On 25 November each group was measured on the demo package and most were turned off again (Track A log A-D07, [E62](../experiments/E62-track-a-option-measurements.md)): grid recovery, section context and `table_join` as shipped stay on. The 24 November profile is kept as `configs/corpus/candidates/k1_standard_24nov.json`.
 - `schemas/k1_table.schema.json` gained optional fields and a conditional rule, and `k1_validate.py` gained two checks. `SCHEMA_VERSION` was not raised.
 - Track A publishes the QA retrieval view (`retrieval_chunks.jsonl` with its manifest). The GraphRAG reader changes from the source branch are outside this integration.
 - `configs/corpus/daily_reports.json` sets `running_line_min_pages` to 3.
@@ -22,5 +22,5 @@ This note records how the Track A code in this branch was produced and what is n
 
 ## Open items
 
-- Track B and Track C have not tested the new defaults, the extended table schema or the retrieval view.
+- Track B and Track C run on the package `demo-v2`, built with its own profile (`configs/corpus/candidates/demo_corpus.json`); they have not tested the extended table schema or the retrieval view.
 - The hand-edited lines in `README.md` and `docs/PROJECT_DESIGN.md` are limited to Track A components.

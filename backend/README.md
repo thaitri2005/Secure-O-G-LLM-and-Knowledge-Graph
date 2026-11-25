@@ -21,6 +21,7 @@ With nothing set, the service reads this machine's files and writes the question
 | `BACKEND_DSN` | PostgreSQL address, e.g. `postgresql://kg:<password>@127.0.0.1:5434/kg`. When set, the question log goes into its `questions` and `question_feedback` tables. Needed by `BACKEND_SOURCE=stores` |
 | `BACKEND_RELEASE` | The K1 release to read, when the store holds more than one |
 | `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` | Neo4j address and login for `BACKEND_SOURCE=stores`; the local stores' defaults (`bolt://127.0.0.1:7687`, `neo4j`, `platform-dev`) when unset |
+| `BACKEND_PAGE_IMAGES` | The folder of page images, one sub-folder per report; a page without an image is shown as text |
 | `BACKEND_CORS_ORIGINS` | Origins allowed to call the API; the frontend's development server when unset, empty behind the proxy |
 | `BACKEND_PUBLIC_RELEASES` | The packages that may be sent to a hosted model, by name, comma-separated. Needed only when the roles file names a hosted endpoint and `BACKEND_SOURCE=stores`; see [the hosted-model boundary](#the-hosted-model-boundary) |
 | `BACKEND_MODEL_TIMEOUT` | Seconds one model call may take; 75 when unset |

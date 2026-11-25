@@ -18,8 +18,7 @@ python scripts/render_stint_report.py docs/reports/stints/STINT_REPORT_2026-11-2
 
 - **Diagrams** (`figures/architecture.svg`, `deployment.svg`, `question-flow.svg`, `knowledge-graph.svg`, `expert-path.svg`) are drawn by `scripts/stint_figures.py`. Change the text there and run it; do not edit the SVG files by hand.
 - **Screenshots** (`figures/app-*.png`) are of the application in examples mode (`npm run dev:examples` in `frontend/`), at 1360 pixels wide and twice the pixel density. Two are not: `app-ai-answer.png` and `app-page.png` were taken on the stores with the real model answering.
-- On Linux the PDF needs a Chromium at `/usr/bin/chromium` or `/opt/pw-browsers/chromium`, or `REPORT_BROWSER` set to one.
-- The PDF needs Microsoft Edge or Chrome on the machine; nothing else is installed.
+- The PDF is printed by a browser already on the machine: Microsoft Edge or Chrome on Windows; on Linux a Chromium at `/usr/bin/chromium` or `/opt/pw-browsers/chromium`, or `REPORT_BROWSER` set to one.
 - Commit the Markdown, the figures and the PDF together, so the PDF never disagrees with its source.
 
 ## Writing the next one

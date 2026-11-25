@@ -45,16 +45,18 @@ flowchart TD
 | `bench.py` | The model bench: checks a model, runs the measurement suite through the commands below and compares runs ([below](#trying-a-model-profiles-and-the-bench-d-62-d-68)) |
 | `data.py` | The inputs: K1 version 0 chunks (`data/processed/gdr_chunks_full.jsonl`), the AK-3 daily-report chunks, and every question set with its gold data |
 | `retrieval.py` | BM25, dense embeddings from an endpoint, and reciprocal-rank fusion. Every retriever takes an `allowed` chunk set (a payload filter). `wells:<retriever>` searches only the documents that name a well the question names (B-C11, E18); `dates:<retriever>` only the pages of the report dates it names (E27) |
-| `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10; `normalize` puts dates and numbers in one form after the call |
+| `scoring.py` | The prototype's value-matching and answer rules, so results compare with E10, with one difference: a whole number must match exactly, and only a number with decimals may be 0.5% off (B-F85). `normalize` puts dates and numbers in one form after the call |
 | `citations.py` | Checks each model citation against the retrieved chunks and attaches a verified one in code (B-C08) |
 | `baseline.py` | Command line for retrieval and answer runs; it writes `graphrag/results/<name>.json`. `--facts` adds a graph's extracted facts under each passage; `--withhold-unsupported` drops answers without a supported citation |
-| `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk, one well named in its document, no zeros, no contradictions (B-C15, E20). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages; `--strict-facts` also checks their context (E26) |
+| `validate.py` | Checks extracted facts before they reach an answer: value written in its chunk as a number of its own (not inside a longer number, a fraction or a date), a duration read by the model written with "days" or "hours" beside it, one well named in its document, no zeros, no contradictions (B-C15, E20, B-F68, B-F85). `baseline.py --fact-sheet <graph> --validate` puts each named well's validated facts before the passages; `--strict-facts` also checks their context (E26) |
 | `tables.py` | Facts from table rows by K2's `table_mappings`, with no model call (B-C16, E22, E29): `python -m graphrag.tables --pool three --name my_tables` |
 | `table_eval.py` | Scores table facts on unseen reports against independent gold, raw and after validation (E29) |
 | `k4.py` | K4 answer records for Track C (B-C18): `python -m graphrag.k4 <run>` writes `<run>.k4.jsonl`, valid against `schemas/k4_answer_record.schema.json` |
 | `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan. `plan_value` gives a result as values and a unit |
 | `lanes.py` | The four lanes behind one shape (specification §8.1): `passages`, `well_facts`, `events`, `reasoning`, each `(question, frame, engine) -> Evidence`. `Engine` holds what they read |
 | `coordinator.py` | One framing call, then lanes chosen in code, a fixed fallback and the exact-answer mode (D-64). Reports a computed result in code. Pooled runs over several question sets or question files |
+| `stores.py` | The engine read from the stores: passages from PostgreSQL, events and facts from Neo4j, and the vector search inside the database. Gives the same engine as the files do |
+| `compare_runs.py` | Two result files side by side, question by question |
 | `expert.py` | From a person's answers to a runnable question file, with no model call: a sheet to fill in, the build of the file, a check ([guide](../docs/EXPERT_PILOT.md)). Also turns the plain `answer` field of a hand-written question file into gold |
 | `reasoning.py` | The reasoning lane for questions about causes (specification §8.6): finds the problem in the event graph, gathers what surrounds it in code, asks for stated and possible causes under a JSON schema, drops causes without a supported citation, lists what is missing; scores the reasoning probe |
 | `factgraph.py` | The per-well fact graph as nodes and relationships for Track C's Neo4j loader (specification §8.5) |
@@ -70,12 +72,12 @@ Endpoints are listed in [`configs/graphrag/endpoints.json`](../configs/graphrag/
 Measured on one question set per lane ([E33](../docs/experiments/E33-coordinator.md)): 101 of 119 against 87 of 119 with the lane chosen by hand, at the same number of calls, on questions the team wrote. `python -m graphrag.bench run <profile> --suite full` runs every set with its baselines ([the bench](#trying-a-model-profiles-and-the-bench-d-62-d-68)); the run that counts is an expert's set through both paths ([guide](../docs/EXPERT_PILOT.md)).
 
 ```powershell
-# Every development question in one pool, no lane given (E33)
-python -m graphrag.coordinator answer --questions prototype simulated heldout ak3_daily ak3_daily_heldout ak3_events ak3_events_heldout --name E33_coordinator_pool
+# One question set per lane in one pool, no lane given (E33). --k1: daily reports and events from the K1 package
+python -m graphrag.coordinator answer --questions prototype ak3_daily ak3_events ak3_events_heldout --k1 --no-embeddings --name E33_cpu_coordinator_pool
 # Graph answers only: facts and computed results, no fallback to passages (D-59)
 python -m graphrag.coordinator answer --questions ak3_events_heldout --mode exact --name my_exact
 # K4 version 0.2 records
-python -m graphrag.k4 E33_coordinator_pool
+python -m graphrag.k4 E33_cpu_coordinator_pool
 # The fact graph as nodes and relationships for Neo4j
 python -m graphrag.factgraph --facts E20_graph_three_qwen3-4b E27_tables_three --name my_fact_graph
 ```
@@ -195,7 +197,7 @@ Wherever a command takes `--endpoint`, it also takes a profile name, a profile f
 | Suite | Steps |
 |---|---|
 | `quick` | The baseline on the prototype's 31 questions (about 31 calls) |
-| `full` | The hand-routed baseline of each question set with the adopted settings; the coordinator on the 221 pooled questions (E33); with `--k1`, every step on the K1 package and the prototype questions on its AK-3 report (E32); the reasoning probe (E34). `--no-embeddings` replaces fusion and the fact-sheet ranking with BM25 |
+| `full` | The hand-routed baseline of each question set with the adopted settings; the coordinator on all seven sets pooled, 221 questions (E33 recorded four of them, 119 questions); with `--k1`, every step on the K1 package and the prototype questions on its AK-3 report (E32); the reasoning probe (E34). `--no-embeddings` replaces fusion and the fact-sheet ranking with BM25 |
 
 Beside the run files, `<name>.bench.json` records the profile, the endpoint, the server's settings (llama.cpp's `/props`: model file, build, context, slots), the date, each step and the totals of calls, tokens, seconds and cost.
 
@@ -222,6 +224,8 @@ Pools:
 - `slice`: the 15 prototype chunks;
 - `ak3`: the whole AK-3 end-of-well report, 60 chunks;
 - `three`: AK-3 plus two other end-of-well reports as distractors, 372 chunks;
+- `ak3_all`: the AK-3 end-of-well report and all its appendices (E28);
+- `k1_ak3` and `k1_daily`: the AK-3 end-of-well report and its four daily-report attachments from the K1 version 1 package in ignored `data/interim/k1/` (E30, E32);
 - `ak3_daily`: the four AK-3 daily-report attachments, 898 chunks, used with `--questions ak3_daily`. The chunks are ignored by git; to regenerate them, see [next-runs.md](../docs/tracks/B-graphrag/next-runs.md).
 
 Measurement runs send one request at a time: parallel requests make llama.cpp results non-repeatable (B-F19).

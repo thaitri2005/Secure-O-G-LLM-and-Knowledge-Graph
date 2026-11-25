@@ -4,7 +4,7 @@
 
 One per stint, for the supervisor, in their own folder: [stints/](stints/README.md).
 
-- **Current: [10 to 27 November 2026](stints/STINT_REPORT_2026-11-27.md)** ([PDF](stints/STINT_REPORT_2026-11-27.pdf)). A draft until the stint ends. What was asked on 9 November and where each item stands, the system in diagrams, how a question is answered, what each person built, weak points, and what the team needs.
+- **Current: [10 to 27 November 2026](stints/STINT_REPORT_2026-11-27.md)** ([PDF](stints/STINT_REPORT_2026-11-27.pdf)). A draft until the stint ends. What was asked on 9 November and where each item stands, the system and the knowledge graph in diagrams, how a question is answered, the path for an expert's input, what each person built, what was measured, weak points, what the team needs and what comes next.
 - [5 November 2026](stints/STINT_UPDATE_2026-11-05.md): Track B's status, in Vietnamese.
 
 ## Project report, 9 November 2026

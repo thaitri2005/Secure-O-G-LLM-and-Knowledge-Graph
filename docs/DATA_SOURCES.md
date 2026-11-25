@@ -2,7 +2,7 @@
 
 **Current direction (28 October 2026):** a GraphRAG application for drilling reports ([meeting](requirements/supervisor-meeting-2026-10-28.md)). Data is scoped **by document type**, not by sub-domain (specification D-40): everything in end-of-well reports and daily drilling reports, including their short geology sections at summary level. BSEE supplies well identity. Work starts on one document (D-44).
 
-**Updated:** 4 November 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
+**Updated:** 25 November 2026 · **Kind:** supporting document. Scope decisions are in [specification §1.3](PROJECT_DESIGN.md#13-three-layer-target-and-what-the-capstone-delivers); status and next steps are in the [development plan](DEVELOPMENT_PLAN.md#current-status).
 
 This document describes the data the team develops on: what each source contains, its terms, its quality problems, and how to refresh it. VPI will not supply datasets, because its domain data falls under confidentiality rules (specification D-33). Development therefore uses public proxies chosen by the supervisor (D-13):
 
@@ -18,9 +18,11 @@ BSEE provides authoritative identifiers and attributes: identity, reference data
 2. One AK-3 daily report.
 3. 5–10 documents: the other AK-3 daily reports, the Utah FORGE end-of-well reports, and public oil-and-gas reports when found.
 
-In use by Track B on 4 November 2026: the AK-3, 56-32 and 68-32 end-of-well reports; the four AK-3 daily-report attachments ([E24](experiments/E24-ak3-daily-reports.md)); and unseen reports for the table mappings: Utah FORGE 78-32 ([E25](experiments/E25-table-mappings-unseen-report.md)), and 58-32, 16A(78)-32, the Dutch geothermal wells TNT-GT-01, TNT-GT-02, HON-GT-01-S2 and HEK-GT-02, and Raft River RRGE-3 ([E29](experiments/E29-table-mappings-across-reports.md), registry `configs/sources/gdr_e29_unseen.json`). The Dutch reports are public on NLOG and geothermie.nl, but their licence terms were not checked: development only, not redistributed.
+In the application since 25 November 2026, as the package `demo-v2` (302 pages): the AK-3, 56-32 and 68-32 end-of-well reports, AK-3's four daily-report attachments and its non-productive-time report.
 
-Freeze a held-out document split before tuning. The supervisor's drilling expert group is preparing the evaluation question set (Q2).
+In use by Track B's experiments: the AK-3, 56-32 and 68-32 end-of-well reports; the four AK-3 daily-report attachments ([E24](experiments/E24-ak3-daily-reports.md)); and unseen reports for the table mappings: Utah FORGE 78-32 ([E25](experiments/E25-table-mappings-unseen-report.md)), and 58-32, 16A(78)-32, the Dutch geothermal wells TNT-GT-01, TNT-GT-02, HON-GT-01-S2 and HEK-GT-02, and Raft River RRGE-3 ([E29](experiments/E29-table-mappings-across-reports.md), registry `configs/sources/gdr_e29_unseen.json`). The Dutch reports are public on NLOG and geothermie.nl, but their licence terms were not checked: development only, not redistributed.
+
+Freeze a held-out document split before tuning. The evaluation question set is to come from domain experts (Q2); none is named yet, and the path from their input to a test is ready ([guide](EXPERT_PILOT.md)).
 
 **Sharing with the supervisor.** He asked to see the BSEE data. Share a ZIP of the local snapshot privately (team drive); it stays out of Git (D-15).
 

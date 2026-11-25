@@ -15,8 +15,8 @@ A capstone project for the Vietnam Petroleum Institute (VPI): ask a question abo
 | | |
 |---|---|
 | **Works** | All four parts, connected, and run end to end with the real model (Qwen3-8B) on one machine: one command loads a report package into the stores, and the application answers from them behind a password. A model can be swapped by naming a [profile](configs/graphrag/models/README.md) |
-| **Measured in part** | The earlier baseline is reproduced. Answers about causes were measured once: they find the cause the reports state and over-state ([E34](docs/experiments/E34-reasoning-probe.md)). The coordinator against choosing by hand is not measured in full |
-| **Not done** | A server others reach; a GPU for the one long measurement. The team has neither, and has asked for a [small budget](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to rent them |
+| **Measured, on the team's own questions** | The earlier baseline is reproduced. The 31 baseline questions through the whole application: 26 right ([E32](docs/experiments/E32-answers-on-the-package.md)). The coordinator: 101 of 119 against 87 with the lane chosen by hand ([E33](docs/experiments/E33-coordinator.md)). Answers about causes find the cause the reports state and over-state ([E34](docs/experiments/E34-reasoning-probe.md)) |
+| **Not done** | A server others reach; an expert's question set, and a GPU to run it ([how it comes in](docs/EXPERT_PILOT.md)). The team has no server and no GPU, and has asked for a [small budget](docs/reports/RESOURCE_REQUEST_2026-11-24.md) to rent them |
 | **Caveat** | Every test question was written by the team. No domain expert has reviewed one or used the application |
 
 ## Try it

@@ -1,21 +1,21 @@
 # Stakeholder requirements
 
-**Updated:** 10 November 2026 (9 November meeting added) · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
+**Updated:** 25 November 2026 · **Kind:** input to the [project specification](../PROJECT_DESIGN.md), not the source of truth
 
 This folder holds the two VPI documents that define what the project is asked to do, an English digest of them with requirement IDs (SR-xx), and digests of the supervisor meetings. They are inputs. The [project specification](../PROJECT_DESIGN.md) decides how each requirement is met, narrowed or dropped ([§1.2](../PROJECT_DESIGN.md#12-stakeholder-requirements-and-how-they-are-met)), and lists what is still to agree ([§13.2](../PROJECT_DESIGN.md#132-open-questions-for-supervisor-meetings)). When VPI sends a new document or a meeting changes direction, update the digest here first, then the specification.
 
-**Current direction: the [28 October meeting](supervisor-meeting-2026-10-28.md)** (specification D-36 to D-47):
+**Current direction: the [28 October meeting](supervisor-meeting-2026-10-28.md) and the [9 November meeting](supervisor-meeting-2026-11-09.md)** (specification D-36 to D-47 and D-58 to D-63):
 
-- a GraphRAG application for drilling reports, built on an existing open-source pipeline;
+- a GraphRAG application for drilling reports; open-source GraphRAG code is used as libraries and references, with no base adopted wholesale (D-50);
 - open-weight models of about 7B or smaller, never commercial APIs;
-- hosted open models for development on public data, and school GPU slots for large runs;
-- VLM page parsing, with tables as their own workstream;
+- compute is rented, on public data only: the team has no GPU or server of its own (D-68);
 - scope by document type (end-of-well and daily drilling reports);
 - separate stores linked by one ID scheme;
 - review by exception;
 - a full application delivered as a capstone, not research;
-- ingestion first, on one document;
-- weekly check-ins and roles split into data, backend and frontend.
+- from 9 November: a coordinator that routes each question, the three parts connected behind a simple application that domain experts can use, and reasoning questions as a target;
+- the comparison of VLM page parsers is deferred (D-63); tables stay their own workstream;
+- roles split into data, backend and frontend.
 
 The [7 October meeting](supervisor-meeting-2026-10-07.md) still holds where 28 October does not override it: the ontology is the user's input, entities need unified IDs, people stay in the loop, and the team reuses open-source work. Its "QA second", per-claim review and "geology excluded" points are superseded.
 

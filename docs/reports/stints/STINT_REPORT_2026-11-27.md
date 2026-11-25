@@ -121,7 +121,7 @@ Activities answer "how many hours" and "on which days". Facts answer "how deep" 
 - **The design of the second build**, in the specification and the plan.
 - **The coordinator and four places to look behind one interface**: report text, well facts, daily activities, causes of a problem. Totals are reported by code.
 - **Answers about causes**: code finds the problem and gathers what surrounds it; the AI answers in parts; code removes any cause whose source it cannot find.
-- **The well facts as a graph**: 206 checked facts for 5 wells, after a stricter check removed eleven wrong ones.
+- **The well facts as a graph**: 206 checked facts for 5 wells, after a stricter check removed eleven wrong ones and restored one.
 - **A bench for models**: one command checks a model, one runs every measurement and resumes if interrupted, one compares runs.
 - **The web application**, with 178 automated tests.
 - **The first runs with the real model**, on a machine without a graphics card (§8).
@@ -179,7 +179,7 @@ All questions below were written by the team. None is reviewed by an expert, so 
 ### The baseline, and the new report package
 
 - **The earlier baseline is reproduced on a second machine:** 28 of 31, the same three wrong.
-- **Through the whole application on the stores: 26 of 31,** every question asked through the password gate as a user would. The same 31 questions answered by the same code from files give 28; 29 answers are identical.
+- **Through the whole application on the stores: 26 of 31,** every question asked through the password gate as a user would. The same code on files, with the older version of the report's passages, gives 28; 29 answers are identical.
 - **The two lost are the same casing table** in the new package: the right table is found, and the model answers "not stated" or gives the actual depth where the planned one is asked. The reading rule written for that table is left off for now because it renames IDs.
 
 ### Answers about causes
@@ -204,7 +204,7 @@ Twenty trial questions about AK-3 in two sets of ten, each fixed before it was r
 
 1. **The real model makes mistakes that scripted stand-ins never made**: a code the question never mentioned, a wrong year on a date, "1955 in" for a depth written as "1,955 in contrast to the planned 1,700'". Each can be seen by comparing with the question or the report, so code now checks it. The rule: what code can read outranks what the model says.
 2. **A real quote is not a reason.** Checking that a quote exists is not checking that it is a cause.
-3. **The check on facts was weaker than thought, twice.** It accepted digits inside a longer number (an elevation of 150 read out of "1500'"), and then a number that is written but means something else ("3 days from spud to release", read from "cement from 3' to surface"). Eleven of 216 facts were wrong in these ways; 206 remain. The check sees how a value is written, not what it means.
+3. **The check on facts was weaker than thought, twice.** It accepted digits inside a longer number (an elevation of 150 read out of "1500'"), and then a number that is written but means something else ("3 days from spud to release", read from "cement from 3' to surface"). Eleven of 216 facts were wrong in these ways, and one true fact that had lost to a wrong one came back; 206 remain. The check sees how a value is written, not what it means.
 4. **Reviews found what tests did not**: nothing limited how long a question could wait; a failed question left no trace; the stores would not come back after a restart.
 5. **Showing the data to a person exposes errors fast.** The well page showed AK-3 with 3 days from spud to rig release beside report text that says 19. That fact is now removed by a rule. This is the human review asked for, in its first form.
 6. **A rule tuned on one kind of question must be run on the others.** A rule written to fix totals sent simple daily facts to the calculation: 13 of 30 right against 17 by hand, and 16 once it was narrowed.

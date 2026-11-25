@@ -64,7 +64,7 @@ The application is built and has run end to end with the real model on a machine
 
 | Work | Amount | GPU time, estimated |
 |---|---|---|
-| The measurements waiting now (the coordinator on 221 questions with its baselines, answers on the new report package; the short ones were made without a GPU) | About 600 questions, about 3,300 tokens each | A few hours; one 8-hour session with setup |
+| The measurements waiting now (an expert's question set answered two ways, and the standing sets once on a GPU; the short ones were made without a GPU) | About 600 questions, about 3,300 tokens each | A few hours; one 8-hour session with setup |
 | One round of measurement after a change | 200 to 300 questions | 2 to 4 hours |
 | Building the fact graph for a set of reports | 3 seconds a page: 1,000 pages is under an hour | 1 to 2 hours per 1,000 pages |
 | Comparing models or settings | The same 200 to 300 questions once per candidate | 2 to 4 hours per candidate |

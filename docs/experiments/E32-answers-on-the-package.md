@@ -62,6 +62,6 @@ The backend as a container, reading the package from PostgreSQL and the graph fr
 ## Limits
 
 - **One report and 31 questions.** The other question sets were not asked through the application.
-- **The run through the application used 207 facts**; the stores now hold 206 (Track B log B-F85). The fact removed for AK-3 is not one these questions ask about.
+- **The run through the application used 207 facts**; the stores now hold 206 (Track B log B-F85). Of the three facts that changed, two are AK-3's (the days from spud to release removed, the total rig time restored); the questions on rig time were answered from the daily activities in this run.
 - **The package differs by one chunk from the one built on the laptop** (1,432 against 1,431, in the 68-32 report), so this record names its release.
 - The questions are the team's, not an expert's.
