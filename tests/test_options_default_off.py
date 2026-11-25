@@ -12,7 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CORPUS_OPTIONS = (("chunking", "table_markdown"), ("filters", "running_line_position_tolerance"),
                   ("filters", "running_line_min_pages"), ("filters", "toc_leader_min_dots"), ("analysis", "page_orientation"),
                   ("chunking", "label_value"), ("chunking", "quarantine"), ("chunking", "preserve_list_markers"))
-K1_OPTIONS = ("section_context", "form_blocks", "report_boundaries", "form_recognition", "document_context")
+# section_context is on in the shared default since the D2 decision (Track A log A-D07); the others stay opt-in
+K1_OPTIONS = ("form_blocks", "report_boundaries", "form_recognition", "document_context")
 
 
 def read(name: str) -> dict:
@@ -40,6 +41,20 @@ class OptionsAreOffByDefaultTests(unittest.TestCase):
         for key in K1_OPTIONS:
             self.assertNotIn(key, raw, f"{key} must stay opt-in")
             self.assertNotIn(key, loaded)
+
+    def test_k1_default_follows_the_d2_decisions(self) -> None:
+        """Track A log A-D07: the 24 November groups measured on the demo release and kept off; grid recovery stays on."""
+        raw = read("k1.json")
+        for key in ("evidence_routing", "repair_numeric_cells", "numeric_cell_focus", "repair_native_column_alignment",
+                    "repair_scan_table_ink", "recover_scan_grids"):
+            self.assertIs(raw[key], False, key)
+        self.assertIs(raw["forms"]["daily_header"], False)
+        self.assertIs(raw["forms"]["missing_report_fields"], False)
+        self.assertEqual(set(raw["table_rules"]), {"operations_summary", "ruled_panels"})
+        for key in ("recover_source_grids", "recover_complex_grids", "recover_borderless_grids"):
+            self.assertIs(raw[key], True, key)
+        self.assertIn("table_join", raw)
+        self.assertEqual(read("candidates/k1_standard_24nov.json")["evidence_routing"], True)
 
     def test_option_settings_live_in_their_own_files(self) -> None:
         for name in ("section_context.json", "form_blocks.json", "table_join.json"):

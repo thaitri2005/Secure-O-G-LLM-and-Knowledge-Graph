@@ -29,7 +29,9 @@ from test_chunking import add_table, add_text, make_document
 ROOT = Path(__file__).resolve().parents[1]
 FID = "f" + "0" * 16
 OCR = {"settings": {"engine": "easyocr"}, "runtime": {"easyocr": "1.0"}, "models": {}}
-K1_CONFIG = load_k1_config()
+# The export tests exercise the whole standard profile of 24 November (document types from the PDF title, table rules, forms);
+# the shipped default is smaller since the D2/D4 decisions (see configs/corpus/k1.json and the Track A log, A-D07).
+K1_CONFIG = load_k1_config(ROOT / "configs/corpus/candidates/k1_standard_24nov.json")
 CONTEXT = {"report_date": "31-Aug-16", "well": "AK-3"}
 
 

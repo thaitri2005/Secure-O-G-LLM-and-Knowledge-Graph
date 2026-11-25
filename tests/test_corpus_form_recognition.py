@@ -20,6 +20,7 @@ from test_corpus_forms import TEMPLATE_LABELS, form_layer, layer, word
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE = ROOT / "configs/corpus/candidates/k1_form_recognition_v1.json"
+STANDARD_24NOV = ROOT / "configs/corpus/candidates/k1_standard_24nov.json"  # the profile main shipped on 24 November (D2/D4 decisions made the default smaller)
 HEADER_ONLY = ROOT / "configs/corpus/candidates/k1_form_recognition_header_only.json"
 
 
@@ -295,7 +296,7 @@ class LocalBoundaryTests(unittest.TestCase):
 
 class ConfigurationTests(unittest.TestCase):
     def test_separate_candidate_valid_and_default_absent(self):
-        base = load_k1_config()
+        base = load_k1_config(STANDARD_24NOV)
         candidate = load_k1_config(CANDIDATE)
         self.assertNotIn("form_recognition", base)
         self.assertEqual({k: v for k, v in candidate.items() if k != "form_recognition"}, base)
@@ -520,7 +521,7 @@ class NonHeaderRegionsTests(unittest.TestCase):
         self.assertEqual(trimmed, v1)
         validate_k1_config(header)
         raw = json.loads(HEADER_ONLY.read_text(encoding="utf-8"))
-        self.assertEqual({k: v for k, v in raw.items() if k != "form_recognition"}, load_k1_config())
+        self.assertEqual({k: v for k, v in raw.items() if k != "form_recognition"}, load_k1_config(STANDARD_24NOV))
 
     def test_package_identity_changes_with_the_key_and_not_without_it(self):
         v1, header = load_k1_config(CANDIDATE), load_k1_config(HEADER_ONLY)

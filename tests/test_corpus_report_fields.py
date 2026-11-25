@@ -6,6 +6,7 @@ import unittest
 import pymupdf
 
 from graph_builder.corpus.k1_config import load_k1_config
+STANDARD_24NOV = __import__('pathlib').Path(__file__).resolve().parents[1] / "configs/corpus/candidates/k1_standard_24nov.json"  # the profile main shipped on 24 November (D2/D4 decisions made the default smaller)
 from graph_builder.corpus.report_fields import recover_fields, source_fields
 from graph_builder.corpus.text_layer import source_page
 
@@ -73,7 +74,7 @@ class SourceReportFieldsTests(unittest.TestCase):
             self.assertEqual(recover_fields(self.path, [entry], [prior], chunks, 0.4), [prior])
 
     def test_standard_config_enables_source_report_fields(self):
-        self.assertTrue(load_k1_config()["forms"]["missing_report_fields"])
+        self.assertTrue(load_k1_config(STANDARD_24NOV)["forms"]["missing_report_fields"])
 
 
 if __name__ == "__main__":

@@ -192,9 +192,12 @@ class MapChildrenTests(unittest.TestCase):
 
 
 class ConfigTests(unittest.TestCase):
-    def test_default_k1_configuration_has_no_section_context(self):
-        self.assertNotIn("section_context", load_k1_config())
-        self.assertNotIn("section_context", json.loads((ROOT / "configs/corpus/k1.json").read_text(encoding="utf-8")))
+    def test_default_k1_configuration_enables_section_context(self):
+        """D2: measured on the demo release (300 headings corrected, no id changed), so the shared default carries the option."""
+        shipped = json.loads((ROOT / "configs/corpus/k1.json").read_text(encoding="utf-8"))
+        self.assertEqual(shipped["section_context"], json.loads((ROOT / "configs/corpus/section_context.json").read_text(encoding="utf-8")))
+        self.assertEqual(load_k1_config()["section_context"], shipped["section_context"])
+        self.assertNotIn("section_context", K1_CONFIG)  # the fixture profile of the export tests does not carry it
 
     def test_option_is_validated_and_enters_the_package_identity(self):
         enabled = dict(K1_CONFIG, section_context=OPTIONS)
