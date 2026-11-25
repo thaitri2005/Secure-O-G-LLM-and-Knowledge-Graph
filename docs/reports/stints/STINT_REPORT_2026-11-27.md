@@ -6,56 +6,50 @@
 
 ## 1. In short
 
-- On 9 November you asked for a **coordinator** that routes questions, the three parts **connected behind a simple application** that domain experts can touch, and **reasoning questions** as a target.
-- This stint we designed and built all three. There is now one application: a person types a question about the drilling reports and sees the answer, a label that says how far to trust it, and the page or the activities it rests on.
-- **It has run from end to end with the real AI model.** On one machine, starting from the public PDF reports: the reports were read, loaded into the stores (PostgreSQL and Neo4j), and the application answered from them behind a password, with our own copy of the model (Qwen3-8B). Our earlier baseline result came out the same, answer for answer.
-- **Three wells are loaded:** the end-of-well reports of AK-3, 56-32 and 68-32, and AK-3's daily reports. Each well has its own page, and every question people ask is kept and can be downloaded as a test set.
-- A total such as "hours of non-productive time" is **calculated by code and never written by an AI**, so it cannot be a guess.
-- **The coordinator got its first measurement,** on 119 of our own questions: it answers 102, against 87 when a person chooses where to look, with the same number of AI calls (§9).
-- A question about **the cause of a problem** gets an answer in parts. We measured this for the first time: the system finds the cause the reports state, in the report's own words, but it also lists nearby events as causes. It is not ready to show as a finding (§10).
-- **Before putting people in front of it, we had the design, the code and the security reviewed with AI review tools,** and fixed what was found (§9).
-- **An expert's input becomes a test without programming.** An expert marks answers in the application, or fills one column of a spreadsheet; one command turns that into a test the system is run against (§7).
-- **What is left needs people or money, not code:** a server others can reach, experts to try it, and a graphics card to run their questions (§12).
+- On 9 November anh Tuấn asked for three things: a **coordinator** that routes questions, the three parts **connected behind a simple application** that domain experts can use, and **reasoning questions** as a target. All three are designed and built.
+- **There is one application.** A person types a question about the drilling reports and sees the answer, a label saying how far to trust it, and the page or the activities it rests on.
+- **It has run from end to end with the real AI model** (Qwen3-8B, the team's own copy): from the public PDF reports, through the stores (PostgreSQL and Neo4j), to answers behind a password. The earlier baseline result came out the same, answer for answer.
+- **Three wells are loaded:** the end-of-well reports of AK-3, 56-32 and 68-32, and AK-3's daily reports.
+- **A total is calculated by code and never written by an AI**, so it cannot be a guess.
+- **The coordinator is measured:** on 119 of the team's own questions it answers 102, against 87 when a person chooses where to look, with the same number of AI calls (§8).
+- **Answers about the cause of a problem are measured once.** The system finds the cause the reports state, in the report's own words, but also lists nearby events as causes. Not ready to show as a finding (§8).
+- **An expert's input becomes a test without programming** (§6).
+- **What is left needs people or money, not code:** experts to try it, a server others can reach, and a graphics card to run the experts' questions (§10).
 
-## 2. What you asked for, and where each stands
+## 2. What anh Tuấn asked for on 9 November, and where each stands
 
-| You asked on 9 November | State | What exists |
+| Asked | State | What exists |
 |---|---|---|
-| A coordinator that routes each question; later it uses tools and connectors | **Built, and measured on our own questions** (§9); to be confirmed on an expert's | One AI call understands the question; code then decides where to look. Each place it can look has the same interface, so it can later be offered as a tool |
+| A coordinator that routes each question; later it uses tools and connectors | **Built and measured** on the team's questions (§8); to be confirmed on an expert's | One AI call understands the question; code decides where to look. Every place it can look has the same interface, so each can later be offered as a tool |
 | A switch for exact answers only | **Built** | "Verified data only" in the application |
-| A simple application early, on the connected parts, for domain experts | **Built, connected, and run with the real model**; not yet on a server others reach | A backend service and a web application, written for people who are not developers, reading the stores |
-| Reasoning about the causes of a drilling problem | **Built and measured once:** good in one part, not ready in another | A fourth place to look, for causes (§10), tried on twenty trial questions about AK-3 |
-| The model can be swapped | **Built** | One small file names a model and where it runs. One command checks that model and measures it on our questions |
-| People review part of the machine-made data | **Built, first form** | Every answer can be marked right or wrong, with the right answer typed in. A page lists every question asked with its marks, and downloads them as a test set or as a spreadsheet for an expert to fill |
-| State the node and relationship logic of the graph | **Written down** | §6 below |
+| A simple application early, on the connected parts, for domain experts | **Built and run with the real model**; not yet on a server others reach | A backend service and a web application for people who are not developers, reading the stores |
+| Reasoning about the causes of a drilling problem | **Built and measured once:** good in one part, not ready in another | A fourth place to look, for causes, tried on twenty trial questions about AK-3 (§8) |
+| The model can be swapped | **Built** | One small file names a model and where it runs; one command checks it and measures it |
+| People review part of the machine-made data | **Built, first form** | Every answer can be marked right or wrong, with the right answer typed in; the marks become a test (§6) |
+| State the node and relationship logic of the graph | **Written down** | §5 |
 
 ## 3. The system now
 
 ![The four parts of the system and who owns each](figures/architecture.svg)
 
-**Figure 1. The four parts and who owns each.** All arrows work today, on one machine. The engine can read the same data from files or from the stores.
+**Figure 1. The four parts and who owns each.** Every arrow works today, on one machine. The engine reads the same data from files or from the stores.
 
-| Part | What it does | State at the end of this stint |
-|---|---|---|
-| 1. Reading the reports | Turns a PDF into passages, tables and forms, each with a stable ID that points back to its page | A package for the demo, built by one command: the end-of-well reports of AK-3, 56-32 and 68-32, AK-3's four daily-report attachments and its non-productive-time report (302 pages, about 1,430 passages). It was built again from nothing on a second machine. The new reading options were each measured on this package: three are on, the rest stay off with the reason written down (§8) |
-| 2. Stores | Keeps passages and their search vectors in PostgreSQL, and the knowledge graph in Neo4j | One command loads a package and checks every step: the passages, a search vector for each, 161 daily activities, 207 well facts. Search by meaning runs inside the database. The question log is in PostgreSQL. The stores restart by themselves after a failure. Not yet on a server others reach |
-| 3. Answering engine | Understands the question, looks in the right place, answers, and checks the answer | The coordinator and its four places to look, reading files or the stores. With the real model: the earlier baseline is reproduced, and answers about causes are measured (§10). A bench checks any model and runs the whole measurement in one command |
-| 4. Application | Lets a person ask, read the answer, check its sources and mark it right or wrong | Backend service and web application run together behind one password, as containers that start with one command. Besides asking: a page per well, and a page of the questions people asked. It tells the user plainly when it is busy or when something is down |
+| Part | State at the end of this stint |
+|---|---|
+| 1. Reading the reports (Khai) | One command builds the package for the demo: 302 pages, about 1,430 passages, each with an ID that points back to its page. Each new reading option was measured; three are on (§7) |
+| 2. Stores (Hung) | One command loads a package and checks every step: the passages with a search vector each, 161 daily activities, 207 well facts. The stores restart by themselves after a failure |
+| 3. Answering engine (Tri) | The coordinator and its four places to look. With the real model: the baseline reproduced, the coordinator and the answers about causes measured (§8) |
+| 4. Application (Tri and Hung) | A backend service and a web application behind one password. Besides asking: a page per well and a page of the questions people asked |
+
+![How the application runs: containers behind one password](figures/deployment.svg)
+
+**Figure 2. How it runs.** Everything inside the dashed box starts with one command. The model answers one question at a time, so questions take turns. Run this way on one machine, with the real model, a check from outside passed 6 of 6 steps. A real address and its certificate have not been tried.
 
 ## 4. How a question is answered
 
 ![How a question is answered, step by step](figures/question-flow.svg)
 
-**Figure 2. The path of a question.** Blue boxes use the AI model. Green boxes are plain code. The AI is used at most twice: once to understand the question, once to write an answer. It never chooses where to look, and it never writes a query that runs. A question about a cause takes the same path: code finds the problem and gathers what surrounds it, and one AI call writes the answer in parts (§10).
-
-1. **Understand.** One AI call returns the kind of question, the reports it concerns and, for a total over time, a small plan (for example: total hours, non-productive, August). Code reads the well name and the dates itself.
-2. **Choose where to look.** Code decides from a fixed table. If the first place has nothing, it falls back to the report text.
-3. **Produce the answer.**
-   - *A total over time:* code runs the plan on the daily activities and reports the result. No AI is involved, so the number cannot be mistyped.
-   - *Anything else:* one AI call writes the answer, using only the facts and passages it was given.
-4. **Check.** Code confirms that every value in an AI-written answer really appears in the text that was read. If it does not, the answer is not shown as confirmed.
-
-**"Verified data only".** With this switch on, the report text is not searched and no AI writes from it. The answer comes from the daily activities or the checked facts, or the application says that the verified data holds no answer.
+**Figure 3. The path of a question.** Blue boxes use the AI model; green boxes are plain code. The AI is used at most twice: once to understand the question, once to write an answer. It never chooses where to look, and it never writes a query that runs.
 
 | Kind of question | Example | Where it looks | Who produces the answer |
 |---|---|---|---|
@@ -63,155 +57,112 @@
 | A fact about a well | What total depth did well AK-3 reach? | Well facts, then report text | AI, then checked by code |
 | What happened on one day | What was the mud weight on AK-3 on 20 August 2016? | Report text of that well and day | AI, then checked by code |
 | A comparison between wells | Which of AK-3, 56-32 and 68-32 was drilled deepest? | Well facts and report text of each well | AI, then checked by code |
-| The cause of a problem | What caused the stuck pipe on AK-3 on 20 August 2016? | The daily activities around the problem, and the report text of those days | AI, in parts; code removes any cause without a source |
+| The cause of a problem | What caused the stuck pipe on AK-3 on 20 August 2016? | The activities around the problem and the report text of those days | AI, in parts; code removes any cause without a source |
 
-## 5. Four questions, as the application shows them
+- **The check:** code confirms that every value in an AI-written answer appears in the text that was read. If not, the answer is not shown as confirmed.
+- **"Verified data only":** no AI writes from report text. The answer comes from the daily activities or the checked facts, or the application says the verified data holds no answer.
 
-### A total, calculated by code
+### The application's screens
 
 ![A calculated answer with its timeline](figures/app-calculated.png)
 
-**Figure 3.** "How many hours of non-productive time did AK-3 have?" (the application on its example data; the activities and the total are real). The answer, 115 hours, carries a green label: *Calculated from the reports*. On the right, each row is one day from midnight to midnight, and each amber bar is an activity the reports marked as non-productive. Hovering a bar says what happened; the list below it is grouped by day and can be opened in full. The end-of-well report's own summary table also gives 115 hours.
-
-### A fact, written by AI and checked
+**Figure 4. A total, calculated by code.** "How many hours of non-productive time did AK-3 have?" gives 115 hours with a green label, *Calculated from the reports*. Each row on the right is one day; each amber bar is an activity the reports marked as non-productive. The end-of-well report's own summary also gives 115 hours. (Example data in the screenshot; the activities and the total are real.)
 
 ![An AI-written answer with its source highlighted](figures/app-ai-answer.png)
 
-**Figure 4.** "What total depth did well AK-3 reach?" **This answer is real:** our own copy of the model wrote it, in the application running on the stores. The label is blue: *Written by AI, checked against the reports*. The passage the answer comes from is listed first and flagged, and the value is highlighted where the report writes it. The model had answered "1955 in", taking the word "in" from "1,955 in contrast to"; the application now takes the unit from the report, which writes "1,955'" a line later.
-
-![The printed page of the report, opened beside the answer](figures/app-page.png)
-
-**Figure 4b.** "Open page" shows the page of the report as printed, beside the answer, so the reader checks the source without leaving the screen.
-
-### No answer
+**Figure 5. A fact, written by AI and checked.** A real answer from the team's copy of the model, in the application running on the stores. The label is blue: *Written by AI, checked against the reports*. The value is highlighted where the report writes it, and "Open page" shows the printed page beside the answer.
 
 ![The application saying it found no answer](figures/app-not-found.png)
 
-**Figure 5.** With "Verified data only" on, a question about a well that is not loaded gets "Not in the verified data", advice on what to try, and the closest report text. The system says it does not know instead of guessing.
-
-### The cause of a problem
+**Figure 6. No answer.** With "Verified data only" on, a question about a well that is not loaded gets "Not in the verified data" and the closest report text. The system says it does not know instead of guessing.
 
 ![An answer about a cause, in parts, with the activities around the problem](figures/app-cause.png)
 
-**Figure 6.** "What caused the stuck pipe on AK-3 on 20 August 2016?" The application first shows the problem it found in the daily activities: 66 hours of non-productive time from 20 to 23 August at 176 ft. Then, apart: what the reports say caused it, with the report's own words; other possible factors, in a dashed box marked *Possibility, not a finding*; and, below what is shown here, what a real judgement would still need. On the right are the activities before, during and after the problem. In this screenshot the answer is a prepared example; the problem, the activities and the report's words are real. What the real model answered is in §10.
-
-![The application asking which problem is meant](figures/app-cause-which.png)
-
-**Figure 7.** When a question fits several problems, the application asks which one is meant instead of guessing.
-
-## 6. The knowledge graph
-
-![The knowledge graph: one graph, two regions, joined at the well](figures/knowledge-graph.svg)
-
-**Figure 8. One graph, two regions, joined at the well.** Every fact and every activity points to the passage it was read from, so any answer can be traced to a page.
-
-| Region | Built from | By | State |
-|---|---|---|---|
-| Activities (amber) | The operations tables of the daily reports and the non-productive-time report | Code only, no AI | 161 activities on 27 days for AK-3, in Neo4j |
-| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 207 checked facts for 5 wells (the three loaded, and two that AK-3's report describes), in Neo4j beside the activities; 202 of them point to a passage in the store |
-
-The two regions answer different questions. Activities answer "how many hours" and "on which days". Facts answer "how deep" and "which casing". A relationship that the report does not state, such as a cause, is never stored.
-
-## 7. The application
-
-![The guide that opens on a first visit](figures/app-guide.png)
-
-**Figure 9.** The guide that opens on a first visit. It can be closed at once and reopened from "How it works".
-
-It is written for people who read drilling reports, not for developers. Nothing on screen names a part of the system.
-
-| A user can | How |
-|---|---|
-| Ask in plain English | One search box, with example questions to click |
-| See how far to trust an answer | A coloured label: calculated, written by AI and checked, written by AI and not confirmed, or no answer found |
-| Check the answer | The evidence beside it: a timeline of activities, the report text with the answer highlighted, the key facts; any source opens its page, as an image of the printed page when one has been made |
-| Ask what caused a problem | The answer comes in parts (Figure 6); if several problems fit, the application asks which |
-| Get an explanation | A small "i" beside each term, shown on hover or tap |
-| Ask for verified data only | One switch |
-| Say it is wrong | "Was this answer right?" Yes, or No with a note. Both are saved |
-| Look up a well | A page per well (Figure 11) |
-| See what people asked | A page of every question and its marks, with a download (Figure 12) |
-| Learn how it works | A guide on first visit and from the top bar |
-
-Every question, how it was answered, and every right or wrong mark is logged in the database, also when a question could not be answered. When domain experts use it, that log gives us their real questions. **Turning an expert's answers into a test needs no programming:** they mark answers in the application or fill one column of a spreadsheet, and one command makes the test ([guide](../../EXPERT_PILOT.md)).
-
-![The waiting screen, with its steps and a stop button](figures/app-waiting.png)
-
-**Figure 10.** While the system works, the screen says what it is doing and how long it has taken, and the question can be stopped. An answer takes seconds on a graphics card and minutes without one, so waiting has to be bearable. If several people ask at once, or the system is down, the application says which, in plain words, and offers to try again.
-
-The application was checked with an automated accessibility tool on every screen at two sizes, and the 315 points it raised are fixed: it can be used by keyboard alone, and its screens are labelled for screen reader software. It has not yet been tried with a screen reader by a person. It also works on a phone.
-
-### A page for each well
+**Figure 7. The cause of a problem.** The application shows the problem it found (66 hours of non-productive time from 20 to 23 August at 176 ft), then, apart: what the reports say caused it, in the report's words; other possible factors, marked *Possibility, not a finding*; and what a real judgement would still need. When a question fits several problems, it asks which one. (The answer shown is a prepared example; the problem, the activities and the report's words are real. What the real model answered is in §8.)
 
 ![The page of well AK-3: facts, timeline and reports](figures/app-well.png)
 
-**Figure 11.** The page of well AK-3. On the left, what the reports say about the well, in plain words with units, planned beside actual; each value opens the page it was read from. On the right, every day of reports as a bar from midnight to midnight, with non-productive time in amber. It also shows a fact we know to be wrong (§9): the page shows the data as it is, which is how such errors get found.
+**Figure 8. A page for each well.** What the reports say about the well, planned beside actual, each value opening the page it was read from; and every day of reports as a bar, non-productive time in amber.
 
-### The questions people asked
+The application is written for people who read drilling reports: nothing on screen names a part of the system. It has a guide on first visit, an explanation beside each term, plain messages when it is busy or down, and it works on a phone and by keyboard alone.
+
+## 5. The knowledge graph
+
+![The knowledge graph: one graph, two regions, joined at the well](figures/knowledge-graph.svg)
+
+**Figure 9. One graph, two regions, joined at the well.** Every fact and every activity points to the passage it was read from, so any answer can be traced to a page.
+
+| Region | Built from | By | State |
+|---|---|---|---|
+| Activities (amber) | The operations tables of the daily reports and the non-productive-time report | Code only, no AI | 161 activities on 27 days for AK-3 |
+| Facts (blue) | Tables of the end-of-well reports by fixed rules, and their text by an AI, then checked | Code, and AI then code | 207 checked facts for 5 wells; 202 of them point to a passage in the store |
+
+Activities answer "how many hours" and "on which days". Facts answer "how deep" and "which casing". A relationship the report does not state, such as a cause, is never stored.
+
+## 6. From an expert's input to a test
+
+![From an expert's input to a test](figures/expert-path.svg)
+
+**Figure 10. The path.** Every question set so far was written by the team, so no number in this report is an evaluation. This path is ready for the first expert.
 
 ![The page listing the questions people asked](figures/app-questions.png)
 
-**Figure 12.** Every question asked, the answer it got, and how it was marked. The button downloads the selected questions with the answer each one got. One command turns that file into a spreadsheet: an answer the expert marked right is already filled in as the expected one, and the expert types the rest in plain words ("1955 ft", "not stated"). A second command turns the filled sheet into a test, and the test records whether an expert or the team wrote its answers. This is how the application turns use into the real questions we are waiting for. The entries shown are examples.
+**Figure 11. The questions people asked,** with the answer each got and how it was marked. (Example entries.)
 
-## 8. What each of us built
+- **In the application:** under each answer, "Was this answer right?" Yes, or No with the right answer typed in.
+- **In a spreadsheet:** one row per question, the expected answer in plain words: "1955 ft", "13 August 2016", "not stated".
+- **The test records who wrote its answers,** so a set written by the team can never be presented as an expert's.
+- Guide: [EXPERT_PILOT.md](../../EXPERT_PILOT.md).
+
+## 7. What each person built
 
 ### Tri: answering engine and application
 
-- **The design of the second build**, written into the specification and the plan: the coordinator, the knowledge graph's structure, the reasoning questions, the application.
-- **The coordinator**: one AI call to understand the question; routing, fallback and "verified data only" in code.
-- **Four places to look, behind one interface**: report text, well facts, daily activities, and the causes of a problem. The shared interface is what lets them be offered as tools later.
-- **Totals reported by code.** The daily-activities path returns the number itself, so no AI retypes it.
-- **Answers about causes**: code finds the problem and gathers the activities and report text around it; the AI answers in parts; code removes any cause whose source it cannot find. Twenty trial questions, in two sets, each written and fixed before it was run; the first measurement is in §10.
-- **The well facts exported as a graph**: 207 checked facts for 5 wells, after a stricter check removed nine wrong ones (§9).
-- **A bench for models**: a small file names a model and where it runs; one command checks it (does it answer in the required form, with reasoning switched off, and does our longest prompt fit), one runs every measurement and can resume if interrupted, one prints the comparison. It works with any server that speaks the common interface, on our own machine or rented.
-- **The web application** (§7), with 178 automated tests: the answer screens, the cause screens, the page view, a page per well, the questions people asked, and plain messages when the server cannot be reached.
-- **The first runs with the real model**, on a machine without a graphics card: the earlier baseline reproduced answer for answer (28 of 31, the same three wrong); the coordinator measured against choosing by hand on 119 questions (§9); and the answers about causes measured on twenty trial questions (§10).
-- **The path for an expert's input**: the spreadsheet, the command that builds a test from it, and a check that says what is missing before a run. A short guide describes it for the expert and for us.
-- **Three reviews before anyone uses it, made with AI review tools:** of the design, of the code and of the security. Together with an earlier review of the engine they raised about fifty points, large and small (they are listed in the engine's record); those that code can fix are fixed, most with a test (§9).
-- **Every diagram redrawn** in one style and checked against the code.
+- **The design of the second build**, in the specification and the plan.
+- **The coordinator and four places to look behind one interface**: report text, well facts, daily activities, causes of a problem. Totals are reported by code.
+- **Answers about causes**: code finds the problem and gathers what surrounds it; the AI answers in parts; code removes any cause whose source it cannot find.
+- **The well facts as a graph**: 207 checked facts for 5 wells, after a stricter check removed nine wrong ones.
+- **A bench for models**: one command checks a model, one runs every measurement and resumes if interrupted, one compares runs.
+- **The web application**, with 178 automated tests.
+- **The first runs with the real model**, on a machine without a graphics card (§8).
+- **The path for an expert's input** (§6).
+- **Three reviews before anyone uses it, made with AI review tools**: design, code and security. About fifty points raised; those code can fix are fixed, most with a test.
 
 ### Hung: stores and backend
 
-- **Passages and search vectors in PostgreSQL**, each with its well and report date, and a check that searching the store gives the same results as searching in memory (67 of 67 searches).
-- **The daily activities in Neo4j**: 27 days and 161 activities for AK-3, read back identical to the source, with 58 of 58 recorded queries giving their recorded results.
-- **The well facts in Neo4j**, beside the activities, read back identical, the activities untouched.
-- **A reader for the store**, so the engine can take passages from PostgreSQL in the form it already reads.
-- **The stores made ready to share**: passwords kept out of the repository, a script that sets up a server, a nightly backup, and a step-by-step guide. Until a server is found, the plan is for one team machine to host the stores on a private network.
+- **Passages and search vectors in PostgreSQL**; searching the store gives the same results as searching in memory (67 of 67 searches).
+- **Daily activities and well facts in Neo4j**, read back identical to the source; 58 of 58 recorded queries give their recorded results.
+- **A reader for the store**, so the engine takes passages from PostgreSQL in the form it already reads.
+- **The stores made ready to share**: passwords out of the repository, a script that sets up a server, a nightly backup, a step-by-step guide.
 
 ### Tri and Hung together: the backend and the connection
 
-- **The service the application talks to**: asking a question, marking an answer, reading a passage, a page and its image, a well and its activities, and a health check, with a written contract and an example response for each call.
-- **The engine reads the stores.** One setting switches it from files to PostgreSQL and Neo4j; on the same data it holds the same passages, activities and facts either way. Search by meaning runs inside the database and returns the same results as the search in memory, now on the real search vectors of the whole package (67 of 67 searches).
-- **The question log in PostgreSQL**: every question, how it was answered, and every mark; it can be listed, filtered, counted and downloaded as a test set.
-- **One command from a report package to a loaded store**, each step checked, each run recorded. Run twice, it changes nothing the second time.
-- **The whole application as containers**: the service, a proxy that serves the web application over HTTPS behind one shared password, and a guide from a new server to a running application. A check that asks a question from outside passes with the real model answering: 6 of 6 steps.
-- **Built for one model that answers one question at a time:** questions take turns with a limit on the wait; a question that fails is still logged; the stores and the application restart by themselves; a monitor tells the group chat when the application goes down; the backup is copied off the server and can be checked by restoring it.
-- **A guard on where report text may go:** the application refuses to start with an outside AI service unless the loaded package has been named as public.
-- **Automatic tests on every change** pushed to the repository.
+- **The service the application talks to**, with a written contract and an example response for each call.
+- **The engine reads the stores**: one setting switches it from files to PostgreSQL and Neo4j, with the same results.
+- **The question log in PostgreSQL**: every question, its answer and every mark; listed, filtered, counted and downloaded.
+- **One command from a report package to a loaded store**, each step checked.
+- **The whole application as containers** (Figure 2): questions take turns, a failed question is still logged, a monitor alerts the group chat, the backup can be checked by restoring it.
+- **A guard on where report text may go**: the application refuses to start with an outside AI service unless the loaded package is named as public.
+- **Automatic tests on every change.**
 
 ### Khai: reading the reports
 
-- **Tables that continue across pages**: an option to join them and carry the header.
-- **Section context**: the heading a passage belongs to, carried onto the passage.
-- **Form recognition and label repair**: candidate settings for reading form areas and for pairing a label with its value.
-- **Page orientation, quarantine of bad pages, and runs that can stop and resume.**
-- **More checks** on the output: tables against their passages, labels against values, conflicts between forms, structure across pages.
-- **Each option measured on the demo package, by rules written before the numbers**: an option is on only if the package still passes its checks, no existing ID changes, and a sample of changed items read against the page images shows no item made worse.
-- **The outcome:** section context and the recovery of table grids are on. Table joining stays on as shipped, though on this package it joined none of ten real continuations; an earlier variant that joins three is kept as a setting. The others stay off, each with its reason: some did not act on these reports, some changed IDs, one moved 12 forms to another page.
-- These decisions rest on the eight files of the demo package, which is development data; they are not tested on other reports.
+- **New reading options**: joining tables that continue across pages, carrying a passage's heading, form recognition and label repair, page orientation, quarantine of bad pages, runs that stop and resume, and more checks on the output.
+- **Each option measured on the demo package, by rules written before the numbers.** An option is on only if the package still passes its checks, no existing ID changes, and a sample read against the page images shows nothing made worse.
+- **The outcome:** section context and the recovery of table grids are on. Table joining stays as shipped, though on this package it joined none of ten real continuations. The others stay off, each with its reason.
+- These decisions rest on the eight files of the demo package and are not tested on other reports.
 
 ### Khai and Tri together: the package for the demo
 
-- **One package holding everything the demo needs**, built by one command: the end-of-well reports of AK-3, 56-32 and 68-32, AK-3's four daily-report attachments and its non-productive-time report. 302 pages, about 1,430 passages, each end-of-well passage carrying its well's name. It passes the package checks. It was built a second time from nothing, on another machine, from the public PDFs: the same pages, and one passage more in one scanned report.
-- **The daily activities are built from this package alone**: 161 activities, every one pointing to a passage that is in the store.
-- **The well facts moved onto the package's passages without an AI**: each fact's source was matched to the same text in the new package and its value checked there again. 202 of 207 moved; 5 could not, because two source passages have no match.
-- **A dated record** of the work on reading the reports, as a draft for Khai to correct.
+- **One package holding everything the demo needs**, built by one command, and built a second time from nothing on another machine: the same pages, one passage more in one scanned report.
+- **The daily activities are built from this package alone.**
+- **The well facts moved onto the package's passages without an AI**: 202 of 207 moved; 5 have no matching passage.
 
-## 9. What we measured, and what we learned
+## 8. What was measured
+
+All questions below were written by the team. None is reviewed by an expert, so these numbers describe behaviour and are not an evaluation. All runs used the real model on a machine without a graphics card, one question at a time.
 
 ### The coordinator against choosing by hand
-
-119 of our own questions, one set for each kind, answered by the real model on the same machine twice: once with the place to look chosen by a person, once by the coordinator. These are our questions, not an expert's.
 
 | Kind of question | Questions | Chosen by hand | Coordinator |
 |---|---:|---:|---:|
@@ -220,108 +171,75 @@ The application was checked with an automated accessibility tool on every screen
 | A total over many days | 58 | 41 | 57 |
 | **All** | **119** | **87** | **102** |
 
-- **Both ways cost 1.5 AI calls a question.** The coordinator spends one call more on a simple fact, to understand the question, and one call fewer on a total.
-- **It is not a clean test:** the coordinator's checks were written while looking at these questions. The test that counts is an expert's questions, answered both ways.
+- **Both ways cost 1.5 AI calls a question.** The coordinator spends one call more on a simple fact and one fewer on a total.
+- **Why totals improved:** all 17 answers lost by hand were the AI copying a calculated number wrongly; the plan was right every time. The coordinator has code report the number.
+- **Not a clean test:** the coordinator's checks were written while looking at these questions. One check was too broad twice and had to be narrowed. The test that counts is an expert's questions, answered both ways.
 - Detail: [experiment E33](../../experiments/E33-coordinator.md).
 
-### Why totals improved
+### The baseline, and the new report package
 
-The 58 of those questions about AK-3's daily reports ("how many hours of non-productive time in August", "on which days was casing run"), answered by the real model on the same machine three ways. These are our questions, not an expert's.
+- **The earlier baseline is reproduced on a second machine:** 28 of 31, the same three wrong.
+- **On the new package: 26 of 31.** In both lost cases the right table was found and the model answered "not stated". It is the casing table; the reading rule written for it is left off for now because it renames IDs.
 
-| How the question is answered | Right, of 58 | AI calls a question |
-|---|---:|---:|
-| The place to look chosen by hand; the AI plans, code calculates, the AI writes the number into its answer | 41 | 2 |
-| The coordinator: one AI call understands the question and plans; code calculates and reports the number itself | 44 | 1.3 |
-| The coordinator, with its plan checked against the question by code | 58 | 1.1 |
+### Answers about causes
 
-- **Every one of the 17 answers lost in the first row was the AI copying a calculated number wrongly.** The plan was right all 58 times. This is why the coordinator has code report the number.
-- **The coordinator's own 14 misses were in its plan:** it added a code the question did not mention, or put the wrong year on a date. Each can be seen by comparing the plan with the question, so code now does that.
-- **The last row was reached on the same 58 questions that showed us the faults,** so it says the faults are of a kind code can catch; it does not say how many remain on questions we have not seen.
-- **One of our own checks was too broad, twice.** A rule written to fix the totals sent simple facts from a daily report to the calculation, which answered with that day's depth whatever was asked: 13 of 30 right, not 17. Narrowing the rule restored them, at the price of one of the 58 totals (57 in the table above). We now run a new rule on every kind of question before keeping it.
-
-### On the new report package
-
-The 31 questions of our first baseline, asked of AK-3's report as the new package holds it: 26 right, against 28 on the older version of the same report. In both lost cases the right table was found and the model answered "not stated". It is the casing table. The reading rule written for it is among those measured and left off for now, because it renames IDs (§8).
-
-### What we learned
-
-1. **The real model makes mistakes that scripted stand-ins never made.** Until this stint's last days, every test of the new parts used a scripted reply in place of the model. The first real runs showed, within an hour: an activity code written where the non-productive code belongs; a code the question never mentioned; an answer of "1955 in" for a depth the report writes as "1,955 in contrast to the planned 1,700'". Each is now caught by code. The rule is the same every time: what code can read from the question or the report outranks what the model says.
-2. **A real quote is not a reason.** In answers about causes, the model supported each claim with words that really are in the report, and our check passed them. But many were things that happened near the problem, not its cause (§10).
-3. **Our check on facts was weaker than we thought.** It asked whether a fact's value is written in its passage, and accepted digits inside a longer number: a ground elevation of 150 read out of "1500'", a temperature of 180 out of a map coordinate. Nine of 216 facts were wrong this way. The check is fixed and 207 facts remain. Earlier results stand as recorded; new runs use the corrected check.
-4. **Reviews found what tests did not.** We had the design, the code and the security each reviewed with AI review tools, and every finding was either reproduced and fixed with a test, or written down as accepted. Examples: nothing limited how long a question could wait; a question that failed left no trace; the stores would not come back after a restart; a total could be computed over the wrong days; "20-22 August" was read as a well name. The security review found nothing serious and two things to tighten. A further review of the fixes themselves found faults in those too.
-5. **Showing the data to a person exposes errors fast.** The application's list of facts showed AK-3 with 3 days from spud to rig release, beside report text that says 19. Our automatic check passes it, because a "3" appears nearby. This is the human review you asked for, in its first form.
-6. **Reporting a calculated total in code, instead of letting an AI retype it, repairs answers.** We replayed the plans recorded in an earlier experiment with the total reported by code: 33 of 35 and 22 of 23 came out right, where the same plans with the AI retyping the number gave 27 and 19. No model was run for this, and the questions were written by us to suit this kind of answer, so it is an indication and not a new measurement.
-7. **Running against the real stores exposed mismatches that example data hid.** A fact's value did not open its page, because facts and pages named the report in two different ways. "Verified data only" could show no passage, because the facts pointed to passages by an older ID. Both are fixed.
-
-## 10. Reasoning about causes
-
-For "a problem happened here; what caused it?" the system does what an engineer does, with code doing the gathering:
-
-1. **Find the problem** in the daily activities: by date, depth, non-productive code, or words such as "stuck". AK-3's 28 non-productive activities form 6 problems, 115 hours together. If several fit the question, the application asks which.
-2. **Gather what surrounds it**: the activities of the days before and after, that day's report text, and the end-of-well report's account. The amount is limited; one question costs about three times the text of a simple lookup.
-3. **Answer in two parts**: what the reports state as the cause, and other possible factors, each with its source and labelled as a possibility. Code removes anything whose source it cannot find. With "Verified data only" on, the possible factors are hidden.
-4. **Say what is missing** for a real judgement.
-
-### What the first measurement showed
-
-We wrote twenty trial questions about AK-3 in two sets of ten, each set fixed before it was run, and ran them with the real model. These are our own questions, not an expert's, and the first set was used to find and fix faults, so the numbers describe behaviour; they are not an evaluation.
+Twenty trial questions about AK-3 in two sets of ten, each fixed before it was run. The first set was used to find and fix faults.
 
 | | First set | Second set, unseen |
 |---|---:|---:|
 | The right problem was found | 8 of 10 | 6 of 10 |
 | The cause the reports state was found, with the report's words | 8 of 10 | 5 of 10 |
 | Things stated as a cause that the reports do not give as one | 17 | 8 |
-| Answers right on every count | 2 of 10 | 3 of 10 |
+| Right on every count, first run | 2 of 10 | 3 of 10 |
+| Right on every count, after the changes below | 7 of 10 | 6 of 10 |
 
-- **The good part:** whenever the system reached the right problem in the first set, the model named the cause the reports state and quoted the report for it. "What caused the stuck pipe on 20 August?" gave "plugged inner barrel", with the words "due to plugged inner barrel".
-- **The weak part:** beside the true cause it listed other things from the same days as stated causes: "high torque", "crews at lodge for night", "receive 8 joints". Each has a real quote, so our source check passed them.
-- **What we changed, in code and not in the model:**
-  - a stated cause must rest on words in which the report gives a reason ("due to", "because", "waiting on", "unable"); anything else is shown as a possible factor;
-  - "the problem" is the activity the question is about, not a whole incident. AK-3's 66-hour well-control problem contains a stuck pipe and, a day later, a lost rod; asked about one, the model had given the reasons for both.
-- **What that did:** on the first set, the same model answers scored again give 7 of 10 right and 4 extra items, from 2 and 17. That set was used to make the changes, so this shows the direction, not the size. On the unseen set the first change alone cut the extra items from 8 to 5 and lost one true cause, which the report gives as a purpose ("to stop flow") and not as a reason.
-- **"Other possible factors" are mostly generic:** "inadequate communication", "inadequate mud properties". We would like an expert to say whether that part is worth keeping.
-- **Cost:** two AI calls and about three times the text of a simple lookup.
+- **The good part:** when the right problem was reached, the model named the cause the reports state and quoted it. "What caused the stuck pipe on 20 August?" gave "plugged inner barrel", with the words "due to plugged inner barrel".
+- **The weak part:** beside the true cause it listed other things from the same days as causes: "high torque", "crews at lodge for night". Each has a real quote, so the source check passed them.
+- **What was changed, in code and not in the model:** a stated cause must rest on words that give a reason ("due to", "because", "waiting on"); and "the problem" is the activity asked about, not a whole incident of several days.
+- **"Other possible factors" are mostly generic** ("inadequate communication"). An expert should say whether that part is worth keeping.
+- **Cost:** two AI calls and about three times the text of a simple lookup. Detail: [experiment E34](../../experiments/E34-reasoning-probe.md).
 
-One well's reports do not hold offset wells, formation pressures or lessons learned, so the purpose stays what it was: to show you a concrete answer and learn what a useful one needs. Detail: [experiment E34](../../experiments/E34-reasoning-probe.md).
+### What was learned
 
-## 11. Weak points
+1. **The real model makes mistakes that scripted stand-ins never made**: a code the question never mentioned, a wrong year on a date, "1955 in" for a depth written as "1,955 in contrast to the planned 1,700'". Each can be seen by comparing with the question or the report, so code now checks it. The rule: what code can read outranks what the model says.
+2. **A real quote is not a reason.** Checking that a quote exists is not checking that it is a cause.
+3. **The check on facts was weaker than thought.** It accepted digits inside a longer number: an elevation of 150 read out of "1500'". Nine of 216 facts were wrong this way; 207 remain.
+4. **Reviews found what tests did not**: nothing limited how long a question could wait; a failed question left no trace; the stores would not come back after a restart.
+5. **Showing the data to a person exposes errors fast.** The well page shows AK-3 with 3 days from spud to rig release beside report text that says 19. This is the human review asked for, in its first form.
+6. **A rule tuned on one kind of question must be run on the others.** A rule written to fix totals sent simple daily facts to the calculation: 13 of 30 right, not 17, until it was narrowed.
 
-- **The coordinator is measured only on our own questions, and its checks were written on them** (§9). On a simple fact it costs one AI call more than choosing by hand and is no better. We stopped measuring on our own questions: the next measurement should be on an expert's.
-- **Answers about causes over-state** (§10). Not ready to show as findings.
-- **We have no graphics card and no server of our own.** The end-to-end run was made on a cloud machine without a graphics card, and on public data only. A private document cannot go on a rented machine without VPI's agreement.
-- **Not on a server others can reach.** Everything a server needs is written and was run on one machine: the containers, the password gate, the monitor, the backup. A real address and its certificate have not been tried.
-- **Every test question is written by us.** None is reviewed by an expert. Our scoring is also lenient in one known way: a number within half a percent of the right one counts as right.
+## 9. Weak points
+
+- **Every test question is written by the team.** The scoring is also lenient in one known way: a number within half a percent counts as right.
+- **No domain expert has used the application.**
+- **The coordinator's checks were written on the questions it is scored on.** On a simple fact it costs one AI call more than choosing by hand and is no better.
+- **Answers about causes over-state.** Not ready to show as findings.
+- **No graphics card and no server of the team's own.** The runs were made on a cloud machine without a graphics card, on public data only. A private document cannot go on a rented machine without VPI's agreement.
+- **Not on a server others can reach.**
 - **Three wells from two projects, one report author.** Other authors' reports are untested or fail.
-- **No domain expert has used the application.** Whether it is clear to them is not known.
-- **One stored fact is known to be wrong** (AK-3, days from spud to rig release) and five facts point to passages the store does not hold. They are shown as they are.
-- **The demo package is not identical from machine to machine:** built a second time, one scanned report gave one passage more. Each result therefore names the exact package it used.
+- **One stored fact is known to be wrong** (AK-3, days from spud to rig release), and five facts point to passages the store does not hold.
 
-## 12. What we need from you
+## 10. What the team needs from anh Tuấn
 
-1. **Who can try the application**: one or two people from the expert group is enough. Their questions are logged, which gives us real ones; an expert who prefers a spreadsheet can write questions and answers there. We would also ask one of them to read ten answers about causes and say whether that kind of answer is useful (§10).
-2. **What it is for**: which report types stay in scope, and which kinds of question users ask.
-3. **A budget for rented compute: 5 million VND for the next three months**, from the capstone funding. A GPU by the hour (about 10 hours a week) for measurements and experiments, a small server that stays on for the application, and pay-per-use hosted models for a demo that answers at any hour. We are asking through the school, as Dr. Dung said; your support for the request would help. Detail: [resource plan](../RESOURCE_REQUEST_2026-11-24.md).
-4. **If a private VPI document is to be used later:** where it may be processed, since we will have no machine of our own.
+1. **Who can try the application:** one or two people from the expert group is enough. Their questions and marks become the first real test (§6). One of them is also asked to read ten answers about causes and say whether that kind of answer is useful.
+2. **What it is for:** which report types stay in scope, and which kinds of question users ask.
+3. **Support for a budget for rented compute: 5 million VND for three months**, from the capstone funding, requested through the school as Dr. Dung said. A graphics card by the hour, a small server that stays on, and pay-per-use hosted models for a demo. Detail: [resource request](../RESOURCE_REQUEST_2026-11-24.md).
+4. **If a private VPI document is to be used later:** where it may be processed.
 
-## 13. What comes next
+## 11. What comes next
 
-Everything that code and our own machines can do for this build is done. Each next step starts with a person or with the budget.
+Everything code and the team's own machines can do for this build is done. Each next step starts with a person or with the budget.
 
-**Before this stint ends, 27 November**
-
-| Who | What |
-|---|---|
-| Tri | Send the request for rented compute, and this report |
-| Hung | Say whether his machine hosts the application until there is a server; review the loading command and the container setup |
-| Khai | Review the demo package and the record written for him; add the four benchmark files that his scripts read and the repository lacks |
-
-**Next stint, to 12 December**
-
-1. **With a server (half a day of work):** the application at one address behind the password, watched by the monitor, with its backup copied elsewhere.
-2. **With a graphics card (one session of a few hours):** the experts' questions answered both ways, by hand-chosen place and by the coordinator, and the coordinator confirmed or not.
-3. **With one or two experts:** the application in their hands, their questions in the log, and their reading of the answers about causes.
-4. **Ours meanwhile:** in answers about causes, recognise a reason the report gives as a purpose ("to stop flow") and ask back when a question fits several problems; one question shown to you going through the whole system, live.
+| When | Who | What |
+|---|---|---|
+| By 27 November | Tri | Send the request for rented compute, and this report |
+| By 27 November | Hung | Say whether his machine hosts the application until there is a server |
+| By 27 November | Khai | Review the demo package; add the four benchmark files his scripts read |
+| Next stint, with a server | Team | The application at one address behind the password, monitored, with its backup copied elsewhere |
+| Next stint, with experts | Team | The application in their hands; their questions and marks turned into a test |
+| Next stint, with a graphics card | Team | The experts' questions answered both ways; the coordinator confirmed or not |
+| Meanwhile | Tri | In answers about causes: recognise a reason given as a purpose ("to stop flow"), and ask back when a question fits several problems |
 
 ## Where the detail is
 
-[Specification](../../PROJECT_DESIGN.md) (design, §4.6, §8 and §11.4) · [development plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) (tasks) · track records: [engine](../../tracks/B-graphrag/log.md), [stores](../../tracks/C-storage/log.md), [reading the reports](../../tracks/A-ingestion/log.md) · [backend design](../../tracks/C-storage/backend-design.md) · [running it on a server](../../../deploy/README.md)
+[Specification](../../PROJECT_DESIGN.md) · [development plan](../../DEVELOPMENT_PLAN.md#7-what-to-do-now) · track records: [engine](../../tracks/B-graphrag/log.md), [stores](../../tracks/C-storage/log.md), [reading the reports](../../tracks/A-ingestion/log.md) · [experiment register](../../experiments/README.md) · [running it on a server](../../../deploy/README.md)

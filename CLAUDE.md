@@ -43,7 +43,7 @@ Each kind of fact has one home (the table in docs/README.md). Link to it; do not
 - **Say in the group chat what is being built before building in a teammate's track**, even with clearance (B-F65).
 - **Simulated questions are never reported as expert validation.** Every question set so far is written by the team (B-D22). The sets in `graphrag/gold/` are frozen: a change goes into a new version.
 - **Run one request at a time for measurements** (B-F19), and record the server settings, or the provider and model ID on a hosted endpoint.
-- **Stint reports** say what each person built (the backend is Tri's and Hung's together) and do not comment on when the work happened. After changing one, run `python scripts/stint_figures.py` and `python scripts/render_stint_report.py <report.md>`.
+- **Stint reports** say what each person built (the backend is Tri's and Hung's together) and do not comment on when the work happened. They are written in the third person ("the team", "anh Tuấn asked"; no "you", "I" or "we"), short, with diagrams of the current architecture. After changing one, run `python scripts/stint_figures.py` and `python scripts/render_stint_report.py <report.md>`.
 - Vietnamese reports keep technical terms in English.
 
 ## What comes next for Track B

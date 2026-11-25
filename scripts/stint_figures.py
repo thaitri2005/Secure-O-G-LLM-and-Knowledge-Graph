@@ -1,4 +1,4 @@
-"""Draw the stint report's three diagrams as SVG files in docs/reports/stints/figures/.
+"""Draw the stint report's diagrams as SVG files in docs/reports/stints/figures/.
 
     python scripts/stint_figures.py
 
@@ -151,7 +151,7 @@ def architecture() -> None:
 
     s.add(f'<path d="M208,664 h44" stroke="{MUTED}" stroke-width="2.2"/>')
     s.text(260, 668, "works today", 12.5, 400, TEXT, "start")
-    s.text(368, 668, "All four parts run together on one laptop. A shared server is the next step.", 12.5, 400, TEXT, "start")
+    s.text(368, 668, "All four parts run together on one machine. A shared server is the next step.", 12.5, 400, TEXT, "start")
     s.save("architecture.svg")
 
 
@@ -261,7 +261,54 @@ def graph() -> None:
     s.save("knowledge-graph.svg")
 
 
+def deployment() -> None:
+    s = new(1240, 470, "How the application runs: containers behind one password")
+    s.box(20, 150, 150, 90, "A person", ["a browser,", "laptop or phone"], "#fff", MUTED)
+    s.rect(200, 30, 800, 400, PAGE, LINE, 14, 2, dash="8 6")
+    s.text(216, 56, "One machine, started with one command (containers)", 14, 700, INK, "start")
+    s.box(222, 150, 190, 90, "Proxy", ["HTTPS, one shared password,", "serves the web application"], VIOLET_SOFT, VIOLET)
+    s.box(452, 130, 220, 130, "Backend service", ["one question at a time,", "the others wait their turn;", "every question is logged,", "failures told in plain words"], VIOLET_SOFT, VIOLET)
+    s.box(452, 300, 220, 96, "Answering engine", ["the coordinator and its", "four places to look", "(runs inside the service)"], BLUE_SOFT, BLUE)
+    s.box(712, 80, 268, 76, "PostgreSQL", ["passages, search vectors, pages,", "the question log"], GREEN_SOFT, GREEN)
+    s.box(712, 176, 268, 76, "Neo4j", ["the knowledge graph:", "161 activities, 207 facts"], GREEN_SOFT, GREEN)
+    s.box(712, 272, 268, 62, "Report package", ["a folder: page images"], GREEN_SOFT, GREEN)
+    s.box(712, 346, 268, 54, "Monitor and nightly backup", ["alert to the group chat; copy kept elsewhere"], "#fff", MUTED, size=13)
+    s.box(1030, 130, 190, 130, "AI model", ["Qwen3-8B, the team's", "own copy (llama.cpp),", "or a hosted open model", "for public data only"], AMBER_SOFT, AMBER)
+    s.arrow([(170, 195), (220, 195)])
+    s.arrow([(412, 195), (450, 195)], colour=VIOLET)
+    s.arrow([(562, 260), (562, 298)], colour=BLUE)
+    s.arrow([(672, 150), (710, 122)], colour=GREEN)
+    s.arrow([(672, 200), (710, 212)], colour=GREEN)
+    s.arrow([(672, 240), (710, 296)], colour=GREEN)
+    s.arrow([(562, 396), (562, 418), (1125, 418), (1125, 262)], "at most two calls a question", colour=AMBER, label_at=(1125, 340))
+    legend(s, 222, 452, [(VIOLET_SOFT, VIOLET, "application"), (BLUE_SOFT, BLUE, "engine"), (GREEN_SOFT, GREEN, "stores"), (AMBER_SOFT, AMBER, "AI model")])
+    s.save("deployment.svg")
+
+
+def expert_path() -> None:
+    s = new(1240, 300, "From an expert's input to a test")
+    steps = [("1. Ask and mark", ["the expert uses the", "application: Yes or No,", "and the right answer"], VIOLET_SOFT, VIOLET),
+             ("2. Question log", ["every question, the", "answer given, the mark"], GREEN_SOFT, GREEN),
+             ("3. Spreadsheet", ["one command; answers", "marked right are", "already filled in"], "#fff", MUTED),
+             ("4. Expert fills", ["the expected answer in", "plain words: 1955 ft,", "not stated"], VIOLET_SOFT, VIOLET),
+             ("5. Test file", ["one command; it records", "who wrote the answers"], "#fff", MUTED),
+             ("6. Run", ["the system answers", "every question, by hand-", "chosen place and by", "the coordinator"], BLUE_SOFT, BLUE)]
+    width, gap, left = 178, 26, 20
+    for n, (title, lines, fill, stroke) in enumerate(steps):
+        x = left + n * (width + gap)
+        s.box(x, 60, width, 130, title, lines, fill, stroke, size=13.5)
+        if n:
+            s.arrow([(x - gap + 2, 125), (x - 2, 125)])
+    s.arrow([(left + 3 * (width + gap) + width / 2, 232), (left + 3 * (width + gap) + width / 2, 192)], colour=VIOLET)
+    s.text(left + 3 * (width + gap) + width / 2, 250, "or start here, with an empty sheet", 12.5, 600, VIOLET)
+    s.text(620, 32, "No step needs programming, and no AI is used until step 6", 14, 700, INK)
+    legend(s, 20, 284, [(VIOLET_SOFT, VIOLET, "done by the expert"), ("#fff", MUTED, "one command by the team"), (BLUE_SOFT, BLUE, "the measurement")])
+    s.save("expert-path.svg")
+
+
 if __name__ == "__main__":
     architecture()
     question_flow()
     graph()
+    deployment()
+    expert_path()
