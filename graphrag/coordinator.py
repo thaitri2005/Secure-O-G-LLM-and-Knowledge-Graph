@@ -118,9 +118,13 @@ def _check_plan(frame: dict, question: str, dates: set[str], engine: Engine) -> 
     said = question.lower()
     literal = lambda code: bool(code) and bool(re.search(rf"(?<![a-z0-9]){re.escape(str(code).lower())}(?![a-z0-9])", said))
     npt_codes = {(e.npt_code or "").upper() for e in engine.events} - {""}
-    # A runnable plan is a question over time, whatever kind the model gave it.
-    if frame["kind"] in ("lookup_by_date", "lookup", "other"):
+    # "On which dates was code X logged" came back as a lookup by date with a runnable plan: on the daily reports
+    # that is a question over time. Only that kind is changed: a plain lookup with a stray plan (seen on an
+    # end-of-well question) stays a lookup and its plan is not used.
+    if frame["kind"] == "lookup_by_date" and frame["report_type"] in ("daily", "both", "unknown"):
         frame["kind"] = "over_time"
+    if frame["kind"] != "over_time":
+        return
     # The days are the question's, when it names any.
     if dates:
         plan["date_from"], plan["date_to"] = min(dates), max(dates)

@@ -209,6 +209,40 @@ class FrameCheckTests(unittest.TestCase):
         self.assertFalse(coordinator._date_said("late august", "what happened in late august?"))
 
 
+class PlanCheckTests(unittest.TestCase):
+    """The frame's plan checked against the question (B-F79), and what the check must leave alone (B-F81)."""
+    PLAN = {"operation": "total_hours", "well": "AK-3", "code": "", "non_productive": False, "npt_code": "",
+            "date_from": "", "date_to": "", "group_by": "", "min_hours_per_day": 0, "depth_ft": 0}
+
+    def checked(self, question, kind="over_time", report_type="daily", **plan):
+        from types import SimpleNamespace
+        from graphrag.retrieval import question_dates
+        frame = {"kind": kind, "report_type": report_type, "plan": {**self.PLAN, **plan}}
+        coordinator._check_plan(frame, question, question_dates(question), SimpleNamespace(events=EVENTS))
+        return frame
+
+    def test_a_code_the_question_never_mentions_is_dropped_and_a_field_name_is_no_code(self):
+        frame = self.checked("How many hours of non-productive time did AK-3 have?", non_productive=True, npt_code="KICK", code="npt_code")
+        self.assertEqual((frame["plan"]["npt_code"], frame["plan"]["code"], frame["plan"]["non_productive"]), ("", "", True))
+
+    def test_a_code_the_question_writes_stands(self):
+        frame = self.checked("How many hours of non-productive time coded KICK did AK-3 have?", non_productive=True, npt_code="KICK")
+        self.assertEqual(frame["plan"]["npt_code"], "KICK")
+
+    def test_the_days_are_the_questions(self):
+        frame = self.checked("Which code has the most hours from 20 August 2016 to 23 August 2016?", operation="top_group",
+                             date_from="2023-08-20", date_to="2023-08-23", group_by="code", code="activity_code")
+        self.assertEqual((frame["plan"]["date_from"], frame["plan"]["date_to"], frame["plan"]["code"]), ("2016-08-20", "2016-08-23", ""))
+
+    def test_a_list_of_dates_called_a_lookup_by_date_is_a_question_over_time(self):
+        frame = self.checked("On which dates was activity code WOW logged?", kind="lookup_by_date", operation="list_dates", code="WOW")
+        self.assertEqual((frame["kind"], coordinator.route(frame)), ("over_time", ["events"]))
+
+    def test_a_plain_lookup_with_a_stray_plan_stays_a_lookup(self):
+        frame = self.checked("What total depth did well AK-3 reach?", kind="lookup", report_type="end_of_well", operation="depth_on_date")
+        self.assertEqual((frame["kind"], coordinator.route(frame)), ("lookup", ["well_facts", "passages"]))
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):
