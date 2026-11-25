@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 from graph_builder.corpus.k1_build import form_text
 from graph_builder.corpus.k1_config import load_k1_config
+STANDARD_24NOV = __import__('pathlib').Path(__file__).resolve().parents[1] / "configs/corpus/candidates/k1_standard_24nov.json"  # the profile main shipped on 24 November (D2/D4 decisions made the default smaller)
 from graph_builder.corpus.qa.cli import run as run_qa
 from graph_builder.corpus.qa.form_overlap import CONFLICT, DUPLICATE, FormOverlap, register_form_overlap
 from graph_builder.corpus.qa.signals import CheckContext, Registry
@@ -61,7 +62,7 @@ class FormOverlapTests(unittest.TestCase):
 
     def test_qa_projects_default_k1_and_can_regenerate_unprojected_view(self):
         self.state([field("Depth:", "17 ft")], passage("Depth: 17 ft"))
-        config = load_k1_config()
+        config = load_k1_config(STANDARD_24NOV)
         self.assertEqual(config["table_rules"]["ruled_panels"]["panels"],
                          ["survey", "bit", "bha", "inventory", "formation_depths", "pump"])
         self.assertIn("mud_properties", config["table_rules"])

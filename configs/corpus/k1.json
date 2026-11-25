@@ -1,5 +1,5 @@
 {
-  "evidence_routing": true,
+  "evidence_routing": false,
   "document_types": {
     "default": "other",
     "rules": [
@@ -12,36 +12,37 @@
     ]
   },
   "forms": {
-    "daily_header": true,
-    "missing_report_fields": true,
+    "daily_header": false,
+    "missing_report_fields": false,
     "generic": false,
     "minimum_label_share": 0.4,
     "template": "configs/corpus/rimbase_form_template.json"
   },
-  "repair_numeric_cells": true,
-  "numeric_cell_focus": true,
-  "repair_native_column_alignment": true,
-  "repair_scan_table_ink": true,
+  "repair_numeric_cells": false,
+  "numeric_cell_focus": false,
+  "repair_native_column_alignment": false,
+  "repair_scan_table_ink": false,
   "recover_source_grids": true,
   "recover_complex_grids": true,
   "recover_borderless_grids": true,
-  "recover_scan_grids": true,
+  "recover_scan_grids": false,
+  "section_context": {
+    "furniture": {
+      "header_band_page_height": 0.12,
+      "footer_band_page_height": 0.08,
+      "min_pages": 3,
+      "min_page_share": 0.3
+    },
+    "value_patterns": [
+      {"kind": "report_date", "pattern": "^(?:[A-Za-z]+ ){0,2}(?:\\d{1,2}[-/ ][A-Za-z]{3,9}[-/ ]\\d{2,4}|\\d{4}-\\d{2}-\\d{2})$"},
+      {"kind": "email", "pattern": "^\\S+@\\S+\\.\\S+$"}
+    ],
+    "numbered_hierarchy": [
+      {"scheme": "decimal", "pattern": "^(\\d+(?:\\.\\d+)*)\\.?\\s"},
+      {"scheme": "roman", "pattern": "^([IVXL]+(?:\\.\\d+)*)\\.?\\s"}
+    ]
+  },
   "table_rules": {
-    "daily_log": {"document_types": ["eowr", "daily_report", "other"]},
-    "well_completion": {"document_types": ["eowr", "other"]},
-    "scan_fields": {"document_types": ["eowr", "daily_report", "other"]},
-    "hourly_operations": {
-      "document_types": ["daily_report", "other"],
-      "templates": [
-        {"id": "hourly-iadc-v1", "title": "Hourly Operations Summary", "columns": [["From"], ["To"], ["[IADC Code] Description"]]}
-      ]
-    },
-    "casing": {
-      "document_types": ["daily_report", "casing_report"]
-    },
-    "mud_properties": {
-      "document_types": ["daily_report", "other"]
-    },
     "ruled_panels": {
       "document_types": ["daily_report", "survey_report"],
       "panels": ["survey", "bit", "bha", "inventory", "formation_depths", "pump"]

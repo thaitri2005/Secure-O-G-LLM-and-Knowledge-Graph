@@ -18,14 +18,15 @@ Task numbers such as A-107 or A-415 are the ones Khai's commits and documents us
 | Topic | Current answer | Entry |
 |---|---|---|
 | K1 version 1 | The agreed interface (D-54 ids, D-57 package). Six record types, validator, `k1` command, completeness gate | A-C01, A-C06 |
-| Demo release (D1, D3) | Built (`demo-v2`: the end-of-well reports of AK-3, 56-32 and 68-32, appendices 23 and 27 to 30; 8 files, 302 pages, 1,431 chunks, and 1,432 when built on Linux). Validator pass, the legacy map inside, 161 events from the package. Loaded into the stores on a cloud machine | A-F20 to A-F22 |
+| Demo release (D1, D3) | Built (`demo-v2`: the end-of-well reports of AK-3, 56-32 and 68-32, appendices 23 and 27 to 30; 8 files, 302 pages, 1,431 chunks, and 1,432 when built on Linux). Validator pass, the legacy map inside, 161 events from the package. Loaded into the stores on a cloud machine. The build script reads `configs/corpus/candidates/k1_demo_v1.json` (the settings of before 24 November), not `k1.json`: the options added to `k1.json` on 24 November never touched `demo-v2`. Rebuilt on 25 November from the cached conversions with the previous settings: 1,431 chunks, 292 tables, 94 forms, the same as `demo-v2` | A-F20 to A-F22, A-F23 |
 | End-of-well chunks with a well | Optional K1 key `document_context` (off by default); on in the demo configuration | A-C17 |
 | Operations Summary tables | Rebuilt from the PDF text layer when four gates pass (A-107); in `configs/corpus/k1.json` | A-C04 |
-| Merged-cell text repeated in table Markdown (D4) | Fixed by the optional mode `chunking.table_markdown = span_once_keyed` (A-431), off by default; test added on 24 November. On the demo release it clears both `CHAR_RATIO_HIGH` warnings and changes no id. Not yet switched on for any shared release | A-C08, A-F11 |
-| Options of 17 November | All off by default; none measured on the demo release yet (task D2) | A-C08 to A-C15 |
+| Merged-cell text repeated in table Markdown (D4) | Mode `span_once_keyed` (A-431) clears both `CHAR_RATIO_HIGH` warnings and changes no id, but on two stacked-header tables it drops the group label from the second spanned column (the guard counts Docling's header rows, not the table record's). Decision: the default stays `docling` until the guard is fixed (a code change, not made here). `span_once` also loses one chunk id | A-F24, A-D08 |
+| Options of 17 November | Measured on the demo release on 25 November (D2). `section_context` is on in `k1.json`; `table_join` stays as shipped (it joins nothing on the demo); `form_blocks`, `form_recognition`, `page_orientation`, `table_markdown` and `label_value` stay off, each with a number | A-F25 to A-F28, A-D07 |
+| Options turned on by default on 24 November | Measured by leaving one group out on the demo release. Kept on: grid recovery (source, complex, borderless, ruled panels). Turned off in `k1.json`: document type from the PDF title, numeric repair, scan grids and fields, hourly/casing/mud/daily-log/well-completion rules, daily header and report fields. The 24 November profile is kept as `configs/corpus/candidates/k1_standard_24nov.json` | A-F29, A-D07 |
 | QA sidecar | Warning-only checks; thresholds noisy outside the family they were tuned on (8/20 precision on a sample) | A-C05, A-F06 |
 | Tests without PyMuPDF | Skip with a reason (24 November) | — |
-| Open | D2 (decide each option with a number), the benchmark manifests that scripts and records point to and the repository does not hold (plan task D6), the VLM comparison, scanned pages, forms outside the RIMBase template | — |
+| Open | The benchmark manifests that scripts and records point to (plan task D6), the VLM comparison, scanned pages, forms outside the RIMBase template, a fix of the stacked-header guard of `span_once_keyed`, the id numbering of section parents when table rules add tables, and an independent evaluation of every decision here (NOT EVALUATED; the demo release is development data) | A-F23 to A-F29 |
 
 ## Before 5 November (background)
 
@@ -212,3 +213,80 @@ Recorded by Track B with Khai's clearance (Track B log B-F71).
 - The package's own validator passes with 0 errors and 302 of 302 pages rebuilt; `scripts/check_k1_graphrag_compat.py` passes, with 161 events.
 - **Gaps met on the way:** the three end-of-well PDFs have no download command under the names the build expects; the first Docling run needs `HF_HUB_OFFLINE=0`, which the notes gave only as a remedy; the appendix corpus needs `vietocr`, which is outside the lock file; `platform/validate_k1.py` is the version 0 checker and does not apply to a package. The run notes now state all four.
 - `process --workers 1` did not hang; the hang after 40 documents was with two workers.
+
+## 2026-11-25: D2 and D4 measured on the demo release
+
+Plan tasks D2 and D4 for Khai. Method and the rules written before the numbers: [E62](../../experiments/E62-track-a-option-measurements.md). Every option or group was built once more from the cached Docling conversions of the eight demo PDFs (`demo-v2`'s files), with everything else equal. DEV data only: the generalization of every decision below is NOT EVALUATED.
+
+**A-F23 (finding).** Baselines on the demo release, same code (main `efffa0d`), same conversions:
+
+| | Previous settings (before 24 Nov) | Today's `k1.json` | Settings after A-D07 |
+|---|---:|---:|---:|
+| Chunks, tables, forms, parents | 1,431, 292, 94, 1,139 | 1,474, 298, 131, 1,182 | 1,431, 292, 94, 1,139 |
+| Validator | pass | pass | pass |
+| Chunks with `quality = review` | 25 | 65 | 25 |
+| Daily-report chunks with report date and well | 981 of 981 | 969 of 1,024 | 981 of 981 |
+| Old chunk ids mapped (exact, near, none; of 372) | 294, 5, 73 | 280, 15, 77 | 280, 15, 77 |
+| QA warnings (`--fidelity --crossrep`) | 57 | 107 | 85 |
+| `k1` export time, peak memory | 30 s, 205 MB | 104 s, 264 MB | 88 s, 255 MB |
+| 81 Operations Summary tables | 81 | 81 identical | 81 identical |
+
+The first column reproduces `demo-v2`. Today's `k1.json` changes 82 chunk ids of `demo-v2` (section parents are numbered again when new tables appear), moves 126 chunk ids to another page, adds 37 forms and 6 tables, writes a new optional table-part key (`native_trimmed_rows`), and leaves 55 daily-report chunks without report date and well. The compatibility check (`scripts/check_k1_graphrag_compat.py --expect-events 161`) passes on today's settings and on the settings after A-D07: 161 events, no `#`, gold coverage 15 of 17. It was not run on the first column.
+
+**A-F24 (finding, D4).** 45 of 298 tables have merged cells (51 row-span and 159 column-span cells). Against the default, on the demo release:
+
+| | `docling` | `span_once` | `span_once_keyed` |
+|---|---:|---:|---:|
+| Table chunks whose text changes | | 25 | 23 (14 tables) |
+| Table chunk text, characters | 283,071 | 278,244 | 278,524 |
+| `CHAR_RATIO_HIGH` warnings | 16 | 14 | 14 (appendix 28 page 32 and appendix 27 page 40 clear) |
+| Chunk ids lost | | 1 (a row range moves) | 0; `tables.jsonl` identical |
+
+All 14 changed tables were checked against the PDF text layer: a merged cell's text appears once and never zero times. One table was also read on the page image. Two tables lose information: appendix 27 page 35 and appendix 28 page 36 (survey tables) show "Coordinates" over N-S only; the E-W column loses its group label. The code decides "stacked header" from Docling's count of header rows (1 here) and not from the table record (2). Tri's statement that the mode clears both warnings and changes no id is confirmed; this defect is the cost.
+
+**A-F25 (finding, table joining).** The shipped `table_join` found 104 candidate pairs and joined none: 94 separate, 10 uncertain (nine in the 56-32 report, one in appendix 23). All 10 uncertain pairs were looked at on the page images and all 10 are true continuations (56-32 pages 8-9, 9-10, 10-11, 14-15, 17-18, 41-42, 57-58, 80-81, 81-82; appendix 23 pages 1-2). So 0 wrong joins, 0 of 10 true continuations joined. The earlier candidate (`k1_table_join_candidate.json`, repeated-header rule) joins 3 pairs (56-32 pages 8-9, 10-11, 57-58), all correct, absorbing 3 table ids and adding 3 continuation chunk ids; nothing else changes. The 81 Operations Summary tables are identical in every run.
+
+**A-F26 (finding, section context).** 300 chunk records change `section` or `section_path` (243 text, 57 table); ids, text and every other field stay. Sample of 38 text passages (seed 20261125, 5 per document; appendix 23 has only 3), headings judged on the PDF text layer and on the page image for 68-32: heading right 17 of 38 with the option off and 17 of 38 on (45%, interval 30% to 60%); wrong heading 14 off, 2 on; missing 3 off, 15 on; ambiguous 4 both. 12 passages go from a wrong heading (page banner, report date stamp or e-mail address) to none, 0 get worse. Not handled: the 68-32 report's sideways pages keep their page stamp as a heading (2 of 38). Labels are by one reader.
+
+**A-F27 (finding, forms).** Scored on the 96 geometry-checked pairs of the lower form blocks (A-435 gold; appendix 27 and 28 pages, the pages the option was built on): previous settings 52 of 75 pairs right, 7 of 20 blanks right; today's settings 61 of 75 (one truncated value, "Overcast" for "Overcast / broken") and 7 of 20; with `form_blocks` 75 of 75 and 20 of 20. `form_blocks` also renames 12 form ids (the id of a form now points to another page), so it was not turned on. `form_recognition` (header-only and combined) changes nothing on the demo release. `chunking.label_value` rewrites the text of 262 chunks and marks 163 more as `review`; no pair score was made, so no decision.
+
+**A-F28 (finding, page orientation).** The demo release has 40 pages with `/Rotate` other than 0, all in the 68-32 report (39 at 270, page 34 at 180), not 13; the other seven files have none. `flag` finds all 40 and changes nothing in K1. `normalize` turns tables of pages 17, 21 to 24 into loose text, lowers the share of PDF words found in K1 text from 97.1% to 94.6% and renames 50 chunk ids. `verify` accepts two pages (1 and 35: 27% to 43% and 87% to 91.5% of words, one more table), keeps the rest, and still renames 21 chunk ids of unchanged text. As read, the 40 sideways pages already give 97.1% of the PDF words.
+
+**A-F29 (finding, groups).** Leave-one-out from today's settings, same conversions:
+
+| Group left out | What changes on the demo release | Time of `k1` |
+|---|---|---:|
+| Document type from the PDF title (`evidence_routing`) | 27 more forms; 55 chunks gain report date and well (1,051 of 1,051 daily chunks have both) | 87 s |
+| Numeric repair (4 settings) | nothing | 90 s |
+| Grid recovery (source, complex, borderless, ruled panels) | 10 tables of the end-of-well reports change: every word of the 10 tables is in the PDF text, a missing column back on 56-32 page 31, a sideways table of 68-32 page 6 read as a table instead of fragments | 55 s |
+| Scan grids and scan fields | nothing (no scanned table in these files) | 99 s |
+| Hourly, casing, mud, daily-log and well-completion rules | 6 tables, 82 chunk ids renamed, key `parts.native_trimmed_rows` | 104 s |
+| Daily header and report fields | 37 forms; 9 more pairs right, 1 truncated (A-F27) | 94 s |
+
+Today's `k1.json` takes 104 s. Not measured: the scan group needs scanned tables, which the demo files do not have.
+
+**A-D07 (decision, D2).** Applied literally from the rules of E62: on by default only if the validator passes, no id of an unchanged item changes, the sampled changed items include no regression and mostly improve, the 81 Operations Summary tables stay whole, time is at most 2x or the benefit is clear, and no K1 field changes. An option that does not fire has no evidence on this data and goes off unless the repository already holds evidence.
+
+| Option or group | Decision | Reason |
+|---|---|---|
+| Section context | ON | A-F26 |
+| Table joining | ON as shipped; ON-ONLY-FOR-CONFIG `k1_table_join_candidate.json` for the 3 correct joins | A-F25. Shipped profile joins nothing here; evidence elsewhere is E44 (development data) |
+| Form blocks | OFF | 12 form ids change page (A-F27) |
+| Form recognition | OFF | does not fire here |
+| Page orientation (`flag`, `normalize`, `verify`) | OFF | A-F28 |
+| Table Markdown modes | OFF (`docling`) | A-F24, A-D08 |
+| Label-value repair | OFF | no pair score, 262 chunks rewritten |
+| Document type from the PDF title | OFF | 55 daily chunks lose date and well; the 979 of 979 check fails |
+| Numeric repair | OFF | does not fire here; when it fires it can write the new optional keys `numeric_repairs` and `scan_repairs`: needs a K1 version decision announced to Tri and Hung |
+| Grid recovery | ON | A-F29 |
+| Scan grids and scan fields | OFF | does not fire here; can write the new cell key `ocr_unreadable` (same K1 note); needs Tesseract |
+| Hourly, casing, mud, daily-log, well-completion rules | OFF | ids renamed and a new K1 table-part key |
+| Daily header and report fields | OFF | one truncated value in ten changed pairs; borderline (9 right, 1 truncated) |
+
+`configs/corpus/k1.json` follows this table (commit "set reading-option defaults"). Setting an option off here means "not shared by default": each stays available through `configs/corpus/candidates/k1_standard_24nov.json`. The Current state row "All off by default" (17 November options) is replaced by the rows above.
+
+**A-D08 (decision, D4).** `chunking.table_markdown` stays `docling`. `span_once_keyed` is the right mode once its stacked-header guard uses the table record's header rows; with that fix the two false `CHAR_RATIO_HIGH` alarms and 4,547 characters of repeated text go away without an id change. Switching the mode on is then a one-line corpus setting and a reprocessing from the cache (about 3 minutes for six documents). `span_once` is not recommended: it loses a chunk id.
+
+**A-C21 (design choice).** The profile `main` shipped on 24 November is kept unchanged as `configs/corpus/candidates/k1_standard_24nov.json`. The tests that exercise the whole profile (`test_corpus_k1.py` fixtures, casing, hourly, report fields, form overlap, form recognition) load it; `tests/test_options_default_off.py` now states the defaults of A-D07. No source file, schema or K1 version changed.
+
+**E62.** [Option measurements on the demo release](../../experiments/E62-track-a-option-measurements.md): the rules, the numbers and the limits behind A-F23 to A-D08.

@@ -8,6 +8,7 @@ import pymupdf
 
 from graph_builder.corpus.hourly_operations import repair_document
 from graph_builder.corpus.k1_config import load_k1_config, validate_k1_config
+STANDARD_24NOV = __import__('pathlib').Path(__file__).resolve().parents[1] / "configs/corpus/candidates/k1_standard_24nov.json"  # the profile main shipped on 24 November (D2/D4 decisions made the default smaller)
 
 
 HEAD = ["From", "To", "[IADC Code] Description"]
@@ -19,7 +20,7 @@ class HourlyOperationsTests(unittest.TestCase):
         folder = TemporaryDirectory()
         self.addCleanup(folder.cleanup)
         self.path = Path(folder.name) / "source.pdf"
-        self.rule = load_k1_config()["table_rules"]["hourly_operations"]
+        self.rule = load_k1_config(STANDARD_24NOV)["table_rules"]["hourly_operations"]
 
     def write_source(self, rows=BODY, columns=HEAD, closed=True, title="Hourly Operations Summary 0000 to 2400"):
         with pymupdf.open() as doc:
@@ -83,7 +84,7 @@ class HourlyOperationsTests(unittest.TestCase):
         self.assertEqual(finding["template"], "example-v1")
 
     def test_config_rejects_duplicate_template_ids(self):
-        config = load_k1_config()
+        config = load_k1_config(STANDARD_24NOV)
         templates = config["table_rules"]["hourly_operations"]["templates"]
         templates.append(deepcopy(templates[0]))
         with self.assertRaisesRegex(ValueError, "distinct template ids"):

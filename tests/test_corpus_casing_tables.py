@@ -10,6 +10,7 @@ import pymupdf
 from graph_builder.corpus.casing_tables import printed_tokens, read_page, repair_document, trim_compound
 from graph_builder.corpus.daily_header import header_fields
 from graph_builder.corpus.k1_config import load_k1_config
+STANDARD_24NOV = __import__('pathlib').Path(__file__).resolve().parents[1] / "configs/corpus/candidates/k1_standard_24nov.json"  # the profile main shipped on 24 November (D2/D4 decisions made the default smaller)
 from graph_builder.corpus.text_layer import source_page
 
 HEADERS = ["Size", "Grade", "N. Joints", "Make", "Length (m)", "Set at (mGL)", "Comment"]
@@ -105,7 +106,7 @@ class SourceTableTests(unittest.TestCase):
         self.assertLessEqual(fields[0]["value_bbox"][2], fields[1]["key_bbox"][0])
 
     def test_shipped_rules_apply_to_daily_reports(self):
-        config = load_k1_config()
+        config = load_k1_config(STANDARD_24NOV)
         self.assertIn("daily_report", config["table_rules"]["casing"]["document_types"])
         self.assertTrue(config["forms"]["daily_header"])
 
