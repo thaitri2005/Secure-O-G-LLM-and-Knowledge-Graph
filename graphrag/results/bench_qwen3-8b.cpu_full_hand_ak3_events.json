@@ -1,0 +1,2251 @@
+{
+  "pool": "k1 daily+appx-23",
+  "retriever": "event graph; fallback dates:wells:bm25",
+  "k": 5,
+  "question_set": "ak3_events",
+  "endpoint": "qwen3-8b.cpu",
+  "model": "qwen3-8b",
+  "answer_format": "status_first",
+  "events": 161,
+  "build": {
+    "from operations tables": 161,
+    "non-productive events": 28
+  },
+  "planner_tokens": {
+    "prompt": 32076,
+    "completion": 2985
+  },
+  "questions": 35,
+  "withheld": [],
+  "correct_total": "25/35",
+  "correct_by_kind": {
+    "sum_code": "6/6",
+    "sum_range": "3/3",
+    "npt": "4/5",
+    "npt_days": "2/2",
+    "count": "0/3",
+    "list_dates": "2/3",
+    "first_last": "1/3",
+    "depth": "4/4",
+    "top": "0/3",
+    "not_stated": "3/3"
+  },
+  "answers_without_wrong_values": "22/25",
+  "citations_in_retrieved": "15/25",
+  "quotes_verbatim": "5/25",
+  "citations_supported_after_check": "12/25",
+  "citation_sources": {
+    "unsupported": 13,
+    "model": 9,
+    "by_value": 6,
+    "by_quote": 2
+  },
+  "verified_on_gold_chunk": "0/0",
+  "retrieved_gold": "0/0",
+  "cost": {
+    "calls": 70,
+    "cached_calls": 0,
+    "invalid_json": 1,
+    "prompt_tokens": 112274,
+    "completion_tokens": 6886,
+    "seconds": 4349.3,
+    "cost_usd": 0.0,
+    "cached_seconds": 0.0,
+    "cached_cost_usd": 0.0,
+    "models": [
+      "qwen3-8b.cpu:qwen3-8b"
+    ],
+    "providers": []
+  },
+  "per_question": {
+    "prompt_tokens_median": 2596,
+    "completion_tokens_median": 98,
+    "seconds_median": 70.645
+  },
+  "rows": [
+    {
+      "id": "t01",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "168.5"
+      ],
+      "raw_values": [
+        "168.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2803,
+      "completion_tokens": 104,
+      "seconds": 92.605,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code DRIL = 168.5 (30 events on 11 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0",
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t02",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "53.75"
+      ],
+      "raw_values": [
+        "53.75"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t13:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2747,
+      "completion_tokens": 162,
+      "seconds": 111.401,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "WOC",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code WOC = 53.75 (10 events on 6 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t31:c0",
+        "f62efbee00767a3e7:t13:c0",
+        "ff5e766b8670b35da:t20:c0",
+        "f4f05215feea85339:t45:c1",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c1",
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ]
+    },
+    {
+      "id": "t03",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "13.75"
+      ],
+      "raw_values": [
+        "13.75"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2853,
+      "completion_tokens": 95,
+      "seconds": 100.654,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "CIRC",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code CIRC = 13.75 (9 events on 6 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t04",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "7"
+      ],
+      "raw_values": [
+        "7"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t16:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3240,
+      "completion_tokens": 88,
+      "seconds": 129.767,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "SURV",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code SURV = 7 (14 events on 9 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0",
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ]
+    },
+    {
+      "id": "t05",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "15.5"
+      ],
+      "raw_values": [
+        "15.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2693,
+      "completion_tokens": 92,
+      "seconds": 86.305,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "TRPO",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code TRPO = 15.5 (7 events on 6 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c1",
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t06",
+      "kind": "sum_code",
+      "status": "answered",
+      "values": [
+        "53.75"
+      ],
+      "raw_values": [
+        "53.75"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2745,
+      "completion_tokens": 79,
+      "seconds": 179.126,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "WOC",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code WOC = 53.75 (10 events on 6 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "f4f05215feea85339:t25:c1",
+        "f62efbee00767a3e7:t11:c0",
+        "ff5e766b8670b35da:t16:c1",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t31:c0",
+        "f62efbee00767a3e7:t13:c0",
+        "ff5e766b8670b35da:t20:c0",
+        "f4f05215feea85339:t45:c1",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c1",
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ]
+    },
+    {
+      "id": "t07",
+      "kind": "sum_range",
+      "status": "answered",
+      "values": [
+        "71"
+      ],
+      "raw_values": [
+        "71"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t41:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3079,
+      "completion_tokens": 114,
+      "seconds": 110.477,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-28",
+        "date_to": "2016-09-01",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code DRIL from 2016-08-28 to 2016-09-01 = 71 (12 events on 4 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0"
+      ]
+    },
+    {
+      "id": "t08",
+      "kind": "sum_range",
+      "status": "answered",
+      "values": [
+        "61.5"
+      ],
+      "raw_values": [
+        "61.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1326,
+      "completion_tokens": 149,
+      "seconds": 78.511,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "WOD",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-12",
+        "date_to": "2016-08-17",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code WOD from 2016-08-12 to 2016-08-17 = 61.5 (9 events on 5 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0",
+        "f4f05215feea85339:t2:c0",
+        "f62efbee00767a3e7:t2:c0",
+        "ff5e766b8670b35da:t2:c0",
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0",
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t8:c0",
+        "f62efbee00767a3e7:t48:c0",
+        "ff5e766b8670b35da:t5:c0"
+      ]
+    },
+    {
+      "id": "t09",
+      "kind": "sum_range",
+      "status": "answered",
+      "values": [
+        "14.5"
+      ],
+      "raw_values": [
+        "14.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 3,
+      "prompt_tokens": 2024,
+      "completion_tokens": 117,
+      "seconds": 78.33,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-20",
+        "date_to": "2016-08-20",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for code DRIL from 2016-08-20 to 2016-08-20 = 14.5 (4 events on 1 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0"
+      ]
+    },
+    {
+      "id": "t10",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "115"
+      ],
+      "raw_values": [
+        "115"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1401,
+      "completion_tokens": 98,
+      "seconds": 55.145,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "non_productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for non-productive = 115 (28 events on 10 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t82:c0",
+        "f62efbee00767a3e7:t47:c0",
+        "ff5e766b8670b35da:t59:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "f4f05215feea85339:t8:c0",
+        "f62efbee00767a3e7:t48:c0",
+        "ff5e766b8670b35da:t5:c0",
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "ff6b0f3f13c5707ee:t1:c1",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff6b0f3f13c5707ee:t1:c3",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t25:c1",
+        "ff5e766b8670b35da:t16:c1",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ]
+    },
+    {
+      "id": "t11",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "66"
+      ],
+      "raw_values": [
+        "66"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t16:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2943,
+      "completion_tokens": 90,
+      "seconds": 112.73,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "KICK",
+        "non_productive": true,
+        "npt_code": "KICK",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for non-productive code KICK = 66 (21 events on 4 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "ff6b0f3f13c5707ee:t1:c1",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff6b0f3f13c5707ee:t1:c3",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t25:c1",
+        "ff5e766b8670b35da:t16:c1"
+      ]
+    },
+    {
+      "id": "t12",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "18.5"
+      ],
+      "raw_values": [
+        "18.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1901,
+      "completion_tokens": 103,
+      "seconds": 68.517,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "WOE",
+        "non_productive": true,
+        "npt_code": "WOE",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for non-productive code WOE = 18.5 (4 events on 3 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t8:c0",
+        "f62efbee00767a3e7:t48:c0",
+        "ff5e766b8670b35da:t5:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "ff6b0f3f13c5707ee:t2:c0"
+      ]
+    },
+    {
+      "id": "t13",
+      "kind": "npt",
+      "status": "answered",
+      "values": [
+        "11"
+      ],
+      "raw_values": [
+        "11"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t25:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3120,
+      "completion_tokens": 113,
+      "seconds": 112.709,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "non_productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "2016-08-23",
+        "date_to": "2016-08-23",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for non-productive from 2016-08-23 to 2016-08-23 = 11 (9 events on 1 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f62efbee00767a3e7:t11:c0",
+        "ff6b0f3f13c5707ee:t1:c3",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t25:c1",
+        "ff5e766b8670b35da:t16:c1"
+      ]
+    },
+    {
+      "id": "t14",
+      "kind": "npt",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2596,
+      "completion_tokens": 17,
+      "seconds": 63.018,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "non_productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "2016-09-01",
+        "date_to": "2016-09-07",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "total hours for non-productive from 2016-09-01 to 2016-09-07 = 7 (2 events on 2 dates)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ]
+    },
+    {
+      "id": "t15",
+      "kind": "npt_days",
+      "status": "answered",
+      "values": [
+        "10"
+      ],
+      "raw_values": [
+        "10"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "ff6b0f3f13c5707ee:t1:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1391,
+      "completion_tokens": 85,
+      "seconds": 52.468,
+      "cached": false,
+      "plan": {
+        "operation": "count_days",
+        "well": "AK-3",
+        "code": "non-productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "number of dates for non-productive = 10",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t82:c0",
+        "f62efbee00767a3e7:t47:c0",
+        "ff5e766b8670b35da:t59:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "f4f05215feea85339:t8:c0",
+        "f62efbee00767a3e7:t48:c0",
+        "ff5e766b8670b35da:t5:c0",
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "ff6b0f3f13c5707ee:t1:c1",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2",
+        "f4f05215feea85339:t25:c0",
+        "ff5e766b8670b35da:t16:c0",
+        "f62efbee00767a3e7:t11:c0",
+        "ff6b0f3f13c5707ee:t1:c3",
+        "ff6b0f3f13c5707ee:t2:c0",
+        "f4f05215feea85339:t25:c1",
+        "ff5e766b8670b35da:t16:c1",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ]
+    },
+    {
+      "id": "t16",
+      "kind": "npt_days",
+      "status": "answered",
+      "values": [
+        "3"
+      ],
+      "raw_values": [
+        "3"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "ff6b0f3f13c5707ee:t1:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1441,
+      "completion_tokens": 96,
+      "seconds": 52.9,
+      "cached": false,
+      "plan": {
+        "operation": "count_days",
+        "well": "AK-3",
+        "code": "non_productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "date",
+        "min_hours_per_day": 24,
+        "depth_ft": 0
+      },
+      "graph_result": "number of dates for non-productive with at least 24 hours = 3",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t82:c0",
+        "f62efbee00767a3e7:t47:c0",
+        "ff5e766b8670b35da:t59:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t20:c0",
+        "f62efbee00767a3e7:t9:c0",
+        "ff5e766b8670b35da:t12:c0",
+        "ff6b0f3f13c5707ee:t1:c1",
+        "f4f05215feea85339:t22:c0",
+        "f62efbee00767a3e7:t10:c0",
+        "ff5e766b8670b35da:t14:c0",
+        "ff6b0f3f13c5707ee:t1:c2"
+      ]
+    },
+    {
+      "id": "t17",
+      "kind": "count",
+      "status": "answered",
+      "values": [
+        "2",
+        "1"
+      ],
+      "raw_values": [
+        "2",
+        "1",
+        "1"
+      ],
+      "units": [
+        "",
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t16:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t16:c0",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "f4f05215feea85339:t34:c0",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3233,
+      "completion_tokens": 351,
+      "seconds": 217.634,
+      "cached": false,
+      "plan": {
+        "operation": "count_events",
+        "well": "AK-3",
+        "code": "SURV",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "number of events for code SURV = 14",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0",
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0"
+      ]
+    },
+    {
+      "id": "t18",
+      "kind": "count",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2817,
+      "completion_tokens": 21,
+      "seconds": 65.637,
+      "cached": false,
+      "plan": {
+        "operation": "count_days",
+        "well": "AK-3",
+        "code": "CASE",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "number of dates for code CASE = 4",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0",
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0"
+      ]
+    },
+    {
+      "id": "t19",
+      "kind": "count",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2791,
+      "completion_tokens": 17,
+      "seconds": 63.853,
+      "cached": false,
+      "plan": {
+        "operation": "count_days",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "number of dates for code DRIL = 11",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0",
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t20",
+      "kind": "list_dates",
+      "status": "answered",
+      "values": [
+        "2016-08-19",
+        "2016-08-24",
+        "2016-08-29"
+      ],
+      "raw_values": [
+        "2016-08-19",
+        "2016-08-24",
+        "2016-08-29"
+      ],
+      "units": [
+        "",
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 3,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t13:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t13:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t13:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2848,
+      "completion_tokens": 336,
+      "seconds": 164.118,
+      "cached": false,
+      "plan": {
+        "operation": "list_dates",
+        "well": "AK-3",
+        "code": "CMTP",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "date",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "dates for code CMTP = 2016-08-19, 2016-08-24, 2016-08-29",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0",
+        "f4f05215feea85339:t28:c0",
+        "f62efbee00767a3e7:t12:c0",
+        "ff5e766b8670b35da:t18:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0"
+      ]
+    },
+    {
+      "id": "t21",
+      "kind": "list_dates",
+      "status": "invalid",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 3,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2757,
+      "completion_tokens": 400,
+      "seconds": 182.803,
+      "cached": false,
+      "plan": {
+        "operation": "list_dates",
+        "well": "AK-3",
+        "code": "LOG",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "dates for code LOG = 2016-09-05, 2016-09-06, 2016-09-07",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t73:c0",
+        "f62efbee00767a3e7:t44:c0",
+        "ff5e766b8670b35da:t53:c0",
+        "f4f05215feea85339:t76:c0",
+        "f62efbee00767a3e7:t45:c0",
+        "ff5e766b8670b35da:t55:c0",
+        "f4f05215feea85339:t79:c0",
+        "f62efbee00767a3e7:t46:c0",
+        "ff5e766b8670b35da:t57:c0"
+      ]
+    },
+    {
+      "id": "t22",
+      "kind": "list_dates",
+      "status": "answered",
+      "values": [
+        "2016-08-26",
+        "2016-08-30"
+      ],
+      "raw_values": [
+        "2016-08-26",
+        "2016-08-30"
+      ],
+      "units": [
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t34:c0",
+          "how": "model"
+        },
+        {
+          "chunk": "f4f05215feea85339:t34:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3076,
+      "completion_tokens": 298,
+      "seconds": 157.645,
+      "cached": false,
+      "plan": {
+        "operation": "list_dates",
+        "well": "AK-3",
+        "code": "BOPT",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "date",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "dates for code BOPT = 2016-08-26, 2016-08-30",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t34:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c0",
+        "f4f05215feea85339:t49:c0",
+        "f62efbee00767a3e7:t24:c0",
+        "ff5e766b8670b35da:t33:c0"
+      ]
+    },
+    {
+      "id": "t23",
+      "kind": "first_last",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 3,
+      "prompt_tokens": 1643,
+      "completion_tokens": 14,
+      "seconds": 33.573,
+      "cached": false,
+      "plan": {
+        "operation": "first_date",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "first date for code DRIL = 2016-08-18",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0"
+      ]
+    },
+    {
+      "id": "t24",
+      "kind": "first_last",
+      "status": "answered",
+      "values": [
+        "2016-09-04"
+      ],
+      "raw_values": [
+        "2016-09-04"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 3,
+      "prompt_tokens": 1838,
+      "completion_tokens": 101,
+      "seconds": 59.915,
+      "cached": false,
+      "plan": {
+        "operation": "last_date",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "last date for code DRIL = 2016-09-04",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t25",
+      "kind": "first_last",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 3,
+      "prompt_tokens": 1693,
+      "completion_tokens": 17,
+      "seconds": 34.21,
+      "cached": false,
+      "plan": {
+        "operation": "first_date",
+        "well": "AK-3",
+        "code": "CASE",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "first date for code CASE = 2016-08-19",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t13:c0",
+        "f62efbee00767a3e7:t7:c0",
+        "ff5e766b8670b35da:t7:c0"
+      ]
+    },
+    {
+      "id": "t26",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "1105"
+      ],
+      "raw_values": [
+        "1105"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t52:c0",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 3,
+      "prompt_tokens": 2027,
+      "completion_tokens": 106,
+      "seconds": 66.463,
+      "cached": false,
+      "plan": {
+        "operation": "depth_on_date",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-31",
+        "date_to": "2016-08-31",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "deepest end measured depth on 2016-08-31 = 1105 ft",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ]
+    },
+    {
+      "id": "t27",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "2016-08-31"
+      ],
+      "raw_values": [
+        "2016-08-31"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 3,
+      "prompt_tokens": 2032,
+      "completion_tokens": 117,
+      "seconds": 70.645,
+      "cached": false,
+      "plan": {
+        "operation": "first_date_depth_at_least",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 1000
+      },
+      "graph_result": "first date with an end measured depth of at least 1000 ft = 2016-08-31",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0"
+      ]
+    },
+    {
+      "id": "t28",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "2016-09-04"
+      ],
+      "raw_values": [
+        "2016-09-04"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 3,
+      "prompt_tokens": 1857,
+      "completion_tokens": 121,
+      "seconds": 64.82,
+      "cached": false,
+      "plan": {
+        "operation": "first_date_depth_at_least",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 1955
+      },
+      "graph_result": "first date with an end measured depth of at least 1955 ft = 2016-09-04",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t29",
+      "kind": "depth",
+      "status": "answered",
+      "values": [
+        "200"
+      ],
+      "raw_values": [
+        "200"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "f4f05215feea85339:t34:c0",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 3064,
+      "completion_tokens": 117,
+      "seconds": 98.226,
+      "cached": false,
+      "plan": {
+        "operation": "depth_gain",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-26",
+        "date_to": "2016-08-27",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "end measured depth rose by 200 ft from 2016-08-26 (265 ft) to 2016-08-27 (465 ft)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t34:c0",
+        "ff5e766b8670b35da:t22:c0",
+        "f62efbee00767a3e7:t14:c0",
+        "f4f05215feea85339:t34:c1",
+        "ff5e766b8670b35da:t22:c1",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0"
+      ]
+    },
+    {
+      "id": "t30",
+      "kind": "top",
+      "status": "answered",
+      "values": [
+        "168.5"
+      ],
+      "raw_values": [
+        "168.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2797,
+      "completion_tokens": 93,
+      "seconds": 83.036,
+      "cached": false,
+      "plan": {
+        "operation": "top_group",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "code",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "the code with the most hours for all events = DRIL (168.5 hours)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t9:c0",
+        "f62efbee00767a3e7:t5:c0",
+        "ff5e766b8670b35da:t6:c0",
+        "f4f05215feea85339:t16:c0",
+        "f62efbee00767a3e7:t8:c0",
+        "ff5e766b8670b35da:t9:c0",
+        "f4f05215feea85339:t34:c1",
+        "f62efbee00767a3e7:t14:c0",
+        "ff5e766b8670b35da:t22:c1",
+        "f4f05215feea85339:t37:c0",
+        "f62efbee00767a3e7:t15:c0",
+        "ff5e766b8670b35da:t25:c0",
+        "f4f05215feea85339:t41:c0",
+        "f62efbee00767a3e7:t18:c0",
+        "ff5e766b8670b35da:t28:c0",
+        "f4f05215feea85339:t45:c0",
+        "f62efbee00767a3e7:t21:c0",
+        "ff5e766b8670b35da:t31:c0",
+        "f4f05215feea85339:t52:c0",
+        "f62efbee00767a3e7:t27:c0",
+        "ff5e766b8670b35da:t36:c0",
+        "f4f05215feea85339:t56:c0",
+        "f62efbee00767a3e7:t29:c0",
+        "ff5e766b8670b35da:t39:c0",
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0",
+        "f4f05215feea85339:t65:c0",
+        "f62efbee00767a3e7:t36:c0",
+        "ff5e766b8670b35da:t46:c0",
+        "f4f05215feea85339:t69:c0",
+        "f62efbee00767a3e7:t40:c0",
+        "ff5e766b8670b35da:t49:c0"
+      ]
+    },
+    {
+      "id": "t31",
+      "kind": "top",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 3,
+      "prompt_tokens": 1092,
+      "completion_tokens": 15,
+      "seconds": 21.986,
+      "cached": false,
+      "plan": {
+        "operation": "top_group",
+        "well": "AK-3",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "date",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "the date with the most hours for code DRIL = 2016-09-02 (23.5 hours)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t60:c0",
+        "f62efbee00767a3e7:t33:c0",
+        "ff5e766b8670b35da:t42:c0"
+      ]
+    },
+    {
+      "id": "t32",
+      "kind": "top",
+      "status": "answered",
+      "values": [
+        "61.5"
+      ],
+      "raw_values": [
+        "61.5"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": null,
+          "how": "unsupported"
+        }
+      ],
+      "citations_supported": false,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1320,
+      "completion_tokens": 116,
+      "seconds": 50.168,
+      "cached": false,
+      "plan": {
+        "operation": "top_group",
+        "well": "AK-3",
+        "code": "",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "2016-08-12",
+        "date_to": "2016-08-17",
+        "group_by": "code",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "the code with the most hours for from 2016-08-12 to 2016-08-17 = WOD (61.5 hours)",
+      "graph_source_chunks": [
+        "f4f05215feea85339:t1:c0",
+        "f62efbee00767a3e7:t1:c0",
+        "ff5e766b8670b35da:t1:c0",
+        "f4f05215feea85339:t2:c0",
+        "f62efbee00767a3e7:t2:c0",
+        "ff5e766b8670b35da:t2:c0",
+        "f4f05215feea85339:t4:c0",
+        "f62efbee00767a3e7:t3:c0",
+        "ff5e766b8670b35da:t3:c0",
+        "f4f05215feea85339:t6:c0",
+        "f62efbee00767a3e7:t4:c0",
+        "ff5e766b8670b35da:t4:c0",
+        "ff6b0f3f13c5707ee:t1:c0",
+        "f4f05215feea85339:t8:c0",
+        "f62efbee00767a3e7:t48:c0",
+        "ff5e766b8670b35da:t5:c0"
+      ]
+    },
+    {
+      "id": "t33",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1657,
+      "completion_tokens": 24,
+      "seconds": 35.218,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "56-32",
+        "code": "DRIL",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "t34",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1164,
+      "completion_tokens": 21,
+      "seconds": 25.453,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "non_productive",
+        "non_productive": true,
+        "npt_code": "",
+        "date_from": "2017-01-01",
+        "date_to": "2017-12-31",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    },
+    {
+      "id": "t35",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2189,
+      "completion_tokens": 14,
+      "seconds": 45.393,
+      "cached": false,
+      "plan": {
+        "operation": "total_hours",
+        "well": "AK-3",
+        "code": "SIDETRACK",
+        "non_productive": false,
+        "npt_code": "",
+        "date_from": "",
+        "date_to": "",
+        "group_by": "",
+        "min_hours_per_day": 0,
+        "depth_ft": 0
+      },
+      "graph_result": "",
+      "graph_source_chunks": []
+    }
+  ]
+}

@@ -183,9 +183,11 @@
         "bench_qwen3-8b.cpu_full_hand_ak3_daily"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_ak3_daily",
-      "status": "started",
+      "status": "done",
       "started": "2026-11-25T03:30:33+00:00",
-      "error": null
+      "error": null,
+      "finished": "2026-11-25T03:56:45+00:00",
+      "wall_seconds": 1571.8
     },
     {
       "id": "hand/ak3_daily_heldout",
@@ -209,7 +211,11 @@
         "bench_qwen3-8b.cpu_full_hand_ak3_daily_heldout"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_ak3_daily_heldout",
-      "status": "pending"
+      "status": "done",
+      "started": "2026-11-25T03:56:45+00:00",
+      "error": null,
+      "finished": "2026-11-25T04:24:54+00:00",
+      "wall_seconds": 1688.8
     },
     {
       "id": "hand/ak3_events",
@@ -228,7 +234,12 @@
         "bench_qwen3-8b.cpu_full_hand_ak3_events"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_ak3_events",
-      "status": "pending"
+      "status": "done",
+      "started": "2026-11-25T04:24:54+00:00",
+      "error": null,
+      "finished": "2026-11-25T04:24:54+00:00",
+      "wall_seconds": 0.0,
+      "taken_from": "E33_cpu_hand_ak3_events: the same command, model file and server, run on this machine before the suite (24 and 25 November 2026)"
     },
     {
       "id": "hand/ak3_events_heldout",
@@ -247,7 +258,12 @@
         "bench_qwen3-8b.cpu_full_hand_ak3_events_heldout"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_ak3_events_heldout",
-      "status": "pending"
+      "status": "done",
+      "error": null,
+      "finished": "2026-11-25T04:24:54+00:00",
+      "wall_seconds": 0.0,
+      "taken_from": "E33_cpu_hand_ak3_events_heldout: the same command, model file and server, run on this machine before the suite (24 and 25 November 2026)",
+      "started": "2026-11-25T04:24:54+00:00"
     },
     {
       "id": "coordinator",
@@ -268,7 +284,9 @@
         "bench_qwen3-8b.cpu_full_coordinator"
       ],
       "run": "bench_qwen3-8b.cpu_full_coordinator",
-      "status": "pending"
+      "status": "started",
+      "started": "2026-11-25T04:27:47+00:00",
+      "error": null
     },
     {
       "id": "k1/prototype",
@@ -290,7 +308,12 @@
         "bench_qwen3-8b.cpu_full_k1_prototype"
       ],
       "run": "bench_qwen3-8b.cpu_full_k1_prototype",
-      "status": "pending"
+      "status": "done",
+      "error": null,
+      "finished": "2026-11-25T04:24:54+00:00",
+      "wall_seconds": 0.0,
+      "taken_from": "E32_cpu_k1_prototype: the same command, model file and server, run on this machine before the suite (24 and 25 November 2026)",
+      "started": "2026-11-25T04:24:54+00:00"
     },
     {
       "id": "reasoning",
@@ -305,21 +328,26 @@
         "bench_qwen3-8b.cpu_full_reasoning"
       ],
       "run": "bench_qwen3-8b.cpu_full_reasoning",
-      "status": "pending"
+      "status": "done",
+      "error": null,
+      "finished": "2026-11-25T04:24:54+00:00",
+      "wall_seconds": 0.0,
+      "taken_from": "E34_reasoning_probe_cpu: the same command, model file and server, run on this machine before the suite (24 and 25 November 2026)",
+      "started": "2026-11-25T04:24:54+00:00"
     }
   ],
-  "updated": "2026-11-25T03:30:33+00:00",
+  "updated": "2026-11-25T04:27:47+00:00",
   "totals": {
-    "calls": 107,
-    "cached_calls": 35,
-    "invalid_json": 1,
-    "prompt_tokens": 232770,
-    "completion_tokens": 13556,
-    "seconds": 6224.9,
+    "calls": 330,
+    "cached_calls": 55,
+    "invalid_json": 2,
+    "prompt_tokens": 621398,
+    "completion_tokens": 35524,
+    "seconds": 17476.0,
     "cost_usd": 0.0,
-    "cached_seconds": 2733.6,
+    "cached_seconds": 5700.3,
     "cached_cost_usd": 0.0,
-    "questions": 107,
+    "questions": 262,
     "providers": []
   }
 }
