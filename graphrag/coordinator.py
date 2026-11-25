@@ -422,10 +422,19 @@ def summarize_pool(rows: list[dict]) -> dict:
             "by_set": {name: part([r for r in rows if r["set"] == name]) for name in dict.fromkeys(r["set"] for r in rows)}}
 
 
+def _lanes_asked(name: str) -> set[str]:
+    """The lanes a set's questions expect, read without loading its gold: a built-in set needs the daily reports
+    on disk to load, and this is asked before knowing whether they are there."""
+    if name in QUESTION_SETS:
+        return {expected_lane(name)}
+    data = _question_file(name)[1]
+    return {q.get("expected_lane") or data.get("expected_lane", "reasoning") for q in data["questions"]}
+
+
 def check_engine(engine: Engine, sets: list[str]) -> None:
     """Stops a run that would answer daily-report questions without the daily reports: every such question would
     fall back to end-of-well passages and the scores would mean nothing."""
-    needing = [name for name in sets if {q["expected"] for q in pooled([name])[0]} & {"daily", "events", "reasoning"}]
+    needing = [name for name in sets if _lanes_asked(name) & {"daily", "events", "reasoning"}]
     if needing and not engine.has_daily:
         raise SystemExit(f"The daily-report corpus is not on this machine, and {', '.join(needing)} need it. "
                          f"Regenerate it (docs/tracks/B-graphrag/next-runs.md) or unzip a K1 package and use --k1.")
