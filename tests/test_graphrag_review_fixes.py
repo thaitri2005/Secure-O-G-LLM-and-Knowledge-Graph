@@ -243,6 +243,37 @@ class PlanCheckTests(unittest.TestCase):
         self.assertEqual((frame["kind"], coordinator.route(frame)), ("lookup", ["well_facts", "passages"]))
 
 
+class VectorCacheTests(unittest.TestCase):
+    def test_passage_vectors_are_embedded_once_and_read_back_from_disk(self):
+        import tempfile
+        from pathlib import Path
+        from types import SimpleNamespace
+        from graphrag.retrieval import Dense
+
+        class Embedder:
+            def __init__(self, folder):
+                self.model, self.cache_dir, self.calls = "stand-in", Path(folder), 0
+                self.endpoint = SimpleNamespace(base_url="http://x/v1", cache_tag="")
+                self.ledger = SimpleNamespace(prompt_tokens=0)
+
+            def embed(self, texts):
+                self.calls += 1
+                self.ledger.prompt_tokens += len(texts)
+                return [[float(len(t)), 1.0] for t in texts]
+
+        chunks = [Chunk("a", "d", 1, "text", None, "stuck pipe"), Chunk("b", "d", 1, "text", None, "weather delay at site")]
+        with tempfile.TemporaryDirectory() as folder:
+            first = Dense(chunks, Embedder(folder))
+            again_client = Embedder(folder)
+            again = Dense(chunks, again_client)
+            self.assertEqual(again_client.calls, 0)
+            self.assertTrue((first.matrix == again.matrix).all())
+            self.assertEqual(again.embedded_tokens, 2)
+            other = Embedder(folder)
+            Dense(chunks[:1], other)
+            self.assertEqual(other.calls, 1)
+
+
 class DateTests(unittest.TestCase):
     def test_dates_are_read_in_the_ways_people_write_them(self):
         for text in ("on 20 August 2016", "on August 20, 2016", "on 2016-08-20", "on 20th Aug 2016", "on 20 Aug. 2016"):

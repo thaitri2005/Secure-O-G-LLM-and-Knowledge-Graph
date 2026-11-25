@@ -1,10 +1,13 @@
 """Plain retrieval baselines (B-D03): BM25, dense embeddings, and their fusion; well routing (B-C11)."""
 from __future__ import annotations
 
+import hashlib
+import json
 import math
 import re
 import time
 from collections import Counter
+from pathlib import Path
 from typing import Protocol
 
 import numpy as np
@@ -96,9 +99,26 @@ class Dense:
         self.ids = [c.id for c in chunks]
         started = time.perf_counter()
         texts = [passage_text(c) for c in chunks]
+        # The passages' vectors are index-time work: kept on disk beside the chat cache, keyed by the address, the
+        # model and the texts, so a run that is resumed does not embed the same passages again (on a CPU that was
+        # a quarter of an hour at every restart, B-F82). What they cost when made is reported, as for cached calls.
+        folder = getattr(client, "cache_dir", None)
+        endpoint = getattr(client, "endpoint", None)
+        key = hashlib.sha256(json.dumps([getattr(endpoint, "base_url", ""), getattr(endpoint, "cache_tag", ""),
+                                         client.model, texts]).encode()).hexdigest()
+        kept = Path(folder) / f"vectors_{key}.npz" if folder else None
+        if kept is not None and kept.is_file():
+            with np.load(kept) as saved:
+                self.matrix = saved["matrix"]
+                self.index_seconds, self.embedded_tokens = float(saved["seconds"]), int(saved["tokens"])
+            return
+        before = client.ledger.prompt_tokens
         self.matrix = np.vstack([self._embed(texts[i:i + batch]) for i in range(0, len(texts), batch)])
         self.index_seconds = time.perf_counter() - started
         self.embedded_tokens = client.ledger.prompt_tokens
+        if kept is not None:
+            kept.parent.mkdir(parents=True, exist_ok=True)
+            np.savez(kept, matrix=self.matrix, seconds=self.index_seconds, tokens=self.embedded_tokens - before)
 
     def _embed(self, texts: list[str]) -> np.ndarray:
         vectors = np.array(self.client.embed(texts), dtype=np.float32)
