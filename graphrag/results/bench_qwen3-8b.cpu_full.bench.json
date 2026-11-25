@@ -81,9 +81,11 @@
         "bench_qwen3-8b.cpu_full_hand_prototype"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_prototype",
-      "status": "started",
+      "status": "done",
       "started": "2026-11-24T23:57:57+00:00",
-      "error": null
+      "error": null,
+      "finished": "2026-11-25T00:25:57+00:00",
+      "wall_seconds": 1679.1
     },
     {
       "id": "hand/simulated",
@@ -116,7 +118,9 @@
         "bench_qwen3-8b.cpu_full_hand_simulated"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_simulated",
-      "status": "pending"
+      "status": "started",
+      "started": "2026-11-25T00:46:07+00:00",
+      "error": null
     },
     {
       "id": "hand/heldout",
@@ -296,18 +300,18 @@
       "status": "pending"
     }
   ],
-  "updated": "2026-11-24T23:57:57+00:00",
+  "updated": "2026-11-25T00:46:07+00:00",
   "totals": {
-    "calls": 0,
-    "cached_calls": 0,
+    "calls": 31,
+    "cached_calls": 2,
     "invalid_json": 0,
-    "prompt_tokens": 0,
-    "completion_tokens": 0,
-    "seconds": 0,
-    "cost_usd": 0,
-    "cached_seconds": 0,
-    "cached_cost_usd": 0,
-    "questions": 0,
+    "prompt_tokens": 52031,
+    "completion_tokens": 2549,
+    "seconds": 1376.8,
+    "cost_usd": 0.0,
+    "cached_seconds": 78.1,
+    "cached_cost_usd": 0.0,
+    "questions": 31,
     "providers": []
   }
 }
