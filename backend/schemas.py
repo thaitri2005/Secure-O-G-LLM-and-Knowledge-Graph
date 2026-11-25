@@ -315,6 +315,8 @@ class CollectedQuestion(BaseModel):
     question: str
     gold: list[str] = Field(description="Empty: gold answers are not written yet")
     asked_at: str | None
+    system_answer: str | None = Field(None, description="The answer the application gave, as text")
+    system_values: list[str] = Field(default_factory=list, description="The values of that answer")
     feedback: list[FeedbackRecord] = Field(description="The marks and comments the users left")
 
 

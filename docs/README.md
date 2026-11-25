@@ -44,6 +44,7 @@ Each kind of fact has one home. Other documents link to it and do not copy it.
 | [components/](components/) | Guides to each implemented part of reading reports and importing data, and the [dependencies](components/dependencies.md) with their licences |
 | [tracks/](tracks/README.md) | Each track's log, its notes to the other tracks, and working plans |
 | [experiments/](experiments/README.md) | Experiment records and the register |
+| [EXPERT_PILOT.md](EXPERT_PILOT.md) | How a person's answers become a test the engine runs: marks in the application, a sheet, one command |
 | [reports/](reports/README.md) | [Stint reports](reports/stints/README.md), the [project report of 9 November](reports/PROJECT_REPORT_2026-11-09.md), slides, the resource plan |
 | [DATA_SOURCES.md](DATA_SOURCES.md) | The public data: BSEE well files, end-of-well and daily drilling reports |
 | [references.md](references.md) | Papers, GraphRAG repositories and model candidates |

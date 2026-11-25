@@ -55,7 +55,7 @@ All three read `BACKEND_DSN`, or take `--dsn`; `stats` also takes `--file <quest
 | `GET /v1/admin/questions` | The question log, newest first, each question with its feedback. Filters: `kind`, `status`, `mode`, `verdict` (`right`, `wrong`, `none`; the latest mark), `date_from`, `date_to`, `q` (text in the question), `ids`; paged by `limit` (at most 200) and `offset` |
 | `GET /v1/admin/questions/{id}` | One logged question with its whole stored record |
 | `GET /v1/admin/questions/counts` | Logged questions counted by kind, status and verdict; same filters |
-| `GET /v1/admin/questions/export` | The questions the filters or `ids` select, as a question file in the format of [`graphrag/gold/`](../graphrag/gold/): status line "COLLECTED from the application's question log on <date> ...", gold left empty, each question's log ID and asked time kept, oldest first. `expected_lane` is written only when given. `python -m graphrag.coordinator answer --questions <file>` runs it |
+| `GET /v1/admin/questions/export` | The questions the filters or `ids` select, as a question file in the format of [`graphrag/gold/`](../graphrag/gold/): status line "COLLECTED from the application's question log on <date> ...", gold left empty, each question's log ID, asked time, the answer given and the marks kept, oldest first. `expected_lane` is written only when given. `python -m graphrag.coordinator answer --questions <file>` runs it, and `python -m graphrag.expert sheet <file>` makes it a sheet for a person to fill in ([guide](../docs/EXPERT_PILOT.md)) |
 
 The cause answer's evidence carries each event's fields as `activity` beside the text line the model saw, so the frontend need not parse the line.
 

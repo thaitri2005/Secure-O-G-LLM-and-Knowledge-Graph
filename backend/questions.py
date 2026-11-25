@@ -183,6 +183,10 @@ def question_set(entries: list[dict], today: str, filters: Filters, expected_lan
                                            "questions, so its routing score means nothing for this file."])],
            "questions": [{"id": e["id"], "kind": (e.get("frame") or {}).get("kind") or "unknown",
                           "question": e["question"], "gold": [], "asked_at": e.get("asked_at"),
+                          # What the application answered, so a person marking or correcting it sees it in the sheet
+                          # (`python -m graphrag.expert sheet`).
+                          "system_answer": e.get("answer_text"),
+                          "system_values": [str(a["value"]) for a in e.get("answers") or []],
                           "feedback": e.get("feedback", [])} for e in reversed(entries)],
            "facts": []}
 

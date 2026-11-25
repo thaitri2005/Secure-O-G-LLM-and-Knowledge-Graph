@@ -26,6 +26,7 @@ This file briefs any Claude session on any machine. The repository is the projec
 | Every measured result | [Experiment register](docs/experiments/README.md) |
 | How the engine's modules fit, and how to run it | [graphrag/README.md](graphrag/README.md) |
 | Running the application, the stores, a server | [backend](backend/README.md), [frontend](frontend/README.md), [platform](platform/README.md), [deploy](deploy/README.md) |
+| Turning an expert's answers into a test | [docs/EXPERT_PILOT.md](docs/EXPERT_PILOT.md) |
 | Every index | [docs/README.md](docs/README.md) |
 
 Each kind of fact has one home (the table in docs/README.md). Link to it; do not copy it.

@@ -578,6 +578,10 @@ class BackendTests(unittest.TestCase):
                          [("q1", "2026-11-20T08:00:00+00:00", [], "lookup"), ("q4", "2026-11-22T23:30:00+00:00", [], "lookup"),
                           ("q5", "2026-11-23T07:00:00+00:00", [], "lookup")])
         self.assertEqual(body["questions"][1]["feedback"][0]["verdict"], "wrong")
+        # What was answered travels with the question, and the file becomes a sheet a person can fill in.
+        from graphrag import expert
+        self.assertTrue(all({"system_answer", "system_values"} <= set(q) for q in body["questions"]))
+        self.assertEqual([r["id"] for r in expert.rows_of(body)], ["q1", "q4", "q5"])
         chosen = client.get("/v1/admin/questions/export", params=[("ids", "q2"), ("ids", "q3"), ("expected_lane", "daily")]).json()
         self.assertEqual(([q["id"] for q in chosen["questions"]], chosen["expected_lane"]), (["q2", "q3"], "daily"))
         self.assertEqual(client.get("/v1/admin/questions/export", params={"expected_lane": "poetry"}).status_code, 422)

@@ -1624,6 +1624,26 @@
             ],
             "title": "Asked At"
           },
+          "system_answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "System Answer",
+            "description": "The answer the application gave, as text"
+          },
+          "system_values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "System Values",
+            "description": "The values of that answer"
+          },
           "feedback": {
             "items": {
               "$ref": "#/components/schemas/FeedbackRecord"

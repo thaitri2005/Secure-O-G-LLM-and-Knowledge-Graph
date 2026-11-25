@@ -55,6 +55,7 @@ flowchart TD
 | `events.py` | The event graph for questions over time on daily reports (E28, B-D26): built with no model call; the model plans, code runs the plan. `plan_value` gives a result as values and a unit |
 | `lanes.py` | The four lanes behind one shape (specification §8.1): `passages`, `well_facts`, `events`, `reasoning`, each `(question, frame, engine) -> Evidence`. `Engine` holds what they read |
 | `coordinator.py` | One framing call, then lanes chosen in code, a fixed fallback and the exact-answer mode (D-64). Reports a computed result in code. Pooled runs over several question sets or question files |
+| `expert.py` | From a person's answers to a runnable question file, with no model call: a sheet to fill in, the build of the file, a check ([guide](../docs/EXPERT_PILOT.md)). Also turns the plain `answer` field of a hand-written question file into gold |
 | `reasoning.py` | The reasoning lane for questions about causes (specification §8.6): finds the problem in the event graph, gathers what surrounds it in code, asks for stated and possible causes under a JSON schema, drops causes without a supported citation, lists what is missing; scores the reasoning probe |
 | `factgraph.py` | The per-well fact graph as nodes and relationships for Track C's Neo4j loader (specification §8.5) |
 | `oracle.py` | Answers with retrieval bypassed, to separate parsing, retrieval and model failures (E24). A diagnostic: it reads the gold data |
@@ -115,7 +116,7 @@ The framing call gives the kind `cause` and a `problem`: date, depth, non-produc
 
 **Budget.** At most about 13,200 characters of evidence (3,300 tokens). Measured in E34: a question the lane answers costs two calls, about 4,800 prompt tokens with the framing call, and about 660 completion tokens: three times the prompt of an end-of-well lookup, inside the 8k slot. On AK-3's six incidents the answer prompt is 1,400 to 2,900 tokens.
 
-**Question file.** `--questions` takes set names or paths of question files. A file's set name is its file name without `.json`; its expected lane is `expected_lane`, by default `reasoning`. A reasoning question carries its own gold:
+**Question file.** `--questions` takes set names or paths of question files. A file's set name is its file name without `.json`; its expected lane is `expected_lane`, by default `reasoning`, and a question may name its own. A question may give its gold as a plain `answer` ("1955 ft", "not stated"), which is how a person's answers come in ([guide](../docs/EXPERT_PILOT.md)). A reasoning question carries its own gold:
 
 ```json
 {"status": "SIMULATED: ...", "version": "0.1",

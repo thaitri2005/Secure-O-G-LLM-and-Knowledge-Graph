@@ -20,6 +20,7 @@ from . import reasoning
 from .baseline import MULTI_WELL_TOKENS, RESULTS, answer_one, fact_sheet
 from .client import client_for, load_roles
 from .data import QUESTION_SETS, ROOT, load_questions
+from .expert import expand
 from .events import PLAN_SCHEMA, PLAN_SYSTEM, code_list
 from .lanes import LANES, SHEET_LINES, Engine, Evidence, shown_facts
 from .reasoning import EMPTY_PROBLEM
@@ -355,7 +356,8 @@ def _question_file(name: str) -> tuple[Path, dict]:
 
 
 def expected_lane(name: str) -> str:
-    """A set's expected lane; a question file's is its `expected_lane`, by default `reasoning`."""
+    """A set's expected lane; a question file's is its `expected_lane`, by default `reasoning`. A question of a
+    file may name its own."""
     return EXPECTED[name] if name in QUESTION_SETS else _question_file(name)[1].get("expected_lane", "reasoning")
 
 
@@ -365,6 +367,7 @@ def load_set(name: str) -> tuple[str, list[dict], dict[str, dict]]:
     if name in QUESTION_SETS:
         return (name, *load_questions(name))
     path, data = _question_file(name)
+    data = expand(data)  # plain `answer` fields become gold facts (graphrag.expert)
     return path.stem, data["questions"], {f["id"]: dict(f, chunks=f.get("chunks", [])) for f in data.get("facts", [])}
 
 
@@ -375,7 +378,7 @@ def pooled(sets: list[str]) -> tuple[list[dict], dict[str, dict]]:
         short, set_questions, set_gold = load_set(name)
         gold.update({f"{short}:{key}": fact for key, fact in set_gold.items()})
         questions += [dict(q, id=f"{short}:{q['id']}", gold=[f"{short}:{g}" for g in q["gold"]], set=short,
-                           expected=expected_lane(name)) for q in set_questions]
+                           expected=q.get("expected_lane") or expected_lane(name)) for q in set_questions]
     return questions, gold
 
 
@@ -412,7 +415,7 @@ def summarize_pool(rows: list[dict]) -> dict:
 def check_engine(engine: Engine, sets: list[str]) -> None:
     """Stops a run that would answer daily-report questions without the daily reports: every such question would
     fall back to end-of-well passages and the scores would mean nothing."""
-    needing = [name for name in sets if expected_lane(name) in ("daily", "events", "reasoning")]
+    needing = [name for name in sets if {q["expected"] for q in pooled([name])[0]} & {"daily", "events", "reasoning"}]
     if needing and not engine.has_daily:
         raise SystemExit(f"The daily-report corpus is not on this machine, and {', '.join(needing)} need it. "
                          f"Regenerate it (docs/tracks/B-graphrag/next-runs.md) or unzip a K1 package and use --k1.")

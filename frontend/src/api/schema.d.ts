@@ -504,6 +504,16 @@ export interface components {
             /** Asked At */
             asked_at: string | null;
             /**
+             * System Answer
+             * @description The answer the application gave, as text
+             */
+            system_answer?: string | null;
+            /**
+             * System Values
+             * @description The values of that answer
+             */
+            system_values?: string[];
+            /**
              * Feedback
              * @description The marks and comments the users left
              */

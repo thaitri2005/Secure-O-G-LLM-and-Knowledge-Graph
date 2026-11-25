@@ -23,6 +23,8 @@
       "question": "What total depth did well AK-3 reach?",
       "gold": [],
       "asked_at": "2026-11-20T08:15:00+00:00",
+      "system_answer": "1955 ft",
+      "system_values": [],
       "feedback": [
         {
           "verdict": "right",
@@ -37,6 +39,8 @@
       "question": "What mud weight was used on well ZZ-9?",
       "gold": [],
       "asked_at": "2026-11-23T16:45:00+00:00",
+      "system_answer": null,
+      "system_values": [],
       "feedback": []
     }
   ],
