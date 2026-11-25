@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from .citations import checked_unit, resolve
-from .client import ModelClient, load_endpoints
+from .client import CACHE as VECTORS, ModelClient, load_endpoints
 from .data import (AK3, QUESTION_SETS, ROOT, Chunk, appendix_chunks_path, cited_id, k1_chunks_path, load_chunks,
                    load_daily_chunks, load_questions, prototype_slice, short_id)
 from .retrieval import BM25, DateRouter, Dense, Fusion, PgVector, WellRouter, well_names
@@ -98,7 +98,8 @@ def build(spec: str, chunks, store: str | None = None) -> Any:
         return BM25(chunks)
     if spec.startswith("dense:"):
         # dense:<model> is served by the local-embed endpoint (llama-server --embedding).
-        return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None))
+        return Dense(chunks, ModelClient(load_endpoints()["local-embed"], spec.removeprefix("dense:"), cache_dir=None),
+                     vectors=VECTORS)
     if spec.startswith("pgvector:"):
         # pgvector:<model> is dense:<model> with the passage vectors and the search in PostgreSQL (chunk_vectors,
         # C-C10). The chunks must be a release's (K1 version 1 IDs); the store is `store`, or else BACKEND_DSN.

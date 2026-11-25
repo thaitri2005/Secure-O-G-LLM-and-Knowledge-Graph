@@ -93,7 +93,7 @@ class Dense:
     sets its own pooling (llama-server --pooling last for Qwen3-Embedding, cls for BGE models).
     """
 
-    def __init__(self, chunks: list[Chunk], client, batch: int = 16):
+    def __init__(self, chunks: list[Chunk], client, batch: int = 16, vectors: Path | None = None):
         self.client, self.name = client, f"dense:{client.model}"
         self.qwen = "qwen3-embedding" in client.model.lower()
         self.ids = [c.id for c in chunks]
@@ -102,7 +102,7 @@ class Dense:
         # The passages' vectors are index-time work: kept on disk beside the chat cache, keyed by the address, the
         # model and the texts, so a run that is resumed does not embed the same passages again (on a CPU that was
         # a quarter of an hour at every restart, B-F82). What they cost when made is reported, as for cached calls.
-        folder = getattr(client, "cache_dir", None)
+        folder = vectors or getattr(client, "cache_dir", None)  # the embedding client itself keeps no chat cache
         endpoint = getattr(client, "endpoint", None)
         key = hashlib.sha256(json.dumps([getattr(endpoint, "base_url", ""), getattr(endpoint, "cache_tag", ""),
                                          client.model, texts]).encode()).hexdigest()
