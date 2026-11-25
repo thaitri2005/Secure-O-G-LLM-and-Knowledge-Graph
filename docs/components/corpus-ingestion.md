@@ -180,9 +180,11 @@ A count that could not be determined is `null` (and counted under `..._unknown_d
 | Page, table, section parent, form parent | `<file_id>:p<n>`, `:t<n>`, `:s<n>`, `:f<n>` | `f673c77409ffeafb7:t3` |
 | Chunk | `<parent id>:c<n>` | `f673c77409ffeafb7:s5:c0` |
 
-K1 ids contain no `#`. Tables are one logical table per corpus table (`parts` has one element); joining tables across pages is not done yet. Table chunks keep the `row_start` and `row_end` the corpus wrote.
+K1 ids contain no `#`. Tables are one logical table per corpus table (`parts` has one element); joining tables across pages is the option `table_join` (see below); a joined table is one record with several `parts`. Table chunks keep the `row_start` and `row_end` the corpus wrote.
 
 **`doc_id` policy.** The end-of-well report keeps its registry id (`add --doc-id gdr882_ak3_eowr`). The daily-report attachments keep the catalog default, a slug of the file name plus 8 hex digits of the SHA256. These ids are hyphenated and keep `dailyreport` and `-appx-NN-`, which Track B uses to find the daily reports and their appendix number.
+
+**Which profile is the default.** After the option measurements of 25 November ([E62](../experiments/E62-track-a-option-measurements.md), Track A log A-D07), `configs/corpus/k1.json` keeps grid recovery, the Operations Summary and ruled-panel rules, `table_join` as shipped and `section_context` on, and has the other settings that main turned on on 24 November off. The paragraphs below that say "default" or "standard" K1 profile describe the profile of 24 November, kept as `configs/corpus/candidates/k1_standard_24nov.json`; pass it with `--k1-config` to use it.
 
 **Rule selection.** The default K1 profile uses `evidence_routing`. Each enabled table reader checks the page for its own title, headings, and structure. The report type comes from a recognized PDF header and defaults to `other` when the evidence is absent or conflicting. An unclassified document can still receive a table repair. Set `evidence_routing` to `false` in a copy of the profile to replay the previous filename-based selection.
 
