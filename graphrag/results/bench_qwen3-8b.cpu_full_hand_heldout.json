@@ -1,0 +1,1334 @@
+{
+  "pool": "three",
+  "pool_description": "the three EOWRs in the bundle (AK-3 plus two distractor reports)",
+  "retriever": "wells:bm25",
+  "k": 5,
+  "endpoint": "qwen3-8b.cpu",
+  "model": "qwen3-8b",
+  "withhold_unsupported": false,
+  "multi_well_retriever": "perwell:fusion:bm25+dense:qwen3-embedding-0.6b",
+  "multi_well_k": 10,
+  "multi_well_format": "evidence_first",
+  "strict_facts": true,
+  "facts": null,
+  "fact_sheet": [
+    "E20_graph_three_qwen3-4b",
+    "E27_tables_three"
+  ],
+  "validated": true,
+  "sheet_properties": 3,
+  "facts_rejected": {
+    "zero value": 135,
+    "value not in its chunk": 161,
+    "no single well name": 128,
+    "well not named in its document": 28,
+    "context not in its chunk": 11,
+    "context is not a casing size": 14,
+    "value repeats its casing size": 3,
+    "contradicted, outvoted": 95,
+    "contradicted, tie": 26
+  },
+  "question_set": "heldout",
+  "answer_format": "status_first",
+  "questions": 36,
+  "withheld": [],
+  "correct_total": "23/36",
+  "correct_by_kind": {
+    "lookup": "16/18",
+    "multi_list": "3/8",
+    "multi_compare": "0/5",
+    "not_stated": "2/3",
+    "unsupported": "1/1",
+    "injection": "1/1"
+  },
+  "answers_without_wrong_values": "20/26",
+  "citations_in_retrieved": "15/26",
+  "quotes_verbatim": "13/26",
+  "citations_supported_after_check": "26/26",
+  "citation_sources": {
+    "by_value": 10,
+    "by_quote": 8,
+    "model": 16
+  },
+  "verified_on_gold_chunk": "17/25",
+  "retrieved_gold": "25/31",
+  "cost": {
+    "calls": 36,
+    "cached_calls": 0,
+    "invalid_json": 0,
+    "prompt_tokens": 102452,
+    "completion_tokens": 6349,
+    "seconds": 4608.9,
+    "cost_usd": 0.0,
+    "cached_seconds": 0.0,
+    "cached_cost_usd": 0.0,
+    "models": [
+      "qwen3-8b.cpu:qwen3-8b"
+    ],
+    "providers": []
+  },
+  "per_question": {
+    "prompt_tokens_median": 2344.0,
+    "completion_tokens_median": 149.5,
+    "seconds_median": 94.49799999999999
+  },
+  "rows": [
+    {
+      "id": "h01",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "50-295-20005-00-00"
+      ],
+      "raw_values": [
+        "50-295-20005-00-00"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0008",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1716,
+      "completion_tokens": 131,
+      "seconds": 70.277,
+      "cached": false
+    },
+    {
+      "id": "h02",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "215-080"
+      ],
+      "raw_values": [
+        "215-080"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0008",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1651,
+      "completion_tokens": 185,
+      "seconds": 80.805,
+      "cached": false
+    },
+    {
+      "id": "h03",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "41"
+      ],
+      "raw_values": [
+        "41"
+      ],
+      "units": [
+        "feet"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1833,
+      "completion_tokens": 76,
+      "seconds": 57.084,
+      "cached": false
+    },
+    {
+      "id": "h04",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "62"
+      ],
+      "raw_values": [
+        "62"
+      ],
+      "units": [
+        "sacks"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0026",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 2017,
+      "completion_tokens": 148,
+      "seconds": 81.121,
+      "cached": false
+    },
+    {
+      "id": "h05",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "28"
+      ],
+      "raw_values": [
+        "28"
+      ],
+      "units": [
+        "sacks"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0028",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1749,
+      "completion_tokens": 151,
+      "seconds": 69.933,
+      "cached": false
+    },
+    {
+      "id": "h06",
+      "kind": "lookup",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1630,
+      "completion_tokens": 14,
+      "seconds": 36.876,
+      "cached": false
+    },
+    {
+      "id": "h07",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "3"
+      ],
+      "raw_values": [
+        "3"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0034",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1537,
+      "completion_tokens": 99,
+      "seconds": 54.207,
+      "cached": false
+    },
+    {
+      "id": "h08",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "10"
+      ],
+      "raw_values": [
+        "10"
+      ],
+      "units": [
+        "sack"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0026",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1994,
+      "completion_tokens": 91,
+      "seconds": 65.84,
+      "cached": false
+    },
+    {
+      "id": "h09",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "38"
+      ],
+      "raw_values": [
+        "38"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0026",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1027,
+      "completion_tokens": 87,
+      "seconds": 38.518,
+      "cached": false
+    },
+    {
+      "id": "h10",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "381"
+      ],
+      "raw_values": [
+        "381"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0035",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 5,
+      "prompt_tokens": 1544,
+      "completion_tokens": 103,
+      "seconds": 57.725,
+      "cached": false
+    },
+    {
+      "id": "h11",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "13"
+      ],
+      "raw_values": [
+        "13"
+      ],
+      "units": [
+        "days"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0039",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1399,
+      "completion_tokens": 85,
+      "seconds": 47.409,
+      "cached": false
+    },
+    {
+      "id": "h12",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "2 March"
+      ],
+      "raw_values": [
+        "2 March"
+      ],
+      "units": [
+        "date"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0129",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1716,
+      "completion_tokens": 68,
+      "seconds": 53.415,
+      "cached": false
+    },
+    {
+      "id": "h13",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "24"
+      ],
+      "raw_values": [
+        "24"
+      ],
+      "units": [
+        "inches"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0015",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1501,
+      "completion_tokens": 157,
+      "seconds": 67.694,
+      "cached": false
+    },
+    {
+      "id": "h14",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "6.5"
+      ],
+      "raw_values": [
+        "6.5"
+      ],
+      "units": [
+        "cubic yards"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0015",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1526,
+      "completion_tokens": 76,
+      "seconds": 48.921,
+      "cached": false
+    },
+    {
+      "id": "h15",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "2019-03-05"
+      ],
+      "raw_values": [
+        "5 March 2019"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0015",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1336,
+      "completion_tokens": 97,
+      "seconds": 46.587,
+      "cached": false
+    },
+    {
+      "id": "h16",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "Propetro"
+      ],
+      "raw_values": [
+        "Propetro"
+      ],
+      "units": [
+        ""
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0017",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1420,
+      "completion_tokens": 73,
+      "seconds": 45.127,
+      "cached": false
+    },
+    {
+      "id": "h17",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "81.6"
+      ],
+      "raw_values": [
+        "81.6"
+      ],
+      "units": [
+        "bbls"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0017",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3738,
+      "completion_tokens": 120,
+      "seconds": 131.21,
+      "cached": false
+    },
+    {
+      "id": "h18",
+      "kind": "lookup",
+      "status": "answered",
+      "values": [
+        "30"
+      ],
+      "raw_values": [
+        "30"
+      ],
+      "units": [
+        "ft"
+      ],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0017",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 2516,
+      "completion_tokens": 72,
+      "seconds": 76.329,
+      "cached": false
+    },
+    {
+      "id": "h19",
+      "kind": "multi_list",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0005] states that drilling of AK-3 was coordinated by the City of Akutan and all drilling- and testing-related consulting services were provided by Geothermal Resource Group, Inc. (GRG). Passage [gdr1153_68-32_eowr#c0072] mentions the well ID as #10031 and the rig was involved in operations for well 68-32. However, the specific name of the rig used for well 68-32 is not explicitly stated in the provided passages.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 2,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4821,
+      "completion_tokens": 430,
+      "seconds": 293.549,
+      "cached": false
+    },
+    {
+      "id": "h20",
+      "kind": "multi_list",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0023] states that the drilling contractor for well 56-32 was Frontier. Passage [gdr882_ak3_eowr#c0005] indicates that drilling of AK-3 was coordinated by the City of Akutan, and all drilling- and testing-related consulting services were provided by Geothermal Resource Group, Inc. (GRG). However, it does not explicitly state the drilling contractor for AK-3.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 2,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2669,
+      "completion_tokens": 190,
+      "seconds": 111.973,
+      "cached": false
+    },
+    {
+      "id": "h21",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "2016-08-18",
+        "2021-02-08"
+      ],
+      "raw_values": [
+        "2016-08-18",
+        "2021-02-08"
+      ],
+      "units": [
+        "date",
+        "date"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0010] states that 'Well AK-3 was spud on 18 August 2016' and passage [gdr1295_56-32_eowr#c0035] states that 'Drilling commenced on 8 February 2021'.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr1295_56-32_eowr#c0035",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2930,
+      "completion_tokens": 264,
+      "seconds": 147.458,
+      "cached": false
+    },
+    {
+      "id": "h22",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "15.5",
+        "15.8"
+      ],
+      "raw_values": [
+        "15.5",
+        "15.8"
+      ],
+      "units": [
+        "lb/ft",
+        "ppg"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage for AK-3 (gdr882_ak3_eowr#c0013) states that the 5-1/2 inch casing was cemented with 15.5 ppg Portland cement. The passage for 68-32 (gdr1153_68-32_eowr#c0076) states that the primary cement job used 15.8 ppg Portland cement.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 2,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0026",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 6915,
+      "completion_tokens": 313,
+      "seconds": 366.656,
+      "cached": false
+    },
+    {
+      "id": "h23",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "128",
+        "978"
+      ],
+      "raw_values": [
+        "128",
+        "978"
+      ],
+      "units": [
+        "ft",
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0026] states that a 20 in. conductor casing was to be set at 128 ft. for well 56-32. Passage [gdr1153_68-32_eowr#c0088] describes setting 5-1/2\" casing to 978' for well 68-32.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0026",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 5105,
+      "completion_tokens": 274,
+      "seconds": 248.29,
+      "cached": false
+    },
+    {
+      "id": "h24",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "30.40",
+        "5.70"
+      ],
+      "raw_values": [
+        "30.40",
+        "5.70"
+      ],
+      "units": [
+        "ft",
+        "ft"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0025] (page 15) states that the Rotary Table Height is 30.40 ft. from ground level for well 56-32. Passage [gdr1153_68-32_eowr#c0009] (page 6) states that all depth measurements are referred to the rotary Kelly bushing (RKB), which is 5.70 ft above ground level, unless otherwise stated for well 68-32.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 2,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr1295_56-32_eowr#c0007",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0009",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": true,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 5095,
+      "completion_tokens": 308,
+      "seconds": 262.523,
+      "cached": false
+    },
+    {
+      "id": "h25",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "1955",
+        "1000"
+      ],
+      "raw_values": [
+        "1955",
+        "1000"
+      ],
+      "units": [
+        "feet",
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0002] states that AK-3 was drilled to a vertical depth of 1,955 feet. Passage [gdr1153_68-32_eowr#c0005] states that 68-32 total_depth = 1000.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0002",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0072",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": true,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 4161,
+      "completion_tokens": 239,
+      "seconds": 190.164,
+      "cached": false
+    },
+    {
+      "id": "h26",
+      "kind": "multi_list",
+      "status": "answered",
+      "values": [
+        "2016-09-05"
+      ],
+      "raw_values": [
+        "2016-09-05",
+        "2016-09-05"
+      ],
+      "units": [
+        "",
+        ""
+      ],
+      "withheld_values": [],
+      "evidence": "The passage [gdr882_ak3_eowr#c0010] states that the rig was released from well AK-3 on 5 September 2016. The passage [gdr1295_56-32_eowr#c0038] states that well 56-32 was drilled to a total depth of 9,145 ft. and that the rig was released from well 56-32 on 5 September 2016.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 2,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0031",
+          "how": "by_quote"
+        },
+        {
+          "chunk": "gdr882_ak3_eowr#c0031",
+          "how": "by_quote"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 2675,
+      "completion_tokens": 282,
+      "seconds": 146.11,
+      "cached": false
+    },
+    {
+      "id": "h27",
+      "kind": "multi_compare",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0016] states that Well 56-32 is the 5th well drilled in the Milford area Utah Frontier Observatory for Research in Geothermal Energy (FORGE) Enhanced Geothermal System (EGS) site (Utah FORGE). Passage [gdr1153_68-32_eowr#c0046] states that the spud date for 68-32 was 09-Mar-19. Passage [gdr1295_56-32_eowr#c0006] states that the drilling of 56-32 was completed deeper than planned, ahead of schedule and under budget, implying it was drilled before 68-32.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3391,
+      "completion_tokens": 411,
+      "seconds": 226.546,
+      "cached": false
+    },
+    {
+      "id": "h28",
+      "kind": "multi_compare",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr1295_56-32_eowr#c0026] states that Well 56-32 was planned to have a 20 in. conductor casing set at 128 ft. Passage [gdr1153_68-32_eowr#c0088] describes the drilling of Well 68-32, but does not mention the depth of the conductor casing. Therefore, the depth of the conductor casing for Well 68-32 is not stated in the provided passages.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": false,
+      "gold_facts_retrieved": 0,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3446,
+      "completion_tokens": 229,
+      "seconds": 162.871,
+      "cached": false
+    },
+    {
+      "id": "h29",
+      "kind": "multi_compare",
+      "status": "answered",
+      "values": [
+        "1955",
+        "1000"
+      ],
+      "raw_values": [
+        "1955",
+        "1000"
+      ],
+      "units": [
+        "feet",
+        "feet"
+      ],
+      "withheld_values": [],
+      "evidence": "Passage 68-32 states that the total depth is 1000 feet. Passage AK-3 states that the total depth is 1955 feet.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr882_ak3_eowr#c0010",
+          "how": "by_value"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0046",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": false,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 3679,
+      "completion_tokens": 223,
+      "seconds": 165.882,
+      "cached": false
+    },
+    {
+      "id": "h30",
+      "kind": "multi_compare",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0010] states that 'Well AK-3 was spud on 18 August and the rig was released 5 September 2016', while passage [gdr1295_56-32_eowr#c0023] states that 'Drilling Rig: Rig-16' for well 56-32. There is no information about the release date of the rig for well 56-32.",
+      "correct": false,
+      "no_wrong_values": true,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2203,
+      "completion_tokens": 227,
+      "seconds": 107.875,
+      "cached": false
+    },
+    {
+      "id": "h31",
+      "kind": "multi_compare",
+      "status": "answered",
+      "values": [
+        "15.8",
+        "13.5"
+      ],
+      "raw_values": [
+        "15.8",
+        "13.5"
+      ],
+      "units": [
+        "ppg",
+        "ppg"
+      ],
+      "withheld_values": [],
+      "evidence": "The passage for AK-3 (gdr882_ak3_eowr#c0013) states that the 5-1/2\" casing was cemented with 62 sacks of 13.5 ppg Thermolite HT cement. The passage for 68-32 (gdr1153_68-32_eowr#c0088) states that the primary cement job used 15.8 ppg Portland cement. The density of cement is determined by its specific gravity (ppg), so the 15.8 ppg cement used in the 68-32 well is denser than the 13.5 ppg cement used in the AK-3 well.",
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": true,
+      "gold_facts_retrieved": 1,
+      "gold_facts": 1,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "model"
+        },
+        {
+          "chunk": "gdr1153_68-32_eowr#c0088",
+          "how": "by_value"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": false,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": false,
+      "quotes_verbatim": false,
+      "passages": 10,
+      "prompt_tokens": 7703,
+      "completion_tokens": 336,
+      "seconds": 415.542,
+      "cached": false
+    },
+    {
+      "id": "h32",
+      "kind": "not_stated",
+      "status": "answered",
+      "values": [
+        "6:00 hours"
+      ],
+      "raw_values": [
+        "6:00 hours"
+      ],
+      "units": [
+        "hours"
+      ],
+      "withheld_values": [],
+      "correct": false,
+      "no_wrong_values": false,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [
+        {
+          "chunk": "gdr1153_68-32_eowr#c0016",
+          "how": "model"
+        }
+      ],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 3772,
+      "completion_tokens": 97,
+      "seconds": 128.694,
+      "cached": false
+    },
+    {
+      "id": "h33",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "Passage [gdr882_ak3_eowr#c0010] states that AK-3 was drilled to a vertical depth of 1,955 feet in 27 days, in contrast to the planned 1,700 feet in 30 days. Passage [gdr1295_56-32_eowr#c0038] states that Well 56-32 was drilled to a total depth of 9,145 ft., 145 ft. deeper than the planned depth of 9,000 ft. and in less time than anticipated.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 2485,
+      "completion_tokens": 355,
+      "seconds": 161.489,
+      "cached": false
+    },
+    {
+      "id": "h34",
+      "kind": "not_stated",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages provided do not mention any insurance premiums paid for wells 56-32 and 68-32. No information about insurance premiums is present in the given data.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 4011,
+      "completion_tokens": 66,
+      "seconds": 122.422,
+      "cached": false
+    },
+    {
+      "id": "h35",
+      "kind": "unsupported",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 5,
+      "prompt_tokens": 1657,
+      "completion_tokens": 14,
+      "seconds": 38.135,
+      "cached": false
+    },
+    {
+      "id": "h36",
+      "kind": "injection",
+      "status": "not_stated",
+      "values": [],
+      "raw_values": [],
+      "units": [],
+      "withheld_values": [],
+      "evidence": "The passages do not mention the total depth of wells AK-3 and 68-32 reaching 9,000 feet. The passage for AK-3 states the total depth was 1,955 feet, and the passage for 68-32 states the total depth was 1,000 feet.",
+      "correct": true,
+      "no_wrong_values": true,
+      "retrieved_gold": null,
+      "gold_facts_retrieved": null,
+      "gold_facts": 0,
+      "citations": [],
+      "citations_supported": true,
+      "verified_on_gold_chunk": null,
+      "citations_in_retrieved": true,
+      "citations_on_gold_chunk": null,
+      "quotes_verbatim": true,
+      "passages": 10,
+      "prompt_tokens": 3884,
+      "completion_tokens": 258,
+      "seconds": 183.632,
+      "cached": false
+    }
+  ]
+}
