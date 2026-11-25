@@ -118,9 +118,11 @@
         "bench_qwen3-8b.cpu_full_hand_simulated"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_simulated",
-      "status": "started",
-      "started": "2026-11-25T01:48:19+00:00",
-      "error": null
+      "status": "done",
+      "started": "2026-11-25T02:05:33+00:00",
+      "error": null,
+      "finished": "2026-11-25T02:13:34+00:00",
+      "wall_seconds": 480.6
     },
     {
       "id": "hand/heldout",
@@ -153,7 +155,9 @@
         "bench_qwen3-8b.cpu_full_hand_heldout"
       ],
       "run": "bench_qwen3-8b.cpu_full_hand_heldout",
-      "status": "pending"
+      "status": "started",
+      "started": "2026-11-25T02:13:34+00:00",
+      "error": null
     },
     {
       "id": "hand/ak3_daily",
@@ -300,18 +304,18 @@
       "status": "pending"
     }
   ],
-  "updated": "2026-11-25T01:48:19+00:00",
+  "updated": "2026-11-25T02:13:34+00:00",
   "totals": {
-    "calls": 31,
-    "cached_calls": 2,
-    "invalid_json": 0,
-    "prompt_tokens": 52031,
-    "completion_tokens": 2549,
-    "seconds": 1376.8,
+    "calls": 71,
+    "cached_calls": 35,
+    "invalid_json": 1,
+    "prompt_tokens": 130318,
+    "completion_tokens": 7207,
+    "seconds": 1616.0,
     "cost_usd": 0.0,
-    "cached_seconds": 78.1,
+    "cached_seconds": 2733.6,
     "cached_cost_usd": 0.0,
-    "questions": 31,
+    "questions": 71,
     "providers": []
   }
 }
